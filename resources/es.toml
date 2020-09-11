@@ -1,0 +1,96 @@
+# General
+
+[about]
+other = "Sobre esta web y su contenido"
+
+[author_footer_first]
+other = 'Espero que hayas disfrutado este artículo, si quieres saber más sobre el autor <a href="{{ . }}">entra aquí</a>'
+
+[author_footer_second]
+other = 'y si quieres ayudarlo <a href="{{ . }}">entra aquí</a>'
+
+[translations]
+other = 'Este articulo ha sido traducido manualmente del Inglés a otros idiomas que puedes escoger, <a href="{{ . }}">entra aquí</a> si quieres ayudar con las traducciones.'
+
+[next]
+other = 'Siguiente'
+
+[previous]
+other = 'Antrás'
+
+# Subscribe form
+
+[subscribe_title]
+other = "Mantente al tanto"
+
+[subscribe_content]
+other = "Recibe un correo cuando see publique un nuevo artículo, puedes darte de baja en cualquier momento. Uso Mailchimp para llevar al cabo esto."
+
+# Consoles (List)
+
+[generation_title]
+other = "{{ .ordinal }} generación"
+
+[cpu_subtitle]
+other = "Avances notables de la CPU:"
+
+[gpu_subtitle]
+other = "Características sobresalientes de la GPU:"
+
+[roadmap_title]
+other = "Plan"
+
+[roadmap_content]
+other = "Hay tantas consolas de que hablar... Si quieres saber cual es la siguiente en la lista, aquí tienes:"
+
+[contribution_content]
+other = "Si encuentras mis artículos interesantes, por favor considere donar. Tu contribución se usará para tener mas herramientas y recursos que ayudarán a mejorar la calidad de los actuales artículos y próximos. También comparto una lista de materiales interesantes para adquirir al final de cada artículo."
+
+[contribution_footer]
+other = "Along with the donation you can leave a note stating which article in particular you want me to invest in. As a token of gratitude, your name will be included in the credits section of the next article or the particular one, unless stated otherwise."
+
+[contribution_suggestions]
+other = 'De alternativa, puedes ayudar <a href="{{ . }}">sugiriendo cambios</a> y/o <a href="{{ . }}">agregando traducciones</a>.'
+
+# Consoles (Single)
+
+[architecture_consoles]
+other = "Arquitectura de las consolas"
+
+[top_model]
+other = "Modelo"
+
+[top_motherboard]
+other = "Motherboard"
+
+[top_diagram]
+other = "Diagrama"
+
+[contributing_title]
+other = "Contribuir"
+
+[contributing_content]
+other = 'Este artículo forma parte de la serie de <a href="{{ . }}">Arquitectura de consolas</a>. Si te ha resultado interesante, por favor considere donar. Tu contribución se usará para tener mas herramientas y recursos que ayudarán a mejorar la calidad de los actuales artículos y próximos.'
+
+[contributing_tools]
+other = 'Esta es la lista de herramientas adquiridas o interesantes a adquirir:'
+
+[contributing_thanks]
+other = 'Un enorme agradecimiento a las siguientes personas por su donación:'
+
+[changelog_title]
+other = "Registro de cambios"
+
+[changelog_content]
+other = "Siempre es bueno mantener un registro de cambios."
+
+# 3D Model Viewer
+
+[textured]
+other = "Texturado"
+
+[tap_enable_interaction]
+other = "Toca para activar"
+
+[ready_drag_zoom]
+other = "¡Listo para interactuar!"
