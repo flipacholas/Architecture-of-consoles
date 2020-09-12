@@ -196,7 +196,7 @@ The GPU also includes another module for handling most of the I/O called **Syste
 
 The Audio functionality is handled by a custom chip called **AICA** made by Yamaha, it's an improved version of the [SCSP used in the Saturn]({{< ref "sega-saturn">}}#audio) and composed of four components:
 
-- The **Sound Integrated Circuit** or 'IC': A set of modules (Synthesiser, DSP and Mixer) that generates the audio signal and applies effects on it. It supports up to 64 PCM channels with a resolution of 16 or 8 bits and a sampling rate of 44.1MHz (overall, this is the optimal quality for playing audio). 
+- The **Sound Integrated Circuit** or 'IC': A set of modules (Synthesiser, DSP and Mixer) that generates the audio signal and applies effects on it. It supports up to 64 PCM channels with a resolution of 16 or 8 bits and a sampling rate of 44.1 kHz (overall, this is the optimal quality for playing audio). 
   - Additionally, it includes an ADPCM decoder to offload some work from the CPU.
   - Curiously enough, it also includes two MIDI pins to connect a MIDI instrument, although this is meant to be used during development.
 - **2 MB of SDRAM**: Stores sound data and programs. It can be filled by the main CPU using DMA.
