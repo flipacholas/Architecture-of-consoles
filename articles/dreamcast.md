@@ -24,41 +24,45 @@ title: Dreamcast Architecture
 
 ## Introduction
 
-Sega's new console brought many features developers and users could appreciate. Whilst being their last attempt in the console market, some of the technologies debuted here carried on through future mainstream devices.
+The Dreamcast introduced many features that both game developers and console gamers could appreciate. While this was their last attempt to conquer the console market, some of the technologies which were pioneered in the Dreamcast carried on and into future mainstream devices.
 
 ---
 
 ## CPU
 
-It comes without surprise that Hitachi was chosen again to develop their CPU, if you've been reading the [previous article]({{< ref "sega-saturn" >}}) then... Lo and behold! I present you the next-gen SH processor called **SH-4** running at a whopping 200 MHz.
+Unsurprisingly Sega again chose Hitachi to develop their CPU. If you've been reading the [previous article about the Sega Saturn]({{< ref "sega-saturn" >}}) then, lo and behold, I present you the next generation of SH processor called the **SH-4** running at a whopping 200 MHz.
 
-So, what's actually interesting about this new CPU? Well, we have the following:
+So, what's actually interesting about this new CPU?
 
-- **5-stage pipeline**: Up to five instructions can be executed simultaneously (a detailed explanation can be found in a [previous article]({{% ref "sega-saturn" %}}#cpu)).
-  - As you can see, instruction pipelining is now a standard in the current generation of consoles and will continue in the ones to come.
-- **2-way Superscalar**: A new type of parallelism where the CPU can now process more than one instruction (two in this case) in each stage of the pipeline, this results in more instructions executed per second.
-- A dedicated **Floating-Point Unit** or 'FPU': Computes 32-bit decimal numbers (the *floats*) and 64-bit ones (the *doubles*).
-- 8 KB **instruction cache** and 16 KB **data cache**: This ratio is rather curious since consoles tend to include more instruction cache than data cache, but what happens is that data cache can be split into two sections, 8 KB of *Scratchpad* (fast RAM) and 8 KB of data cache.
-- **32-bit internal architecture** while keeping a **16-bit instruction set** (the SuperH ISA): Just like the SH-2, this allows to reduce the size and bus overheads while still enjoying the advantages of a 32-bit architecture.
-- **External 64-bit bus**: Critical for manipulating 64-bit values (e.g. doubles and longs) without wasting extra cycles.
+- **5-stage pipeline**
+  - Up to five instructions can be in flight simultaneously (a detailed explanation can be found in a [previous article]({{% ref "sega-saturn" %}}#cpu)).
+  - Such instruction pipelining is now found everywhere in this generation of consoles and will be standard from now on.
+- **2-way superscalar**
+  - A new type of parallelism where the CPU can process more than one instruction (two in this case) in each stage of the pipeline resulting in more instructions executed per second.
+- A dedicated **Floating-Point Unit** or 'FPU'
+  - Computes 32-bit decimal numbers (the *floats*) and 64-bit ones (the *doubles*).
+- 8 KB **instruction cache** and 16 KB **data cache**
+  - This ratio is rather curious since consoles tend to include more instruction cache than data cache. However, the SH-4 allows the data cache to be split into two sections: 8 KB of *Scratchpad* (fast RAM) and 8 KB of data cache.
+- **32-bit internal architecture** while keeping a **16-bit instruction set** (the SuperH ISA)
+  - Just like the SH-2, this increases code density and decreases bus overheads while still enjoying the advantages of a 32-bit architecture.
+- **External 64-bit bus**
+  - Critical for manipulating 64-bit values (e.g. doubles and longs) without wasting extra cycles.
 
 #### Extra work
 
-Apart from the common chores CPUs are tasked to do (handling the game's logic, enemy's AI, commanding the GPU, etc), the SH-4 will be also involved in the majority of the graphics pipeline by processing geometry data, such as conducting perspective transformations. As a result, it includes a **128-bit SIMD** unit that accelerates operations with vectors.
+The common chores of a game console CPU include handling a game's logic, running the enemy AI and keeping the GPU fed with instructions. In the Dreamcast the SH-4 is also involved in the majority of the graphics pipeline, processing geometry data such as computing perspective transformations. As a result, it includes a **128-bit SIMD** unit that can accelerate vector operations.
 
 #### Improving memory access
 
-The CPU includes a dedicated **Memory Management Unit** or 'MMU' for virtual addressing, this is helpful since the physical memory address space of this CPU happens to be **29-bit wide**. So with the help of four TLBs, programmers can use 32-bit addresses without hitting performance penalties.
+The CPU includes a dedicated **Memory Management Unit** or 'MMU' for virtual addressing, this is helpful since the physical memory address space of this CPU happens to be **29 bits wide**. So with the help of four TLBs, programmers can use 32-bit addresses without hitting performance penalties.
 
-Since only 29 bits are needed for addressing, the extra three bits are used for memory protection, alternating the memory map and circumventing cache, respectively.
+Since only 29 bits are needed for addressing the extra three bits control memory protection, alternating the memory map and circumventing the cache, respectively.
 
-It's worth mentioning that this is up to the programmer to decide whether to use or not, games for this system certainly don't need memory protection and the MMU has to be manually enabled at boot.
+The programmer decides whether to use these features or not. Games for this system certainly don't necessarily _need_ memory protection and the MMU has to be manually enabled at boot.
 
 #### No UMA but...
 
-While this system is not designed around the strict Unified Memory Architecture like a [well-known competitor]({{< ref "nintendo-64">}}#simplified-memory-access), it does delegate I/O access to the GPU.
-
-That means that if the CPU has to fetch anything that's beyond its own dedicated RAM or a serial interface which is also connected too, it will have to request the GPU (and wait if necessary).
+While this system is not designed around the strict Unified Memory Architecture like a [well-known competitor]({{< ref "nintendo-64">}}#simplified-memory-access), it does delegate I/O access to the GPU. That means that if the CPU has to fetch anything that's beyond its own dedicated RAM or a serial interface which is also connected too, it will have to request the GPU (and wait if necessary).
 
 #### Special queries
 
@@ -68,7 +72,7 @@ This CPU also features a unique functionality called **Parallel I/O** or 'PIO' t
 
 ## Graphics
 
-The GPU package is custom-made chip called **Holly** running at 100 MHz, it's designed by VideoLogic (now known as Imagination Technologies) and manufactured by NEC. Holly's 3D core happens to be Videologic's **PowerVR2** (also called 'PowerVR Series2' and 'CLX2').
+The GPU package is a custom-made chip called **Holly** running at 100 MHz, it's designed by VideoLogic (now known as Imagination Technologies) and manufactured by NEC. Holly's 3D core happens to be Videologic's **PowerVR2** (also called 'PowerVR Series2' and 'CLX2').
 
 {{< float_group >}}
 
@@ -78,20 +82,18 @@ The GPU package is custom-made chip called **Holly** running at 100 MHz, it's de
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-VideoLogic chose an alternative approach for the construction of their 3D engine called **Tile-Based Deferred Rendering** or 'TBDR', which instead of rendering a whole frame at once (like traditional **Immediate Mode Renderers** or 'IMR' do), it divides the rendering area into multiple sections called 'tiles' and carries out the rendering process on each tile individually, then the result is combined to draw the final frame.
+VideoLogic chose an alternative approach for the construction of their 3D engine called **Tile-Based Deferred Rendering** or 'TBDR'. TBDR, instead of rendering a whole frame at once, as traditional **Immediate Mode Renderers** or 'IMR' do, divides the rendering area into multiple sections called 'tiles'. It carries out the rendering process on each tile individually then the result is combined to draw the final frame.  This innovative design brings interesting advantages:
+- It can be greatly **parallelised**, which significantly reduces bandwidth and power usage.
+- It implements a clever solution to the [**visibility problem**]({{< ref "sega-saturn" >}}#an-introduction-to-the-visibility-problem) by automatically sorting the polygons **from front to back** and then performing [z-tests]({{< ref "nintendo-64" >}}#modern-visible-surface-determination) at the first stages of the pipeline. The combination of these tasks not only solve the original problem, but it also **prevents overdraw** (rasterisation of hidden polygons) which wastes resources, degrading performance.
 
-This innovative design brings interesting advantages:
-- Can be greatly **parallelised**, which significantly reduces bandwidth and power usage.
-- Implements a clever solution to the [**visibility problem**]({{< ref "sega-saturn" >}}#an-introduction-to-the-visibility-problem), consisting in automatically sorting the polygons **from front to back** and then performing [z-tests]({{< ref "nintendo-64" >}}#modern-visible-surface-determination) at the first stages of the pipeline. The combination of these tasks not only solve the original problem, but it also **prevents overdraw** (rasterisation of hidden polygons) which wastes resources and degrade performance.
-
-It's no surprise that Imagination took this technology forward to build most of the smartphone's GPUs since this approach proved to be very efficient.
+It's no surprise that Imagination took this technology forward to build most of the smartphone's GPUs [name some smartphone GPUs] since this approach proved to be very efficient.
 {{% /inner_markdown %}}
 
 {{< /float_group >}}
 
 #### Architecture
 
-Let's take a look at the two main components of this GPU:
+Let's take a look at the two main components of the Dreamcast's GPU:
 
 {{< tabs >}}
 {{< tab active="true" name="Tile Accelerator" >}}
@@ -102,9 +104,9 @@ Let's take a look at the two main components of this GPU:
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-Before the whole rendering process starts, an extra component known as the **Tile Accelerator** does a bit of pre-processing first. It starts by allocating 32x32 tile bins where the geometry will be rendered at each bin respectively.
+Before the whole rendering process starts an extra component known as the **Tile Accelerator** performs a bit of pre-processing. It starts by allocating [a number of] 32x32 tile bins into which the geometry will be rendered.
 
-Then, the Tile Accelerator will:
+Then the Tile Accelerator will:
 
 1. Grab the geometry data and drawing commands issued by the CPU (either using DMA or traditional transfers).
 2. Compile this data into an **internal format**.
@@ -127,10 +129,10 @@ These Display Lists will be interpreted by the 3D engine.
 Here is where the graphics are brought into life, the Display Lists received from the TA will be used to render the geometry of a single tile using an **internal frame-buffer**. The process is as follows:
 
 1. The **Image Synthesis Processor** or 'ISP' fetches the primitives (either triangles or quads) and performs **Hidden-Surface Removal** to remove unseen polygons. Then, after calculating its Z-buffers and stencil buffers, the data goes through **Depth Testing** to avoid rendering polygons that would appear behind others and **Stencil Tests** to cull geometry that won't be visible if they are located behind a 2D polygon (also called **Mask**).
-    - Notice how these tests are effectively carried out at the start of the pipeline. By contrast, previous consoles [using z-buffers]({{< ref "nintendo-64" >}}#modern-visible-surface-determination) discarded the geometry at the end of the pipeline. The ISP's approach prevents processing the geometry that will eventually be discarded, thereby saving resources.
+    - Notice how these tests are effectively carried out at the start of the pipeline. In contrast previous consoles [using z-buffers]({{< ref "nintendo-64" >}}#modern-visible-surface-determination) discard the geometry at the end of the pipeline. The ISP approach prevents processing the geometry that will eventually be discarded, thereby saving resources.
 2. The **Texture and Shading Processor** or 'TSP' applies colouring and shading over the tile area. It also provides multiple effects (more details later on).
 
-After the operation is completed, the rendered tile is written to the main frame-buffer in VRAM. This process is repeated until all tiles are finished, after that the resulting frame-buffer is picked by the **Video encoder** and sent through the video signal.
+After the operation is completed, the rendered tile is written to the main frame-buffer in VRAM. This process is repeated until all tiles are finished. Once complete the resulting frame-buffer is picked by the **Video encoder** and sent through the video signal.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
