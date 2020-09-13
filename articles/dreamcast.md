@@ -249,7 +249,7 @@ It contains a simple graphical user interface to allow the user to perform basic
 
 #### Windows CE
 
-Ever since the Dreamcasts's announcement it was said that it would run [**Windows CE**](https://en.wikipedia.org/wiki/Windows_Embedded_Compact): a stripped-down version of Windows designed for use on embedded devices. This may have misled users who may have expected to see a Windows CE desktop environment running on their console.
+Ever since the Dreamcasts's announcement it was said that it would run **Windows CE**: a stripped-down version of Windows designed for use on embedded devices. This may have misled users who may have expected to see a Windows CE desktop environment running on their console.
 
 {{< float_group >}}
 {{< float_block >}}
