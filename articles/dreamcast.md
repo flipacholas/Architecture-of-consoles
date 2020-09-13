@@ -30,23 +30,15 @@ The Sega Dreamcast introduced many new features over its predecessor the [Saturn
 
 ## CPU
 
-Unsurprisingly Sega again chose Hitachi to develop their CPU. If you've been reading the [previous article about the Sega Saturn]({{< ref "sega-saturn" >}}) then, lo and behold, I present you the next generation of SH processor: the **SH-4** running at a whopping 200 MHz.
+Unsurprisingly Sega again chose Hitachi to develop their CPU. If you've been reading the [previous article about the Sega Saturn]({{< ref "sega-saturn" >}}) then, lo and behold, I present you the next generation of SH processor: the **SH-4** running at a whopping 200 MHz. So, what's interesting about this CPU?
 
-So, what's actually interesting about this new CPU?
-
-- **5-stage pipeline**
-  - Up to five instructions can be in flight simultaneously (a detailed explanation can be found in a [previous article]({{% ref "sega-saturn" %}}#cpu)).
-  - Such instruction pipelining is now found everywhere in this generation of consoles and will be standard from now on.
-- **2-way superscalar**
-  - A new type of parallelism where the CPU can process more than one instruction (two in this case) in each stage of the pipeline resulting in more instructions executed per second.
-- A dedicated **Floating-Point Unit** or 'FPU'
-  - Computes 32-bit decimal numbers (the *floats*) and 64-bit ones (the *doubles*).
-- 8 KB **instruction cache** and 16 KB **data cache**
-  - This ratio is rather curious since consoles tend to include more instruction cache than data cache. However, the SH-4 allows the data cache to be split into two sections: 8 KB of *Scratchpad* (fast RAM) and 8 KB of data cache.
-- **32-bit internal architecture** while keeping a **16-bit instruction set** (the SuperH ISA)
-  - Just like the SH-2, this increases code density and decreases bus overheads while still enjoying the advantages of a 32-bit architecture.
-- **External 64-bit bus**
-  - Critical for manipulating 64-bit values (e.g. doubles and longs) without wasting extra cycles.
+- **5-stage pipeline**: Up to five instructions can be in flight simultaneously (a detailed explanation can be found in a [previous article]({{% ref "sega-saturn" %}}#cpu)).
+  - Instruction pipelining is now found everywhere in this generation of consoles and will be standard from now on.
+- **2-way superscalar**: A new type of parallelism where the CPU can process more than one instruction (two in this case) in each stage of the pipeline resulting in more instructions executed per second.
+- A dedicated **Floating-Point Unit** or 'FPU': Computes 32-bit decimal numbers (the *floats*) and 64-bit ones (the *doubles*).
+- 8 KB **instruction cache** and 16 KB **data cache**: This ratio is rather curious since consoles tend to include more instruction cache than data cache. However, the SH-4 allows the data cache to be split into two sections: 8 KB of *Scratchpad* (fast RAM) and 8 KB of data cache.
+- **32-bit internal architecture** while keeping a **16-bit instruction set** (the SuperH ISA): Just like the SH-2, this increases code density and decreases bus overheads while still enjoying the advantages of a 32-bit architecture.
+- **External 64-bit bus**: Critical for manipulating 64-bit values (e.g. doubles and longs) without wasting extra cycles.
 
 #### Extra work
 
@@ -328,7 +320,7 @@ Another innovative feature that the Dreamcast included was the **Visual Memory U
 
 {{% inner_markdown %}}
 - A **Sanyo LC86K87**: An 8-bit low power CPU.
-- A **32x48 Monochrome LCD** with four additional icons: Commanded using 196 B of XRAM [what's XRAM?] as frame-buffer.
+- A **32x48 Monochrome LCD** with four additional icons: Commanded using 196 B of XRAM (external RAM) as frame-buffer.
 - **Two serial connectors**: One for IN and the other for OUT.
 - **Six physical buttons**: Used when the VMU is detached from the controller.
 - A **16 KB Mask-ROM**: Stores the BIOS-IPL.
@@ -355,7 +347,7 @@ In practice, the anti-piracy measures were *utterly* useless due to Sega leaving
 
 Now, someone [who?] discovered that after managing to rip the contents of a GD-ROM and modifying its format to adhere to the MIL-CD, burning it to a conventional CD and putting it in the Dreamcast would *just work*. This caused an unstoppable wave of burned discs and ISOs to be released on the net.
 
-Some problems surfaced afterward: Although GD-ROMs can store a gigabyte of data, CD-ROMs can only fit ~700 MB, so how could 'rippers' fit big games on a CD? By compressing music and graphics until it fits, they may even try to split it into two discs. After all, inside discs, there are just files and folders! [doesn't scan/make sense]
+Some problems surfaced afterwards: Although GD-ROMs can store a gigabyte of data, CD-ROMs can only fit ~700 MB, so how could 'rippers' shrink the bigger games to fit on a CD? By re-compressing music and graphics until it fits. They may even try to split it into two discs. After all, game data is not a single blob anymore like on an old cartridge, but is now organised hierarchically into files and directories.
 
 ---
 
