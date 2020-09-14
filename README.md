@@ -1,4 +1,4 @@
-This repo contains all the writings that constitute the [Article of Consoles](https://www.copetti.org/projects/consoles/) series. It has been made public to enable anyone to discuss improvements, add translations and possibly more.
+This repo contains all the writings that constitute the [Architecture of Consoles](https://www.copetti.org/projects/consoles/) series. It has been made public to enable anyone to discuss improvements, add translations and possibly more.
 
 This repo is structured as follows:
 - 'articles' folder contain the writings in Markdown format, along with some front-matter (mainly meta-data) and [Hugo](https://gohugo.io/) syntax (to generate special HTML).
