@@ -55,16 +55,16 @@ Moreover, this core contains some extensions referenced in its name (*TDMI*):
 
 #### Memory locations
 
-The inclusion of Thumb in particular had a strong influence in the final design of this console, Nintendo mixed 16-bit and 32-bit buses between its different modules to reduce costs while providing programmers with the necessary resources to optimise their code. Usable memory is distributed across the following locations:
+The inclusion of Thumb in particular had a strong influence on the final design of this console. Nintendo mixed 16-bit and 32-bit buses between its different modules to reduce costs while providing programmers with the necessary resources to optimise their code. Usable memory is distributed across the following locations:
 
 - **IWRAM** (Internal WRAM) → 32-bit with 32 KB: Useful for storing ARM instructions and data in big chunks.
 - **EWRAM** (External WRAM) → 16-bit with 256 KB: Optimised for storing Thumb-only instructions and data in small chunks.
 - **PAK ROM** -> 16-bit with variable size: This is the place where the cartridge ROM is accessed.
 - **Cart RAM** -> 16-bit with variable size: This is the place where the cartridge RAM is accessed.
 
-Albeit this console being marketed as a 32-bit system, the majority of the memory is only accessible through a 16-bit bus, meaning games will mostly use the Thumb instruction set to avoid spending two cycles per instruction. Only critical sections will be using the ARM instruction set.
+Although this console was marketed as a 32-bit system, the majority of its memory is only accessible through a 16-bit bus, meaning games will mostly use the Thumb instruction set to avoid spending two cycles per instruction fetch. Only critical sections will use the ARM instruction set.
 
-#### How do they maintain compatibility
+#### How do they maintain compatibility?
 
 You'll be surprised that there is no software implemented to detect whether the cartridge inserted is a GB or GBA one. Instead, the console relies on hardware switches: A **shape detector** effectively identifies the type of cartridge and then only passes power through the required bus.
 
@@ -72,9 +72,9 @@ You'll be surprised that there is no software implemented to detect whether the 
 
 ## Graphics
 
-Before we begin, you'll find the system a mix between the [SNES]({{< ref "super-nintendo.md">}}#graphics) and the [Game Boy]({{< ref "game-boy">}}#graphics), the graphic's core is still the well-known 2D engine called **PPU**. I recommend reading those articles before continuing since I'll be revisiting lots of previously-explained concepts.
+Before we begin, you'll find the system a mix between the [SNES]({{< ref "super-nintendo.md">}}#graphics) and the [Game Boy]({{< ref "game-boy">}}#graphics), the graphics core is still the well-known 2D engine called **PPU**. I recommend reading those articles before continuing since I'll be revisiting lots of previously-explained concepts.
 
-In terms of screen, we now have a colour LCD screen that displays up to 32,768 colours (15-bit), it has a resolution of 240x160 pixels and a refresh rate of ~60Hz.
+Compared to previous Game Boys we now have a colour LCD screen that can display up to 32,768 colours (15-bit). It has a resolution of 240x160 pixels and a refresh rate of ~60Hz.
 
 #### Organising the content
 
@@ -83,7 +83,7 @@ In terms of screen, we now have a colour LCD screen that displays up to 32,768 c
   <figcaption class="caption">Memory architecture of the PPU</figcaption>
 {{< /centered_container >}}
 
-We have the following regions of memory used to distribute our graphics:
+We have the following regions of memory in which to distribute our graphics:
 
 - 96 KB 16-bit **VRAM** (Video RAM): Where 64 KB store background graphics and 32 KB store sprite graphics.
 - 1 KB 32-bit **OAM** (Object Attribute Memory): Stores up to 128 sprite entries (not the graphics, just the indices and attributes). Its bus is optimised for fast rendering.
@@ -91,7 +91,7 @@ We have the following regions of memory used to distribute our graphics:
 
 #### Constructing the frame
 
-If you've been reading the previous articles you'll find the GBA a no-stranger, be that as it may, there will be additional functionality that may surprise you (don't forget that this console runs on two AA batteries).
+If you've read the previous articles you'll find the GBA familiar. Although, there is additional functionality that may surprise you, and don't forget that this console runs on two AA batteries.
 
 I'm going to borrow the graphics of Sega's *Sonic Advance 3* to show how a frame is composed.
 
@@ -116,11 +116,11 @@ I'm going to borrow the graphics of Sega's *Sonic Advance 3* to show how a frame
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-GBA's tiles are strictly 8x8 pixels bitmaps, they can use 16 colours (4bpp) or 256 colours (8bpp). 4bpp tiles take 32 bytes while 8bpp ones take 64 bytes.
+GBA's tiles are strictly 8x8 pixel bitmaps, they can use 16 colours (4bpp) or 256 colours (8bpp). 4bpp tiles consume 32 bytes, while 8bpp ones take 64 bytes.
 
-Tiles are grouped in **charblocks**, each block is reserved for a specific type of layer.
+Tiles are grouped into **charblocks**. Each block is reserved for a specific type of layer.
 
-Because each charblock is designed to fit in 16 KB of memory, up to 256 8bpp tiles or 512 4bbp tiles can be stored per block. There are six charblocks allocated, which summed together require 96 KB of memory: The exact amount of VRAM this console has.
+Because each charblock is designed to fit in 16 KB of memory, up to 256 8bpp tiles or 512 4bpp tiles can be stored per block. There are six charblocks allocated, which combined require 96 KB of memory: The exact amount of VRAM this console has.
 
 Four charblocks are used for backgrounds and two are used for sprites.
 {{% /inner_markdown %}}
@@ -146,15 +146,15 @@ Four charblocks are used for backgrounds and two are used for sprites.
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-The background layer of this system has improved significantly since the times of the Gameboy Color, it finally includes some features found in the [Super Nintendo]({{< ref "super-nintendo" >}}) (remember the [affine transformations]({{< ref "super-nintendo" >}}#unique-features)?).
+The background layer of this system has improved significantly since the Game Boy Color. It finally includes some features found in the [Super Nintendo]({{< ref "super-nintendo" >}}) (remember the [affine transformations]({{< ref "super-nintendo" >}}#unique-features)?).
 
-The PPU can draw up to four background layers, the capabilities of each one will depend on the selected mode of operation:
+The PPU can draw up to four background layers. The capabilities of each one will depend on the selected mode of operation:
 
 - **Mode 0**: Provides four static layers.
 - **Mode 1**: Only three layers are available, although one of them is **affine** (can be rotated and/or scaled).
 - **Mode 2**: Supplies two affine layers.
 
-Each layer be up to 512x512 pixels wide, if it's an affine one then it will be up to 1024x1024 pixels.
+Each layer be up to 512x512 pixels wide. If it's an affine one then it will be up to 1024x1024 pixels.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -212,7 +212,7 @@ Good news is that the PPU actually implemented this functionality by including t
 - **Mode 4**: Provides two frames with half the colours (4bpp) each.
 - **Mode 5**: There's two fully-coloured frames with half the size each (160x128 pixels).
 
-The reason for having two bitmaps is to enable **page flipping**: Drawing over a displayed bitmap can expose some weird artefacts during the process, so if we manipulate another one instead, none of the glitches will be shown to the user. Once the second bitmap is finished, the PPU can be updated to point to the second one, effectively swapping the displayed frame.
+The reason for having two bitmaps is to enable **page flipping**: Drawing over a displayed bitmap can expose some weird artefacts during the process. If instead we manipulate another one then none of the glitches will be shown to the user. Once the second bitmap is finished the PPU can be updated to point to the second one, effectively swapping the displayed frame.
 
 {{< float_group >}}
 
@@ -261,9 +261,9 @@ Here is a breakdown of each audio component using *Sonic Advance 2* as example:
 {{% inner_markdown %}}
 The new sound system can now play PCM samples, it provides two channels called **Direct Sound** where it receives samples using a **FIFO queue** (implemented as a 16-byte buffer).
 
-Samples are **8-bit** and **signed** (encoded in values from -128 to 127). The default sampling rate is 32 kHz, although this depends on each game: Since more rate means bigger size and more CPU cycles, not every game will spend the same amount of resources to feed the audio chip.
+Samples are **8-bit** and **signed** (encoded in values from -128 to 127). The default sampling rate is 32 kHz, although this depends on each game: since a higher rate means a larger size and more CPU cycles, not every game will spend the same amount of resources to feed the audio chip.
 
-**DMA** is essential to avoid clogging CPU cycles, **timers** are also available to keep in-sync with the queue.
+**DMA** is essential to avoid clogging CPU cycles. **Timers** are also available to keep in-sync with the queue.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -277,9 +277,9 @@ Samples are **8-bit** and **signed** (encoded in values from -128 to 127). The d
 
 {{% inner_markdown %}}
 While the Game Boy subsystem won't share its CPU, it does give out access to its PSG.
-For compatibility reasons this is the same design found on the original Game Boy, I've previously wrote [this article]({{< ref "game-boy">}}#audio) that goes into detail about each channel in particular.
+For compatibility reasons this is the same design found on the original Game Boy. I've previously written [this article]({{< ref "game-boy">}}#audio) that goes into detail about each channel in particular.
 
-The majority of GBA games used it for accompaniment or effects, later ones will optimise their music for PCM and leave the PSG unused.
+The majority of GBA games used it for accompaniment or effects. Later ones will optimise their music for PCM and leave the PSG unused.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -292,9 +292,9 @@ The majority of GBA games used it for accompaniment or effects, later ones will 
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-Finally, everything is automatically mixed together and outputted through the speaker/headphone jack.
+Finally, everything is automatically mixed together and output through the speaker/headphone jack.
 
-For practical reasons (e.g. cartridge space, need for more PCM channels, etc), you probably noticed that while this console has only two PCM channels, some games magically manage to play more than two samples at the same time. This is because the main CPU can lend some of its cycles to provide audio mixing as well (that gives you an idea of how powerful the ARM7 is!).
+For practical reasons (e.g. cartridge space, need for more PCM channels, etc.), you have probably noticed that, while this console has only two PCM channels, some games can play more than two samples concurrently. This is because the main CPU can lend some of its cycles to provide audio mixing as well (that gives you an idea of how powerful the ARM7 is!).
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -328,12 +328,12 @@ Games are mostly written in C with critical sections in assembly (ARM and Thumb)
 
 #### Cartridge space
 
-In terms of medium, while the ARM7 has a 32-bit address bus, there are only 24 address pins connected to the cartridge (called **Game Pak**), so games can hold up to 32 MB without needing a mapper.
+While the ARM7 has a 32-bit address bus, there are only 24 address lines connected to the cartridge (called **Game Pak**), so games can hold up to 32 MB without needing a mapper.
 
 In order to hold saves, Game Paks could either include:
 - **SRAM**: These need a battery to keep its content and can size up to 64 KB. It's accessed through the GBA's memory map.
 - **Flash ROM**: Similar to SRAM without the need of a battery, can size up to 128 KB.
-- **EEPROM**: These require a serial connection and can theoretically size anything (often found up to 8 KB).
+- **EEPROM**: These require a serial connection and can theoretically size up to anything (often found up to 8 KB).
 
 #### Accessories
 
@@ -355,7 +355,7 @@ However, commercial availability of these cards proved to be a **grey area**: Ni
 
 ---
 
-## That's all folks
+## That's all folks!
 
 {{< centered_container >}}
   {{< linked_img src="mygba.png" alt="My GBA" >}}
