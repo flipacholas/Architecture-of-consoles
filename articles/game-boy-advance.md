@@ -23,7 +23,7 @@ title: Game Boy Advance Architecture
 
 ## A quick introduction
 
-The internal design of the GameBoy Advance is quite impressive for being a portable console that runs on two AA batteries.
+The internal design of the Game Boy Advance is quite impressive for being a portable console that runs on two AA batteries.
 
 This console will carry on using Nintendo's *signature* GPU, additionally, it will introduce a relatively new CPU from a UK company that will surge in popularity in years to come.
 
@@ -32,8 +32,8 @@ This console will carry on using Nintendo's *signature* GPU, additionally, it wi
 ## CPU
 
 Most of the components are compressed in a single package called **CPU AGB**. This package contains two completely different CPUs:
-- A **Sharp LR35902** running at either 8.4 or 4.2 MHz: *If it isn't the same CPU found on the GameBoy!* It's effectively used to run GameBoy (**DMG**) and GameBoy Color (**CGB**) games. Here's [my previous article]({{< ref "game-boy" >}}) if you want to know more about it.
-- An **ARM7TDMI** running at 16.78 MHz: This is the new processor we'll focus on, it most certainly runs GameBoy Advance games.
+- A **Sharp LR35902** running at either 8.4 or 4.2 MHz: *If it isn't the same CPU found on the Game Boy!* It's effectively used to run Game Boy (**DMG**) and Game Boy Color (**CGB**) games. Here's [my previous article]({{< ref "game-boy" >}}) if you want to know more about it.
+- An **ARM7TDMI** running at 16.78 MHz: This is the new processor we'll focus on, it most certainly runs Game Boy Advance games.
 
 Both CPUs will **never run at the same time** or do any fancy co-processing, the **only** reason for including the *very* old Sharp is for **backwards compatibility**.
 
@@ -72,7 +72,7 @@ You'll be surprised that there is no software implemented to detect whether the 
 
 ## Graphics
 
-Before we begin, you'll find the system a mix between the [SNES]({{< ref "super-nintendo.md">}}#graphics) and the [GameBoy]({{< ref "game-boy">}}#graphics), the graphic's core is still the well-known 2D engine called **PPU**. I recommend reading those articles before continuing since I'll be revisiting lots of previously-explained concepts.
+Before we begin, you'll find the system a mix between the [SNES]({{< ref "super-nintendo.md">}}#graphics) and the [Game Boy]({{< ref "game-boy">}}#graphics), the graphic's core is still the well-known 2D engine called **PPU**. I recommend reading those articles before continuing since I'll be revisiting lots of previously-explained concepts.
 
 In terms of screen, we now have a colour LCD screen that displays up to 32,768 colours (15-bit), it has a resolution of 240x160 pixels and a refresh rate of ~60Hz.
 
@@ -245,7 +245,7 @@ For this reason, these modes are used exceptionally, such as for playing motion 
 
 ## Audio
 
-The GBA features a **2-channel sample player** which works in combination with the legacy GameBoy sound system.
+The GBA features a **2-channel sample player** which works in combination with the legacy Game Boy sound system.
 
 Here is a breakdown of each audio component using *Sonic Advance 2* as example:
 
@@ -277,7 +277,7 @@ Samples are **8-bit** and **signed** (encoded in values from -128 to 127). The d
 
 {{% inner_markdown %}}
 While the Game Boy subsystem won't share its CPU, it does give out access to its PSG.
-For compatibility reasons this is the same design found on the original GameBoy, I've previously wrote [this article]({{< ref "game-boy">}}#audio) that goes into detail about each channel in particular.
+For compatibility reasons this is the same design found on the original Game Boy, I've previously wrote [this article]({{< ref "game-boy">}}#audio) that goes into detail about each channel in particular.
 
 The majority of GBA games used it for accompaniment or effects, later ones will optimise their music for PCM and leave the PSG unused.
 {{% /inner_markdown %}}
@@ -345,7 +345,7 @@ The famous **Game Boy Link Cable** provided multi-playing capabilities. Addition
 
 In general terms, the usage of proprietary cartridges was a big barrier compared to the constant cat-and-mouse game that other console manufacturers had to battle while using the CD-ROM.
 
-To combat against *bootleg* cartridges (unauthorised reproductions), the GBA's BIOS incorporated [the same boot process]({{< ref "game-boy">}}#anti-piracy) found in the original GameBoy.
+To combat against *bootleg* cartridges (unauthorised reproductions), the GBA's BIOS incorporated [the same boot process]({{< ref "game-boy">}}#anti-piracy) found in the original Game Boy.
 
 #### Flashcards
 
