@@ -30,7 +30,7 @@ The Sega Dreamcast introduced many new features over its predecessor the [Saturn
 
 ## CPU
 
-Unsurprisingly Sega again chose Hitachi to develop their CPU. If you've been reading the [previous article about the Sega Saturn]({{< ref "sega-saturn" >}}) then, lo and behold, I present you the next generation of SH processor: the **SH-4** running at a whopping 200 MHz. So, what's interesting about this CPU?
+Unsurprisingly Sega again chose Hitachi to develop their CPU. If you've been reading the [previous article about the Sega Saturn]({{< ref "sega-saturn" >}}) then, lo and behold, I present you the next generation of SH processor: the **SH-4** running at a whopping **200 MHz**. So, what's interesting about this CPU?
 
 - **5-stage pipeline**: Up to five instructions can be in flight simultaneously (a detailed explanation can be found in a [previous article]({{% ref "sega-saturn" %}}#cpu)).
   - Instruction pipelining is now found everywhere in this generation of consoles and will be standard from now on.
@@ -48,7 +48,7 @@ The common chores of a game console CPU include handling a game's logic, running
 
 The CPU includes a dedicated **Memory Management Unit** or 'MMU' for virtual addressing, this is helpful since the physical memory address space of this CPU happens to be **29 bits wide**. So with the help of four TLBs, programmers can use 32-bit addresses without hitting performance penalties.
 
-Since only 29 bits are needed for addressing the extra three bits control memory protection, alternating the memory map and circumventing the cache, respectively.
+Since only 29 bits are needed for addressing, the extra three bits control memory protection, alternating the memory map and circumventing the cache, respectively.
 
 The programmer decides whether to use these features or not. Games for this system certainly don't necessarily _need_ memory protection and the MMU has to be manually enabled at boot.
 
@@ -76,7 +76,7 @@ The GPU package is a custom-made chip called **Holly** running at 100 MHz, it's 
 {{% inner_markdown %}}
 VideoLogic chose an alternative approach for the construction of their 3D engine called **Tile-Based Deferred Rendering** or 'TBDR'. TBDR, instead of rendering a whole frame at once, as traditional **Immediate Mode Renderers** or 'IMR' do, divides the rendering area into multiple sections called 'tiles'. It carries out the rendering process on each tile individually then the result is combined to draw the final frame.  This innovative design brings interesting advantages:
 - It can be greatly **parallelised**, which significantly reduces bandwidth and power usage.
-- It implements a clever solution to the [**visibility problem**]({{< ref "sega-saturn" >}}#an-introduction-to-the-visibility-problem) by automatically sorting the Series 4 polygons **from front to back** and then performing [z-tests]({{< ref "nintendo-64" >}}#modern-visible-surface-determination) at the first stages of the pipeline. The combination of these tasks not only solves the original problem, but it also **prevents overdraw** (rasterisation of hidden polygons) which wastes resources, degrading performance.
+- It implements a clever solution to the [**visibility problem**]({{< ref "sega-saturn" >}}#an-introduction-to-the-visibility-problem) by automatically sorting the polygons **from front to back** and then performing [z-tests]({{< ref "nintendo-64" >}}#modern-visible-surface-determination) at the first stages of the pipeline. The combination of these tasks not only solves the original problem, but it also **prevents overdraw** (rasterisation of hidden polygons) which wastes resources, degrading performance.
 
 It's no surprise that Imagination took this efficient technology forward to build the Series 4 PowerVR cores which powered an incredible number of devices, including the first generation of iPhone, the iPhone 3G, the Nokia N95 and the Dell Axim x51.
 {{% /inner_markdown %}}
@@ -123,6 +123,7 @@ Here is where the graphics are brought into life, the Display Lists received fro
 1. The **Image Synthesis Processor** or 'ISP' fetches the primitives (either triangles or quads) and performs **Hidden-Surface Removal** to remove unseen polygons. Then, after calculating its Z-buffers and stencil buffers, the data goes through **Depth Testing** to avoid rendering polygons that would appear behind others and **Stencil Tests** to cull geometry that won't be visible if they are located behind a 2D polygon (also called **Mask**).
     - Notice how these tests are effectively carried out at the start of the pipeline. In contrast previous consoles [using z-buffers]({{< ref "nintendo-64" >}}#modern-visible-surface-determination) discard the geometry at the end of the pipeline. The ISP approach prevents processing the geometry that will eventually be discarded, thereby saving resources.
 2. The **Texture and Shading Processor** or 'TSP' applies colouring and shading over the tile area. It also provides multiple effects (more details later on).
+    - Textures are not applied until the tile is exported, meaning that emerging overdraw (if any) will not lower the fill rate.
 
 After the operation is completed, the rendered tile is written to the main frame-buffer in VRAM. This process is repeated until all tiles are finished. Once complete the resulting frame-buffer is picked by the **Video encoder** and sent through the video signal.
 {{% /inner_markdown %}}
@@ -190,7 +191,7 @@ The GPU also includes another module for handling most of the I/O called **Syste
 
 The Audio functionality is handled by a custom chip called **AICA** made by Yamaha, it's an improved version of the [SCSP used in the Saturn]({{< ref "sega-saturn">}}#audio) and composed of four components:
 
-- The **Sound Integrated Circuit** or 'IC': A set of modules (Synthesiser, DSP and Mixer) that generates the audio signal and applies effects on it. It supports up to 64 PCM channels with a resolution of 16 or 8 bits and a sampling rate of 44.1MHz (overall, this is the optimal quality for playing audio). 
+- The **Sound Integrated Circuit** or 'IC': A set of modules (Synthesiser, DSP and Mixer) that generates the audio signal and applies effects on it. It supports up to 64 PCM channels with a resolution of 16 or 8 bits and a sampling rate of 44.1 kHz (overall, this is the optimal quality for playing audio). 
   - Additionally, it includes an ADPCM decoder to offload some work from the CPU.
   - Curiously enough, it also includes two MIDI pins to connect a MIDI instrument, although this is meant to be used during development.
 - **2 MB of SDRAM**: Stores sound data and programs. It can be filled by the main CPU using DMA.
@@ -249,7 +250,7 @@ It contains a simple graphical user interface to allow the user to perform basic
 
 #### Windows CE
 
-Ever since the Dreamcasts's announcement it was said that it would run **Windows CE**: a stripped-down version of Windows designed for use on embedded devices. This may have misled users who may have expected to see a Windows CE desktop environment running on their console.
+Ever since the Dreamcast's announcement, it was said that it would run **Windows CE**: a stripped-down version of Windows designed for use on embedded devices. This may have misled users who may have expected to see a Windows CE desktop environment running on their console.
 
 {{< float_group >}}
 {{< float_block >}}
