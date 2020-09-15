@@ -23,35 +23,35 @@ title: Game Boy Advance Architecture
 
 ## A quick introduction
 
-The internal design of the Game Boy Advance is quite impressive for being a portable console that runs on two AA batteries.
+The internal design of the Game Boy Advance is quite impressive for a portable console that runs on two AA batteries.
 
-This console will carry on using Nintendo's *signature* GPU, additionally, it will introduce a relatively new CPU from a UK company that will surge in popularity in years to come.
+This console will carry on using Nintendo's *signature* GPU. Additionally, it will introduce a relatively new CPU from a UK company that will surge in popularity in years to come.
 
 ---
 
 ## CPU
 
-Most of the components are compressed in a single package called **CPU AGB**. This package contains two completely different CPUs:
+Most of the components are combined into a single package called **CPU AGB**. This package contains two completely different CPUs:
 - A **Sharp LR35902** running at either 8.4 or 4.2 MHz: *If it isn't the same CPU found on the Game Boy!* It's effectively used to run Game Boy (**DMG**) and Game Boy Color (**CGB**) games. Here's [my previous article]({{< ref "game-boy" >}}) if you want to know more about it.
 - An **ARM7TDMI** running at 16.78 MHz: This is the new processor we'll focus on, it most certainly runs Game Boy Advance games.
 
-Both CPUs will **never run at the same time** or do any fancy co-processing, the **only** reason for including the *very* old Sharp is for **backwards compatibility**.
+Note that both CPUs will **never run at the same time** or do any fancy co-processing. The **only** reason for including the *very* old Sharp is for **backwards compatibility**.
 
-#### What's new
+#### What's new?
 
-Before ARM Holdings became incredibly popular in the smartphone world, they actually licensed their CPU designs to power Acorn's computers, Nokia's phones and some of Nintendo's consoles.
-Their new design, the ARM7TDMI, is based on the old ARM710 with very distinct features:
-- **ARM v4** ISA: The next version of the 32-bit RISC instruction set designed by ARM.
-- **Three-stage pipeline**: Execution of instructions are divided in three steps or *stages*, the CPU will queue up to three instructions where each one is allocated in one stage, this allows to take advantage of all the CPU's resources without idling while also incrementing the amount of instructions executed per unit of time.
+Before ARM Holdings (currently "Arm") became incredibly popular in the smartphone world, they licensed their CPU designs to power Acorn's computers, Nokia's phones and some of Nintendo's consoles.
+Nintendo's chosen CPU, the ARM7TDMI, is based on the earlier ARM710 design, and includes:
+- **ARM v4** ISA: The 4th version of the 32-bit ARM instruction set.
+- **Three-stage pipeline**: Execution of instructions are divided into three steps or *stages*. The CPU will fetch, decode and execute up to three instructions concurrently. This enables maximum use of the CPU's resources which reduces idle silicon while also increasing the amount of instructions executed per unit of time.
 - **32-bit ALU**: Can operate 32-bit numbers without consuming extra cycles.
 
 Moreover, this core contains some extensions referenced in its name (*TDMI*):
-- **T** → **Thumb**: An additional instruction set which can fit in smaller words (16-bit), it's a subset of ARM.
-  - The biggest advantages of using Thumb over ARM are that their instructions only require half of the bus width and occupy half the size in memory. Furthermore, ARM and Thumb instructions can be mixed in the same program, so developers can offload the overhead of ARM's 32-bit instructions.
-  - So, why is not the entire program coded with Thumb then? Well, Thumb doesn't include important instructions like **conditionals** (it only includes branches). This means that, in some cases, Thumb programs may require more code than ARM programs, so it's all about achieving a good balance by using both. 
-- **D** → **Debug Extensions**: Allows to suspend the CPU for debugging purposes. Used for setting breakpoints, for instance.
-- **M** → **Enhanced Multiplier**: Previous ARM cores required multiple cycles to compute 32-bit multiplications, this enhancement attempts to reduce it to just a few.
-- **I** → **EmbeddedICE macrocell**: Includes extra instructions to provide debugging operations.
+- **T** → **Thumb**: A compressed version of the ARM instruction set which can fit into 16-bit words (16-bit).
+  - Being 16-bit, Thumb instructions require half of the bus width and occupy half the size in memory. Furthermore, ARM and Thumb instructions can be mixed in the same program (called *interworking*) so developers can offload the overhead of ARM's 32-bit instructions.
+  - So, why is the entire program not coded with Thumb? Well, since Thumb is a compressed subset of ARM, it doesn't include some of the essential instructions to bring the system up. This means that, in some cases, Thumb programs may require more code than ARM programs, so it's all about achieving a good balance by using both.
+- **D** → **Debug Extensions**: JTAG debugging.
+- **M** → **Enhanced Multiplier**: Previous ARM cores required multiple cycles to compute full 32-bit multiplications, this enhancement reduces it to just a few.
+- **I** → **EmbeddedICE macrocell**: Debug module that allows hardware breakpoints, watchpoints and allows the system to be halted while debugging.
 
 #### Memory locations
 
