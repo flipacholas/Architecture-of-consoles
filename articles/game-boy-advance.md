@@ -39,16 +39,18 @@ Note that both CPUs will **never run at the same time** or do any fancy co-proce
 
 #### What's new?
 
-Before ARM Holdings (currently "Arm") became incredibly popular in the smartphone world, they licensed their CPU designs to power Acorn's computers, Nokia's phones and some of Nintendo's consoles.
+Before ARM Holdings (currently "Arm") became incredibly popular in the smartphone world, they licensed their CPU designs to power Acorn's computers, Apple's Newton, Nokia's phones and the Panasonic 3DO.
 Nintendo's chosen CPU, the ARM7TDMI, is based on the earlier ARM710 design, and includes:
 - **ARM v4** ISA: The 4th version of the 32-bit ARM instruction set.
-- **Three-stage pipeline**: Execution of instructions are divided into three steps or *stages*. The CPU will fetch, decode and execute up to three instructions concurrently. This enables maximum use of the CPU's resources which reduces idle silicon while also increasing the amount of instructions executed per unit of time.
+- **Three-stage pipeline**: Execution of instructions are divided into three steps or *stages*. The CPU will fetch, decode and execute up to three instructions concurrently. This enables maximum use of the CPU's resources (which reduces idle silicon) while also increasing the amount of instructions executed per unit of time.
 - **32-bit ALU**: Can operate 32-bit numbers without consuming extra cycles.
 
 Moreover, this core contains some extensions referenced in its name (*TDMI*):
-- **T** → **Thumb**: A compressed version of the ARM instruction set which can fit into 16-bit words (16-bit).
-  - Being 16-bit, Thumb instructions require half of the bus width and occupy half the size in memory. Furthermore, ARM and Thumb instructions can be mixed in the same program (called *interworking*) so developers can offload the overhead of ARM's 32-bit instructions.
-  - So, why is the entire program not coded with Thumb? Well, since Thumb is a compressed subset of ARM, it doesn't include some of the essential instructions to bring the system up. This means that, in some cases, Thumb programs may require more code than ARM programs, so it's all about achieving a good balance by using both.
+- **T** → **Thumb**: A subset of the ARM instruction set whose instructions are encoded into 16-bit words.
+  - Being 16-bit, Thumb instructions require half the bus width and occupy half the memory. However, since Thumb instructions offer only a functional subset of ARM you may have to write more instructions to achieve the same effect.
+  - Thumb only offers conditional execution on branches, its data processing ops use a two-address format, rather than three-address, and it only has acess to the bottom half of the register file.
+  - In practice Thumb uses 70% of the space of ARM code. For 16-bit wide memory Thumb runs *faster* than ARM.
+  - If required, ARM and Thumb instructions can be mixed in the same program (called *interworking*) so developers can choose when and where to use each mode.
 - **D** → **Debug Extensions**: JTAG debugging.
 - **M** → **Enhanced Multiplier**: Previous ARM cores required multiple cycles to compute full 32-bit multiplications, this enhancement reduces it to just a few.
 - **I** → **EmbeddedICE macrocell**: Debug module that allows hardware breakpoints, watchpoints and allows the system to be halted while debugging.
@@ -62,7 +64,7 @@ The inclusion of Thumb in particular had a strong influence on the final design 
 - **PAK ROM** -> 16-bit with variable size: This is the place where the cartridge ROM is accessed.
 - **Cart RAM** -> 16-bit with variable size: This is the place where the cartridge RAM is accessed.
 
-Although this console was marketed as a 32-bit system, the majority of its memory is only accessible through a 16-bit bus, meaning games will mostly use the Thumb instruction set to avoid spending two cycles per instruction fetch. Only critical sections will use the ARM instruction set.
+Although this console was marketed as a 32-bit system, the majority of its memory is only accessible through a 16-bit bus, meaning games will mostly use the Thumb instruction set to avoid spending two cycles per instruction fetch. Only critical sections should use the ARM instruction set.
 
 #### How do they maintain compatibility?
 
@@ -91,7 +93,7 @@ We have the following regions of memory in which to distribute our graphics:
 
 #### Constructing the frame
 
-If you've read the previous articles you'll find the GBA familiar. Although, there is additional functionality that may surprise you, and don't forget that this console runs on two AA batteries.
+If you've read the previous articles you'll find the GBA familiar, although there is additional functionality that may surprise you, and don't forget that this console runs on two AA batteries.
 
 I'm going to borrow the graphics of Sega's *Sonic Advance 3* to show how a frame is composed.
 
@@ -294,7 +296,7 @@ The majority of GBA games used it for accompaniment or effects. Later ones will 
 {{% inner_markdown %}}
 Finally, everything is automatically mixed together and output through the speaker/headphone jack.
 
-For practical reasons (e.g. cartridge space, need for more PCM channels, etc.), you have probably noticed that, while this console has only two PCM channels, some games can play more than two samples concurrently. This is because the main CPU can lend some of its cycles to provide audio mixing as well (that gives you an idea of how powerful the ARM7 is!).
+While the GBA has just two PCM channels, some games can play more than two concurrent channels. How is this possible? Well, while only having two channels may look a bit weak on paper, the main CPU can use some of its cycles to provide audio sequencing and mixing (that should give you an idea of how powerful the ARM7 is!)
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -355,7 +357,7 @@ However, commercial availability of these cards proved to be a **grey area**: Ni
 
 ---
 
-## That's all folks!
+## That's all folks
 
 {{< centered_container >}}
   {{< linked_img src="mygba.png" alt="My GBA" >}}
