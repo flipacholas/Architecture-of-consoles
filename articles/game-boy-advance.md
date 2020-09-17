@@ -296,7 +296,7 @@ The majority of GBA games used it for accompaniment or effects. Later ones will 
 {{% inner_markdown %}}
 Finally, everything is automatically mixed together and output through the speaker/headphone jack.
 
-While the GBA has just two PCM channels, some games can play more than two concurrent channels. How is this possible? Well, while only having two channels may look a bit weak on paper, the main CPU can use some of its cycles to provide audio sequencing and mixing (that should give you an idea of how powerful the ARM7 is!)
+Even though the GBA has just two PCM channels, some games can magically play more than two concurrent samples. How is this possible? Well, while only having two channels may seem a bit weak on paper, the main CPU can use some of its cycles to provide both audio sequencing and mixing (that should give you an idea of how powerful the ARM7 is!)
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -330,7 +330,7 @@ Games are mostly written in C with critical sections in assembly (ARM and Thumb)
 
 #### Cartridge space
 
-While the ARM7 has a 32-bit address bus, there are only 24 address lines connected to the cartridge (called **Game Pak**), so games can hold up to 32 MB without needing a mapper.
+While the ARM7 has a 32-bit address bus, there are only 24 address lines connected to the cartridge (called a **Game Pak**). With the bottommost bit fixed at zero, this forms a 25-bit address, meaning games can hold up to 32 MB without needing a mapper.
 
 In order to hold saves, Game Paks could either include:
 - **SRAM**: These need a battery to keep its content and can size up to 64 KB. It's accessed through the GBA's memory map.
