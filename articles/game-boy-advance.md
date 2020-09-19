@@ -48,7 +48,7 @@ Nintendo's chosen CPU, the ARM7TDMI, is based on the earlier ARM710 design, and 
 Moreover, this core contains some extensions referenced in its name (*TDMI*):
 - **T** → **Thumb**: A subset of the ARM instruction set whose instructions are encoded into 16-bit words.
   - Being 16-bit, Thumb instructions require half the bus width and occupy half the memory. However, since Thumb instructions offer only a functional subset of ARM you may have to write more instructions to achieve the same effect.
-  - Thumb only offers conditional execution on branches, its data processing ops use a two-address format, rather than three-address, and it only has acess to the bottom half of the register file.
+  - Thumb only offers conditional execution on branches, its data processing ops use a two-address format, rather than three-address, and it only has access to the bottom half of the register file.
   - In practice Thumb uses 70% of the space of ARM code. For 16-bit wide memory Thumb runs *faster* than ARM.
   - If required, ARM and Thumb instructions can be mixed in the same program (called *interworking*) so developers can choose when and where to use each mode.
 - **D** → **Debug Extensions**: JTAG debugging.
