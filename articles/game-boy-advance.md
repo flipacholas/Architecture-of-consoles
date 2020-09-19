@@ -51,7 +51,7 @@ Moreover, this core contains some extensions referenced in its name (*TDMI*):
   - Thumb only offers conditional execution on branches, its data processing ops use a two-address format, rather than three-address, and it only has access to the bottom half of the register file.
   - In practice Thumb uses 70% of the space of ARM code. For 16-bit wide memory Thumb runs *faster* than ARM.
   - If required, ARM and Thumb instructions can be mixed in the same program (called *interworking*) so developers can choose when and where to use each mode.
-- **D** → **Debug Extensions**: JTAG debugging.
+- **D** → **Debug Extensions**: Provide JTAG debugging.
 - **M** → **Enhanced Multiplier**: Previous ARM cores required multiple cycles to compute full 32-bit multiplications, this enhancement reduces it to just a few.
 - **I** → **EmbeddedICE macrocell**: Debug module that allows hardware breakpoints, watchpoints and allows the system to be halted while debugging.
 
@@ -239,9 +239,10 @@ Overall it sounds like a cutting-the-edge feature, however most games held on to
 
 You see, while using a tile engine the CPU can delegate most of the computations to the graphics chip. By contrast, the frame-buffer system that the PPU provides is limited to only displaying that segment of memory as a **single background layer**, that means no more individual affine transformations, layering or effects unless the CPU computes them. Also, the frame-buffer occupies 80 KB of memory, so only 16 KB (half) are available to store sprite tiles.
 
-For this reason, these modes are used exceptionally, such as for playing motion video (**Game Boy Advance Video** completely relied on this) or rendering **3D geometry** with the CPU.
 {{% /inner_markdown %}}
 {{< /float_group >}}
+
+For this reason, these modes are used exceptionally, such as for playing motion video (**Game Boy Advance Video** completely relied on this) or rendering **3D geometry** with the CPU.
 
 ---
 
@@ -328,9 +329,16 @@ Programming for the GBA was similar to the SNES with the addition of all the adv
 
 Games are mostly written in C with critical sections in assembly (ARM and Thumb) to save cycles. Nintendo provided a SDK with libraries and compilers. BIOS calls were available to simplify I/O access and reduce cartridge size.
 
-#### Cartridge space
+The new medium of games is a small cartridge called **GamePak**
 
-While the ARM7 has a 32-bit address bus, there are only 24 address lines connected to the cartridge (called a **Game Pak**). With the bottommost bit fixed at zero, this forms a 25-bit address, meaning games can hold up to 32 MB without needing a mapper.
+#### Accessing cartridge data
+
+While the ARM7 has a 32-bit address bus, there are only 24 address lines connected to the cartridge.
+This should mean that up to 16 MB can be accessed on the cartridge without needing a mapper, however, the official docs state that **32 MB of cartridge data are mapped in memory**. So what's happening here? The truth is, the Gamepak uses **25-bit addresses** (which explains that 32 MB block), although, its bottommost bit is fixed at zero, so the only 24 remaining bits are set. This is how Gamepak addressing works.
+
+Now, does this mean that data located at odd addresses (with its least significant bit at '1') will be inaccessible? No, because the data bus is 16-bit: For every transfer, the CPU/DMA will fetch the located byte plus the next one, allowing to read both even and odd addresses. As you can see, this is just another work of engineering that makes full use of hardware capabilities while reducing costs.
+
+#### Cartridge space
 
 In order to hold saves, Game Paks could either include:
 - **SRAM**: These need a battery to keep its content and can size up to 64 KB. It's accessed through the GBA's memory map.
