@@ -329,12 +329,12 @@ Programming for the GBA was similar to the SNES with the addition of all the adv
 
 Games are mostly written in C with critical sections in assembly (ARM and Thumb) to save cycles. Nintendo provided a SDK with libraries and compilers. BIOS calls were available to simplify I/O access and reduce cartridge size.
 
-The new medium of games is a small cartridge called **GamePak**
+Game data is stored inside a new proprietary cartridge called **GamePak**.
 
 #### Accessing cartridge data
 
 While the ARM7 has a 32-bit address bus, there are only 24 address lines connected to the cartridge.
-This should mean that up to 16 MB can be accessed on the cartridge without needing a mapper, however, the official docs state that **32 MB of cartridge data are mapped in memory**. So what's happening here? The truth is, the Gamepak uses **25-bit addresses** (which explains that 32 MB block), although, its bottommost bit is fixed at zero, so the only 24 remaining bits are set. This is how Gamepak addressing works.
+This should mean that up to 16 MB can be accessed on the cartridge without needing a mapper, however, the official docs state that **32 MB of cartridge data are mapped in memory**. So what's happening here? The truth is, the Gamepak uses **25-bit addresses** (which explains that 32 MB block) but its bottommost bit is fixed at zero, so the only 24 remaining bits are set. This is how Gamepak addressing works.
 
 Now, does this mean that data located at odd addresses (with its least significant bit at '1') will be inaccessible? No, because the data bus is 16-bit: For every transfer, the CPU/DMA will fetch the located byte plus the next one, allowing to read both even and odd addresses. As you can see, this is just another work of engineering that makes full use of hardware capabilities while reducing costs.
 
