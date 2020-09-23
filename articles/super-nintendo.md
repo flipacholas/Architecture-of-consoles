@@ -10,17 +10,20 @@ published: true
 top_tabs:
   Models:
     International:
-      caption: "The Super Nintendo or Super Famicom in Japan, released on 21/11/1990 in Japan and 11/04/1992 in Europe"
+      caption: "The Super Nintendo or Super Famicom in Japan
+      <br>Released on 21/11/1990 in Japan and 11/04/1992 in Europe"
     American:
-      caption: "The Super Nintendo, released on 13/08/1991"
+      caption: "The Super Nintendo
+      <br>Released on 13/08/1991 in America"
   Motherboard:
-    caption: "Showing model 'SNS-RGB-CPU-01', earlier revisions had the Sound Subsystem connected as a daughterboard, later ones unified both PPUs"
+    caption: "Showing model 'SNS-RGB-CPU-01'
+    <br>Earlier revisions had the Sound Subsystem connected as a daughterboard, later ones unified both PPUs"
     extension: "jpg"
   Diagram: 
     caption: "Bus 'A' and 'B' are address buses, the data bus follows the trail of bus 'B' and it's 8 bits wide"
 
 # SEO
-title: SNES Architecture
+title: Super Nintendo Architecture
 ---
 
 ## A quick introduction
@@ -270,10 +273,21 @@ Introducing **Mode 7**, *yet another* background mode, but this time, with a com
 
 These effects don't include perspective, although by altering the rotation matrix at each HDMA call, a pseudo 3D effect can be achieved!
 
-Due to the high number of calculations needed, the memory map is changed to optimise the pipeline of the two PPUs, the first one processes the **Tilemap** (where tiles are referenced) while the other fetches the **Tileset** (where tiles are stored).
 {{% /inner_markdown %}}
 
 {{< /float_group >}}
+
+Due to the high number of calculations needed, the memory map is changed to optimise the pipeline of the two PPUs, the first one processes the **Tilemap** (where tiles are referenced) while the other fetches the **Tileset** (where tiles are stored).
+
+#### A convenient video out
+
+All of the aforementioned advancements will be futile unless the console sends the picture to the TV in a format both can understand. With the Super Nintendo, the company debuted some sort of *universal-but-proprietary* connection called **Multi Out** which can transport many types of signals at the same time, including **Composite**, **S-Video** and **RGB**.
+
+Along with the console, Nintendo included a 'Multi Out to composite' cable since that was pretty much the common denominator of TVs back then. In Europe however, the **SCART** port was also very popular as many set-top boxes and VCRs relied on it. A great thing about SCART is that it can also carry many types of signals, this enabled AV equipment to use the most optimal signal type without encountering compatibility issues. Unfortunately, Nintendo never shipped an official SCART cable that took advantage of the RGB pins exposed in the Super Nintendo.
+
+Nonetheless, Nintendo altered the pinout of its PAL consoles to comply with the SCART protocol, and in doing so it replaced the 'composite sync' signal for a 12 Volts one (which tells the TV to set the 4:3 aspect ratio). So, even though Multi out is 'universal', the resulting RGB cables, if any, are region-specific.
+
+I think the real benefits of Multi Out started to become evident during present times, as it allowed users to take advantage of the RGB signal with their state-of-the-art tellies without tampering with the internals of this console. Although, unlike composite and S-Video, RGB requires an extra 'sync' signal. For this, the cable can be wired up to capture the sync signal from composite or s-video; or for best results, use a dedicated sync line called 'composite sync'. But, as mentioned in the previous paragraph, only NTSC consoles carried the latter.
 
 ---
 
@@ -453,6 +467,7 @@ This could be defeated by manually removing these routines but would take a long
 - [**Graphics in detail**](https://megacatstudios.com/blogs/press/super-nintendo-graphic-guide)
 - [**Sprites guidelines**](https://megacatstudios.com/blogs/press/snes-sprite-engine-design-guidelines)
 - [**Advanced Graphics documentation**](https://media.smwcentral.net/Ersanio/SMWCstuff/Advanced%20documentation/qsnesdoc.html)
+- [**Video pinout**](https://pinouts.ru/dev/Nintendo/SNES/)
 
 #### Audio
 

@@ -241,6 +241,12 @@ As a result, some games used solid colours with Gouraud shading (like *Super Mar
 {{% /tab %}}
 {{< /tabs >}}
 
+#### The universal video out
+
+Nintendo carried on using the 'universal' [Multi Out]({{< ref "super-nintendo.md" >}}#a-convenient-video-out) port found on its predecessor, bad news is that it **no longer carries the RGB signal!** It looks to me like another measure to save costs, since RGB wasn't used anyway in the previous console.
+
+Good news is that the three lines can still be reconstructed in the first revisions by soldering some cables and fitting an inexpensive signal amplifier. This is because the video digital-to-analogue converter transmit an RGB signal to the video encoder. However, latter units combined both chips, so the only remaining option is to bypass the video DAC and encoder altogether with a custom one that exposes those signals.
+
 ---
 
 ## Audio

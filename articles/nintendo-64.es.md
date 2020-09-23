@@ -94,7 +94,7 @@ Para operar este módulo, la CPU almacena en la RAM una serie de comandos llamad
 Esto parece sencillo, pero ¿cómo realiza estas operaciones? Bueno, aquí está la parte interesante: A diferencia de sus competidores (PS1 y Sega Saturn), **el motor de la geometría no está fijado**. En su lugar, el RSP contiene un poco de memoria (4 KB para instrucciones y 4 KB para datos) para almacenar **microcode**, un pequeño programa, con no más de 1000 instrucciones, que **implementa la tubería de gráficos**. En otras palabras, dirige a la Scalar Unit como debe operar nuestros gráficos.
 La CPU envía microcode mientras el programa se encuentra en ejecución.
 
-Nintendo proporcionó diferentes versiones de microcode para elegir y, similarmente a los [modos de background de SNES]({{< ref path="super-nintendo" lang="en" >}}}#graphics), cada uno balancea los recursos a su manera.
+Nintendo proporcionó diferentes versiones de microcode para elegir y, similarmente a los [modos de background de SNES]({{< ref path="super-nintendo" lang="en" >}}#graphics), cada uno balancea los recursos a su manera.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -246,6 +246,12 @@ Como resultado, algunos juegos utilizan colores sólidos con sombreado Gouraud (
 
 {{% /tab %}}
 {{< /tabs >}}
+
+#### La salida de video universal
+
+Nintendo siguió usando la salida 'universal' llamada [Multi Out]({{< ref path="super-nintendo" lang="en" >}}#a-convenient-video-out) como su predecesor, desafortunadamente **ya no transmite más la señal RGB**. Cosa que suena a otra medida para acaparar costes, dado que la misma señal no se había aprovechado en la consola anterior.
+
+Las buenas noticias son que los tres canales pueden ser reconstruidos en las primeras revisiones de la consola mediante la soldadura de algunos cables y la instalación de un amplificador de señal (tiende a ser barato). Esto es debido a que el convertidor digital a analógico de video envía una señal RGB al codificador de video. Sin embargo, posteriores unidades combinaron los dos chips, así que la única solución disponible es de sobrepasar el video DAC y el codificador con algún chip especializado que pueda exponer la señal RGB.
 
 ---
 

@@ -856,7 +856,7 @@ Rodrigo
 #### Anti-Piracy
 
 - Acekard, **Acekard RPG 4.06 Source Code**
-- ndsbackup.com, [**NDS WiFiMe**](https://www.ndsbackup.com/wifime.htm)
+- ndsbackup.com, [**NDS WiFiMe** (Archived)](https://web.archive.org/web/20180827093014/https://www.ndsbackup.com/wifime.htm)
 - Bruce Schneier, [**The Blowfish Encryption Algorithm**](https://www.schneier.com/academic/blowfish/)
 
 #### Photography

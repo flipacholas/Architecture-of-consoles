@@ -168,13 +168,9 @@ The speed up of Hollywood combined with revamped character designs brought some 
 
 #### Video Signal
 
-This console includes a single proprietary connector that can provide multiple video signals at once (called **A/V Multi Out**), these include:
+Surprisingly enough, this console doesn't use the old [Multi Out]({{< ref "super-nintendo.md" >}}#a-convenient-video-out) port anymore, but a variation of it called **AV Multi Out** (so much for a name) with a slightly different shape. This one carries all of the previous signals plus **YPbPr** (known as 'component'), which is as good as RGB but only requires two lines for video (as opposed to three). It also includes some data lines that the system uses to identify the type of cable plugged in.
 
-- **Composite**: The traditional one, made of one yellow RCA cable.
-- **S-Video** (NTSC only): A slightly better one that uses a 4-pin mini-DIN connector.
-- **RGB** (PAL only): This has an optimal image quality but can only carry interlaced signals (480i and 576i).
-  - Nintendo shipped a SCART cable as an extra accessory which can transport this signal.
-- **Component**: Another optimal signal, uses three RCA cables.
+Unfortunately, this medium inherits the same [limitations]({{< ref "gamecube.md" >}}#connections) of the Gamecube. That is, no S-Video on PAL systems and no RGB on NTSC ones. Also, RGB can only broadcast interlaced signals (no progressive). On the other side, Nintendo finally shipped a SCART cable (as an extra accessory) which finally makes use of the RGB lines.
 
 ---
 

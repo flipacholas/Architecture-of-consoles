@@ -353,7 +353,7 @@ It's worth mentioning that games like *Dragon Quest* implemented a custom lighti
 
 #### Video Output
 
-As stated before, the PCRTC sends the frame-buffer through the video signal, it can broadcast the video signal using the following modes to work with TVs from any geographical region:
+As stated before, the PCRTC sends the frame-buffer through the video signal, it can broadcast video using the following formats to work with TVs from any geographical region:
 - **PAL**: Sends up to 640x512 pixels at 50 Hz, either progressive (576p) or interlaced (576i).
   - No games found in the market use 576p. While some support progressive mode, the do so in 480p mode.
 - **NTSC**: Up to 640x448 pixels at 60 Hz, either progressive (480p) or interlaced (480i).
@@ -374,7 +374,7 @@ There're quite a lot of modes to choose from, but it all comes down to the forma
 {{% /inner_markdown %}}
 {{< /float_group >}}
 
-The video out port (**Multi A/V**) is very convenient. It outputs RGB, Component, S-Video and composite. So, all the important signals are there without requiring proprietary adapters.
+The video out port (**Multi A/V**) is very convenient. It outputs RGB, Component, S-Video and composite. So, all the important signals are there without requiring proprietary adapters or internal modifications.
 
 ---
 

@@ -166,14 +166,17 @@ Holly can now draw ~10 times more polygons than [its predecessor]({{< ref "sega-
 
 The video system was designed to support multiple types of screens and formats, thus the video encoder outputs to a single-shaped socket that supports the following type of signals:
 
-- **RCA**: Combines the three signals needed to display video (chroma, luma and sync) into a single one, requiring only a single-pin cable. This is used on old PAL and NTSC TVs with a *composite* connection.
-- **S-Video**: Combines luma and sync while keeping chroma separated.
-- **VGA**: Sends Red-Green-Blue signals instead along with two sync signals (horizontal and vertical), this enables to display the biggest resolution possible (720x480) in progressive mode (thus, the resulting name was *480p*). This is the same signal used to connect computer monitors. To use this mode, Sega provided a VGA adapter as an extra accessory.
-- **RGB**: Similar to VGA but applies other types of synchronisation. Often used with a SCART cable. 
+- **Composite**: Combines the three signals needed to display video (chroma, luma and sync) into a single one, requiring only a single-pin cable.
+  - This is used on old PAL and NTSC TVs with an RCA connection.
+- **S-Video**: Combines luma and sync while keeping chroma separated (two video lines in total).
+- **RGB**: Sends separate Red-Green-Blue signals and provides different sync types to choose from (composite sync or extracted from video composite or S-Video).
+  - A SCART cable will use this type. 
+- **VGA**: Combines RGB with two special sync signals (horizontal and vertical) resulting in five video lines in total. This enables to display the biggest resolution possible (720x480) in progressive mode (thus, this mode is often named '480p'). VGA has actually been the standard format/medium used by computer monitors for some time.
+  - To use this type, Sega provided a VGA adapter as an extra accessory.
 
-Now, the Dreamcast can't encode all of these at the same time, so the GPU and the Audio processor contain a register called *Image Mode* that coordinates which required video/audio buses will be activated to generate the requested signal. The CPU detects which type of cable is inserted (by checking which bits of the video connector are active) and writes the required values on the GPU which then will be forwarded to the Audio processor.
+Now, the Dreamcast can't encode all of these at the same time, so the GPU and the Audio processor contain a register called **Image Mode** that coordinates which required video/audio buses will be activated to generate the requested signal. The CPU detects which type of cable is inserted (by checking which select bits of the video connector are active) and writes the required values on the GPU, which will then be forwarded to the Audio processor.
 
-Since VGA is strictly a progressive type of signal (as opposed to the traditional *interlaced*), some compatibility issues arose with games which were only designed for interlaced video, these explicitly state in their code that won't display on VGA, so the CPU will block the game until the user swaps out the VGA cable for another type.
+Since VGA is strictly a progressive type of signal (as opposed to the traditional *interlaced*), some compatibility issues arose with games which were only designed for interlaced video. These explicitly state in their code that won't display on VGA, so the CPU will block the game until the user swaps out the VGA cable for another type.
 
 #### Unified I/O Access
 
