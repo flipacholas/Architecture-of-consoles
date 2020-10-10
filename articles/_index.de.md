@@ -1,13 +1,13 @@
 ---
-title: Architektur von Konsolen
-description: Verständnis der Evolution von Konsolen durch ihre Architektur
+Titel: Architektur von Konsolen
+Beschreibung: Verständnis der Evolution von Konsolen durch ihre Architektur
 id: consoles
-layout: consoles
-type: project
+Layout: consoles
+Typ: project
 seo_image: banner.png
 cascade:
-    description: "Eine eingehende Analyse, die erklärt, wie diese Konsole intern funktioniert"
-    second_title: Eine praktische Analyse
+    Beschreibung: "Eine eingehende Analyse, die erklärt, wie diese Konsole intern funktioniert"
+    Untertitel: Eine praktische Analyse
     layout: console
     type: console
     image_dir: consoles
