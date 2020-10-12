@@ -1,9 +1,9 @@
 ---
 Titel: Architektur von Konsolen
 Beschreibung: Verständnis der Evolution von Konsolen durch ihre Architektur
-id: consoles
-Layout: consoles
-Typ: project
+id: Konsolen
+Layout: Konsolen
+Typ: Projekt
 seo_image: banner.png
 cascade:
     Beschreibung: "Eine eingehende Analyse, die erklärt, wie diese Konsole intern funktioniert"
