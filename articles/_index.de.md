@@ -1,13 +1,13 @@
 ---
-Titel: Architektur von Konsolen
-Beschreibung: Verständnis der Evolution von Konsolen durch ihre Architektur
+title: Architektur von Konsolen
+description: Verständnis der Evolution von Konsolen durch ihre Architektur
 id: Konsolen
-Layout: Konsolen
-Typ: Projekt
+layout: Konsolen
+type: Projekt
 seo_image: banner.png
 cascade:
-    Beschreibung: "Eine eingehende Analyse, die erklärt, wie diese Konsole intern funktioniert"
-    Untertitel: Eine praktische Analyse
+    description: "Eine eingehende Analyse, die erklärt, wie diese Konsole intern funktioniert"
+    second_title: Eine praktische Analyse
     layout: console
     type: console
     image_dir: consoles
@@ -36,7 +36,7 @@ bemühe mich wirklich sehr, meinen Inhalt für ein breiteres
 Publikum zu schreiben, also scheuen Sie sich bitte nicht, es zu versuchen!
 
 Ich versuche, so genau wie möglich zu sein, sollten Sie dennoch Fehler
-finden, bitte {{{< email "benachrichtigen Sie mich" >}} oder
-[Änderungen vorschlagen] wollen({{{{< ref path="translations" lang="en" >}}).
+finden, bitte {{< email "benachrichtigen Sie mich" >}} oder
+[Änderungen vorschlagen wollen]({{< ref path="translations" lang="en" >}}).
 
 Kurzerhand, hier sind sie!
