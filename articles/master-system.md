@@ -137,7 +137,7 @@ Colour RAM stores **two palettes of 16 colours each**. Each entry is 6-bit wide 
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-The background layer is a large plane static tiles are drawn. To draw something here, there's another area on VRAM called **Screen map** that takes 1.75 KB. This enables to build a layer of 896 tiles (32x28 tiles), but if we do the math we'll see that this layer is larger than the display resolution of this console. The reality is, only 768 tiles (32x24 tiles) are visible, so the visible area is manually selected at the programmer's will.
+The background layer is a large plane where static tiles are drawn. To draw something here, there's another area on VRAM called **Screen map** that takes 1.75 KB. This enables to build a layer of 896 tiles (32x28 tiles), but if we do the math we'll see that this layer is larger than the display resolution of this console. The reality is, only 768 tiles (32x24 tiles) are visible, so the visible area is manually selected at the programmer's will.
 
 Moreover, by slowly alternating the X and Y coordinates of the selected area, a **scrolling effect** is accomplished.
 
