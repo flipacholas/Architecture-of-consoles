@@ -1,9 +1,9 @@
 ---
 title: Architektur von Konsolen
 description: Verständnis der Evolution von Konsolen durch ihre Architektur
-id: Konsolen
-layout: Konsolen
-type: Projekt
+id: consoles
+layout: consoles
+type: project
 seo_image: banner.png
 cascade:
     description: "Eine eingehende Analyse, die erklärt, wie diese Konsole intern funktioniert"
@@ -16,7 +16,7 @@ cascade:
     seo_type: TechArticle
 ---
 
-{{< linked_img src="banner.png" alt="Architecture of consoles" noLink="true" no_lazyload="true" >}}
+{{< linked_img src="banner.png" alt="Architektur von Konsolen" noLink="true" no_lazyload="true" >}}
 
 Der Blick auf die Entwicklung von Videospielkonsolen ist faszinierend. Während sich herkömmliche PCs tendenziell "inkrementell" entwickeln,
 führt jede neue Generation von Konsolen völlig neue Arbeitsweisen ein. Was Sie hier sehen, ist eine Reihe von
