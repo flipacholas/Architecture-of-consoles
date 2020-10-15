@@ -308,7 +308,7 @@ Although... some found ingenious fixes, take a look at these two cases:
   <figcaption class="caption">Both games command the VDP1 to draw foreground objects and background scenery. The VDP2 draws instead the landscape image far away and the stats in front of the 3D models. With this layout, VP1 models with half-transparency won't refract the VDP2's landscape as the VDP1 is not aware of the VDP2's frame-buffers.</figcaption>
 {{< /side_by_side >}}
 
-Apart from my terrible play, you'll notice that the background of the first game pops out of nowhere (no half-transparency) whereas the second game not only accomplished half-transparency but also a **fading effect**: Traveller's Tales found a workaround by changing the 'mix ratio' registers of the VDP2 (used for defining the texture's alpha) combined with switching the lighting levels as the character gets closer.
+Apart from my terrible gameplay, you'll notice that the background of the first game pops out of nowhere (no half-transparency) whereas the second game not only accomplished half-transparency but also a **fading effect**: Traveller's Tales found a workaround by changing the 'mix ratio' registers of the VDP2 (used for defining the texture's alpha) combined with switching the lighting levels as the character gets closer.
 
 ---
 

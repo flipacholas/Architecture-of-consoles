@@ -36,7 +36,7 @@ Their new system includes lots of *already familiar* components ready to be prog
 
 This console has two *general purpose* processors.
 
-Firstly, we've got a **Motorola 68000** running at **~7.6MHz**, a popular processor already present in many computers at that time, such as the Amiga, the (original) Macintosh, the Atari ST... Curiously enough, each one of them succeeded its '6502 predecessor' and while the Master System (Mega Drive's precursor) doesn't use a 6502 CPU, the [NES]({{< ref "nes" >}}) did (and in some way, Sega's goal was to win Nintendo consumers over). All in all, you can see a bit of correlation between the evolution of computers and game console technology.
+Firstly, we've got a **Motorola 68000** running at **~7.6MHz**, a popular processor already present in many computers at that time, such as the Amiga, the (original) Macintosh, the Atari ST... Curiously enough, each one of them succeeded its '6502 predecessor' and while the [Master System]({{< ref "master-system" >}}) (Mega Drive's precursor) doesn't use a 6502 CPU, the [NES]({{< ref "nes" >}}) did (and in some way, Sega's goal was to win Nintendo consumers over). All in all, you can see a bit of correlation between the evolution of computers and game console technology.
 
 Back on topic, the 68k has the role of 'main' CPU and it will be used for game logic, handling I/O and graphics calculations. It has the following capabilities:
   - **68000 ISA**: A new instruction set with plenty of features, including a set of multiplication and division instructions. Some instructions are 8-bit long (byte), others 16-bit long (word) and the rest are 32-bit long (long-word).
@@ -55,7 +55,7 @@ Back on topic, the 68k has the role of 'main' CPU and it will be used for game l
 
 (If you wonder the reason behind using 24-bit addresses with a CPU that can handle 32-bit addresses, I doubt that in the 80s many were asking to manage 4 GB of RAM and adding unused lines is costly in terms of performance and money).
 
-Secondly, there's another CPU fitted in this console, a **Zilog Z80** running at **~3.5 MHz**. This is the same processor found on the Master System and it's mainly used for **sound control**. It features:
+Secondly, there's another CPU fitted in this console, a **Zilog Z80** running at **~3.5 MHz**. This is the same processor found on the [Master System]({{< ref "master-system" >}}#cpu) and it's mainly used for **sound control**. It features:
   - **Z80 ISA**: An extension of the Motorola 6800 (not 68000!) ISA, it handles **8-bit** words.
   - **8-bit registers** and **8-bit data bus**: No surprises here.
   - **4-bit ALU**: This may be a bit shocking, but it managed to handle 8-bit operations without problems, it just takes two cycles per number.
@@ -80,7 +80,7 @@ Graphics data is processed by the 68000 and rendered on a proprietary chip calle
 The VDP runs at **~13 MHz** and supports multiple resolution modes depending on the region: Up to 320x224 pixels in NTSC and up to 320x240 pixels in PAL.
 
 This chip has two modes of operations:
-- **Mode IV**: Legacy mode that behaves like its predecessor (Master System's VDP).
+- **Mode IV**: Legacy mode that behaves like its [predecessor]({{< ref "master-system" >}}#graphics).
   - This doesn't mean this console will play Master System games automatically, an additional accessory (the *Power Base Converter*) is required to fit previous cartridges on this console, the converter will also instruct the I/O chip to put the Z80 in control.
 - **Mode V**: Native mode of operation, we'll focus on this one.
 
@@ -281,7 +281,7 @@ Compared to traditional PSG synthesisers, this was a drastic improvement: You we
 {{% inner_markdown %}}
 A **PSG chip** that can produce three pulse waves and one noise.
 
-This is actually the original Master System's sound chip and it's embedded in the VDP, runs at the speed of the Z80.
+This is actually the original Master System's [sound chip]({{< ref "master-system" >}}#audio) and it's embedded in the VDP, it runs at the speed of the Z80.
 
 Notice the 'Pulse 3' channel remains unused, this is indeed reserved to play the effects during gameplay.
 {{% /inner_markdown %}}

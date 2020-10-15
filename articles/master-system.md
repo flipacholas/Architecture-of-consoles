@@ -115,7 +115,7 @@ Mode IV is based on the **tile system**. To recall [previous explanations]({{< r
 
 Inside VRAM, there's an area dedicated for tiles called **Character generator** (Sega calls 'Characters' to tiles) and it's set to be **14 KB long**. Each tile occupies 32 bytes, so we can store up to 448 tiles.
 
-There are 64 pixels defined on every tile, the VDP rules that each pixel must weight 4 bytes, that means that up to **16 colours can be chosen**. Those 4-bytes reference a single entry on **Colour RAM** or 'CRAM'. That area is found inside the VDP and stores the colour palettes. Colour palette systems help reduce the size of tiles in memory and allows programmers to alternate its colours without storing multiple copies.
+There are 64 pixels defined on every tile, the VDP rules that each pixel must weight 4 bits, that means that up to **16 colours can be chosen**. Those bits reference a single entry on **Colour RAM** or 'CRAM'. That area is found inside the VDP and stores the colour palettes. Colour palette systems help reduce the size of tiles in memory and allows programmers to alternate its colours without storing multiple copies.
 
 Colour RAM stores **two palettes of 16 colours each**. Each entry is 6-bit wide and each 2-bit set defines one colour from the RGB model. This means that there are 64 colours available to choose from.
 {{% /inner_markdown %}}
@@ -137,9 +137,9 @@ Colour RAM stores **two palettes of 16 colours each**. Each entry is 6-bit wide 
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-The background layer is a large plane where static tiles are drawn. To draw something here, there's another area on VRAM called **Screen map** that takes 1.75 KB. This enables to build a layer of 896 tiles (32x28 tiles), but if we do the math we'll see that this layer is larger than the display resolution of this console. The reality is, only 768 tiles (32x24 tiles) are visible, so the visible area is manually selected at the programmer's will.
+The background layer is a large plane where static tiles are drawn. To place something here, there's another area on VRAM called **Screen map** that takes 1.75 KB. 
 
-Moreover, by slowly alternating the X and Y coordinates of the selected area, a **scrolling effect** is accomplished.
+This enables to build a layer of 896 tiles (32x28 tiles), but if we do the math we'll see that this layer is larger than the display resolution of this console. The reality is, only 768 tiles (32x24 tiles) are visible, so the visible area is manually selected at the programmer's will. Hence, by slowly alternating the X and Y coordinates of the selected area, a **scrolling effect** is accomplished.
 
 Each entry of the map is 2 bytes wide (as wide as the VDP data-bus) and contains the address of the tile in the Character generator and the following attributes:
 - **Horizontal and Vertical flip**.
@@ -203,7 +203,7 @@ This feature is not new actually, as the TMS9918 also included it, thus the SG-1
 {{< tab name="The need for modularity" >}}
 
 {{% inner_markdown %}}
-When I previously analysed the design of Nintendo's PPU, I made emphasis at its internal memory architecture. While limited, some constraints were [intentional]({{< ref "nes" >}}#secrets-and-limitations) as it enabled the system to be expanded with the use extra hardware included in the game cartridge, keeping the costs down in the process.
+When I previously analysed the design of Nintendo's PPU, I made emphasis at its internal memory architecture. While limited, some constraints were [somewhat beneficial]({{< ref "nes" >}}#secrets-and-limitations) as it enabled the system to be expanded with the use extra hardware included in the game cartridge, keeping the costs down in the process.
 
 The VDP doesn't take advantage of this modular approach. Instead, Sega implemented a different solution that in turn saves cartridge costs. The smaller background layer and horizontal interrupts are examples of this.
 {{% /inner_markdown %}}
@@ -220,9 +220,9 @@ The VDP doesn't take advantage of this modular approach. Instead, Sega implement
 {{% inner_markdown %}}
 It turns out Sega also shipped **'3D glasses'** as an official accessory! The glasses worked in-sync with the CRT. During gameplay, the game switches the position of objects between frames. Each lens has an LCD screen which shuts black to block your eyesight. So, the correct combination of graphics flickering and shutters alternating eventually creates a stereoscopic image in your head. Thus, a '3D' effect.
 
-The shutters are controlled from a couple of memory addresses, but none of them will tell the console if there are glasses plugged in, so games will have to depend on the user to manually activating that feature from a setting entry (for instance) if they decide to support them.
+The shutters are controlled from a couple of memory addresses, but none of them will tell the console if there are glasses plugged in, so games that support this accessory include a settings option that allows the user to manually activate this feature.
 
-The LCD controllers are controlled through a jack cable, which is plugged to the console. The European and American version didn't include the jack input, so they are connected through the card port, which we'll see more about it later on.
+The LCD controllers are interfaced with a jack cable, which is plugged to the console. The European and American version didn't include the jack input, so they rely on the card port to connect an adaptor, we'll see more about the card slot later on.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -372,11 +372,11 @@ Worth pointing out that streaming samples takes a whole lot of CPU cycles, and t
 
 Like the other systems from its generation, the CPU is mostly in charge of handling I/O. In this case, the Z80 processor is unique for having that special I/O addressing, but still, there will be CPU cycles spent in moving bits around components.
 
-On the other side, the SMS uses a dedicated **I/O controller** chip to not only interface the controllers, but also enabling and disabling parts of the system, which will alter the address map. Furthermore, this controller is essential for supporting the FM expansion, since the FM's exposed ports conflict with the rest of the system (without the intervention of the I/O chip).
+On the other side, the SMS uses a dedicated **I/O controller** chip to not only interface the joypads, but also enabling and disabling parts of the system, which will alter the address map. Furthermore, this controller is essential for supporting the FM expansion, since the FM's exposes ports which conflict with the rest of the system (that is, without the intervention of the I/O chip).
 
 #### Available interfaces
 
-Apart from the two controller ports, the system contains one proprietary cartridge slot, one 'Sega Card' slot and one expansion slot reserved for 'future accessories'. The latter was never used, except for the FM expansion in the Mark III. Even so, the SMS and Mark III had a different port design.
+Apart from the two controller ports, the system contains one proprietary cartridge slot, one 'Sega Card' slot and one expansion slot reserved for 'future accessories'. The latter was never used, except for the FM expansion in the Mark III. Even so, the SMS and Mark III had a different expansion port design.
 
 #### Top interruptors
 
