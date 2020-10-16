@@ -1,0 +1,5 @@
+files:
+  - source: /articles/*.md
+    translation: /articles/translations/%file_name%.%two_letters_code%.md
+  - source: /resources/strings.toml
+    translation: /resources/translations/%two_letters_code%.md
