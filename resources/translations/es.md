@@ -50,7 +50,7 @@ other = "Along with the donation you can leave a note stating which article in p
 other = 'Alternatively, you can help out by <a href="{{ . }}">suggesting changes</a> and/or <a href="{{ . }}">adding translations</a>.'
 
 [architecture_consoles]
-other = "Arquitectura de las consolas"
+other = "Architecture of Consoles"
 
 [top_model]
 other = "Model"
