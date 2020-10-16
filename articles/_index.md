@@ -23,11 +23,11 @@ Looking at the evolution of video game consoles is fascinating, while convention
 This is not a developer manual, it basically provides an *in depth* introduction to how each system worked internally. Bear in mind that tech has gotten really complicated *lately*, so if you struggle to follow my latest articles, try reading the early ones first, it may serve you as an introduction to many concepts and definitions.  
 Basic knowledge of computing is preferable, however, I attempt really hard to adapt my content for wider audiences, so please don't be afraid to give it a try!
 
-While I try to be as accurate as possible, if you find any mistakes please {{< email "give me a shout" >}} or [propose changes]({{< ref path="translations" lang="en" >}}). 
+While I try to be as accurate as possible, if you find any mistakes please {{< email "give me a shout" >}} or {{< consoles_repo_link "propose changes" >}}. 
 <!-- 
 Translated article should add this line:
 
-Another thing, these writings in particular are actually a translation of the [english series]({{< ref path="consoles" lang="en" >}}), so there may be some lacking of a [translation]({{< ref path="translations" lang="en" >}})
+Another thing, these writings in particular are actually a translation of the [english series]({{< ref path="consoles" lang="en" >}}), so there may be some lacking of a {{< consoles_translation_link "translation" >}}.
 -->
 
 Without further ado, here they are!

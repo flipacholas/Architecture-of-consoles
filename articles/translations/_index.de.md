@@ -36,7 +36,6 @@ bemühe mich wirklich sehr, meinen Inhalt für ein breiteres
 Publikum zu schreiben, also scheuen Sie sich bitte nicht, es zu versuchen!
 
 Ich versuche, so genau wie möglich zu sein, sollten Sie dennoch Fehler
-finden, bitte {{< email "benachrichtigen Sie mich" >}} oder
-[Änderungen vorschlagen wollen]({{< ref path="translations" lang="en" >}}).
+finden, bitte {{< email "benachrichtigen Sie mich" >}} oder {{< consoles_repo_link "Änderungen vorschlagen wollen" >}}.
 
 Kurzerhand, hier sind sie!
