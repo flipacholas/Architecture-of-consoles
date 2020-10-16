@@ -29,7 +29,7 @@ Sony knew that 3D hardware can get very messy to develop for, for this reason, t
 The main processor is a modification of LSI's **CoreWare CW33300** which, at the same time, is binary-compatible with SGI's **MIPS R3051**. This chip runs at 33.87 MHz and it features:
 - The **MIPS I** ISA: A 32-bit RISC instruction set, it includes multiplication and division instructions.
 - **One ALU and one shifter**.
-- **Segmentación de instrucciones de 5 etapas**: Hasta cinco instrucciones pueden ser ejecutadas simultáneamente (para una explicación detallada, puedes visitar [}}#cpu">este otro articulo]({{< ref path=)).
+- **5-stage pipeline**: Up to five instructions can be executed simultaneously (a detailed explanation can be found in a [previous article]({{% ref)).
 - **4 KB instruction cache** and **1 KB of data cache** (the original CoreWare CW33300 contained 2 KB of data cache): The data cache is actually **Scratchpad RAM**, meaning that it can have other uses apart from behaving as L1 cache.
 
 Like other MIPS R3000-based CPUs, it supported configurations with up to four coprocessors, Sony customised it with two:
@@ -116,7 +116,7 @@ It's worth mentioning that the PS1 happened to excel at those effects!
 {{< /tab >}}
 {{< /tabs >}}
 
-#### Diseños
+#### Designs
 
 Here are some examples of game characters designed from the ground up for the 3D era, they are interactive so I encourage you to check them out!
 
