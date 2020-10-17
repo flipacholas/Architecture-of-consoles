@@ -19,7 +19,7 @@ top_tabs:
 title: Arquitectura de la Nintendo 64
 ---
 
-## A quick introduction
+## Una breve introducción
 
 El objetivo de Nintendo era proporcionar a los jugadores los mejores gráficos posibles, para llevar a cabo esta tarea, se asociaron con uno de los mayores expertos en gráficos de la industria para producir el chip *definitivo*.
 
@@ -59,14 +59,14 @@ El tipo de memoria RAM instalada en la placa se llama **Rambus DRAM** o 'RDRAM' 
 
 La latencia de la RDRAM es directamente proporcional al número de bancos instalados, por lo que en este caso, con la cantidad de RAM que tiene este sistema, la latencia resultante **es importante**.
 
-Por el contrario, la cantidad de RAM disponible en esta consola **se puede ampliar** instalando el accesorio *Expansion Pak*: Una pequeña caja de aspecto elegante que incluye 4,5 MB. Curiosamente, el bus de RAM debe ser terminado, por lo que la consola siempre se vende con un terminador (llamado *Jumper Pak*) instalado en el lugar del Expansion Pak. Ahora, podría preguntarse, ¿qué pasaría si encendemos la consola sin ningún *Pak* instalado? **Literalmente nada**, ¡te llevas una pantalla en blanco! **Literally nothing**, you get a blank screen!
+Por el contrario, la cantidad de RAM disponible en esta consola **se puede ampliar** instalando el accesorio *Expansion Pak*: Una pequeña caja de aspecto elegante que incluye 4,5 MB. Curiosamente, el bus de RAM debe ser terminado, por lo que la consola siempre se vende con un terminador (llamado *Jumper Pak*) instalado en el lugar del Expansion Pak. Ahora, podría preguntarse, ¿qué pasaría si encendemos la consola sin ningún *Pak* instalado? **Literalmente nada**, ¡te llevas una pantalla en blanco! **Literalmente nada**, ¡te llevas una pantalla en blanco!
 
 ---
 
-## Graphics
+## Gráficos
 
-El núcleo de los gráficos reside en un inmenso chip diseñado por Silicon Graphics llamado **Reality Co-Processor** que corre a **62,5 MHz**. This package contains *a lot* of circuitry so don't worry if you find it difficult to follow, the graphics sub-system has a very complex architecture!  
-This design is based on the philosophy that the GPU is not meant to be a 'simple' rasteriser like the [}}#graphics">competitor's]({{< ref). Por el contrario, debe ser capaz de **acelerar los cálculos geometricos** (aliviando la carga de la CPU) y para ello, es necesario más circuitería.
+El núcleo de los gráficos reside en un inmenso chip diseñado por Silicon Graphics llamado **Reality Co-Processor** que corre a **62,5 MHz**. Este paquete contiene *un montón* de circuitos así que no te preocupes si te resulta difícil de seguir, el sub-sistema de gráficos tiene una arquitectura muy compleja.  
+Este diseño se basa en la filosofía de que la GPU no debe ser una 'simple' rasterizadora como la de [#graphics">la competencia]({{< ref). Por el contrario, debe ser capaz de **acelerar los cálculos geometricos** (aliviando la carga de la CPU) y para ello, es necesario más circuitería.
 
 Dicho esto, este chip está dividido en tres módulos principales, dos de los cuales se utilizan para el procesamiento de gráficos:
 
@@ -86,7 +86,7 @@ También conocido como **RSP**, es simplemente otro paquete con una CPU compuest
 
 Para operar este módulo, la CPU almacena en la RAM una serie de comandos llamados **Display list** junto con los datos que serán manipulados, luego el RSP lee dicha lista y aplica las operaciones requeridas sobre los datos. La funcionalidad disponible incluye transformaciones geométricas (como la proyección en perspectiva), clipping e iluminación.
 
-This seems straightforward, but how does it perform these operations? Bueno, aquí está la parte interesante: A diferencia de sus competidores (PS1 y Sega Saturn), **el motor de la geometría no está fijado**. En su lugar, el RSP contiene un poco de memoria (4 KB para instrucciones y 4 KB para datos) para almacenar **microcode**, un pequeño programa, con no más de 1000 instrucciones, que **implementa la tubería de gráficos**. En otras palabras, dirige a la Scalar Unit como debe operar nuestros gráficos. La CPU envía microcode mientras el programa se encuentra en ejecución.
+Esto parece sencillo, pero ¿cómo realiza estas operaciones? Bueno, aquí está la parte interesante: A diferencia de sus competidores (PS1 y Sega Saturn), **el motor de la geometría no está fijado**. En su lugar, el RSP contiene un poco de memoria (4 KB para instrucciones y 4 KB para datos) para almacenar **microcode**, un pequeño programa, con no más de 1000 instrucciones, que **implementa la tubería de gráficos**. En otras palabras, dirige a la Scalar Unit como debe operar nuestros gráficos. La CPU envía microcode mientras el programa se encuentra en ejecución.
 
 Nintendo proporcionó diferentes versiones de microcode para elegir y, similarmente a los [}}#graphics">modos de background de SNES]({{< ref path=), cada uno balancea los recursos a su manera.
 {{% /inner_markdown %}}
@@ -136,7 +136,9 @@ Pongamos todas las explicaciones anteriores en perspectiva, para ello tomaré pr
 {{< tabs >}}
   {{< tab active="true" name="Models and Lighting" >}}
 
-{{< tab active="true" name="Modelos y sombreado" >}}
+{{< float_block >}}
+  {{< linked_img src="mario/wireframe.jpg" alt="Wireframe Mario" >}} <figcaption class="caption">Vista primitiva de nuestra escena <br>Para ahorrar polígonos, algunos caracteres se modelan con sprites (cuadriláteros)</figcaption>
+{{< /float_block >}}
 
 {{% inner_markdown %}}
 Para empezar, nuestros modelos 3D se encuentran en la ROM del cartucho, pero para mantener un ancho de banda constante, necesitamos copiarlos a la RAM primero.
@@ -204,7 +206,7 @@ Es evidente que SGI invirtió mucha tecnología en este sistema. Sin embargo, es
 
 {{% tab active="true" name="Pipeline Stalls" %}}
 
-{{% tab active="true" name="Atascos" %}}
+Debido al gran número de componentes y operaciones en la tubería de gráficos, el RCP terminó siendo muy susceptible a **burbujas de segmentación**: Una situación indeseable caracterizada por subcomponentes que se mantienen inactivos durante períodos considerables de tiempo porque los datos requeridos se retrasan en llegar.
 
 Esto siempre se manifestará en una degradación del rendimiento y depende del programador para evitarlos. Aunque para facilitar las cosas, algunas CPUs como la Scalar Unit implementan una característica llamada **Bypassing** que permite ejecutar instrucciones similares a un ritmo más rápido para evitar pasar por etapas de ejecución que pueden ser omitidas. Por ejemplo, si tenemos que computar múltiples instrucciones `ADD` (suma) a la vez, no hay necesidad de escribir el resultado de la suma en el registro destinatario y luego leerlo de nuevo para ejecutar el siguiente `ADD`.
 
@@ -263,7 +265,7 @@ Es hora de echar un vistazo a las bandas sonoras hechas para la N64. La verdad e
   </div>
 {{< /side_by_side >}}
 
-#### Secrets and limitations
+#### Secretos y limitaciones
 
 Debido a este diseño, las limitaciones de este sistema dependerán de la implementación:
   - La frecuencia de los samples puede ser de hasta 44,1Hz, pero usar la frecuencia máxima se requiere demasiados ciclos de CPU.
@@ -273,7 +275,7 @@ Debido a este diseño, las limitaciones de este sistema dependerán de la implem
 
 ---
 
-## Operating System
+## Sistema Operativo
 
 Al igual que la PS1 y Saturn, los juegos de N64 hablan directamente con el hardware. Sin embargo, no hay rutinas de la BIOS disponibles para simplificar algunas operaciones. Como sustituto, **los juegos incorporan un pequeño sistema operativo** que proporciona una buena cantidad de abstracción para manejar eficientemente la CPU, la GPU y el I/O.
 
@@ -291,13 +293,13 @@ Como ya sabéis, el I/O no está conectado directamente a la CPU, así que el te
 
 ---
 
-## Games
+## Juegos
 
 Nintendo se aferró al cartucho como medio para el almacenamiento y como consecuencia, los juegos disfrutaron de mayores anchos de banda (entre 5-50 MB/s dependiendo de la velocidad de la ROM) mientras que costaban más de producir. El cartucho más grande que hubo en el mercado tiene 64 MB.
 
-Inside cartridges manufacturers may include extra memory (in the form of *EEPROM*, *flash* or *SRAM* with a battery) to hold saves, however this is not a strong requirement any more since certain accessories could be used to store saves as well.
+Dentro de los cartuchos, los fabricantes pueden incluir memoria extra (en forma de *EEPROM*, *flash* o *SRAM* con una batería) para guardar partidas, sin embargo no es un requerimiento estricto ya que algunos accesorios también podían ser usados para almacenar los progresos.
 
-#### Accessories
+#### Accesorios
 
 Dentro de los cartuchos, los fabricantes pueden incluir memoria extra (en forma de *EEPROM*, *flash* o *SRAM* con una batería) para guardar partidas, sin embargo no es un requerimiento estricto ya que algunos accesorios también podían ser usados para almacenar los progresos.
 - El **Controller Pak**: Otro medio (similar a la *Memory Card* de Sony) que se utiliza para almacenar partidas y llevarlas a otras consolas.
