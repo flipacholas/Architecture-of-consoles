@@ -134,7 +134,7 @@ En papel, las capacidades máximas son una profundidad de color de 24 bits (16,8
 Pongamos todas las explicaciones anteriores en perspectiva, para ello tomaré prestado el *Super Mario 64* de Nintendo para demostrar, en pocas palabras, cómo se forma un frame:
 
 {{< tabs >}}
-  {{< tab active="true" name="Models and Lighting" >}}
+  {{< tab active="true" name="Modelos y sombreado" >}}
 
 {{< float_block >}}
   {{< linked_img src="mario/wireframe.jpg" alt="Wireframe Mario" >}} <figcaption class="caption">Vista primitiva de nuestra escena <br>Para ahorrar polígonos, algunos caracteres se modelan con sprites (cuadriláteros)</figcaption>
@@ -198,13 +198,13 @@ Una vez que el RDP rasteriza los vectores, el z-value del nuevo píxel se compar
 
 Los programadores ya no tienen que preocuparse por implementar métodos para clasificar polígonos [}}#tab-2-2-visibility-approach">basados en software]({{< ref path=) que tienden a consumir bastantes recursos de la CPU. Sin embargo, el Z-buffer no previene procesar geometría innecesaria (eventualmente descartada o sobrescrita, que consumen recursos de todas maneras). Para ello, el motor del juego puede optar por incluir un algoritmo de **'occlusion culling'** para descartar la geometría que no será visible, lo antes posible.
 
-#### Secrets and limitations
+#### Secretos y limitaciones
 
 Es evidente que SGI invirtió mucha tecnología en este sistema. Sin embargo, esta sigue siendo una consola para el hogar y como tal, debe mantener un bajo coste. Por ahí, ciertas decisiones se convirtieron en retos para los programadores:
 
 {{< tabs >}}
 
-{{% tab active="true" name="Pipeline Stalls" %}}
+{{% tab active="true" name="Atascos" %}}
 
 Debido al gran número de componentes y operaciones en la tubería de gráficos, el RCP terminó siendo muy susceptible a **burbujas de segmentación**: Una situación indeseable caracterizada por subcomponentes que se mantienen inactivos durante períodos considerables de tiempo porque los datos requeridos se retrasan en llegar.
 
@@ -212,7 +212,7 @@ Esto siempre se manifestará en una degradación del rendimiento y depende del p
 
 {{% /tab %}}
 
-{{% tab name="Texture memory" %}}
+{{% tab name="Memoria de Textura" %}}
 
 El RDP usa 4 KB de TMEM ('Texture Memory') para procesar las texturas. Desafortunadamente, en la práctica 4 KB resultaron ser insuficientes para las texturas de alta resolución. Además, si se utiliza el mipmapping, la cantidad de memoria disponible se reduce a la mitad.
 
@@ -323,23 +323,23 @@ Otras herramientas proporcionadas por terceros consistían en cartuchos con un l
 
 ---
 
-## Anti-piracy / Region Lock
+## Anti-piratería / Region Lock
 
 El sistema antipiratería es una continuación del [}}#anti-piracy--region-lock">CIC de SNES]({{< ref path=). Como sabéis, la detección de piratería y el 'region lock' son posibles gracias al chip CIC (que debe estar presente en cada cartucho de juego *autorizado*), la Nintendo 64 mejoró este sistema requiriendo que diferentes juegos tuvieran una variante específica del CIC para asegurarse de que el cartucho no era una falsificación o contenía un clon del CIC. El **Peripheral interface** o 'PIF' realizaba comprobaciones por medio de checksums al principio y durante la ejecución juego para supervisar el CIC instalado en el cartucho.
-
-If by any reason the PIF considers the current cartridge is not valid, it will then induce the console in a permanent freeze.
 
 Si por alguna razón el PIF considera que el cartucho insertado no es válido, este bloquea la ejecución del juego.
 
 El region-lock se realiza alterando ligeramente la forma externa del cartucho entre las diferentes regiones para que el usuario no pueda insertar físicamente el juego en un N64 de una región diferente.
 
+En general, no hubo demasiada preocupación por la piratería gracias al uso del cartucho como medio, aunque los precios de los juegos eran tres veces más altos que los dependientes del CD.
+
 #### Puertos sin utilizar
 
 En general, no hubo demasiada preocupación por la piratería gracias al uso del cartucho como medio, aunque los precios de los juegos eran tres veces más altos que los dependientes del CD.
 
-A few companies reversed engineered the interface in order to develop their own hardware, and some of the resulting products became a concern for piracy.
-
 Algunas compañías, mediante ingeniería inversa, estudiaron la interfaz para desarrollar hardware propietario; Los nuevos productos lanzados llegaron a preocupar a Nintendo debido a sus capacidades para ejecutar juegos piratas.
+
+Supongo que el que vale la pena mencionar es el **Doctor v64**, este dispositivo tiene la misma forma que el Disk Drive pero incluye una unidad de CD-ROM que se utiliza para grabar el contenido del cartucho a un CD, aunque lo opuesto (leer la ROM desde un CD) también es posible.
 
 #### Emulación
 
@@ -349,7 +349,7 @@ Cuando era niño solía jugar a algunos juegos de N64 en un PC con un Pentium II
 
 ---
 
-## That's all folks
+## Eso es todo amigos
 
 La verdad es que, mientras que reproducir la arquitectura de esta consola puede ser un tarea bastante difícil, cosas como el microcode dan una pista de lo que la consola está intentando hacer, y cómo los emuladores *no tienen que ser precisos*, pueden aplicar suficientes optimizaciones para proporcionar más rendimiento a cambio de una emulación idéntica.
 
@@ -357,12 +357,12 @@ Otro ejemplo son las instrucciones de 64 bits, ya que los juegos apenas las util
 
 De todas formas, si te gustan mis artículos y me quieres ayudar, por favor echa un vistazo [aquí](/support). Si tienes algún comentario o sugerencia, no dudes en enviarme un email {{< email "aquí" >}}.
 
-Until next time!  
+¡Hasta la próxima!  
 Rodrigo
 
 ---
 
-## Sources / Keep Reading
+## Fuentes / Sigue leyendo
 
 #### General
 
@@ -382,21 +382,21 @@ Rodrigo
 - [**Diferentes Microcodes**](https://www.retroreversing.com/n64rsp)
 - [**The Models Resource** (Archived)](https://web.archive.org/web/20200216025504/https://www.models-resource.com/)
 
-#### Games
+#### Juegos
 
 - [**GamePak (Wikipedia)**](https://en.wikipedia.org/wiki/Nintendo_64_Game_Pak)
 - [**Dentro de algunos GamePaks**](https://imgur.com/gallery/KteOi)
 - [**Hardware de desarrollo**](https://n64squid.com/homebrew/n64-sdk/development-hardware/)
 - [**Más sobre el U64**](http://n64devkit.square7.ch/n64man/u64/u64.htm)
 
-#### Anti-piracy
+#### Antipiratería
 
 - [**Estudiando el Nintendo 64 CIC (charla de REcon)**](https://www.youtube.com/watch?v=HwEdqAb2l50)
 
-#### Photography
+#### Fotografía
 
-- Motherboard and console: [**Evan Amos Gallery**](https://commons.wikimedia.org/wiki/User:Evan-Amos)
-- Diagrams and game screenshots: **Me**
+- Motherboard y consola: [**Evan Amos Gallery**](https://commons.wikimedia.org/wiki/User:Evan-Amos)
+- Diagramas y capturas de juego: **Servidor**
 
 #### Bonus
 
