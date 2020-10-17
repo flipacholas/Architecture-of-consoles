@@ -81,7 +81,7 @@ The drawings on the screen are produced by a proprietary chip called **Video Dis
   <figcaption class="caption">Memory architecture of the VDP</figcaption>
 {{< /centered_container >}}
 
-Next to the VDP is connected **16 KB of VRAM** which only the VDP can access using a 16-bit data bus. If you look at the motherboard picture again, you'll notice that both RAM and VRAM chips are roughly the same, except that VRAM uses the chip model ending in '20' which has lower latency.
+Next to the VDP is connected **16 KB of VRAM** which only the VDP can access using a 8-bit data bus. If you look at the motherboard picture again, you'll notice that both RAM and VRAM chips are roughly the same, except that VRAM uses the chip model ending in '20' which has lower latency.
 
 In the case of the Master System, VRAM houses everything the VDP will require for rendering (except Colour RAM). The CPU fills VRAM by writing on VDP's registers, which will in turn forward the values to VRAM. Since the VDP is accessed using I/O ports, the CPU must use `IN` and `OUT` instructions.
 
@@ -496,6 +496,7 @@ Rodrigo
 #### Graphics
 
 - codeslinger.co.uk, [**VDP Info**](http://www.codeslinger.co.uk/pages/projects/mastersystem/vdp.html)
+- Texas Instruments, [**TMS9918A, TMS9928A, TMS9929A Video Display Processors Data Manual**](http://www.bitsavers.org/components/ti/TMS9900/TMS9918A_TMS9928A_TMS9929A_Video_Display_Processors_Data_Manual_Nov82.pdf), 1982
 
 #### Photography
 
