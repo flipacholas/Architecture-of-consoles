@@ -23,13 +23,13 @@ title: NES Architecture
 
 At first glance, the NES can be considered just another 6502 computer with a sophisticated case and a controller.
 
-And the fact is, this is *technically* right, but let me show you why the CPU will not actually be the central part of this system.
+Y el hecho es que *técnicamente* es correcto, pero déjenme mostrarles porqué la CPU no será la parte central de este sistema.
 
 ---
 
 ## CPU
 
-The NES's CPU is a **Ricoh 2A03**, which is based on the popular 8-bit **MOS Technology 6502** and runs at 1.79 MHz (or 1.66 MHz in PAL systems).
+La CPU de la NES es **Ricoh 2A03** basado en el popular **MOS Technology 6502** de 8-bit que corre a 1.66 MHz en el sistema PAL (1.79 MHz en el sistema NTSC).
 
 #### A bit of context
 
