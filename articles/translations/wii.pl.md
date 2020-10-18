@@ -60,7 +60,7 @@ Other accessories were also built for this port, each one provided different typ
 
 After the success of Gecko, IBM presumably grabbed this design and re-branded it as '750CL' for other manufacturers to use. Then, when Nintendo requested a new CPU to use with their new console, still known as 'Revolution' (hence the RVL prefix on their stock motherboards, IBM and Nintendo agreed to use a 750CL clocked twice the speed as Gecko. This CPU is known as **Broadway** and runs at 729 MHz.
 
-After having reviewed [}}#cpu">Gecko]({{< ref), I'm afraid there aren't many changes found in the new CPU. However, this may be an advantage: GameCube developers were able to start developing their new Wii games right away thanks to all the experience they gained with Gecko. Moreover, the fact that Broadway runs twice the speed will allow them to push for more features and quality.
+After having reviewed [Gecko]({{< ref "gamecube#cpu" >}}), I'm afraid there aren't many changes found in the new CPU. However, this may be an advantage: GameCube developers were able to start developing their new Wii games right away thanks to all the experience they gained with Gecko. Moreover, the fact that Broadway runs twice the speed will allow them to push for more features and quality.
 
 #### What about memory?
 
@@ -83,11 +83,11 @@ In later years, new revisions of the Wii saw these ports removed, unfortunately.
 
 ## Graphics
 
-The new graphics package is called **Hollywood**, it still performs the same tasks that [}}#graphics">Flipper]({{< ref) did back in the day but enjoying twice the clock speed (243 MHz).
+The new graphics package is called **Hollywood**, it still performs the same tasks that [Flipper]({{< ref "gamecube#graphics" >}}) did back in the day but enjoying twice the clock speed (243 MHz).
 
 This speed increase means that more geometry can be processed during the same unit of time, so Wii games will be able to feature more polygons and better-quality textures compared to GC games.
 
-The 3D engine is still [}}#graphics">Flipper's]({{< ref) but now called **GX**. So instead of repeating the pipeline overview, I will mention some interesting design changes that games had to undergo:
+The 3D engine is still [Flipper's]({{< ref "gamecube#graphics" >}}) but now called **GX**. So instead of repeating the pipeline overview, I will mention some interesting design changes that games had to undergo:
 
 {{< tabs >}}
 
@@ -156,15 +156,15 @@ The speed up of Hollywood combined with revamped character designs brought some 
 
 #### Video Signal
 
-Surprisingly enough, this console doesn't use the old [}}#a-convenient-video-out">Multi Out]({{< ref) port anymore, but a variation of it called **AV Multi Out** (so much for a name) with a slightly different shape. This one carries all of the previous signals plus **YPbPr** (known as 'component'), which is as good as RGB but only requires two lines for video (as opposed to three). It also includes some data lines that the system uses to identify the type of cable plugged in.
+Surprisingly enough, this console doesn't use the old [Multi Out]({{< ref "super-nintendo.md#a-convenient-video-out" >}}) port anymore, but a variation of it called **AV Multi Out** (so much for a name) with a slightly different shape. This one carries all of the previous signals plus **YPbPr** (known as 'component'), which is as good as RGB but only requires two lines for video (as opposed to three). It also includes some data lines that the system uses to identify the type of cable plugged in.
 
-Unfortunately, this medium inherits the same [}}#connections">limitations]({{< ref) of the Gamecube. That is, no S-Video on PAL systems and no RGB on NTSC ones. Also, RGB can only broadcast interlaced signals (no progressive). On the other side, Nintendo finally shipped a SCART cable (as an extra accessory) which finally makes use of the RGB lines.
+Unfortunately, this medium inherits the same [limitations]({{< ref "gamecube.md#connections" >}}) of the Gamecube. That is, no S-Video on PAL systems and no RGB on NTSC ones. Also, RGB can only broadcast interlaced signals (no progressive). On the other side, Nintendo finally shipped a SCART cable (as an extra accessory) which finally makes use of the RGB lines.
 
 ---
 
 ## Audio
 
-The Wii includes the same **Macronix DSP** found in the [}}#audio">Gamecube]({{< ref), take a look at that link to get the detailed analysis.
+The Wii includes the same **Macronix DSP** found in the [Gamecube]({{< ref "gamecube#audio" >}}), take a look at that link to get the detailed analysis.
 
 Compared to the GC, the only major change is that, since ARAM is gone, either MEM1 or MEM2 can be used as audio buffer.
 
@@ -224,7 +224,7 @@ Having said that, Nintendo wired up the I/O in a way that makes use of two AMBA 
 {{% inner_markdown %}}
 The Wii maintains full backwards compatibility with Gamecube games even though the original I/O system has changed drastically. This is because Starlet can be reprogrammed when a Gamecube game is executed to virtually re-map the I/O just like the original Gamecube would expect to find.
 
-Additionally, the Real-Time Clock chip includes some spare ROM that stores bitmap fonts used by Gamecube games (the Latin and Japanese set) and SRAM to save [}}#operating-system">IPL-related]({{< ref) settings.
+Additionally, the Real-Time Clock chip includes some spare ROM that stores bitmap fonts used by Gamecube games (the Latin and Japanese set) and SRAM to save [IPL-related]({{< ref "gamecube#operating-system" >}}) settings.
 {{% /inner_markdown %}}
 
 {{< /float_group >}}
@@ -253,7 +253,7 @@ The update system of IOS **is a bit tricky**: Updated IOS versions are not insta
 
 Nintendo often released IOS updates to improve hardware support (which was necessary when a new accessory was shipped). There's only **one exception** when IOS updates actually replace older ones: When a specific version was discovered to have an exploitable vulnerability. This was only for security reasons.
 
-When a Gamecube game is inserted, a different thing happens: Startlet boots a **MIOS** instead. This IOS just limits Starlet to emulate the original [}}#operating-system">IPL]({{< ref).
+When a Gamecube game is inserted, a different thing happens: Startlet boots a **MIOS** instead. This IOS just limits Starlet to emulate the original [IPL]({{< ref "gamecube#operating-system" >}}).
 
 #### Broadway's OS
 
@@ -426,7 +426,7 @@ Matsushita released further revisions of this drive obfuscating the debug interf
 
 {{< /float_group >}}
 
-It's worth mentioning that the main use for modchips was piracy. The disc content is encrypted, so more research and tools were needed to run Wii homebrew. Gamecube homebrew, on the other hand, was already possible by reproducing [}}#tab-5-3-honourable-mention">previous exploits]({{< ref) found on the Gamecube.
+It's worth mentioning that the main use for modchips was piracy. The disc content is encrypted, so more research and tools were needed to run Wii homebrew. Gamecube homebrew, on the other hand, was already possible by reproducing [previous exploits]({{< ref "gamecube#tab-5-3-honourable-mention" >}}) found on the Gamecube.
 
 #### System encryption
 
@@ -488,7 +488,7 @@ As a final note, HMAC is stored in SEEPROM (outside Starlet), not in OTP.
 {{< /tab >}}
 {{< /tabs >}}
 
-After all this, it's worth mentioning that when the system runs GameCube games, **none of the mentioned encryption methods are used**. Instead, Starlet will only check that the game only accesses certain memory locations. This is because 1/4 of GDDR3 RAM is allocated to simulate old [}}#audio">ARAM]({{< ref)).
+After all this, it's worth mentioning that when the system runs GameCube games, **none of the mentioned encryption methods are used**. Instead, Starlet will only check that the game only accesses certain memory locations. This is because 1/4 of GDDR3 RAM is allocated to simulate old [ARAM]({{< ref "gamecube#audio" >}})).
 
 #### The fall of encryption
 
