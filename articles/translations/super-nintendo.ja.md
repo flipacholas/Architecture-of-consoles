@@ -31,13 +31,13 @@ Nintendo managed to bring the next generation of graphics and sounds without usi
 
 ## CPU
 
-The main processor is a **Ricoh 5A22**. It's based on the **Western 65C816**, a 16-bit upgrade of the classic [}}#cpu">MOS Technology 6502]({{< ref). Since the SNES shares the same foundation of the NES' CPU, there's a slight possibility that the SNES was originally planned to be compatible with NES games.
+The main processor is a **Ricoh 5A22**. It's based on the **Western 65C816**, a 16-bit upgrade of the classic \[MOS Technology 6502\]({{< ref "nes#cpu" >}}. Since the SNES shares the same foundation of the NES' CPU, there's a slight possibility that the SNES was originally planned to be compatible with NES games.
 
 The CPU employs a **variable clock speed** that will reach up to **3.58 MHz** during register operations and down to **1.79 MHz** when accessing slow external buses (i.e. the serial/controller port).
 
 The 5A22 features:
 - A **65816 ISA**: A 16-bit instruction set which extends the original 6502 ISA, but doesn't implement the undocumented instructions some NES games ended up using.
-  - The [}}#scrapped-functions">broken BCD mode]({{< ref) is **working** again.
+  - The [broken BCD mode]({{< ref "nes#scrapped-functions" >}}) is **working** again.
 - **16-bit registers**.
   - The accumulator (where arithmetic operations are performed) and index register (used to compute memory addresses) can switch between 16-bit and 8-bit mode.
 - New **16-bit multiplication** and **division units** added by Ricoh, which provide the CPU with the ability to carry out these type of operations by hardware (the 65C816 doesn't include any dedicated instructions for multiplication or division).
@@ -177,7 +177,7 @@ This system features eight background modes to choose from, each one provides a 
   - One layer can be split into foreground and background.
   - This is the most common one.
 - **Mode 2**: 2 layers with 16 colours each.
-  - This mode has an extra effect: Layers can have each of its columns scrolled independently (Similar to the [}}#graphics">GameBoy]({{< ref)).
+  - This mode has an extra effect: Layers can have each of its columns scrolled independently (Similar to the [GameBoy]({{< ref "game-boy#graphics" >}})).
 - **Mode 3**: 1 Background layer with 128 colours + 1 Background with 16 colours.
   - Colours can be set as RGB values instead of using CGRAM references.
 - **Mode 4**: Mode 2 and 3 combined (Column scroll + RGB colour mapping).
@@ -290,7 +290,7 @@ This console provided some unique audio capabilities thanks to a dedicated set o
   - **ADSR envelope control**: Sets how volume changes at different times.
   - **Delay**: Simulates *echo*, it also includes a frequency filter to cut out some frequencies during the feedback. Do not confuse this with *Reverb*!
   - **Noise generator**: Creates random waveforms that sound like white static.
-  - **Pitch modulation**: Allows some channels distort others. Similar to FM synthesis (used by [}}#audio">its competitor]({{< ref)).
+  - **Pitch modulation**: Allows some channels distort others. Similar to FM synthesis (used by [its competitor]({{< ref "mega-drive-genesis#audio" >}})).
 - **The SPC700 CPU**: Also named 'S-SMP', it's an independent 8-bit CPU that communicates with the DSP and receives commands from the main CPU.
 - **64 KB of PSRAM**: Stores audio data and programs. The main CPU is responsible of filling this up.
   - If 'Delay' is activated, some space will be allocated for feedback data (this is actually very dangerous, since if not used properly it can override some of our data!).
