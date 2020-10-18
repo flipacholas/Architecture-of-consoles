@@ -36,7 +36,7 @@ No te preocupes, te prometo que este artículo no va a ser tan largo como el man
 El procesador principal es un **NEC VR4300** que corre a **93.75 MHz**; una versión compatible binaria del **MIPS R4300i** de Silicon Graphics que incluye:
 - Set de instrucciones **MIPS III**: Sucesor del MIPS II con nuevas instrucciones de 64 bits. Las palabras (words) de 64-bits se llaman *doublewords*.
 - Un bus interno de **64-bits** conectado a un **bus de datos externo de 32-bits**.
-- **Segmentación de instrucciones de 5 etapas**: Hasta cinco instrucciones pueden ser ejecutadas simultáneamente (para una explicación detallada, puedes visitar [este otro articulo]({{< ref path="sega-saturn" lang="en" >}}#cpu)).
+- **Segmentación de instrucciones de 5 etapas**: Hasta cinco instrucciones pueden ser ejecutadas simultáneamente (para una explicación detallada, puedes visitar [este otro articulo]({{< ref path="sega-saturn#cpu" lang="en" >}}).
 - **24 KB de L1 cache**: Dividido en 16 KB para instrucciones y 8 KB para datos.
 
 También se incluye en este paquete una **FPU de 64 bits**, la CPU la identifica como un co-procesador (*COP1*) aunque la unidad está instalada junto a la unidad aritmética y solo se accede a ella a través de esa unidad, con lo que no hay co-procesamiento de por si.
@@ -69,7 +69,7 @@ Por el contrario, la cantidad de RAM disponible en esta consola **se puede ampli
 
 El núcleo de los gráficos reside en un inmenso chip diseñado por Silicon Graphics llamado **Reality Co-Processor** que corre a **62,5 MHz**. Este paquete contiene *un montón* de circuitos así que no te preocupes si te resulta difícil de seguir, el sub-sistema de gráficos tiene una arquitectura muy compleja.
 
-Este diseño se basa en la filosofía de que la GPU no debe ser una 'simple' rasterizadora como la de [la competencia]({{< ref path="playstation" lang="en" >}}#graphics). Por el contrario, debe ser capaz de **acelerar los cálculos geometricos** (aliviando la carga de la CPU) y para ello, es necesario más circuitería.
+Este diseño se basa en la filosofía de que la GPU no debe ser una 'simple' rasterizadora como la de [la competencia]({{< ref path="playstation#graphics" lang="en" >}}). Por el contrario, debe ser capaz de **acelerar los cálculos geometricos** (aliviando la carga de la CPU) y para ello, es necesario más circuitería.
 
 Dicho esto, este chip está dividido en tres módulos principales, dos de los cuales se utilizan para el procesamiento de gráficos:
 
@@ -94,7 +94,7 @@ Para operar este módulo, la CPU almacena en la RAM una serie de comandos llamad
 Esto parece sencillo, pero ¿cómo realiza estas operaciones? Bueno, aquí está la parte interesante: A diferencia de sus competidores (PS1 y Sega Saturn), **el motor de la geometría no está fijado**. En su lugar, el RSP contiene un poco de memoria (4 KB para instrucciones y 4 KB para datos) para almacenar **microcode**, un pequeño programa, con no más de 1000 instrucciones, que **implementa la tubería de gráficos**. En otras palabras, dirige a la Scalar Unit como debe operar nuestros gráficos.
 La CPU envía microcode mientras el programa se encuentra en ejecución.
 
-Nintendo proporcionó diferentes versiones de microcode para elegir y, similarmente a los [modos de background de SNES]({{< ref path="super-nintendo" lang="en" >}}#graphics), cada uno balancea los recursos a su manera.
+Nintendo proporcionó diferentes versiones de microcode para elegir y, similarmente a los [modos de background de SNES]({{< ref path="super-nintendo#graphics" lang="en" >}}), cada uno balancea los recursos a su manera.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -120,7 +120,7 @@ Este puede procesar ya sean **triángulos** o **rectángulos**, el último es ú
     - Un filtro 'completo' requiere cuatro puntos para aplicar la interpolación, sin embargo, esta consola sólo utiliza tres (**interpolación triangular**) lo que produce algunas anomalías. Por lo tanto, ciertas texturas tendrán que ser 'adaptadas' de antemano.
   - **Mip-Mapping**: Selecciona automáticamente una versión reducida de la textura dependiendo de su **nivel de detalle**. Esto evita computar grandes texturas que se verían lejos de la cámara y con ello prevenir el 'aliasing'.
     - Si se activa, la N64 mapea las texturas usando **trilinear filtering** en su lugar. Este nuevo algoritmo también interpolará entre mipmaps para suavizar los cambios repentinos en el nivel de detalle.
-  - **Perspective correction**: Algoritmo escogido para mapear texturas en triángulos. A diferencia de [otros algoritmos]({{< ref path="playstation" lang="en" >}}#graphics), éste tiene en cuenta el valor de profundidad de cada primitiva, logrando mejores resultados.
+  - **Perspective correction**: Algoritmo escogido para mapear texturas en triángulos. A diferencia de [otros algoritmos]({{< ref path="playstation#graphics" lang="en" >}}), éste tiene en cuenta el valor de profundidad de cada primitiva, logrando mejores resultados.
 - Un **Colour Combiner**: Mezcla e interpola múltiples capas de colores (por ejemplo, para aplicar luces).
 - Un **Blender**: Mezcla píxeles sobre el actual frame-buffer para aplicar translucidez, anti-aliasing, niebla o dithering. También realiza z-buffering (más sobre esto más adelante).
 - Una **Memory interface**: Utilizada por los bloques anteriores para leer y enviar el frame-buffer procesado a la RAM y/o llenar el TMEM.
@@ -217,11 +217,11 @@ He aquí algunos ejemplos de personajes previamente diseñados en dos dimensiona
 
 #### Una solución moderna al problema de superficies visibles
 
-Si has leído sobre las consolas anteriores, probablemente estás al tanto del interminable problema de [visibilidad de superficies]({{< ref path="sega-saturn" lang="en" >}}#an-introduction-to-the-visibility-problem) y tal vez pienses que la única solución a este es mediante la 'clasificación de polígonos'. Bueno, por primera vez en esta serie, el RDP presenta una solución basada en hardware llamada **Z-buffering**. En pocas palabras, el RDP asigna un nuevo buffer llamado **Z-Buffer** en la memoria. Este tiene las mismas dimensiones que un frame-buffer, pero en lugar de almacenar los valores RGB (rojo, verde y azul), cada entrada contiene la profundidad del píxel más cercano con respecto a la cámara (llamado 'z-value').
+Si has leído sobre las consolas anteriores, probablemente estás al tanto del interminable problema de [visibilidad de superficies]({{< ref path="sega-saturn#an-introduction-to-the-visibility-problem" lang="en" >}}) y tal vez pienses que la única solución a este es mediante la 'clasificación de polígonos'. Bueno, por primera vez en esta serie, el RDP presenta una solución basada en hardware llamada **Z-buffering**. En pocas palabras, el RDP asigna un nuevo buffer llamado **Z-Buffer** en la memoria. Este tiene las mismas dimensiones que un frame-buffer, pero en lugar de almacenar los valores RGB (rojo, verde y azul), cada entrada contiene la profundidad del píxel más cercano con respecto a la cámara (llamado 'z-value').
 
 Una vez que el RDP rasteriza los vectores, el z-value del nuevo píxel se compara con el valor respectivo en el Z-buffer. Si el nuevo píxel contiene un z-value más pequeño, esto significa que el nuevo píxel se posiciona delante del anterior, por lo que se sobrescribe en el frame-buffer y z-buffer. De lo contrario, el píxel se descarta.
 
-En general, el nuevo algoritmo es my beneficioso: Los programadores ya no tienen que preocuparse por implementar métodos para clasificar polígonos [basados en software]({{< ref path="playstation" lang="en" >}}#tab-2-2-visibility-approach) que tienden a consumir bastantes recursos de la CPU. Sin embargo, el Z-buffer no previene procesar geometría innecesaria (eventualmente descartada o sobrescrita, que consumen recursos de todas maneras). Para ello, el motor del juego puede optar por incluir un algoritmo de **'occlusion culling'** para descartar la geometría que no será visible, lo antes posible.
+En general, el nuevo algoritmo es my beneficioso: Los programadores ya no tienen que preocuparse por implementar métodos para clasificar polígonos [basados en software]({{< ref path="playstation#tab-2-2-visibility-approach" lang="en" >}}) que tienden a consumir bastantes recursos de la CPU. Sin embargo, el Z-buffer no previene procesar geometría innecesaria (eventualmente descartada o sobrescrita, que consumen recursos de todas maneras). Para ello, el motor del juego puede optar por incluir un algoritmo de **'occlusion culling'** para descartar la geometría que no será visible, lo antes posible.
 
 #### Secretos y limitaciones
 
@@ -249,7 +249,7 @@ Como resultado, algunos juegos utilizan colores sólidos con sombreado Gouraud (
 
 #### La salida de video universal
 
-Nintendo siguió usando la salida 'universal' llamada [Multi Out]({{< ref path="super-nintendo" lang="en" >}}#a-convenient-video-out) como su predecesor, desafortunadamente **ya no transmite más la señal RGB**. Cosa que suena a otra medida para acaparar costes, dado que la misma señal no se había aprovechado en la consola anterior.
+Nintendo siguió usando la salida 'universal' llamada [Multi Out]({{< ref path="super-nintendo#a-convenient-video-out" lang="en" >}}) como su predecesor, desafortunadamente **ya no transmite más la señal RGB**. Cosa que suena a otra medida para acaparar costes, dado que la misma señal no se había aprovechado en la consola anterior.
 
 Las buenas noticias son que los tres canales pueden ser reconstruidos en las primeras revisiones de la consola mediante la soldadura de algunos cables y la instalación de un amplificador de señal (tiende a ser barato). Esto es debido a que el convertidor digital a analógico de video envía una señal RGB al codificador de video. Sin embargo, posteriores unidades combinaron los dos chips, así que la única solución disponible es de sobrepasar el video DAC y el codificador con algún chip especializado que pueda exponer la señal RGB.
 
@@ -352,7 +352,7 @@ Otras herramientas proporcionadas por terceros consistían en cartuchos con un l
 
 ## Anti-piratería / Region Lock
 
-El sistema antipiratería es una continuación del [CIC de SNES]({{< ref path="super-nintendo" lang="en" >}}#anti-piracy--region-lock). Como sabéis, la detección de piratería y el 'region lock' son posibles gracias al chip CIC (que debe estar presente en cada cartucho de juego *autorizado*), la Nintendo 64 mejoró este sistema requiriendo que diferentes juegos tuvieran una variante específica del CIC para asegurarse de que el cartucho no era una falsificación o contenía un clon del CIC. El **Peripheral interface** o 'PIF' realizaba comprobaciones por medio de checksums al principio y durante la ejecución juego para supervisar el CIC instalado en el cartucho.
+El sistema antipiratería es una continuación del [CIC de SNES]({{< ref path="super-nintendo#anti-piracy--region-lock" lang="en" >}}). Como sabéis, la detección de piratería y el 'region lock' son posibles gracias al chip CIC (que debe estar presente en cada cartucho de juego *autorizado*), la Nintendo 64 mejoró este sistema requiriendo que diferentes juegos tuvieran una variante específica del CIC para asegurarse de que el cartucho no era una falsificación o contenía un clon del CIC. El **Peripheral interface** o 'PIF' realizaba comprobaciones por medio de checksums al principio y durante la ejecución juego para supervisar el CIC instalado en el cartucho.
 
 Si por alguna razón el PIF considera que el cartucho insertado no es válido, este bloquea la ejecución del juego.
 

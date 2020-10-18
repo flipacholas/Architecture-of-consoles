@@ -117,7 +117,7 @@ The **Video Display Processor 2** or 'VDP2' specialises in rendering large (4096
 
 Its features were technically advanced at the time, algorithms used to accomplish these include:
 
-- The use of [classic tile-maps]({{< ref "mega-drive-genesis" >}}#constructing-the-frame).
+- The use of [classic tile-maps]({{< ref "mega-drive-genesis#constructing-the-frame" >}}).
 - **Perspective transformations** to project 3D objects onto a 2D space and map textures.
 - **Multi-texturing** to map more than one texture per polygon.
 - **Bump-mapping** to simulate bumps on the plane's surface without spending extra polygons.

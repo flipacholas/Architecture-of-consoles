@@ -30,7 +30,7 @@ The Game Boy can be imagined as a portable version of the NES with limited power
 The main processor is a **Sharp LR35902**, a mix between the Z80 and the Intel 8080 that runs at ~4.19 MHz.
 
 The Z80 is itself a superset of the 8080, so what does the Sharp actually has and has not from those two?
-- Neither Z80's *IX* and *IY* registers nor 8080's *IN* or *OUT* instructions are included: [I/O]({{< ref "master-system" >}}#accessing-the-rest-of-the-components) is now completely **memory mapped** so these are not needed.
+- Neither Z80's *IX* and *IY* registers nor 8080's *IN* or *OUT* instructions are included: [I/O]({{< ref "master-system#accessing-the-rest-of-the-components" >}}) is now completely **memory mapped** so these are not needed.
 - Only 8080's registers are implemented.
 - Includes Z80's extended instruction set, however only bit manipulation instructions are found.
 - Keeps a 8-bit data bus and a 16-bit address bus: Up to 64 KB of memory can be addressed, the memory map is composed of:

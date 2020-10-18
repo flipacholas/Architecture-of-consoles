@@ -32,7 +32,7 @@ The Sega Dreamcast introduced many new features over its predecessor the [Saturn
 
 Unsurprisingly Sega again chose Hitachi to develop their CPU. If you've been reading the [previous article about the Sega Saturn]({{< ref "sega-saturn" >}}) then, lo and behold, I present you the next generation of SH processor: the **SH-4** running at a whopping **200 MHz**. So, what's interesting about this CPU?
 
-- **5-stage pipeline**: Up to five instructions can be in flight simultaneously (a detailed explanation can be found in a [previous article]({{% ref "sega-saturn" %}}#cpu)).
+- **5-stage pipeline**: Up to five instructions can be in flight simultaneously (a detailed explanation can be found in a [previous article]({{< ref "sega-saturn#cpu" >}})).
   - Instruction pipelining is now found everywhere in this generation of consoles and will be standard from now on.
 - **2-way superscalar**: A new type of parallelism where the CPU can process more than one instruction (two in this case) in each stage of the pipeline resulting in more instructions executed per second.
 - A dedicated **Floating-Point Unit** or 'FPU': Computes 32-bit decimal numbers (the *floats*) and 64-bit ones (the *doubles*).
@@ -54,7 +54,7 @@ The programmer decides whether to use these features or not. Games for this syst
 
 #### No UMA but...
 
-While this system is not designed around the strict Unified Memory Architecture like a [well-known competitor]({{< ref "nintendo-64">}}#simplified-memory-access), it does delegate I/O access to the GPU. That means that if the CPU has to fetch anything that's beyond its own dedicated RAM or a serial interface which is also connected too, it will have to request the GPU (and wait if necessary).
+While this system is not designed around the strict Unified Memory Architecture like a [well-known competitor]({{< ref "nintendo-64#simplified-memory-access">}}), it does delegate I/O access to the GPU. That means that if the CPU has to fetch anything that's beyond its own dedicated RAM or a serial interface which is also connected too, it will have to request the GPU (and wait if necessary).
 
 #### Special queries
 
@@ -76,7 +76,7 @@ The GPU package is a custom-made chip called **Holly** running at 100 MHz, it's 
 {{% inner_markdown %}}
 VideoLogic chose an alternative approach for the construction of their 3D engine called **Tile-Based Deferred Rendering** or 'TBDR'. TBDR, instead of rendering a whole frame at once, as traditional **Immediate Mode Renderers** or 'IMR' do, divides the rendering area into multiple sections called 'tiles'. It carries out the rendering process on each tile individually then the result is combined to draw the final frame.  This innovative design brings interesting advantages:
 - It can be greatly **parallelised**, which significantly reduces bandwidth and power usage.
-- It implements a clever solution to the [**visibility problem**]({{< ref "sega-saturn" >}}#an-introduction-to-the-visibility-problem) by automatically sorting the polygons **from front to back** and then performing [z-tests]({{< ref "nintendo-64" >}}#modern-visible-surface-determination) at the first stages of the pipeline. The combination of these tasks not only solves the original problem, but it also **prevents overdraw** (rasterisation of hidden polygons) which wastes resources, degrading performance.
+- It implements a clever solution to the [**visibility problem**]({{< ref "sega-saturn#an-introduction-to-the-visibility-problem" >}}) by automatically sorting the polygons **from front to back** and then performing [z-tests]({{< ref "nintendo-64#modern-visible-surface-determination" >}}) at the first stages of the pipeline. The combination of these tasks not only solves the original problem, but it also **prevents overdraw** (rasterisation of hidden polygons) which wastes resources, degrading performance.
 
 It's no surprise that Imagination took this efficient technology forward to build the Series 4 PowerVR cores which powered an incredible number of devices, including the first generation of iPhone, the iPhone 3G, the Nokia N95 and the Dell Axim x51.
 {{% /inner_markdown %}}
@@ -121,7 +121,7 @@ These Display Lists will be interpreted by the 3D engine.
 Here is where the graphics are brought into life, the Display Lists received from the TA will be used to render the geometry of a single tile using an **internal frame-buffer**. The process is as follows:
 
 1. The **Image Synthesis Processor** or 'ISP' fetches the primitives (either triangles or quads) and performs **Hidden-Surface Removal** to remove unseen polygons. Then, after calculating its Z-buffers and stencil buffers, the data goes through **Depth Testing** to avoid rendering polygons that would appear behind others and **Stencil Tests** to cull geometry that won't be visible if they are located behind a 2D polygon (also called **Mask**).
-    - Notice how these tests are effectively carried out at the start of the pipeline. In contrast previous consoles [using z-buffers]({{< ref "nintendo-64" >}}#modern-visible-surface-determination) discard the geometry at the end of the pipeline. The ISP approach prevents processing the geometry that will eventually be discarded, thereby saving resources.
+    - Notice how these tests are effectively carried out at the start of the pipeline. In contrast previous consoles [using z-buffers]({{< ref "nintendo-64#modern-visible-surface-determination" >}}) discard the geometry at the end of the pipeline. The ISP approach prevents processing the geometry that will eventually be discarded, thereby saving resources.
 2. The **Texture and Shading Processor** or 'TSP' applies colouring and shading over the tile area. It also provides multiple effects (more details later on).
     - Textures are not applied until the tile is exported, meaning that emerging overdraw (if any) will not lower the fill rate.
 
@@ -137,7 +137,7 @@ Apart from the clear architectural difference, the Texture and Shading Processor
 
 - **Alpha blending**: Combines colours of overlapping layers to achieve transparency effects.
   - The process used for applying transparency in this system is called **order-independent transparency**. The algorithm automatically sorts the primitives before blending their colours, and while this slows down the rendering process, it avoids relying on the game itself to do all the sorting manually. For this reason, Dreamcast games excelled in displaying transparent objects.
-  - Combined with the tile-based system, order-independent transparency completely addresses previous [mishaps]({{< ref "sega-saturn">}}#the-transparency-issue).
+  - Combined with the tile-based system, order-independent transparency completely addresses previous [mishaps]({{< ref "sega-saturn#the-transparency-issue" >}}).
 - **Mip-Mapping**: Automatically selects a scaled-down version of the texture depending on the level of detail required. This is done to prevent processing large textures that would be seen far away from the camera (which would be a waste of processing power and produce aliasing).
 - **Environment mapping**: Applies reflections on textures.
 - **Bilinear, Trilinear and anisotropic filtering**: These are different algorithms used to smooth the textures and prevent pixelation. They are ordered from 'worst' to 'best', where the resulting quality of each one is directly proportional to the amount of computation required.
@@ -192,7 +192,7 @@ The GPU also includes another module for handling most of the I/O called **Syste
 
 ## Audio
 
-The Audio functionality is handled by a custom chip called **AICA** made by Yamaha, it's an improved version of the [SCSP used in the Saturn]({{< ref "sega-saturn">}}#audio) and composed of four components:
+The Audio functionality is handled by a custom chip called **AICA** made by Yamaha, it's an improved version of the [SCSP used in the Saturn]({{< ref "sega-saturn#audio" >}}) and composed of four components:
 
 - The **Sound Integrated Circuit** or 'IC': A set of modules (Synthesiser, DSP and Mixer) that generates the audio signal and applies effects on it. It supports up to 64 PCM channels with a resolution of 16 or 8 bits and a sampling rate of 44.1 kHz (overall, this is the optimal quality for playing audio). 
   - Additionally, it includes an ADPCM decoder to offload some work from the CPU.
@@ -204,7 +204,7 @@ The Audio functionality is handled by a custom chip called **AICA** made by Yama
 
 #### Evolution
 
-We've come so far since the days of the [Mega Drive/Genesis]({{< ref "mega-drive-genesis">}}#audio), in order to show how much progress was made in sound synthesis, here's an example of two games, one for the Mega Drive and the other for the Dreamcast, that used the same composition:
+We've come so far since the days of the [Mega Drive/Genesis]({{< ref "mega-drive-genesis#audio" >}}), in order to show how much progress was made in sound synthesis, here's an example of two games, one for the Mega Drive and the other for the Dreamcast, that used the same composition:
 
 {{< side_by_side >}}
   <div class="toleft">
@@ -262,7 +262,7 @@ Ever since the Dreamcast's announcement, it was said that it would run **Windows
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-In reality, the purpose of this system was very similar to what Nintendo did with [the Nintendo 64]({{< ref "nintendo-64">}}#operating-system): to provide programmers with a fair layer of abstraction to simplify certain operations.
+In reality, the purpose of this system was very similar to what Nintendo did with [the Nintendo 64]({{< ref "nintendo-64#operating-system" >}}): to provide programmers with a fair layer of abstraction to simplify certain operations.
 
 Microsoft worked with Sega to bring Windows CE to the Dreamcast. The result was a subset of CE with the minimal components needed to provide graphics, audio, debugging, and compatibility with software like Microsoft's star IDE: *Visual Studio*.
 

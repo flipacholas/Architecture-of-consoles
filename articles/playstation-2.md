@@ -39,7 +39,7 @@ At the heart of this console we find a powerful package called **Emotion Engine*
 #### The leader
 
 The main core is a MIPS R5900-compatible CPU with lots of enhancements. This is the first chip that starts executing instructions after the console is turned on. This processor provides the following features:
-- **MIPS III** ISA: A 64-bit RISC instruction set. *Wait, is it me or this is the same ISA found on a [competitor's console]({{< ref "nintendo-64">}}#cpu)?*. True, but Sony also enhanced this CPU by adding some instructions from **MIPS IV** (Prefetch and conditional move) along with their own SIMD extension called **multimedia instructions**. 
+- **MIPS III** ISA: A 64-bit RISC instruction set. *Wait, is it me or this is the same ISA found on a [competitor's console]({{< ref "nintendo-64#cpu" >}}?*. True, but Sony also enhanced this CPU by adding some instructions from **MIPS IV** (Prefetch and conditional move) along with their own SIMD extension called **multimedia instructions**. 
 - **32 128-bit extra registers**: Another enhancement. They are better managed using multimedia instructions and are very useful for vector processing.
   - These registers are accessed through a 128-bit bus, while the rest of the CPU uses an internal 64-bit bus.
 - **2-way superscalar**: Up to two instructions are executed in parallel.
@@ -52,7 +52,7 @@ The core is complemented with a **dedicated floating point unit** (identified as
 
 #### A recognisable memory choice
 
-Next to the Emotion Engine are two blocks of 16 MB of RAM, giving a total of **32 MB** of main memory. The type of memory used is **RDRAM** ([*déjà vu!*]({{< ref "nintendo-64">}}#ram-available)) which is accessed through a 16-bit bus.
+Next to the Emotion Engine are two blocks of 16 MB of RAM, giving a total of **32 MB** of main memory. The type of memory used is **RDRAM** ([*déjà vu!*]({{< ref "nintendo-64#ram-available" >}})) which is accessed through a 16-bit bus.
 
 {{< float_group >}}
 
@@ -76,7 +76,7 @@ Wanted or not, with the amount of traffic happening inside the Emotion Engine, t
 
 - Wrapping their processors with **lots of cache**, thus only requiring access to main memory if absolutely necessary.
     - 99% of cache/scratchpad mentions in this article will be for this reason.
-- Adding a 128 byte **Write Back Buffer**: Very similar to the [Write Gather Pipe]({{< ref "gamecube">}}#ibms-enhancements), but instead of waiting until it's 25% full, it performs the write to memory by keeping an eye at the state of the bus.
+- Adding a 128 byte **Write Back Buffer**: Very similar to the [Write Gather Pipe]({{< ref "gamecube#ibms-enhancements" >}}), but instead of waiting until it's 25% full, it performs the write to memory by keeping an eye at the state of the bus.
 
 This sounds very convenient for applications that can benefit from cache, but what about those tasks, such as manipulating Display Lists, which shouldn't use cache at all? Luckily, the CPU provides a different memory access mode called **UnCached**, which only uses the Write Back Buffer without wasting cycles correcting the cache (product of *cache misses*). Furthermore, the **UnCached accelerated mode** is also available that adds a buffer for speeding up read of continuous addresses in memory.
 
@@ -217,14 +217,14 @@ Considering all the work done by the Emotion Engine, is there something left? Th
 {{% inner_markdown %}}
 There's a simple but speedy chip specialised in that: The **Graphics Synthesizer** or 'GS' running at ~147.46 MHz. It contains 4 MB of DDRAM embedded inside to do all processing in-house. Thus, removing the need to access the main memory. The embedded RAM is accessed using different buses depending on the type of data needed. 
 
-The GS has fewer features than other graphics systems [previously reviewed]({{< ref "gamecube">}}#graphics) in this site. Nonetheless, it is very fast at what it does.
+The GS has fewer features than other graphics systems [previously reviewed]({{< ref "gamecube#graphics" >}}) in this site. Nonetheless, it is very fast at what it does.
 {{% /inner_markdown %}}
 
 {{< /float_group >}}
 
 ### Architecture and design
 
-This GPU only does **rasterisation** and that is... Generating pixels, mapping textures, applying lighting and some other effects. This means there are no vertex transformations (these are covered by the VPUs). Also, this is a fixed-function pipeline, so no [fancy tweaking]({{< ref "gamecube">}}#creativity) or [shaders]({{< ref "xbox" >}}#graphics), you are stuck with a fixed shading model (e.g. Gouraud).
+This GPU only does **rasterisation** and that is... Generating pixels, mapping textures, applying lighting and some other effects. This means there are no vertex transformations (these are covered by the VPUs). Also, this is a fixed-function pipeline, so no [fancy tweaking]({{< ref "gamecube#creativity" >}}) or [shaders]({{< ref "xbox#graphics" >}}), you are stuck with a fixed shading model (e.g. Gouraud).
 
 {{< centered_container >}}
   {{< linked_img src="GS_Pipeline.png" alt="Pipeline design of the Graphics Synthesizer" >}}
@@ -276,7 +276,7 @@ This stage is powered by a large Pixel Unit that can compute up to 16 pixels at 
 
 Texture maps are fetched from DRAM in an area defined as **Texture buffer**, although this is interfaced by a separate area called **Texture Page Buffer** which seems to serve as a caching mechanism for textures. CLUTs are also mapped using this page system. Both elements are retrieved using a **512-bit bus**.
 
-The pixel unit performs **perspective correction** to map textures onto the primitives (a great improvement considering the previous [affine mapping]({{< ref "playstation">}}#tab-1-3-textures) approach). Moreover, it also provides **bilinear and trilinear filtering**, the later one is used alongside mipmapped textures.
+The pixel unit performs **perspective correction** to map textures onto the primitives (a great improvement considering the previous [affine mapping]({{< ref "playstation#tab-1-3-textures" >}}) approach). Moreover, it also provides **bilinear and trilinear filtering**, the later one is used alongside mipmapped textures.
 
 {{% /inner_markdown %}}{{< /tab >}}
 {{< tab name="Tests" >}}
@@ -349,7 +349,7 @@ I think it's also worth including new game series whose characters were modelled
   </div>
 {{< /side_by_side >}}
 
-It's worth mentioning that games like *Dragon Quest* implemented a custom lighting model called **Cel Shading** (a term I have mentioned [before]({{< ref "gamecube">}}#creativity), however in my previous articles I explained that the GPU was mainly responsible for this. In the PS2 case, the required colour calculations are presumably done by the Emotion Engine, since the GS isn't as flexible as other GPUs.
+It's worth mentioning that games like *Dragon Quest* implemented a custom lighting model called **Cel Shading** (a term I have mentioned [before]({{< ref "gamecube#creativity" >}}), however in my previous articles I explained that the GPU was mainly responsible for this. In the PS2 case, the required colour calculations are presumably done by the Emotion Engine, since the GS isn't as flexible as other GPUs.
 
 #### Video Output
 
@@ -380,7 +380,7 @@ The video out port (**Multi A/V**) is very convenient. It outputs RGB, Component
 
 ## Audio
 
-The new audio chip is an incremental update of the old [SPU]({{< ref "playstation">}}#audio) called... **SPU2**! Improvements include the inclusion of **2 MB of internal memory** and **48 channels available** (two times the original amount).
+The new audio chip is an incremental update of the old [SPU]({{< ref "playstation#audio" >}}) called... **SPU2**! Improvements include the inclusion of **2 MB of internal memory** and **48 channels available** (two times the original amount).
 
 The SPU2 is made of two sound processors inside (referred as **CORE0** and **CORE1**) running at ~36.86 MHz, each one processes 24 channels. 
 Curiously enough, these are still two independent processors configured by altering their registers, however, Sony warned developed that both sets of registers have to be set with 1/48000 seconds of gap. If you hurry too much, the behaviour of the SPU2 becomes unpredictable!
@@ -411,7 +411,7 @@ The signal is outputted though both **Digital audio** (referred as the Sony/Phil
 
 The I/O of the PS2 is not complicated, yet multiple revisions of this console completely changed various internal and external interfaces.
 
-To start with, there's a dedicated processor that arbitrates the communication between different components, this CPU is no other than the **original MIPS R3000-based core** found in the [Playstation 1]({{< ref "playstation">}}#cpu), this time it's called **IOP** and runs at 37.5 MHz using a 32-bit bus.  
+To start with, there's a dedicated processor that arbitrates the communication between different components, this CPU is no other than the **original MIPS R3000-based core** found in the [Playstation 1]({{< ref "playstation#cpu" >}}), this time it's called **IOP** and runs at 37.5 MHz using a 32-bit bus.  
 The IOP communicates with the emotion engine using a specialised I/O interface called **System Interface** or 'SIF', both endpoints use their DMA units to transfer data between each other. The IOP also contains its own memory used as buffer.
 Looking from the outside, the IOP gives access to the front ports, DVD controller, SPU2, the BIOS ROM and the PC card slot.
 
@@ -682,7 +682,7 @@ For people familiar with `C`, you probably guessed where I'm going. The thing is
 
 Upon closer inspection in RAM, TITLE.DB happens to be copied **next to a saved register**, `$ra`, which states the address to return after the current function being executed finishes (*strike three*) making way to **The independence exploit**: Craft a Title.db with a large string, embed an executable in it and set that string so `$ra` will point to the executable. If you manage to upload that file to your MemoryCard (through another exploit or a PC USB adapter) you got yourself a simple Homebrew launcher.
 
-After the slim revision was released, the exploit got patched (*I wonder how*). Curiously enough, it wasn't the last [blunder]({{< ref "wii" >}}#the-fall-of-encryption) that exposed clumsy code.
+After the slim revision was released, the exploit got patched (*I wonder how*). Curiously enough, it wasn't the last [blunder]({{< ref "wii#the-fall-of-encryption" >}}) that exposed clumsy code.
 
 {{% /tab %}}
 

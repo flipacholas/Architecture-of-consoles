@@ -103,7 +103,7 @@ Additionally, this design contains an additional (yet unusual) bus where more me
 
 This is one of the most critical sections of this console, it basically makes the Gamecube, a *Gamecube*.
 
-The history of this console's GPU has some interesting connections: Wei Yen, the director of N64's GPU ([the RCP]({{< ref "nintendo-64">}}#graphics)), later founded Artx and landed a contract with Nintendo to develop their next-gen GPU: **Flipper**.
+The history of this console's GPU has some interesting connections: Wei Yen, the director of N64's GPU ([the RCP]({{< ref "nintendo-64#graphics" >}})), later founded Artx and landed a contract with Nintendo to develop their next-gen GPU: **Flipper**.
 
 {{< float_group >}}
 
@@ -122,7 +122,7 @@ During the development process, ArtX got acquired by ATI, which in turn was sold
 
 ### Architecture and design
 
-Flipper handles multiple services, so let's focus on the graphics component for now (since it's the one responsible for bringing our geometry to life). If you've been reading the [N64 article]({{< ref "nintendo-64">}}#graphics), just letting you know that the core is now functional out of the box, so programmers won't need to worry about injecting code to make it work, nonetheless, there will some interesting parts that are customisable.
+Flipper handles multiple services, so let's focus on the graphics component for now (since it's the one responsible for bringing our geometry to life). If you've been reading the [N64 article]({{< ref "nintendo-64#graphics" >}}), just letting you know that the core is now functional out of the box, so programmers won't need to worry about injecting code to make it work, nonetheless, there will some interesting parts that are customisable.
 
 {{< centered_container >}}
   {{< linked_img src="flipper_pipeline.png" alt="Pipeline design of Flipper" >}}
@@ -185,7 +185,7 @@ Now it's time to apply textures and effects to our models, and for that Flipper 
 - **Four parallel Pixel units** (also referred pixel pipelines): Rasterises our primitives (converts them to pixels). Having four units available enables to deliver up to 2x2 pixels with each cycle. 
 - **One Texture mapping unit** at the end of each Pixel unit (giving **four in total**): Together they process up to eight textures for our primitives (now mere pixels) at each cycle.
   - It can also loop itself to merge multiple texture layers over the same primitive, this feature is called **Multi-Texturing** and can be used to achieve **detailed textures**, **environment mapping** (reflections) and **bump mapping**, for instance.
-  - Finally, the unit also provides an **early [z-buffer]({{< ref "nintendo-64">}}#modern-visible-surface-determination)**, **mipmapping** (processing a downsized texture instead, based on the level of detail) and **anisotropic filtering** (a welcoming improvement over the [previous filters]({{< ref "nintendo-64">}}#tab-1-2-reality-display-processor) that provides greater detail with sloped textures). 
+  - Finally, the unit also provides an **early [z-buffer]({{< ref "nintendo-64#modern-visible-surface-determination" >}})**, **mipmapping** (processing a downsized texture instead, based on the level of detail) and **anisotropic filtering** (a welcoming improvement over the [previous filters]({{< ref "nintendo-64#tab-1-2-reality-display-processor" >}}) that provides greater detail with sloped textures). 
 - **Texture Environment unit** or 'TEV': A very powerful programmable 16-stage colour blender. It basically combines multiple pixels (lighting, textures and constants) to achieve an immense amount of texture effects that will be applied over our primitives.
   - The unit works by receiving four pixel colours which are then processed based on the operation requested. Afterwards, it can feed itself the resulting pixels as new input, so at the next stage/cycle, the unit can perform a different type of operation over the previous result. This 'loop' can last up to 15 iterations.
   - Each stage has 2<sup>4</sup> operations to choose from and since the result can be re-processed at the next stage, there are around 5.64 × 10<sup>511</sup> possible permutations!
@@ -207,7 +207,7 @@ All of this is assisted by 1 MB of Texture memory (1T-SRAM type) which can be sp
 The final stage of the rendering process includes applying some optional but useful touches to our scene:
 
 - **Fog**: Blends the last colour from the TEV with a fog constant colour to effectively simulate a foggy environment.
-- **Z-compare**: A late-stage [Z-buffer]({{< ref "nintendo-64">}}#modern-visible-surface-determination). The engine will use 2 MB of embedded 1T-SRAM for Z-buffering calculations.
+- **Z-compare**: A late-stage [Z-buffer]({{< ref "nintendo-64#modern-visible-surface-determination" >}}). The engine will use 2 MB of embedded 1T-SRAM for Z-buffering calculations.
 - **Blending**: Combines the colours of the current frame with the previous frame-buffer.
 - **Dithering**: As the name indicates, applies dithering over our frame.
 
@@ -307,7 +307,7 @@ The console included not one, but two video output connectors:
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-- One named **Analog A/V** which is actually the good-old [Multi Out]({{< ref "super-nintendo.md" >}}#a-convenient-video-out). This is the most popular one.
+- One named **Analog A/V** which is actually the good-old [Multi Out]({{< ref "super-nintendo.md#a-convenient-video-out" >}}). This is the most popular one.
   - The PAL version of this console doesn't carry S-Video and the NTSC one doesn't provide RGB (bummer!).
 - Another one called **Digital A/V** which sends audio and video in digital form (similarly to HDMI nowadays but using a completely different protocol!).
   - Nintendo released a component cable set that connected to this socket. The same plug incorporated a video DAC and encoder to convert the digital signal into YPbPr (the one where there's a separate cable for chroma, luma and sync - giving an optimal quality)

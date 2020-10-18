@@ -62,7 +62,7 @@ When an `IN` or `OUT` instruction is executed, the Z80 sets up the address lines
 
 The way SEGA interconnected the CPU with the rest of the components enables not only to access values, but also showing/hiding certain components from appearing in the memory map. 
 
-Curiously enough, the [Game Boy]({{< ref "game-boy" >}}#cpu) had a Z80 'variant' that completely omitted the I/O ports. Thus, it had to fit everything in the memory map.
+Curiously enough, the [Game Boy]({{< ref "game-boy#cpu" >}}) had a Z80 'variant' that completely omitted the I/O ports. Thus, it had to fit everything in the memory map.
 
 #### Backwards compatibility
 
@@ -87,7 +87,7 @@ In the case of the Master System, VRAM houses everything the VDP will require fo
 
 #### Constructing the frame
 
-The VDP renders frames with a resolution of **up to 256x192 pixels**, further revision added support for 256x224 px and 256x240 px, however, to maintain compatibility with all models, developers held on to the standard resolution. This chip has the same *modus operandi* of Nintendo's [PPU]({{< ref "nes" >}}#constructing-the-frame), in other words, graphics are rendered on-the-spot.
+The VDP renders frames with a resolution of **up to 256x192 pixels**, further revision added support for 256x224 px and 256x240 px, however, to maintain compatibility with all models, developers held on to the standard resolution. This chip has the same *modus operandi* of Nintendo's [PPU]({{< ref "nes#constructing-the-frame" >}}), in other words, graphics are rendered on-the-spot.
 
 On the other side, the VDP has four different modes of operation which will alter the characteristics of the frame (colour depth and resolution):
 - **Mode 0 to III**: Inherited from the TMS9918 found on the SG-1000. Included for backwards compatibility, although any SMS game can use them.
@@ -111,7 +111,7 @@ Now let's see how a frame is drawn step by step, for this, I'll borrow *Sonic Th
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-Mode IV is based on the **tile system**. To recall [previous explanations]({{< ref "nes" >}}#tab-2-1-tiles) about tile engines, tiles are just **8x8 pixel bitmaps** which the renderer fetches to draw the game's graphics. In the case of the VDP, the frame is composed of two planes, the background layer and the sprite layer.
+Mode IV is based on the **tile system**. To recall [previous explanations]({{< ref "nes#tab-2-1-tiles" >}}) about tile engines, tiles are just **8x8 pixel bitmaps** which the renderer fetches to draw the game's graphics. In the case of the VDP, the frame is composed of two planes, the background layer and the sprite layer.
 
 Inside VRAM, there's an area dedicated for tiles called **Character generator** (Sega calls 'Characters' to tiles) and it's set to be **14 KB long**. Each tile occupies 32 bytes, so we can store up to 448 tiles.
 
@@ -203,7 +203,7 @@ This feature is not new actually, as the TMS9918 also included it, thus the SG-1
 {{< tab name="The need for modularity" >}}
 
 {{% inner_markdown %}}
-When I previously analysed the design of Nintendo's PPU, I made emphasis at its internal memory architecture. While limited, some constraints were [somewhat beneficial]({{< ref "nes" >}}#secrets-and-limitations) as it enabled the system to be expanded with the use extra hardware included in the game cartridge, keeping the costs down in the process.
+When I previously analysed the design of Nintendo's PPU, I made emphasis at its internal memory architecture. While limited, some constraints were [somewhat beneficial]({{< ref "nes#secrets-and-limitations" >}}) as it enabled the system to be expanded with the use extra hardware included in the game cartridge, keeping the costs down in the process.
 
 The VDP doesn't take advantage of this modular approach. Instead, Sega implemented a different solution that in turn saves cartridge costs. The smaller background layer and horizontal interrupts are examples of this.
 {{% /inner_markdown %}}
@@ -240,7 +240,7 @@ On the downside, it doesn't carry 'composite sync', so making use of the RGB wil
 
 The audio capabilities of this console are pretty much aligned with the rest of the 80s equipment. Inside the VDP chip, we find a slightly-customised version of the **Texas Instruments SN76489**, which is a **Programmable Sound Generator** or 'PSG'. This is the same type used for the NES/Famicom, albeit having different functions.
 
-A PSG can only synthesise a limited set of waveforms, each channel allocates a single waveform. I've previously introduced some PSGs on the [NES]({{< ref "nes" >}}#audio) article and the [Gameboy]({{< ref "game-boy" >}}#audio) if you want to read more about this type of sound synthesis.
+A PSG can only synthesise a limited set of waveforms, each channel allocates a single waveform. I've previously introduced some PSGs on the [NES]({{< ref "nes#audio" >}}) article and the [Gameboy]({{< ref "game-boy#audio" >}}) if you want to read more about this type of sound synthesis.
 
 With the SMS, the PSG is programmed by altering its set of external registers using the aforementioned I/O ports.
 
@@ -314,7 +314,7 @@ Just like the VDP, the PSG is a no-brainer, but it does hide some interesting fu
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-The Japanese version of the Master System embedded an extra chip for audio made by Yamaha called **YM2413**. It's drastically different from the previous PSG as it uses the **frequency modulation** technique to generate sound. I've explained briefly how this works in the [Mega Drive article]({{< ref "mega-drive-genesis" >}}#tab-7-1-yamaha-ym2612), in case you are interested.
+The Japanese version of the Master System embedded an extra chip for audio made by Yamaha called **YM2413**. It's drastically different from the previous PSG as it uses the **frequency modulation** technique to generate sound. I've explained briefly how this works in the [Mega Drive article]({{< ref "mega-drive-genesis#tab-7-1-yamaha-ym2612" >}}), in case you are interested.
 
 This chip in particular has **nine channels** of audio. Each channel can either select one of the 16 preset instruments, or define a custom one by programming the carrier and modulator. Unfortunately, only one custom instrument is allowed at a time. On the other side, the new instrument provides some interesting functions, such as ADSR envelope controls and feedback.
 
@@ -354,7 +354,7 @@ I don't have the necessary tools right now to confirm whether the SMS should sho
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-While the SN76489 doesn't have a [PCM channel]({{< ref "nes" >}}#tab-7-4-sample) to reproduce samples, there are some tricks that can be used to simulate this feature.
+While the SN76489 doesn't have a [PCM channel]({{< ref "nes#tab-7-4-sample" >}}) to reproduce samples, there are some tricks that can be used to simulate this feature.
 
 These rely on the pulse channels, it's discovered that if the tone level is fixed at `1`, the volume level (which alters the amplitude) will condition the shape of the waveform.
 

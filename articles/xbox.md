@@ -90,9 +90,9 @@ When it comes to building a circuit that can interpret x86 instructions, Intel h
 Now, the Xbox CPU, along with the rest of Pentium III processors, use the **P6 Microarchitecture** (also known as 'i686'). This is the 6th generation (counting from the 8086) which features:
 - A *massive* **14-stage pipeline**.
 - **Out-of-order execution**: If possible, the CPU re-orders the sequence of instructions to increase efficiency and performance.
-- **Speculative prediction**: Similar to [branch prediction]({{% ref "gamecube" %}}#features), but it also executes the branch that the CPU has predicted it will be chosen.
+- **Speculative prediction**: Similar to [branch prediction]({{< ref "gamecube#features" >}}), but it also executes the branch that the CPU has predicted it will be chosen.
 
-Having said that, take a closer look at these features. It so happens they are very similar to [previous consoles]({{% ref "gamecube" %}}#features), however, the other CPUs are very different in terms of design compared to Intel ones. Historically, one could argue that Intel could have never been able to accomplish, let's say, a pipelined CPU. Yet they managed to do so, so let us see why...
+Having said that, take a closer look at these features. It so happens they are very similar to [previous consoles]({{< ref "gamecube#features" >}}), however, the other CPUs are very different in terms of design compared to Intel ones. Historically, one could argue that Intel could have never been able to accomplish, let's say, a pipelined CPU. Yet they managed to do so, so let us see why...
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -174,7 +174,7 @@ The Xbox includes a total of **64 MiB of DDR SRAM**, this type of RAM is very fa
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-We have previously seen how [troublesome]({{% ref "playstation-2" %}}#preventing-past-mishaps) this design can be sometimes. Nonetheless, programs can address this issue by spreading its data between different banks of memory. NV2A implements a **switching network** that enables different units (CPU, GPU, etc) to concurrently access them.
+We have previously seen how [troublesome]({{< ref "playstation-2#preventing-past-mishaps" >}}) this design can be sometimes. Nonetheless, programs can address this issue by spreading its data between different banks of memory. NV2A implements a **switching network** that enables different units (CPU, GPU, etc) to concurrently access them.
 
 Furthermore, the console features an internal HardDisk, and it *so happens* to have three partitions of 750 MiB each reserved for temporary storage: The CPU can offload some of its data from main RAM, then upload it back whenever it's needed. Bear in mind this is a manual process and does not involve virtual RAM.
 {{% /inner_markdown %}}
@@ -229,7 +229,7 @@ The units analysed contain a lot more features that go beyond the scope of this 
 
 {{< /float_group >}}
 
-Having said that, let's take a look at how frames are drawn in the Xbox. Some explanations are very similar to Gamecube's [Flipper]({{% ref "gamecube" %}}#graphics), so I recommend reading that article first in case you struggle to follow this one.
+Having said that, let's take a look at how frames are drawn in the Xbox. Some explanations are very similar to Gamecube's [Flipper]({{< ref "gamecube#graphics" >}}), so I recommend reading that article first in case you struggle to follow this one.
 
 {{< tabs >}}
 {{< tab name="Commands" active="true" >}}
@@ -277,11 +277,11 @@ In a nutshell, the vertex unit processes vertices by manipulating them in its re
 {{% inner_markdown %}}
 At this stage, vertices are transformed into pixels. The process starts with a rasteriser that generates pixels to draw each triangle. The NV2A's rasteriser can generate four pixels per cycle. <!-- Nvidia designed a memory system called 'Lightspeed Memory Architecture' which, among other things, compresses the Z-buffer to four times its original size which enables to increase bandwidth (since it has to be accessed from main memory, while [competitors embedded it]()). -->
 
-Afterwards, **4 texture shaders** are used to fetch textures from memory, these also offer to automatically apply anisotropic filtering, mipmapping and **shadow buffering**. The latter one is used to test whether a pixel is visible or overshadowed with respect to the lighting source, so the correct colour can be applied. At this point, the GPU also offers to perform clipping and an early [Z-test]({{% ref "nintendo-64" %}}#modern-visible-surface-determination) (the NV2A compresses the Z-buffer four times its original size to save bandwidth, contributing to a lot of performance improvements).
+Afterwards, **4 texture shaders** are used to fetch textures from memory, these also offer to automatically apply anisotropic filtering, mipmapping and **shadow buffering**. The latter one is used to test whether a pixel is visible or overshadowed with respect to the lighting source, so the correct colour can be applied. At this point, the GPU also offers to perform clipping and an early [Z-test]({{< ref "nintendo-64#modern-visible-surface-determination" >}}) (the NV2A compresses the Z-buffer four times its original size to save bandwidth, contributing to a lot of performance improvements).
 
 The resulting pixels are stored in a **set of shared registers** and then cycled through **8 register combiners**, where each one applies arithmetic operations on them. This process is programmable with the use of **pixel shaders** (another type of program). At each cycle, each combiner receives RGBA values (RGB + Alpha) from the register set. Then, based on the operation set by the shader, it will operate the values and write back the result. Finally, a larger amount of values are sent to the **final combiner** which can exclusively blend specular colours and/or fog.
 
-Register combiners are programmable in a similar nature to the [Texture Environment Unit]({{% ref "gamecube" %}}#tab-1-3-texture). That is, by altering its registers with a specific combination of settings. In the case of the Xbox, the PFIFO reads pushbuffers to set up PGRAPH, which includes the register combiners and texture shaders.
+Register combiners are programmable in a similar nature to the [Texture Environment Unit]({{< ref "gamecube#tab-1-3-texture" >}}). That is, by altering its registers with a specific combination of settings. In the case of the Xbox, the PFIFO reads pushbuffers to set up PGRAPH, which includes the register combiners and texture shaders.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -307,7 +307,7 @@ Moreover, the frame-buffer can be antialiased using a technique called **multisa
 
 I find important to emphasise the significance of the new programmability model that Nvidia provided to developers. Years ago, most of the graphics pipeline was computed by the CPU, leaving the GPU to accelerate rasterising operations. With the introduction of 'shaders' (referring to both pixel shaders and vertex programs), programmers can take advantage of the resources of the GPU to accelerate many computations in the pipeline, offloading a great amount of work from the CPU.
 
-The concept of 'shaders' was introduced by **Pixar** in 1989 as a method to extend **Renderman**, their pioneering software used for 3D rendering. This was back in the time when 3D graphics were mainly handled by industrial equipment, later on, we have seen how certain consoles incorporated [similar principles]({{% ref "nintendo-64" %}}#tab-1-1-reality-signal-processor), but it wasn't until Nvidia released their GeForce3 line, that shaders became a standard in the consumer market.
+The concept of 'shaders' was introduced by **Pixar** in 1989 as a method to extend **Renderman**, their pioneering software used for 3D rendering. This was back in the time when 3D graphics were mainly handled by industrial equipment, later on, we have seen how certain consoles incorporated [similar principles]({{< ref "nintendo-64#tab-1-1-reality-signal-processor" >}}), but it wasn't until Nvidia released their GeForce3 line, that shaders became a standard in the consumer market.
 
 {{< float_group >}}
 
@@ -327,7 +327,7 @@ The concept of 'shaders' was introduced by **Pixar** in 1989 as a method to exte
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-Thanks to vertex programs, the GPU can now accelerate model transformations, lighting calculations and texture coordinate generation. The latter one is essential for composing [Higher Order surfaces]({{% ref "playstation-2" %}}#infinite-worlds). With this, the CPU can concentrate on providing better physics, AI and scene management.
+Thanks to vertex programs, the GPU can now accelerate model transformations, lighting calculations and texture coordinate generation. The latter one is essential for composing [Higher Order surfaces]({{< ref "playstation-2#infinite-worlds" >}}). With this, the CPU can concentrate on providing better physics, AI and scene management.
 
 In the case of the pixel shaders, programmers can manipulate and blend textures in multiple ways to achieve different effects such as multi-texturing, specular mapping, bump mapping, environment mapping and so on.
 
@@ -341,9 +341,9 @@ I have a feeling that shaders will be regularly revisited in future articles. Pl
 
 #### The Xbox's frame
 
-The standard resolution of games is **640x480**, this is pretty much the standard in the sixth generation. Although, this constraint is just a number: The GPU can draw frame-buffers with up to 4096x4096, yet it doesn't mean the hardware would provide acceptable performance. On the other side, the console allows to alter screen settings globally, which may help to promote these unique features (widescreen and 'high resolution') instead of waiting for developers to discover them (as it happened with the [Gamecube/Wii]({{% ref "wii" %}}#tab-2-1-standardised-widescreen)).
+The standard resolution of games is **640x480**, this is pretty much the standard in the sixth generation. Although, this constraint is just a number: The GPU can draw frame-buffers with up to 4096x4096, yet it doesn't mean the hardware would provide acceptable performance. On the other side, the console allows to alter screen settings globally, which may help to promote these unique features (widescreen and 'high resolution') instead of waiting for developers to discover them (as it happened with the [Gamecube/Wii]({{< ref "wii#tab-2-1-standardised-widescreen" >}})).
 
-The video encoder, on the other hand, will try to broadcast whatever there is on the frame-buffer in a format your TV will understand. That means that widescreen images will become [anamorphic]({{% ref "wii" %}}#tab-2-1-standardised-widescreen) unless the game outputs in HD (i.e. 720p or 1080i, which only a few games do).
+The video encoder, on the other hand, will try to broadcast whatever there is on the frame-buffer in a format your TV will understand. That means that widescreen images will become [anamorphic]({{< ref "wii#tab-2-1-standardised-widescreen" >}}) unless the game outputs in HD (i.e. 720p or 1080i, which only a few games do).
 
 That being said, what kind of signals does this console broadcast? Quite a lot. Apart from the typical PAL/NTSC composite, the Xbox offers **YPbPr** (requiring an extra accessory to get the 'component' connectors) and RGB (both for SCART and VGA compliant). All in all, very convenient without requiring expensive adapters and whatnot.
 
@@ -417,7 +417,7 @@ The Xbox came with a bulky controller called **The Duke**, its set of inputs are
   </div>
 {{< /side_by_side >}}
 
-At closer inspection, both controllers did include something special: Two **Memory Unit** slots to plug in a proprietary memory card, enabling to share saves between consoles. I assumed this feature was inherited from a [previous competitor]({{% ref "dreamcast" %}}#interactive-memory-card). Days after publishing this article, I tried to send a link of it to Seamus Blackley, the co-creator of this console, who quickly replied me with very interesting comments. Regarding the Dreamcast similarities, he told me:
+At closer inspection, both controllers did include something special: Two **Memory Unit** slots to plug in a proprietary memory card, enabling to share saves between consoles. I assumed this feature was inherited from a [previous competitor]({{< ref "dreamcast#interactive-memory-card" >}}). Days after publishing this article, I tried to send a link of it to Seamus Blackley, the co-creator of this console, who quickly replied me with very interesting comments. Regarding the Dreamcast similarities, he told me:
 
 > The relationship to Dreamcast is just historical bias. That was accidental.
 >
@@ -470,7 +470,7 @@ Let's take a look now at the program that the Xbox loads when there isn't a game
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-The dashboard is not very different in terms of functionality compared to the [Playstation menu]({{< ref "playstation-2" >}}#interactive-shell), or the [Gamecube's IPL]({{< ref "gamecube" >}}#splash-and-shell). It essentially includes all the functions typical users would expect, like being able to tweak some settings, moving saves around, playing DVD movies or CD audio; and so forth.
+The dashboard is not very different in terms of functionality compared to the [Playstation menu]({{< ref "playstation-2#interactive-shell" >}}), or the [Gamecube's IPL]({{< ref "gamecube#splash-and-shell" >}}). It essentially includes all the functions typical users would expect, like being able to tweak some settings, moving saves around, playing DVD movies or CD audio; and so forth.
 
 One thing worth mentioning is that the Dashboard also allowed to rip music from an audio CD and store it in the HDD. This music could be subsequently fetched from any game to 'personalise' its soundtrack. *Fun stuff!*
 {{% /inner_markdown %}}
@@ -567,7 +567,7 @@ Now, the console also includes an internal 8 GB HDD, games use it to store saves
 
 #### Network service
 
-Forget about [modems]({{< ref "dreamcast" >}}#online-platform) or [experimental services]({{< ref "playstation-2" >}}#network-service). The Xbox included everything that nowadays we take for granted to provide a decent online service: Ethernet connection and a centralised online infrastructure (called **Xbox Live**).
+Forget about [modems]({{< ref "dreamcast#online-platform" >}}) or [experimental services]({{< ref "playstation-2#network-service" >}}). The Xbox included everything that nowadays we take for granted to provide a decent online service: Ethernet connection and a centralised online infrastructure (called **Xbox Live**).
 
 {{< float_group >}}
 
@@ -604,7 +604,7 @@ It turns it's not that simple: Microsoft also had to convince users they 'needed
 
 Independently whether this console contains off-the-shelf components or not, there's a fair amount of security measures implemented.
 
-Please note that RSA encryption is a recurring topic here, I previously introduced it in the [Wii article]({{< ref "wii" >}}#tab-7-2-chain-of-trust), so if you are not familiar with RSA or any other symmetric/asymmetric encryption systems please take a look at that article first.
+Please note that RSA encryption is a recurring topic here, I previously introduced it in the [Wii article]({{< ref "wii#tab-7-2-chain-of-trust" >}}), so if you are not familiar with RSA or any other symmetric/asymmetric encryption systems please take a look at that article first.
 
 That being said, let's take a look.
 

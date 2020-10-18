@@ -55,11 +55,11 @@ Back on topic, the 68k has the role of 'main' CPU and it will be used for game l
 
 (If you wonder the reason behind using 24-bit addresses with a CPU that can handle 32-bit addresses, I doubt that in the 80s many were asking to manage 4 GB of RAM and adding unused lines is costly in terms of performance and money).
 
-Secondly, there's another CPU fitted in this console, a **Zilog Z80** running at **~3.5 MHz**. This is the same processor found on the [Master System]({{< ref "master-system" >}}#cpu) and it's mainly used for **sound control**. It features:
+Secondly, there's another CPU fitted in this console, a **Zilog Z80** running at **~3.5 MHz**. This is the same processor found on the [Master System]({{< ref "master-system#cpu" >}}) and it's mainly used for **sound control**. It features:
   - **Z80 ISA**: An extension of the Motorola 6800 (not 68000!) ISA, it handles **8-bit** words.
   - **8-bit registers** and **8-bit data bus**: No surprises here.
   - **4-bit ALU**: This may be a bit shocking, but it managed to handle 8-bit operations without problems, it just takes two cycles per number.
-    - Notice how the 6502 runs at ~2 MHz in [some systems]({{< ref "nes" >}}#cpu) while this ones almost reaches 4 MHz: Clock speed doesn't make the Z80 faster per se, but helps to balance the lack of transistors in some areas.
+    - Notice how the 6502 runs at ~2 MHz in [some systems]({{< ref "nes#cpu" >}}) while this ones almost reaches 4 MHz: Clock speed doesn't make the Z80 faster per se, but helps to balance the lack of transistors in some areas.
   - **16-bit address bus** with the following address map:
     - 8 KB of RAM.
     - Two sound chips.
@@ -80,7 +80,7 @@ Graphics data is processed by the 68000 and rendered on a proprietary chip calle
 The VDP runs at **~13 MHz** and supports multiple resolution modes depending on the region: Up to 320x224 pixels in NTSC and up to 320x240 pixels in PAL.
 
 This chip has two modes of operations:
-- **Mode IV**: Legacy mode that behaves like its [predecessor]({{< ref "master-system" >}}#graphics).
+- **Mode IV**: Legacy mode that behaves like its [predecessor]({{< ref "master-system#graphics" >}}).
   - This doesn't mean this console will play Master System games automatically, an additional accessory (the *Power Base Converter*) is required to fit previous cartridges on this console, the converter will also instruct the I/O chip to put the Z80 in control.
 - **Mode V**: Native mode of operation, we'll focus on this one.
 
@@ -281,7 +281,7 @@ Compared to traditional PSG synthesisers, this was a drastic improvement: You we
 {{% inner_markdown %}}
 A **PSG chip** that can produce three pulse waves and one noise.
 
-This is actually the original Master System's [sound chip]({{< ref "master-system" >}}#audio) and it's embedded in the VDP, it runs at the speed of the Z80.
+This is actually the original Master System's [sound chip]({{< ref "master-system#audio" >}}) and it's embedded in the VDP, it runs at the speed of the Z80.
 
 Notice the 'Pulse 3' channel remains unused, this is indeed reserved to play the effects during gameplay.
 {{% /inner_markdown %}}
