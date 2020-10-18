@@ -29,7 +29,7 @@ Sony knew that 3D hardware can get very messy to develop for, for this reason, t
 The main processor is a modification of LSI's **CoreWare CW33300** which, at the same time, is binary-compatible with SGI's **MIPS R3051**. This chip runs at 33.87 MHz and it features:
 - The **MIPS I** ISA: A 32-bit RISC instruction set, it includes multiplication and division instructions.
 - **One ALU and one shifter**.
-- **5-stage pipeline**: Up to five instructions can be executed simultaneously (a detailed explanation can be found in a [previous article]({{% ref)).
+- **5-stage pipeline**: Up to five instructions can be executed simultaneously (a detailed explanation can be found in a [previous article]({{< ref "sega-saturn#cpu" >}}).
 - **4 KB instruction cache** and **1 KB of data cache** (the original CoreWare CW33300 contained 2 KB of data cache): The data cache is actually **Scratchpad RAM**, meaning that it can have other uses apart from behaving as L1 cache.
 
 Like other MIPS R3000-based CPUs, it supported configurations with up to four coprocessors, Sony customised it with two:
@@ -182,7 +182,7 @@ These explain why users may notice instabilities while playing some games. The e
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-Just like the [competition]({{< ref "sega-saturn" >}}), the PS1 doesn't include any hardware feature that solves the [}}#an-introduction-to-the-visibility-problem">visibility problem]({{< ref). Nonetheless, the GPU supports sorted polygons by providing an **ordering table**: A dedicated table where each entry is indexed using a depth value (also called 'Z-value') and contains the address where the GPU command resides.
+Just like the [competition]({{< ref "sega-saturn" >}}), the PS1 doesn't include any hardware feature that solves the [visibility problem]({{< ref "sega-saturn#an-introduction-to-the-visibility-problem" >}}). Nonetheless, the GPU supports sorted polygons by providing an **ordering table**: A dedicated table where each entry is indexed using a depth value (also called 'Z-value') and contains the address where the GPU command resides.
 
 The CPU needs to manually sort the polygons first, and then reference them in the correct entry of the table, which will be handled by the GPU. This process will enable the GPU to render the geometry in the correct order.
 
