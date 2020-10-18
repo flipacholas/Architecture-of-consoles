@@ -72,7 +72,7 @@ You'll be surprised that there is no software implemented to detect whether the 
 
 ## Graphics
 
-Before we begin, you'll find the system a mix between the [}}#graphics">SNES]({{< ref) and the [}}#graphics">Game Boy]({{< ref), the graphics core is still the well-known 2D engine called **PPU**. I recommend reading those articles before continuing since I'll be revisiting lots of previously-explained concepts.
+Before we begin, you'll find the system a mix between the [SNES]({{< ref "super-nintendo.md#graphics" >}}) and the [Game Boy]({{< ref "game-boy#graphics" >}}), the graphics core is still the well-known 2D engine called **PPU**. I recommend reading those articles before continuing since I'll be revisiting lots of previously-explained concepts.
 
 Compared to previous Game Boys we now have a colour LCD screen that can display up to 32,768 colours (15-bit). It has a resolution of 240x160 pixels and a refresh rate of ~60Hz.
 
@@ -141,7 +141,7 @@ Four charblocks are used for backgrounds and two are used for sprites.
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-The background layer of this system has improved significantly since the Game Boy Color. It finally includes some features found in the [Super Nintendo]({{< ref "super-nintendo" >}}) (remember the [}}#unique-features">affine transformations]({{< ref)?).
+The background layer of this system has improved significantly since the Game Boy Color. It finally includes some features found in the [Super Nintendo]({{< ref "super-nintendo" >}}) (remember the [affine transformations]({{< ref "super-nintendo#unique-features" >}})?).
 
 The PPU can draw up to four background layers. The capabilities of each one will depend on the selected mode of operation:
 
@@ -263,7 +263,7 @@ Samples are **8-bit** and **signed** (encoded in values from -128 to 127). The d
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-While the Game Boy subsystem won't share its CPU, it does give out access to its PSG. For compatibility reasons this is the same design found on the original Game Boy. I've previously written [}}#audio">this article]({{< ref) that goes into detail about each channel in particular.
+While the Game Boy subsystem won't share its CPU, it does give out access to its PSG. For compatibility reasons this is the same design found on the original Game Boy. I've previously written [this article]({{< ref "game-boy#audio" >}}) that goes into detail about each channel in particular.
 
 The majority of GBA games used it for accompaniment or effects. Later ones will optimise their music for PCM and leave the PSG unused.
 {{% /inner_markdown %}}
@@ -336,7 +336,7 @@ The famous **Game Boy Link Cable** provided multi-playing capabilities. Addition
 
 In general terms, the usage of proprietary cartridges was a big barrier compared to the constant cat-and-mouse game that other console manufacturers had to battle while using the CD-ROM.
 
-To combat against *bootleg* cartridges (unauthorised reproductions), the GBA's BIOS incorporated [}}#anti-piracy">the same boot process]({{< ref) found in the original Game Boy.
+To combat against *bootleg* cartridges (unauthorised reproductions), the GBA's BIOS incorporated [the same boot process]({{< ref "game-boy#anti-piracy" >}}) found in the original Game Boy.
 
 #### Flashcards
 
