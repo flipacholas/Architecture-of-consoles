@@ -1,3 +1,6 @@
+commit_message: "[Crowdin]: Updated %original_file_name% translations"
+append_commit_message: false
+
 files:
   - source: /articles/*.md
     translation: /articles/translations/%file_name%.%two_letters_code%.md
