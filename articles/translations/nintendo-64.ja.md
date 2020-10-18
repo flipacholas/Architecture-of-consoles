@@ -34,7 +34,7 @@ Don't worry, I promise you this article will not be *that* long... Enjoy!
 The main processor is a **NEC VR4300** that runs at **93.75 MHz**, it's a binary-compatible version of Silicon Graphics' **MIPS R4300i** that features:
 - A **MIPS III ISA**: Succeeds the MIPS II featuring new 64-bit instructions. 64-bit words are called *doublewords*.
 - An internal **64-bit bus** while connected to an **external 32-bit data bus**.
-- **5-stage pipeline**: Up to five instructions can be executed simultaneously (a detailed explanation can be found in a [previous article]({{% ref)).
+- **5-stage pipeline**: Up to five instructions can be executed simultaneously (a detailed explanation can be found in a \[previous article\]({{< ref "sega-saturn#cpu" >}}" >}}).
 - **24 KB L1 cache**: Divided in 16 KB for instructions and 8 KB for data.
 
 An internal **64-bit FPU** is also included in this package, the CPU identifies it as a co-processor (*COP1*) although the unit is fitted next to the ALU and it's only accessed through the ALU pipeline, meaning there's no co-processing per se.
@@ -66,7 +66,7 @@ By contrast, the amount of available RAM on this console **can be expanded** by 
 ## Graphics
 
 The core of the graphics reside on a huge chip designed by Silicon Graphics called **Reality Co-Processor** running at **62.5 MHz**. This package contains *a lot* of circuitry so don't worry if you find it difficult to follow, the graphics sub-system has a very complex architecture!  
-This design is based on the philosophy that the GPU is not meant to be a 'simple' rasteriser like the [}}#graphics">competitor's]({{< ref). Instead, it should also be capable of **accelerating geometry calculations** (offloading the CPU), and for that, more circuitry will be needed.
+This design is based on the philosophy that the GPU is not meant to be a 'simple' rasteriser like the [competitor's]({{< ref "playstation#graphics" >}}). Instead, it should also be capable of **accelerating geometry calculations** (offloading the CPU), and for that, more circuitry will be needed.
 
 Having said that, this chip is divided into three main modules, two of them are used for graphics processing:
 
@@ -88,7 +88,7 @@ In order to operate this module, the CPU stores in RAM a series of commands call
 
 This seems straightforward, but how does it perform these operations? Well, here's the interesting part: Unlike its competitors (PS1 and Saturn), **the geometry engine is not hard-wired**. Instead, the RSP contains some memory (4 KB for instructions and 4 KB for data) to store **microcode**, a small program, with no more than 1000 instructions, that **implements the graphics pipeline**. In other words, it directs the Scalar Unit on how it should operate our graphics data. The microcode is fed by the CPU during runtime.
 
-Nintendo provided different microcodes to choose from and, similarly to the [}}#graphics">SNES' background modes]({{< ref), each one balances the resources differently.
+Nintendo provided different microcodes to choose from and, similarly to the [SNES' background modes]({{< ref "super-nintendo#graphics" >}}), each one balances the resources differently.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -112,7 +112,7 @@ It can process either **triangles** or **rectangles** as primitives, the latter 
     - A 'complete' filter would require four points to carry out the interpolation, however, this console only uses three (**triangular interpolation**) resulting in some anomalies. Thus, certain textures will have to be 'adapted' beforehand.
   - **Mip-Mapping**: Automatically selects a scaled-down version of the texture depending on its **level of detail**. This avoids computing large textures that would be seen far away from the camera and prevents aliasing.
     - If enabled, the N64 maps textures using **trilinear filtering** instead. This new algorithm will also interpolate between the mipmaps to soften sudden changes in the level of detail.
-  - **Perspective correction**: Chosen algorithm for mapping textures onto triangles. Unlike [}}#graphics">other algorithms]({{< ref), this one takes into account the depth value of each primitive, achieving better results.
+  - **Perspective correction**: Chosen algorithm for mapping textures onto triangles. Unlike [other algorithms]({{< ref "playstation#graphics" >}}), this one takes into account the depth value of each primitive, achieving better results.
 - A **Colour Combiner**: Mixes and interpolates multiples layers of colours (for instance, to apply shaders).
 - A **Blender**: Mixes pixels against the current frame-buffer to apply translucency, anti-aliasing, fog, dithering. It also performs z-buffering (more about it later on).
 - A **Memory interface**: Used by the previous blocks to read and write the current frame-buffer in RAM and/or fill the TMEM.
@@ -201,11 +201,11 @@ Here are some examples of previous 2D characters for the [Super Nintendo]({{< re
 
 #### Modern visible surface determination
 
-If you've read about the previous consoles, you came across the never-ending problem regarding [}}#an-introduction-to-the-visibility-problem">visibility of surfaces]({{< ref) and by now may think polygon sorting is the only way out of this. Well, for the first time in this series, the RDP features a hardware-based approach called **Z-buffering**. In a nutshell, the RDP allocates an extra buffer called **Z-Buffer** in memory. This has the same dimensions of a frame-buffer, but instead of storing RGB values, each entry contains the depth (Z-value) of the nearest pixel with respect to the camera.
+If you've read about the previous consoles, you came across the never-ending problem regarding [visibility of surfaces]({{< ref "sega-saturn#an-introduction-to-the-visibility-problem" >}}) and by now may think polygon sorting is the only way out of this. Well, for the first time in this series, the RDP features a hardware-based approach called **Z-buffering**. In a nutshell, the RDP allocates an extra buffer called **Z-Buffer** in memory. This has the same dimensions of a frame-buffer, but instead of storing RGB values, each entry contains the depth (Z-value) of the nearest pixel with respect to the camera.
 
 After the RDP rasterises the vectors, the z-value of the new pixel is compared against the respective value in Z-buffer. If the new pixel contains a smaller z-value, it means the new pixel is positioned in front of the previous one, so it's applied onto the frame-buffer and the z-buffer is also updated. Otherwise, the pixel is discarded.
 
-Overall, this is a huge welcomed addition: Programmers do not need to worry anymore about implementing [}}#tab-2-2-visibility-approach">software-based]({{< ref) polygon sorting methods which drain a lot of CPU resources. However, Z-buffer does not save you from feeding unnecessary geometry (discarded or overdrawn, both consuming resources). For this, game engines may choose to include an **occlusion culling** algorithm to discard unseen geometry as early as possible.
+Overall, this is a huge welcomed addition: Programmers do not need to worry anymore about implementing [software-based]({{< ref "playstation#tab-2-2-visibility-approach" >}}) polygon sorting methods which drain a lot of CPU resources. However, Z-buffer does not save you from feeding unnecessary geometry (discarded or overdrawn, both consuming resources). For this, game engines may choose to include an **occlusion culling** algorithm to discard unseen geometry as early as possible.
 
 #### Secrets and limitations
 
@@ -232,7 +232,7 @@ As a result, some games used solid colours with Gouraud shading (like *Super Mar
 
 #### The universal video out
 
-Nintendo carried on using the 'universal' [}}#a-convenient-video-out">Multi Out]({{< ref) port found on its predecessor, bad news is that it **no longer carries the RGB signal!** It looks to me like another measure to save costs, since RGB wasn't used anyway in the previous console.
+Nintendo carried on using the 'universal' [Multi Out]({{< ref "super-nintendo.md#a-convenient-video-out" >}}) port found on its predecessor, bad news is that it **no longer carries the RGB signal!** It looks to me like another measure to save costs, since RGB wasn't used anyway in the previous console.
 
 Good news is that the three lines can still be reconstructed in the first revisions by soldering some cables and fitting an inexpensive signal amplifier. This is because the video digital-to-analogue converter transmit an RGB signal to the video encoder. However, latter units combined both chips, so the only remaining option is to bypass the video DAC and encoder altogether with a custom one that exposes those signals.
 
@@ -334,7 +334,7 @@ Other third-party tools consisted in cartridges featuring a long ribbon cable th
 
 ## Anti-piracy / Region Lock
 
-The anti-piracy system is a continuation of the [}}#anti-piracy--region-lock">SNES' CIC]({{< ref). As you know, bootleg detection and region locking are possible thanks to the CIC chip (which must be present in every *authorised* game cartridge), the Nintendo 64 improved this system by requiring different games to have a specific variant of the CIC chips in order to make sure the cartridge was not a counterfeit or contained a CIC clone, the **Peripheral Interface** or 'PIF' would do checksum checks at the start and during gameplay to supervise current CIC installed on the cartridge.
+The anti-piracy system is a continuation of the [SNES' CIC]({{< ref "super-nintendo.md#anti-piracy--region-lock" >}}). As you know, bootleg detection and region locking are possible thanks to the CIC chip (which must be present in every *authorised* game cartridge), the Nintendo 64 improved this system by requiring different games to have a specific variant of the CIC chips in order to make sure the cartridge was not a counterfeit or contained a CIC clone, the **Peripheral Interface** or 'PIF' would do checksum checks at the start and during gameplay to supervise current CIC installed on the cartridge.
 
 If by any reason the PIF considers the current cartridge is not valid, it will then induce the console in a permanent freeze.
 
