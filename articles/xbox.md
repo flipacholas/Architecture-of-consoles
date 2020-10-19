@@ -96,7 +96,7 @@ Good news is that since the console will always have the exact same CPU, program
 When it comes to building a circuit that can interpret x86 instructions, Intel has come up with so many different designs for their CPUs. Some designs were featured with the release of a new Pentium Series (i.e. Pentium 4) while others are featured when Intel releases an 'enhanced' version of a Pentium (such as the 'Pentium Pro'). Nevertheless, since the release of the first Pentium, the CPU model and microarchitecture no longer carry the same name. For example, the 80486 uses the 80486 microarchitecture (and no other), however, the original Pentium has the 'P5' microarchitecture.
 
 Now, the Xbox CPU, along with the rest of Pentium III processors, use the **P6 Microarchitecture** (also known as 'i686'). This is the 6th generation (counting from the 8086) which features:
-- A *massive* **14-stage pipeline**: Meaning up to 16 instructions can be processed in parallel, however they will take a lot more cycles to complete. See [a previous explanation]({{< ref "game-boy-advance#whats-new" >}})
+- A *massive* **14-stage pipeline**: Meaning up to 14 instructions can be processed in parallel. On the other side, individual instructions may take a lot more cycles to complete. See [a previous explanation]({{< ref "game-boy-advance#whats-new" >}}).
 - **Out-of-order execution**: If possible, the CPU re-orders the sequence of instructions to increase efficiency and performance.
 - **Speculative prediction**: Similar to [branch prediction]({{< ref "gamecube#features" >}}), but it takes it further and executes the branch that the CPU has predicted it will be chosen.
 
