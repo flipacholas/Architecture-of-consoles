@@ -22,11 +22,19 @@ top_tabs:
 title: Xbox Architecture
 ---
 
+## Reading tips
+
+Ok, some months after writing this, I've realised this is one of the densest write-ups I have done. There's just a lot of stuff happening inside the Xbox and I have tried to mention most of it.
+
+Now, if you're really interested in understanding this system but find this article difficult to follow, my advice to you is: **Take your time**, the article is not going anywhere. Focus on what you like, read at your own pace, check out the links on the 'Sources' section for support and finally, don't put pressure on yourself, there's no exam!
+
+---
+
 ## A quick introduction
 
 It seems that Microsoft has decided to pick up where Sega left off. Their offer? A system with familiarities appreciated by developers and online services welcomed by users.
 
-Please note that, due to consistency with other sources, this article separates storage units between the metric prefix (i.e. megabytes or 'MB') and the standardised binary prefix (i.e. mebibytes or 'MiB'), thus:
+Please note that, to keep consistency with other sources, this article separates storage units between the metric prefix (i.e. megabytes or 'MB') and the standardised binary prefix (i.e. mebibytes or 'MiB'), thus:
 - 1 MB = 1000 KB
 - 1 MiB = 1024 KiB
 
@@ -56,7 +64,7 @@ Having said that, let us take a look:
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-First things first, the Xbox's CPU is identified as a **Pentium III**. So what does this mean? Back then (early 00s), the Pentium series represented the next-generation of CPUs. They were 'new high-end' that grouped all the fancy technology that made computers super-fast, plus it helped buyers decide which CPU they had to buy if they wanted *the best of the best*.
+First things first, the Xbox's CPU is identified as a **Pentium III**. So what does this mean? Back then (early noughties), the Pentium series represented the next generation of CPUs. They were 'new high-end' that grouped all the fancy technology that made computers super-fast, plus it helped buyers decide which CPU they had to buy if they wanted *the best of the best*.
 
 The Pentium III replaced Pentium II, which in turn replaced the original Pentium. Moreover, when the first Pentium came out, it replaced the 80486, which in turn replaced the 80386... You get the idea. What matters is that 'Pentium' is mainly a brand name, it's not directly associated with its inner workings. Therefore, we must go deeper!
 
@@ -68,16 +76,16 @@ To dive further and not get lost in the way, I have catalogued the information i
 {{< tab name="The ISA" >}}
 
 {{% inner_markdown %}}
-Indeed, after I mentioned the name Intel it was a matter of time before I introduce the famous **x86**, its instruction set.
+Indeed, after I mentioned 'Intel' it was a matter of time before I introduce the famous **x86**, its instruction set.
 
-Even though x86 first appeared with the release of the 16-bit CPU called **Intel 8086** in 1978, the ISA has been constantly expanded with more instructions as more Intel CPUs were released (80186, 80286 and so on). Consequently, x86 started to fragment as more ground-breaking features were added (i.e. 'real mode', vs 'protected mode' vs 'long mode'). To tackle this, modern x86 applications commonly targeted the 80386 ISA (also referred as **IA-32** or **i386**) as a baseline, which among other things, operates in a 32-bit environment.
+The first form of x86 debuted with the release of the **Intel 8086** in 1978, a 16-bit CPU. Afterwards, the ISA has been constantly expanded with more instructions as more Intel CPUs were released (80186, 80286 and so on). Consequently, x86 started to fragment as more ground-breaking features were added (i.e. 'protected mode' and 'long mode'). To tackle this, modern x86 applications commonly target the 80386 ISA (also referred as **IA-32** or **i386**) as a baseline, which among other things, operates in a 32-bit environment.
 
-Subsequently, Intel presented enhancements of IA-32 in the form of **extensions**, meaning these may or may not be included in an IA-32 CPU. Programs can query the CPU to check if a specific enhancement is present. The Xbox's CPU includes two extensions:
+Subsequently, Intel enhanced the IA-32 with the use of **extensions**, meaning the new functions may or may not be included in an IA-32 CPU. Programs query the CPU to check if a specific enhancement is present. The Xbox's CPU includes two extensions:
 
 - **MMX** (Multimedia Extension): Adds 57 SIMD instructions and 8 64-bit registers (integers only) that can speed up vector operations.
-- **SSE** (Streaming SIMD extension): Another SIMD-type extension which addresses some of the limitations of MMX (lack of floating-point support and unable to use floating-point unit in parallel). It adds 8 128-bit registers (called 'XMM') that hold four 32-bit floats; and 56 new instructions.
+- **SSE** (Streaming SIMD extension): Another SIMD-type extension which addresses the criticism of MMX (lack of floating-point support and unable to use floating-point unit in parallel). It adds 56 new instructions and eight 128-bit registers (called 'XMM') that hold four 32-bit `floats`.
 
-Good news is that since the console will always have the same CPU features, programmers can optimise their code to exploit these extensions as they will always be present.
+Good news is that since the console will always have the exact same CPU, programmers can optimise their code to exploit these extensions as they will always be present.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -85,14 +93,14 @@ Good news is that since the console will always have the same CPU features, prog
 {{< tab name="The Microarchitecture" >}}
 
 {{% inner_markdown %}}
-When it comes to building a circuit that can interpret x86 instructions, Intel has come up with so many different designs for their CPUs. Some designs were featured with the release of a new Pentium Series (i.e. Pentium 4) while others are featured when Intel releases an 'enhanced' version of a Pentium (such as the 'Pentium Pro'). Nevertheless, since the release of the first Pentium, the microarchitecture is identified with a different name from the CPU model. For example, the original Pentium includes the 'P5' microarchitecture.
+When it comes to building a circuit that can interpret x86 instructions, Intel has come up with so many different designs for their CPUs. Some designs were featured with the release of a new Pentium Series (i.e. Pentium 4) while others are featured when Intel releases an 'enhanced' version of a Pentium (such as the 'Pentium Pro'). Nevertheless, since the release of the first Pentium, the CPU model and microarchitecture no longer carry the same name. For example, the 80486 uses the 80486 microarchitecture (and no other), however, the original Pentium has the 'P5' microarchitecture.
 
 Now, the Xbox CPU, along with the rest of Pentium III processors, use the **P6 Microarchitecture** (also known as 'i686'). This is the 6th generation (counting from the 8086) which features:
-- A *massive* **14-stage pipeline**.
+- A *massive* **14-stage pipeline**: Meaning up to 16 instructions can be processed in parallel, however they will take a lot more cycles to complete. See [a previous explanation]({{< ref "game-boy-advance#whats-new" >}})
 - **Out-of-order execution**: If possible, the CPU re-orders the sequence of instructions to increase efficiency and performance.
-- **Speculative prediction**: Similar to [branch prediction]({{< ref "gamecube#features" >}}), but it also executes the branch that the CPU has predicted it will be chosen.
+- **Speculative prediction**: Similar to [branch prediction]({{< ref "gamecube#features" >}}), but it takes it further and executes the branch that the CPU has predicted it will be chosen.
 
-Having said that, take a closer look at these features. It so happens they are very similar to [previous consoles]({{< ref "gamecube#features" >}}), however, the other CPUs are very different in terms of design compared to Intel ones. Historically, one could argue that Intel could have never been able to accomplish, let's say, a pipelined CPU. Yet they managed to do so, so let us see why...
+Having said that, take a closer look at these features. It so happens they are very similar to [previous consoles]({{< ref "gamecube#features" >}}), however, the other CPUs are very different in terms of design compared to Intel ones. Historically, one could argue that the design of the x86 would've never allowed Intel to produce, let's say, a pipelined CPU. Yet they managed to do so, so let us see why...
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -100,13 +108,13 @@ Having said that, take a closer look at these features. It so happens they are v
 {{< tab name="CISC or RISC" >}}
 
 {{% inner_markdown %}}
-All of the competitor's consoles previously analysed contain a **RISC** CPU whereas Intel's x86 ones are **CISC**. RISC CPUs are known for having a simplified instruction set compared to CISC CPUs. This includes, for instance, not featuring instructions that operate values directly from memory (as opposed to registers). 
+All of the competitor's consoles previously analysed contain a **RISC** CPU whereas Intel's x86 ones are **CISC**. RISC CPUs are known for having a simplified instruction set compared to CISC CPUs. This includes, for instance, not providing instructions that operate values directly from memory (as opposed to only using registers). 
 
-One of the advantages of RISC processors is that their simplistic approach enables its CPUs to be designed with a modular sense, which in turn can be exploited to improve performance with parallelism techniques. This is why we have seen CPUs like MIPS and PowerPC debuting pipelining, superscalar, out-of-order, branch prediction, etc. On the other side, 'CISC' processors were design many years before the RISC processors appeared and aimed to solve different needs. Consequently, their designs are not as flexible as RISC ones.
+One of the advantages of RISC processors is that their simplistic approach enables its CPUs to be designed with a modular sense, which in turn can be exploited to improve performance with parallelism techniques. This is why we have seen CPUs like MIPS and PowerPC debuting pipeline stages, superscalar designs, out-of-order execution, branch prediction, etc. On the other side, 'CISC' processors were design many years before the RISC processors appeared and aimed to solve different needs. Consequently, their designs are not as flexible as RISC ones.
 
-Back to the original question, the P6 is an interesting design, because while the CPU only understands a CISC instruction set (x86), it interprets the ISA using **microcode** (called 'micro-operations') and the unit that executes that code is built around the guidelines of RISC. All in all, this allows Intel to apply the optimisations of RISC processors while keeping a 'CISC layer' for compatibility with x86.
+Back to the original question, the P6 is an interesting design, because while this CPU only understands a CISC instruction set (x86), it interprets x86 using **microcode** (called 'micro-operations') and the unit that executes that code is built around the guidelines of RISC. All in all, this allows Intel to apply the optimisations of RISC processors while keeping a 'CISC layer' for compatibility with x86.
 
-Microcode is already embedded in the silicon but it can be patched, allowing Intel to fix its CPUs after production whenever a bug or a security vulnerability is discovered. If you have read previous articles (i.e. N64 or PS2), bear in mind that Intel's microcode is **not publicly accessible** (let alone documented) and Intel is its solely 'maintainer'.
+Microcode is already embedded in the silicon but it can be patched, allowing Intel to fix its CPUs after production whenever a bug or a security vulnerability is discovered. If you have read previous articles (i.e. [N64]({{< ref "nintendo-64" >}}) or [PS2]({{< ref "playstation-2" >}})), bear in mind that Intel's microcode is **not publicly accessible** (let alone documented) and Intel is its solely 'maintainer'.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -119,15 +127,15 @@ Microcode is already embedded in the silicon but it can be patched, allowing Int
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-There were numerous chips released using the P6 microarchitecture. Specifically, the Xbox includes one model called **Coppermine**. This was also released as the second revision of the Pentium III (replacing the 'Katmai' core) and includes the following components:
+There were numerous chips shipped that implement the P6 microarchitecture. Specifically, the Xbox includes one model called **Coppermine**. This was also released as the second revision of the Pentium III (replacing the 'Katmai' core) and features the following components:
 - **32 KiB L1** cache: Divided between 16 KiB for instructions and 16 KiB for data.
-- Integrated **128 KiB L2** cache: This is *odd* since the off-the-shelf Coppermine has 256 KiB of L2. In fact, the Coppermine128 (found in the Intel 'Celeron' brand, the low-end Pentium alternative) has the same amount of L2. This is probably done to reduce manufacturing costs, and keep this console at a competitive price.
+- Integrated **128 KiB L2** cache: This is *odd* since the off-the-shelf Coppermine has 256 KiB of L2. In fact, the Coppermine128 (found in the Intel 'Celeron' brand, the low-end Pentium alternative) has the same amount of L2. Hence, this was probably done to reduce manufacturing costs and keep this console at a competitive price.
 - 133 MHz **Front-side bus**: This is the bus that connects the L2 cache with the memory controller, we'll see more about it later on.
-  - Intel names it 'Front-side bus' to distinguish it from another bus which connects the L2 (external cache) with the L1 (internal cache). The latter bus is called 'Back-side bus' and yes... It's an unfortunate name to use in the UK.
+  - Intel names it 'Front-side bus' to distinguish it from another bus which connects L2 (external cache) with L1 (internal cache). The latter bus is called 'Back-side bus'... and it's an unfortunate name to use in the UK.
 
-Coppermine also features two 'enhancements' over their original implementation of L2 cache, these are the **Advanced Transfer Cache** and the **Advanced System Buffering**. To sum them up, L2 cache is on-chip and their buses are wider, which help to reduce possible bottlenecks found in the Front-side bus.
+Coppermine also adds two 'enhancements' over their original implementation of L2 cache, these are the **Advanced Transfer Cache** and the **Advanced System Buffering**. To sum them up, L2 cache is on-chip and their buses are wider, which help to reduce possible bottlenecks in the Front-side bus.
 
-Finally, the chip uses the 'Micro-PGA2' socket to connect it to the motherboard, but like any other console, the Xbox has it soldered with a Ball Grid Array or 'BGA'.
+Finally, the chip uses the 'Micro-PGA2' socket fit on the motherboard, but like any other console, the Xbox has it soldered with a Ball Grid Array or 'BGA'.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -140,7 +148,7 @@ Here's a bit more history: After the years of the P6, Intel planned to succeed i
 
 #### Motherboard architecture
 
-At some point in the history of the PC, motherboards grew so much in complexity that new designs had to be developed from the ground up to efficiently tackle new emerging needs.
+At some point in the history of the PC, motherboards grew so much in complexity that new designs had to be developed from the ground up to efficiently tackle emerging needs.
 
 {{< float_group >}}
 
@@ -159,11 +167,11 @@ The combination of these chips is called **chipset** and they are important enou
 
 {{< /float_group >}}
 
-Both chips are interconnected using a specialised bus called the **HyperTransport**. It's worth pointing out that some PC motherboards also included this technology, just with a different brand (i.e. MPCX → nForce MCP-D)
+Both chips are interconnected using a specialised bus called the **HyperTransport**. It's worth pointing out that some PC motherboards also included this technology, just with a different brand (nForce MCP-D).
 
 #### Memory layout
 
-The Xbox includes a total of **64 MiB of DDR SRAM**, this type of RAM is very fast compared to what the competition offers, however it's also shared across all the components of this system. Hence, once more, we find ourselves in front of another **unified memory architecture** or 'UMA' layout.
+The Xbox includes a total of **64 MiB of DDR SRAM**, this type of RAM is very fast compared to what the competition offers. However, it's also shared across all components of this system. Hence, once more, we find ourselves in front of another **unified memory architecture** or 'UMA' layout.
 
 {{< float_group >}}
 
@@ -174,9 +182,9 @@ The Xbox includes a total of **64 MiB of DDR SRAM**, this type of RAM is very fa
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-We have previously seen how [troublesome]({{< ref "playstation-2#preventing-past-mishaps" >}}) this design can be sometimes. Nonetheless, programs can address this issue by spreading its data between different banks of memory. NV2A implements a **switching network** that enables different units (CPU, GPU, etc) to concurrently access them.
+We have previously seen how [troublesome]({{< ref "playstation-2#preventing-past-mishaps" >}}) this design can be sometimes. Nonetheless, programs can address this issue by spreading their data between different banks of memory. NV2A implements a **switching network** that enables different units (CPU, GPU, etc) to concurrently access them.
 
-Furthermore, the console features an internal HardDisk, and it *so happens* to have three partitions of 750 MiB each reserved for temporary storage: The CPU can offload some of its data from main RAM, then upload it back whenever it's needed. Bear in mind this is a manual process and does not involve virtual RAM.
+Furthermore, the console features an internal HardDisk, and it *so happens* to be setup with three partitions of 750 MiB each reserved for temporary storage. The CPU can offload some of its data from main RAM, then upload it back whenever it's needed. Bear in mind this is a manual process and does not involve virtual RAM.
 {{% /inner_markdown %}}
 
 {{< /float_group >}}
@@ -200,7 +208,7 @@ This company has been in the graphics business for a long time, their *GeForce* 
 
 {{< /float_group >}}
 
-It all seams reasonable, but was it *really* a certain decision to make back then? It's easy to rely on present history to find out why Microsoft chose Nvidia over other popular brands from the time (3dfx, PowerVR, S3, etc), but if we read more about the competition back then, the panorama of options made it much more complex.
+It all seems reasonable, but was it *really* a certain decision to make back then? It's easy to rely on present history to find out why Microsoft chose Nvidia over other popular brands from the time (3dfx, PowerVR, S3, etc), but if we read more about the competition back then, the panorama of options made it much more complex.
 
 For instance, 3dfx's popular 'Voodoo 2' series had ~70% of marketshare in the PC market by the end of the 90s, while Nvidia was struggling to promote adoption of the new 'GeForce 256' (the first of the GeForce series). After this, Microsoft's choice now sounds more like a risk than a safe bet, but as we know by now, this risk eventually paid off.
 
@@ -208,7 +216,7 @@ For instance, 3dfx's popular 'Voodoo 2' series had ~70% of marketshare in the PC
 >
 > -- <cite>Seamus Blackley (Co-author of the original Xbox)</cite>
 
-In the following section we'll examine the inner workings of this chip. Now, I'm afraid we find ourselves mixed in a lot of terminology and marketing terms just like the CPU section, but fear not! I'll start with the basics.
+In the following section, we'll examine the inner workings of this chip. Now, I'm afraid we find ourselves mixed in a lot of terminology and marketing terms just like the CPU section, but fear not! I'll start with the basics.
 
 #### Architecture and design
 
@@ -224,12 +232,12 @@ The GPU core found on the NV2A is based on the popular 'GeForce3' series of GPUs
 {{% inner_markdown %}}
 Please note that, while the pipeline of the Xbox's GPU is based on the NV20 architecture, the NV2A has some modifications that are not compatible with the rest of the NV20 series (most importantly, it has been adapted to work in a UMA environment).
 
-The units analysed contain a lot more features that go beyond the scope of this article, so I recommend checking out the sources/references if this section catches your attention. Also, since graphics-related terminology is constantly evolving (which can lead to some confusion), I've decided to use the terms chosen by Microsoft/Nvidia during the years of the Xbox, so remember this if you plan to read more graphics-related articles from other sources.
+The units analysed contain a lot more features that go beyond the scope of this article, so I recommend checking out the sources/references if this section catches your attention. Also, since graphics-related terminology is constantly evolving (which can lead to some confusion), I've decided to rely on the terms used by Microsoft/Nvidia during the years of the Xbox, so remember this if you plan to read more graphics-related articles from other sources.
 {{% /inner_markdown %}}
 
 {{< /float_group >}}
 
-Having said that, let's take a look at how frames are drawn in the Xbox. Some explanations are very similar to Gamecube's [Flipper]({{< ref "gamecube#graphics" >}}), so I recommend reading that article first in case you struggle to follow this one.
+Having said that, let's take a look at how frames are drawn in the Xbox. Some explanations are very similar to Gamecube's [Flipper]({{< ref "gamecube#graphics" >}}), so you may benefit from reading that article as well in case you struggle to follow this one.
 
 {{< tabs >}}
 {{< tab name="Commands" active="true" >}}
@@ -242,7 +250,7 @@ Having said that, let's take a look at how frames are drawn in the Xbox. Some ex
 {{% inner_markdown %}}
 First and foremost is explaining how the GPU can receive commands from the CPU. For that, the GPU contains a command processor called **PFIFO** that effectively fetches and processes graphics commands (called **Pushbuffer**) in a FIFO manner, the unpacked commands are subsequently delivered to the **PGRAPH** (the block in charge of graphics processing) and other engines.
 
-Like Flipper, geometry doesn't have to be embedded in the command. PGRAPH provides many ways to submit graphics data. For instance, the CPU can allocate a buffer in RAM containing vertex data and then instruct the GPU to fetch them from that location. This approach can be efficient, as it prevents having to embed duplicated geometry.
+Like Flipper, geometry doesn't have to be embedded in the command. PGRAPH provides many ways to submit graphics data. For instance, the CPU can allocate a buffer in RAM containing vertex data and then instruct the GPU to fetch them from that location. This approach can be efficient, as it prevents sending duplicated geometry.
 
 The next explanations happen in PGRAPH.
 {{% /inner_markdown %}}
@@ -256,9 +264,9 @@ The next explanations happen in PGRAPH.
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-This is an interesting section for this GPU in particular. At this stage, the GPU provides the ability to apply vertex transformations on our geometry. We've already seen this feature with Flipper, but unlike that GPU, this one uses a **programmable engine**. Meaning that developers may specify which vertex operations are performed and how, as opposed to relying on a pre-defined program (although the NV2A can also operate in 'fixed' mode).
+This is an interesting section for this GPU in particular. At this stage, the GPU provides the ability to apply vertex transformations on our geometry. We've already seen this feature with Flipper, but unlike that GPU, this one uses a **programmable engine**. Meaning that developers may specify which vertex operations are performed and how, as opposed to relying on a pre-defined program. Although, the NV2A can also operate in 'fixed' mode, if required.
 
-This stage is handled by a **Vertex Unit** and the NV2A features two of them. Each can load a program containing up to 136 instructions (also called **microcode**). This program is referred as **vertex program** and it's loaded at runtime. A vertex program can perform the following operations:
+This stage is handled by a **Vertex Unit** and the NV2A features **two of them**. Each can load a program containing up to 136 instructions (also called **microcode**). This program is referred to as **vertex program** and it's loaded at runtime. A vertex program can perform the following operations:
 - **Arithmetic operations** (i.e. addition, multiplication, minimum, etc).
   - This includes 'helper functions' to assist graphics-related tasks, such as dot product.
 - **Vertex Swizzling** (Rearrangement and/or duplication).
@@ -277,9 +285,9 @@ In a nutshell, the vertex unit processes vertices by manipulating them in its re
 {{% inner_markdown %}}
 At this stage, vertices are transformed into pixels. The process starts with a rasteriser that generates pixels to draw each triangle. The NV2A's rasteriser can generate four pixels per cycle. <!-- Nvidia designed a memory system called 'Lightspeed Memory Architecture' which, among other things, compresses the Z-buffer to four times its original size which enables to increase bandwidth (since it has to be accessed from main memory, while [competitors embedded it]()). -->
 
-Afterwards, **4 texture shaders** are used to fetch textures from memory, these also offer to automatically apply anisotropic filtering, mipmapping and **shadow buffering**. The latter one is used to test whether a pixel is visible or overshadowed with respect to the lighting source, so the correct colour can be applied. At this point, the GPU also offers to perform clipping and an early [Z-test]({{< ref "nintendo-64#modern-visible-surface-determination" >}}) (the NV2A compresses the Z-buffer four times its original size to save bandwidth, contributing to a lot of performance improvements).
+Afterwards, **4 texture shaders** are used to fetch textures from memory, these also offer to automatically apply anisotropic filtering, mipmapping and **shadow buffering**. The latter one is used to test whether a pixel is visible or overshadowed by the lighting source, so the correct colour can be applied. At this point, the GPU also offers to perform clipping and an early [Z-test]({{< ref "nintendo-64#modern-visible-surface-determination" >}}) (the NV2A compresses the Z-buffer four times its original size to save bandwidth, contributing to a lot of performance improvements).
 
-The resulting pixels are stored in a **set of shared registers** and then cycled through **8 register combiners**, where each one applies arithmetic operations on them. This process is programmable with the use of **pixel shaders** (another type of program). At each cycle, each combiner receives RGBA values (RGB + Alpha) from the register set. Then, based on the operation set by the shader, it will operate the values and write back the result. Finally, a larger amount of values are sent to the **final combiner** which can exclusively blend specular colours and/or fog.
+The resulting pixels are stored in a **set of shared registers** and then cycled through **8 register combiners**, where each one applies arithmetic operations on them. This process is **programmable** with the use of **pixel shaders** (another type of program executed by the gpu). At each cycle, each combiner receives RGBA values (RGB + Alpha) from the register set. Then, based on the operation set by the shader, it will operate the values and write back the result. Finally, a larger amount of values are sent to the **final combiner** which can exclusively blend specular colours and/or fog.
 
 Register combiners are programmable in a similar nature to the [Texture Environment Unit]({{< ref "gamecube#tab-1-3-texture" >}}). That is, by altering its registers with a specific combination of settings. In the case of the Xbox, the PFIFO reads pushbuffers to set up PGRAPH, which includes the register combiners and texture shaders.
 {{% /inner_markdown %}}
@@ -305,9 +313,9 @@ Moreover, the frame-buffer can be antialiased using a technique called **multisa
 
 #### Importance of programmability
 
-I find important to emphasise the significance of the new programmability model that Nvidia provided to developers. Years ago, most of the graphics pipeline was computed by the CPU, leaving the GPU to accelerate rasterising operations. With the introduction of 'shaders' (referring to both pixel shaders and vertex programs), programmers can take advantage of the resources of the GPU to accelerate many computations in the pipeline, offloading a great amount of work from the CPU.
+I find it important to emphasise the significance of the new programmability model that Nvidia provided to developers. Years ago, most of the graphics pipeline was computed by the CPU, leaving the GPU to accelerate rasterising operations. With the introduction of 'shaders' (referring to both pixel shaders and vertex programs), programmers can take advantage of the resources of the GPU to accelerate many computations in the pipeline, offloading a great amount of work from the CPU.
 
-The concept of 'shaders' was introduced by **Pixar** in 1989 as a method to extend **Renderman**, their pioneering software used for 3D rendering. This was back in the time when 3D graphics were mainly handled by industrial equipment, later on, we have seen how certain consoles incorporated [similar principles]({{< ref "nintendo-64#tab-1-1-reality-signal-processor" >}}), but it wasn't until Nvidia released their GeForce3 line, that shaders became a standard in the consumer market.
+The concept of 'shaders' was introduced by **Pixar** in 1989 as a method to extend **Renderman**, their pioneering software used for 3D rendering. This was back in the time when 3D graphics were mainly handled by industrial equipment. Later on, we have seen how certain consoles incorporated [similar principles]({{< ref "nintendo-64#tab-1-1-reality-signal-processor" >}}), but it wasn't until Nvidia released their GeForce3 line, that shaders became a standard in the consumer market.
 
 {{< float_group >}}
 
@@ -331,17 +339,17 @@ Thanks to vertex programs, the GPU can now accelerate model transformations, lig
 
 In the case of the pixel shaders, programmers can manipulate and blend textures in multiple ways to achieve different effects such as multi-texturing, specular mapping, bump mapping, environment mapping and so on.
 
-A new programming concept that emerges thanks to this approach is the **General Purpose GPU** or 'GPGPU', which consists in assigning tasks to the GPU that would have been exclusively done by the CPU. So not only the GPU has taken over most of the graphics pipeline, but now can act as an efficient co-processor for specialised computations (i.e. physics calculations). This is a new area that will evolve as GPUs become more powerful and flexible, however the NV2A was already able to achieve this thanks to a combination of hardware capabilities (vertex & pixel shaders) and specialised APIs developed (OpenGL's 'state programs').
+A new programming concept that emerges thanks to this approach is the **General Purpose GPU** or 'GPGPU', which consists in assigning tasks to the GPU that would have been exclusively done by the CPU. So not only the GPU has taken over most of the graphics pipeline, but now can act as an efficient co-processor for specialised computations (i.e. physics calculations). This is a new area that will evolve as GPUs become more powerful and flexible. However, the NV2A was already able to achieve this thanks to a combination of hardware capabilities (vertex & pixel shaders) and specialised APIs developed (OpenGL's 'state programs').
 
 {{% /inner_markdown %}}
 
 {{< /float_group >}}
 
-I have a feeling that shaders will be regularly revisited in future articles. Please remember that in this article, however, they may be considered a bit 'primitive' and some people may argue that the pixel shaders are not even 'shaders', compared to what GPU offers nowadays.
+I have a feeling that shaders will be regularly revisited in future articles. Please remember that in this article, however, they may be considered a bit 'primitive' and some people may argue that the pixel shaders are not even 'shaders' (compared to what GPUs offers nowadays).
 
 #### The Xbox's frame
 
-The standard resolution of games is **640x480**, this is pretty much the standard in the sixth generation. Although, this constraint is just a number: The GPU can draw frame-buffers with up to 4096x4096, yet it doesn't mean the hardware would provide acceptable performance. On the other side, the console allows to alter screen settings globally, which may help to promote these unique features (widescreen and 'high resolution') instead of waiting for developers to discover them (as it happened with the [Gamecube/Wii]({{< ref "wii#tab-2-1-standardised-widescreen" >}})).
+The standard resolution of games is **640x480**, this is pretty much the standard in the sixth generation. Although, this constraint is just a number: The GPU can draw frame-buffers with up to 4096x4096, yet it doesn't mean the hardware would provide acceptable performance. On the other side, the console allows configure its screen setting globally, which may help to promote pioneering features (i.e. widescreen and 'high resolution') instead of waiting for developers to discover them (as it happened with the [Gamecube/Wii]({{< ref "wii#tab-2-1-standardised-widescreen" >}})).
 
 The video encoder, on the other hand, will try to broadcast whatever there is on the frame-buffer in a format your TV will understand. That means that widescreen images will become [anamorphic]({{< ref "wii#tab-2-1-standardised-widescreen" >}}) unless the game outputs in HD (i.e. 720p or 1080i, which only a few games do).
 
@@ -561,7 +569,7 @@ The rest of the APIs available handle other services (audio, networking, etc). A
 
 #### Medium
 
-Game are distributed on dual-layer DVD discs (up to 8.5 GB!), they are subsequently read by a customised DVD drive which includes anti-piracy protections (despite using a standard interface, ATA). It's worth mentioning that the XDK included some tools to customise the layout of data in the disc, enabling programmers to improve read speeds!
+Games are distributed on dual-layer DVD discs (with up to 8.5 GB!), they are subsequently read by a customised DVD drive which includes anti-piracy protections (despite using a standard interface, ATA). It's worth mentioning that the XDK included some tools to customise the layout of data in the disc, enabling programmers to improve read speeds!
 
 Now, the console also includes an internal 8 GB HDD, games use it to store saves or cache temporary content. The system, on the other hand, stores the dashboard, Xbox Live settings and network settings.
 
@@ -586,7 +594,7 @@ It's important to point out that Microsoft controls who to grant Xbox Live acces
 
 {{< /float_group >}}
 
-The real online experience happens in the **Title Server**, which is the type of server that answers to clients (xbox consoles) around the world and handles realtime communication. Microsoft included in their SDK some samples to show how to build these servers, although they relied on Windows systems and were meant to be deployed in data centres running Windows Server.
+The real online experience happens in the **Title Server**, which is the type of server that answers to clients (Xbox consoles) around the world and handles real-time communication. Microsoft included in their SDK some samples to show how to build these servers, although they relied on Windows systems and were meant to be deployed in data centres running Windows Server.
 
 #### The start of a new trend
 
@@ -635,7 +643,7 @@ This was a brief introduction of the chain of trust that Microsoft implemented. 
 {{< tab name="Bootstrap search" >}}
 {{% inner_markdown %}}
 
-Since it's officially documented by Intel that their processors will start execution at address `0xFFFF.FFF0`, it was only need to find that code in the Flash ROM (which in turn will lead to the RC-4 key). This is what a popular hacker and researcher named **Andrew 'bunnie' Wang** attempted during his academic research. The findings were quite interesting: The upper 512 bytes of the Flash ROM contains security routines including the key, but it doesn't work for the retail system. I speculate that Microsoft may have left that code from prototype/debug units (possibly accidental, since this block exposes the algorithms that Microsoft applied). In conclusion, this was considered *garbage code* so bunnie realised the real `0xFFFF.FFF0` wasn't in the Flash ROM.
+Since it's officially documented by Intel that their processors will start execution at address `0xFFFF.FFF0`, hackers focused on searching for that code in the Flash ROM (which in turn will lead to the RC-4 key). This is what a popular hacker and researcher named **Andrew 'bunnie' Wang** attempted during his academic research. The findings were quite interesting: The upper 512 bytes of the Flash ROM contains security routines including the key, but it doesn't work for the retail system. I speculate that Microsoft may have left that code from prototype/debug units (possibly accidental, since this block exposes the algorithms that Microsoft applied). In conclusion, this was considered *garbage code* so bunnie realised the real `0xFFFF.FFF0` wasn't in the Flash ROM.
 
 To make a long story short, `0xFFFF.FFF0` was **hidden in the MCPX chip**: It contained a hidden 512 B ROM that would be executed once and hidden afterwards. This ROM was not easy to extract, so bunnie resorted to tapping the HyperTransport bus to catch the RC-4 key once it was transmitted.
 
