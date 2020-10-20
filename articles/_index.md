@@ -18,9 +18,9 @@ cascade:
 
 {{< linked_img src="banner.png" alt="Architecture of consoles" noLink="true" no_lazyload="true" >}}
 
-Looking at the evolution of video game consoles is fascinating, while conventional PCs tend evolve 'incrementally', new generation of consoles introduce completely new ways of working. What you see here are a series of articles that *hopefully* will uncover the rationale behind the latest trends in technology, it will also demonstrate why each system can't be summarised by its 'bits', megahertz, amount of RAM and whatnot.
+Looking at the evolution of video game consoles is fascinating, while conventional PCs tend evolve 'incrementally', new generation of consoles introduce completely new ways of working. What you see here are a series of articles that will hopefully uncover the rationale behind the latest trends in technology. They will also demonstrate why each system can't be summarised by its 'bits', megahertz, amount of RAM and whatnot.
 
-This is not a developer manual, it basically provides an *in depth* introduction to how each system worked internally. Bear in mind that tech has gotten really complicated *lately*, so if you struggle to follow my latest articles, try reading the early ones first, it may serve you as an introduction to many concepts and definitions.  
+This is not a developer manual, just an *in depth* introduction to how each system worked internally. Bear in mind that tech has gotten really complicated lately, so if you struggle to follow my latest articles, try reading the early ones first, they introduce many concepts and definitions that are constantly revisited.  
 Basic knowledge of computing is preferable, however, I attempt really hard to adapt my content for wider audiences, so please don't be afraid to give it a try!
 
 While I try to be as accurate as possible, if you find any mistakes please {{< email "give me a shout" >}} or {{< consoles_repo_link "propose changes" >}}. 

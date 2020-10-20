@@ -24,13 +24,13 @@ title: Dreamcast Architecture
 
 ## Introduction
 
-The Sega Dreamcast introduced many new features over its predecessor the [Saturn]({{< ref "sega-saturn" >}}) to appeal to both game developers and console gamers. While this was Sega's last attempt to conquer the console market, some of the technologies which were pioneered in the Dreamcast carried on and into future mainstream devices.
+The Sega Dreamcast introduced many new features over its predecessor (the [Saturn]({{< ref "sega-saturn" >}})) to appeal to both game developers and console gamers. While this was Sega's last attempt to conquer the console market, some of the technologies which were pioneered in the Dreamcast carried on and into future mainstream devices.
 
 ---
 
 ## CPU
 
-Unsurprisingly Sega again chose Hitachi to develop their CPU. If you've been reading the [previous article about the Sega Saturn]({{< ref "sega-saturn" >}}) then, lo and behold, I present you the next generation of SH processor: the **SH-4** running at a whopping **200 MHz**. So, what's interesting about this CPU?
+Unsurprisingly, Sega chose Hitachi again to develop their CPU. If you've been reading the [previous article about the Sega Saturn]({{< ref "sega-saturn" >}}) then, lo and behold, I present you the next generation of SH processor: the **SH-4** running at a whopping **200 MHz**. So, what's interesting about this CPU?
 
 - **5-stage pipeline**: Up to five instructions can be in flight simultaneously (a detailed explanation can be found in a [previous article]({{< ref "sega-saturn#cpu" >}})).
   - Instruction pipelining is now found everywhere in this generation of consoles and will be standard from now on.
@@ -74,14 +74,18 @@ The GPU package is a custom-made chip called **Holly** running at 100 MHz, it's 
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-VideoLogic chose an alternative approach for the construction of their 3D engine called **Tile-Based Deferred Rendering** or 'TBDR'. TBDR, instead of rendering a whole frame at once, as traditional **Immediate Mode Renderers** or 'IMR' do, divides the rendering area into multiple sections called 'tiles'. It carries out the rendering process on each tile individually then the result is combined to draw the final frame.  This innovative design brings interesting advantages:
+VideoLogic chose an alternative approach for the construction of their 3D engine called **Tile-Based Deferred Rendering** or 'TBDR'.
+
+TBDR, instead of rendering a whole frame at once (as traditional **Immediate Mode Renderers** or 'IMR' do), divides the rendering area into multiple sections called 'tiles'. Then, it carries out the rendering process on each tile individually and the result is combined to form the final frame.
+
+{{% /inner_markdown %}}
+{{< /float_group >}}
+
+This innovative design brings interesting advantages:
 - It can be greatly **parallelised**, which significantly reduces bandwidth and power usage.
 - It implements a clever solution to the [**visibility problem**]({{< ref "sega-saturn#an-introduction-to-the-visibility-problem" >}}) by automatically sorting the polygons **from front to back** and then performing [z-tests]({{< ref "nintendo-64#modern-visible-surface-determination" >}}) at the first stages of the pipeline. The combination of these tasks not only solves the original problem, but it also **prevents overdraw** (rasterisation of hidden polygons) which wastes resources, degrading performance.
 
 It's no surprise that Imagination took this efficient technology forward to build the Series 4 PowerVR cores which powered an incredible number of devices, including the first generation of iPhone, the iPhone 3G, the Nokia N95 and the Dell Axim x51.
-{{% /inner_markdown %}}
-
-{{< /float_group >}}
 
 #### Architecture
 
