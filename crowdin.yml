@@ -5,3 +5,5 @@ files:
     translation: /articles/translations/%file_name%.%two_letters_code%.md
   - source: /resources/strings.toml
     translation: /resources/translations/%two_letters_code%.md
+  - source: /resources/generations.yaml
+    translation: /resources/translations_generations/%two_letters_code%.md
