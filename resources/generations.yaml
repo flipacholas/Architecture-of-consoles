@@ -1,0 +1,26 @@
+- id: 3
+  ordinal: 3rd
+  description: Known as '8-bit' consoles, these machines brought more sophisticated graphics and richer sounds than their predecessors. After all, a big market crash just occurred and newer standards had to be set.
+  gpu: Scrollable Tile maps and larger colour palettes
+
+- id: 4
+  ordinal: 4th
+  description: DMA, horizontal interrupts, multiple modes... These are some examples of the new concepts that brought the new '16-bit' generation, opening the door to new genres of games.
+  cpu: Multiplication/Division instructions, DMA and dual-processing
+  gpu: Affine transformations and horizontal interrupts
+
+- id: 5
+  ordinal: 5th
+  description: 3D gaming has become a need but 'how' is not clear yet. The response? Every company presented their own different vision.
+  cpu: Pipeline stages and L1 cache
+  gpu: Programmable vertex pipelines, Z-buffering and perspective corrections
+
+- id: 6
+  ordinal: 6th
+  description: Most of the graphics limitations from the previous generation are no more. Portable consoles start to resemble familiar systems.
+  cpu: Superscalar architectures and SIMD instructions  
+  gpu: Programmable pixel pipelines and anisotropic filters
+
+- id: 7
+  ordinal: 7th
+  description: Consoles have become multimedia platforms, this machines are now more capable than just playing games, which is why security is now a critical factor.
