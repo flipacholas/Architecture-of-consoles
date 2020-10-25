@@ -176,7 +176,7 @@ The VDP is limited to **up to eight sprites per horizontal scan-line**. Also, if
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-The VDP automatically blends the two layers to form the final frame. The rendering process is done scan-line by scan-line, so the VDP doesn't really know how the frame is going too look, that's only seen by the user when the picture is constructed on the TV.
+The VDP automatically blends the two layers to form the final frame. The rendering process is done scan-line by scan-line, so the VDP doesn't really know how the frame is going to look, that's only seen by the user when the picture is constructed on the TV.
 
 If you look at the example image, you may notice the frame has a vertical column at the left side. This is because the screen map is only tall enough to provide vertical scrolling without producing artefacts, **but not wide enough for horizontal scrolling**. So, the VDP can **mask** the left-most side with an 8 px column to protect the image from showing intermediate tiles.
 

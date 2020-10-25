@@ -26,7 +26,7 @@ title: Mega Drive Architecture
 
 ## A quick introduction
 
-Sega (and their tv ads) want you to know: It's impossible to bring descent games without faster graphics and richer sounds.
+Sega (and their TV ads) want you to know: It's impossible to bring descent games without faster graphics and richer sounds.
 
 Their new system includes lots of *already familiar* components ready to be programmed. This means that, in theory, developers would only need to learn about Sega's new GPU... right?
 
@@ -65,9 +65,19 @@ Secondly, there's another CPU fitted in this console, a **Zilog Z80** running at
     - Two sound chips.
     - 68000's RAM (again, handled by the **bus arbiter**).
 
+Both CPUs run in parallel.
+
 #### Memory available
 
 The main CPU contains **64 KB** of dedicated RAM to store general-purpose data and the Z80 contains **8 KB** of RAM for sound-related operations.
+
+#### Intercommunication
+
+Sega chose two independent processors that have **no awareness of each other**, so how can games manage both at the same time? Well, the main program is executed in the 68000, and this CPU can subsequently write on Z80's RAM. So, it's possible for the 68000 to send a program to the Z80's RAM and make the Z80 load it (by sending a reset signal to that CPU). Once the Z80 is under control, it can be used to manage the sound sub-system and move memory around using the previously described method, all of this while the 68000 is running other operations.
+
+Because one CPU will have to step in the other's CPU bus and both can't use it at the same time, there's an extra component called **Bus arbiter** that must be activated to stall either processor, so memory can be written without hazards.
+
+It's important to point out that this design can underperform if not managed properly, so games will have to take special care of the bus arbiter and watch for not stalling either CPU for longer than needed.
 
 ---
 
@@ -77,7 +87,7 @@ _Blast Processing!_
 
 Graphics data is processed by the 68000 and rendered on a proprietary chip called **Video Display Processor** (or 'VDP' for short) which then sends the resulting frame for display.
 
-The VDP runs at **~13 MHz** and supports multiple resolution modes depending on the region: Up to 320x224 pixels in NTSC and up to 320x240 pixels in PAL.
+The VDP runs at **~13 MHz** and supports multiple resolution modes depending on the region: Up to **320x224 pixels** in NTSC and up to **320x240 pixels** in PAL.
 
 This chip has two modes of operations:
 - **Mode IV**: Legacy mode that behaves like its [predecessor]({{< ref "master-system#graphics" >}}).
@@ -100,7 +110,7 @@ The graphics content is distributed across 3 regions of memory:
 
 #### Constructing the frame
 
-The following section explains how the VDP draws each frame, for demonstration purposes *Sonic The Hedgehog* is used as example.
+The following section explains how the VDP draws each frame, for demonstration purposes *Sonic The Hedgehog* is used as example. I recommend checking out the functioning of its [predecessor]({{< ref "master-system#graphics" >}}) since there will be a lot revisited in here.
 
 {{< tabs >}}
   {{< tab name="Tiles" active="true" >}}
@@ -171,9 +181,9 @@ On the showed example you'll notice that the selected area for display is not a 
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-The Foreground plane, also known as **Plane A** has the same properties as the Background Plane except this plane has a **higher priority**, so tiles rendered here will inherently be on top of the Background Plane.
+The Foreground plane, also known as **Plane A**, has the same properties as the Background Plane except this plane has a **higher priority**, so tiles rendered here will inherently be on top of the Background Plane.
 
-Additionally, this plane allows to divide itself to form a new *sub-plane*: The **Window Plane**. The only difference is that it doesn't scroll.
+Additionally, this plane allows to divide itself to form a new *sub-plane*: The **Window Plane**. The only difference is that the latter doesn't scroll.
 
 Compared to previous consoles, the combination of different priorities and the Window plane allows to achieve a more convincing illusion of depth.
 {{% /inner_markdown %}}
@@ -196,19 +206,18 @@ Compared to previous consoles, the combination of different priorities and the W
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-In this plane, tiles are treated as **sprites**, they are positioned in a 512x512 map and only a part of it (VDP's output resolution) is selected for display. This is convenient for hiding unwanted sprites or pre-rendering others that will be shown in the future. The VDP also provides **collision detection** between sprites by checking its *status* register.
+In this plane, tiles are treated as **sprites**, they are positioned in a **512x512 px** map and only a part of it (VDP's output resolution) is selected for display. This is convenient for hiding unwanted sprites or preparing others that will be shown in the future. The VDP also provides an old [collision detection]({{< ref "master-system#tab-4-1-collision-detection" >}}) function.
 
 Sprites are formed by combining up to 4x4 tiles (32x32 map) and selecting up to 16 colours (including *transparent*), if a bigger sprite is needed then multiple sprites can be combined into one.
 
 There can only be a maximum of 20 sprites per scan-line and 80 per screen (overflowing this will corrupt the whole layer).
 
-The region in VRAM where Sprites are defined is called **Sprite Attribute Table** and each entry contains: Tile index, layer coordinates (x and y), *Link* value (manages which sprites are drawn first), priority (the sprite with highest priority is the one to be displayed during overlaps), colour palette index and vertical and horizontal flip.
+The region in VRAM where Sprites are defined is called **Sprite Attribute Table** and each entry contains the tile index, layer coordinates (x and y), *Link* value (manages which sprites are drawn first), priority (the sprite with highest priority is the one to be displayed during overlaps), colour palette index and vertical and horizontal flip.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
 
 {{< tab name="Result" >}}
-
 
 {{< float_block >}}
   {{< linked_img class="pixel" src="vdp_sonic/result.png" alt="Result" >}}
@@ -229,13 +238,17 @@ V-Blank allows for longer routines with the drawback of being called only 50-60 
 
 {{< /tabs >}}
 
-#### Extra
+#### A dedicated transfer unit
 
 So far we've discussed what the CPU can do to update frames, but what about the VDP? This chip actually features **Direct Memory Access** ('DMA' for short) that allows to move memory around at a faster rate without the intervention of the CPU.
 
 The DMA can be activated during H-Blank, V-Blank or active state (outside any interrupt), each one will have a different bandwidth. Additionally, during any DMA transfer the CPU will be blocked, this means the timing is critical to achieve performance.
 
 If used correctly, you'll gain high resolution graphics, fluid parallax scrolling and high frame-rates. Moreover, your game may also be featured on TV ads with lots of *Blast Processing!* signs all over it.
+
+#### Video Output
+
+This console has the same video out port of [the Master System]({{< ref "master-system#video-output" >}}).
 
 ---
 
@@ -306,13 +319,13 @@ Both chips can output sound at the same time, the audio mixer will then receive 
 
 The Z80 is the **only CPU** capable of sending commands to those two chips, which is a relief for the 68000 since the latter is already fed up with other tasks.
 
-However, let's not forget that the Z80 is an independent processor by itself, so it needs its own program (stored in the 8 KB of RAM available) which will enable it to interpret the music data received from the 68000 and effectively manipulate the two sound chips accordingly, this program is called a **sequencer** or **driver**. 
+However, let's not forget that the Z80 is an independent processor by itself, so it needs its own program (stored in the 8 KB of RAM available) which will enable it to interpret the music data received from the 68000 and effectively manipulate the two sound chips accordingly. This program is called **sequencer** or **driver**. 
 
-Now, programmers also needed to plan a way to continuously sequence and stream their music using the rest of RAM available. The main constraint is that in order to fill that memory, the main bus has to be **blocked** first (so no commands or samples can be sent to the audio chips during that timeframe). If this issue wasn't tackled properly, different sound anomalies could appear (muting, frozen notes, low sample rates, etc).
+Now, some games may decide to exploit the PCM channel, and for that they also need to plan a way to continuously sequence and stream their music using the rest of RAM available. The main constraint is that in order to fill that memory, the main bus has to be **blocked** first (so no commands or samples can be sent to the audio chips during that timeframe). If this issue wasn't tackled properly, different sound anomalies could appear (muting, frozen notes, low sample rates, etc).
 
 #### Cracking sampling
 
-Instead of just sticking with ordinary drum kits, some games found incredible ways to stream richer samples to that single PCM channel, check out these examples:
+I've decided to dedicated a section for those who successfully manage to overcome the aforementioned constraint. Instead of just sticking with ordinary drum kits, some games found incredible ways to stream richer samples to that single PCM channel, check out these examples:
 
 {{< side_by_side >}}
   <div class="toleft">
@@ -374,11 +387,13 @@ Have you noticed the gap on the Mega CD's version?
 
 ## Games
 
-They are mainly written in 68k assembly (while the sound driver is in Z80 assembly) and reside in the cartridge ROM. They can size up to 4 MB without the need of a mapper.
+They are mainly written in **68000 assembly** while the sound driver is in **Z80 assembly**. Both reside in the cartridge ROM and can size up to 4 MB without the need of a mapper.
 
-In terms of expandability, this design wasn't as modular as the NES or the SNES, some add-ons like the 32x had to bypass the VDP (hence the need for the 'Connector Cable'). The same happened with the Mega CD, where in order to use the new stereo functionality on the TV, more cables had to be interconnected between modules.
+#### Extra functions
 
-Only one custom chip was produced for cartridges, the Sega Virtua Processor, among other things it helped to produce polygons, however only one game included it as it resulted very expensive to produce.
+In terms of expandability, this design wasn't as modular as the [NES]({{< ref "nes" >}}) or the [SNES]({{< ref "super-nintendo" >}}). Hence, some add-ons like the 32x had to bypass the VDP (hence the need for the 'Connector Cable').
+
+Only one custom chip was produced for cartridges, the **Sega Virtua Processor**, among other things it helped to produce polygons, although only one game included it as it resulted very expensive to produce.
 
 ---
 
@@ -399,6 +414,7 @@ Programmers could also implement extra checksum checks at random points of the g
 - [**Technical specifications in detail (Archived)**](https://web.archive.org/web/20190827225347/https://segaretro.org/Sega_Mega_Drive/Technical_specifications)
 - [**Schematics**](https://gamesx.com/wiki/doku.php?id=schematics:console_related_schematics)
 - [**Interesting architectural comparison with the SNES**](https://hackaday.com/2015/11/06/winning-the-console-wars-an-in-depth-architectural-study/)
+- Plutiedev, [**Using the Z80**](https://plutiedev.com/using-the-z80)
 
 #### Graphics
 

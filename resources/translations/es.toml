@@ -18,6 +18,9 @@ other = 'Siguiente'
 [previous]
 other = 'Antrás'
 
+[by] # preposition, by 'someone'
+other = 'por'
+
 # Subscribe form
 
 [subscribe_title]
@@ -86,11 +89,20 @@ other = "Siempre es bueno mantener un registro de cambios."
 
 # 3D Model Viewer
 
+[wireframe]
+other = "Wireframe"
+
+[surface]
+other = "Superficie"
+
 [textured]
 other = "Texturado"
 
 [tap_enable_interaction]
 other = "Toca para activar"
+
+[buffering]
+other = "Cargando..."
 
 [ready_drag_zoom]
 other = "¡Listo para interactuar!"
