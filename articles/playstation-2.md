@@ -39,7 +39,7 @@ At the heart of this console we find a powerful package called **Emotion Engine*
 #### The leader
 
 The main core is a MIPS R5900-compatible CPU with lots of enhancements. This is the first chip that starts executing instructions after the console is turned on. This processor provides the following features:
-- **MIPS III** ISA: A 64-bit RISC instruction set. *Wait, is it me or this is the same ISA found on a [competitor's console]({{< ref "nintendo-64#cpu" >}}?*. True, but Sony also enhanced this CPU by adding some instructions from **MIPS IV** (Prefetch and conditional move) along with their own SIMD extension called **multimedia instructions**. 
+- **MIPS III** ISA: A 64-bit RISC instruction set. *Wait, is it me or this is the same ISA found on a [competitor's console]({{< ref "nintendo-64#cpu" >}})?*. True, but Sony also enhanced this CPU by adding some instructions from **MIPS IV** (Prefetch and conditional move) along with their own SIMD extension called **multimedia instructions**. 
 - **32 128-bit extra registers**: Another enhancement. They are better managed using multimedia instructions and are very useful for vector processing.
   - These registers are accessed through a 128-bit bus, while the rest of the CPU uses an internal 64-bit bus.
 - **2-way superscalar**: Up to two instructions are executed in parallel.
