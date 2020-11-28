@@ -10,7 +10,7 @@ top_tabs:
   Models:
     Original:
         caption: "The original Nintendo DS (Blue edition)
-        <br>Released on 21/11/2004 in America, 02/12/2004 in Japan and 11/03/2004 in Europe"
+        <br>Released on 21/11/2004 in America, 02/12/2004 in Japan and 11/03/2005 in Europe"
         active: true
     Lite:
         caption: "The Nintendo DS Lite (Black edition)
@@ -167,11 +167,11 @@ I don't mean to criticise Nintendo's choice, but I believe the amount of emergin
 
 This section is a bit unusual because not only this console has multiple screens to draw, but also a combination of traditional tile engines working alongside a modern renderer.
 
-Let's begin with the physical attributes: The Nintendo DS contains two LCD screens, each one being **256x192 pixels** wide, which is ~20% more pixels than the GBA. They can display 262,144 colours (18-bit)and refresh at ~60 Hz.
+Let's begin with the physical attributes: The Nintendo DS contains two LCD screens, each one being **256x192 pixels** wide, which is ~20% more pixels than the GBA. They can display 262,144 colours (18-bit) and refresh at ~60 Hz.
 
 #### Architecture
 
-The graphics subsystem can draw 2D and 3D objects. The former is composed of two-dimensional geometry that is filled with bitmaps of 8x8 pixels wide (called 'tiles'), while the latter draws three-dimensional objects (quadrangles and rectangles) using vertices.
+The graphics subsystem can draw 2D and 3D objects. The former is composed of two-dimensional geometry that is filled with bitmaps of 8x8 pixels wide (called 'tiles'), while the latter draws three-dimensional objects (polygons) using vertices.
 
 Diving into the internal chip that operates those screens, we can observe this console has distinctive hardware for 2D and 3D geometry. The 2D data is operated by a familiar engine, the PPU (now just called **2D engine**), while 3D data is handled by a completely new subsystem. It's worth mentioning that while this is not the [first console]({{< ref "nintendo-64">}}) to debut 3D graphics, it's still the first one to include an in-house design to render 3D graphics.
 
@@ -437,7 +437,7 @@ Most of the audio improvements focus on enhancing those PCM channels that the GB
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-Consequently, the new audio system features a total of **16 PCM channels**, allowing to shift the mixing task to the hardware. PCM samples can either be **8-bit** (*GBA-style*), **16-bit** (optimal resolution) or **ACPCM** (compressed form). In any case, the mixer produces a **32 kHz stereo signal** that can be played through the speaker (now stereo) or headphones. The mixer can also write the resulting stereo data to WRAM, enabling the sub-processor (ARM7) to apply some effects (such as reverb).
+Consequently, the new audio system features a total of **16 PCM channels**, allowing to shift the mixing task to the hardware. PCM samples can either be **8-bit** (*GBA-style*), **16-bit** (optimal resolution) or **ACPCM** (compressed form). In any case, the mixer produces a **32 kHz stereo signal** that can be played through the speaker (now stereo) or headphones. The mixer can also write the resulting stereo data to WRAM, enabling the sub-processor (ARM7) to apply some effects such as reverb.
 
 Are we forgetting something else? *Yes*, since this console runs GBA games, then it should have something that reassembles the PSG (whether through hardware or software). Lo and behold, the last 6 channels can become a PSG (where any of them synthesises either a pulse or a custom wave, and two of them create a pulse or noise).
 {{% /inner_markdown %}}
