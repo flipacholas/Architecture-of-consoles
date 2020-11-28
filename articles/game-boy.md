@@ -292,9 +292,10 @@ This channel has only 2 tones available to use, one produces *clean static* and 
 {{< /float_block >}}
 {{% inner_markdown %}}
 
-The APU allows to store **32 custom wave-forms** to be heard from its forth channel. Each wave is composed of a 4-bit sample that will be played repeatedly.
+The APU allows to define a **custom wave-form** to be heard from its fourth channel. The wave is composed of 32 4-bit samples which are stored in a wavetable.
 
 This channel also allows to control its frequency (enabling to produce different musical notes from the same sample) and volume.
+
 {{% /inner_markdown %}}
 {{< /tab >}}
 
