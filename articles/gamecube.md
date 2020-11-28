@@ -310,7 +310,7 @@ The console included not one, but two video output connectors:
 - One named **Analog A/V** which is actually the good-old [Multi Out]({{< ref "super-nintendo.md#a-convenient-video-out" >}}). This is the most popular one.
   - The PAL version of this console doesn't carry S-Video and the NTSC one doesn't provide RGB (bummer!).
 - Another one called **Digital A/V** which sends audio and video in digital form (similarly to HDMI nowadays but using a completely different protocol!).
-  - Nintendo released a component cable set that connected to this socket. The same plug incorporated a video DAC and encoder to convert the digital signal into YPbPr (the one where there's a separate cable for chroma, luma and sync - giving an optimal quality)
+  - Nintendo released a component cable set that connected to this socket. The same plug incorporated a video DAC and encoder to convert the digital signal into YPbPr (optimal quality).
   - The cable was sold as an extra accessory and now is considered some sort of a relic!
 {{% /inner_markdown %}}
 

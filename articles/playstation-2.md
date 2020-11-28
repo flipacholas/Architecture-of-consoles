@@ -355,7 +355,7 @@ It's worth mentioning that games like *Dragon Quest* implemented a custom lighti
 
 As stated before, the PCRTC sends the frame-buffer through the video signal, it can broadcast video using the following formats to work with TVs from any geographical region:
 - **PAL**: Sends up to 640x512 pixels at 50 Hz, either progressive (576p) or interlaced (576i).
-  - No games found in the market use 576p. While some support progressive mode, the do so in 480p mode.
+  - No games found in the market use 576p. While some support progressive mode, they do so in 480p mode.
 - **NTSC**: Up to 640x448 pixels at 60 Hz, either progressive (480p) or interlaced (480i).
 - **VESA**: Up to 1280x1024 pixels.
 - **DTV**: Up to the *enormous amount* of 720x480 pixels in progressive mode or 1920x1080 in interlaced mode.
