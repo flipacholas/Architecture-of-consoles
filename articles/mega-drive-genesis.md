@@ -43,7 +43,7 @@ Back on topic, the 68k has the role of 'main' CPU and it will be used for game l
   - **32-bit registers**: This is a big step, considering the 6502 and Z80 only have 8-bit registers.
   - **16-bit ALU**: Meaning it needs extra cycles to compute arithmetic operation on 32-bit numbers, but it's fine on 16-bit/8-bit ones.
   - External **16-bit data bus**: As you can see, while this CPU has some '32-bit capabilities', it hasn't been designed to be a complete 32-bit machine. The width of this bus implies better performance when moving 16-bit data around.
-    - Interestingly enough, Motorola debuted a complete 32-bit CPU, the **68030**, two years before this console's release. But I imagine costs would've skyrocketed had Sega chosen the latter chip.
+    - Interestingly enough, Motorola debuted a complete 32-bit CPU, the **68020**, four years before this console's release. But I imagine costs would've skyrocketed had Sega chosen the latter chip.
   - **24‑bit address bus**. This means that up to 16 MB of memory can be accessed, but addresses are still interpreted as 32-bit values inside the CPU (the upper byte is just discarded). The bus is physically connected to:
     - 64 KB of RAM.
     - Cartridge ROM (up to 4 MB).
@@ -56,7 +56,7 @@ Back on topic, the 68k has the role of 'main' CPU and it will be used for game l
 (If you wonder the reason behind using 24-bit addresses with a CPU that can handle 32-bit addresses, I doubt that in the 80s many were asking to manage 4 GB of RAM and adding unused lines is costly in terms of performance and money).
 
 Secondly, there's another CPU fitted in this console, a **Zilog Z80** running at **~3.5 MHz**. This is the same processor found on the [Master System]({{< ref "master-system#cpu" >}}) and it's mainly used for **sound control**. It features:
-  - **Z80 ISA**: An extension of the Motorola 6800 (not 68000!) ISA, it handles **8-bit** words.
+  - **Z80 ISA**: An extension of the Intel 8080 ISA, it handles **8-bit** words.
   - **8-bit registers** and **8-bit data bus**: No surprises here.
   - **4-bit ALU**: This may be a bit shocking, but it managed to handle 8-bit operations without problems, it just takes two cycles per number.
     - Notice how the 6502 runs at ~2 MHz in [some systems]({{< ref "nes#cpu" >}}) while this ones almost reaches 4 MHz: Clock speed doesn't make the Z80 faster per se, but helps to balance the lack of transistors in some areas.
