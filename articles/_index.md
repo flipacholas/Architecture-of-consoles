@@ -3,7 +3,6 @@ title: Architecture of Consoles
 description: Understanding the evolution of consoles through their architecture
 id: consoles
 layout: consoles
-type: project
 seo_image: banner.png
 cascade:
     description: "An in-depth analysis that explains how this console works internally"
@@ -14,6 +13,9 @@ cascade:
     shareicons: true
     seo_image: diagram.png
     seo_type: TechArticle
+
+# Historical
+aliases: [/projects/consoles]
 ---
 
 {{< linked_img src="banner.png" alt="Architecture of consoles" noLink="true" no_lazyload="true" >}}

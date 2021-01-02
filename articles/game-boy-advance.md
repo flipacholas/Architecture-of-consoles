@@ -19,6 +19,9 @@ top_tabs:
 
 # SEO
 title: Game Boy Advance Architecture
+
+# Historical
+aliases: [/projects/consoles/game-boy-advance/]
 ---
 
 ## A quick introduction

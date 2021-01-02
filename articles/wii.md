@@ -20,6 +20,9 @@ top_tabs:
 
 # SEO
 title: Wii Architecture
+
+# Historical
+aliases: [/projects/consoles/wii/]
 ---
 
 ## A quick introduction

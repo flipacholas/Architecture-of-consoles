@@ -16,6 +16,9 @@ top_tabs:
 
 # SEO
 title: PlayStation Architecture
+
+# Historical
+aliases: [/projects/consoles/playstation/]
 ---
 
 ## A quick introduction

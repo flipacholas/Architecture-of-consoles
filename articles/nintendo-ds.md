@@ -22,6 +22,9 @@ top_tabs:
 
 # SEO
 title: Nintendo DS Architecture
+
+# Historical
+aliases: [/projects/consoles/nintendo-ds/]
 ---
 
 ## A quick introduction

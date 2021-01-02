@@ -22,6 +22,9 @@ top_tabs:
 
 # SEO
 title: Mega Drive Architecture
+
+# Historical
+aliases: [/projects/consoles/mega-drive-genesis/]
 ---
 
 ## A quick introduction

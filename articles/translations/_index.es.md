@@ -14,6 +14,9 @@ cascade:
     shareicons: true
     seo_image: diagram.png
     seo_type: TechArticle
+
+# Historical
+aliases: [/es/projects/consoles]
 ---
 
 {{< linked_img src="banner.png" alt="Arquitectura de las consolas" noLink="true" no_lazyload="true" >}}

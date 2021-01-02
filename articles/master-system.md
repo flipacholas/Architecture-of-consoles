@@ -18,6 +18,9 @@ top_tabs:
 
 # SEO
 title: Sega Master System Architecture
+
+# Historical
+aliases: [/projects/consoles/master-system/]
 ---
 
 ## A quick introduction

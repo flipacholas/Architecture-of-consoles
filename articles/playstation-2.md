@@ -22,6 +22,9 @@ top_tabs:
 
 # SEO
 title: Playstation 2 Architecture
+
+# Historical
+aliases: [/projects/consoles/playstation-2/]
 ---
 
 ## A quick introduction

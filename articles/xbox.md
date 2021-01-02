@@ -20,6 +20,9 @@ top_tabs:
 
 # SEO
 title: Xbox Architecture
+
+# Historical
+aliases: [/projects/consoles/xbox/]
 ---
 
 ## Reading tips

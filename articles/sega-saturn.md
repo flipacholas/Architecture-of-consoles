@@ -20,6 +20,9 @@ top_tabs:
 
 # SEO
 title: Sega Saturn Architecture
+
+# Historical
+aliases: [/projects/consoles/sega-saturn/]
 ---
 
 ## A quick introduction

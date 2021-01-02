@@ -22,6 +22,9 @@ top_tabs:
 
 # SEO
 title: PC Engine / TurboGrafx-16 Architecture
+
+# Historical
+aliases: [/projects/consoles/pc-engine/]
 ---
 
 ## A quick introduction
@@ -46,11 +49,11 @@ This article will focus on the PC Engine/TurboGrafx-16, but will also discuss th
 
 Inside this console, we find the **HuC6280**, a chip made by **Hudson Soft** that houses two components. One of them is the CPU, which can operate at two speeds: **~1.79 MHz** and **~7.16 MHz**.
 
-The HuC6280 is not an off-the-shelf component, like the [Z80]({{< ref "master-system#cpu" >}}), but instead a proprietary CPU designed by NEC. After checking out the official docs, it does seem to replicate a lot of behaviour from the famous **MOS 6502** and **Western Digital's 65C02**. That being said, what does all of this mean for the programmer?
+The HuC6280 is not an off-the-shelf component, like the [Z80]({{< ref "master-system#cpu" >}}), but instead a proprietary CPU designed by NEC. After checking out the official docs, it does seem to replicate a lot of behaviour from the famous **MOS 6502** and **WDC's 65C02**. That being said, what does all of this mean for the programmer?
 
-Before we start, we've already covered some parts of the MOS 6502 [here]({{< ref "nes#cpu" >}}) and also described a 16-bit variant made by Western Digital and Ricoh [here]({{< ref "super-nintendo#cpu" >}}), in case you want to check them out first.
+Before we start, we've already covered some parts of the MOS 6502 [here]({{< ref "nes#cpu" >}}) and also described a 16-bit variant made by WDC and Ricoh [here]({{< ref "super-nintendo#cpu" >}}), in case you want to check them out first.
 
-The 65C02 is another modified version of the MOS 6502 made by Western Digital, it's a lot more efficient due to its manufacturing approach (CMOS). From the software side, the 65C02 adds a couple of new instructions and modifies the behaviour of some existing ones.
+The 65C02 is another modified version of the MOS 6502 made by Western Design Center, it's a lot more efficient due to its manufacturing approach (CMOS). From the software side, the 65C02 adds a couple of new instructions and modifies the behaviour of some existing ones.
 
 We could a lot more about the 65C02, but I think it's better to focus on the features added by Hudson (complementing the 65C02) because they are critical to efficiently operate this console. Compared to the 65C02, the HuC6280 has:
 - **More opcodes**, some targeting the components surrounding the CPU.
@@ -84,7 +87,7 @@ Anyway, don't overwhelm yourself if you have trouble understanding it (it's just
 
 ## Graphics
 
-This is taken care by the **Hudson Soft HuC6270**, a separate chip also referred to as the **Video Display Controller** or 'VDC'. The HuC6270 will draw everything that the player will see on the screen and its functionality is very similar to [Sega's counterpart]({{< ref "master-system#gpu" >}}), so please check out that article beforehand since I'll focus on what's different with Hudson's offering.
+This is taken care by the **Hudson Soft HuC6270**, a separate chip also referred to as the **Video Display Controller** or 'VDC'. The HuC6270 will draw everything that the player will see on the screen and its functionality is very similar to [Sega's counterpart]({{< ref "master-system#graphics" >}}), so please check out that article beforehand since I'll focus on what's different with Hudson's offering.
 
 #### Organising the content
 

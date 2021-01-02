@@ -24,6 +24,9 @@ top_tabs:
 
 # SEO
 title: Super Nintendo Architecture
+
+# Historical
+aliases: [/projects/consoles/super-nintendo/]
 ---
 
 ## A quick introduction

@@ -17,6 +17,9 @@ top_tabs:
 
 # SEO
 title: Game boy Architecture
+
+# Historical
+aliases: [/projects/consoles/game-boy/]
 ---
 
 ## A quick introduction

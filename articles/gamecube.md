@@ -19,6 +19,9 @@ top_tabs:
 
 # SEO
 title: GameCube Architecture
+
+# Historical
+aliases: [/projects/consoles/gamecube/]
 ---
 
 ## A quick introduction

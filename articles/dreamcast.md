@@ -20,6 +20,9 @@ top_tabs:
 
 # SEO
 title: Dreamcast Architecture
+
+# Historical
+aliases: [/projects/consoles/dreamcast/]
 ---
 
 ## Introduction

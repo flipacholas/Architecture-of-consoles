@@ -19,6 +19,9 @@ top_tabs:
 
 # SEO
 title: Arquitectura de la Nintendo 64
+
+# Historical
+aliases: [/es/projects/consoles/nintendo-64/]
 ---
 
 ## Una breve introducción

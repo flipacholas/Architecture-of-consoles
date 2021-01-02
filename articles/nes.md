@@ -15,6 +15,9 @@ top_tabs:
   Motherboard: {}
   Diagram: {}
 
+# Historical
+aliases: [/projects/consoles/nes]
+
 # SEO
 title: NES Architecture
 ---
@@ -419,7 +422,6 @@ You'll notice that the Japanese model of the console, the *Famicom*, was in fact
 
 #### General
 
-- [**Detailed info about NES' Motherboard**](http://retrodetect.com/home/viewPost/164)
 - [**NES' Wikipedia article**](https://en.wikipedia.org/wiki/Nintendo_Entertainment_System#Technical_specifications)
 
 #### CPU
