@@ -39,7 +39,7 @@ Don't worry, I promise you this article will not be *that* long... Enjoy!
 The main processor is a **NEC VR4300** that runs at **93.75 MHz**, it's a binary-compatible version of Silicon Graphics' **MIPS R4300i** that features:
 - A **MIPS III ISA**: Succeeds the MIPS II featuring new 64-bit instructions. 64-bit words are called *doublewords*.
 - An internal **64-bit bus** while connected to an **external 32-bit data bus**.
-- **5-stage pipeline**: Up to five instructions can be executed simultaneously (a detailed explanation can be found in a [previous article]({{< ref "sega-saturn#cpu" >}}" >}}).
+- **5-stage pipeline**: Up to five instructions can be executed simultaneously (a detailed explanation can be found in a [previous article]({{< ref "sega-saturn#cpu" >}}).
 - **24 KB L1 cache**: Divided in 16 KB for instructions and 8 KB for data.
 
 An internal **64-bit FPU** is also included in this package, the CPU identifies it as a co-processor (*COP1*) although the unit is fitted next to the ALU and it's only accessed through the ALU pipeline, meaning there's no co-processing per se.
