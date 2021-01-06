@@ -15,7 +15,8 @@ top_tabs:
     <br>Cartridge slot and amplifier are in the back"
     extension: "jpg"
   Diagram:
-    caption: "Each data bus is labelled with its width."
+    caption: "Each data bus is labelled with its width.
+    <br>Notice the diagram model doesn't include a mapper for GBA cartridges, there are just a few exceptions to this. For instance, with GBA Video cartridges."
 
 # SEO
 title: Game Boy Advance Architecture
@@ -60,18 +61,38 @@ Moreover, this core contains some extensions referenced in its name (*TDMI*):
 
 #### Memory locations
 
-The inclusion of Thumb in particular had a strong influence on the final design of this console. Nintendo mixed 16-bit and 32-bit buses between its different modules to reduce costs while providing programmers with the necessary resources to optimise their code. Usable memory is distributed across the following locations:
+The inclusion of Thumb in particular had a strong influence on the final design of this console. Nintendo mixed 16-bit and 32-bit buses between its different modules to reduce costs while providing programmers with the necessary resources to optimise their code.
 
-- **IWRAM** (Internal WRAM) → 32-bit with 32 KB: Useful for storing ARM instructions and data in big chunks.
-- **EWRAM** (External WRAM) → 16-bit with 256 KB: Optimised for storing Thumb-only instructions and data in small chunks.
-- **PAK ROM** -> 16-bit with variable size: This is the place where the cartridge ROM is accessed.
-- **Cart RAM** -> 16-bit with variable size: This is the place where the cartridge RAM is accessed.
+{{< centered_container >}}
+  {{< linked_img src="memory.png" alt="Memory Diagram" >}}
+  <figcaption class="caption">Memory architecture of this system</figcaption>
+{{< /centered_container >}}
 
-Although this console was marketed as a 32-bit system, the majority of its memory is only accessible through a 16-bit bus, meaning games will mostly use the Thumb instruction set to avoid spending two cycles per instruction fetch. Only critical sections should use the ARM instruction set.
+Usable memory is distributed across the following locations (ordered from fastest to slowest):
 
-#### How do they maintain compatibility?
+- **IWRAM** (Internal WRAM) → 32-bit with 32 KB: Useful for storing ARM instructions.
+- **VRAM** (Video RAM) → 16-bit with 96 KB: While this block is dedicated for graphics data (explained in next section of this article), it's still found in the CPU's memory map, so programmers can store other data if IWRAM is not enough.
+- **EWRAM** (External WRAM) → 16-bit with 256 KB: A separate chip next to CPU AGB. It's optimal for storing Thumb-only instructions and data in small chunks. On the other side, the chip can be up to six times slower to access compared to IWRAM.
+- **Game PAK ROM** → 16-bit with variable size: This is the place where the cartridge ROM is accessed. It has a very slow access rate so it's mirrored in the memory map to manage different access speeds. Additionally, Nintendo fitted a **Prefetch Buffer** that interfaces the cartridge to alleviate excessive stalling. This component independently caches continuous addresses when the CPU is not accessing the cartridge.
+  - In practice, however, the CPU will rarely let the Prefetch Buffer do its job. Since by default it will keep fetching instructions from the cartridge to continue execution (hence why IWRAM and EWRAM are so critical).
+- **Game PAK RAM** → 8-bit with variable size: This is the place where the cartridge RAM (SRAM or Flash Memory) is accessed.
+  - This is strictly an 8-bit bus (the CPU will see 'garbage' in the unused bits) and for this reason, Nintendo states that it can only be operated through their libraries.
 
-You'll be surprised that there is no software implemented to detect whether the cartridge inserted is a GB or GBA one. Instead, the console relies on hardware switches: A **shape detector** effectively identifies the type of cartridge and then only passes power through the required bus.
+Although this console was marketed as a 32-bit system, the majority of its memory is only accessible through a 16-bit bus, meaning games will mostly use the Thumb instruction set to avoid spending two cycles per instruction fetch. Only in very exceptional circumstances (i.e. need to use instructions not found on Thumb while storing them in IWRAM), programmers will benefit from the ARM instruction set.
+
+#### Becoming a Game Boy Color
+
+Apart from the inclusion of GBC hardware (Sharp LR35902, original BIOS, audio and video modes, compatible cartridge slot and so forth), there are two extra functions required to make backwards compatibility work.
+
+From the hardware side, the console relies on switches to detect if a Game Boy or Game Boy Color cartridge is inserted. A **shape detector** in the cartridge slot effectively identifies the type of cartridge and allows the CPU to read its state. It is assumed that some component of CPU AGB reads that value and automatically powers off the hardware not needed in GBC mode.
+
+From the software side, there is a special 16-bit register called 'REG_DISPCNT' which can alter many properties of the display, but one of its bits sets the console to 'GBC mode'. At first, I struggled to understand exactly when the GBA tries to update this register. Luckily, some developers helped to clarify this:
+
+> I think what happens during GBC boot is that it checks the switch (readable at REG_WAITCNT 0x4000204), does the fade (a very fast fade, hard to notice), then finally switches to GBC mode (BIOS writes to REG_DISPCNT 0x4000000), stopping the ARM7.
+>
+> The only missing piece of the puzzle is what would happen if you were to remove a portion of the GBC cartridge shell so the switch isn't pressed anymore, then did a software mode-switch to GBC mode. Multi-boot mode could help here. I'm not sure if the switch needs to be pressed down for the GBC cartridge bus to work properly, or if it just works. I'm willing to guess that the switch is necessary for the bus to function, but that's just a guess.
+>
+> -- <cite>Dan Weiss (aka Dwedit, current maintainer of PocketNES and Goomba Color)</cite>
 
 ---
 
@@ -108,26 +129,27 @@ I'm going to borrow the graphics of Sega's *Sonic Advance 3* to show how a frame
   {{< tabs nested="true" class="pixel" >}}
     {{< tab name="Block 1" active="true" >}}
       {{< linked_img src="sonic/tiles1.png" >}}
+      <figcaption class="caption">4bpp Tiles found in VRAM</figcaption>
     {{< /tab >}}
     {{< tab name="Block 2" >}}
       {{< linked_img src="sonic/tiles2.png" >}}
+      <figcaption>You may notice some weird vertical patterns in here, these are not graphics but 'Tile Maps' (see next section)</figcaption>
     {{< /tab >}}
     {{< tab name="Block 3" >}}
       {{< linked_img src="sonic/tilesobj.png" >}}
+      <figcaption>This block is reserved for sprites</figcaption>
     {{< /tab >}}
   {{< /tabs >}}
-  <figcaption class="caption">4bpp Tiles found in VRAM
-  <br>Last block is reserved for sprites</figcaption>
 {{< /float_block >}}
 
 {{% inner_markdown %}}
 GBA's tiles are strictly 8x8 pixel bitmaps, they can use 16 colours (4bpp) or 256 colours (8bpp). 4bpp tiles consume 32 bytes, while 8bpp ones take 64 bytes.
 
-Tiles are grouped into **charblocks**. Each block is reserved for a specific type of layer.
+Tiles can be stored anywhere in VRAM, however, the PPU wants them grouped into **charblocks**: A region of **16 KB**. Each block is reserved for a specific type of layer (background and sprites) and programmers decide where each charblock starts. This can result in some overlapping which, as a consequence, enables two charblocks to share the same tiles.
 
-Because each charblock is designed to fit in 16 KB of memory, up to 256 8bpp tiles or 512 4bpp tiles can be stored per block. There are six charblocks allocated, which combined require 96 KB of memory: The exact amount of VRAM this console has.
+Due to the size of a charblock, up to 256 8bpp tiles or 512 4bpp tiles can be stored per block. Up to six charblocks are allowed, which combined require 96 KB of memory: The exact amount of VRAM this console has.
 
-Four charblocks are used for backgrounds and two are used for sprites.
+Only four charblocks can be used for backgrounds and two can be used for sprites.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -146,8 +168,8 @@ Four charblocks are used for backgrounds and two are used for sprites.
       {{< linked_img src="sonic/bg3.png" >}}
     {{< /tab >}}
   {{< /tabs >}}
-  <figcaption class="caption">Affine background layers in use
-  <br>Layer 3 will be scaled to simulate water effects</figcaption>
+  <figcaption class="caption">Static background layers in use
+  <br>Layer 3 will be shifted horizontally at some scan-lines to simulate water effects</figcaption>
 {{< /float_block >}}
 
 {{% inner_markdown %}}
@@ -159,7 +181,9 @@ The PPU can draw up to four background layers. The capabilities of each one will
 - **Mode 1**: Only three layers are available, although one of them is **affine** (can be rotated and/or scaled).
 - **Mode 2**: Supplies two affine layers.
 
-Each layer be up to 512x512 pixels wide. If it's an affine one then it will be up to 1024x1024 pixels.
+Each layer has a dimension of up to 512x512 pixels. If it's an affine one then it will be up to 1024x1024 pixels.
+
+The piece of data that defines the background layer is called **Tile Map**. To implement this in a way that the PPU understands it, programmers use **screenblocks**, a structure that defines portions of the background layer (32x32 tiles). A screenblock occupies just 2 KB, but more than one will be needed to construct the whole layer. Programmers may place them anywhere inside the background charblocks, this means that not all tiles entries will contain graphics!
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -176,9 +200,9 @@ The size of a sprite can be up to 64x64 pixels wide, yet for having such a small
 
 If that wasn't enough, the PPU can now apply **affine transformations** to sprites!
 
-Sprite entries are 32-bit wide and their values can be divided in two groups:
+Sprite entries are 32-bit wide and their values can be divided into two groups:
 
-- **Attributes**: Contains x/y position, h/v flipping, size, shape (square or rectangle), sprite type (affine or regular) and location of first tile.
+- **Attributes**: Contains x/y position, h/v flipping, size, shape (square or rectangle), sprite type (affine or regular) and location of the first tile.
 - **Affine data**: Only used if the sprite is affine, specify scaling and rotation.
 {{% /inner_markdown %}}
 
@@ -196,11 +220,11 @@ As always, the PPU will combine all layers automatically, but it's not over yet!
 
 - **Mosaic**: Makes tiles look more *blocky*.
 - **Alpha blending**: Combines colours of two overlapping layers resulting in transparency effects.
-- **Windowing**: Divides the screen into two different *windows* where each one can have its own separate graphics and effects, the outer zone of both windows can also be provided with tiles.
+- **Windowing**: Divides the screen into two different *windows* where each one can have its own separate graphics and effects, the outer zone of both windows can also be rendered with tiles.
 
-On the other side, in order to update the frame there are multiple options available:
+On the other side, to update the frame there are multiple options available:
 
-- Command the **CPU** during VBlank/HBlank: The *traditional way*.
+- Command the **CPU**: The processor now has full access to VRAM whenever it wants. However, it can produce unwanted artefacts if it alters some data mid-frame, so waiting for VBlank/HBlank (*traditional way*) remains the safest option in most cases.
 - Use the **DMA Controller**: DMA provides transfer rates ~10x faster and can be scheduled during VBlank and HBlank. This console provides 4 DMA channels (two reserved for sound, one for critical operations and the other for general purpose). Bear in mind that the controller will halt the CPU during the operation (although it may hardly notice it!).
 {{% /inner_markdown %}}
 
@@ -215,15 +239,21 @@ Good news is that the PPU actually implemented this functionality by including t
 
 - **Mode 3**: Allocates a single fully-coloured (8bpp) frame.
 - **Mode 4**: Provides two frames with half the colours (4bpp) each.
-- **Mode 5**: There's two fully-coloured frames with half the size each (160x128 pixels).
+- **Mode 5**: There're two fully-coloured frames with half the size each (160x128 pixels).
 
-The reason for having two bitmaps is to enable **page flipping**: Drawing over a displayed bitmap can expose some weird artefacts during the process. If instead we manipulate another one then none of the glitches will be shown to the user. Once the second bitmap is finished the PPU can be updated to point to the second one, effectively swapping the displayed frame.
+The reason for having two bitmaps is to enable **page-flipping**: Drawing over a displayed bitmap can expose some weird artefacts during the process. If we instead manipulate another one then none of the glitches will be shown to the user. Once the second bitmap is finished the PPU can be updated to point to the second one, effectively swapping the displayed frame.
 
 {{< float_group >}}
 
 {{< float_block >}}
   {{< tabs nested="true" class="pixel" >}}
-    {{< tab name="Demo" active="true" >}}
+    {{< tab name="3D" active="true" >}}
+      {{< linked_img src="bitmap/monkey.png" >}}
+      <figcaption class="caption">Super Monkey Ball Jr. (2002)
+      <br>Bitmap mode allowed the CPU to provide some rudimentary 3D graphics for the scenery
+      <br>Foreground objects are sprites (separate layer)</figcaption>
+    {{< /tab >}}
+    {{< tab name="Demo" >}}
       {{< linked_img src="bitmap/demo.png" >}}
       <figcaption class="caption">Tonc's demo
       <br>Rendered bitmap with some primitives
@@ -253,7 +283,7 @@ For this reason, these modes are used exceptionally, such as for playing motion 
 
 The GBA features a **2-channel sample player** which works in combination with the legacy Game Boy sound system.
 
-Here is a breakdown of each audio component using *Sonic Advance 2* as example:
+Here is a breakdown of each audio component using *Sonic Advance 2* as an example:
 
 {{< tabs >}}
 
@@ -283,7 +313,7 @@ Samples are **8-bit** and **signed** (encoded in values from -128 to 127). The d
 
 {{% inner_markdown %}}
 While the Game Boy subsystem won't share its CPU, it does give out access to its PSG.
-For compatibility reasons this is the same design found on the original Game Boy. I've previously written [this article]({{< ref "game-boy#audio" >}}) that goes into detail about each channel in particular.
+For compatibility reasons, this is the same design found on the original Game Boy. I've previously written [this article]({{< ref "game-boy#audio" >}}) that goes into detail about each channel in particular.
 
 The majority of GBA games used it for accompaniment or effects. Later ones will optimise their music for PCM and leave the PSG unused.
 {{% /inner_markdown %}}
@@ -330,9 +360,11 @@ In this game (*Mother 3*), the player can enter two different rooms, one *relati
 
 Programming for the GBA was similar to the SNES with the addition of all the advantages of developing games in the early 2000s: Standardised high-level languages, better compilers, faster RISC CPUs, non-proprietary computers for development, comparatively better documentation and... Internet access!
 
-Games are mostly written in C with critical sections in assembly (ARM and Thumb) to save cycles. Nintendo provided a SDK with libraries and compilers. BIOS calls were available to simplify I/O access and reduce cartridge size.
+Programs are mostly written in C with performance-critical sections in assembly (ARM and Thumb) to save cycles. Nintendo provided an SDK with libraries and compilers.
 
-Game data is stored inside a new proprietary cartridge called **GamePak**.
+The Game Boy Advance first boots from a **16 KB BIOS ROM** and then loads the game. However, that ROM also stores software routines that games may call to simplify I/O access and reduce cartridge size.
+
+Games are distributed in a new proprietary cartridge called **Game Pak**.
 
 #### Accessing cartridge data
 
@@ -341,10 +373,10 @@ This should mean that up to 16 MB can be accessed on the cartridge without needi
 
 Now, does this mean that data located at odd addresses (with its least significant bit at '1') will be inaccessible? No, because the data bus is 16-bit: For every transfer, the CPU/DMA will fetch the located byte plus the next one, allowing to read both even and odd addresses. As you can see, this is just another work of engineering that makes full use of hardware capabilities while reducing costs.
 
-#### Cartridge space
+#### Cartridge RAM space
 
-In order to hold saves, Game Paks could either include:
-- **SRAM**: These need a battery to keep its content and can size up to 64 KB. It's accessed through the GBA's memory map.
+To hold saves, Game Paks could either include:
+- **SRAM**: These need a battery to keep its content and can size up to 64 KB (although commercial games did not exceed 32 KB). It's accessed through the GBA's memory map.
 - **Flash ROM**: Similar to SRAM without the need of a battery, can size up to 128 KB.
 - **EEPROM**: These require a serial connection and can theoretically size up to anything (often found up to 8 KB).
 
@@ -360,11 +392,13 @@ In general terms, the usage of proprietary cartridges was a big barrier compared
 
 To combat against *bootleg* cartridges (unauthorised reproductions), the GBA's BIOS incorporated [the same boot process]({{< ref "game-boy#anti-piracy" >}}) found in the original Game Boy.
 
-#### Flashcards
+#### Flashcarts
 
-As solid state storage became more affordable, a new type of cartridge appeared on the market. **Flashcards** looked like ordinary Game Paks but had the addition of a card slot (SD, MiniSD, MicroSD or whatever) which enabled to run game ROMs. The concept is not new actually, developers have internally used similar tools in order to test their games on a real console (and manufacturers provided the hardware to enable this).
+As solid-state storage became more affordable, a new type of cartridge appeared on the market. **Flashcarts** looked like ordinary Game Paks but had the addition of a re-writable memory or a card slot which enabled to run game ROMs. The concept is not new actually, developers have internally used similar tools to test their games on a real console (and manufacturers provided the hardware to enable this).
 
-However, commercial availability of these cards proved to be a **grey area**: Nintendo condemned its usage due to enabling piracy where as some users defended that it was the only method for running **Homebrew** (programs made outside game studios and consequently without the approval of Nintendo). After Nintendo's legal attempts, these cartridges were banned in some countries (like in the UK) nonetheless they still persisted worldwide.
+Earlier solutions included a burnable NOR Flash memory (not exceeding the 32 MB) and some battery-backed SRAM. In order to upload binaries to the cartridge, the cart came with a Link-to-USB cable that was used with a GBA and a PC running Windows XP. With the use of a proprietary flasher software and drivers, the computer uploaded a multi-boot program to the GBA, which in turn was used to transfer a game binary from the PC to the Flashcart inserted in the GBA. Overall, the whole task of uploading a game was deemed *sluggish*. Later Flashcarts (like the 'EZ-Flash') offered larger storage and the ability to be programmed without requiring the GBA as an intermediate. Final ones relied on removable storage (SD, MiniSD, MicroSD or whatever).
+
+Commercial availability of these cards proved to be a **grey area**: Nintendo condemned its usage due to enabling piracy whereas some users defended that it was the only method for running **Homebrew** (programs made outside game studios and consequently without the approval of Nintendo). Nintendo's argument was backed by the fact flashers like the EZ-Writer assisted users to patch game ROMs so they can run in EZ-Flash carts without problems. After Nintendo's legal attempts, these cartridges were banned in some countries (like in the UK). Nonetheless, they persisted worldwide.
 
 ---
 
@@ -382,30 +416,33 @@ However, commercial availability of these cards proved to be a **grey area**: Ni
 
 #### General
 
-- **Official AGB Programming Manual**
-- [**Tonc's programming tutorials**](https://www.coranac.com/tonc/text/toc.htm)
+- Nintendo, 2001, **AGB Programming Manual**, Version 1.1
+- Jasper Vijn, 2013, [**Tonc (programming tutorials)**](https://www.coranac.com/tonc/text/toc.htm), Version 1.4.2
 
 #### CPU
 
-- [**Quick and concise introduction to ARM**](http://www.davespace.co.uk/arm/introduction-to-arm/)
-- [**ARM7TDMI official docs**](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.faqs/kiYeupZKxTQnvx.html)
+- David Thomas, 2012, [**Introduction to ARM**](http://www.davespace.co.uk/arm/introduction-to-arm/)
+- Arm Holdings, [**ARM7TDMI (Rev 3) Core Processor**](https://developer.arm.com/documentation/dvi0027/b/arm7tdmi)
+- Vicki Pfau, 2014, [**Cycle Counting, Memory Stalls, Prefetch and Other Pitfalls**](https://mgba.io/2015/06/27/cycle-counting-prefetch/)
+- Antonio Niño Díaz, Github.com, [**gba-switch-to-gbc** (Routine to switch a GBA into GBC mode by software)](https://github.com/AntonioND/gba-switch-to-gbc)
 
 #### Graphics
 
-- [**GBA Tile Modes (part of a uni course)** ](https://web.archive.org/web/20190516091420/http://ianfinlayson.net/class/cpsc305/notes/13-tiles)
-- [**GBA Bitmap Modes (part of a uni course)** ](https://web.archive.org/web/20190515050420/http://ianfinlayson.net/class/cpsc305/notes/09-graphics)
+- Ian Finlayson, [**GBA Tile Modes**](https://web.archive.org/web/20190516091420/http://ianfinlayson.net/class/cpsc305/notes/13-tiles), University of Mary Washington
+- Ian Finlayson, [**GBA Bitmap Modes** ](https://web.archive.org/web/20190515050420/http://ianfinlayson.net/class/cpsc305/notes/09-graphics), University of Mary Washington
 
 #### Audio
 
-- [**GBA Audio programming**](https://www.gamedev.net/articles/programming/general-and-gameplay-programming/audio-programming-on-the-gameboy-advance-part-1-r1823/)
+- Chris Strickland, 2002, [**Audio Programming on the GameBoy Advance**](https://www.gamedev.net/articles/programming/general-and-gameplay-programming/audio-programming-on-the-gameboy-advance-part-1-r1823/)
 
 #### Games
 
-- [**Cartridge interface in detail**](http://reinerziegler.de.mirrors.gg8.se/GBA/gba.htm)
+- Reiner Ziegler, 2008, [**GBA ROM Cartridge Interface**](http://reinerziegler.de.mirrors.gg8.se/GBA/gba.htm)
 
 #### Anti-Piracy
 
-- [**Classic NES titles exploiting ARM's unique features**](https://mgba.io/2014/12/28/classic-nes/)
+- Vicki Pfau, 2014, [**Classic NES Series Anti-Emulation Measures**](https://mgba.io/2014/12/28/classic-nes/)
+- ezfadvance.com, [**EZ-Flash 2** (Archived)](https://web.archive.org/web/20200216121318/http://www.ezfadvance.com/cards/EZ-Flash_2.htm)
 
 #### Photography
 
