@@ -9,7 +9,8 @@ cover: gameboy
 top_tabs:
   Model:
     file: international
-    caption: "The original Game Boy. Released on 21/04/1999 in Japan, 31/07/1989 in America and 28/09/1990 in Europe"
+    caption: "The original Game Boy
+    <br>Released on 21/04/1989 in Japan, 31/07/1989 in America and 28/09/1990 in Europe"
     img_class: reduced-width
   Motherboard:
     caption: "Showing revision '04'. Note that 'DMG' is the identifier of the original Game Boy model."
