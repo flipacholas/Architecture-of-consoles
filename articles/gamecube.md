@@ -78,8 +78,8 @@ And, of course, some cache is also included to speed up memory bandwidth:
 While the previous lists of features are very appreciated (compared to previous generations), this CPU still falls behind others on gaming performance (let's not forget that this is still a general-purpose CPU, good at spreadsheets but *average* at physics). To compensate, IBM added the following tweaks that will constitute Gecko:
 
 - Enhanced instruction set with **50 new SIMD instructions**: Speeds up vector calculations, particularly useful during geometry transformations. Not to be confused with Motorola's SIMD extension (AltiVec) which can be found on high-end G4 Macs.
-- **32 Floating point registers**: Since more numbers can now be stored in the FPU, less memory access is required.
-- **Write Gather pipe**: A special memory writing mechanism available to use. If enabled, instead of performing *single-beat* transfers, it holds all memory write requests in a 128 byte buffer until it's 25% full, then performs the requested writes using a technique called *burst transaction* which can move blocks of 32 byte of data at once.
+- **32 Floating-point registers**: Since more numbers can now be stored in the FPU, less memory access is required.
+- **Write Gather pipe**: A special memory writing mechanism available to use. If enabled, instead of performing *single-beat* transfers, it holds all memory write requests in a 128-byte buffer until it's 25% full, then performs the requested writes using a technique called *burst transaction* which can move blocks of 32 bytes of data at once.
   - As you can imagine, this saves a lot of bandwidth by making full utilisation of the available buses.
 - **Locked L1 cache**: Programs can take away 16 KB of L1 data cache to use as scratchpad (incredibly fast memory).
 
@@ -93,7 +93,7 @@ For that reason, Gamecube architects came up with a new memory system strictly b
 
 The result was a system organised with two main buses:
 
-- The **Northbridge**: It's 64-bit wide and connects the CPU with the GPU. It runs 3 times slower than the CPU clock, so tasks will have to be optimised to not rely so much on the GPU. Other components like the DMA and cache may become handy.
+- The **Northbridge**: It's 64-bit wide and connects the CPU with the GPU. It runs 3 times slower than the CPU clock, so tasks will have to be optimised to not rely so much on the GPU. Other components like the DMA and cache may come in handy.
 - The **Southbridge**: It's also 64-bit wide and connects the GPU with 24 MB of 1T&#8209;SRAM called **Splash**, this type of RAM is made of DRAM (which is the most popular type of RAM but also cheaper and slow) however it's enhanced with extra circuitry to **behave like SRAM** (faster and expensive, mostly used for cache). The bus is **twice as fast as the GPU**, possibly to enable the GPU to provide a steady bandwidth between the CPU and main memory.
 
 Additionally, this design contains an additional (yet unusual) bus where more memory can be found:
@@ -123,7 +123,7 @@ During the development process, ArtX got acquired by ATI, which in turn was sold
 
 {{< /float_group >}}
 
-### Architecture and design
+#### Architecture and design
 
 Flipper handles multiple services, so let's focus on the graphics component for now (since it's the one responsible for bringing our geometry to life). If you've been reading the [N64 article]({{< ref "nintendo-64#graphics" >}}), just letting you know that the core is now functional out of the box, so programmers won't need to worry about injecting code to make it work, nonetheless, there will some interesting parts that are customisable.
 
@@ -222,9 +222,9 @@ It's worth mentioning that the XFB area can also be manipulated by the CPU, this
 {{< /tab >}}
 {{< /tabs >}}
 
-### Interactive comparison
+#### Interactive comparison
 
-Time to put all of this into perspective, check out how programmers evolved the designs of their previous games to take advantage of the new graphic capabilities of this console. Don't forget the examples are interactive!
+Time to put all of this into perspective, check out how programmers evolved the designs of their previous games to take advantage of the new graphics capabilities of this console. Don't forget the examples are interactive!
 
 {{< tabs >}}
 {{< tab name="The upgrade" active="true" >}}
@@ -292,7 +292,7 @@ I guess one of the best examples of games that exploited this new capability is 
 
 {{< /float_group >}}
 
-### Video output system
+#### Video output system
 
 The video signal outputs a resolution of up to 640x480 pixels (or 768×576 px in PAL) with up to 16.7 colours (24-bit depth). Additionally, the system could broadcast its signal in **progressive mode** (which has a clearer image, but not every TV may have supported it during that time).
 

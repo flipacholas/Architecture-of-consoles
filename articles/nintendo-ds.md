@@ -595,7 +595,7 @@ Whether there's a game or not, the system will finish booting by loading an inte
 {{< float_group >}}
 
 {{< float_block >}}
-  {{< tabs nested="true" class="pixel desktop-margined" >}}
+  {{< tabs nested="true" class="desktop-margined" >}}
     {{< tab name="Home" active="true" >}}
       {{< linked_img src="shell/home.png" >}}
       <figcaption class="caption">Home screen</figcaption>

@@ -37,7 +37,7 @@ Nintendo managed to bring the next generation of graphics and sounds without usi
 
 ## CPU
 
-The main processor is a **Ricoh 5A22**. It's based on the **Western 65C816**, a 16-bit upgrade of the classic [MOS Technology 6502]({{< ref "nes#cpu" >}}. Since the SNES shares the same foundation of the NES' CPU, there's a slight possibility that the SNES was originally planned to be compatible with NES games.
+The main processor is a **Ricoh 5A22**. It's based on the **Western 65C816**, a 16-bit upgrade of the classic [MOS Technology 6502]({{< ref "nes#cpu" >}}). Since the SNES shares the same foundation of the NES' CPU, there's a slight possibility that the SNES was originally planned to be compatible with NES games.
 
 The CPU employs a **variable clock speed** that will reach up to **3.58 MHz** during register operations and down to **1.79 MHz** when accessing slow external buses (i.e. the serial/controller port).
 
