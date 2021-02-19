@@ -665,7 +665,7 @@ The last time I checked, [Flash carts]({{< ref "game-boy-advance#flashcarts" >}}
 {{< centered_container >}}
   {{< linked_img src="brother.jpg" alt="Contributor" >}}
   <figcaption class="caption">My brother fiddling with the Virtual Boy
-  <br>The only remaining member of the user research 😉</figcaption>
+  <br>The only remaining member of the user research team 😉</figcaption>
 {{< /centered_container >}}
 
 Throughout this series, we've seen all kinds of systems, some with limited CPU but impressive synergies, others with questionable hardware but beautifully packaged. This case however, was an interesting proposal: The CPU wasn't certainly limited and the graphics were up to the task. The sound wasn't exceptional, yet remained similar to the rest of the portable consoles in the market.
