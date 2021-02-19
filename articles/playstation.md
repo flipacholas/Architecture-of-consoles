@@ -32,7 +32,7 @@ Sony knew that 3D hardware can get very messy to develop for, for this reason, t
 The main processor is a modification of LSI's **CoreWare CW33300** which, at the same time, is binary-compatible with SGI's **MIPS R3051**. This chip runs at 33.87 MHz and it features:
 - The **MIPS I** ISA: A 32-bit RISC instruction set, it includes multiplication and division instructions.
 - **One ALU and one shifter**.
-- **5-stage pipeline**: Up to five instructions can be executed simultaneously (a detailed explanation can be found in a [previous article]({{< ref "sega-saturn#cpu" >}}).
+- **5-stage pipeline**: Up to five instructions can be executed simultaneously (a detailed explanation can be found in a [previous article]({{< ref "sega-saturn#cpu" >}})).
 - **4 KB instruction cache** and **1 KB of data cache** (the original CoreWare CW33300 contained 2 KB of data cache): The data cache is actually **Scratchpad RAM**, meaning that it can have other uses apart from behaving as L1 cache.
 
 Like other MIPS R3000-based CPUs, it supported configurations with up to four coprocessors, Sony customised it with two:
@@ -114,7 +114,6 @@ The unit also includes the following effects available to use:
 
 - **Semi-Transparency**: Simulates light passing through multiple textures.
 - **Dithering**: Soften sudden changes in colour while adhering to the same colour palette.
-- **Fog**: Simulates smoke in the environment.
 
 It's worth mentioning that the PS1 happened to excel at those effects!
 {{% /inner_markdown %}}
@@ -238,7 +237,7 @@ Games only have 508 KB available to store samples, the rest is reserved by the S
 
 ---
 
-## Games
+## Operating System
 
 Similarly to the Saturn's boot process, after turning this console on, it will:
 1. Execute a small OS found in the BIOS ROM.
@@ -251,9 +250,17 @@ Similarly to the Saturn's boot process, after turning this console on, it will:
 4. With no CD inserted, the CPU will open the memory card manager, the user is now in control.
     1. Inside the manager there's an option to open the CD audio player.
 
-Games have all the facilities that the CD medium provides: Large storage (640 MB), good audio quality and a 'not-so-slow' read speed thanks to the 2x drive. Additionally, there are two I/O ports (**Serial** and **Parallel**) available for add-ons. However, these were removed in later revisions of the console due to lack of adoption and the fact that they could potentially be used to crack the copy protection system.
+---
 
-The SDK provided C libraries which used **BIOS routines** to access the hardware. This is the main factor that helped to emulate the PS1 on a wide range of platforms.
+## Games
+
+Programs have all the facilities that the CD medium provides: Large storage (640 MB), good audio quality and a 'not-so-slow' read speed thanks to the 2x drive.
+
+Additionally, there are two I/O ports (**Serial** and **Parallel**) available for add-ons. However, these were removed in later revisions of the console due to lack of adoption and the fact that they could potentially be used to crack the copy protection system.
+
+#### Development ecosystem
+
+The official SDK provided C libraries which used **BIOS routines** to access the hardware. This is the main factor that helped to emulate the PS1 on a wide range of platforms.
 
 Along with the SDK, Sony also distributed specialised hardware like the **DTL-H2000**, a dual-slot ISA card containing the internals and I/O of the PS1, plus extra circuitry for debugging purposes. The board has access to the host's hard drive and can execute PS1 software without restrictions. Software and drivers used to communicate with the card ran on PCs with Windows 3.1 or 95.
 
@@ -291,30 +298,30 @@ One of the checks I was told consisted in deliberately reinitialising the drive 
 
 #### General
 
-- [**Technical Specifications (Wikipedia)**](https://en.wikipedia.org/wiki/PlayStation_technical_specifications)
-- [**Unofficial (yet very complete) development manual**](http://hitmen.c02.at/files/docs/psx/psx.pdf)
-- [**Video with more details about the architecture**](https://www.youtube.com/watch?v=MPXpH2hxuNc)
-- [**Different revisions of the console**](https://en.wikipedia.org/wiki/PlayStation_models)
+- Joshua Walker, [**Everything You Have Always Wanted to Know about the PlaystationBut Were Afraid to Ask.**](http://hitmen.c02.at/files/docs/psx/psx.pdf)
+- Wikipedia, [**PlayStation technical specifications**](https://en.wikipedia.org/wiki/PlayStation_technical_specifications)
+-  Halkun, [**Gears Episode 2 - PlayStation Architecture** (Youtube)](https://www.youtube.com/watch?v=MPXpH2hxuNc)
+- Wikipedia, [**PlayStation models**](https://en.wikipedia.org/wiki/PlayStation_models)
 
 #### CPU
 
-- [**Source code of emulator**](https://github.com/mamedev/mame/blob/master/src/devices/cpu/psx/psx.cpp)
+- MAMEdev, [**PlayStation CPU emulator source code**](https://github.com/mamedev/mame/blob/master/src/devices/cpu/psx/psx.cpp)
 
 #### Graphics
 
-- [**Retrocomputing thread discussing the reasons 3D models jiggled**](https://retrocomputing.stackexchange.com/questions/5019/why-do-3d-models-on-the-playstation-1-wobble-so-much)
-- [**More examples of unstable polygons**](https://www.youtube.com/watch?v=nqw2HMUrNiA)
+- Retrocomputing, [**Why do 3D models on the PlayStation 1 “wobble” so much?**](https://retrocomputing.stackexchange.com/questions/5019/why-do-3d-models-on-the-playstation-1-wobble-so-much)
+-  Devon CM, [**PSX Unstable Polygons** (Youtube)](https://www.youtube.com/watch?v=nqw2HMUrNiA)
 - [**The Models Resource** (Archived)](https://web.archive.org/web/20200216025504/https://www.models-resource.com/)
-- [**Making of Crash Bandicoot, written by the original developers**](https://all-things-andy-gavin.com/2011/02/02/making-crash-bandicoot-part-1/)
+- Andy Gavin, [**Making Crash Bandicoot**](https://all-things-andy-gavin.com/2011/02/02/making-crash-bandicoot-part-1/)
 
 #### Games
 
-- [**More about the Sony DTL-H2000** (Archived)](http://web.archive.org/web/20181119231457/http://www.psxdev.net/forum/viewtopic.php?t=103)
+- Shadow, [**Sony DTL-H2000 Troubleshooting, Info, Setup, Parts & Help** (Archived)](http://web.archive.org/web/20181119231457/http://www.psxdev.net/forum/viewtopic.php?t=103)
 
 #### Copy protection
 
-- [**'Wobble groove' in detail**](https://www.youtube.com/watch?v=XUwSOfQ1D3c)
-- [**Open-source modchip using an Arduino**](https://github.com/kalymos/PsNee)
+- Technology Connections, [**Sony's Clever but Flawed PlayStation Copy Protection--And How They Might Have Fixed It** (Youtube)](https://www.youtube.com/watch?v=XUwSOfQ1D3c)
+- kalymos, [**PsNee** (Open-source modchip using an Arduino)](https://github.com/kalymos/PsNee)
 
 #### Photography
 
