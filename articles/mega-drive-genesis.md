@@ -29,7 +29,7 @@ aliases: [/projects/consoles/mega-drive-genesis/]
 
 ## A quick introduction
 
-Sega (and their TV ads) want you to know: It's impossible to bring descent games without faster graphics and richer sounds.
+Sega (and their TV ads) want you to know: It's impossible to bring decent games without faster graphics and richer sounds.
 
 Their new system includes lots of *already familiar* components ready to be programmed. This means that, in theory, developers would only need to learn about Sega's new GPU... right?
 
