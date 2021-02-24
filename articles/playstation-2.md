@@ -360,7 +360,7 @@ Here are characters from new game series, these were modelled with high levels o
   </div>
 {{< /side_by_side >}}
 
-It's worth mentioning that games like *Dragon Quest* implemented a custom lighting model called **Cel Shading** (a term I have mentioned [before]({{< ref "gamecube#creativity" >}}), however, in my previous articles I explained that the GPU was mainly responsible for this. In the PS2 case, the required colour calculations are presumably done by the Emotion Engine, since the GS isn't as flexible as other GPUs.
+It's worth mentioning that games like *Dragon Quest* implemented a custom lighting model called **Cel Shading** (a term I have mentioned [before]({{< ref "gamecube#creativity" >}})), however, in my previous articles I explained that the GPU was mainly responsible for this. In the PS2 case, the required colour calculations are presumably done by the Emotion Engine, since the GS isn't as flexible as other GPUs.
 
 #### Video Output
 
@@ -451,7 +451,7 @@ This console kept the previous front ports that were included in the original Pl
 
 The most popular addition: **Two USB 1.1 ports**. Widely adopted by third-party accessories, these persisted on all future revisions.
 
-What about the 'experimental' ones? To start with, there was initially a front **i.Link port** (also known as IEEE 1394, or 'Fireware' in the Apple world). This port was used to connect two PS2 to enable local multiplayer, but it was removed after the third revision (presumably replaced by the 'Network card', more details below).
+What about the 'experimental' ones? To start with, there was initially a front **i.Link port** (also known as IEEE 1394, or 'FireWare' in the Apple world). This port was used to connect two PS2 to enable local multiplayer, but it was removed after the third revision (presumably replaced by the 'Network card', more details below).
 
 {{% /inner_markdown %}}
 {{< /float_group >}}
@@ -707,7 +707,7 @@ After the slim revision was released, the exploit got patched (*I wonder how*). 
 
 #### A semi-permanent software unlock
 
-Some time ago, it was discovered that the BIOS of this console could be upgraded using the Memory Card, this function was never used in practice, but neither removed (at during for most of the console's lifespan). With this, hackers realised that if they find a way to install particular software into the MemoryCard, then the BIOS would always load it at boot. This discovery led to **Free MCBoot**, a program presented as 'upgrade data' which replaces the original shell with one that can execute **Homebrew**.
+Some time ago, it was discovered that the BIOS of this console could be upgraded using the Memory Card, this function was never used in practice, but neither removed (at least during most of the console's lifespan). With this, hackers realised that if they find a way to install particular software into the MemoryCard, then the BIOS would always load it at boot. This discovery led to **Free MCBoot**, a program presented as 'upgrade data' which replaces the original shell with one that can execute **Homebrew**.
 
 Bear in mind these changes are not permanent, a Memory Card with 'Free MCBoot' installed must be inserted prior the console's startup. Additionally, this software needs to be installed somehow, so another exploit (e.g. disc swapping) is required to bootstrap the installer.
 
