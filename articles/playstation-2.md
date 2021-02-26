@@ -101,7 +101,7 @@ Finally, the IPU also operates compressed **High-resolution textures**, which sa
 
 It's been two years since the rivals presented their [latest offering]({{< ref "dreamcast">}}). If you read the former article and just started reading this one, I presume you are *still* waiting for 'the thing' that makes the PS2 as powerful as it seemed back then. Now, let me introduce a *very* important set of components Sony fitted in the Emotion Engine, the **Vector Processing Units** or 'VPU'.
 
-A Vector Processing Unit is a small independent processor designed to operate vectors. In particular, vectors made of four `floats`. These processors are so fast that they only spend only **one cycle per operation**, which can be extremely convenient for geometry processing.
+A Vector Processing Unit is a small independent processor designed to operate vectors. In particular, vectors made of four `floats`. These processors are so fast that they only spend **one cycle per operation**, which can be extremely convenient for geometry processing.
 
 VPUs are made of the following components:
 - Some **Vector Unit Memory** or 'VU Mem': Used as a working space for the Vector unit. It stores values needed to be operated and/or the results of previous operations.
@@ -547,7 +547,8 @@ The functionality of the PS2 shell is pretty much in pace with the other 6th gen
   {{< tabs nested="true" >}}
       {{< tab name="Menu" active="true" >}}
         {{< linked_img src="bios/menu.jpg" alt="PS2 menu" >}}
-        <figcaption class="caption">Initial menu when there is not disc inserted</figcaption>
+        <figcaption class="caption">Initial menu
+        <br>Appears when there's no disc inserted</figcaption>
       {{< /tab >}}
       {{< tab name="Browser" >}}
         {{< linked_img src="bios/mem_list.jpg" alt="PS2 memory card browser" >}}
@@ -555,15 +556,17 @@ The functionality of the PS2 shell is pretty much in pace with the other 6th gen
       {{< /tab >}}
       {{< tab name="Saves" >}}
         {{< linked_img src="bios/save_list.jpg" alt="PS2 Save browser" >}}
-        <figcaption class="caption">Save browser, after selecting a memory card</figcaption>
+        <figcaption class="caption">Saves browser
+        <br>After selecting a memory card</figcaption>
       {{< /tab >}}
       {{< tab name="Editor" >}}
         {{< linked_img src="bios/save_editor.jpg" alt="PS2 Save editor" >}}
-        <figcaption class="caption">Save editor, after selecting a save</figcaption>
+        <figcaption class="caption">Save editor
+        <br>After selecting a save</figcaption>
       {{< /tab >}}
       {{< tab name="Options" >}}
-        {{< linked_img src="bios/options.jpg" alt="PS2 System Configurations" >}}
-        <figcaption class="caption">System Configurations</figcaption>
+        {{< linked_img src="bios/options.jpg" alt="PS2 System Configuration" >}}
+        <figcaption class="caption">System Configuration</figcaption>
       {{< /tab >}}
   {{< /tabs >}}
 {{< /float_block >}}
