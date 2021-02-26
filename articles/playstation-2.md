@@ -451,7 +451,7 @@ This console kept the previous front ports that were included in the original Pl
 
 The most popular addition: **Two USB 1.1 ports**. Widely adopted by third-party accessories, these persisted on all future revisions.
 
-What about the 'experimental' ones? To start with, there was initially a front **i.Link port** (also known as IEEE 1394, or 'FireWare' in the Apple world). This port was used to connect two PS2 to enable local multiplayer, but it was removed after the third revision (presumably replaced by the 'Network card', more details below).
+What about the 'experimental' ones? To start with, there was initially a front **i.Link port** (also known as IEEE 1394, or 'FireWire' in the Apple world). This port was used to connect two PS2 to enable local multiplayer, but it was removed after the third revision (presumably replaced by the 'Network card', more details below).
 
 {{% /inner_markdown %}}
 {{< /float_group >}}
