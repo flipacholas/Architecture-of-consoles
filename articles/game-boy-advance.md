@@ -330,7 +330,7 @@ The majority of GBA games used it for accompaniment or effects. Later ones will 
 {{% inner_markdown %}}
 Finally, everything is automatically mixed together and output through the speaker/headphone jack.
 
-Even though the GBA has just two PCM channels, some games can magically play more than two concurrent samples. How is this possible? Well, while only having two channels may seem a bit weak on paper, the main CPU can use some of its cycles to provide both audio sequencing and mixing (that should give you an idea of how powerful the ARM7 is!)
+Even though the GBA has just two PCM channels, some games can magically play more than two concurrent samples. How is this possible? Well, while only having two channels may seem a bit weak on paper, the main CPU can use some of its cycles to provide both audio sequencing and mixing (that should give you an idea of how powerful the ARM7 is!). Furthermore, in the 'Operating System' section you'll find out that the BIOS ROM included an audio sequencer!
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -356,13 +356,31 @@ In this game (*Mother 3*), the player can enter two different rooms, one *relati
 
 ---
 
+## Operating System
+
+ARM7's reset vector is at 0x00000000, which points to a **16 KB BIOS ROM**. That means the Game Boy Advance first boots from the BIOS, which in turn shows the iconic splash screen and then decides whether to load the game or not.
+
+That ROM also stores software routines that games may call to simplify certain operations and reduce cartridge size. These include:
+- **Arithmetic functions**: Routines to carry out Division, Square Root and Arc Tangent.
+- **Affine matrix calculation**: Given a 'zoom' value and angle, it calculates the affine matrix that will be input to the PPU in order to scale/rotate a background or sprite.
+  - There are two functions, one for sprites and other for backgrounds. Their parameters are slightly different but the idea is the same.
+- **Decompression functions**: Implements decompression algorithms including Run-Length, LZ77 and Huffman. It also provides bit unpacking and sequential difference.
+- **Memory copy**: Two functions that move memory around. The first one copies 32-byte blocks using a specialised opcode for this type of transfer ('LDMIA' to load and 'SDMIA' to store) only once. The second one copies 2-byte or 4-byte blocks using repeated 'LDRH/STRH' or 'LDMIA/STMIA' opcodes, respectively. Thus, the second function is more flexible but not as fast.
+- **Sound**: Implements a complete MIDI sequencer! It includes many functions to routines it.
+- **Power interface**: Shortcuts for resetting, clearing most of the RAM, halting the CPU until a certain event hits (V-blank or custom one) or switching to 'low-power mode'.
+- **Multi-boot**: Uploads a program to another GBA and kickstarts it. More details in the 'Game' section.
+
+The BIOS is connected through a 32-bit bus and it's written using a combination of Arm and Thumb instructions, though the latter the most prominent.
+
+Also, remember that all of this will only run on the ARM7. In other words, there isn't any hardware acceleration available to speed up these operations. Hence, Nintendo provided all of this functionality through software.
+
+---
+
 ## Games
 
 Programming for the GBA was similar to the SNES with the addition of all the advantages of developing games in the early 2000s: Standardised high-level languages, better compilers, faster RISC CPUs, non-proprietary computers for development, comparatively better documentation and... Internet access!
 
 Programs are mostly written in C with performance-critical sections in assembly (ARM and Thumb) to save cycles. Nintendo provided an SDK with libraries and compilers.
-
-The Game Boy Advance first boots from a **16 KB BIOS ROM** and then loads the game. However, that ROM also stores software routines that games may call to simplify I/O access and reduce cartridge size.
 
 Games are distributed in a new proprietary cartridge called **Game Pak**.
 
