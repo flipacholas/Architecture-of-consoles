@@ -1,16 +1,16 @@
 This repo contains all the writings that constitute the [Architecture of Consoles](https://www.copetti.org/projects/consoles/) series. It has been made public to enable anyone to discuss improvements, add translations and possibly more.
 
 This repo is structured as follows:
-- 'articles' folder contain the writings in Markdown format, along with some front-matter (mainly meta-data) and [Hugo](https://gohugo.io/) syntax (to generate special HTML).
-    - Each file correspond to a specific console, except '_index' which corresponds to [this page](https://www.copetti.org/projects/consoles/).
-- 'resources' contains a list of strings that are referenced across the site and are isolated for translation-purposes.
-- 'changelog' keeps a log of changes of translated articles.
+- The 'articles' folder contains writings in Markdown format, along with some front-matter (mainly meta-data) and [Hugo](https://gohugo.io/) syntax (to generate special HTML).
+    - Each file corresponds to a specific console, except '_index' which corresponds to [this page](https://www.copetti.org/projects/consoles/).
+- 'resources' contains a list of strings that are referenced across the site and are isolated for translation purposes.
+- 'changelog' logs changes of translated articles.
 
 ### Localisations
 
-With all the traffic that's been going with the website I thought this would be an opportunity to enable any reader from anywhere in the world to help translate the content, helping to reach wider audiences.
+With all the traffic that's been going to the website I thought this would be an opportunity to enable a reader from anywhere in the world to help translate the content, to help it to reach wider audiences.
 
-If that's something you are interested, please check out the 'TRANSLATIONS.md' document.
+If that's something you are interested in, please check out the 'TRANSLATIONS.md' document.
 
 ### Corrections/Additions
 
