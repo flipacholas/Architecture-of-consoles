@@ -29,7 +29,7 @@ aliases: [/projects/consoles/game-boy-advance/]
 
 The internal design of the Game Boy Advance is quite impressive for a portable console that runs on two AA batteries.
 
-This console will carry on using Nintendo's *signature* GPU. Additionally, it will introduce a relatively new CPU from a UK company that will surge in popularity in years to come.
+This console will carry on using Nintendo's *signature* GPU. Additionally, it will introduce a relatively new CPU from a UK company that will surge in popularity in the years to come.
 
 ---
 
@@ -44,9 +44,9 @@ Note that both CPUs will **never run at the same time** or do any fancy co-proce
 #### What's new?
 
 Before ARM Holdings (currently "Arm") became incredibly popular in the smartphone world, they licensed their CPU designs to power Acorn's computers, Apple's Newton, Nokia's phones and the Panasonic 3DO.
-Nintendo's chosen CPU, the ARM7TDMI, is based on the earlier ARM710 design, and includes:
+Nintendo's chosen CPU, the ARM7TDMI, is based on the earlier ARM710 design and includes:
 - **ARM v4** ISA: The 4th version of the 32-bit ARM instruction set.
-- **Three-stage pipeline**: Execution of instructions are divided into three steps or *stages*. The CPU will fetch, decode and execute up to three instructions concurrently. This enables maximum use of the CPU's resources (which reduces idle silicon) while also increasing the amount of instructions executed per unit of time.
+- **Three-stage pipeline**: Execution of instructions are divided into three steps or *stages*. The CPU will fetch, decode and execute up to three instructions concurrently. This enables maximum use of the CPU's resources (which reduces idle silicon) while also increasing the number of instructions executed per unit of time.
 - **32-bit ALU**: Can operate 32-bit numbers without consuming extra cycles.
 
 Moreover, this core contains some extensions referenced in its name (*TDMI*):
@@ -57,7 +57,7 @@ Moreover, this core contains some extensions referenced in its name (*TDMI*):
   - If required, ARM and Thumb instructions can be mixed in the same program (called *interworking*) so developers can choose when and where to use each mode.
 - **D** → **Debug Extensions**: Provide JTAG debugging.
 - **M** → **Enhanced Multiplier**: Previous ARM cores required multiple cycles to compute full 32-bit multiplications, this enhancement reduces it to just a few.
-- **I** → **EmbeddedICE macrocell**: Debug module that allows hardware breakpoints, watchpoints and allows the system to be halted while debugging.
+- **I** → **EmbeddedICE macrocell**: Enables hardware breakpoints, watchpoints and allows the system to be halted while debugging.
 
 #### Memory locations
 
@@ -71,7 +71,7 @@ The inclusion of Thumb in particular had a strong influence on the final design 
 Usable memory is distributed across the following locations (ordered from fastest to slowest):
 
 - **IWRAM** (Internal WRAM) → 32-bit with 32 KB: Useful for storing ARM instructions.
-- **VRAM** (Video RAM) → 16-bit with 96 KB: While this block is dedicated for graphics data (explained in next section of this article), it's still found in the CPU's memory map, so programmers can store other data if IWRAM is not enough.
+- **VRAM** (Video RAM) → 16-bit with 96 KB: While this block is dedicated to graphics data (explained in the next section of this article), it's still found in the CPU's memory map, so programmers can store other data if IWRAM is not enough.
 - **EWRAM** (External WRAM) → 16-bit with 256 KB: A separate chip next to CPU AGB. It's optimal for storing Thumb-only instructions and data in small chunks. On the other side, the chip can be up to six times slower to access compared to IWRAM.
 - **Game PAK ROM** → 16-bit with variable size: This is the place where the cartridge ROM is accessed. It has a very slow access rate so it's mirrored in the memory map to manage different access speeds. Additionally, Nintendo fitted a **Prefetch Buffer** that interfaces the cartridge to alleviate excessive stalling. This component independently caches continuous addresses when the CPU is not accessing the cartridge.
   - In practice, however, the CPU will rarely let the Prefetch Buffer do its job. Since by default it will keep fetching instructions from the cartridge to continue execution (hence why IWRAM and EWRAM are so critical).
@@ -235,7 +235,7 @@ On the other side, to update the frame there are multiple options available:
 
 Sometimes we may want to compose a background from which the tile engine won't be able to draw all required graphics. Now, modern consoles addressed this by implementing a **frame-buffer** architecture but this is not possible when there's very little RAM... Well, the GBA happens to have 96 KB of VRAM which is enough to allocate a **bitmap** with the dimensions of our LCD screen.
 
-Good news is that the PPU actually implemented this functionality by including three extra modes, these are called **bitmap modes**:
+The good news is that the PPU actually implemented this functionality by including three extra modes, these are called **bitmap modes**:
 
 - **Mode 3**: Allocates a single fully-coloured (8bpp) frame.
 - **Mode 4**: Provides two frames with half the colours (4bpp) each.
@@ -268,9 +268,9 @@ The reason for having two bitmaps is to enable **page-flipping**: Drawing over a
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-Overall it sounds like a cutting-the-edge feature, however most games held on to the tile engine. Why? Because in practice it **costs a lot of CPU resources**.
+Overall it sounds like a cutting-the-edge feature, however, most games held on to the tile engine. Why? Because in practice it **costs a lot of CPU resources**.
 
-You see, while using a tile engine the CPU can delegate most of the computations to the graphics chip. By contrast, the frame-buffer system that the PPU provides is limited to only displaying that segment of memory as a **single background layer**, that means no more individual affine transformations, layering or effects unless the CPU computes them. Also, the frame-buffer occupies 80 KB of memory, so only 16 KB (half) are available to store sprite tiles.
+You see, while using a tile engine the CPU can delegate most of the computations to the graphics chip. By contrast, the frame-buffer system that the PPU provides is limited to only displaying that segment of memory as a **single background layer**, which means no more individual affine transformations, layering or effects unless the CPU computes them. Also, the frame-buffer occupies 80 KB of memory, so only 16 KB (half) are available to store sprite tiles.
 
 {{% /inner_markdown %}}
 {{< /float_group >}}
@@ -330,7 +330,7 @@ The majority of GBA games used it for accompaniment or effects. Later ones will 
 {{% inner_markdown %}}
 Finally, everything is automatically mixed together and output through the speaker/headphone jack.
 
-Even though the GBA has just two PCM channels, some games can magically play more than two concurrent samples. How is this possible? Well, while only having two channels may seem a bit weak on paper, the main CPU can use some of its cycles to provide both audio sequencing and mixing (that should give you an idea of how powerful the ARM7 is!). Furthermore, in the 'Operating System' section you'll find out that the BIOS ROM included an audio sequencer!
+Even though the GBA has just two PCM channels, some games can magically play more than two concurrent samples. How is this possible? Well, while only having two channels may seem a bit weak on paper, the main CPU can use some of its cycles to provide both audio sequencing and mixing (that should give you an idea of how powerful the ARM7 is!). Furthermore, in the 'Operating System' section, you'll find out that the BIOS ROM included an audio sequencer!
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -363,14 +363,14 @@ ARM7's reset vector is at 0x00000000, which points to a **16 KB BIOS ROM**. That
 That ROM also stores software routines that games may call to simplify certain operations and reduce cartridge size. These include:
 - **Arithmetic functions**: Routines to carry out Division, Square Root and Arc Tangent.
 - **Affine matrix calculation**: Given a 'zoom' value and angle, it calculates the affine matrix that will be input to the PPU in order to scale/rotate a background or sprite.
-  - There are two functions, one for sprites and other for backgrounds. Their parameters are slightly different but the idea is the same.
+  - There are two functions, one for sprites and the other for backgrounds. Their parameters are slightly different but the idea is the same.
 - **Decompression functions**: Implements decompression algorithms including Run-Length, LZ77 and Huffman. It also provides bit unpacking and sequential difference.
 - **Memory copy**: Two functions that move memory around. The first one copies 32-byte blocks using a specialised opcode for this type of transfer ('LDMIA' to load and 'SDMIA' to store) only once. The second one copies 2-byte or 4-byte blocks using repeated 'LDRH/STRH' or 'LDMIA/STMIA' opcodes, respectively. Thus, the second function is more flexible but not as fast.
-- **Sound**: Implements a complete MIDI sequencer! It includes many functions to routines it.
+- **Sound**: Implements a complete MIDI sequencer! It includes many functions to control it.
 - **Power interface**: Shortcuts for resetting, clearing most of the RAM, halting the CPU until a certain event hits (V-blank or custom one) or switching to 'low-power mode'.
 - **Multi-boot**: Uploads a program to another GBA and kickstarts it. More details in the 'Game' section.
 
-The BIOS is connected through a 32-bit bus and it's written using a combination of Arm and Thumb instructions, though the latter the most prominent.
+The BIOS is connected through a 32-bit bus and it's implemented using a combination of Arm and Thumb instructions, though the latter is the most prominent.
 
 Also, remember that all of this will only run on the ARM7. In other words, there isn't any hardware acceleration available to speed up these operations. Hence, Nintendo provided all of this functionality through software.
 
@@ -394,8 +394,8 @@ Now, does this mean that data located at odd addresses (with its least significa
 #### Cartridge RAM space
 
 To hold saves, Game Paks could either include:
-- **SRAM**: These need a battery to keep its content and can size up to 64 KB (although commercial games did not exceed 32 KB). It's accessed through the GBA's memory map.
-- **Flash ROM**: Similar to SRAM without the need of a battery, can size up to 128 KB.
+- **SRAM**: These need a battery to keep their content and can size up to 64 KB (although commercial games did not exceed 32 KB). It's accessed through the GBA's memory map.
+- **Flash ROM**: Similar to SRAM without the need for a battery, can size up to 128 KB.
 - **EEPROM**: These require a serial connection and can theoretically size up to anything (often found up to 8 KB).
 
 #### Accessories
@@ -412,9 +412,9 @@ To combat against *bootleg* cartridges (unauthorised reproductions), the GBA's B
 
 #### Flashcarts
 
-As solid-state storage became more affordable, a new type of cartridge appeared on the market. **Flashcarts** looked like ordinary Game Paks but had the addition of a re-writable memory or a card slot which enabled to run game ROMs. The concept is not new actually, developers have internally used similar tools to test their games on a real console (and manufacturers provided the hardware to enable this).
+As solid-state storage became more affordable, a new type of cartridge appeared on the market. **Flashcarts** looked like ordinary Game Paks but had the addition of a re-writable memory or a card slot that enabled to run game ROMs. The concept is not new actually, developers have internally used similar tools to test their games on a real console (and manufacturers provided the hardware to enable this).
 
-Earlier solutions included a burnable NOR Flash memory (not exceeding the 32 MB) and some battery-backed SRAM. In order to upload binaries to the cartridge, the cart came with a Link-to-USB cable that was used with a GBA and a PC running Windows XP. With the use of a proprietary flasher software and drivers, the computer uploaded a multi-boot program to the GBA, which in turn was used to transfer a game binary from the PC to the Flashcart inserted in the GBA. Overall, the whole task of uploading a game was deemed *sluggish*. Later Flashcarts (like the 'EZ-Flash') offered larger storage and the ability to be programmed without requiring the GBA as an intermediate. Final ones relied on removable storage (SD, MiniSD, MicroSD or whatever).
+Earlier solutions included a burnable NOR Flash memory (not exceeding the 32 MB) and some battery-backed SRAM. To upload binaries to the cartridge, the cart came with a Link-to-USB cable that was used with a GBA and a PC running Windows XP. With the use of a proprietary flasher software and drivers, the computer uploaded a multi-boot program to the GBA, which in turn was used to transfer a game binary from the PC to the Flashcart inserted in the GBA. Overall, the whole task of uploading a game was deemed *sluggish*. Later Flashcarts (like the 'EZ-Flash') offered larger storage and the ability to be programmed without requiring the GBA as an intermediate. The last ones relied on removable storage (SD, MiniSD, MicroSD or whatever).
 
 Commercial availability of these cards proved to be a **grey area**: Nintendo condemned its usage due to enabling piracy whereas some users defended that it was the only method for running **Homebrew** (programs made outside game studios and consequently without the approval of Nintendo). Nintendo's argument was backed by the fact flashers like the EZ-Writer assisted users to patch game ROMs so they can run in EZ-Flash carts without problems. After Nintendo's legal attempts, these cartridges were banned in some countries (like in the UK). Nonetheless, they persisted worldwide.
 

@@ -56,14 +56,14 @@ As you can read from the previous paragraph, only main RAM and some cartridge RO
 
 This is because the Z80 family contains an interesting feature called **I/O ports** which enables the CPU to communicate with other hardware without running out of memory addresses. For this, there's a separate address space for 'I/O devices' called **ports** and both share the same data and address bus. The difference, however, is that ports are read and written using `IN` and `OUT` instructions, respectively - as opposed to the traditional load/store instruction (`LD`).
 
-When an `IN` or `OUT` instruction is executed, the Z80 sets up the address lines pointing to the  peripheral (which could be, for instance, a keyboard), flags its `IORQ` pin indicating that an I/O request has been initiated and also flags the `RD` pin or the `WR` pin whether it's an `IN` or `OUT` instruction, respectively. The addressed peripheral must manually check for the address bus and the I/O pins and perform the required operation. In the case of an `IN` instruction, the CPU will store the received value on a pre-defined register.
+When an `IN` or `OUT` instruction is executed, the Z80 sets up the address lines pointing to the peripheral (which could be, for instance, a keyboard), flags its `IORQ` pin indicating that an I/O request has been initiated and also flags the `RD` pin or the `WR` pin whether it's an `IN` or `OUT` instruction, respectively. The addressed peripheral must manually check for the address bus and the I/O pins and perform the required operation. In the case of an `IN` instruction, the CPU will store the received value on a pre-defined register.
 
 {{< centered_container >}}
   {{< linked_img src="addressing.png" alt="SMS Addressing layout" >}}
   <figcaption class="caption">SMS' Addressing layout</figcaption>
 {{< /centered_container >}}
 
-The way SEGA interconnected the CPU with the rest of the components enables not only to access values, but also showing/hiding certain components from appearing in the memory map. 
+The way SEGA interconnected the CPU with the rest of the components enables not only to access values but also to show/hide certain components from appearing in the memory map. 
 
 Curiously enough, the [Game Boy]({{< ref "game-boy#cpu" >}}) had a Z80 'variant' that completely omitted the I/O ports. Thus, it had to fit everything in the memory map.
 
@@ -75,7 +75,7 @@ The architecture of this console is very similar to its predecessor, the **Sega 
 
 ## Graphics
 
-The drawings on the screen are produced by a proprietary chip called **Video Display Processor** or 'VDP'. Internally, it has the same design of the Texas instrument TMS9918 (used in the SG-1000), but enhanced with more features which we will discuss in the following sections.
+The drawings on the screen are produced by a proprietary chip called **Video Display Processor** or 'VDP'. Internally, it has the same design as the Texas instrument TMS9918 (used in the SG-1000) though enhanced with more features which we will discuss in the following sections.
 
 #### Organising the content
 
@@ -90,7 +90,7 @@ In the case of the Master System, VRAM houses everything the VDP will require fo
 
 #### Constructing the frame
 
-The VDP renders frames with a resolution of **up to 256x192 pixels**, further revision added support for 256x224 px and 256x240 px, however, to maintain compatibility with all models, developers held on to the standard resolution. This chip has the same *modus operandi* of Nintendo's [PPU]({{< ref "nes#constructing-the-frame" >}}), in other words, graphics are rendered on-the-spot.
+The VDP renders frames with a resolution of **up to 256x192 pixels**, further revision added support for 256x224 px and 256x240 px, however, to maintain compatibility with all models, developers held on to the standard resolution. This chip has the same *modus operandi* as Nintendo's [PPU]({{< ref "nes#constructing-the-frame" >}}), in other words, graphics are rendered on-the-spot.
 
 On the other side, the VDP has four different modes of operation which will alter the characteristics of the frame (colour depth and resolution):
 - **Mode 0 to III**: Inherited from the TMS9918 found on the SG-1000. Included for backwards compatibility, although any SMS game can use them.
@@ -118,7 +118,7 @@ Mode IV is based on the **tile system**. To recall [previous explanations]({{< r
 
 Inside VRAM, there's an area dedicated for tiles called **Character generator** (Sega calls 'Characters' to tiles) and it's set to be **14 KB long**. Each tile occupies 32 bytes, so we can store up to 448 tiles.
 
-There are 64 pixels defined on every tile, the VDP rules that each pixel must weight 4 bits, that means that up to **16 colours can be chosen**. Those bits reference a single entry on **Colour RAM** or 'CRAM'. That area is found inside the VDP and stores the colour palettes. Colour palette systems help reduce the size of tiles in memory and allows programmers to alternate its colours without storing multiple copies.
+There are 64 pixels defined on every tile, the VDP rules that each pixel must weigh 4 bits, which means that up to **16 colours can be chosen**. Those bits reference a single entry on **Colour RAM** or 'CRAM'. That area is found inside the VDP and stores the colour palettes. Colour palette systems help reduce the size of tiles in memory and allows programmers to alternate their colours without storing multiple copies.
 
 Colour RAM stores **two palettes of 16 colours each**. Each entry is 6-bit wide and each 2-bit set defines one colour from the RGB model. This means that there are 64 colours available to choose from.
 {{% /inner_markdown %}}
@@ -140,9 +140,9 @@ Colour RAM stores **two palettes of 16 colours each**. Each entry is 6-bit wide 
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-The background layer is a large plane where static tiles are drawn. To place something here, there's another area on VRAM called **Screen map** that takes 1.75 KB. 
+A background layer is a large plane where static tiles are drawn. To place something here, there's another area on VRAM called **Screen map** that takes 1.75 KB. 
 
-This enables to build a layer of 896 tiles (32x28 tiles), but if we do the math we'll see that this layer is larger than the display resolution of this console. The reality is, only 768 tiles (32x24 tiles) are visible, so the visible area is manually selected at the programmer's will. Hence, by slowly alternating the X and Y coordinates of the selected area, a **scrolling effect** is accomplished.
+This enables developers to build a layer of 896 tiles (32x28 tiles), but if we do the math we'll see that this layer is larger than the display resolution of this console. The reality is, only 768 tiles (32x24 tiles) are visible, so the visible area is manually selected at the programmer's will. Hence, by slowly alternating the X and Y coordinates of the selected area, a **scrolling effect** is accomplished.
 
 Each entry of the map is 2 bytes wide (as wide as the VDP data-bus) and contains the address of the tile in the Character generator and the following attributes:
 - **Horizontal and Vertical flip**.
@@ -197,7 +197,7 @@ At first glance, the VDP may seem like another chip with minimal functionality t
 {{< tab active="true" name="Collision detection" >}}
 
 {{% inner_markdown %}}
-Well, first of all, the VDP was able to **tell if two sprites were colliding**. This was done checking its `status` register. It couldn't detect which ones in particular, but that limitation was tackled by reading other registers as well, like the `scan-line counter` one. You can imagine it as a method of 'triangulation'.
+Well, first of all, the VDP was able to **tell if two sprites were colliding**. This was done by checking its `status` register. It couldn't detect which ones in particular, but that limitation was tackled by reading other registers as well, like the `scan-line counter` one. You can imagine it as a method of 'triangulation'.
 
 This feature is not new actually, as the TMS9918 also included it, thus the SG-1000 had collision detection too.
 {{% /inner_markdown %}}
@@ -206,7 +206,7 @@ This feature is not new actually, as the TMS9918 also included it, thus the SG-1
 {{< tab name="The need for modularity" >}}
 
 {{% inner_markdown %}}
-When I previously analysed the design of Nintendo's PPU, I made emphasis at its internal memory architecture. While limited, some constraints were [somewhat beneficial]({{< ref "nes#secrets-and-limitations" >}}) as it enabled the system to be expanded with the use extra hardware included in the game cartridge, keeping the costs down in the process.
+When I previously analysed the design of Nintendo's PPU, I made emphasis on its internal memory architecture. While limited, some constraints were [somewhat beneficial]({{< ref "nes#secrets-and-limitations" >}}) as it enabled the system to be expanded with the use of extra hardware included in the game cartridge, keeping the costs down in the process.
 
 The VDP doesn't take advantage of this modular approach. Instead, Sega implemented a different solution that in turn saves cartridge costs. The smaller background layer and horizontal interrupts are examples of this.
 {{% /inner_markdown %}}
@@ -221,11 +221,11 @@ The VDP doesn't take advantage of this modular approach. Instead, Sega implement
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-It turns out Sega also shipped **'3D glasses'** as an official accessory! The glasses worked in-sync with the CRT. During gameplay, the game switches the position of objects between frames. Each lens has an LCD screen which shuts black to block your eyesight. So, the correct combination of graphics flickering and shutters alternating eventually creates a stereoscopic image in your head. Thus, a '3D' effect.
+It turns out Sega also shipped **'3D glasses'** as an official accessory! The glasses worked in-sync with the CRT. During gameplay, the game switches the position of objects between frames. Each lens has an LCD screen that shuts black to block your eyesight. So, the correct combination of graphics flickering and shutters alternating eventually creates a stereoscopic image in your head. Thus, a '3D' effect.
 
 The shutters are controlled from a couple of memory addresses, but none of them will tell the console if there are glasses plugged in, so games that support this accessory include a settings option that allows the user to manually activate this feature.
 
-The LCD controllers are interfaced with a jack cable, which is plugged to the console. The European and American version didn't include the jack input, so they rely on the card port to connect an adaptor, we'll see more about the card slot later on.
+The LCD controllers are interfaced with a jack cable, which is plugged into the console. The European and American version didn't include the jack input, so they rely on the card port to connect an adaptor, we'll see more about the card slot later on.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -235,7 +235,7 @@ The LCD controllers are interfaced with a jack cable, which is plugged to the co
 
 The video-out connector of this system is *incredibly* handy. It exposes **composite** and **RGB** signals, which can be imagined as the two 'extremes' of video quality.
 
-On the downside, it doesn't carry 'composite sync', so making use of the RGB will require to capture the sync signal from composite, and its quality isn't optimal.
+On the downside, it doesn't carry 'composite sync', so making use of the RGB will require capturing the sync signal from composite, and its quality isn't optimal.
 
 ---
 
@@ -344,7 +344,7 @@ If you take a look again at the example video for the pulse wave, you'll see tha
 
 Now, I use emulators to capture separate channels and avoid interference during recordings, although emulators don't always account for the transient factor, so their result may be closer to the 'ideal scenario' than the realistic one found on 80s electronics. Take a look at the example image. Both samples are taken from emulators, but it seems that the NES one potentially exhibits a behaviour closer to the analogue world.
 
-I don't have the necessary tools right now to confirm whether the SMS should show a similar behaviour. But if it does, it doesn't imply that what you heard is incorrect, just at a slightly different volume (barely noticeable).
+I don't have the necessary tools right now to confirm whether the SMS should show similar behaviour. But if it does, it doesn't imply that what you heard is incorrect, just at a slightly different volume (barely noticeable).
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -375,7 +375,7 @@ Worth pointing out that streaming samples takes a whole lot of CPU cycles, and t
 
 Like the other systems from its generation, the CPU is mostly in charge of handling I/O. In this case, the Z80 processor is unique for having that special I/O addressing, but still, there will be CPU cycles spent in moving bits around components.
 
-On the other side, the SMS uses a dedicated **I/O controller** chip to not only interface the joypads, but also enabling and disabling parts of the system, which will alter the address map. Furthermore, this controller is essential for supporting the FM expansion, since the FM's exposes ports which conflict with the rest of the system (that is, without the intervention of the I/O chip).
+On the other side, the SMS uses a dedicated **I/O controller** chip to not only interface the joypads, but also enabling and disabling parts of the system, which will alter the address map. Furthermore, this controller is essential for supporting the FM expansion, since the FM's exposes ports that conflict with the rest of the system (that is, without the intervention of the I/O chip).
 
 #### Available interfaces
 
@@ -412,7 +412,7 @@ The main goal of the BIOS is to bootstrap a valid game from either game slot in 
 
 The boot process works as follows:
 1. Copy part of its code to main RAM.
-    - A crucial step since the program will start manipulating I/O ports, which will at some point disable access to the ROM! 
+    - This is a crucial step since the program will start manipulating I/O ports, which will at some point disable access to the ROM! 
 1. Show splash screen (Only in USA/Europe).
 2. Check each slot for a valid game.
     - This is done by talking to the I/O controller chip to activate the required section, then copying the game header (16 bytes) from each slot to check if the game content is valid. The header must have `TMR SEGA` encoded.
@@ -421,7 +421,7 @@ The boot process works as follows:
 
 #### Surprise screen
 
-If any of the checks fails, the console will loop indefinitely while showing a screen that prompts the user to insert a valid game.
+If any of the checks fail, the console will loop indefinitely while showing a screen that prompts the user to insert a valid game.
 
 {{< side_by_side >}}
   <div class="toleft">
@@ -453,13 +453,13 @@ Later ones even embedded a whole game! As a consequence, the ROM chip got bigger
 
 ## Games
 
-To make a long story short, games are written in plain Z80 assembly, that's it.  If you've been reading articles of later consoles, there are no compilers or assisting software here (apart from the assembler).
+To make a long story short, games are written in plain Z80 assembly, that's it. If you've been reading articles on later consoles, there are no compilers or assisting software here (apart from the assembler).
 
 #### Medium
 
 The Master Systems provides two different mediums for distributing games:
 - The **Cartridge**: Most common one, up to 48 KB of memory can be addressed. However, by including a mapper, the system can access a wider space and/or handle other chips like RAM which can be used to store saves.
-  - Sega provided official mappers for developers called 'Paging Chips', the most powerful one could map up to 512 KB of memory!
+  - Sega provided official mappers for developers called 'Paging Chips', the most powerful one maps up to 512 KB of memory!
 - The **Sega Card**: Has a very thin case and it's cheaper to manufacture. Up to 32 KB of memory can be addressed. Since SEGA never designed a mapper for this medium, the largest card found in the market contained a 32 KB ROM. 
 
 ---
