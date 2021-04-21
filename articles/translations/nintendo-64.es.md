@@ -9,7 +9,7 @@ javascript: ['threejs', 'plyr']
 top_tabs:
   Model:
     caption: "La Nintendo 64
-    <br>Lanzada el 23/06/1996 en Japón, el 29/09/1997 en América y el 01/03/1997 en Europa"
+    <br>Lanzada el 23/06/1996 en Japón, el 29/09/1996 en América y el 01/03/1997 en Europa"
     file: "international"
   Motherboard:
     caption: "Mostrando la revision 'NUS-CPU-03'.

@@ -252,7 +252,7 @@ Looks pretty simple right? Well, let's dive deeper to see what happens at each s
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-The Emotion Engine kickstarts the Graphics Synthesizer by filling its embedded DDRAM with the required materials (**Texture bitmaps** and **Colour Lookup tables**, the latter are also known as 'CLUT'), assigning values on the GS's registers to configure it, and finally, issuing the drawing commands (Display Lists) which instruct the GS to draw primitives (points, lines, triangles, sprites, etc) at specific locations of the screen.
+The Emotion Engine kickstarts the Graphics Synthesizer by filling its embedded DRAM with the required materials (**Texture bitmaps** and **Colour Lookup tables**, the latter are also known as 'CLUT'), assigning values on the GS's registers to configure it, and finally, issuing the drawing commands (Display Lists) which instruct the GS to draw primitives (points, lines, triangles, sprites, etc) at specific locations of the screen.
 
 Additionally, the GS will preprocess some values that will be needed for later calculations. Most notably, the **Digital Differential Algorithm** value, which will be used for interpolations during drawing.
 {{% /inner_markdown %}}
@@ -309,7 +309,7 @@ Here certain pixels will be discarded if they don't meet a number of requirement
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-The last stage can apply some effects over our new pixels using the previous frame-buffer found in DDRAM:
+The last stage can apply some effects over our new pixels using the previous frame-buffer found in local DRAM:
 - **Alpha Blending**: Merges colours of the current buffer with the previous one in memory. 
 - **Dithering**: Large RGBA values will need be trimmed, so dithering can be applied to soften the loss of precision.
 - **Colour Clamping**: After applying operations like Alpha Blending, the new RGB value may exceed the valid range (0-255), so clamping sets the value within range.
