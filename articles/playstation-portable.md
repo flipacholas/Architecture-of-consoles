@@ -420,7 +420,7 @@ The video cable will send a frame with a resolution of **720x480 pixels (in NTSC
 
 In this section we tend to encounter a [PSG]({{< ref "master-system#audio" >}}), [sequencer]({{< ref "nintendo-64#audio" >}}) or a *large* [mixer]({{< ref "nintendo-ds#audio" >}}). This is because, at the end of the day, dedicated audio hardware is meant to offload audio operations from the CPU. Although, if this hardware tuns out to be 'weak', it degrades the sound capabilities of the console.
 
-Now, what we consider 'sound hardware' in the PSP is very barebones: Only **two PCM channels and a stereo mixer**. The maximum sampling rate and resolution are **44.1 KHz** and **16-bit**, respectively.
+Now, what we consider 'sound hardware' in the PSP is very barebones: Only **two PCM channels and a stereo mixer**. The maximum sampling rate and resolution are **48 KHz** and **16-bit**, respectively.
 
 I don't see any of the accelerators I mentioned in the first paragraph. So, does this imply that the sound will be as limited as [other]({{< ref "nintendo-64#secrets-and-limitations-1" >}}) [cases]({{< ref "game-boy-advance#audio" >}}) showed? No! Because the hardware of the PSP enables to compensate it with more software.
 
@@ -478,7 +478,7 @@ The D-Pad, joystick and buttons are handled by a unique chip referred to as **'S
 
 The console features a good amount of connections:
 - **802.11b WiFi**: Either connects to a hub or operates in 'Ad Hoc' mode to talk to nearby PSPs. This is similar to what the [Nintendo DS]({{< ref "nintendo-ds#freedom-of-interaction" >}}) offered.
-- **2.0 USB**: For accessories or to plug the console into a computer. In the case of the latter, the PSP is recognised as a mass storage device, providing access to the Memory Stick.
+- **USB 2.0**: For accessories or to plug the console into a computer. In the case of the latter, the PSP is recognised as a mass storage device, providing access to the Memory Stick.
 - **IrDA**: Stands for 'Infrared Data Association', similar to what a TV remote uses to change the channel. Before the release of the PSP, the infrared protocol was popular for transferring multimedia between a camera/phone and the computer. As for the PSP, however, the IrDA port went bluntly ignored.
   - As it tends to happen, Sony removed it with the second revisions of the PSP (2000).
 
@@ -885,7 +885,7 @@ A CFW can be installed on top of the current firmware with the help of any kerne
 
 In the end, the last straw happened when the security system of the Playstation 3 was hacked, as it contained the **private keys used to decrypt PSP executables** (the PS3's OS includes a PSP emulator). This allowed anyone to sign user-land software and embed a kernel exploit to produce CFW installers and/or CFW loaders, for instance.
 
-In recent developments, it was discovered that a not-too-old firmware contains an exploit at launch, which could be used to kickstart a CFW of choice. This was packaged in an solution called **Infinity**.
+In recent developments, it was discovered that the latest firmware contains a kernel exploit during the boot process, which could be used to kickstart a CFW of choice. This was packaged in an solution called **Infinity 2**.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
