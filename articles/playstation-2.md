@@ -488,6 +488,8 @@ In later revisions, the PCMCIA port was replaced by an **Expansion Bay** where a
 {{% /inner_markdown %}}
 {{< /float_group >}}
 
+The ethernet transceiver supplied supports transfer rates of up to 100 Mbps (12.5 MB/s). However, the **observed rate is notoriously lower** (down to 2 MB/s in some cases). The explanation for that is relatively simple: To achieve a usable network communication, one is required to implement all the layers of the standard 'OSI Model'; and the transceiver is just one piece of the puzzle. The rest is often delegated to the IOP (thus, done in software) but due to the IOP's limited performance, this results in bottlenecks. There are multiple ways to tackle this and a previous discussion on ps2-home.com provides very insightful info, if you are curious (see the 'Sources' section).
+
 #### Interactive accessories
 
 The new version of their controller, the **DualShock 2**, is a slightly improved version of DualShock. During the days of the original Playstation, multiple revisions of the original controller were released featuring different features (and also bringing fragmentation to the market). Now, for the benefit of developers, there was a single controller that unified all the previous properties.
@@ -757,6 +759,7 @@ Rodrigo
 #### I/O
 
 - assemblergames.com, [**The PlayStation 2 Busses + DEV9** (Archived)](https://web.archive.org/web/20191109145054/https://assemblergames.com/threads/the-playstation-2-busses-dev9.67961/)
+- ps2-home.com, [**PS2 network, what's actually the bottleneck?**](https://www.ps2-home.com/forum/viewtopic.php?t=1409&start=10)
 
 #### Audio
 
