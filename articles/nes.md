@@ -59,7 +59,7 @@ As an example for the curious, the decimal number '42' is represented as:
 - '0010 1010' in binary, but
 - '0100 0010' in BCD.
 
-This is not the place to go deeply into the differences between BCD and standard binary, but to give an outline: BCD is useful for applications that require treating each decimal place separately (for instance, a digital clock). However, it requires more storage since each word can only encode up to the decimal number '99' (whereas traditional binary can encode up to '255' with a four-bit 'word').
+We could go on and on talking about it, but to give an outline: BCD is useful for applications that require treating each decimal place separately (for instance, a digital clock). However, it requires more storage since each word can only encode up to the decimal number '99' (whereas traditional binary can encode up to '255' with a four-bit 'word').
 
 In any case, Ricoh deliberately broke BCD mode in its chip by severing the control lines that activate it. This was presumably done in an effort to avoid paying royalties to MOS, since BCD was patented by them (and the necessary legislation to copyright integrated circuit layouts in the United States wasn't enacted until 1984).
 
@@ -94,7 +94,7 @@ Additionally, the frame that the PPU outputs is built using two different layers
 {{% inner_markdown %}}
 The PPU uses **tiles** as a basic ingredient for producing sprites and backgrounds.
 
-The NES defines tiles as basic 8x8 maps stored in **character memory** (found in the cartridge). Each pixel of the tile uses one of four colours (their palettes are defined later).
+The NES defines tiles as basic 8x8 maps stored in **Character memory** (found in the cartridge). Each pixel of the tile uses one of four colours (their palettes are defined later).
 
 Groups of four tiles are combined in 16x16 maps called **blocks**, within which all tiles must share a colour palette.
 
@@ -124,7 +124,7 @@ The background layer is a 512x480 map containing static tiles. However, only 256
 
 While this architecture may seem flawed at first, it was actually designed to keep cost down while providing simple **expandability**: If games needed a wider background, extra VRAM could be included in the cartridge.
 
-Following each nametable is a 64-byte **attribute table** that specifies which colour palette is assigned to each block.
+Following each nametable is a 64-byte **Attribute table** that specifies which colour palette is assigned to each block.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -397,7 +397,7 @@ Some games used tremolo effects to simulate more channels.
 
 ## Games
 
-They are mainly written in the 6502 assembly language and reside in the **program ROM**, while the game's graphics (tiles) are stored in **character memory**.
+They are mainly written in the 6502 assembly language and reside in the **program ROM**, while the game's graphics (tiles) are stored in **Character memory**.
 
 The 16-bit address space limits the system to 64 KB of addressable memory. The system I/O is memory mapped – that only leaves around 8 KB of available storage for the program. If a game required extra space, extra chips (mappers) would be included in the cartridge, with an attendant increase in production costs.
 
@@ -407,7 +407,7 @@ Some cartridges included an additional battery-backed WRAM to store saves.
 
 ## Anti-piracy and region lock
 
-Nintendo was able to block unauthorised publishing thanks to the inclusion of a proprietary **lockout** chip called the **Checking Integrated Circuit** or **CIC**. It is located in the console and is connected to the reset signal (and thus not easily removed).
+Nintendo was able to block unauthorised publishing thanks to the inclusion of a proprietary **lockout** chip called the **Checking Integrated Circuit** (CIC). It is located in the console and is connected to the reset signal (and thus not easily removed).
 
 This chip runs **10NES**, an internal program that checks for the existence of another lockout chip in the game cartridge. If that check fails then the console is sent into an infinite reset.
 
@@ -420,42 +420,42 @@ You'll notice that the Japanese model of the console, the *Famicom*, was release
 
 ---
 
-## Sources / keep reading
+## Sources / Keep reading
 
 #### General
 
-- [**NES' Wikipedia article**](https://en.wikipedia.org/wiki/Nintendo_Entertainment_System#Technical_specifications)
+- wikipedia.org, [**Nintendo Entertainment System**](https://en.wikipedia.org/wiki/Nintendo_Entertainment_System#Technical_specifications)
 
 #### CPU
 
-- [**Ricoh 2A03**](https://en.wikipedia.org/wiki/Ricoh_2A03)
-- [**MOS Technology 6502**](https://en.wikipedia.org/wiki/MOS_Technology_6502)
-- [**6502 Binary-Coded Decimal (BCD) mode**](http://visual6502.org/wiki/index.php?title=6502DecimalMode)
-- [**Difference between 6502 and 2A03 CPU core**](https://forums.nesdev.com/viewtopic.php?f=9&t=9813)
-- [**Semiconductor Chip Protection Act of 1984**](https://en.wikipedia.org/wiki/Semiconductor_Chip_Protection_Act_of_1984)
-- [**Radio Electronics Magazine** December 1977](https://worldradiohistory.com/Archive-Radio-Electronics/70s/1977/Radio-Electronics-1977-12.pdf#page=86), Page 86
-- [**Radio Electronics Magazine** August 1981](https://archive.org/details/radio_electronics_1981-08/page/n75/mode/2up), Page 76
-- [**How much did the 6502 and Z80 cost?** (Retrocomputing)](https://retrocomputing.stackexchange.com/questions/2760/how-much-did-the-6502-and-z80-cost)
+- wikipedia.org, [**Ricoh 2A03**](https://en.wikipedia.org/wiki/Ricoh_2A03)
+- wikipedia.org, [**MOS Technology 6502**](https://en.wikipedia.org/wiki/MOS_Technology_6502)
+- visual6502.org, [**6502 Binary-Coded Decimal (BCD) mode**](http://visual6502.org/wiki/index.php?title=6502DecimalMode)
+- nesdev.com, [**Difference between 6502 and 2A03 CPU core**](https://forums.nesdev.com/viewtopic.php?f=9&t=9813)
+- wikipedia.org, [**Semiconductor Chip Protection Act of 1984**](https://en.wikipedia.org/wiki/Semiconductor_Chip_Protection_Act_of_1984)
+- Radio Electronics Magazine, [**December 1977 Issue**](https://worldradiohistory.com/Archive-Radio-Electronics/70s/1977/Radio-Electronics-1977-12.pdf#page=86), Page 86
+- Radio Electronics Magazine, [**August 1981 Issue**](https://archive.org/details/radio_electronics_1981-08/page/n75/mode/2up), Page 76
+- retrocomputing.stackexchange.com, [**How much did the 6502 and Z80 cost?**](https://retrocomputing.stackexchange.com/questions/2760/how-much-did-the-6502-and-z80-cost)
 
 #### Graphics
 
-- [**Nametables**](http://wiki.nesdev.com/w/index.php/PPU_nametables)
-- [**Attribute Tables**](https://wiki.nesdev.com/w/index.php/PPU_attribute_tables)
-- [**Object Attribute Memory (OAM)**](http://wiki.nesdev.com/w/index.php/PPU_OAM)
-- [**N3s' detailed explanation** (Archived)](http://web.archive.org/web/20190523120018/https://n3s.io/index.php?title=How_It_Works)
-- [**Retro Game Mechanics Explained, an interesting Youtube Channel**](https://www.youtube.com/channel/UCwRqWnW5ZkVaP_lZF7caZ-g/)
+- nesdev.com, [**PPU Nametables**](http://wiki.nesdev.com/w/index.php/PPU_nametables)
+- nesdev.com, [**PPU Attribute Tables**](https://wiki.nesdev.com/w/index.php/PPU_attribute_tables)
+- nesdev.com, [**PPU Object Attribute Memory (OAM)**](http://wiki.nesdev.com/w/index.php/PPU_OAM)
+- n3s.io, [**How It Works** (Archived)](http://web.archive.org/web/20190523120018/https://n3s.io/index.php?title=How_It_Works)
+- Retro Game Mechanics Explained, [**The Nintendo Entertainment System's Loading Seam** (Youtube)](https://www.youtube.com/watch?v=wfrNnwJrujw)
 
 #### Audio
 
-- [**More info about the APU's channels**](http://retrogameaudio.tumblr.com/)
+- Retro Game Audio, [**NES Audio: Review of the Sound Channels**](https://retrogameaudio.tumblr.com/post/18843375536/nes-audio-review-of-the-sound-channels)
 
 #### Games
 
-- [**Mappers**](https://en.wikipedia.org/wiki/Memory_management_controller)
-- [**MMC3 chip**](https://en.wikipedia.org/wiki/Memory_management_controller#MMC3)
-- [**Famicom's non-CIC**](https://news.ycombinator.com/item?id=1059686)
+- wikipedia.org, [**Mappers**](https://en.wikipedia.org/wiki/Memory_management_controller)
+- wikipedia.org, [**MMC3 chip**](https://en.wikipedia.org/wiki/Memory_management_controller#MMC3)
+- thristian, [**The Japanese Famicom didn't have a CIC** (Hackernews thread)](https://news.ycombinator.com/item?id=1059686)
 
 #### Photography
 
 - Motherboard and console: [**Evan Amos Gallery**](https://commons.wikimedia.org/wiki/User:Evan-Amos)
-- Diagrams and game screenshots: [**Me**](https://www.copetti.org/)
+- Diagrams and game screenshots: [**Rodrigo Copetti (Me)**](https://www.copetti.org/)
