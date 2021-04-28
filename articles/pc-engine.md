@@ -260,8 +260,9 @@ The PC Engine contains a [Programmable Sound Generator]({{< ref "master-system#a
 {{% inner_markdown %}}
 There are **six channels** in this system, each one is set up by writing to a set of registers, there's quite a lot of attributes available to customise so here are the most important ones:
 - **Waveform shape**: The waveform cycle is generated using thirty-two 5-bit values, each one corresponds to the amplitude of the wave at a particular time.
+  - Some games like *Fire Pro Wrestling 2* and *Bloody Wolf* even altered the values during playback to obtain special sounds (at the expense of audible clicks during transfers).
 - **Frequency control**: Two 8-bit registers alter the frequency of the channel to produce different musical notes with the same waveform.
-- **Amplitude level**: Four bits of a shared register control how loud the channel will sound.
+- **Amplitude level**: A single 8-bit register stores two 4-bits values that specify how loud the channel will sound. The two values correspond to the 'Left' and 'Right' **panning control**, a pioneering feature compared to what the competition offered.
 
 {{% /inner_markdown %}}
 
@@ -270,6 +271,10 @@ There are **six channels** in this system, each one is set up by writing to a se
 #### Extra functions
 
 Some groups of channels have other modes of operations. For instance, the last two channels are connected to a **noise generator**. Moreover, the second channel can act as a **Low-frequency oscillator** to modulate the first channel, much like [FM synthesis]({{< ref "mega-drive-genesis#audio" >}}).
+
+Speaking of modes, there's another one available called **Direct D/A (DDA)** which enables the CPU to write over the audio buffer directly (bypassing the PSG). Consequently, the PC Engine can play **PCM samples**. These are still 5-bit and tightly dependent on CPU cycles. Although, two channels can be combined to reproduce 10-bit samples! I strongly suggest you to check out the 'Sources' section to listen to examples.
+
+All in all, this makes the PC Engine's PSG an incredibly flexible piece of hardware.
 
 #### Final sound
 
@@ -438,6 +443,10 @@ Rodrigo
 #### Audio
 
 - NEC, **HuC6280 - CMOS Programmable Sound Generator Manual**
+- youtube.com, [**Stage 1 -Town- Bloody Wolf OST** (runtime waveform example)](https://www.youtube.com/watch?v=iuUymmU7UWs)
+- youtube.com, [**Fire Pro 2 OST** (runtime waveform example)](https://www.youtube.com/watch?v=V845pHyaePk)
+- youtube.com, [**Batman OST** (5-bit PCM example)](https://www.youtube.com/watch?v=dGAhM8L-bT8)
+- youtube.com, [**ADPCM demo PC Engine** (10-bit PCM example)](https://www.youtube.com/watch?v=jdWYOHPV6Uw)
 
 #### Operating System
 
