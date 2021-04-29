@@ -55,7 +55,7 @@ Before we start, we've already covered some parts of the MOS 6502 [here]({{< ref
 
 The 65C02 is another modified version of the MOS 6502 made by Western Design Center, it's a lot more efficient due to its manufacturing approach (CMOS). From the software side, the 65C02 adds a couple of new instructions and modifies the behaviour of some existing ones.
 
-We could a lot more about the 65C02, but I think it's better to focus on the features added by Hudson (complementing the 65C02) because they are critical to efficiently operate this console. Compared to the 65C02, the HuC6280 has:
+We could talk a lot more about the 65C02, but I think it's better to focus on the features added by Hudson (complementing the 65C02) because they are critical to efficiently operate this console. Compared to the 65C02, the HuC6280 has:
 - **More opcodes**, some targeting the components surrounding the CPU.
 - An **8-bit I/O port** used to interface external components.
 - An **interrupt controller** to receive interrupts from other devices.

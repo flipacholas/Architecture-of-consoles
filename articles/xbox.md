@@ -14,7 +14,7 @@ top_tabs:
   Motherboard:
     caption: "Showing first revision
     <br>Controllers are plugged using a separate daughterboard
-    <br>Missing SRAM chips are on the back and there are four unpopulated SRAM slots"
+    <br>Missing SDRAM chips are on the back and there are four unpopulated SDRAM slots"
   Diagram:
     caption: "Each controller is connected to a separate USB hub"
 
@@ -170,11 +170,11 @@ The combination of these chips is called **chipset** and they are important enou
 
 {{< /float_group >}}
 
-Both chips are interconnected using a specialised bus called the **HyperTransport**. It's worth pointing out that some PC motherboards also included this technology, just with a different brand (nForce MCP-D).
+Both chips are interconnected using a specialised bus called the **HyperTransport**. It's worth pointing out that some PC motherboards also included this technology, just with a different brand (*nForce MCP-D*).
 
 #### Memory layout
 
-The Xbox includes a total of **64 MiB of DDR SRAM**, this type of RAM is very fast compared to what the competition offers. However, it's also shared across all components of this system. Hence, once more, we find ourselves in front of another **unified memory architecture** or 'UMA' layout.
+The Xbox includes a total of **64 MiB of DDR SDRAM**, this type of RAM is very fast compared to what the competition offers. However, it's also shared across all components of this system. Hence, once more, we find ourselves in front of another **unified memory architecture** or 'UMA' layout.
 
 {{< float_group >}}
 
@@ -557,13 +557,13 @@ To try all of this out, Microsoft distributed their own development kit hardware
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-To avoid Copyright litigation to Homebrew developers using the official SDK, a group of developers unaffiliated with Microsoft created a replacement of the official SDK called **Open XDK**. After some years, its development stopped, so another group picked it up from there and named the new fork **New XDK** or 'NXDK'.
+To avoid Copyright litigation to Homebrew developers using the official SDK, a group of developers unaffiliated with Microsoft created a replacement of the official SDK called **Open XDK**. After some years, its development stopped, so another group picked it up from there and named the new fork **New XDK** or 'nxdk'.
 
 The ongoing project reverse-engineered the low-level hardware components (microcode, push-buffers, etc) and designed a new API in C/C++ which provides high-level calls to each portion of the system.
 
-To simplify the graphics layer without relying on Direct3D, the NXDK currently uses the **CG** compiler. CG is a language created by Nvidia for developing shaders. CG is chained with other compilers to generate Xbox-compatible code. During compilation, CG code is converted into NV20-compatible assembly then, this is translated again using a custom compiler to generate NV2A-compatible microcode and pushbuffer. For those who don't want to use CG, NXDK also exposes the rest of the compilers to write low-level shaders.
+To simplify the graphics layer without relying on Direct3D, nxdk uses the **CG compiler**. CG is a language created by Nvidia for developing shaders. CG is chained with other compilers to generate Xbox-compatible code. During compilation, CG code is converted into NV20-compatible assembly, then, this is translated again using a custom compiler to generate NV2A-compatible microcode and pushbuffer. For those who don't want to use CG, nxdk also exposes the rest of the compilers to write low-level shaders.
 
-The rest of the APIs available handle other services (audio, networking, etc). All in all, this library gives more control of the hardware (as opposed to the official SDK) at the exchange of not using Microsoft's APIs (the de-facto standard, albeit completely proprietary). However, the NXDK remains the most adequate option for developing legal Homebrew programs.
+The rest of the APIs available handle other services (audio, networking, etc). All in all, this library gives more control of the hardware (as opposed to the official SDK) at the exchange of not using Microsoft's APIs (the de-facto standard, albeit completely proprietary). However, nxdk remains the most adequate option for developing legal Homebrew programs.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
