@@ -43,7 +43,13 @@ The CPU market in the late 70s and early 80s was quite diverse. If a company wan
 
 As if these options weren't enough, another company named **MOS** appeared on the market and offered a redesigned version of the 6800, the **6502**. While incompatible with the rest, the new chip was much *much* less expensive to produce and it was only a matter of time before the most famous computer makers (Commodore, Apple, Atari, Acorn and so forth) chose the 6502 to power their machines.
 
-Back in Japan, Nintendo needed something inexpensive but familiar to develop for, so they selected the 6502. Ricoh, their CPU supplier, successfully produced a 6502-compatible CPU by licensing MOS' chip design and subsequently making some modifications here and there (we'll go over the details later on).
+Back in Japan, Nintendo needed something inexpensive but familiar to develop for, so they selected the 6502. **Ricoh**, their CPU supplier, successfully produced a 6502-compatible CPU. 
+
+'How' Ricoh managed to clone it isn't clear to this day. One would expect MOS to have licensed the chip design to Ricoh, but there are many contradictions to this:
+- Ricoh's and MOS' version feature the same layout, but Ricoh's one contain severed buses (disabling certain functions). I go into more details later.
+- A document explicitly stating that MOS licensed the 6502 to Ricoh is yet to be found.
+- An article published in 2008 by Nikkei Trendy states that Ricoh licensed from Rockwell, an authorised chip manufacturer. Although, it's debatable whether a second source was able to provide IP to a third-party, at least with MOS' approval.
+- It wouldn't be the first time Nintendo got away with circumventing IP rights, as *Ikegami Tsushinki v. Nintendo* ruled in Japan that Nintendo didn't own the code of the original Donkey Kong.
 
 #### Memory
 
@@ -59,9 +65,9 @@ As an example for the curious, the decimal number '42' is represented as:
 - '0010 1010' in binary, but
 - '0100 0010' in BCD.
 
-We could go on and on talking about it, but to give an outline: BCD is useful for applications that require treating each decimal place separately (for instance, a digital clock). However, it requires more storage since each word can only encode up to the decimal number '99' (whereas traditional binary can encode up to '255' with a four-bit 'word').
+We could go on and on talking about it, but to give an outline: BCD is useful for applications that require treating each decimal place separately (for instance, a digital clock). However, it requires more storage since each word can only encode up to the decimal number '99' (whereas traditional binary can encode up to '255' with a four-bit word).
 
-In any case, Ricoh deliberately broke BCD mode in its chip by severing the control lines that activate it. This was presumably done in an effort to avoid paying royalties to MOS, since BCD was patented by them (and the necessary legislation to copyright integrated circuit layouts in the United States wasn't enacted until 1984).
+In any case, Ricoh deliberately broke BCD mode in its chip by severing the control lines that activate it. This was presumably done in an effort to avoid paying royalties to MOS, since BCD was patented by them (and the legislation that enabled to copyright integrated circuit layouts in the United States wasn't enacted until 1984).
 
 ---
 
@@ -436,6 +442,8 @@ You'll notice that the Japanese model of the console, the *Famicom*, was release
 - Radio Electronics Magazine, [**December 1977 Issue**](https://worldradiohistory.com/Archive-Radio-Electronics/70s/1977/Radio-Electronics-1977-12.pdf#page=86), Page 86
 - Radio Electronics Magazine, [**August 1981 Issue**](https://archive.org/details/radio_electronics_1981-08/page/n75/mode/2up), Page 76
 - retrocomputing.stackexchange.com, [**How much did the 6502 and Z80 cost?**](https://retrocomputing.stackexchange.com/questions/2760/how-much-did-the-6502-and-z80-cost)
+- Nikkei Trendi, [**Nintendo "Famicom" was born in this way** (Archived, Japanese)](https://web.archive.org/web/20141017171734/http://trendy.nikkeibp.co.jp/article/special/20081002/1019378/)
+- Travis Fahs, [**The Secret History of Donkey Kong**](https://www.gamasutra.com/view/feature/134790/the_secret_history_of_donkey_kong.php?print=1), Gamasutra
 
 #### Graphics
 
