@@ -2,7 +2,7 @@
 name: Dreamcast
 date: 2019-10-07
 releaseDate: 1998-11-27
-subtitle: The last attempt
+subtitle: One last attempt
 generation: 6
 javascript: ['threejs', 'plyr']
 cover: dreamcast
@@ -45,7 +45,7 @@ Unsurprisingly, Sega chose Hitachi again to develop their CPU. If you've been re
 
 #### Extra work
 
-The common chores of a game console CPU include handling a game's logic, running the enemy AI and keeping the GPU fed with instructions. In the Dreamcast the SH-4 is also involved in the majority of the graphics pipeline, processing geometry data such as computing perspective transformations. As a result, it includes a **128-bit SIMD** unit that can accelerate vector operations.
+The common chores of a game console CPU include handling a game's logic, running the enemy AI and keeping the GPU fed with instructions. In the Dreamcast, the SH-4 is also involved in the majority of the graphics pipeline, processing geometry data such as computing perspective transformations. As a result, it includes a **128-bit SIMD** unit that can accelerate vector operations.
 
 #### Improving memory access
 
@@ -57,7 +57,7 @@ The programmer decides whether to use these features or not. Games for this syst
 
 #### No UMA but...
 
-While this system is not designed around the strict Unified Memory Architecture like a [well-known competitor]({{< ref "nintendo-64#simplified-memory-access">}}), it does delegate I/O access to the GPU. That means that if the CPU has to fetch anything that's beyond its own dedicated RAM or a serial interface which is also connected too, it will have to request the GPU (and wait if necessary).
+While this system is not designed around the strict Unified Memory Architecture like a [well-known competitor]({{< ref "nintendo-64#simplified-memory-access">}}), it does **delegate I/O access to the GPU**. That means that if the CPU has to fetch anything that's beyond its dedicated RAM or a serial interface (which is also connected too), it will have to request the GPU and wait if necessary.
 
 #### Special queries
 
@@ -67,7 +67,7 @@ This CPU also features a unique functionality called **Parallel I/O** or 'PIO' t
 
 ## Graphics
 
-The GPU package is a custom-made chip called **Holly** running at 100 MHz, it's designed by VideoLogic (now known as Imagination Technologies) and manufactured by NEC. Holly's 3D core happens to be Videologic's **PowerVR2** (also called 'PowerVR Series2' and 'CLX2').
+The GPU package is a custom-made chip called **Holly** running at **100 MHz**, it's designed by VideoLogic (now known as Imagination Technologies) and manufactured by NEC. Holly's 3D core happens to be Videologic's **PowerVR2** (also called 'PowerVR Series2' and 'CLX2').
 
 {{< float_group >}}
 
@@ -77,16 +77,16 @@ The GPU package is a custom-made chip called **Holly** running at 100 MHz, it's 
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-VideoLogic chose an alternative approach for the construction of their 3D engine called **Tile-Based Deferred Rendering** or 'TBDR'.
+VideoLogic chose an alternative approach for the construction of their 3D engine called **Tile-Based Deferred Rendering** (TBDR).
 
-TBDR, instead of rendering a whole frame at once (as traditional **Immediate Mode Renderers** or 'IMR' do), divides the rendering area into multiple sections called 'tiles'. Then, it carries out the rendering process on each tile individually and the result is combined to form the final frame.
+Instead of rendering a whole frame at once (as traditional **Immediate Mode Renderers** or 'IMR' do), TBDR divides the rendering area into multiple sections called 'tiles'. Then, it carries out the rendering process on each tile individually and the result is combined to form the final frame.
 
 {{% /inner_markdown %}}
 {{< /float_group >}}
 
 This innovative design brings interesting advantages:
 - It can be greatly **parallelised**, which significantly reduces bandwidth and power usage.
-- It implements a clever solution to the [**visibility problem**]({{< ref "sega-saturn#an-introduction-to-the-visibility-problem" >}}) by automatically sorting the polygons **from front to back** and then performing [z-tests]({{< ref "nintendo-64#modern-visible-surface-determination" >}}) at the first stages of the pipeline. The combination of these tasks not only solves the original problem, but it also **prevents overdraw** (rasterisation of hidden polygons) which wastes resources, degrading performance.
+- It implements a clever solution to the [**visibility problem**]({{< ref "sega-saturn#an-introduction-to-the-visibility-problem" >}}) by automatically sorting the polygons **from front to back** and then performing [z-tests]({{< ref "nintendo-64#modern-visible-surface-determination" >}}) at the first stages of the pipeline. The combination of these tasks not only solves the original issue, but it also **prevents overdraw** (rasterisation of hidden polygons) which wastes resources and degrades performance.
 
 It's no surprise that Imagination took this efficient technology forward to build the Series 4 PowerVR cores which powered an incredible number of devices, including the first generation of iPhone, the iPhone 3G, the Nokia N95 and the Dell Axim x51.
 
@@ -103,16 +103,16 @@ Let's take a look at the two main components of the Dreamcast's GPU:
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-Before the rendering process starts a component known as the **Tile Accelerator** performs pre-processing. It starts by allocating several 32x32 tile bins into which the geometry will be rendered.
+Before the rendering process starts, a component known as the **Tile Accelerator** performs pre-processing. It starts by allocating several 32x32 tile bins into which the geometry will be rendered.
 
-Then the Tile Accelerator will:
+Then, the Tile Accelerator will:
 
 1. Grab the geometry data and drawing commands issued by the CPU (either using DMA or traditional transfers).
-2. Compile this data into an **internal format**.
+2. Convert this data into an *internal* format.
 3. Distribute the geometry to each bin based on its coordinates. Clipped geometry will be discarded as well.
 4. Generate the resulting Display Lists.
 
-These Display Lists will be interpreted by the 3D engine.
+These Display Lists are then interpreted by the 3D engine: The PowerVR2.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -125,14 +125,14 @@ These Display Lists will be interpreted by the 3D engine.
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-Here is where the graphics are brought into life, the Display Lists received from the TA will be used to render the geometry of a single tile using an **internal frame-buffer**. The process is as follows:
+Here is where the graphics are brought into life, the Display Lists received from the TA tell the core to render the geometry of a single tile using an **internal frame-buffer**. The process is as follows:
 
 1. The **Image Synthesis Processor** or 'ISP' fetches the primitives (either triangles or quads) and performs **Hidden-Surface Removal** to remove unseen polygons. Then, after calculating its Z-buffers and stencil buffers, the data goes through **Depth Testing** to avoid rendering polygons that would appear behind others and **Stencil Tests** to cull geometry that won't be visible if they are located behind a 2D polygon (also called **Mask**).
-    - Notice how these tests are effectively carried out at the start of the pipeline. In contrast previous consoles [using z-buffers]({{< ref "nintendo-64#modern-visible-surface-determination" >}}) discard the geometry at the end of the pipeline. The ISP approach prevents processing the geometry that will eventually be discarded, thereby saving resources.
-2. The **Texture and Shading Processor** or 'TSP' applies colouring and shading over the tile area. It also provides multiple effects (more details later on).
+    - Notice how these tests are effectively carried out at the start of the pipeline. In contrast, previous consoles [using late z-buffering]({{< ref "nintendo-64#modern-visible-surface-determination" >}}) discard the geometry at the end of the pipeline. The ISP approach prevents processing the geometry that will eventually be discarded, thereby saving resources.
+2. The **Texture and Shading Processor** or 'TSP' applies colouring, shading and multiple effects over the tile area.
     - Textures are not applied until the tile is exported, meaning that emerging overdraw (if any) will not lower the fill rate.
 
-After the operation is completed, the rendered tile is written to the main frame-buffer in VRAM. This process is repeated until all tiles are finished. Once complete the resulting frame-buffer is picked by the **Video encoder** and sent through the video signal.
+After the operation is completed, the rendered tile is written to the main frame-buffer in VRAM. This process is repeated until all tiles are finished. Once complete, the resulting frame-buffer is picked by the **Video encoder** and sent through the video signal.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -140,7 +140,7 @@ After the operation is completed, the rendered tile is written to the main frame
 
 #### The big picture
 
-Apart from the clear architectural difference, the Texture and Shading Processor comes with many capabilities that give one an idea of how distant this console is from the old [Saturn]({{< ref "sega-saturn">}}). Here are a few:
+Apart from the clear architectural difference, the Texture and Shading Processor comes with many capabilities that give one an idea of how distant this console is from the old [Saturn]({{< ref "sega-saturn">}}). Here are a notable examples:
 
 - **Alpha blending**: Combines colours of overlapping layers to achieve transparency effects.
   - The process used for applying transparency in this system is called **order-independent transparency**. The algorithm automatically sorts the primitives before blending their colours, and while this slows down the rendering process, it avoids relying on the game itself to do all the sorting manually. For this reason, Dreamcast games excelled in displaying transparent objects.
@@ -178,22 +178,12 @@ The video system was designed to support multiple types of screens and formats, 
 - **S-Video**: Combines luma and sync while keeping chroma separated (two video lines in total).
 - **RGB**: Sends separate Red-Green-Blue signals and provides different sync types to choose from (composite sync or extracted from video composite or S-Video).
   - A SCART cable will use this type. 
-- **VGA**: Combines RGB with two special sync signals (horizontal and vertical) resulting in five video lines in total. This enables to display the biggest resolution possible (720x480) in progressive mode (thus, this mode is often named '480p'). VGA has actually been the standard format/medium used by computer monitors for some time.
+- **VGA**: Combines RGB with two sync signals (horizontal and vertical) resulting in five video lines in total. This enables to display the biggest resolution possible (720x480) in progressive mode (thus, this mode is often named '480p'). VGA has actually been the standard format/medium used by computer monitors for some time.
   - To use this type, Sega provided a VGA adapter as an extra accessory.
 
-Now, the Dreamcast can't encode all of these at the same time, so the GPU and the Audio processor contain a register called **Image Mode** that coordinates which required video/audio buses will be activated to generate the requested signal. The CPU detects which type of cable is inserted (by checking which select bits of the video connector are active) and writes the required values on the GPU, which will then be forwarded to the Audio processor.
+Now, the Dreamcast can't encode all of these at the same time, so the GPU and the Audio processor contain a register called **Image Mode** that coordinates which video/audio buses will be activated to generate the requested signal. The CPU detects the type of cable inserted (by checking which 'select bits' of the video connector are active) and writes the required values on the GPU. Finally, the values are forwarded to the Audio processor.
 
-Since VGA is strictly a progressive type of signal (as opposed to the traditional *interlaced*), some compatibility issues arose with games which were only designed for interlaced video. These explicitly state in their code that won't display on VGA, so the CPU will block the game until the user swaps out the VGA cable for another type.
-
-#### Unified I/O Access
-
-The GPU also includes another module for handling most of the I/O called **System Bus**. It provides the following interfaces:
-- The **G1** interface: Where the **BIOS ROM** along with its saved configuration and the **GD-ROM** content can be accessed.
-- The **G2** interface: Provides access to the **Modem** and **Sound Controller**.
-- The **Maple** interface: Transfers chunks of data between the controllers (along with its accessories connected to it) and the CPU. It's a **serial bus** and provides a dedicated DMA.
-- The **SH-4** interface: Connects the main CPU for general purpose communications.
-- The **DDT** interface: Takes control of the CPU bus to access its main memory during DMA transfers.
-- The **PVR** interface: Connects the CPU with the Tile Accelerator using a dedicated DMA.
+Since VGA is strictly a progressive type of signal (as opposed to the traditional *interlaced*), some compatibility issues arose with games that were only designed for interlaced video. These explicitly state in their code that the game won't display on VGA, so the CPU will block the game until the user swaps out the VGA cable for another type.
 
 ---
 
@@ -201,13 +191,15 @@ The GPU also includes another module for handling most of the I/O called **Syste
 
 The Audio functionality is handled by a custom chip called **AICA** made by Yamaha, it's an improved version of the [SCSP used in the Saturn]({{< ref "sega-saturn#audio" >}}) and composed of four components:
 
-- The **Sound Integrated Circuit** or 'IC': A set of modules (Synthesiser, DSP and Mixer) that generates the audio signal and applies effects on it. It supports up to 64 PCM channels with a resolution of 16 or 8 bits and a sampling rate of 44.1 kHz (overall, this is the optimal quality for playing audio). 
-  - Additionally, it includes an ADPCM decoder to offload some work from the CPU.
-  - Curiously enough, it also includes two MIDI pins to connect a MIDI instrument, although this is meant to be used during development.
-- **2 MB of SDRAM**: Stores sound data and programs. It can be filled by the main CPU using DMA.
-- An **ARM7DI** running at ~2.82 MHz: Controls the Sound IC. This CPU is programmed by booting a small software stored in SRAM (sent by the main CPU) which will allow it to interpret the audio data and manipulate the Sound IC accordingly. 
+- The **Sound Integrated Circuit** or 'IC': A set of modules (synthesiser, DSP and mixer) that generates the audio signal and applies effects on it. It supports up to **64 PCM channels** with a resolution of **16 or 8 bits** and a sampling rate of **44.1 kHz**. Overall, this is the optimal quality for playing audio. 
+  - Additionally, it includes an **ADPCM decoder** to offload some work from the CPU.
+  - Curiously enough, it also provides **two MIDI pins** to connect a MIDI instrument, although this is meant to be used during development.
+- **2 MB of SDRAM**: Stores sound data and programs. It's filled by the main CPU using DMA.
+- An **ARM7DI** running at ~2.82 MHz: Controls the Sound IC. This CPU is programmed by booting a small software (called [driver]({{< ref "super-nintendo#audio" >}})) stored in SRAM which interprets the audio data and manipulates the Sound IC accordingly. 
   - If you wonder, a similar CPU is also used [here]({{< ref "game-boy-advance">}}).
 - **Memory Controller**: Interfaces the 2 MB of SDRAM.
+
+To help with development, the official SDK included multiple sound drivers for different needs (sequencing, decoding, etc).
 
 #### Evolution
 
@@ -216,29 +208,36 @@ We've come so far since the days of the [Mega Drive/Genesis]({{< ref "mega-drive
 {{< side_by_side >}}
   <div class="toleft">
     {{< video src="megadrive" >}}
-    <figcaption class="caption">Sonic 3D Blast (1996) for the Mega Drive</figcaption>
+    <figcaption class="caption">Sonic 3D Blast (1996) for the Mega Drive
+    <br>The predecessor performs FM synthesis to generate audio signals on the fly</figcaption>
   </div>
 
   <div class="toright">
     {{< video src="dreamcast" >}}
     <figcaption class="caption">Sonic Adventure (1999) for the Dreamcast
-    <br>There's only two channels since it's just a PCM stereo sample</figcaption>
+    <br>The new audio subsystem processes PCM samples without any hassle</figcaption>
   </div>
 {{< /side_by_side >}}
 
+Instead of programming an FM chip, the composers of Sonic Adventure produced their soundtrack in-house and then encoded it to 'ADX', a lossy format developed by CRI Middleware. Hence, it only uses two of the 64 PCM channels (stereo).
+
+ADX compression enables the game to decode and stream the data from the GD-ROM to the Sound IC without running out of memory or bandwidth. The driver can be implemented in many ways, as there are multiple multiple approaches to balance the workload of the main CPU and ARM7.
+
 #### Staying alive
 
-Somehow this chip is also responsible for providing a **Real Time Clock** or 'RTC' to the BIOS, it's also connected to a clock battery to continue working without AC power.
+Somehow, this chip is also responsible for providing a **Real Time Clock** (RTC) to the BIOS, it's also connected to a clock battery to continue working without AC power.
 
 ---
 
 ## Operating System
 
-During the console's lifespan, there have been two different OS that could run on the Dreamcast:
+2 MB of 'System ROM' stores a **BIOS** that bootstraps the game or a small shell when the console is switched on.
 
-#### Classic Shell
+The BIOS also contains routines that games use to simplify I/O functions, like reading from the GD-ROM drive.
 
-The 2 MB of 'System ROM' stores a **BIOS** that runs a small shell when the console is switched on.
+#### Shell
+
+If there isn't a valid game disc inserted, the console proceeds to boot the graphic shell.
 
 {{< float_group >}}
 
@@ -248,7 +247,7 @@ The 2 MB of 'System ROM' stores a **BIOS** that runs a small shell when the cons
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-It contains a simple graphical user interface to allow the user to perform basic but necessary tasks like:
+The shell contains a simple graphical user interface to enable the user to perform basic but necessary tasks like:
 
 - Start the game, if it hasn't already.
 - Manipulate the save data stored in the VMU (more details about this device later!).
@@ -260,7 +259,7 @@ It contains a simple graphical user interface to allow the user to perform basic
 
 #### Windows CE
 
-Ever since the Dreamcast's announcement, it was said that it would run **Windows CE**: a stripped-down version of Windows designed for use on embedded devices. This may have misled users who may have expected to see a Windows CE desktop environment running on their console.
+Ever since the Dreamcast's announcement, it was said that the console can run **Windows CE**: a stripped-down version of Windows designed for use on embedded devices. This is a bit misleading considering some users would expect to see a full Windows CE desktop environment running on their console.
 
 {{< float_group >}}
 {{< float_block >}}
@@ -269,47 +268,58 @@ Ever since the Dreamcast's announcement, it was said that it would run **Windows
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-In reality, the purpose of this system was very similar to what Nintendo did with [the Nintendo 64]({{< ref "nintendo-64#operating-system" >}}): to provide programmers with a fair layer of abstraction to simplify certain operations.
+In reality, the purpose of this 'OS' was very similar to what Nintendo did with [the Nintendo 64]({{< ref "nintendo-64#operating-system" >}}): to provide programmers with a fair layer of abstraction to simplify certain operations.
 
-Microsoft worked with Sega to bring Windows CE to the Dreamcast. The result was a subset of CE with the minimal components needed to provide graphics, audio, debugging, and compatibility with software like Microsoft's star IDE: *Visual Studio*.
-
-Some developers found this very attractive. Since the audio-graphics framework included with CE was none other than **DirectX 6**, thousands of PC games of that era could, in theory, be easily ported to the Dreamcast...
+Microsoft worked with Sega to bring Windows CE to the Dreamcast. The result was a subset of CE with the minimal components needed to provide graphics, audio and debugging. This included the use of Microsoft's star IDE, **Visual Studio**, for development.
 {{% /inner_markdown %}}
 
 {{< /float_group >}}
 
-However, the architectural differences between the Dreamcast and the conventional PC were too great to ignore. Also, embedding this system increased the game's loading time (after all, the 'OS' had to be loaded from a disc) and Windows CE happened to eat a substantial part of resources from the Dreamcast (not surprisingly, PCs were already suffering from that).
+Some developers found this option very attractive. Since the audio-graphics framework included with CE was none other than **DirectX 6**, thousands of PC games of that era could, in theory, be easily ported to the Dreamcast...
 
-In the end, Windows CE provided just another choice for developers to embed in their game. Nonetheless, a considerable number of Dreamcast games ended up being written using Windows APIs & DirectX.
+However, the architectural differences between the Dreamcast and the conventional PC were too great to ignore. Also, embedding this system increased the game's loading time (after all, the 'OS' had to be loaded from a disc) and Windows CE happened to eat a substantial part of resources from the Dreamcast (*not surprisingly, PCs were already suffering from that*).
+
+In the end, 'Windows CE for Dreamcast' was just another SDK of choice for developers (it's commonly referred to as **Dragon SDK**). Nonetheless, a considerable number of Dreamcast games ended up choosing Windows APIs and DirectX.
+
+---
+
+## I/O
+
+The GPU also includes another module for handling most of the I/O called **System Bus**. It provides the following interfaces:
+- The **G1** interface: Where the **BIOS ROM** along with its saved configuration and the **GD-ROM** content can be accessed.
+- The **G2** interface: Provides access to the **Modem** and **Sound Controller**.
+- The **Maple** interface: Transfers chunks of data between the controllers (along with its accessories connected to it) and the CPU. It's a **serial bus** and provides a dedicated DMA.
+- The **SH-4** interface: Connects the main CPU for general purpose communications.
+- The **DDT** interface: Takes control of the CPU bus to access its main memory during DMA transfers.
+- The **PVR** interface: Connects the CPU with the Tile Accelerator using a dedicated DMA.
 
 ---
 
 ## Games
 
-Development was mainly done in **C** or **C++**: At first, C was the recommended choice since the available C++ compilers were initially very limited in functionality.
+Development was mainly done in **C** or **C++**. At first, C was the recommended choice since the available C++ compilers were initially very limited in functionality.
 
-Sega also provided development hardware in the form of a PC-like tower called the **Sega Katana Development Box**. This is Dreamcast hardware with enhanced I/O for development. It also came with a CD containing the official **Katana SDK** that can be installed on a Windows PC.
+Sega also provided development hardware in the form of a PC-like tower called the **Sega Katana Development Box**. This is Dreamcast hardware with enhanced I/O for development. It also came with a CD containing the official **Katana SDK** and tools to be installed on a Windows 98 PC.
 
-In the case developers chose Windows CE as their main framework instead (by switching to **Dragon SDK**), they also had DirectX 6.0 and Visual C++ 6.0 available to make their games.
+In the case developers chose the Dragon SDK instead, DirectX 6.0 and Visual C++ 6.0 were also available to them.
 
 #### Medium
 
-Games are stored in GD-ROMs, which are just CD-ROM with a higher density of pits (reaching a gigabyte of capacity). The speed is 12x which is not too shabby compared to the Saturn's 2x CD reader.
+Games are stored in GD-ROMs, which are just CD-ROM with a higher density of pits (reaching a gigabyte of capacity). The speed is 12x, which is *not too shabby* compared to Saturn's 2x CD reader.
 
 #### Online platform
 
-Dreamcasts shipped with a **modem** module installed which games could use to 'call' a dial-up service for online gaming, Sega provided two services: **SegaNet** (used in America and Japan) and **Dreamarena** (the European counterpart).
+The Dreamcast shipped with a **modem** module installed which games could use to 'call' a dial-up service for online gaming. Sega provided two services: **SegaNet** (used in America and Japan) and **Dreamarena** (the European counterpart).
 
-Players had to first register with a service by using an extra disc that came with some games called **DreamKey**, it provided a web browser used to register an account.
-Initially, DreamKey came a pre-configured service depending on the region, later revisions allowed users to alter its ISP settings to connect to any of them.
+Players registered with a service using **DreamKey**, an extra disc that was bundled with some games. DreamKey provided a web browser to register an account. Initially, DreamKey came a pre-configured service depending on the region, but later revisions allowed users to alter its ISP settings to connect to any of them.
 
-There was also a dedicated Dreamcast branded keyboard and mouse available to buy, just in case the user fancied surfing the Internet like on a PC. 
+There was also a Dreamcast-branded keyboard and mouse available to buy, just in case the user fancied surfing the net *PC-style*.
 
-Unfortunately, SegaNet and Dreamarena were discontinued two years after launch, games that exclusively relied on them are unusable unless such services are emulated using extra tools (like the DreamPi, a Raspberry Pi image that replicates them with the help of some servers maintained by a community of users).
+Unfortunately, SegaNet and Dreamarena were discontinued two years after launch. Thus, games that exclusively relied on them became unusable, unless such services are emulated using extra tools (like the DreamPi, a Raspberry Pi image that replicates them with the help of servers maintained by a community of users).
 
 #### Interactive memory card
 
-Another innovative feature that the Dreamcast included was the **Visual Memory Unit** or 'VMU'. It is attached to the controller and, aside from serving as a memory card, is a fully-fledged device that includes:
+Another innovative feature that the Dreamcast featured was the **Visual Memory Unit** or 'VMU'. It is attached to the controller and, aside from serving as a memory card, is a fully-fledged device that includes:
 
 {{< float_group >}}
 {{< float_block >}}
@@ -343,22 +353,22 @@ Another innovative feature that the Dreamcast included was the **Visual Memory U
 
 The VMU has two modes of operation:
 
-- **Attached to the controller**: The official controller has two slots to connect VMUs and other accessories with the same shape, if the VMU is inserted on the first slot (visible from the front of the controller), the VMU can display some drawings during gameplay. Moreover, the Dreamcast can store saves and a program on the VMU.
+- **Attached to the controller**: The official controller has two slots to connect VMUs and other accessories with the same shape, if the VMU is inserted on the first slot (visible from the front of the controller), it can display drawings during gameplay. Moreover, the Dreamcast can store saves and a program on the VMU.
 - **Detached from the controller**: The gadget becomes a Tamagotchi-like device with a clock, save manager and can also run whatever program the Dreamcast previously transferred. Two VMUs can be connected to share content as well.
 
 ---
 
 ## Anti-Piracy & Homebrew
 
-Using the proprietary GD-ROM format helped to inhibit the production of unauthorised copies of games [and running them on other consoles]. Dreamcast games are also _region-locked_ meaning that a console will refuse to run a game intended for a different region.
+Using the proprietary GD-ROM format helped to inhibit the production of unauthorised copies of games (and running them on other consoles). Dreamcast games are also *region-locked* meaning that a console will refuse to run a game intended for a different region.
 
 #### Defeating it
 
 In practice, the anti-piracy measures were *utterly* useless due to Sega leaving a huge backdoor open: **MIL-CD**. Music Interactive Live-CD or 'MIL-CD' is a format created by Sega to extend an Audio-CD with interactive programs... and the Dreamcast is compatible with it.
 
-Now, someone [who?] discovered that after managing to rip the contents of a GD-ROM and modifying its format to adhere to the MIL-CD, burning it to a conventional CD and putting it in the Dreamcast would *just work*. This caused an unstoppable wave of burned discs and ISOs to be released on the net.
+Unauthorised commercial discs (cheat loaders, movie players, etc) disguised as MIL-CDs to run on the console without Sega's approval. Later on, different hacking communities dissected this exploit and came up with a workaround to boot pirated games using CD-ROMs. This caused an unstoppable wave of ISOs to be released on the net.
 
-Some problems surfaced afterwards: Although GD-ROMs can store a gigabyte of data, CD-ROMs can only fit ~700 MB, so how could 'rippers' shrink the bigger games to fit on a CD? By re-compressing music and graphics until it fits. They may even try to split it into two discs. After all, game data is not a single blob anymore like on an old cartridge, but is now organised hierarchically into files and directories.
+Some problems surfaced afterwards: Although GD-ROMs can store a gigabyte of data, CD-ROMs can only fit ~700 MB, so how could 'rippers' shrink the bigger games to fit on a CD? By re-compressing music and graphics until it fits. They may even try to split it into two discs. After all, game data is not a single blob anymore (like on an old cartridge), but is now organised hierarchically into files and directories.
 
 ---
 
@@ -383,37 +393,45 @@ Rodrigo
 
 #### General
 
-- **Official Dreamcast Hardware Specification Outline**
-- [**Unofficial Dreamcast Programming Guides**](http://mc.pp.se/dc/hw.html)
-- [**Massive collection of docs and tools**](https://github.com/Kochise/dreamcast-docs)
+- Sega Enterprises Development Department, **Dreamcast Hardware Specification Outline**
+- Eiichiro Akiba, **Dreamcast/Dev.Box System Architecture**
+- Marcus Comstedt, [**Dreamcast Programming**](http://mc.pp.se/dc/)
+- Kochise, [**dreamcast-docs** (Github)](https://github.com/Kochise/dreamcast-docs)
+- [**dreamcast.wiki**](https://dreamcast.wiki/Dreamcast.wiki) 
 
 #### CPU
 
-- **SH-4, ST40 system architecture, volume 1**
+- Hitachi, **SH-4 CPU Core Architecture**, Volume 1
 
 #### Graphics
 
-- [**Imagination Tech blog post about Tiled-based renderers**](https://www.imgtec.com/blog/a-look-at-the-powervr-graphics-architecture-tile-based-rendering/)
-- [**Videologic's Hidden Surface Removal approach**](https://docs.imgtec.com/PowerVR_Architecture/topics/powervr_architecture_hidden_surface_removal_efficiency.html)
-- **Imagination PowerVR Hardware Architecture Overview for Developers**
-- [**Microsoft's guide on graphics optimisation**](https://docs.microsoft.com/en-us/previous-versions/ms834190(v=msdn.10)?redirectedfrom=MSDN)
-- [**The Models Resource** (Archived)](https://web.archive.org/web/20200216025504/https://www.models-resource.com/)
+- Kristof Beets, [**A look at the PowerVR graphics architecture: Tile-based rendering**](https://www.imgtec.com/blog/a-look-at-the-powervr-graphics-architecture-tile-based-rendering/), Imagination Technologies
+- Imagination Technologies, [**Hidden Surface Removal Efficiency**](https://docs.imgtec.com/PowerVR_Architecture/topics/powervr_architecture_hidden_surface_removal_efficiency.html)
+- Imagination Technologies, **PowerVR Hardware Architecture Overview for Developers**
+- Sebastian Wloch and Kalisto Entertainment, [**Optimizing Dreamcast Microsoft Direct3D Performance**](https://docs.microsoft.com/en-us/previous-versions/ms834190(v=msdn.10)?redirectedfrom=MSDN), Microsoft
 
 #### Operating System
 
-- [**List of games built on top of Windows CE** (Archived)](https://web.archive.org/web/20200229210317/https://segaretro.org/Windows_CE)
-- [**History of Windows CE SDK for the Dreamcast**](https://www.retroreversing.com/dreamcast-windows-ce)
+- github.com [**syscalls.c** (Redream source code)](https://github.com/inolen/redream/blob/master/src/guest/bios/syscalls.c)
+- segaretro.org, [**Windows CE** (Archived)](https://web.archive.org/web/20200229210317/https://segaretro.org/Windows_CE)
+- retroreversing.com, [**Sega Dreamcast Microsoft Windows CE SDK**](https://www.retroreversing.com/dreamcast-windows-ce)
 
 #### Games
 
-- [**More about the Sega Katana Developer Box** (Archived)](https://web.archive.org/web/20191109033053/https://segaretro.org/Dreamcast_Dev.Box)
-- **Official Dreamcast VMU Programming Manual**
+- segaretro.org, [**Dreamcast Dev.Box** (Archived)](https://web.archive.org/web/20191109033053/https://segaretro.org/Dreamcast_Dev.Box)
+- Sega, **Dreamcast VMU Programming Manual**
 
 #### Anti-Piracy
 
-- [**More about MIL-CD** (Archived)](https://web.archive.org/web/20200322194958/https://segaretro.org/Mil-CD)
+- dcemulation.org, [**A History of Media and Booting on the Sega Dreamcast**](https://dcemulation.org/index.php?title=A_History_of_Media_and_Booting_on_the_Sega_Dreamcast)
+- segaretro.org, [**MIL-CD** (Archived)](https://web.archive.org/web/20200322194958/https://segaretro.org/Mil-CD)
 
 #### Photography
 
 - Motherboard and console: [**Evan Amos Gallery**](https://commons.wikimedia.org/wiki/User:Evan-Amos)
 - Diagrams, non-studio photos and game screenshots: **Me**
+
+#### Other Media
+
+- Raw music files: [**Zophar gallery**](https://www.zophar.net/)
+- 3D models: [**The Models Resource** (Archived)](https://web.archive.org/web/20200216025504/https://www.models-resource.com/)
