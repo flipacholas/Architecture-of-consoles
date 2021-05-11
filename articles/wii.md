@@ -64,7 +64,7 @@ Other accessories were also built for this port, each one provided different typ
 
 ## CPU
 
-After the success of Gecko, IBM presumably grabbed this design and re-branded it as '750CL' for other manufacturers to use. Then, when Nintendo requested a new CPU to use with their new console, still known as 'Revolution' (hence the RVL prefix on their stock motherboards, IBM and Nintendo agreed to use a 750CL clocked twice the speed as Gecko. This CPU is known as **Broadway** and runs at 729 MHz.
+After the success of Gecko, IBM presumably grabbed this design and re-branded it as '750CL' for other manufacturers to use. Then, when Nintendo requested a new CPU to use with their new console, still known as 'Revolution' (hence the RVL prefix on their stock motherboards), IBM and Nintendo agreed to use a 750CL clocked twice the speed as Gecko. This CPU is known as **Broadway** and runs at 729 MHz.
 
 After having reviewed [Gecko]({{< ref "gamecube#cpu" >}}), I'm afraid there aren't many changes found in the new CPU. However, this may be an advantage: GameCube developers were able to start developing their new Wii games right away thanks to all the experience they gained with Gecko. Moreover, the fact that Broadway runs twice the speed will allow them to push for more features and quality.
 
