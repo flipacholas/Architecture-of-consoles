@@ -294,7 +294,7 @@ I guess one of the best examples of games that exploited this new capability is 
 
 #### Video output system
 
-The video signal outputs a resolution of up to 640x480 pixels (or 768×576 px in PAL) with up to 16.7 colours (24-bit depth). Additionally, the system could broadcast its signal in **progressive mode** (which has a clearer image, but not every TV may have supported it during that time).
+The video signal outputs a resolution of up to 640x480 pixels (or 768×576 px in PAL) with up to 16.7 million colours (24-bit depth). Additionally, the system could broadcast its signal in **progressive mode** (which has a clearer image, but not every TV may have supported it during that time).
 
 The XFB can have multiple dimensions, so for compatibility reasons, the Video interface will try its best to display the frame by re-sampling the XFB to fit the TV screen based on the region.
 
