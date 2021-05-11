@@ -411,7 +411,7 @@ A more sophisticated method for running unauthorised code was published in 2016 
 #### I/O
 
 - yabause.org, [**SMPC** (Archived)](https://web.archive.org/web/20190621223925/https://wiki.yabause.org/index.php5?title=SMPC)
-- Tech Toy Tinker, [**Sega Saturn Development**](https://techtoytinker.com/sega-saturn-development)
+- Tech Toy Tinker, [**Sega Saturn Development** (Archived)](https://web.archive.org/web/20210509132827/https://techtoytinker.com/sega-saturn-development)
 
 #### Copy protection
 

@@ -759,7 +759,7 @@ Rodrigo
 #### I/O
 
 - assemblergames.com, [**The PlayStation 2 Busses + DEV9** (Archived)](https://web.archive.org/web/20191109145054/https://assemblergames.com/threads/the-playstation-2-busses-dev9.67961/)
-- ps2-home.com, [**PS2 network, what's actually the bottleneck?**](https://www.ps2-home.com/forum/viewtopic.php?t=1409&start=10)
+- ps2-home.com, [**PS2 network, what's actually the bottleneck?** (Archived)](https://web.archive.org/web/20170716081813/https://www.ps2-home.com/forum/viewtopic.php?t=1409&start=10)
 
 #### Audio
 
