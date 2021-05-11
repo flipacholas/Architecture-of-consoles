@@ -11,7 +11,7 @@ cascade:
     layout: console
     type: console
     image_dir: consoles
-    shareicons: true
+    icons: ["resources"]
     seo_image: diagram.png
     seo_type: TechArticle
 

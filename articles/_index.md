@@ -10,7 +10,7 @@ cascade:
     layout: console
     type: console
     image_dir: consoles
-    shareicons: true
+    icons: ["resources"]
     seo_image: diagram.png
     seo_type: TechArticle
 
@@ -24,9 +24,9 @@ Looking at the evolution of video game consoles is fascinating. While convention
 
 This is not a developer manual, just an *in depth* introduction to how each system worked internally. Bear in mind that tech has gotten really complicated lately, so if you struggle to follow my latest articles, try reading the early ones first. They introduce many concepts and definitions that are constantly revisited.
 
-Basic knowledge of computing is preferable, however, I try really hard to adapt my content for wider audiences, so please don't be afraid to give it a try!
+Basic knowledge of computing is preferable, however, I try really hard to adapt my content for wider audiences, so please don't be afraid to give it a try! But if that's not enough, you may want to look at the [supporting readings]({{< ref "readings" >}}).
 
-While I try to be as accurate as possible, if you find any mistakes please {{< email "give me a shout" >}} or {{< consoles_repo_link "propose changes" >}}. 
+While I try to be as accurate as possible, if you find any mistakes please {{< email "give me a shout" >}} or {{< consoles_repo_link "propose changes" >}}.
 <!-- 
 Translated article should add this line:
 
