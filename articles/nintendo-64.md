@@ -166,18 +166,8 @@ Afterwards, the RSP will start performing the first batch of tasks and the resul
 {{< tab name="Textures and Rasterisation" >}}
 
 {{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="Upscaled" active="true" >}}
-      {{< linked_img src="mario/result.png" alt="Rendered Mario" >}}
-      <figcaption class="caption">Rendered frame (<i>Tada!</i>)
-      <br>Upscaled (640x480) for demonstration purposes</figcaption>
-    {{< /tab >}}
-    {{< tab name="Original" >}}
-      {{< linked_img src="mario/result_original.png" alt="Rendered Mario" class="pixel" >}}
-      <figcaption class="caption">Rendered frame (<i>Tada!</i>)
-      <br>Original resolution (320x240) as seen on screen</figcaption>
-    {{< /tab >}}
-  {{< /tabs >}}
+  {{< linked_img src="mario/result.png" alt="Rendered Mario" class="pixel" >}}
+  <figcaption class="caption">Rendered frame (<i>Tada!</i>)</figcaption>
 {{< /float_block >}}
 
 {{% inner_markdown %}}

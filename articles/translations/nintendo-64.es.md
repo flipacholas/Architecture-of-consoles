@@ -171,18 +171,8 @@ Seguidamente, el RSP comenzará a realizar las tareas y el resultado será envia
 {{< tab name="Texturas y rasterización" >}}
 
 {{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="Sobreescalado" active="true" >}}
-      {{< linked_img src="mario/result.png" alt="Mario Renderizado" >}}
-      <figcaption class="caption">Frame renderizado (<i>Tachán!</i>)
-      <br>Sobreescalado (640x480) por motivos de demostración</figcaption>
-    {{< /tab >}}
-    {{< tab name="Original" >}}
-      {{< linked_img src="mario/result_original.png" alt="Mario Renderizado" class="pixel" >}}
-      <figcaption class="caption">Frame renderizado (<i>Tachán!</i>)
-      <br>Resolución original (320x240) como se ve en pantalla</figcaption>
-    {{< /tab >}}
-  {{< /tabs >}}
+  {{< linked_img src="mario/result.png" alt="Mario Renderizado" class="pixel" >}}
+  <figcaption class="caption">Frame renderizado (<i>Tachán!</i>)</figcaption>
 {{< /float_block >}}
 
 {{% inner_markdown %}}

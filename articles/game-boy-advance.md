@@ -64,7 +64,7 @@ Moreover, this core contains some extensions referenced in its name (*TDMI*):
 The inclusion of Thumb in particular had a strong influence on the final design of this console. Nintendo mixed 16-bit and 32-bit buses between its different modules to reduce costs while providing programmers with the necessary resources to optimise their code.
 
 {{< centered_container >}}
-  {{< linked_img src="memory.png" alt="Memory Diagram" >}}
+  {{< linked_img src="memory.png" alt="Memory Diagram" img_class="no-borders" >}}
   <figcaption class="caption">Memory architecture of this system</figcaption>
 {{< /centered_container >}}
 
@@ -105,7 +105,7 @@ Compared to previous Game Boys we now have a colour LCD screen that can display 
 #### Organising the content
 
 {{< centered_container >}}
-  {{< linked_img src="ppu.png" alt="PPU Diagram" >}}
+  {{< linked_img src="ppu.png" alt="PPU Diagram" img_class="no-borders" >}}
   <figcaption class="caption">Memory architecture of the PPU</figcaption>
 {{< /centered_container >}}
 

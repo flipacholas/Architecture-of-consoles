@@ -116,7 +116,7 @@ There are **two VPUs** fitted in the Emotion engine, but they are arranged diffe
 {{< tab active="true" name="Vector Processing Unit 0" >}}
 
 {{< float_block >}}
-  {{< linked_img src="VU0.png" alt="Architecture of VPU0" >}}
+  {{< linked_img src="VU0.png" alt="Architecture of VPU0" img_class="no-borders" >}}
   <figcaption class="caption">Architecture of VPU0</figcaption>
 {{< /float_block >}}
 
@@ -137,7 +137,7 @@ The memory map of the VPU0 also has access to some of the other VPU's registers 
 {{< tab name="Vector Processing Unit 1" >}}
 
 {{< float_block >}}
-  {{< linked_img src="VUP1.png" alt="Architecture of VPU1" >}}
+  {{< linked_img src="VUP1.png" alt="Architecture of VPU1" img_class="no-borders" >}}
   <figcaption class="caption">Architecture of VPU1</figcaption>
 {{< /float_block >}}
 
@@ -238,7 +238,7 @@ The GS has fewer features than other graphics systems [previously reviewed]({{< 
 This GPU only does **rasterisation** and that is... Generating pixels, mapping textures, applying lighting and some other effects. This means there are no vertex transformations (these are covered by the VPUs). Also, this is a fixed-function pipeline, so no [fancy tweaking]({{< ref "gamecube#creativity" >}}) or [shaders]({{< ref "xbox#graphics" >}}) either, you are stuck with a fixed shading model (e.g. Gouraud).
 
 {{< centered_container >}}
-  {{< linked_img src="GS_Pipeline.png" alt="Pipeline design of the Graphics Synthesizer" >}}
+  {{< linked_img src="GS_Pipeline.png" alt="Pipeline design of the Graphics Synthesizer" img_class="no-borders" >}}
   <figcaption class="caption">Pipeline design of the Graphics Synthesizer</figcaption>
 {{< /centered_container >}}
 
@@ -247,7 +247,7 @@ Looks pretty simple right? Well, let's dive deeper to see what happens at each s
 {{< tabs >}}
 {{< tab active="true" name="Pre-Process" >}}
 {{< float_block >}}
-  {{< linked_img src="gs_pipeline/Preprocessing.png" alt="Pre-processing stage" >}}
+  {{< linked_img src="gs_pipeline/Preprocessing.png" alt="Pre-processing stage" img_class="no-borders" >}}
   <figcaption class="caption">Pre-processing stage</figcaption>
 {{< /float_block >}}
 
@@ -260,7 +260,7 @@ Additionally, the GS will preprocess some values that will be needed for later c
 {{< /tab >}}
 {{< tab name="Rasterization" >}}
 {{< float_block >}}
-  {{< linked_img src="gs_pipeline/Rasterizing.png" alt="Rasterizing stage" >}}
+  {{< linked_img src="gs_pipeline/Rasterizing.png" alt="Rasterizing stage" img_class="no-borders" >}}
   <figcaption class="caption">Rasterizing stage</figcaption>
 {{< /float_block >}}
 
@@ -279,7 +279,7 @@ The pack is then delivered to the 'Texture mapping' engine, but each property is
 {{< /tab >}}
 {{< tab name="Texture" >}}
 {{< float_block >}}
-  {{< linked_img src="gs_pipeline/Textures.png" alt="Texture mapping stage" >}}
+  {{< linked_img src="gs_pipeline/Textures.png" alt="Texture mapping stage" img_class="no-borders" >}}
   <figcaption class="caption">Texture mapping stage</figcaption>
 {{< /float_block >}}{{% inner_markdown %}}
 
@@ -292,7 +292,7 @@ The pixel unit performs **perspective correction** to map textures onto the prim
 {{% /inner_markdown %}}{{< /tab >}}
 {{< tab name="Tests" >}}
 {{< float_block >}}
-  {{< linked_img src="gs_pipeline/Tests.png" alt="Pixel Testing stage" >}}
+  {{< linked_img src="gs_pipeline/Tests.png" alt="Pixel Testing stage" img_class="no-borders" >}}
   <figcaption class="caption">Pixel Testing stage</figcaption>
 {{< /float_block >}}{{% inner_markdown %}}
 
@@ -304,7 +304,7 @@ Here certain pixels will be discarded if they don't meet a number of requirement
 {{% /inner_markdown %}}{{< /tab >}}
 {{< tab name="Post-Process" >}}
 {{< float_block >}}
-{{< linked_img src="gs_pipeline/Postprocessing.png" alt="Post-processing stage" >}}
+{{< linked_img src="gs_pipeline/Postprocessing.png" alt="Post-processing stage" img_class="no-borders" >}}
   <figcaption class="caption">Post-processing stage</figcaption>
 {{< /float_block >}}
 
