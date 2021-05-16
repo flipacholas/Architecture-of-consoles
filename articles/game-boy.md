@@ -31,9 +31,11 @@ The Game Boy can be imagined as a portable version of the NES with limited power
 
 ## CPU
 
-The main processor is a **Sharp LR35902**, a mix between the Z80 and the Intel 8080 that runs at **~4.19 MHz**. The CPU is found in a package called **DMG-CPU** which also houses other components we'll see later on.
+Instead of placing many off-the-shelf chips on the motherboard, Nintendo opted for a single chip to house (and hide) most of the components, including the CPU. This type of chip is called 'System On Chip' (SoC) and the one found on the GameBoy is referred to as **DMG-CPU** or **Sharp LR35902**.
 
-The Z80 is itself a superset of the 8080, so what does the Sharp actually has and has not from those two?
+Having said that, the main processor is a **Sharp SM83** and it's a mix between the Z80 and the Intel 8080. It runs at **~4.19 MHz**.
+
+The Z80 is itself a superset of the 8080, so what does the SM83 actually has and has not from those two?
 - Neither Z80's `IX` and `IY` registers nor 8080's `IN` or `OUT` instructions are included: This means that [I/O ports]({{< ref "master-system#accessing-the-rest-of-the-components" >}}) are not available. I'm not certain if that's just a measure to reduce costs, but one thing for sure is that components will have to be **completely memory-mapped**.
 - Only 8080's set of registers are implemented.
 - Includes Z80's extended instruction set. Although, only bit manipulation instructions are found.
@@ -46,7 +48,7 @@ Nintendo fitted **8 KB of RAM** for general purpose use (which they call **Work 
 
 #### Hardware access
 
-The Sharp keeps a 8-bit data bus and a 16-bit address bus, so up to 64 KB of memory can be addressed. The memory map is composed of:
+The SM83 keeps an 8-bit data bus and a 16-bit address bus, so up to 64 KB of memory can be addressed. The memory map is composed of:
   - Cartridge space.
   - WRAM and Display RAM.
   - I/O (joypad, audio, graphics and LCD)
@@ -58,7 +60,7 @@ The Sharp keeps a 8-bit data bus and a 16-bit address bus, so up to 64 KB of mem
 
 All graphics calculations are done by the CPU, then the **Picture Processing Unit** or 'PPU' renders them. This is another component found inside DMG-CPU and it's actually based on the [predecessor's PPU]({{< ref "nes#graphics" >}}).
 
-The picture is displayed in an integrated LCD screen, it has a resolution of **160×144 pixels** and shows **4 shades of grey** (white, light grey, dark grey and black). But since the original gameboy has a green LCD, graphics will look *greenish*.
+The picture is displayed in an integrated LCD screen, it has a resolution of **160×144 pixels** and shows **4 shades of grey** (white, light grey, dark grey and black). But since the original Gameboy has a green LCD, graphics will look *greenish*.
 
 If you've read the NES article before, you may remember that the PPU was designed to follow the CRT beam. However (and for obvious reasons), we got an LCD screen in the Gameboy. Well, the new PPU doesn't alter that part, since LCDs require to be refreshed too. In fact, some special effects achieved thanks to this behaviour will also be supported on the Gameboy.
 
@@ -69,13 +71,13 @@ If you've read the NES article before, you may remember that the PPU was designe
   <figcaption class="caption">Memory architecture of the PPU</figcaption>
 {{< /centered_container >}}
 
-The PPU has **8 KB of VRAM** or 'Display RAM', which both PPU and CPU can access directly but not at the same time. Those 8 KB will contain most of the data the PPU will need to render graphics, other bits will be stored inside the PPU as they will require a faster access rate.
+The PPU has **8 KB of VRAM** or 'Display RAM', which both PPU and CPU can access directly but not at the same time. Those 8 KB will contain most of the data the PPU will need to render graphics. The remaining bits will be stored inside the PPU instead, as they will require a faster access rate.
 
-The game is in charge of populating the different areas with the correct type of data. Moreover, the PPU exposes some register so they game can instruct how to manage that data (there are many rules, though).
+The game is in charge of populating the different areas with the correct type of data. Moreover, the PPU exposes registers so the game can instruct the PPU how that data is organised (there are many rules, though).
 
 #### Constructing the frame
 
-Let's see now how the PPU manages to draw stuff on the screen. For demonstration purposes, *Super Mario Land 2* will be used as example:
+Let's see now how the PPU manages to draw stuff on the screen. For demonstration purposes, *Super Mario Land 2* will be used as an example:
 
 {{< tabs >}}
 
@@ -173,7 +175,7 @@ Sprites are tiles that can move independently around the screen. They can also o
 
 They also have an extra colour available: **Transparent**. So, they can only display three different greys instead of four. Luckily, this layer allows defining two colour palettes make use of every colour.
 
-The **Object Attribute Memory** or 'OAM' is a map stored inside the PPU which specifies the tiles that will be used as sprites. Games fill this region by calling the **DMA unit** found inside the chip, this fetches data from main RAM or game ROM to OAM.
+The **Object Attribute Memory** or 'OAM' is a map stored inside the PPU which specifies the tiles that will be used as sprites. Games fill this region by calling the **DMA unit** found inside the chip, the DMA fetches data from main RAM or game ROM to OAM.
 
 Apart from the tile index, each entry contains the following attributes: X-Y position, colour palette, priority and flip flags (allowing to rotate the tile vertically and horizontally).
 
@@ -358,27 +360,35 @@ More anti-piracy measures can be implemented inside games, like checking the SRA
 
 #### General
 
-- [**Interesting series of articles for constructing an emulator**](https://realboyemulator.wordpress.com/2013/01/03/a-look-at-the-game-boy-bootstrap-let-the-fun-begin/)
-- [**Official Game Boy Programming Manual**](https://archive.org/details/GameBoyProgManVer1.1)
-- [**Interesting Game Boy talk**](https://www.youtube.com/watch?v=HyzD8pNlpwI)
-- [**Different models of the Game Boy**](https://gbhwdb.gekkio.fi/consoles/dmg/)
+- Nintendo, [**Gameboy Programming Manual**](https://archive.org/details/GameBoyProgManVer1.1), Version 1.1
+- Joonas Javanainen (gekkio), [**Game Boy: Complete Technical Reference**](https://gekkio.fi/files/gb-docs/gbctr.pdf)
+- RealBoy, [**Emulating The Core** (Series)](https://realboyemulator.wordpress.com/posts/)
+- Michael Steil, [**The Ultimate Game Boy Talk (33c3)**](https://www.youtube.com/watch?v=HyzD8pNlpwI)
+- Gekkio and contributors, [**Game Boy hardware database**](https://gbhwdb.gekkio.fi/consoles/dmg/)
 
 #### CPU
 
-- [**Memory Map in detail**](http://gameboy.mongenel.com/dmg/asmmemmap.html)
-- [**Programming manuals**](https://fms.komkon.org/GameBoy/Tech/Software.html)
+- Randy Mongenel, [**GameBoy Memory Map**](http://gameboy.mongenel.com/dmg/asmmemmap.html)
+- Marat Fayzullin, [**Programming Info**](https://fms.komkon.org/GameBoy/Tech/Software.html)
 
 #### Graphics
 
-- [**More details about GameBoy's graphics (Archived)**](https://web.archive.org/web/20181011213834/http://www.codeslinger.co.uk/pages/projects/gameboy/graphics.html)
+- codeslinger.co.uk, [**Graphics Emulation** (Archived)](https://web.archive.org/web/20181011213834/http://www.codeslinger.co.uk/pages/projects/gameboy/graphics.html)
+
+#### Audio
+
+- Gameboy Development Wiki, [**Gameboy sound hardware**](https://gbdev.gg8.se/wiki/articles/Gameboy_sound_hardware)
 
 #### Games
 
-- [**Glitching Mario until it becomes an interactive memory editor**](https://www.youtube.com/watch?v=FPzuYWbnln4)
-- [**Game Boy Development Wiki**](http://gbdev.gg8.se/wiki/articles/Main_Page)
-- [**Fiddling with the boot process**](https://dhole.github.io/post/gameboy_custom_logo/)
+- Retro Game Mechanics Explained, [**GB Super Mario Land 2 - Memory Exploration** (Youtube)](https://www.youtube.com/watch?v=FPzuYWbnln4)
+- Dhole, [**Booting the GameBoy with a custom logo**](https://dhole.github.io/post/gameboy_custom_logo/)
+
+#### AntiPiracy
+
+- RealBoy, [**A Look At The Game Boy Bootstrap: Let The Fun Begin!**](https://realboyemulator.wordpress.com/2013/01/03/a-look-at-the-game-boy-bootstrap-let-the-fun-begin/)
 
 #### Photography
 
 - Motherboard and console: [**Evan Amos Gallery**](https://commons.wikimedia.org/wiki/User:Evan-Amos)
-- Diagrams and game screenshots: **Me**
+- Diagrams and game screenshots: [**Rodrigo Copetti (Me)**](https://www.copetti.org/)
