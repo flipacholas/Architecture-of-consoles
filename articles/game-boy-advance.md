@@ -36,7 +36,7 @@ This console will carry on using Nintendo's *signature* GPU. Additionally, it wi
 ## CPU
 
 Most of the components are combined into a single package called **CPU AGB**. This package contains two completely different CPUs:
-- A **Sharp LR35902** running at either 8.4 or 4.2 MHz: *If it isn't the same CPU found on the Game Boy!* It's effectively used to run Game Boy (**DMG**) and Game Boy Color (**CGB**) games. Here's [my previous article]({{< ref "game-boy" >}}) if you want to know more about it.
+- A **Sharp SM83** running at either 8.4 or 4.2 MHz: *If it isn't the same CPU found on the Game Boy!* It's effectively used to run Game Boy (**DMG**) and Game Boy Color (**CGB**) games. Here's [my previous article]({{< ref "game-boy" >}}) if you want to know more about it.
 - An **ARM7TDMI** running at 16.78 MHz: This is the new processor we'll focus on, it most certainly runs Game Boy Advance games.
 
 Note that both CPUs will **never run at the same time** or do any fancy co-processing. The **only** reason for including the *very* old Sharp is for **backwards compatibility**.
@@ -82,7 +82,7 @@ Although this console was marketed as a 32-bit system, the majority of its memor
 
 #### Becoming a Game Boy Color
 
-Apart from the inclusion of GBC hardware (Sharp LR35902, original BIOS, audio and video modes, compatible cartridge slot and so forth), there are two extra functions required to make backwards compatibility work.
+Apart from the inclusion of GBC hardware (Sharp SM83, original BIOS, audio and video modes, compatible cartridge slot and so forth), there are two extra functions required to make backwards compatibility work.
 
 From the hardware side, the console relies on switches to detect if a Game Boy or Game Boy Color cartridge is inserted. A **shape detector** in the cartridge slot effectively identifies the type of cartridge and allows the CPU to read its state. It is assumed that some component of CPU AGB reads that value and automatically powers off the hardware not needed in GBC mode.
 
