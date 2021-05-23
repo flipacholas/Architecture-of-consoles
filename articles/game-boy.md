@@ -17,7 +17,7 @@ top_tabs:
   Diagram: {}
 
 # SEO
-title: Game boy Architecture
+title: Game Boy Architecture
 
 # Historical
 aliases: [/projects/consoles/game-boy/]
@@ -67,7 +67,7 @@ If you've read the NES article before, you may remember that the PPU was designe
 #### Organising the content
 
 {{< centered_container >}}
-  {{< linked_img src="ppu.png" alt="PPU Memory Diagram" >}}
+  {{< linked_img src="ppu.png" alt="PPU Memory Diagram" img_class="no-borders" >}}
   <figcaption class="caption">Memory architecture of the PPU</figcaption>
 {{< /centered_container >}}
 
@@ -375,7 +375,7 @@ More anti-piracy measures can be implemented inside games, like checking the SRA
 
 - codeslinger.co.uk, [**Graphics Emulation** (Archived)](https://web.archive.org/web/20181011213834/http://www.codeslinger.co.uk/pages/projects/gameboy/graphics.html)
 
-#### Audio
+#### Audio
 
 - Gameboy Development Wiki, [**Gameboy sound hardware**](https://gbdev.gg8.se/wiki/articles/Gameboy_sound_hardware)
 

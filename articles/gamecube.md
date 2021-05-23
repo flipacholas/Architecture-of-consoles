@@ -606,7 +606,7 @@ Rodrigo.
 
 #### Graphics
 
-- **Nintendo Graphics Library (GX) manual**
+- Nintendo, **Graphics Library (GX)**
 - Brian Neal, [**Game Consoles: A Look Ahead** (Archived)](https://web.archive.org/web/20040208044032/http://www.aceshardware.com/read.jsp?id=60000288), Ace's Hardware
 - devkitpro.org ,[**libogc/GX**](https://devkitpro.org/wiki/libogc/GX)
 - Tim Van Hook, [**Implementation of the ATI Flipper Chip**](http://www.graphics.stanford.edu/courses/cs448a-01-fall/lectures/tvh/tvh.2up.pdf), ATI Technologies, graphics.stanford.edu
@@ -632,3 +632,8 @@ Rodrigo.
 - Console: [**Evan Amos Gallery**](https://commons.wikimedia.org/wiki/User:Evan-Amos)
 - Motherboard: [**Bilgisayarlarım Gallery** (Archived)](https://web.archive.org/web/20180831022041/http://bilgisayarlarim.com/Nintendo/Gamecube_(Resident%20Evil)/index.html) (I removed the background)
 - Diagrams, non-studio photos and game screenshots: [**Rodrigo Copetti (Me)**](https://www.copetti.org/) and my terrible camera (I promise I'll get something better!)
+
+#### Other Media
+
+- Raw music files: [**Zophar gallery**](https://www.zophar.net/)
+- 3D models: [**The Models Resource** (Archived)](https://web.archive.org/web/20200216025504/https://www.models-resource.com/)
