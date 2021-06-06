@@ -2,13 +2,9 @@
 
 #### Acronym Expanded Form (AEF)
 
-This is the best way to present the reader with this info, in my opinion, as it saves some unnecessary words. I recommend that the first occurence of uncommon acronyms in each article should be explained in this way. Common acronyms (like CPU) are assumed to be understood by the reader.
+This is regarded as the best way to expand an initialism or acronym. The first occurence of uncommon acronyms in each article should be explained in this way. (Common acronyms (like CPU) are assumed to be understood by the reader.)
 
-#### Capital after comma
-
-This is the way you are doing it and I am leaving it, although it is contrary to British recommended styles. Tech articles are international anyway and American/int'l readers will be familiar.
-
-#### Using 'ise'-type British spellings.
+#### Using 'ise'-type British spellings. No capital after colon.
 
 #### Vocabulary
 
@@ -20,14 +16,12 @@ Using 'waveforms' as it's a common enough word nowadays to drop the hyphen.
 
 "However" typically has a comma after it – use without a comma is common, but recommended against by the editing community (which is a little more resistant to change than the tech community, as you might imagine). There is a good reason in theory: it's to distinguish between uses like
 
-> However, they survived
+> However, they survived ("But they survived")
 
-(But they survived)
+and
 
-> However they survived
+> However they survived ("They survived, but we don't know how, and we're about to talk about something else").
 
-(They survived but we don't know how and we're about to talk about something else)
+#### Capitalisation - nouns vs proper nouns
 
-#### Capping down important terms
-
-Doing this to increase readability, except where I can see a reason to keep the capitals, such as accepted use or acronymisation.
+Making sure to appy capitalisation to proper nouns only.
