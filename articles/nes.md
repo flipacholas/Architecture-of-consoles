@@ -37,18 +37,18 @@ The NES's CPU is a **Ricoh 2A03**, which is based on the popular 8-bit **MOS Tec
 #### A bit of context
 
 The CPU market in the late 70s and early 80s was quite diverse. If a company wanted to build an affordable microcomputer, the following options were available:
-- The **Intel 8080**: A popular CPU featured in the *Altair*, the first 'personal' computer. It has an 8-bit data bus and a 16-bit address bus.
-- The **Zilog Z80**: An 'unofficial' version of the 8080 enhanced with more instructions, registers and internal components. It was sold at a cheaper price and could still execute 8080 programs. Amstrad and Sinclair (among others) chose this CPU. 
-- The **Motorola 6800**: Another 8-bit CPU designed by Motorola, it contains a completely different instruction set. Many do-it-yourself computer kits, synthesisers and all-in-one computers included the 6800.
+- The **Intel 8080**: a popular CPU featured in the *Altair*, the first 'personal' computer. It has an 8-bit data bus and a 16-bit address bus.
+- The **Zilog Z80**: an 'unofficial' version of the 8080 enhanced with more instructions, registers and internal components. It was sold at a cheaper price and could still execute 8080 programs. Amstrad and Sinclair (among others) chose this CPU. 
+- The **Motorola 6800**: another 8-bit CPU designed by Motorola, it contains a completely different instruction set. Many do-it-yourself computer kits, synthesisers and all-in-one computers included the 6800.
 
 As if these options weren't enough, another company named **MOS** appeared on the market and offered a redesigned version of the 6800, the **6502**. While incompatible with the rest, the new chip was much *much* less expensive to produce and it was only a matter of time before the most famous computer makers (Commodore, Apple, Atari, Acorn and so forth) chose the 6502 to power their machines.
 
 Back in Japan, Nintendo needed something inexpensive but familiar to develop for, so they selected the 6502. **Ricoh**, their CPU supplier, successfully produced a 6502-compatible CPU. 
 
-'How' Ricoh managed to clone it isn't clear to this day. One would expect MOS to have licensed the chip design to Ricoh, but there are many contradictions to this:
-- Ricoh's and MOS' version feature the same layout, but Ricoh's one contain severed buses (disabling certain functions). I go into more details later.
+*How* Ricoh managed to clone it isn't clear to this day. One would expect MOS to have licensed the chip design to Ricoh, but there are many contradictions to this:
+- Ricoh's and MOS's version feature the same layout, but Ricoh's one contain severed buses (disabling certain functions). I go into more details later.
 - A document explicitly stating that MOS licensed the 6502 to Ricoh is yet to be found.
-- An article published in 2008 by Nikkei Trendy states that Ricoh licensed from Rockwell, an authorised chip manufacturer. Although, it's debatable whether a second source was able to provide IP to a third-party, at least with MOS' approval.
+- An article published in 2008 by Nikkei Trendy states that Ricoh licensed from Rockwell, an authorised chip manufacturer. Although it's debatable whether a second source was able to provide IP to a third-party, at least with MOS's approval.
 - It wouldn't be the first time Nintendo got away with circumventing IP rights, as *Ikegami Tsushinki v. Nintendo* ruled in Japan that Nintendo didn't own the code of the original Donkey Kong.
 
 #### Memory
@@ -126,9 +126,9 @@ To start drawing the picture, the PPU first looks for tile references from a set
 {{% inner_markdown %}}
 The background layer is a 512x480 map containing static tiles. However, only 256x240 is viewable on the screen, so the game decides which part is selected for display. Games can also move the viewable area during gameplay; that's how the **scrolling effect** is accomplished.
 
-**Nametables** specify which tiles to display as background. The PPU looks for four 1024-byte nametables, each one corresponding to a quadrant of the layer. However, there's only 2 KB of VRAM available! As a consequence, only two nametables can be stored. The remaining two still have to be addressed somewhere: Most games just point the remaining two where the first two are (**mirroring**).
+**Nametables** specify which tiles to display as background. The PPU looks for four 1024-byte nametables, each one corresponding to a quadrant of the layer. However, there's only 2 KB of VRAM available! As a consequence, only two nametables can be stored. The remaining two still have to be addressed somewhere: most games just point the remaining two where the first two are (**mirroring**).
 
-While this architecture may seem flawed at first, it was actually designed to keep cost down while providing simple **expandability**: If games needed a wider background, extra VRAM could be included in the cartridge.
+While this architecture may seem flawed at first, it was actually designed to keep cost down while providing simple **expandability**: if games needed a wider background, extra VRAM could be included in the cartridge.
 
 Following each nametable is a 64-byte **Attribute table** that specifies which colour palette is assigned to each block.
 {{% /inner_markdown %}}
@@ -149,7 +149,7 @@ The **Object Attribute Memory** (OAM) table specifies which tiles will be used a
 
 The OAM table can be filled by the CPU. However, this can be pretty slow in practice (and risks corrupting the frame if not done at the right time), so the PPU contains a small component called **Direct Memory Access** or 'DMA' which can be programmed (by altering the PPU's registers) to fetch the table from WRAM. With DMA, it's guaranteed that the table will be uploaded when the next frame is drawn, but bear in mind that the CPU will be halted during the transfer!
 
-The PPU is limited to eight sprites per scanline and up to 64 per frame. The scanline limit can be exceeded thanks to **hardware multiplexing**: The PPU will alternate sprites between scans; however, they will appear to flicker on-screen.
+The PPU is limited to eight sprites per scanline and up to 64 per frame. The scanline limit can be exceeded thanks to **hardware multiplexing**: the PPU will alternate sprites between scans; however, they will appear to flicker on-screen.
 
 {{% /inner_markdown %}}
 
@@ -197,13 +197,13 @@ If you're thinking that a frame-buffer system with memory allocated to store the
 {{% inner_markdown %}}
 Some games require the main character to move vertically – thus the nametable will be set up with **horizontal mirroring**. Other games need their character to move left and right, and so use **vertical mirroring** instead.
 
-Either type of mirroring will allow the PPU to update background tiles without the user noticing: There is plenty of space to scroll while new tiles are being rendered at a distance.
+Either type of mirroring will allow the PPU to update background tiles without the user noticing: there is plenty of space to scroll while new tiles are being rendered at a distance.
 
 But what if the character wants to move diagonally? The PPU can scroll in any direction, but without extra VRAM, the edges may end up having to share the same colour palette (remember that tiles are grouped in blocks).
 
 This is why some games like *Super Mario Bros. 3* show strange graphics at the right edge of the screen while Mario moves (the game is set up for vertical scrolling). It's possible that they needed to minimise the hardware cost per cartridge (this game has already a powerful mapper installed).
 
-As an interesting *fix*: The PPU allowed developers to apply a vertical mask on top of tiles, effectively hiding part of the glitchy area.
+As an interesting *fix*: the PPU allowed developers to apply a vertical mask on top of tiles, effectively hiding part of the glitchy area.
 {{% /inner_markdown %}}
 {{< /tab >}}
 
