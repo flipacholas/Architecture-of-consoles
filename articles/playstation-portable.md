@@ -42,9 +42,9 @@ aliases: [/writings/consoles/psp-private/]
 
 ## A quick introduction
 
-After just one month since the arrival of the [Nintendo DS]({{< ref "nintendo-ds" >}}), Sony proved that 'horizontal innovation' is not the only means to succeed in the portable console market.
+Released just one month after the [Nintendo DS]({{< ref "nintendo-ds" >}}), Sony's PSP proved that 'horizontal innovation' is not the only way to succeed in the portable console market.
 
-This article is dedicated to anyone that wants to understand, straight to the point, how the PSP operates. It's not a short write-up, but I hope that at the end of the reading you will be able to grasp the building blocks of this console (its design rationale, choice of CPUs, GPU pipeline, security system and so forth).
+This article is dedicated to anyone that wants to understand, straight to the point, how the PSP operates. It's not a short write-up, but I hope that by the end of the article you will be able to grasp the building blocks of this console (its design rationale, choice of CPUs, GPU pipeline, security system and so forth).
 
 P.S. If you ever feel fed up with information, don't forget to take a look at the diagrams (the {{< img_link label="main one" src="diagram.png" >}} plus the others I made for each section).
 
@@ -52,18 +52,18 @@ P.S. If you ever feel fed up with information, don't forget to take a look at th
 
 ## 'Main' CPU
 
-Similarly to Nintendo, Sony built an *extremely packed* System-on-Chip that houses most of the component we are going to discuss throughout this article. This includes the **'main' CPU** in charge of executing games/programs (unlike other CPUs we'll talk about in due time). The SoC is called **Tachyon**, a name chosen by Sony themselves (after watching some *Star Trek*?).
+Similarly to Nintendo, Sony built an *extremely packed* System-on-Chip (SoC) that houses most of the components we are going to discuss throughout this article. [](Comment) This includes the **'main' CPU** in charge of executing games and other programs (unlike the other CPUs, which we'll talk about in due time). The SoC is called **Tachyon**, a name chosen by Sony themselves (after watching some *Star Trek*?).
 
-Moving on, the main CPU is also an in-house design by Sony. In the official documents, they refer to it as a 'MIPS core' which borrows some IP from the MIPS R4000 (you may remember Nintendo doing something [alike]({{< ref "nintendo-64#cpu" >}})). This new design is called **Allegrex** and runs at a variable speed, from **33 MHz to 333 MHz**.
+Moving on, the main CPU is also an in-house design by Sony. In the official documents, they refer to it as a 'MIPS core' which borrows some IP from the MIPS R4000 (you may remember Nintendo doing something [similar]({{< ref "nintendo-64#cpu" >}})). This new design is called **Allegrex** and runs at a variable speed, from **33 MHz to 333 MHz**.
 
-Allegrex is a complete 32-bit core offering:
-- A **custom MIPS ISA**: Mixes instruction from different MIPS revisions. To be precise, it implements all MIPS I instructions for general purpose while adding branch instructions from MIPS II. Furthermore, Sony added exclusive ones for **arithmetic operations** (multiplication, subtraction, min/max, bit-shifts) and **interrupt control**. These are called 'Allegrex Extended instructions'. All of this, while still retaining the 'RISC' badge.
-- A **32-bit Address Bus**: This means that up to 4 GB of memory can be seen by this CPU.
-- **32 general-purpose registers**: All of them store 32-bit numbers, two of them (the zero register and link register) are reserved for special uses. This should come as no surprise.
-- **7-stage pipeline**: Same as the [Gamecube]({{< ref "gamecube#cpu" >}}). [Here]({{< ref "game-boy-advance#cpu" >}}) is a previous explanation of CPU pipelining if you don't remember.
-- A **Memory Protection Unit** or 'MPU' (not to be confused with an 'MMU'): This is a dedicated unit that maps the physical hardware onto the CPU's memory space with some special quirks in-between. We'll see more about it in a bit.
-- **32 KB of L1 Cache**: Distributed between 16 KB for instructions and 16 KB for data.
-- A **Cache Write-back Buffer**: The CPU can write over cache believing it has updated physical memory as well. Then, the cache takes care of updating memory when the buffer is full.
+Allegrex is a complete 32-bit core, offering:
+- A **custom MIPS ISA**: mixes instructions from different MIPS revisions. To be precise, it implements all MIPS I instructions for general purposes, while adding branch instructions from MIPS II. Furthermore, Sony added exclusive instructions for **arithmetic operations** (multiplication, subtraction, min/max, bit-shifts) and **interrupt control**. These are called 'Allegrex Extended instructions'[](Comment). All of this, while still retaining the 'RISC' badge[](Comment).
+- A **32-bit address bus**: this means that up to 4 GB of memory can be seen by this CPU.
+- **32 general-purpose registers**: all of them store 32-bit numbers, and two (the zero register and link register) are reserved for special uses. This should come as no surprise.
+- **7-stage pipeline**: same as the [Gamecube]({{< ref "gamecube#cpu" >}}). [Here]({{< ref "game-boy-advance#cpu" >}}) is a previous explanation of CPU pipelining if you don't remember.
+- A **Memory Protection Unit** or 'MPU' (not to be confused with an 'MMU'): this is a dedicated unit that maps the physical hardware onto the CPU's memory space with some special quirks in-between. We'll see more about it in a bit.
+- **32 KB of L1 Cache**: distributed between 16 KB for instructions and 16 KB for data.
+- A **cache write-back buffer**: the CPU can write over cache believing it has updated physical memory as well. Then, the cache takes care of updating memory when the buffer is full.
   - This design speeds up memory stores but doesn't work right away with multi-processor systems, which is the case of the PSP. So, developers will have to take care of evicting the buffer when other components require those new values in memory.
 
 In conclusion: Allegrex is incredibly fast. However, we still don't know what can you do with it. After all, you can imagine this CPU as the conductor of an orchestra, and we haven't checked out the performers... yet.
