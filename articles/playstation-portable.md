@@ -62,19 +62,19 @@ Allegrex is a complete 32-bit core, offering:
 - **32 general-purpose registers**: all of them store 32-bit numbers, and two (the zero register and link register) are reserved for special uses. This should come as no surprise.
 - **7-stage pipeline**: same as the [Gamecube]({{< ref "gamecube#cpu" >}}). [Here]({{< ref "game-boy-advance#cpu" >}}) is a previous explanation of CPU pipelining if you don't remember.
 - A **Memory Protection Unit** or 'MPU' (not to be confused with an 'MMU'): this is a dedicated unit that maps the physical hardware onto the CPU's memory space with some special quirks in-between. We'll see more about it in a bit.
-- **32 KB of L1 Cache**: distributed between 16 KB for instructions and 16 KB for data.
-- A **cache write-back buffer**: the CPU can write over cache believing it has updated physical memory as well. Then, the cache takes care of updating memory when the buffer is full.
-  - This design speeds up memory stores but doesn't work right away with multi-processor systems, which is the case of the PSP. So, developers will have to take care of evicting the buffer when other components require those new values in memory.
+- **32 KB of L1 Cache**[](Comment): of which 16 KB is for instructions and 16 KB for data.
+- A **cache write-back buffer**: the CPU can write over the cache believing it has updated physical memory as well. Then, the cache takes care of updating memory when the buffer is full.[](Comment)
+  - This design speeds up memory stores, but doesn't work right away with multi-processor systems like the PSP. So, developers will have to take care of evicting the buffer when other components require those new values in memory.[](Comment)
 
 In conclusion: Allegrex is incredibly fast. However, we still don't know what can you do with it. After all, you can imagine this CPU as the conductor of an orchestra, and we haven't checked out the performers... yet.
 
 #### Coprocessors
 
 As with any MIPS R4000, Allegrex has three coprocessor slots. Sony added two:
-- A **Floating Point Unit** as 'CP1': Accelerates arithmetic operations with 32-bit decimal numbers. It has an independent 8-stage pipeline which adds more parallelism to the main CPU.
-- A **Vector Floating Point Unit** as 'CP2': A coprocessor designed for vector operations, similar to a traditional SIMD processor. It has 128 registers that store 32-bit floats (using the IEEE 754 standard) and a special instruction set with variable pipeline stages.
+- A **Floating Point Unit (FPU)** as 'CP1': accelerates arithmetic operations with 32-bit decimal numbers. It has an independent 8-stage pipeline which adds more parallelism to the main CPU.
+- A **Vector Floating Point Unit (VFPU)** as 'CP2': a coprocessor designed for vector operations, similar to a traditional SIMD processor. It has 128 registers that store 32-bit floats (using the IEEE 754 standard) and a special instruction set with variable pipeline stages.
   - Its usefulness comes from its 128-bit data bus connected to the rest of the system, offloading the main CPU's transit.
-  - If you read the [PS2 article]({{< ref "playstation-2" >}}), the PSP's VFPU is equivalent to the PS2's [VPU0]({{< ref "playstation-2#tab-1-1-vector-processing-unit-0" >}}) operating in **permanent Macromode!**
+  - If you read the [PS2 article]({{< ref "playstation-2" >}}), the PSP's VFPU is equivalent to the PS2's [VPU0]({{< ref "playstation-2#tab-1-1-vector-processing-unit-0" >}}) operating in **permanent Macromode!**[](comment)
 
 #### Focused memory management
 
@@ -85,19 +85,19 @@ Let me talk for a moment about the memory unit included in this system. Its *mod
   <figcaption class="caption">Memory addressing with the MPU</figcaption>
 {{< /centered_container >}}
 
-A traditional Memory Management Unit or 'MMU' takes care of giving the CPU access to the components surrounding it, this implies that all the address lines of the CPU will be connected to the MMU; and the latter is connected to the rest of the system.
+A traditional Memory Management Unit or 'MMU' takes care of the CPU's access to the components surrounding it. This implies that all the address lines of the CPU will be connected to the MMU; only the latter is connected to the rest of the system.
 
-This is particularly advantageous to provide features like 'virtual memory' and 'memory protection'. Well, to achieve virtual memory, the MMU contains a component called Translation look-aside buffer or 'TLB' to prevent performance degradation. Now, **Allegrex's MMU lacks a TLB**, so it focuses on the second example (memory protection). This is why 'MPU' is more appropriate name for Allegrex's MMU. An MPU is a cutdown version of an MMU without virtual memory. In any case, **memory protection gives the system the power to decide which memory locations a program can access**.
+This is particularly advantageous for features like 'virtual memory' and 'memory protection'. Well, to achieve virtual memory, an MMU must contain a component called Translation Look-aside Buffer or 'TLB', to prevent performance degradation. Now, **Allegrex's MMU lacks a TLB**, so it focuses on memory protection. This is why the Allegrex's MMU instead called an MPU (Memory Protection Unit). An MPU is a cut-down version of an MMU without virtual memory. In any case, **memory protection gives the system the power to decide which memory locations a program can access**.[](comment)
 
-Thanks to this, Allegrex won't have to deal with user-land programs (i.e. games) accessing restricted locations (i.e. encryption keys). To accomplish this, memory addresses are grouped into five segments with different privilege levels set. Furthermore, our MPU contains three modes of operation: **User mode**, **Supervisor mode** and **Kernel mode**.
+Thanks to this, the PSP's Allegrex won't have to deal with user-land programs (i.e. games) accessing restricted locations (i.e. encryption keys). To accomplish the restriction itself, memory addresses are grouped into five segments with different privilege levels. Furthermore, the Allegrex's MPU contains three modes of operation: **user mode**, **supervisor mode** and **kernel mode**.
 
-If a normal process (operating in 'user mode') wants to access a memory address found in a privileged location, the MPU will ask the operating system (through the use of 'exceptions') if the process should access it and the execution will continue from there. 
+If a normal process (operating in user mode) wants to access a memory address found in a privileged location, the MPU will ask the operating system (through the use of 'exceptions') for permission before execution. 
 
 All in all, this allows Sony, the developer of the operating system, to implement a security system enforced by hardware.
 
 #### Memory available
 
-So far we've analysed the main CPU and its accelerators. Now let's see the physical memory available in this system.
+So far we've analysed the PSP's main CPU and its accelerators. Now let's see the physical memory available in this system.
 
 {{< centered_container >}}
   {{< linked_img src="cpu/memory.png" alt="Memory diagram" >}}
@@ -105,9 +105,9 @@ So far we've analysed the main CPU and its accelerators. Now let's see the physi
 {{< /centered_container >}}
 
 The PSP comes with two memory blocks accessible from the CPU:
-- **16 KB of SRAM**: This is what we historically called **Scratchpad** on [previous articles]({{< ref "playstation#cpu" >}}). It's small but very fast RAM. It's up to developers to make proper use of it, although unofficial documents already called it 'useless'.
-- **32 MB of DDR SDRAM**: It's huge and many other components will make use of it, but since it's not that close to the CPU, its access rate is slower. We'll refer to it as 'Main memory' across the article.
-  - The 'DDR' initials mean 'Double Data Rate', which denotes an evolution from the traditional 'SDRAM' featuring a faster transfer protocol. The [original Xbox]({{< ref "xbox#memory-layout" >}}) used the same type.
+- **16 KB of SRAM**: this is what we called **scratchpad** in [previous articles]({{< ref "playstation#cpu" >}}). It's small but very fast RAM. It's up to developers to make proper use of it, although unofficial documents already called it 'useless'.
+- **32 MB of DDR SDRAM**: it's huge and many other components will make use of it, but since it's not that close to the CPU, its access rate is slower. We'll refer to it as 'main memory' across the article.
+  - The 'DDR' initials mean 'Double Data Rate', which denotes an evolution from the traditional 'SDRAM', featuring a faster transfer protocol. The [original Xbox]({{< ref "xbox#memory-layout" >}}) used the same type.
 
 #### Bus design
 
@@ -121,23 +121,23 @@ All of the buses found in Tachyon implement a well-known design called **Advance
 {{< /centered_container >}}
 
 That being said, the following buses are constructed:
-- The **System Bus**: Connects the CPU, Scratchpad and GPU. It's 128-bit wide.
-- The **Media Engine Bus**: Connects another group of components (explained in the next section). It has the same properties as the System Bus.
-- The **Peripheral Bus**: Connects I/O, storage-related components. It's 32-bit wide.
+- The **system bus**: connects the CPU, scratchpad and GPU. It's 128-bit wide.
+- The **media engine bus**: connects another group of components (explained in the next section). It has the same properties as the system bus.
+- The **peripheral bus**: connects I/O, storage-related components. It's 32-bit wide.
 
-All three buses connect to the DDR Controller, which is where main RAM is found.
+All three buses connect to the DDR controller, which is where the main RAM is found.
 
 #### Tackling traffic congestion
 
-Inside each bus, there will be multiple components working independently. Consequently, they will store processed data in a shared space (such as main RAM). Now, we don't want the CPU to intervene whenever a module needs to read or write from memory. Traditionally, a DMA unit was placed in the bus to provide this facility, but a single DMA can only do so much and Sony placed a significant number of components which eventually, will lead to bottlenecks.
+Inside each bus, there will be multiple components working independently. Consequently, they will store processed data in a shared space (such as the main RAM). Now, we don't want the CPU to intervene whenever a module needs to read or write from memory. Traditionally, a DMA unit was placed in the bus to provide this facility, but a single DMA can only do so much. The PSP contains a significant number of components which, eventually, will lead to bottlenecks.
 
-So, the solution is very simple: **Bus Mastering**. In a nutshell, each component will get its own DMA controller. This gives them the ability to become the 'bus master' and take control of the bus to access whatever location they want. To avoid contention (multiple 'bus masters' at the same time), the neighbouring components will acknowledge this event and wait until the operation completes.
+So, the solution is very simple: **bus mastering**. In a nutshell, each component will get its own DMA controller. This gives them the ability to become the 'bus master' and take control of the bus to access whatever location they want. To avoid contention (multiple 'bus masters' at the same time), the neighbouring components will acknowledge this event and wait until the operation completes.
 
 ---
 
 ## 'Multimedia' CPU
 
-Up to this point, we've discussed the main CPU and the buses inside Tachyon, but there's still many features found in this SoC. In particular, there's another block of modules designed for a particular application: **Multimedia**. The group specialised in **audio and image processing**, including the combination of both (video processing), and it operates without consuming bandwidth from the main CPU group (the 'System group').
+Up to this point, we've discussed the main CPU and the buses inside Tachyon, but there are still many features to be found in the SoC. In particular, there's another block of modules designed for a particular application: **multimedia**. The group specialised in **audio and image processing**, including the combination of both (video processing), and it operates without consuming bandwidth from the main CPU group (the 'system group').
 
 {{< centered_container >}}
   {{< linked_img src="games/daxter.jpg" alt="Video playing in Daxter" >}}
@@ -145,22 +145,29 @@ Up to this point, we've discussed the main CPU and the buses inside Tachyon, but
   <br>In-game cinematic rendered with this block</figcaption>
 {{< /centered_container >}}
 
-That being said, the new block is called **Media Engine Group** and it's composed of the following components:
-- A second **Allegrex CPU**: Serving as the 'controller' of the Media Engine group. This is the same CPU found in the System Group without the vector coprocessor. The controller is responsible for receiving orders from the main CPU and managing the rest of the multimedia hardware that will work concurrently.
-- **2 MB of eDRAM**: Multimedia encoding and/or decoding consumes a considerable amount of bandwidth, so to avoid stalling the other components, the media engine contains dedicated memory to process the data 'in-house' and publish the results once it's necessary to do so.
+That being said, the new block is called **media engine group** and it's composed of the following components:
+- A second **Allegrex CPU**: serving as the 'controller' of the media engine group. This is the same CPU found in the system group, but without the vector coprocessor. The controller is responsible for receiving orders from the main CPU and managing the rest of the multimedia hardware that will work concurrently.
+- **2 MB of eDRAM**: multimedia encoding and/or decoding consumes a considerable amount of bandwidth, so to avoid stalling the other components, the media engine contains dedicated memory to process the data 'in-house' and publish the results once it's necessary to do so.
   - 'eDRAM' is the same as DRAM but manufactured inside another chip.
-- An **MPEG-AVC** decoder: A hardware decoder that does only one thing and fast. That is, swallow **H.264 video stream** and spit out data that the audio and graphics endpoint understand.
-- A **Virtual Mobile Engine** or 'VME': This is *some sort* of programmable DSP. The controller programs it and then starts feeding in the data. Afterwards and similarly to the AVC, the VME stores the processed chunk back in local memory.
+- An **MPEG-AVC** decoder: a hardware decoder that does only one thing, and fast. That is, swallow **H.264 video stream** and spit out data that the audio and graphics endpoint understand.
+- A **Virtual Mobile Engine** or 'VME': this is *some sort* of programmable Digital Signal Processor (DSP). The controller programs it and then starts feeding in the data. Afterwards, like the AVC, the VME stores the processed chunk in local memory.
   - This is a very obscure component, as only Sony seems to know the ins and out of it (including how to program it). To this day, it's still a mystery.
-  - From Sony's leaked slides published at pcmag.com, the VME seems to have local memory and a DMA controller. It's also called 'Dynamic Reconfigurable Engine'.
+  - From Sony's leaked slides, published at pcmag.com, the VME seems to have local memory and a DMA controller. It's also called a 'Dynamic Reconfigurable Engine'.
 
 Needless to say, the media engine is not directly operable from the developer's side (Sony hides all of it through a thick API). The official SDK includes libraries like 'libmpeg' or 'libmp3' which already implement complete applications optimised for this engine.
 
 ---
+#### Display
+
+Let's go over the visual aspects of this console, which is where the user can appreciate everything that will be discussed in the next section.
+
+So, the PSP carries a **4.3" TFT LCD screen**. It has a resolution of **480x272 pixels** (for reference, that's ~2.6 times the pixels of one screen of the Nintendo DS) and can display up to 16,777,216 colours. Thus, it's got a 24-bit colour depth (the so-called 'true color' scale).
+
+The aspect ratio is *almost* 16:9, a format that during that time was increasingly becoming a standard on home tellies as well. Notice that a wider range of view is also an opportunity for game designers to improve game experience (especially in the first-person shooting genre).
 
 ## Graphics
 
-Let's go back to the 'System group' now since the engine in charge of generating pixels is found within this block. It's organised as a 'group within a group' but you don't have to worry about that now. The group we will be talking about now is called **Graphics Engine** or 'GE'.
+Let's go back to the 'system group' now, since the engine in charge of generating pixels is found within this block. It's organised as a 'group within a group' but you don't have to worry about that now. The group we will be talking about now is called **Graphics Engine** or 'GE'.
 
 {{< centered_container >}}
   {{< tabs nested="true" >}}
@@ -191,27 +198,19 @@ Let's go back to the 'System group' now since the engine in charge of generating
   {{< /tabs >}}
 {{< /centered_container >}}
 
-The GE draws 3D graphics (polygons) with many features applied (texture mapping, lighting and so much more) which you'll see in a bit.
+The GE draws 3D graphics (polygons) with many features applied (texture mapping, lighting and so much more), which you'll see in a bit.
 
-#### Display
+#### Architecture of the Graphics Engine
 
-Before we continue, let's go over the physical aspects of this console, which is where the user can appreciate everything that will be discussed here.
+The PSP's GE subsystem has lots of interesting quirks to mention, so this will be a very complex section. But fear not! I'll try to go step-by-step to avoid any confusions.
 
-So, the PSP carries a **4.3" TFT LCD screen**. It has a resolution of **480x272 pixels** (for reference, it's ~2.6 times the pixels of one screen of the Nintendo DS) and can display up to 16,777,216 colours. Thus, it's got a 24-bit colour depth (the so-called 'True Color' scale).
-
-The aspect ratio is *almost* 16:9, a format that during that time was increasingly becoming a standard on home tellies as well. Notice that a wider range of view is also an opportunity for game designers to improve game experience (especially in the first-person shooting genre).
-
-#### Architecture
-
-The GE subsystem has lots of interesting quirks to mention, so this will be a very complex section. But fear not! I'll try to go step-by-step to avoid any confusions.
-
-First things first, the Graphics Engine is made of three types of components:
-- The **Graphics Core**: Where the actual graphics functionality happens.
-- The **eDRAM Controller**: Mediates access between eDRAM memory and the core.
-- The **Bus Matrix**: Works as a 'bus arbiter' between the System Bus and the internals of the Graphics Engine (remember the GE is found within the System Group).
+First things first, the GE is made of three types of components:
+- The **graphics core**: where the actual graphics functionality happens.
+- The **eDRAM controller**: mediates access between eDRAM memory and the core.
+- The **bus matrix**: works as a 'bus arbiter' between the system bus and the internals of the Graphics Engine (remember the GE is found within the System Group).
   - In reality, this component is a mesh of wires with some logic, but for the sake of explaining, it's simpler to mask with a black box.
 
-The reason for this design is that both main CPU and the Graphics Core can access those 2 MB of eDRAM. So, to prevent congestions, the traffic inside the Graphics Engine goes through another AHB bus called **Local Bus** ('local' from the perspective of the GE). This allows the Graphics Core to perform its functions without depending on the System Bus to move data around (and consequently stalling the rest of the system).
+The reason for this design is that both main CPU and the graphics core can access those 2 MB of eDRAM. So, to prevent congestion, the traffic inside the GE goes through another Advanced High-performance Bus called **local bus** ('local' from the perspective of the GE). This allows the graphics core to perform its functions without depending on the system bus to move data around (and consequently stalling the rest of the system).
 
 {{< float_group >}}
 
@@ -221,29 +220,29 @@ The reason for this design is that both main CPU and the Graphics Core can acces
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-The Local Bus is as wide as the System Bus (128-bit), but if that wasn't enough, the Graphics core has a direct line to eDRAM using a 512-bit bus (made of two unidirectional 256-bit buses), you'll see why it will be needed in the following section.
+The local bus is as wide as the system bus (128 bits), but if that wasn't enough, the graphics core has a direct line to eDRAM using a 512-bit bus (made of two unidirectional 256-bit buses). You'll see why it will be needed in the following section.
 
-What about how the CPU and GE communicate with each other? As I said before, both CPU and Graphics Core can read from eDRAM. Additionally, the Graphics Core can access the System Bus to fetch data from any other component (including main RAM). So, all of that just doesn't happen magically.
+What about how the CPU and GE communicate with each other? As I said before, both CPU and graphics core can read from eDRAM. Additionally, the graphics core can access the system bus to fetch data from any other component (including the main RAM). So, all of that just doesn't happen magically.
 {{% /inner_markdown %}}
 {{< /float_group >}}
 
-In a nutshell, there are two 'Bus Matrix' blocks that re-wire the connection between the Local bus and the System Bus. Whenever there's a component that wants to access an 'alien' bus, the Bus Matrices configure the communication so that one unit becomes a bus master of the two buses and no other overlaps, until the designated unit finishes transferring memory.
+In a nutshell, there are two 'bus matrix' blocks that re-wire the connection between the local bus and the system bus. Whenever there's a component that wants to access an 'alien' bus, the bus matrices configure the communication so that one unit becomes a bus master of the two buses and no other overlaps, until the designated unit finishes transferring memory.[](comment)
 
-In Sony's docs, they refer to it as the Graphics Core or CPU becoming a 'bus master' while the alien bus is set to 'slave'. However, they didn't spend a lot of words trying to explain it and I'm not sure which protocol/standard they are trying to replicate. Based on what's documented, I think it may be somewhat similar to I²C, a protocol used for serial communications (particularly useful with embedded systems) which also performs bus mastering.
+In Sony's docs, they refer to this as the graphics core or CPU becoming a 'bus master' while the alien bus is set to 'slave'. However, they didn't spend a lot of words trying to explain it and I'm not sure which protocol/standard they are trying to replicate. Based on what's documented, I think it may be somewhat similar to I²C, a protocol used for serial communications (particularly useful with embedded systems) which also performs bus mastering.
 
 #### Organising the content
 
-Now that we've seen what components we got and how they interact with each other, let's find out what information related to graphics we can place in memory.
+Now that we've seen what components we've got and how they interact with each other, let's find out what information related to graphics we can place in memory.
 
-There are three memory locations from which the GE will end up pulling or filling:
-- **2 MB eDRAM**: The aforementioned eDRAM. It's used to store the frame-buffer, [z-buffer]({{< ref "nintendo-64#modern-visible-surface-determination" >}}) and texture buffer. Its contents are directly written by the GE. This memory space is also called 'Local Memory'.
+There are three memory locations from which the GE will end up pulling from or filling:
+- **2 MB eDRAM**: the aforementioned eDRAM. It's used to store the frame-buffer, [z-buffer]({{< ref "nintendo-64#modern-visible-surface-determination" >}}) and texture buffer. Its contents are directly written by the GE. This memory space is also called 'local memory'.
   - The CPU can access this memory if needed, although its speed is not ideal.
-- **32 MB DDR SDRAM**: This is the working area of the CPU to build the display lists, vertex data, texture data and CLUTs (Colour lookup tables). In the context of graphics, this bloc is called 'Host Memory'.
-- **16 KB SRAM**: The scratchpad memory is also accessible by both CPU and GE.
+- **32 MB DDR SDRAM**: this is the working area of the CPU for building display lists, vertex data, texture data and CLUTs (Colour lookup tables). In the context of graphics, this bloc is called 'host memory'.
+- **16 KB SRAM**: the scratchpad memory is also accessible by both CPU and GE.
 
 #### Functionality
 
-Like its [home sibling]({{< ref "playstation-2#graphics" >}}), the Graphics System focuses on **rasterization**. Although, VRAM is half the size and the bus is not as fast. To compensate, the GE features a vector processor!
+Like its [sibling]({{< ref "playstation-2#graphics" >}}), the PSP's graphics system focuses on **rasterization**. However, the PSP's VRAM is half the size and its bus is not as fast. To compensate, the GE features a vector processor!
 
 {{< centered_container >}}
   {{< linked_img src="pipeline.png" alt="Pipeline design of the Graphics Engine" >}}
@@ -251,11 +250,11 @@ Like its [home sibling]({{< ref "playstation-2#graphics" >}}), the Graphics Syst
   <br>I've skipped the interfaces since it's becoming too convoluted</figcaption>
 {{< /centered_container >}}
 
-The graphics pipeline is very similar to the PS2, with the addition of the vector processing stage. The Graphics core is divided into two areas: **The Surface Engine** which deals with vector processing and **Rendering Engine** which, as its name indicates, performs rasterisation and effects.
+The graphics pipeline is very similar to the PS2, with the addition of the vector processing stage. The graphics core is divided into two areas: the **surface engine**, which deals with vector processing, and the **rendering engine** which, as its name indicates, performs rasterisation and effects.
 
-The pipeline is not explicitly documented by Sony, just its features. Thus, I've deduced a model myself. This is only done for the sake of analysis in these series (programmers don't depend on this to build their game).
+The pipeline is not explicitly documented by Sony, just its features. Thus, I've deduced a model myself. This is only done for the sake of analysis in this series (programmers don't depend on this to build their game).
 
-On another note, I've decided to make it a bit more technical than previously. I thought this would be a good opportunity to learn new concepts and have a wider vision of computing graphics. Having said that, I strongly recommend reading about the [PS1]({{< ref "playstation#graphics" >}}) and [PS2]({{< ref "playstation-2#graphics" >}}) graphics system before continuing.
+On another note, I've decided to make it a bit more technical than previous articles. I thought this would be a good opportunity to learn new concepts and have a wider vision of computing graphics. Having said that, I strongly recommend reading about the [PS1]({{< ref "playstation#graphics" >}}) and [PS2]({{< ref "playstation-2#graphics" >}}) graphics system before continuing.
 
 {{< tabs >}}
 {{< tab name="Commands" active="true" >}}
@@ -265,15 +264,15 @@ On another note, I've decided to make it a bit more technical than previously. I
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-The Graphics engine is controlled using traditional 'Display lists' stored in main memory. The CPU builds them and the GPU reads them (using DMA). Display Lists basically tell the GPU what, how and where to draw. In the case of the PSP, a display list is not limited to rendering tasks, they can also include vector transformations.
+The Graphics Engine is controlled using traditional 'display lists' stored in main memory. The CPU builds them and the GPU reads them (using DMA). Display lists basically tell the GPU what, how and where to draw. In the case of the PSP, display lists are not limited to rendering tasks – they can also include vector transformations.
 
-The strategy implemented to process lists is critical to ensure both CPU and GPU work concurrently and don't stall each other. Remember, we want the GPU to accelerate operations, not to be a burden. Hence, the CPU/GPU support **deferred rendering**, a technique that allows the CPU to build the next set of display lists while the GPU is processing a previous one. The GE is configured by specifying where in memory the display list starts (base address) and where it stops (stall address). As a result, there are two ways of allocating a list:
-- **Double buffered**: There are two separate display lists areas, one is being transferred to the GPU, the other is being filled by the CPU. When both processors finish, they swap places.
-- **Store controlled**: The CPU fills the same list the DMA is transferring to the CPU, but the CPU is some entries ahead to avoid overlapping. This uses less memory but it's susceptible to stalls if the GPU catches up.
+The strategy implemented to process lists is critical to ensure that the CPU and GPU work concurrently and don't stall each other. Remember, we want the GPU to accelerate operations, not to be a burden. Hence, the CPU/GPU support **deferred rendering**, a technique that allows the CPU to build the next set of display lists while the GPU is processing a previous one. The GE is configured by specifying where in memory the display list starts (base address) and where it stops (stall address). As a result, there are two ways of allocating a list:
+- **Double buffered**: there are two separate display lists areas. One is being transferred to the GPU, the other is being filled by the CPU. When both processors finish, they swap places.
+- **Store controlled**: the CPU fills the same list the DMA is transferring to the CPU, but the CPU is some entries ahead to avoid overlapping. This uses less memory but it's susceptible to stalls if the GPU catches up.
 
-Furthermore, Sony stated that the GPU's DMA unit is not just a 'dumb memory copier' - it can also understand the data transferred. Thus, display lists can include **commands such as 'Jump' and 'Return'** to tell the DMA to branch out and get data from somewhere else. This saves the CPU from embedding large resources (models, textures, etc) in the display lists (effectively duplicating data in memory) and reduces bandwidth consumption. This was inherited from the PS2.
+Furthermore, Sony stated that the GPU's DMA unit is not just a 'dumb memory copier' – it can also understand the data transferred. Thus, display lists can include **commands such as 'jump' and 'return'** to tell the DMA to branch out and get data from somewhere else. This saves the CPU from embedding large resources (models, textures, etc.) in the display lists (effectively duplicating data in memory) and reduces bandwidth consumption. This was inherited from the PS2.
 
-Finally, the DMA can also interpret **Bounding Box data**: Combined with information stored in the Graphics Engine, the DMA will skip drawing commands that aren't within the display area. It's also possible to declare bounding boxes inside other bounding boxes, but let's leave that topic for another day!
+Finally, the DMA can also interpret **bounding box data**: combined with information stored in the GE, the DMA will skip drawing commands that aren't within the display area. It's also possible to declare bounding boxes inside other bounding boxes, but let's leave that topic for another day!
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -285,23 +284,23 @@ Finally, the DMA can also interpret **Bounding Box data**: Combined with informa
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-The GE debuts the ability to perform operations over vectors, which helps to offload a lot of work from the CPU. Sony built this unit to accelerate common tasks previously carried out by the PS2's VPUs using microcode. While the GE is not as flexible as a VPU (the GE is a fixed-function unit), it does simplify a lot of coding (considering microcode had a considerable weight on the learning curve). The GE's vector processor is called **Surface Engine**.
+The Graphics Engine debuts the ability to perform operations over vectors, which helps to offload a lot of work from the CPU. Sony built this unit to accelerate common tasks previously carried out by the PS2's VPUs using microcode. While the GE is not as flexible as a VPU (the GE is a fixed-function unit), it does simplify a lot of coding (considering microcode had a considerable weight on the learning curve). The GE's vector processor is called **surface engine**.
 
-That being said, the **Surface Engine undertakes three types of tasks**. The first one operates **parametric surfaces**. Remember the ['Infinite Worlds']({{< ref "playstation-2#infinite-worlds" >}}) section? Well, Sony explained that, while the PS2 was indeed capable of this, in the end just a few games bothered. It's possible that polygon performance, along with the difficulty in design and implementation, were the main factors.
+**The surface engine undertakes three types of tasks**. The first one operates **parametric surfaces**. Remember the ['Infinite Worlds']({{< ref "playstation-2#infinite-worlds" >}}) section? Well, Sony explained that, while the PS2 was indeed capable of this, in the end just a few games bothered. It's possible that polygon performance, along with the difficulty in design and implementation, were the main factors.
 
-To tackle this, the Surface Engine implements two parametric curves:
-- **Bézier**: A relatively fast function but its parameters change the global shape. Additionally,  it suffers from 'continuity issues' which manifests with cracks on surfaces (discouraging its use with animations). It's often used for landscape generation.
-- **B-spline**: Requires more computations but fixes continuity issues and provides localised control. Character modelling and animation are potential candidates.
+To tackle this, the surface engine implements two parametric curves:
+- **Bézier**: a relatively fast function but its parameters change the global shape. Additionally, it suffers from 'continuity issues' which manifest as cracks on surfaces (discouraging its use with animations). It's often used for landscape generation.
+- **B-spline**: requires more computations but fixes continuity issues and provides localised control. Character modelling and animation are potential candidates.
 
 Both support **levels of detail**, which means that developers can set an arbitrary value to alter the level of subdivision (impacting in the resulting quality of the model).
 
-The second task is called **vertex blending**, a technique used for **animations**. The Surface engine provides two types:
-- **Skinning** (a.k.a skeleton animation): Movement relies on a structure of 'joints' attached to the character model. It's often applied for normal animation (walking, jumping, etc.).
-- **Morphing**: Uses multiple instances of a model and averages them to get a 'transition effect' (using linear interpolation). It's normally used for artificial animation (i.e. facial movement) and special effects. It does come with larger memory consumption and a bigger learning curve.
+The second task is called **vertex blending**, a technique used for **animations**. The surface engine provides two types:
+- **Skinning** (a.k.a skeleton animation): movement relies on a structure of 'joints' attached to the character model. It's often applied for normal animation (walking, jumping, etc.).
+- **Morphing**: uses multiple instances of a model and averages them to get a 'transition effect' (using linear interpolation). It's normally used for artificial animation (i.e. facial movement) and special effects. It comes with larger memory consumption and a bigger learning curve.
 
 It's important to denote that the CPU may still need to compute animations to process game logic (i.e. collision detection) so the CPU can't offload all the work.
 
-Finally, the Surface Engine provides **scissoring** (discarding vertices outside the viewport/rectangular area) as well.
+Finally, the surface engine provides **scissoring** (discarding vertices outside the viewport/rectangular area) as well.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -312,11 +311,11 @@ Finally, the Surface Engine provides **scissoring** (discarding vertices outside
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-This is the starting point of the **Rendering Engine** (skipping the command processor). In here, vector data is transformed into pixels, which is pretty much in pace with any other GPU in the market.
+The next stage of graphics generation takes place in the **Rendering Engine** (skipping the command processor). In here, vector data is transformed into pixels, which is pretty much in pace[](comment) with any other GPU in the market.
 
-The engine draws many types of primitives, including points, lines, line strips, triangles, triangle strips, triangle fans and, finally, sprites (made of 2D rectangles). It also contains a unit called 'Digital Differential Analyser' that will be used for interpolating values during rasterisation and texture mapping.
+The engine draws many types of primitives, including points, lines, line strips, triangles, triangle strips, triangle fans and, finally, sprites (made of 2D rectangles). It also contains a unit called a 'digital differential analyser' that will be used for interpolating values during rasterisation and texture mapping.
 
-Developers can supply a projection matrix to apply **perspective transformation**, this sends their 3D world to a 2D space (so you can see it on the screen) using the camera as a reference.
+Developers can supply a projection matrix to apply **perspective transformation**. This sends their 3D world to a 2D space (so you can see it on the screen), using the virtual 'camera' as a reference.
 
 Sony didn't provide much information about how its rasteriser works in particular, so it's not well-known how many pixels are processed per cycle, for instance. Modern features, like sub-pixel precision, are assumed to be implemented (otherwise, users would've been able to [spot its absence]({{< ref "playstation#tab-2-1-wobbling-textures" >}}) right away).
 {{% /inner_markdown %}}
@@ -328,20 +327,20 @@ Sony didn't provide much information about how its rasteriser works in particula
   <figcaption class="caption">Texture mapping stage</figcaption>
 {{< /float_block >}}{{% inner_markdown %}}
 
-This may be the topic of most interest for some. Polygons (now mere pixels) can be painted with textures. At this stage, texture maps are fetched from memory and processed with many functions. This process is called **Texture Mapping**.
+This may be the topic of most interest for some. Polygons (now mere pixels) can be painted with textures. At this stage, texture maps are fetched from memory and processed with many functions. This process is called **texture mapping**.
 
-The Rendering Engine has three **mapping modes** or, in other words, three ways of processing texture maps:
-- **UV Mapping**: Every coordinate of the model is mapped to a coordinate of the texture.
-- **Projective Mapping**: In a nutshell, it simulates a physical projector shining the texture map over a surface.
-- **Shade Mapping**: Casts up to four lights (either ambient, directional, point or spot) on the model. This is useful when blending the result with another map (you'll see more in the next section).
+The rendering engine has three **mapping modes** or, in other words, three ways of processing texture maps:
+- **UV mapping**: every coordinate of the model is mapped to a coordinate of the texture. 
+- **Projective mapping**: in a nutshell, it simulates a physical projector shining the texture map over a surface.
+- **Shade mapping**: casts up to four lights (ambient, directional, point or spot) on the model. This is useful when blending the result with another map (you'll see more in the next section).
   - If programmers supply a texture map instead of a solid colour, you get a 'fish eye' effect (useful for reflections, a.k.a. **environmental mapping**).
-  - This mode will also permit to obtain [toon shading]({{< ref "gamecube#creativity" >}}) as well.
+  - This mode also permits [toon shading]({{< ref "gamecube#creativity" >}}).
 
 Textures may use **Colour Lookup Tables** or 'CLUTs'. Furthermore, this engine applies **perspective correction** and **bilinear or trilinear filtering** for interpolation.
 
-On another topic, there's **8 KB of texture cache** found in GE to save bandwidth, it uses the 'Least Recently Used' method for space management.
+On another topic, there's **8 KB of texture cache** found in the GE to save bandwidth. It uses the 'least recently used' method for space management.
 
-Finally, while this pipeline is not programmable, developers can send extra colours to be blended with textures. There's also colour doubling (doubles the RGB value of colours), colour addition (combines a primary colour with a secondary colour) and **Fogging** (haze over far away polygons).
+Finally, while this pipeline is not programmable, developers can send extra colours to be blended with textures. There's also colour doubling (doubles the RGB value of colours), colour addition (combines a primary colour with a secondary colour) and **fogging** (haze over distant polygons).
 
 {{% /inner_markdown %}}{{< /tab >}}
 {{< tab name="Pixel Operations" >}}
@@ -352,13 +351,13 @@ Finally, while this pipeline is not programmable, developers can send extra colo
 
 We're reaching the end of the pipeline. The initial geometry has been transformed into pixels and these are now rich-coloured, so it's time to decide what to do with them.
 
-Some pixels may correspond to geometry that it's not needed for this frame (i.e. occluded, masked, etc). To filter that out, the GE can perform the following tests:
-- **Scissoring**: Discard polygons away from an arbitrary area.
-- **Depth Range**: Discards too far or too near polygons (developers set the reference values).
-- **Colour**: Discard pixels equal or not equal to an RGB value.
-- **Alpha**: Compares the pixel's alpha value to a reference value.
-- **Stencil**: Similar nature to the previous one but relies on the stencil value.
-- **Depth test**: Late [Z-buffering]({{< ref "nintendo-64#modern-visible-surface-determination" >}}).
+Some pixels may correspond to geometry that is not needed for this frame (i.e. occluded, masked, etc.). To filter that out, the GE can perform the following tests:
+- **Scissoring**: discards polygons away from an arbitrary area.
+- **Depth range**: discards too distant or too near polygons (developers set the reference values).
+- **Colour**: discards pixels equal or not equal to an RGB value.
+- **Alpha**: compares the pixel's alpha value to a reference value.
+- **Stencil**: similar to alpha, but relies on the stencil value.
+- **Depth test**: late [Z-buffering]({{< ref "nintendo-64#modern-visible-surface-determination" >}}).
 
 Afterwards, pixels will also travel through these optional blocks for further effects:
 
