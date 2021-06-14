@@ -65,7 +65,7 @@ As an example for the curious, the decimal number '42' is represented as:
 - '0010 1010' in binary, but
 - '0100 0010' in BCD.
 
-We could go on and on talking about it, but to give an outline: BCD is useful for applications that require treating each decimal place separately (for instance, a digital clock). However, it requires more storage since each word can only encode up to the decimal number '99' (whereas traditional binary can encode up to '255' with a four-bit word).
+We could go on and on talking about it, but to give an outline: BCD is useful for applications that require treating each decimal place separately (for instance, a digital clock). However, it requires more storage since each word can only encode up to the decimal number '99' (whereas traditional binary can encode up to '255' with a eight-bit word).
 
 In any case, Ricoh deliberately broke BCD mode in its chip by severing the control lines that activate it. This was presumably done in an effort to avoid paying royalties to MOS, since BCD was patented by them (and the legislation that enabled to copyright integrated circuit layouts in the United States wasn't enacted until 1984).
 
