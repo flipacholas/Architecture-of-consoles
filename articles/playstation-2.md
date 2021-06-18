@@ -89,9 +89,9 @@ Furthermore, the **UnCached accelerated mode** is also available. This one adds 
 
 #### Other interesting bits
 
-Inside the same Emotion Engine package, there is yet-another processor called **Image Processing Unit** or 'IPU', this time designed for **image decompression**. The IPU can be useful when a game needs to decode an MPEG2 movie without jamming the main CPU.
+Inside the same Emotion Engine package, there is yet-another processor called **Image Processing Unit** or 'IPU', this time designed for **image decompression**. As the successor of the [MDEC]({{< ref "playstation#tab-2-3-motion-decoder">}}), the IPU can be useful when a game needs to decode an MPEG2 movie without jamming the main CPU.
 
-Long story short, the game sends compressed image streams to the IPU (hopefully using DMA) which is then decoded in a format that the GPU can display. The PS2's operating system also relies in the IPU to provide DVD playback.
+Long story short, the game sends compressed image streams to the IPU (hopefully using DMA) which is then decoded in a format that the GPU can display. The PS2's operating system also relies on the IPU to provide DVD playback.
 
 Finally, the IPU also operates compressed **High-resolution textures**, which saves CPU usage and reduces large transfers. 
 

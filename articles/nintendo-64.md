@@ -42,7 +42,8 @@ The main processor is a **NEC VR4300** that runs at **93.75 MHz**, it's a binary
   - **64-bit mode**: Words are 64-bit long (called 'double-words'). This includes registers, data and memory addresses - though only 40 bits are decoded in the latter case. Consequently, large data can be operated more efficiently, although this also increments the size of the program considerably (for instance, pointers occupy 8 Bytes instead of 4).
 - **32 general-purpose registers**: These are 32-bit wide in '32-bit mode' and 64-bit wide in '64-bit mode'.
 - The **MIPS III ISA**: A RISC instruction set that succeeds MIPS II. It features new instructions that operate double-words. The instructions format is 32-bit long, independently of the mode.
-- An internal **64-bit bus** connected to an **external 32-bit data bus**: While double-words won't degrade performance when operated internally, the CPU will still need to expend extra cycles to move 64-bit throughout the system.
+  - It's worth mentioning that since MIPS II, [load delay slots]({{< ref "playstation#delay-galore" >}}) are gone for good, though branch delay ones still persist.
+- An internal **64-bit bus** connected to an **external 32-bit data bus**: While double-words won't degrade performance when operated internally, the CPU will still need to expend extra cycles to move 64-bit data throughout the system.
 - **32-bit address bus**: Up to 4 GB of physical memory can be addressed.
 - **5-stage pipeline**: Up to five instructions can be allocated for execution (a detailed explanation can be found in a [previous article]({{< ref "sega-saturn#cpu" >}}).
 - **24 KB L1 cache**: Divided into 16 KB for instructions and 8 KB for data.

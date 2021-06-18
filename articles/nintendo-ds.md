@@ -401,7 +401,7 @@ So, to explain what's happening here, I've organised the different explanations 
 - *NDS' textures look more **blocky*** → The rendering engine does not employ any filter, so textures are interpolated using 'nearest neighbour' approach.
 - *NDS' textures look **richer*** → The rendering engine is not limited by a [4 KB TMEM]({{< ref "nintendo-64#tab-4-2-texture-memory" >}}), there's instead up to 512 KB of VRAM available (apart from compression mechanisms provided) so naturally more data can be loaded.
 - *NDS' models contain **pixelated edges*** → NDS models are rendered at a lower resolution compared to the N64.
-- *NDS' textures look **distorted** when seen from a distance* → The rendering engine doesn't employ floating-point coordinates or sub-pixel precision. Low resolution and lack of mip-mapping also attribute to aliasing.
+- *NDS' textures look **distorted** when seen from a distance* → The rasterizer operates [fixed-point]({{< ref "playstation#missing-units" >}}) coordinates. Low resolution and lack of mip-mapping also attribute to aliasing.
 
 That's pretty much in a nutshell, for more specialised cases, you'll have to dive deeper at both engines and possibly disassemble both games to investigate which functions are being used and how.
 
@@ -696,7 +696,7 @@ There are understandable reasons for imposing these norms, such as to maintain q
 {{< float_block >}}
   {{< linked_img src="kawashima.png" alt="Game" >}}
   <figcaption class="caption">Dr Kawashima's Brain Training (2005)
-  <br>New categories of games attracted other audiences</figcaption>
+  <br>New categories of games attracted audiences beyond the youth circle</figcaption>
 {{< /float_block >}}
 
 {{% inner_markdown %}}
