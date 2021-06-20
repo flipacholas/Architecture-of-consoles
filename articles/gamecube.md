@@ -39,28 +39,30 @@ After the loss of SGI's dominance in the graphics market, Nintendo needed new pl
 {{< float_group >}}
 
 {{< float_block >}}
-  {{< linked_img src="cpu_features.png" alt="Construction of Gecko" >}}
-  <figcaption class="caption">Construction of Gecko</figcaption>
+  {{< linked_img src="cpu/cpu_features.png" alt="Construction of Gekko" >}}
+  <figcaption class="caption">Construction of Gekko</figcaption>
 {{< /float_block >}}
 
 {{% inner_markdown %}}
 A promising candidate seems to be IBM: Apart from their famous work on mainframes, they recently allied with Motorola and Apple to create a CPU powerful enough to compete with Intel's ruling in the PC market. The resulting product is a series of processors carrying the name **PowerPC**, which were selected to *power* 99% of Apple's Macintoshes and some embedded systems.
 
-Fast forward, Nintendo required something powerful but cheap, so in order to comply with those red lines, IBM grabbed one of its past designs, the *PowerPC 750CXe* (found on the late iMac G3, known as the *Early-Summer 2001*), and beefed it up with capabilities that would please game developers. The result was the **PowerPC Gecko** and runs at **486 MHz**. 
+Fast forward, Nintendo required something powerful but cheap, so in order to comply with those red lines, IBM grabbed one of its past designs, the *PowerPC 750CXe* (found on the late iMac G3, known as the *Early-Summer 2001*), and beefed it up with capabilities that would please game developers. The result was the **PowerPC Gekko** and runs at **486 MHz**. 
 {{% /inner_markdown %}}
 
 {{< /float_group >}}
 
 #### Features
 
-Let's find out what makes Gecko so special, and to do that we need to first have to look at the offerings of the 750CXe:
+Let's find out what makes Gekko so special, and to do that we need to first have to look at the offerings of the 750CXe:
 
 - **PowerPC ISA**: Without going into much detail, it's *another* 32-bit RISC instruction set. The 750CXe implements the v1.10 specification.
 - **Super-scalar**: More than one instruction can now be executed in each stage of the pipeline.
 - **Out-of-order execution**: The CPU can re-order the sequence of instructions to keep all of its units working, thus increasing efficiency and performance.
 - **Two Integer Units**: Combined with super-scalar and out-of-order, it basically increments the number of integer operations done per unit of time.
-- External **64-bit data bus**: While the ISA can fit in a 32-bit bus, we still need to move other longer types (explained in the next paragraph) without hitting performance penalties.
-- **Integrated 7-stage FPU** with 32-bit and 64-bit registers: Accelerates operations with floats and doubles. It's pipelined so up to seven FPU instructions can be queued in parallel.
+- External **64-bit data bus**: While the ISA can fit in a 32-bit bus, we still need to move other longer types (explained in the next section) without hitting performance penalties.
+- **Integrated FPU** with 32-bit and 64-bit registers: Accelerates operations with floats and doubles.
+- **Four-stage pipeline (with bonus)**: [Here]({{< ref "game-boy-advance#cpu" >}}) is a previous introduction to instruction pipelining. In the 750CXe, FPU operations are divided into three more stages (7 stages in total) while load-store operations are dividided into two (5 stages in total). 
+  - All in all, this increments the instruction throughput without [getting out of hand]({{< ref "xbox#tab-1-3-the-microarchitecture" >}}).
 
 Additionally and due to its RISC nature, this CPU also includes dedicated units to speed up specific computations:
 
@@ -76,15 +78,30 @@ And, of course, some cache is also included to speed up memory bandwidth:
 
 #### IBM's enhancements
 
-While the previous lists of features are very appreciated (compared to previous generations), this CPU still falls behind others on gaming performance (let's not forget that this is still a general-purpose CPU, good at spreadsheets but *average* at physics). To compensate, IBM added the following tweaks that will constitute Gecko:
+While the previous lists of features are very appreciated (compared to previous generations), this CPU still falls behind others on gaming performance (let's not forget that this is still a general-purpose CPU, good at spreadsheets but *average* at physics). To compensate, IBM added the following tweaks that will constitute Gekko:
 
-- Enhanced instruction set with **50 new SIMD instructions**: Speeds up vector calculations, particularly useful during geometry transformations. Not to be confused with Motorola's SIMD extension (AltiVec) which can be found on high-end G4 Macs.
-- **32 Floating-point registers**: Since more numbers can now be stored in the FPU, less memory access is required.
+- Enhanced instruction set with **50 new SIMD instructions**: These operate two 32-bit floating-point numbers or one 64-bit floating-point number using only one cycle. Consequently, the new SIMD instructions will speed up vector calculations, particularly useful during geometry transformations.
+  - Not to be confused with Motorola's SIMD extension (AltiVec) which were shipped on high-end G4 Macs.
+- **32 floating-point registers**: These come with the new SIMD instructions.
 - **Write Gather pipe**: A special memory writing mechanism available to use. If enabled, instead of performing *single-beat* transfers, it holds all memory write requests in a 128-byte buffer until it's 25% full, then performs the requested writes using a technique called *burst transaction* which can move blocks of 32 bytes of data at once.
   - As you can imagine, this saves a lot of bandwidth by making full utilisation of the available buses.
 - **Locked L1 cache**: Programs can take away 16 KB of L1 data cache to use as 'scratchpad' (incredibly fast memory).
 
 Apart from handling the game logic (physics, collisions, etc), these enhancements will allow the CPU to implement parts of the graphics pipeline (geometry transformations, lighting, etc) with acceptable performance. This is very important, since the GPU can only accelerate a limited set of operations, so the end result is not conditioned by the GPU's limitations.
+
+#### A step forward or a step backwards?
+
+> On your [Nintendo 64 article]({{< ref "nintendo-64" >}}), you explained that the system has a 64-bit CPU, but the Gamecube one is 32-bit. Did Nintendo downgraded their console?
+
+Indeed Gekko implements a 32-bit PowerPC architecture, while the MIPS R4300i can switch between 32-bit and 64-bit mode (albeit the latter was hardly used). To answer whether this is an improvement or not, you have to ask yourself: Why would you need '64-bitness'?
+- To address more than 4 GB of memory → The Gamecube doesn't have near that amount of memory locations. So this is not a requirement.
+- To operate larger chunks of data using fewer cycles and bandwidth → That's covered by Gecko's new SIMD instructions and the write-gather pipe, respectively.
+- When the increased memory requirements are not an issue → 64-bit words take double the amount of memory to store. Memory is short on consoles, so none of them can't afford to waste RAM on 64-bit pointers with unused bits, for instance. This is one of the reasons N64 games stuck to 32-bit mode (apart from the implied bandwidth requirement).
+- To come up with more advertising terms → Yeah... I don't think that persuades people anymore.
+
+As you can see, the '64-bit' term does not always imply 'faster'. The benefits depend on many more factors, since the 'upgrade' also comes with new constraints. With Gekko, IBM's engineers demonstrated that they can bring the functionality developers need without altering the word size. The result is not perfect, but it will do for this generation.
+
+In conclusion, this is why you and I can't summarise two complex machines by their 'number of bits'.
 
 #### Clever memory system
 
@@ -112,9 +129,9 @@ Overall, this means that while ARAM provides a considerable amount of RAM, it wi
 
 So far, we've seen that on paper the memory capabilities are *fine* but could have been exceptionally better had Nintendo fitted more hardware to treat ARAM as an addressable memory block, for instance.
 
-Speaking of which, let's revisit the MMU used in Gecko. The CPU, with its 32-bit address bus, can access up to 4 GB of memory, but the system houses nowhere near that quantity. So, to prevent exposing unpopulated (and unpredictable) memory addresses, 'virtual memory' addressing is activated by default to mask physical addresses with a safer, easily cacheable and continuous 'virtual' address map.
+Speaking of which, let's revisit the MMU used in Gekko. The CPU, with its 32-bit address bus, can access up to 4 GB of memory, but the system houses nowhere near that quantity. So, to prevent exposing unpopulated (and unpredictable) memory addresses, 'virtual memory' addressing is activated by default to mask physical addresses with a safer, easily cacheable and continuous 'virtual' address map.
 
-To make this work, Gecko (and other PowerPC architectures) translate virtual addresses to physical ones with the following process:
+To make this work, Gekko (and other PowerPC architectures) translate virtual addresses to physical ones with the following process:
 1. Perform **Block Address Translation** (BAT): There are eight pairs of programmable registers (four for data and four for instructions) where each pair map a range of virtual address to a continuous range of physical addresses. The MMU attempts to find the physical address if it's found within those ranges.
 2. If BAT didn't work, read the **Page Table**: The MMU also stores a table that catalogues the physical location of pages (block of virtual addresses).
     - The MMU can take time to read a page table, so a **Translation look-aside buffer** (TLB) is included to cache recent reads.
@@ -173,7 +190,7 @@ The CPU and GPU communicate to each other using a fixed-length **FIFO buffer** i
 
 Furthermore, the CPU and GPU don't have to be pointing at the same FIFO at the same time, so the CPU can fill another one while the GPU is reading the first one. This prevents idling. 
 
-Issuing individual commands to construct our geometry can get very tedious with complex scenes, so official libraries included tools that generated the required Display Lists (pre-compiled set FIFO commands) from our assets, this chunk only needs to be copied to RAM in order to let the GPU effectively display them.
+Issuing individual commands to construct our geometry can get very tedious with complex scenes, so official libraries included tools that generated the required Display Lists (pre-compiled set FIFO commands) from our assets, this chunk only needs to be copied to RAM to let the GPU effectively display them.
 
 The GPU contains a **command processor** which is in charge of fetching commands from FIFO.
 
@@ -210,12 +227,12 @@ Once loaded, the primitives can be **transformed**, **clipped**, **lighted** (ea
 {{% inner_markdown %}}
 Now it's time to apply textures and effects to our models, and for that Flipper includes multiple units which will process our pixels. Now, this is a very sophisticated (yet quite complex) procedure, so if you find it difficult to follow, just think of it as a big assembly line that process pixels. Having said that, there are three groups of units available:
 
-- **Four parallel Pixel units** (also called 'pixel pipelines'): Rasterises our primitives (converts them to pixels). Having four units available enables to deliver up to 2x2 pixels with each cycle. 
+- **Four parallel Pixel units** (also called 'pixel pipelines'): Rasterises our primitives (converts them to pixels). Having four units available enables to deliver up to 2x2 pixels on each cycle. 
 - **One Texture mapping unit** at the end of each Pixel unit (giving **four in total**): Together they process up to eight textures for our primitives (now mere pixels) at each cycle.
   - It can also loop itself to merge multiple texture layers over the same primitive, this feature is called **Multi-Texturing** and can be used to achieve **detailed textures**, **environment mapping** (reflections) and **bump mapping**, for instance.
   - Finally, the unit also provides an **early [z-buffer]({{< ref "nintendo-64#modern-visible-surface-determination" >}})**, **mipmapping** (processing a downsized texture instead, based on the level of detail) and **anisotropic filtering** (a welcoming improvement over the [previous filters]({{< ref "nintendo-64#tab-1-2-reality-display-processor" >}}) that provides greater detail with sloped textures). 
-- **Texture Environment unit** or 'TEV': A very powerful programmable 16-stage colour blender. It basically combines multiple pixels (lighting, textures and constants) to achieve an immense amount of texture effects that will be applied over our polygons.
-  - The unit works by receiving four pixel colours which are then processed based on the operation requested. Afterwards, it can feed itself the resulting pixels as new input, so at the next stage/cycle, the unit can perform a different type of operation over the previous result. This 'loop' can last up to 15 iterations.
+- **Texture Environment unit** or 'TEV': A very powerful programmable 16-stage colour blender. It basically combines multiple [texels]({{< ref "playstation#tab-4-5-textures" >}}) (lighting, textures and constants) to achieve an immense amount of texture effects that will be applied over our polygons.
+  - The unit works by receiving four texels which are then processed based on the operation requested. Afterwards, it can feed itself the resulting texels as new input, so at the next stage/cycle, the unit can perform a different type of operation over the previous result. This 'loop' can last up to 15 iterations.
   - Each stage has 2<sup>4</sup> operations to choose from and since the result can be re-processed at the next stage, there are around 5.64 × 10<sup>511</sup> possible permutations!
   - Programmers set up the TEV at runtime (meaning it can change any time) and this is crucial since it opens the door to lots of original materials and effects.
 
@@ -350,35 +367,41 @@ The console included not one, but two video output connectors:
 
 Nintendo finally delivered some dedicated audio circuitry to offload the huge task from the CPU-GPU and provide richer sounds. Their new solution is an independent **Digital Signal Processor** or 'DSP' manufactured by **Macronix** running inside Flipper.
 
-The DSP's job consists in performing different operations over our raw audio data (e.g. volume changes, sample rate conversion, 3D sound effects, filtering, etc) and at the end output a 2-channel sample. It doesn't work alone however, the DSP delivers audio with the help of other components.
+The DSP's job consists of performing different operations over our raw audio data (e.g. volume changes, sample rate conversion, 3D sound effects, filtering, echo, reverb, etc) and then output a 2-channel PCM signal. It doesn't work alone however, the DSP delivers audio with the help of other components.
 
-Its first companion is the **Audio Interface** or 'AI', a 16-bit stereo digital-to-analogue converter responsible for sending the final sample through the audio signal that ends on the TV. The AI can only process 32 bytes of audio data every 0.25ms, so if we take into account that each sound sample weights 2 bytes and we need two to create stereo sound, the AI will be able to mix up to eight stereo samples with up to 32 kHz of sampling rate, *sound*!
+Its first companion is the **Audio Interface** (AI), a 16-bit stereo digital-to-analogue converter responsible for sending the final sample through the audio signal that ends on the TV. The AI can only process 32 bytes of audio data every 0.25ms, so if we take into account that each sound sample weights 2 bytes and we need two to create stereo sound, the AI will be able to mix up to eight stereo samples with up to 32 kHz of sampling rate, *sound*!
 
-Finally, we have the **Audio RAM** or 'ARAM' block, which is a large (16 MB) but very slow spare memory that can be used store raw sound data. There's quite a lot of space, so the GPU can also use it store additional material (like textures). The CPU doesn't have direct access to this memory so it will resort to DMA to move content around.
+Finally, we have the **Audio RAM** (ARAM) block, which is a large (16 MB) but very slow spare memory that can be used to store raw sound data. There's quite a lot of space, so the GPU can also use it to store additional material (like textures). The CPU doesn't have direct access to this memory so it will resort to DMA to move content around.
+
+For better or worse, the DSP is programmable with the use of microcode ([_yikes_]({{< ref "nintendo-64#audio" >}})), but fear not, as the official SDK already bundles a general-purpose microcode that almost every game used, except on the console's boot sequence and some Nintendo games (_how convenient_, as Nintendo didn't document the DSP, so only they know how to program it).
 
 That being said, the process of generating sound works as follows:
 1. CPU commands DMA to move raw samples to ARAM.
-2. CPU sends a list of commands that instruct how the DSP should operate these samples.
+2. CPU sends a list of commands that instruct how the DSP should operate these samples. In other words, it uploads the microcode program (only one is official available for developers).
 3. DSP fetches samples from ARAM, applies the required operations and mixes them into two channels. Finally, it stores the resulting data on RAM.
-4. AI fetches processed samples from RAM and outputs it through the audio signal.
+4. AI fetches processed samples from RAM and outputs them through the audio signal.
 
 #### Compression and freedom
 
-While we've already reached the *sampling age* and we are not locked to specific waveforms any more, the new sound system is still a huge improvement. Let me show you an example using two games, one released for the Nintendo 64 and its sequel released for the GameCube. Both have different music scores but the context (enemy battle) is the same. Take a look at how both tracks differ in sound quality, taking into account the design of each system (shared vs dedicated).
+While we've already reached the *sampling age* and we are not locked to specific waveforms anymore, the new sound system is still a huge improvement. For starters, the saga of forced [music sequencing]({{< ref "nintendo-64#audio" >}}) is gone for good. The system can now stream pre-produced music to the audio endpoint without problems, much like what the [Saturn]({{< ref "sega-saturn#audio" >}}) and [PS1]({{< ref "playstation#audio" >}}) accomplished years ago.
+
+Let me show you an example using two games, one released for the Nintendo 64 and its sequel released for the GameCube. Both have different music scores but the context (enemy battle) is the same. Take a look at how both tracks differ in sound quality, taking into account the design of each system (shared vs dedicated).
 
 {{< side_by_side >}}
   <div class="toleft">
     {{< video src="PaperMario64" >}}
-    <figcaption class="caption">Paper Mario (2000) for the N64</figcaption>
+    <figcaption class="caption">Paper Mario (2000) for the N64
+    <br>Sequenced on the fly by the RSP</figcaption>
   </div>
 
   <div class="toright">
     {{< video src="PaperMario" >}}
-    <figcaption class="caption">Paper Mario: The Thousand-Year Door (2004) for the GC</figcaption>
+    <figcaption class="caption">Paper Mario: The Thousand-Year Door (2004) for the GC
+    <br>Streamed to the DSP</figcaption>
   </div>
 {{< /side_by_side >}}
 
-*As you can hear*, dedicated audio hardware is a drastic improvement, allowing for a wider range of frequencies, sampling rates and additional effects.
+*As you can hear*, the DSP finally gave music composers the freedom they always asked for.
 
 ---
 
@@ -391,12 +414,12 @@ It seems that this generation is putting a lot of work into expandability and ac
 Flipper is in charge of interfacing the CPU with the rest of the components so, apart from including sound and graphics circuitry, it also provides a collection of hardware named **(internal) Northbridge** composed of:
 - **Audio Interface** or 'AI': Connects the Audio Encoder.
 - **Video Interface** or 'VI': Connects the Video Encoder.
-- **Processor Interface** 'PI': Connects the CPU (Gecko).
+- **Processor Interface** 'PI': Connects the CPU (Gekko).
 - **Disk Interface** or 'DI: Connects the DVD controller, which can be considered an independent computer per se.
 - **Serial Interface** or 'SI': Connects four possible controllers using a proprietary serial protocol.
 - **External Interface** or 'EXI': Connects the external accessories (more explained below), Memory Card and the IPL BIOS along with the Real-Time Clock or 'RTC'. It uses an SPI-like protocol to connect these devices using only one serial node.
 
-Each interface includes its own set of registers that allows to alter some of its behaviour.
+Each interface includes its own set of registers that allows altering some of its behaviour.
 
 #### Optional I/O
 
@@ -528,7 +551,7 @@ Nintendo has been in this game for quite some time, so it's no news that they in
 
 {{< tab name="DVD controller" active="true" >}}{{% inner_markdown %}}
 
-Even though this is the first Nintendo console to use the disc medium, attempting to play pirated copies of games just wasn't going to be easy. The miniDVD is protected by using proprietary bar-codes on the inner side of the disc, in addition to having its data encrypted. The validation and decryption process works seamlessly: The miniDVD controller takes care it while the system is limited on only requesting the data.
+Even though this is the first Nintendo console to use the disc medium, attempting to play pirated copies of games just wasn't going to be easy. The miniDVD is protected by using proprietary bar codes on the inner side of the disc, in addition to having its data encrypted. The validation and decryption process works seamlessly: The miniDVD controller takes care it while the system is limited on only requesting the data.
 
 The hardware composing the DVD reader can be imagined as a fortress wall which is only accessed using a series of commands, the miniDVD controller features a proprietary CPU that will take care of deciding if the inserted disc is genuine or not, and if it's not, no command issued by the main CPU will convince to read it otherwise.
 
@@ -544,11 +567,11 @@ Another possible path of exploitation consists of using the external I/O availab
 
 That means that by reversing engineering the BIOS and replacing the chip with a modified one, one would be able to run, let's say, a file reader, and from there execute programs received from the accessory ports (assuming the additional hardware is plugged in).
 
-Although at first, this is not that simple: The IPL chip is encrypted using XOR conditionals and a Ciphertext, making it 'impossible' to reverse engineer.
+Although at first, this is not that simple: The IPL chip is encrypted using XOR conditionals and a Cipher-text, making it 'impossible' to reverse engineer.
 
 #### (Second) Defeat
 
-Some people eventually discovered that the hardware that handles the decryption of the IPL contained a bug that allowed to capture the Ciphertext used. With this, another ROM could be constructed and encrypted with the same cypher so the Gamecube boots it as its own!
+Some people eventually discovered that the hardware that handles the decryption of the IPL contained a bug that allowed to capture the Cipher-text used. With this, another ROM could be constructed and encrypted with the same cypher so the Gamecube boots it as its own!
 
 As if that wasn't enough, hackers discovered methods to trick the miniDVD reader into loading conventional DVDs.
 
@@ -606,7 +629,7 @@ Rodrigo.
 
 #### Graphics
 
-- Nintendo, **Graphics Library (GX)**
+- Nintendo, **Graphics Library (GX)**, Version 1.00
 - Brian Neal, [**Game Consoles: A Look Ahead** (Archived)](https://web.archive.org/web/20040208044032/http://www.aceshardware.com/read.jsp?id=60000288), Ace's Hardware
 - devkitpro.org ,[**libogc/GX**](https://devkitpro.org/wiki/libogc/GX)
 - Tim Van Hook, [**Implementation of the ATI Flipper Chip**](http://www.graphics.stanford.edu/courses/cs448a-01-fall/lectures/tvh/tvh.2up.pdf), ATI Technologies, graphics.stanford.edu
