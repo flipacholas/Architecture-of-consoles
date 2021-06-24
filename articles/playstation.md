@@ -92,7 +92,7 @@ The resulting CPU core runs at **33.87 MHz** and features:
 - **4 KB instruction cache** and **1 KB of data cache**: The data cache also works as **Scratchpad** (fast RAM), meaning that it can have other uses apart from behaving as L1 cache. Instruction cache can be 'isolated' instead, allowing the program to manipulate it directly.
   - For some reason, the original CW33300 contained 2 KB of data cache instead.
 
-To do something meaningful, Sony provided **2 MB of RAM** for general-purpose use. Curiously enough, they fitted **External Data Out** (EDO) chips on the motherboard. These are slightly more efficient than typical DRAM, obtaining lower latency.
+To do something meaningful, Sony provided **2 MB of RAM** for general-purpose use. Curiously enough, they fitted **Extended Data Out** (EDO) chips on the motherboard. These are slightly more efficient than typical DRAM, obtaining lower latency.
 
 #### Taking over the CPU
 
