@@ -95,7 +95,7 @@ Apart from handling the game logic (physics, collisions, etc), these enhancement
 
 Indeed Gekko implements a 32-bit PowerPC architecture, while the MIPS R4300i can switch between 32-bit and 64-bit mode (albeit the latter was hardly used). To answer whether this is an improvement or not, you have to ask yourself: Why would you need '64-bitness'?
 - To address more than 4 GB of memory → The Gamecube doesn't have near that amount of memory locations. So this is not a requirement.
-- To operate larger chunks of data using fewer cycles and bandwidth → That's covered by Gecko's new SIMD instructions and the write-gather pipe, respectively.
+- To operate larger chunks of data using fewer cycles and bandwidth → That's covered by Gekko's new SIMD instructions and the write-gather pipe, respectively.
 - When the increased memory requirements are not an issue → 64-bit words take double the amount of memory to store. Memory is short on consoles, so none of them can't afford to waste RAM on 64-bit pointers with unused bits, for instance. This is one of the reasons N64 games stuck to 32-bit mode (apart from the implied bandwidth requirement).
 - To come up with more advertising terms → Yeah... I don't think that persuades people anymore.
 
@@ -244,7 +244,7 @@ All of this is assisted by 1 MB of Texture memory (1T-SRAM type) which can be sp
 {{< tab name="Render" >}}
 
 {{< float_block >}}
-  {{< linked_img src="flipper_pipeline/render.jpg" alt="Render stage diagram" >}}
+  {{< linked_img src="flipper_pipeline/render.png" alt="Render stage diagram" >}}
   <figcaption class="caption">Render stage diagram</figcaption>
 {{< /float_block >}}
 
@@ -256,7 +256,7 @@ The final stage of the rendering process includes applying some optional but use
 - **Blending**: Combines the colours of the current frame with the previous frame buffer.
 - **Dithering**: As the name indicates, applies dithering over our frame.
 
-The resulting frame is finally written to the **Embedded Frame Buffer** or 'EFB', but this is still locked inside Flipper. So to display it on our TV, we have to copy it to the **External Frame-Buffer** or 'XFB', which can be picked up the **Video Interface** or 'VI'. Besides, the copy process can apply effects like **Antialiasing** (reduces blocky edges), **Deflicker** (smooths sudden changes in brightness), **RGB to YUV conversion** (a similar format that occupies less space in memory) and **Y-scaling** (vertically scales the frame).
+The resulting frame is finally written to the frame buffer in the embedded 1T-SRAM, but this is still locked inside Flipper (the area is called 'Embedded Frame Buffer' or 'EFB', though it also includes the z-buffer). So, to display it on our TV, we have to copy it to the **External Frame-Buffer** or 'XFB', which can be picked up the **Video Interface** or 'VI'. Besides, the copy process can apply effects like **Antialiasing** (reduces blocky edges), **Deflicker** (smooths sudden changes in brightness), **RGB to YUV conversion** (a similar format that occupies less space in memory) and **Y-scaling** (vertically scales the frame).
 
 It's worth mentioning that the XFB area can also be manipulated by the CPU, this enables to combine previously-rendered bitmaps with our recently-rendered frame; or when certain games need to render very colour-rich frames which can't fit in the EFB, so they are rendered in parts and merged by the CPU afterwards (always keeping in-sync with the VI).
 {{% /inner_markdown %}}

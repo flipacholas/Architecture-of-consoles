@@ -174,7 +174,7 @@ The MIPS I architecture is susceptible to **control hazards** and **data hazards
 {{< float_block >}}
   {{< linked_img src="delay_slots.jpg" alt="Spyro instructions" >}}
   <figcaption class="caption">Instructions from 'Spyro The Dragon' visualised on the NO$PSX debugger.
-  <br>Notice how LW (load world from memory), JAL (jump and link) and BAL (branch on not equal) are followed by a delay slot to prevent hazards.
+  <br>Notice how LW (load word from memory), JAL (jump and link) and BAL (branch on not equal) are followed by a delay slot to prevent hazards.
   <br>Marked in red are fillers (useless instructions).
   <br>Marked in blue perform meaningful operations.</figcaption>
 {{< /float_block >}}
@@ -191,7 +191,7 @@ Consequently, MIPS I CPUs exhibit the following behaviour:
 
 As we can see from the example, some delay slots are filled with meaningful instructions, which perform computations that are not affected by the hazard. Hence, delay slots don't always imply a waste of cycles.
 
-In most cases, the compiler will automatically re-arrange instructions to fill in slots, or add useless fillers as a last measure. So, all in all, this phenomenon is a bit of a mixed bag.
+In most cases, the compiler or assembler will automatically re-arrange instructions to fill in slots, or add useless fillers as a last measure. So, all in all, this phenomenon is a bit of a mixed bag.
 
 ---
 

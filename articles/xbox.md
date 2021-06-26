@@ -246,7 +246,7 @@ Having said that, let's take a look at how frames are drawn in the Xbox. Some ex
 {{< tab name="Commands" active="true" >}}
 
 {{< float_block >}}
-  {{< linked_img src="pipeline/Commands.png" alt="PFIFO Diagram" >}}
+  {{< linked_img src="pipeline/commands.png" alt="PFIFO Diagram" >}}
   <figcaption class="caption">Commands stage</figcaption>
 {{< /float_block >}}
 
@@ -262,7 +262,7 @@ The next explanations happen in PGRAPH.
 
 {{< tab name="Vertex" >}}
 {{< float_block >}}
-  {{< linked_img src="pipeline/Vertex.png" alt="Vertex stage" >}}
+  {{< linked_img src="pipeline/vertex.png" alt="Vertex stage" >}}
   <figcaption class="caption">Vertex stage</figcaption>
 {{< /float_block >}}
 
@@ -281,7 +281,7 @@ In a nutshell, the vertex unit processes vertices by manipulating them in its re
 
 {{< tab name="Pixel" >}}
 {{< float_block >}}
-  {{< linked_img src="pipeline/Pixel.png" alt="Fragment/Pixel stage" >}}
+  {{< linked_img src="pipeline/pixel.png" alt="Fragment/Pixel stage" >}}
   <figcaption class="caption">Fragment/Pixel stage</figcaption>
 {{< /float_block >}}
 
@@ -299,7 +299,7 @@ Register combiners are programmable in a similar nature to the [Texture Environm
 
 {{< tab name="Post-processing" >}}
 {{< float_block >}}
-  {{< linked_img src="pipeline/PostProcessing.png" alt="Xbox Live" >}}
+  {{< linked_img src="pipeline/postprocessing.png" alt="Xbox Live" >}}
   <figcaption class="caption">Post-processing stage</figcaption>
 {{< /float_block >}}
 {{% inner_markdown %}}

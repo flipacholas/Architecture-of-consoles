@@ -64,7 +64,7 @@ Due to the unified memory architecture, the CPU no longer has direct access to R
 
 Apart from the UMA, the structure of RAM is a little bit complicated, so I'll try to keep it simple. Here it goes...
 
-The system physically contains **4.5 MB of RAM**, however, it's connected using a **9-bit** data bus where the 9th bit is reserved for the GPU (more details later). As a consequence, every component except the GPU will only find **up to 4 MB**.
+The system physically contains **4.5 MB of RAM**, however, it's connected using a **9-bit** data bus where the 9th bit is reserved for the GPU (more details in the 'Graphics' section). As a consequence, every component except the GPU will only find **up to 4 MB**.
 
 {{< centered_container >}}
   {{< linked_img src="memory.png" alt="Memory Diagram" img_class="no-borders" >}}
