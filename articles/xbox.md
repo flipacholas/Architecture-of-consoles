@@ -538,7 +538,7 @@ There are multiple SDKs available to develop for this console, some 'official' a
 {{% inner_markdown %}}
 Microsoft's Xbox Development Kit or 'XDK' is the official SDK used for Xbox development. It's a package that contains many tools, libraries and compilers. Most notably, it's used alongside Visual Studio .NET (2002 version) which was *quite an IDE* from that time, for better or worse.
 
-The graphics library is a customised implementation of **Direct3D 8.0**, which was extended to include Xbox-specific features. Direct3D was a very powerful API used to develop code compatible with many GPUs. With this, PC developers have the opportunity to port their PC games without too many changes (in theory!). Although, the syntax used for vertex programs and pixel shaders reassembles downright assembly.
+The graphics library is a customised implementation of **Direct3D 8.0**, which was extended to include Xbox-specific features. Direct3D was a very powerful API used to develop code compatible with many GPUs. With this, PC developers have the opportunity to port their PC games without too many changes (in theory!). Although, the syntax used for vertex programs and pixel shaders resembles downright assembly.
 
 Apart from that, audio functionality is provided by **DirectSound** which takes care of the APU without the need to worry about moving audio data around. There are some network libraries as well, which are very convenient for achieving online functionality (i.e. multiplayer). The network API relies on **Windows Sockets**, which was Microsoft's attempt to simplify network communications using a Windows-only protocol (albeit having a design based on its standardised counterpart, BSD sockets).
 
