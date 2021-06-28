@@ -132,7 +132,7 @@ Back to the point, the Wii standardised this feature by allowing 'widescreen mod
 {{< float_block >}}
   {{< linked_img src="mario/mario_galaxy.png" alt="Super Mario Galaxy" >}}
   <figcaption class="caption">Super Mario Galaxy (2007)
-  <br>You can pick up the stars by pointing at them, then the stars will fly towards the</figcaption>
+  <br>You can pick up the stars by pointing at them</figcaption>
 {{< /float_block >}}
 
 {{% inner_markdown %}}
@@ -696,7 +696,7 @@ Rodrigo
 
 - Professional Wii photos: [**Evan Amos Gallery**](https://commons.wikimedia.org/wiki/User:Evan-Amos)
 - Motherboard: [**Htomari Gallery**](https://www.flickr.com/photos/htomari/) (I've removed the background)
-- Diagrams, casual Wii photos and game screenshots: **Me**
+- Diagrams, casual Wii photos and game screenshots: [**Rodrigo Copetti (Me)**](https://www.copetti.org/)
 
 #### Other Media
 

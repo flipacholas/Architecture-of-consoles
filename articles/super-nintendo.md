@@ -41,8 +41,8 @@ The main processor is a **Ricoh 5A22**. It's based on the **Western 65C816**, a 
 
 The CPU employs a **variable clock speed** that will reach up to **3.58 MHz** during register operations and down to **1.79 MHz** when accessing slow external buses (i.e. the serial/controller port).
 
-The 5A22 features:
-- A **65816 ISA**: A 16-bit instruction set which extends the original 6502 ISA, but doesn't implement the undocumented instructions some NES games ended up using.
+In summary, the 5A22 features:
+- A **65816 ISA**: A 16-bit instruction set which extends the original 6502 ISA, but doesn't implement undocumented instructions some NES games ended up using.
   - The [broken BCD mode]({{< ref "nes#scrapped-functions" >}}) is **working** again.
 - **16-bit registers**.
   - The accumulator (where arithmetic operations are performed) and index register (used to compute memory addresses) can switch between 16-bit and 8-bit mode.
@@ -297,7 +297,7 @@ I think the real benefits of Multi Out started to become evident during present 
 ## Audio
 
 This console provided some unique audio capabilities thanks to a dedicated set of chips designed by no other than **Sony**. The most important components of the audio subsystem are:
-- **The S-DSP**: Plays ADPCM samples across eight different channels, they are mixed and sent through the audio output. The DSP is capable of manipulating samples with 16-bit resulution and a sampling rate of 32 kHz, it also provides:
+- **The S-DSP**: Plays ADPCM samples across eight different channels, they are mixed and sent through the audio output. The DSP is capable of manipulating samples with 16-bit resolution and a sampling rate of 32 kHz, it also provides:
   - **Stereo Panning**: Distributes our channels to provide stereo sound.
   - **ADSR envelope control**: Sets how volume changes at different times.
   - **Delay**: Simulates *echo*, it also includes a frequency filter to cut out some frequencies during the feedback. Do not confuse this with *Reverb*!
