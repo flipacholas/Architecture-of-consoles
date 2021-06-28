@@ -1,12 +1,12 @@
 - id: 3
   ordinal: 3rd
   description: Known as '8-bit' consoles, these machines brought more sophisticated graphics and richer sounds than their predecessors. After all, a big market crash just occurred and newer standards had to be set.
-  gpu: Scrollable Tile maps and larger colour palettes
+  gpu: Scrollable tile maps and larger colour palettes
 
 - id: 4
   ordinal: 4th
   description: DMA, horizontal interrupts, multiple modes... These are some examples of the new concepts that brought the new '16-bit' generation, opening the door to new genres of games.
-  cpu: Multiplication/Division instructions, DMA and dual-processing
+  cpu: Multiplication and division instructions, DMA and dual-processing
   gpu: Affine transformations and horizontal interrupts
 
 - id: 5
