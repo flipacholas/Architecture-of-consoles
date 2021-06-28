@@ -141,9 +141,11 @@ Sometimes I wonder how Nintendo planned the way the two CPU's would be used, and
 
 Let me start with the ARM9, this CPU runs at twice the speed of the ARM7, but most (if not all) of the I/O depends on the ARM7, so the ARM9 is vulnerable to excessive stalling until the ARM7 answers. If that wasn't enough, **ARM9's external bus runs at half the speed**, so there are a few bottlenecks identified.
 
-Additionally, the Main Memory bus is only **16-bit wide**. Thus, whenever any CPU needs to fetch a word (32-bit wide) from memory, the interface **stalls the CPU** (up to 3 'wait' cycles) until a full world is reconstructed. The worst impact happens when memory access is not sequential, which makes it stall for every single access. This issue will also arise when instructions are fetched (unfortunately, ARM didn't support sequential opcode fetching back then) which, to my dismay, also affects Thumb code (since every 16-bit fetch is done as a 32-bit block). On the other hand, this penalty (as some sources call it) can be alleviated by making full use of cache and TCM.
+Additionally, the Main Memory bus is only **16-bit wide**. Thus, whenever any CPU needs to fetch a word (32-bit wide) from memory, the interface **stalls the CPU**, using up to 3 'wait' cycles, until a full world is reconstructed. The worst impact happens when memory access is not sequential, which makes it stall for every single access. This issue will also arise when instructions are fetched (unfortunately, ARM didn't support sequential opcode fetching back then) which, to my dismay, also affects Thumb code (since every 16-bit fetch is done as a 32-bit block). On the other hand, this 'penalty', as some sources call it, can be alleviated by making full use of cache and TCM.
 
 All in all, this means that in the worst case, the 'whooping' ARM9's 66 MHz horsepower is practically reduced to a mere ~8&nbsp;MHz. That is if the program makes an abysmal use of cache/TCM.
+
+For a detailed report, I recommend checking out Martin Korth's document (see the 'Sources' at the end of the article), specifically, the 'DS Memory Timings' section.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -331,7 +333,7 @@ Anyway, this engine is commanded using a **Command FIFO** which is filled with d
 {{% inner_markdown %}}
 This is the rasteriser in charge of generating pixels and applying texture mapping. To do the latter, it relies on **perspective correction** and **Gouraud shading**. Moreover, the unit provides modern features like [Z-buffering]({{< ref "nintendo-64#modern-visible-surface-determination" >}}), **alpha blending**, **stencil tests**, **fog** and **anti-aliasing**. 
 
-The rendering system is a bit unorthodox though: Instead of rendering to a frame-buffer, it employs **line buffer rendering** where it fills by scan-lines, similarly to the 2D engine. This is because the engine has to synchronise with the 2D drawer. Now, for each quadrangle, the renderer can only fill **one span per scan-line** and this can be a bit troubling, since the result will get messy if the quad is concave or has crossed edges, for instance.
+The rendering system is a bit unorthodox though: Instead of rendering to a frame-buffer, it employs **line buffer rendering** where it fills by scan-lines, similarly to the 2D engine. This is because the engine has to synchronise with the 2D drawer. Now, for each quadrangle, the renderer can only fill **one span per scan-line** and this can be a bit troubling, since the result will get messy if the quad is concave or has crossed edges, for instance. You can read more about this from Arisotura's articles (see the 'Sources' section).
 
 On the bright side, the unit also provides **shadowing** and a distinct feature called **Toon Shading** (another name for [Cel Shading]({{< ref "gamecube#creativity" >}})): Even though this unit is not [programmable]({{< ref "xbox#importance-of-programmability" >}}), the lighting parameters can be altered to achieve a cartoony effect.
 {{% /inner_markdown %}}
