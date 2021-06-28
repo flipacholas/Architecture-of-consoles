@@ -9,11 +9,14 @@ other = 'I hope you have enjoyed this article! If you want to know more about th
 [author_footer_second]
 other = 'and if you would like to support him <a href="{{ . }}">tap here</a> instead'
 
-[translations]
-other = 'This article has been manually translated from English to other languages you can choose from, <a href="{{ . }}">click here</a> if you want to help with translations or suggest changes.'
+[help_translations]
+other = 'Help with translations'
 
-[no_translation]
-other = 'This article welcomes <a href="{{ . }}">translations or contributions</a> from anyone that wishes to donate their time.'
+[report_mistakes]
+other = 'Report mistakes or propose changes'
+
+[supporting_readings]
+other = 'Check supporting readings'
 
 [next]
 other = 'Next'
@@ -58,6 +61,9 @@ other = "Along with the donation you can leave a note stating which article in p
 [contribution_suggestions]
 other = 'Alternatively, you can help out by <a href="{{ . }}">suggesting changes</a> and/or <a href="{{ . }}">adding translations</a>.'
 
+[print]
+other = 'Print article (or save to PDF)'
+
 # Consoles (Single)
 
 [architecture_consoles]
@@ -72,11 +78,17 @@ other = "Motherboard"
 [top_diagram]
 other = "Diagram"
 
+[original]
+other = "Original"
+
+[marked]
+other = "Marked"
+
 [contributing_title]
 other = "Contributing"
 
 [contributing_content]
-other = 'This article is part of the <a href="{{ . }}">Architecture of Consoles</a> series. If you found it interesting then please consider donating. Your contribution will be used to fund the purchase of tools and resources that will help me to improve the quality of existing articles and upcoming ones. I also provide a list of interesting materials to acquire at the end of each article.'
+other = 'This article is part of the <a href="{{ . }}">Architecture of Consoles</a> series. If you found it interesting then please consider donating. Your contribution will be used to fund the purchase of tools and resources that will help me to improve the quality of existing articles and upcoming ones.'
 
 [contributing_tools]
 other = 'A list of desirable tools and latest acquisitions for this article are tracked in here:'
