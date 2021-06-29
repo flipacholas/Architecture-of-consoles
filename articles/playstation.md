@@ -89,8 +89,8 @@ The resulting CPU core runs at **33.87 MHz** and features:
   - **Sub Bus** (16/8-bit) → Connects to the rest of the chips and I/O. This bus is bridged by the **Bus Interface Unit**, which also enables access to special ports of the GPU and SPU.
 - **32-bit address bus**: Up to 4 GB of physical memory (i.e. RAM, memory-mapped I/O, etc) can be accessed.
 - **5-stage pipeline**: Up to five instructions can be executed simultaneously (a detailed explanation can be found in a [previous article]({{< ref "sega-saturn#cpu" >}})).
-- **4 KB instruction cache** and **1 KB of data cache**: The data cache also works as **Scratchpad** (fast RAM), meaning that it can have other uses apart from behaving as L1 cache. Instruction cache can be 'isolated' instead, allowing the program to manipulate it directly.
-  - For some reason, the original CW33300 contained 2 KB of data cache instead.
+- **4 KB of instruction cache**: It can be 'isolated' as well, allowing the program to manipulate instruction cache directly.
+  - Oddly, **there is no data cache**. The **1 KB of memory** normally used for the data cache is mapped to a fixed address. This area is also called **Scratchpad** (fast SRAM).
 
 To do something meaningful, Sony provided **2 MB of RAM** for general-purpose use. Curiously enough, they fitted **Extended Data Out** (EDO) chips on the motherboard. These are slightly more efficient than typical DRAM, obtaining lower latency.
 
@@ -628,6 +628,7 @@ Later on, Sony provided a library called **Lybcrypt** which fortified copy prote
 #### CPU
 
 - MAMEdev, [**PlayStation CPU emulator source code**](https://github.com/mamedev/mame/blob/master/src/devices/cpu/psx/psx.cpp)
+- Jakub Czekański, [**CPU access time logs**](https://github.com/JaCzekanski/ps1-tests/blob/master/cpu/access-time/psx.log)
 - Integrated Device Technology, [**R30xx Family Software Reference Manual**](https://cgi.cse.unsw.edu.au/~cs3231/doc/R3000.pdf)
 - LSI Logic, [**LR33300 User's Manual**](http://www.sm.luth.se/csee/courses/smd/D0013E/manual/manual.html)
 - Raymond Chen, [**The MIPS R4000, part 8: Control transfer**](https://devblogs.microsoft.com/oldnewthing/20180411-00/?p=98485)
