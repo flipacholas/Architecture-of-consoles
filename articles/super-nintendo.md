@@ -266,7 +266,7 @@ Truth to be told, I still haven't mentioned the most important characteristic of
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-Introducing **Mode 7**, *yet another* background mode, but this time, with a completely different way of working. While it can only render a single 8bpp Background layer, it provides the exclusive ability of applying the following **affine transformations**:
+Introducing **Mode 7**, *yet another* background mode, but this time, with a completely different way of working. While it can only render a single 8bpp background layer, it provides the exclusive ability of applying the following **affine transformations** on that plane:
 
 - Translation
 - Scaling
@@ -274,13 +274,15 @@ Introducing **Mode 7**, *yet another* background mode, but this time, with a com
 - Reflection
 - Shearing
 
-These effects don't include perspective, although by altering the rotation matrix at each HDMA call, a pseudo 3D effect can be achieved!
+The S-PPU uses a **rotation matrix** to control the parameters of this mode. I won't go into the math here, but depending on the desired effect, the CPU will have to perform some trigonometric functions (sine and cosine) to fill the entries of this table accordingly. This is really expensive for the 65C816, even with the use of fixed-point math. Luckily, with the 5A22, Ricoh added multiplication and division registers to offload some cycles.
 
 {{% /inner_markdown %}}
 
 {{< /float_group >}}
 
-Due to the high number of calculations needed, the memory map is changed to optimise the pipeline of the two PPUs, the first one processes the **Tilemap** (where tiles are referenced) while the other fetches the **Tileset** (where tiles are stored).
+By the way, notice that the list of transformations doesn't mention **perspective**, which is what you see on the example game (F-Zero). This is achieved by altering the rotation matrix at each HDMA call, creating a pseudo 3D effect in the process.
+
+Finally, due to the high number of calculations needed, the memory map is changed to optimise the pipeline of the two PPUs, the first one processes the **Tilemap** (where tiles are referenced) while the other fetches the **Tileset** (where tiles are stored).
 
 #### A convenient video out
 
