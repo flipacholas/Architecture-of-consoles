@@ -372,7 +372,30 @@ Other third-party tools consisted of custom cartridges featuring a long ribbon c
 
 Additionally, the PBUS branches out to another connector at the bottom of the N64's motherboard. This was meant to be used by the yet-unreleased **Nintendo 64 Disk Drive** (64DD), some sort of an 'extra floor' that contains a proprietary magnetic disk reader. Its disks provide up to 64 MB of capacity. While only released in Japan, the Disk drive opened the door to an alternative (and cheaper) medium for distributing games.
 
-The magnetic medium is slower than cartridges, with transfer speeds of up to 1 MB/sec, but still faster than 4X CD-ROM readers. Disks are double-sided and operate at 'Constant Angular Velocity' (like the later [miniDVD]({{< ref "gamecube#medium" >}})). The smallest readable area is called 'block' and it's half of a concentric circle. There's no buffer memory included in this reader, so the bits read are stored in RDRAM for execution. Nintendo bundled the RAM expansion unit with the 64DD, so that compensates for the sudden need for more RAM (apart from standardising the extended RAM with 64DD games).
+{{< float_group >}}
+
+{{< float_block >}}
+{{< tabs nested="true" >}}
+    {{< tab name="Module" active="true" >}}
+      {{< linked_img src="64dd/module.png" alt="N64 DD module" >}}
+      <figcaption class="caption">The Nintendo 64 Disk Drive (1998)
+      <br>Released on 01/12/1999 in Japan</figcaption>
+    {{< /tab >}}
+    {{< tab name="Attached" >}}
+      {{< linked_img src="64dd/attached.png" alt="N64 DD attached" >}}
+      <figcaption class="caption">The 64DD attached to the console</figcaption>
+    {{< /tab >}}
+{{< /tabs >}}
+
+{{< /float_block >}}
+
+{{% inner_markdown %}}
+The magnetic medium is slower than cartridges, with transfer speeds of up to 1 MB/sec, but still faster than 4X CD-ROM readers. Disks are double-sided and operate at 'Constant Angular Velocity' (like the later [miniDVD]({{< ref "gamecube#medium" >}})). The smallest readable area is called 'block' and it's half of a concentric circle.
+
+There's no buffer memory included in this reader, so the bits read are stored in RDRAM for execution. Nintendo bundled the RAM expansion unit with the 64DD, so that compensates for the sudden need for more RAM (apart from standardising the extended RAM with 64DD games).
+{{% /inner_markdown %}}
+
+{{< /float_group >}}
 
 Furthermore, parts of the disk are re-writable to enable storing saves, the amount of writable area depends on the type of disk used (Nintendo provided seven types). On the software side, game data is structured with a filesystem called 'Multi File System' (MFS) provided by Nintendo with their SDK. Games can either access disk data using the file system or on a block-to-block basis, the latter relies on another library called 'Leo' for low-level functions.
 
@@ -394,9 +417,31 @@ Overall, there wasn't too much concern regarding piracy thanks to the use of car
 
 As silly as it may seem, Nintendo left one door opened: The **Disk Drive port**.
 
+{{< float_group >}}
+
+{{< float_block >}}
+{{< tabs nested="true" >}}
+  {{< tab name="Attached" active="true" >}}
+    {{< linked_img src="v64/attached.png" alt="Doctor V64 attached" >}}
+    <figcaption class="caption">The Doctor V64 attached to the console</figcaption>
+  {{< /tab >}}
+  {{< tab name="Back" >}}
+    {{< linked_img src="v64/back.png" alt="Doctor V64 back" >}}
+    <figcaption class="caption">The back of the V64, showing some interesting A/V</figcaption>
+  {{< /tab >}}
+{{< /tabs >}}
+
+{{< /float_block >}}
+
+{{% inner_markdown %}}
 A few companies reversed engineered the interface to develop their own hardware, and some of the resulting products became a concern for piracy.
 
-I guess the one worth mentioning is the **Doctor v64**, this device has the same shape as the Disk Drive but included a CD-ROM drive instead. The expansion can rip the contents of the cartridge to a CD, the opposite (reading ROM files from a CD) is also possible.
+I guess the one worth mentioning is the **Doctor v64**, this device has the same shape as the Disk Drive but included a CD-ROM drive instead.
+
+The expansion can rip the contents of the cartridge to a CD, the opposite (reading ROM files from a CD) is also possible.
+{{% /inner_markdown %}}
+
+{{< /float_group >}}
 
 #### Emulation
 
