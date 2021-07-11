@@ -482,28 +482,3 @@ Until next time!
 Rodrigo
 
 *This article has been dedicated to the memory of Jacinto 'Pocho' Fornasier.*
-
----
-
-## Sources / Keep Reading
-
-#### General
-
-- smspower.org, [**Development Documents**](https://www.smspower.org/Development/Index)
-- Sega, **Sega Mk3 Hardware Reference Manual (Rev1)**
-- Sega, [**Service Manual Schematics**](https://www.smspower.org/Development/SegaMasterSystemServiceManual#Schematics) 
-
-#### CPU
-
-- NEC, [**D4168 Data-sheet**](https://pdf1.alldatasheet.com/datasheet-pdf/view/129898/NEC/D4168.html)
-
-#### Graphics
-
-- codeslinger.co.uk, [**VDP Info**](http://www.codeslinger.co.uk/pages/projects/mastersystem/vdp.html)
-- Texas Instruments, [**TMS9918A, TMS9928A, TMS9929A Video Display Processors Data Manual**](http://www.bitsavers.org/components/ti/TMS9900/TMS9918A_TMS9928A_TMS9929A_Video_Display_Processors_Data_Manual_Nov82.pdf), 1982
-
-#### Photography
-
-- Console: [**Evan Amos Gallery**](https://commons.wikimedia.org/wiki/User:Evan-Amos)
-- Controller icon: [**Dribble.com**](https://dribbble.com/shots/3628443-Master-System-Controller)
-- Diagrams and game screenshots: **Me**

@@ -407,37 +407,3 @@ An easy way to bypass this was to either buy one of those shady cartridge conver
 
 When it comes to Anti-Piracy measures, the easiest check was on the SRAM size: Bootleg cartridges had more space than needed to fit any game, so games checked for the expected size on the startup.
 Programmers could also implement extra checksum checks at random points of the game in case hackers were to remove the SRAM checks. The only way to defeat this was to actually find the checks and remove them one by one... Although finding them was the trickiest part!
-
----
-
-## Sources / Keep Reading
-
-#### General
-
-- [**Technical specifications in detail (Archived)**](https://web.archive.org/web/20190827225347/https://segaretro.org/Sega_Mega_Drive/Technical_specifications)
-- [**Schematics**](https://gamesx.com/wiki/doku.php?id=schematics:console_related_schematics)
-- [**Interesting architectural comparison with the SNES**](https://hackaday.com/2015/11/06/winning-the-console-wars-an-in-depth-architectural-study/)
-- Plutiedev, [**Using the Z80**](https://plutiedev.com/using-the-z80)
-
-#### Graphics
-
-- [**VDP in detail**](https://megacatstudios.com/blogs/press/sega-genesis-mega-drive-vdp-graphics-guide-v1-2a-03-14-17)
-- [**More about CRAM (Archived)**](https://web.archive.org/web/20190815115213/https://segaretro.org/Sega_Mega_Drive/Palettes_and_CRAM)
-- [**VDP Ports**](https://wiki.megadrive.org/index.php?title=VDP_Ports)
-- [**Long docs**](http://jiggawatt.org/genvdp.txt)
-- [**DMA transfer rates (Archived)**](https://web.archive.org/web/20190815121028/https://segaretro.org/Sega_Mega_Drive/DMA)
-- [**Bad usage of H-Blank resulting in 'CRAM Dots' (Archived)**](https://web.archive.org/web/20190815115213/https://segaretro.org/Sega_Mega_Drive/Palettes_and_CRAM)
-
-#### Audio
-
-- [**Basic FM in action**](https://www.youtube.com/watch?time_continue=16&v=Zk82DPrAugs)
-- [**More about GEMS**](https://www.youtube.com/watch?v=WEvnZRCW_qc)
-- [**More about the Yamaha chip**](https://en.wikipedia.org/wiki/Yamaha_YM2612)
-- [**SegaRetro's article of GEMS (Archived)**](https://web.archive.org/web/20190830034717/https://segaretro.org/GEMS)
-- [**Developer of ToyStory explains in-depth how their sounds were achieved**](https://www.youtube.com/watch?v=x3m3JrVImmU)
-
-#### Photography
-
-- Console: [**Evan Amos Gallery**](https://commons.wikimedia.org/wiki/User:Evan-Amos)
-- Motherboard: [**Okqubit**](https://www.okqubit.net/machines/gamecons.html)
-- Diagrams and game screenshots: **Me**
