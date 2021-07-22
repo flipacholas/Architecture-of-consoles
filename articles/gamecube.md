@@ -51,7 +51,7 @@ Fast forward, Nintendo required something powerful but cheap, so in order to com
 
 {{< /float_group >}}
 
-#### Features
+### Features
 
 Let's find out what makes Gekko so special, and to do that we need to first have to look at the offerings of the 750CXe:
 
@@ -76,7 +76,7 @@ And, of course, some cache is also included to speed up memory bandwidth:
 - **64 KB L1 cache**: Divided into 32 KB for instructions and 32 KB for data.
 - **256 KB L2 cache**: It can be filled with instructions and data, which greatly improves bandwidth.
 
-#### IBM's enhancements
+### IBM's enhancements
 
 While the previous lists of features are very appreciated (compared to previous generations), this CPU still falls behind others on gaming performance (let's not forget that this is still a general-purpose CPU, good at spreadsheets but *average* at physics). To compensate, IBM added the following tweaks that will constitute Gekko:
 
@@ -89,7 +89,7 @@ While the previous lists of features are very appreciated (compared to previous 
 
 Apart from handling the game logic (physics, collisions, etc), these enhancements will allow the CPU to implement parts of the graphics pipeline (geometry transformations, lighting, etc) with acceptable performance. This is very important, since the GPU can only accelerate a limited set of operations, so the end result is not conditioned by the GPU's limitations.
 
-#### A step forward or a step backwards?
+### A step forward or a step backwards?
 
 > On your [Nintendo 64 article]({{< ref "nintendo-64" >}}), you explained that the system has a 64-bit CPU, but the Gamecube one is 32-bit. Did Nintendo downgraded their console?
 
@@ -103,7 +103,7 @@ As you can see, the '64-bit' term does not always imply 'faster'. The benefits d
 
 In conclusion, this is why you and I can't summarise two complex machines by their 'number of bits'.
 
-#### Clever memory system
+### Clever memory system
 
 During the design of the next-gen architecture, Nintendo's architects performed a post-mortem analysis of [their previous design]({{< ref "nintendo-64" >}}) and discovered that using a Unified Memory architecture together with some high-latency components (RDRAM) resulted in one of the biggest causes of bottleneck (almost 50% of CPU cycles were wasted while idling). Moreover, the inclusion of multiple independent units contributed to a concerning competition for the memory bus.
 
@@ -125,7 +125,7 @@ Additionally, this design contains an additional (yet unusual) bus where more me
 
 Overall, this means that while ARAM provides a considerable amount of RAM, it will be limited to less critical tasks, like acting as an audio buffer or being used by certain accessories (explained in the I/O section).
 
-#### Organising memory and sorting out ARAM
+### Organising memory and sorting out ARAM
 
 So far, we've seen that on paper the memory capabilities are *fine* but could have been exceptionally better had Nintendo fitted more hardware to treat ARAM as an addressable memory block, for instance.
 
@@ -165,7 +165,7 @@ During the development process, ArtX got acquired by ATI, which in turn was sold
 
 {{< /float_group >}}
 
-#### Architecture and design
+### Architecture and design
 
 Flipper handles multiple services, so let's focus on the graphics component for now (since it's the one responsible for bringing our geometry to life). If you've been reading the [N64 article]({{< ref "nintendo-64#graphics" >}}), just letting you know that the core is now functional out of the box, so programmers won't need to worry about injecting code to make it work. Nevertheless, there will some interesting parts that are customisable.
 
@@ -264,7 +264,7 @@ It's worth mentioning that the XFB area can also be manipulated by the CPU, this
 {{< /tab >}}
 {{< /tabs >}}
 
-#### Interactive comparison
+### Interactive comparison
 
 Time to put all of this into perspective, check out how programmers evolved the designs of their previous games to take advantage of the new graphics capabilities of this console. Don't forget the examples are interactive!
 
@@ -315,7 +315,7 @@ In this case, Sonic Team already designed a Sonic model for [their unique consol
 
 It's really impressive how much detail has been gained in just two years, eh?
 
-#### Creativity
+### Creativity
 
 As you can see from the inner working of this pipeline, graphics technology has been evolving to point that programmers can now take control of certain functions of the rendering process.
 
@@ -334,13 +334,13 @@ I guess one of the best examples of games that exploited this new capability is 
 
 {{< /float_group >}}
 
-#### Video output system
+### Video output system
 
 The video signal outputs a resolution of up to 640x480 pixels (or 768×576 px in PAL) with up to 16.7 million colours (24-bit depth). Additionally, the system could broadcast its signal in **progressive mode** (which has a clearer image, but not every TV may have supported it during that time).
 
 The XFB can have multiple dimensions, so for compatibility reasons, the Video interface will try its best to display the frame by re-sampling the XFB to fit the TV screen based on the region.
 
-#### Connections
+### Connections
 
 The console included not one, but two video output connectors:
 
@@ -381,7 +381,7 @@ That being said, the process of generating sound works as follows:
 3. DSP fetches samples from ARAM, applies the required operations and mixes them into two channels. Finally, it stores the resulting data on RAM.
 4. AI fetches processed samples from RAM and outputs them through the audio signal.
 
-#### Compression and freedom
+### Compression and freedom
 
 While we've already reached the *sampling age* and we are not locked to specific waveforms anymore, the new sound system is still a huge improvement. For starters, the saga of forced [music sequencing]({{< ref "nintendo-64#audio" >}}) is gone for good. The system can now stream pre-produced music to the audio endpoint without problems, much like what the [Saturn]({{< ref "sega-saturn#audio" >}}) and [PS1]({{< ref "playstation#audio" >}}) accomplished years ago.
 
@@ -409,7 +409,7 @@ Let me show you an example using two games, one released for the Nintendo 64 and
 
 It seems that this generation is putting a lot of work into expandability and accessories, the Gamecube included a couple of new interesting ports, although some of them remained unused.
 
-#### Internal I/O
+### Internal I/O
 
 Flipper is in charge of interfacing the CPU with the rest of the components so, apart from including sound and graphics circuitry, it also provides a collection of hardware named **(internal) Northbridge** composed of:
 - **Audio Interface** or 'AI': Connects the Audio Encoder.
@@ -421,7 +421,7 @@ Flipper is in charge of interfacing the CPU with the rest of the components so, 
 
 Each interface includes its own set of registers that allows altering some of its behaviour.
 
-#### Optional I/O
+### Optional I/O
 
 On the bottom of the Gamecube's case, you'll find two external sockets to connect some widgets.
 
@@ -450,13 +450,13 @@ These ports are operated on the EXI stack.
 
 {{< /float_group >}}
 
-#### Unusual I/O
+### Unusual I/O
 
 You'll notice I still haven't mentioned another available socket found next to the serial ports: The **Parallel Port**. This port happens to be much faster (8-bit at 80 MHz vs 1-bit at 32 MHz) which may be the reason Nintendo called it **Hi-Speed Port**. But the most unusual part is that this port is not interfaced through EXI, but through ARAM!
 
 The only official accessory known to date is the famous **Game Boy Player** which plugged in as an extra floor under the Gamecube, it contained the necessary hardware to natively play [**Game Boy**]({{< ref "game-boy">}}) and [**Game Boy Advance**]({{< ref "game-boy-advance">}}) games. The Player works by doing all the heavy work itself and then sending the results (frames and audio data) to ARAM which the GameCube forwards to the respective components for display/sound.
 
-#### Consistent design
+### Consistent design
 
 I found it worth pointing out that no matter how many accessories you connect, the console will always keep its cubic shape (or at least attempt to).
 
@@ -471,7 +471,7 @@ Upon turning on the console, the CPU will start loading an operating system call
   <figcaption class="caption">The official logo, shown after the boot animation finishes</figcaption>
 {{< /centered_container >}}
 
-#### Splash and shell
+### Splash and shell
 
 After finishing the boot process, the OS will load a small program *unofficially* called **Main Menu**.
 
@@ -517,13 +517,13 @@ Nintendo provided developers with lots of tools to assist (and encourage) the de
 - Various **assistance tools** such as MusyX, Texture editors, Display Lists exporters, USB programmers, etc.
 - Tons and tons of **documentation**! (available in PDF and HTML)
 
-#### Specialised hardware
+### Specialised hardware
 
 Apart from the software, the company supplied different hardware kits (which range in price) before and after the console was publicly released.
 
 Probably the most popular one worth mentioning is the **Dolphin Development Hardware** or 'DDH' which consisted in a PC-like tower containing some of the Gamecube's I/O and lots of dev-assisting hardware, it was mainly used as a debugging station while the game was being developed on a Windows PC.
 
-#### Medium
+### Medium
 
 Games are loaded from a proprietary disc called **miniDVD**, it's almost half the size of a traditional DVD disc and can hold up to 1.4 GB of data.
 
@@ -531,11 +531,11 @@ As an interesting fact, the disc reader operates in a **Constant Angular Velocit
 
 Game saves are stored in a proprietary external accessory called **Memory Card** and there are enough slots for two of them.
 
-#### Unusual controllers
+### Unusual controllers
 
 Nintendo shipped an accessory known as the **GameBoy Link Cable** which plugged a [**Game Boy Advance**]({{< ref "game-boy-advance">}}) into the GC controller port, so games could upload small programs to the GBA and treat it as a special controller. This interesting feature enabled unique interactions and content in some games.
 
-#### Online Platform
+### Online Platform
 
 Well, unlike [the competition]({{< ref "dreamcast">}}), not only Nintendo required users to buy extra accessories to access online content, but they also didn't deploy any internet service that publishers could rely on, making developers solely responsible for providing the necessary internet infrastructure.
 
@@ -545,7 +545,11 @@ As a result, while online gaming was a possible feature, it didn't get widely ad
 
 ## Anti-Piracy & Homebrew
 
-Nintendo has been in this game for quite some time, so it's no news that they included security mechanisms to prevent running unauthorised software or games from a different region. Furthermore, due to the new range of I/O that the Gamecube provides, the attack surface got significantly larger. So we can organise it into these areas:
+Nintendo has been in this game for quite some time, so it's no news that they included security mechanisms to prevent running unauthorised software or games from a different region. Furthermore, due to the new range of I/O that the Gamecube provides, the attack surface got significantly larger.
+
+### Security mechanisms
+
+We can organise them into these areas:
 
 {{< tabs >}}
 
@@ -555,9 +559,7 @@ Even though this is the first Nintendo console to use the disc medium, attemptin
 
 The hardware composing the DVD reader can be imagined as a fortress wall which is only accessed using a series of commands, the miniDVD controller features a proprietary CPU that will take care of deciding if the inserted disc is genuine or not, and if it's not, no command issued by the main CPU will convince to read it otherwise.
 
-#### Defeat
-
-As any other cat-and-mouse game, it was just a matter of time before third-party companies successfully reverse-engineered the controller to build mod-chips that could trick the reader. But bear in mind that no mod-chip will make this console magically fit a conventional CD/DVD without physically altering the case!
+**Defeat**: As with any other cat-and-mouse game, it was just a matter of time before third-party companies successfully reverse-engineered the controller to build mod-chips that could trick the reader. But bear in mind that no mod-chip will make this console magically fit a conventional CD/DVD without physically altering the case!
 
 {{% /inner_markdown %}}{{< /tab >}}
 
@@ -569,9 +571,7 @@ That means that by reversing engineering the BIOS and replacing the chip with a 
 
 Although at first, this is not that simple: The IPL chip is encrypted using XOR conditionals and a Cipher-text, making it 'impossible' to reverse engineer.
 
-#### (Second) Defeat
-
-Some people eventually discovered that the hardware that handles the decryption of the IPL contained a bug that allowed to capture the Cipher-text used. With this, another ROM could be constructed and encrypted with the same cypher so the Gamecube boots it as its own!
+**(Second) Defeat**: Some people eventually discovered that the hardware that handles the decryption of the IPL contained a bug that allowed to capture the Cipher-text used. With this, another ROM could be constructed and encrypted with the same cypher so the Gamecube boots it as its own!
 
 As if that wasn't enough, hackers discovered methods to trick the miniDVD reader into loading conventional DVDs.
 

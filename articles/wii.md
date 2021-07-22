@@ -49,7 +49,7 @@ The remote is powered by **Broadcom's BCM2042**, a chip that includes all the ne
 
 Lastly, the Wiimote also includes **16 KB of EEPROM** to store user data and a **small speaker** limited to low-quality samples (3 kHz 4-bit ADPCM or 1.5 kHz 8-bit PCM).
 
-#### Expansions
+### Expansions
 
 Nintendo shipped this system with another controller to be used on the opposite hand, the **Nunchuk**, this one comes with its own accelerometer, joystick and two buttons. It's connected to a 6-pin proprietary port on the Wiimote.
 
@@ -68,7 +68,7 @@ After the success of Gekko, IBM presumably grabbed this design and re-branded it
 
 After having reviewed [Gekko]({{< ref "gamecube#cpu" >}}), I'm afraid there aren't many changes found in the new CPU. However, this may be an advantage: GameCube developers were able to start developing their new Wii games right away thanks to all the experience they gained with Gekko. Moreover, the fact that Broadway runs twice the speed will allow them to push for more features and quality.
 
-#### What about memory?
+### What about memory?
 
 This one is an interesting bit, the old Gamecube memory layout has been re-arranged and enhanced with the following changes:
 
@@ -77,7 +77,7 @@ This one is an interesting bit, the old Gamecube memory layout has been re-arran
 - There's a new memory chip, **MEM2**, which includes **64 MB of GDDR3 SDRAM** for general purpose.
   - This type of memory is based on the traditional DDR2 system but revamped with higher bandwidths (~2 times the original transfer rates) and reduced power consumption, which is ideal for GPUs.
 
-#### Backwards compatibility
+### Backwards compatibility
 
 (For now) You can think of this console as a superset of the GameCube and as such, compatibility with the previous generation of games is naturally inherited. That being said, in order to make the Wii *fully* backwards compatible, the old set of external ports were brought to the Wii, these include the GameCube controller and memory card ports.
 However, there's a new constraint: The new memory map is incompatible with the old one. Thus, a thin 'emulation' layer was implemented in software (more details in the 'I/O' and 'Operating System' section).
@@ -91,6 +91,8 @@ In later years, new revisions of the Wii saw these ports removed, unfortunately.
 ## Graphics
 
 The new graphics package is called **Hollywood**. It still performs the same tasks that [Flipper]({{< ref "gamecube#graphics" >}}) did back in the day but enjoying twice the clock speed (**243 MHz**). This speed increase means that more geometry and effects can be processed during the same unit of time.
+
+### Functionality
 
 The 3D engine is still [Flipper's]({{< ref "gamecube#graphics" >}}) but now called **GX**. So instead of repeating the pipeline overview, I will mention some interesting design changes that games had to undergo:
 
@@ -146,7 +148,7 @@ This is not a new feature per se, but a novel use of current capabilities. Gamec
 {{< /tab >}}
 {{< /tabs >}}
 
-#### Updated Designs
+### Updated Designs
 
 The extra megahertz of Broadway and Hollywood, combined with avant-garde designs, brought some improvements to character models. It may not be as significant as other generations, but it's still noticeable and appreciated.
 
@@ -164,7 +166,7 @@ The extra megahertz of Broadway and Hollywood, combined with avant-garde designs
   </div>
 {{< /side_by_side >}}
 
-#### Video Signal
+### Video Signal
 
 Surprisingly enough, this console doesn't use the old [Multi Out]({{< ref "super-nintendo.md#a-convenient-video-out" >}}) port anymore, but a variation of it called **AV Multi Out** (so much for a name) with a slightly different shape. This one carries all of the previous signals plus **YPbPr** (known as 'component'). It also includes some data lines that the system uses to identify the type of cable plugged in.
 
@@ -184,7 +186,7 @@ Compared to the Gamecube, the only major change is that, since ARAM is gone, eit
 
 The I/O subsystem of this console is a truly game changer (*if you'll pardon the pun*). The interfaces are now controlled by a single module that will take care of security too, I'm talking about **Starlet**.
 
-#### The hidden co-processor
+### The hidden co-processor
 
 Starlet is just an **ARM926EJ-S** CPU wired up to most of the internal components of this console. It resides inside Hollywood, runs at **243 MHz** (same as Hollywood) and contains its own ROM and RAM too. Thus, you can consider Starlet an independent computer running alongside the main CPU.
 
@@ -226,7 +228,7 @@ Having said that, Nintendo wired up the I/O in a way that makes use of two AMBA 
   - The **Serial interface**: Connects the Gamecube controllers.
   - The **External Interface** (EXI): We've seen this one [before]({{< ref "gamecube#internal-io" >}}). It communicates with other Gamecube hardware, used for backwards compatibility.
 
-#### Maintaining compatibility
+### Maintaining compatibility
 
 {{< float_group >}}
 
@@ -249,7 +251,7 @@ Additionally, the Real-Time Clock chip includes some spare ROM that stores bitma
 
 Generally speaking, there are **two operating systems** residing in the Wii, one is executed on Broadway (main CPU) and the other one on Starlet (I/O CPU). Both reside inside those 512 MB of NAND memory and can be updated.
 
-#### Starlet's OS
+### Starlet's OS
 
 Starlet is already an interesting piece of hardware, but its software is even more intriguing. You see, not only this OS has complete access to every single corner of this console, but it's also the first thing that runs when the power button is pressed.
 
@@ -269,7 +271,7 @@ Nintendo often released IOS updates to improve hardware support (which was neces
 
 When a Gamecube game is inserted, a different thing happens: Startlet boots a **MIOS** instead. This IOS variant just orders Starlet to emulate the original [IPL]({{< ref "gamecube#operating-system" >}}).
 
-#### Broadway's OS
+### Broadway's OS
 
 This one is commonly known as the **System Menu** and effectively runs on the main PowerPC CPU (**Broadway**).
 
@@ -310,13 +312,13 @@ Just like IOS, Nintendo released multiple updates to this system too. Some fixed
 
 Any program running on Broadway (including the System Menu) relies on a specific IOS version to work. When a game or a channel is booted, Starlet reboots itself using the declared version of IOS needed.
 
-#### Update medium
+### Update medium
 
 Nintendo refers to them as **System updates**, they contain the two OSs in the same package and use ordinal numbers for versioning, the last version known is `4.3E` and was released in June 2010.
 
 System update packages can be fetched from Nintendo's Servers or game discs. Users can manually check for updates using the System Menu. Updates are forced if a game requires a specific version of IOS that is not installed (and the disc happens to contain the required packages).
 
-#### Boot sequence
+### Boot sequence
 
 So far we have discussed two very different operating systems that reside in this console and run concurrently. This seems fairly simple, although both have to be carefully coordinated during the start of the console to work properly afterwards.
 
@@ -336,7 +338,7 @@ That being said, the boot process of this console is as follows:
 
 While new games did not always come with considerable graphical leaps, they did surprise users with the number of features they could now offer. This was thanks to the new services Nintendo shipped with the console's launch, ranging from the new set of controls, to a standardised online infrastructure (WiiConnect24) which enabled *free* online gaming.
 
-#### Medium
+### Medium
 
 Wii games are distributed using a proprietary disc format called **Wii Optical Disc** (I know, the name can't get more obvious). Anyhow, Matsushita/Panasonic designed this format based on the traditional DVD disc while adding non-standard features, like a **burst cutting area** on the inner section of the disc to prevent unauthorised reproductions.
 
@@ -363,7 +365,7 @@ Some games like *Super Smash Bros Brawl* included more partitions to store multi
 
 {{< /float_group >}}
 
-#### Development
+### Development
 
 As part of the tradition, Nintendo supplied a development kit. This one was called **NDEV** and shaped like an enlarged black _brick_. NDEV shipped with enhanced I/O and two times the amount of MEM2 (128 MB in total) for debugging purposes.
 
@@ -371,7 +373,7 @@ The official software suite was named **Revolution SDK** and it included various
 
 The official SDK relies on IOS calls to interact with the Wii hardware, this is why IOS updates are often correlated to SDK updates.
 
-#### Return to Home
+### Return to Home
 
 Considering all the software advancements of this console, it may surprise you that games **still run on bare metal**, which means that they have complete control of Broadway, but not of Starlet (hence, security mechanisms are implemented here). Needless to say, the game's behaviour is still subject to Nintendo's approval before getting distributed.
 
@@ -400,7 +402,7 @@ The answer is simple, Nintendo included in their SDK some **mandatory libraries*
 
 The official HOME Menu is one of the 200 or so requirements games had to include, as ruled by the **Wii Programming Guidelines** document (found on the official SDK). Other requirements consisted of displaying the 'Wii Strap reminder' screen (which is just a BMP image) at the start of the game, followed by another rule that dictated how to interact with it.
 
-#### Personalised game
+### Personalised game
 
 {{< float_group >}}
 
@@ -432,7 +434,7 @@ But the fun didn't stop there, since games could also fetch these new-created Mi
 
 I think the number of features that this console offered made it very attractive for hacking, as cracking the security system would allow homebrew developers to get their hands on the console's capabilities without having to go through Nintendo's checks. Be as it may, the Wii ended up having a fantastic Homebrew library.
 
-#### Copy protection
+### Copy protection
 
 Let's start with the common victim: **The disc drive**.
 
@@ -457,7 +459,7 @@ It's worth mentioning that the main benefit of modchips was plain piracy, as the
 
 Gamecube homebrew, on the other hand, was already possible to execute by following [previous exploits]({{< ref "gamecube#tab-5-3-honourable-mention" >}}) discovered on the predecessor.
 
-#### System encryption
+### System encryption
 
 This is probably the most complex section of this console, yet its never-stopping research opened the door to lots of talented developers and amazing programs.
 
@@ -536,7 +538,7 @@ As a final note, HMAC is stored in SEEPROM (outside Starlet), not in OTP.
 
 After all this, it's worth mentioning that when the system runs GameCube games, **none of the mentioned encryption methods are used**. Instead, Starlet will only check that the game only accesses its designated memory locations. This is because 1/4 of GDDR3 RAM is allocated to simulate old [ARAM]({{< ref "gamecube#audio" >}})).
 
-#### The fall of encryption
+### The fall of encryption
 
 Let's start with AES keys, the algorithm may be hard to crack, but if the keys are extracted somehow (especially the common key), that layer of security would be instantly nullified. Thus, the main challenge is **how to extract them**.
 
@@ -560,7 +562,7 @@ For people unfamiliar with C, 'strcmp' is a routine used for checking if two str
 
 As if that wasn't enough, this flaw was discovered on multiple IOS versions - and even in routines found on boot1 and boot2!
 
-#### The dawn of Homebrew
+### The dawn of Homebrew
 
 After this, there was only one thing left: Make the exploit permanent and implement a 'user-friendly' tool, so it could run custom programs without hassle.
 
@@ -581,7 +583,7 @@ I'm referring to the famous **The Legend of Zelda: Twilight Princess** (a game b
 
 Since signatures could now be forged, this crafted save file was easily distributed on the net for other people to use. As a result, the homebrew community was now able to execute their custom software.
 
-#### A permanent state
+### A permanent state
 
 While further reversing IOS, it was discovered that signatures are only checked during the installation of titles, not during their execution.
 
@@ -608,7 +610,7 @@ Thus, TT did it again. They carefully forged an installable channel that could l
 
 {{< /float_group >}}
 
-#### Nintendo's response
+### Nintendo's response
 
 For obvious reasons, Nintendo issued several system updates that fixed the signature exploits on multiple versions of IOS, they also took care of their flawed boot stages by shipping new hardware revisions.
 

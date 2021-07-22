@@ -39,7 +39,7 @@ This machine is nowhere near as simple as the [original Playstation]({{< ref "pl
 
 At the heart of this console we find a powerful package called **Emotion Engine** or 'EE' designed by Sony and running at **~294.91 MHz**. This chipset contains multiple components, one of them being the main CPU. The rest are at the CPU disposal to speed up certain tasks.
 
-#### The leader
+### The leader
 
 The main core is a **MIPS R5900-compatible** CPU with lots of enhancements. This is the first chip that starts executing instructions after the console is turned on. The processor provides the following features:
 - **MIPS III ISA**: A 64-bit RISC instruction set. *Wait, is it me or this is the same ISA found on a [competitor's console]({{< ref "nintendo-64#cpu" >}})?*. Not quite, Sony enhanced the ISA by adding some instructions from **MIPS IV** (prefetch and conditional move) along with their own SIMD extension called **multimedia instructions**. 
@@ -53,7 +53,7 @@ The main core is a **MIPS R5900-compatible** CPU with lots of enhancements. This
 
 The core is complemented with a **dedicated floating point unit** (identified as 'COP1') that accelerates operations with 32-bit floating point numbers (also known as `floats` in C).
 
-#### A recognisable memory choice
+### A recognisable memory choice
 
 Next to the Emotion Engine are two blocks of 16 MB of RAM, giving a total of **32 MB** of main memory. The type of memory used is **RDRAM** ([*déjà vu!*]({{< ref "nintendo-64#ram-available" >}})) which is accessed through a 16-bit bus.
 
@@ -75,7 +75,7 @@ At one corner of the Emotion engine there is a powerful **DMA Controller** or 'D
 
 Data transfers are done in batches of 128-bits, but here is the interesting part: Every eight batches, the main bus is temporarily unlocked. This leaves a small window to perform other DMA transfers in parallel (up to ten) or let the CPU use the main bus. This *modus operandi* is called **slice mode** and is one of the many modes available on this DMA unit. Bear in mind that while slice mode reduces stalls on the main bus, it does so at the cost of slowing down the overall DMA transfer.
 
-#### Preventing past mishaps
+### Preventing past mishaps
 
 Whether we want it or not, with the amount of traffic happening inside the Emotion Engine, this design will eventually suffer the consequences of the **Unified memory architecture** or 'UMA'. That is... multiple independent components trying to access main memory at the same time, causing congestion. Well, to correct these issues, Sony alleviated the constant need for memory by:
 
@@ -87,7 +87,7 @@ This sounds very convenient for applications that can benefit from cache, but wh
 
 Furthermore, the **UnCached accelerated mode** is also available. This one adds a buffer for speeding up read of continuous addresses in memory.
 
-#### Other interesting bits
+### Other interesting bits
 
 Inside the same Emotion Engine package, there is yet-another processor called **Image Processing Unit** or 'IPU', this time designed for **image decompression**. As the successor of the [MDEC]({{< ref "playstation#tab-2-3-motion-decoder">}}), the IPU can be useful when a game needs to decode an MPEG2 movie without jamming the main CPU.
 
@@ -101,6 +101,8 @@ Finally, the IPU also operates compressed **High-resolution textures**, which sa
 
 It's been two years since the rivals presented their [latest offering]({{< ref "dreamcast">}}). If you read the former article and just started reading this one, I presume you are *still* waiting for 'the thing' that makes the PS2 as powerful as it seemed back then. Now, let me introduce a *very* important set of components Sony fitted in the Emotion Engine, the **Vector Processing Units** or 'VPU'.
 
+### Architecture
+
 A Vector Processing Unit is a small independent processor designed to operate vectors. In particular, vectors made of four `floats`. These processors are so fast that they only spend **one cycle per operation**, which can be extremely convenient for geometry processing.
 
 VPUs are made of the following components:
@@ -109,7 +111,10 @@ VPUs are made of the following components:
   - It implements a **64-bit ISA** and the execution unit is **split into two parallel sub-units**. The first one multiplies or adds floats, while the other one divides floats or operates integers. This enables to operate both floats and integers **concurrently**.
 - A **Vector Interface**: Automatically decompresses vertex data coming from main memory in a format the Vector unit can understand. This unit can also transfer microprograms to Micro Memory.
 
+### Functionality
+
 To start working, the vector unit needs to be 'kickstarted'. For this, the main CPU is in charge of supplying the microcode.
+
 There are **two VPUs** fitted in the Emotion engine, but they are arranged differently, giving way to different uses and optimisations.
 
 {{< tabs >}}
@@ -155,7 +160,7 @@ It's obvious that this VPU was designed for trigonometric operations, and may se
 {{< /tab >}}
 {{< /tabs >}}
 
-#### Infinite worlds
+### Infinite worlds
 
 A useful approach that can be exploited with these units is **procedural generation**. In other words, instead of building the scene using hard-coded geometry, let the VPUs generate it using algorithms. In this case, the VPU computes **mathematical functions to produce the geometry** which is then interpreted by the GPU (i.e. triangles, lines, quadrangles, etc) and ultimately used to draw the scene.
 
@@ -168,7 +173,7 @@ On the other side, procedural content may struggle with animations and, if the a
 
 To sum up, procedural rendering is not a new technique, but thanks to the VPUs, it opens the doors to further optimisations and richer graphics. Nonetheless, is not a simple technique to implement and Sony R&D published various papers describing different approaches to use on their console.
 
-#### You define the workflow
+### You define the workflow
 
 With these new additions, programmers now have a lot of flexibility to design their graphics engines. In fact, there are multiple research papers published which benchmark popular pipeline designs.
 
@@ -322,11 +327,11 @@ Finally, the new frame-buffer, along with the updated Z-buffer, are written to m
 
 {{< /tabs >}}
 
-#### Even more post-processing
+### Even more post-processing
 
 There's a dedicated component inside the GS called **Programmable CRT Controller** or 'PCRTC' which sends the frame-buffer in memory to the Video output, so you can see the frame on TV. But that's not all: It also contains a special block called **Merge Circuit** that allows to alpha-blend two separate frame-buffers (useful if games want to reuse the previous frame to form the new one). The resulting frame can be outputted through the video signal and/or written back to memory.
 
-#### Better models
+### Better models
 
 With all being said, this surely brought better designs to refresh already-famous characters. Take a look at this 'Before & After':
 
@@ -362,7 +367,7 @@ Here are characters from new game series, these were modelled with high levels o
 
 It's worth mentioning that games like *Dragon Quest* implemented a custom lighting model called **Cel Shading** (a term I have mentioned [before]({{< ref "gamecube#creativity" >}})), however, in my previous articles I explained that the GPU was mainly responsible for this. In the PS2 case, the required colour calculations are presumably done by the Emotion Engine, since the GS isn't as flexible as other GPUs.
 
-#### Video Output
+### Video Output
 
 As stated before, the PCRTC sends the frame-buffer through the video signal. The interface can broadcast video using a wide range of formats (to work with TVs from any geographical region):
 - **PAL**: Sends up to 640x512 pixels at 50 Hz, either progressive (576p) or interlaced (576i).
@@ -432,13 +437,13 @@ The IOP communicates with the Emotion Engine using a specialised I/O interface c
 
 The IOP gives access to the front ports, DVD controller, SPU2, the BIOS ROM and the PC card slot.
 
-#### Inherited compatibility
+### Inherited compatibility
 
 By including the original CPU, we can suspect PS1 compatibility would eventually happen somehow. Conveniently enough, the IOP happens to include the rest of the components that formed the CPU subsystem of the PS1. Moreover, the core can be under-clocked to run at PS1 speed. Unfortunately, the SPU2 has changed too much for the PS1, but for that, the Emotion Engine is 'repurposed' to emulate the old SPU.
 
 In later revisions of this console, the IOP was replaced with a **PowerPC 401 'Deckard'** and **4 MB of SDRAM** (2 MB more than before), backwards compatibility persisted but through software instead.
 
-#### Available interfaces
+### Available interfaces
 
 This console kept the previous front ports that were included in the original Playstation, it also featured a couple of 'experimental' interfaces that looked very promising at first.
 
@@ -490,7 +495,7 @@ In later revisions, the PCMCIA port was replaced by an **Expansion Bay** where a
 
 The ethernet transceiver supplied supports transfer rates of up to 100 Mbps (12.5 MB/s). However, the **observed rate is notoriously lower** (down to 2 MB/s in some cases). The explanation for that is relatively simple: To achieve a usable network communication, one is required to implement all the layers of the standard 'OSI Model'; and the transceiver is just one piece of the puzzle. The rest is often delegated to the IOP (thus, done in software) but due to the IOP's limited performance, this results in bottlenecks. There are multiple ways to tackle this and a previous discussion on ps2-home.com provides very insightful info, if you are curious (see the 'Sources' section).
 
-#### Interactive accessories
+### Interactive accessories
 
 The new version of their controller, the **DualShock 2**, is a slightly improved version of DualShock. During the days of the original Playstation, multiple revisions of the original controller were released featuring different features (and also bringing fragmentation to the market). Now, for the benefit of developers, there was a single controller that unified all the previous properties.
 
@@ -540,7 +545,7 @@ Upon boot, the CPU will execute instructions in ROM which in turn will:
   {{< /tabs >}}
 {{< /centered_container >}}
 
-#### Interactive shell
+### Interactive shell
 
 The functionality of the PS2 shell is pretty much in pace with the other 6th gen. consoles.
 
@@ -599,7 +604,7 @@ What happened here is really impressive. The PS2 doesn't have a 'programmer-frie
 {{% /inner_markdown %}}
 {{< /float_group >}}
 
-#### Development ecosystem
+### Development ecosystem
 
 Sony provided the hardware and software to assist game development.
 
@@ -615,7 +620,7 @@ On the hardware side, Sony provided studios with dedicated hardware to run and d
 
 The combination of the Devkit, the official SDK and Codewarrior (a famous IDE) was one of the most popular setups.
 
-#### Medium
+### Medium
 
 The disc drive can read both DVDs and CDs, so games could be distributed using either format, but for obvious reasons you will find most titles in DVD format.
 
@@ -635,11 +640,11 @@ Due to the type of medium used, not only games could be played, but also movies.
 
 In terms of speed, CD-ROMs are read at 24x speed (so 3.6 MB/s) and DVD-ROMs are read at 4x speed (5.28 MB/s).
 
-#### Network service
+### Network service
 
 As you have seen, the networking features of this consoles weren't standardised until later revisions, which arrived four years later after the first release. Similarly, game studios were in charge of providing the necessary infrastructure if they decided to provide online services (like multiplayer). In later years, Sony deployed the **Dynamic Network Authentication System** or 'DNAS', it wasn't an online server, but an authentication system to prevent pirated games from connecting online.
 
-#### An unusual kind of game
+### An unusual kind of game
 
 Apart from all these games with their *fancy graphics*, Sony released a Linux distribution based on 'Kondara' (which is in turn based on Red Hat 6) available in two DVDs (first disc called 'Runtime Environment' and the second one called 'Software Packages') along with a VGA adapter, USB Keyboard and Mouse; plus some developer manuals. The pack was known as **Linux Kit** and you could run the OS by booting the first DVD and then proceed like any *old school* Linux environment. You obviously needed a Hard drive fitted in the console to install the Linux distro. Once installed, the first DVD was always required to boot this OS.
 
@@ -651,7 +656,7 @@ Linux Kit included compilers targeting the EE (gcc 2.95.2 with glibc 2.2.2) and 
 
 There's quite a lot to talk about here, so let's start with the DVD reader, shall we.
 
-#### Copy protection
+### Copy protection
 
 This section was particularly concerning for game studios, since this console used a very affordable format disc to store games and was at extreme risk of being pirated.
 
@@ -669,7 +674,7 @@ When the OS loads a game, it does so by sending specific commands to the DVD rea
 
 {{< /float_group >}}
 
-#### Exploits discovered
+### Exploits discovered
 
 Having explained the most critical part of this console, let's take a look at multiple methods discovered that could bypass the protection mechanisms.
 
@@ -710,13 +715,13 @@ After the slim revision was released, the exploit got patched (*I wonder how*). 
 
 {{< /tabs >}}
 
-#### A semi-permanent software unlock
+### A semi-permanent software unlock
 
 Some time ago, it was discovered that the BIOS of this console could be upgraded using the Memory Card, this function was never used in practice, but neither removed (at least during most of the console's lifespan). With this, hackers realised that if they find a way to install particular software into the MemoryCard, then the BIOS would always load it at boot. This discovery led to **Free MCBoot**, a program presented as 'upgrade data' which replaces the original shell with one that can execute **Homebrew**.
 
 Bear in mind these changes are not permanent, a Memory Card with 'Free MCBoot' installed must be inserted prior the console's startup. Additionally, this software needs to be installed somehow, so another exploit (e.g. disc swapping) is required to bootstrap the installer.
 
-#### More disc tricks
+### More disc tricks
 
 The same year after the release of Free MCBoot, another trick was discovered: Disguising games as DVD movies, effectively allowing unauthorised game copies to be read without requiring a modchip.
 

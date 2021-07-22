@@ -41,7 +41,7 @@ Most of the components are combined into a single package called **CPU AGB**. Th
 
 Note that both CPUs will **never run at the same time** or do any fancy co-processing. The **only** reason for including the *very* old Sharp is for **backwards compatibility**.
 
-#### What's new?
+### What's new?
 
 Before ARM Holdings (currently "Arm") became incredibly popular in the smartphone world, they licensed their CPU designs to power Acorn's computers, Apple's Newton, Nokia's phones and the Panasonic 3DO.
 Nintendo's chosen CPU, the ARM7TDMI, is based on the earlier ARM710 design and includes:
@@ -59,7 +59,7 @@ Moreover, this core contains some extensions referenced in its name (*TDMI*):
 - **M** → **Enhanced Multiplier**: Previous ARM cores required multiple cycles to compute full 32-bit multiplications, this enhancement reduces it to just a few.
 - **I** → **EmbeddedICE macrocell**: Enables hardware breakpoints, watchpoints and allows the system to be halted while debugging.
 
-#### Memory locations
+### Memory locations
 
 The inclusion of Thumb in particular had a strong influence on the final design of this console. Nintendo mixed 16-bit and 32-bit buses between its different modules to reduce costs while providing programmers with the necessary resources to optimise their code.
 
@@ -80,7 +80,7 @@ Usable memory is distributed across the following locations (ordered from fastes
 
 Although this console was marketed as a 32-bit system, the majority of its memory is only accessible through a 16-bit bus, meaning games will mostly use the Thumb instruction set to avoid spending two cycles per instruction fetch. Only in very exceptional circumstances (i.e. need to use instructions not found on Thumb while storing them in IWRAM), programmers will benefit from the ARM instruction set.
 
-#### Becoming a Game Boy Color
+### Becoming a Game Boy Color
 
 Apart from the inclusion of GBC hardware (Sharp SM83, original BIOS, audio and video modes, compatible cartridge slot and so forth), there are two extra functions required to make backwards compatibility work.
 
@@ -102,7 +102,7 @@ Before we begin, you'll find the system a mix between the [SNES]({{< ref "super-
 
 Compared to previous Game Boys we now have a colour LCD screen that can display up to 32,768 colours (15-bit). It has a resolution of 240x160 pixels and a refresh rate of ~60Hz.
 
-#### Organising the content
+### Organising the content
 
 {{< centered_container >}}
   {{< linked_img src="ppu.png" alt="PPU Diagram" img_class="no-borders" >}}
@@ -115,7 +115,7 @@ We have the following regions of memory in which to distribute our graphics:
 - 1 KB 32-bit **OAM** (Object Attribute Memory): Stores up to 128 sprite entries (not the graphics, just the indices and attributes). Its bus is optimised for fast rendering.
 - 1 KB 16-bit **PAL RAM** (Palette RAM): Stores two palettes, one for backgrounds and the other for sprites. Each palette contains 256 entries of 15-bit colours each, colour '0' being *transparent*.
 
-#### Constructing the frame
+### Constructing the frame
 
 If you've read the previous articles you'll find the GBA familiar, although there is additional functionality that may surprise you, and don't forget that this console runs on two AA batteries.
 
@@ -231,7 +231,7 @@ On the other side, to update the frame there are multiple options available:
 {{< /tab >}}
 {{< /tabs >}}
 
-#### Beyond Tiles
+### Beyond Tiles
 
 Sometimes we may want to compose a background from which the tile engine won't be able to draw all required graphics. Now, modern consoles addressed this by implementing a **frame-buffer** architecture but this is not possible when there's very little RAM... Well, the GBA happens to have 96 KB of VRAM which is enough to allocate a **bitmap** with the dimensions of our LCD screen.
 
@@ -282,6 +282,8 @@ For this reason, these modes are used exceptionally, such as for playing motion 
 ## Audio
 
 The GBA features a **2-channel sample player** which works in combination with the legacy Game Boy sound system.
+
+### Functionality
 
 Here is a breakdown of each audio component using *Sonic Advance 2* as an example:
 
@@ -336,7 +338,7 @@ Even though the GBA has just two PCM channels, some games can magically play mor
 {{< /tab >}}
 {{< /tabs >}}
 
-#### Best of both worlds
+### Best of both worlds
 
 Some games took the PCM-PSG duality further and 'alternated' the leading chip depending on the context.
 
@@ -384,21 +386,21 @@ Programs are mostly written in C with performance-critical sections in assembly 
 
 Games are distributed in a new proprietary cartridge called **Game Pak**.
 
-#### Accessing cartridge data
+### Accessing cartridge data
 
 While the ARM7 has a 32-bit address bus, there are only 24 address lines connected to the cartridge.
 This should mean that up to 16 MB can be accessed on the cartridge without needing a mapper, however, the official docs state that **32 MB of cartridge data are mapped in memory**. So what's happening here? The truth is, the Gamepak uses **25-bit addresses** (which explains that 32 MB block) but its bottommost bit is fixed at zero, so the only 24 remaining bits are set. This is how Gamepak addressing works.
 
 Now, does this mean that data located at odd addresses (with its least significant bit at '1') will be inaccessible? No, because the data bus is 16-bit: For every transfer, the CPU/DMA will fetch the located byte plus the next one, allowing to read both even and odd addresses. As you can see, this is just another work of engineering that makes full use of hardware capabilities while reducing costs.
 
-#### Cartridge RAM space
+### Cartridge RAM space
 
 To hold saves, Game Paks could either include:
 - **SRAM**: These need a battery to keep their content and can size up to 64 KB (although commercial games did not exceed 32 KB). It's accessed through the GBA's memory map.
 - **Flash ROM**: Similar to SRAM without the need for a battery, can size up to 128 KB.
 - **EEPROM**: These require a serial connection and can theoretically size up to anything (often found up to 8 KB).
 
-#### Accessories
+### Accessories
 
 The famous **Game Boy Link Cable** provided multi-playing capabilities. Additionally, the cable has a special feature internally known as **Multi-boot**: Another console (either GBA or GameCube) can send a functional game to the receiver's EWRAM, then the latter would boot from there (instead of needing a cartridge).
 
@@ -410,7 +412,7 @@ In general terms, the usage of proprietary cartridges was a big barrier compared
 
 To combat against *bootleg* cartridges (unauthorised reproductions), the GBA's BIOS incorporated [the same boot process]({{< ref "game-boy#anti-piracy" >}}) found in the original Game Boy.
 
-#### Flashcarts
+### Flashcarts
 
 As solid-state storage became more affordable, a new type of cartridge appeared on the market. **Flashcarts** looked like ordinary Game Paks but had the addition of a re-writable memory or a card slot that enabled to run game ROMs. The concept is not new actually, developers have internally used similar tools to test their games on a real console (and manufacturers provided the hardware to enable this).
 

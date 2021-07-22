@@ -50,11 +50,11 @@ The specific CPU model selected for this console, the 'SH7604' or just 'SH-2', c
 
 Having two CPUs doesn't mean that games will work twice as fast, in practice, however, this requires very complex programming to efficiently manage CPUs that share the same bus! Cache comes in handy for this occasion.
 
-#### A divided choice of memory
+### A divided choice of memory
 
 The system contains a total of **2 MB of RAM** for general purpose usage called **Work RAM** (WRAM). Now, these two megs are split between two very different blocks. The first one provides **1 MB of SDRAM** and due to its fast access rates, this block is also called 'WRAM-H'. The other block contains the other megabyte, but it's named 'WRAM-L' since it uses **DRAM** instead, resulting in lower rates.
 
-#### Another processor
+### Another processor
 
 The console contains an additional coprocessor, the **Saturn Control Unit** or 'SCU' which is composed of two modules:
 - **A DMA controller**: Arbitrates access to WRAM across the three main buses without the intervention of the CPUs.
@@ -139,7 +139,7 @@ I recommend checking out the sources (at the end of the article) if this section
 
 As you can see, the architecture of the graphics sub-system is quite complex, so it's interpreted differently depending on the needs:
 
-#### As a *powerful* 2D console
+### As a *powerful* 2D console
 
 The capabilities of the Saturn for drawing 2D scenes were huge compared to the [MegaDrive]({{< ref "mega-drive-genesis" >}}) or [SNES]({{< ref "super-nintendo" >}}), although they weren't the main selling point of this console.
 
@@ -206,7 +206,7 @@ The VDP2 operates in sync with the CRT beam, meaning that its computations corre
 {{< /tab >}}
 {{< /tabs >}}
 
-#### As a *challenging* 3D console
+### As a *challenging* 3D console
 
 Here's where the Saturn *shined and struggled* at the same time. While this console had eight processors to take advantage of, it all came down to:
 - Whether programmers would be able to master most of the console's features during a small time frame (remember the console's commercial lifespan would be over once its successor is released, or even announced).
@@ -251,7 +251,7 @@ Some prioritised the VDP1 to draw the closest polygons and left the VDP2 to proc
 {{< /tab >}}
 {{< /tabs >}}
 
-#### The new designs
+### The new designs
 
 These are some examples of characters that were re-designed for this console, the models are interactive so do try to fiddle with them!
 
@@ -269,7 +269,7 @@ These are some examples of characters that were re-designed for this console, th
   </div>
 {{< /side_by_side >}}
 
-#### An introduction to the visibility problem
+### An introduction to the visibility problem
 
 When 3D polygons are projected onto a 2D space, it is crucial to determine **which polygons are visible from the camera's position and which are hidden behind**. Otherwise, models are not drawn correctly, effects like transparency appear 'broken' and ultimately, hardware resources are wasted. This process is widely known as **Visible surface determination** or 'VSD' and it's a fundamental problem in the world of computer graphics. There are multiple papers published that describe algorithms that tackle this at different stages of the graphics pipeline. Some of them give very accurate results, while others trade precision for better performance.
 
@@ -296,7 +296,7 @@ One of the issues of Z-sort with 3D spaces is that its distance value (Z-order) 
 
 In later articles, you will see alternative approaches. Some still rely on software, while others are accelerated by hardware.
 
-#### The transparency issue
+### The transparency issue
 
 The Sega Saturn is capable of drawing **half-transparent graphics**, in other words, mixing overlapping layers of colours (blending) to give the illusion we can see through them. Unfortunately, both VDPs aren't as coordinated as one would expect, so this effect will not work properly when these layers are found in different VDPs.
 
@@ -330,7 +330,7 @@ The sound subsystem consists of several parts:
   - A **DSP**: Applies effects like echo, reverb and chorus. The docs also mention 'filters' but I don't know if it means envelope or frequency filter (i.e. low pass, etc).
 - **512 KB of RAM**: Stores the driver, audio data (i.e. PCM samples) and it's also a working area for the DSP.
 
-#### The opportunity
+### The opportunity
 
 The new audio capabilities mean that studios can finally record/produce soundtracks in-house and then bundle it in the game without having to re-arrange it (as it happened with limited [sequencers]({{< ref "super-nintendo#audio" >}}) or chips with strict [synthesis methods]({{< ref "mega-drive-genesis#audio" >}})).
 
@@ -345,17 +345,17 @@ This has been possible thanks to a combination of many factors:
 
 The console starts by booting from the **IPL (initial program loading) ROM** which initialises the hardware and displays the splash screen. Then the game is loaded from the 2x CD-ROM reader. Its medium (CD) has a capacity of 680 MB.
 
-#### Development
+### Development
 
 At first, Sega didn't provide complete software libraries and development tools (in fact, the initial documentation was inaccurate) so the only way to achieve good performance was through *harsh* assembly.
 
 Later on, Sega released complete SDKs, hardware kits and some libraries to ease I/O and graphics operations. Overall, games are written in a mix of **C** and various assemblies targeting individual components.
 
-#### I/O
+### I/O
 
 Peripherals are controlled by the **SMPC** (System Management & Peripheral Control), a micro-controller that also provides a real-time clock and receives commands from the SH-2s.
 
-#### Expansion
+### Expansion
 
 There's a **cartridge slot** used for **additional storage** (save data) or **extra RAM**.
 
@@ -372,3 +372,7 @@ Copy protection on CDs is applied by burning special data out of reach from conv
 A popular method of disabling the copy protection was by installing mod-chips that could trick the CD reader when a burned disc is inserted.
 
 A more sophisticated method for running unauthorised code was published in 2016 (almost 20 years later) by exploiting the fact that the Video CD add-on can inject unencrypted code to the CD subsystem (bypassing the CD reader altogether). This finally allowed to load Homebrew without depending on the ageing drive.
+
+---
+
+## That's all folks

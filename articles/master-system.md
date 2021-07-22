@@ -46,11 +46,11 @@ Sega decided on a fully-fledged **Zilog Z80** CPU running at **~3.58 MHz**. A po
 
 The motherboard picture at the start of the article shows a NEC D780C-1 CPU, that's just SEGA second-sourcing the chip to different manufacturers, other revisions even included the chip manufactured by Zilog. But for this article, it doesn't matter who fabricated the CPU, as the internal features remain the same.
 
-#### Memory available
+### Memory available
 
 The Z80 has a 16-bit address bus, so the CPU can find up to 64 KB worth of memory. In the memory map you'll find **8 KB of RAM** for general purpose use, this is mirrored in another 8 KB block. Finally, **up to 48 KB of game ROM** are mapped as well.
 
-#### Accessing the rest of the components
+### Accessing the rest of the components
 
 As you can read from the previous paragraph, only main RAM and some cartridge ROM is found on the address space, so how can the program access other components? Well, unlike Nintendo's [Famicom/NES]({{< ref "nes" >}}), not all the hardware of the Master System is mapped using memory locations. Instead, some peripherals are found on the **I/O space**.
 
@@ -67,7 +67,7 @@ The way SEGA interconnected the CPU with the rest of the components enables not 
 
 Curiously enough, the [Game Boy]({{< ref "game-boy#cpu" >}}) had a Z80 'variant' that completely omitted the I/O ports. Thus, it had to fit everything in the memory map.
 
-#### Backwards compatibility
+### Backwards compatibility
 
 The architecture of this console is very similar to its predecessor, the **Sega SG-1000**, so the Master System managed to gain backwards compatibility with the SG-1000. Although, this only applies to the Japanese variant since the others contain a different cartridge slot.
 
@@ -77,7 +77,7 @@ The architecture of this console is very similar to its predecessor, the **Sega 
 
 The drawings on the screen are produced by a proprietary chip called **Video Display Processor** or 'VDP'. Internally, it has the same design as the Texas instrument TMS9918 (used in the SG-1000) though enhanced with more features which we will discuss in the following sections.
 
-#### Organising the content
+### Organising the content
 
 {{< centered_container >}}
   {{< linked_img src="vdp.png" alt="VDP Memory Diagram" >}}
@@ -88,7 +88,7 @@ Next to the VDP is connected **16 KB of VRAM** which only the VDP can access usi
 
 In the case of the Master System, VRAM houses everything the VDP will require for rendering (except Colour RAM). The CPU fills VRAM by writing to specific VDP registers, which will in turn forward the values to VRAM. Since the VDP is accessed using I/O ports, the CPU must use `IN` and `OUT` instructions.
 
-#### Constructing the frame
+### Constructing the frame
 
 The VDP renders frames with a resolution of **up to 256x192 pixels**, further revision added support for 256x224 px and 256x240 px, however, to maintain compatibility with all models, developers held on to the standard resolution. This chip has the same *modus operandi* as Nintendo's [PPU]({{< ref "nes#constructing-the-frame" >}}), in other words, graphics are rendered on-the-spot.
 
@@ -189,7 +189,7 @@ To update the graphics for the next frame without breaking the image currently b
 {{< /tab >}}
 {{< /tabs >}}
 
-#### Secrets and limitation
+### Secrets and limitation
 
 At first glance, the VDP may seem like another chip with minimal functionality that we now take for granted. Although, it happened to divert a lot of attention from Nintendo's offering at that time. So, why would that be?
 
@@ -231,7 +231,7 @@ The LCD controllers are interfaced with a jack cable, which is plugged into the 
 {{< /tab >}}
 {{< /tabs >}}
 
-#### Video Output
+### Video Output
 
 The video-out connector of this system is *incredibly* handy. It exposes **composite** and **RGB** signals, which can be imagined as the two 'extremes' of video quality.
 
@@ -242,6 +242,8 @@ On the downside, it doesn't carry 'composite sync', so making use of the RGB wil
 ## Audio
 
 The audio capabilities of this console are pretty much aligned with the rest of the 80s equipment. Inside the VDP chip, we find a slightly-customised version of the **Texas Instruments SN76489**, which is a **Programmable Sound Generator** or 'PSG'. This is the same type used for the NES/Famicom, albeit having different functions.
+
+### Functionality
 
 A PSG can only synthesise a limited set of waveforms, each channel allocates a single waveform. I've previously introduced some PSGs on the [NES]({{< ref "nes#audio" >}}) article and the [Gameboy]({{< ref "game-boy#audio" >}}) if you want to read more about this type of sound synthesis.
 
@@ -302,7 +304,7 @@ Finally, the chip also contains programmable attenuators used to lower the decib
 {{< /tab >}}
 {{< /tabs >}}
 
-#### Secrets and limitations
+### Secrets and limitations
 
 Just like the VDP, the PSG is a no-brainer, but it does hide some interesting functionality:
 
@@ -377,11 +379,11 @@ Like the other systems from its generation, the CPU is mostly in charge of handl
 
 On the other side, the SMS uses a dedicated **I/O controller** chip to not only interface the joypads, but also enabling and disabling parts of the system, which will alter the address map. Furthermore, this controller is essential for supporting the FM expansion, since the FM's exposes ports that conflict with the rest of the system (that is, without the intervention of the I/O chip).
 
-#### Available interfaces
+### Available interfaces
 
 Apart from the two controller ports, the system contains one proprietary cartridge slot, one 'Sega Card' slot and one expansion slot reserved for 'future accessories'. The latter was never used, except for the FM expansion in the Mark III. Even so, the SMS and Mark III had a different expansion port design.
 
-#### Top interruptors
+### Top interruptors
 
 Another speciality about this console is that includes two buttons on the top of its case, `PAUSE` and `RESET`, you can guess what they do!
 
@@ -406,7 +408,7 @@ By contrast and for some strange reason, the `RESET` button is handled like a ke
 
 There's a small **8 KB BIOS ROM** fitted on the motherboard that gets executed whenever the console is turned on. The program itself doesn't fit into the category of an 'Operating System', it's more of a **Boot Manager**.
 
-#### Medium selector
+### Medium selector
 
 The main goal of the BIOS is to bootstrap a valid game from either game slot in the following priority: The Sega Card, the cartridge and the expansion module.
 
@@ -419,7 +421,7 @@ The boot process works as follows:
 3. Perform a region check.
 5. Boot up the game
 
-#### Surprise screen
+### Surprise screen
 
 If any of the checks fail, the console will loop indefinitely while showing a screen that prompts the user to insert a valid game.
 
@@ -437,13 +439,13 @@ If any of the checks fail, the console will loop indefinitely while showing a sc
 
 As you can see, there're some creative differences between regions. The first time I heard the Japanese one I thought it came from Electric Light Orchestra (the band), but it's actually from Space Harrier (the game). Also, the perspective effect on the floor is accomplished by altering the colour palettes.
 
-#### More regional differences
+### More regional differences
 
 Because the Japanese variant was backwards compatible with the SG-1000, the header check is replaced with an 'integrity check' that instead reads data from the first 256 bytes multiple times to detect if it's garbage.
 
 Furthermore, the Mark III doesn't have a BIOS, so the slots are activated with hardware switches and the cartridge is the one given priority.
 
-#### Updatability and later BIOS chips
+### Updatability and later BIOS chips
 
 The BIOS ROM, by its nature, is **not updatable**. Although, as new console revisions entered the market, it was discovered that Sega also updated the BIOS program.
 
@@ -455,7 +457,7 @@ Later ones even embedded a whole game! As a consequence, the ROM chip got bigger
 
 To make a long story short, games are written in plain Z80 assembly, that's it. If you've been reading articles on later consoles, there are no compilers or assisting software here (apart from the assembler).
 
-#### Medium
+### Medium
 
 The Master Systems provides two different mediums for distributing games:
 - The **Cartridge**: Most common one, up to 48 KB of memory can be addressed. However, by including a mapper, the system can access a wider space and/or handle other chips like RAM which can be used to store saves.

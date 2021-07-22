@@ -50,17 +50,17 @@ The main processor is a **NEC VR4300** that runs at **93.75 MHz**, it's a binary
 
 An internal **Floating-point Unit** (FPU) is also included in this package. The VR4300 identifies it as a co-processor (CP1), however, the unit is fitted next to the ALU and it's only accessed through the CPU's internal ALU pipeline, meaning there's no co-processing per se. Though it contains a dedicated register file and will speed up operations with 64-bit and 32-bit floating-point numbers. The FPU follows the IEEE754 standard.
 
-#### Simplified memory access
+### Simplified memory access
 
 The way RAM is assembled follows the **unified-memory architecture** or 'UMA' where all available RAM is centralised in one place only and any component that requires RAM will access this shared location. The component arbitrating its access is, in this case, the GPU.
 
 The reason for choosing this design comes from the fact that it saves a considerable amount of production costs while, on the other side, it increments access contention if not managed properly.
 
-#### No DMA controller?
+### No DMA controller?
 
 Due to the unified memory architecture, the CPU no longer has direct access to RAM, so the GPU will be providing DMA functionality as well.
 
-#### Memory design
+### Memory design
 
 Apart from the UMA, the structure of RAM is a little bit complicated, so I'll try to keep it simple. Here it goes...
 
@@ -80,7 +80,7 @@ Furthermore, there's another discussion on beyond3d's forums that claim that Nin
 
 Finally, the amount of available RAM on this console **can be expanded** by installing the *Expansion Pak* accessory: A fancy-looking small box that includes 4.5 MB. Curiously enough, the RAM bus must be terminated, so the console always shipped with a terminator (called *Jumper Pak*) fitted in the place of the Expansion Pak. Now, you may ask, what would happen if you switch on the console without any *Pak* installed? **Literally nothing**, you get a blank screen!
 
-#### Memory management
+### Memory management
 
 The VR4300 includes another coprocessor called **System Control Coprocessor** (CP0) which is composed of a **Memory Management Unit** (MMU) and a **Translation Lookaside Buffer** (TLB), the former handles how memory is organised and cached. The VR4300 can access up to 4 GB worth of 32-bit memory addresses, but as we've seen, we don't have 4 GB of RAM in this console (even after considering memory-mapped I/O). So, the MMU takes over memory addressing and provides a useful memory map where the physical memory is mirrored multiple times. Consequently, memory locations are treated as 'virtual addresses' (as opposed to 'physical addresses'). Furthermore, the TLB enables developers to define their own memory map in some mirrors without (significant) performance penalties.
 
@@ -98,7 +98,9 @@ What you see on the screen is produced by a huge chip designed by Silicon Graphi
 
 This design is based on the philosophy that the GPU is not meant to be a 'simple' rasteriser like the [competitor's]({{< ref "playstation#graphics" >}}). Instead, it should also be capable of **accelerating geometry calculations** (offloading the CPU), and for that, more circuitry will be needed.
 
-Having said that, this chip is divided into three main modules, two of them are used for graphics processing:
+### Architecture
+
+This chip is divided into three main modules, two of them are used for graphics processing:
 
 {{< tabs >}}
   {{< tab active="true" name="Reality Signal Processor" >}}
@@ -161,7 +163,7 @@ The resulting frame must be sent to the **Video Encoder** to display it on-scree
 
 The theoretical maximum capabilities are 24-bit colour depth (16.8 million colours) and 640x480 resolution (or 720x576 in the PAL region). I mention it as 'theoretical' since using the maximum capabilities can be resource-hungry, so programmers will tend to use lower stats to free up enough resources for other services.
 
-#### Quick demo
+### Quick demo
 
 Let's put all the previous explanations into perspective, for that, I'll borrow Nintendo's *Super Mario 64* to show, in a nutshell, how a frame is composed:
 
@@ -211,7 +213,7 @@ Once the RDP finishes processing the data, it will then write the final bitmap t
 {{< /tab >}}
 {{< /tabs >}}
 
-#### Designs
+### Designs
 
 Here are some examples of previous 2D characters for the [Super Nintendo]({{< ref "super-nintendo">}}) that have been redesigned for the new 3D era, they are interactive so I encourage you to check them out!
 
@@ -229,7 +231,7 @@ Here are some examples of previous 2D characters for the [Super Nintendo]({{< re
   </div>
 {{< /side_by_side >}}
 
-#### Modern visible surface determination
+### Modern visible surface determination
 
 If you've read about the previous consoles, you came across the never-ending problem regarding [visibility of surfaces]({{< ref "sega-saturn#an-introduction-to-the-visibility-problem" >}}) and by now may think polygon sorting is the only way out of this. Well, for the first time in this series, the RDP features a hardware-based approach called **Z-buffering**. In a nutshell, the RDP allocates an extra buffer called **Z-Buffer** in memory. This has the same dimensions of a frame buffer, but instead of storing RGB values, each entry contains the depth (Z-value) of the nearest pixel with respect to the camera.
 
@@ -237,7 +239,7 @@ After the RDP rasterises the vectors, the z-value of the new pixel is compared a
 
 Overall, this is a huge welcomed addition: Programmers do not need to worry anymore about implementing [software-based]({{< ref "playstation#tab-2-2-visibility-approach" >}}) polygon sorting methods which drain a lot of CPU resources. However, Z-buffer does not save you from feeding unnecessary geometry (discarded or overdrawn, both consuming resources). For this, game engines may choose to include an **occlusion culling** algorithm to discard unseen geometry as early as possible.
 
-#### Secrets and limitations
+### Secrets and limitations
 
 SGI clearly invested a lot of technology into this system. Nonetheless, this was a console meant for the household and as such, it had to keep its cost down. Some hard decisions resulted in difficult challenges for programmers:
 
@@ -262,7 +264,7 @@ As a result, some games used solid colours with Gouraud shading (like *Super Mar
 {{% /tab %}}
 {{< /tabs >}}
 
-#### The universal video out
+### The universal video out
 
 Nintendo carried on using the 'universal' [Multi Out]({{< ref "super-nintendo.md#a-convenient-video-out" >}}) port found on its predecessor, bad news is that it **no longer carries the RGB signal!** It looks to me like another measure to save costs since RGB wasn't used anyway in the previous console.
 
@@ -289,7 +291,7 @@ The resulting data is, as expected, waveform data. This is then sent to the **Au
   <figcaption class="caption">Overview of how the audio pipeline is often programmed</figcaption>
 {{< /centered_container >}}
 
-#### The repertoire
+### The repertoire
 
 Time to checkout the soundtracks made for the N64. There are too many (good ones) to mention in this article, so here are some that caught my attention:
 
@@ -307,7 +309,7 @@ Time to checkout the soundtracks made for the N64. There are too many (good ones
   </div>
 {{< /side_by_side >}}
 
-#### Secrets and limitations
+### Secrets and limitations
 
 Because of this design, the constraints will depend on the implementation:
   - Sampling rate can be up to 44.1 kHz, but using the top rate will steal lots of CPU cycles.
@@ -338,7 +340,7 @@ The kernel is automatically embedded by using Nintendo's libraries. Additionally
 
 As you know by now, I/O is not directly connected to the CPU, so the RCP's third module (which I haven't mentioned until now) serves as an **I/O interface**, this is the block handling communication with the CPU, controllers, game cartridge and Audio/Video DACs.
 
-#### Accessories
+### Accessories
 
 The Nintendo 64 controller includes a connector used to plug-in accessories. Examples of commercial accessories include:
 - The **Controller Pak**: Another medium (similar to Sony's *Memory Card*) used to store save data and share it with other consoles.
@@ -356,7 +358,7 @@ Inside cartridges, manufacturers may include extra memory (in the form of *EEPRO
 
 Cartridges communicate to the RCP using a dedicated 16-bit bus called **Parallel Bus** (PBUS) or 'Parallel Interface' (PI).
 
-#### Source Development Kit
+### Source Development Kit
 
 In general, development was mainly done in C, assembly was also used to achieve better performance. While this system provides a 64-bit instruction set, 64-bit instructions were rarely used since, in practice, 32-bit instructions happened to be faster to execute and require half the storage.
 
@@ -368,7 +370,7 @@ Hardware used for development included workstations supplied by SGI, like the **
 
 Other third-party tools consisted of custom cartridges featuring a long ribbon cable that connected to the workstation. This cartridge fitted in a retail Nintendo 64 but included internal circuitry to redirect 'read' requests from the console to the workstation's RAM. The deployment/debugging process was carried out by transferring a copy of the game to RAM and then when the console was switched on, it would start reading from there.
 
-#### The alternative medium
+### The alternative medium
 
 Additionally, the PBUS branches out to another connector at the bottom of the N64's motherboard. This was meant to be used by the yet-unreleased **Nintendo 64 Disk Drive** (64DD), some sort of an 'extra floor' that contains a proprietary magnetic disk reader. Its disks provide up to 64 MB of capacity. While only released in Japan, the Disk drive opened the door to an alternative (and cheaper) medium for distributing games.
 
@@ -413,7 +415,7 @@ Region-locking was done by slightly altering the shape of the cartridge between 
 
 Overall, there wasn't too much concern regarding piracy thanks to the use of cartridge medium, although game prices were three times higher than CD-based ones.
 
-#### Unused ports
+### Unused ports
 
 As silly as it may seem, Nintendo left one door opened: The **Disk Drive port**.
 
@@ -443,7 +445,7 @@ The expansion can rip the contents of the cartridge to a CD, the opposite (readi
 
 {{< /float_group >}}
 
-#### Emulation
+### Emulation
 
 When I was a kid I used to play some N64 games on a Pentium II machine using an emulator, it wasn't *that bad* but in later years I wondered now *how the freck* was it able to happily emulate a complex 64-bit machine since, among other things, my PC barely had enough RAM to keep the integrated video alive.
 

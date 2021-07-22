@@ -47,7 +47,7 @@ The whole system is a curious piece of engineering. Externally, it resembles a b
 
 Internally, it's a whole different story (and a very complicated one too). For this reason, I thought it would be better to start by explaining how this console displays images and then go through the internal hardware.
 
-#### Projecting an image
+### Projecting an image
 
 Once you switch the Virtual Boy on, you will start seeing two **monochromatic red** pictures (one for each eye) through the eyepiece. So far so good? Well, here is the interesting part: **This console doesn't have a screen**, so what you see is more of an 'illusion' - Let's dive deeper to know what's going on.
 
@@ -149,7 +149,7 @@ This has been a quick explanation of how optics can turn a single vertical line 
 
 That being said, I think it's time we discuss the 3D phenomenon...
 
-#### Creating a third-dimensional vision
+### Creating a third-dimensional vision
 
 During the marketing of the Virtual Boy, there was a lot of fanfare regarding the fact this console could project a '3D world'. I'm not referring to images with 3D polygons stamped (like the other 5th gen. consoles), but the actual perception of depth.
 
@@ -205,7 +205,7 @@ This is very impressive for a portable console in 1995. But if it wasn't enough,
 
 All of this seems fine and dandy but it does have a big cost: **Six AA batteries**. This may explain why companies tend to hold on old tech for portable devices, at least in the 90s.
 
-#### Memory access
+### Memory access
 
 32-bit addresses look very tempting on paper, but if the system won't use anywhere near 4 GB of memory locations, then it's a huge waste of resources. For instance, even though the upper address lines never change, they will still be decoded for every memory read.
 
@@ -232,7 +232,7 @@ Let's recap the requirements for the proper display of graphics:
 
 Good news is that all of this is accelerated by the **Video Image Processor** or 'VIP', a dedicated chip made by Nintendo. It has some features inherited from the old [PPU]({{< ref "game-boy#graphics" >}}) but I consider it a clean break from its predecessors.
 
-#### Architecture
+### Architecture
 
 The VIP may seem like another tile engine at first, but it's much more advanced than that. For starters, it not only process graphics data but it also controls the Scanner.
 
@@ -260,7 +260,7 @@ Overall, the pipeline is very simple:
 2. The XP will then generate frame-buffers that will be stored in VRAM.
 3. The DP selects the necessary frame-buffer and sends it to the Scanner for display. This is done by copying the frame, four columns at a time, to a small buffer area in VRAM called **Serial Access Memory** or 'SAM', which is automatically broadcasted to the Scanner.
 
-#### Organising the content
+### Organising the content
 
 {{< centered_container >}}
   {{< linked_img src="vip_content.png" alt="Memory Diagram" >}}
@@ -276,7 +276,7 @@ Notice that this VRAM is 'real' dual-ported DRAM, not just a block of RAM reserv
 
 Additionally, Nintendo uses a VRAM chip nowhere to be found in the off-the-shelf catalogue. There isn't a lot of documentation about it, but from the information described in the patent application, SAM may be stored in a separate area inside this chip. This area is presumably made of SRAM instead and contains extra circuitry to allow the Scanner to pull 16-bits at a time.
 
-#### Constructing a frame
+### Constructing a frame
 
 Let's dive deeper and see now how a single frame is drawn on the Pixel Processor. For that, I'll borrow the assets of 'Virtual Boy Wario Land'. I strongly recommend reading about a [previous tile engine]({{< ref "game-boy#graphics">}}) to make explanations easier.
 
@@ -413,7 +413,7 @@ On the other side, if there are too many affine Windows to render (for instance)
 {{< /tab >}}
 {{< /tabs >}}
 
-#### Creative content
+### Creative content
 
 As you can see, there is a lot more technology in this console than meets the eye.
 
@@ -493,7 +493,7 @@ There's also a basic envelope control for each channel that makes the volume gro
 
 The sixth/last channel can only output **noise**.
 
-#### Output
+### Output
 
 The mixed result is **stereo** with a resolution of **10-bit** and a sampling rate of **41.7 KHz**. It's also worth pointing out that the console has stereo speakers, so you don't have to wear headphones to be able to enjoy this!
 
@@ -503,7 +503,7 @@ The mixed result is **stereo** with a resolution of **10-bit** and a sampling ra
 
 This is in theory a 'portable' console, so don't expect *game-changing* accessories (pun intended). There's still some interesting stuff though.
 
-#### Available interfaces
+### Available interfaces
 
 Internally, every component is pretty much directly connected to the CPU, except some areas handled by the VIP exclusively.
 
@@ -526,7 +526,7 @@ Externally, there are two connectors available for accessories:
 
 {{< /float_group >}}
 
-#### The provider
+### The provider
 
 The controller of the Virtual Boy is very peculiar compared to the rest of the console line. Somewhat similar to the Super Nintendo one, without the 'X' & 'Y' buttons, a larger handler and an extra D-Pad on the right. On top of all this, **you can't look at it while playing**.
 
@@ -567,7 +567,7 @@ The V810's starts execution at address 0xFFFFFFF0H. That means that when the Vir
 
 Also, there isn't any BIOS chip to be found on the motherboard, so there won't be any operating system or any abstraction layer to help simplify operations.
 
-#### House chores
+### House chores
 
 For this reason, Nintendo instructed developers to perform a number of chores to ensure the proper functioning of this console, these include:
 - WRAM is usable only after 200 microseconds (0.0002 seconds) since the console's startup, so the docs contain a list of steps that games must follow to wait for this.
@@ -580,7 +580,7 @@ For this reason, Nintendo instructed developers to perform a number of chores to
 
 One may think that game development would just inherit the same facilities of the Game Boy (that is, *stick with assembly*), but it turns out Nintendo and NEC invested a lot of new technology to speed up/modernise this area.
 
-#### Development ecosystem
+### Development ecosystem
 
 Game studios had the option to purchase a **development kit** from Nintendo which included a fully-equipped debugging station, a toolchain and plenty of documentation.
 
@@ -590,7 +590,7 @@ The software kit consisted in a linker, assembler and debugger. At request, Nint
 
 It's too bad that this model of development was eventually reverted with the release of the GameBoy Colour. I'm guessing that this was because the [Gameboy's CPU]({{< ref "game-boy#cpu" >}}) can't handle 'unoptimised' code from a compiler.
 
-#### Medium
+### Medium
 
 Game cartridges are called **Game Paks**. They have the same name of the GameBoy medium but they are completely different in terms of shape and functionality.
 
@@ -609,7 +609,7 @@ Come to think of it, 16 MB of ROM is quite a lot for the mid-90s. After all, the
 
 {{< /float_group >}}
 
-#### Rules
+### Rules
 
 Due to safety concerns, Nintendo ordered developers to include a couple of images to mitigate eyestrain and other conditions that may arise from excessive screen time. 
 

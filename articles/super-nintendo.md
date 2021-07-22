@@ -49,7 +49,7 @@ In summary, the 5A22 features:
 - New **16-bit multiplication** and **division units** added by Ricoh, which provide the CPU with the ability to carry out these type of operations by hardware (the 65C816 doesn't include any dedicated instructions for multiplication or division).
 - **8-bits external data bus**: Meaning that it takes twice the cycles to move its registers across external memory!
 
-#### Ricoh's additions
+### Ricoh's additions
 
 Apart from the extra registers, Ricoh customised the core design to include **two exclusive DMAs** (Direct Memory Access) that enables to move memory around without the intervention of the CPU (resulting in faster speeds).
 
@@ -66,7 +66,7 @@ There are two DMAs to choose from depending on the needs:
 
 The system provides eight *channels* to set up DMA transfers, thus enabling to dispatch eight independent transfers at once.
 
-#### Segmentation Fault
+### Segmentation Fault
 
 This console also features a special 'anomaly' called **Open Bus**: If there is an instruction trying to read from an unmapped/invalid address, the last value read is supplied instead (the CPU stores this value in a register called **Memory Data Register** or 'MDR').
 
@@ -76,7 +76,7 @@ This console also features a special 'anomaly' called **Open Bus**: If there is 
 
 Before we go in-depth I strongly recommend reading the [NES article]({{< ref "nes">}}) first since it introduces useful concepts that will be revisited here.
 
-#### Design
+### Design
 
 Nintendo improved their previous architecture by using two different *PPU* chips to build the graphics sub-system, both combined are known as **Super PPU** or 'S-PPU'.
 
@@ -88,7 +88,7 @@ Overall, both PPU packages are designed to serve different functionality:
 
 This separation, from the programming point of view, is unnecessary since both chips are virtually treated as one.
 
-#### Organising the content
+### Organising the content
 
 {{< centered_container >}}
   {{< linked_img src="SPPU_architecture.png" alt="S-PPU Diagram" >}}
@@ -100,7 +100,7 @@ Graphics data is distributed across three regions of memory:
 - 512 B **CGRAM** (Colour Graphics RAM): Fits 512 colour palette entries, each entry has the size of a *word* (16 bits).
 - 544 B **OAM** (Object Attribute Memory): Contains tables with references of 128 tiles that will be used as *Sprites* along with their attributes.
 
-#### Constructing the frame
+### Constructing the frame
 
 For demonstration purposes, *Super Mario World* will be used to show how graphics are rendered.
 
@@ -243,7 +243,7 @@ You see, because DMA/HDMA allows to perform memory transfers without waiting for
 {{< /tab >}}
 {{< /tabs >}}
 
-#### Unique features
+### Unique features
 
 Truth to be told, I still haven't mentioned the most important characteristic of this console...
 
@@ -284,7 +284,7 @@ By the way, notice that the list of transformations doesn't mention **perspectiv
 
 Finally, due to the high number of calculations needed, the memory map is changed to optimise the pipeline of the two PPUs, the first one processes the **Tilemap** (where tiles are referenced) while the other fetches the **Tileset** (where tiles are stored).
 
-#### A convenient video out
+### A convenient video out
 
 All of the aforementioned advancements will be futile unless the console sends the picture to the TV in a format both can understand. With the Super Nintendo, the company debuted some sort of *universal-but-proprietary* connection called **Multi Out** which can transport many types of signals at the same time, including **Composite**, **S-Video** and **RGB**.
 
@@ -339,7 +339,7 @@ As a consequence, there were tons of different sound drivers found in the market
 
 {{< /float_group >}}
 
-#### Pitch control
+### Pitch control
 
 Pitch modulation enabled to play different notes using the same sample, the S-SMP also included a useful bender to alter the pitch in a continuous manner. Take a look at this extracted channel from Mother 2/Earthbound, both examples come from the original soundtrack, however the first one has the pitch control disabled.
 
@@ -355,7 +355,7 @@ Pitch modulation enabled to play different notes using the same sample, the S-SM
   </div>
 {{< /side_by_side >}}
 
-#### Evolution from the NES
+### Evolution from the NES
 
 In order to demonstrate the evolution of sounds from the NES to the Super NES, here are two music scores, one from a NES game and another from its Super NES sequel. Both used the same composition:
 
@@ -371,7 +371,7 @@ In order to demonstrate the evolution of sounds from the NES to the Super NES, h
   </div>
 {{< /side_by_side >}}
 
-#### Advanced usage
+### Advanced usage
 
 {{< float_group >}}
 
@@ -399,7 +399,7 @@ This combination of techniques allowed the music to only require five channels i
 
 {{< /float_group >}}
 
-#### Stereo confusion
+### Stereo confusion
 
 The DSP's volume controls are organised in chunks of 8-bits signed values, this means that the volume can be set up with **negative values**. *But hang on*, if '0' means mute, what would a number like '-1' do? Well, it will **invert the signal**.
 
@@ -417,11 +417,11 @@ Overall, games are written in **65816 assembly** and when it comes to designing 
 - **LoROM Model**: Data is available in 32 KB chunks with 128 banks to choose.
 - **HiROM Model**: Data is available in 64 KB chunks with 64 banks to choose.
 
-#### Expansion
+### Expansion
 
 The modular architecture of the Super Nintendo allows for numerous type of **Enhancement chips** that are included on cartridges and provide extra features such as the 'SuperFX' for 3D polygon composition or the 'SA-1' for co-processing, some of these chips complemented already complex functions like Mode 7 (which allowed to transform the background but not the sprites).
 
-#### Recognisable behaviour
+### Recognisable behaviour
 
 Have you ever wondered what causes games to lag? When the V-Blank interrupt is called to allow graphics update, sometimes the game is still executing some heavy code and skips the V-Blank window, graphics can't be updated until the next V-Blank call and since the frame wasn't updated, this is manifested as a drop in frame-rate. It can also happen the other way around, extensive processing during a V-Blank won't allow the PPU send video signal since the bus is blocked. Then black lines during a scan will be shown, although this is barely noticeable since the frames update 50 or 60 times per second.
 

@@ -68,7 +68,7 @@ Allegrex is a complete 32-bit core offering:
 
 In conclusion: Allegrex is incredibly fast. However, we still don't know what can you do with it. After all, you can imagine this CPU as the conductor of an orchestra, and we haven't checked out the performers... yet.
 
-#### Coprocessors
+### Coprocessors
 
 As with any MIPS R4000, Allegrex has three coprocessor slots. Sony added two:
 - A **Floating Point Unit** as 'CP1': Accelerates arithmetic operations with 32-bit decimal numbers. It has an independent 8-stage pipeline which adds more parallelism to the main CPU.
@@ -76,7 +76,7 @@ As with any MIPS R4000, Allegrex has three coprocessor slots. Sony added two:
   - Its usefulness comes from its 128-bit data bus connected to the rest of the system, offloading the main CPU's transit.
   - If you read the [PS2 article]({{< ref "playstation-2" >}}), the PSP's VFPU is equivalent to the PS2's [VPU0]({{< ref "playstation-2#tab-1-1-vector-processing-unit-0" >}}) operating in **permanent Macromode!**
 
-#### Focused memory management
+### Focused memory management
 
 Let me talk for a moment about the memory unit included in this system. Its *modus operandi* can be seen as a bit primitive at first, but we'll see why it's optimal for the needs of this console.
 
@@ -95,7 +95,7 @@ If a normal process (operating in 'user mode') wants to access a memory address 
 
 All in all, this allows Sony, the developer of the operating system, to implement a security system enforced by hardware.
 
-#### Memory available
+### Memory available
 
 So far we've analysed the main CPU and its accelerators. Now let's see the physical memory available in this system.
 
@@ -109,7 +109,7 @@ The PSP comes with two memory blocks accessible from the CPU:
 - **32 MB of DDR SDRAM**: It's huge and many other components will make use of it, but since it's not that close to the CPU, its access rate is slower. We'll refer to it as 'Main memory' across the article.
   - The 'DDR' initials mean 'Double Data Rate', which denotes an evolution from the traditional 'SDRAM' featuring a faster transfer protocol. The [original Xbox]({{< ref "xbox#memory-layout" >}}) used the same type.
 
-#### Bus design
+### Bus design
 
 You'll soon find that the PSP accommodates lots of components with unique functionality. So, to organise them without repeating [previous mistakes]({{< ref "nintendo-64#tab-4-1-pipeline-stalls" >}}), engineers interconnected them using dedicated buses. Thus, only small groups of components, with similar applications, will share the same bus. At the same time, those buses talk to each other using dedicated arbiters (in the form of 'memory controllers' or 'DMA').
 
@@ -127,7 +127,7 @@ That being said, the following buses are constructed:
 
 All three buses connect to the DDR Controller, which is where main RAM is found.
 
-#### Tackling traffic congestion
+### Tackling traffic congestion
 
 Inside each bus, there will be multiple components working independently. Consequently, they will store processed data in a shared space (such as main RAM). Now, we don't want the CPU to intervene whenever a module needs to read or write from memory. Traditionally, a DMA unit was placed in the bus to provide this facility, but a single DMA can only do so much and Sony placed a significant number of components which eventually, will lead to bottlenecks.
 
@@ -152,7 +152,7 @@ That being said, the new block is called **Media Engine Group** and it's compose
 - An **MPEG-AVC** decoder: A hardware decoder that does only one thing and fast. That is, swallow **H.264 video stream** and spit out data that the audio and graphics endpoint understand.
 - A **Virtual Mobile Engine** or 'VME': This is *some sort* of programmable DSP. The controller programs it and then starts feeding in the data. Afterwards and similarly to the AVC, the VME stores the processed chunk back in local memory.
   - This is a very obscure component, as only Sony seems to know the ins and out of it (including how to program it). To this day, it's still a mystery.
-  - From Sony's leaked slides published at pcmag.com, the VME seems to have local memory and a DMA controller. It's also called 'Dynamic Reconfigurable Engine'.
+  - Looking at the slides published at pcmag.com (see 'Sources' section), the VME seems to have local memory and a DMA controller. It's also called 'Dynamic Reconfigurable Engine'.
 
 Needless to say, the media engine is not directly operable from the developer's side (Sony hides all of it through a thick API). The official SDK includes libraries like 'libmpeg' or 'libmp3' which already implement complete applications optimised for this engine.
 
@@ -193,7 +193,7 @@ Let's go back to the 'System group' now since the engine in charge of generating
 
 The GE draws 3D graphics (polygons) with many features applied (texture mapping, lighting and so much more) which you'll see in a bit.
 
-#### Display
+### Display
 
 Before we continue, let's go over the physical aspects of this console, which is where the user can appreciate everything that will be discussed here.
 
@@ -201,7 +201,7 @@ So, the PSP carries a **4.3" TFT LCD screen**. It has a resolution of **480x272 
 
 The aspect ratio is *almost* 16:9, a format that during that time was increasingly becoming a standard on home tellies as well. Notice that a wider range of view is also an opportunity for game designers to improve game experience (especially in the first-person shooting genre).
 
-#### Architecture
+### Architecture
 
 The GE subsystem has lots of interesting quirks to mention, so this will be a very complex section. But fear not! I'll try to go step-by-step to avoid any confusions.
 
@@ -231,7 +231,7 @@ In a nutshell, there are two 'Bus Matrix' blocks that re-wire the connection bet
 
 In Sony's docs, they refer to it as the Graphics Core or CPU becoming a 'bus master' while the alien bus is set to 'slave'. However, they didn't spend a lot of words trying to explain it and I'm not sure which protocol/standard they are trying to replicate. Based on what's documented, I think it may be somewhat similar to I²C, a protocol used for serial communications (particularly useful with embedded systems) which also performs bus mastering.
 
-#### Organising the content
+### Organising the content
 
 Now that we've seen what components we got and how they interact with each other, let's find out what information related to graphics we can place in memory.
 
@@ -241,7 +241,7 @@ There are three memory locations from which the GE will end up pulling or fillin
 - **32 MB DDR SDRAM**: This is the working area of the CPU to build the display lists, vertex data, texture data and CLUTs (Colour lookup tables). In the context of graphics, this bloc is called 'Host Memory'.
 - **16 KB SRAM**: The scratchpad memory is also accessible by both CPU and GE.
 
-#### Functionality
+### Functionality
 
 Like its [home sibling]({{< ref "playstation-2#graphics" >}}), the Graphics System focuses on **rasterization**. Although, VRAM is half the size and the bus is not as fast. To compensate, the GE features a vector processor!
 
@@ -318,7 +318,7 @@ The engine draws many types of primitives, including points, lines, line strips,
 
 Developers can supply a projection matrix to apply **perspective transformation**, this sends their 3D world to a 2D space (so you can see it on the screen) using the camera as a reference.
 
-Sony didn't provide much information about how its rasteriser works in particular, so it's not well-known how many pixels are processed per cycle, for instance. Modern features, like sub-pixel precision, are assumed to be implemented (otherwise, users would've been able to [spot its absence]({{< ref "playstation#tab-2-1-wobbling-textures" >}}) right away).
+Sony didn't provide much information about how its rasteriser works in particular, so it's not well-known how many pixels are processed per cycle, for instance. Modern features, like sub-pixel precision, are assumed to be implemented (otherwise, users would've been able to [spot its absence]({{< ref "playstation#tab-5-1-distorted-modelstextures" >}}) right away).
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -375,7 +375,7 @@ Complex functions like **antialiasing** are the result of a strategic combinatio
 
 As evidenced, the PSP inherits various features from the PS2. The difference, however, is that functionality is now hardwired in the silicon, as opposed to offering many general-purpose programmable units (which require manual work to set them up). I presume this was done for two reasons: To use fewer transistors (so it fits in Tachyon and the board remains 'portable') and to facilitate porting PS2 codebase to the new console.
 
-#### Interactive Models
+### Interactive Models
 
 To show how this system impacted model design and to help compare it to the [PS2]({{< ref "playstation-2#better-models" >}}) and/or [Nintendo DS]({{< ref "nintendo-ds#interactive-models" >}}), here are two examples of models designed for the PSP. Don't forget the viewer is interactive!
 
@@ -393,7 +393,7 @@ To show how this system impacted model design and to help compare it to the [PS2
   </div>
 {{< /side_by_side >}}
 
-#### Video Out
+### Video Out
 
 The first model of this console (1000) has a proprietary port called **Remote Port** at the bottom-left corner (next to the audio jack). 
 
@@ -438,7 +438,7 @@ Games don't have access to these modules directly. Instead, they call many libra
 - **VoIP audio decoding** (G729 and u-law).
   - The operating system of the PSP bundled a variant of the 'Skype' app, if you wonder what uses VoIP could have here.
 
-#### Audio comparison
+### Audio comparison
 
 Let's put all this into practice by taking a look at how games reproduced their sound. I wrote this special player that allows you to swap between consoles (to enable side-by-side comparisons):
 
@@ -468,13 +468,13 @@ The second example is much trickier to quantify. I placed a PS2 tune for compari
 
 The PSP has plenty of connections and sensors. However, this section will be a good opportunity to introduce some chipsets that haven't been mention yet, and they play a big part in handling the circuitry that detects the player's input.
 
-#### Internal interfaces
+### Internal interfaces
 
 Most of the I/O available is linked in the **Peripheral Bus**. It's only 32-bit wide which is enough to transfer simple information at a normal pace. It has access to main RAM as well.
 
 The D-Pad, joystick and buttons are handled by a unique chip referred to as **'System Control' or SysCon**, this is a common codename in Sony's hardware and it deals with interfacing many internal components. In this case, it's just the physical buttons.
 
-#### External interfaces
+### External interfaces
 
 The console features a good amount of connections:
 - **802.11b WiFi**: Either connects to a hub or operates in 'Ad Hoc' mode to talk to nearby PSPs. This is similar to what the [Nintendo DS]({{< ref "nintendo-ds#freedom-of-interaction" >}}) offered.
@@ -482,7 +482,7 @@ The console features a good amount of connections:
 - **IrDA**: Stands for 'Infrared Data Association', similar to what a TV remote uses to change the channel. Before the release of the PSP, the infrared protocol was popular for transferring multimedia between a camera/phone and the computer. As for the PSP, however, the IrDA port went bluntly ignored.
   - As it tends to happen, Sony removed it with the second revisions of the PSP (2000).
 
-#### Commercial accessories
+### Commercial accessories
 
 The use of a standard port such as USB enabled companies to design accessories for this console.
 
@@ -499,7 +499,7 @@ Examples of commercialised accessories include:
 
 The funny thing is that these gadgets were also available for Pocket PC/PDAs as well, it makes you think if Sony envisioned the PSP as a *PocketPC for youngsters*.
 
-#### Home Console connectivity
+### Home Console connectivity
 
 After the release of the Playstation 3, a new feature appeared on the PSP: **Remote Play**. Using a WiFi connection, the PS3 could be remotely controlled from the PSP.
 
@@ -511,7 +511,7 @@ This was many years before the Wii U launched, eh? Unfortunately, only a handful
 
 Over the years, the program in charge of controlling the console before a game starts has become more and more convoluted. Mainly due to the increasingly need for security and services (updatable APIs, online multiplayer, multimedia, etc). The PSP will try to fit all of that in very constrained hardware. Now, I don't mean to say that the result will be *mediocre*, but many decisions are the result of balancing costs, performance and robustness.
 
-#### Architecture and design
+### Architecture and design
 
 First and foremost, the PSP contains a hidden/undocumented **4 KB ROM** inside Tachyon where the boot-loader is. In other words, upon powering on, the CPU will start by looking for instructions in there. That ROM has many names, including 'Bootrom', 'Pre-IPL' and 'Lib-PSP iplloader'. The latter is the internal codename used by Sony.
 
@@ -560,7 +560,7 @@ Secondly, there is a second partition in NAND that stores user-related data, suc
 
 {{< /tabs >}}
 
-#### Boot process
+### Boot process
 
 Now that we've identified the main parts, let's see how they organise to put the console into a 'working state' once we switch it on. Security is briefly discussed here, but I recommend reading the next section which goes into more depth.
 
@@ -575,7 +575,7 @@ That being said, the *complex* boot process works as follows:
     2. **Main.bin** focuses on initialising the rest of the hardware, including main memory. Once it finishes, it decrypts the third stage on to main memory and continues execution from there.
     3. The final stage it's referred to as **Payload** and loads the Kernel. The Kernel is stored in the form of different binaries, modules and meta-data that, once loaded into main RAM, will give life to the system. Afterwards, the interactive shell is shown.
 
-#### Visual Shell
+### Visual Shell
 
 This console debuts the famous **XrossMediaBar** or 'XMB' (at least, internationally speaking). XMB is the name of the feature-rich GUI shipped with the PSP.
 
@@ -612,7 +612,7 @@ On another topic, the XMB provides customisation options, such as changing the b
 
 There's also a file viewer embedded that's used for both multimedia and save management.
 
-#### Updatability
+### Updatability
 
 As we've seen before, everything except Pre-IPL is stored in writable storage, and thus is 'updatable'. Sony distributed firmware updates in the form of a downloadable file. Users could either manually download it or use the 'System update' assistant from XMB to automatically download it (using WiFi connection) and install it.
 
@@ -633,7 +633,7 @@ From the user's perspective, some updates brought new services, like a web brows
 
 For the first time in this series, games developed for this console are not written for bare-metal: Instead of relying on memory address and ports, they have to call modules to perform operations on the hardware. The APIs found in the official SDK are modelled after this design.
 
-#### Development ecosystem
+### Development ecosystem
 
 The development toolkit provided by Sony to game studios was developed by SN Systems (the same author of the PS1 and PS2 kits). The software kit required a Windows XP with Cygwin or a CentOS Linux setup.
 
@@ -646,7 +646,7 @@ In this kit we could find:
 
 Initially, Sony only provided an emulator to test PSP software. This was later replaced with the **PSP Hardware Tool**: A PC-like tower connected to a dummy PSP case (similar to the [Nintendo DS kit]({{< ref "nintendo-ds#tab-9-1-the-hardware" >}})). The devkit connected to the workstation using a piece of software called **ProDG** (only available on Windows).
 
-#### Storage medium
+### Storage medium
 
 The PS1 and PS2 featured two types of storage, a read-only disc for loading games and a re-writable 'memory card' for storing saves and executables. The PSP continued this tradition using different methods. Considering it was their first -mainstream- portable console, how did Sony manage to find the right mediums? Well, taking into account they were the authors of the *BetaMax*, *MiniDisc* and so forth, you can guess what they did this time... introduce *even more* formats.
 
@@ -685,7 +685,7 @@ The contents are not memory mapped: The file system is accessed through system c
 {{< /tab >}}
 {{< /tabs >}}
 
-#### Network services
+### Network services
 
 Eventually, Sony caught up with the competition and improved its online infrastructure. They even offered more services not yet provided by Microsoft or Nintendo.
 
@@ -745,7 +745,7 @@ Just because this is a portable console doesn't mean it should have weaker secur
 
 Now, we all know by now that its implementation contained pitfalls that eventually lead to Homebrew and piracy, but considering it was released in 2004 and it's a portable console, you may find that some algorithms bundled are state-of-the-art compared to the competition.
 
-#### Physical security
+### Physical security
 
 I'm going to describe the three main chips that compute security-related operations. The algorithms can be pretty complicated for first-timers, but I'll try to give a quick overview. Don't forget to check out the bibliography if you find it interesting, as this writing is primarily focused on the PSP.
 
@@ -805,7 +805,7 @@ By the way, even though SPOCK is found within Tachyon, it's operated by Lepton.
 
 To sum up, having these routines in hardware allows the system to execute games without consuming general-purpose resources to apply encryption/decryption.
 
-#### Software security
+### Software security
 
 The operating system will use the hardware provided to compose a security system. Overall, the software is protected with the following principles:
 - **Chain of trust**: Pre-IPL, the first stage of the boot process, is a read-only piece of code written by Sony and embedded during manufacturing. From there, anything that Pre-IPL approves is deemed trustworthy, and so are the subsequent programs executed.
@@ -813,7 +813,7 @@ The operating system will use the hardware provided to compose a security system
 - **Obscure hardware**: KIRK, SPOCK and Lepton are undocumented and obfuscated blocks of silicon that won't expose which algorithms are applied and how.
 - **Developer-proof security**: The MMU's privilege modes will restrict access to sensible memory locations, even with the existence of user-level exploits on retail games (which lead to arbitrary code execution).
 
-#### Defeat
+### Defeat
 
 I think the last thing hackers ever did was to give up on this console (maybe because the number of benefits made it very attractive for Homebrew development?). Please note that the amount of development in this area is outstanding, so I had to draw a line somewhere. Thus, only huge discoveries are mentioned here. In any case, playstationdev.wiki keeps a good archive of every single one.
 
@@ -893,7 +893,7 @@ In recent developments, it was discovered that the latest firmware contains a ke
 
 To sum it up, Sony was right when they claimed the UMDs were un-hackable. After all, hacking was achieved thanks to (many) flaws in software.
 
-#### Homebrew encouragement
+### Homebrew encouragement
 
 Not only development centred on breaking security mechanisms, but there were also communities committed to provide Homebrew developers with the necessary tools to build their software without legal repercussions. For instance, the pspdev group published an open-source SDK called **PSPSDK** that replicated many interfaces and didn't enforce previous restrictions imposed by Sony.
 

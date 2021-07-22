@@ -42,11 +42,11 @@ The Z80 is itself a superset of the 8080, so what does the SM83 actually has and
 
 Finally, they also added a **few new instructions** that are not present in either Z80 or 8080. I think explaining them one by one goes beyond the scope of this article, but the main idea is that they optimise certain operations conditioned by the way Nintendo/Sharp arranged the hardware.
 
-#### Memory available
+### Memory available
 
 Nintendo fitted **8 KB of RAM** for general purpose use (which they call **Work RAM** or 'WRAM'). Notice that this is four times larger than what the [NES]({{< ref "nes" >}}) included.
 
-#### Hardware access
+### Hardware access
 
 The SM83 keeps an 8-bit data bus and a 16-bit address bus, so up to 64 KB of memory can be addressed. The memory map is composed of:
   - Cartridge space.
@@ -64,7 +64,7 @@ The picture is displayed in an integrated LCD screen, it has a resolution of **1
 
 If you've read the NES article before, you may remember that the PPU was designed to follow the CRT beam. However (and for obvious reasons), we got an LCD screen in the Gameboy. Well, the new PPU doesn't alter that part, since LCDs require to be refreshed too. In fact, some special effects achieved thanks to this behaviour will also be supported on the Gameboy.
 
-#### Organising the content
+### Organising the content
 
 {{< centered_container >}}
   {{< linked_img src="ppu.png" alt="PPU Memory Diagram" img_class="no-borders" >}}
@@ -75,7 +75,7 @@ The PPU has **8 KB of VRAM** or 'Display RAM', which both PPU and CPU can access
 
 The game is in charge of populating the different areas with the correct type of data. Moreover, the PPU exposes registers so the game can instruct the PPU how that data is organised (there are many rules, though).
 
-#### Constructing the frame
+### Constructing the frame
 
 Let's see now how the PPU manages to draw stuff on the screen. For demonstration purposes, *Super Mario Land 2* will be used as an example:
 
@@ -204,7 +204,7 @@ There's an extra state called **OAM search** that is triggered at the start of t
 {{< /tab >}}
 {{< /tabs >}}
 
-#### Secrets and Limitations
+### Secrets and Limitations
 
 The inclusion of the Window layer and extra interrupts allowed for new types of content and effects.
 
@@ -229,7 +229,11 @@ This achieved a *Wobbling effect* (I'm not sure that's the official name of it).
 
 ## Audio
 
-The audio system is carried out by the **Audio Processing Unit** (APU), a [PSG chip]({{< ref "master-system#audio" >}}) with four channels, each one reserved for a type of wave-form:
+The audio system is carried out by the **Audio Processing Unit** (APU), a [PSG chip]({{< ref "master-system#audio" >}}) with four channels.
+
+### Functionality
+
+Each channel is reserved for a type of wave-form:
 
 {{< tabs >}}
 
@@ -307,7 +311,7 @@ This channel also allows to control its frequency (enabling to produce different
 
 {{< /tabs >}}
 
-#### Secrets and Limitations
+### Secrets and Limitations
 
 The mixer outputs stereo sound, so the channels can be assigned to the left side or on the right one, this is only possible to hear from the headphones though! The speaker is mono.
 
@@ -321,7 +325,7 @@ Games are written in assembly and they have a maximum size of **32 KB**, this is
 
 Cartridges can include a real-time clock and an external battery along with SRAM to hold saves.
 
-#### External communications
+### External communications
 
 For the first time, games can communicate with other consoles with the use of a **Game Boy Link** cable, which provides multiplayer functionality. The interface uses a very primitive type of **serial connection**.
 
@@ -353,3 +357,7 @@ Interestingly enough, the *Nintendo* logo displayed on the screen is not cleared
 {{< /centered_container >}}
 
 More anti-piracy measures can be implemented inside games, like checking the SRAM size (it's normally bigger in Bootlegs) and checksumming the ROM at random points of the game.
+
+---
+
+## That's all folks

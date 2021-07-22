@@ -51,7 +51,7 @@ The processor included in this console is a slightly customised version of the f
 
 Anyhow, Pentiums, along with other lines of CPUs designed and manufactured by Intel, were incredibly popular in the computer market. Such was Intel's market share that they became the de-facto reference point for quality: As a typical user, if you wanted a good computer and had the budget, you only had to look for *something* carrying an Intel CPU. We all know by now that there are more factors involved, but that's what the marketing guys at Intel managed to project.
 
-#### Technical information
+### Technical information
 
 Now that we positioned Intel on the map, let's go back to the topic of this console. During my research, I was expecting to find documentation with the level of depth as other CPUs (MIPS, SuperH, ARM, etc), but instead, I stumbled across an excessive amount of marketing terms that only diverted my search. So, for this article, I came up with a structure to organise all the necessary information which will help to understand how this CPU works. Furthermore, I will try to introduce some terminology that Intel used to brand this CPU.
 
@@ -145,11 +145,11 @@ Finally, the chip uses the 'Micro-PGA2' socket fit on the motherboard, but like 
 
 {{< /tabs >}}
 
-#### P6 and the end of Pentium numbers
+### P6 and the end of Pentium numbers
 
 Here's a bit more history: After the years of the P6, Intel planned to succeed it with the 'Netburst' microarchitecture (featured in the Pentium IV). However, the line of succession also ended there: The microarchitecture couldn't be improved anymore. This prompted an Intel team in Israel to revisit the old P6 and develop a more efficient successor. The result was **Pentium M**, eventually extended to form the **Core** microarchitecture (and brand). 'Core' is the basis of present designs.
 
-#### Motherboard architecture
+### Motherboard architecture
 
 At some point in the history of the PC, motherboards grew so much in complexity that new designs had to be developed from the ground up to efficiently tackle emerging needs.
 
@@ -172,7 +172,7 @@ The combination of these chips is called **chipset** and they are important enou
 
 Both chips are interconnected using a specialised bus called the **HyperTransport**. It's worth pointing out that some PC motherboards also included this technology, just with a different brand (*nForce MCP-D*).
 
-#### Memory layout
+### Memory layout
 
 The Xbox includes a total of **64 MiB of DDR SDRAM**, this type of RAM is very fast compared to what the competition offers. However, it's also shared across all components of this system. Hence, once more, we find ourselves in front of another **unified memory architecture** or 'UMA' layout.
 
@@ -221,7 +221,7 @@ For instance, 3dfx's popular 'Voodoo 2' series had ~70% of marketshare in the PC
 
 In the following section, we'll examine the inner workings of this chip. Now, I'm afraid we find ourselves mixed in a lot of terminology and marketing terms just like the CPU section, but fear not! I'll start with the basics.
 
-#### Architecture and design
+### Architecture and design
 
 The GPU core found on the NV2A is based on the popular 'GeForce3' series of GPUs, it's also referred as **NV20** in Nvidia's technical documents.
 
@@ -314,7 +314,7 @@ Moreover, the frame-buffer can be antialiased using a technique called **multisa
 
 {{< /tabs >}}
 
-#### Importance of programmability
+### Importance of programmability
 
 I find it important to emphasise the significance of the new programmability model that Nvidia provided to developers. Years ago, most of the graphics pipeline was computed by the CPU, leaving the GPU to accelerate rasterising operations. With the introduction of 'shaders' (referring to both pixel shaders and vertex programs), programmers can take advantage of the resources of the GPU to accelerate many computations in the pipeline, offloading a great amount of work from the CPU.
 
@@ -350,7 +350,7 @@ A new programming concept that emerges thanks to this approach is the **General 
 
 I have a feeling that shaders will be regularly revisited in future articles. Please remember that in this article, however, they may be considered a bit 'primitive' and some people may argue that the pixel shaders are not even 'shaders' (compared to what GPUs offers nowadays).
 
-#### The Xbox's frame
+### The Xbox's frame
 
 The standard resolution of games is **640x480**, this is pretty much the standard in the sixth generation. Although, this constraint is just a number: The GPU can draw frame-buffers with up to 4096x4096, yet it doesn't mean the hardware would provide acceptable performance. On the other side, the console allows configuring its screen setting globally, which may help to promote pioneering features (i.e. widescreen and 'high resolution') instead of waiting for developers to discover them (as it happened with the [Gamecube/Wii]({{< ref "wii#tab-2-1-standardised-widescreen" >}})).
 
@@ -381,14 +381,14 @@ As I mentioned before, we have a 'Southbridge' subsystem which concentrates all 
 
 The MCPX derives from its PC counterpart called **nVidia nForce Multimedia and Communications Processor** or 'MCP'. This is found on motherboards using the nForce 220/415/420 chipset.
 
-#### External interfaces
+### External interfaces
 
 The console includes the following external connectors:
 - **4 USB 1.1 ports**: Used to connect the controllers, however, the external shape of the port is modified to only allow Xbox controllers.
   - These ports also contain an extra pin called 'Video Sync' to connect peripherals that interact with the screen.
 - **10/100BASE-TX Ethernet port**: Used for online services (more details later). The actual ethernet function is performed by a separate transceiver found in the motherboard.
 
-#### Internal interfaces
+### Internal interfaces
 
 The MCPX also provides the following interfaces and protocols used to interconnect different subsystems:
 - **SMBus**: Also referred as I<sup>2</sup>C, it's a serial interface that connects these components:
@@ -399,7 +399,7 @@ The MCPX also provides the following interfaces and protocols used to interconne
 - **IDE Controller**: This is a standard protocol widely used on PCs to communicate with Hard drives, optical readers and so forth. A single wide ribbon cable is used to connect the motherboard with the DVD drive and the HDD.
 - **Low Pin Count** or 'LPC' bus: This is another interface borrowed from the PC, but instead of connecting the *good old* PC BIOS, it communicates with a Flash ROM, which in turn stores the equivalent of a BIOS. The Flash is 1 MiB large.
 
-#### The controller
+### The controller
 
 The Xbox came with a bulky controller called **The Duke**, its set of inputs aren't any different from what the other competitors had... except the usage of analogue circuitry (8-bit wide) on the face buttons, allowing games to detect 'half-presses' from most of the button set. On the other side, the Duke was so widely criticised that Microsoft replaced it with a new revision called **Controller S** months after the release of the console.
 
@@ -434,7 +434,7 @@ On closer inspection, both controllers did include something special: Two **Memo
 >
 > -- <cite>Seamus Blackley</cite>
 
-#### A required adapter
+### A required adapter
 
 Another interesting fact to mention about these controllers is that they can only be plugged in using a shape adapter referred to as **breakaway dongle**, this was designed in an effort to prevent accidents when someone tripped over.
 
@@ -452,7 +452,7 @@ All right, let's start by addressing the elephant in the room.
 
 I'm afraid this is a *yes and no* answer: There is a 'Windows' present in this console, but not in the form conventional PC users would expect.
 
-#### Boot Process
+### Boot Process
 
 As with Pentium machines, upon booting up the system, the CPU will start executing instructions found at the **reset vector** (address `0xFFFF.FFF0`). For the Xbox, this address points to a hidden ROM found in the MCPX (more details later). The MCPX contains routines to initialise the security system and continue booting from the Flash ROM instead. Inside the Flash ROM, the Xbox will initialise its hardware, boot a small kernel (based on Windows NT's kernel) and show the splash animation.
 
@@ -460,7 +460,7 @@ During security initialisation, the CPU turns into **protected mode**. This is c
 
 When the kernel loads, it injects microcode into the CPU (not to program it, but rather to *update it*). Finally, the kernel looks for the presence of a valid DVD disc. If there is one, it runs it. Otherwise, it will load a user-interactive shell stored in the Hard Drive.
 
-#### The green screen
+### The green screen
 
 Let's take a look now at the program that the Xbox loads when there isn't a game disc inserted: The **Dashboard**.
 
@@ -507,7 +507,7 @@ This part may be a bit confusing, mainly due to the lack of low-level documentat
 
 In any case, I tried to document it as informative as possible, without going into too much depth.
 
-#### Development ecosystem
+### Development ecosystem
 
 Game development in this console is very complex in terms of libraries, terminology and so forth. So I have separated it by frameworks.
 
@@ -570,13 +570,13 @@ The rest of the APIs available handle other services (audio, networking, etc). A
 
 {{< /tabs >}}
 
-#### Medium
+### Medium
 
 Games are distributed on dual-layer DVD discs (with up to 8.5 GB!), they are subsequently read by a customised DVD drive that includes anti-piracy protections (despite using a standard interface, ATA). It's worth mentioning that the XDK included some tools to customise the layout of data in the disc, enabling programmers to improve read speeds!
 
 Now, the console also includes an internal 8 GB HDD, games use it to store saves or cache temporary content. The system, on the other hand, stores the dashboard, Xbox Live settings and network settings.
 
-#### Network service
+### Network service
 
 Forget about [modems]({{< ref "dreamcast#online-platform" >}}) or [experimental services]({{< ref "playstation-2#network-service" >}}). The Xbox included everything that nowadays we take for granted to provide a decent online service: Ethernet connection and a centralised online infrastructure (called **Xbox Live**).
 
@@ -599,7 +599,7 @@ It's important to point out that Microsoft controls whom to grant Xbox Live acce
 
 The real online experience happens in the **Title Server**, which is the type of server that answers to clients (Xbox consoles) around the world and handles real-time communication. Microsoft included in their SDK some samples to show how to build these servers, although they relied on Windows systems and were meant to be deployed in data centres running Windows Server.
 
-#### The start of a new trend
+### The start of a new trend
 
 After analysing Microsoft's implementation of Xbox Live and looking at the impact it had in the industry. It now sounds pretty obvious, right? As if the recipe for 'proper online gaming' (a.k.a Ethernet + Infrastructure) was always there, but not every company wanted to invest in it.
 
@@ -619,7 +619,7 @@ Please note that RSA encryption is a recurring topic here, I previously introduc
 
 That being said, let's take a look.
 
-#### DVD copy protection
+### DVD copy protection
 
 Game discs are protected both logically and physically to prevent unauthorised duplication (this shouldn't be a surprise by now).
 
@@ -627,7 +627,7 @@ On the logical side, game discs include a couple of 'traps' to trick conventiona
 
 On the physical side, I'm afraid that at this time, it's not publicly known yet what data does the driver and the disc exchange to perform validation. The disc contains an inaccessible inner ring (by conventional readers) that stores unique identifiers, but it's not known how this data is used.
 
-#### System protection
+### System protection
 
 Let us go over the rest of the security measures that this system originally implemented.
 

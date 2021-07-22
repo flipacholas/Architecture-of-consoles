@@ -63,7 +63,7 @@ We could talk a lot more about the 65C02, but I think it's better to focus on th
 
 Finally, there are **8 KB of RAM** available for general purpose.
 
-#### Memory access
+### Memory access
 
 One thing I didn't mention *yet* is that NEC also added a **Memory Management Unit** or 'MMU' next to the CPU, allowing to handle **21-bit addresses** (remember the original 6502 only has 16-bit addresses). Thus, the amount of memory that can be accessed raises from 64 KB to **2 MB**.
 
@@ -89,7 +89,7 @@ Anyway, don't overwhelm yourself if you have trouble understanding it (it's just
 
 This is taken care by the **Hudson Soft HuC6270**, a separate chip also referred to as the **Video Display Controller** or 'VDC'. The HuC6270 will draw everything that the player will see on the screen and its functionality is very similar to [Sega's counterpart]({{< ref "master-system#graphics" >}}), so please check out that article beforehand since I'll focus on what's different with Hudson's offering.
 
-#### Organising the content
+### Organising the content
 
 First things first, the VDC is a **tile engine** (pretty much the standard until the 5th generation showed up) but notice how the PC Engine includes **64 KB of VRAM** which is a significant amount compared to the competition. This may lead to a new type of content, which we'll check later on.
 
@@ -102,7 +102,7 @@ The way graphics data is arranged is a bit confusing: Both CPU and VDC use 16-bi
 
 The reason for this comes down to the way Hudson organised the circuitry: The VDC has a 16-bit address bus but **only the first 15 lines are controlled** (the last one is always set to '0'), so odd addresses are fetched from the second byte. I don't know why Hudson went down this path, but I do know that all of this would make better sense if the system had instead 128 KB of VRAM (since a 16-bit address bus can only access up to 64 KB, so by somehow doubling the data bus, up to 128 KB can be retrieved). Maybe that was the original plan for Hudson/NEC?
 
-#### Constructing the frame
+### Constructing the frame
 
 Aside from the aforementioned granularity oddity, functionality-wise the VDP is very simple. The subsystem has three main components: The **VDC** and **VRAM**, which we already discussed - and the **video encoder** (also called 'VEC', we'll see more about it in due time).
 
@@ -216,7 +216,7 @@ If you read previous articles you may be familiar with the importance of timing.
 {{< /tab >}}
 {{< /tabs >}}
 
-#### Video Output
+### Video Output
 
 The Video encoder outputs RGB (along with Sync) and YPbPr, this is ideal for use with a SCART cable or component cable, respectively. This looks good so far!...
 
@@ -268,7 +268,7 @@ There are **six channels** in this system, each one is set up by writing to a se
 
 {{< /float_group >}}
 
-#### Extra functions
+### Extra functions
 
 Some groups of channels have other modes of operations. For instance, the last two channels are connected to a **noise generator**. Moreover, the second channel can act as a **Low-frequency oscillator** to modulate the first channel, much like [FM synthesis]({{< ref "mega-drive-genesis#audio" >}}).
 
@@ -276,7 +276,7 @@ Speaking of modes, there's another one available called **Direct D/A (DDA)** whi
 
 All in all, this makes the PC Engine's PSG an incredibly flexible piece of hardware.
 
-#### Final sound
+### Final sound
 
 The PSG will mix everything and output a stereo signal. But again, unless you find a way to bypass the RF port, you'll only hear mono from your telly.
 
@@ -308,7 +308,7 @@ This is greatly attributed to the inclusion of the **Expansion Port** on the bac
 
 I'm curious to know to which extent NEC or Hudson envisioned this console, were they trying to build some sort of 'modular console' that could be upgraded to step into the next generation?  
 
-#### The rest
+### The rest
 
 I still haven't mentioned the controller (or Joypad, as some places call it). It's very similar to the other offerings. The console only allows to connect one of them and games check a single address in memory to get the key presses. That address returns a 4-bit value.
 
@@ -326,7 +326,7 @@ This also means that it's up to the programmer to take care of 'housekeeping' (i
 
 Programs are written in 6502 assembly, spiced with extra 65C02 opcodes and the ones introduced by Hudson.
 
-#### Standard Medium
+### Standard Medium
 
 Instead of relying on those *chunky and boring* cartridges everyone else seems to like, NEC/Hudson devised yet another medium, this time with the size of a credit card, called **HuCard**. They derive from an older medium called 'Bee Card', used by some MSX games.
 
@@ -345,7 +345,7 @@ Curiously enough, they are very similar to the [Sega Card]({{< ref "master-syste
 
 {{< /float_group >}}
 
-#### CD-ROM Expansion
+### CD-ROM Expansion
 
 That expansion port opened the door to such a massive amount of accessories and expansion units that they eventually turned a simple PC Engine into something completely different. As if wasn't enough, the HuCard slot complemented the possibilities of expansion. What I mean to say is that for this article, I'll have to focus on the notable upgrades (some of which were included in future revisions of the console).
 
@@ -381,7 +381,7 @@ CD-based games strictly depended on the BIOS card they were developed for, altho
 
 With the Super CD-ROM², NEC/Hudson also shipped a new variant of the PC-Engine/TurboGrafx-16 called **Turbo Duo** that bundled the console, reader and BIOS card in a single package.
 
-#### Other expansions
+### Other expansions
 
 If you are curious about other expansions released, check out the catalogue link at the 'Sources' section (end of the article).
 

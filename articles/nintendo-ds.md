@@ -39,6 +39,8 @@ As with Nintendo's [previous portable console]({{< ref "game-boy-advance">}}), t
 
 Now, CPU NTR implements an interesting multi-processor architecture using two different ARM CPUs, this design was done before ARM Holdings officially released multi-processor solutions. So, their functioning may be considered a bit unorthodox taking into account the present technology available.
 
+### Design
+
 While this is not the first parallel system analysed for [this series]({{< ref "consoles">}}), its design is very different from the rest. For instance, we are not talking about the 'experimental' master-slave configuration that the [Saturn]({{< ref "sega-saturn">}}) debuted or the 'co-processor' approach found on the [PS1]({{< ref "playstation">}}) or [N64]({{< ref "nintendo-64">}}). The Nintendo DS includes two very independent computers that will perform exclusive operations, each one having a dedicated bus. This co-dependency will condition the overall performance of this console.
 
 That being said, let's take a look now at the two CPUs:
@@ -87,7 +89,7 @@ Nintendo also added the following components around it:
 
 I guess with hardware like this, it's easy to figure out the *real* reason kids loved this console, eh?
 
-#### Interconnection
+### Interconnection
 
 So far I've talked about how the two CPUs work individually. But to work as a whole, they require to co-operate constantly. To accomplish this, both CPUs directly 'talk' to each other using a dedicated **FIFO unit**, this block of data holds two 64-byte queues (up to 16 elements) for **bi-directional communication**.
 
@@ -100,7 +102,7 @@ This works as follows: The 'sender' CPU (that effectively needs to send the othe
 
 Whenever there's a value written on the queue, either CPU can fetch it manually (**polling**) however, this requires to constantly check for new values (which can be expensive). Alternatively, an **interrupt unit** can be activated to notify the receiver whenever there's a new value in the queue.
 
-#### Main memory
+### Main memory
 
 Just like its predecessor, RAM is spread around many different locations, enabling to prioritise data placement by speed of access. In summary, we have the following general-purpose memory available:
 
@@ -120,7 +122,7 @@ Just like its predecessor, RAM is spread around many different locations, enabli
 {{% /inner_markdown %}}
 {{< /float_group >}}
 
-#### Backwards compatibility
+### Backwards compatibility
 
 Even though the architecture is significantly different from its predecessor, it still managed to maintain the critical bits that would grant it native compatibility with GameBoy Advance games.
 
@@ -128,7 +130,7 @@ But for the DS to revert to an 'internal' GBA, the former includes a set of soft
 
 Once in GBA mode **there's no going back**, the console must be reset to re-activate the rest of the hardware.
 
-#### Secrets and limitations
+### Secrets and limitations
 
 With so many sophisticated components fitted in a single and inexpensive chip, it's no mystery that some issues emerged due to the way they were forced to work with each other.
 
@@ -174,7 +176,7 @@ This section is a bit unusual because not only this console has multiple screens
 
 Let's begin with the physical attributes: The Nintendo DS contains two LCD screens, each one being **256x192 pixels** wide, which is ~20% more pixels than the GBA. They can display 262,144 colours (18-bit) and refresh at ~60 Hz.
 
-#### Architecture
+### Architecture
 
 The graphics subsystem can draw 2D and 3D objects. The former is composed of two-dimensional geometry that is filled with bitmaps of 8x8 pixels wide (called 'tiles'), while the latter draws three-dimensional objects (polygons) using vertices.
 
@@ -187,7 +189,7 @@ Diving into the internal chip that operates those screens, we can observe this c
 
 Now, these engines must be linked to either screen, this not an issue for 2D-only games since there's one 2D engine for each screen. However, for those games who want to show off cutting-the-edge features, there's only one 3D engine available. As a consequence, 3D capabilities are only available on one screen at a time. But what about mixing 2D and 3D objects? Absolutely, let me explain each engine separately so we can discuss this afterwards.
 
-#### Constructing a frame with 2D graphics
+### Constructing a frame with 2D graphics
 
 Before we review each stage, I recommend reading a [previous article]({{< ref "game-boy-advance#graphics" >}}) about the GBA's PPU since here I'll just mention the changes that construct the 'next-gen' of 2D games. Also, since there are two engines, the first one is named **Main** while the second one is called **Sub**. This doesn't necessarily imply which screen is each one connected to. On the other side, 'Main' contains a bit more functions than 'Sub'.
 
@@ -299,11 +301,11 @@ Not yet! 'Main' still has to fetch a layer from another engine, the most powerfu
 {{< /tab >}}
 {{< /tabs >}}
 
-#### The 3D accelerator
+### The 3D accelerator
 
 If you played with a Nintendo DS before, you know by now that this console can display a *particular* amount of 3D graphics. Unlike some GBA games, these aren't processed by the CPU. Instead, CPU-NTR includes **two components** that compose the **3D engine**. Curiously enough, the design Nintendo applied reminds me to [SGI's RCP]({{< ref "nintendo-64#graphics" >}}).
 
-If you go back and check the 'Background modes' section, you'll notice every mode has at least one static background, this is because you can fill that layer with graphics produced by the 3D engine. The only caveat is that only the 'Main' can do this, hence one of the reasons Mode 6 is available for 'Main' only.
+Revisiting the 'Background modes' section, you'll notice every mode has at least one static background, this is because you can fill that layer with graphics produced by the 3D engine. The only caveat is that only the 'Main' can do this, hence one of the reasons Mode 6 is only available for 'Main'.
 
 {{< tabs >}}
   {{< tab active="true" name="Geometry Engine" >}}
@@ -331,11 +333,13 @@ Anyway, this engine is commanded using a **Command FIFO** which is filled with d
 {{< /float_block >}}
 
 {{% inner_markdown %}}
-This is the rasteriser in charge of generating pixels and applying texture mapping. To do the latter, it relies on **perspective correction** and **Gouraud shading**. Moreover, the unit provides modern features like [Z-buffering]({{< ref "nintendo-64#modern-visible-surface-determination" >}}), **alpha blending**, **stencil tests**, **fog** and **anti-aliasing**. 
+The rendering engine is in charge of converting vectors to pixels (rasterizing), colouring them (texture mapping) and applying lighting and other effects. It relies on **perspective correction** and **Gouraud shading** for interpolating textures and light, respectively. Moreover, the unit provides modern features like **fog**, **alpha blending**, **depth buffering** (either [Z-buffering]({{< ref "nintendo-64#modern-visible-surface-determination" >}}) or a variant called W-buffering), **stencil tests** and **anti-aliasing**. 
 
-The rendering system is a bit unorthodox though: Instead of rendering to a frame-buffer, it employs **line buffer rendering** where it fills by scan-lines, similarly to the 2D engine. This is because the engine has to synchronise with the 2D drawer. Now, for each quadrangle, the renderer can only fill **one span per scan-line** and this can be a bit troubling, since the result will get messy if the quad is concave or has crossed edges, for instance. You can read more about this from Arisotura's articles (see the 'Sources' section).
+The rendering system is a mix of old and new: Instead of rendering to a frame-buffer, it employs **line buffer rendering**, where it fills scan-lines (similarly to the 2D engine) and stores the results in a smaller buffer. This is because the 3D engine must work at pace with the 2D drawer.
 
-On the bright side, the unit also provides **shadowing** and a distinct feature called **Toon Shading** (another name for [Cel Shading]({{< ref "gamecube#creativity" >}})): Even though this unit is not [programmable]({{< ref "xbox#importance-of-programmability" >}}), the lighting parameters can be altered to achieve a cartoony effect.
+Without the traditional frame-buffer, the rasterizer employs **scan-line rendering**, traversing each scan-line to process polygon edges found within. Arisotura (the developer of MelonDS emulator) reported that for each quadrangle, the renderer can only fill **one span per scan-line**. and this can be a bit troubling, since the result will get messy if the quad is concave or has crossed edges, for instance.
+
+Regarding effects, the unit also provides **shadowing** and a distinct feature called **Toon Shading** (another name for [Cel Shading]({{< ref "gamecube#creativity" >}})): Even though this unit is not [programmable]({{< ref "xbox#importance-of-programmability" >}}), the lighting parameters can be altered to achieve a cartoony effect.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -358,7 +362,7 @@ In terms of control, the rendering engine also allows altering its parameters du
 {{< /tab >}}
 {{< /tabs >}}
 
-#### Famous comparisons
+### Famous comparisons
 
 Some of the first games released for this console attempt to resemble the ones from another console (namely, the Nintendo 64). So I wanted to give a quick summary of why players may see some substantial differences between the two versions:
 
@@ -407,7 +411,7 @@ So, to explain what's happening here, I've organised the different explanations 
 
 That's pretty much in a nutshell, for more specialised cases, you'll have to dive deeper at both engines and possibly disassemble both games to investigate which functions are being used and how.
 
-#### Interactive models
+### Interactive models
 
 I've updated the wee model viewer to apply 'nearest neighbour', allowing to visualise Nintendo DS models using your GPU.
 
@@ -451,7 +455,7 @@ Are we forgetting something else? *Yes*, since this console runs GBA games, then
 
 With all being said, does this mean that the Nintendo DS can finally play encoded music (i.e. MP3)? It's possible (in fact, a lot of homebrew programs implemented some form of it), but audio decoding takes up a lot of bandwidth and processing power. So audio sequencing still retains its place as the most feasible option.
 
-#### Interactive comparison
+### Interactive comparison
 
 I've constructed this interactive widget that will allow you to compare by yourself how the new audio system affected the new generation of soundtracks. Each widget plays the same score but allows you to alternate between the old and new arrangements (I suggest wearing headphones to really notice the difference). Give it a whirl!
 
@@ -475,7 +479,7 @@ I've constructed this interactive widget that will allow you to compare by yours
 
 Be as it may, I had to boost the gain of the GBA soundtrack a little bit to normalise the loudness, which tends to affect the signal-to-noise ratio (just something to bear in mind while you switch between the two). Anyway, I hope you got a sense of how the sound subsystem has evolved.
 
-#### Some struggles
+### Some struggles
 
 Let me show you some tricky cases now, where the original console had some unique audio features that weren't straightforward to recreate for this console, but I'll let you be the judge of that:
 
@@ -505,7 +509,7 @@ I must confess the second one was put on purpose, I mean, what the *freck* happe
 
 To make a long story short, I/O is strictly handled by the ARM7. In fact, you won't see much going on with that CPU apart from passing data around... which is too bad really.
 
-#### Accessing cartridges and memory
+### Accessing cartridges and memory
 
 There's an external memory interface connecting three endpoints: **Slot-1** (where Nintendo DS cards go), **Slot-2** (where GBA cartridges or accessories go) and the **4 MB of PSRAM** (Main memory). The interface can be accessed by both CPUs, but it contains registers that can be modified to prioritise one CPU over the other in case there are two request from the same bus at the same time.
 
@@ -527,7 +531,7 @@ The 'backup' chip used for saves (i.e. EEPROM, FLASH or FRAM) is accessed throug
 
 The Slot-2 cartridge is memory-mapped using the original pinout, but the addresses are shifted in DS mode to accommodate the hardware that provides expansion functionality (extra RAM, rumble, etc). Just like the GBA, the ROM bus is 16-bit wide and the RAM bus is 8-bit wide.
 
-#### Peripherals
+### Peripherals
 
 The ARM7 is also connected to another SPI node interfacing the **TouchScreen controller**, which operates the bottom screen's (it's the resistive type, requiring the use of a stylus); and the flash memory (which is where the *firmware* is stored, more details later on).
 
@@ -557,7 +561,7 @@ Many have pointed out that 'Hotel Dusk: Room 215' relied on this feature for one
 
 Finally, in the same stack we find the **real-time clock** or 'RTC'.
 
-#### Wireless network
+### Wireless network
 
 Last but not least, the console contains a **Wireless controller** operating in the 2.4 GHz band that provides some innovative features:
 - **Internet Play**: Enables any game to connect to a LAN network using a standard Wi-Fi connection.
@@ -572,7 +576,7 @@ I guess it's safe to say that by this generation every console now comes bundled
 
 Having said that, its operating system is diversified into multiple chips, so let's start with the ones that are read upon boot.
 
-#### Entry point
+### Entry point
 
 At some point, the ARM7 and ARM9 will need to initialise the hardware and to do this, NTR-CPU includes two different small ROM chips:
 - A **4 KB BIOS** connected to the ARM9's bus.
@@ -584,13 +588,13 @@ Moving forward, each BIOS stores two sets of routines: Boot code and interrupt c
 
 After running the boot code, both CPUs will synchronise so they can start acting as a 'single machine': It turns out the ARM9 finishes loading way before the ARM7, so the ARM9 sends a 4-bit value to the ARM7, stalls on a semi-endless loop waiting for the ARM7 to respond and once it does, both 'cross the finish line' at the same time, that is to say, they are now in-sync.
 
-#### Window of opportunity
+### Window of opportunity
 
 If you have or had a DS, you probably noticed you can **only** play games if the cartridge was inserted before turning on the console. This is because the ARM7's BIOS carries out some checks on the cartridge during boot (more details on the last section) and if all the tests pass, ARM7's game executable is copied to WRAM and ARM9's one is copied to Main Memory.  
 
 If for some reason the executables are not copied (due to the cartridge not being valid or not found during boot), then the game can't be started and the user will have to reset the console to play one.
 
-#### Interactive shell
+### Interactive shell
 
 Whether there's a game or not, the system will finish booting by loading an interactive shell. This is just a program that resides on an external **256 KB Flash** memory.
 
@@ -624,7 +628,7 @@ It's worth emphasising that both read-only and writable data reside in the same 
 
 {{< /float_group >}}
 
-#### Updatability
+### Updatability
 
 Lastly, this firmware ended up being updated by Nintendo a couple of times (5 to be precise) in an effort to patch some security vulnerabilities. The updates weren't installable by the user (recall the `SL1` protection). Instead, Nintendo embedded the updated firmware in the next lot manufactured.
 
@@ -634,7 +638,7 @@ Lastly, this firmware ended up being updated by Nintendo a couple of times (5 to
 
 Oh, there's a lot to talk about here, primarily because the capabilities of this console did inspire a lot of programmers and artists to come up with really innovative designs. Let's see...
 
-#### Medium
+### Medium
 
 This console runs games from three sources, where only two of them can make 'full' utilisation of the hardware:
 {{< float_group >}}
@@ -653,7 +657,7 @@ This console runs games from three sources, where only two of them can make 'ful
 
 {{< /float_group >}}
 
-#### Program structure
+### Program structure
 
 You've seen that the BIOS requires to be split up with separate code for ARM9 and ARM7, this is pretty much what also happens with games. Thus, NDS cards are structured with the following areas:
 
@@ -661,7 +665,7 @@ You've seen that the BIOS requires to be split up with separate code for ARM9 an
 - **Secure Area (16 KB)**: Used for copy protection purposes. We'll get into more details in the last section of this article.
 - **Main content (variable size)**: The rest of the card just contains the executables and game data (graphics, sound, etc). Retail games using Nintendo's SDK contain their data organised hierarchically with files and directories thanks to a built-in filesystem.
 
-#### Development ecosystem
+### Development ecosystem
 
 For game studios interested in developing games for this console, Nintendo distributed both hardware kits and SDKs with lots of utilities.
 
@@ -691,7 +695,7 @@ There are understandable reasons for imposing these norms, such as to maintain q
 
 {{< /tabs >}}
 
-#### Freedom of interaction
+### Freedom of interaction
 
 {{< float_group >}}
 
@@ -708,7 +712,7 @@ For the first time in consumer electronics, there was a touchscreen, microphone,
 {{% /inner_markdown %}}
 {{< /float_group >}}
 
-#### Network service
+### Network service
 
 After the success of a [previous competitor]({{< ref "xbox#network-service" >}}), Nintendo joined the club of online multiplayer and deployed their centralised infrastructure. Games using the 'Internet Play' could connect to Nintendo's servers (called **Nintendo Wi-Fi Connection**) to enjoy some online gaming.
 
@@ -717,6 +721,10 @@ After the success of a [previous competitor]({{< ref "xbox#network-service" >}})
 ## Anti-Piracy and Homebrew
 
 Even though DS cards weren't affected by the *curse of the compact disc*, Nintendo implemented some protection systems to keep control of game distribution.
+
+### Security Mechanisms
+
+Let's take a look at each area:
 
 {{< tabs >}}
 
@@ -757,7 +765,7 @@ This check is performed by the firmware.
 
 {{< /tabs >}}
 
-#### Defeat
+### Defeat
 
 If you were a homebrew user back then you probably ran across tons of options available to run this software. The truth is, before all the current cracks were discovered, hackers had a hard time circumventing Nintendo's complex anti-piracy system.
 

@@ -70,11 +70,11 @@ Secondly, there's another CPU fitted in this console, a **Zilog Z80** running at
 
 Both CPUs run in parallel.
 
-#### Memory available
+### Memory available
 
 The main CPU contains **64 KB** of dedicated RAM to store general-purpose data and the Z80 contains **8 KB** of RAM for sound-related operations.
 
-#### Intercommunication
+### Intercommunication
 
 Sega chose two independent processors that have **no awareness of each other**, so how can games manage both at the same time? Well, the main program is executed in the 68000, and this CPU can subsequently write on Z80's RAM. So, it's possible for the 68000 to send a program to the Z80's RAM and make the Z80 load it (by sending a reset signal to that CPU). Once the Z80 is under control, it can be used to manage the sound sub-system and move memory around using the previously described method, all of this while the 68000 is running other operations.
 
@@ -99,7 +99,7 @@ This chip has two modes of operations:
 
 What about Mode 0 to III? Well, these belong to the even older *SG-1000* and the Mega Drive doesn't support them.
 
-#### Organising the content
+### Organising the content
 
 {{< centered_container >}}
   {{< linked_img src="VDP_architecture.png" alt="VDP Diagram" >}}
@@ -111,7 +111,7 @@ The graphics content is distributed across 3 regions of memory:
 - 80 B **VSRAM** (Vertical Scroll RAM): The VDP supports vertical and horizontal scrolling, V-scroll values are stored in this separate space.
 - 128 B **CRAM** (Colour RAM): Stores four palette entries with 16 colours each (including *transparent*), the system provides 512 colours to choose from. Additionally, *Highlight* and *Shadow* effects can be applied to each palette to achieve a wider range of colours per palette.
 
-#### Constructing the frame
+### Constructing the frame
 
 The following section explains how the VDP draws each frame, for demonstration purposes *Sonic The Hedgehog* is used as example. I recommend checking out the functioning of its [predecessor]({{< ref "master-system#graphics" >}}) since there will be a lot revisited in here.
 
@@ -241,7 +241,7 @@ V-Blank allows for longer routines with the drawback of being called only 50-60 
 
 {{< /tabs >}}
 
-#### A dedicated transfer unit
+### A dedicated transfer unit
 
 So far we've discussed what the CPU can do to update frames, but what about the VDP? This chip actually features **Direct Memory Access** ('DMA' for short) that allows to move memory around at a faster rate without the intervention of the CPU.
 
@@ -249,7 +249,7 @@ The DMA can be activated during H-Blank, V-Blank or active state (outside any in
 
 If used correctly, you'll gain high resolution graphics, fluid parallax scrolling and high frame-rates. Moreover, your game may also be featured on TV ads with lots of *Blast Processing!* signs all over it.
 
-#### Video Output
+### Video Output
 
 This console has the same video out port of [the Master System]({{< ref "master-system#video-output" >}}).
 
@@ -257,7 +257,11 @@ This console has the same video out port of [the Master System]({{< ref "master-
 
 ## Audio
 
-The Mega Drive has 2 sound chips with *very* different capabilities:
+The Mega Drive houses two sound chips: A **Yamaha YM2612** and a **Texas Instruments SN76489**.
+
+### Functionality
+
+Each chip provides *very* different capabilities:
 
 {{< tabs >}}
 
@@ -318,7 +322,7 @@ Both chips can output sound at the same time, the audio mixer will then receive 
 {{< /tab >}}
 {{< /tabs >}}
 
-#### The conductor
+### The conductor
 
 The Z80 is the **only CPU** capable of sending commands to those two chips, which is a relief for the 68000 since the latter is already fed up with other tasks.
 
@@ -326,7 +330,7 @@ However, let's not forget that the Z80 is an independent processor by itself, so
 
 Now, some games may decide to exploit the PCM channel, and for that they also need to plan a way to continuously sequence and stream their music using the rest of RAM available. The main constraint is that in order to fill that memory, the main bus has to be **blocked** first (so no commands or samples can be sent to the audio chips during that timeframe). If this issue wasn't tackled properly, different sound anomalies could appear (muting, frozen notes, low sample rates, etc).
 
-#### Cracking sampling
+### Cracking sampling
 
 I've decided to dedicated a section for those who successfully manage to overcome the aforementioned constraint. Instead of just sticking with ordinary drum kits, some games found incredible ways to stream richer samples to that single PCM channel, check out these examples:
 
@@ -357,7 +361,7 @@ I've decided to dedicated a section for those who successfully manage to overcom
 
 I know, they are nowhere near CD quality, but bear in mind those sounds were once deemed impossible to reproduce in this console and I'm not even emphasising how much progress this represents compared to the previous generation, so they certainly deserve some merit at least!
 
-#### Assisted FM Composition
+### Assisted FM Composition
 
 If programming an FM synthesiser was already considered complicated using the controls of an electronic keyboard (the Yamaha DX7 is a good example of this), imagine how much it was using only pure assembly...
 
@@ -367,7 +371,7 @@ The audio subsystem enabled games to create more channels than allowed and assig
 
 Channels also contained some **logic** by implementing conditionals inside their data, this allows music to 'evolve' depending of how the player moves in the game.
 
-#### (Bonus) Mega CD Sound
+### (Bonus) Mega CD Sound
 
 Here's an interesting fact: The Mega CD add-on provided 2 extra channels for CD Audio (among other things). One of its most famous games, Sonic CD, had very impressive music quality but like all games it had to loop, the problem was that looping music on a 1x CD reader had noticeable gaps, so the game included loop fillers that were executed from another PCM chip while the CD header was returning to the start.
 
@@ -392,7 +396,7 @@ Have you noticed the gap on the Mega CD's version?
 
 They are mainly written in **68000 assembly** while the sound driver is in **Z80 assembly**. Both reside in the cartridge ROM and can size up to 4 MB without the need of a mapper.
 
-#### Extra functions
+### Extra functions
 
 In terms of expandability, this design wasn't as modular as the [NES]({{< ref "nes" >}}) or the [SNES]({{< ref "super-nintendo" >}}). Hence, some add-ons like the 32x had to bypass the VDP (hence the need for the 'Connector Cable').
 
@@ -407,3 +411,7 @@ An easy way to bypass this was to either buy one of those shady cartridge conver
 
 When it comes to Anti-Piracy measures, the easiest check was on the SRAM size: Bootleg cartridges had more space than needed to fit any game, so games checked for the expected size on the startup.
 Programmers could also implement extra checksum checks at random points of the game in case hackers were to remove the SRAM checks. The only way to defeat this was to actually find the checks and remove them one by one... Although finding them was the trickiest part!
+
+---
+
+## That's all folks

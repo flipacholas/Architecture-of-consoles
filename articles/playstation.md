@@ -38,6 +38,10 @@ Sony knew that 3D hardware can get very messy to develop for. Thus, their debuti
 
 ## CPU
 
+This section dissects the 'Sony CXD8530BQ', one of the two big chips this console houses. It's what we would call a 'System-on-Chip' in today's world.
+
+### The origins
+
 The main processor is one of those 'x designed by y, based on z and second-sourced from w' which is a bit dense to summarise in a few sentences, so why don't we start with some historical context?
 
 {{< tabs >}}
@@ -79,7 +83,7 @@ In the end, Sony commissioned LSI to build their CPU package. They chose the CW3
 {{< /tab >}}
 {{< /tabs >}}
 
-#### The offering
+### The offering
 
 The resulting CPU core runs at **33.87 MHz** and features:
 - The **MIPS I** ISA: The first version of the MIPS instruction set. Among many things, words are 32-bit long and the instruction set includes multiplication and division instructions.
@@ -94,7 +98,7 @@ The resulting CPU core runs at **33.87 MHz** and features:
 
 To do something meaningful, Sony provided **2 MB of RAM** for general-purpose use. Curiously enough, they fitted **Extended Data Out** (EDO) chips on the motherboard. These are slightly more efficient than typical DRAM, obtaining lower latency.
 
-#### Taking over the CPU
+### Taking over the CPU
 
 At some point, any subsystem (graphics, audio or CD) will require large chunks of data at a fast rate. However, the CPU will not always be able to keep up with the demand.
 
@@ -102,7 +106,7 @@ For this reason, the CD-ROM Controller, MDEC, GPU, SPU and the Parallel port hav
 
 Also, bear in mind that once DMA kicks in, the CPU can't access the main bus. This means the CPU will be idling unless it's got something in Scratchpad to keep it busy!
 
-#### Complementing the core
+### Complementing the core
 
 Like other MIPS R3000-based CPUs, the CW33000 supports configurations with up to four coprocessors, Sony customised it with three:
 
@@ -155,7 +159,7 @@ For more info about the MDEC unit, I suggest checking out Sabin's and Czekański
 {{< /tab >}}
 {{< /tabs >}}
 
-#### Missing units?
+### Missing units?
 
 So far, we got a 'CP0' and a 'CP2', but **where's the 'CP1'?** Well, that's reserved for a **Floating Point Unit** (FPU) and I'm afraid Sony didn't provide one. This doesn't mean the CPU can't perform arithmetic with decimal numbers, it just won't be fast enough (software-emulated FPU) or too precise (fixed-point arithmetic instead).
 
@@ -163,7 +167,7 @@ Game logic (involving physics, collision detection, etc) still can get around wi
 
 By the way, sometimes I mix up 'fixed-point', 'floating-point', 'decimal' and 'integer' number types (hopefully not anymore!). If you feel the same, I recommend taking a look at Gabriel Ivancescu's quick summary (see the 'Sources' section) to quickly refresh those concepts.
 
-#### Delay galore
+### Delay galore
 
 As we've seen before, the CW33300 is a pipelined processor, meaning that it queues up multiple instructions and executes them in parallel at different stages. This hugely improves instruction throughput, but if it's not controlled properly, it can lead to **pipeline hazards**, resulting in computational errors. 
 
@@ -199,7 +203,7 @@ In most cases, the compiler or assembler will automatically re-arrange instructi
 
 To recap, a large part of the graphics pipeline is carried out by the GTE. This includes perspective transformation (which projects the 3D space onto a 2D plane using the camera's perspective) and lighting. The processed data is then sent to **Sony's proprietary GPU** for rendering.
 
-#### Organising the content
+### Organising the content
 
 The system features **1 MB of VRAM** that will be used to store the frame buffer, textures and other resources the GPU will require to render the scene. The CPU can fill this area using DMA.
 
@@ -220,7 +224,7 @@ The type of chip fitted (**VRAM**) is dual-ported, like the [Virtual Boy's]({{< 
 
 Though in later revisions of this console, Sony switched to **SGRAM** chips (the single-ported option using an individual 32-bit data bus). *Boo!*... Well, to be fair, each one comes with its pros and cons. One thing for sure, is that due to the timing differences, later games (such as Jet Moto 3) will display glitched graphics when ran on VRAM-based systems. If you want to know the details, Martin Korth's 'Nocash PSX Specifications' document the different timings and such.
 
-#### Drawing the scene
+### Drawing the scene
 
 If you've been reading the [Sega Saturn article]({{< ref "sega-saturn">}}), let me tell you that the design of this GPU *a lot* simpler!
 
@@ -331,7 +335,7 @@ It's worth mentioning that the PS1 happened to excel at those effects!
 
 Once finished, the GPU writes the pixels into the frame buffer area in VRAM, which is in turn picked up by the video encoder and broadcasted to the screen.
 
-#### Designs
+### Designs
 
 Let's take a break now from all this theory. Here are some examples of game characters designed from the ground up for the 3D era, they are interactive so I encourage you to check them out!
 
@@ -349,7 +353,7 @@ Let's take a break now from all this theory. Here are some examples of game char
   </div>
 {{< /side_by_side >}}
 
-#### Playing with VRAM
+### Playing with VRAM
 
 With the available amount of VRAM (1 *whole megabyte*), one could allocate a *massive* frame buffer of 1024×512 pixels with 16-bit colours or a *realistic* one of 960×512 pixels with 24-bit colours - allowing to draw the best frames any game has ever shown... This sounds pretty impressive, right? Well, it does raise a couple of issues, for instance:
 - Those dimensions will have to be rescaled to follow a standardised definition (i.e. 480 NTSC, 576 PAL) so the video encoder can broadcast it to consumer TVs.
@@ -378,7 +382,7 @@ Overall, Halkun's layout only consumes 600 KB of VRAM. The rest (424 KB) can be 
 
 Finally, it is worth mentioning that VRAM can be mapped using **multiple colour depths simultaneously**, meaning that programmers can allocate a 16 bpp frame buffer next to 24 bpp bitmaps (used by FMV frames, for instance). This is another feature facilitating further optimisation of space.
 
-#### Secrets and Limitations
+### Secrets and Limitations
 
 Whereas the PS1 had a very simple and suitable architecture, problems ended up arising anyway. Surprisingly, certain issues were tackled with very clever workarounds!
 
@@ -454,7 +458,7 @@ Some games relied on it specifically for composing backgrounds and, honestly, it
 {{< /tab >}}
 {{< /tabs >}}
 
-#### Video out
+### Video out
 
 The first revision of this console carries a surprising amount of video signals with the following ports:
 - **RFU DC**: This one got removed pretty quickly, it was meant to be connected to an RF modulator.
@@ -482,7 +486,7 @@ This chip also provides the following capabilities:
 
 The CD controller is also able to send samples directly to the audio mixer without going through the audio buffer or requiring CPU intervention. Samples can also be compressed using the 'XA' encoding, which the SPU can decode on the fly.
 
-#### The streaming era
+### The streaming era
 
 [Similarly to the Saturn]({{< ref "sega-saturn#the-opportunity" >}}), games are no longer dependant on music sequencing or pre-defined waveforms, and thanks to the amount of storage available on the CD-ROM medium, developers can store fully produced samples and just stream them to the audio chip.
 
@@ -492,7 +496,7 @@ The CD controller is also able to send samples directly to the audio mixer witho
 
 There are two I/O ports (**Serial** and **Parallel**) available for add-ons. However, these were removed in later revisions of the console due to lack of adoption and the fact that they could potentially be used to crack the copy protection system.
 
-#### CD subsystem
+### CD subsystem
 
 The block controlling the CD drive is an interesting area, you can imagine it as an separate computer living inside the PlayStation.
 
@@ -515,7 +519,7 @@ This subsystem is composed of:
 
 The subsystem somewhat resembles a typical CD reader everyone had at their home, except with the tweaks Sony implemented in the Sub-CPU program to perform anti-piracy checks.
 
-#### Front ports
+### Front ports
 
 The controller and the Memory Card slots are electrically identical, so the address of each one is hardcoded. Additionally, Sony altered the physical shape of the ports to avoid accidents.
 
@@ -527,7 +531,7 @@ Communication with these devices is accomplished using a serial interface. Comma
 
 The system includes a **512 KB ROM** that stores a 'BIOS'. This program performs many services, including taking care of the startup process, displaying a user shell and finally, exposing a collection of I/O routines.
 
-#### BIOS/Kernel
+### BIOS/Kernel
 
 The BIOS is a critical dependency for games, as this program bootstraps them from the CD drive. Moreover, the BIOS serves as a 'middle man' to interact with the console's hardware. The latter methodology is similar to what IBM implemented with their IBM PC BIOS, which encouraged developers to make use of a standard interrupt table (containing I/O routines) instead of platform-dependent [I/O ports]({{< ref "master-system#accessing-the-rest-of-the-components" >}}).
 
@@ -539,7 +543,7 @@ Having said that, the PS1 BIOS exposes routines such as:
 
 Since BIOS ROM access is very slow (it's connected to an 8-bit data bus), the APIs are packaged in the form of a **Kernel** and copied to main RAM during boot. Thus, 64 KB of main RAM are reserved for said Kernel. By the way, the Kernel is also referred to as **PlayStation OS**. 
 
-#### Boot process
+### Boot process
 
 The CPU's reset vector is at '0xBFC00000', which points to the BIOS ROM.
 
@@ -578,7 +582,7 @@ The shell is a simple graphical interface that enables the user to copy or delet
 
 Programs have all the facilities that the CD medium provides: Large storage (640 MB), good audio quality and a 'not-so-slow' read speed thanks to the 2x drive.
 
-#### Development ecosystem
+### Development ecosystem
 
 The official SDK provided C libraries which are linked to BIOS routines to access the hardware. If you wonder, this is the main factor that helped to emulate the PS1 on a wide range of platforms.
 
@@ -599,13 +603,13 @@ Within the PS1 game's TOC, one of the following character strings is embedded:
 
 As you can imagine, the reader applies **region-locking** using this technique as well.
 
-#### Defeat
+### Defeat
 
 On the other side, this check is only executed once at the start, so manually swapping the disc just after passing the check can defeat this protection... with the risk of damaging the drive. Later on, some games took matters into their own hands and often reinitialised the drive in-game so the check would be executed again, this was done in an effort to prevent users from performing the 'swap trick'.
 
 Alternatively, tiny boards programmed to mock the wobble signal could be soldered in the console. These boards are known as **Modchips** and, while legally questionable, they were incredibly popular.
 
-#### Retaliation
+### Retaliation
 
 The use of emulators was seen as a threat for publishers as well. As a result, some games included their own checks (mostly checksums) to combat any type of unauthorised use or modification.
 
@@ -615,3 +619,7 @@ Later on, Sony provided a library called **Lybcrypt** which fortified copy prote
 - From the hardware side, checksums of sectors are stored in sub-channels of the disc.
   - CD-ROM sub-channels traditionally store metadata, mostly to guide the drive. These aren't user accessible and conventional readers rarely allow to manually write over them.
 - From the software side, a set of routines that get the checksum values and mix them with others are embedded at different points of the game. This attempted to mitigate both emulators and modchips.
+
+---
+
+## That's all folks
