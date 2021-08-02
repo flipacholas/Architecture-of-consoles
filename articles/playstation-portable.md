@@ -318,7 +318,7 @@ The engine draws many types of primitives, including points, lines, line strips,
 
 Developers can supply a projection matrix to apply **perspective transformation**, this sends their 3D world to a 2D space (so you can see it on the screen) using the camera as a reference.
 
-Sony didn't provide much information about how its rasteriser works in particular, so it's not well-known how many pixels are processed per cycle, for instance. Modern features, like sub-pixel precision, are assumed to be implemented (otherwise, users would've been able to [spot its absence]({{< ref "playstation#tab-5-1-distorted-modelstextures" >}}) right away).
+Sony didn't provide much information about how its rasteriser works in particular, so it's not well-known how many pixels are processed per cycle, for instance. Modern features, like sub-pixel precision, are assumed to be implemented (otherwise, users would've been able to [spot its absence]({{< ref "playstation#tab-2-1-wobbling-textures" >}}) right away).
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -565,7 +565,7 @@ Secondly, there is a second partition in NAND that stores user-related data, suc
 Now that we've identified the main parts, let's see how they organise to put the console into a 'working state' once we switch it on. Security is briefly discussed here, but I recommend reading the next section which goes into more depth.
 
 That being said, the *complex* boot process works as follows:
-1. Main CPU's reset vector is at '0x1FC00000', which points to the Pre-IPL ROM inside Tachyon.
+1. Main CPU's reset vector is at `0x1FC00000`, which points to the Pre-IPL ROM inside Tachyon.
     1. The first half of the Pre-IPL tells the CPU to copy the other half to Scratchpad memory and continue execution from there.
         - Pre-IPL will now look for the next stage from either **NAND or an external memory stick**. When the latter is selected (never under normal means), the PSP enters a mode called **Factory Service Mode**. For simplicity purposes, we'll focus on the normal mode (selecting NAND).
     3. Pre-IPL initialises the NAND controller and continues execution from NAND. The second part runs IPL. It's encrypted, so it will be decrypted (using 'KIRK', more details later) and copied to eDRAM (in the Graphics Engine) as a working area.
@@ -823,10 +823,10 @@ I think the last thing hackers ever did was to give up on this console (maybe be
 {{% inner_markdown %}}
 After the release of the PSP in Japan, it was a matter of time before user-land exploits emerged, some of them were combined with the lack of security in early versions of the firmware:
 - 'Wipe Out' embedded a web browser to access downloadable content, it wasn't protected against **DNS attacks (domain hijacking)**, allowing users to browse any URL in the world-wide-web.
-  - Later on, it was discovered that the browser's URL entry didn't verify the input. So, entering 'file:///disc0:/' as URL would **list the contents of the UMD**, already unencrypted. This enabled hackers to inspect PSP executables and reverse engineer them.
+  - Later on, it was discovered that the browser's URL entry didn't verify the input. So, entering `file:///disc0:/` as URL would **list the contents of the UMD**, already unencrypted. This enabled hackers to inspect PSP executables and reverse engineer them.
 - The first revision of the system **didn't check for signatures** in the executables stored in the memory stick, allowing to run custom user modules (not kernel ones).
   - This was probably accidental as it's common practice to use a debug version of the system (without signature checks) for development purposes. So they may have rushed into release and forgotten to re-activate the checks, similarly to what [Microsoft]({{< ref "xbox#tab-9-2-bootstrap-search" >}}) did.
-- After the previous one was patched, hackers discovered **a flaw in the file system implementation to keep running unsigned code**. In a nutshell, the user would have to duplicate the folder containing the executable, add an extra '%' at the end of the name of the second folder and strategically reorganise the contents of both folders.
+- After the previous one was patched, hackers discovered **a flaw in the file system implementation to keep running unsigned code**. In a nutshell, the user would have to duplicate the folder containing the executable, add an extra `%` at the end of the name of the second folder and strategically reorganise the contents of both folders.
 
 These early blunders help to build a knowledge base of the inner workings of the PSP, which lead to more attack vectors and software routines to interact with the hardware (keep in mind only game studios had access to official SDKs and documentation).
 
@@ -858,7 +858,7 @@ Subsequently, two 'modchips' reached the market, 'Undiluted Platinum' and 'PSP-D
 The 'cat and mouse' game was the order of the day until the so-called 'Pandora' arrived.
 
 The 'Pandora battery method' is a popular (and respectable) collection of achievements. It managed to bypass most of the security layers and focused on where Sony could not react quickly, the Pre-IPL. This is what Pandora managed to succeed in:
-- **Find a way of entering entering 'Service Mode'**: By tampering with the PSP's removable battery, which had some circuitry attached for identification purposes, hackers discovered that overriding its serial number value to '0xFFFFFFFF' triggered 'Service Mode' at boot time. Thus, Pre-IPL would look for a secondary system in the Memory Stick. The modified battery was referred to as **JigKick** or 'Pandora' Battery.
+- **Find a way of entering entering 'Service Mode'**: By tampering with the PSP's removable battery, which had some circuitry attached for identification purposes, hackers discovered that overriding its serial number value to `0xFFFFFFFF` triggered 'Service Mode' at boot time. Thus, Pre-IPL would look for a secondary system in the Memory Stick. The modified battery was referred to as **JigKick** or 'Pandora' Battery.
   - Users could either create a Jigkick battery with a hacked PSP or by desoldering the ground pin of the battery's EEPROM. The latter is riskier taking into account casual users are disassembling a Lithium battery! Thus, some companies distributed their own 'Pandora battery' maker.
   - A Jigkick battery works like any other battery. However, when inserted, the PSP will always boot from the Memory Stick.
 - **Trick KIRK loading a fake/unsigned firmware**: The next step was to find a way to load a fake IPL in Service Mode (it still has to be encrypted and signed). Well, hackers found a way by embedding an unencrypted payload next to the encrypted block that Pre-IPL will try to validate (due to Pre-IPL not checking if the encrypted block is 1 KB long). The encrypted section had to be crafted in a way that, once decrypted, will tell Pre-IPL to 'jump 100 Bytes down'. Thus, bypassing the security routines and redirecting execution to the payload, enabling to **execute code with maximum privileges** on Service Mode. This reminds me of what happened to the [Wii]({{< ref "wii#the-fall-of-encryption" >}}).

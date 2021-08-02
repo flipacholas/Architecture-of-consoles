@@ -178,7 +178,7 @@ The MIPS I architecture is susceptible to **control hazards** and **data hazards
 {{< float_block >}}
   {{< linked_img src="delay_slots.jpg" alt="Spyro instructions" >}}
   <figcaption class="caption">Instructions from 'Spyro The Dragon' visualised on the NO$PSX debugger.
-  <br>Notice how LW (load word from memory), JAL (jump and link) and BAL (branch on not equal) are followed by a delay slot to prevent hazards.
+  <br>Notice how <code>LW</code> (load word from memory), <code>JAL</code> (jump and link) and <code>BAL</code> (branch on not equal) are followed by a delay slot to prevent hazards.
   <br>Marked in red are fillers (useless instructions).
   <br>Marked in blue perform meaningful operations.</figcaption>
 {{< /float_block >}}
@@ -186,9 +186,9 @@ The MIPS I architecture is susceptible to **control hazards** and **data hazards
 {{% inner_markdown %}}
 Consequently, MIPS I CPUs exhibit the following behaviour:
 
-- **Any instruction following a 'branch' or 'jump' type opcode is executed unconditionally**: Thus, developers have to manually fill the pipeline with modest instructions (such as 'calculate 0 plus 0') after the branch or jump to mitigate the hazard. These fillers are called **branch delay slots**.
+- **Any instruction following a 'branch' or 'jump' type opcode is executed unconditionally**: Thus, developers have to manually fill the pipeline with modest instructions (such as `calculate 0 plus 0`) after the branch or jump to mitigate the hazard. These fillers are called **branch delay slots**.
   - Modern CPUs converted this phenomenon into an advantage: [Branch prediction]({{< ref "gamecube#cpu" >}}). By adding extra circuitry to detect the hazard, the CPU discards the new computations if the branch/jump condition didn't meet. But if it did, then the CPU has saved some time.
-- **'Load' instructions don't stall the pipeline until the retrieved data is made available**: The second stage of the pipeline (called 'RD' or 'Read and Decode') gathers the operators, which will be used to perform a computation at the third stage (ALU). The fourth stage ('MEM', from 'access MEMory') looks for data in memory (i.e. main RAM, CD reader, etc). Now, here's the problem: by the time a 'load' instruction gathered the data from outside, the following instruction had already fetched the operators. This means that an instruction depending on the values of the previous 'load' instruction requires a filler in-between, so the correct operators can be fetched on time.
+- **'Load' instructions don't stall the pipeline until the retrieved data is made available**: The second stage of the pipeline (called 'RD' or 'Read and Decode') gathers the operators, which will be used to perform a computation at the third stage (ALU). The fourth stage ('MEM', from 'access MEMory') looks for data in memory (i.e. main RAM, CD reader, etc). Now, here's the problem: by the time a `load` instruction gathered the data from outside, the following instruction had already fetched the operators. This means that an instruction depending on the values of the previous `load` instruction requires a filler in-between, so the correct operators can be fetched on time.
 {{% /inner_markdown %}}
 
 {{< /float_group >}}
@@ -545,7 +545,7 @@ Since BIOS ROM access is very slow (it's connected to an 8-bit data bus), the AP
 
 ### Boot process
 
-The CPU's reset vector is at '0xBFC00000', which points to the BIOS ROM.
+The CPU's reset vector is at `0xBFC00000`, which points to the BIOS ROM.
 
 {{< centered_container >}}
   {{< tabs nested="true" >}}

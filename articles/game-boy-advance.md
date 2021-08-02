@@ -86,7 +86,7 @@ Apart from the inclusion of GBC hardware (Sharp SM83, original BIOS, audio and v
 
 From the hardware side, the console relies on switches to detect if a Game Boy or Game Boy Color cartridge is inserted. A **shape detector** in the cartridge slot effectively identifies the type of cartridge and allows the CPU to read its state. It is assumed that some component of CPU AGB reads that value and automatically powers off the hardware not needed in GBC mode.
 
-From the software side, there is a special 16-bit register called 'REG_DISPCNT' which can alter many properties of the display, but one of its bits sets the console to 'GBC mode'. At first, I struggled to understand exactly when the GBA tries to update this register. Luckily, some developers helped to clarify this:
+From the software side, there is a special 16-bit register called `REG_DISPCNT` which can alter many properties of the display, but one of its bits sets the console to 'GBC mode'. At first, I struggled to understand exactly when the GBA tries to update this register. Luckily, some developers helped to clarify this:
 
 > I think what happens during GBC boot is that it checks the switch (readable at REG_WAITCNT 0x4000204), does the fade (a very fast fade, hard to notice), then finally switches to GBC mode (BIOS writes to REG_DISPCNT 0x4000000), stopping the ARM7.
 >
@@ -113,7 +113,7 @@ We have the following regions of memory in which to distribute our graphics:
 
 - 96 KB 16-bit **VRAM** (Video RAM): Where 64 KB store background graphics and 32 KB store sprite graphics.
 - 1 KB 32-bit **OAM** (Object Attribute Memory): Stores up to 128 sprite entries (not the graphics, just the indices and attributes). Its bus is optimised for fast rendering.
-- 1 KB 16-bit **PAL RAM** (Palette RAM): Stores two palettes, one for backgrounds and the other for sprites. Each palette contains 256 entries of 15-bit colours each, colour '0' being *transparent*.
+- 1 KB 16-bit **PAL RAM** (Palette RAM): Stores two palettes, one for backgrounds and the other for sprites. Each palette contains 256 entries of 15-bit colours each, colour `0` being *transparent*.
 
 ### Constructing the frame
 
@@ -360,14 +360,14 @@ In this game (*Mother 3*), the player can enter two different rooms, one *relati
 
 ## Operating System
 
-ARM7's reset vector is at 0x00000000, which points to a **16 KB BIOS ROM**. That means the Game Boy Advance first boots from the BIOS, which in turn shows the iconic splash screen and then decides whether to load the game or not.
+ARM7's reset vector is at `0x00000000`, which points to a **16 KB BIOS ROM**. That means the Game Boy Advance first boots from the BIOS, which in turn shows the iconic splash screen and then decides whether to load the game or not.
 
 That ROM also stores software routines that games may call to simplify certain operations and reduce cartridge size. These include:
 - **Arithmetic functions**: Routines to carry out Division, Square Root and Arc Tangent.
 - **Affine matrix calculation**: Given a 'zoom' value and angle, it calculates the affine matrix that will be input to the PPU in order to scale/rotate a background or sprite.
   - There are two functions, one for sprites and the other for backgrounds. Their parameters are slightly different but the idea is the same.
 - **Decompression functions**: Implements decompression algorithms including Run-Length, LZ77 and Huffman. It also provides bit unpacking and sequential difference.
-- **Memory copy**: Two functions that move memory around. The first one copies 32-byte blocks using a specialised opcode for this type of transfer ('LDMIA' to load and 'SDMIA' to store) only once. The second one copies 2-byte or 4-byte blocks using repeated 'LDRH/STRH' or 'LDMIA/STMIA' opcodes, respectively. Thus, the second function is more flexible but not as fast.
+- **Memory copy**: Two functions that move memory around. The first one copies 32-byte blocks using a specialised opcode for this type of transfer (`LDMIA` to load and `SDMIA` to store) only once. The second one copies 2-byte or 4-byte blocks using repeated `LDRH/STRH` or `LDMIA/STMIA` opcodes, respectively. Thus, the second function is more flexible but not as fast.
 - **Sound**: Implements a complete MIDI sequencer! It includes many functions to control it.
 - **Power interface**: Shortcuts for resetting, clearing most of the RAM, halting the CPU until a certain event hits (V-blank or custom one) or switching to 'low-power mode'.
 - **Multi-boot**: Uploads a program to another GBA and kickstarts it. More details in the 'Game' section.

@@ -494,9 +494,9 @@ Furthermore, not only RSA allows to encrypt content, but it can also be used to 
 - Data hasn't been altered and re-encrypted without authorisation.
 
 Let me give you an example of how this works:
-1. Nintendo creates a key named 'x'.
-2. Nintendo programs Starlet to trust content only signed with key 'x'.
-3. If Starlet finds itself having to decrypt a title with key 'y', it will only proceed if 'y' has been signed with key 'x'.
+1. Nintendo creates a key named `x`.
+2. Nintendo programs Starlet to trust content only signed with key `x`.
+3. If Starlet finds itself having to decrypt a title with key `y`, it will only proceed if `y` has been signed with key `x`.
 
 This is called a **Chain of trust**. Outside the Wii, this technique is commonly used to protect most of our communications across the globe (for instance, web browsers using HTTPS rely upon 'root certificates' to validate the authenticity of unknown certificates).
 
@@ -556,9 +556,9 @@ Well, a group of hackers called **Team Twiizers** found out that the lack of sig
 
 Let's not forget that this only allows to decrypt the 'first layer' of security, but in order to execute unsigned programs (Homebrew), RSA has to be cracked too. Unfortunately, this can be computationally impossible... Unless there are flaws in its implementation. Well, Team Twizzers didn't stop there so they started reversing how IOS was coded, focusing on its signature verification functions.
 
-RSA signature verification, without going into too much detail, works by comparing the hash of the computed RSA operation against the decrypted signature. After some fiddling, the group discovered something hilarious: **Nintendo implemented this function using 'strcmp'** (C's 'string' compare).
+RSA signature verification, without going into too much detail, works by comparing the hash of the computed RSA operation against the decrypted signature. After some fiddling, the group discovered something hilarious: **Nintendo implemented this function using `strcmp`** (C's 'string' compare).
 
-For people unfamiliar with C, 'strcmp' is a routine used for checking if two strings are equal. This method receives three parameters: two strings and an integer, the latter states the number of characters to be compared. Afterwards, strcmp starts comparing each character until the end of any string is reached. Strings in C are just a chain of characters terminated by a '\0' character, this means that strcmp stops comparing once any string reaches '\0'. Hence, by composing a Wii title in a way that its hash contains zeroes at the beginning, Starlet RSA computations will feed a string starting with '\0' to strcmp. Thus, the comparison will always return 'equal'... **Title is signed!**
+For people unfamiliar with C, `strcmp` is a routine used for checking if two strings are equal. This method receives three parameters: two strings and an integer, the latter states the number of characters to be compared. Afterwards, strcmp starts comparing each character until the end of any string is reached. Strings in C are just a chain of characters terminated by a `\0` character, this means that strcmp stops comparing once any string reaches `\0`. Hence, by composing a Wii title in a way that its hash contains zeroes at the beginning, Starlet RSA computations will feed a string starting with `\0` to strcmp. Thus, the comparison will always return `equal`... **Title is signed!**
 
 As if that wasn't enough, this flaw was discovered on multiple IOS versions - and even in routines found on boot1 and boot2!
 

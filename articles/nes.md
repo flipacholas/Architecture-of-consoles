@@ -61,11 +61,11 @@ The components of the system are memory-mapped, meaning that they are accessed u
 
 The Ricoh 2A03 omits the **Binary-Coded Decimal** (BCD) mode originally included in the 6502. BCD encodes each decimal digit of a number as a separate 4-bit binary. The 6502 uses 8-bit 'words' – meaning that each word stores two decimal digits.
 
-As an example for the curious, the decimal number '42' is represented as:
-- '0010 1010' in binary, but
-- '0100 0010' in BCD.
+As an example for the curious, the decimal number `42` is represented as:
+- `0010 1010` in binary, but
+- `0100 0010` in BCD.
 
-We could go on and on talking about it, but to give an outline: BCD is useful for applications that require treating each decimal place separately (for instance, a digital clock). However, it requires more storage since each word can only encode up to the decimal number '99' (whereas traditional binary can encode up to '255' with a eight-bit word).
+We could go on and on talking about it, but to give an outline: BCD is useful for applications that require treating each decimal place separately (for instance, a digital clock). However, it requires more storage since each word can only encode up to the decimal number `99` (whereas traditional binary can encode up to `255` with a eight-bit word).
 
 In any case, Ricoh deliberately broke BCD mode in its chip by severing the control lines that activate it. This was presumably done in an effort to avoid paying royalties to MOS, since BCD was patented by them (and the legislation that enabled to copyright integrated circuit layouts in the United States wasn't enacted until 1984).
 

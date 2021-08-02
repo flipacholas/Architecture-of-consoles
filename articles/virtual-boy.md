@@ -563,7 +563,7 @@ In the case of using the latter accessory, playing with everything interconnecte
 
 ## Operating System
 
-The V810's starts execution at address 0xFFFFFFF0H. That means that when the Virtual Boy is switched on, it will look for instructions from that address. That being said, that location is found on the cartridge ROM. This means that the game has the upper hand for the initialisation of the hardware.
+The V810's starts execution at address `0xFFFFFFF0H`. That means that when the Virtual Boy is switched on, it will look for instructions from that address. That being said, that location is found on the cartridge ROM. This means that the game has the upper hand for the initialisation of the hardware.
 
 Also, there isn't any BIOS chip to be found on the motherboard, so there won't be any operating system or any abstraction layer to help simplify operations.
 
