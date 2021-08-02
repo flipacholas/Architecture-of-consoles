@@ -51,7 +51,7 @@ The main core is a **MIPS R5900-compatible** CPU with lots of enhancements. This
 - **16 KB of Scratchpad RAM**: Also known as 'Fast RAM'.
 - **Memory management unit**: Interfaces memory access with the rest of the system.
 
-The core is complemented with a **dedicated floating point unit** (identified as 'COP1') that accelerates operations with 32-bit floating point numbers (also known as `floats` in C).
+The core is complemented with a **dedicated floating point unit** (identified as 'COP1') that accelerates operations with 32-bit floating point numbers (also known as `floats` in C). This is a peculiar block as it doesn't follow the IEEE 754 standard, most evident with its absence of `infinity` (computed as `0` instead). For more information, check out Krysto's 'Nightmare on Floating-Point Street' (link in the 'Sources' section).
 
 ### A recognisable memory choice
 
@@ -103,7 +103,7 @@ It's been two years since the rivals presented their [latest offering]({{< ref "
 
 ### Architecture
 
-A Vector Processing Unit is a small independent processor designed to operate vectors. In particular, vectors made of four `floats`. These processors are so fast that they only spend **one cycle per operation**, which can be extremely convenient for geometry processing.
+A Vector Processing Unit is a small independent processor designed to operate vectors. In particular, vectors made of four `floats`. These processors are so fast that they only spend **one cycle per operation**, which can be extremely convenient for geometry processing. Though they exhibit similar unstandardised behaviour to the CPU's FPU.
 
 VPUs are made of the following components:
 - Some **Vector Unit Memory** or 'VU Mem': Used as a working space for the Vector unit. It stores values needed to be operated and/or the results of previous operations.
