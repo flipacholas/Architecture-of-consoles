@@ -53,10 +53,9 @@ Lastly, the Wiimote also includes **16 KB of EEPROM** to store user data and a *
 
 Nintendo shipped this system with another controller to be used on the opposite hand, the **Nunchuk**, this one comes with its own accelerometer, joystick and two buttons. It's connected to a 6-pin proprietary port on the Wiimote.
 
-{{< centered_container >}}
-  {{< linked_img src="controllers/both.jpg" alt="Wiimote and Nunchuk" >}}
-  <figcaption class="caption">Nunchuck and Wiimote, respectively</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="controllers/both.jpg" alt="Wiimote and Nunchuk" class="centered-container" >}}
+Nunchuck and Wiimote, respectively
+{{< /figure_img >}}
 
 Other accessories were also built for this port, each one provided different types of input.
 
@@ -100,25 +99,20 @@ The 3D engine is still [Flipper's]({{< ref "gamecube#graphics" >}}) but now call
 
 {{< tab active="true" name="Standardised Widescreen" >}}
 
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="Traditional" active="true" >}}
-      {{< linked_img src="mario/4_3.png" alt="Mario Galaxy" >}}
-      <figcaption class="caption">4:3 mode
-      <br>Super Mario Galaxy (2007)</figcaption>
-    {{< /tab >}}
-    {{< tab name="Wide" >}}
-      {{< linked_img src="mario/16_9.png" alt="Mario Galaxy Widescreen" >}}
-      <figcaption class="caption">16:9 mode, as composed by the video encoder
-      <br>Super Mario Galaxy (2007)</figcaption>
-    {{< /tab >}}
-    {{< tab name="Stretched" >}}
-      {{< linked_img src="mario/16_9_stretched.png" alt="Mario Galaxy Widescreen Stretched" >}}
-      <figcaption class="caption">16:9 mode, as displayed on a widescreen TV
-      <br>Super Mario Galaxy (2007)</figcaption>
-    {{< /tab >}}
-  {{< /tabs >}}
-{{< /float_block >}}
+{{< tabs nested="true" float="true" >}}
+  {{< tab_figure_img name="Traditional" active="true" src="mario/4_3.png" alt="Mario Galaxy" >}}
+4:3 mode  
+Super Mario Galaxy (2007)
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Wide" src="mario/16_9.png" alt="Mario Galaxy Widescreen" >}}
+16:9 mode, as composed by the video encoder  
+Super Mario Galaxy (2007)
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Stretched" src="mario/16_9_stretched.png" alt="Mario Galaxy Widescreen Stretched" >}}
+16:9 mode, as displayed on a widescreen TV  
+Super Mario Galaxy (2007)
+  {{< /tab_figure_img >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 Gamecube games lacked proper support for widescreen displays (that is, composing 16:9 frames, departing from the traditional 4:3). Nevertheless, Flipper was already able to do so and a handful of games provided options to activate it, although this was still considered an exclusive feature.
@@ -129,13 +123,12 @@ Back to the point, the Wii standardised this feature by allowing 'widescreen mod
 {{% /inner_markdown %}}
 
 {{< /tab >}}
-{{< tab name="Screen Interaction" >}}
 
-{{< float_block >}}
-  {{< linked_img src="mario/mario_galaxy.png" alt="Super Mario Galaxy" >}}
-  <figcaption class="caption">Super Mario Galaxy (2007)
-  <br>You can pick up the stars by pointing at them</figcaption>
-{{< /float_block >}}
+{{< tab name="Screen Interaction" >}}
+{{< figure_img float="true" src="mario/mario_galaxy.png" alt="Super Mario Galaxy" >}}
+Super Mario Galaxy (2007)  
+You can pick up the stars by pointing at them
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 The new and disruptive controller design meant new types of interactions on Wii games. Since the WiiMote enabled users to point at the screen, some games like *Super Mario Galaxy* or *The Legend of Zelda: Twilight Princess* used this feature to allow the player to interact with the scenery.
@@ -153,17 +146,15 @@ This is not a new feature per se, but a novel use of current capabilities. Gamec
 The extra megahertz of Broadway and Hollywood, combined with avant-garde designs, brought some improvements to character models. It may not be as significant as other generations, but it's still noticeable and appreciated.
 
 {{< side_by_side >}}
-  <div class="toleft canvas-model">
-    {{< threejs_canvas model="sonic_dx_tails" >}}
-    <figcaption class="caption">Sonic DX (2003) for the Gamecube
-    <br>1985 triangles</figcaption>
-  </div>
-
-  <div class="toright canvas-model">
-    {{< threejs_canvas model="tails_brawl" >}}
-    <figcaption class="caption">Super Smash Bros Brawl (2008) for the Wii
-    <br>3644 triangles</figcaption>
-  </div>
+  {{< threejs_canvas model="sonic_dx_tails" class="toleft" >}}
+Sonic DX (2003) for the Gamecube  
+1985 triangles
+  {{< /threejs_canvas >}}
+  
+  {{< threejs_canvas model="tails_brawl" class="toright" >}}
+Super Smash Bros Brawl (2008) for the Wii  
+3644 triangles
+  {{< /threejs_canvas >}}
 {{< /side_by_side >}}
 
 ### Video Signal
@@ -199,15 +190,12 @@ These enhancements are a bit 'weird' since they are completely unused on the Wii
 If you wonder, Jazelle never took off, after some iterations, it was discovered that Java Bytecode just ran better on software. Later on, ARM succeeded Jazelle with 'Thumb-2EE'. At the time of this writing (June 2021), both of these units have been phased out.
 
 {{< float_group >}}
-
-{{< float_block >}}
-  <div class="img-distributed">
-  {{< linked_img src="console/front.jpeg" alt="Front of the Wii" class="super-reduced-width" >}}
-  {{< linked_img src="console/back.jpeg" alt="Back of the Wii" class="super-reduced-width" >}}
-  </div>
-  <figcaption class="caption">External I/O on the Wii
-  <br>The dark & small front slot is an SD card reader</figcaption>
-{{< /float_block >}}
+{{< figure_img_distributed float="true" 
+                          src1="console/front.jpeg" alt1="Front of the Wii"
+                          src2="console/back.jpeg" alt2="Back of the Wii" >}}
+External I/O on the Wii
+The dark & small front slot is an SD card reader
+{{< /figure_img_distributed >}}
 
 {{% inner_markdown %}}
 Moving on, this 'I/O CPU' is tasked with arbitrating access between many I/O and Broadway, and in doing so it also takes care of security (which decides whether to allow access or not). This is especially crucial when it comes to granting access to NAND, for instance, which is where the main operating system and user data are stored.
@@ -231,11 +219,9 @@ Having said that, Nintendo wired up the I/O in a way that makes use of two AMBA 
 ### Maintaining compatibility
 
 {{< float_group >}}
-
-{{< float_block >}}
-  {{< linked_img src="gamecube-mode.png" alt="Wii with Gamecube equipment" >}}
-  <figcaption class="caption">Wii using Gamecube equipment</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="gamecube-mode.png" alt="Wii with Gamecube equipment" >}}
+Wii using Gamecube equipment
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 The Wii maintains full backwards compatibility with Gamecube games even though the original I/O system has changed drastically. This is because Starlet can be reprogrammed when a Gamecube game is executed to virtually re-map the I/O, just like the original Gamecube would expect to find.
@@ -277,22 +263,17 @@ This one is commonly known as the **System Menu** and effectively runs on the ma
 
 {{< float_group >}}
 
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="Home" active="true" >}}
-      {{< linked_img src="system/home.png" alt="System Menu at the start" >}}
-      <figcaption class="caption">System menu with <i>lots</i> of channels installed</figcaption>
-    {{< /tab >}}
-    {{< tab name="Settings" >}}
-      {{< linked_img src="system/settings.png" alt="System settings" >}}
-      <figcaption class="caption">Settings menu used to change settings</figcaption>
-    {{< /tab >}}
-    {{< tab name="Message Board" >}}
-      {{< linked_img src="system/mail.png" alt="Message board" >}}
-      <figcaption class="caption">The message board stores letters grouped by date</figcaption>
-    {{< /tab >}}
-  {{< /tabs >}}
-{{< /float_block >}}
+{{< tabs nested="true" float="true" >}}
+  {{< tab_figure_img name="Home" active="true" src="system/home.png" alt="System Menu at the start" >}}
+System menu with _lots_ of channels installed
+  {{< /figure_img >}}
+  {{< tab_figure_img name="Settings" src="system/settings.png" alt="System settings" >}}
+Settings menu used to change settings
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Message Board" src="system/mail.png" alt="Message board" >}}
+The message board stores letters grouped by date
+  {{< /tab_figure_img >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 Compared to IOS, I wouldn't consider this a 'fully fledged' OS, but more like a 'program' that allows the user to perform the following operations:
@@ -344,18 +325,14 @@ Wii games are distributed using a proprietary disc format called **Wii Optical D
 
 {{< float_group >}}
 
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="Physical" active="true" >}}
-      {{< linked_img src="box_case.jpeg" alt="Standard game box" >}}
-      <figcaption class="caption">Standard games are presented in a physical box and disc</figcaption>
-    {{< /tab >}}
-    {{< tab name="Digital" >}}
-      {{< linked_img src="system/store.png" alt="Store channel" >}}
-      <figcaption class="caption">Small games (Wiibrew) and old titles (Virtual console) can be purchased and downloaded through the Shop Channel</figcaption>
-    {{< /tab >}}
-  {{< /tabs >}}
-{{< /float_block >}}
+{{< tabs nested="true" float="true" >}}
+  {{< tab_figure_img name="Physical" active="true" src="box_case.jpeg" alt="Standard game box" >}}
+Standard games are presented in a physical box and disc
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Digital" src="system/store.png" alt="Store channel" >}}
+Small games (Wiibrew) and old titles (Virtual console) can be purchased and downloaded through the Shop Channel
+  {{< /tab_figure_img >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 The Wii disc provides either **4.7 GB** (if single-layer) or **8.54 GB** (if double-layer) of space available. They often contain **two partitions**: The first one for system updates and the other one for the actual game.
@@ -378,19 +355,14 @@ The official SDK relies on IOS calls to interact with the Wii hardware, this is 
 Considering all the software advancements of this console, it may surprise you that games **still run on bare metal**, which means that they have complete control of Broadway, but not of Starlet (hence, security mechanisms are implemented here). Needless to say, the game's behaviour is still subject to Nintendo's approval before getting distributed.
 
 {{< float_group >}}
-
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="Menu" active="true" >}}
-      {{< linked_img src="ingame/home.png" alt="Home menu" >}}
-      <figcaption class="caption">Home menu showing in-game</figcaption>
-    {{< /tab >}}
-    {{< tab name="Reminder" >}}
-      {{< linked_img src="ingame/strap_warning.png" alt="Wii Strap warning" >}}
-      <figcaption class="caption">This screen has to be included as well</figcaption>
-    {{< /tab >}}
-  {{< /tabs >}}
-{{< /float_block >}}
+{{< tabs nested="true" float="true" >}}
+  {{< tab_figure_img name="Menu" active="true" src="ingame/home.png" alt="Home menu" >}}
+Home menu showing in-game
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Reminder" src="ingame/strap_warning.png" alt="Wii Strap warning" >}}
+This screen has to be included as well
+  {{< /tab_figure_img >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 Having said that, there are certain features across different games that look awfully identical, somehow. For instance, do you remember the famous **HOME Menu**? Pressing the 'home' button on the WiiMote will trigger a screen popup in-game, enabling the user to return to the System menu without the need to reboot the console. Still, considering the OS does not provide this feature, how did they all manage to come up with the same graphical interface?
@@ -405,20 +377,15 @@ The official HOME Menu is one of the 200 or so requirements games had to include
 ### Personalised game
 
 {{< float_group >}}
-
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="Editor" active="true" >}}
-      {{< linked_img src="system/mii-editor.png" alt="Mii editor" >}}
-      <figcaption class="caption">The Mii channel allows to fiddle with your own 'Mii'...</figcaption>
-    {{< /tab >}}
-    {{< tab name="Game" >}}
-      {{< linked_img src="ingame/music.png" alt="Wii Music" >}}
-      <figcaption class="caption">... which then appears in your games
-      <br>Wii Music (2008)</figcaption>
-    {{< /tab >}}
-  {{< /tabs >}}
-{{< /float_block >}}
+{{< tabs nested="true" float="true" >}}
+  {{< tab_figure_img name="Editor" active="true" src="system/mii-editor.png" alt="Mii editor" >}}
+The Mii channel allows to fiddle with your own 'Mii'...
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Game" src="ingame/music.png" alt="Wii Music" >}}
+... which then appears in your games  
+Wii Music (2008)
+  {{< /tab_figure_img >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 Another new feature I would like to emphasise is the introduction of **Miis**, some sort of avatars that users could create using a dedicated channel called *Mii Channel*.
@@ -441,11 +408,9 @@ Let's start with the common victim: **The disc drive**.
 Wii discs include the aforementioned 'burst cutting' area which is inaccessible by conventional readers. So, in the absence of this, the driver will always refuse to read the content.
 
 {{< float_group >}}
-
-{{< float_block >}}
-  {{< linked_img src="system/disc.png" alt="Insert disc screen" >}}
-  <figcaption class="caption">The disc drive won't let anyone pass this screen until a valid disc is inserted</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="system/disc.png" alt="Insert disc screen" >}}
+The disc drive won't let anyone pass this screen until a valid disc is inserted
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Modchip developers discovered that the drive contained a debug interface called 'Serial Writer', though this port is locked until a *secret key* is entered. Still, it was a matter of time before the key was discovered. Once this happened, modders were able to disable the copy protection and subsequently developed a modchip that automatised this process.
@@ -466,7 +431,6 @@ This is probably the most complex section of this console, yet its never-stoppin
 The Wii designed its internal security around a couple of cryptographic ciphers (AES, RSA, ECC, SHA-1 and HMAC). To keep explanations easy-to-follow, let's take a look at each group separately:
 
 {{< tabs >}}
-
 {{< tab name="Shared encryption" active="true" >}}
 
 {{% inner_markdown %}}
@@ -543,11 +507,9 @@ After all this, it's worth mentioning that when the system runs GameCube games, 
 Let's start with AES keys, the algorithm may be hard to crack, but if the keys are extracted somehow (especially the common key), that layer of security would be instantly nullified. Thus, the main challenge is **how to extract them**.
 
 {{< float_group >}}
-
-{{< float_block >}}
-  {{< linked_img src="encryption.png" alt="Starlet's security diagram" >}}
-  <figcaption class="caption">Starlet's security diagram</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="encryption.png" alt="Starlet's security diagram" >}}
+Starlet's security diagram
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Well, a group of hackers called **Team Twiizers** found out that the lack of signatures on Gamecube mode may be a promising attack surface, and not only they discovered that 3/4 of that GDDR3 RAM were not cleared after running a GC program, but they also found out that by bridging some address points on the motherboard (using a pair of tweezers, nonetheless) they could swap the selected banks of GDDR3 RAM, allowing to access restricted areas. Lo and behold, the AES keys were found residing in there.
@@ -567,11 +529,9 @@ As if that wasn't enough, this flaw was discovered on multiple IOS versions - an
 After this, there was only one thing left: Make the exploit permanent and implement a 'user-friendly' tool, so it could run custom programs without hassle.
 
 {{< float_group >}}
-
-{{< float_block >}}
-  {{< linked_img src="system/twilight_hack.png" alt="Twilight hack copy screen" >}}
-  <figcaption class="caption">Running third-party apps was initially done by using a forged save game</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="system/twilight_hack.png" alt="Twilight hack copy screen" >}}
+Running third-party apps was initially done by using a forged save game
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 So far, these exploits required the use of extra hardware, so not every user could make use of it... Until Team Twizzers discovered *yet another* exploit: A game buffer overflow.
@@ -589,18 +549,14 @@ While further reversing IOS, it was discovered that signatures are only checked 
 
 {{< float_group >}}
 
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="Splash" active="true" >}}
-      {{< linked_img src="system/homebrew_channel.png" alt="Homebrew channel" >}}
-    {{< /tab >}}
-    {{< tab name="Inside" >}}
-      {{< linked_img src="system/homebrew/menu.png" alt="Homebrew channel menu" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">The most user-friendly hack of all
-  <br><i>Unofficial</i> Homebrew channel (2008)</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" float="true" figure="true" >}}
+  {{< tab_img name="Splash" active="true" src="system/homebrew_channel.png" alt="Homebrew channel" >}}
+  {{< tab_img name="Inside" src="system/homebrew/menu.png" alt="Homebrew channel menu" >}}
+  {{< figcaption >}}
+The most user-friendly hack of all  
+_Unofficial_ Homebrew channel (2008)
+  {{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 Thus, TT did it again. They carefully forged an installable channel that could load arbitrary programs from the SD card. If this channel were to be installed before Nintendo had taken action to mitigate the security issues, then the Wii would enjoy homebrew permanently (independently of Nintendo patching their signature flaws in the future, which they did).
@@ -615,11 +571,9 @@ Thus, TT did it again. They carefully forged an installable channel that could l
 For obvious reasons, Nintendo issued several system updates that fixed the signature exploits on multiple versions of IOS, they also took care of their flawed boot stages by shipping new hardware revisions.
 
 {{< float_group >}}
-
-{{< float_block >}}
-  {{< linked_img src="system/updates.png" alt="Update screen" >}}
-  <figcaption class="caption">Lots of these coming through</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="system/updates.png" alt="Update screen" >}}
+Lots of these coming through
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 However, there were still fundamental flaws discovered in this system:
@@ -627,8 +581,8 @@ However, there were still fundamental flaws discovered in this system:
 - Broadway can reboot Starlet to any IOS version without extra permissions, allowing to exploit non-patched versions.
 - Hidden IOS APIs can still be used without special privileges, allowing even more unauthorised control of the hardware.
 - The disc drive can receive commands to read conventional DVDs and some IOS contained hidden calls to send those commands. This was particularly worrying for piracy reasons.
-
 {{% /inner_markdown %}}
+
 {{< /float_group >}}
 
 So, to wrap this up, what was left after this was just a cat-and-mouse game. Over the next months, different exploits were discovered with Nintendo subsequently trying to patch one after another. This 'game' continued until the console reached its end-of-life and no more updates were issued. We can assume the mouse won this one.

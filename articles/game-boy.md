@@ -4,7 +4,6 @@ subtitle: Simple and portable
 date: 2019-02-21
 releaseDate: 1989-04-21
 generation: 4
-javascript: ['plyr']
 cover: gameboy
 top_tabs:
   Model:
@@ -66,10 +65,9 @@ If you've read the NES article before, you may remember that the PPU was designe
 
 ### Organising the content
 
-{{< centered_container >}}
-  {{< linked_img src="ppu.png" alt="PPU Memory Diagram" img_class="no-borders" >}}
-  <figcaption class="caption">Memory architecture of the PPU</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="ppu.png" alt="PPU Memory Diagram" img_class="no-borders" class="centered-container" >}}
+Memory architecture of the PPU
+{{< /figure_img >}}
 
 The PPU has **8 KB of VRAM** or 'Display RAM', which both PPU and CPU can access directly but not at the same time. Those 8 KB will contain most of the data the PPU will need to render graphics. The remaining bits will be stored inside the PPU instead, as they will require a faster access rate.
 
@@ -82,21 +80,12 @@ Let's see now how the PPU manages to draw stuff on the screen. For demonstration
 {{< tabs >}}
 
 {{< tab name="Tiles" active="true" >}}
-
-{{< float_block >}}
-  {{< tabs nested="true" class="pixel desktop-margined" >}}
-    {{< tab name="All" active="true">}}
-      {{< linked_img src="ppu_mario/tiles.png" >}}
-    {{< /tab >}}
-    {{< tab name="Grid">}}
-      {{< linked_img src="ppu_mario/tiles_grid.png" >}}
-    {{< /tab >}}
-    {{< tab name="Single">}}
-      {{< linked_img src="ppu_mario/tiles_single.png" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Tiles Found in the Pattern Table</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" float="true" class="pixel" >}}
+  {{< tab_img name="All" active="true" src="ppu_mario/tiles.png" >}}
+  {{< tab_img name="Grid" src="ppu_mario/tiles_grid.png" >}}
+  {{< tab_img name="Single" src="ppu_mario/tiles_single.png" >}}
+  {{< figcaption >}}Tiles Found in the Pattern Table{{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 The PPU uses **tiles** as a basic ingredient for rendering graphics, specifically, **sprites and backgrounds**.
@@ -112,23 +101,19 @@ The next sections explain how tile maps are used to construct the layers.
 
 {{< tab name="Background" >}}
 
-{{< float_block >}}
-  {{< tabs nested="true" class="pixel" >}}
-    {{< tab name="Full" active="true">}}
-      {{< linked_img src="ppu_mario/background.png" >}}
-      <figcaption class="caption">Background map</figcaption>
-    {{< /tab >}}
-    {{< tab name="Selected">}}
-      {{< linked_img src="ppu_mario/background_selected.png" >}}
-      <figcaption class="caption">Selected Background map
-      <br>Notice the selected part includes one portion of the top, this will be overlapped by the <i>Window layer</i></figcaption>
-    {{< /tab >}}
-    {{< tab name="Rendered">}}
-      {{< linked_img src="ppu_mario/background_rendered.png" >}}
-      <figcaption class="caption">Rendered Background map</figcaption>
-    {{< /tab >}}
-  {{< /tabs >}}
-{{< /float_block >}}
+{{< tabs nested="true" float="true" class="pixel" >}}
+  {{< tab_figure_img name="Full" active="true" src="ppu_mario/background.png" >}}
+Background map
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Selected" src="ppu_mario/background_selected.png" >}}
+Selected Background map  
+Notice the selected part includes one portion of the top, this will be overlapped by the _Window layer_
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Rendered" src="ppu_mario/background_rendered.png" >}}
+Rendered Background map
+  {{< /tab_figure_img >}}
+{{< /tabs >}}
+
 {{% inner_markdown %}}
 The Background layer is a **256x256 pixel** (32x32 tiles) map containing **static tiles**. However, remember that only 160x144 is viewable on the screen, so the game decides which part is selected for display. Games can also move the viewable area during gameplay, that's how the **Scrolling Effect** is accomplished.
 
@@ -138,18 +123,14 @@ One of the two tile maps can be used to build the background layer.
 
 {{< tab name="Window" >}}
 
-{{< float_block >}}
-  {{< tabs nested="true" class="pixel" >}}
-    {{< tab name="Full" active="true">}}
-      {{< linked_img class="pixel" src="ppu_mario/window.png" alt="Window" >}}
-      <figcaption class="caption">Window map fully displayed</figcaption>
-    {{< /tab >}}
-    {{< tab name="Rendered">}}
-      {{< linked_img src="ppu_mario/window_rendered.png" alt="Rendered Window" >}}
-      <figcaption class="caption">The game will activate it during the last scan-lines, hence only the first rows are rendered at the bottom of the screen</figcaption>
-    {{< /tab >}}
-  {{< /tabs >}}
-{{< /float_block >}}
+{{< tabs nested="true" float="true" class="pixel" >}}
+  {{< tab_figure_img name="Full" active="true" src="ppu_mario/window.png" alt="Window" >}}
+Window map fully displayed
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Rendered" src="ppu_mario/window_rendered.png" alt="Rendered Window" >}}
+The game will activate it during the last scan-lines, hence only the first rows are rendered at the bottom of the screen
+  {{< /tab_figure_img >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 The Window is a **160x144 pixel** layer containing tiles displayed on top of the background and sprites. It doesn't scroll.
@@ -165,10 +146,9 @@ Thus, games normally use it to display player stats, score and other 'always-on'
 
 {{< tab name="Sprites" >}}
 
-{{< float_block >}}
-  {{< linked_img class="pixel" src="ppu_mario/sprite.png" alt="Sprites" >}}
-  <figcaption class="caption">Rendered Sprite layer</figcaption>    
-{{< /float_block >}}
+{{< figure_img float="true" class="pixel" src="ppu_mario/sprite.png" alt="Sprites" >}}
+Rendered Sprite layer
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Sprites are tiles that can move independently around the screen. They can also overlap each other and appear behind the background, the viewable graphic will be decided based on a priority attribute.
@@ -186,10 +166,9 @@ The PPU is limited to rendering up to **ten sprites per scan-line** and **up to 
 
 {{< tab name="Result" >}}
 
-{{< float_block >}}
-  {{< linked_img class="pixel" src="ppu_mario/result.png" alt="Result" >}}
-  <figcaption class="caption">Tada!</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" class="pixel" src="ppu_mario/result.png" alt="Result" >}}
+Tada!
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Once the frame is finished, it's time to move on to the next one! However, the CPU can't modify the tables while the PPU is reading from VRAM, so the system provides a set of interrupts triggered when the PPU is idle. You can recall this behaviour from the times of the NES.
@@ -210,11 +189,9 @@ The inclusion of the Window layer and extra interrupts allowed for new types of 
 
 {{< tabs >}}
 {{< tab name="Wobble effect" active="true" >}}
-
-{{< float_block >}}
-{{< video src="zelda" >}}
-<figcaption class="caption">The Legend of Zelda: Link's Awakening (1993) <i>Spoilers!</i></figcaption>
-{{< /float_block >}}
+{{< video src="zelda" float="true" >}}
+The Legend of Zelda: Link's Awakening (1993) _Spoilers!_
+{{< /video >}}
 
 {{% inner_markdown %}}
 Horizontal interrupts allowed to alter the frame before being finished. This means that a different scrolling value could be applied at each line, resulting in each row of the frame being displaced differently.
@@ -238,21 +215,15 @@ Each channel is reserved for a type of wave-form:
 {{< tabs >}}
 
 {{< tab name="Pulse" active="true" >}}
+{{< tabs nested="true" float="true" figure="true" >}}
+  {{< tab_video name="Pulse 1" active="true" src="pulse_single_1" >}}
+  {{< tab_video name="Pulse 2" src="pulse_single_2" >}}
+  {{< tab_video name="Complete" src="pulse_full" >}}
+  {{< figcaption >}}
+Pokemon Red/Blue (1996)
+  {{< /figcaption >}}
+{{< /tabs >}}
 
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="Pulse 1" active="true">}}
-      {{< video src="pulse_single_1" >}}
-    {{< /tab >}}
-    {{< tab name="Pulse 2">}}
-      {{< video src="pulse_single_2" >}}
-    {{< /tab >}}
-    {{< tab name="Complete">}}
-      {{< video src="pulse_full" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Pokemon Red/Blue (1996)</figcaption>
-{{< /float_block >}}
 {{% inner_markdown %}}
 
 Pulse waves have a very distinct *beep* sound that is mainly used for **melody or sound effects**.
@@ -264,48 +235,33 @@ Due to the limited number of channels, the melody will often be interrupted when
 {{< /tab >}}
 
 {{< tab name="Noise" >}}
+{{< tabs nested="true" float="true" figure="true" >}}
+  {{< tab_video name="Noise" active="true" src="noise_single" >}}
+  {{< tab_video name="Complete" src="noise_full" >}}
+  {{< figcaption >}}Pokemon Red/Blue (1996){{< /figcaption >}}
+{{< /tabs >}}
 
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="Noise" active="true">}}
-      {{< video src="noise_single" >}}
-    {{< /tab >}}
-    {{< tab name="Complete">}}
-      {{< video src="noise_full" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Pokemon Red/Blue (1996)</figcaption>
-{{< /float_block >}}
 {{% inner_markdown %}}
-
 Noise is basically a set of random wave-forms that sound like white static. One channel is allocated for it.
 
 Games use it for percussion or *ambient* effects.
 
 This channel has only 2 tones available to use, one produces *clean static* and the other produces *robotic static*. Its frequency can also be controlled.
-
 {{% /inner_markdown %}}
+
 {{< /tab >}}
 
 {{< tab name="Wave" >}}
-
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="Wave" active="true">}}
-      {{< video src="wave_single" >}}
-    {{< /tab >}}
-    {{< tab name="Complete">}}
-      {{< video src="wave_full" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Pokemon Red/Blue (1996)</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" float="true" figure="true" >}}
+  {{< tab_video name="Wave" active="true" src="wave_single" >}}
+  {{< tab_video name="Complete" src="wave_full" >}}
+  {{< figcaption >}}Pokemon Red/Blue (1996){{< /figcaption >}}
+{{< /tabs >}}
+  
 {{% inner_markdown %}}
-
 The APU allows to define a **custom wave-form** to be heard from its fourth channel. The wave is composed of 32 4-bit samples which are stored in a wavetable.
 
 This channel also allows to control its frequency (enabling to produce different musical notes from the same sample) and volume.
-
 {{% /inner_markdown %}}
 {{< /tab >}}
 
@@ -351,10 +307,9 @@ That being said, the boot process is as follows:
 
 Interestingly enough, the *Nintendo* logo displayed on the screen is not cleared from VRAM, so games can apply some animation and effects to introduce their own logo.
 
-{{< centered_container >}}
-  {{< video src="20y" >}}
-  <figcaption class="caption">20y, a homebrew demo that fiddles with the logo</figcaption>
-{{< /centered_container >}}
+{{< video src="20y" class="centered-container" >}}
+20y, a homebrew demo that fiddles with the logo
+{{< /video >}}
 
 More anti-piracy measures can be implemented inside games, like checking the SRAM size (it's normally bigger in Bootlegs) and checksumming the ROM at random points of the game.
 

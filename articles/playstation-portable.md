@@ -27,8 +27,8 @@ top_tabs:
         <br>Released on 01/10/2009 in America and Europe; and 01/11/2009 in Japan"
   Motherboard:
     caption: "Such a tiny board... but you can do so much with it
-    <br>Those zigzags you see between the CPU and memory attempt to correct the length of each bus so all of the signals arrive at the same time. This tells you how fast technology has become!
-    <br>After the 'Slim' model, Tachyon and 'NAND + SDRAM' became one"
+Those zigzags you see between the CPU and memory attempt to correct the length of each bus so all of the signals arrive at the same time. This tells you how fast technology has become!
+After the 'Slim' model, Tachyon and 'NAND + SDRAM' became one"
   Diagram:
     caption: "After the 'Slim' model, NAND and SDRAM size was doubled (64 MB each)"
 
@@ -80,10 +80,9 @@ As with any MIPS R4000, Allegrex has three coprocessor slots. Sony added two:
 
 Let me talk for a moment about the memory unit included in this system. Its *modus operandi* can be seen as a bit primitive at first, but we'll see why it's optimal for the needs of this console.
 
-{{< centered_container >}}
-  {{< linked_img src="cpu/mmu.png" alt="Memory Diagram" >}}
-  <figcaption class="caption">Memory addressing with the MPU</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="cpu/mmu.png" alt="Memory Diagram" class="centered-container" >}}
+Memory addressing with the MPU
+{{< /figure_img >}}
 
 A traditional Memory Management Unit or 'MMU' takes care of giving the CPU access to the components surrounding it, this implies that all the address lines of the CPU will be connected to the MMU; and the latter is connected to the rest of the system.
 
@@ -99,10 +98,9 @@ All in all, this allows Sony, the developer of the operating system, to implemen
 
 So far we've analysed the main CPU and its accelerators. Now let's see the physical memory available in this system.
 
-{{< centered_container >}}
-  {{< linked_img src="cpu/memory.png" alt="Memory diagram" >}}
-  <figcaption class="caption">Memory layout from the main CPU perspective</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="cpu/memory.png" alt="Memory diagram" class="centered-container" >}}
+Memory layout from the main CPU perspective
+{{< /figure_img >}}
 
 The PSP comes with two memory blocks accessible from the CPU:
 - **16 KB of SRAM**: This is what we historically called **Scratchpad** on [previous articles]({{< ref "playstation#cpu" >}}). It's small but very fast RAM. It's up to developers to make proper use of it, although unofficial documents already called it 'useless'.
@@ -115,10 +113,9 @@ You'll soon find that the PSP accommodates lots of components with unique functi
 
 All of the buses found in Tachyon implement a well-known design called **Advanced High-performance Bus** or 'AHB'. A solution by Arm that also tackles this issue with their chips and SoCs. If you are curious, AHB is also used in the [Wii]({{< ref "wii#io" >}}).
 
-{{< centered_container >}}
-  {{< linked_img src="cpu/buses.png" alt="Main buses diagram" >}}
-  <figcaption class="caption">Basic layout of the three main buses in this system</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="cpu/buses.png" alt="Main buses diagram" class="centered-container" >}}
+Basic layout of the three main buses in this system
+{{< /figure_img >}}
 
 That being said, the following buses are constructed:
 - The **System Bus**: Connects the CPU, Scratchpad and GPU. It's 128-bit wide.
@@ -139,11 +136,10 @@ So, the solution is very simple: **Bus Mastering**. In a nutshell, each componen
 
 Up to this point, we've discussed the main CPU and the buses inside Tachyon, but there's still many features found in this SoC. In particular, there's another block of modules designed for a particular application: **Multimedia**. The group specialised in **audio and image processing**, including the combination of both (video processing), and it operates without consuming bandwidth from the main CPU group (the 'System group').
 
-{{< centered_container >}}
-  {{< linked_img src="games/daxter.jpg" alt="Video playing in Daxter" >}}
-  <figcaption class="caption">Daxter (2006)
-  <br>In-game cinematic rendered with this block</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="games/daxter.jpg" alt="Video playing in Daxter" class="centered-container" >}}
+Daxter (2006)  
+In-game cinematic rendered with this block
+{{< /figure_img >}}
 
 That being said, the new block is called **Media Engine Group** and it's composed of the following components:
 - A second **Allegrex CPU**: Serving as the 'controller' of the Media Engine group. This is the same CPU found in the System Group without the vector coprocessor. The controller is responsible for receiving orders from the main CPU and managing the rest of the multimedia hardware that will work concurrently.
@@ -162,34 +158,26 @@ Needless to say, the media engine is not directly operable from the developer's 
 
 Let's go back to the 'System group' now since the engine in charge of generating pixels is found within this block. It's organised as a 'group within a group' but you don't have to worry about that now. The group we will be talking about now is called **Graphics Engine** or 'GE'.
 
-{{< centered_container >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="KH" active="true" >}}
-      {{< linked_img src="games/kh.jpg" alt="Game Screenshot" >}}
-      <figcaption class="caption">Kingdom Hearts Birth by Sleep (2010)</figcaption>
-    {{< /tab >}}
-    {{< tab name="Spider-Man" >}}
-      {{< linked_img src="games/spider.jpg" alt="Game Screenshot" >}}
-      <figcaption class="caption">Spider-Man 3 (2007)</figcaption>
-    {{< /tab >}}
-    {{< tab name="GTA" >}}
-      {{< linked_img src="games/gta.jpg" alt="Game Screenshot" >}}
-      <figcaption class="caption">Grand Theft Auto: Vice City Stories (2006)</figcaption>
-    {{< /tab >}}
-    {{< tab name="Sims 2" >}}
-      {{< linked_img src="games/sims2.jpg" alt="Game Screenshot" >}}
-      <figcaption class="caption">The Sims 2 (2005)</figcaption>
-    {{< /tab >}}
-    {{< tab name="OutRun" >}}
-      {{< linked_img src="games/outrun.jpg" alt="Game Screenshot" >}}
-      <figcaption class="caption">OutRun 2006: Coast 2 Coast (2006)</figcaption>
-    {{< /tab >}}
-     {{< tab name="Loco" >}}
-      {{< linked_img src="games/loco.jpg" alt="Game Screenshot" >}}
-      <figcaption class="caption">LocoRoco (2006)</figcaption>
-    {{< /tab >}}
-  {{< /tabs >}}
-{{< /centered_container >}}
+{{< tabs nested="true" centered="true" >}}
+  {{< tab_figure_img name="KH" active="true" src="games/kh.jpg" alt="Game Screenshot" >}}
+Kingdom Hearts Birth by Sleep (2010)
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Spider-Man" src="games/spider.jpg" alt="Game Screenshot" >}}
+Spider-Man 3 (2007)
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="GTA" src="games/gta.jpg" alt="Game Screenshot" >}}
+Grand Theft Auto: Vice City Stories (2006)
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Sims 2" src="games/sims2.jpg" alt="Game Screenshot" >}}
+The Sims 2 (2005)
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="OutRun" src="games/outrun.jpg" alt="Game Screenshot" >}}
+OutRun 2006: Coast 2 Coast (2006)
+  {{< /tab_figure_img >}}
+    {{< tab_figure_img name="Loco" src="games/loco.jpg" alt="Game Screenshot" >}}
+LocoRoco (2006)
+  {{< /tab_figure_img >}}
+{{< /tabs >}}
 
 The GE draws 3D graphics (polygons) with many features applied (texture mapping, lighting and so much more) which you'll see in a bit.
 
@@ -214,11 +202,9 @@ First things first, the Graphics Engine is made of three types of components:
 The reason for this design is that both main CPU and the Graphics Core can access those 2 MB of eDRAM. So, to prevent congestions, the traffic inside the Graphics Engine goes through another AHB bus called **Local Bus** ('local' from the perspective of the GE). This allows the Graphics Core to perform its functions without depending on the System Bus to move data around (and consequently stalling the rest of the system).
 
 {{< float_group >}}
-
-{{< float_block >}}
-  {{< linked_img src="ge_arch.png" alt="Architecture of the GE" >}}
-  <figcaption class="caption">Architecture of the Graphics Engine</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="ge_arch.png" alt="Architecture of the GE" >}}
+Architecture of the Graphics Engine
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 The Local Bus is as wide as the System Bus (128-bit), but if that wasn't enough, the Graphics core has a direct line to eDRAM using a 512-bit bus (made of two unidirectional 256-bit buses), you'll see why it will be needed in the following section.
@@ -245,11 +231,10 @@ There are three memory locations from which the GE will end up pulling or fillin
 
 Like its [home sibling]({{< ref "playstation-2#graphics" >}}), the Graphics System focuses on **rasterization**. Although, VRAM is half the size and the bus is not as fast. To compensate, the GE features a vector processor!
 
-{{< centered_container >}}
-  {{< linked_img src="pipeline.png" alt="Pipeline design of the Graphics Engine" >}}
-  <figcaption class="caption">Pipeline design of the Graphics Engine
-  <br>I've skipped the interfaces since it's becoming too convoluted</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="pipeline.png" alt="Pipeline design of the Graphics Engine" class="centered-container" >}}
+Pipeline design of the Graphics Engine  
+I've skipped the interfaces since it's becoming too convoluted
+{{< /figure_img >}}
 
 The graphics pipeline is very similar to the PS2, with the addition of the vector processing stage. The Graphics core is divided into two areas: **The Surface Engine** which deals with vector processing and **Rendering Engine** which, as its name indicates, performs rasterisation and effects.
 
@@ -259,10 +244,9 @@ On another note, I've decided to make it a bit more technical than previously. I
 
 {{< tabs >}}
 {{< tab name="Commands" active="true" >}}
-{{< float_block >}}
-  {{< linked_img src="gpu/commands.png" alt="Command stage diagram" >}}
-  <figcaption class="caption">Command stage</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="gpu/commands.png" alt="Command stage diagram" >}}
+Command stage
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 The Graphics engine is controlled using traditional 'Display lists' stored in main memory. The CPU builds them and the GPU reads them (using DMA). Display Lists basically tell the GPU what, how and where to draw. In the case of the PSP, a display list is not limited to rendering tasks, they can also include vector transformations.
@@ -279,10 +263,9 @@ Finally, the DMA can also interpret **Bounding Box data**: Combined with informa
 {{< /tab >}}
 
 {{< tab name="Vector Processing" >}}
-{{< float_block >}}
-  {{< linked_img src="gpu/vector.png" alt="Vector Processing stage diagram" >}}
-  <figcaption class="caption">Vector Processing stage</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="gpu/vector.png" alt="Vector Processing stage diagram" >}}
+Vector Processing stage
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 The GE debuts the ability to perform operations over vectors, which helps to offload a lot of work from the CPU. Sony built this unit to accelerate common tasks previously carried out by the PS2's VPUs using microcode. While the GE is not as flexible as a VPU (the GE is a fixed-function unit), it does simplify a lot of coding (considering microcode had a considerable weight on the learning curve). The GE's vector processor is called **Surface Engine**.
@@ -305,11 +288,11 @@ Finally, the Surface Engine provides **scissoring** (discarding vertices outside
 {{% /inner_markdown %}}
 
 {{< /tab >}}
+
 {{< tab name="Rasterization" >}}
-{{< float_block >}}
-  {{< linked_img src="gpu/rasterizing.png" alt="Rasterizing stage diagram" >}}
-  <figcaption class="caption">Rasterizing stage</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="gpu/rasterizing.png" alt="Rasterizing stage diagram" >}}
+Rasterizing stage
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 This is the starting point of the **Rendering Engine** (skipping the command processor). In here, vector data is transformed into pixels, which is pretty much in pace with any other GPU in the market.
@@ -318,16 +301,17 @@ The engine draws many types of primitives, including points, lines, line strips,
 
 Developers can supply a projection matrix to apply **perspective transformation**, this sends their 3D world to a 2D space (so you can see it on the screen) using the camera as a reference.
 
-Sony didn't provide much information about how its rasteriser works in particular, so it's not well-known how many pixels are processed per cycle, for instance. Modern features, like sub-pixel precision, are assumed to be implemented (otherwise, users would've been able to [spot its absence]({{< ref "playstation#tab-2-1-wobbling-textures" >}}) right away).
+Sony didn't provide much information about how its rasteriser works in particular, so it's not well-known how many pixels are processed per cycle, for instance. Modern features, like sub-pixel precision, are assumed to be implemented (otherwise, users would've been able to [spot its absence]({{< ref "playstation#tab-5-1-distorted-modelstextures" >}}) right away).
 {{% /inner_markdown %}}
 
 {{< /tab >}}
-{{< tab name="Textures" >}}
-{{< float_block >}}
-  {{< linked_img src="gpu/textures.png" alt="Texture mapping stage diagram" >}}
-  <figcaption class="caption">Texture mapping stage</figcaption>
-{{< /float_block >}}{{% inner_markdown %}}
 
+{{< tab name="Textures" >}}
+{{< figure_img float="true" src="gpu/textures.png" alt="Texture mapping stage diagram" >}}
+Texture mapping stage
+{{< /figure_img >}}
+
+{{% inner_markdown %}}
 This may be the topic of most interest for some. Polygons (now mere pixels) can be painted with textures. At this stage, texture maps are fetched from memory and processed with many functions. This process is called **Texture Mapping**.
 
 The Rendering Engine has three **mapping modes** or, in other words, three ways of processing texture maps:
@@ -342,14 +326,15 @@ Textures may use **Colour Lookup Tables** or 'CLUTs'. Furthermore, this engine a
 On another topic, there's **8 KB of texture cache** found in GE to save bandwidth, it uses the 'Least Recently Used' method for space management.
 
 Finally, while this pipeline is not programmable, developers can send extra colours to be blended with textures. There's also colour doubling (doubles the RGB value of colours), colour addition (combines a primary colour with a secondary colour) and **Fogging** (haze over far away polygons).
+{{% /inner_markdown %}}
+{{< /tab >}}
 
-{{% /inner_markdown %}}{{< /tab >}}
 {{< tab name="Pixel Operations" >}}
-{{< float_block >}}
-  {{< linked_img src="gpu/operation.png" alt="Pixel Operation stage diagram" >}}
-  <figcaption class="caption">Pixel Operation stage</figcaption>
-{{< /float_block >}}{{% inner_markdown %}}
+{{< figure_img float="true" src="gpu/operation.png" alt="Pixel Operation stage diagram" >}}
+Pixel Operation stage
+{{< /figure_img >}}
 
+{{% inner_markdown %}}
 We're reaching the end of the pipeline. The initial geometry has been transformed into pixels and these are now rich-coloured, so it's time to decide what to do with them.
 
 Some pixels may correspond to geometry that it's not needed for this frame (i.e. occluded, masked, etc). To filter that out, the GE can perform the following tests:
@@ -369,7 +354,8 @@ Afterwards, pixels will also travel through these optional blocks for further ef
 - **Masking**: As the name indicates, it masks the z-buffer or frame-buffer. 
 
 Complex functions like **antialiasing** are the result of a strategic combination of the above. Finally, the outputted pixel is written to the frame-buffer, which in turn is broadcasted for display.
-{{% /inner_markdown %}}{{< /tab >}}
+{{% /inner_markdown %}}
+{{< /tab >}}
 
 {{< /tabs >}}
 
@@ -380,17 +366,15 @@ As evidenced, the PSP inherits various features from the PS2. The difference, ho
 To show how this system impacted model design and to help compare it to the [PS2]({{< ref "playstation-2#better-models" >}}) and/or [Nintendo DS]({{< ref "nintendo-ds#interactive-models" >}}), here are two examples of models designed for the PSP. Don't forget the viewer is interactive!
 
 {{< side_by_side >}}
-  <div class="toleft canvas-model">
-    {{< threejs_canvas model="snake_psp" >}}
-    <figcaption class="caption">Metal Gear Solid: Portable Ops Plus (2006)
-    <br>1,383 triangles</figcaption>
-  </div>
+  {{< threejs_canvas model="snake_psp" class="toleft" >}}
+Metal Gear Solid: Portable Ops Plus (2006)  
+1,383 triangles
+  {{< /threejs_canvas >}}
 
-  <div class="toright canvas-model">
-    {{< threejs_canvas model="daxter" >}}
-    <figcaption class="caption">Daxter (2006)
-    <br>1,374 triangles</figcaption>
-  </div>
+  {{< threejs_canvas model="daxter" class="toright" >}}
+Daxter (2006)  
+1,374 triangles
+  {{< /threejs_canvas >}}
 {{< /side_by_side >}}
 
 ### Video Out
@@ -399,10 +383,9 @@ The first model of this console (1000) has a proprietary port called **Remote Po
 
 {{< float_group >}}
 
-{{< float_block >}}
-  {{< linked_img src="io/bottom.jpg" alt="Bottom-right corner of the PSP" >}}
-  <figcaption class="caption">Bottom-right corner of the PSP (3000 model) showing the proprietary 'Video Out'</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="io/bottom.jpg" alt="Bottom-right corner of the PSP" >}}
+Bottom-right corner of the PSP (3000 model) showing the proprietary 'Video Out'
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 It uses the RS232 protocol, an old standard for transferring data in serial. Though it wasn't publicly available to developers (let alone documented), a couple of audio headsets with control buttons appeared on the market. They apparently use the serial port to send commands (play, pause, etc) to the console.
@@ -443,19 +426,19 @@ Games don't have access to these modules directly. Instead, they call many libra
 Let's put all this into practice by taking a look at how games reproduced their sound. I wrote this special player that allows you to swap between consoles (to enable side-by-side comparisons):
 
 {{< side_by_side >}}
-  <div class="toleft audio-switcher">
-    {{< audio_switcher src1="overworld_nds"  label1="Nintendo DS"
-                       src2="overworld_psp"  label2="PSP" >}}
-    <figcaption class="caption"><strong>Nintendo DS:</strong> Final Fantasy IV (2007)
-    <br><strong>PSP:</strong> Final Fantasy IV - The Complete Collection (2011)</figcaption>
-  </div>
+  {{< audio_switcher src1="overworld_nds"  label1="Nintendo DS"
+                     src2="overworld_psp"  label2="PSP"
+                     class="toleft" >}}
+**Nintendo DS:** Final Fantasy IV (2007)  
+**PSP:** Final Fantasy IV - The Complete Collection (2011)
+  {{< /audio_switcher >}}
 
-  <div class="toright audio-switcher">
-    {{< audio_switcher src1="encounter_ps2"  label1="PlayStation 2"
-                       src2="encounter_psp"  label2="PSP" >}}
-    <figcaption class="caption"><strong>PlayStation 2:</strong> Kingdom Hearts 2 (2005)
-    <br><strong>PSP:</strong> Kingdom Hearts Birth by Sleep (2010)</figcaption>
-  </div>
+  {{< audio_switcher src1="encounter_ps2"  label1="PlayStation 2"
+                     src2="encounter_psp"  label2="PSP"
+                     class="toright" >}}
+**PlayStation 2:** Kingdom Hearts 2 (2005)  
+**PSP:** Kingdom Hearts Birth by Sleep (2010)
+  {{< /audio_switcher >}}
 {{< /side_by_side >}}
 
 In the first example, the Nintendo DS game sequences its music on-the-fly while the PSP one decodes ATRAC3. As you can see, having no dedicated sound hardware per se doesn't imply ending up with the worst quality. In fact, one could argue the opposite, as the Media Engine provided more features than most sound chips of previous portable consoles ever did.
@@ -486,11 +469,10 @@ The console features a good amount of connections:
 
 The use of a standard port such as USB enabled companies to design accessories for this console.
 
-{{< centered_container >}}
-  {{< linked_img src="io/top.jpg" alt="Top view" >}}
-  <figcaption class="caption">Top side of the PSP (model 3000)
-  <br>Notice the two holes surrounding the mini USB port to hold an accessory</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="io/top.jpg" alt="Top view" class="centered-container" >}}
+Top side of the PSP (model 3000)  
+Notice the two holes surrounding the mini USB port to hold an accessory
+{{< /figure_img >}}
 
 Examples of commercialised accessories include:
 - A **microphone** for audio chatting.
@@ -579,32 +561,25 @@ That being said, the *complex* boot process works as follows:
 
 This console debuts the famous **XrossMediaBar** or 'XMB' (at least, internationally speaking). XMB is the name of the feature-rich GUI shipped with the PSP.
 
-{{< centered_container >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="Home" active="true" >}}
-      {{< linked_img src="xmb/main.jpg" >}}
-      <figcaption class="caption">Main screen (no game inserted or installed)</figcaption>
-    {{< /tab >}}
-    {{< tab name="Multimedia" >}}
-      {{< linked_img src="xmb/photo.jpg" >}}
-      <figcaption class="caption">XMB includes a photo and video viewer</figcaption>
-    {{< /tab >}}
-    {{< tab name="Game" >}}
-      {{< linked_img src="xmb/game.jpg" >}}
-      <figcaption class="caption">'Game' category allows to run a game, manage saves or search for other PSPs (Game Sharing)
-      <br>When the user steps on the actual game item, the XMB styles itself with assets provided by the game, until the user selects another element from the category</figcaption>
-    {{< /tab >}}
-    {{< tab name="Settings" >}}
-      {{< linked_img src="xmb/setting.jpg" >}}
-      <figcaption class="caption">'Settings' category provides lots of customisation options
-      <br>Some items group many settings controls</figcaption>
-    {{< /tab >}}
-    {{< tab name="Keyboard" >}}
-      {{< linked_img src="xmb/keyboard.jpg" alt="Keyboard interface" >}}
-      <figcaption class="caption">This is how you type in this console, old-school cellphone style</figcaption>
-    {{< /tab >}}
-  {{< /tabs >}}
-{{< /centered_container >}}
+{{< tabs nested="true" centered="true" >}}
+  {{< tab_figure_img name="Home" active="true" src="xmb/main.jpg" >}}
+Main screen (no game inserted or installed)
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Multimedia" src="xmb/photo.jpg" >}}
+XMB includes a photo and video viewer
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Game" src="xmb/game.jpg" >}}
+'Game' category allows to run a game, manage saves or search for other PSPs (Game Sharing)  
+When the user steps on the actual game item, the XMB styles itself with assets provided by the game, until the user selects another element from the category
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Settings" src="xmb/setting.jpg" >}}
+'Settings' category provides lots of customisation options  
+Some items group many settings controls
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Keyboard" src="xmb/keyboard.jpg" alt="Keyboard interface" >}}
+This is how you type in this console, old-school cellphone style
+  {{< /tab_figure_img >}}
+{{< /tabs >}}
 
 From the Human-Computer Interaction standpoint, the XMB's design reveals very interesting approaches for solving many interaction challenges (such as navigating around many depths of information, avoid flooding the user with options and fitting all these solutions in a 4.3" screen). In essence, information is organised by 'categories' and 'elements'; and the D-Pad is the key to navigate through them. The Left/Right arrows switch between categories and Up/Down arrows select an element from the same category. It's worth pointing out that all categories are found within the same hierarchy level. So, no entry is shown superimposed over the rest (impeding the insertion of attention-stealing advertisement and whatnot).
 
@@ -616,10 +591,9 @@ There's also a file viewer embedded that's used for both multimedia and save man
 
 As we've seen before, everything except Pre-IPL is stored in writable storage, and thus is 'updatable'. Sony distributed firmware updates in the form of a downloadable file. Users could either manually download it or use the 'System update' assistant from XMB to automatically download it (using WiFi connection) and install it.
 
-{{< centered_container >}}
-  {{< linked_img src="xmb/update.jpg" >}}
-  <figcaption class="caption">System Update 'Wizard'</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="xmb/update.jpg" class="centered-container" >}}
+System Update 'Wizard'
+{{< /figure_img >}}
 
 Some updates strengthened the security system by adding more layers of encryption on the boot process and integrity checks on kernel modules.
 
@@ -652,10 +626,9 @@ The PS1 and PS2 featured two types of storage, a read-only disc for loading game
 
 {{< tabs >}}
 {{< tab name="UMD Discs" active="true" >}}
-{{< float_block >}}
-  {{< linked_img src="retail.jpg" alt="Retail game" >}}
-  <figcaption class="caption">Typical retail game</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="retail.jpg" alt="Retail game" >}}
+Typical retail game
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 CDs and DVDs are too big, easily copiable and conventional readers won't work in a shaky environment (those who tried listening to an audio CD on a Walkman while *walking* know what I'm talking about). So, Sony's solution was a new invention from the ground up called **Universal Media Disc** or 'UMD', a proprietary medium.
@@ -667,10 +640,9 @@ These discs are presented with an **unremovable caddy**, the centre is magnetic 
 
 {{< /tab >}}
 {{< tab name="Memory Stick Duo" >}}
-{{< float_block >}}
-  {{< linked_img src="io/memory_stick.jpg" alt="Memory Stick" >}}
-  <figcaption class="caption">A Memory Stick next to a conventional SD card</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="io/memory_stick.jpg" alt="Memory Stick" >}}
+A Memory Stick next to a conventional SD card
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 The 'portable' equivalent of the Memory Card is the **Memory Stick Pro Duo**, another product of Sony's insistence to bring more mediums to a flooded market (remember the massive number of options back then? Even [flashcarts]({{< ref "game-boy-advance#flashcarts" >}}) acommodated many of them). This was released during the boom in consumer photography and cellphones, when people wanted lots of storage for a cheap price; and just before the SD card took over.
@@ -691,10 +663,9 @@ Eventually, Sony caught up with the competition and improved its online infrastr
 
 {{< tabs >}}
 {{< tab name="Playstation Network" active="true" >}}
-{{< float_block >}}
-  {{< linked_img src="xmb/network.jpg" >}}
-  <figcaption class="caption">PSN category in XMB</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="xmb/network.jpg" >}}
+PSN category in XMB
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Microsoft named its online infrastructure [Xbox Live]({{< ref "xbox#network-service" >}}), while Nintendo named it [Nintendo WiFi Connection]({{< ref "nintendo-ds#network-service" >}}) and Sony... **Playstation Network** or 'PSN'.
@@ -708,10 +679,9 @@ It's worth mentioning that at first, the PSP didn't include many online services
 
 {{< /tab >}}
 {{< tab name="Playstation Store" >}}
-{{< float_block >}}
-  {{< linked_img src="xmb/store.jpg" alt="PlayStation Store" >}}
-  <figcaption class="caption">PlayStation Store</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="xmb/store.jpg" alt="PlayStation Store" >}}
+PlayStation Store
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Another thing that followed after the debut Playstation Network was the **Playstation Store**. As the name indicates, it's an online store that allows users to acquire games digitally and download them on the Memory Stick.
@@ -723,10 +693,9 @@ Later on, the game catalogue drastically expanded with the arrival of **[PS1 gam
 
 {{< /tab >}}
 {{< tab name="Updatable content" >}}
-{{< float_block >}}
-  {{< linked_img src="xmb/game_update.jpg" >}}
-  <figcaption class="caption">'Update game' option in XMB</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="xmb/game_update.jpg" >}}
+'Update game' option in XMB
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Last but not least, online services provided the opportunity to **download game patches** (in the form of 'updates') directly from the console.
@@ -757,7 +726,6 @@ Furthermore, I won't be able to go over each cypher system, as it's a tortuous t
 {{< tab name="KIRK" active="true" >}}
 
 {{% inner_markdown %}}
-
 To start with, we got **KIRK**, another component inside Tachyon. KIRK is the implementation in hardware of the following algorithms (think of it as an accelerator):
 - **AES Encryption & Decryption**: A symmetric encryption system that operates with a given key. KIRK also provides a key vault of 128 keys and a master key, both 128-bit long, to encrypt/decrypt data.
 - **ECDSA**: An asymmetric encryption system. It includes two functions:
@@ -768,14 +736,12 @@ To start with, we got **KIRK**, another component inside Tachyon. KIRK is the im
 - **Pseudo-random number generation**: As the name indicates, it (attempts) to generate an unpredictable number.
 
 In short, the CPU sends commands to KIRK (i.e. encrypt this string with algorithm x and key y). It can behave like a bus master as well, so it stores the results on main RAM right away.
-
 {{% /inner_markdown %}}
 {{< /tab >}}
 
 {{< tab name="Lepton" >}}
 
 {{% inner_markdown %}}
-
 As you know, UMD discs are not easily duplicated, but its contents are also stored in an encrypted form. Users will never notice this, nevertheless, since the decryption process is performed by hardware too.
 
 **Lepton** is another System-on-Chip living alongside Tachyon, it controls the UMD drive and serves as a middle-man between the main CPU and UMD content.
@@ -783,15 +749,11 @@ As you know, UMD discs are not easily duplicated, but its contents are also stor
 Lepton contains an enormous amount of circuitry - you may even consider it another computer living inside the PSP. This component includes its own CPU, a DSP for decoding, 480 KB of memory (as buffer) and finally, 384 KB of ROM for storing its firmware.
 
 The main CPU communicates to Lepton using the ATAPI protocol, an interface traditionally used for plugging conventional CD/DVD drives to PCs. The main difference, however, is that Lepton will decide whether to load & decrypt the UMD data (if the disc is authentic).
-
 {{% /inner_markdown %}}
-
 {{< /tab >}}
 
 {{< tab name="SPOCK" >}}
-
 {{% inner_markdown %}}
-
 Apart from the encryption system handled by Lepton, UMD's sectors are encrypted using AES. **SPOCK** is another block found next to KIRK that focuses on decrypting each sector of the UMD disc.
 
 Inside NAND Flash, IDStorage stores an encrypted key known as 'master key'. Thus, SPOCK contains a hardwired key to decrypt the 'master key'. The decrypted master key is then used by SPOCK to decrypt another key found in the UMD. The latter key is then used to read each sector. *Easy-peasy!*
@@ -836,10 +798,9 @@ As with any other cat and mouse game, Sony responded with more system updates (i
 {{< /tab >}}
 
 {{< tab name="Downgrading" >}}
-{{< float_block >}}
-  {{< linked_img src="downgrader.jpg" alt="Chronoswitch Downgrader" >}}
-  <figcaption class="caption">Chronoswitch downgrader, a modern downgrade tool</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="downgrader.jpg" alt="Chronoswitch Downgrader" >}}
+Chronoswitch downgrader, a modern downgrade tool
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 
@@ -871,10 +832,9 @@ Don't forget that all this was a tremendous task, especially if we take into acc
 
 {{< /tab >}}
 {{< tab name="CFW and beyond" >}}
-{{< float_block >}}
-  {{< linked_img src="xmb/cfw.jpg" >}}
-  <figcaption class="caption">Some CFWs include special modules to operate low-level options</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="xmb/cfw.jpg" >}}
+Some CFWs include special modules to operate low-level options
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 The Pandora method represented a big hit for Sony, it was an effective bootrom exploit, and just like the [Nintendo DS]({{< ref "nintendo-ds#tab-11-3-native-slot-1" >}}), fixes would only arrive in the form of new hardware revisions.
@@ -903,11 +863,10 @@ PSPSDK also includes a toolkit to handle the compilation and packaging process, 
 
 ## That's all folks
 
-{{< centered_container >}}
-  {{< linked_img src="mypsp.jpg" alt="My PSP" >}}
-  <figcaption class="caption">The PSP acquired for this article
-  <br>This is what grownups used to buy if they wanted to look cool 😉 (I had a DS)</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="mypsp.jpg" alt="My PSP" class="centered-container" >}}
+The PSP acquired for this article  
+This is what grownups used to buy if they wanted to look cool 😉 (I had a DS)
+{{< /figure_img >}}
 
 There you go, you've just finished reading about the last portable console before smartphones and tablets took over! I think this gives us an idea of what services/features users were expecting from portable handhelds in the early noughties - and how this evolved during the next decade.
 

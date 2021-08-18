@@ -4,7 +4,7 @@ date: 2019-10-07
 releaseDate: 1998-11-27
 subtitle: One last attempt
 generation: 6
-javascript: ['threejs', 'plyr']
+javascript: ['threejs']
 cover: dreamcast
 top_tabs:
   Model:
@@ -71,10 +71,9 @@ The GPU package is a custom-made chip called **Holly** running at **100 MHz**, i
 
 {{< float_group >}}
 
-{{< float_block >}}
-  {{< linked_img src="sonic.png" alt="Sonic Adventure" >}}
-  <figcaption class="caption">Sonic Adventure (1999)</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="sonic.png" alt="Sonic Adventure" >}}
+Sonic Adventure (1999)
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 VideoLogic chose an alternative approach for the construction of their 3D engine called **Tile-Based Deferred Rendering** (TBDR).
@@ -97,10 +96,9 @@ Let's take a look at the two main components of the Dreamcast's GPU:
 {{< tabs >}}
 {{< tab active="true" name="Tile Accelerator" >}}
 
-{{< float_block >}}
-  {{< linked_img src="tile_accelerator.png" alt="Tile Accelerator Diagram" >}}
-  <figcaption class="caption">Architecture of the Tile Accelerator</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="tile_accelerator.png" alt="Tile Accelerator Diagram" >}}
+Architecture of the Tile Accelerator
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Before the rendering process starts, a component known as the **Tile Accelerator** performs pre-processing. It starts by allocating several 32x32 tile bins into which the geometry will be rendered.
@@ -118,11 +116,9 @@ These Display Lists are then interpreted by the 3D engine: The PowerVR2.
 {{< /tab >}}
 
 {{< tab name="PowerVR2 Core" >}}
-
-{{< float_block >}}
-  {{< linked_img src="powervr2.png" alt="PowerVR2 Core Diagram" >}}
-  <figcaption class="caption">Architecture of the PowerVR2 Core</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="powervr2.png" alt="PowerVR2 Core Diagram" >}}
+Architecture of the PowerVR2 Core
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Here is where the graphics are brought into life, the Display Lists received from the TA tell the core to render the geometry of a single tile using an **internal frame-buffer**. The process is as follows:
@@ -156,17 +152,14 @@ Apart from the clear architectural difference, the Texture and Shading Processor
 Holly can now draw ~10 times more polygons than [its predecessor]({{< ref "sega-saturn">}}), here's a *Before & After* example that shows how model designs are not that limited any more. Try to fiddle with them!
 
 {{< side_by_side >}}
-  <div class="toleft canvas-model">
-    {{< threejs_canvas model="sonic_r" >}}
-    <figcaption class="caption">Sonic R (1997) for the Saturn
-    <br>298 triangles</figcaption>
-  </div>
-
-  <div class="toright canvas-model">
-    {{< threejs_canvas model="sonic_adventure" >}}
-    <figcaption class="caption">Sonic Adventure (1999) for the Dreamcast
-    <br>1001 triangles</figcaption>
-  </div>
+  {{< threejs_canvas model="sonic_r" class="toleft" >}}
+Sonic R (1997) for the Saturn
+298 triangles
+  {{< /threejs_canvas >}}
+  {{< threejs_canvas model="sonic_adventure" class="toright" >}}
+Sonic Adventure (1999) for the Dreamcast
+1001 triangles
+  {{< /threejs_canvas >}}
 {{< /side_by_side >}}
 
 ### Video Modes
@@ -206,17 +199,15 @@ To help with development, the official SDK included multiple sound drivers for d
 We've come so far since the days of the [Mega Drive/Genesis]({{< ref "mega-drive-genesis#audio" >}}), in order to show how much progress was made in sound synthesis, here's an example of two games, one for the Mega Drive and the other for the Dreamcast, that used the same composition:
 
 {{< side_by_side >}}
-  <div class="toleft">
-    {{< video src="megadrive" >}}
-    <figcaption class="caption">Sonic 3D Blast (1996) for the Mega Drive
-    <br>The predecessor performs FM synthesis to generate audio signals on the fly</figcaption>
-  </div>
+  {{< video src="megadrive" class="toleft" >}}
+Sonic 3D Blast (1996) for the Mega Drive  
+The predecessor performs FM synthesis to generate audio signals on the fly
+  {{< /video >}}
 
-  <div class="toright">
-    {{< video src="dreamcast" >}}
-    <figcaption class="caption">Sonic Adventure (1999) for the Dreamcast
-    <br>The new audio subsystem processes PCM samples without any hassle</figcaption>
-  </div>
+  {{< video src="dreamcast" class="toright" >}}
+Sonic Adventure (1999) for the Dreamcast  
+The new audio subsystem processes PCM samples without any hassle
+  {{< /video >}}
 {{< /side_by_side >}}
 
 Instead of programming an FM chip, the composers of Sonic Adventure produced their soundtrack in-house and then encoded it to 'ADX', a lossy format developed by CRI Middleware. Hence, it only uses two of the 64 PCM channels (stereo).
@@ -240,11 +231,9 @@ The BIOS also contains routines that games use to simplify I/O functions, like r
 If there isn't a valid game disc inserted, the console proceeds to boot the graphic shell.
 
 {{< float_group >}}
-
-{{< float_block >}}
-  {{< linked_img src="shell.png" alt="Dreamcast Shell" >}}
-  <figcaption class="caption">Shell after booting without a disc</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="shell.png" alt="Dreamcast Shell" >}}
+Shell after booting without a disc
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 The shell contains a simple graphical user interface to enable the user to perform basic but necessary tasks like:
@@ -262,10 +251,9 @@ The shell contains a simple graphical user interface to enable the user to perfo
 Ever since the Dreamcast's announcement, it was said that the console can run **Windows CE**: a stripped-down version of Windows designed for use on embedded devices. This is a bit misleading considering some users would expect to see a full Windows CE desktop environment running on their console.
 
 {{< float_group >}}
-{{< float_block >}}
-  {{< linked_img src="windows_ce.jpeg" alt="Windows CE" >}}
-  <figcaption class="caption">Windows CE logo stamped on the front of the case</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="windows_ce.jpeg" alt="Windows CE" >}}
+Windows CE logo stamped on the front of the case
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 In reality, the purpose of this 'OS' was very similar to what Nintendo did with [the Nintendo 64]({{< ref "nintendo-64#operating-system" >}}): to provide programmers with a fair layer of abstraction to simplify certain operations.
@@ -322,22 +310,17 @@ Unfortunately, SegaNet and Dreamarena were discontinued two years after launch. 
 Another innovative feature that the Dreamcast featured was the **Visual Memory Unit** or 'VMU'. It is attached to the controller and, aside from serving as a memory card, is a fully-fledged device that includes:
 
 {{< float_group >}}
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-      {{< tab name="VMU" active="true">}}
-        {{< linked_img src="vmu.png" alt="VMU" >}}
-        <figcaption class="caption">VMU detached from the controller</figcaption>
-      {{< /tab >}}
-      {{< tab name="Detached">}}
-        {{< linked_img src="controller.png" alt="Controller" >}}
-        <figcaption class="caption">Controller without VMU attached</figcaption>
-      {{< /tab >}}
-      {{< tab name="Attached" >}}
-        {{< linked_img src="controller-vmu.png" alt="Controller with VMU" >}}
-        <figcaption class="caption">Controller with VMU attached</figcaption>
-      {{< /tab >}}
-  {{< /tabs >}}
-{{< /float_block >}}
+{{< tabs nested="true" float="true" >}}
+    {{< tab_figure_img name="VMU" active="true" src="vmu.png" alt="VMU" >}}
+VMU detached from the controller
+    {{< /tab_figure_img >}}
+    {{< tab_figure_img name="Detached" src="controller.png" alt="Controller" >}}
+Controller without VMU attached
+    {{< /tab_figure_img >}}
+    {{< tab_figure_img src="controller-vmu.png" alt="Controller with VMU" >}}
+Controller with VMU attached
+    {{< /tab_figure_img >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 - A **Sanyo LC86K87**: An 8-bit low power CPU.
@@ -374,11 +357,10 @@ Some problems surfaced afterwards: Although GD-ROMs can store a gigabyte of data
 
 ## That's all folks
 
-{{< centered_container >}}
-  {{< linked_img src="folks.png" alt="My Dreamcast" >}}
-  <figcaption class="caption">A Dreamcast I had to get in order to write lots of stuff here
-  <br>Not too bad for its age!</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="folks.png" alt="My Dreamcast" class="centered-container" >}}
+A Dreamcast I had to get in order to write lots of stuff here  
+Not too bad for its age!
+{{< /figure_img >}}
 
 I hope you enjoyed reading the article. I finished writing it during the start of my final year at uni.
 

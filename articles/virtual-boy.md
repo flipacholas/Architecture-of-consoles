@@ -13,7 +13,7 @@ top_tabs:
         extension: jpg
         active: true
         caption: "The Virtual Boy
-         <br>Released on 21/07/1995 in Japan and 14/08/1995 in America"
+        <br>Released on 21/07/1995 in Japan and 14/08/1995 in America"
       Front:
         caption: "Front view of the console
         <br>Users are meant to look through the eyepieces"
@@ -40,10 +40,9 @@ In this article, I invite readers to learn more about its internal features, man
 
 The whole system is a curious piece of engineering. Externally, it resembles a bulky VR headset on a bipod. The player must place their head close to the eyepiece to see the game in action.
 
-{{< centered_container >}}
-  {{< linked_img src="case/front.png" alt="Front view" >}}
-  <figcaption class="caption">This is as far as I get trying to shoot a photo of the display and the case at the same time. In reality, games look very crisp and in full size!</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="case/front.png" alt="Front view" class="centered-container" >}}
+This is as far as I get trying to shoot a photo of the display and the case at the same time. In reality, games look very crisp and in full size!
+{{< /figure_img >}}
 
 Internally, it's a whole different story (and a very complicated one too). For this reason, I thought it would be better to start by explaining how this console displays images and then go through the internal hardware.
 
@@ -54,21 +53,17 @@ Once you switch the Virtual Boy on, you will start seeing two **monochromatic re
 The topics involved in explaining this (optics, visual phenomenons, etc) may feel difficult at first, but I constructed some interactive animations to make this section little more immersive.
 
 {{< tabs >}}
-{{< tab active="true" name="Scanner" >}}
 
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="Diagram" active="true" >}}
-      {{< linked_img src="scanner.png" >}}
-      <figcaption class="caption">Main diagram of the scanner, showing how light from the LEDs reaches the player's eyes</figcaption>
-    {{< /tab >}}
-    {{< tab name="Switches" >}}
-      {{< linked_img src="case/top.jpg" >}}
-      <figcaption class="caption">Bird's-eye view of the console
-      <br>First switch is the 'Focus slider' and below it is the 'IPD dial'</figcaption>
-    {{< /tab >}}
-  {{< /tabs >}}
-{{< /float_block >}}
+{{< tab active="true" name="Scanner" >}}
+{{< tabs nested="true" float="true" >}}
+  {{< tab_figure_img name="Diagram" active="true" src="scanner.png" >}}
+Main diagram of the scanner, showing how light from the LEDs reaches the player's eyes
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Switches" src="case/top.jpg" >}}
+Bird's-eye view of the console  
+First switch is the 'Focus slider' and below it is the 'IPD dial'
+  {{< /tab_figure_img >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 The large volume of this console can be attributed to the **Scanner**, which fills up a big part of it. The Scanner is the area of the Virtual Boy that displays images. It's composed of two **Display units**, each one independently projects a frame (giving a total of two frames, one per eye).
@@ -85,14 +80,12 @@ Next to the focus slider there is a **IPD dial** (knob-shaped switch), which adj
 {{< /tab >}}
 
 {{< tab name="Mechanics" >}}
-
-{{< float_block >}}
-  {{< animated_svg src="vectors/consoles/virtualboy/scangraph.svg" >}}
-  <figcaption class="caption">Basic representation of the angle of the oscillating mirror over time (at a very slow motion)
-  <br>The left and right LEDs are operating (active) during the red and blue period, respectively
-  <br>During the grey period, no LED is operating (idle)
-  <br>For sake of simplicity, the angular velocity represented here is constant (but not in the real world)</figcaption>
-{{< /float_block >}}
+{{< animated_svg src="vectors/consoles/virtualboy/scangraph.svg" >}}
+Basic representation of the angle of the oscillating mirror over time (at a very slow motion).  
+The left and right LEDs are operating (active) during the red and blue period, respectively.  
+During the grey period, no LED is operating (idle).  
+For sake of simplicity, the angular velocity represented here is constant (but not in the real world).
+{{< /animated_svg >}}
 
 {{% inner_markdown %}}
 Now that we have each component identified, let's take a look how the Virtual Boy manages to show images to our eyes.
@@ -111,11 +104,9 @@ In practice, there are some conditions for all these principles to work:
 {{< /tab >}}
 
 {{< tab name="Display" >}}
-
-{{< float_block >}}
-  {{< animated_svg src="vectors/consoles/virtualboy/frame.svg" >}}
-  <figcaption class="caption">Simplified representation of how the first LED unit operates during specific periods of time. Notice how the LEDs will start displaying each column of the frame-buffer during active periods.</figcaption>
-{{< /float_block >}}
+{{< animated_svg src="vectors/consoles/virtualboy/frame.svg" >}}
+Simplified representation of how the first LED unit operates during specific periods of time. Notice how the LEDs will start displaying each column of the frame-buffer during active periods.
+{{< /animated_svg >}}
 
 {{% inner_markdown %}}
 Contrary to previous video chips modelled after CRT displays (i.e. [PPU]({{< ref "nes#graphics" >}}) and [VGP]({{< ref "master-system#graphics" >}})), graphics on the Virtual Boy are **not rendered on-the-fly**. The graphics chip on this console sends the processed frame to a frame-buffer in memory, each column of the frame is then sent to the LED array for display.
@@ -127,11 +118,9 @@ Moreover, we need to store two frame-buffers since each one will go to a differe
 {{< /tab >}}
 
 {{< tab name="Active periods" >}}
-
-{{< float_block >}}
-  {{< animated_svg src="vectors/consoles/virtualboy/active.svg" >}}
-  <figcaption class="caption">Another simplified animation, this time showing how the oscillation of the mirror deviates the LEDs light in a way the user will end up seeing a proper frame</figcaption>
-{{< /float_block >}}
+{{< animated_svg src="vectors/consoles/virtualboy/active.svg" >}}
+Another simplified animation, this time showing how the oscillation of the mirror deviates the LEDs light in a way the user will end up seeing a proper frame
+{{< /animated_svg >}}
 
 {{% inner_markdown %}}
 Consequently of this design, there are going to be periods of:
@@ -157,18 +146,14 @@ In a nutshell, the Virtual Boy relies on **Stereoscopic images** to carry out th
 
 {{< float_group >}}
 
-{{< float_block >}}
-  {{< tabs nested="true" class="pixel" >}}
-    {{< tab name="Left" active="true" >}}
-      {{< linked_img src="tennis/left.png" >}}
-    {{< /tab >}}
-    {{< tab name="Right" >}}
-      {{< linked_img src="tennis/right.png" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Snapshot of the game seen from the different display units
-  <br>Mario's Tennis (1995)</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" float="true" class="pixel" figure="true" >}}
+  {{< tab_img name="Left" active="true" src="tennis/left.png" >}}
+  {{< tab_img name="Right" src="tennis/right.png" >}}
+  {{< figcaption >}}
+Snapshot of the game seen from the different display units  
+Mario's Tennis (1995)
+  {{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 The technique is very simple: Each of the two frames displayed (one on each eye) will have some elements slightly shifted horizontally, so when we try to see them with our two eyes, our brain will think they are nearer than others. This depends on the direction the elements are shifted.
@@ -240,10 +225,9 @@ Moreover, while classic tile engines rendered graphics per scan-line, the VIP re
 
 {{< float_group >}}
 
-{{< float_block >}}
-  {{< linked_img src="vip.png" alt="VIP" >}}
-  <figcaption class="caption">Architecture of the VIP</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="vip.png" alt="VIP" >}}
+Architecture of the VIP
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 
@@ -262,10 +246,9 @@ Overall, the pipeline is very simple:
 
 ### Organising the content
 
-{{< centered_container >}}
-  {{< linked_img src="vip_content.png" alt="Memory Diagram" >}}
-  <figcaption class="caption">Memory layout of the VIP</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="vip_content.png" alt="Memory Diagram" class="centered-container" >}}
+Memory layout of the VIP
+{{< /figure_img >}}
 
 From the developer side, there are two blocks of memory used by the XP and DP:
 - **128 KB of DRAM** for storing graphics data that will be processed.
@@ -282,18 +265,11 @@ Let's dive deeper and see now how a single frame is drawn on the Pixel Processor
 
 {{< tabs >}}
 {{< tab active="true" name="Tiles" >}}
-
-{{< float_block >}}
-  {{< tabs nested="true" class="pixel" >}}
-    {{< tab name="Tiles" active="true" >}}
-      {{< linked_img src="wario/tiles.jpg" >}}
-    {{< /tab >}}
-    {{< tab name="Grid" >}}
-      {{< linked_img src="wario/tiles_grid.jpg" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Tiles found in VRAM</figcaption>
-{{< /float_block >}}
+{{< tabs float="true" nested="true" class="pixel" figure="true" >}}
+  {{< tab_img name="Tiles" active="true" src="wario/tiles.jpg" >}}
+  {{< tab_img name="Grid" src="wario/tiles_grid.jpg" >}}
+  {{< figcaption >}}Tiles found in VRAM{{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 We have [previously seen]({{< ref "game-boy#tab-2-1-tiles" >}}) how traditional tile engines build their layers using 8x8 bitmaps. In the case of the Virtual Boy, tiles (originally called 'Characters') are stored in VRAM in an area called **Pattern table**. Each tile declared occupies 2 bytes, so there is enough space for 2048 of them.
@@ -307,22 +283,17 @@ One may wonder what's the point of colour palettes if the LEDs are monochrome. W
 
 {{< tab name="Backgrounds" >}}
 
-{{< float_block >}}
-  {{< tabs nested="true" class="pixel" >}}
-    {{< tab name="BG0" active="true" >}}
-      {{< linked_img src="wario/background_1.jpg" >}}
-      <figcaption class="caption">Some background layers declared</figcaption>
-    {{< /tab >}}
-    {{< tab name="BG1" >}}
-      {{< linked_img src="wario/background_2.jpg" >}}
-      <figcaption class="caption">This one is mostly hidden during gameplay, and then shown completely after hitting pause</figcaption>
-    {{< /tab >}}
-    {{< tab name="BG2" >}}
-      {{< linked_img src="wario/background_3.jpg" >}}
-      <figcaption class="caption">Another layer</figcaption>
-    {{< /tab >}}
-  {{< /tabs >}}
-{{< /float_block >}}
+{{< tabs nested="true" float="true" class="pixel" >}}
+  {{< tab_figure_img name="BG0" active="true" src="wario/background_1.jpg" >}}
+Some background layers declared
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="BG1" src="wario/background_2.jpg" >}}
+This one is mostly hidden during gameplay, and then shown completely after hitting pause
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="BG2" src="wario/background_3.jpg" >}}
+Another layer
+  {{< /tab_figure_img >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 The background layer is very simple, pick tiles to form a 512x512 map (64x64 tiles, 4096 tiles in total). Now, it doesn't end here, because instead of having just a single background layer available... We have 14!
@@ -335,10 +306,9 @@ The Pixel Processor also allows to combine different segments to generate a bigg
 {{< /tab >}}
 
 {{< tab name="Sprites" >}}
-
-{{< float_block >}}
-  <figcaption class="caption">There are no screenshots here, the next block explains why</figcaption>
-{{< /float_block >}}
+{{< empty_figure float="true" >}}
+There are no screenshots here, the next block explains why
+{{< /empty_figure >}}
 
 {{% inner_markdown %}}
 Sprites (or 'Objects', as Nintendo call them) are single tiles with independent coordinates, but occupy more memory.
@@ -359,27 +329,21 @@ Each sprite have the following properties available:
 
 {{< tab name="Window" >}}
 
-{{< float_block >}}
-  {{< tabs nested="true" class="pixel" >}}
-    {{< tab name="World 1" active="true" >}}
-      {{< linked_img src="wario/window_2.jpg" >}}
-      <figcaption class="caption">Examples of Windows
-      <br>Some are meant to be rendered on both displays (using shifting effects), others are exclusive to one</figcaption>
-    {{< /tab >}}
-    {{< tab name="World 2" >}}
-      {{< linked_img src="wario/window_1.jpg" >}}
-      <figcaption class="caption">This one is rendered on both</figcaption>
-    {{< /tab >}}
-    {{< tab name="World 3" >}}
-      {{< linked_img src="wario/window_3.jpg" >}}
-      <figcaption class="caption">This one is expanded when you pause the game</figcaption>
-    {{< /tab >}}
-    {{< tab name="World 4" >}}
-      {{< linked_img src="wario/window_4.jpg" >}}
-      <figcaption class="caption">This is the sprite layer I owe you from before</figcaption>
-    {{< /tab >}}
-  {{< /tabs >}}
-{{< /float_block >}}
+{{< tabs nested="true" float="true" class="pixel" >}}
+  {{< tab_figure_img name="World 1" active="true" src="wario/window_2.jpg" >}}
+Examples of Windows  
+Some are meant to be rendered on both displays (using shifting effects), others are exclusive to one
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="World 2" src="wario/window_1.jpg" >}}
+This one is rendered on both
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="World 3" src="wario/window_3.jpg" >}}
+This one is expanded when you pause the game
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="World 4" src="wario/window_4.jpg" >}}
+This is the sprite layer I owe you from before
+  {{< /tab_figure_img >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 The layering system may seem simple at first, after all, the VIP provides 'Background' layers and a 'Sprite' layer. So, what else do we need?
@@ -394,11 +358,9 @@ Windows provide different **rendering modes**. You can grab a Background or Spri
 {{< /tab >}}
 
 {{< tab name="Result" >}}
-
-{{< float_block >}}
-  {{< linked_img class="pixel" src="wario/frame.jpg" >}}
-  <figcaption class="caption">Tada!</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" class="pixel" src="wario/frame.jpg" >}}
+Tada!
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 After setting everything up, the Pixel Processor will start rendering the 32 Windows. Once it's done, the final frame will be placed in the frame-buffer area. This process is repeated for the other Display unit as well.
@@ -419,25 +381,20 @@ As you can see, there is a lot more technology in this console than meets the ey
 
 {{< float_group >}}
 
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="Map" active="true" >}}
-      {{< linked_img src="tennis/affine_map.jpg" alt="Map" >}}
-      <figcaption class="caption">Affine mode in action, showing the initial background map
-      <br>Mario's Tennis (1995)</figcaption>
-    {{< /tab >}}
-    {{< tab name="Window" >}}
-      {{< linked_img src="tennis/affine_window.jpg" alt="Window" >}}
-      <figcaption class="caption">Rendered map, with perspective projection applied
-      <br>Mario's Tennis (1995)</figcaption>
-    {{< /tab >}}
-    {{< tab name="Frame" >}}
-      {{< linked_img src="tennis/affine_frame.jpg" alt="Frame" >}}
-      <figcaption class="caption">As seen in the game
-      <br>Mario's Tennis (1995)</figcaption>
-    {{< /tab >}}
-  {{< /tabs >}}
-{{< /float_block >}}
+{{< tabs nested="true" float="true" >}}
+  {{< tab_figure_img name="Map" active="true" src="tennis/affine_map.jpg" alt="Map" >}}
+Affine mode in action, showing the initial background map  
+Mario's Tennis (1995)
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Window" src="tennis/affine_window.jpg" alt="Window" >}}
+Rendered map, with perspective projection applied  
+Mario's Tennis (1995)
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Frame" src="tennis/affine_frame.jpg" alt="Frame" >}}
+As seen in the game  
+Mario's Tennis (1995)
+  {{< /tab_figure_img >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 
@@ -453,16 +410,14 @@ I wonder what kind of games we would've seen if this console had lasted a little
 Another interesting feature was that by allowing the CPU to alter the frame-buffer, it provided developers with the ability to construct their own renderer if the VIP wasn't enough for them. This is what some games relied on to present their innovative graphics. For instance, 'Red Alarm' implemented a scenery constructed with polygons rendered by the CPU.
 
 {{< side_by_side >}}
-  <div class="toleft">
-    {{< linked_img class="pixel" src="redalarm.jpg" alt="Red Alarm screenshot" >}}
-  <figcaption class="caption">Red Alarm (1995)</figcaption>
-  </div>
+  {{< figure_img class="pixel" src="redalarm.jpg" alt="Red Alarm screenshot" class="toleft" >}}
+Red Alarm (1995)
+  {{< /figure_img >}}
 
-  <div class="toright">
-    {{< linked_img class="pixel" src="waterworld.jpg" alt="Waterworld screenshot" >}}
-    <figcaption class="caption">Waterworld (1995)</figcaption>
-  </div>
-  <figcaption class="caption">Both games do minimal drawing from the VIP to let the CPU draw main graphics</figcaption>
+  {{< figure_img class="pixel" src="waterworld.jpg" alt="Waterworld screenshot" class="toright" >}}
+Waterworld (1995)
+  {{< /figure_img >}}
+  {{< figcaption >}}Both games do minimal drawing from the VIP to let the CPU draw main graphics{{< /figcaption >}}
 {{< /side_by_side >}}
 
 Unfortunately, fundamental issues like [visible surface determination]({{< ref "sega-saturn#an-introduction-to-the-visibility-problem" >}}) weren't always addressed properly, I'm not sure if that was due to the limitations of the CPU. In any case, this resulted in a scene turned into a messy mesh instead, which made difficult for the player to distinguish which objects were behind others.
@@ -474,19 +429,16 @@ Unfortunately, fundamental issues like [visible surface determination]({{< ref "
 Imagine you grab the GameBoy's [Wave channel]({{< ref "game-boy#tab-7-3-wave" >}}), multiply it by five and add a noise channel: That's pretty much the offering of the Virtual Boy's sound chip. You can also think of it as a sibling of the [PC Engine's]({{< ref "pc-engine#audio" >}}).
 
 {{< float_group >}}
-
-{{< float_block >}}
-  {{< video src="tennis" loop=true >}}
-  <figcaption class="caption">Mario's Tennis (1995)</figcaption>
-{{< /float_block >}}
+{{< video src="tennis" loop=true float="true" >}}
+Mario's Tennis (1995)
+{{< /video >}}
 
 {{% inner_markdown %}}
-
 In the motherboard there's another chip called **Virtual Sound Unit** or 'VSU' that provides the sound capabilities. The PSG relies on internal RAM to store **five wave tables** and a register file to configure each of the **six channels available**. Registers are 8-bit wide while the internal RAM is connected to a 6-bit data bus (the CPU will still treat 6-bit words as a single byte, but the upper two bits are discarded).
 
 Each wave is made of 32 PCM samples (encoded in 6-bit values). Channels have a panning control setting (with a volume level from 0 to 15 for each left and right) and a 11-bit frequency control.
-
 {{% /inner_markdown %}}
+
 {{< /float_group >}}
 
 There's also a basic envelope control for each channel that makes the volume grow or decay over time. The fifth channel supports more effects, namely a **sweeping function** to progressively shift the frequency and a **modulator** to alter the waveform based on some values stored in the internal RAM.
@@ -509,19 +461,16 @@ Internally, every component is pretty much directly connected to the CPU, except
 
 {{< float_group >}}
 
-{{< float_block >}}
-  {{< linked_img src="case/underside.png" >}}
-  <figcaption class="caption">Underside the case, right side. Showing the Controller (Serial) port and External (Communications) port</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="case/underside.png" >}}
+Underside the case, right side. Showing the Controller (Serial) port and External (Communications) port
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
-
 Externally, there are two connectors available for accessories:
 - The **Serial Port**: Connects the **controller**. Data transfer is performed in a serial manner (1 bit at a time), but the interface adapts it to return a 16-bit value for the CPU to read (each bit place signifies a button pressed). Interrupts can also be set up to notify the CPU the instant any key is pressed.
   - One pin of this connector also sends **5 Volts** from the controller to the console. This is actually used to **power the console**!
 - The **Communications Port**: Whilst not an accessory *per se*, this port is used to talk to another Virtual Boy. This reminds me of the [Link cable]({{< ref "game-boy#external-communications" >}}) that the GameBoy uses. The two Virtual Boys communicate in a master-slave manner using serial data streams.
   - This really makes you wonder what kind of multiplayer functionality was Nintendo envisioning. Unfortunately, no game ended up using this feature.
-
 {{% /inner_markdown %}}
 
 {{< /float_group >}}
@@ -532,23 +481,18 @@ The controller of the Virtual Boy is very peculiar compared to the rest of the c
 
 {{< float_group >}}
 
-{{< float_block >}}
-{{< tabs nested="true" >}}
-    {{< tab name="Controller" active="true" >}}
-      {{< linked_img src="io/controller.png" alt="Controller" >}}
-      <figcaption class="caption">The Controller
-      <br>Notice the slider on the centre is the 'power switch'</figcaption>
-    {{< /tab >}}
-    {{< tab name="Battery Pack" >}}
-      {{< linked_img src="io/batterypack.png" alt="Battery Pack" >}}
-      <figcaption class="caption">Battery cartridge fitted in the back</figcaption>
-    {{< /tab >}}
-    {{< tab name="AC Pack" >}}
-      {{< linked_img src="io/acpack.png" alt="AC Pack" >}}
-      <figcaption class="caption">You can buy a separate cartridge that does AC to DC conversion instead, designed to connect the SNES power brick</figcaption>
-    {{< /tab >}}
-  {{< /tabs >}}
-{{< /float_block >}}
+{{< tabs nested="true" float="true" >}}
+  {{< tab_figure_img name="Controller" active="true" src="io/controller.png" alt="Controller" >}}
+The Controller  
+Notice the slider on the centre is the 'power switch'
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Battery Pack" src="io/batterypack.png" alt="Battery Pack" >}}
+Battery cartridge fitted in the back
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="AC Pack" src="io/acpack.png" alt="AC Pack" >}}
+You can buy a separate cartridge that does AC to DC conversion instead, designed to connect the SNES power brick
+  {{< /tab_figure_img >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 
@@ -595,11 +539,9 @@ It's too bad that this model of development was eventually reverted with the rel
 Game cartridges are called **Game Paks**. They have the same name of the GameBoy medium but they are completely different in terms of shape and functionality.
 
 {{< float_group >}}
-
-{{< float_block >}}
-  {{< linked_img src="wario.jpg" alt="Retail game" >}}
-  <figcaption class="caption">Example of retail game</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="wario.jpg" alt="Retail game" >}}
+Example of retail game
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Due to the memory address space, the ROM can be up to **16 MB without a mapper**. This applies to external RAM too (up to 16 MB). Just like the Game Boy, they can have battery-packed SRAM. The cartridge is accessed using a **16-bit data bus**.
@@ -617,31 +559,26 @@ Games have to include a 'read the instructions' warning, an alignment guide and 
 
 {{< float_group >}}
 
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="Instructions" active="true" >}}
-      {{< linked_img src="rules/instructions.jpg" alt="Instructions" >}}
-      <figcaption class="caption">First screen</figcaption>
-    {{< /tab >}}
-    {{< tab name="Align" >}}
-      {{< linked_img src="rules/align.jpg" alt="Align" >}}
-      <figcaption class="caption">Second screen (only showing left one)</figcaption>
-    {{< /tab >}}
-    {{< tab name="Automatic Pause" >}}
-      {{< linked_img src="rules/pause.jpg" alt="Automatic Pause" >}}
-      <figcaption class="caption">Third screen, this one is interactive</figcaption>
-    {{< /tab >}}
-  {{< /tabs >}}
-{{< /float_block >}}
+{{< tabs nested="true" float="true" >}}
+  {{< tab_figure_img name="Instructions" active="true" src="rules/instructions.jpg" alt="Instructions" >}}
+First screen
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Align" src="rules/align.jpg" alt="Align" >}}
+Second screen (only showing left one)
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Automatic Pause" src="rules/pause.jpg" alt="Automatic Pause" >}}
+Third screen, this one is interactive
+  {{< /tab_figure_img >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
-
 These screens will appear after the console is switched on. The first one 'orders' the user to read the instructions manual before continuing.
 
 The second one was some sort of a 'test card' that was used to properly adjust the IPD dial and the focus slider.
 
 The third one asked the user if they would like to be remained to take a break every thirty minutes.
 {{% /inner_markdown %}}
+
 {{< /float_group >}}
 
 The first and third screen were often customised to fit the game's theme.
@@ -662,11 +599,10 @@ The last time I checked, [Flash carts]({{< ref "game-boy-advance#flashcarts" >}}
 
 ## That's all folks
 
-{{< centered_container >}}
-  {{< linked_img src="brother.jpg" alt="Contributor" >}}
-  <figcaption class="caption">My brother fiddling with the Virtual Boy
-  <br>The only remaining member of the user research team 😉</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="brother.jpg" alt="Contributor" class="centered-container" >}}
+My brother fiddling with the Virtual Boy  
+The only remaining member of the user research team 😉
+{{< /figure_img >}}
 
 Throughout this series, we've seen all kinds of systems, some with limited CPU but impressive synergies, others with questionable hardware but beautifully packaged. This case however, was an interesting proposal: The CPU wasn't certainly limited and the graphics were up to the task. The sound wasn't exceptional, yet remained similar to the rest of the portable consoles in the market.
 

@@ -4,7 +4,7 @@ subtitle: Overshadowing the rest
 date: 2020-04-08
 releaseDate: 2000-03-04
 cover: ps2
-javascript: ['threejs', 'plyr']
+javascript: ['threejs']
 generation: 6
 top_tabs:
   Model:
@@ -58,12 +58,10 @@ The core is complemented with a **dedicated floating point unit** (identified as
 Next to the Emotion Engine are two blocks of 16 MB of RAM, giving a total of **32 MB** of main memory. The type of memory used is **RDRAM** ([*déjà vu!*]({{< ref "nintendo-64#ram-available" >}})) which is accessed through a 16-bit bus.
 
 {{< float_group >}}
-
-{{< float_block >}}
-  {{< linked_img src="MemoryArch.png" alt="Emotion engine Memory architecture" >}}
-  <figcaption class="caption">Memory design of the Emotion Engine
-  <br>You can guess where the congestion is gonna appear</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="MemoryArch.png" alt="Emotion engine Memory architecture" >}}
+Memory design of the Emotion Engine  
+You can guess where the congestion is gonna appear
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 At first, this can be a little disappointing to hear, considering the internal bus of the Emotion engine is as wide as 128 bits. However, the RAM chips are strategically placed by following the **dual-channel architecture**, which consists in connecting both chips using two independent 16-bit buses (one bus per chip) to improve data throughput. The resulting setup provides a theoretical 3.2 GB/sec, so rest assured that memory latency is not an issue in this console!
@@ -119,11 +117,9 @@ There are **two VPUs** fitted in the Emotion engine, but they are arranged diffe
 
 {{< tabs >}}
 {{< tab active="true" name="Vector Processing Unit 0" >}}
-
-{{< float_block >}}
-  {{< linked_img src="VU0.png" alt="Architecture of VPU0" img_class="no-borders" >}}
-  <figcaption class="caption">Architecture of VPU0</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="VU0.png" alt="Architecture of VPU0" img_class="no-borders" >}}
+Architecture of VPU0
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 The first VPU, the **VPU0**, is positioned between the CPU and the other vector unit (VPU1). It provides an 'assisting' role to the main CPU.
@@ -140,11 +136,9 @@ The memory map of the VPU0 also has access to some of the other VPU's registers 
 {{< /tab >}}
 
 {{< tab name="Vector Processing Unit 1" >}}
-
-{{< float_block >}}
-  {{< linked_img src="VUP1.png" alt="Architecture of VPU1" img_class="no-borders" >}}
-  <figcaption class="caption">Architecture of VPU1</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="VUP1.png" alt="Architecture of VPU1" img_class="no-borders" >}}
+Architecture of VPU1
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 The second VPU found, the **VPU1**, is an enhanced version of the VPU0 with double the amount of micro memory and VU memory. Moreover, this unit includes an additional component called **Elementary function unit** or 'EFU' which speeds up the execution of exponential and trigonometric functions.
@@ -178,18 +172,14 @@ To sum up, procedural rendering is not a new technique, but thanks to the VPUs, 
 With these new additions, programmers now have a lot of flexibility to design their graphics engines. In fact, there are multiple research papers published which benchmark popular pipeline designs.
 
 {{< float_group >}}
-{{< float_block >}}
-{{< tabs nested="true" >}}
-    {{< tab name="Parallel" active="true" >}}
-      {{< linked_img src="Parallel.png" alt="Parallel EE pipeline" >}}
-      <figcaption class="caption">Parallel pipeline design</figcaption>
-    {{< /tab >}}
-    {{< tab name="Serial" >}}
-      {{< linked_img src="Serial.png" alt="Serial EE pipeline" >}}
-      <figcaption class="caption">Serial pipeline design</figcaption>
-    {{< /tab >}}
-  {{< /tabs >}}
-{{< /float_block >}}
+{{< tabs nested="true" float="true" >}}
+  {{< tab_figure_img name="Parallel" active="true" src="Parallel.png" alt="Parallel EE pipeline" >}}
+Parallel pipeline design
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Serial" src="Serial.png" alt="Serial EE pipeline" >}}
+Serial pipeline design
+  {{< /tab_figure_img >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 Here are some examples of graphics pipelines set up with different optimisations:
@@ -204,11 +194,11 @@ The second example, the **Serial** design, proposes a different approach where t
 These have been so far examples from the theoretical point of view, but in order to explain a more 'practical' implementation, I'm going to refer to a video Jon Burton published regarding the development of one of their PS2 games.
 
 {{< float_group >}}
-{{< float_block >}}
-{{< linked_img src="Crash.jpg" alt="Crash Bandicoot The Wrath of Cortex" >}}
-<figcaption class="caption">Particles make the candle flame and the light coming from the window glass
-<br>Crash Bandicoot: The Wrath of Cortex (2001)</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="Crash.jpg" alt="Crash Bandicoot The Wrath of Cortex" >}}
+Particles make the candle flame and the light coming from the window glass  
+Crash Bandicoot: The Wrath of Cortex (2001)
+{{< /figure_img >}}
+
 {{% inner_markdown %}}
 The former director of Travellers Tales explained how his team achieved a particle system fully encapsulated within the VPU1. In a nutshell, the VPU1 focused on reading a pre-populated database from its VU memory, the database was used to calculate the coordinates of particles at any given time without depending on any other component. The result of the operation could be transformed into Display Lists and sent right away.
 
@@ -226,10 +216,11 @@ There are many more examples out there, but to sum things up: It is now up to th
 Considering all the work done by the Emotion Engine, is there something left? The last step actually: Display!
 
 {{< float_group >}}
-{{< float_block >}}
-{{< linked_img src="ffx.jpg" alt="Final Fantasy X" >}}
-<figcaption class="caption">Final Fantasy X (2001)</figcaption>
-{{< /float_block >}}
+
+{{< figure_img float="true" src="ffx.jpg" alt="Final Fantasy X" >}}
+Final Fantasy X (2001)
+{{< /figure_img >}}
+
 {{% inner_markdown %}}
 There's a simple but speedy chip specialised in that: The **Graphics Synthesizer** or 'GS' running at **~147.46 MHz**. It contains **4 MB of DDRAM** embedded inside to do all processing in-house. Thus, removing the need to access the main memory. The embedded RAM is connected using different buses depending on the type of data needed. 
 
@@ -242,19 +233,18 @@ The GS has fewer features than other graphics systems [previously reviewed]({{< 
 
 This GPU only does **rasterisation** and that is... Generating pixels, mapping textures, applying lighting and some other effects. This means there are no vertex transformations (these are covered by the VPUs). Also, this is a fixed-function pipeline, so no [fancy tweaking]({{< ref "gamecube#creativity" >}}) or [shaders]({{< ref "xbox#graphics" >}}) either, you are stuck with a fixed shading model (e.g. Gouraud).
 
-{{< centered_container >}}
-  {{< linked_img src="GS_Pipeline.png" alt="Pipeline design of the Graphics Synthesizer" img_class="no-borders" >}}
-  <figcaption class="caption">Pipeline design of the Graphics Synthesizer</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="GS_Pipeline.png" alt="Pipeline design of the Graphics Synthesizer" img_class="no-borders" class="centered-container" >}}
+Pipeline design of the Graphics Synthesizer
+{{< /figure_img >}}
 
 Looks pretty simple right? Well, let's dive deeper to see what happens at each stage.
 
 {{< tabs >}}
 {{< tab active="true" name="Pre-Process" >}}
-{{< float_block >}}
-  {{< linked_img src="gs_pipeline/Preprocessing.png" alt="Pre-processing stage" img_class="no-borders" >}}
-  <figcaption class="caption">Pre-processing stage</figcaption>
-{{< /float_block >}}
+
+{{< figure_img float="true" src="gs_pipeline/Preprocessing.png" alt="Pre-processing stage" img_class="no-borders" >}}
+Pre-processing stage
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 The Emotion Engine kickstarts the Graphics Synthesizer by filling its embedded DRAM with the required materials (**Texture bitmaps** and **Colour Lookup tables**, the latter are also known as 'CLUT'), assigning values on the GS's registers to configure it, and finally, issuing the drawing commands (Display Lists) which instruct the GS to draw primitives (points, lines, triangles, sprites, etc) at specific locations of the screen.
@@ -264,10 +254,9 @@ Additionally, the GS will preprocess some values that will be needed for later c
 
 {{< /tab >}}
 {{< tab name="Rasterization" >}}
-{{< float_block >}}
-  {{< linked_img src="gs_pipeline/Rasterizing.png" alt="Rasterizing stage" img_class="no-borders" >}}
-  <figcaption class="caption">Rasterizing stage</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="gs_pipeline/Rasterizing.png" alt="Rasterizing stage" img_class="no-borders" >}}
+Rasterizing stage
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Using the previous values calculated, the renderer generates pixels from the primitives. This unit can generate 8 pixels (with textures) or 16 pixels (without textures) concurrently, each pixel entry contains the following properties calculated:
@@ -283,24 +272,25 @@ The pack is then delivered to the 'Texture mapping' engine, but each property is
 
 {{< /tab >}}
 {{< tab name="Texture" >}}
-{{< float_block >}}
-  {{< linked_img src="gs_pipeline/Textures.png" alt="Texture mapping stage" img_class="no-borders" >}}
-  <figcaption class="caption">Texture mapping stage</figcaption>
-{{< /float_block >}}{{% inner_markdown %}}
+{{< figure_img float="true" src="gs_pipeline/Textures.png" alt="Texture mapping stage" img_class="no-borders" >}}
+Texture mapping stage
+{{< /figure_img >}}
 
+{{% inner_markdown %}}
 This stage is powered by a large Pixel Unit that can compute up to 16 pixels at the time, here textures will be mapped onto the polygons (now pixels). Furthermore, fog and anti-aliasing effects are applied here.
 
 Texture maps are fetched from DRAM in an area defined as **Texture buffer**, although this is interfaced by a separate area called **Texture Page Buffer** which seems to serve as a caching mechanism for textures. CLUTs are also mapped using this page system. Both elements are retrieved using a **512-bit bus**.
 
-The pixel unit performs **perspective correction** to map textures onto the primitives (a great improvement considering the previous [affine mapping]({{< ref "playstation#tab-1-3-textures" >}}) approach). Moreover, it also provides **bilinear and trilinear filtering**, the later one is used alongside mipmapped textures.
+The pixel unit performs **perspective correction** to map textures onto the primitives (a great improvement considering the previous [affine mapping]({{< ref "playstation#tab-4-5-textures" >}}) approach). Moreover, it also provides **bilinear and trilinear filtering**, the later one is used alongside mipmapped textures.
+{{% /inner_markdown %}}
 
-{{% /inner_markdown %}}{{< /tab >}}
+{{< /tab >}}
 {{< tab name="Tests" >}}
-{{< float_block >}}
-  {{< linked_img src="gs_pipeline/Tests.png" alt="Pixel Testing stage" img_class="no-borders" >}}
-  <figcaption class="caption">Pixel Testing stage</figcaption>
-{{< /float_block >}}{{% inner_markdown %}}
+{{< figure_img float="true" src="gs_pipeline/Tests.png" alt="Pixel Testing stage" img_class="no-borders" >}}
+Pixel Testing stage
+{{< /figure_img >}}
 
+{{% inner_markdown %}}
 Here certain pixels will be discarded if they don't meet a number of requirements. Having said that, the following tests are carried out:
 - **Alpha test**: Compares the alpha value (transparency) of a pixel against the 'standard' value. This is because in some cases, the alpha value is required to be within a certain range or greater/less than an arbitrary value.
 - **Destination Alpha test**: This checks the pixel's alpha value again before drawing it to the frame-buffer. 
@@ -308,10 +298,9 @@ Here certain pixels will be discarded if they don't meet a number of requirement
 
 {{% /inner_markdown %}}{{< /tab >}}
 {{< tab name="Post-Process" >}}
-{{< float_block >}}
-{{< linked_img src="gs_pipeline/Postprocessing.png" alt="Post-processing stage" img_class="no-borders" >}}
-  <figcaption class="caption">Post-processing stage</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="gs_pipeline/Postprocessing.png" alt="Post-processing stage" img_class="no-borders" >}}
+Post-processing stage
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 The last stage can apply some effects over our new pixels using the previous frame-buffer found in local DRAM:
@@ -336,33 +325,27 @@ There's a dedicated component inside the GS called **Programmable CRT Controller
 With all being said, this surely brought better designs to refresh already-famous characters. Take a look at this 'Before & After':
 
 {{< side_by_side >}}
-  <div class="toleft canvas-model">
-    {{< threejs_canvas model="crash" >}}
-    <figcaption class="caption">Crash Bandicoot (1996) for the PS1
-    <br>732 triangles</figcaption>
-  </div>
-
-  <div class="toright canvas-model">
-    {{< threejs_canvas model="crash_wrath" >}}
-    <figcaption class="caption">Crash Bandicoot: The Wrath of Cortex (2001)
-    <br>2226 triangles</figcaption>
-  </div>
+  {{< threejs_canvas model="crash" class="toleft" >}}
+Crash Bandicoot (1996) for the PS1
+732 triangles
+  {{< /threejs_canvas >}}
+  {{< threejs_canvas model="crash_wrath" class="toright" >}}
+Crash Bandicoot: The Wrath of Cortex (2001)
+2226 triangles
+  {{< /threejs_canvas >}}
 {{< /side_by_side >}}
 
 Here are characters from new game series, these were modelled with high levels of detail from the ground up:
 
 {{< side_by_side >}}
-  <div class="toleft canvas-model">
-    {{< threejs_canvas model="sora" >}}
-    <figcaption class="caption">Kingdom Hearts (2002)
-    <br>2744 triangles</figcaption>
-  </div>
-
-  <div class="toright canvas-model">
-    {{< threejs_canvas model="hero" >}}
-    <figcaption class="caption">Dragon Quest VIII (2004)
-    <br>2700 triangles</figcaption>
-  </div>
+  {{< threejs_canvas model="sora" class="toleft" >}}
+Kingdom Hearts (2002)
+2744 triangles
+  {{< /threejs_canvas >}}
+  {{< threejs_canvas model="hero" class="toright" >}}
+Dragon Quest VIII (2004)
+2700 triangles
+  {{< /threejs_canvas >}}
 {{< /side_by_side >}}
 
 It's worth mentioning that games like *Dragon Quest* implemented a custom lighting model called **Cel Shading** (a term I have mentioned [before]({{< ref "gamecube#creativity" >}})), however, in my previous articles I explained that the GPU was mainly responsible for this. In the PS2 case, the required colour calculations are presumably done by the Emotion Engine, since the GS isn't as flexible as other GPUs.
@@ -379,11 +362,10 @@ As stated before, the PCRTC sends the frame-buffer through the video signal. The
   - Does that mean the PS2 can 'display HD'? Technically... yes, but I don't think most game studios risked the performance penalty for a format that wasn't popularised yet.
 
 {{< float_group >}}
-{{< float_block >}}
-  {{< linked_img src="photos/ps2_back.png" alt="PS2 back" >}}
-  <figcaption>Right side of the console, seen from the back
-  <br>Showing A/C port, Digital audio port and AV Multi Out</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="photos/ps2_back.png" alt="PS2 back" >}}
+Right side of the console, seen from the back  
+Showing A/C port, Digital audio port and AV Multi Out
+{{< /figure_img >}}
 {{% inner_markdown %}}
 
 There're quite a lot of modes to choose from, but it all comes down to the format adoption during the early 2000s, which narrows it down to PAL and NTSC. Also, even though PAL provided a higher resolution than NTSC, some European versions of NTSC games resorted to letterboxing to mask the unused horizontal lines and slowed down the refresh rate to fit in the 50Hz limit (I call these 'bad ports'!).
@@ -408,17 +390,14 @@ The SPU2 inherits the same effects available from the original SPU. The memory p
 Finally, the chip can mix all channels to provide **stereo output**. Now, here is the interesting part: The SPU2 can feed itself the mixed stereo sample as new input, this enables to EE to access it (to mix it with even more audio, for instance), or keep adding more effects (such as reverb, echo and delay).
 
 {{< side_by_side >}}
-  <div class="toleft">
-    {{< video src="goomy_noreverb" >}}
-    <figcaption class="caption">Without reverb
-    <br>Kingdom Hearts II (2005)</figcaption>
-  </div>
-
-  <div class="toright">
-    {{< video src="goomy" >}}
-    <figcaption class="caption">With reverb
-    <br>Kingdom Hearts II (2005)</figcaption>
-  </div>
+  {{< video src="goomy_noreverb" class="toleft" >}}
+Without reverb
+Kingdom Hearts II (2005)
+  {{< /video >}}
+  {{< video src="goomy" class="toright" >}}
+With reverb
+Kingdom Hearts II (2005)
+  {{< /video >}}
 {{< /side_by_side >}}
 
 The audio signal is outputted through two mediums:
@@ -448,44 +427,35 @@ In later revisions of this console, the IOP was replaced with a **PowerPC 401 'D
 This console kept the previous front ports that were included in the original Playstation, it also featured a couple of 'experimental' interfaces that looked very promising at first.
 
 {{< float_group >}}
-{{< float_block >}}
-  {{< linked_img src="photos/ps2_front.png" alt="PS2 slim back" >}}
-  <figcaption class="caption">Front of the PS2 showing common ports including Controllers and MemoryCards, plus the new USBs and i.Link</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="photos/ps2_front.png" alt="PS2 slim back" >}}
+Front of the PS2 showing common ports including Controllers and MemoryCards, plus the new USBs and i.Link
+{{< /figure_img >}}
 {{% inner_markdown %}}
-
 The most popular addition: **Two USB 1.1 ports**. Widely adopted by third-party accessories, these persisted on all future revisions.
 
 What about the 'experimental' ones? To start with, there was initially a front **i.Link port** (also known as IEEE 1394, or 'FireWire' in the Apple world). This port was used to connect two PS2 to enable local multiplayer, but it was removed after the third revision (presumably replaced by the 'Network card', more details below).
-
 {{% /inner_markdown %}}
 {{< /float_group >}}
 
 On the back of the console we also had a slot for **PC cards**, you could buy the 'Network Adaptor card' from Sony that provided two extra ports. One for connecting an ethernet cable, and another one for plugging in a proprietary and external 'Hard Disk Drive Unit', also sold by Sony. Having a drive allowed games to store temporary data (or permanently install themselves there) for faster load times. Just a few games used this feature, though.
 
 {{< float_group >}}
-{{< float_block >}}
-{{< tabs nested="true" >}}
-    {{< tab name="Bay" active="true" >}}
-      {{< linked_img src="photos/back_bay.png" alt="PS2 hard drive bay" >}}
-      <figcaption class="caption">Back of PS2 showing hard drive bay (cover removed)</figcaption>
-    {{< /tab >}}
-    {{< tab name="Front" >}}
-      {{< linked_img src="photos/harddrive_adaptor_front.png" alt="Network adaptor" >}}
-      <figcaption class="caption">Network adaptor seen from the front
-      <br>This particular model provided modem and ethernet ports</figcaption>
-    {{< /tab >}}
-    {{< tab name="Back" >}}
-      {{< linked_img src="photos/harddrive_adaptor_back.png" alt="Network adaptor with disk" >}}
-      <figcaption class="caption">Network adaptor seen from the back with a hard drive fitted</figcaption>
-    {{< /tab >}}
-    {{< tab name="Slim" >}}
-      {{< linked_img src="photos/ps2_slim_back.jpg" alt="PS2 slim back" >}}
-      <figcaption class="caption">Back of the slim model showing a fixed ethernet port</figcaption>
-    {{< /tab >}}
+{{< tabs nested="true" float="true" >}}
+  {{< tab_figure_img name="Bay" active="true" src="photos/back_bay.png" alt="PS2 hard drive bay" >}}
+Back of PS2 showing hard drive bay (cover removed)
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Front" src="photos/harddrive_adaptor_front.png" alt="Network adaptor" >}}
+Network adaptor seen from the front.  
+This particular model provided modem and ethernet ports.
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Back" src="photos/harddrive_adaptor_back.png" alt="Network adaptor with disk" >}}
+Network adaptor seen from the back with a hard drive fitted
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Slim" src="photos/ps2_slim_back.jpg" alt="PS2 slim back" >}}
+Back of the slim model showing a fixed ethernet port
+  {{< /tab_figure_img >}}
 {{< /tabs >}}
 
-{{< /float_block >}}
 {{% inner_markdown %}}
 
 In later revisions, the PCMCIA port was replaced by an **Expansion Bay** where a 3.5" Hard drive could be fitted inside the console. You had to buy first a **Network adaptor** which not only provided Modem and/or ethernet ports (depending on the model), but it also included the required connections for an ATA-66 hard disk. 'Slim' revisions completely removed this feature, but left an ethernet port permanently installed on the back. In addition to that, the new revision added a new front 'port', the **infrared sensor**.
@@ -500,22 +470,19 @@ The ethernet transceiver supplied supports transfer rates of up to 100 Mbps (12.
 The new version of their controller, the **DualShock 2**, is a slightly improved version of DualShock. During the days of the original Playstation, multiple revisions of the original controller were released featuring different features (and also bringing fragmentation to the market). Now, for the benefit of developers, there was a single controller that unified all the previous properties.
 
 {{< float_group >}}
-{{< float_block >}}
-{{< tabs nested="true" >}}
-    {{< tab name="DualShock 2" active="true" >}}
-      {{< linked_img src="photos/dualshock2.png" alt="PS2 slim back" >}}
-    {{< /tab >}}
-    {{< tab name="Memory Card" >}}
-      {{< linked_img src="photos/memorycard.png" alt="PS2 slim back" >}}
-    {{< /tab >}}
+{{< tabs nested="true" float="true" >}}
+  {{< tab_figure_img name="DualShock 2" active="true" src="photos/dualshock2.png" alt="PS2 slim back" >}}
+DualShock 2 controller
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Memory Card" src="photos/memorycard.png" alt="PS2 slim back" >}}
+Official Memory Card (8 MB model)
+  {{< /tab_figure_img >}}
 {{< /tabs >}}
-{{< /float_block >}}
-{{% inner_markdown %}}
 
+{{% inner_markdown %}}
 Compared to the DualShock, the new version featured a slight redesign, it included two analogue sticks and two vibration motors for a richer input and feedback, respectively.
 
 Next to the controller slot is the **Memory Card slot** which is compatible with PS1 and PS2 cards. The new cards embed extra circuitry for security purposes referred as **MagicGate**, which enable games to block data transfers between different memory cards.
-
 {{% /inner_markdown %}}
 {{< /float_group >}}
 
@@ -532,58 +499,46 @@ Upon boot, the CPU will execute instructions in ROM which in turn will:
     - The use of modules allows Sony to release new hardware revisions of the PS2 without changing the IOP, lowering production costs.
 3. Load 'OSDSYS', the program that displays the splash animation and the shell menu.
 
-{{< centered_container >}}
-  {{< tabs nested="true" >}}
-      {{< tab name="Boot animation" active="true" >}}
-        {{< linked_img src="bios/animated.jpg" alt="PS2 Splash screen boot animation" >}}
-        <figcaption class="caption">Splash animation after turning on the console</figcaption>
-      {{< /tab >}}
-      {{< tab name="Valid disc" >}}
-        {{< linked_img src="bios/game_splash.jpg" alt="PS2 logo" >}}
-        <figcaption class="caption">PS2 logo showing after a valid PS2 game is inserted</figcaption>
-      {{< /tab >}}
-  {{< /tabs >}}
-{{< /centered_container >}}
+{{< tabs nested="true" class="centered-container" >}}
+  {{< tab_figure_img name="Boot animation" active="true" src="bios/animated.jpg" alt="PS2 Splash screen boot animation" >}}
+Splash animation after turning on the console
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Valid disc" src="bios/game_splash.jpg" alt="PS2 logo" >}}
+PS2 logo showing after a valid PS2 game is inserted
+  {{< /tab_figure_img >}}
+{{< /tabs >}}
 
 ### Interactive shell
 
 The functionality of the PS2 shell is pretty much in pace with the other 6th gen. consoles.
 
 {{< float_group >}}
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-      {{< tab name="Menu" active="true" >}}
-        {{< linked_img src="bios/menu.jpg" alt="PS2 menu" >}}
-        <figcaption class="caption">Initial menu
-        <br>Appears when there's no disc inserted</figcaption>
-      {{< /tab >}}
-      {{< tab name="Browser" >}}
-        {{< linked_img src="bios/mem_list.jpg" alt="PS2 memory card browser" >}}
-        <figcaption class="caption">Memory Card browser</figcaption>
-      {{< /tab >}}
-      {{< tab name="Saves" >}}
-        {{< linked_img src="bios/save_list.jpg" alt="PS2 Save browser" >}}
-        <figcaption class="caption">Saves browser
-        <br>After selecting a memory card</figcaption>
-      {{< /tab >}}
-      {{< tab name="Editor" >}}
-        {{< linked_img src="bios/save_editor.jpg" alt="PS2 Save editor" >}}
-        <figcaption class="caption">Save editor
-        <br>After selecting a save</figcaption>
-      {{< /tab >}}
-      {{< tab name="Options" >}}
-        {{< linked_img src="bios/options.jpg" alt="PS2 System Configuration" >}}
-        <figcaption class="caption">System Configuration</figcaption>
-      {{< /tab >}}
-  {{< /tabs >}}
-{{< /float_block >}}
+{{< tabs nested="true" float="true" >}}
+  {{< tab_figure_img name="Menu" active="true" src="bios/menu.jpg" alt="PS2 menu" >}}
+Initial menu.  
+Appears when there's no disc inserted.
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Browser" src="bios/mem_list.jpg" alt="PS2 memory card browser" >}}
+Memory Card browser
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Saves" src="bios/save_list.jpg" alt="PS2 Save browser" >}}
+Saves browser.  
+After selecting a memory card.
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Editor" src="bios/save_editor.jpg" alt="PS2 Save editor" >}}
+Save editor.  
+After selecting a save.
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Options" src="bios/options.jpg" alt="PS2 System Configuration" >}}
+System Configuration
+  {{< /tab_figure_img >}}
+{{< /tabs >}}
+
 {{% inner_markdown %}}
-
 The shell features some practical sections which allow to perform day-to-day operations, like manipulating the saves of the memory card. It also provides some exceptional options, like changing the current video mode.
-
 {{% /inner_markdown %}}
-{{< /float_group >}}
 
+{{< /float_group >}}
 
 ---
 
@@ -592,16 +547,15 @@ The shell features some practical sections which allow to perform day-to-day ope
 It is unprecedented the level of popularity this system achieved during the noughties, at the end of its lifespan (2013, after 13 years!) the game library was filled with 1850 titles.
 
 {{< float_group >}}
-{{< float_block >}}
-{{< linked_img src="mr_moskeeto.jpg" alt="Final Fantasy X" >}}
-<figcaption class="caption">Whenever someone argues about the abundance of PS2 games, I remember this one
-<br>Mr Moskeeto (2001)</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="mr_moskeeto.jpg" alt="Final Fantasy X" >}}
+Whenever someone argues about the abundance of PS2 games, I remember this one  
+Mr Moskeeto (2001)
+{{< /figure_img >}}
+
 {{% inner_markdown %}}
-
 What happened here is really impressive. The PS2 doesn't have a 'programmer-friendly' architecture, (as seen from the perspective of a PC programmer) yet with such amount of games developed, I too wonder if there were more factors involved (such as 'licensing reliefs', low distribution costs, cost of development, small form factor and so on).
-
 {{% /inner_markdown %}}
+
 {{< /float_group >}}
 
 ### Development ecosystem
@@ -625,17 +579,17 @@ The combination of the Devkit, the official SDK and Codewarrior (a famous IDE) w
 The disc drive can read both DVDs and CDs, so games could be distributed using either format, but for obvious reasons you will find most titles in DVD format.
 
 {{< float_group >}}
-{{< float_block >}}
-{{< linked_img src="kh2_box.jpeg" alt="PS2 retail box" >}}
-<figcaption class="caption">Typical retail game box and disc
-<br>Kingdom Hearts II (2005)</figcaption>
-{{< /float_block >}}
-{{% inner_markdown %}}
+{{< figure_img float="true" src="kh2_box.jpeg" alt="PS2 retail box" >}}
+Typical retail game box and disc  
+Kingdom Hearts II (2005)
+{{< /figure_img >}}
 
+{{% inner_markdown %}}
 DVDs can hold up **4.7 GB** of data in the case of DVD-5 (the most common 'sub-format') or 8.5. GB in the case of DVD-9 (dual layer version, less common). There's actually a third format, DVD-10, which is double-sided but no games used it.
 
 Due to the type of medium used, not only games could be played, but also movies. Now, this requires a decoder to be able to read the DVD movie format, and for that, the PS2 initially included the required bits installed in the memory card (after all, the card is just a storage medium) but later models came with the DVD software pre-installed in the BIOS ROM.
 {{% /inner_markdown %}}
+
 {{< /float_group >}}
 
 In terms of speed, CD-ROMs are read at 24x speed (so 3.6 MB/s) and DVD-ROMs are read at 4x speed (5.28 MB/s).
@@ -661,12 +615,10 @@ There's quite a lot to talk about here, so let's start with the DVD reader, shal
 This section was particularly concerning for game studios, since this console used a very affordable format disc to store games and was at extreme risk of being pirated.
 
 {{< float_group >}}
-
-{{< float_block >}}
-  {{< linked_img src="bios/rsod.jpg" alt="Error screen" >}}
-  <figcaption class="caption">This error screen could appear if the drive was faulty
-  <br>...or a pirated copy was inserted</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="bios/rsod.jpg" alt="Error screen" >}}
+This error screen could appear if the drive was faulty  
+...or a pirated copy was inserted
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 When the OS loads a game, it does so by sending specific commands to the DVD reader. The commands specifically used to read the content of a game behave very differently from the rest of commands (i.e. to read a DVD movie). It turns out authorised games contain an out-of-reach 'map file' in the inner section of the disc that indexes the filesystem by name, position and size. When the DVD is asked to read a game disc, it will always navigate through the disc using the map file, meaning that a pirated copy of a game, which could not include the map file, will be impossible to read. This was complemented by a region lock system that prevented imported games from working in a console from a different region.
@@ -680,29 +632,22 @@ Having explained the most critical part of this console, let's take a look at mu
 
 {{< tabs >}}
 {{% tab active="true" name="Modchips" %}}
-
 As any other console of its generation (and previous ones) using disc-based systems, it was a matter of time before third-party companies reversed-engineered the DVD subsystem. The goal here was to find a usable exploit which could force the driver to navigate through the file system without needing an out-of-reach map file.
 
 This eventually happened in the form of **modchips**, which lifted the region locking restrictions as well.
-
 {{% /tab %}}
 
 {{% tab name="Cheats" %}}
-
 Along with the modchips, which required soldering skills to install, unauthorised but 'genuine' discs appeared in the market. These enabled to defeat the region protection and use in-game cheats by patching the OS. Moreover, 'cheat discs' had the advantage of not requiring to modify the console. I guess the best example to mention is *CodeBreaker*.
-
 {{% /tab %}}
 
 {{% tab name="Disc swapping" %}}
-
 In the middle of the latest advancements, yet another trick appeared. This time, exploiting the reader's handling of faulty sectors. **Swap Magic** looks like another 'genuine' disc, but its 'game' tells the DVD to read a non-existent executable found on a deliberate faulty sector, provoking the driver to halt. This window of opportunity allowed users to swap the disc for a non-genuine one. Then Swap Magic, still loaded in memory, bootstrapped the main executable of the new disc, loading a real game at the end. All of this is carried out while the driver is still thinking a genuine disc is inserted.
 
 This doesn't necessarily require to alter the console. However, depending on the model, the external case of the PS2 will have to be tampered to block the eject sensors of the drive. In some cases, placing cotton in certain places will do the trick.
-
 {{% /tab %}}
 
 {{% tab name="PS1 overflow" %}}
-
 The PS2 stores a database file called `TITLE.DB` in MemoryCard which contains information used to optimise the emulation of PS1 games. When a PS1 game is inserted, the OS fetches the database file and loads the whole file in memory at a fixed address (*strike one*). The information parser is implemented using **`strncpy()`**, a function in C that copies strings (chain of characters) from one place to another.
 
 For people familiar with C, you probably guessed where I'm going. The thing is that `strncpy()` doesn't know how long is a string, so unless it's terminated (by placing `\0` at the end of the chain) the copy goes on 'forever' (with unpredictable results!). Luckily, this function contains an optional parameter that specifies the maximum number of bytes to be copied, protecting the copy from buffer overflows. As ludicrous as it may seem, **Sony didn't use this parameter**, even though each database entry has a fixed size of 256 bytes (*strike two*).
@@ -710,7 +655,6 @@ For people familiar with C, you probably guessed where I'm going. The thing is t
 Upon closer inspection in RAM, TITLE.DB happens to be copied **next to a saved register**, `$ra`, which states the address to return after the current function being executed finishes (*strike three*) leading up to **The independence exploit**: Craft a Title.db with a large string, embed an executable in it and design that string so `$ra` will be overridden to point to the executable. If you manage to upload that file to your MemoryCard (through another exploit or a PC USB adapter) you got yourself a simple Homebrew launcher.
 
 After the slim revision was released, the exploit got patched (*I wonder how*). Curiously enough, it wasn't the last [blunder]({{< ref "wii#the-fall-of-encryption" >}}) that exposed clumsy code.
-
 {{% /tab %}}
 
 {{< /tabs >}}

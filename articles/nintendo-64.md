@@ -5,7 +5,7 @@ date: 2019-09-12
 generation: 5
 subtitle: Powerful and complicated!
 cover: nintendo64
-javascript: ['threejs', 'plyr']
+javascript: ['threejs']
 top_tabs:
   Model:
     caption: "The Nintendo 64
@@ -66,11 +66,10 @@ Apart from the UMA, the structure of RAM is a little bit complicated, so I'll tr
 
 The system physically contains **4.5 MB of RAM**, however, it's connected using a **9-bit** data bus where the 9th bit is reserved for the GPU (more details in the 'Graphics' section). As a consequence, every component except the GPU will only find **up to 4 MB**.
 
-{{< centered_container >}}
-  {{< linked_img src="memory.png" alt="Memory Diagram" img_class="no-borders" >}}
-  <figcaption class="caption">Memory layout of this system
-  <br>I presume the CPU-RCP bus speed is either the RCP's clock speed or the CPU one, but I haven't been able to confirm that, yet</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="memory.png" alt="Memory Diagram" img_class="no-borders" class="centered-container" >}}
+Memory layout of this system.  
+I presume the CPU-RCP bus speed is either the RCP's clock speed or the CPU one, but I haven't been able to confirm that, yet.
+{{< /figure_img >}}
 
 The type of RAM fitted in the board is called **Rambus DRAM** (RDRAM), this was just another design that competed against SDRAM on becoming the next standard. RDRAM is connected in **serial** (where transfers are done one bit at a time) while SDRAM uses a **parallel connection** (transfers multiple bits at a time).
 
@@ -103,12 +102,11 @@ This design is based on the philosophy that the GPU is not meant to be a 'simple
 This chip is divided into three main modules, two of them are used for graphics processing:
 
 {{< tabs >}}
-  {{< tab active="true" name="Reality Signal Processor" >}}
-    
-{{< float_block >}}
-  {{< linked_img src="RSP.png" alt="RSP Diagram" >}}
-  <figcaption class="caption">Architecture of the RSP</figcaption>
-{{< /float_block >}}
+
+{{< tab active="true" name="Reality Signal Processor" >}}    
+{{< figure_img float="true" src="RSP.png" alt="RSP Diagram" >}}
+Architecture of the RSP
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Also known as **RSP**, it's just another CPU package composed of:
@@ -127,11 +125,9 @@ Nintendo provided different microcodes to choose from and, similarly to the [SNE
 {{< /tab >}}
 
 {{< tab name="Reality Display Processor" >}}
-
-{{< float_block >}}
-  {{< linked_img src="RDP.png" alt="RDP Diagram" >}}
-  <figcaption class="caption">Architecture of the RDP</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="RDP.png" alt="RDP Diagram" >}}
+Architecture of the RDP
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 After the RSP finished processing our polygon data, it will start sending **rasterisation commands** to the next module, the **RDP**, to draw the frame. These commands are either sent using a dedicated bus called **XBUS** or through main RAM.
@@ -168,13 +164,11 @@ The theoretical maximum capabilities are 24-bit colour depth (16.8 million colou
 Let's put all the previous explanations into perspective, for that, I'll borrow Nintendo's *Super Mario 64* to show, in a nutshell, how a frame is composed:
 
 {{< tabs >}}
-  {{< tab active="true" name="Vertex Processing" >}}
-    
-{{< float_block >}}
-  {{< linked_img src="mario/wireframe.jpg" alt="Wireframe Mario" >}}
-  <figcaption class="caption">Primitive view of our scene
-  <br>In order to save polygons, some characters are modelled using sprites (quads)</figcaption>
-{{< /float_block >}}
+{{< tab active="true" name="Vertex Processing" >}}    
+{{< figure_img float="true" src="mario/wireframe.jpg" alt="Wireframe Mario" >}}
+Primitive view of our scene  
+In order to save polygons, some characters are modelled using sprites (quads)
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Initially, our materials (3D models, etc) are located in the cartridge ROM, but to keep a steady bandwidth, we need to copy them to RAM first. In some cases, data may be found pre-compressed in the cartridge, so the CPU will need to de-compress it before operating it.
@@ -191,11 +185,9 @@ Afterwards, the RSP will start performing the first batch of tasks and the resul
 {{< /tab >}}
 
 {{< tab name="Pixel processing" >}}
-
-{{< float_block >}}
-  {{< linked_img src="mario/result.png" alt="Rendered Mario" class="pixel" >}}
-  <figcaption class="caption">Rendered frame (<i>Tada!</i>)</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="mario/result.png" alt="Rendered Mario" class="pixel" >}}
+Rendered frame (_Tada!_)
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 So far, we managed to process our data and apply some effects on it, but we still need to:
@@ -218,17 +210,14 @@ Once the RDP finishes processing the data, it will then write the final bitmap t
 Here are some examples of previous 2D characters for the [Super Nintendo]({{< ref "super-nintendo">}}) that have been redesigned for the new 3D era, they are interactive so I encourage you to check them out!
 
 {{< side_by_side >}}
-  <div class="toleft canvas-model">
-    {{< threejs_canvas model="zelda_ocarina_link" >}}
-    <figcaption class="caption">The Legend of Zelda: Ocarina of Time (1998)
-    <br>785 triangles</figcaption>
-  </div>
-
-  <div class="toright canvas-model">
-    {{< threejs_canvas model="kirby_cristals" >}}
-    <figcaption class="caption">Kirby 64: The Crystal Shards (2000)
-    <br>516 triangles</figcaption>
-  </div>
+  {{< threejs_canvas model="zelda_ocarina_link" class="toleft" >}}
+The Legend of Zelda: Ocarina of Time (1998)
+785 triangles
+  {{< /threejs_canvas >}}
+  {{< threejs_canvas model="kirby_cristals" class="toright" >}}
+Kirby 64: The Crystal Shards (2000)
+516 triangles
+  {{< /threejs_canvas >}}
 {{< /side_by_side >}}
 
 ### Modern visible surface determination
@@ -237,7 +226,7 @@ If you've read about the previous consoles, you came across the never-ending pro
 
 After the RDP rasterises the vectors, the z-value of the new pixel is compared against the respective value in Z-buffer. If the new pixel contains a smaller z-value, it means the new pixel is positioned in front of the previous one, so it's applied onto the frame buffer and the z-buffer is also updated. Otherwise, the pixel is discarded.
 
-Overall, this is a huge welcomed addition: Programmers do not need to worry anymore about implementing [software-based]({{< ref "playstation#tab-2-2-visibility-approach" >}}) polygon sorting methods which drain a lot of CPU resources. However, Z-buffer does not save you from feeding unnecessary geometry (discarded or overdrawn, both consuming resources). For this, game engines may choose to include an **occlusion culling** algorithm to discard unseen geometry as early as possible.
+Overall, this is a huge welcomed addition: Programmers do not need to worry anymore about implementing [software-based]({{< ref "playstation#tab-4-2-visibility-approach" >}}) polygon sorting methods which drain a lot of CPU resources. However, Z-buffer does not save you from feeding unnecessary geometry (discarded or overdrawn, both consuming resources). For this, game engines may choose to include an **occlusion culling** algorithm to discard unseen geometry as early as possible.
 
 ### Secrets and limitations
 
@@ -246,21 +235,17 @@ SGI clearly invested a lot of technology into this system. Nonetheless, this was
 {{< tabs >}}
 
 {{% tab active="true" name="Pipeline Stalls" %}}
-
 Due to the huge number of components and operations in the graphics pipeline, the RCP ended up being very susceptible to **stalls**: An undesirable situation where sub-components keep idling for considerable periods because the required data is delayed at the back of the pipeline.
 
 This will always result in performance degradation and is up to the programmer to avoid them. Although to make things easier, some CPUs such as the Scalar Unit implement a feature called **Bypassing** which enables to execute similar instructions at a faster rate by bypassing some execution stages that can be skipped.
 
 For example, if we have to compute sequential `ADD` instructions, there's no need to write the result back to a register and then read it back every time each `ADD` is finished. We can instead keep using the same register for all additions and do the write-back once the last `ADD` is completed.
-
 {{% /tab %}}
 
 {{% tab name="Texture memory" %}}
-
 The RDP relies on 4 KB of TMEM (Texture memory) as a single source to load textures. Unfortunately, in practice 4 KB happened to be insufficient for high-resolution textures. Furthermore, if mipmapping is used, the available amount of memory is then reduced to half.
 
 As a result, some games used solid colours with Gouraud shading (like *Super Mario 64*) and others relied on pre-computed textures (for example, where multiple layers had to be mixed).
-
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -286,27 +271,23 @@ Now, how do we connect both ends? Consoles normally include a dedicated audio ch
 
 The resulting data is, as expected, waveform data. This is then sent to the **Audio Interface** or 'AI' block which will then transfer it to the digital-to-analogue converter. The resulting waveform contains two channels (since our system is stereo) with 16-bit resolution each.
 
-{{< centered_container >}}
-  {{< linked_img src="Audio.png" alt="Audio Diagram" >}}
-  <figcaption class="caption">Overview of how the audio pipeline is often programmed</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="Audio.png" alt="Audio Diagram" class="centered-container" >}}
+Overview of how the audio pipeline is often programmed
+{{< /figure_img >}}
 
 ### The repertoire
 
 Time to checkout the soundtracks made for the N64. There are too many (good ones) to mention in this article, so here are some that caught my attention:
 
 {{< side_by_side >}}
-  <div class="toleft">
-    {{< video src="observatory" >}}
-    <figcaption class="caption">The Legend of Zelda: Majora's Mask (2000)
-    <br>The music of this game is tied to its daunted atmosphere</figcaption>
-  </div>
-
-  <div class="toright">
-    {{< video src="redial" >}}
-    <figcaption class="caption">Bomberman Hero (1998)
-    <br>This game has nice and unique house-based soundtrack</figcaption>
-  </div>
+  {{< video src="observatory" class="toleft" >}}
+The Legend of Zelda: Majora's Mask (2000)
+The music of this game is tied to its daunted atmosphere
+  {{< /video >}}
+  {{< video src="redial" class="toright" >}}
+Bomberman Hero (1998)
+This game has nice and unique house-based soundtrack
+  {{< /video >}}
 {{< /side_by_side >}}
 
 ### Secrets and limitations
@@ -375,21 +356,15 @@ Other third-party tools consisted of custom cartridges featuring a long ribbon c
 Additionally, the PBUS branches out to another connector at the bottom of the N64's motherboard. This was meant to be used by the yet-unreleased **Nintendo 64 Disk Drive** (64DD), some sort of an 'extra floor' that contains a proprietary magnetic disk reader. Its disks provide up to 64 MB of capacity. While only released in Japan, the Disk drive opened the door to an alternative (and cheaper) medium for distributing games.
 
 {{< float_group >}}
-
-{{< float_block >}}
-{{< tabs nested="true" >}}
-    {{< tab name="Module" active="true" >}}
-      {{< linked_img src="64dd/module.png" alt="N64 DD module" >}}
-      <figcaption class="caption">The Nintendo 64 Disk Drive (1998)
-      <br>Released on 01/12/1999 in Japan</figcaption>
-    {{< /tab >}}
-    {{< tab name="Attached" >}}
-      {{< linked_img src="64dd/attached.png" alt="N64 DD attached" >}}
-      <figcaption class="caption">The 64DD attached to the console</figcaption>
-    {{< /tab >}}
+{{< tabs float="true" nested="true" >}}
+  {{< tab_figure_img name="Module" active="true" src="64dd/module.png" alt="N64 DD module" >}}
+The Nintendo 64 Disk Drive
+Released on 01/12/1999 in Japan
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Attached" src="64dd/attached.png" alt="N64 DD attached" >}}
+The 64DD attached to the console
+  {{< /tab_figure_img >}}
 {{< /tabs >}}
-
-{{< /float_block >}}
 
 {{% inner_markdown %}}
 The magnetic medium is slower than cartridges, with transfer speeds of up to 1 MB/sec, but still faster than 4X CD-ROM readers. Disks are double-sided and operate at 'Constant Angular Velocity' (like the later [miniDVD]({{< ref "gamecube#medium" >}})). The smallest readable area is called 'block' and it's half of a concentric circle.
@@ -420,20 +395,14 @@ Overall, there wasn't too much concern regarding piracy thanks to the use of car
 As silly as it may seem, Nintendo left one door opened: The **Disk Drive port**.
 
 {{< float_group >}}
-
-{{< float_block >}}
-{{< tabs nested="true" >}}
-  {{< tab name="Attached" active="true" >}}
-    {{< linked_img src="v64/attached.png" alt="Doctor V64 attached" >}}
-    <figcaption class="caption">The Doctor V64 attached to the console</figcaption>
-  {{< /tab >}}
-  {{< tab name="Back" >}}
-    {{< linked_img src="v64/back.png" alt="Doctor V64 back" >}}
-    <figcaption class="caption">The back of the V64, showing some interesting A/V</figcaption>
-  {{< /tab >}}
+{{< tabs float="true" nested="true" >}}
+  {{< figure_img name="Attached" active="true" src="v64/attached.png" alt="Doctor V64 attached" >}}
+The Doctor V64 attached to the console
+  {{< /figure_img >}}
+  {{< figure_img name="Back" src="v64/back.png" alt="Doctor V64 back" >}}
+The back of the V64, showing some interesting A/V
+  {{< /figure_img >}}
 {{< /tabs >}}
-
-{{< /float_block >}}
 
 {{% inner_markdown %}}
 A few companies reversed engineered the interface to develop their own hardware, and some of the resulting products became a concern for piracy.

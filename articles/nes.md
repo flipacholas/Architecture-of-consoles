@@ -5,13 +5,14 @@ date: 2019-01-25
 releaseDate: 1983-07-15
 generation: 3
 cover: nes
-javascript: ['plyr']
 top_tabs:
   Models:
     International:
-      caption: "The NES, released on 18/10/1985 in America and 01/09/1986 in Europe"
+      caption: "The NES
+      <br>Released on 18/10/1985 in America and 01/09/1986 in Europe"
     Japanese:
-      caption: "The Famicom, released on 15/07/1983"
+      caption: "The Famicom
+      <br>Released on 15/07/1983 in Japan"
   Motherboard: {}
   Diagram: {}
 
@@ -82,20 +83,15 @@ As with its contemporaries this chip is designed for the behaviour of a CRT disp
 Additionally, the frame that the PPU outputs is built using two different layers. For demonstration purposes, let's use *Super Mario Bros.* to show how this works:
 
 {{< tabs >}}
-{{< tab active="true" name="Tiles" >}}
-
-{{< float_block >}}
-  {{< tabs nested="true" class="pixel desktop-margined" >}}
-    {{< tab name="All" active="true" >}}
-      {{< linked_img src="ppu_mario/chr_map.png" >}}
-    {{< /tab >}}
-    {{< tab name="Single" >}}
-      {{< linked_img src="ppu_mario/tile.png" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Tiles Found in its Character ROM
-  <br>(For demonstration purposes a default palette is being used)</figcaption>
-{{< /float_block >}}
+{{< tab name="Tiles" active="true" >}}
+{{< tabs nested="true" float="true" class="pixel desktop-margined" figure="true" >}}
+  {{< tab_img name="All" active="true" src="ppu_mario/chr_map.png" >}}
+  {{< tab_img name="Single" src="ppu_mario/single.png" >}}
+  {{< figcaption >}}
+Tiles Found in its Character ROM  
+(For demonstration purposes a default palette is being used)
+  {{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 The PPU uses **tiles** as a basic ingredient for producing sprites and backgrounds.
@@ -110,18 +106,13 @@ To start drawing the picture, the PPU first looks for tile references from a set
 {{< /tab >}}
 
 {{< tab name="Background Layer" >}}
-
-{{< float_block >}}
-  {{< tabs nested="true" class="pixel" >}}
-    {{< tab name="Overall" active="true" >}}
-      {{< linked_img src="ppu_mario/nametable.png" >}}
-    {{< /tab >}}
-    {{< tab name="Selected" >}}
-      {{< linked_img src="ppu_mario/nametable_marked.png" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Background map set up with vertical mirroring, which allows horizontal scrolling. Only one half is used.</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" float="true" class="pixel" figure="true" >}}
+  {{< tab_img name="Overall" active="true" src="ppu_mario/nametable.png" >}}
+  {{< tab_img name="Selected" src="ppu_mario/nametable_marked.png" >}}
+  {{< figcaption >}}
+Background map set up with vertical mirroring, which allows horizontal scrolling. Only one half is used.
+  {{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 The background layer is a 512x480 map containing static tiles. However, only 256x240 is viewable on the screen, so the game decides which part is selected for display. Games can also move the viewable area during gameplay; that's how the **scrolling effect** is accomplished.
@@ -136,11 +127,9 @@ Following each nametable is a 64-byte **Attribute table** that specifies which c
 {{< /tab >}}
 
 {{< tab name="Sprite Layer" >}}
-
-{{< float_block >}}
-  {{< linked_img src="ppu_mario/sprite_layer.png" class="pixel" alt="Sprites" >}}
-  <figcaption class="caption">Rendered sprite layer</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="ppu_mario/sprite_layer.png" class="pixel" alt="Sprites" >}}
+Rendered sprite layer
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Sprites are tiles that can move around the screen. They can also overlap each other, or appear behind the background. The viewable graphic will be decided based on its priority value. It's the same concept as 'layers' in many graphic design programs. 
@@ -156,11 +145,9 @@ The PPU is limited to eight sprites per scanline and up to 64 per frame. The sca
 {{< /tab >}}
 
 {{< tab name="Result" >}}
-
-{{< float_block >}}
-  {{< linked_img src="ppu_mario/result.png" class="pixel" alt="Result" >}}
-  <figcaption class="caption">Tada!</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="ppu_mario/result.png" class="pixel" alt="Result" >}}
+Tada!
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Once the frame is finished, it's time to move on to the next one!
@@ -177,22 +164,17 @@ If you're thinking that a frame-buffer system with memory allocated to store the
 
 {{< tabs >}}
 {{< tab active="true" name="Multi-Scrolling" >}}
-
-{{< float_block >}}
-  <div class="image-block">
-    {{< linked_img src="secrets/multiscrolling_mirror.png" class="pixel" alt="Nametable setup" >}}
-    <figcaption class="caption">Super Mario Bros. 2
-    <br>Nametable setup for vertical scrolling (horizontal mirroring)
-    <br>The character has to climb the mountain. The viewable area is at the bottom, and the PPU has time to render the top.</figcaption>
-  </div>
-  <div class="image-block">
-    {{< linked_img src="secrets/multiscrolling.png" class="pixel" alt="MultiScrolling" >}}
-    <figcaption class="caption">Super Mario Bros. 3
-    <br>Mario can run and fly, so the PPU needs to scroll diagonally.
-    <br>Notice the right edge showing the wrong colour palette!
-    <br>The left edge has a mask applied.</figcaption>
-  </div>
-{{< /float_block >}}
+{{< figure_img float="true" src="secrets/multiscrolling_mirror.png" class="pixel" alt="Nametable setup" >}}
+Super Mario Bros. 2  
+Nametable setup for vertical scrolling (horizontal mirroring)  
+The character has to climb the mountain. The viewable area is at the bottom, and the PPU has time to render the top.
+{{< /figure_img >}}
+{{< figure_img float="true" src="secrets/multiscrolling.png" class="pixel" alt="MultiScrolling" >}}
+Super Mario Bros. 3
+Mario can run and fly, so the PPU needs to scroll diagonally.
+Notice the right edge showing the wrong colour palette!
+The left edge has a mask applied.
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Some games require the main character to move vertically – thus the nametable will be set up with **horizontal mirroring**. Other games need their character to move left and right, and so use **vertical mirroring** instead.
@@ -209,20 +191,12 @@ As an interesting *fix*: the PPU allowed developers to apply a vertical mask on 
 
 {{< tab name="Tile-Swap" >}}
 
-{{< float_block >}}
-  {{< tabs nested="true" class="pixel" >}}
-    {{< tab name="Scan 1" active="true" >}}
-      {{< linked_img src="secrets/multiplexing_1.png" >}}
-    {{< /tab >}}
-    {{< tab name="Scan 2" >}}
-      {{< linked_img src="secrets/multiplexing_2.png" >}}
-    {{< /tab >}}
-    {{< tab name="Displayed" >}}
-      {{< linked_img src="secrets/multiplexing_complete.png" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Screenshots taken during different scan points.</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" float="true" class="pixel" figure="true" >}}
+  {{< tab_img name="Scan 1" active="true" src="secrets/multiplexing_1.png" >}}
+  {{< tab_img name="Scan 2" src="secrets/multiplexing_2.png" >}}
+  {{< tab_img name="Displayed" src="secrets/multiplexing_complete.png" >}}
+  {{< figcaption >}}Screenshots taken during different scan points.{{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 Another speciality of Super Mario Bros. 3 is the amount of graphics it could display.
@@ -257,20 +231,12 @@ Let's now discuss the type of wave-forms synthesised by the APU:
 
 {{< tab active="true" name="Pulse" >}}
 
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="Pulse 1" active="true" >}}
-      {{< video src="pulse_single_1" >}}
-    {{< /tab >}}
-    {{< tab name="Pulse 2" >}}
-      {{< video src="pulse_single_2" >}}
-    {{< /tab >}}
-    {{< tab name="Complete" >}}
-      {{< video src="pulse_full" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Mother (1989)</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" float="true" figure="true" >}}
+  {{< tab_video name="Pulse 1" active="true" src="pulse_single_1" >}}
+  {{< tab_video name="Pulse 2" src="pulse_single_2" >}}
+  {{< tab_video name="Complete" src="pulse_full" >}}
+  {{< figcaption >}}Mother (1989){{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 Pulse waves have a very distinct *beep* sound that is mainly used for **melody or sound effects**.
@@ -285,18 +251,11 @@ When the game needs to play a sound effect, the accompaniment channel is switche
 {{< /tab >}}
 
 {{< tab name="Triangle" >}}
-
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="Triangle" active="true" >}}
-      {{< video src="triangle_single" >}}
-    {{< /tab >}}
-    {{< tab name="Complete" >}}
-      {{< video src="triangle_full" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Mother (1989)</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" float="true" >}}
+  {{< tab_video name="Triangle" active="true" src="triangle_single" >}}
+  {{< tab_video name="Complete" src="triangle_full" >}}
+  {{< figcaption >}}Mother (1989){{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 This waveform serves as a bassline for the melody. Modifying its pitch dramatically can also produce percussion.
@@ -309,18 +268,11 @@ The volume of this channel can't be controlled, possibly because the volume cont
 {{< /tab >}}
 
 {{< tab name="Noise" >}}
-
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="Noise" active="true" >}}
-      {{< video src="noise_single" >}}
-    {{< /tab >}}
-    {{< tab name="Complete" >}}
-      {{< video src="noise_full" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Mother (1989)</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" float="true" >}}
+  {{< tab_video name="Noise" active="true" src="noise_single" >}}
+  {{< tab_video name="Complete" src="noise_full" >}}
+  {{< figcaption >}}Mother (1989){{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 Noise is basically a set of random waveforms that sound like white static. One channel is allocated for it.
@@ -334,17 +286,11 @@ This channel has only 32 *presets* available. Half (16) of these presets produce
 
 {{< tab name="Sample" >}}
 
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="Sample" active="true" >}}
-      {{< video src="sample_single" >}}
-    {{< /tab >}}
-    {{< tab name="Complete" >}}
-      {{< video src="sample_full" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Mother (1989)</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" float="true" >}}
+  {{< tab_video name="Sample" active="true" src="sample_single" >}}
+  {{< tab_video name="Complete" src="sample_full" >}}
+  {{< figcaption >}}Mother (1989){{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 Samples are recorded pieces of music that can be replayed. As you can see, this doesn't have to be a single waveform.
@@ -366,17 +312,14 @@ programmers did find ways of expanding its capability, thanks to the modular arc
 
 {{< tab name="Extra Channels" active="true" >}}
 
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="American" active="true" >}}
-      {{< video src="castlevania_usa" >}}
-    {{< /tab >}}
-    {{< tab name="Japanese" >}}
-      {{< video src="castlevania_jap" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Castlevania III (1989)</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" float="true" >}}
+  {{< tab_figure_video name="American" active="true" src="castlevania_usa" >}}
+Castlevania III (1989)
+  {{< /tab_figure_video >}}
+  {{< tab_figure_video name="Japanese" src="castlevania_jap" >}}
+Akumajō Densetsu (1989)
+  {{< /tab_figure_video >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 The Japanese model of the NES, the Famicom, provided exclusive cartridge pins available for sound expansion. Games like *Castlevania 3* included the **Konami VRC6** chip, which allowed **two extra pulse waves and a sawtooth wave**.
@@ -388,10 +331,9 @@ Check out the difference between the Japanese version and the American versions 
 
 {{< tab name="Tremolo" >}}
 
-{{< float_block >}}
-  {{< video src="tremolo_full" >}}
-  <figcaption class="caption">Final Fantasy III (1990)</figcaption>
-{{< /float_block >}}
+{{< video src="tremolo_full" float="true" >}}
+Final Fantasy III (1990)
+{{< /video >}}
 
 {{% inner_markdown %}}
 Some games used tremolo effects to simulate more channels.

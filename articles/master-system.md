@@ -5,7 +5,7 @@ date: 2020-10-12
 releaseDate: 1985-10-20
 generation: 3
 cover: mastersystem
-javascript: ["plyr", "audioswitcher"]
+javascript: ['audioswitcher']
 published: true
 top_tabs:
   Model:
@@ -58,10 +58,9 @@ This is because the Z80 family contains an interesting feature called **I/O port
 
 When an `IN` or `OUT` instruction is executed, the Z80 sets up the address lines pointing to the peripheral (which could be, for instance, a keyboard), flags its `IORQ` pin indicating that an I/O request has been initiated and also flags the `RD` pin or the `WR` pin whether it's an `IN` or `OUT` instruction, respectively. The addressed peripheral must manually check for the address bus and the I/O pins and perform the required operation. In the case of an `IN` instruction, the CPU will store the received value on a pre-defined register.
 
-{{< centered_container >}}
-  {{< linked_img src="addressing.png" alt="SMS Addressing layout" >}}
-  <figcaption class="caption">SMS' Addressing layout</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="addressing.png" alt="SMS Addressing layout" class="centered-container" >}}
+SMS' Addressing layout
+{{< /figure_img >}}
 
 The way SEGA interconnected the CPU with the rest of the components enables not only to access values but also to show/hide certain components from appearing in the memory map. 
 
@@ -79,10 +78,9 @@ The drawings on the screen are produced by a proprietary chip called **Video Dis
 
 ### Organising the content
 
-{{< centered_container >}}
-  {{< linked_img src="vdp.png" alt="VDP Memory Diagram" >}}
-  <figcaption class="caption">Memory architecture of the VDP</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="vdp.png" alt="VDP Memory Diagram" class="centered-container" >}}
+Memory architecture of the VDP
+{{< /figure_img >}}
 
 Next to the VDP is connected **16 KB of VRAM** which only the VDP can access using a **16-bit data bus** (Sega modified the original design to access two memory chips with 8-bit buses at the same time). If you look at the motherboard picture again, you'll notice that both RAM and VRAM chips are roughly the same, except that VRAM uses the chip model ending in '20' which has lower latency.
 
@@ -100,18 +98,11 @@ Now let's see how a frame is drawn step by step, for this, I'll borrow *Sonic Th
 
 {{< tabs >}}
 {{< tab active="true" name="Tiles" >}}
-
-{{< float_block >}}
-  {{< tabs nested="true" class="pixel desktop-margined" >}}
-    {{< tab name="All" active="true" >}}
-      {{< linked_img src="sonic/tiles.png" >}}
-    {{< /tab >}}
-    {{< tab name="Single" >}}
-      {{< linked_img src="sonic/tile.png" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Tiles Found in VRAM</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" float="true" class="pixel" figure="true" >}}
+  {{< tab_img name="All" active="true" src="sonic/tiles.png" >}}
+  {{< tab_img name="Single" src="sonic/tile.png" >}}
+  {{< figcaption >}}Tiles Found in VRAM{{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 Mode IV is based on the **tile system**. To recall [previous explanations]({{< ref "nes#tab-2-1-tiles" >}}) about tile engines, tiles are just **8x8 pixel bitmaps** which the renderer fetches to draw the game's graphics. In the case of the VDP, the frame is composed of two planes, the background layer and the sprite layer.
@@ -127,17 +118,11 @@ Colour RAM stores **two palettes of 16 colours each**. Each entry is 6-bit wide 
 
 {{< tab name="Background Layer" >}}
 
-{{< float_block >}}
-  {{< tabs nested="true" class="pixel" >}}
-    {{< tab name="Overall" active="true" >}}
-      {{< linked_img src="sonic/tilemap.png" >}}
-    {{< /tab >}}
-    {{< tab name="Selected" >}}
-      {{< linked_img src="sonic/tilemap_marked.png" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Screen map</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" float="true" class="pixel" figure="true" >}}
+  {{< tab_img name="Overall" active="true" src="sonic/tilemap.png" >}}
+  {{< tab_img name="Selected" src="sonic/tilemap_marked.png" >}}
+  {{< figcaption >}}Screen map{{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 A background layer is a large plane where static tiles are drawn. To place something here, there's another area on VRAM called **Screen map** that takes 1.75 KB. 
@@ -156,10 +141,9 @@ Curiously enough, there are 3 unused bits in the entry which the game can use fo
 
 {{< tab name="Sprite Layer" >}}
 
-{{< float_block >}}
-  {{< linked_img src="sonic/sprites.png" class="pixel" alt="Sprites" >}}
-  <figcaption class="caption">Rendered Sprite layer</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="sonic/sprites.png" class="pixel" alt="Sprites" >}}
+Rendered Sprite layer
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Sprites are just tiles that move freely. The VDP can raster **up to 64 sprites** using a single tile (8x8 px) or two tiles stacked vertically (8x16 px).
@@ -173,10 +157,9 @@ The VDP is limited to **up to eight sprites per horizontal scan-line**. Also, if
 
 {{< tab name="Result" >}}
 
-{{< float_block >}}
-  {{< linked_img src="sonic/result.png" class="pixel" alt="Result" >}}
-  <figcaption class="caption">Tada!</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="sonic/result.png" class="pixel" alt="Result" >}}
+Tada!
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 The VDP automatically blends the two layers to form the final frame. The rendering process is done scan-line by scan-line, so the VDP doesn't really know how the frame is going to look, that's only seen by the user when the picture is constructed on the TV.
@@ -214,11 +197,10 @@ The VDP doesn't take advantage of this modular approach. Instead, Sega implement
 {{< /tab >}}
 {{< tab name="3D glasses" >}}
 
-{{< float_block >}}
-  {{< linked_img src="glasses.png" alt="Sega 3-D glasses" >}}
-  <figcaption class="caption">Sega 3-D glasses
-  <br>American variant connected through the card port</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="glasses.png" alt="Sega 3-D glasses" >}}
+Sega 3-D glasses  
+American variant connected through the card port
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 It turns out Sega also shipped **'3D glasses'** as an official accessory! The glasses worked in-sync with the CRT. During gameplay, the game switches the position of objects between frames. Each lens has an LCD screen that shuts black to block your eyesight. So, the correct combination of graphics flickering and shutters alternating eventually creates a stereoscopic image in your head. Thus, a '3D' effect.
@@ -253,11 +235,9 @@ Now let's take a look at each type of waveform the SN76489 can generate:
 
 {{< tabs >}}
 {{< tab active="true" name="Pulse" >}}
-
-{{< float_block >}}
-  {{< video src="pulse" >}}
-  <figcaption class="caption">Sonic The Hedgehog (1991)</figcaption>
-{{< /float_block >}}
+{{< video src="pulse" float="true" >}}
+Sonic The Hedgehog (1991)
+{{< /video >}}
 
 {{% inner_markdown %}}
 Pulse/Tone waves produce that iconic sound from the 8-bit generation. The sound wave is generated by latching up the voltage, keeping it steady and then dropping it altogether. Repeat this at a constant rate and a tone will be heard.
@@ -270,11 +250,9 @@ All of this is handled by the PSG, which can produce **three pulse waves at the 
 {{< /tab >}}
   
 {{< tab name="Noise" >}}
-
-{{< float_block >}}
-  {{< video src="noise" >}}
-  <figcaption class="caption">Sonic The Hedgehog (1991)</figcaption>
-{{< /float_block >}}
+{{< video src="noise" float="true" >}}
+Sonic The Hedgehog (1991)
+{{< /video >}}
 
 {{% inner_markdown %}}
 Noise is a type of signal which is associated with interference. When outputted to a speaker, it sounds like static.
@@ -289,11 +267,9 @@ Games normally use the noise channel for **percussion and/or sound effects**.
 {{< /tab >}}
 
 {{< tab name="Mixed" >}}
-
-{{< float_block >}}
-  {{< video src="pulse_complete" >}}
-  <figcaption class="caption">Sonic The Hedgehog (1991)</figcaption>
-{{< /float_block >}}
+{{< video src="pulse_complete" float="true" >}}
+Sonic The Hedgehog (1991)
+{{< /video >}}
 
 {{% inner_markdown %}}
 So far we've discussed what each channel does separately, but the TV will just receive a mono signal with all the channels mixed by the PSG.
@@ -311,12 +287,11 @@ Just like the VDP, the PSG is a no-brainer, but it does hide some interesting fu
 {{< tabs >}}
 
 {{< tab active="true" name="FM Expansion" >}}
-
-{{< float_block class="audio-switcher" >}}
-  {{< audio_switcher src1="psg" label1="PSG"
-                     src2="fm"  label2="FM" >}}
-    <figcaption class="caption">Double Dragon (1987)</figcaption>
-{{< /float_block >}}
+{{< audio_switcher src1="psg" label1="PSG"
+                   src2="fm"  label2="FM"
+                   class="float-side" >}}
+Double Dragon (1987)
+{{< /audio_switcher >}}
 
 {{% inner_markdown %}}
 The Japanese version of the Master System embedded an extra chip for audio made by Yamaha called **YM2413**. It's drastically different from the previous PSG as it uses the **frequency modulation** technique to generate sound. I've explained briefly how this works in the [Mega Drive article]({{< ref "mega-drive-genesis#tab-7-1-yamaha-ym2612" >}}), in case you are interested.
@@ -333,11 +308,10 @@ The Mark III version didn't include this chip, but FM was available as an expans
 {{< /tab >}}
 {{< tab name="Emulation accuracy" >}}
 
-{{< float_block >}}
-{{< linked_img src="decay.jpg" alt="Decay comparison" >}}
-  <figcaption class="caption">Pulse waveform comparison using emulators
-  <br>NES' shows some decay while SGM's is squared-shaped</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="decay.jpg" alt="Decay comparison" >}}
+Pulse waveform comparison using emulators.  
+NES' shows some decay while SGM's is squared-shaped.
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 While I was reading through smspower.org, which collects a lot of technical info about the system, I came across one interesting paragraph that discusses some discrepancies that I was encountering while writing the article.
@@ -352,11 +326,10 @@ I don't have the necessary tools right now to confirm whether the SMS should sho
 {{< /tab >}}
 {{< tab name="Sample play" >}}
 
-{{< float_block >}}
-  {{< video src="ball" >}}
-  <figcaption class="caption">Alex Kidd - The Lost Stars (1986)
-  <br>1-bit PCM sample</figcaption>
-{{< /float_block >}}
+{{< video src="ball" float="true" >}}
+Alex Kidd - The Lost Stars (1986)  
+1-bit PCM sample
+{{< /video >}}
 
 {{% inner_markdown %}}
 While the SN76489 doesn't have a [PCM channel]({{< ref "nes#tab-7-4-sample" >}}) to reproduce samples, there are some tricks that can be used to simulate this feature.
@@ -388,16 +361,14 @@ Apart from the two controller ports, the system contains one proprietary cartrid
 Another speciality about this console is that includes two buttons on the top of its case, `PAUSE` and `RESET`, you can guess what they do!
 
 {{< float_group >}}
-{{< float_block >}}
-  {{< linked_img src="top.png" alt="Top case" >}}
-  <figcaption class="caption">Top of the case</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="top.png" alt="Top case" >}}
+Top of the case
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 When the `PAUSE` button is pressed, a non-maskable interrupt is sent to the CPU, the interrupt vector is stored in the game itself. This means that it's up to the game to honour the press.
 
 By contrast and for some strange reason, the `RESET` button is handled like a keypress on the controller.
-
 {{% /inner_markdown %}}
 
 {{< /float_group >}}
@@ -426,15 +397,12 @@ The boot process works as follows:
 If any of the checks fail, the console will loop indefinitely while showing a screen that prompts the user to insert a valid game.
 
 {{< side_by_side >}}
-  <div class="toleft">
-    {{< video src="bios/usa" >}}
-    <figcaption class="caption">USA/Europe error message (after the initial splash)</figcaption>
-  </div>
-  
-  <div class="toright">
-    {{< video src="bios/japanese" >}}
-    <figcaption class="caption">Japanese 'error' message (enhanced by the FM chip!)</figcaption>
-  </div>
+  {{< video src="bios/usa" class="toleft" >}}
+USA/Europe error message (after the initial splash)
+  {{< /video >}}
+  {{< video src="bios/japanese" class="toright" >}}
+Japanese 'error' message (enhanced by the FM chip!)
+  {{< /video >}}
 {{< /side_by_side >}}
 
 As you can see, there're some creative differences between regions. The first time I heard the Japanese one I thought it came from Electric Light Orchestra (the band), but it's actually from Space Harrier (the game). Also, the perspective effect on the floor is accomplished by altering the colour palettes.

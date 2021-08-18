@@ -5,7 +5,7 @@ date: 2019-08-03
 releaseDate: 1994-11-22
 generation: 5
 cover: saturn
-javascript: ['threejs', 'plyr']
+javascript: ['threejs']
 published: true
 top_tabs:
   Models:
@@ -84,11 +84,9 @@ Having said that, let's take a look at the two chips.
 {{< tabs >}}
 
 {{< tab name="VDP1" active="true" >}}
-
-{{< float_block >}}
-  {{< linked_img src="vdp/VDP1.png" alt="VDP1 architecture" >}}
-  <figcaption class="caption">VDP1 Architecture</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="vdp/VDP1.png" alt="VDP1 architecture" >}}
+VDP1 Architecture
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 The **Video Display Processor 1** (VDP1) is a chip that draws sprites with geometric transformations. The results are written onto a frame-buffer, which is in turn streamed to the VDP2 for display.
@@ -110,11 +108,9 @@ The VDP1 also provides this selection of effects:
 {{< /tab >}}
 
 {{< tab name="VDP2" >}}
-
-{{< float_block >}}
-  {{< linked_img src="vdp/VDP2.png" alt="VDP2 architecture" >}}
-  <figcaption class="caption">VDP2 Architecture</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="vdp/VDP2.png" alt="VDP2 architecture" >}}
+VDP2 Architecture
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 The **Video Display Processor 2** (VDP2) specialises in rendering large (4096×4096 pixels) planes with transformations (rotation, scale and translation) applied on them.
@@ -146,12 +142,10 @@ The capabilities of the Saturn for drawing 2D scenes were huge compared to the [
 {{< tabs >}}
 
 {{< tab active="true" name="Sprites" >}}
-
-{{< float_block >}}
-  {{< linked_img src="2d/sprites.png" alt="Sprites" >}}
-  <figcaption class="caption">VDP1/Sprites plane
-  <br>Mega Man X4 (1997)</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="2d/sprites.png" alt="Sprites" >}}
+VDP1/Sprites plane  
+Mega Man X4 (1997)
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 In this case, the VDP1 is tasked with plotting traditional sprites without any 3D distortion applied.
@@ -162,22 +156,15 @@ The CPU sets up the VDP1 by writing over its registers and filling its VRAM with
 {{< /tab >}}
 
 {{< tab name="Backgrounds" >}}
-
-{{< float_block >}}
-  {{< tabs nested="true" class="pixel" >}}
-    {{< tab name="2D plane 1" active="true" >}}
-      {{< linked_img src="2d/bg1.png" >}}
-    {{< /tab >}}
-    {{< tab name="2D plane 2" >}}
-      {{< linked_img src="2d/bg2.png" >}}
-    {{< /tab >}}
-    {{< tab name="2D plane 3" >}}
-      {{< linked_img src="2d/bg3.png" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">VDP2/Background planes
-  <br>Mega Man X4 (1997)</figcaption>
-{{< /float_block >}}
+{{< tabs float="true" nested="true" class="pixel" figure="true" >}}
+  {{< tab_img name="2D plane 1" active="true" src="2d/bg1.png" >}}
+  {{< tab_img name="2D plane 2" src="2d/bg2.png" >}}
+  {{< tab_img name="2D plane 3" src="2d/bg3.png" >}}
+  {{< figcaption >}}
+VDP2/Background planes  
+Mega Man X4 (1997)
+  {{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 The VDP2 is then instructed to draw background planes. These, along with the sprite layer, are automatically mixed to form a fully coloured scene.
@@ -190,12 +177,10 @@ Some functions from the VDP2 can be exploited to create more realistic scenery, 
 {{< /tab >}}
 
 {{< tab name="Result" >}}
-
-{{< float_block >}}
-  {{< linked_img src="2d/result.jpg" alt="Result" >}}
-  <figcaption class="caption">Mixed planes (<i>Tada!</i>)
-  <br>Mega Man X4 (1997)</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="2d/result.jpg" alt="Result" >}}
+Mixed planes (_Tada!_)  
+Mega Man X4 (1997)
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Not much mystery here, the VDP2 is responsible for the last step of sending the processed signal to the video encoder.
@@ -217,14 +202,11 @@ For this reason, most games ended up dramatically ranging in quality since each 
 {{< tabs >}}
 
 {{< tab active="true" name="3D modelling" >}}
-
-
-{{< float_block >}}
-  {{< linked_img src="3d/models.png" alt="3D Models" >}}
-  <figcaption class="caption">3D models of characters without textures or background
-  <br>Notice the primitives used to build the models
-  <br>Virtua Fighter Remix (1995)</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="3d/models.png" alt="3D Models" >}}
+3D models of characters without textures or background  
+Notice the primitives used to build the models  
+Virtua Fighter Remix (1995)
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 So far we've been using single quadrilaterals to form sprites or background layers. But what if we grab multiple primitives and arrange them to form a more complex figure? This is how 3D models come to fruition.
@@ -236,11 +218,10 @@ In a nutshell, the CPUs and SCU are tasked with formulating a 3D world and proje
 
 {{< tab name="Pixel processing" >}}
 
-{{< float_block >}}
-  {{< linked_img src="3d/complete.png" alt="3D Scene" >}}
-  <figcaption class="caption">Rendered scene with 3D models and backgrounds
-  <br>Virtua Fighter Remix (1995)</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="3d/complete.png" alt="3D Scene" >}}
+Rendered scene with 3D models and backgrounds  
+Virtua Fighter Remix (1995)
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Either VDP can draw this new 3D space and stamp textures and effects. Now, which chip is 'in charge' varies between each game.
@@ -256,17 +237,15 @@ Some prioritised the VDP1 to draw the closest polygons and left the VDP2 to proc
 These are some examples of characters that were re-designed for this console, the models are interactive so do try to fiddle with them!
 
 {{< side_by_side >}}
-  <div class="toleft canvas-model">
-    {{< threejs_canvas model="sonic_r" >}}
-    <figcaption class="caption">Sonic in Sonic R (1997)
-    <br>298 triangles</figcaption>
-  </div>
+  {{< threejs_canvas model="sonic_r" class="toleft" >}}
+Sonic in Sonic R (1997)  
+298 triangles
+  {{< /threejs_canvas >}}
 
-  <div class="toright canvas-model">
-    {{< threejs_canvas model="sonic_r_tails" >}}
-    <figcaption class="caption">Tails in Sonic R (1997)
-    <br>425 triangles</figcaption>
-  </div>
+  {{< threejs_canvas model="sonic_r_tails" class="toright" >}}
+Tails in Sonic R (1997)  
+425 triangles
+  {{< /threejs_canvas >}}
 {{< /side_by_side >}}
 
 ### An introduction to the visibility problem
@@ -277,17 +256,15 @@ Now, unlike academic/professional equipment, consumer hardware is incredibly lim
 
 {{< float_group >}}
 
-{{< float_block >}}
-  {{< linked_img src="projectz.jpg" alt="Project Z" >}}
-  <figcaption class="caption">This engine ditched Z-sort in favour of a binary space partitioning (BSP) approach, fixing the glitches
-  <br>Project Z-Treme (2019, Homebrew)</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="projectz.jpg" alt="Project Z" >}}
+This engine ditched Z-sort in favour of a binary space partitioning (BSP) approach, fixing the glitches.  
+Project Z-Treme (2019, Homebrew)
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 The Sega Saturn approach is what I consider a 'semi-solved' case. The VDP1 doesn't implement any VSD function: You either feed the geometry in the correct order or you get a mess. However, Sega provided a graphics library called 'SGL' that implemented a solution called **Z-sort** or **Painter's algorithm** which performs **polygon sorting by software**. 
 
 Essentially, SGL allocates a buffer to sort the polygons based on the distance from the camera (from furthest to nearest), then, issues the display commands to the VDP1 in that order.
-
 {{% /inner_markdown %}}
 
 {{< /float_group >}}
@@ -305,16 +282,14 @@ As a workaround, games can activate the 'mesh' property on a texture. With 'mesh
 As you may suspect, this just wasn't viable for some games, so at the end, these had no option but to ditch half-transparency all-together... Although, some studios found ingenious fixes, take a look at these two cases:
 
 {{< side_by_side >}}
-  <div class="toleft">
-    {{< video src="daytona" >}}
-    <figcaption class="caption">Sega's Daytona (1993)</figcaption>
-  </div>
-  
-  <div class="toright">
-    {{< video src="sonicr" >}}
-    <figcaption class="caption">Traveller's Tales' Sonic R (1997)</figcaption>
-  </div>
-  <figcaption class="caption">Both games command the VDP1 to draw foreground objects and background scenery. The VDP2 draws instead the landscape image far away and the stats in front of the 3D models. With this layout, VDP1 models with half-transparency won't refract the VDP2's landscape as the VDP1 is not aware of the VDP2's frame-buffers.</figcaption>
+  {{< video src="daytona" class="toleft" >}}
+Sega's Daytona (1993)
+  {{< /video >}}
+  {{< video src="sonicr" class="toright" >}}
+Traveller's Tales' Sonic R (1997)
+  {{< /video >}}
+
+  {{< figcaption >}}Both games command the VDP1 to draw foreground objects and background scenery. The VDP2 draws instead the landscape image far away and the stats in front of the 3D models. With this layout, VDP1 models with half-transparency won't refract the VDP2's landscape as the VDP1 is not aware of the VDP2's frame-buffers.{{< /figcaption >}}
 {{< /side_by_side >}}
 
 Apart from my terrible gameplay, you'll notice that the background of the first game pops out of nowhere (no half-transparency) whereas the second game not only accomplished half-transparency but also a **fading effect**: Traveller's Tales found a workaround by changing the 'mix ratio' registers of the VDP2 (used for defining the texture's alpha) combined with switching the lighting levels as the character gets closer.

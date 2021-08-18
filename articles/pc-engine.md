@@ -69,10 +69,9 @@ One thing I didn't mention *yet* is that NEC also added a **Memory Management Un
 
 This MMU is very different from any modern-day MMU. The one found in the PC Engine is composed of **eight 8-bit registers** (called **Mapping Register** or 'MPR') which are combined with the CPU's 16 address lines to form a 21-bit address bus.
 
-{{< centered_container >}}
-  {{< linked_img src="mmu.png" alt="MMU Address Diagram" >}}
-  <figcaption class="caption">Addressing approach of the MMU</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="mmu.png" alt="MMU Address Diagram" class="centered-container" >}}
+Addressing approach of the MMU
+{{< /figure_img >}}
 
 This works as follows:
 1. The CPU can read from and/or write to any MPR using the special `TAM` and `TMA` instructions, respectively.
@@ -93,10 +92,9 @@ This is taken care by the **Hudson Soft HuC6270**, a separate chip also referred
 
 First things first, the VDC is a **tile engine** (pretty much the standard until the 5th generation showed up) but notice how the PC Engine includes **64 KB of VRAM** which is a significant amount compared to the competition. This may lead to a new type of content, which we'll check later on.
 
-{{< centered_container >}}
-  {{< linked_img src="graphics/vdc.png" alt="VDC Memory Diagram" >}}
-  <figcaption class="caption">Memory architecture of the VDP</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="graphics/vdc.png" alt="VDC Memory Diagram" class="centered-container" >}}
+Memory architecture of the VDP
+{{< /figure_img >}}
 
 The way graphics data is arranged is a bit confusing: Both CPU and VDC use 16-bit addresses, but while the CPU can only handle 8-bit words, the HuC6270 stores 16-bit words in VRAM. This means that a single address in RAM contains a byte while an address in VRAM stores two bytes, so developers had to watch out for that discrepancy when transferring data to VRAM.
 
@@ -112,18 +110,11 @@ Now let's see how a frame is drawn step by step, for this, I'll borrow *Bonk's A
 
 {{< tabs >}}
 {{< tab active="true" name="Tiles" >}}
-
-{{< float_block >}}
-  {{< tabs nested="true" class="pixel desktop-margined" >}}
-    {{< tab name="Background" active="true" >}}
-      {{< linked_img src="graphics/tiles_background.png" >}}
-    {{< /tab >}}
-    {{< tab name="Sprites" >}}
-      {{< linked_img src="graphics/tiles_sprites.png" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Some tiles found in VRAM</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" float="true" class="pixel desktop-margined" figure="true" >}}
+  {{< tab_img name="Background" active="true" src="graphics/tiles_background.png" >}}
+  {{< tab_img name="Sprites" src="graphics/tiles_sprites.png" >}}
+  {{< figcaption >}}Some tiles found in VRAM{{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 As a quick reminder, tiles are just **8x8 pixel bitmaps** that the renderer fetches to draw portions of the screen. With the VDC, the frame is composed of two planes: The background layer and the sprite layer.
@@ -138,19 +129,14 @@ The video encoder is a separate chip that stores **32 colour palettes** (16 for 
 {{< /tab >}}
 
 {{< tab name="Storing tiles" >}}
-
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="Background" active="true" >}}
-      {{< linked_img src="graphics/storagetiles.png" >}}
-      <figcaption class="caption">How a single background tile is structured</figcaption>
-    {{< /tab >}}
-    {{< tab name="Sprites" >}}
-      {{< linked_img src="graphics/storagetiles_sprites.png" class="pico" >}}
-      <figcaption class="caption">How a single sprite tile is structured</figcaption>
-    {{< /tab >}}
-  {{< /tabs >}}
-{{< /float_block >}}
+{{< tabs nested="true" float="true" >}}
+  {{< tab_figure_img name="Background" active="true" src="graphics/storagetiles.png" >}}
+How a single background tile is structured
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Sprites" src="graphics/storagetiles_sprites.png" class="pico" >}}
+How a single sprite tile is structured
+  {{< /tab_figure_img >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 (This section is written for those interested in how Hudson took advantage of 64 KB of VRAM with that 16-bit granularity, but you don't have to understand it completely to be able to follow the rest of the article).
@@ -165,11 +151,9 @@ The same happens with Sprite tiles, but since they are 16x16 bitmaps, each bitma
 {{< /tab >}}
 
 {{< tab name="Background Layer" >}}
-
-{{< float_block >}}
-  {{< linked_img src="graphics/background.png" class="pixel" >}}
-  <figcaption class="caption">Rendered background layer</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="graphics/background.png" class="pixel" >}}
+Rendered background layer
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 The background layer is constructed by filling the **Background Attribute Table** with entries in VRAM, the position of each entry defines X/Y coordinate of the tile in the screen. Each entry contains the tile index from the Character Generator and the colour palette.
@@ -182,11 +166,9 @@ As always, this layer is scrollable by changing the value of some registers in t
 {{< /tab >}}
 
 {{< tab name="Sprite Layer" >}}
-
-{{< float_block >}}
-  {{< linked_img src="graphics/sprites.png" class="pixel" >}}
-  <figcaption class="caption">Rendered Sprite layer</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="graphics/sprites.png" class="pixel" >}}
+Rendered Sprite layer
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 The VDC contains an internal memory called **Sprite Attribute Table Buffer** where up to 64 sprites can be defined. Each entry of the table stores the independent X/Y position, colour palette, tile index and H/V flip. Furthermore, there's an attribute allowing to combine a sprite with another one.
@@ -201,11 +183,9 @@ Regarding limitations, there can only be up to 16 sprites per scan-line. On the 
 {{< /tab >}}
 
 {{< tab name="Result" >}}
-
-{{< float_block >}}
-  {{< linked_img src="graphics/complete.png" class="pixel" alt="Result" >}}
-  <figcaption class="caption">Tada!</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="graphics/complete.png" class="pixel" alt="Result" >}}
+Tada!
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 So far we've seen how the VDC does all the heavy work, but the last task is actually delegated to the **Video Encoder** or 'VCE'. Hudson named this chip **HuC6260** and its basic function is to receive 9-bit data streams from the VDC, apply the colour palettes, and send the result to the TV (in the form of an analogue signal).
@@ -222,19 +202,15 @@ The Video encoder outputs RGB (along with Sync) and YPbPr, this is ideal for use
 
 {{< float_group >}}
 
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="RF" active="true" >}}
-      {{< linked_img src="rfport.jpg" >}}
-      <figcaption class="caption">RF port at the right side of the PC Engine</figcaption>
-    {{< /tab >}}
-    {{< tab name="Accessory" >}}
-      {{< linked_img src="turbo_booster.png" >}}
-      <figcaption class="caption">The 'Turbo Booster' for the TurboGrafx-16
-      <br>Connected to the Expansion port to supply video composite and power</figcaption>
-    {{< /tab >}}
-  {{< /tabs >}}
-{{< /float_block >}}
+{{< tabs nested="true" float="true" >}}
+  {{< tab_figure_img name="RF" active="true" src="rfport.jpg" >}}
+RF port at the right side of the PC Engine
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Accessory" src="turbo_booster.png" >}}
+The 'Turbo Booster' for the TurboGrafx-16
+Connected to the Expansion port to supply video composite and power
+  {{< /tab_figure_img >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 ... Unfortunately, Hudson decided to fit an RF modulator as the only way to get video out-of-the-box, so it's not that great after all. But then again, the PC Engine was designed in the 80s, so this approach guaranteed compatibility with all kinds of TVs (assuming they are from the same region of the console).
@@ -251,11 +227,9 @@ On the bright side, the Expansion Port contains pins that carry RGB video and mu
 The PC Engine contains a [Programmable Sound Generator]({{< ref "master-system#audio" >}}) or 'PSG' like many other third-generation consoles analysed in this website. On the other side, this PSG particularly relies on the **waveform memory** (also called 'waveform buffer') approach to synthesise sound, as opposed to using a pre-defined set of waveforms (i.e. pulse, triangle, etc). Waveform memory enables programmers to define their own waveforms, which gives more flexibility for soundtrack arrangements.
 
 {{< float_group >}}
-
-{{< float_block >}}
-  {{< video src="rtype" >}}
-  <figcaption class="caption">R-Type (1987)</figcaption>
-{{< /float_block >}}
+{{< video src="rtype" float="true" >}}
+R-Type (1987)
+{{< /video >}}
 
 {{% inner_markdown %}}
 There are **six channels** in this system, each one is set up by writing to a set of registers, there's quite a lot of attributes available to customise so here are the most important ones:
@@ -263,7 +237,6 @@ There are **six channels** in this system, each one is set up by writing to a se
   - Some games like *Fire Pro Wrestling 2* and *Bloody Wolf* even altered the values during playback to obtain special sounds (at the expense of audible clicks during transfers).
 - **Frequency control**: Two 8-bit registers alter the frequency of the channel to produce different musical notes with the same waveform.
 - **Amplitude level**: A single 8-bit register stores two 4-bits values that specify how loud the channel will sound. The two values correspond to the 'Left' and 'Right' **panning control**, a pioneering feature compared to what the competition offered.
-
 {{% /inner_markdown %}}
 
 {{< /float_group >}}
@@ -287,11 +260,9 @@ The PSG will mix everything and output a stereo signal. But again, unless you fi
 This console had a massive amount of accessories, some of which completely enhanced the console internally (by providing more RAM, for instance) and externally (by adding more ports and/or the possibility to read other storage mediums).
 
 {{< float_group >}}
-
-{{< float_block >}}
-  {{< linked_img src="expansion.jpg" >}}
-  <figcaption class="caption">Expansion port at the back of the PC Engine</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="expansion.jpg" >}}
+Expansion port at the back of the PC Engine
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 This is greatly attributed to the inclusion of the **Expansion Port** on the back of the console, which gave access to the following components:
@@ -331,11 +302,9 @@ Programs are written in 6502 assembly, spiced with extra 65C02 opcodes and the o
 Instead of relying on those *chunky and boring* cartridges everyone else seems to like, NEC/Hudson devised yet another medium, this time with the size of a credit card, called **HuCard**. They derive from an older medium called 'Bee Card', used by some MSX games.
 
 {{< float_group >}}
-
-{{< float_block >}}
-  {{< linked_img src="hucard.jpg" class="pico" >}}
-  <figcaption class="caption">Typical retail game</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="hucard.jpg" class="pico" >}}
+Typical retail game
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Curiously enough, they are very similar to the [Sega Card]({{< ref "master-system#medium" >}}) but they contain 38 pins instead of 35. Internally, the differences are more significant:
@@ -351,31 +320,27 @@ That expansion port opened the door to such a massive amount of accessories and 
 
 {{< float_group >}}
 
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="Reader" active="true" >}}
-      {{< linked_img src="cd/reader.png" >}}
-      <figcaption class="caption">CD-ROM² Reader (TurboGrafx-16 version)
-      <br>Were they in the Discman business back then?</figcaption>
-    {{< /tab >}}
-    {{< tab name="Compartment" >}}
-      {{< linked_img src="cd/compartment.png" >}}
-      <figcaption class="caption">Base required to connect the console with the reader
-      <br>It also supplies power and composite video out</figcaption>
-    {{< /tab >}}
-    {{< tab name="Fitted" >}}
-      {{< linked_img src="cd/fitted.png" >}}
-      <figcaption class="caption">How it looked with everything fitted</figcaption>
-    {{< /tab >}}
-  {{< /tabs >}}
-{{< /float_block >}}
+{{< tabs nested="true" float="true" >}}
+  {{< tab_figure_img name="Reader" active="true" src="cd/reader.png" >}}
+CD-ROM² Reader (TurboGrafx-16 version)  
+Were they in the Discman business back then?
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Compartment" src="cd/compartment.png" >}}
+Base required to connect the console with the reader  
+It also supplies power and composite video out
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Fitted" src="cd/fitted.png" >}}
+How it looked with everything fitted
+  {{< /tab_figure_img >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 Let's take a look at the **CD-ROM²** expansion, which consists in a CD-ROM reader and a special HuCard called **System Card**, the latter acted as a **BIOS** to bootstrap the game and provide some routines to interface the reader. Internally, the reader included **64 KB of RAM** for general purpose, another **64 KB of RAM** to stream ADPCM samples and finally, **2 KB** for save data. As you can guess, this enabled game developers to take the advantage of extra storage and CD audio, while giving publishers the economic relief to distribute their games in a non-proprietary medium.
+{{% /inner_markdown %}}
+
+{{< /float_group >}}
 
 Years later, NEC released another CD module called **Super CD-ROM²** and while the reader's hardware remained mostly the same, its general-purpose RAM was incremented to 256 KB. Customers that already owned a CD-ROM² unit were able to 'update it' by purchasing the **Super System Card**, which included the extra RAM (and one more I/O routine!). On top of all that, NEC later shipped new BIOS updates called **Arcade Card**, which in this case contained **2 MB of RAM**.
-{{% /inner_markdown %}}
-{{< /float_group >}}
 
 CD-based games strictly depended on the BIOS card they were developed for, although newer cards were backwards compatible (with some exceptions). Thus, the Arcade Card is the preferable choice for users that want to play *almost* all CD-ROM based games. I mentioned 'almost' since third party companies also released their own BIOS cards (i.e. 'Games Express CD Card'), and these were required to play games specifically from that studio.
 
@@ -397,11 +362,10 @@ On the other side, CD-ROM games are neither region-locked nor copy-protected, bu
 
 ## That's all folks
 
-{{< centered_container >}}
-  {{< linked_img src="mypc.jpg" alt="My PC Engine" >}}
-  <figcaption class="caption">My PC Engine displaying from an RF cable (<i>nostalgic purposes... I think</i>)
-  <br>Big thanks to Matt for donating it!</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="mypc.jpg" alt="My PC Engine" class="centered-container" >}}
+My PC Engine displaying from an RF cable (_nostalgic purposes... I think_)  
+Big thanks to Matt for donating it!
+{{< /figure_img >}}
 
 This is it! You've just read the last article of the year.
 

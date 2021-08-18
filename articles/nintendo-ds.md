@@ -4,7 +4,7 @@ date: 2020-08-11
 subtitle: Novel forms of interaction
 releaseDate: 2004-11-21
 cover: "nintendods"
-javascript: ['audioswitcher', 'plyr', 'threejs']
+javascript: ['audioswitcher', 'threejs']
 generation: 7
 top_tabs:
   Models:
@@ -46,13 +46,10 @@ While this is not the first parallel system analysed for [this series]({{< ref "
 That being said, let's take a look now at the two CPUs:
 
 {{< tabs >}}
-
 {{< tab name="ARM7TDMI" active="true" >}}
-
-{{< float_block >}}
-  {{< linked_img src="cpu/arm7_core.png" alt="ARM7 Diagram" >}}
-  <figcaption class="caption">ARM7 structure and components</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="cpu/arm7_core.png" alt="ARM7 Diagram" >}}
+ARM7 structure and components
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Starting with the more familiar one, the **ARM7TDMI** is the same CPU found on the [GameBoy Advance]({{< ref "game-boy-advance#cpu" >}}) but now running at **~34 MHz** (double its original speed). It still includes all its original features (especially [Thumb]({{< ref "game-boy-advance#whats-new" >}})).
@@ -63,11 +60,9 @@ Now for the changes: Because Nintendo's engineers placed the ARM7 next to most o
 {{< /tab >}}
 
 {{< tab name="ARM946E-S" >}}
-
-{{< float_block >}}
-  {{< linked_img src="cpu/arm9_core.png" alt="ARM9 Diagram" >}}
-  <figcaption class="caption">ARM9 structure and components</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="cpu/arm9_core.png" alt="ARM9 Diagram" >}}
+ARM9 structure and components
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Here is the 'main' CPU of the Nintendo DS running at **~67 MHz**. If you ignore the ill-fated ARM8 series, you could say the ARM946E-S is the 'next-gen' version of the ARM7. Part of the **ARM9 series**, this core in particular not only inherits all the features of the **ARM7TDMI** but also includes some additional bits:
@@ -93,10 +88,9 @@ I guess with hardware like this, it's easy to figure out the *real* reason kids 
 
 So far I've talked about how the two CPUs work individually. But to work as a whole, they require to co-operate constantly. To accomplish this, both CPUs directly 'talk' to each other using a dedicated **FIFO unit**, this block of data holds two 64-byte queues (up to 16 elements) for **bi-directional communication**.
 
-{{< centered_container >}}
-  {{< linked_img src="cpu/fifo.png" alt="FIFO Diagram" >}}
-  <figcaption class="caption">Representation of FIFO unit</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="cpu/fifo.png" alt="FIFO Diagram" class="centered-container" >}}
+Representation of FIFO unit
+{{< /figure_img >}}
 
 This works as follows: The 'sender' CPU (that effectively needs to send the other a message) places a 32-bit block of data in the queue, the CPU acting as a 'receiver' can then pull that block from the queue and perform the required operations with it.
 
@@ -107,11 +101,9 @@ Whenever there's a value written on the queue, either CPU can fetch it manually 
 Just like its predecessor, RAM is spread around many different locations, enabling to prioritise data placement by speed of access. In summary, we have the following general-purpose memory available:
 
 {{< float_group >}}
-
-{{< float_block >}}
-  {{< linked_img src="cpu/ram.png" alt="RAM Model" >}}
-  <figcaption class="caption">RAM model of this console</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="cpu/ram.png" alt="RAM Model" >}}
+RAM model of this console
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 - **32 KB of WRAM** (Work RAM) using a **32-bit** bus: To hold fast data shared between the ARM7 and ARM9.
@@ -120,6 +112,7 @@ Just like its predecessor, RAM is spread around many different locations, enabli
 - **4 MB of PSRAM** using a **16-bit** bus: A slower type, available from either CPU and it's controlled by a memory interface unit.
   - Pseudo SRAM or 'PSRAM' is a variant of DRAM which, by contrast, performs refreshes from within the chip. Therefore, behaving like SRAM (the faster, but more expensive alternative to DRAM). This design reminds me of [1T&#8209;SRAM]({{< ref "gamecube#clever-memory-system" >}}).
 {{% /inner_markdown %}}
+
 {{< /float_group >}}
 
 ### Backwards compatibility
@@ -136,7 +129,7 @@ With so many sophisticated components fitted in a single and inexpensive chip, i
 
 {{< tabs >}}
 
-{{< tab name="Unused Power" active=true >}}
+{{< tab name="Unused Power" active="true" >}}
 
 {{% inner_markdown %}}
 Sometimes I wonder how Nintendo planned the way the two CPU's would be used, and if they already assumed some performance would be hit by the design they chose. 
@@ -152,7 +145,6 @@ For a detailed report, I recommend checking out Martin Korth's document (see the
 
 {{< /tab >}}
 
-
 {{< tab name="A question about the hardware choice" >}}
 
 {{% inner_markdown %}}
@@ -164,8 +156,8 @@ But here's where my question resides: Considering the new developments in the AR
 
 I don't mean to criticise Nintendo's choice, but I believe the amount of emerging technology was just too great for me to ignore. I guess their choice was done in an effort to preserve battery life and maintain production costs (by using the same CPU found in the GBA).
 {{% /inner_markdown %}}
-{{< /tab >}}
 
+{{< /tab >}}
 {{< /tabs >}}
 
 ---
@@ -182,10 +174,9 @@ The graphics subsystem can draw 2D and 3D objects. The former is composed of two
 
 Diving into the internal chip that operates those screens, we can observe this console has distinctive hardware for 2D and 3D geometry. The 2D data is operated by a familiar engine, the PPU (now just called **2D engine**), while 3D data is handled by a completely new subsystem. It's worth mentioning that while this is not the [first console]({{< ref "nintendo-64">}}) to debut 3D graphics, it's still the first one to include an in-house design to render 3D graphics.
 
-{{< centered_container >}}
-  {{< linked_img src="gpu/overall.png" alt="GPU Layout" >}}
-  <figcaption class="caption">Layout of the different graphic units</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="gpu/overall.png" alt="GPU Layout" class="centered-container" >}}
+Layout of the different graphic units
+{{< /figure_img >}}
 
 Now, these engines must be linked to either screen, this not an issue for 2D-only games since there's one 2D engine for each screen. However, for those games who want to show off cutting-the-edge features, there's only one 3D engine available. As a consequence, 3D capabilities are only available on one screen at a time. But what about mixing 2D and 3D objects? Absolutely, let me explain each engine separately so we can discuss this afterwards.
 
@@ -196,13 +187,11 @@ Before we review each stage, I recommend reading a [previous article]({{< ref "g
 To help the explanations, this time I'm going to borrow the assets of *New Super Mario Bros*.
 
 {{< tabs >}}
-
 {{< tab name="Tiles" active="true" >}}
-{{< float_block >}}
-  {{< linked_img class="pixel" src="mario/tiles.png" alt="Tiles" >}}
-  <figcaption class="caption">Some tiles found in VRAM
-  <br>For demonstration purposes, a default palette is used</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" class="pixel" src="mario/tiles.png" alt="Tiles" >}}
+Some tiles found in VRAM  
+For demonstration purposes, a default palette is used
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 By now we all know how a basic tile system works, but how are tiles particularly managed in this console? Well, there's a total of **656 KB of VRAM** available, and this chunk is split into different banks: Four 128 KB, one 64 KB, one 32 KB and three 16 KB. Programmers are free to fill the banks with drawings and then point the engine where the required data is. Both engines can read from any of these banks, but they can't access the same one concurrently.
@@ -237,21 +226,15 @@ These modes can't be chosen arbitrary, instead, the console provides a series of
 
 {{< tab name="Background modes" >}}
 
-{{< float_block >}}
-    {{< tabs nested="true" class="pixel" >}}
-    {{< tab name="Layer 0" active="true" >}}
-      {{< linked_img src="mario/bg1.png" >}}
-    {{< /tab >}}
-    {{< tab name="Layer 2" >}}
-      {{< linked_img src="mario/bg2.png" >}}
-    {{< /tab >}}
-    {{< tab name="Layer 3" >}}
-      {{< linked_img src="mario/bg3.png" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Affine background layers in use
-  <br>Layer 0 is transformed in real-time to simulate the clouds moving</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" float="true" class="pixel" figure="true" >}}
+  {{< tab_img name="Layer 0" src="mario/bg1.png" active="true" >}}
+  {{< tab_img name="Layer 2" src="mario/bg2.png" >}}
+  {{< tab_img name="Layer 3" src="mario/bg3.png" >}}
+  {{< figcaption >}}
+Affine background layers in use  
+Layer 0 is transformed in real-time to simulate the clouds moving
+  {{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 Here the background types are put into action. 'Main' and 'Sub' provide six modes of operations, all of them generate four background layers, but each one will have different capabilities:
@@ -269,11 +252,9 @@ Here the background types are put into action. 'Main' and 'Sub' provide six mode
 {{< /tab >}}
 
 {{< tab name="Sprites" >}}
-
-{{< float_block >}}
-  {{< linked_img class="pixel" src="mario/sprites.png" alt="Sprites" >}}
-  <figcaption class="caption">Rendered Sprite layer</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" class="pixel" src="mario/sprites.png" alt="Sprites" >}}
+Rendered Sprite layer
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Sprites or 'Objects' inherit the same functionality from the GBA's PPU, but we have two considerable additions.
@@ -286,11 +267,9 @@ Secondly, OAM can now reference **bitmaps from VRAM** as opposed to only using t
 {{< /tab >}}
 
 {{< tab name="Result" >}}
-
-{{< float_block >}}
-  {{< linked_img class="pixel" src="mario/halfcomplete.png" alt="Result" >}}
-  <figcaption class="caption">All layers merged... is there something missing?</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" class="pixel" src="mario/halfcomplete.png" alt="Result" >}}
+All layers merged... is there something missing?
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 As each layer renders on-the-fly, the final stage is tasked with merging everything and send it to the selected screen. This is pretty much what happens with previous PPU-based consoles, does that mean we are done here?
@@ -308,12 +287,10 @@ If you played with a Nintendo DS before, you know by now that this console can d
 Revisiting the 'Background modes' section, you'll notice every mode has at least one static background, this is because you can fill that layer with graphics produced by the 3D engine. The only caveat is that only the 'Main' can do this, hence one of the reasons Mode 6 is only available for 'Main'.
 
 {{< tabs >}}
-  {{< tab active="true" name="Geometry Engine" >}}
-    
-{{< float_block >}}
-  {{< linked_img src="gpu/geometry.png" alt="Geometry Engine diagram" >}}
-  <figcaption class="caption">Architecture of the Geometry Engine</figcaption>
-{{< /float_block >}}
+{{< tab active="true" name="Geometry Engine" >}}    
+{{< figure_img float="true" src="gpu/geometry.png" alt="Geometry Engine diagram" >}}
+Architecture of the Geometry Engine
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 If you read any of the articles from the 4th or 5th generation, you may be wondering... Where's the [SIMD processor]({{< ref "sega-saturn#graphics" >}})? That's a good question because the ARM9 is not particularly good at vector operations and I don't think the dedicated divider is enough. That's why Nintendo embedded a component called **Geometry Engine** that takes care of **vertex transformations**, **projection**, **lighting**, **clipping**, **culling** and **polygon sorting**, the latter one is essential to properly use the transparency features.
@@ -326,11 +303,9 @@ Anyway, this engine is commanded using a **Command FIFO** which is filled with d
 {{< /tab >}}
 
 {{< tab name="Rendering Engine" >}}
-
-{{< float_block >}}
-  {{< linked_img src="gpu/rendering.png" alt="Rendering Engine diagram" >}}
-  <figcaption class="caption">Architecture of the Rendering Engine</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="gpu/rendering.png" alt="Rendering Engine diagram" >}}
+Architecture of the Rendering Engine
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 The rendering engine is in charge of converting vectors to pixels (rasterizing), colouring them (texture mapping) and applying lighting and other effects. It relies on **perspective correction** and **Gouraud shading** for interpolating textures and light, respectively. Moreover, the unit provides modern features like **fog**, **alpha blending**, **depth buffering** (either [Z-buffering]({{< ref "nintendo-64#modern-visible-surface-determination" >}}) or a variant called W-buffering), **stencil tests** and **anti-aliasing**. 
@@ -344,12 +319,10 @@ Regarding effects, the unit also provides **shadowing** and a distinct feature c
 
 {{< /tab >}}
 
-  {{< tab name="Result" >}}
-    
-{{< float_block >}}
-  {{< linked_img class="pixel" src="mario/complete.png" alt="Complete frame" >}}
-  <figcaption class="caption">Ah, that's more like it</figcaption>
-{{< /float_block >}}
+{{< tab name="Result" >}}
+{{< figure_img float="true" class="pixel" src="mario/complete.png" alt="Complete frame" >}}
+Ah, that's more like it
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Instead of writing the results back to a frame-buffer for display, the rendering engine will write to a block called **Colour Buffer** which stores up to 48 scan-lines. Each scan-line is fetched by the 2D engine to fill the BG0 layer in a FIFO manner.
@@ -370,34 +343,28 @@ Some of the first games released for this console attempt to resemble the ones f
 {{< tab name="First example" active="true" >}}
 
 {{< side_by_side >}}
-  <div class="toleft canvas-model">
-    {{< linked_img class="pixel" src="comparison/mario_n64.png" alt="Complete frame" >}}
-  <figcaption class="caption">Super Mario 64 (1996)
-  <br>Rendered at 320×240 pixels</figcaption>
-  </div>
-
-  <div class="toright canvas-model">
-    {{< linked_img class="pixel" src="comparison/mario_nds.png" alt="Complete frame" >}}
-    <figcaption class="caption">Super Mario 64 DS (2004)
-    <br>Rendered at 256x192 pixels</figcaption>
-  </div>
+  {{< figure_img class="pixel" src="comparison/mario_n64.png" alt="Complete frame" class="toleft" >}}
+Super Mario 64 (1996)  
+Rendered at 320×240 pixels
+  {{< /figure_img >}}
+  {{< figure_img class="pixel" src="comparison/mario_nds.png" alt="Complete frame" class="toright" >}}
+Super Mario 64 DS (2004)  
+Rendered at 256x192 pixels
+  {{< /figure_img >}}
 {{< /side_by_side >}}
 
 {{< /tab >}}
 {{< tab name="Second example" >}}
 
 {{< side_by_side >}}
-  <div class="toleft canvas-model">
-    {{< linked_img class="pixel" src="comparison/kart_n64.png" alt="Complete frame" >}}
-  <figcaption class="caption">Mario Kart 64 (1996)
-  <br>Rendered at 320×240 pixels</figcaption>
-  </div>
-
-  <div class="toright canvas-model">
-    {{< linked_img class="pixel" src="comparison/kart_nds.png" alt="Complete frame" >}}
-    <figcaption class="caption">Mario Kart DS (2005)
-    <br>Rendered at 256x192 pixels</figcaption>
-  </div>
+  {{< figure_img class="pixel" src="comparison/kart_n64.png" alt="Complete frame" class="toleft" >}}
+Mario Kart 64 (1996)  
+Rendered at 320×240 pixels
+  {{< /figure_img >}}
+  {{< figure_img class="pixel" src="comparison/kart_nds.png" alt="Complete frame" class="toright" >}}
+Mario Kart DS (2005)  
+Rendered at 256x192 pixels
+  {{< /figure_img >}}
 {{< /side_by_side >}}
 
 {{< /tab >}}
@@ -405,7 +372,7 @@ Some of the first games released for this console attempt to resemble the ones f
 
 So, to explain what's happening here, I've organised the different explanations based on what some people said on forums:
 - *NDS' textures look more **blocky*** → The rendering engine does not employ any filter, so textures are interpolated using 'nearest neighbour' approach.
-- *NDS' textures look **richer*** → The rendering engine is not limited by a [4 KB TMEM]({{< ref "nintendo-64#tab-4-2-texture-memory" >}}), there's instead up to 512 KB of VRAM available (apart from compression mechanisms provided) so naturally more data can be loaded.
+- *NDS' textures look **richer*** → The rendering engine is not limited by a [4 KB TMEM]({{< ref "nintendo-64#tab-3-2-texture-memory" >}}), there's instead up to 512 KB of VRAM available (apart from compression mechanisms provided) so naturally more data can be loaded.
 - *NDS' models contain **pixelated edges*** → NDS models are rendered at a lower resolution compared to the N64.
 - *NDS' textures look **distorted** when seen from a distance* → The rasterizer operates [fixed-point]({{< ref "playstation#missing-units" >}}) coordinates. Low resolution and lack of mip-mapping also attribute to aliasing.
 
@@ -416,17 +383,14 @@ That's pretty much in a nutshell, for more specialised cases, you'll have to div
 I've updated the wee model viewer to apply 'nearest neighbour', allowing to visualise Nintendo DS models using your GPU.
 
 {{< side_by_side >}}
-  <div class="toleft canvas-model">
-    {{< threejs_canvas model="mario_ds" >}}
-    <figcaption class="caption">New Super Mario Bros (2004)
-    <br>636 triangles</figcaption>
-  </div>
-
-  <div class="toright canvas-model">
-    {{< threejs_canvas model="dalmatian" >}}
-    <figcaption class="caption">Nintendogs (2005)
-    <br>750 triangles</figcaption>
-  </div>
+  {{< threejs_canvas model="mario_ds" class="toleft" >}}
+New Super Mario Bros (2004)  
+636 triangles
+  {{< /threejs_canvas >}}
+  {{< threejs_canvas model="dalmatian" class="toright" >}}
+Nintendogs (2005)  
+750 triangles
+  {{< /threejs_canvas >}}
 {{< /side_by_side >}}
 
 Despite the fact we talked about a lot of limitations of the graphics subsystem, lots of games did make really good use of it.
@@ -439,11 +403,10 @@ Most of the audio improvements focus on enhancing those PCM channels that the GB
 
 {{< float_group >}}
 
-{{< float_block >}}
-  {{< video src="window" >}}
-  <figcaption class="caption">Last Window: The Secret of Cape West (2010)
-  <br>Showing mixed stereo output</figcaption>
-{{< /float_block >}}
+{{< video src="window" float="true" >}}
+Last Window: The Secret of Cape West (2010)  
+Showing mixed stereo output
+{{< /video >}}
 
 {{% inner_markdown %}}
 Consequently, the new audio system features a total of **16 PCM channels**, allowing to shift the mixing task to the hardware. PCM samples can either be **8-bit** (*GBA-style*), **16-bit** (optimal resolution) or **ACPCM** (compressed form). In any case, the mixer produces a **32 kHz stereo signal** that can be played through the speaker (now stereo) or headphones. The mixer can also write the resulting stereo data to WRAM, enabling the sub-processor (ARM7) to apply some effects such as reverb.
@@ -460,19 +423,19 @@ With all being said, does this mean that the Nintendo DS can finally play encode
 I've constructed this interactive widget that will allow you to compare by yourself how the new audio system affected the new generation of soundtracks. Each widget plays the same score but allows you to alternate between the old and new arrangements (I suggest wearing headphones to really notice the difference). Give it a whirl!
 
 {{< side_by_side >}}
-  <div class="toleft audio-switcher">
-    {{< audio_switcher src1="trial_gba"  label1="GB Advance"
-                       src2="trial_nds"  label2="Nintendo DS" >}}
-    <figcaption class="caption"><strong>GBA:</strong> Gyakuten Saiban (2001, JAP only)
-    <br><strong>NDS:</strong> Phoenix Wright: Ace Attorney (2005)</figcaption>
-  </div>
+  {{< audio_switcher src1="trial_gba"  label1="GB Advance"
+                     src2="trial_nds"  label2="Nintendo DS"
+                     class="toleft" >}}
+**GBA:** Gyakuten Saiban (2001, JAP only)
+**NDS:** Phoenix Wright: Ace Attorney (2005)
+  {{< /audio_switcher >}}
 
-  <div class="toright audio-switcher">
-    {{< audio_switcher src1="yoshi_gba"  label1="GB Advance"
-                       src2="yoshi_nds"  label2="Nintendo DS" >}}
-    <figcaption class="caption"><strong>GBA:</strong> Mario Kart: Super Circuit (2001)
-    <br><strong>NDS:</strong> Mario Kart DS (2005)</figcaption>
-  </div>
+  {{< audio_switcher src1="yoshi_gba"  label1="GB Advance"
+                     src2="yoshi_nds"  label2="Nintendo DS"
+                     class="toright" >}}
+**GBA:** Mario Kart: Super Circuit (2001)  
+**NDS:** Mario Kart DS (2005)
+  {{< /audio_switcher >}}
 {{< /side_by_side >}}
 
 (If you have trouble listening to it, please {{< email "drop me a mail" >}} mentioning the browser and device you are using)
@@ -484,19 +447,19 @@ Be as it may, I had to boost the gain of the GBA soundtrack a little bit to norm
 Let me show you some tricky cases now, where the original console had some unique audio features that weren't straightforward to recreate for this console, but I'll let you be the judge of that:
 
 {{< side_by_side >}}
-  <div class="toleft audio-switcher">
-    {{< audio_switcher src1="mario_snes" label1="SNES"
-                       src2="mario_nds"       label2="Nintendo DS" >}}
-    <figcaption class="caption"><strong>SNES:</strong> Super Mario Kart (1992)
-    <br><strong>NDS:</strong> Mario Kart DS (2005)</figcaption>
-  </div>
+  {{< audio_switcher src1="mario_snes" label1="SNES"
+                      src2="mario_nds"  label2="Nintendo DS"
+                      class="toleft" >}}
+**SNES:** Super Mario Kart (1992)  
+**NDS:** Mario Kart DS (2005)
+  {{< /audio_switcher >}}
 
-  <div class="toright audio-switcher">
-    {{< audio_switcher src1="sonic_megadrive" label1="Mega Drive"
-                       src2="sonic_nds"       label2="Nintendo DS" >}}
-    <figcaption class="caption"><strong>Mega Drive:</strong> Sonic 3D Blast (1996)
-    <br><strong>NDS:</strong> Sonic Chronicles (2008)</figcaption>
-  </div>
+  {{< audio_switcher src1="sonic_megadrive" label1="Mega Drive"
+                     src2="sonic_nds"     label2="Nintendo DS"
+                     class="toright" >}}
+**Mega Drive:** Sonic 3D Blast (1996)  
+**NDS:** Sonic Chronicles (2008)
+  {{< /audio_switcher >}}
 {{< /side_by_side >}}
 
 As you can hear from the first example (especially in the last 10 seconds), it's a bit hard to compete with the features that the SNES' [S-SMP]({{< ref "super-nintendo#audio" >}}) provided.
@@ -514,17 +477,14 @@ To make a long story short, I/O is strictly handled by the ARM7. In fact, you wo
 There's an external memory interface connecting three endpoints: **Slot-1** (where Nintendo DS cards go), **Slot-2** (where GBA cartridges or accessories go) and the **4 MB of PSRAM** (Main memory). The interface can be accessed by both CPUs, but it contains registers that can be modified to prioritise one CPU over the other in case there are two request from the same bus at the same time.
 
 {{< float_group >}}
-
-{{< float_block >}}
-  {{< linked_img src="memoryaccess.png" alt="External memory Model" >}}
-  <figcaption class="caption">External memory model with labelled data bus width</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="memoryaccess.png" alt="External memory Model" >}}
+External memory model with labelled data bus width
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Now, here's the important bit: DS cards are **not memory-mapped**, so for either CPU to read game data, the content must be copied to RAM first. This is done by sending to the cartridge blocks of 8-bit commands referencing 32-bit addresses. Afterwards, the data can be manually retrieved by pulling it from a 32-bit register or through DMA. The data bus is 8-bit wide but can reach speeds of up to **5.96 MB/sec** (as claimed by Nintendo).
 
 The 'backup' chip used for saves (i.e. EEPROM, FLASH or FRAM) is accessed through an SPI bus (serial) which uses its own set of commands and it's connected to a 24-bit address bus.
-
 {{% /inner_markdown %}}
 
 {{< /float_group >}}
@@ -537,19 +497,15 @@ The ARM7 is also connected to another SPI node interfacing the **TouchScreen con
 
 {{< float_group >}}
 
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="Puzzle" active="true" >}}
-      {{< linked_img src="puzzle.png" alt="Hotel Dusk Puzzle" >}}
-      <figcaption class="caption">Hotel Dusk: Room 215 (2007) showing the aforementioned switchboard puzzle
-      <br>To rescue the lassie, the player had to swipe the screen using two fingers at the same time to switch on the lights</figcaption>
-    {{< /tab >}}
-    {{< tab name="Fail" >}}
-      {{< linked_img src="puzzle_fail.png" alt="Hotel Dusk Puzzle Fail" >}}
-      <figcaption class="caption">But if you do it wrong...</figcaption>
-    {{< /tab >}}
-  {{< /tabs >}}
-{{< /float_block >}}
+{{< tabs float="true" nested="true" >}}
+  {{< tab_figure_img name="Puzzle" active="true" src="puzzle.png" alt="Hotel Dusk Puzzle" >}}
+Hotel Dusk: Room 215 (2007) showing the aforementioned switchboard puzzle.  
+To rescue the lassie, the player had to swipe the screen using two fingers at the same time to switch on the lights
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Fail" src="puzzle_fail.png" alt="Hotel Dusk Puzzle Fail" >}}
+But if you do it wrong...
+  {{< /tab_figure_img >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 A curious thing about this touchscreen is that apart from detecting the X/Y positions, it can also return the **diagonal position** (used to calculate the 'pressure value', which represents the area where pressure is being applied). Unfortunately, this was **never exposed in the official SDK**, so as far as I know, no game ended up using this undocumented feature (except homebrew).
@@ -600,23 +556,18 @@ Whether there's a game or not, the system will finish booting by loading an inte
 
 {{< float_group >}}
 
-{{< float_block >}}
-  {{< tabs nested="true" class="desktop-margined" >}}
-    {{< tab name="Home" active="true" >}}
-      {{< linked_img src="shell/home.png" >}}
-      <figcaption class="caption">Home screen</figcaption>
-    {{< /tab >}}
-    {{< tab name="Splash" >}}
-      {{< linked_img src="shell/welcome.png" >}}
-      <figcaption class="caption">You see this screen every time you switch the DS on
-      <br>The 'Nintendo' logo appears when there is a valid card inserted</figcaption>
-    {{< /tab >}}
-    {{< tab name="Settings" >}}
-      {{< linked_img src="shell/settings.png" >}}
-      <figcaption class="caption">Settings screen</figcaption>
-    {{< /tab >}}
-  {{< /tabs >}}
-{{< /float_block >}}
+{{< tabs nested="true" float="true" class="desktop-margined" >}}
+  {{< tab_figure_img name="Home" active="true" src="shell/home.png" >}}
+Home screen
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Splash" src="shell/welcome.png" >}}
+You see this screen every time you switch the DS on  
+The 'Nintendo' logo appears when there is a valid card inserted
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Settings" src="shell/settings.png" >}}
+Settings screen
+  {{< /tab_figure_img >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 The same chip stores the firmware along with some user settings (language, nickname, birthday, alarm and a welcome message) and some system settings (touchscreen calibration, first startup flag, firmware version and wifi settings).
@@ -643,10 +594,9 @@ Oh, there's a lot to talk about here, primarily because the capabilities of this
 This console runs games from three sources, where only two of them can make 'full' utilisation of the hardware:
 {{< float_group >}}
 
-{{< float_block >}}
-  {{< linked_img src="game.jpg" alt="Game" >}}
-  <figcaption class="caption">Example of retail game</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="game.jpg" alt="Game" >}}
+Example of retail game
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 - **NDS or 'Slot-1' cartridge**: This is the main medium used to load native DS games. It's the only medium used for distribution.
@@ -670,17 +620,15 @@ You've seen that the BIOS requires to be split up with separate code for ARM9 an
 For game studios interested in developing games for this console, Nintendo distributed both hardware kits and SDKs with lots of utilities.
 
 {{< tabs >}}
-
 {{< tab name="The hardware" active="true" >}}
-{{% inner_markdown %}}
 
+{{% inner_markdown %}}
 The devkit, called **IS-NITRO-EMULATOR**, consisted of a medium-size blue box containing most of the DS's internal hardware and I/O. This is followed by a thick cable connected to a dummy Nintendo DS case, serving as a 'controller' and display. At request, the devkit was enhanced with optional capabilities like audio/video out, Wifi (by default it was emulated using Ethernet) and debugger. I was expecting the latter to be already included but I realised these units could also be used by test teams.
 
 The kit reads DS cards, but a different type with a larger case and swappable backup chips. These cards are flashed using another unit called **IS-NITRO-WRITER**.
-
 {{% /inner_markdown %}}
-{{< /tab >}}
 
+{{< /tab >}}
 {{< tab name="The software" >}}
 
 {{% inner_markdown %}}
@@ -699,17 +647,17 @@ There are understandable reasons for imposing these norms, such as to maintain q
 
 {{< float_group >}}
 
-{{< float_block >}}
-  {{< linked_img src="kawashima.png" alt="Game" >}}
-  <figcaption class="caption">Dr Kawashima's Brain Training (2005)
-  <br>New categories of games attracted audiences beyond the youth circle</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="kawashima.png" alt="Game" >}}
+Dr Kawashima's Brain Training (2005)  
+New categories of games attracted audiences beyond the youth circle
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 With all the new forms of interaction available, studios had the opportunity to prioritise gameplay experience over graphics.
 
 For the first time in consumer electronics, there was a touchscreen, microphone, wifi and a real-time clock packaged in the same console. Nevertheless, some games even presented new forms of interaction, such as instructing the user to hold the console sideways.
 {{% /inner_markdown %}}
+
 {{< /float_group >}}
 
 ### Network service
@@ -729,6 +677,7 @@ Let's take a look at each area:
 {{< tabs >}}
 
 {{< tab name="Encryption system" active="true" >}}
+
 {{% inner_markdown %}}
 The Nintendo DS mainly uses a symmetric encryption system to encrypt the communication between the Memory Interface and the Slot-1 card. Before we discuss how encryption is performed, let's talk about the algorithms used and how the keys (which will be used to perform encryption) are generated.
 
@@ -736,11 +685,12 @@ The 'Header' area of the card contains a value called **Gamecode** (the unique i
 
 Afterwards, KEY1 is mixed with the internal clock and some other values of the cartridge header to generate a new key called **KEY2**. The fundamental difference with KEY1 is that the former uses random values to make it unpredictable. KEY2 encryption relies on multiple XOR and Shift operations to obfuscate the data.
 {{% /inner_markdown %}}
+
 {{< /tab >}}
 
 {{< tab name="DS card validation" >}}
-{{% inner_markdown %}}
 
+{{% inner_markdown %}}
 As we've seen before, the BIOS includes some routines that validate the NDS card upon startup. This works as follows:
 1. The console retrieves the chip ID of the cartridge, saves it on RAM and then proceeds to enable KEY1 encryption.
 2. The first 2 KB of the 'Secure area' are copied to RAM as well. The first 8 B of this chunk stores a string called **Secure Area ID**, the next values contain some checksums (CRC16 type) and other metadata.
@@ -749,20 +699,19 @@ As we've seen before, the BIOS includes some routines that validate the NDS card
 6. Finally, the rest of the Secure area is fetched in random order and re-constructed in RAM. After this, the firmware is executed.
 
 If everything went well, the firmware will find the required executable of the card in RAM, allowing the user to boot up the game. Otherwise, the game selector will be shown greyed out.
-
 {{% /inner_markdown %}}
+
 {{< /tab >}}
 
 {{< tab name="Download Play protection" >}}
-{{% inner_markdown %}}
 
+{{% inner_markdown %}}
 Programs received via Download Play must be signed by Nintendo using an [RSA signature]({{< ref "wii#tab-7-2-chain-of-trust" >}}) (only Nintendo knows the private key).
 
-This check is performed by the firmware. 
-
+This check is performed by the firmware.
 {{% /inner_markdown %}}
-{{< /tab >}}
 
+{{< /tab >}}
 {{< /tabs >}}
 
 ### Defeat
@@ -772,18 +721,18 @@ If you were a homebrew user back then you probably ran across tons of options av
 {{< tabs >}}
 
 {{< tab name="Existing Slot-2" active="true" >}}
-{{% inner_markdown %}}
 
+{{% inner_markdown %}}
 Because the GBA subsystem still executes cartridges without any protection implemented (aside from [trademark tricks]({{< ref "game-boy#anti-piracy" >}})), existing GBA flashcarts were still compatible with the NDS. This enabled to run GBA homebrew, which worked fine if you didn't mind missing out all the new functionality exclusive to DS games.
 
 As always, flash cartridges also enabled to run pirated ROMs, but since Nintendo couldn't change the protection system of the GBA (as it could potentially render existing games unusable), the company just had to deal with it.
-
 {{% /inner_markdown %}}
+
 {{< /tab >}}
 
 {{< tab name="Enhanced Slot-2" >}}
-{{% inner_markdown %}}
 
+{{% inner_markdown %}}
 After more clandestine research was conducted on the DS BIOS and firmware, it was ultimately discovered that execution of an NDS card could be redirected to the GBA slot. The NDS card wasn't cracked yet, but this method allowed to provisionally bypass the security system of Slot-1 cards and execute **Slot-2 programs in DS mode**.
 
 Thus, a new generation of Slot-2 flashcarts appeared on the market. They embed ARM9 code that is executed once bootstrapped from Slot-1. The bootstrap itself was accomplished using one of these methods discovered (called 'passthrough methods'):
@@ -791,23 +740,22 @@ Thus, a new generation of Slot-2 flashcarts appeared on the market. They embed A
 - Using **WifiMe**: Requires a PC with a compatible Wi-Fi card. With the use of a modified driver, it was possible to broadcast a customised program that could be downloaded to the DS using Download Play. Once booted up, it would redirect execution to Slot-2. This exploited the fact the firmware didn't check the RSA signatures of particular areas of the binary.
 - Using **FlashMe**: A permanent solution. By chaining a previous method and bridging the `SL1` terminal, it was possible to run a homebrew program that could write over the firmware to boot from Slot-2 if a flash cartridge was present. This hack also removed the digital signature check to boot homebrew from Download Play as well.
 
-As expected, Nintendo produced DS revisions that included an updated firmware which patched these tricks. So hackers tried to find other methods that focused on more BIOS exploitation (which is difficult to patch).  
-
+As expected, Nintendo produced DS revisions that included an updated firmware which patched these tricks. So hackers tried to find other methods that focused on more BIOS exploitation (which is difficult to patch).
 {{% /inner_markdown %}}
+
 {{< /tab >}}
 
 {{< tab name="Native Slot-1" >}}
-{{% inner_markdown %}}
 
+{{% inner_markdown %}}
 Martin Korth, the developer of the famous Nintendo DS emulator called 'NO$GBA', later managed to extract the BIOS and reverse engineer the Slot-1 security. With this, newer tools and documentation revealed the true mechanisms of Nintendo DS security. As you have seen in this article, the encryption system worked as long as nobody reversed it (this is a limitation of symmetric encryption systems, unlike asymmetric encryption systems, such as RSA where the private key is never stored).
 
 Anyway, these led to a massive influx of **plug-and-play Slot-1 flashcards** which worked on any type of console and ran Nintendo DS programs **natively**. The passthrough method was also improved with the debut of 'NoPass' cards which allowed to load Slot-2 flashcarts without requiring a genuine game.
 
-Since the encryption system couldn't be altered without making breaking changes that affect all existing retail games, Nintendo ultimately lost this battle. The only thing left was to pursue the legal route, just like they did with their previous console. 
-
+Since the encryption system couldn't be altered without making breaking changes that affect all existing retail games, Nintendo ultimately lost this battle. The only thing left was to pursue the legal route, just like they did with their previous console.
 {{% /inner_markdown %}}
-{{< /tab >}}
 
+{{< /tab >}}
 {{< /tabs >}}
 
 This is my personal opinion, but it's really striking how simple are flashcards compared to other homebrew methods from previous consoles. In older articles, I've described that if users ultimately wanted to run homebrew programs or pirated games, they would have to get down in the rabbit hole and follow some sort of complicated method.
@@ -820,11 +768,10 @@ Another thing, it's also surprising the amount of branded flashcards (ignoring a
 
 ## That's all folks
 
-{{< centered_container >}}
-  {{< linked_img src="myds.jpg" alt="My DS" >}}
-  <figcaption class="caption">My <i>current</i> DS used for this study
-  <br>I actually sold my first one long time ago... I wonder where it's now</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="myds.jpg" alt="My DS" class="centered-container" >}}
+My _current_ DS used for this study
+I actually sold my first one long time ago... I wonder where it's now
+{{< /figure_img >}}
 
 Alrighty! I think I covered 99% of what I wanted to talk about...
 

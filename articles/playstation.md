@@ -175,13 +175,12 @@ The MIPS I architecture is susceptible to **control hazards** and **data hazards
 
 {{< float_group >}}
 
-{{< float_block >}}
-  {{< linked_img src="delay_slots.jpg" alt="Spyro instructions" >}}
-  <figcaption class="caption">Instructions from 'Spyro The Dragon' visualised on the NO$PSX debugger.
-  <br>Notice how <code>LW</code> (load word from memory), <code>JAL</code> (jump and link) and <code>BAL</code> (branch on not equal) are followed by a delay slot to prevent hazards.
-  <br>Marked in red are fillers (useless instructions).
-  <br>Marked in blue perform meaningful operations.</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="delay_slots.jpg" alt="Spyro instructions" >}}
+Instructions from 'Spyro The Dragon' visualised on the NO$PSX debugger.  
+Notice how `LW` (load word from memory), `JAL` (jump and link) and `BAL` (branch on not equal) are followed by a delay slot to prevent hazards.  
+Marked in red are fillers (useless instructions).  
+Marked in blue perform meaningful operations.
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Consequently, MIPS I CPUs exhibit the following behaviour:
@@ -209,18 +208,14 @@ The system features **1 MB of VRAM** that will be used to store the frame buffer
 
 The type of chip fitted (**VRAM**) is dual-ported, like the [Virtual Boy's]({{< ref "virtual-boy#organising-the-content" >}}). VRAM uses two 16-bit buses, which enables concurrent access between the CPU/DMA/GPU and the Video encoder.
 
-{{< centered_container >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="VRAM" active="true" >}}
-      {{< linked_img src="vram/vram.png" >}}
-      <figcaption class="caption">Memory layout using VRAM</figcaption>
-    {{< /tab >}}
-    {{< tab name="SGRAM" >}}
-      {{< linked_img src="vram/sgram.png" >}}
-      <figcaption class="caption">Memory layout using SGRAM</figcaption>
-    {{< /tab >}}
-  {{< /tabs >}}
-{{< /centered_container >}}
+{{< tabs nested="true" centered="true" >}}
+  {{< tab_figure_img name="VRAM" active="true" src="vram/vram.png" >}}
+Memory layout using VRAM
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="SGRAM" src="vram/sgram.png" >}}
+Memory layout using SGRAM
+  {{< /tab_figure_img >}}
+{{< /tabs >}}
 
 Though in later revisions of this console, Sony switched to **SGRAM** chips (the single-ported option using an individual 32-bit data bus). *Boo!*... Well, to be fair, each one comes with its pros and cons. One thing for sure, is that due to the timing differences, later games (such as Jet Moto 3) will display glitched graphics when ran on VRAM-based systems. If you want to know the details, Martin Korth's 'Nocash PSX Specifications' document the different timings and such.
 
@@ -233,11 +228,9 @@ Now, to show how a scene is drawn, I'll mainly use Insomniac's *Spyro: Year of t
 {{< tabs >}}
 
 {{< tab name="Commands" active="true" >}}
-
-{{< float_block >}}
-  {{< linked_img src="commands.png" alt="Commands pipeline" >}}
-  <figcaption class="caption">Basic GPU pipeline</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="commands.png" alt="Commands pipeline" >}}
+Basic GPU pipeline
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 To start with, the CPU sends geometry data (vertices) to the GPU by filling its internal 64 byte FIFO buffer with **commands** (up to three). Essentially, a command states how and where to draw one primitive. 
@@ -250,13 +243,11 @@ The location of the primitive is stated with an X/Y coordinate system pointing t
 {{< /tab >}}
 
 {{< tab name="Visibility approach" >}}
-
-{{< float_block >}}
-  {{< linked_img src="crash.jpg" alt="Crash Bandicoot" >}}
-  <figcaption class="caption">This game used pre-ordered geometry to gain performance 
-  <br>Hence its camera only moves backwards or forward
-  <br>Crash Bandicoot (1996)</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="crash.jpg" alt="Crash Bandicoot" >}}
+This game used pre-ordered geometry to gain performance  
+Hence its camera only moves backwards or forward  
+Crash Bandicoot (1996)
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Just like the [competition]({{< ref "sega-saturn" >}}), the PS1 doesn't include any hardware feature that solves the [visibility problem]({{< ref "sega-saturn#an-introduction-to-the-visibility-problem" >}}). Nonetheless, the GPU handles sorted polygons by providing an **ordering table**: A dedicated table where each entry is indexed using a depth value (also called 'Z-value') and contains the address where the GPU command resides.
@@ -269,11 +260,9 @@ Multiple DMA functions are also provided to assist both CPU and GPU with the cre
 {{< /tab >}}
 
 {{< tab name="Rasterization" >}}
-
-{{< float_block >}}
-  {{< linked_img src="spyro/wireframes.png" alt="Models" >}}
-  <figcaption class="caption">Wireframe view of the scene</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="spyro/wireframes.png" alt="Models" >}}
+Wireframe view of the scene
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Once the commands are decoded by the GPU, it's time to convert the geometry received (vertices) into pixels. This will enable the system to apply texture mapping, effects and ultimately display it on a two-dimensional panel (your TV or monitor). To do this, the GPU allocates a pixel matrix that is used as a working area, this is called a **frame buffer**. Compared to the more complex [Sega Saturn]({{< ref "sega-saturn">}}), the GPU only needs a single frame buffer.
@@ -290,11 +279,9 @@ The generated pixels are not written into the frame buffer right away. Instead, 
 {{< /tab >}}
 
 {{< tab name="Shaders" >}}
-
-{{< float_block >}}
-  {{< linked_img src="spyro/shaders.png" alt="Shaders" >}}
-  <figcaption class="caption">Gouraud shading in action</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="spyro/shaders.png" alt="Shaders" >}}
+Gouraud shading in action
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 In order to apply lighting effects over these polygons, the GPU provides two algorithms:
@@ -309,11 +296,9 @@ The reason for having this choice comes down to the fact that flat shading fills
 {{< /tab >}}
 
 {{< tab name="Textures" >}}
-
-{{< float_block >}}
-  {{< linked_img src="spyro/result.png" alt="Textures" class="pixel" >}}
-  <figcaption class="caption">Textures applied (<i>Tada!</i>)</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="spyro/result.png" alt="Textures" class="pixel" >}}
+Textures applied (_Tada!_)
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Finally, shaded surfaces are blended with textures (2D bitmaps) to produce the final result.
@@ -340,17 +325,14 @@ Once finished, the GPU writes the pixels into the frame buffer area in VRAM, whi
 Let's take a break now from all this theory. Here are some examples of game characters designed from the ground up for the 3D era, they are interactive so I encourage you to check them out!
 
 {{< side_by_side >}}
-  <div class="toleft canvas-model">
-    {{< threejs_canvas model="spyro" >}}
-    <figcaption class="caption">Spyro the Dragon (1998)
-    <br>413 triangles</figcaption>
-  </div>
-
-  <div class="toright canvas-model">
-    {{< threejs_canvas model="crash" >}}
-    <figcaption class="caption">Crash Bandicoot (1996)
-    <br>732 triangles</figcaption>
-  </div>
+  {{< threejs_canvas model="spyro" class="toleft" >}}
+Spyro the Dragon (1998)
+413 triangles
+  {{< /threejs_canvas >}}
+  {{< threejs_canvas model="crash" class="toright" >}}
+Crash Bandicoot (1996)
+732 triangles
+  {{< /threejs_canvas >}}
 {{< /side_by_side >}}
 
 ### Playing with VRAM
@@ -363,12 +345,10 @@ With the available amount of VRAM (1 *whole megabyte*), one could allocate a *ma
 All right, so let's have a 16 bpp 640x480 buffer instead, which leaves 424 KB of VRAM for materials. So far so good? Again, such resolution may be fine on CRT monitors, but not particularly noticeable on those 90s TVs everyone had at their homes. Then, is there any way to optimise the frame-buffer? Introducing **adjustable frame-buffers**.
 
 {{< float_group >}}
-
-{{< float_block >}}
-  {{< linked_img src="vram.jpg" alt="Sonic Adventure" >}}
-  <figcaption class="caption">VRAM visualisation on the NO$PSX debugger
-  <br>You can spot the dual frame buffers, along with textures (to be translated with a colour-lookup table)</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="vram.jpg" alt="Sonic Adventure" >}}
+VRAM visualisation on the NO$PSX debugger.  
+You can spot the dual frame buffers, along with textures (to be translated with a colour-lookup table).
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 In essence, instead of wasting valuable VRAM by using 'unappreciated' resolutions, this console's GPU allows decreasing the dimensions of the frame buffer to effectively increment the space available for other resources. In 'Gears Episode 2' (see 'Sources' section), Halkun shows a setup that divides the 640x480 frame-buffer into two 320x480 ones, and then relies on a technique called **page-flipping** to render multiple scenes at the same time.
@@ -390,11 +370,10 @@ Whereas the PS1 had a very simple and suitable architecture, problems ended up a
 
 {{< tab active="true" name="Distorted models/textures" >}}
 
-{{< float_block >}}
-  {{< video src="ffviii" >}}
-  <figcaption class="caption">Textures jiggle a bit while they move
-  <br>Square Soft's Final Fantasy VIII (1999)</figcaption>
-{{< /float_block >}}
+{{< video src="ffviii" float="true" >}}
+Textures jiggle a bit while they move  
+Square Soft's Final Fantasy VIII (1999)
+{{< /video >}}
 
 {{% inner_markdown %}}
 The routines used for handling geometry and applying textures are known to carry some inaccuracies.
@@ -439,13 +418,11 @@ A GPU with [Z-buffer]({{< ref "nintendo-64#modern-visible-surface-determination"
 {{< /tab >}}
 
 {{< tab name="Pre-rendered graphics" >}}
-
-{{< float_block >}}
-  {{< linked_img src="prerendered.png" alt="Pre-rendered background" >}}
-  <figcaption class="caption">Scene with Pre-rendered background
-  <br>The way models interact and move is essential to <i>trick</i> the user's perception
-  <br>Square Soft's Final Fantasy VII (1997)</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="prerendered.png" alt="Pre-rendered background" >}}
+Scene with Pre-rendered background  
+The way models interact and move is essential to _trick_ the user's perception  
+Square Soft's Final Fantasy VII (1997)
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Let's mention a 'positive' feature now for a change...
@@ -502,10 +479,9 @@ The block controlling the CD drive is an interesting area, you can imagine it as
 
 {{< float_group >}}
 
-{{< float_block >}}
-  {{< linked_img src="cd.png" alt="CD subsystem" >}}
-  <figcaption class="caption">CD Subsystem layout</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="cd.png" alt="CD subsystem" >}}
+CD Subsystem layout
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 This subsystem is composed of:
@@ -547,22 +523,17 @@ Since BIOS ROM access is very slow (it's connected to an 8-bit data bus), the AP
 
 The CPU's reset vector is at `0xBFC00000`, which points to the BIOS ROM.
 
-{{< centered_container >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="Splash" active="true" >}}
-      {{< linked_img src="bios/splash.png" alt="Splash animation" >}}
-      <figcaption class="caption">Famous splash scene after powering on the console</figcaption>
-    {{< /tab >}}
-    {{< tab name="Logo" >}}
-      {{< linked_img src="bios/valid.png" alt="PS Logo" >}}
-      <figcaption class="caption">PlayStation logo showing after a genuine game is inserted</figcaption>
-    {{< /tab >}}
-    {{< tab name="Shell" >}}
-      {{< linked_img src="bios/shell.png" alt="Shell" >}}
-      <figcaption class="caption">The shell is displayed if there isn't any disc inserted</figcaption>
-    {{< /tab >}}
-  {{< /tabs >}}
-{{< /centered_container >}}
+{{< tabs nested="true" centered="true" >}}
+  {{< tab_figure_img name="Splash" active="true" src="bios/splash.png" alt="Splash animation" >}}
+Famous splash scene after powering on the console
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Logo" src="bios/valid.png" alt="PS Logo" >}}
+PlayStation logo showing after a genuine game is inserted
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Shell" src="bios/shell.png" alt="Shell" >}}
+The shell is displayed if there isn't any disc inserted
+  {{< /tab_figure_img >}}
+{{< /tabs >}}
 
 Similarly to the [Saturn]({{< ref "sega-saturn#games" >}})'s boot process, after receiving power, the PS1 will:
 1. Look for the BIOS ROM and execute routines to initialise the hardware.

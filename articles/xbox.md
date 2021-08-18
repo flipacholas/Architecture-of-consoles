@@ -4,7 +4,6 @@ subtitle: A feared competitor
 date: 2020-06-26
 releaseDate: 2001-11-15
 cover: "xbox"
-javascript: [plyr]
 generation: 6
 top_tabs:
   Model:
@@ -61,10 +60,9 @@ Having said that, let us take a look:
 
 {{< tab name="Branding" active="true" >}}
 
-{{< float_block >}}
-  {{< linked_img src="cpu/branding.png" alt="Branding" >}}
-  <figcaption class="caption">How is this study organised</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="cpu/branding.png" alt="Branding" >}}
+How is this study organised
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 First things first, the Xbox's CPU is identified as a **Pentium III**. So what does this mean? Back then (early noughties), the Pentium series represented the next generation of CPUs. They were 'new high-end' that grouped all the fancy technology that made computers super-fast, plus it helped buyers decide which CPU they had to buy if they wanted *the best of the best*.
@@ -123,11 +121,9 @@ Microcode is already embedded in the silicon but it can be patched, allowing Int
 {{< /tab >}}
 
 {{< tab name="The Core" >}}
-
-{{< float_block >}}
-  {{< linked_img src="cpu/core.png" alt="Core" >}}
-  <figcaption class="caption">Coppermine design</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="cpu/core.png" alt="Core" >}}
+Coppermine design
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 There were numerous chips shipped that implement the P6 microarchitecture. Specifically, the Xbox includes one model called **Coppermine**. This was also released as the second revision of the Pentium III (replacing the 'Katmai' core) and features the following components:
@@ -154,11 +150,9 @@ Here's a bit more history: After the years of the P6, Intel planned to succeed i
 At some point in the history of the PC, motherboards grew so much in complexity that new designs had to be developed from the ground up to efficiently tackle emerging needs.
 
 {{< float_group >}}
-
-{{< float_block >}}
-  {{< linked_img src="cpu/motherboard.png" alt="Motherboard" >}}
-  <figcaption class="caption">Overview of Xbox Motherboard</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="cpu/motherboard.png" alt="Motherboard" >}}
+Overview of Xbox Motherboard
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 The new standard developed relied on two dedicated chips to handle most of the motherboard functions. These chips are:
@@ -177,12 +171,10 @@ Both chips are interconnected using a specialised bus called the **HyperTranspor
 The Xbox includes a total of **64 MiB of DDR SDRAM**, this type of RAM is very fast compared to what the competition offers. However, it's also shared across all components of this system. Hence, once more, we find ourselves in front of another **unified memory architecture** or 'UMA' layout.
 
 {{< float_group >}}
-
-{{< float_block >}}
-  {{< linked_img src="cpu/memory.png" alt="Switching Network" >}}
-  <figcaption class="caption">Representation of the switching network
-  <br>GPU uses two banks while the CPU uses a different one, reducing contention in the process</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="cpu/memory.png" alt="Switching Network" >}}
+Representation of the switching network.  
+GPU uses two banks while the CPU uses a different one, reducing contention in the process
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 We have previously seen how [troublesome]({{< ref "playstation-2#preventing-past-mishaps" >}}) this design can be sometimes. Nonetheless, programs can address this issue by spreading their data between different banks of memory. NV2A implements a **switching network** that enables different units (CPU, GPU, etc) to concurrently access them.
@@ -199,11 +191,9 @@ Furthermore, the console features an internal HardDisk, and it *so happens* to b
 As we've seen before, the graphics processor resides in the NV2A chip and just like MCPX, it is manufactured by Nvidia.
 
 {{< float_group >}}
-
-{{< float_block >}}
-  {{< linked_img src="halo.png" alt="Halo" >}}
-  <figcaption class="caption">Halo (2001) in 720p mode</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="halo.png" alt="Halo" >}}
+Halo (2001) in 720p mode
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 This company has been in the graphics business for a long time, their *GeForce* series are one of the most popular GPU brands in the computer market, directly competing against the Radeon series from Artx/ATI. Overall, this provides good leverage on the quality of graphics found in the Xbox, considering it's Microsoft's first attempt in the console market.
@@ -226,11 +216,9 @@ In the following section, we'll examine the inner workings of this chip. Now, I'
 The GPU core found on the NV2A is based on the popular 'GeForce3' series of GPUs, it's also referred as **NV20** in Nvidia's technical documents.
 
 {{< float_group >}}
-
-{{< float_block >}}
-  {{< linked_img src="NV2A_Pipeline.png" alt="Pipeline design of the NV2A" >}}
-  <figcaption class="caption">Pipeline design of the NV2A</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="NV2A_Pipeline.png" alt="Pipeline design of the NV2A" >}}
+Pipeline design of the NV2A
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Please note that, while the pipeline of the Xbox's GPU is based on the NV20 architecture, the NV2A has some modifications that are not compatible with the rest of the NV20 series (most importantly, it has been adapted to work in a UMA environment).
@@ -244,11 +232,9 @@ Having said that, let's take a look at how frames are drawn in the Xbox. Some ex
 
 {{< tabs >}}
 {{< tab name="Commands" active="true" >}}
-
-{{< float_block >}}
-  {{< linked_img src="pipeline/commands.png" alt="PFIFO Diagram" >}}
-  <figcaption class="caption">Commands stage</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="pipeline/commands.png" alt="PFIFO Diagram" >}}
+Commands stage
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 First and foremost is explaining how the GPU can receive commands from the CPU. For that, the GPU contains a command processor called **PFIFO** that effectively fetches and processes graphics commands (called **Pushbuffer**) in a FIFO manner, the unpacked commands are subsequently delivered to the **PGRAPH** (the block in charge of graphics processing) and other engines.
@@ -261,10 +247,9 @@ The next explanations happen in PGRAPH.
 {{< /tab >}}
 
 {{< tab name="Vertex" >}}
-{{< float_block >}}
-  {{< linked_img src="pipeline/vertex.png" alt="Vertex stage" >}}
-  <figcaption class="caption">Vertex stage</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="pipeline/vertex.png" alt="Vertex stage" >}}
+Vertex stage
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 This is an interesting section for this GPU in particular. At this stage, the GPU provides the ability to apply vertex transformations on our geometry. We've already seen this feature with Flipper, but unlike that GPU, this one uses a **programmable engine**. Meaning that developers may specify which vertex operations are performed and how, as opposed to relying on a pre-defined program. Although, the NV2A can also operate in 'fixed' mode, if required.
@@ -280,10 +265,9 @@ In a nutshell, the vertex unit processes vertices by manipulating them in its re
 {{< /tab >}}
 
 {{< tab name="Pixel" >}}
-{{< float_block >}}
-  {{< linked_img src="pipeline/pixel.png" alt="Fragment/Pixel stage" >}}
-  <figcaption class="caption">Fragment/Pixel stage</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="pipeline/pixel.png" alt="Fragment/Pixel stage" >}}
+Fragment/Pixel stage
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 At this stage, vertices are transformed into pixels. The process starts with a rasteriser that generates pixels to draw each triangle. The NV2A's rasteriser can generate four pixels per cycle. <!-- Nvidia designed a memory system called 'Lightspeed Memory Architecture' which, among other things, compresses the Z-buffer to four times its original size which enables to increase bandwidth (since it has to be accessed from main memory, while [competitors embedded it]()). -->
@@ -298,20 +282,17 @@ Register combiners are programmable in a similar nature to the [Texture Environm
 {{< /tab >}}
 
 {{< tab name="Post-processing" >}}
-{{< float_block >}}
-  {{< linked_img src="pipeline/postprocessing.png" alt="Xbox Live" >}}
-  <figcaption class="caption">Post-processing stage</figcaption>
-{{< /float_block >}}
-{{% inner_markdown %}}
+{{< figure_img float="true" src="pipeline/postprocessing.png" alt="Xbox Live" >}}
+Post-processing stage
+{{< /figure_img >}}
 
+{{% inner_markdown %}}
 Before the pixels are written to the frame-buffer, the NV2A contains four dedicated engines called **Raster Output Unit** or 'ROP' which perform necessary tests (alpha, depth and stencil) using allocated blocks in main memory. Finally, batches of pixels (four per cycle) are written back only if they passed these tests. 
 
 Moreover, the frame-buffer can be antialiased using a technique called **multisampling**. Essentially, this technique samples edges of polygons multiple times with different offsets added in the process. Afterwards, all samples are averaged and to form the antialiased image. This approach replaced the previous (and more resource-hungry) anti-aliasing function called 'supersampling', used by previous Nvidia GPUs.
-
 {{% /inner_markdown %}}
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ### Importance of programmability
@@ -322,20 +303,16 @@ The concept of 'shaders' was introduced by **Pixar** in 1989 as a method to exte
 
 {{< float_group >}}
 
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-      {{< tab name="Vertex Program" active="true" >}}
-        {{< video src="vertex" loop=true >}}
-        <figcaption class="caption">Complex animation achieved by vertex program
-        <br>Chameleon (2001), a demo developed by Nvidia to showcase GeForce3's shaders</figcaption>
-      {{< /tab >}}
-      {{< tab name="Pixel Shader" >}}
-        {{< video src="fragment" >}}
-        <figcaption class="caption">Different texture effects achieved by pixel shaders
-        <br>Chameleon (2001), a demo developed by Nvidia to showcase GeForce3's shaders</figcaption>
-      {{< /tab >}}
-    {{< /tabs >}}
-{{< /float_block >}}
+{{< tabs nested="true" float="true" >}}
+  {{< tab_figure_video name="Vertex Program" active="true" src="vertex" loop=true >}}
+Complex animation achieved by vertex program  
+Chameleon (2001), a demo developed by Nvidia to showcase GeForce3's shaders
+  {{< /tab_figure_video >}}
+  {{< tab_figure_video name="Pixel Shader" src="fragment" >}}
+Different texture effects achieved by pixel shaders
+Chameleon (2001), a demo developed by Nvidia to showcase GeForce3's shaders
+  {{< /tab_figure_video >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 Thanks to vertex programs, the GPU can now accelerate model transformations, lighting calculations and texture coordinate generation. The latter one is essential for composing [Higher Order surfaces]({{< ref "playstation-2#infinite-worlds" >}}). With this, the CPU can concentrate on providing better physics, AI and scene management.
@@ -404,28 +381,17 @@ The MCPX also provides the following interfaces and protocols used to interconne
 The Xbox came with a bulky controller called **The Duke**, its set of inputs aren't any different from what the other competitors had... except the usage of analogue circuitry (8-bit wide) on the face buttons, allowing games to detect 'half-presses' from most of the button set. On the other side, the Duke was so widely criticised that Microsoft replaced it with a new revision called **Controller S** months after the release of the console.
 
 {{< side_by_side >}}
-  <div class="toleft">
-    {{< tabs nested="true" >}}
-      {{< tab name="Front" active="true" >}}
-        {{< linked_img src="controller/duke_front.png" alt="Front of Duke controller" >}}
-      {{< /tab >}}
-      {{< tab name="Back" >}}
-        {{< linked_img src="controller/duke_back.png" alt="Back of Duke controller" >}}
-      {{< /tab >}}
-    {{< /tabs >}}
-    <figcaption class="caption">The Duke (2001)</figcaption>
-  </div>
-  <div class="toright">
-    {{< tabs nested="true" >}}
-      {{< tab name="Front" active="true" >}}
-        {{< linked_img src="controller/s_front.png" alt="Front of S controller" >}}
-      {{< /tab >}}
-      {{< tab name="Back" >}}
-        {{< linked_img src="controller/s_back.png" alt="Back of S controller" >}}
-      {{< /tab >}}
-    {{< /tabs >}}
-    <figcaption class="caption">Controller S (2002)</figcaption>
-  </div>
+  {{< tabs nested="true" class="toleft" figure="true" >}}
+    {{< tab_img name="Front" active="true" src="controller/duke_front.png" alt="Front of Duke controller" >}}
+    {{< tab_img name="Back" src="controller/duke_back.png" alt="Back of Duke controller" >}}
+    {{< figcaption >}}The Duke (2001){{< /figcaption >}}
+  {{< /tabs >}}
+
+  {{< tabs nested="true" class="toright" figure="true" >}}
+    {{< tab_img name="Front" active="true" src="controller/s_front.png" alt="Front of S controller" >}}
+    {{< tab_img name="Back" src="controller/s_back.png" alt="Back of S controller" >}}
+    {{< figcaption >}}Controller S (2002){{< /figcaption >}}
+  {{< /tabs >}}
 {{< /side_by_side >}}
 
 On closer inspection, both controllers did include something special: Two **Memory Unit** slots to plug in a proprietary memory card, enabling to share saves between consoles. I assumed this feature was inherited from a [previous competitor]({{< ref "dreamcast#interactive-memory-card" >}}). Days after publishing this article, I sent it to Seamus Blackley, the co-creator of this console, who quickly replied to me with very interesting comments. Regarding the Dreamcast similarities, he told me:
@@ -465,20 +431,12 @@ When the kernel loads, it injects microcode into the CPU (not to program it, but
 Let's take a look now at the program that the Xbox loads when there isn't a game disc inserted: The **Dashboard**.
 
 {{< tabs >}}
-
 {{< tab name="Interactive shell" active="true" >}}
-
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="Home" active="true" >}}
-      {{< linked_img src="shell/home.png" >}}
-    {{< /tab >}}
-    {{< tab name="Settings" >}}
-      {{< linked_img src="shell/settings.png" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">The Dashboards offers multiple services</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" float="true" figure="true" >}}
+  {{< tab_img name="Home" active="true" src="shell/home.png" >}}
+  {{< tab_img name="Settings" src="shell/settings.png" >}}
+  {{< figcaption >}}The Dashboards offers multiple services{{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 The dashboard is not very different in terms of functionality compared to the [Playstation menu]({{< ref "playstation-2#interactive-shell" >}}), or the [Gamecube's IPL]({{< ref "gamecube#splash-and-shell" >}}). It essentially includes all the functions typical users would expect, like being able to tweak some settings, moving saves around, playing DVD movies or CD audio; and so forth.
@@ -514,10 +472,9 @@ Game development in this console is very complex in terms of libraries, terminol
 {{< tabs >}}
 
 {{< tab name="Hardware Abstraction" active="true" >}}
-{{< float_block >}}
-  {{< linked_img src="hal/general.png" alt="HAL" >}}
-  <figcaption class="caption">Representation of HAL</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="hal/general.png" alt="HAL" >}}
+Representation of HAL
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 We have seen how elements like a 'programmable coprocessor with microcode' tend to come with a lot of fanfare at first, but slowly dissipates once developers discover the real complexity of the new hardware.
@@ -530,10 +487,9 @@ There are multiple SDKs available to develop for this console, some 'official' a
 {{< /tab >}}
 
 {{< tab name="Microsoft XDK" >}}
-{{< float_block >}}
-  {{< linked_img src="hal/xdk.png" alt="Vertex stage" >}}
-  <figcaption class="caption">XDK structure</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="hal/xdk.png" alt="Vertex stage" >}}
+XDK structure
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Microsoft's Xbox Development Kit or 'XDK' is the official SDK used for Xbox development. It's a package that contains many tools, libraries and compilers. Most notably, it's used alongside Visual Studio .NET (2002 version) which was *quite an IDE* from that time, for better or worse.
@@ -543,18 +499,15 @@ The graphics library is a customised implementation of **Direct3D 8.0**, which w
 Apart from that, audio functionality is provided by **DirectSound** which takes care of the APU without the need to worry about moving audio data around. There are some network libraries as well, which are very convenient for achieving online functionality (i.e. multiplayer). The network API relies on **Windows Sockets**, which was Microsoft's attempt to simplify network communications using a Windows-only protocol (albeit having a design based on its standardised counterpart, BSD sockets).
 
 To try all of this out, Microsoft distributed their own development kit hardware which is just a retail unit tinted in green with double the RAM installed (128 MiB in total) and, sometimes, a different MCPX chip (called MCPX-2, which directly boots from the Flash ROM). It contains an enhanced version of the dashboard which launches executables signed by the XDK. On the other end, the **Xbox Neighbourhood** (a Windows application) was used to link the dev kit with Visual Studio, enabling easy deployment and debugging. To experiment with Xbox Live, Microsoft provided sandboxed servers as well.
- 
 {{% /inner_markdown %}}
 
 {{< /tab >}}
 
 {{< tab name="NXDK" >}}
-
-{{< float_block >}}
-  {{< linked_img src="hal/nxdk.png" alt="NXDK" >}}
-  <figcaption class="caption">NXDK structure
-  <br>Notice that even though some low-level libraries are wrapped with high-level ones, they are still accessible to the developer</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="hal/nxdk.png" alt="NXDK" >}}
+NXDK structure.  
+Notice that even though some low-level libraries are wrapped with high-level ones, they are still accessible to the developer
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 To avoid Copyright litigation to Homebrew developers using the official SDK, a group of developers unaffiliated with Microsoft created a replacement of the official SDK called **Open XDK**. After some years, its development stopped, so another group picked it up from there and named the new fork **New XDK** or 'nxdk'.
@@ -565,7 +518,6 @@ To simplify the graphics layer without relying on Direct3D, nxdk uses the **CG c
 
 The rest of the APIs available handle other services (audio, networking, etc). All in all, this library gives more control of the hardware (as opposed to the official SDK) at the exchange of not using Microsoft's APIs (the de-facto standard, albeit completely proprietary). However, nxdk remains the most adequate option for developing legal Homebrew programs.
 {{% /inner_markdown %}}
-
 {{< /tab >}}
 
 {{< /tabs >}}
@@ -581,11 +533,9 @@ Now, the console also includes an internal 8 GB HDD, games use it to store saves
 Forget about [modems]({{< ref "dreamcast#online-platform" >}}) or [experimental services]({{< ref "playstation-2#network-service" >}}). The Xbox included everything that nowadays we take for granted to provide a decent online service: Ethernet connection and a centralised online infrastructure (called **Xbox Live**).
 
 {{< float_group >}}
-
-{{< float_block >}}
-  {{< linked_img src="shell/live.png" alt="Xbox Live" >}}
-  <figcaption class="caption">Xbox Live Logo</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="shell/live.png" alt="Xbox Live" >}}
+Xbox Live Logo
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Furthermore, not only Xbox Live enabled online multiplayer but it also included other features like audio streaming for real-time voice chat.
@@ -644,47 +594,46 @@ This was a brief introduction to the chain of trust that Microsoft implemented. 
 {{< /tab >}}
 
 {{< tab name="Bootstrap search" >}}
-{{% inner_markdown %}}
 
+{{% inner_markdown %}}
 Since it's officially documented by Intel that their processors will start execution at address `0xFFFF.FFF0`, hackers focused on searching for that code in the Flash ROM (which in turn will lead to the RC-4 key). This is what a popular hacker and researcher named **Andrew 'bunnie' Huang** attempted during his academic research. The findings were quite interesting: The upper 512 bytes of the Flash ROM contains security routines including the key, but it doesn't work for the retail system. I speculate that Microsoft may have left that code from prototype/debug units (possibly accidental, since this block exposes the algorithms that Microsoft applied). In conclusion, this was considered *garbage code* so bunnie realised the real `0xFFFF.FFF0` wasn't in the Flash ROM.
 
 To make a long story short, `0xFFFF.FFF0` was **hidden in the MCPX chip**: It contained a hidden 512 B ROM that would be executed once and hidden afterwards. This ROM was not easy to extract, so bunnie resorted to tapping the HyperTransport bus to catch the RC-4 key once it was transmitted.
 
 And so it happened, bunnie published the key as part of his research and Microsoft was not happy about this. Thus, the hacking community found a way to gain control of the first security layer of this console, which included the kernel.
-
 {{% /inner_markdown %}}
+
 {{< /tab >}}
 
 {{< tab name="Permanent unlock" >}}
-{{% inner_markdown %}}
 
+{{% inner_markdown %}}
 Cracking the RSA layer was never meant to be easy, but since hackers gained access to the kernel, it would now be possible to reverse engineer it and develop patches that could nullify RSA altogether. Lo and behold, this eventually happened and opened the door to the Homebrew community. Anyone could now develop programs that could be executed on a modified Xbox without the approval of Microsoft. Some groups developed replacements for the original Dashboard which could do more functions, such as executing Linux!
 
 This, however, required users to modify their BIOS using specialised hardware, which not everyone could do. In later years, new exploits were discovered that could easily bootstrap the main hack, one of them consisted in inserting a forged save-game of '007: Agent Under Fire' or 'Splinter Cell' that would generate a buffer overflow to kickstart a homebrew tool that could install a permanent exploit in the hard disk. The 'permanent exploit' was possible because the original Dashboard was subject to yet-another buffer overflow using a forged font file (note that fonts didn't need to be signed).
-
 {{% /inner_markdown %}}
+
 {{< /tab >}}
 
 {{< tab name="Modchips" >}}
-{{% inner_markdown %}}
 
+{{% inner_markdown %}}
 From the piracy side of things, **Modchips** also appeared: Instead of tampering with the DVD drive, modchips overlapped the Flash ROM by exploiting the fact that the MCPX ROM could boot a secondary BIOS if it was found on an unused LPC port.
 
 The substitute BIOS contained patched routines that could enable reading any type of game disc (especially the conventional ones).
-
 {{% /inner_markdown %}}
+
 {{< /tab >}}
 
 {{< tab name="The response" >}}
-{{% inner_markdown %}}
 
+{{% inner_markdown %}}
 Microsoft released many hardware revisions reducing the amount of exposure in their electronics and saving up costs. Meanwhile, software updates were released that updated both the Kernel and the Dashboard in an effort to reduce the number of vulnerabilities. However, some game exploits still managed to persist and what remained was another 'cat-and-mouse' game.
 
 Another point to mention is that Xbox live was itself an effective prevention mechanism against piracy. Microsoft was able to block Xbox Live to those consoles with unauthorised modifications, which was a tradeoff that typical users had to consider before hacking their consoles with the only goal of playing pirated copies.
-
 {{% /inner_markdown %}}
-{{< /tab >}}
 
+{{< /tab >}}
 {{< /tabs >}}
 
 ---

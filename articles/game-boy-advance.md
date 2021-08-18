@@ -4,7 +4,6 @@ date: 2019-08-18
 releaseDate: 2001-03-21
 generation: 6
 subtitle: One chip to rule them all
-javascript: ['plyr']
 cover: gba
 top_tabs:
   Model:
@@ -63,10 +62,9 @@ Moreover, this core contains some extensions referenced in its name (*TDMI*):
 
 The inclusion of Thumb in particular had a strong influence on the final design of this console. Nintendo mixed 16-bit and 32-bit buses between its different modules to reduce costs while providing programmers with the necessary resources to optimise their code.
 
-{{< centered_container >}}
-  {{< linked_img src="memory.png" alt="Memory Diagram" img_class="no-borders" >}}
-  <figcaption class="caption">Memory architecture of this system</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="memory.png" alt="Memory Diagram" img_class="no-borders" class="centered-container" >}}
+Memory architecture of this system
+{{< /figure_img >}}
 
 Usable memory is distributed across the following locations (ordered from fastest to slowest):
 
@@ -104,10 +102,9 @@ Compared to previous Game Boys we now have a colour LCD screen that can display 
 
 ### Organising the content
 
-{{< centered_container >}}
-  {{< linked_img src="ppu.png" alt="PPU Diagram" img_class="no-borders" >}}
-  <figcaption class="caption">Memory architecture of the PPU</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="ppu.png" alt="PPU Diagram" img_class="no-borders" class="centered-container" >}}
+Memory architecture of the PPU
+{{< /figure_img >}}
 
 We have the following regions of memory in which to distribute our graphics:
 
@@ -123,24 +120,18 @@ I'm going to borrow the graphics of Sega's *Sonic Advance 3* to show how a frame
 
 {{< tabs >}}
 
-  {{< tab name="Tiles" active="true" >}}
-
-{{< float_block >}}
-  {{< tabs nested="true" class="pixel" >}}
-    {{< tab name="Block 1" active="true" >}}
-      {{< linked_img src="sonic/tiles1.png" >}}
-      <figcaption class="caption">4bpp Tiles found in VRAM</figcaption>
-    {{< /tab >}}
-    {{< tab name="Block 2" >}}
-      {{< linked_img src="sonic/tiles2.png" >}}
-      <figcaption>You may notice some weird vertical patterns in here, these are not graphics but 'Tile Maps' (see next section)</figcaption>
-    {{< /tab >}}
-    {{< tab name="Block 3" >}}
-      {{< linked_img src="sonic/tilesobj.png" >}}
-      <figcaption>This block is reserved for sprites</figcaption>
-    {{< /tab >}}
-  {{< /tabs >}}
-{{< /float_block >}}
+{{< tab name="Tiles" active="true" >}}
+{{< tabs nested="true" class="pixel" float="true" >}}
+  {{< tab_figure_img name="Block 1" active="true" src="sonic/tiles1.png" >}}
+4bpp Tiles found in VRAM
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Block 2" src="sonic/tiles2.png" >}}
+You may notice some weird vertical patterns in here, these are not graphics but 'Tile Maps' (see next section)
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Block 3" src="sonic/tilesobj.png" >}}
+This block is reserved for sprites
+  {{< /tab_figure_img >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 GBA's tiles are strictly 8x8 pixel bitmaps, they can use 16 colours (4bpp) or 256 colours (8bpp). 4bpp tiles consume 32 bytes, while 8bpp ones take 64 bytes.
@@ -155,22 +146,15 @@ Only four charblocks can be used for backgrounds and two can be used for sprites
 {{< /tab >}}
 
 {{< tab name="Backgrounds" >}}
-
-{{< float_block >}}
-  {{< tabs nested="true" class="pixel" >}}
-    {{< tab name="Layer 0" active="true" >}}
-      {{< linked_img src="sonic/bg0.png" >}}
-    {{< /tab >}}
-    {{< tab name="Layer 2" >}}
-      {{< linked_img src="sonic/bg2.png" >}}
-    {{< /tab >}}
-    {{< tab name="Layer 3" >}}
-      {{< linked_img src="sonic/bg3.png" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Static background layers in use
-  <br>Layer 3 will be shifted horizontally at some scan-lines to simulate water effects</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" class="pixel" figure="true" float="true" >}}
+  {{< tab_img name="Layer 0" src="sonic/bg0.png" active="true" >}}
+  {{< tab_img name="Layer 2" src="sonic/bg2.png" >}}
+  {{< tab_img name="Layer 3" src="sonic/bg3.png" >}}
+  {{< figcaption >}}
+Static background layers in use  
+Layer 3 will be shifted horizontally at some scan-lines to simulate water effects
+  {{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 The background layer of this system has improved significantly since the Game Boy Color. It finally includes some features found in the [Super Nintendo]({{< ref "super-nintendo" >}}) (remember the [affine transformations]({{< ref "super-nintendo#unique-features" >}})?).
@@ -190,10 +174,9 @@ The piece of data that defines the background layer is called **Tile Map**. To i
 
 {{< tab name="Sprites" >}}
 
-{{< float_block >}}
-  {{< linked_img class="pixel" src="sonic/sprites.png" alt="Sprites" >}}
-  <figcaption class="caption">Rendered Sprite layer</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" img_class="pixel" src="sonic/sprites.png" alt="Sprites" >}}
+Rendered Sprite layer
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 The size of a sprite can be up to 64x64 pixels wide, yet for having such a small screen they will end up occupying a big part of it.
@@ -210,10 +193,9 @@ Sprite entries are 32-bit wide and their values can be divided into two groups:
 
 {{< tab name="Result" >}}
 
-{{< float_block >}}
-  {{< linked_img class="pixel" src="sonic/result.png" alt="Sprites" >}}
-  <figcaption class="caption">All layers merged (<i>Tada!</i>)</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" img_class="pixel" src="sonic/result.png" alt="Sprites" >}}
+All layers merged (_Tada!_)
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 As always, the PPU will combine all layers automatically, but it's not over yet! The system has a couple of effects available to apply over these layers:
@@ -245,27 +227,22 @@ The reason for having two bitmaps is to enable **page-flipping**: Drawing over a
 
 {{< float_group >}}
 
-{{< float_block >}}
-  {{< tabs nested="true" class="pixel" >}}
-    {{< tab name="3D" active="true" >}}
-      {{< linked_img src="bitmap/monkey.png" >}}
-      <figcaption class="caption">Super Monkey Ball Jr. (2002)
-      <br>Bitmap mode allowed the CPU to provide some rudimentary 3D graphics for the scenery
-      <br>Foreground objects are sprites (separate layer)</figcaption>
-    {{< /tab >}}
-    {{< tab name="Demo" >}}
-      {{< linked_img src="bitmap/demo.png" >}}
-      <figcaption class="caption">Tonc's demo
-      <br>Rendered bitmap with some primitives
-      <br>Notice the screen doesn't show significant patterns produced by tile engines</figcaption>
-    {{< /tab >}}
-    {{< tab name="Video" >}}
-      {{< linked_img src="bitmap/spongebob.png" >}}
-      <figcaption class="caption">Nickelodeon's SpongeBob SquarePants
-      <br>Episode distributed as a <i>GBA Video</i> cartridge (it suffered a lot of compression, of course)</figcaption>
-    {{< /tab >}}
-  {{< /tabs >}}
-{{< /float_block >}}
+{{< tabs float="true" nested="true" class="pixel" >}}
+  {{< tab_figure_img name="3D" active="true" src="bitmap/monkey.png" >}}
+Super Monkey Ball Jr. (2002)  
+Bitmap mode allowed the CPU to provide some rudimentary 3D graphics for the scenery  
+Foreground objects are sprites (separate layer)
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Demo" src="bitmap/demo.png" >}}
+Tonc's demo  
+Rendered bitmap with some primitives  
+Notice the screen doesn't show significant patterns produced by tile engines
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Video" src="bitmap/spongebob.png" >}}
+Nickelodeon's SpongeBob SquarePants  
+Episode distributed as a _GBA Video_ cartridge (it suffered a lot of compression, of course)
+  {{< /tab_figure_img >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 Overall it sounds like a cutting-the-edge feature, however, most games held on to the tile engine. Why? Because in practice it **costs a lot of CPU resources**.
@@ -290,11 +267,7 @@ Here is a breakdown of each audio component using *Sonic Advance 2* as an exampl
 {{< tabs >}}
 
 {{< tab active="true" name="PCM" >}}
-
-{{< float_block >}}
-  {{< video src="pcm" >}}
-  <figcaption class="caption">PCM-only channels</figcaption>
-{{< /float_block >}}
+{{< video src="pcm" float="true" >}}PCM-only channels{{< /video >}}
 
 {{% inner_markdown %}}
 The new sound system can now play PCM samples, it provides two channels called **Direct Sound** where it receives samples using a **FIFO queue** (implemented as a 16-byte buffer).
@@ -307,11 +280,7 @@ Samples are **8-bit** and **signed** (encoded in values from -128 to 127). The d
 {{< /tab >}}
 
 {{< tab name="PSG" >}}
-
-{{< float_block >}}
-  {{< video src="psg" >}}
-  <figcaption class="caption">PSG-only channels</figcaption>
-{{< /float_block >}}
+{{< video src="psg" float="true" >}}PSG-only channels{{< /video >}}
 
 {{% inner_markdown %}}
 While the Game Boy subsystem won't share its CPU, it does give out access to its PSG.
@@ -323,11 +292,7 @@ The majority of GBA games used it for accompaniment or effects. Later ones will 
 {{< /tab >}}
 
 {{< tab name="Combined" >}}
-
-{{< float_block >}}
-  {{< video src="complete" >}}
-  <figcaption class="caption">Tada!</figcaption>
-{{< /float_block >}}
+{{< video src="complete" float="true" >}}Tada!{{< /video >}}
 
 {{% inner_markdown %}}
 Finally, everything is automatically mixed together and output through the speaker/headphone jack.
@@ -345,15 +310,12 @@ Some games took the PCM-PSG duality further and 'alternated' the leading chip de
 In this game (*Mother 3*), the player can enter two different rooms, one *relatively normal* and the other with a *nostalgic* setting. Depending on the room the character is in, the same score will sound *modern-ish* or *8bit-ish*.
 
 {{< side_by_side >}}
-<div class="toleft canvas-model">
-  {{< video src="crackers/cinema" >}}
-  <figcaption class="caption">Normal room, only uses PCM</figcaption>
-</div>
-
-<div class="toright canvas-model">
-  {{< video src="crackers/8bit" >}}
-  <figcaption class="caption">Nostalgic room, PSG leads the tune</figcaption>
-</div>
+{{< video src="crackers/cinema" class="toleft canvas-model" >}}
+Normal room, only uses PCM
+{{< /video >}}
+{{< video src="crackers/8bit" class="toright canvas-model" >}}
+Nostalgic room, PSG leads the tune
+{{< /video >}}
 {{< /side_by_side >}}
 
 ---
@@ -424,8 +386,7 @@ Commercial availability of these cards proved to be a **grey area**: Nintendo co
 
 ## That's all folks
 
-{{< centered_container >}}
-  {{< linked_img src="mygba.png" alt="My GBA" >}}
-  <figcaption class="caption">My GBA and a couple of games
-  <br>Too bad it doesn't have a backlit!</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="mygba.png" alt="My GBA" class="centered-container" >}}
+My GBA and a couple of games  
+Too bad it doesn't have a backlit!
+{{< /figure_img >}}

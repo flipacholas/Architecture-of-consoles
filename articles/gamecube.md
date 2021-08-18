@@ -4,7 +4,7 @@ releaseDate: 2001-09-14
 date: 2019-11-19
 subtitle: Powerful and compact
 generation: 6
-javascript: ['threejs', 'plyr']
+javascript: ['threejs']
 cover: gamecube
 top_tabs:
   Model:
@@ -38,10 +38,9 @@ After the loss of SGI's dominance in the graphics market, Nintendo needed new pl
 
 {{< float_group >}}
 
-{{< float_block >}}
-  {{< linked_img src="cpu/cpu_features.png" alt="Construction of Gekko" >}}
-  <figcaption class="caption">Construction of Gekko</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="cpu/cpu_features.png" alt="Construction of Gekko" >}}
+Construction of Gekko
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 A promising candidate seems to be IBM: Apart from their famous work on mainframes, they recently allied with Motorola and Apple to create a CPU powerful enough to compete with Intel's ruling in the PC market. The resulting product is a series of processors carrying the name **PowerPC**, which were selected to *power* 99% of Apple's Macintoshes and some embedded systems.
@@ -109,10 +108,9 @@ During the design of the next-gen architecture, Nintendo's architects performed 
 
 For that reason, Gamecube architects came up with a new memory system strictly based on **providing dedicated memory space** and **using low-latency chips**. With the new design, GPU and CPU will no longer compete for the same RAM (causing fill-rate issues) since the GPU will now have its own internal and *amazingly* fast memory. On the other side, the GPU will still be in charge of arbitrating access to I/O too.
 
-{{< centered_container >}}
-  {{< linked_img src="cpu/memory.png" alt="Memory Diagram" img_class="no-borders" >}}
-  <figcaption class="caption">Memory layout of this system</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="cpu/memory.png" alt="Memory Diagram" img_class="no-borders" class="centered-container" >}}
+Memory layout of this system
+{{< /figure_img >}}
 
 The result was a system organised with two main buses:
 
@@ -151,11 +149,9 @@ This is one of the most critical sections of this console, it basically makes th
 The history of this console's GPU has some interesting connections: Wei Yen, the director of N64's GPU ([the RCP]({{< ref "nintendo-64#graphics" >}})), later founded Artx and landed a contract with Nintendo to develop their next-gen GPU: **Flipper**.
 
 {{< float_group >}}
-
-{{< float_block >}}
-  {{< linked_img src="sunshine.png" alt="Super Mario Sunshine" >}}
-  <figcaption class="caption">Super Mario Sunshine (2002)</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="sunshine.png" alt="Super Mario Sunshine" >}}
+Super Mario Sunshine (2002)
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 There were lots of advancements done from the previous iteration, for instance, the subsystem was severely simplified down to a single (but powerful) core.
@@ -169,21 +165,18 @@ During the development process, ArtX got acquired by ATI, which in turn was sold
 
 Flipper handles multiple services, so let's focus on the graphics component for now (since it's the one responsible for bringing our geometry to life). If you've been reading the [N64 article]({{< ref "nintendo-64#graphics" >}}), just letting you know that the core is now functional out of the box, so programmers won't need to worry about injecting code to make it work. Nevertheless, there will some interesting parts that are customisable.
 
-{{< centered_container >}}
-  {{< linked_img src="flipper_pipeline.png" alt="Pipeline design of Flipper" >}}
-  <figcaption class="caption">Pipeline design of Flipper</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="flipper_pipeline.png" alt="Pipeline design of Flipper" class="centered-container" >}}
+Pipeline design of Flipper
+{{< /figure_img >}}
 
 As always, in order to draw a frame on the screen, our data will be pumped through Flipper's pipeline. Data goes through lots of different components which we can group into four stages:
 
 {{< tabs >}}
 
 {{< tab active="true" name="Database" >}}
-
-{{< float_block >}}
-  {{< linked_img src="flipper_pipeline/database.jpg" alt="Database stage diagram" >}}
-  <figcaption class="caption">Database stage diagram</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="flipper_pipeline/database.jpg" alt="Database stage diagram" >}}
+Database stage diagram
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 The CPU and GPU communicate to each other using a fixed-length **FIFO buffer** in main RAM, this is a reserved portion where the CPU will write drawing commands that the GPU will read (and eventually display), this functionality is natively supported by the CPU and GPU.
@@ -198,11 +191,9 @@ The GPU contains a **command processor** which is in charge of fetching commands
 {{< /tab >}}
 
 {{< tab name="Geometry" >}}
-
-{{< float_block >}}
-  {{< linked_img src="flipper_pipeline/vertex.jpg" alt="Vertex stage diagram" >}}
-  <figcaption class="caption">Vertex stage diagram using indirect mode</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="flipper_pipeline/vertex.jpg" alt="Vertex stage diagram" >}}
+Vertex stage diagram using indirect mode
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Here primitives are transformed to shape accordingly for the desired scenery and prepared for rasterising. The engine uses a dedicated **Vertex unit** or 'VU' to accomplish this.
@@ -218,11 +209,9 @@ Once loaded, the primitives can be **transformed**, **clipped**, **lighted** (ea
 {{< /tab >}}
 
 {{< tab name="Texture" >}}
-
-{{< float_block >}}
-  {{< linked_img src="flipper_pipeline/texture.jpg" alt="Texture stage diagram" >}}
-  <figcaption class="caption">Texture stage diagram using a default setup</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="flipper_pipeline/texture.jpg" alt="Texture stage diagram" >}}
+Texture stage diagram using a default setup
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Now it's time to apply textures and effects to our models, and for that Flipper includes multiple units which will process our pixels. Now, this is a very sophisticated (yet quite complex) procedure, so if you find it difficult to follow, just think of it as a big assembly line that process pixels. Having said that, there are three groups of units available:
@@ -242,11 +231,9 @@ All of this is assisted by 1 MB of Texture memory (1T-SRAM type) which can be sp
 {{< /tab >}}
 
 {{< tab name="Render" >}}
-
-{{< float_block >}}
-  {{< linked_img src="flipper_pipeline/render.png" alt="Render stage diagram" >}}
-  <figcaption class="caption">Render stage diagram</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="flipper_pipeline/render.png" alt="Render stage diagram" >}}
+Render stage diagram
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 The final stage of the rendering process includes applying some optional but useful touches to our scene:
@@ -275,18 +262,16 @@ Time to put all of this into perspective, check out how programmers evolved the 
 The famous Mario model which had to be stripped down due to polygon counting on the [previous generation]({{< ref "nintendo-64">}}) got completely redesigned for this one, take a closer look of how the model evolved from plain faces to wrinkled sleeves.
 {{% /inner_markdown %}}
 
-{{< side_by_side nested=true >}}
-  <div class="toleft canvas-model">
-    {{< threejs_canvas model="mario_smash" >}}
-    <figcaption class="caption">Super Smash Bros (1999) for the N64
-    <br>229 triangles</figcaption>
-  </div>
+{{< side_by_side nested="true" >}}
+  {{< threejs_canvas model="mario_smash" class="toleft" >}}
+Super Smash Bros (1999) for the N64
+229 triangles
+  {{< /threejs_canvas >}}
 
-  <div class="toright canvas-model">
-    {{< threejs_canvas model="mario_melee" >}}
-    <figcaption class="caption">Super Smash Bros. Melee (2001) for the GC
-    <br>2,494 triangles</figcaption>
-  </div>
+  {{< threejs_canvas model="mario_melee" class="toright" >}}
+Super Smash Bros. Melee (2001) for the GC
+2,494 triangles
+  {{< /threejs_canvas >}}
 {{< /side_by_side >}}
 
 {{< /tab >}}
@@ -296,18 +281,15 @@ The famous Mario model which had to be stripped down due to polygon counting on 
 In this case, Sonic Team already designed a Sonic model for [their unique console]({{< ref "dreamcast">}}), but after porting their game to the Gamecube they found themselves able to add more polygons to their model, achieving better detail.
 {{% /inner_markdown %}}
 
-{{< side_by_side nested=true >}}
-  <div class="toleft canvas-model">
-    {{< threejs_canvas model="sonic_adventure" >}}
-    <figcaption class="caption">Sonic Adventure (1999) for the DC
-    <br>1001 triangles</figcaption>
-  </div>
-
-  <div class="toright canvas-model">
-    {{< threejs_canvas model="sonic_dx" >}}
-    <figcaption class="caption">Sonic DX (2003) for the GC
-    <br>1,993 triangles</figcaption>
-  </div>
+{{< side_by_side nested="true" >}}
+  {{< threejs_canvas model="sonic_adventure" class="toleft" >}}
+Sonic Adventure (1999) for the DC
+1001 triangles
+  {{< /threejs_canvas >}}
+  {{< threejs_canvas model="sonic_dx" class="toright" >}}
+Sonic DX (2003) for the GC
+1,993 triangles
+  {{< /threejs_canvas >}}
 {{< /side_by_side >}}
 
 {{< /tab >}}
@@ -320,11 +302,9 @@ It's really impressive how much detail has been gained in just two years, eh?
 As you can see from the inner working of this pipeline, graphics technology has been evolving to point that programmers can now take control of certain functions of the rendering process.
 
 {{< float_group >}}
-
-{{< float_block >}}
-  {{< linked_img src="wind_waker.png" alt="Zelda Wind Waker" >}}
-  <figcaption class="caption">The Legend of Zelda: The Wind Waker (2003)</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="wind_waker.png" alt="Zelda Wind Waker" >}}
+The Legend of Zelda: The Wind Waker (2003)
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 During the same time, PC graphics cards were starting to discard fixed-function pipelines in favour of **shader cores** (units that run small programs which define how pixels are operated). Flipper is still a fixed-function GPU, however by including components such as the TEV unit, one could argue that Nintendo provided their own shader-like solution.
@@ -345,11 +325,9 @@ The XFB can have multiple dimensions, so for compatibility reasons, the Video in
 The console included not one, but two video output connectors:
 
 {{< float_group >}}
-
-{{< float_block >}}
-  {{< linked_img src="av_photo.jpg" alt="A/V photo" >}}
-  <figcaption class="caption">A/V Connections on the back</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="av_photo.jpg" alt="A/V photo" >}}
+A/V Connections on the back
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 - One named **Analog A/V** which is actually the good-old [Multi Out]({{< ref "super-nintendo.md#a-convenient-video-out" >}}). This is the most popular one.
@@ -388,17 +366,15 @@ While we've already reached the *sampling age* and we are not locked to specific
 Let me show you an example using two games, one released for the Nintendo 64 and its sequel released for the GameCube. Both have different music scores but the context (enemy battle) is the same. Take a look at how both tracks differ in sound quality, taking into account the design of each system (shared vs dedicated).
 
 {{< side_by_side >}}
-  <div class="toleft">
-    {{< video src="PaperMario64" >}}
-    <figcaption class="caption">Paper Mario (2000) for the N64
-    <br>Sequenced on the fly by the RSP</figcaption>
-  </div>
+  {{< video src="PaperMario64" class="toleft" >}}
+Paper Mario (2000) for the N64  
+Sequenced on the fly by the RSP
+  {{< /video >}}
 
-  <div class="toright">
-    {{< video src="PaperMario" >}}
-    <figcaption class="caption">Paper Mario: The Thousand-Year Door (2004) for the GC
-    <br>Streamed to the DSP</figcaption>
-  </div>
+  {{< video src="PaperMario" class="toright" >}}
+Paper Mario: The Thousand-Year Door (2004) for the GC  
+Streamed to the DSP
+  {{< /video >}}
 {{< /side_by_side >}}
 
 *As you can hear*, the DSP finally gave music composers the freedom they always asked for.
@@ -427,17 +403,13 @@ On the bottom of the Gamecube's case, you'll find two external sockets to connec
 
 {{< float_group >}}
 
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="Covered" active="true" >}}
-      {{< linked_img src="accessories_covered.jpg" >}}
-    {{< /tab >}}
-    {{< tab name="Uncovered" >}}
-      {{< linked_img src="accessories.jpg" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Accessory slots at the bottom of the case</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" figure="true" float="true" >}}
+  {{< tab_img name="Covered" active="true" src="accessories_covered.jpg" >}}
+  {{< tab_img name="Uncovered" src="accessories.jpg" >}}
+  {{< figcaption >}}
+Accessory slots at the bottom of the case
+  {{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 Both are technically identical (serial bus running at 32 MHz), yet they are presented with a different external shape in order to accommodate different accessories:
@@ -466,10 +438,9 @@ I found it worth pointing out that no matter how many accessories you connect, t
 
 Upon turning on the console, the CPU will start loading an operating system called **Dolphin OS** found on the BIOS/IPL chip, this is a very minimal OS that will take care of initialising the hardware and providing some convenient system calls and global variables for games to use. Games developed using the official SDK will implicitly execute these calls during low-level operations.
 
-{{< centered_container >}}
-  {{< linked_img src="ipl/splash.png" alt="Gamecube Splash screen" >}}
-  <figcaption class="caption">The official logo, shown after the boot animation finishes</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="ipl/splash.png" alt="Gamecube Splash screen" class="centered-container" >}}
+The official logo, shown after the boot animation finishes
+{{< /figure_img >}}
 
 ### Splash and shell
 
@@ -477,20 +448,14 @@ After finishing the boot process, the OS will load a small program *unofficially
 
 {{< float_group >}}
 
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="Menu" active="true" >}}
-      {{< linked_img src="ipl/menu.png" >}}
-    {{< /tab >}}
-    {{< tab name="Clock" >}}
-      {{< linked_img src="ipl/clock.png" >}}
-    {{< /tab >}}
-    {{< tab name="Options" >}}
-      {{< linked_img src="ipl/sound.png" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Main Menu with multiple settings available</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" float="true" figure="true" >}}
+  {{< tab_img name="Menu" src="ipl/menu.png" active="true" >}}
+  {{< tab_img name="Clock" src="ipl/clock.png" >}}
+  {{< tab_img name="Options" src="ipl/sound.png" >}}
+  {{< figcaption >}}
+Main Menu with multiple settings available
+  {{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 This program is responsible for displaying the famous splash animation (the wee cube drawing a Gamecube logo) and loading the game if there is one inserted. In the absence of a *valid* game, it will then provide a simple cube-shaped menu with various options to choose from:
@@ -552,19 +517,15 @@ Nintendo has been in this game for quite some time, so it's no news that they in
 We can organise them into these areas:
 
 {{< tabs >}}
-
-{{< tab name="DVD controller" active="true" >}}{{% inner_markdown %}}
-
+{{% tab name="DVD controller" active="true" %}}
 Even though this is the first Nintendo console to use the disc medium, attempting to play pirated copies of games just wasn't going to be easy. The miniDVD is protected by using proprietary bar codes on the inner side of the disc, in addition to having its data encrypted. The validation and decryption process works seamlessly: The miniDVD controller takes care it while the system is limited on only requesting the data.
 
 The hardware composing the DVD reader can be imagined as a fortress wall which is only accessed using a series of commands, the miniDVD controller features a proprietary CPU that will take care of deciding if the inserted disc is genuine or not, and if it's not, no command issued by the main CPU will convince to read it otherwise.
 
 **Defeat**: As with any other cat-and-mouse game, it was just a matter of time before third-party companies successfully reverse-engineered the controller to build mod-chips that could trick the reader. But bear in mind that no mod-chip will make this console magically fit a conventional CD/DVD without physically altering the case!
+{{% /tab %}}
 
-{{% /inner_markdown %}}{{< /tab >}}
-
-{{< tab name="IPL and EXI" >}}{{% inner_markdown %}}
-
+{{% tab name="IPL and EXI" %}}
 Another possible path of exploitation consists of using the external I/O available to load Homebrew programs. Although, without cracking the DVD reader first, the only other option available is to try to take control of the first program that the Gamecube loads, and that is... The IPL.
 
 That means that by reversing engineering the BIOS and replacing the chip with a modified one, one would be able to run, let's say, a file reader, and from there execute programs received from the accessory ports (assuming the additional hardware is plugged in).
@@ -574,29 +535,25 @@ Although at first, this is not that simple: The IPL chip is encrypted using XOR 
 **(Second) Defeat**: Some people eventually discovered that the hardware that handles the decryption of the IPL contained a bug that allowed to capture the Cipher-text used. With this, another ROM could be constructed and encrypted with the same cypher so the Gamecube boots it as its own!
 
 As if that wasn't enough, hackers discovered methods to trick the miniDVD reader into loading conventional DVDs.
+{{% /tab %}}
 
-{{% /inner_markdown %}}{{< /tab >}}
-
-{{< tab name="Honourable Mention" >}}{{% inner_markdown %}}
-
+{{% tab name="Honourable Mention" %}}
 Before those two mechanisms were discovered, there was actually a much simpler way of loading arbitrary code without any modification whatsoever, it simply consisted in **hijacking the online protocol**.
 
 Some games like *Phantasy Star Online* implemented their own online functionality, this could be updated by downloading an updated executable (DOL file) from the company's servers, so as you can see, this was a man-in-the-middle attack waiting to happen...
 
 Long story short, by spoofing a fake server the Gamecube would just download (and execute) whatever DOL you could provide. That means hackers only needed the original game and the broadband adapter. This technique is known as **PSOload**.
-
-{{% /inner_markdown %}}{{< /tab >}}
+{{% /tab %}}
 {{< /tabs >}}
 
 ---
 
 ## That's all folks
 
-{{< centered_container >}}
-  {{< linked_img src="my_gamecube.jpeg" alt="My Gamecube" >}}
-  <figcaption class="caption">My old Gamecube recently rescued from the attic
-  <br>I only needed the controller for the Wii (back then it was cheaper to buy the whole second hand lot!)</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="my_gamecube.jpeg" alt="My Gamecube" class="centered-container" >}}
+My old Gamecube recently rescued from the attic  
+I only needed the controller for the Wii (back then it was cheaper to buy the whole second hand lot!)
+{{< /figure_img >}}
 
 Well, this is it, the **10<sup>th</sup> article**!
 

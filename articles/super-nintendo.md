@@ -5,7 +5,6 @@ date: 2019-06-28
 releaseDate: 1990-11-21
 generation: 4
 cover: snes
-javascript: ['plyr']
 published: true
 top_tabs:
   Models:
@@ -90,10 +89,9 @@ This separation, from the programming point of view, is unnecessary since both c
 
 ### Organising the content
 
-{{< centered_container >}}
-  {{< linked_img src="SPPU_architecture.png" alt="S-PPU Diagram" >}}
-  <figcaption class="caption">Memory architecture of the S-PPU</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="SPPU_architecture.png" alt="S-PPU Diagram" class="centered-container" >}}
+Memory architecture of the S-PPU
+{{< /figure_img >}}
 
 Graphics data is distributed across three regions of memory:
 - 64 KB **VRAM** (Video RAM): Stores tiles and maps (tables) used to build background layers.
@@ -105,13 +103,10 @@ Graphics data is distributed across three regions of memory:
 For demonstration purposes, *Super Mario World* will be used to show how graphics are rendered.
 
 {{< tabs >}}
-
 {{< tab active="true" name="Tiles" >}}
-
-{{< float_block >}}
-  {{< linked_img class="pixel" src="sppu_mario/tiles.png" alt="Tiles" >}}
-  <figcaption class="caption">Some 16x16 Tiles found in VRAM</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" class="pixel" src="sppu_mario/tiles.png" alt="Tiles" >}}
+Some 16x16 Tiles found in VRAM
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Just like its predecessor, the S-PPU uses tiles to build sophisticated graphics, however there are significant improvements compared to the original PPU:
@@ -124,40 +119,19 @@ Just like its predecessor, the S-PPU uses tiles to build sophisticated graphics,
 {{< /tab >}}
 
 {{< tab name="Background" >}}
-
-{{< float_block >}}
-  <div class="image-block">
-    {{< tabs nested="true" class="pixel" >}}
-      {{< tab name="Layer 1" active="true" >}}
-        {{< linked_img src="sppu_mario/background1_map.png" >}}
-      {{< /tab >}}
-      {{< tab name="Layer 2" >}}
-        {{< linked_img src="sppu_mario/background2_map.png" >}}
-      {{< /tab >}}
-      {{< tab name="Layer 3" >}}
-        {{< linked_img src="sppu_mario/background3_map.png" >}}
-      {{< /tab >}}
-    {{< /tabs >}}
-    <figcaption class="caption">Background maps in VRAM</figcaption>
-  </div>
-  <div class="image-block">
-    {{< tabs nested="true" class="pixel" >}}
-      {{< tab name="Layer 1" active="true" >}}
-        {{< linked_img src="sppu_mario/background1.png" >}}
-      {{< /tab >}}
-      {{< tab name="Layer 2" >}}
-        {{< linked_img src="sppu_mario/background2.png" >}}
-      {{< /tab >}}
-      {{< tab name="Layer 3" >}}
-        {{< linked_img src="sppu_mario/background3.png" >}}
-      {{< /tab >}}
-      {{< tab name="Combined" >}}
-        {{< linked_img src="sppu_mario/background_complete.png" >}}
-      {{< /tab >}}
-    {{< /tabs >}}
-    <figcaption class="caption">Rendered Background layers after selection and transparency are applied</figcaption>
-  </div>
-{{< /float_block >}}
+{{< tabs float="true" nested="true" class="pixel" figure="true" >}}
+  {{< tab_img name="Layer 1" active="true" src="sppu_mario/background1_map.png" >}}
+  {{< tab_img name="Layer 2" src="sppu_mario/background2_map.png" >}}
+  {{< tab_img name="Layer 3" src="sppu_mario/background3_map.png" >}}
+  {{< figcaption >}}Background maps in VRAM{{< /figcaption >}}
+{{< /tabs >}}
+{{< tabs float="true" nested="true" class="pixel" >}}
+  {{< tab_img name="Layer 1" active="true" src="sppu_mario/background1.png" >}}
+  {{< tab_img name="Layer 2" src="sppu_mario/background2.png" >}}
+  {{< tab_img name="Layer 3" src="sppu_mario/background3.png" >}}
+  {{< tab_img name="Combined" src="sppu_mario/background_complete.png" >}}
+  {{< figcaption >}}Rendered Background layers after selection and transparency are applied{{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 The Super Nintendo can generate up to four different background planes. Using either 8x8 or 16x16 tiles, blocks will take up to 32x32 pixels (2x2 tiles). That being said, the size of each background layer can be up to 1024x1024 pixels wide (32x32 tiles). The region in VRAM where these layers are configured is called **Tilemap** and is structured as a table (continuous values in memory).
@@ -202,11 +176,9 @@ As you can see, programmers now have the choice to prioritize between number of 
 {{< /tab >}}
 
 {{< tab name="Sprites" >}}
-
-{{< float_block >}}
-  {{< linked_img class="pixel" src="sppu_mario/sprites.png" alt="Sprites" >}}
-  <figcaption class="caption">Rendered Sprite layer</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" class="pixel" src="sppu_mario/sprites.png" alt="Sprites" >}}
+Rendered Sprite layer
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 An area on memory called **Object Attribute Memory** (OAM) stores a table with references of up to 128 sprites with these properties:
@@ -224,11 +196,9 @@ The S-PPU can draw up to 32 sprites per scan-line (overflowing this will only ma
 {{< /tab >}}
 
 {{< tab name="Result" >}}
-
-{{< float_block >}}
-  {{< linked_img class="pixel" src="sppu_mario/complete.png" alt="Result" >}}
-  <figcaption class="caption">Tada!</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" class="pixel" src="sppu_mario/complete.png" alt="Result" >}}
+Tada!
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 The S-PPU draws each scan-line on-the-fly by first processing the respective portion of each layer and then mixing them together.
@@ -249,21 +219,15 @@ Truth to be told, I still haven't mentioned the most important characteristic of
 
 {{< float_group >}}
 
-{{< float_block >}}
-  {{< tabs nested="true" class="pixel" >}}
-    {{< tab name="Background" active="true" >}}
-      {{< linked_img src="mode7/layer.png" >}}
-    {{< /tab >}}
-    {{< tab name="Map" >}}
-      {{< linked_img src="mode7/map.png" >}}
-    {{< /tab >}}
-    {{< tab name="Displayed" >}}
-      {{< linked_img src="mode7/displayed.png" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">F-Zero (1990)
-  <br>First quarter of scan-lines use another Mode to simulate distance, Mode 7 starts at the second quarter (this is possible thanks to HDMA)</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" class="pixel" float="true" figure="true" >}}
+  {{< tab_img name="Background" active="true" src="mode7/layer.png" >}}
+  {{< tab_img name="Map" src="mode7/map.png" >}}
+  {{< tab_img name="Displayed" src="mode7/displayed.png" >}}
+  {{< figcaption >}}
+F-Zero (1990)  
+First quarter of scan-lines use another Mode to simulate distance, Mode 7 starts at the second quarter (this is possible thanks to HDMA)
+  {{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 Introducing **Mode 7**, *yet another* background mode, but this time, with a completely different way of working. While it can only render a single 8bpp background layer, it provides the exclusive ability of applying the following **affine transformations** on that plane:
@@ -275,7 +239,6 @@ Introducing **Mode 7**, *yet another* background mode, but this time, with a com
 - Shearing
 
 The S-PPU uses a **rotation matrix** to control the parameters of this mode. I won't go into the math here, but depending on the desired effect, the CPU will have to perform some trigonometric functions (sine and cosine) to fill the entries of this table accordingly. This is really expensive for the 65C816, even with the use of fixed-point math. Luckily, with the 5A22, Ricoh added multiplication and division registers to offload some cycles.
-
 {{% /inner_markdown %}}
 
 {{< /float_group >}}
@@ -312,22 +275,15 @@ This console provided some unique audio capabilities thanks to a dedicated set o
 This sub-system functions independently: When the console is turned on, the SPC700 boots a 64 byte internal ROM that enables it to receive commands from the main CPU. After that, it stays idle. 
 
 {{< float_group >}}
-
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="Melody" active="true" >}}
-      {{< video src="melody" >}}
-    {{< /tab >}}
-    {{< tab name="Drums" >}}
-      {{< video src="drums" >}}
-    {{< /tab >}}
-    {{< tab name="Complete" >}}
-      {{< video src="complete" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Drums are discriminated for demonstration purposes
-  <br>StarFox (1993)</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" float="true" figure="true" >}}
+  {{< tab_video name="Melody" active="true" src="melody" >}}
+  {{< tab_video name="Drums" src="drums" >}}
+  {{< tab_video name="Complete" src="complete" >}}
+  {{< figcaption >}}
+Drums are discriminated for demonstration purposes
+StarFox (1993)
+  {{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 In order for the S-SMP to start doing some useful work, it needs to load a type of program referred as **Sound Driver** that instructs the chip on how to manipulate the raw audio data that the main CPU just sent to PSRAM, the driver also directs how to command the S-DSP.
@@ -344,15 +300,12 @@ As a consequence, there were tons of different sound drivers found in the market
 Pitch modulation enabled to play different notes using the same sample, the S-SMP also included a useful bender to alter the pitch in a continuous manner. Take a look at this extracted channel from Mother 2/Earthbound, both examples come from the original soundtrack, however the first one has the pitch control disabled.
 
 {{< side_by_side >}}
-  <div class="toleft">
-    {{< video src="pitch/no_pitch" >}}
-    <figcaption class="caption">No pitch bend</figcaption>
-  </div>
-
-  <div class="toright">
-    {{< video src="pitch/pitch" >}}
-    <figcaption class="caption">With pitch bend enabled</figcaption>
-  </div>
+  {{< video src="pitch/no_pitch" class="toleft" >}}
+No pitch bend
+  {{< /video >}}
+  {{< video src="pitch/pitch" class="toright" >}}
+With pitch bend enabled
+  {{< /video >}}
 {{< /side_by_side >}}
 
 ### Evolution from the NES
@@ -360,36 +313,26 @@ Pitch modulation enabled to play different notes using the same sample, the S-SM
 In order to demonstrate the evolution of sounds from the NES to the Super NES, here are two music scores, one from a NES game and another from its Super NES sequel. Both used the same composition:
 
 {{< side_by_side >}}
-  <div class="toleft">
-    {{< video src="snowman_nes" >}}
-    <figcaption class="caption">Mother (1989)</figcaption>
-  </div>
-
-  <div class="toright">
-    {{< video src="snowman_snes" >}}
-    <figcaption class="caption">Mother 2/Earthbound (1994)</figcaption>
-  </div>
+  {{< video src="snowman_nes" class="toleft" >}}
+Mother (1989)
+  {{< /video >}}
+  {{< video src="snowman_snes" class="toright" >}}
+Mother 2/Earthbound (1994)
+  {{< /video >}}
 {{< /side_by_side >}}
 
 ### Advanced usage
 
 {{< float_group >}}
-
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="Melody" active="true" >}}
-      {{< video src="kirby/trebble" >}}
-    {{< /tab >}}
-    {{< tab name="Drums" >}}
-      {{< video src="kirby/drums" >}}
-    {{< /tab >}}
-    {{< tab name="Complete" >}}
-      {{< video src="kirby/complete" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Drums are discriminated for demonstration purposes
-  <br>Kirby's Dream Land 3 (1997)</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" float="true" figure="true" >}}
+  {{< tab_video name="Melody" active="true" src="kirby/trebble" >}}
+  {{< tab_video name="Drums" src="kirby/drums" >}}
+  {{< tab_video name="Complete" src="kirby/complete" >}}
+  {{< figcaption >}}
+Drums are discriminated for demonstration purposes  
+Kirby's Dream Land 3 (1997)
+  {{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 Here's a more instrument-rich composition that takes great advantage of pitch modulation, echo and envelope.
@@ -444,9 +387,7 @@ This could be defeated by manually removing these routines but would take a long
 
 ## That's all folks
 
-{{< centered_container >}}
-  {{< linked_img src="mysnes.png" alt="My SNES with Earthbound" >}}
-  <figcaption class="caption">My modded SNES with an american cartridge
-  <br>That game was only released in the states, luckily there was a lad selling it in Glasgow!
-  </figcaption>
-{{< /centered_container >}}
+{{< figure_img src="mysnes.png" alt="My SNES with Earthbound" class="centered-container" >}}
+My modded SNES with an american cartridge  
+That game was only released in the states, luckily there was a lad selling it in Glasgow!
+{{< /figure_img >}}

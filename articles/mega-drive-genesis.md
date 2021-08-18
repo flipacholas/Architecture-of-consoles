@@ -5,15 +5,17 @@ date: 2019-05-18
 releaseDate: 1988-10-29
 generation: 4
 cover: megadrive
-javascript: ['plyr']
 top_tabs:
   Models:
     European:
-      caption: "The Mega Drive, released in 09/01/1989"
+      caption: "The Mega Drive
+      <br>Released on 09/01/1989 in Europe"
     American:
-      caption: "The Genesis, released in 14/08/1989"
+      caption: "The Genesis
+      <br>Released on 14/08/1989 in America"
     Japanese:
-      caption: "The Mega Drive, released in 29/10/1988"
+      caption: "The Mega Drive
+      <br>Released on 29/10/1988 in Japan"
   Motherboard:
     caption: "Showing Japanese model 'VA0'
     <br>Later revisions fixed problems that had to be patched with extra circuitry"
@@ -101,10 +103,9 @@ What about Mode 0 to III? Well, these belong to the even older *SG-1000* and the
 
 ### Organising the content
 
-{{< centered_container >}}
-  {{< linked_img src="VDP_architecture.png" alt="VDP Diagram" >}}
-  <figcaption class="caption">Memory architecture of the VDP</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="VDP_architecture.png" alt="VDP Diagram" class="centered-container" >}}
+Memory architecture of the VDP
+{{< /figure_img >}}
 
 The graphics content is distributed across 3 regions of memory:
 - 64 KB **VRAM** (Video RAM): Contains most of the graphics data.
@@ -116,20 +117,16 @@ The graphics content is distributed across 3 regions of memory:
 The following section explains how the VDP draws each frame, for demonstration purposes *Sonic The Hedgehog* is used as example. I recommend checking out the functioning of its [predecessor]({{< ref "master-system#graphics" >}}) since there will be a lot revisited in here.
 
 {{< tabs >}}
-  {{< tab name="Tiles" active="true" >}}
+{{< tab name="Tiles" active="true" >}}
 
-{{< float_block >}}
-  {{< tabs nested="true" class="pixel" >}}
-    {{< tab name="All" active="true" >}}
-      {{< linked_img src="vdp_sonic/tiles.png" >}}
-    {{< /tab >}}
-    {{< tab name="Single" >}}
-      {{< linked_img src="vdp_sonic/tiles_single.png" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Tiles found in VRAM
-  <br>(For demonstration purposes a default palette is being used)</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" float="true" class="pixel" figure="true" >}}
+  {{< tab_img name="All" active="true" src="vdp_sonic/tiles.png" >}}
+  {{< tab_img name="Single" src="vdp_sonic/tiles_single.png" >}}
+  {{< figcaption >}}
+Tiles found in VRAM  
+(For demonstration purposes a default palette is being used)
+  {{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 Just like Nintendo's PPU, The VDP is a tile-based engine and as such it uses **tiles** (basic 8x8 bitmaps) to compose graphic planes. Each tile is coded in a simple 4-byte array where each 4-bit entry corresponds to a pixel and its value corresponds to a colour entry.
@@ -143,18 +140,11 @@ Tiles are be used to build a total of 4 **planes** which, merged together, form 
 
 {{< tab name="Background" >}}
 
-
-{{< float_block >}}
-  {{< tabs nested="true" class="pixel" >}}
-    {{< tab name="Full" active="true" >}}
-      {{< linked_img src="vdp_sonic/layer2.png" >}}
-    {{< /tab >}}
-    {{< tab name="Selected" >}}
-      {{< linked_img src="vdp_sonic/layer2_selected.png" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Rendered Background</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" class="pixel" float="true" >}}
+  {{< tab_img name="Full" active="true" src="vdp_sonic/layer2.png" >}}
+  {{< tab_img name="Selected" src="vdp_sonic/layer2_selected.png" >}}
+  {{< figcaption >}}Rendered Background{{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 The Background plane, also known as **Plane B** is a scrollable *tilemap* containing **static tiles**.
@@ -170,18 +160,11 @@ On the showed example you'll notice that the selected area for display is not a 
 
 {{< tab name="Foreground" >}}
 
-
-{{< float_block >}}
-  {{< tabs nested="true" class="pixel" >}}
-    {{< tab name="Full" active="true" >}}
-      {{< linked_img src="vdp_sonic/layer1.png" >}}
-    {{< /tab >}}
-    {{< tab name="Selected" >}}
-      {{< linked_img src="vdp_sonic/layer1_selected.png" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Rendered Foreground (No use of Window Plane)</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" float="true" class="pixel" figure="true" >}}
+  {{< tab_img name="Full" active="true" src="vdp_sonic/layer1.png" >}}
+  {{< tab_img name="Selected" src="vdp_sonic/layer1_selected.png" >}}
+  {{< figcaption >}}Rendered Foreground (No use of Window Plane){{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 The Foreground plane, also known as **Plane A**, has the same properties as the Background Plane except this plane has a **higher priority**, so tiles rendered here will inherently be on top of the Background Plane.
@@ -195,18 +178,11 @@ Compared to previous consoles, the combination of different priorities and the W
 
 {{< tab name="Sprites" >}}
 
-
-{{< float_block >}}
-  {{< tabs nested="true" class="pixel" >}}
-    {{< tab name="Full" active="true" >}}
-      {{< linked_img src="vdp_sonic/sprite.png" >}}
-    {{< /tab >}}
-    {{< tab name="Selected" >}}
-      {{< linked_img src="vdp_sonic/sprite_selected.png" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Rendered Sprite layer</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" float="true" class="pixel" figure="true" >}}
+  {{< tab_img name="Full" active="true" src="vdp_sonic/sprite.png" >}}
+  {{< tab_img name="Selected" src="vdp_sonic/sprite_selected.png" >}}
+  {{< figcaption >}}Rendered Sprite layer{{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 In this plane, tiles are treated as **sprites**, they are positioned in a **512x512 px** map and only a part of it (VDP's output resolution) is selected for display. This is convenient for hiding unwanted sprites or preparing others that will be shown in the future. The VDP also provides an old [collision detection]({{< ref "master-system#tab-4-1-collision-detection" >}}) function.
@@ -222,10 +198,9 @@ The region in VRAM where Sprites are defined is called **Sprite Attribute Table*
 
 {{< tab name="Result" >}}
 
-{{< float_block >}}
-  {{< linked_img class="pixel" src="vdp_sonic/result.png" alt="Result" >}}
-  <figcaption class="caption">Tada!</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" class="pixel" src="vdp_sonic/result.png" alt="Result" >}}
+Tada!
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 While the frame is being drawn, the system will sequentially call different interrupt routines depending where the CRT's beam is pointing to. As you probably seen before in previous consoles, this allows the CPU to work on the next frame (or alter the current one).
@@ -264,20 +239,12 @@ The Mega Drive houses two sound chips: A **Yamaha YM2612** and a **Texas Instrum
 Each chip provides *very* different capabilities:
 
 {{< tabs >}}
-
 {{< tab active="true" name="Yamaha YM2612" >}}
-
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="FM" active="true" >}}
-      {{< video src="fm_single" >}}
-    {{< /tab >}}
-    {{< tab name="PCM Sample" >}}
-      {{< video src="pcm_single" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Sonic The Hedgehog (1991)</figcaption>
-{{< /float_block >}}
+{{< tabs float="true" nested="true" figure_img="true" >}}
+  {{< tab_video name="FM" active="true" src="fm_single" >}}
+  {{< tab_video name="PCM Sample" src="pcm_single" >}}
+  {{< figcaption >}}Sonic The Hedgehog (1991){{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 An **FM synthesiser** that runs at the 68000 speed and supports **six FM channels**, one can be used to play **PCM samples** (8-bit resolution and 32 KHz sampling rate).
@@ -292,11 +259,9 @@ Compared to traditional PSG synthesisers, this was a drastic improvement: You we
 {{< /tab >}}
   
 {{< tab name="Texas Instruments SN76489" >}}
-
-{{< float_block >}}
-  {{< video src="psg_single" >}}
-  <figcaption class="caption">Sonic The Hedgehog (1991)</figcaption>
-{{< /float_block >}}
+{{< video float="true" src="psg_single" >}}
+Sonic The Hedgehog (1991)
+{{< /video >}}
 
 {{% inner_markdown %}}
 A **PSG chip** that can produce three pulse waves and one noise.
@@ -309,11 +274,9 @@ Notice the 'Pulse 3' channel remains unused, this is indeed reserved to play the
 {{< /tab >}}
 
 {{< tab name="Mixed" >}}
-
-{{< float_block >}}
-  {{< video src="complete" >}}
-  <figcaption class="caption">Sonic The Hedgehog (1991)</figcaption>
-{{< /float_block >}}
+{{< video src="complete" float="true" >}}
+Sonic The Hedgehog (1991)
+{{< /video >}}
 
 {{% inner_markdown %}}
 Both chips can output sound at the same time, the audio mixer will then receive both signals and merge them before sending it through the audio output.
@@ -335,28 +298,21 @@ Now, some games may decide to exploit the PCM channel, and for that they also ne
 I've decided to dedicated a section for those who successfully manage to overcome the aforementioned constraint. Instead of just sticking with ordinary drum kits, some games found incredible ways to stream richer samples to that single PCM channel, check out these examples:
 
 {{< side_by_side >}}
-  <div class="toleft">
-    {{< tabs nested="true" >}}
-      {{< tab name="PCM Sample" active="true" >}}
-        {{< video src="good_sampling/sonic_pcm" >}}
-      {{< /tab >}}
-      {{< tab name="Complete" >}}
-        {{< video src="good_sampling/sonic_complete" >}}
-      {{< /tab >}}
-    {{< /tabs >}}
-    <figcaption class="caption">Sonic The Hedgehog 3 (1994)
-    <br>This is one of the tracks said to be co-authored by Michael Jackson. In any case, the overall soundtrack had a distinctive beat compared to its predecessors.</figcaption>
-  </div>
-
-  <div class="toright">
-    {{< tabs nested="true" >}}
-      {{< tab name="PCM Sample/Complete" active="true" >}}
-        {{< video src="good_sampling/randy_pcm" >}}
-      {{< /tab >}}
-    {{< /tabs >}}
-    <figcaption class="caption">Toy Story (1995)
-    <br>This is sequenced in real time with the help of the 68000. A very intensive task, meaning it could only be played at very particular points of the game (i.e. the main menu)</figcaption>
-  </div>
+  {{< tabs nested="true" class="toleft" figure="true" >}}
+    {{< tab_video name="PCM Sample" active="true" src="good_sampling/sonic_pcm" >}}
+    {{< tab_video name="Complete" src="good_sampling/sonic_complete" >}}
+    {{< figcaption >}}
+Sonic The Hedgehog 3 (1994)
+This is one of the tracks said to be co-authored by Michael Jackson. In any case, the overall soundtrack had a distinctive beat compared to its predecessors.
+    {{< /figcaption >}}
+  {{< /tabs >}}
+  {{< tabs nested="true" class="toright" figure="true" >}}
+    {{< tab_video name="PCM Sample/Complete" active="true" src="good_sampling/randy_pcm" >}}
+    {{< figcaption >}}
+Toy Story (1995)
+This is sequenced in real time with the help of the 68000. A very intensive task, meaning it could only be played at very particular points of the game (i.e. the main menu)
+    {{< /figcaption >}}
+  {{< /tabs >}}
 {{< /side_by_side >}}
 
 I know, they are nowhere near CD quality, but bear in mind those sounds were once deemed impossible to reproduce in this console and I'm not even emphasising how much progress this represents compared to the previous generation, so they certainly deserve some merit at least!
@@ -378,14 +334,12 @@ Here's an interesting fact: The Mega CD add-on provided 2 extra channels for CD 
 These fillers are only found on early betas of the game and they didn't make it for the release, the remake finally included them. This is one of the levels of the game:
 
 {{< side_by_side >}}
-    <div class="toleft" style="text-align: end;">
-    {{< audio src="sonic_cd_original" >}}
-    <figcaption class="caption">MegaCD version (1993)</figcaption>
-    </div>
-    <div class="toright">
-    {{< audio src="sonic_cd_remaster" >}}
-    <figcaption class="caption">Remastered version (2011)</figcaption>
-    </div>
+  {{< audio src="sonic_cd_original" class="toleft" >}}
+MegaCD version (1993)
+  {{< /audio >}}
+  {{< audio src="sonic_cd_remaster" class="toright" >}}
+Remastered version (2011)
+  {{< /audio >}}
 {{< /side_by_side >}}
 
 Have you noticed the gap on the Mega CD's version?
