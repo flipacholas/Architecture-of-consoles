@@ -211,11 +211,11 @@ Here are some examples of previous 2D characters for the [Super Nintendo]({{< re
 
 {{< side_by_side >}}
   {{< threejs_canvas model="zelda_ocarina_link" class="toleft" >}}
-The Legend of Zelda: Ocarina of Time (1998)
+The Legend of Zelda: Ocarina of Time (1998)  
 785 triangles
   {{< /threejs_canvas >}}
   {{< threejs_canvas model="kirby_cristals" class="toright" >}}
-Kirby 64: The Crystal Shards (2000)
+Kirby 64: The Crystal Shards (2000)  
 516 triangles
   {{< /threejs_canvas >}}
 {{< /side_by_side >}}
@@ -396,12 +396,12 @@ As silly as it may seem, Nintendo left one door opened: The **Disk Drive port**.
 
 {{< float_group >}}
 {{< tabs float="true" nested="true" >}}
-  {{< figure_img name="Attached" active="true" src="v64/attached.png" alt="Doctor V64 attached" >}}
+  {{< tab_figure_img name="Attached" active="true" src="v64/attached.png" alt="Doctor V64 attached" >}}
 The Doctor V64 attached to the console
-  {{< /figure_img >}}
-  {{< figure_img name="Back" src="v64/back.png" alt="Doctor V64 back" >}}
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Back" src="v64/back.png" alt="Doctor V64 back" >}}
 The back of the V64, showing some interesting A/V
-  {{< /figure_img >}}
+  {{< /tab_figure_img >}}
 {{< /tabs >}}
 
 {{% inner_markdown %}}

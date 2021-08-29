@@ -326,11 +326,11 @@ With all being said, this surely brought better designs to refresh already-famou
 
 {{< side_by_side >}}
   {{< threejs_canvas model="crash" class="toleft" >}}
-Crash Bandicoot (1996) for the PS1
+Crash Bandicoot (1996) for the PS1  
 732 triangles
   {{< /threejs_canvas >}}
   {{< threejs_canvas model="crash_wrath" class="toright" >}}
-Crash Bandicoot: The Wrath of Cortex (2001)
+Crash Bandicoot: The Wrath of Cortex (2001)  
 2226 triangles
   {{< /threejs_canvas >}}
 {{< /side_by_side >}}
@@ -339,11 +339,11 @@ Here are characters from new game series, these were modelled with high levels o
 
 {{< side_by_side >}}
   {{< threejs_canvas model="sora" class="toleft" >}}
-Kingdom Hearts (2002)
+Kingdom Hearts (2002)  
 2744 triangles
   {{< /threejs_canvas >}}
   {{< threejs_canvas model="hero" class="toright" >}}
-Dragon Quest VIII (2004)
+Dragon Quest VIII (2004)  
 2700 triangles
   {{< /threejs_canvas >}}
 {{< /side_by_side >}}

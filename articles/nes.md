@@ -230,7 +230,6 @@ Let's now discuss the type of wave-forms synthesised by the APU:
 {{< tabs >}}
 
 {{< tab active="true" name="Pulse" >}}
-
 {{< tabs nested="true" float="true" figure="true" >}}
   {{< tab_video name="Pulse 1" active="true" src="pulse_single_1" >}}
   {{< tab_video name="Pulse 2" src="pulse_single_2" >}}
@@ -251,7 +250,7 @@ When the game needs to play a sound effect, the accompaniment channel is switche
 {{< /tab >}}
 
 {{< tab name="Triangle" >}}
-{{< tabs nested="true" float="true" >}}
+{{< tabs nested="true" float="true" figure="true" >}}
   {{< tab_video name="Triangle" active="true" src="triangle_single" >}}
   {{< tab_video name="Complete" src="triangle_full" >}}
   {{< figcaption >}}Mother (1989){{< /figcaption >}}
@@ -268,7 +267,7 @@ The volume of this channel can't be controlled, possibly because the volume cont
 {{< /tab >}}
 
 {{< tab name="Noise" >}}
-{{< tabs nested="true" float="true" >}}
+{{< tabs nested="true" float="true" figure="true" >}}
   {{< tab_video name="Noise" active="true" src="noise_single" >}}
   {{< tab_video name="Complete" src="noise_full" >}}
   {{< figcaption >}}Mother (1989){{< /figcaption >}}
@@ -285,8 +284,7 @@ This channel has only 32 *presets* available. Half (16) of these presets produce
 {{< /tab >}}
 
 {{< tab name="Sample" >}}
-
-{{< tabs nested="true" float="true" >}}
+{{< tabs nested="true" float="true" figure="true" >}}
   {{< tab_video name="Sample" active="true" src="sample_single" >}}
   {{< tab_video name="Complete" src="sample_full" >}}
   {{< figcaption >}}Mother (1989){{< /figcaption >}}
@@ -311,7 +309,6 @@ programmers did find ways of expanding its capability, thanks to the modular arc
 {{< tabs >}}
 
 {{< tab name="Extra Channels" active="true" >}}
-
 {{< tabs nested="true" float="true" >}}
   {{< tab_figure_video name="American" active="true" src="castlevania_usa" >}}
 Castlevania III (1989)
@@ -330,7 +327,6 @@ Check out the difference between the Japanese version and the American versions 
 {{< /tab >}}
 
 {{< tab name="Tremolo" >}}
-
 {{< video src="tremolo_full" float="true" >}}
 Final Fantasy III (1990)
 {{< /video >}}

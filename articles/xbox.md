@@ -368,7 +368,7 @@ The console includes the following external connectors:
 ### Internal interfaces
 
 The MCPX also provides the following interfaces and protocols used to interconnect different subsystems:
-- **SMBus**: Also referred as I<sup>2</sup>C, it's a serial interface that connects these components:
+- **SMBus**: Also referred to as I²C, it's a serial interface that connects these components:
   - **System Management Controller** or 'SMC': Manages multiple services, such as power, temperature and fan control. It's actually a PIC16LC microcontroller.
   - **System Temperature Monitor** or 'STM': A digital thermometer (ADM1032) used by the SMC to detect overheating.
   - A **256 B EEPROM**: A re-writable ROM that stores unique identifiers (serial number, region, ethernet MAC address, etc).

@@ -36,7 +36,7 @@ I was a bit confused at first while reading about the different models that Sega
 - **Sega Master System** (Europe and America): A rebranded Mark III with a new case, a BIOS ROM chip and a different cartridge slot.
 - **Sega Master System** (Japan): An European/American Master system with the Mark III's cartridge slot, a new FM chip and a jack port for '3D glasses'. However, it lacks the `RESET` button.
 
-From now one I'll use the term 'Master System' or 'SMS' to refer to all of these, except when talking about exclusive features from a particular model.
+From now on I'll use the term 'Master System' or 'SMS' to refer to all of these, except when talking about exclusive features from a particular model.
 
 ---
 
@@ -88,7 +88,7 @@ In the case of the Master System, VRAM houses everything the VDP will require fo
 
 ### Constructing the frame
 
-The VDP renders frames with a resolution of **up to 256x192 pixels**, further revision added support for 256x224 px and 256x240 px, however, to maintain compatibility with all models, developers held on to the standard resolution. This chip has the same *modus operandi* as Nintendo's [PPU]({{< ref "nes#constructing-the-frame" >}}), in other words, graphics are rendered on-the-spot.
+The VDP renders frames with a resolution of **up to 256x192 pixels**, further revisions added support for 256x224 px and 256x240 px, however, to maintain compatibility with all models, developers held on to the standard resolution. This chip has the same *modus operandi* as Nintendo's [PPU]({{< ref "nes#constructing-the-frame" >}}), in other words, graphics are rendered on-the-spot.
 
 On the other side, the VDP has four different modes of operation which will alter the characteristics of the frame (colour depth and resolution):
 - **Mode 0 to III**: Inherited from the TMS9918 found on the SG-1000. Included for backwards compatibility, although any SMS game can use them.
@@ -109,7 +109,7 @@ Mode IV is based on the **tile system**. To recall [previous explanations]({{< r
 
 Inside VRAM, there's an area dedicated for tiles called **Character generator** (Sega calls 'Characters' to tiles) and it's set to be **14 KB long**. Each tile occupies 32 bytes, so we can store up to 448 tiles.
 
-There are 64 pixels defined on every tile, the VDP rules that each pixel must weigh 4 bits, which means that up to **16 colours can be chosen**. Those bits reference a single entry on **Colour RAM** or 'CRAM'. That area is found inside the VDP and stores the colour palettes. Colour palette systems help reduce the size of tiles in memory and allows programmers to alternate their colours without storing multiple copies.
+There are 64 pixels defined on every tile, the VDP rules that each pixel must weight 4 bits, which means that up to **16 colours can be chosen**. Those bits reference a single entry on **Colour RAM** or 'CRAM'. That area is found inside the VDP and stores the colour palettes. Colour palette systems help reduce the size of tiles in memory and allows programmers to alternate their colours without storing multiple copies.
 
 Colour RAM stores **two palettes of 16 colours each**. Each entry is 6-bit wide and each 2-bit set defines one colour from the RGB model. This means that there are 64 colours available to choose from.
 {{% /inner_markdown %}}
@@ -207,7 +207,7 @@ It turns out Sega also shipped **'3D glasses'** as an official accessory! The gl
 
 The shutters are controlled from a couple of memory addresses, but none of them will tell the console if there are glasses plugged in, so games that support this accessory include a settings option that allows the user to manually activate this feature.
 
-The LCD controllers are interfaced with a jack cable, which is plugged into the console. The European and American version didn't include the jack input, so they rely on the card port to connect an adaptor, we'll see more about the card slot later on.
+The LCD controllers are interfaced with a jack cable, which is plugged into the console. The European and American version didn't include the jack input, so they rely on the card port to connect an adaptor (we'll see more about the card slot later on).
 {{% /inner_markdown %}}
 
 {{< /tab >}}

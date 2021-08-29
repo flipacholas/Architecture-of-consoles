@@ -222,7 +222,7 @@ Now it's time to apply textures and effects to our models, and for that Flipper 
   - Finally, the unit also provides an **early [z-buffer]({{< ref "nintendo-64#modern-visible-surface-determination" >}})**, **mipmapping** (processing a downsized texture instead, based on the level of detail) and **anisotropic filtering** (a welcoming improvement over the [previous filters]({{< ref "nintendo-64#tab-1-2-reality-display-processor" >}}) that provides greater detail with sloped textures). 
 - **Texture Environment unit** or 'TEV': A very powerful programmable 16-stage colour blender. It basically combines multiple [texels]({{< ref "playstation#tab-4-5-textures" >}}) (lighting, textures and constants) to achieve an immense amount of texture effects that will be applied over our polygons.
   - The unit works by receiving four texels which are then processed based on the operation requested. Afterwards, it can feed itself the resulting texels as new input, so at the next stage/cycle, the unit can perform a different type of operation over the previous result. This 'loop' can last up to 15 iterations.
-  - Each stage has 2<sup>4</sup> operations to choose from and since the result can be re-processed at the next stage, there are around 5.64 × 10<sup>511</sup> possible permutations!
+  - Each stage has 2{{< sup "4" >}} operations to choose from and since the result can be re-processed at the next stage, there are around 5.64 × 10{{< sup "511" >}} possible permutations!
   - Programmers set up the TEV at runtime (meaning it can change any time) and this is crucial since it opens the door to lots of original materials and effects.
 
 All of this is assisted by 1 MB of Texture memory (1T-SRAM type) which can be split into cache and Scratchpad memory (fast RAM). **Real-time hardware decompression** for SRTC (S3 Texture Compression) textures is also available to fit more textures in that single meg. of memory available.
@@ -264,12 +264,12 @@ The famous Mario model which had to be stripped down due to polygon counting on 
 
 {{< side_by_side nested="true" >}}
   {{< threejs_canvas model="mario_smash" class="toleft" >}}
-Super Smash Bros (1999) for the N64
+Super Smash Bros (1999) for the N64  
 229 triangles
   {{< /threejs_canvas >}}
 
   {{< threejs_canvas model="mario_melee" class="toright" >}}
-Super Smash Bros. Melee (2001) for the GC
+Super Smash Bros. Melee (2001) for the GC  
 2,494 triangles
   {{< /threejs_canvas >}}
 {{< /side_by_side >}}
@@ -283,11 +283,11 @@ In this case, Sonic Team already designed a Sonic model for [their unique consol
 
 {{< side_by_side nested="true" >}}
   {{< threejs_canvas model="sonic_adventure" class="toleft" >}}
-Sonic Adventure (1999) for the DC
+Sonic Adventure (1999) for the DC  
 1001 triangles
   {{< /threejs_canvas >}}
   {{< threejs_canvas model="sonic_dx" class="toright" >}}
-Sonic DX (2003) for the GC
+Sonic DX (2003) for the GC  
 1,993 triangles
   {{< /threejs_canvas >}}
 {{< /side_by_side >}}
@@ -555,7 +555,7 @@ My old Gamecube recently rescued from the attic
 I only needed the controller for the Wii (back then it was cheaper to buy the whole second hand lot!)
 {{< /figure_img >}}
 
-Well, this is it, the **10<sup>th</sup> article**!
+Well, this is it, the **10{{< sup "th" >}} article**!
 
 I really tried to set a rough limit on the length of this article but you have to understand, technology has gotten *so complex* that if I accidentally skip anything important, the whole topic gets impossible to follow.
 

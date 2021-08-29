@@ -354,8 +354,6 @@ Otras herramientas proporcionadas por terceros consistían en cartuchos con un l
 Adicionalmente, El PBUS se ramifica a otro conector en la parte inferior de la placa base de la N64. Esto estaba destinado a ser utilizado por la **Nintendo 64 Disk Drive** (64DD) aún inédita, una especie de 'piso adicional' que contiene un lector de disco magnético patentado. Sus discos contienen hasta 64 MB de capacidad. Aunque solo se lanzó en Japón, la unidad de disco abrió la puerta a un medio alternativo (y más barato) para distribuir juegos.
 
 {{< float_group >}}
-
-{{< float_group >}}
 {{< tabs float="true" nested="true" >}}
   {{< tab_figure_img name="Módulo" src="64dd/module.png" alt="Módulo N64 DD" active="true" >}}
 La Nintendo 64 Disk Drive
@@ -396,12 +394,12 @@ Por muy tonto que parezca, Nintendo dejó una 'puerta' abierta: El puerto del Di
 
 {{< float_group >}}
 {{< tabs float="true" nested="true" >}}
-  {{< figure_img name="Attached" active="true" src="v64/attached.png" alt="Doctor V64 attached" >}}
-The Doctor V64 attached to the console
-  {{< /figure_img >}}
-  {{< figure_img name="Back" src="v64/back.png" alt="Doctor V64 back" >}}
-The back of the V64, showing some interesting A/V
-  {{< /figure_img >}}
+  {{< tab_figure_img name="Conectado" active="true" src="v64/attached.png" alt="Doctor V64 attached" >}}
+El Doctor V64 conectado a la consola
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Atrás" src="v64/back.png" alt="Doctor V64" >}}
+El V64 visto desde atrás, mostrando conectores especiales para A/V
+  {{< /tab_figure_img >}}
 {{< /tabs >}}
 
 {{% inner_markdown %}}

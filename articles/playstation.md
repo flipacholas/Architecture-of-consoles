@@ -326,11 +326,11 @@ Let's take a break now from all this theory. Here are some examples of game char
 
 {{< side_by_side >}}
   {{< threejs_canvas model="spyro" class="toleft" >}}
-Spyro the Dragon (1998)
+Spyro the Dragon (1998)  
 413 triangles
   {{< /threejs_canvas >}}
   {{< threejs_canvas model="crash" class="toright" >}}
-Crash Bandicoot (1996)
+Crash Bandicoot (1996)  
 732 triangles
   {{< /threejs_canvas >}}
 {{< /side_by_side >}}
