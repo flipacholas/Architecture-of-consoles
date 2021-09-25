@@ -303,15 +303,14 @@ The concept of 'shaders' was introduced by **Pixar** in 1989 as a method to exte
 
 {{< float_group >}}
 
-{{< tabs nested="true" float="true" >}}
+{{< tabs nested="true" float="true" figure="true" >}}
   {{< tab_figure_video name="Vertex Program" active="true" src="vertex" loop=true >}}
-Complex animation achieved by vertex program  
-Chameleon (2001), a demo developed by Nvidia to showcase GeForce3's shaders
+Complex animation achieved by vertex program
   {{< /tab_figure_video >}}
   {{< tab_figure_video name="Pixel Shader" src="fragment" >}}
 Different texture effects achieved by pixel shaders
-Chameleon (2001), a demo developed by Nvidia to showcase GeForce3's shaders
   {{< /tab_figure_video >}}
+  {{< figcaption group="true" >}}Chameleon (2001), a demo developed by Nvidia to showcase GeForce3's shaders{{< /figcaption >}}
 {{< /tabs >}}
 
 {{% inner_markdown %}}
@@ -320,7 +319,6 @@ Thanks to vertex programs, the GPU can now accelerate model transformations, lig
 In the case of pixel shaders, programmers can manipulate and blend textures in multiple ways to achieve different effects such as multi-texturing, specular mapping, bump mapping, environment mapping and so on.
 
 A new programming concept that emerges thanks to this approach is the **General Purpose GPU** or 'GPGPU', which consists of assigning tasks to the GPU that would have been exclusively done by the CPU. So not only the GPU has taken over most of the graphics pipeline, but now can act as an efficient co-processor for specialised computations (i.e. physics calculations). This is a new area that will evolve as GPUs become more powerful and flexible. However, the NV2A was already able to achieve this thanks to a combination of hardware capabilities (vertex & pixel shaders) and specialised APIs developed (OpenGL's 'state programs').
-
 {{% /inner_markdown %}}
 
 {{< /float_group >}}
@@ -433,9 +431,13 @@ Let's take a look now at the program that the Xbox loads when there isn't a game
 {{< tabs >}}
 {{< tab name="Interactive shell" active="true" >}}
 {{< tabs nested="true" float="true" figure="true" >}}
-  {{< tab_img name="Home" active="true" src="shell/home.png" >}}
-  {{< tab_img name="Settings" src="shell/settings.png" >}}
-  {{< figcaption >}}The Dashboards offers multiple services{{< /figcaption >}}
+  {{< tab_figure_img name="Home" active="true" src="shell/home.png" >}}
+Home screen.
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Settings" src="shell/settings.png" >}}
+Settings screen.
+  {{< /tab_figure_img >}}
+  {{< figcaption group="true" >}}The Dashboard offers multiple services{{< /figcaption >}}
 {{< /tabs >}}
 
 {{% inner_markdown %}}

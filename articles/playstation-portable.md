@@ -26,9 +26,9 @@ top_tabs:
         caption: "The redesigned PSP (model 'N1000', a.k.a 'Go')
         <br>Released on 01/10/2009 in America and Europe, and on 01/11/2009 in Japan"
   Motherboard:
-    caption: "Such a tiny board... but you can do so much with it
+    caption: "Such a tiny board... but you can do so much with it.  
 Those zigzags you see between the CPU and memory attempt to correct the length of each bus so all of the signals arrive at the same time. This tells you how fast technology has become!
-After the 'Slim' model, Tachyon and 'NAND + SDRAM' became one"
+After the 'Slim' model, Tachyon and 'NAND + SDRAM' became one."
   Diagram:
     caption: "After the 'Slim' model, NAND and SDRAM size were doubled (to 64 MB each)"
 

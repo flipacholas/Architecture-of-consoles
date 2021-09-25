@@ -403,12 +403,13 @@ On the bottom of the Gamecube's case, you'll find two external sockets to connec
 
 {{< float_group >}}
 
-{{< tabs nested="true" figure="true" float="true" >}}
-  {{< tab_img name="Covered" active="true" src="accessories_covered.jpg" >}}
-  {{< tab_img name="Uncovered" src="accessories.jpg" >}}
-  {{< figcaption >}}
-Accessory slots at the bottom of the case
-  {{< /figcaption >}}
+{{< tabs nested="true" float="true" >}}
+  {{< tab_figure_img name="Covered" active="true" src="accessories_covered.jpg" >}}
+Covered accessory slots on the bottom of the case.
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Uncovered" src="accessories.jpg" >}}
+Uncovered accessory slots on the bottom of the case.
+  {{< /tab_figure_img >}}
 {{< /tabs >}}
 
 {{% inner_markdown %}}
@@ -448,13 +449,16 @@ After finishing the boot process, the OS will load a small program *unofficially
 
 {{< float_group >}}
 
-{{< tabs nested="true" float="true" figure="true" >}}
-  {{< tab_img name="Menu" src="ipl/menu.png" active="true" >}}
-  {{< tab_img name="Clock" src="ipl/clock.png" >}}
-  {{< tab_img name="Options" src="ipl/sound.png" >}}
-  {{< figcaption >}}
-Main Menu with multiple settings available
-  {{< /figcaption >}}
+{{< tabs nested="true" float="true" >}}
+  {{< tab_figure_img name="Menu" src="ipl/menu.png" active="true" >}}
+Main Menu with multiple settings available.
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Clock" src="ipl/clock.png" >}}
+Clock settings.
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Options" src="ipl/sound.png" >}}
+Sound settings.
+  {{< /tab_figure_img >}}
 {{< /tabs >}}
 
 {{% inner_markdown %}}

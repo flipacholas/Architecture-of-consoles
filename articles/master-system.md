@@ -99,9 +99,13 @@ Now let's see how a frame is drawn step by step, for this, I'll borrow *Sonic Th
 {{< tabs >}}
 {{< tab active="true" name="Tiles" >}}
 {{< tabs nested="true" float="true" class="pixel" figure="true" >}}
-  {{< tab_img name="All" active="true" src="sonic/tiles.png" >}}
-  {{< tab_img name="Single" src="sonic/tile.png" >}}
-  {{< figcaption >}}Tiles Found in VRAM{{< /figcaption >}}
+  {{< tab_figure_img name="All" active="true" src="sonic/tiles.png" >}}
+All tiles.
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Single" src="sonic/tile.png" >}}
+A single tile.
+  {{< /tab_figure_img >}}
+  {{< figcaption group="true" >}}Tiles Found in VRAM.{{< /figcaption >}}
 {{< /tabs >}}
 
 {{% inner_markdown %}}
@@ -118,10 +122,13 @@ Colour RAM stores **two palettes of 16 colours each**. Each entry is 6-bit wide 
 
 {{< tab name="Background Layer" >}}
 
-{{< tabs nested="true" float="true" class="pixel" figure="true" >}}
-  {{< tab_img name="Overall" active="true" src="sonic/tilemap.png" >}}
-  {{< tab_img name="Selected" src="sonic/tilemap_marked.png" >}}
-  {{< figcaption >}}Screen map{{< /figcaption >}}
+{{< tabs nested="true" float="true" class="pixel" >}}
+  {{< tab_figure_img name="Overall" active="true" src="sonic/tilemap.png" >}}
+Allocated Screen map.
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Selected" src="sonic/tilemap_marked.png" >}}
+Allocated Screen map with selected area marked.
+  {{< /tab_figure_img >}}
 {{< /tabs >}}
 
 {{% inner_markdown %}}
@@ -236,7 +243,8 @@ Now let's take a look at each type of waveform the SN76489 can generate:
 {{< tabs >}}
 {{< tab active="true" name="Pulse" >}}
 {{< video src="pulse" float="true" >}}
-Sonic The Hedgehog (1991)
+Pulse channel.  
+Sonic The Hedgehog (1991).
 {{< /video >}}
 
 {{% inner_markdown %}}
@@ -251,7 +259,8 @@ All of this is handled by the PSG, which can produce **three pulse waves at the 
   
 {{< tab name="Noise" >}}
 {{< video src="noise" float="true" >}}
-Sonic The Hedgehog (1991)
+Noise channel.  
+Sonic The Hedgehog (1991).
 {{< /video >}}
 
 {{% inner_markdown %}}
@@ -268,7 +277,8 @@ Games normally use the noise channel for **percussion and/or sound effects**.
 
 {{< tab name="Mixed" >}}
 {{< video src="pulse_complete" float="true" >}}
-Sonic The Hedgehog (1991)
+All audio channels.  
+Sonic The Hedgehog (1991).
 {{< /video >}}
 
 {{% inner_markdown %}}
@@ -327,8 +337,8 @@ I don't have the necessary tools right now to confirm whether the SMS should sho
 {{< tab name="Sample play" >}}
 
 {{< video src="ball" float="true" >}}
-Alex Kidd - The Lost Stars (1986)  
-1-bit PCM sample
+1-bit PCM sample.  
+Alex Kidd - The Lost Stars (1986).
 {{< /video >}}
 
 {{% inner_markdown %}}

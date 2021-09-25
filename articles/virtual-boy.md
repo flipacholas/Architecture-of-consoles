@@ -80,7 +80,7 @@ Next to the focus slider there is a **IPD dial** (knob-shaped switch), which adj
 {{< /tab >}}
 
 {{< tab name="Mechanics" >}}
-{{< animated_svg src="vectors/consoles/virtualboy/scangraph.svg" >}}
+{{< animated_svg src="scangraph" >}}
 Basic representation of the angle of the oscillating mirror over time (at a very slow motion).  
 The left and right LEDs are operating (active) during the red and blue period, respectively.  
 During the grey period, no LED is operating (idle).  
@@ -104,7 +104,7 @@ In practice, there are some conditions for all these principles to work:
 {{< /tab >}}
 
 {{< tab name="Display" >}}
-{{< animated_svg src="vectors/consoles/virtualboy/frame.svg" >}}
+{{< animated_svg src="frame" >}}
 Simplified representation of how the first LED unit operates during specific periods of time. Notice how the LEDs will start displaying each column of the frame-buffer during active periods.
 {{< /animated_svg >}}
 
@@ -118,7 +118,7 @@ Moreover, we need to store two frame-buffers since each one will go to a differe
 {{< /tab >}}
 
 {{< tab name="Active periods" >}}
-{{< animated_svg src="vectors/consoles/virtualboy/active.svg" >}}
+{{< animated_svg src="active" >}}
 Another simplified animation, this time showing how the oscillation of the mirror deviates the LEDs light in a way the user will end up seeing a proper frame
 {{< /animated_svg >}}
 
@@ -147,11 +147,14 @@ In a nutshell, the Virtual Boy relies on **Stereoscopic images** to carry out th
 {{< float_group >}}
 
 {{< tabs nested="true" float="true" class="pixel" figure="true" >}}
-  {{< tab_img name="Left" active="true" src="tennis/left.png" >}}
-  {{< tab_img name="Right" src="tennis/right.png" >}}
-  {{< figcaption >}}
-Snapshot of the game seen from the different display units  
-Mario's Tennis (1995)
+  {{< tab_figure_img name="Left" active="true" src="tennis/left.png" >}}
+Left display unit's screenshot.
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Right" src="tennis/right.png" >}}
+Right display unit's screenshot.
+  {{< /tab_figure_img >}}
+  {{< figcaption group="true" >}}
+Mario's Tennis (1995).
   {{< /figcaption >}}
 {{< /tabs >}}
 
@@ -266,9 +269,12 @@ Let's dive deeper and see now how a single frame is drawn on the Pixel Processor
 {{< tabs >}}
 {{< tab active="true" name="Tiles" >}}
 {{< tabs float="true" nested="true" class="pixel" figure="true" >}}
-  {{< tab_img name="Tiles" active="true" src="wario/tiles.jpg" >}}
-  {{< tab_img name="Grid" src="wario/tiles_grid.jpg" >}}
-  {{< figcaption >}}Tiles found in VRAM{{< /figcaption >}}
+  {{< tab_figure_img name="Tiles" active="true" src="wario/tiles.jpg" >}}
+Tiles found in VRAM.
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Grid" src="wario/tiles_grid.jpg" >}}
+Tiles found in VRAM separated with a grid.
+  {{< /tab_figure_img >}}
 {{< /tabs >}}
 
 {{% inner_markdown %}}
@@ -283,16 +289,20 @@ One may wonder what's the point of colour palettes if the LEDs are monochrome. W
 
 {{< tab name="Backgrounds" >}}
 
-{{< tabs nested="true" float="true" class="pixel" >}}
+{{< tabs nested="true" float="true" class="pixel" figure="true" >}}
   {{< tab_figure_img name="BG0" active="true" src="wario/background_1.jpg" >}}
-Some background layers declared
+Background Layer 0 (BG0).
   {{< /tab_figure_img >}}
   {{< tab_figure_img name="BG1" src="wario/background_2.jpg" >}}
-This one is mostly hidden during gameplay, and then shown completely after hitting pause
+Background Layer 1 (BG1).  
+This one is mostly hidden during gameplay, and then shown completely after hitting pause.
   {{< /tab_figure_img >}}
   {{< tab_figure_img name="BG2" src="wario/background_3.jpg" >}}
-Another layer
+Background Layer 2 (BG2).  
   {{< /tab_figure_img >}}
+  {{< figcaption group="true" >}}
+Some background layers declared.
+  {{< /figcaption >}}
 {{< /tabs >}}
 
 {{% inner_markdown %}}
@@ -329,20 +339,26 @@ Each sprite have the following properties available:
 
 {{< tab name="Window" >}}
 
-{{< tabs nested="true" float="true" class="pixel" >}}
+{{< tabs nested="true" float="true" class="pixel" figure="true" >}}
   {{< tab_figure_img name="World 1" active="true" src="wario/window_2.jpg" >}}
-Examples of Windows  
-Some are meant to be rendered on both displays (using shifting effects), others are exclusive to one
+World 1.
   {{< /tab_figure_img >}}
   {{< tab_figure_img name="World 2" src="wario/window_1.jpg" >}}
-This one is rendered on both
+World 2.  
+This one is rendered on both displays.
   {{< /tab_figure_img >}}
   {{< tab_figure_img name="World 3" src="wario/window_3.jpg" >}}
-This one is expanded when you pause the game
+World 3.  
+This one is expanded when you pause the game.
   {{< /tab_figure_img >}}
   {{< tab_figure_img name="World 4" src="wario/window_4.jpg" >}}
-This is the sprite layer I owe you from before
+World 4.  
+This is the 'sprite layer' I owe you from before.
   {{< /tab_figure_img >}}
+  {{< figcaption group="true" >}}
+Examples of Windows.  
+Some are meant to be rendered on both displays (using shifting effects), others are exclusive to one
+  {{< /figcaption >}}
 {{< /tabs >}}
 
 {{% inner_markdown %}}
@@ -381,19 +397,19 @@ As you can see, there is a lot more technology in this console than meets the ey
 
 {{< float_group >}}
 
-{{< tabs nested="true" float="true" >}}
+{{< tabs nested="true" float="true" figure="true" >}}
   {{< tab_figure_img name="Map" active="true" src="tennis/affine_map.jpg" alt="Map" >}}
-Affine mode in action, showing the initial background map  
-Mario's Tennis (1995)
+Affine mode in action, showing the initial background map.
   {{< /tab_figure_img >}}
   {{< tab_figure_img name="Window" src="tennis/affine_window.jpg" alt="Window" >}}
-Rendered map, with perspective projection applied  
-Mario's Tennis (1995)
+Rendered map, with perspective projection applied.
   {{< /tab_figure_img >}}
   {{< tab_figure_img name="Frame" src="tennis/affine_frame.jpg" alt="Frame" >}}
-As seen in the game  
-Mario's Tennis (1995)
+Frame seen by the user.
   {{< /tab_figure_img >}}
+  {{< figcaption group="true" >}}
+Mario's Tennis (1995).
+  {{< /figcaption >}}
 {{< /tabs >}}
 
 {{% inner_markdown %}}

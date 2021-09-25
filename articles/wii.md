@@ -99,19 +99,17 @@ The 3D engine is still [Flipper's]({{< ref "gamecube#graphics" >}}) but now call
 
 {{< tab active="true" name="Standardised Widescreen" >}}
 
-{{< tabs nested="true" float="true" >}}
+{{< tabs nested="true" float="true" figure="true" >}}
   {{< tab_figure_img name="Traditional" active="true" src="mario/4_3.png" alt="Mario Galaxy" >}}
-4:3 mode  
-Super Mario Galaxy (2007)
+4:3 mode
   {{< /tab_figure_img >}}
   {{< tab_figure_img name="Wide" src="mario/16_9.png" alt="Mario Galaxy Widescreen" >}}
-16:9 mode, as composed by the video encoder  
-Super Mario Galaxy (2007)
+16:9 mode, as composed by the video encoder
   {{< /tab_figure_img >}}
   {{< tab_figure_img name="Stretched" src="mario/16_9_stretched.png" alt="Mario Galaxy Widescreen Stretched" >}}
-16:9 mode, as displayed on a widescreen TV  
-Super Mario Galaxy (2007)
+16:9 mode, as displayed on a widescreen TV
   {{< /tab_figure_img >}}
+  {{< figcaption group="true" >}}Super Mario Galaxy (2007){{< /figcaption >}}
 {{< /tabs >}}
 
 {{% inner_markdown %}}
@@ -193,7 +191,7 @@ If you wonder, Jazelle never took off, after some iterations, it was discovered 
 {{< figure_img_distributed float="true" 
                           src1="console/front.jpeg" alt1="Front of the Wii"
                           src2="console/back.jpeg" alt2="Back of the Wii" >}}
-External I/O on the Wii
+External I/O on the Wii  
 The dark & small front slot is an SD card reader
 {{< /figure_img_distributed >}}
 
@@ -553,8 +551,8 @@ While further reversing IOS, it was discovered that signatures are only checked 
   {{< tab_img name="Splash" active="true" src="system/homebrew_channel.png" alt="Homebrew channel" >}}
   {{< tab_img name="Inside" src="system/homebrew/menu.png" alt="Homebrew channel menu" >}}
   {{< figcaption >}}
-The most user-friendly hack of all  
-_Unofficial_ Homebrew channel (2008)
+The most user-friendly hack of all.  
+_Unofficial_ Homebrew channel (2008).
   {{< /figcaption >}}
 {{< /tabs >}}
 

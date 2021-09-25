@@ -85,11 +85,15 @@ Additionally, the frame that the PPU outputs is built using two different layers
 {{< tabs >}}
 {{< tab name="Tiles" active="true" >}}
 {{< tabs nested="true" float="true" class="pixel desktop-margined" figure="true" >}}
-  {{< tab_img name="All" active="true" src="ppu_mario/chr_map.png" >}}
-  {{< tab_img name="Single" src="ppu_mario/single.png" >}}
-  {{< figcaption >}}
-Tiles Found in its Character ROM  
-(For demonstration purposes a default palette is being used)
+  {{< tab_figure_img name="All" active="true" src="ppu_mario/chr_map.png" >}}
+Multiple tiles squashed together.
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Single" src="ppu_mario/single.png" >}}
+A single tile.
+  {{< /tab_figure_img >}}
+  {{< figcaption group="true" >}}
+Tiles Found in Character ROM.  
+(For demonstration purposes a default palette is being used).
   {{< /figcaption >}}
 {{< /tabs >}}
 
@@ -107,10 +111,14 @@ To start drawing the picture, the PPU first looks for tile references from a set
 
 {{< tab name="Background Layer" >}}
 {{< tabs nested="true" float="true" class="pixel" figure="true" >}}
-  {{< tab_img name="Overall" active="true" src="ppu_mario/nametable.png" >}}
-  {{< tab_img name="Selected" src="ppu_mario/nametable_marked.png" >}}
-  {{< figcaption >}}
-Background map set up with vertical mirroring, which allows horizontal scrolling. Only one half is used.
+  {{< tab_figure_img name="Overall" active="true" src="ppu_mario/nametable.png" >}}
+Allocated background map.
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Selected" src="ppu_mario/nametable_marked.png" >}}
+Allocated background map with selected area marked.
+  {{< /tab_figure_img >}}
+  {{< figcaption group="true" >}}
+Background map set up with vertical mirroring, which enables horizontal scrolling. Only one half is used.
   {{< /figcaption >}}
 {{< /tabs >}}
 
@@ -191,11 +199,16 @@ As an interesting *fix*: the PPU allowed developers to apply a vertical mask on 
 
 {{< tab name="Tile-Swap" >}}
 
-{{< tabs nested="true" float="true" class="pixel" figure="true" >}}
-  {{< tab_img name="Scan 1" active="true" src="secrets/multiplexing_1.png" >}}
-  {{< tab_img name="Scan 2" src="secrets/multiplexing_2.png" >}}
-  {{< tab_img name="Displayed" src="secrets/multiplexing_complete.png" >}}
-  {{< figcaption >}}Screenshots taken during different scan points.{{< /figcaption >}}
+{{< tabs nested="true" float="true" class="pixel" >}}
+  {{< tab_figure_img name="Scan 1" active="true" src="secrets/multiplexing_1.png" >}}
+Hypothetical if it were rendered using tiles available during the first scan lines. 
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Scan 2" src="secrets/multiplexing_2.png" >}}
+Hypothetical if it were rendered using tiles available during the later scan lines. 
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Displayed" src="secrets/multiplexing_complete.png" >}}
+Actual frame displayed to the user.
+  {{< /tab_figure_img >}}
 {{< /tabs >}}
 
 {{% inner_markdown %}}
@@ -231,10 +244,16 @@ Let's now discuss the type of wave-forms synthesised by the APU:
 
 {{< tab active="true" name="Pulse" >}}
 {{< tabs nested="true" float="true" figure="true" >}}
-  {{< tab_video name="Pulse 1" active="true" src="pulse_single_1" >}}
-  {{< tab_video name="Pulse 2" src="pulse_single_2" >}}
-  {{< tab_video name="Complete" src="pulse_full" >}}
-  {{< figcaption >}}Mother (1989){{< /figcaption >}}
+  {{< tab_figure_video name="Pulse 1" active="true" src="pulse_single_1" >}}
+Pulse 1 channel.
+  {{< /tab_figure_video >}}
+  {{< tab_figure_video name="Pulse 2" src="pulse_single_2" >}}
+Pulse 2 channel.
+  {{< /tab_figure_video >}}
+  {{< tab_figure_video name="Complete" src="pulse_full" >}}
+All audio channels.
+  {{< /tab_figure_video >}}
+  {{< figcaption group="true" >}}Mother (1989).{{< /figcaption >}}
 {{< /tabs >}}
 
 {{% inner_markdown %}}
@@ -251,9 +270,13 @@ When the game needs to play a sound effect, the accompaniment channel is switche
 
 {{< tab name="Triangle" >}}
 {{< tabs nested="true" float="true" figure="true" >}}
-  {{< tab_video name="Triangle" active="true" src="triangle_single" >}}
-  {{< tab_video name="Complete" src="triangle_full" >}}
-  {{< figcaption >}}Mother (1989){{< /figcaption >}}
+  {{< tab_figure_video name="Triangle" active="true" src="triangle_single" >}}
+Triangle channel.
+  {{< /tab_figure_video >}}
+  {{< tab_figure_video name="Complete" src="triangle_full" >}}
+All audio channels.
+  {{< /tab_figure_video >}}
+  {{< figcaption group="true" >}}Mother (1989){{< /figcaption >}}
 {{< /tabs >}}
 
 {{% inner_markdown %}}
@@ -268,9 +291,13 @@ The volume of this channel can't be controlled, possibly because the volume cont
 
 {{< tab name="Noise" >}}
 {{< tabs nested="true" float="true" figure="true" >}}
-  {{< tab_video name="Noise" active="true" src="noise_single" >}}
-  {{< tab_video name="Complete" src="noise_full" >}}
-  {{< figcaption >}}Mother (1989){{< /figcaption >}}
+  {{< tab_figure_video name="Noise" active="true" src="noise_single" >}}
+Noise channel.
+  {{< /tab_figure_video >}}
+  {{< tab_figure_video name="Complete" src="noise_full" >}}
+All audio channels.
+  {{< /tab_figure_video >}}
+  {{< figcaption group="true" >}}Mother (1989){{< /figcaption >}}
 {{< /tabs >}}
 
 {{% inner_markdown %}}
@@ -285,9 +312,13 @@ This channel has only 32 *presets* available. Half (16) of these presets produce
 
 {{< tab name="Sample" >}}
 {{< tabs nested="true" float="true" figure="true" >}}
-  {{< tab_video name="Sample" active="true" src="sample_single" >}}
-  {{< tab_video name="Complete" src="sample_full" >}}
-  {{< figcaption >}}Mother (1989){{< /figcaption >}}
+  {{< tab_figure_video name="Sample" active="true" src="sample_single" >}}
+Sample channel.
+  {{< /tab_figure_video >}}
+  {{< tab_figure_video name="Complete" src="sample_full" >}}
+All audio channels.
+  {{< /tab_figure_video >}}
+  {{< figcaption group="true" >}}Mother (1989){{< /figcaption >}}
 {{< /tabs >}}
 
 {{% inner_markdown %}}
@@ -311,10 +342,10 @@ programmers did find ways of expanding its capability, thanks to the modular arc
 {{< tab name="Extra Channels" active="true" >}}
 {{< tabs nested="true" float="true" >}}
   {{< tab_figure_video name="American" active="true" src="castlevania_usa" >}}
-Castlevania III (1989)
+Castlevania III (USA/Europe, 1989)
   {{< /tab_figure_video >}}
   {{< tab_figure_video name="Japanese" src="castlevania_jap" >}}
-Akumajō Densetsu (1989)
+Akumajō Densetsu (Japan, 1989)
   {{< /tab_figure_video >}}
 {{< /tabs >}}
 

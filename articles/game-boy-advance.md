@@ -121,16 +121,19 @@ I'm going to borrow the graphics of Sega's *Sonic Advance 3* to show how a frame
 {{< tabs >}}
 
 {{< tab name="Tiles" active="true" >}}
-{{< tabs nested="true" class="pixel" float="true" >}}
+{{< tabs nested="true" float="true" figure="true" >}}
   {{< tab_figure_img name="Block 1" active="true" src="sonic/tiles1.png" >}}
-4bpp Tiles found in VRAM
+This block is made of 4bpp Tiles.
   {{< /tab_figure_img >}}
   {{< tab_figure_img name="Block 2" src="sonic/tiles2.png" >}}
-You may notice some weird vertical patterns in here, these are not graphics but 'Tile Maps' (see next section)
+You may notice some weird vertical patterns in here, these are not graphics but 'Tile Maps' (see next section).
   {{< /tab_figure_img >}}
   {{< tab_figure_img name="Block 3" src="sonic/tilesobj.png" >}}
-This block is reserved for sprites
+This block is reserved for sprites.
   {{< /tab_figure_img >}}
+  {{< figcaption group="true" >}}
+Charblocks found in VRAM.
+  {{< /figcaption >}}
 {{< /tabs >}}
 
 {{% inner_markdown %}}
@@ -146,13 +149,19 @@ Only four charblocks can be used for backgrounds and two can be used for sprites
 {{< /tab >}}
 
 {{< tab name="Backgrounds" >}}
-{{< tabs nested="true" class="pixel" figure="true" float="true" >}}
-  {{< tab_img name="Layer 0" src="sonic/bg0.png" active="true" >}}
-  {{< tab_img name="Layer 2" src="sonic/bg2.png" >}}
-  {{< tab_img name="Layer 3" src="sonic/bg3.png" >}}
-  {{< figcaption >}}
-Static background layers in use  
-Layer 3 will be shifted horizontally at some scan-lines to simulate water effects
+{{< tabs nested="true" figure="true" float="true" >}}
+  {{< tab_figure_img name="Layer 0" src="sonic/bg0.png" active="true" >}}
+Background Layer 0 (BG0).
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Layer 2" src="sonic/bg2.png" >}}
+Background Layer 2 (BG2).
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Layer 3" src="sonic/bg3.png" >}}
+Background Layer 3 (BG3).  
+This particular layer will be shifted horizontally at certain scan-lines to simulate water effects.
+  {{< /tab_figure_img >}}
+  {{< figcaption group="true" >}}
+Static background layers in use.
   {{< /figcaption >}}
 {{< /tabs >}}
 
@@ -174,7 +183,7 @@ The piece of data that defines the background layer is called **Tile Map**. To i
 
 {{< tab name="Sprites" >}}
 
-{{< figure_img float="true" img_class="pixel" src="sonic/sprites.png" alt="Sprites" >}}
+{{< figure_img float="true" class="pixel" src="sonic/sprites.png" alt="Sprites" >}}
 Rendered Sprite layer
 {{< /figure_img >}}
 
@@ -193,7 +202,7 @@ Sprite entries are 32-bit wide and their values can be divided into two groups:
 
 {{< tab name="Result" >}}
 
-{{< figure_img float="true" img_class="pixel" src="sonic/result.png" alt="Sprites" >}}
+{{< figure_img float="true" class="pixel" src="sonic/result.png" alt="Sprites" >}}
 All layers merged (_Tada!_)
 {{< /figure_img >}}
 
@@ -227,21 +236,24 @@ The reason for having two bitmaps is to enable **page-flipping**: Drawing over a
 
 {{< float_group >}}
 
-{{< tabs float="true" nested="true" class="pixel" >}}
+{{< tabs float="true" nested="true" class="pixel" figure="true" >}}
   {{< tab_figure_img name="3D" active="true" src="bitmap/monkey.png" >}}
-Super Monkey Ball Jr. (2002)  
-Bitmap mode allowed the CPU to provide some rudimentary 3D graphics for the scenery  
-Foreground objects are sprites (separate layer)
+Super Monkey Ball Jr. (2002).  
+Bitmap mode allowed the CPU to provide some rudimentary 3D graphics for the scenery.  
+Foreground objects are sprites (separate layer).
   {{< /tab_figure_img >}}
   {{< tab_figure_img name="Demo" src="bitmap/demo.png" >}}
-Tonc's demo  
-Rendered bitmap with some primitives  
-Notice the screen doesn't show significant patterns produced by tile engines
+Tonc's demo.  
+Rendered bitmap with some primitives.  
+Notice the screen doesn't show significant patterns produced by tile engines.
   {{< /tab_figure_img >}}
   {{< tab_figure_img name="Video" src="bitmap/spongebob.png" >}}
-Nickelodeon's SpongeBob SquarePants  
-Episode distributed as a _GBA Video_ cartridge (it suffered a lot of compression, of course)
+Nickelodeon's SpongeBob SquarePants.  
+Episode distributed as a _GBA Video_ cartridge (it suffered a lot of compression, of course).
   {{< /tab_figure_img >}}
+    {{< figcaption group="true" >}}
+Examples of programs using bitmap modes.
+  {{< /figcaption >}}
 {{< /tabs >}}
 
 {{% inner_markdown %}}

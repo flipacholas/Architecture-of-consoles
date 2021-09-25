@@ -110,10 +110,13 @@ Now let's see how a frame is drawn step by step, for this, I'll borrow *Bonk's A
 
 {{< tabs >}}
 {{< tab active="true" name="Tiles" >}}
-{{< tabs nested="true" float="true" class="pixel desktop-margined" figure="true" >}}
-  {{< tab_img name="Background" active="true" src="graphics/tiles_background.png" >}}
-  {{< tab_img name="Sprites" src="graphics/tiles_sprites.png" >}}
-  {{< figcaption >}}Some tiles found in VRAM{{< /figcaption >}}
+{{< tabs nested="true" float="true" class="pixel desktop-margined" >}}
+  {{< tab_figure_img name="Background" active="true" src="graphics/tiles_background.png" >}}
+Background tiles found in VRAM.
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Sprites" src="graphics/tiles_sprites.png" >}}
+Sprite tiles found in VRAM.
+  {{< /tab_figure_img >}}
 {{< /tabs >}}
 
 {{% inner_markdown %}}
@@ -322,15 +325,15 @@ That expansion port opened the door to such a massive amount of accessories and 
 
 {{< tabs nested="true" float="true" >}}
   {{< tab_figure_img name="Reader" active="true" src="cd/reader.png" >}}
-CD-ROM² Reader (TurboGrafx-16 version)  
+CD-ROM² Reader (TurboGrafx-16 version).  
 Were they in the Discman business back then?
   {{< /tab_figure_img >}}
   {{< tab_figure_img name="Compartment" src="cd/compartment.png" >}}
-Base required to connect the console with the reader  
-It also supplies power and composite video out
+Base required to connect the console with the reader.  
+It also supplies power and composite video out.
   {{< /tab_figure_img >}}
   {{< tab_figure_img name="Fitted" src="cd/fitted.png" >}}
-How it looked with everything fitted
+How it looked with everything fitted.
   {{< /tab_figure_img >}}
 {{< /tabs >}}
 

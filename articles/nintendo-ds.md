@@ -227,12 +227,18 @@ These modes can't be chosen arbitrary, instead, the console provides a series of
 {{< tab name="Background modes" >}}
 
 {{< tabs nested="true" float="true" class="pixel" figure="true" >}}
-  {{< tab_img name="Layer 0" src="mario/bg1.png" active="true" >}}
-  {{< tab_img name="Layer 2" src="mario/bg2.png" >}}
-  {{< tab_img name="Layer 3" src="mario/bg3.png" >}}
-  {{< figcaption >}}
-Affine background layers in use  
-Layer 0 is transformed in real-time to simulate the clouds moving
+  {{< tab_figure_img name="Layer 0" src="mario/bg1.png" active="true" >}}
+Background Layer 0 (BG0).  
+This particular layer will be shifted horizontally at certain scan-lines to simulate the clouds moving.
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Layer 2" src="mario/bg2.png" >}}
+Background Layer 2 (BG2).
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Layer 3" src="mario/bg3.png" >}}
+Background Layer 3 (BG3).
+  {{< /tab_figure_img >}}
+  {{< figcaption group="true" >}}
+Static Background layers in use.
   {{< /figcaption >}}
 {{< /tabs >}}
 
@@ -426,7 +432,7 @@ I've constructed this interactive widget that will allow you to compare by yours
   {{< audio_switcher src1="trial_gba"  label1="GB Advance"
                      src2="trial_nds"  label2="Nintendo DS"
                      class="toleft" >}}
-**GBA:** Gyakuten Saiban (2001, JAP only)
+**GBA:** Gyakuten Saiban (2001, JAP only)  
 **NDS:** Phoenix Wright: Ace Attorney (2005)
   {{< /audio_switcher >}}
 

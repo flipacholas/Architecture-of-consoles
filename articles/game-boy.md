@@ -80,11 +80,17 @@ Let's see now how the PPU manages to draw stuff on the screen. For demonstration
 {{< tabs >}}
 
 {{< tab name="Tiles" active="true" >}}
-{{< tabs nested="true" float="true" class="pixel" >}}
-  {{< tab_img name="All" active="true" src="ppu_mario/tiles.png" >}}
-  {{< tab_img name="Grid" src="ppu_mario/tiles_grid.png" >}}
-  {{< tab_img name="Single" src="ppu_mario/tiles_single.png" >}}
-  {{< figcaption >}}Tiles Found in the Pattern Table{{< /figcaption >}}
+{{< tabs nested="true" float="true" class="pixel" figure="true" >}}
+  {{< tab_figure_img name="All" active="true" src="ppu_mario/tiles.png" >}}
+Multiple tiles.
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Grid" src="ppu_mario/tiles_grid.png" >}}
+Multiple tiles separated with a grid.
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Single" src="ppu_mario/tiles_single.png" >}}
+A single tile.
+  {{< /tab_figure_img >}}
+  {{< figcaption group="true" >}}Tiles found in the Pattern Table.{{< /figcaption >}}
 {{< /tabs >}}
 
 {{% inner_markdown %}}
@@ -101,17 +107,18 @@ The next sections explain how tile maps are used to construct the layers.
 
 {{< tab name="Background" >}}
 
-{{< tabs nested="true" float="true" class="pixel" >}}
+{{< tabs nested="true" float="true" class="pixel" figure="true" >}}
   {{< tab_figure_img name="Full" active="true" src="ppu_mario/background.png" >}}
-Background map
+Allocated Background map in VRAM.
   {{< /tab_figure_img >}}
   {{< tab_figure_img name="Selected" src="ppu_mario/background_selected.png" >}}
-Selected Background map  
-Notice the selected part includes one portion of the top, this will be overlapped by the _Window layer_
+Selected area of the Background map.  
+Notice the selected part includes one portion of the top, this will be overlapped by the _Window layer_.
   {{< /tab_figure_img >}}
   {{< tab_figure_img name="Rendered" src="ppu_mario/background_rendered.png" >}}
-Rendered Background map
+Displayed Background map.
   {{< /tab_figure_img >}}
+  {{< figcaption group="true" >}}Background map rendering process.{{< /figcaption >}}
 {{< /tabs >}}
 
 {{% inner_markdown %}}
@@ -123,13 +130,15 @@ One of the two tile maps can be used to build the background layer.
 
 {{< tab name="Window" >}}
 
-{{< tabs nested="true" float="true" class="pixel" >}}
+{{< tabs nested="true" float="true" class="pixel" figure="true" >}}
   {{< tab_figure_img name="Full" active="true" src="ppu_mario/window.png" alt="Window" >}}
-Window map fully displayed
+Allocated Window map.
   {{< /tab_figure_img >}}
   {{< tab_figure_img name="Rendered" src="ppu_mario/window_rendered.png" alt="Rendered Window" >}}
-The game will activate it during the last scan-lines, hence only the first rows are rendered at the bottom of the screen
+Displayed Window map.
+The game activates it during the last scan-lines. Hence, only the first rows are rendered at the bottom of the screen.
   {{< /tab_figure_img >}}
+  {{< figcaption group="true" >}}Window map rendering process.{{< /figcaption >}}
 {{< /tabs >}}
 
 {{% inner_markdown %}}
@@ -167,7 +176,7 @@ The PPU is limited to rendering up to **ten sprites per scan-line** and **up to 
 {{< tab name="Result" >}}
 
 {{< figure_img float="true" class="pixel" src="ppu_mario/result.png" alt="Result" >}}
-Tada!
+Final result. _Tada!_
 {{< /figure_img >}}
 
 {{% inner_markdown %}}
@@ -216,11 +225,17 @@ Each channel is reserved for a type of wave-form:
 
 {{< tab name="Pulse" active="true" >}}
 {{< tabs nested="true" float="true" figure="true" >}}
-  {{< tab_video name="Pulse 1" active="true" src="pulse_single_1" >}}
-  {{< tab_video name="Pulse 2" src="pulse_single_2" >}}
-  {{< tab_video name="Complete" src="pulse_full" >}}
-  {{< figcaption >}}
-Pokemon Red/Blue (1996)
+  {{< tab_figure_video name="Pulse 1" src="pulse_single_1" >}}
+Pulse 1 channel.
+  {{< /tab_figure_video >}}
+  {{< tab_figure_video name="Pulse 2" src="pulse_single_2" active="true" >}}
+Pulse 2 channel.
+  {{< /tab_figure_video >}}
+  {{< tab_figure_video name="Complete" src="pulse_full" >}}
+All audio channels.
+  {{< /tab_figure_video >}}
+  {{< figcaption group="true" >}}
+Pokemon Red/Blue (1996).
   {{< /figcaption >}}
 {{< /tabs >}}
 
@@ -236,9 +251,13 @@ Due to the limited number of channels, the melody will often be interrupted when
 
 {{< tab name="Noise" >}}
 {{< tabs nested="true" float="true" figure="true" >}}
-  {{< tab_video name="Noise" active="true" src="noise_single" >}}
-  {{< tab_video name="Complete" src="noise_full" >}}
-  {{< figcaption >}}Pokemon Red/Blue (1996){{< /figcaption >}}
+  {{< tab_figure_video name="Noise" active="true" src="noise_single" >}}
+Noise channel.
+  {{< /tab_figure_video >}}
+  {{< tab_figure_video name="Complete" src="noise_full" >}}
+All audio channels.
+  {{< /tab_figure_video >}}
+  {{< figcaption group="true" >}}Pokemon Red/Blue (1996).{{< /figcaption >}}
 {{< /tabs >}}
 
 {{% inner_markdown %}}
@@ -253,9 +272,13 @@ This channel has only 2 tones available to use, one produces *clean static* and 
 
 {{< tab name="Wave" >}}
 {{< tabs nested="true" float="true" figure="true" >}}
-  {{< tab_video name="Wave" active="true" src="wave_single" >}}
-  {{< tab_video name="Complete" src="wave_full" >}}
-  {{< figcaption >}}Pokemon Red/Blue (1996){{< /figcaption >}}
+  {{< tab_figure_video name="Wave" active="true" src="wave_single" >}}
+Wave channel.
+  {{< /tab_figure_video >}}
+  {{< tab_figure_video name="Complete" src="wave_full" >}}
+All audio channels.
+  {{< /tab_figure_video >}}
+  {{< figcaption group="true" >}}Pokemon Red/Blue (1996){{< /figcaption >}}
 {{< /tabs >}}
   
 {{% inner_markdown %}}

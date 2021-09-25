@@ -143,8 +143,8 @@ The capabilities of the Saturn for drawing 2D scenes were huge compared to the [
 
 {{< tab active="true" name="Sprites" >}}
 {{< figure_img float="true" src="2d/sprites.png" alt="Sprites" >}}
-VDP1/Sprites plane  
-Mega Man X4 (1997)
+VDP1's Sprites plane.  
+Mega Man X4 (1997).
 {{< /figure_img >}}
 
 {{% inner_markdown %}}
@@ -157,12 +157,18 @@ The CPU sets up the VDP1 by writing over its registers and filling its VRAM with
 
 {{< tab name="Backgrounds" >}}
 {{< tabs float="true" nested="true" class="pixel" figure="true" >}}
-  {{< tab_img name="2D plane 1" active="true" src="2d/bg1.png" >}}
-  {{< tab_img name="2D plane 2" src="2d/bg2.png" >}}
-  {{< tab_img name="2D plane 3" src="2d/bg3.png" >}}
-  {{< figcaption >}}
-VDP2/Background planes  
-Mega Man X4 (1997)
+  {{< tab_figure_img name="2D plane 1" active="true" src="2d/bg1.png" >}}
+2D plane 1.
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="2D plane 2" src="2d/bg2.png" >}}
+2D plane 2.
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="2D plane 3" src="2d/bg3.png" >}}
+2D plane 3.
+  {{< /tab_figure_img >}}
+  {{< figcaption group="true" >}}
+VDP2's Background planes.  
+Mega Man X4 (1997).
   {{< /figcaption >}}
 {{< /tabs >}}
 
@@ -178,8 +184,8 @@ Some functions from the VDP2 can be exploited to create more realistic scenery, 
 
 {{< tab name="Result" >}}
 {{< figure_img float="true" src="2d/result.jpg" alt="Result" >}}
-Mixed planes (_Tada!_)  
-Mega Man X4 (1997)
+Mixed planes (_Tada!_).  
+Mega Man X4 (1997).
 {{< /figure_img >}}
 
 {{% inner_markdown %}}
@@ -203,9 +209,9 @@ For this reason, most games ended up dramatically ranging in quality since each 
 
 {{< tab active="true" name="3D modelling" >}}
 {{< figure_img float="true" src="3d/models.png" alt="3D Models" >}}
-3D models of characters without textures or background  
-Notice the primitives used to build the models  
-Virtua Fighter Remix (1995)
+3D models of characters without textures or background.  
+Notice the primitives used to build the models.  
+Virtua Fighter Remix (1995).
 {{< /figure_img >}}
 
 {{% inner_markdown %}}
@@ -219,8 +225,8 @@ In a nutshell, the CPUs and SCU are tasked with formulating a 3D world and proje
 {{< tab name="Pixel processing" >}}
 
 {{< figure_img float="true" src="3d/complete.png" alt="3D Scene" >}}
-Rendered scene with 3D models and backgrounds  
-Virtua Fighter Remix (1995)
+Rendered scene with 3D models and backgrounds.  
+Virtua Fighter Remix (1995).
 {{< /figure_img >}}
 
 {{% inner_markdown %}}
@@ -281,15 +287,14 @@ As a workaround, games can activate the 'mesh' property on a texture. With 'mesh
 
 As you may suspect, this just wasn't viable for some games, so at the end, these had no option but to ditch half-transparency all-together... Although, some studios found ingenious fixes, take a look at these two cases:
 
-{{< side_by_side >}}
+{{< side_by_side figure="true" >}}
   {{< video src="daytona" class="toleft" >}}
 Sega's Daytona (1993)
   {{< /video >}}
   {{< video src="sonicr" class="toright" >}}
 Traveller's Tales' Sonic R (1997)
   {{< /video >}}
-
-  {{< figcaption >}}Both games command the VDP1 to draw foreground objects and background scenery. The VDP2 draws instead the landscape image far away and the stats in front of the 3D models. With this layout, VDP1 models with half-transparency won't refract the VDP2's landscape as the VDP1 is not aware of the VDP2's frame-buffers.{{< /figcaption >}}
+  {{< figcaption group="true" >}}Both games command the VDP1 to draw foreground objects and background scenery. The VDP2 draws instead the landscape image far away and the stats in front of the 3D models. With this layout, VDP1 models with half-transparency won't refract the VDP2's landscape as the VDP1 is not aware of the VDP2's frame-buffers.{{< /figcaption >}}
 {{< /side_by_side >}}
 
 Apart from my terrible gameplay, you'll notice that the background of the first game pops out of nowhere (no half-transparency) whereas the second game not only accomplished half-transparency but also a **fading effect**: Traveller's Tales found a workaround by changing the 'mix ratio' registers of the VDP2 (used for defining the texture's alpha) combined with switching the lighting levels as the character gets closer.

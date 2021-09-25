@@ -281,11 +281,11 @@ Time to checkout the soundtracks made for the N64. There are too many (good ones
 
 {{< side_by_side >}}
   {{< video src="observatory" class="toleft" >}}
-The Legend of Zelda: Majora's Mask (2000)
+The Legend of Zelda: Majora's Mask (2000)  
 The music of this game is tied to its daunted atmosphere
   {{< /video >}}
   {{< video src="redial" class="toright" >}}
-Bomberman Hero (1998)
+Bomberman Hero (1998)  
 This game has nice and unique house-based soundtrack
   {{< /video >}}
 {{< /side_by_side >}}
@@ -358,11 +358,11 @@ Additionally, the PBUS branches out to another connector at the bottom of the N6
 {{< float_group >}}
 {{< tabs float="true" nested="true" >}}
   {{< tab_figure_img name="Module" active="true" src="64dd/module.png" alt="N64 DD module" >}}
-The Nintendo 64 Disk Drive
-Released on 01/12/1999 in Japan
+The Nintendo 64 Disk Drive.  
+Released on 01/12/1999 in Japan.
   {{< /tab_figure_img >}}
   {{< tab_figure_img name="Attached" src="64dd/attached.png" alt="N64 DD attached" >}}
-The 64DD attached to the console
+The 64DD attached to the console.
   {{< /tab_figure_img >}}
 {{< /tabs >}}
 

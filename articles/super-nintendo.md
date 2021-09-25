@@ -120,17 +120,31 @@ Just like its predecessor, the S-PPU uses tiles to build sophisticated graphics,
 
 {{< tab name="Background" >}}
 {{< tabs float="true" nested="true" class="pixel" figure="true" >}}
-  {{< tab_img name="Layer 1" active="true" src="sppu_mario/background1_map.png" >}}
-  {{< tab_img name="Layer 2" src="sppu_mario/background2_map.png" >}}
-  {{< tab_img name="Layer 3" src="sppu_mario/background3_map.png" >}}
-  {{< figcaption >}}Background maps in VRAM{{< /figcaption >}}
+  {{< tab_figure_img name="Layer 1" active="true" src="sppu_mario/background1_map.png" >}}
+Background Layer 1 (BG1).
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Layer 2" src="sppu_mario/background2_map.png" >}}
+Background Layer 2 (BG2).
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Layer 3" src="sppu_mario/background3_map.png" >}}
+Background Layer 3 (BG3).
+  {{< /tab_figure_img >}}
+  {{< figcaption group="true" >}}Background maps in VRAM.{{< /figcaption >}}
 {{< /tabs >}}
-{{< tabs float="true" nested="true" class="pixel" >}}
-  {{< tab_img name="Layer 1" active="true" src="sppu_mario/background1.png" >}}
-  {{< tab_img name="Layer 2" src="sppu_mario/background2.png" >}}
-  {{< tab_img name="Layer 3" src="sppu_mario/background3.png" >}}
-  {{< tab_img name="Combined" src="sppu_mario/background_complete.png" >}}
-  {{< figcaption >}}Rendered Background layers after selection and transparency are applied{{< /figcaption >}}
+{{< tabs float="true" nested="true" class="pixel" figure="true" >}}
+  {{< tab_figure_img name="Layer 1" active="true" src="sppu_mario/background1.png" >}}
+Rendered Background Layer 1 (BG1).
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Layer 2" src="sppu_mario/background2.png" >}}
+Rendered Background Layer 2 (BG2).
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Layer 3" src="sppu_mario/background3.png" >}}
+Rendered Background Layer 3 (BG3).
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Combined" src="sppu_mario/background_complete.png" >}}
+Rendered Background Layers combined.
+  {{< /tab_figure_img >}}
+  {{< figcaption group="true" >}}Rendered Background layers after selection and transparency are applied.{{< /figcaption >}}
 {{< /tabs >}}
 
 {{% inner_markdown %}}
@@ -220,12 +234,18 @@ Truth to be told, I still haven't mentioned the most important characteristic of
 {{< float_group >}}
 
 {{< tabs nested="true" class="pixel" float="true" figure="true" >}}
-  {{< tab_img name="Background" active="true" src="mode7/layer.png" >}}
-  {{< tab_img name="Map" src="mode7/map.png" >}}
-  {{< tab_img name="Displayed" src="mode7/displayed.png" >}}
-  {{< figcaption >}}
-F-Zero (1990)  
-First quarter of scan-lines use another Mode to simulate distance, Mode 7 starts at the second quarter (this is possible thanks to HDMA)
+  {{< tab_figure_img name="Background" active="true" src="mode7/layer.png" >}}
+Rendered Background layer.
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Map" src="mode7/map.png" >}}
+Allocated Background map.
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Displayed" src="mode7/displayed.png" >}}
+Rendered frame on the screen.  
+The first quarter of scan-lines use another mode to simulate distance, Mode 7 starts at the second quarter (this is possible thanks to HDMA).
+  {{< /tab_figure_img >}}
+  {{< figcaption group="true" >}}
+F-Zero (1990).
   {{< /figcaption >}}
 {{< /tabs >}}
 
@@ -276,12 +296,17 @@ This sub-system functions independently: When the console is turned on, the SPC7
 
 {{< float_group >}}
 {{< tabs nested="true" float="true" figure="true" >}}
-  {{< tab_video name="Melody" active="true" src="melody" >}}
-  {{< tab_video name="Drums" src="drums" >}}
-  {{< tab_video name="Complete" src="complete" >}}
-  {{< figcaption >}}
-Drums are discriminated for demonstration purposes
-StarFox (1993)
+  {{< tab_figure_video name="Melody" active="true" src="melody" >}}
+Channels used for melody.
+  {{< /tab_figure_video >}}
+  {{< tab_figure_video name="Drums" src="drums" >}}
+Drums are discriminated for demonstration purposes.
+  {{< /tab_figure_video >}}
+  {{< tab_figure_video name="Complete" src="complete" >}}
+All audio channels.
+  {{< /tab_figure_video >}}
+  {{< figcaption group="true" >}}
+StarFox (1993).
   {{< /figcaption >}}
 {{< /tabs >}}
 
@@ -325,12 +350,17 @@ Mother 2/Earthbound (1994)
 
 {{< float_group >}}
 {{< tabs nested="true" float="true" figure="true" >}}
-  {{< tab_video name="Melody" active="true" src="kirby/trebble" >}}
-  {{< tab_video name="Drums" src="kirby/drums" >}}
-  {{< tab_video name="Complete" src="kirby/complete" >}}
-  {{< figcaption >}}
-Drums are discriminated for demonstration purposes  
-Kirby's Dream Land 3 (1997)
+  {{< tab_figure_video name="Melody" active="true" src="kirby/trebble" >}}
+Channels used for melody.
+  {{< /tab_figure_video >}}
+  {{< tab_figure_video name="Drums" src="kirby/drums" >}}
+Drums are discriminated for demonstration purposes.
+  {{< /tab_figure_video >}}
+  {{< tab_figure_video name="Complete" src="kirby/complete" >}}
+All audio channels.
+  {{< /tab_figure_video >}}
+  {{< figcaption group="true" >}}
+Kirby's Dream Land 3 (1997).
   {{< /figcaption >}}
 {{< /tabs >}}
 

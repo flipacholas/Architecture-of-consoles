@@ -120,11 +120,15 @@ The following section explains how the VDP draws each frame, for demonstration p
 {{< tab name="Tiles" active="true" >}}
 
 {{< tabs nested="true" float="true" class="pixel" figure="true" >}}
-  {{< tab_img name="All" active="true" src="vdp_sonic/tiles.png" >}}
-  {{< tab_img name="Single" src="vdp_sonic/tiles_single.png" >}}
-  {{< figcaption >}}
-Tiles found in VRAM  
-(For demonstration purposes a default palette is being used)
+  {{< tab_figure_img name="All" active="true" src="vdp_sonic/tiles.png" >}}
+Multiple tiles squashed together.
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Single" src="vdp_sonic/tiles_single.png" >}}
+A single tile.
+  {{< /tab_figure_img >}}
+  {{< figcaption group="true" >}}
+Tiles found in VRAM.  
+(For demonstration purposes a default palette is being used).
   {{< /figcaption >}}
 {{< /tabs >}}
 
@@ -141,9 +145,12 @@ Tiles are be used to build a total of 4 **planes** which, merged together, form 
 {{< tab name="Background" >}}
 
 {{< tabs nested="true" class="pixel" float="true" >}}
-  {{< tab_img name="Full" active="true" src="vdp_sonic/layer2.png" >}}
-  {{< tab_img name="Selected" src="vdp_sonic/layer2_selected.png" >}}
-  {{< figcaption >}}Rendered Background{{< /figcaption >}}
+  {{< tab_figure_img name="Full" active="true" src="vdp_sonic/layer2.png" >}}
+Allocated Background map.
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Selected" src="vdp_sonic/layer2_selected.png" >}}
+Allocated Background map with selected area marked.
+  {{< /tab_figure_img >}}
 {{< /tabs >}}
 
 {{% inner_markdown %}}
@@ -161,9 +168,13 @@ On the showed example you'll notice that the selected area for display is not a 
 {{< tab name="Foreground" >}}
 
 {{< tabs nested="true" float="true" class="pixel" figure="true" >}}
-  {{< tab_img name="Full" active="true" src="vdp_sonic/layer1.png" >}}
-  {{< tab_img name="Selected" src="vdp_sonic/layer1_selected.png" >}}
-  {{< figcaption >}}Rendered Foreground (No use of Window Plane){{< /figcaption >}}
+  {{< tab_figure_img name="Full" active="true" src="vdp_sonic/layer1.png" >}}
+Allocated Foreground plane.
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Selected" src="vdp_sonic/layer1_selected.png" >}}
+Allocated Foreground plane with selected area marked.
+  {{< /tab_figure_img >}}
+  {{< figcaption group="true" >}}Example of Foreground plane, the Window Plane is not used.{{< /figcaption >}}
 {{< /tabs >}}
 
 {{% inner_markdown %}}
@@ -178,10 +189,13 @@ Compared to previous consoles, the combination of different priorities and the W
 
 {{< tab name="Sprites" >}}
 
-{{< tabs nested="true" float="true" class="pixel" figure="true" >}}
-  {{< tab_img name="Full" active="true" src="vdp_sonic/sprite.png" >}}
-  {{< tab_img name="Selected" src="vdp_sonic/sprite_selected.png" >}}
-  {{< figcaption >}}Rendered Sprite layer{{< /figcaption >}}
+{{< tabs nested="true" float="true" class="pixel" >}}
+  {{< tab_figure_img name="Full" active="true" src="vdp_sonic/sprite.png" >}}
+Allocated Sprite layer.
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Selected" src="vdp_sonic/sprite_selected.png" >}}
+Allocated Sprite layer with selected area marked.
+  {{< /tab_figure_img >}}
 {{< /tabs >}}
 
 {{% inner_markdown %}}
@@ -240,10 +254,14 @@ Each chip provides *very* different capabilities:
 
 {{< tabs >}}
 {{< tab active="true" name="Yamaha YM2612" >}}
-{{< tabs float="true" nested="true" figure_img="true" >}}
-  {{< tab_video name="FM" active="true" src="fm_single" >}}
-  {{< tab_video name="PCM Sample" src="pcm_single" >}}
-  {{< figcaption >}}Sonic The Hedgehog (1991){{< /figcaption >}}
+{{< tabs float="true" nested="true" figure="true" >}}
+  {{< tab_figure_video name="FM" active="true" src="fm_single" >}}
+FM channels.
+  {{< /tab_figure_video >}}
+  {{< tab_figure_video name="PCM Sample" src="pcm_single" >}}
+PCM channel.
+  {{< /tab_figure_video >}}
+  {{< figcaption group="true" >}}Sonic The Hedgehog (1991).{{< /figcaption >}}
 {{< /tabs >}}
 
 {{% inner_markdown %}}
@@ -260,7 +278,8 @@ Compared to traditional PSG synthesisers, this was a drastic improvement: You we
   
 {{< tab name="Texas Instruments SN76489" >}}
 {{< video float="true" src="psg_single" >}}
-Sonic The Hedgehog (1991)
+PSG Channels.  
+Sonic The Hedgehog (1991).
 {{< /video >}}
 
 {{% inner_markdown %}}
@@ -275,7 +294,8 @@ Notice the 'Pulse 3' channel remains unused, this is indeed reserved to play the
 
 {{< tab name="Mixed" >}}
 {{< video src="complete" float="true" >}}
-Sonic The Hedgehog (1991)
+All audio channels.  
+Sonic The Hedgehog (1991).
 {{< /video >}}
 
 {{% inner_markdown %}}
@@ -299,19 +319,24 @@ I've decided to dedicated a section for those who successfully manage to overcom
 
 {{< side_by_side >}}
   {{< tabs nested="true" class="toleft" figure="true" >}}
-    {{< tab_video name="PCM Sample" active="true" src="good_sampling/sonic_pcm" >}}
-    {{< tab_video name="Complete" src="good_sampling/sonic_complete" >}}
-    {{< figcaption >}}
-Sonic The Hedgehog 3 (1994)
+    {{< tab_figure_video name="PCM Sample" active="true" src="good_sampling/sonic_pcm" >}}
+PCM channel.
+    {{< /tab_figure_video >}}
+    {{< tab_figure_video name="Complete" src="good_sampling/sonic_complete" >}}
+All audio channels.
+    {{< /tab_figure_video >}}
+    {{< figcaption group="true" >}}
+Sonic The Hedgehog 3 (1994).  
 This is one of the tracks said to be co-authored by Michael Jackson. In any case, the overall soundtrack had a distinctive beat compared to its predecessors.
     {{< /figcaption >}}
   {{< /tabs >}}
-  {{< tabs nested="true" class="toright" figure="true" >}}
-    {{< tab_video name="PCM Sample/Complete" active="true" src="good_sampling/randy_pcm" >}}
-    {{< figcaption >}}
-Toy Story (1995)
+  {{< tabs nested="true" class="toright" >}}
+    {{< tab_figure_video name="PCM Sample/Complete" active="true" src="good_sampling/randy_pcm" >}}
+PCM channel.  
+(Only one channel is used).  
+Toy Story (1995).  
 This is sequenced in real time with the help of the 68000. A very intensive task, meaning it could only be played at very particular points of the game (i.e. the main menu)
-    {{< /figcaption >}}
+    {{< /tab_figure_video >}}
   {{< /tabs >}}
 {{< /side_by_side >}}
 

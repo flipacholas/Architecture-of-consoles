@@ -356,11 +356,11 @@ Adicionalmente, El PBUS se ramifica a otro conector en la parte inferior de la p
 {{< float_group >}}
 {{< tabs float="true" nested="true" >}}
   {{< tab_figure_img name="Módulo" src="64dd/module.png" alt="Módulo N64 DD" active="true" >}}
-La Nintendo 64 Disk Drive
-Lanzada el 01/12/1999 en Japón
+La Nintendo 64 Disk Drive.  
+Lanzada el 01/12/1999 en Japón.
   {{< /tab_figure_img >}}
   {{< tab_figure_img name="Conectado" src="64dd/attached.png" alt="N64 DD conectada" >}}
-El 64DD conectada a la consola
+El 64DD conectada a la consola.
   {{< /tab_figure_img >}}
 {{< /tabs >}}
 
