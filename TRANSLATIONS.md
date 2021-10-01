@@ -1,15 +1,14 @@
 [![Crowdin](https://badges.crowdin.net/architecture-of-consoles/localized.svg)](https://crowdin.com/project/architecture-of-consoles)
 
-Update: I started using Crowdin to manage translations, seems to be good enough and they kindly provide a free license for this kind of projects. Take a look at [here](https://crowdin.com/project/architecture-of-consoles), you only need to create an account. If you don't see your language there, please open an issue here.
-
 ### Current State
 
 Right now, all the articles are in English and there's a few translated to Spanish.
 
-English writings end with `.md`, while translated articles end with `.(language code).md` (i.e. `.es.md` for Spanish). To start localising, go to [crowdin](https://crowdin.com/project/architecture-of-consoles), choose a language and an article, crowdin will guide you throw the process.
+English writings end with `.md`, while translated articles end with `.(language code).md` (i.e. `.es.md` for Spanish). To start localising, you can either:
+- Sign in to [Crowdin](https://crowdin.com/project/architecture-of-consoles), choose a language and an article; and let Crowdin guide you through the process.
+- Clone the repo, grab any article markdown file, translate it and then submit a merge request.
 
-To sum up, the following files need to be translated:
-- The console write-up.
+For any language except Spanish, the following files need to be translated as well:
 - `_index.md`
 - The list of strings on 'resources' folder.
 
@@ -25,6 +24,8 @@ Translating can get messy, so these are the guidelines to help keep the content 
 - Blocks of [Hugo](https://gohugo.io/templates/introduction/) syntax only require `name=""` and `alt=""` values to be translated, the rest must stay as it is.
 
 Finally, don't forget to sign the changelog with your name!
+
+Feel free to give me a shout if you need help.
 
 ### Keeping up-to-date
 
