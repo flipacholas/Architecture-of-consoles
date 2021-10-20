@@ -55,7 +55,7 @@ The core is complemented with a **dedicated floating point unit** (identified as
 
 ### A recognisable memory choice
 
-Next to the Emotion Engine are two blocks of 16 MB of RAM, giving a total of **32 MB** of main memory. The type of memory used is **RDRAM** ([*déjà vu!*]({{< ref "nintendo-64#ram-available" >}})) which is accessed through a 16-bit bus.
+Next to the Emotion Engine are two blocks of 16 MB of RAM, giving a total of **32 MB** of main memory. The type of memory used is **RDRAM** ([*déjà vu!*]({{< ref "nintendo-64#memory-design" >}})) which is accessed through a 16-bit bus.
 
 {{< float_group >}}
 {{< figure_img float="true" src="MemoryArch.png" alt="Emotion engine Memory architecture" >}}

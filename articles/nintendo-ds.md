@@ -41,7 +41,7 @@ Now, CPU NTR implements an interesting multi-processor architecture using two di
 
 ### Design
 
-While this is not the first parallel system analysed for [this series]({{< ref "consoles">}}), its design is very different from the rest. For instance, we are not talking about the 'experimental' master-slave configuration that the [Saturn]({{< ref "sega-saturn">}}) debuted or the 'co-processor' approach found on the [PS1]({{< ref "playstation">}}) or [N64]({{< ref "nintendo-64">}}). The Nintendo DS includes two very independent computers that will perform exclusive operations, each one having a dedicated bus. This co-dependency will condition the overall performance of this console.
+While this is not the first parallel system analysed for [this series]({{< ref "consoles">}}), its design is very different from the rest. For instance, we are not talking about the 'experimental' master-slave configuration that the [Saturn]({{< ref "sega-saturn">}}) debuted or the 'co-processor' approach found on the [PS1]({{< ref "playstation">}}) or [N64]({{< ref "nintendo-64">}}). The Nintendo DS includes two very independent computers that will perform exclusive operations, each one having a dedicated bus. This design methodology is called **Asymmetric multiprocessing** and the resulting CPUs' co-dependency will condition the overall performance of this console.
 
 That being said, let's take a look now at the two CPUs:
 

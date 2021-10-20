@@ -492,7 +492,7 @@ The ECC key is signed by *yet another* RSA public key called **MS**, which will 
 
 The last key used by this console is the **HMAC key**, which uses another algorithm that combines SHA1 hashes and HMAC. During the boot process, Starlet checks that NAND hasn't been altered by third-party hardware. To do that, it computes the SHA1 hash of NAND and compares it against a hardwired hash to check if they match. In addition to that, the saved hash is signed using the HMAC key to make sure it's authentic.
 
-As a final note, HMAC is stored in SEEPROM (outside Starlet), not in OTP.
+As a final note, the HMAC key is stored in SEEPROM (outside Starlet), not in OTP.
 {{% /inner_markdown %}}
 
 {{< /tab >}}

@@ -24,14 +24,6 @@ title: Xbox Architecture
 aliases: [/projects/consoles/xbox/]
 ---
 
-## Reading tips
-
-Ok, some months after writing this, I've realised this is one of the densest write-ups I have done. There's just a lot of stuff happening inside the Xbox and I have tried to mention most of it.
-
-Now, if you're really interested in understanding this system but find this article difficult to follow, my advice to you is: **Take your time**, the article is not going anywhere. Focus on what you like, read at your own pace, check out the links on the 'Sources' section for support and finally, don't put pressure on yourself, there's no exam!
-
----
-
 ## A quick introduction
 
 It seems that Microsoft has decided to pick up where Sega left off. Their offer? A system with familiarities appreciated by developers and online services welcomed by users.
@@ -41,6 +33,12 @@ Please note that to keep consistency with other sources, this article separates 
 - 1 MiB = 1024 KiB
 
 ... and so forth.
+
+### Reading tips
+
+Some months after writing this, I've realised this is one of the densest write-ups I have done. There's just a lot of stuff happening inside the Xbox and I have tried to mention most of it.
+
+Now, if you're really interested in understanding this system but find this article difficult to follow, my advice to you is: **Take your time**, the article is not going anywhere. Focus on what you like, read at your own pace, check out the links on the 'Sources' section for support and finally, don't put pressure on yourself, there's no exam!
 
 ---
 
