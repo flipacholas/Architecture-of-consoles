@@ -470,7 +470,7 @@ I will now perform the same level of analysis previously done with Cell, this ti
 
 ### Overview
 
-It's been five years since Nvidia debuted the [Geforce3/NV30 lineup]({{< ref "xbox#graphics" >}}) in 2001, and by then the arena was battled by strong players like 3dfx, S3 and Artx/Ati. Though in subsequent years, the number of companies slowly reduced to the point that by 2006, only Ati and Nvidia remained the flagship video card suppliers in the PC market.
+It's been five years since Nvidia debuted the [Geforce3/NV30 lineup]({{< ref "xbox#graphics" >}}) in 2001, and by then the arena was battled by strong players like 3dfx, S3 and Artx/Ati. Though in subsequent years, the number of companies slowly reduced to the point that by 2006, only Ati and Nvidia remained as the flagship video card suppliers in the PC market.
 
 {{< float_group >}}
 {{< figure_img float="true" src="rsx.jpg" >}}
