@@ -115,7 +115,7 @@ VDP2 Architecture
 {{% inner_markdown %}}
 The **Video Display Processor 2** (VDP2) specialises in rendering large (4096×4096 pixels) planes with transformations (rotation, scale and translation) applied on them.
 
-More importantly, the VDP2's renders **on-the-fly** (without a frame-buffer) like previous [tile-based engines]({{< ref "mega-drive-genesis#constructing-the-frame" >}})). It can display up to **16.7 million colours** (24-bit). This chip is also responsible for displaying the VDP1's buffer, which can also be transformed and/or mixed with the VDP2's layers. The VDP2's 'frame' is composed of up to four 2D planes and one 3D plane; or two 3D planes.
+More importantly, the VDP2's renders **on-the-fly** (without a frame-buffer) like previous [tile-based engines]({{< ref "mega-drive-genesis#constructing-the-frame" >}}). It can display up to **16.7 million colours** (24-bit). This chip is also responsible for displaying the VDP1's buffer, which can also be transformed and/or mixed with the VDP2's layers. The VDP2's 'frame' is composed of up to four 2D planes and one 3D plane; or two 3D planes.
 
 This chip relies on [tile-maps]({{< ref "mega-drive-genesis#constructing-the-frame" >}}) to compose planes and performs **perspective correction** for 3D texture mapping, this is a more sophisticated approach which takes into account the depth value to compute rotations.
 
