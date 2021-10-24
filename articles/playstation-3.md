@@ -127,7 +127,7 @@ Designed by IBM for supercomputing and scientific simulation.
 
 Cell runs at a _mighty_ **3.2 GHz** and it's composed of a multitude of components. So, for the sake of this analysis, this CPU can be divided into three main areas {{< cite "cpu-architecture" >}}:
 - The **leader**: this is the part of Cell that directs the rest of the circuitry. Here we find a component called **Power Processing Element** (PPE). 
-- The **assistants**: these are as crucial as the PPE, but their capabilities are limited to an assistant/accelerator role. This group comprises eight **Synergic Processing Elements** (SPEs).
+- The **assistants**: these are as crucial as the PPE, but their capabilities are limited to an assistant/accelerator role. This group comprises eight **Synergistic Processing Elements** (SPEs).
 - The **interfaces**: As the need for bandwidth surges exponentially, newer interfaces are implemented to move data around without producing bottlenecks. In the interfaces group, we find a handful of protocols: the **Element Interconnect Bus** (EIB), the **Broadband Engine Interface Unit** (BEI), the **Memory Interface Controller** (MIC) and the **Flex I/O buses**.
 
 This information will be revisited throughout the article in more depth, so you don't have to memorise these names. The main goal of this section is to let the reader get a mental image of the nature of Cell and familiarise with all the components we'll be discussing in due time.
@@ -139,7 +139,7 @@ Seeing the previous structure, I had to organise this so you don't get fed up wi
 1. The bus connecting all components, the **Element Interconnect Bus (EIB)**.
 2. The **PowerPC Processing Element (PPE)** and its core element, the **PowerPC Processing Unit (PPU)**. 
 3. What **general-purpose memory** is available in this console.
-4. The **Synergic Processing Elements (SPE)** and their core element, the **Synergic Processing Unit (PPU)**.
+4. The **Synergistic Processing Elements (SPE)** and their core element, the **Synergic Processing Unit (PPU)**.
 5. The **programming model** devised to program Cell efficiently.
 
 That being said, let's begin the real analysis.
