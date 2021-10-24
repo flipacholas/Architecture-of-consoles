@@ -38,7 +38,7 @@ Just in case developers want 3D, Sega adapted some bits of the hardware to enabl
 The system has not one but **two Hitachi SH-2** CPUs running at **~28.63MHz each**. While both physically identical, they are placed in a master-slave state, where the first one may send commands to the second one. This can achieve some degree of parallelism, albeit both sharing the same external bus (which can lead to congestion).
 
 These processors are part of the Hitachi SH7600 brand, a series designed for embedded systems featuring:
-- **SuperH ISA**: A special 32-bit RISC instruction set where instructions are 16-bit long. Not only this design reduces the size of the program, but since the CPU fetches instructions in 32-bit batches, two instructions can be retrieved in one cycle.
+- **SuperH ISA**: A special 32-bit RISC instruction set where instructions are 16-bit long. Not only does this design reduce the size of the programs, but since the CPU fetches instructions in 32-bit batches, two instructions can be retrieved in one cycle.
 - **Five-stage pipeline**: Execution of instructions is divided into five steps or *stages*. The CPU will queue up to five instructions where each one is allocated in one stage. This allows to take advantage of all the CPU's resources without idling while also incrementing the number of instructions executed per unit of time.
 - **One multiplication unit**: Speeds up multiplication operations with 64-bit/32-bit integers.
 - **32-bit data bus**: The external bus is shared across the two CPUs.
