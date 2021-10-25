@@ -149,7 +149,7 @@ Apart from the clear architectural difference, the Texture and Shading Processor
 
 ### Gaining detail
 
-Holly can now draw ~10 times more polygons than [its predecessor]({{< ref "sega-saturn">}}), here's a *Before & After* example that shows how model designs are not that limited any more. Try to fiddle with them!
+Holly can now draw ~10 times more polygons than [its predecessor]({{< ref "sega-saturn">}}), here's a *Before & After* example that shows how model designs are not that limited anymore. Try to fiddle with them!
 
 {{< side_by_side >}}
   {{< threejs_canvas model="sonic_r" class="toleft" >}}
