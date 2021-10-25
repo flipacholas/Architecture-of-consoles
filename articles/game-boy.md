@@ -146,7 +146,7 @@ The Window is a **160x144 pixel** layer containing tiles displayed on top of the
 
 The remaining tile map can be assigned to the window layer. 
 
-At first, this may sound like a silly feature. After all, the window layer overlaps everything else so what's useful for? Well, both Background and Window can be used concurrently at different parts of the screen. This is accomplished by changing the `LCDCONT` register during specific scan-lines.
+At first, this may sound like a silly feature. After all, the window layer overlaps everything else so what's it useful for? Well, both Background and Window can be used concurrently at different parts of the screen. This is accomplished by changing the `LCDCONT` register during specific scan-lines.
 
 Thus, games normally use it to display player stats, score and other 'always-on' information.
 {{% /inner_markdown %}}
