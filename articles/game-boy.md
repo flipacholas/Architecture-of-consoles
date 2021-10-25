@@ -322,7 +322,7 @@ That being said, the boot process is as follows:
 2. Nintendo logo is copied from the cartridge ROM to Display RAM, then it's drawn at the top edge of the screen. If there is no cartridge inserted, the logo will contain garbage tiles. The same may happen if it's badly inserted.
 2. The logo is scrolled down and the famous *po-ling* sound is played.
 3. The game's Nintendo logo is matched against the one stored in the console's ROM, if the check fails the console freezes.
-4. A quick **checksum** is done on the cartridge's ROM header to make sure the cartridge is correctly inserted, if check fails the console freezes.
+4. A quick **checksum** is done on the cartridge's ROM header to make sure the cartridge is correctly inserted, if the check fails the console freezes.
 5. The console's ROM is removed from the memory map.
 6. CPU starts executing the game.
 
