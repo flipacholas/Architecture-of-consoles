@@ -282,9 +282,7 @@ All audio channels.
 {{< /tabs >}}
   
 {{% inner_markdown %}}
-The APU allows defining a **custom wave-form** to be heard from its fourth channel. The wave is composed of 32 4-bit samples which are stored in a wavetable.
-
-This channel also allows to control its frequency (enabling to produce different musical notes from the same sample) and volume.
+The APU allows defining a **custom wave-form** to be heard from its fourth channel. The wave is composed of 32 4-bit samples which are stored in a wavetable,it also allows control of its frequency (enabling to produce different musical notes from the same sample) and volume.
 {{% /inner_markdown %}}
 {{< /tab >}}
 
