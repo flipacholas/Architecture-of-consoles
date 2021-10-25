@@ -337,7 +337,7 @@ Controller with VMU attached
 The VMU has two modes of operation:
 
 - **Attached to the controller**: The official controller has two slots to connect VMUs and other accessories with the same shape, if the VMU is inserted on the first slot (visible from the front of the controller), it can display drawings during gameplay. Moreover, the Dreamcast can store saves and a program on the VMU.
-- **Detached from the controller**: The gadget becomes a Tamagotchi-like device with a clock, save manager and can also run whatever program the Dreamcast previously transferred. Two VMUs can be connected to share content as well.
+- **Detached from the controller**: The gadget becomes a Tamagotchi-like device with a clock, save manager, and can also run whatever program the Dreamcast previously transferred. Two VMUs can be connected to share content as well.
 
 ---
 
