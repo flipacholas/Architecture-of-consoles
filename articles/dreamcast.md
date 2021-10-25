@@ -125,7 +125,7 @@ Here is where the graphics are brought into life, the Display Lists received fro
 
 1. The **Image Synthesis Processor** or 'ISP' fetches the primitives (either triangles or quads) and performs **Hidden-Surface Removal** to remove unseen polygons. Then, after calculating its Z-buffers and stencil buffers, the data goes through **Depth Testing** to avoid rendering polygons that would appear behind others and **Stencil Tests** to cull geometry that won't be visible if they are located behind a 2D polygon (also called **Mask**).
     - Notice how these tests are effectively carried out at the start of the pipeline. In contrast, previous consoles [using late z-buffering]({{< ref "nintendo-64#modern-visible-surface-determination" >}}) discard the geometry at the end of the pipeline. The ISP approach prevents processing the geometry that will eventually be discarded, thereby saving resources.
-2. The **Texture and Shading Processor** or 'TSP' applies colouring, shading and multiple effects over the tile area.
+2. The **Texture and Shading Processor** or 'TSP' applies colouring, shading, and multiple effects over the tile area.
     - Textures are not applied until the tile is exported, meaning that emerging overdraw (if any) will not lower the fill rate.
 
 After the operation is completed, the rendered tile is written to the main frame-buffer in VRAM. This process is repeated until all tiles are finished. Once complete, the resulting frame-buffer is picked by the **Video encoder** and sent through the video signal.
