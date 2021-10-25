@@ -344,7 +344,7 @@ That ROM also stores software routines that games may call to simplify certain o
 - **Memory copy**: Two functions that move memory around. The first one copies 32-byte blocks using a specialised opcode for this type of transfer (`LDMIA` to load and `SDMIA` to store) only once. The second one copies 2-byte or 4-byte blocks using repeated `LDRH/STRH` or `LDMIA/STMIA` opcodes, respectively. Thus, the second function is more flexible but not as fast.
 - **Sound**: Implements a complete MIDI sequencer! It includes many functions to control it.
 - **Power interface**: Shortcuts for resetting, clearing most of the RAM, halting the CPU until a certain event hits (V-blank or custom one) or switching to 'low-power mode'.
-- **Multi-boot**: Uploads a program to another GBA and kickstarts it. More details in the 'Game' section.
+- **Multi-boot**: Uploads a program to another GBA and kickstarts it. More details are in the 'Game' section.
 
 The BIOS is connected through a 32-bit bus and it's implemented using a combination of Arm and Thumb instructions, though the latter is the most prominent.
 
