@@ -162,7 +162,7 @@ Rendered Sprite layer
 {{% inner_markdown %}}
 Sprites are tiles that can move independently around the screen. They can also overlap each other and appear behind the background, the viewable graphic will be decided based on a priority attribute.
 
-They also have an extra colour available: **Transparent**. So, they can only display three different greys instead of four. Luckily, this layer allows defining two colour palettes make use of every colour.
+They also have an extra colour available: **Transparent**. So, they can only display three different greys instead of four. Luckily, this layer allows defining two colour palettes to make use of every colour.
 
 The **Object Attribute Memory** or 'OAM' is a map stored inside the PPU which specifies the tiles that will be used as sprites. Games fill this region by calling the **DMA unit** found inside the chip, the DMA fetches data from main RAM or game ROM to OAM.
 
