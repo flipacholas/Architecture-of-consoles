@@ -59,7 +59,7 @@ The SM83 keeps an 8-bit data bus and a 16-bit address bus, so up to 64 KB of mem
 
 All graphics calculations are done by the CPU, then the **Picture Processing Unit** or 'PPU' renders them. This is another component found inside DMG-CPU and it's actually based on the [predecessor's PPU]({{< ref "nes#graphics" >}}).
 
-The picture is displayed in an integrated LCD screen, it has a resolution of **160×144 pixels** and shows **4 shades of grey** (white, light grey, dark grey and black). But since the original Gameboy has a green LCD, graphics will look *greenish*.
+The picture is displayed on an integrated LCD screen, it has a resolution of **160×144 pixels** and shows **4 shades of grey** (white, light grey, dark grey and black). But since the original Gameboy has a green LCD, graphics will look *greenish*.
 
 If you've read the NES article before, you may remember that the PPU was designed to follow the CRT beam. However (and for obvious reasons), we got an LCD screen in the Gameboy. Well, the new PPU doesn't alter that part, since LCDs require to be refreshed too. In fact, some special effects achieved thanks to this behaviour will also be supported on the Gameboy.
 
