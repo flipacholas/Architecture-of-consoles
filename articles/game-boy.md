@@ -98,7 +98,7 @@ The PPU uses **tiles** as a basic ingredient for rendering graphics, specificall
 
 Tiles are just **8x8 bitmaps** stored in VRAM in a region called **Tile set** or 'Tile pattern table', each pixel corresponds to one of the four shades of grey available. Finally, tiles are grouped into two pattern tables.
 
-In order to build the picture, tiles are referenced in another type of table called **Tile map**. This information will tell the PPU where to render the tiles. Two maps are stored to construct different layers of the frame.
+In order to build the picture, tiles are referenced in another type of table called a **Tile map**. This information will tell the PPU where to render the tiles. Two maps are stored to construct different layers of the frame.
 
 The next sections explain how tile maps are used to construct the layers.
 {{% /inner_markdown %}}
