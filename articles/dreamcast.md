@@ -166,7 +166,7 @@ Sonic Adventure (1999) for the Dreamcast
 
 The video system was designed to support multiple types of screens and formats, thus the video encoder outputs to a single-shaped socket that supports the following type of signals:
 
-- **Composite**: Combines the three signals needed to display video (chroma, luma and sync) into a single one, requiring only a single-pin cable.
+- **Composite**: Combines the three signals needed to display video (chroma, luma, and sync) into a single one, requiring only a single-pin cable.
   - This is used on old PAL and NTSC TVs with an RCA connection.
 - **S-Video**: Combines luma and sync while keeping chroma separated (two video lines in total).
 - **RGB**: Sends separate Red-Green-Blue signals and provides different sync types to choose from (composite sync or extracted from video composite or S-Video).
