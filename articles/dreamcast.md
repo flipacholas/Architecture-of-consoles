@@ -143,7 +143,7 @@ Apart from the clear architectural difference, the Texture and Shading Processor
   - Combined with the tile-based system, order-independent transparency completely addresses previous [mishaps]({{< ref "sega-saturn#the-transparency-issue" >}}).
 - **Mip-Mapping**: Automatically selects a scaled-down version of the texture depending on the level of detail required. This is done to prevent processing large textures that would be seen far away from the camera (which would be a waste of processing power and produce aliasing).
 - **Environment mapping**: Applies reflections on textures.
-- **Bilinear, Trilinear and anisotropic filtering**: These are different algorithms used to smooth the textures and prevent pixelation. They are ordered from 'worst' to 'best', where the resulting quality of each one is directly proportional to the amount of computation required.
+- **Bilinear, Trilinear, and anisotropic filtering**: These are different algorithms used to smooth the textures and prevent pixelation. They are ordered from 'worst' to 'best', where the resulting quality of each one is directly proportional to the amount of computation required.
   - This is a huge step up from the Saturn since the former didn't provide any texture filter!
 - **Bump mapping**: Simulates defects on surfaces without spending extra polygons.
 
