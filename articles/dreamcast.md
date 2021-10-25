@@ -182,7 +182,7 @@ Since VGA is strictly a progressive type of signal (as opposed to the traditiona
 
 ## Audio
 
-The Audio functionality is handled by a custom chip called **AICA** made by Yamaha, it's an improved version of the [SCSP used in the Saturn]({{< ref "sega-saturn#audio" >}}) and composed of four components:
+The Audio functionality is handled by a custom chip called **AICA** made by Yamaha, it's an improved version of the [SCSP used in the Saturn]({{< ref "sega-saturn#audio" >}}) and is composed of four components:
 
 - The **Sound Integrated Circuit** or 'IC': A set of modules (synthesiser, DSP and mixer) that generates the audio signal and applies effects on it. It supports up to **64 PCM channels** with a resolution of **16 or 8 bits** and a sampling rate of **44.1 kHz**. Overall, this is the optimal quality for playing audio. 
   - Additionally, it includes an **ADPCM decoder** to offload some work from the CPU.
