@@ -171,7 +171,7 @@ The video system was designed to support multiple types of screens and formats, 
 - **S-Video**: Combines luma and sync while keeping chroma separated (two video lines in total).
 - **RGB**: Sends separate Red-Green-Blue signals and provides different sync types to choose from (composite sync or extracted from video composite or S-Video).
   - A SCART cable will use this type. 
-- **VGA**: Combines RGB with two sync signals (horizontal and vertical) resulting in five video lines in total. This enables to display the biggest resolution possible (720x480) in progressive mode (thus, this mode is often named '480p'). VGA has actually been the standard format/medium used by computer monitors for some time.
+- **VGA**: Combines RGB with two sync signals (horizontal and vertical) resulting in five video lines in total. This enables the display of the largest resolution possible (720x480) in progressive mode (thus, this mode is often named '480p'). VGA has actually been the standard format/medium used by computer monitors for some time.
   - To use this type, Sega provided a VGA adapter as an extra accessory.
 
 Now, the Dreamcast can't encode all of these at the same time, so the GPU and the Audio processor contain a register called **Image Mode** that coordinates which video/audio buses will be activated to generate the requested signal. The CPU detects the type of cable inserted (by checking which 'select bits' of the video connector are active) and writes the required values on the GPU. Finally, the values are forwarded to the Audio processor.
