@@ -293,7 +293,7 @@ In the case developers chose the Dragon SDK instead, DirectX 6.0 and Visual C++ 
 
 ### Medium
 
-Games are stored in GD-ROMs, which are just CD-ROM with a higher density of pits (reaching a gigabyte of capacity). The speed is 12x, which is *not too shabby* compared to Saturn's 2x CD reader.
+Games are stored in GD-ROMs, which are just CD-ROMs with a higher density of pits (reaching a gigabyte of capacity). The speed is 12x, which is *not too shabby* compared to Saturn's 2x CD reader.
 
 ### Online platform
 
