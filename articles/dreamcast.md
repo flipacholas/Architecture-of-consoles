@@ -276,7 +276,7 @@ In the end, 'Windows CE for Dreamcast' was just another SDK of choice for develo
 The GPU also includes another module for handling most of the I/O called **System Bus**. It provides the following interfaces:
 - The **G1** interface: Where the **BIOS ROM** along with its saved configuration and the **GD-ROM** content can be accessed.
 - The **G2** interface: Provides access to the **Modem** and **Sound Controller**.
-- The **Maple** interface: Transfers chunks of data between the controllers (along with its accessories connected to it) and the CPU. It's a **serial bus** and provides a dedicated DMA.
+- The **Maple** interface: Transfers chunks of data between the controllers (along with the accessories connected to them) and the CPU. It's a **serial bus** and provides a dedicated DMA.
 - The **SH-4** interface: Connects the main CPU for general purpose communications.
 - The **DDT** interface: Takes control of the CPU bus to access its main memory during DMA transfers.
 - The **PVR** interface: Connects the CPU with the Tile Accelerator using a dedicated DMA.
