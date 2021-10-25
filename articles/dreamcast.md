@@ -299,7 +299,7 @@ Games are stored in GD-ROMs, which are just CD-ROMs with a higher density of pit
 
 The Dreamcast shipped with a **modem** module installed which games could use to 'call' a dial-up service for online gaming. Sega provided two services: **SegaNet** (used in America and Japan) and **Dreamarena** (the European counterpart).
 
-Players registered with a service using **DreamKey**, an extra disc that was bundled with some games. DreamKey provided a web browser to register an account. Initially, DreamKey came a pre-configured service depending on the region, but later revisions allowed users to alter its ISP settings to connect to any of them.
+Players registered with a service using **DreamKey**, an extra disc that was bundled with some games. DreamKey provided a web browser to register an account. Initially, DreamKey came as a pre-configured service depending on the region, but later revisions allowed users to alter its ISP settings to connect to any of them.
 
 There was also a Dreamcast-branded keyboard and mouse available to buy, just in case the user fancied surfing the net *PC-style*.
 
