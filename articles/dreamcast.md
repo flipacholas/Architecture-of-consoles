@@ -57,7 +57,7 @@ The programmer decides whether to use these features or not. Games for this syst
 
 ### No UMA but...
 
-While this system is not designed around the strict Unified Memory Architecture like a [well-known competitor]({{< ref "nintendo-64#simplified-memory-access">}}), it does **delegate I/O access to the GPU**. That means that if the CPU has to fetch anything that's beyond its dedicated RAM or a serial interface (which is also connected too), it will have to request the GPU and wait if necessary.
+While this system is not designed around the strict Unified Memory Architecture like a [well-known competitor]({{< ref "nintendo-64#simplified-memory-access">}}), it does **delegate I/O access to the GPU**. That means that if the CPU has to fetch anything that's beyond its dedicated RAM or a serial interface (which is also connected), it will have to request the GPU and wait if necessary.
 
 ### Special queries
 
