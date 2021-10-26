@@ -139,7 +139,7 @@ Seeing the previous structure, I had to organise this so you don't get fed up wi
 1. The bus connecting all components, the **Element Interconnect Bus (EIB)**.
 2. The **PowerPC Processing Element (PPE)** and its core element, the **PowerPC Processing Unit (PPU)**. 
 3. What **general-purpose memory** is available in this console.
-4. The **Synergistic Processing Elements (SPE)** and their core element, the **Synergic Processing Unit (PPU)**.
+4. The **Synergistic Processing Elements (SPE)** and their core element, the **Synergistic Processing Unit (PPU)**.
 5. The **programming model** devised to program Cell efficiently.
 
 That being said, let's begin the real analysis.
@@ -1156,7 +1156,7 @@ The effects of this discovery are described in the next paragraphs.
 
 ### The Custom Firmware (CFW) era
 
-Cracking metldr meant everyone was now able to create 'official' systems for the PS3, this resulted in an influx of GameOS 'flavours' which different communities produced using different customisations. These systems were modifications of Sony's official firmware files (that Sony distributed as updates) and re-packaged using Sony's leaked keys, so they could be installed anywhere. The result was called **Custom Firmware** (CFW) and became the de-facto method for hacking this console, that is until Sony responded with tough measures.
+Cracking metldr meant everyone was now able to create 'official' systems for the PS3, this resulted in an influx of GameOS 'flavours' which different communities produced with various customisations. These systems were modifications of Sony's official firmware files (that Sony distributed as updates) and re-packaged using Sony's leaked keys, so they could be installed anywhere. The result was called **Custom Firmware** (CFW) and became the de-facto method for hacking this console, that is until Sony responded with tough measures.
 
 {{< figure_img src="cfw/vshmenu.jpg" class="centered-container">}}
 My CFW installation with 'VSH menu' opened. This variant (called 'Rebug') also enabled me to turn my console into a debugging station (notice the IP address at the bottom right corner, you need to enter it on the debugger to attach to a running process) and fiddle with my own homebrew.
@@ -1180,7 +1180,7 @@ There's also my favourite one: bring the debugging functions of a devkit, allowi
 Similarly to the events that happened after [CFWs]({{< ref "playstation-portable#tab-8-4-cfw-and-beyond" >}}) were invented for the PSP, Sony retaliated with two security updates:
 
 From the **software side**, Sony shipped two system updates that enhanced the security system:
-- With `3.56`', binaries are signed with new encryption keys resilient to the previous ECSDA discovery {{< cite "anti_piracy-keys" >}}, thus, CFW creators can't customise the new binaries (since they don't have the private keys to re-encrypt them). Furthermore, a new revision of the 'system updater' application is also shipped, this enforces the new certificates in system update files (`PS3UPDAT.PUP`), meaning that even if hackers manage to package a new CFW, only consoles with system version `3.55` or lower will be able to install it {{< cite "anti_piracy-spkg" >}}.
+- With `3.56`, binaries are signed with new encryption keys resilient to the previous ECSDA discovery {{< cite "anti_piracy-keys" >}}, thus, CFW creators can't customise the new binaries (since they don't have the private keys to re-encrypt them). Furthermore, a new revision of the 'system updater' application is also shipped, this enforces the new certificates in system update files (`PS3UPDAT.PUP`), meaning that even if hackers manage to package a new CFW, only consoles with system version `3.55` or lower will be able to install it {{< cite "anti_piracy-spkg" >}}.
 - Later on, system update `3.60` revamped the boot process, it nullified `metldr` and promoted `lv0` to take over in bootstraping the loaders (`lvl1dr`, `lv2ldr`, `appldr` and `isoldr`). All in all, this meant hackers could not modify the new system files without first cracking `lv0` (finding its private key).
   - This eventually happened in late 2012, when a team called "The Three Musketeers" published the lv0 keys, which paved the way to new CFWs made from system versions newer than `3.55`. Although, due to the aforementioned changes in the updater, only users on system version `3.55` or lower (including any CFW with signature checks disabled) can install it.
 
@@ -1201,7 +1201,7 @@ PS3Xploit's main payload replicates the job of a hardware downgrader (patching C
 5. Finally, those system calls are triggered with PS3Xploit's parameters and so they replace CoreOS files (the first part of the operating system, stored in Flash memory) with patched ones {{< cite "anti_piracy-flash_writer" >}}.
 6. The console is now able to install unofficial software updates, an opportunity the user can now _exploit_ to install a custom firmware. However, it can't downgrade the system version, yet, but once an up-to-date CFW is installed, the user can install further utilities to downgrade the system and install a better-equipped CFW, if so wants.
 
-As you can see, this _gift from the sky_ brought custom firmwares back into the spotlight and rendered hardware downgraders and ODEs obsolete. On the other side, for those units which couldn't install a CFW either way (the _unhackables_), the team were later offered **PS3Hen**, a different exploit package that focused on enabling a subset of CFW functions (including the ability to execute homebrew). This one installs itself as an entry in XMB and the user must run it every time they power on their console to re-enable the execution of homebrew apps.
+As you can see, this _gift from the sky_ brought custom firmwares back into the spotlight and rendered hardware downgraders and ODEs obsolete. On the other side, for those units which couldn't install a CFW either way (the _unhackables_), the team later offered **PS3Hen**, a different exploit package that focused on enabling a subset of CFW functions (including the ability to execute homebrew). This one installs itself as an entry in XMB and the user must run it every time they power on their console to re-enable the execution of homebrew apps.
 
 #### Sony's partial response
 
