@@ -141,7 +141,7 @@ Seeing the previous structure, I had to organise this so you don't get fed up wi
 1. The bus connecting all components, the **Element Interconnect Bus (EIB)**.
 2. The **PowerPC Processing Element (PPE)** and its core element, the **PowerPC Processing Unit (PPU)**. 
 3. What **general-purpose memory** is available in this console.
-4. The **Synergistic Processing Elements (SPE)** and their core element, the **Synergistic Processing Unit (PPU)**.
+4. The **Synergistic Processing Elements (SPE)** and their core element, the **Synergistic Processing Unit (SPU)**.
 5. The **programming model** devised to program Cell efficiently.
 
 That being said, let's begin the real analysis.
