@@ -117,8 +117,10 @@ Back on topic, **Cell combines both models**: there are two types of cores in th
 Having explained all that history and theory, I think we are ready to bring forward the protagonist of this section. This is Cell:
 
 {{< figure_img src="cpu/cell.png" class="centered-container">}}
-The Cell Broadband Engine (PS3 variant)  
-Designed by IBM for supercomputing and scientific simulation.
+The Cell Broadband Engine (PS3 variant).  
+Designed by IBM for supercomputing and scientific simulation.  
+The crossed out 'SPE' means it's disabled (unusable).  
+The other 'SPE' on the left is reserved to the operating system.
 {{< /figure_img >}}
 
 ... and by the end of this section, you'll know what each component does.
@@ -344,7 +346,7 @@ Contrariwise to the PPU, the SPU is isolated from the rest of the Cell. Thus, th
 
 In terms of functionality, the SPU is a lot more limited than the PPU. For instance, SPU doesn't include any memory management functions (address translation and memory protection) or even state-of-the-art functions (i.e. dynamic branch prediction). Nonetheless, it performs exceptionally well at vector processing.
 
-To program this unit, developers use the PPU to invoke routines provided by the Playstation 3's Operating System, these upload the executable specifically written for the SPU to the SPU of choice (remember there are seven to choose from) and signal it to start execution. Afterwards, the PPU keeps a reference of the SPU's thread for synchronisation purposes {{< cite "cpu-spuprog" >}}.
+To program this unit, developers use the PPU to invoke routines provided by the Playstation 3's Operating System, these upload the executable specifically written for the SPU to the SPU of choice and signal it to start execution. Afterwards, the PPU keeps a reference of the SPU's thread for synchronisation purposes {{< cite "cpu-spuprog" >}}.
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -664,7 +666,7 @@ The same picture with important parts labelled
   {{< /tab_figure_img >}}
 {{< /tabs >}}
 
-Like the PS2's [IOP]({{< ref "playstation-2#io" >}}), the Southbridge is completely proprietary and undocumented. But while it still remains an obscure piece of silicon, it does a superior job consolidating many interfaces and protocols, both external (i.e. USB, Ethernet, etc) and internal (i.e. SATA). For reference, in the past, the IOP's slow clock speed ended up [bottlenecking]({{< ref "playstation-2#available-interfaces" >}}) speedy interfaces like ATA and Ethernet, greatly reducing their full bandwidth.
+Like the PS2's [IOP]({{< ref "playstation-2#io" >}}), the Southbridge is completely proprietary, though this time made by Toshiba (they called it the 'Super Companion Chip' {{< cite "io-supercompanion" >}}). So, while it still remains an obscure piece of silicon, it does a superior job consolidating many interfaces and protocols, both external (i.e. USB, Ethernet, etc) and internal (i.e. SATA). For reference, in the past, the IOP's slow clock speed ended up [bottlenecking]({{< ref "playstation-2#available-interfaces" >}}) speedy interfaces like ATA and Ethernet, greatly reducing their full bandwidth.
 
 Furthermore, the southbridge implements encryption algorithms to protect the communication between standard protocols in a seamless way, such as the Hard Drive data.
 
@@ -680,7 +682,7 @@ Overall, Southbridge embeds an enormous amount of interfaces, this has to do wit
 {{< tabs nested="true" float="true" >}}
 {{< tab_figure_img name="Opened" src="cecha/front_open.jpg" active="true" >}}
 Like many PC towers of that era (including _mine_), a multi-card reader was in order. Next to it, you get four USB 2.0 ports.  
-This was pretty 'premium' for a console costing £425! (£628 in 2021 money)
+This was pretty 'premium' for a console costing £425! (£628 in 2021 money).
 {{< /tab_figure_img >}}
 {{< tab_figure_img name="Closed" src="cecha/front_closed.jpg" >}}
 Same console with the lid closed.  
@@ -708,8 +710,10 @@ On a different topic, you can now turn on the console from the wireless controll
 ### Internal interfaces
 
 Regarding internal components, SouthBridge connects to:
-- **Starship 2**: a bridge to **two 128 MB NAND Flash** chips. The PS3 stores the operating system on these, among other things.
-- The **Playstation 2 chipset**: at the corner of the motherboard there's an eye-catching chip that houses none other than the [Emotion Engine]({{< ref "playstation-2#cpu" >}}) and the [Graphics Synthesizer]({{< ref "playstation-2#graphics" >}}). The EE+GS combo also connects to **32 MB of RDRAM** and a **video bridge** to RSX, which combined form roughly 90% of the original Playstation 2. These chips are not accessible by developers, they are used for backwards compatibility only!
+- **Starship 2**: an adapter for **two 128 MB NAND Flash** chips. Behind the scenes, Starship bridges the Southbridge's local bus with the standardised 'Common Flash Interface Protocol' (widely adopted for interfacing Flash memory) {{< cite "io-starship" >}}. The PS3 stores the operating system on these, among other things.
+- The **Playstation 2 chipset**: at the corner of the motherboard there's an eye-catching chip that houses none other than the [Emotion Engine]({{< ref "playstation-2#cpu" >}}) and the [Graphics Synthesizer]({{< ref "playstation-2#graphics" >}}). The EE+GS combo connects to **32 MB of RDRAM** and an **IO bridge** (named 'PS2 bridge'), which combined form roughly 90% of the original Playstation 2.
+  - The EE+GS chip sends the video signal directly to the RSX.
+  - These chips are not accessible by developers, they are used for backwards compatibility only!
 
 #### Backwards compatibility
 
@@ -719,7 +723,7 @@ First things first, let me introduce how backwards compatibility generally work:
 
 {{< tabs nested="true" centered="true" >}}
   {{< tab_figure_img name="Original" src="eegs.jpg" active="true" >}}
-The big EE+GS chip, two 16 MB [RDRAM]({{< ref "playstation-2#a-recognisable-memory-choice" >}}) modules and a 'PS2 bridge' (video encoder) that sends the signals to the RSX.
+The big EE+GS chip, two 16 MB [RDRAM]({{< ref "playstation-2#a-recognisable-memory-choice" >}}) modules and the 'PS2 bridge'.
   {{< /tab_figure_img >}}
   {{< tab_figure_img name="Marked" src="eegs_marked.jpg" >}}
 The same picture with important parts labelled.
@@ -742,13 +746,14 @@ As if wasn't enough, PS1 games can run as well, this time without needing to emb
 #### The strange end of terms
 
 Throughout the lifecycle of the PS3, Sony slowly trimmed PS2-only chips from the PS3 motherboard to the point backwards compatibility was solely software-emulated (with greater limitations, such as only running PS2 games purchased from their online store). Because Sony never replaced the PS2 chipset (like it previously did with the PS1 hardware inside the PS2), it makes you wonder about the technical and executive rationale behind this. Well, as a case study, here's my quick opinion about the reasons for this:
-- **Timing**: Sony likely intended PS2 owners to buy their new product as a replacement of their current one, as this is more affordable for consumers (they can sell their old system). However, for some reason, Sony didn't have a software emulator prepared before release day, so they initially resorted to adding extra chips. Later on, as the software emulation progressed satisfactorily, they slowly removed these in further revisions. 
-- **Costs**: The introductory price of the first revision of the console (_CECHA_, only in Japan and US) in 2006, which was PS2-compatible, was priced at $599.99 or ¥60,000 without taxes (£425 adjusted for 2020 inflation) {{< cite "io-launch_fun" >}}. The following model (_CECHC_, shipped in 2007) removed the Emotion Engine and RDRAM (shifting those tasks to software emulation) and launched in the UK with a £425 price tag (£603 in 2020 money). Later in the same year, Sony released a new model (_CECHG_) without any PS2-related chip for £126 less {{< cite "io-price_cut" >}}. All this proves that backwards compatibility is, in the end, an expensive feature.
+- **Timing**: Sony likely intended PS2 owners to buy their new product as a replacement of their current one, as this is more affordable for consumers (they can sell their old system). However, for some reason, Sony didn't have a software emulator prepared before release day, so they initially resorted to adding extra chips. Later on, as the software emulation progressed satisfactorily, they slowly removed these in further revisions.
+  - To complement this, developer 'M4j0r' commented: "An interesting point might be that Sony developed the two hardware emulation revisions at the same time (EE/GS and GS only), I guess because some games run better depending on which you use."
+- **Costs**: The introductory price of the first revision of the console (_CECHA_, only in Japan and US) in 2006, which was PS2-compatible, was priced at $599.99 or ¥60,000 without taxes (£425 adjusted for 2020 inflation) {{< cite "io-launch_fun" >}}. The following model (_CECHC_, shipped in 2007 internationally) removed the Emotion Engine and RDRAM (shifting those tasks to software emulation) and launched in the UK with a £425 price tag (£603 in 2020 money). Later in the same year, Sony released a new model (_CECHG_) without any PS2-related chip for £126 less {{< cite "io-price_cut" >}}. All this proves that backwards compatibility is, in the end, an expensive feature.
 - **Idling hardware and wasted power**: While Cell and RSX still take care of some tasks to recreate the original environment, these tasks are minimal compared to their full potential. Combined with the fact CECHA models have a cumulative power consumption of 399 Watts {{< cite "io-psu" >}}, it does make you wonder if this design is worth the power consumption, let alone efficient (for comparison, CECHG's new power supply consumes 285 Watts).
   - I understand there are other factors involved in the reduction of power consumption, like the new revisions of Cell and RSX. However, I still believe the PS2's chipset plays an important role.
-- **Inflexibility**: The EE+GS chip is not re-programmable, which means the end result will always be the same, independently whether there are glitches or possible enhancements. Compare this to the PCSX2 emulator's graphic enhancements {{< cite "io-widescreen_hack" >}} and its modding capabilities {{< cite "io-persona_mods" >}}, has shown us that room for improvement is possible and appreciated.
+- **Inflexibility**: The EE+GS chip is not re-programmable, which means the end result will always be the same, independently whether there are glitches or possible enhancements. Compare this to the PCSX2 emulator's graphic enhancements {{< cite "io-widescreen_hack" >}} and its modding capabilities {{< cite "io-persona_mods" >}}, this show us that room for improvement is possible and appreciated.
 
-Personally, I believe pure software emulation is the most feasible option in the long term due to its scalability, customisation, and independence from proprietary hardware. But of course, this takes more effort to implement it accurately, as the ongoing development of PCSX2 by a volunteer-driven community demonstrates (the emulator only hosts on PC, however).
+Personally, I believe pure software emulation is the most feasible option in the long term due to its scalability, customisation, and independence from proprietary hardware. But of course, this takes more effort to implement accurately, as the ongoing development of PCSX2 by a volunteer-driven community demonstrates (please note the latter emulator only runs on x86 PCs, however).
 
 #### Lateral compatibility
 
@@ -872,10 +877,10 @@ In the following section, I'm going to describe what this console does once you 
 1. A separate chip in the motherboard (called **Syscon**) powers on and executes instructions from its internal ROM. It then sends a 'Configuration Ring' to Cell via SPI (a serial connection), this initialises Cell and deactivates the eighth SPU. Finally, it latches the power line and gives life to Cell.
 2. Cell's PPU reset vector points to its hidden ROM, which stores the routines to locate and decrypt `bootldr` from Flash. The decrypted piece is then loaded by the first SPU in isolation mode.
 3. The now-isolated SPU, having loaded `bootldr`, initialises part of the hardware (XDR memory and I/O interfaces) and decrypts a binary named `lv0` and instructs the PPU to run it.
-4. The PPU, now executing `lv0`, initialises the rest of the hardware, decrypts `metldr` (a console-specific loader) and sends it to the third SPU, again in isolation mode.
+4. The PPU, now executing `lv0`, decrypts `metldr` (a console-specific loader) and sends it to the third SPU, again in isolation mode.
 5. The SPU2, now executing `metldr`, executes five more loaders sequentially:
-    1. `lvl1dr` decrypts and loads `lv1`, which contains the **Hypervisor** that takes over the first privilege level.
-    2. `lv2ldr` decrypts and loads `lv2`, which contains the kernel and runs on top of the hypervisor.
+    1. `lvl1dr` decrypts and loads `lv1`, which contains the **Hypervisor** that takes over the first privilege level. Moreover, `lv1` sets up the hard drive, Blu-ray drive and RSX.
+    2. `lv2ldr` decrypts and loads `lv2`, which contains the kernel and runs on top of the hypervisor. It also finishes initialising RSX, the PS2 emulation, Bluetooth, USB controller and the Multi-card reader.
     3. `appldr` decrypts and loads `vsh` (the **Visual Shell**) and other dependencies. `vsh` will later enable the user to load a game.
     4. `isoldr` decrypts and loads modules that will run in the third SPU in isolation module. These modules are critical for security and perform many cryptographic functions throughout the console's lifecycle. Consequently, the **third SPU is reserved for security functions and games can't use it** (leaving only six SPEs for games).
 
@@ -1076,7 +1081,8 @@ Everything you've just read has to be protected somehow against 'unauthorised' a
 
 Many parts of the console already provide security features that don't require any manual implementation in software:
 - **SysCon**, the obscure proprietary chip (briefly mentioned in the boot process), controls the power lines of Cell, RSX and Southbridge. Its EEPROM contains records read by the operating system's modules to determine which functions are enabled and which are not {{< cite "anti_piracy-qaflag" >}}.
-  - Syscon and Cell communicate to each other using a serial interface (SPI), which plugs to Cell's **TEST** port {{< cite "anti_piracy-cell_test" >}}. TEST provides many debugging functions on Cell and Sony decided to use it for security purposes.
+  - Though I use the word 'obscure', SysCon is just an off-the-shelf microcontroller, either a NEC 78K0R or an [ARMTDMI]({{< ref "game-boy-advance#cpu" >}})-S (that's right, the PS3 shares some of its DNA with the [Game Boy Advance]({{< ref "game-boy-advance" >}}) and even late PS2 revisions) enhanced with [MagicGate]({{< ref "playstation-2#interactive-accessories" >}}) support {{< cite "anti_piracy-syscon" >}}. SysCon's internal firmware is what intrigues the most.
+  - SysCon and Cell communicate to each other using a serial interface (SPI) which plugs to Cell's **TEST** component {{< cite "anti_piracy-cell_test" >}}. TEST provides many debugging functions on Cell, although SysCon only connects to the 'Pervasive logic' port, enabling SysCon to manage areas like power or thermal {{< cite "anti_piracy-pervasive" >}}.
 - Cell houses a **hidden ROM** that store unencrypted boot routines without worrying about snoopers.
 - Cell's **privilege modes** and SPE's **isolated mode** prevents programs from accessing unauthorised resources.
 - The Southbridge seamlessly encrypts the hard drive's content using AES.
@@ -1120,6 +1126,7 @@ Later in 2010, a group identified as 'PS Jailbreak' announced (and later release
 Behind the scenes, this dongle carries out a huge amount of work, which can be divided into two groups {{< cite "anti_piracy-psjail" >}}:
 1. The **USB exploit**: Once the console is turned on, the dongle tricks the system into thinking it's connected to a six-port USB hub, and then performs a complex sequence of USB commands until it reaches a **heap overflow** and escalates access to the PS3's Kernel (level 2), it then proceeds to execute a payload.
 2. The **Payload**: this is another complex package that patches the original shell to enable hidden functions only available on debug units (i.e. the 'Install PKG' entry), disable signature verification (to load any arbitrary module/package); and redirect Blu-ray commands to the hard drive instead (for loading games from the hard drive). The fact this program can alter so much from the kernel level makes you wonder what's the hypervisor good at?
+    - To complement this, I was later told by M4j0r: "Interestingly it doesn't even exploit Sonys code, this part of lv2 was written by Logitech and the developers of that exploit might had access to the source code (due to the 2008 hack).".
 
 This product was subsequently reversed-engineered by other communities and shortly after, open-source clones appeared (i.e. PS Groove) which removed many restrictions (for instance, users could now unplug the device after the exploit finishes). Some forks were even deployed on a Texas Instruments calculator {{< cite "anti_piracy-tijb" >}}. In any case, Sony acted quickly with software update `3.42` to remove this gold mine {{< cite "anti_piracy-pshistory" >}}, although the door for Homebrew was already opened.
 {{% /inner_markdown %}}
@@ -1171,7 +1178,7 @@ In the meantime, many CFW appeared on the net with many names (i.e. 'Rebug', 'Fe
 - Writing over Syscon EEPROM's database to enable to install any system version of choice. This is also known as _QA Toggling_.
 - Altering the style of XMB (i.e. removing the epilepsy warning, allow to take screenshots in-game, etc).
 
-There's also my favourite one: bring the debugging functions of a devkit, allowing any retail console to become a debugging station. This could be done either by installing a CFW with debugging capabilities, or a CFW that could convert the retail console (called 'CEX') into a debugging model (called 'DEX') by altering SysCon's records.
+There's also my favourite one: bring the debugging functions of a testkit, allowing any retail console to become a debugging station. This could be done either by installing a CFW with debugging capabilities, or a CFW that could convert the retail console (called 'CEX') into a debugging model (called 'DEX') by altering console-specific data in Flash memory.
 
 #### Sony's strong response
 
@@ -1182,10 +1189,11 @@ Similarly to the events that happened after [CFWs]({{< ref "playstation-portable
 From the **software side**, Sony shipped two system updates that enhanced the security system:
 - With `3.56`, binaries are signed with new encryption keys resilient to the previous ECSDA discovery {{< cite "anti_piracy-keys" >}}, thus, CFW creators can't customise the new binaries (since they don't have the private keys to re-encrypt them). Furthermore, a new revision of the 'system updater' application is also shipped, this enforces the new certificates in system update files (`PS3UPDAT.PUP`), meaning that even if hackers manage to package a new CFW, only consoles with system version `3.55` or lower will be able to install it {{< cite "anti_piracy-spkg" >}}.
 - Later on, system update `3.60` revamped the boot process, it nullified `metldr` and promoted `lv0` to take over in bootstraping the loaders (`lvl1dr`, `lv2ldr`, `appldr` and `isoldr`). All in all, this meant hackers could not modify the new system files without first cracking `lv0` (finding its private key).
-  - This eventually happened in late 2012, when a team called "The Three Musketeers" published the lv0 keys, which paved the way to new CFWs made from system versions newer than `3.55`. Although, due to the aforementioned changes in the updater, only users on system version `3.55` or lower (including any CFW with signature checks disabled) can install it.
+  - This eventually happened in late 2012, when a team called "The Three Musketeers" published the lv0 keys {{< cite "anti_piracy-lv0leak" >}}, which paved the way to new CFWs made from system versions newer than `3.55`. Although, due to the aforementioned changes in the updater, only users on system version `3.55` or lower (including any CFW with signature checks disabled) can install it.
 
 From the **hardware side**, not only subsequent PS3 models (late CECH-25xxx, CECH-3xxx and CECH-4xxx) came pre-installed with a system version higher than `3.55`, but they also contain a different variant of  `bootldr`/`lv0ldr` (called `lv0ldr.1`) that not only decrypts and loads `lv0` but it also fetches a new system file called `lv0.2`. The latter contains metadata about `lv0` {{< cite "anti_piracy-lv0ldr" >}} to ensure that `lv0` hasn't been tampered with. `lv0.2` is signed with a new key (also invulnerable to the previous ECDSA discovery), thus, preventing hackers from taking control of the boot chain.
-  - To this day, **these models are not able to run a CFW**, thus nicknamed _unhackables_. Though they can run a 'Hybrid Firmware' (HFW) and we'll discuss more about it later on.
+
+To this day, **these models are not able to run a CFW**, thus nicknamed _unhackables_. Though they can run a 'Hybrid Firmware' (HFW) and we'll discuss more about it later on.
 
 As time went by, the number of CFW-compatible consoles only decreased, thus, PS3s that weren't updated past 3.55 became some sort of _relics_. In the meantime, there was a surge in demand for alternatives, like downgraders (to revert to system version `3.55` on old models) and ODEs (to play pirated games on new models).
 
@@ -1193,7 +1201,7 @@ As time went by, the number of CFW-compatible consoles only decreased, thus, PS3
 
 After a long waiting period for users that missed the window to install a CFW, in late 2017, a team of hackers released **PS3Xploit**, a collection of exploits and utilities {{< cite "anti_piracy-ps3xploit" >}} that brought back the ability to install CFW on old models without needing an expensive downgrader (and skills to operate it).
 
-PS3Xploit's main payload replicates the job of a hardware downgrader (patching CoreOS files) entirely through software, it works as follows:
+PS3Xploit's main payload replicates the job of a hardware downgrader (patching CoreOS files) entirely by software, it works as follows:
 1. The starting point is the XMB's internet browser, built on top of Webkit. PS3Xploit uses Javascript to gain **arbitrary code execution within the system's userspace** (and outside Javascript's environment). To kickstart this, users only have to open XMB's native web browser, enter an URL pointing to the PS3Xploit's host an let it do its job.
 2. It so happens the kernel provides system calls that can be used to **overwrite the operating system's files in Flash memory**. On top of this, the Visual Shell (XMB) and its plugins store routines in memory that make use of those calls.
 3. PS3Xploit can't trigger those system calls directly due to the Hypervisor's 'no-execute' protection, preventing the exploit from loading new code in userland. However, it can find a way to overwrite Flash memory by 'borrowing' Visual Shell's routines.
