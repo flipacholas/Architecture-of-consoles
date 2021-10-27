@@ -141,7 +141,7 @@ Seeing the previous structure, I had to organise this so you don't get fed up wi
 1. The bus connecting all components, the **Element Interconnect Bus (EIB)**.
 2. The **PowerPC Processing Element (PPE)** and its core element, the **PowerPC Processing Unit (PPU)**. 
 3. What **general-purpose memory** is available in this console.
-4. The **Synergistic Processing Elements (SPE)** and their core element, the **Synergistic Processing Unit (PPU)**.
+4. The **Synergistic Processing Elements (SPE)** and their core element, the **Synergistic Processing Unit (SPU)**.
 5. The **programming model** devised to program Cell efficiently.
 
 That being said, let's begin the real analysis.
@@ -208,7 +208,7 @@ Back on topic, the PPU is a **complete 64-bit processor**. This means:
 - The size of a word is **64-bits**.
 - There are **64-bit general-purpose registers** (32 to be exact).
 - The data-bus is _at least_ 64-bit wide: in the next sections of the article, you'll see it's **much wider** than that, but for now, keep in mind that transferring 64-bit words **won't penalise performance**.
-- The address bus is 64-bit wide: in theory, the CPU can access up to **16 exabytes of memory**. Now, in practice, this is very costly if the machine doesn't house all that memory. So, modern CPUs delegate addressing to the Memory Management Unit (MMI) to provide more uses to the address bus.
+- The address bus is 64-bit wide: in theory, the CPU can access up to **16 exabytes of memory**. Now, in practice, this is very costly if the machine doesn't house all that memory. So, modern CPUs delegate addressing to the Memory Management Unit (MMU) to provide more uses to the address bus.
 
 Finally, the PPU implements the **PowerPC ISA version 2.02**, including optional opcodes for floating-point square root {{< cite "cpu-prog_tut-23" >}}. It's also been extended with a group of SIMD instructions called **Vector/SIMD Multimedia Extension** (VMX). On the other side, some elements are missing from the original specification, such little-endian mode (in fact, Cell only operates in big-endian) and just a handful of opcodes.
 {{% /inner_markdown %}}
