@@ -33,6 +33,6 @@ Feel free to give me a shout if you need help.
 
 It's not very often, but I may add some new content to an existing article that has been translated already. In this case, I can only maintain English, Spanish and Catalan translations. For the rest of languages, crowdin can notify previous translators whenever there's new changes detected.
 
-As a rule of thumb, please check beforehand that the article you are interested in translating doesn't have any issue logged, this way you'll see which ones are meant to stay as they are.
+As a rule of thumb, please check beforehand that the article you are interested in translating doesn't have any issues logged, this way you'll see which ones are meant to stay as they are.
 
 Thanks!
