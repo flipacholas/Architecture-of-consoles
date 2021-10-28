@@ -5,15 +5,19 @@ date: 2019-01-25
 releaseDate: 1983-07-15
 generation: 3
 cover: nes
-javascript: ['plyr']
 top_tabs:
   Models:
     International:
-      caption: "The NES, released on 18/10/1985 in America and 01/09/1986 in Europe"
+      caption: "The NES
+      <br>Released on 18/10/1985 in America and 01/09/1986 in Europe"
     Japanese:
-      caption: "The Famicom, released on 15/07/1983"
+      caption: "The Famicom
+      <br>Released on 15/07/1983 in Japan"
   Motherboard: {}
   Diagram: {}
+
+# Historical
+aliases: [/projects/consoles/nes]
 
 # SEO
 title: NES Architecture
@@ -21,9 +25,9 @@ title: NES Architecture
 
 ## A quick introduction
 
-At first glance, the NES can be considered just another 6502 computer with a sophisticated case and a controller.
+At first glance the NES appears to be just another 6502 computer, with a sophisticated case and a controller.
 
-And the fact is, this is *technically* right, but let me show you why the CPU will not actually be the central part of this system.
+And while this is *technically* true, let me show you why the CPU is not the central part of this system.
 
 ---
 
@@ -31,197 +35,188 @@ And the fact is, this is *technically* right, but let me show you why the CPU wi
 
 The NES's CPU is a **Ricoh 2A03**, which is based on the popular 8-bit **MOS Technology 6502** and runs at 1.79 MHz (or 1.66 MHz in PAL systems).
 
-#### A bit of context
+### A bit of context
 
-The CPU market in the late 70s and early 80s was quite diverse. If any company wanted to build an affordable microcomputer, the following options were available:
-- The **Intel 8080**: A popular CPU featured in the *Altair*, the first 'personal' computer. It has an 8-bit data bus and a 16-bit address bus.
-- The **Zilog Z80**: An 'unofficial' version of the 8080 enhanced with more instructions, registers and internal components. It was sold at a cheaper price and could still execute 8080 programs. Amstrad and Sinclair where some of the companies that chose this CPU. 
-- The **Motorola 6800**: Another 8-bit CPU designed by Motorola, it contains a completely different instruction set. Many do-it-yourself computer kits, synthesisers and all-in-one computers included the 6800.
+The CPU market in the late 70s and early 80s was quite diverse. If a company wanted to build an affordable microcomputer, the following options were available:
+- The **Intel 8080**: a popular CPU featured in the *Altair*, the first 'personal' computer. It has an 8-bit data bus and a 16-bit address bus.
+- The **Zilog Z80**: an 'unofficial' version of the 8080 enhanced with more instructions, registers and internal components. It was sold at a cheaper price and could still execute 8080 programs. Amstrad and Sinclair (among others) chose this CPU. 
+- The **Motorola 6800**: another 8-bit CPU designed by Motorola, it contains a completely different instruction set. Many do-it-yourself computer kits, synthesisers and all-in-one computers included the 6800.
 
-As if wasn't enough, another company with the name **MOS** appeared on the market and offered a redesigned version of the 6800 called **6502**. While incompatible with the rest, the new chip was much *much* less expensive to produce and it was a matter of time before most of the famous computer makers (Commodore, Apple, Atari, Acorn and so forth) chose the 6502 to power their machines.
+As if these options weren't enough, another company named **MOS** appeared on the market and offered a redesigned version of the 6800, the **6502**. While incompatible with the rest, the new chip was much *much* less expensive to produce and it was only a matter of time before the most famous computer makers (Commodore, Apple, Atari, Acorn and so forth) chose the 6502 to power their machines.
 
-Back in Japan, Nintendo needed something inexpensive but familiar to develop for, so they selected the 6502. Ricoh, their CPU supplier, successfully produced a 6502-compatible CPU by licensing the chip designs from MOS and subsequently making some modifications here and there (we'll go over the details later on).
+Back in Japan, Nintendo needed something inexpensive but familiar to develop for, so they selected the 6502. **Ricoh**, their CPU supplier, successfully produced a 6502-compatible CPU. 
 
-#### Memory
+*How* Ricoh managed to clone it isn't clear to this day. One would expect MOS to have licensed the chip design to Ricoh, but there are many contradictions to this:
+- Ricoh's and MOS's version feature the same layout, but Ricoh's one contain severed buses (disabling certain functions). I go into more details later.
+- A document explicitly stating that MOS licensed the 6502 to Ricoh is yet to be found.
+- An article published in 2008 by Nikkei Trendy states that Ricoh licensed from Rockwell, an authorised chip manufacturer. Although it's debatable whether a second source was able to provide IP to a third-party, at least with MOS's approval.
+- It wouldn't be the first time Nintendo got away with circumventing IP rights, as *Ikegami Tsushinki v. Nintendo* ruled in Japan that Nintendo didn't own the code of the original Donkey Kong.
+
+### Memory
 
 The system provides **2 KB of Work RAM** (WRAM) for storing variables.
 
-The components of the system are memory-mapped, meaning that they are accessed using memory addresses. The memory space is composed of the Program ROM, WRAM, the PPU, the APU and 2 controllers, each component is explained throughout this article.
+The components of the system are memory-mapped, meaning that they are accessed using memory addresses. The memory space is composed of the program ROM, WRAM, the PPU, the APU and 2 controllers. Each component is explained throughout this article.
 
-#### Scrapped functions
+### Scrapped functions
 
-The Ricoh 2A03 happens to omit the **Binary-coded Decimal** or 'BCD' mode originally included in the 6502. BCD enables to encode each decimal digit of a number as a separate 4-bit binary, and since the 6502 uses 8-bit words, each word stores two decimal digits.
+The Ricoh 2A03 omits the **Binary-Coded Decimal** (BCD) mode originally included in the 6502. BCD encodes each decimal digit of a number as a separate 4-bit binary. The 6502 uses 8-bit 'words' – meaning that each word stores two decimal digits.
 
-As an example, the decimal number '42' is:
-- '0010 1010' in binary.
-- '0100 0010' in BCD.
-  - Since '0100' translates to '4' and '0010' translates to '2'.
+As an example for the curious, the decimal number `42` is represented as:
+- `0010 1010` in binary, but
+- `0100 0010` in BCD.
 
-This mode is useful for applications that require treating each decimal place separately (for instance, a digital clock). However, it requires more storage since each word can only encode up to the decimal number '99' (where as traditional binary can encode up to '255').
+We could go on and on talking about it, but to give an outline: BCD is useful for applications that require treating each decimal place separately (for instance, a digital clock). However, it requires more storage since each word can only encode up to the decimal number `99` (whereas traditional binary can encode up to `255` with a eight-bit word).
 
-In any case, Ricoh deliberately broke BCD mode in its chip by severing the control lines that activate it. This was presumably done in an effort to avoid paying royalties to MOS, since BCD was patented by them (and the necessary legislation to copyright integrated circuit layout in the United States wasn't enacted until 1984).
+In any case, Ricoh deliberately broke BCD mode in its chip by severing the control lines that activate it. This was presumably done in an effort to avoid paying royalties to MOS, since BCD was patented by them (and the legislation that enabled to copyright integrated circuit layouts in the United States wasn't enacted until 1984).
 
 ---
 
 ## Graphics
 
-Graphics are generated by a proprietary chip called the **Picture Processing Unit** or 'PPU' for short. This chip renders sprites and background graphics, outputting the result to the video signal.
+Graphics are generated by a proprietary chip called the **Picture Processing Unit** (PPU). This chip renders sprites and background graphics, outputting the result to the video signal.
 
-#### Constructing the frame
+### Constructing the frame
 
-As with its contemporaries this chip is designed for the behaviour of a CRT display. There is no frame-buffer as such: the PPU will render in step with the CRT's beam, building the image on-the-fly.
+As with its contemporaries this chip is designed for the behaviour of a CRT display. There is no frame buffer as such: the PPU will render in step with the CRT's beam, building the image on-the-fly.
 
-Additionally, the frame that the PPU outputs is built using two different layers. For demonstration purposes, *Super Mario Bros* will be used as example to show how this works:
+Additionally, the frame that the PPU outputs is built using two different layers. For demonstration purposes, let's use *Super Mario Bros.* to show how this works:
 
 {{< tabs >}}
-{{< tab active="true" name="Tiles" >}}
-
-{{< float_block >}}
-  {{< tabs nested="true" class="pixel desktop-margined" >}}
-    {{< tab name="All" active="true" >}}
-      {{< linked_img src="ppu_mario/chr_map.png" >}}
-    {{< /tab >}}
-    {{< tab name="Single" >}}
-      {{< linked_img src="ppu_mario/tile.png" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Tiles Found in its Character ROM
-  <br>(For demonstration purposes a default palette is being used)</figcaption>
-{{< /float_block >}}
+{{< tab name="Tiles" active="true" >}}
+{{< tabs nested="true" float="true" class="pixel desktop-margined" figure="true" >}}
+  {{< tab_figure_img name="All" active="true" src="ppu_mario/chr_map.png" >}}
+Multiple tiles squashed together.
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Single" src="ppu_mario/single.png" >}}
+A single tile.
+  {{< /tab_figure_img >}}
+  {{< figcaption group="true" >}}
+Tiles Found in Character ROM.  
+(For demonstration purposes a default palette is being used).
+  {{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 The PPU uses **tiles** as a basic ingredient for producing sprites and backgrounds.
 
-The NES defines tiles as basic 8x8 maps stored in **Character Memory** (found in the cartridge). Each pixel of the tile uses one of four colours (their palettes are defined later).
+The NES defines tiles as basic 8x8 maps stored in **Character memory** (found in the cartridge). Each pixel of the tile uses one of four colours (their palettes are defined later).
 
-Four Tiles are combined in 16x16 maps called **blocks** where they have to share the same colour palette.
+Groups of four tiles are combined in 16x16 maps called **blocks**, within which all tiles must share a colour palette.
 
-In order to start drawing the picture, the PPU first looks for tile references from a different set of tables previously populated by the game. Each table is used to build a layer of the frame.
+To start drawing the picture, the PPU first looks for tile references from a set of tables previously populated by the game. Each table is used to build one layer of the frame.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
 
 {{< tab name="Background Layer" >}}
-
-{{< float_block >}}
-  {{< tabs nested="true" class="pixel" >}}
-    {{< tab name="Overall" active="true" >}}
-      {{< linked_img src="ppu_mario/nametable.png" >}}
-    {{< /tab >}}
-    {{< tab name="Selected" >}}
-      {{< linked_img src="ppu_mario/nametable_marked.png" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Background map set up with vertical mirroring, allows to scroll horizontally. Only one half is used</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" float="true" class="pixel" figure="true" >}}
+  {{< tab_figure_img name="Overall" active="true" src="ppu_mario/nametable.png" >}}
+Allocated background map.
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Selected" src="ppu_mario/nametable_marked.png" >}}
+Allocated background map with selected area marked.
+  {{< /tab_figure_img >}}
+  {{< figcaption group="true" >}}
+Background map set up with vertical mirroring, which enables horizontal scrolling. Only one half is used.
+  {{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
-The Background layer is a 512x480 map containing static tiles, however only 256x240 is viewable on the screen, so the game decides which part is selected for display. Games can also move the viewable area during gameplay, that's how the **Scrolling Effect** is accomplished.
+The background layer is a 512x480 map containing static tiles. However, only 256x240 is viewable on the screen, so the game decides which part is selected for display. Games can also move the viewable area during gameplay; that's how the **scrolling effect** is accomplished.
 
-**Nametables** specify which tiles to display as background. The PPU looks for four 1024-byte Nametables, each one corresponding to a quadrant of the layer. However, there's only 2 KB of VRAM available! As a consequence only two Nametables can be stored, the remaining two still have to be addressed somewhere: Most games just point the remaining two where the first two are (**Mirroring**).
+**Nametables** specify which tiles to display as background. The PPU looks for four 1024-byte nametables, each one corresponding to a quadrant of the layer. However, there's only 2 KB of VRAM available! As a consequence, only two nametables can be stored. The remaining two still have to be addressed somewhere: most games just point the remaining two where the first two are (**mirroring**).
 
-While this architecture may seem flawed at first, it was actually designed to keep cost down while providing simple **expandability**: If games needed a wider background, extra VRAM in the cartridge could be included.
+While this architecture may seem flawed at first, it was actually designed to keep cost down while providing simple **expandability**: if games needed a wider background, extra VRAM could be included in the cartridge.
 
-Following each nametable is a 64-byte **Attribute Table** that specifies which colour palette is assigned to each block.
+Following each nametable is a 64-byte **Attribute table** that specifies which colour palette is assigned to each block.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
 
 {{< tab name="Sprite Layer" >}}
-
-{{< float_block >}}
-  {{< linked_img src="ppu_mario/sprite_layer.png" class="pixel" alt="Sprites" >}}
-  <figcaption class="caption">Rendered Sprite layer</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="ppu_mario/sprite_layer.png" class="pixel" alt="Sprites" >}}
+Rendered sprite layer
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
-Sprites are tiles that can move around the screen. They can also overlap each other and appear behind the background, the viewable graphic will be decided based on its priority value.
+Sprites are tiles that can move around the screen. They can also overlap each other, or appear behind the background. The viewable graphic will be decided based on its priority value. It's the same concept as 'layers' in many graphic design programs. 
 
-The **Object Attribute Memory** (OAM) table specifies which tiles will be used as sprites. In addition to the tile index, each entry contains an (x,y) position and multiple attributes (colour palette, a priority and flip flags). This table is stored in a 256-byte DRAM memory found in the PPU chip.
+The **Object Attribute Memory** (OAM) table specifies which tiles will be used as sprites. In addition to the tile index, each entry contains an (x,y) position and multiple attributes (colour palette, a priority and flip flags). This table is stored in a 256-byte DRAM found in the PPU chip.
 
-The OAM table can be filled by the CPU, however this can be pretty slow in practice (and risks corrupting the frame if not done at the right time), so the PPU contains a small component called **Direct Memory Access** or 'DMA' which can be programmed (by altering the PPU's registers) to fetch the table if it's stored in WRAM. With DMA, it's guaranteed that the table will be uploaded when the next frame is drawn, but bear in mind that the CPU will be halted during the transfer!
+The OAM table can be filled by the CPU. However, this can be pretty slow in practice (and risks corrupting the frame if not done at the right time), so the PPU contains a small component called **Direct Memory Access** or 'DMA' which can be programmed (by altering the PPU's registers) to fetch the table from WRAM. With DMA, it's guaranteed that the table will be uploaded when the next frame is drawn, but bear in mind that the CPU will be halted during the transfer!
 
-The PPU is limited to eight sprites per scanline and up to 64 per frame. The scanline limit can be exceeded thanks to **hardware multiplexing**: The PPU will alternate sprites between scans, however they will appear to flicker on-screen.
+The PPU is limited to eight sprites per scanline and up to 64 per frame. The scanline limit can be exceeded thanks to **hardware multiplexing**: the PPU will alternate sprites between scans; however, they will appear to flicker on-screen.
 
 {{% /inner_markdown %}}
 
 {{< /tab >}}
 
 {{< tab name="Result" >}}
-
-{{< float_block >}}
-  {{< linked_img src="ppu_mario/result.png" class="pixel" alt="Result" >}}
-  <figcaption class="caption">Tada!</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" src="ppu_mario/result.png" class="pixel" alt="Result" >}}
+Tada!
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Once the frame is finished, it's time to move on to the next one!
 
-However, the CPU can't modify any table while the PPU is using them, so when all scanlines are completed the **Vertical Blank** interrupt is called. This allows the game to update them without tearing the picture currently displayed. At that moment the CRT's beam is pointing below the visible area of the screen into the overscan, or bottom border area.
+However, the CPU can't modify any table that's being used by the PPU, so when all scanlines are completed the **vertical blank** interrupt is called. This allows the game to update the tables without tearing the picture currently displayed. At that moment the CRT's beam is pointing below the visible area of the screen, into the overscan (or bottom border area).
 {{% /inner_markdown %}}
 
 {{< /tab >}}
 {{< /tabs >}}
 
-#### Secrets and Limitations
+### Secrets and limitations
 
-If you're thinking that a frame-buffer system with memory allocated to store the full frame would have been preferable: RAM costs were very high and the console's goal was to be affordable. This design proved to be very efficient and flexible too!
+If you're thinking that a frame-buffer system with memory allocated to store the full frame would have been preferable: RAM costs were very high, and the console's goal was to be affordable. This design proved to be very efficient and flexible too!
 
 {{< tabs >}}
 {{< tab active="true" name="Multi-Scrolling" >}}
-
-{{< float_block >}}
-  <div class="image-block">
-    {{< linked_img src="secrets/multiscrolling_mirror.png" class="pixel" alt="Nametable setup" >}}
-    <figcaption class="caption">Super Mario Bros 2
-    <br>Nametable setup for vertical scrolling (Horizontal Mirroring)
-    <br>The character has to climb the mountain, the viewable area is at the bottom while the PPU has time to render the top.</figcaption>
-  </div>
-  <div class="image-block">
-    {{< linked_img src="secrets/multiscrolling.png" class="pixel" alt="MultiScrolling" >}}
-    <figcaption class="caption">Super Mario Bros 3
-    <br>Mario can run and fly, so the PPU needs to scroll diagonally
-    <br>Notice the right edge showing the wrong colour palette
-    <br>The left edge has a mask applied</figcaption>
-  </div>
-{{< /float_block >}}
+{{< figure_img float="true" src="secrets/multiscrolling_mirror.png" class="pixel" alt="Nametable setup" >}}
+Super Mario Bros. 2  
+Nametable setup for vertical scrolling (horizontal mirroring)  
+The character has to climb the mountain. The viewable area is at the bottom, and the PPU has time to render the top.
+{{< /figure_img >}}
+{{< figure_img float="true" src="secrets/multiscrolling.png" class="pixel" alt="MultiScrolling" >}}
+Super Mario Bros. 3
+Mario can run and fly, so the PPU needs to scroll diagonally.
+Notice the right edge showing the wrong colour palette!
+The left edge has a mask applied.
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
-Some games require the main character to move vertically, thus the Nametable will be set up with **Horizontal Mirroring**. Other games want their character to move left and right, then **Vertical Mirroring** is used instead.
+Some games require the main character to move vertically – thus the nametable will be set up with **horizontal mirroring**. Other games need their character to move left and right, and so use **vertical mirroring** instead.
 
-The specific type of mirroring will allow the PPU to update background tiles without the user noticing: There is plenty of space to scroll while new tiles are being rendered at distance.
+Either type of mirroring will allow the PPU to update background tiles without the user noticing: there is plenty of space to scroll while new tiles are being rendered at a distance.
 
-But what if the character wants to move diagonally? The PPU can scroll in any direction, but without extra VRAM, the edges may ended up having to share the same colour palette (remember that tiles are grouped in blocks).
+But what if the character wants to move diagonally? The PPU can scroll in any direction, but without extra VRAM, the edges may end up having to share the same colour palette (remember that tiles are grouped in blocks).
 
-This is why some games like *Super Mario Bros 3* show strange graphics at the right edge of the screen while Mario moves (the game is set up for vertical scrolling). It's possible that they needed to keep the costs down regarding the amount of hardware needed in the cartridge (This game has already a powerful mapper installed).
+This is why some games like *Super Mario Bros. 3* show strange graphics at the right edge of the screen while Mario moves (the game is set up for vertical scrolling). It's possible that they needed to minimise the hardware cost per cartridge (this game has already a powerful mapper installed).
 
-As an interesting *fix*: the PPU allowed to apply a one vertical mask on top of tiles, effectively hiding part of the glitches.
+As an interesting *fix*: the PPU allowed developers to apply a vertical mask on top of tiles, effectively hiding part of the glitchy area.
 {{% /inner_markdown %}}
 {{< /tab >}}
 
 {{< tab name="Tile-Swap" >}}
 
-{{< float_block >}}
-  {{< tabs nested="true" class="pixel" >}}
-    {{< tab name="Scan 1" active="true" >}}
-      {{< linked_img src="secrets/multiplexing_1.png" >}}
-    {{< /tab >}}
-    {{< tab name="Scan 2" >}}
-      {{< linked_img src="secrets/multiplexing_2.png" >}}
-    {{< /tab >}}
-    {{< tab name="Displayed" >}}
-      {{< linked_img src="secrets/multiplexing_complete.png" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Screenshots taken during different scan points</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" float="true" class="pixel" >}}
+  {{< tab_figure_img name="Scan 1" active="true" src="secrets/multiplexing_1.png" >}}
+Hypothetical if it were rendered using tiles available during the first scan lines. 
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Scan 2" src="secrets/multiplexing_2.png" >}}
+Hypothetical if it were rendered using tiles available during the later scan lines. 
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Displayed" src="secrets/multiplexing_complete.png" >}}
+Actual frame displayed to the user.
+  {{< /tab_figure_img >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
-Another specialty about Super Mario Bros 3 was the amount of graphics it could display.
+Another speciality of Super Mario Bros. 3 is the amount of graphics it could display.
 
-This game happens to display more background tiles than strictly permitted. So how is it doing that? If we build screen captures at two different points as the display is generated we can see that the final frame is actually composed of *two* different-looking frames.
+This game displays more background tiles than is strictly permitted. So how is it doing that? If we take two screen captures at different times while the display is generated, we can see that the final frame is actually composed of *two* different frames.
 
-The wizardry here is that the game cartridge actually has an extra semi-custom chip **MMC3** to map in one of two different character chips. By checking which part of the screen the PPU is requesting the mapper will redirect to one chip or the other, thus allowing more unique tiles in the screen than originally believed supported.
+The wizardry here is that the game cartridge actually uses an extra semi-custom chip, the **MMC3**, to map in one of two different character chips. By checking which part of the screen the PPU is requesting, the mapper will redirect to one chip or the other – thus allowing more unique tiles on-screen than was originally supported.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -231,13 +226,16 @@ The wizardry here is that the game cartridge actually has an extra semi-custom c
 
 ## Audio
 
-A dedicated component called **Audio Processing Unit** or 'APU' for short provides this functionality.
-Ricoh embedded it inside the CPU chip to avoid unlicensed cloning of both CPU and APU.
+A dedicated component called **Audio Processing Unit** (APU) provides this service. Ricoh embedded it inside the CPU chip to avoid unlicensed cloning of both CPU and APU.
 
-This audio chip is a **Programmable Sound Generator** (PSG), which means that it can only produce pre-defined wave-forms.
-The APU has five channels of audio, each one is reserved for a specific wave-form. The music data is found in the Program ROM.
+### Functionality
 
-Each wave-form contains different properties that can be altered to produce a specific note, sound or volume.
+This audio chip is a **Programmable Sound Generator** (PSG), which means that it can only produce pre-defined waveforms.
+
+The APU has five channels of audio – each one reserved for a specific waveform. The music data is found in the program ROM.
+
+Each waveform contains different properties that can be altered to produce a specific note, sound or volume.
+
 These five channels are continuously mixed and sent through the audio signal.
 
 Let's now discuss the type of wave-forms synthesised by the APU:
@@ -245,52 +243,46 @@ Let's now discuss the type of wave-forms synthesised by the APU:
 {{< tabs >}}
 
 {{< tab active="true" name="Pulse" >}}
-
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="Pulse 1" active="true" >}}
-      {{< video src="pulse_single_1" >}}
-    {{< /tab >}}
-    {{< tab name="Pulse 2" >}}
-      {{< video src="pulse_single_2" >}}
-    {{< /tab >}}
-    {{< tab name="Complete" >}}
-      {{< video src="pulse_full" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Mother (1989)</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" float="true" figure="true" >}}
+  {{< tab_figure_video name="Pulse 1" active="true" src="pulse_single_1" >}}
+Pulse 1 channel.
+  {{< /tab_figure_video >}}
+  {{< tab_figure_video name="Pulse 2" src="pulse_single_2" >}}
+Pulse 2 channel.
+  {{< /tab_figure_video >}}
+  {{< tab_figure_video name="Complete" src="pulse_full" >}}
+All audio channels.
+  {{< /tab_figure_video >}}
+  {{< figcaption group="true" >}}Mother (1989).{{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 Pulse waves have a very distinct *beep* sound that is mainly used for **melody or sound effects**.
 
-The APU reserves two channels for one pulse-wave each. These channels use one of three different voices by varying its pulse-width.
+The APU reserves two channels for pulse waves. Each can use one of three different voices, produced by varying pulse widths.
 
-Most of the games use one pulse channel for melody and the other for accompaniment.
+Most games used one pulse channel for melody and the other for accompaniment.
 
-When the game requires to play a sound effect, the accompaniment is switched to play the effect and then returns to accompanying, this avoids interrupting the melody during gameplay.
+When the game needs to play a sound effect, the accompaniment channel is switched to play the effect and then returns to accompanying. This avoids interrupting the melody during gameplay.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
 
 {{< tab name="Triangle" >}}
-
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="Triangle" active="true" >}}
-      {{< video src="triangle_single" >}}
-    {{< /tab >}}
-    {{< tab name="Complete" >}}
-      {{< video src="triangle_full" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Mother (1989)</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" float="true" figure="true" >}}
+  {{< tab_figure_video name="Triangle" active="true" src="triangle_single" >}}
+Triangle channel.
+  {{< /tab_figure_video >}}
+  {{< tab_figure_video name="Complete" src="triangle_full" >}}
+All audio channels.
+  {{< /tab_figure_video >}}
+  {{< figcaption group="true" >}}Mother (1989){{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
-This wave-form serves as a bass-line for the melody, modifying its pitch dramatically can produce percussion as well.
+This waveform serves as a bassline for the melody. Modifying its pitch dramatically can also produce percussion.
 
-The APU has one channel available only for this type of wave.
+The APU has one channel reserved for this type of wave.
 
 The volume of this channel can't be controlled, possibly because the volume control is used to construct the triangle.
 {{% /inner_markdown %}}
@@ -298,89 +290,77 @@ The volume of this channel can't be controlled, possibly because the volume cont
 {{< /tab >}}
 
 {{< tab name="Noise" >}}
-
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="Noise" active="true" >}}
-      {{< video src="noise_single" >}}
-    {{< /tab >}}
-    {{< tab name="Complete" >}}
-      {{< video src="noise_full" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Mother (1989)</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" float="true" figure="true" >}}
+  {{< tab_figure_video name="Noise" active="true" src="noise_single" >}}
+Noise channel.
+  {{< /tab_figure_video >}}
+  {{< tab_figure_video name="Complete" src="noise_full" >}}
+All audio channels.
+  {{< /tab_figure_video >}}
+  {{< figcaption group="true" >}}Mother (1989){{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
-Noise is basically a set of random wave-forms that sound like white static. One channel is allocated for it.
+Noise is basically a set of random waveforms that sound like white static. One channel is allocated for it.
 
-Games use it for percussion or *ambient* effects.
+Games use the noise channel for percussion or *ambient* effects.
 
-This channel has only 32 *presets* available, one half produces **clean static** and the other produces **robotic static**.
+This channel has only 32 *presets* available. Half (16) of these presets produce **clean static**, and the other half produce **robotic static**.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
 
 {{< tab name="Sample" >}}
-
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="Sample" active="true" >}}
-      {{< video src="sample_single" >}}
-    {{< /tab >}}
-    {{< tab name="Complete" >}}
-      {{< video src="sample_full" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Mother (1989)</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" float="true" figure="true" >}}
+  {{< tab_figure_video name="Sample" active="true" src="sample_single" >}}
+Sample channel.
+  {{< /tab_figure_video >}}
+  {{< tab_figure_video name="Complete" src="sample_full" >}}
+All audio channels.
+  {{< /tab_figure_video >}}
+  {{< figcaption group="true" >}}Mother (1989){{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
-Samples are recorded pieces of music that can be reproduced. As you can see this doesn't have to be a single wave-form.
+Samples are recorded pieces of music that can be replayed. As you can see, this doesn't have to be a single waveform.
 
-The APU has one channel dedicated for it with the following capabilities: 7-bit depth, 4.2-33.5 kHz sampling rate and no volume control.
+The APU has one channel dedicated to samples. It has the following capabilities: 7-bit depth, 4.2-33.5 kHz sampling rate, and no volume control.
 
-The size of a sample is significantly bigger than the space required to program a single waveform, so games normally store small pieces (like drum sets) that can be played repeatedly.
+Samples are significantly bigger than single waveforms, so games normally store small pieces (like drum samples) that can be played repeatedly.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
 {{< /tabs >}}
 
-#### Secrets and Limitations
+### Secrets and limitations
 
-While the APU was not comparable to the quality of a Vinyl, Cassette or CD,
-programmers did find different ways of expanding the capability thanks to the modular architecture of this console.
+While the APU was not comparable to the quality of a vinyl, cassette or CD,
+programmers did find ways of expanding its capability, thanks to the modular architecture of the NES.
 
 {{< tabs >}}
 
 {{< tab name="Extra Channels" active="true" >}}
-
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="American" active="true" >}}
-      {{< video src="castlevania_usa" >}}
-    {{< /tab >}}
-    {{< tab name="Japanese" >}}
-      {{< video src="castlevania_jap" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Castlevania III (1989)</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" float="true" >}}
+  {{< tab_figure_video name="American" active="true" src="castlevania_usa" >}}
+Castlevania III (USA/Europe, 1989)
+  {{< /tab_figure_video >}}
+  {{< tab_figure_video name="Japanese" src="castlevania_jap" >}}
+Akumajō Densetsu (Japan, 1989)
+  {{< /tab_figure_video >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
-The Japanese model of the NES, the Famicom, provided exclusive cartridge pins available for sound expansion, games like *Castlevania 3* included the **Konami VRC6** chip, which allowed **two extra pulse waves and a sawtooth wave**.
+The Japanese model of the NES, the Famicom, provided exclusive cartridge pins available for sound expansion. Games like *Castlevania 3* included the **Konami VRC6** chip, which allowed **two extra pulse waves and a sawtooth wave**.
 
-Check out the difference between the American version (which didn't have capabilities for sound expansion).
+Check out the difference between the Japanese version and the American versions (which didn't have sound expansion).
 {{% /inner_markdown %}}
 
 {{< /tab >}}
 
 {{< tab name="Tremolo" >}}
-
-{{< float_block >}}
-  {{< video src="tremolo_full" >}}
-  <figcaption class="caption">Final Fantasy III (1990)</figcaption>
-{{< /float_block >}}
+{{< video src="tremolo_full" float="true" >}}
+Final Fantasy III (1990)
+{{< /video >}}
 
 {{% inner_markdown %}}
 Some games used tremolo effects to simulate more channels.
@@ -393,65 +373,27 @@ Some games used tremolo effects to simulate more channels.
 
 ## Games
 
-They are mainly written in 6502 assembly language and reside in the **Program ROM** while its graphics (tiles) are stored in the **Character Memory**.
+They are mainly written in the 6502 assembly language and reside in the **program ROM**, while the game's graphics (tiles) are stored in **Character memory**.
 
-The 16-bit address space limits the system to 64 KB of addressable memory. The system I/O is memory mapped, that only leaves around 8 KB of available storage for the program. If a game required extra space, extra chips (mappers) would be included in the cartridge, with an attendant increase in production costs.
+The 16-bit address space limits the system to 64 KB of addressable memory. The system I/O is memory mapped – that only leaves around 8 KB of available storage for the program. If a game required extra space, extra chips (mappers) would be included in the cartridge, with an attendant increase in production costs.
 
 Some cartridges included an additional battery-backed WRAM to store saves.
 
 ---
 
-## Anti-piracy & Region Lock
+## Anti-piracy and region lock
 
-Nintendo was able to block unauthorised publishing thanks to the inclusion of a proprietary **Lockout** chip called **Checking Integrated Circuit** or **CIC**, it's located in the console and is connected to the reset signals (and is not easily removed).
+Nintendo was able to block unauthorised publishing thanks to the inclusion of a proprietary **lockout** chip called the **Checking Integrated Circuit** (CIC). It is located in the console and is connected to the reset signal (and thus not easily removed).
 
-This chip runs **10NES**, an internal program that checks for the existence of another Lockout chip in the game cartridge, if that check fails then the console is sent into an infinite reset.
+This chip runs **10NES**, an internal program that checks for the existence of another lockout chip in the game cartridge. If that check fails then the console is sent into an infinite reset.
 
 Both lockout chips are in constant communication during the console's uptime.
-This system can be defeated by cutting one of the pins on the console's Lockout, this leaves the chip in an idle state. Alternatively, sending it a -5V signal can freeze it.
+The system can be defeated by cutting one of the pins on the console's lockout, which leaves the chip in an idle state. Alternatively, sending it a -5V signal can freeze it.
 
 The CIC exists as a result of the fear caused by the video game crash of 1983. Nintendo's then president Hiroshi Yamauchi decided that in order to enforce good quality games they would be in charge of approving every single one of them.
-You'll notice that the Japanese model of the console, the *Famicom*, was in fact released before this event happened, that's why the CIC circuitry is used for sound expansions instead.
+
+You'll notice that the Japanese model of the console, the *Famicom*, was released before 1983's crash. That's why the CIC circuitry is used for sound expansions instead.
 
 ---
 
-## Sources / Keep Reading
-
-#### General
-
-- [**Detailed info about NES' Motherboard**](http://retrodetect.com/home/viewPost/164)
-- [**NES' Wikipedia article**](https://en.wikipedia.org/wiki/Nintendo_Entertainment_System#Technical_specifications)
-
-#### CPU
-
-- [**Ricoh 2A03**](https://en.wikipedia.org/wiki/Ricoh_2A03)
-- [**MOS Technology 6502**](https://en.wikipedia.org/wiki/MOS_Technology_6502)
-- [**6502 Binary-coded decimal (BCD) mode**](http://visual6502.org/wiki/index.php?title=6502DecimalMode)
-- [**Difference between 6502 and 2A03 CPU core**](https://forums.nesdev.com/viewtopic.php?f=9&t=9813)
-- [**Semiconductor Chip Protection Act of 1984**](https://en.wikipedia.org/wiki/Semiconductor_Chip_Protection_Act_of_1984)
-- [**Radio Electronics Magazine** December 1977](https://worldradiohistory.com/Archive-Radio-Electronics/70s/1977/Radio-Electronics-1977-12.pdf#page=86), Page 86
-- [**Radio Electronics Magazine** August 1981](https://archive.org/details/radio_electronics_1981-08/page/n75/mode/2up), Page 76
-- [**How much did the 6502 and Z80 cost?** (Retrocomputing)](https://retrocomputing.stackexchange.com/questions/2760/how-much-did-the-6502-and-z80-cost)
-
-#### Graphics
-
-- [**Nametables**](http://wiki.nesdev.com/w/index.php/PPU_nametables)
-- [**Attribute Tables**](https://wiki.nesdev.com/w/index.php/PPU_attribute_tables)
-- [**Object Attribute Memory (OAM)**](http://wiki.nesdev.com/w/index.php/PPU_OAM)
-- [**N3s' detailed explanation** (Archived)](http://web.archive.org/web/20190523120018/https://n3s.io/index.php?title=How_It_Works)
-- [**Retro Game Mechanics Explained, an interesting Youtube Channel**](https://www.youtube.com/channel/UCwRqWnW5ZkVaP_lZF7caZ-g/)
-
-#### Audio
-
-- [**More info about APU's channels**](http://retrogameaudio.tumblr.com/)
-
-#### Games
-
-- [**Mappers**](https://en.wikipedia.org/wiki/Memory_management_controller)
-- [**MMC3 chip**](https://en.wikipedia.org/wiki/Memory_management_controller#MMC3)
-- [**Famicom's non-CIC**](https://news.ycombinator.com/item?id=1059686)
-
-#### Photography
-
-- Motherboard and console: [**Evan Amos Gallery**](https://commons.wikimedia.org/wiki/User:Evan-Amos)
-- Diagrams and game screenshots: **Me**
+## That's all folks
