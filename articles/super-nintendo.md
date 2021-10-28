@@ -5,7 +5,6 @@ date: 2019-06-28
 releaseDate: 1990-11-21
 generation: 4
 cover: snes
-javascript: ['plyr']
 published: true
 top_tabs:
   Models:
@@ -24,6 +23,9 @@ top_tabs:
 
 # SEO
 title: Super Nintendo Architecture
+
+# Historical
+aliases: [/projects/consoles/super-nintendo/]
 ---
 
 ## A quick introduction
@@ -34,19 +36,19 @@ Nintendo managed to bring the next generation of graphics and sounds without usi
 
 ## CPU
 
-The main processor is a **Ricoh 5A22**. It's based on the **Western 65C816**, a 16-bit upgrade of the classic [MOS Technology 6502]({{< ref "nes">}}#cpu). Since the SNES shares the same foundation of the NES' CPU, there's a slight possibility that the SNES was originally planned to be compatible with NES games.
+The main processor is a **Ricoh 5A22**. It's based on the **Western 65C816**, a 16-bit upgrade of the classic [MOS Technology 6502]({{< ref "nes#cpu" >}}). Since the SNES shares the same foundation of the NES' CPU, there's a slight possibility that the SNES was originally planned to be compatible with NES games.
 
 The CPU employs a **variable clock speed** that will reach up to **3.58 MHz** during register operations and down to **1.79 MHz** when accessing slow external buses (i.e. the serial/controller port).
 
-The 5A22 features:
-- A **65816 ISA**: A 16-bit instruction set which extends the original 6502 ISA, but doesn't implement the undocumented instructions some NES games ended up using.
-  - The [broken BCD mode]({{< ref "nes">}}#scrapped-functions) is **working** again.
+In summary, the 5A22 features:
+- A **65816 ISA**: A 16-bit instruction set which extends the original 6502 ISA, but doesn't implement undocumented instructions some NES games ended up using.
+  - The [broken BCD mode]({{< ref "nes#scrapped-functions" >}}) is **working** again.
 - **16-bit registers**.
   - The accumulator (where arithmetic operations are performed) and index register (used to compute memory addresses) can switch between 16-bit and 8-bit mode.
 - New **16-bit multiplication** and **division units** added by Ricoh, which provide the CPU with the ability to carry out these type of operations by hardware (the 65C816 doesn't include any dedicated instructions for multiplication or division).
 - **8-bits external data bus**: Meaning that it takes twice the cycles to move its registers across external memory!
 
-#### Ricoh's additions
+### Ricoh's additions
 
 Apart from the extra registers, Ricoh customised the core design to include **two exclusive DMAs** (Direct Memory Access) that enables to move memory around without the intervention of the CPU (resulting in faster speeds).
 
@@ -63,7 +65,7 @@ There are two DMAs to choose from depending on the needs:
 
 The system provides eight *channels* to set up DMA transfers, thus enabling to dispatch eight independent transfers at once.
 
-#### Segmentation Fault
+### Segmentation Fault
 
 This console also features a special 'anomaly' called **Open Bus**: If there is an instruction trying to read from an unmapped/invalid address, the last value read is supplied instead (the CPU stores this value in a register called **Memory Data Register** or 'MDR').
 
@@ -73,7 +75,7 @@ This console also features a special 'anomaly' called **Open Bus**: If there is 
 
 Before we go in-depth I strongly recommend reading the [NES article]({{< ref "nes">}}) first since it introduces useful concepts that will be revisited here.
 
-#### Design
+### Design
 
 Nintendo improved their previous architecture by using two different *PPU* chips to build the graphics sub-system, both combined are known as **Super PPU** or 'S-PPU'.
 
@@ -85,30 +87,26 @@ Overall, both PPU packages are designed to serve different functionality:
 
 This separation, from the programming point of view, is unnecessary since both chips are virtually treated as one.
 
-#### Organising the content
+### Organising the content
 
-{{< centered_container >}}
-  {{< linked_img src="SPPU_architecture.png" alt="S-PPU Diagram" >}}
-  <figcaption class="caption">Memory architecture of the S-PPU</figcaption>
-{{< /centered_container >}}
+{{< figure_img src="SPPU_architecture.png" alt="S-PPU Diagram" class="centered-container" >}}
+Memory architecture of the S-PPU
+{{< /figure_img >}}
 
 Graphics data is distributed across three regions of memory:
 - 64 KB **VRAM** (Video RAM): Stores tiles and maps (tables) used to build background layers.
 - 512 B **CGRAM** (Colour Graphics RAM): Fits 512 colour palette entries, each entry has the size of a *word* (16 bits).
 - 544 B **OAM** (Object Attribute Memory): Contains tables with references of 128 tiles that will be used as *Sprites* along with their attributes.
 
-#### Constructing the frame
+### Constructing the frame
 
 For demonstration purposes, *Super Mario World* will be used to show how graphics are rendered.
 
 {{< tabs >}}
-
 {{< tab active="true" name="Tiles" >}}
-
-{{< float_block >}}
-  {{< linked_img class="pixel" src="sppu_mario/tiles.png" alt="Tiles" >}}
-  <figcaption class="caption">Some 16x16 Tiles found in VRAM</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" class="pixel" src="sppu_mario/tiles.png" alt="Tiles" >}}
+Some 16x16 Tiles found in VRAM
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 Just like its predecessor, the S-PPU uses tiles to build sophisticated graphics, however there are significant improvements compared to the original PPU:
@@ -121,40 +119,33 @@ Just like its predecessor, the S-PPU uses tiles to build sophisticated graphics,
 {{< /tab >}}
 
 {{< tab name="Background" >}}
-
-{{< float_block >}}
-  <div class="image-block">
-    {{< tabs nested="true" class="pixel" >}}
-      {{< tab name="Layer 1" active="true" >}}
-        {{< linked_img src="sppu_mario/background1_map.png" >}}
-      {{< /tab >}}
-      {{< tab name="Layer 2" >}}
-        {{< linked_img src="sppu_mario/background2_map.png" >}}
-      {{< /tab >}}
-      {{< tab name="Layer 3" >}}
-        {{< linked_img src="sppu_mario/background3_map.png" >}}
-      {{< /tab >}}
-    {{< /tabs >}}
-    <figcaption class="caption">Background maps in VRAM</figcaption>
-  </div>
-  <div class="image-block">
-    {{< tabs nested="true" class="pixel" >}}
-      {{< tab name="Layer 1" active="true" >}}
-        {{< linked_img src="sppu_mario/background1.png" >}}
-      {{< /tab >}}
-      {{< tab name="Layer 2" >}}
-        {{< linked_img src="sppu_mario/background2.png" >}}
-      {{< /tab >}}
-      {{< tab name="Layer 3" >}}
-        {{< linked_img src="sppu_mario/background3.png" >}}
-      {{< /tab >}}
-      {{< tab name="Combined" >}}
-        {{< linked_img src="sppu_mario/background_complete.png" >}}
-      {{< /tab >}}
-    {{< /tabs >}}
-    <figcaption class="caption">Rendered Background layers after selection and transparency are applied</figcaption>
-  </div>
-{{< /float_block >}}
+{{< tabs float="true" nested="true" class="pixel" figure="true" >}}
+  {{< tab_figure_img name="Layer 1" active="true" src="sppu_mario/background1_map.png" >}}
+Background Layer 1 (BG1).
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Layer 2" src="sppu_mario/background2_map.png" >}}
+Background Layer 2 (BG2).
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Layer 3" src="sppu_mario/background3_map.png" >}}
+Background Layer 3 (BG3).
+  {{< /tab_figure_img >}}
+  {{< figcaption group="true" >}}Background maps in VRAM.{{< /figcaption >}}
+{{< /tabs >}}
+{{< tabs float="true" nested="true" class="pixel" figure="true" >}}
+  {{< tab_figure_img name="Layer 1" active="true" src="sppu_mario/background1.png" >}}
+Rendered Background Layer 1 (BG1).
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Layer 2" src="sppu_mario/background2.png" >}}
+Rendered Background Layer 2 (BG2).
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Layer 3" src="sppu_mario/background3.png" >}}
+Rendered Background Layer 3 (BG3).
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Combined" src="sppu_mario/background_complete.png" >}}
+Rendered Background Layers combined.
+  {{< /tab_figure_img >}}
+  {{< figcaption group="true" >}}Rendered Background layers after selection and transparency are applied.{{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 The Super Nintendo can generate up to four different background planes. Using either 8x8 or 16x16 tiles, blocks will take up to 32x32 pixels (2x2 tiles). That being said, the size of each background layer can be up to 1024x1024 pixels wide (32x32 tiles). The region in VRAM where these layers are configured is called **Tilemap** and is structured as a table (continuous values in memory).
@@ -182,7 +173,7 @@ This system features eight background modes to choose from, each one provides a 
   - One layer can be split into foreground and background.
   - This is the most common one.
 - **Mode 2**: 2 layers with 16 colours each.
-  - This mode has an extra effect: Layers can have each of its columns scrolled independently (Similar to the [GameBoy]({{< ref "game-boy">}}#graphics)).
+  - This mode has an extra effect: Layers can have each of its columns scrolled independently (Similar to the [GameBoy]({{< ref "game-boy#graphics" >}})).
 - **Mode 3**: 1 Background layer with 128 colours + 1 Background with 16 colours.
   - Colours can be set as RGB values instead of using CGRAM references.
 - **Mode 4**: Mode 2 and 3 combined (Column scroll + RGB colour mapping).
@@ -199,11 +190,9 @@ As you can see, programmers now have the choice to prioritize between number of 
 {{< /tab >}}
 
 {{< tab name="Sprites" >}}
-
-{{< float_block >}}
-  {{< linked_img class="pixel" src="sppu_mario/sprites.png" alt="Sprites" >}}
-  <figcaption class="caption">Rendered Sprite layer</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" class="pixel" src="sppu_mario/sprites.png" alt="Sprites" >}}
+Rendered Sprite layer
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 An area on memory called **Object Attribute Memory** (OAM) stores a table with references of up to 128 sprites with these properties:
@@ -221,11 +210,9 @@ The S-PPU can draw up to 32 sprites per scan-line (overflowing this will only ma
 {{< /tab >}}
 
 {{< tab name="Result" >}}
-
-{{< float_block >}}
-  {{< linked_img class="pixel" src="sppu_mario/complete.png" alt="Result" >}}
-  <figcaption class="caption">Tada!</figcaption>
-{{< /float_block >}}
+{{< figure_img float="true" class="pixel" src="sppu_mario/complete.png" alt="Result" >}}
+Tada!
+{{< /figure_img >}}
 
 {{% inner_markdown %}}
 The S-PPU draws each scan-line on-the-fly by first processing the respective portion of each layer and then mixing them together.
@@ -240,30 +227,30 @@ You see, because DMA/HDMA allows to perform memory transfers without waiting for
 {{< /tab >}}
 {{< /tabs >}}
 
-#### Unique features
+### Unique features
 
 Truth to be told, I still haven't mentioned the most important characteristic of this console...
 
 {{< float_group >}}
 
-{{< float_block >}}
-  {{< tabs nested="true" class="pixel" >}}
-    {{< tab name="Background" active="true" >}}
-      {{< linked_img src="mode7/layer.png" >}}
-    {{< /tab >}}
-    {{< tab name="Map" >}}
-      {{< linked_img src="mode7/map.png" >}}
-    {{< /tab >}}
-    {{< tab name="Displayed" >}}
-      {{< linked_img src="mode7/displayed.png" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">F-Zero (1990)
-  <br>First quarter of scan-lines use another Mode to simulate distance, Mode 7 starts at the second quarter (this is possible thanks to HDMA)</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" class="pixel" float="true" figure="true" >}}
+  {{< tab_figure_img name="Background" active="true" src="mode7/layer.png" >}}
+Rendered Background layer.
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Map" src="mode7/map.png" >}}
+Allocated Background map.
+  {{< /tab_figure_img >}}
+  {{< tab_figure_img name="Displayed" src="mode7/displayed.png" >}}
+Rendered frame on the screen.  
+The first quarter of scan-lines use another mode to simulate distance, Mode 7 starts at the second quarter (this is possible thanks to HDMA).
+  {{< /tab_figure_img >}}
+  {{< figcaption group="true" >}}
+F-Zero (1990).
+  {{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
-Introducing **Mode 7**, *yet another* background mode, but this time, with a completely different way of working. While it can only render a single 8bpp Background layer, it provides the exclusive ability of applying the following **affine transformations**:
+Introducing **Mode 7**, *yet another* background mode, but this time, with a completely different way of working. While it can only render a single 8bpp background layer, it provides the exclusive ability of applying the following **affine transformations** on that plane:
 
 - Translation
 - Scaling
@@ -271,15 +258,16 @@ Introducing **Mode 7**, *yet another* background mode, but this time, with a com
 - Reflection
 - Shearing
 
-These effects don't include perspective, although by altering the rotation matrix at each HDMA call, a pseudo 3D effect can be achieved!
-
+The S-PPU uses a **rotation matrix** to control the parameters of this mode. I won't go into the math here, but depending on the desired effect, the CPU will have to perform some trigonometric functions (sine and cosine) to fill the entries of this table accordingly. This is really expensive for the 65C816, even with the use of fixed-point math. Luckily, with the 5A22, Ricoh added multiplication and division registers to offload some cycles.
 {{% /inner_markdown %}}
 
 {{< /float_group >}}
 
-Due to the high number of calculations needed, the memory map is changed to optimise the pipeline of the two PPUs, the first one processes the **Tilemap** (where tiles are referenced) while the other fetches the **Tileset** (where tiles are stored).
+By the way, notice that the list of transformations doesn't mention **perspective**, which is what you see on the example game (F-Zero). This is achieved by altering the rotation matrix at each HDMA call, creating a pseudo 3D effect in the process.
 
-#### A convenient video out
+Finally, due to the high number of calculations needed, the memory map is changed to optimise the pipeline of the two PPUs, the first one processes the **Tilemap** (where tiles are referenced) while the other fetches the **Tileset** (where tiles are stored).
+
+### A convenient video out
 
 All of the aforementioned advancements will be futile unless the console sends the picture to the TV in a format both can understand. With the Super Nintendo, the company debuted some sort of *universal-but-proprietary* connection called **Multi Out** which can transport many types of signals at the same time, including **Composite**, **S-Video** and **RGB**.
 
@@ -294,12 +282,12 @@ I think the real benefits of Multi Out started to become evident during present 
 ## Audio
 
 This console provided some unique audio capabilities thanks to a dedicated set of chips designed by no other than **Sony**. The most important components of the audio subsystem are:
-- **The S-DSP**: Plays ADPCM samples across eight different channels, they are mixed and sent through the audio output. The DSP is capable of manipulating samples with 16-bit resulution and a sampling rate of 32 kHz, it also provides:
+- **The S-DSP**: Plays ADPCM samples across eight different channels, they are mixed and sent through the audio output. The DSP is capable of manipulating samples with 16-bit resolution and a sampling rate of 32 kHz, it also provides:
   - **Stereo Panning**: Distributes our channels to provide stereo sound.
   - **ADSR envelope control**: Sets how volume changes at different times.
   - **Delay**: Simulates *echo*, it also includes a frequency filter to cut out some frequencies during the feedback. Do not confuse this with *Reverb*!
   - **Noise generator**: Creates random waveforms that sound like white static.
-  - **Pitch modulation**: Allows some channels distort others. Similar to FM synthesis (used by [its competitor]({{< ref "mega-drive-genesis">}}#audio)).
+  - **Pitch modulation**: Allows some channels distort others. Similar to FM synthesis (used by [its competitor]({{< ref "mega-drive-genesis#audio" >}})).
 - **The SPC700 CPU**: Also named 'S-SMP', it's an independent 8-bit CPU that communicates with the DSP and receives commands from the main CPU.
 - **64 KB of PSRAM**: Stores audio data and programs. The main CPU is responsible of filling this up.
   - If 'Delay' is activated, some space will be allocated for feedback data (this is actually very dangerous, since if not used properly it can override some of our data!).
@@ -307,22 +295,20 @@ This console provided some unique audio capabilities thanks to a dedicated set o
 This sub-system functions independently: When the console is turned on, the SPC700 boots a 64 byte internal ROM that enables it to receive commands from the main CPU. After that, it stays idle. 
 
 {{< float_group >}}
-
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="Melody" active="true" >}}
-      {{< video src="melody" >}}
-    {{< /tab >}}
-    {{< tab name="Drums" >}}
-      {{< video src="drums" >}}
-    {{< /tab >}}
-    {{< tab name="Complete" >}}
-      {{< video src="complete" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Drums are discriminated for demonstration purposes
-  <br>StarFox (1993)</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" float="true" figure="true" >}}
+  {{< tab_figure_video name="Melody" active="true" src="melody" >}}
+Channels used for melody.
+  {{< /tab_figure_video >}}
+  {{< tab_figure_video name="Drums" src="drums" >}}
+Drums are discriminated for demonstration purposes.
+  {{< /tab_figure_video >}}
+  {{< tab_figure_video name="Complete" src="complete" >}}
+All audio channels.
+  {{< /tab_figure_video >}}
+  {{< figcaption group="true" >}}
+StarFox (1993).
+  {{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 In order for the S-SMP to start doing some useful work, it needs to load a type of program referred as **Sound Driver** that instructs the chip on how to manipulate the raw audio data that the main CPU just sent to PSRAM, the driver also directs how to command the S-DSP.
@@ -334,57 +320,49 @@ As a consequence, there were tons of different sound drivers found in the market
 
 {{< /float_group >}}
 
-#### Pitch control
+### Pitch control
 
 Pitch modulation enabled to play different notes using the same sample, the S-SMP also included a useful bender to alter the pitch in a continuous manner. Take a look at this extracted channel from Mother 2/Earthbound, both examples come from the original soundtrack, however the first one has the pitch control disabled.
 
 {{< side_by_side >}}
-  <div class="toleft">
-    {{< video src="pitch/no_pitch" >}}
-    <figcaption class="caption">No pitch bend</figcaption>
-  </div>
-
-  <div class="toright">
-    {{< video src="pitch/pitch" >}}
-    <figcaption class="caption">With pitch bend enabled</figcaption>
-  </div>
+  {{< video src="pitch/no_pitch" class="toleft" >}}
+No pitch bend
+  {{< /video >}}
+  {{< video src="pitch/pitch" class="toright" >}}
+With pitch bend enabled
+  {{< /video >}}
 {{< /side_by_side >}}
 
-#### Evolution from the NES
+### Evolution from the NES
 
 In order to demonstrate the evolution of sounds from the NES to the Super NES, here are two music scores, one from a NES game and another from its Super NES sequel. Both used the same composition:
 
 {{< side_by_side >}}
-  <div class="toleft">
-    {{< video src="snowman_nes" >}}
-    <figcaption class="caption">Mother (1989)</figcaption>
-  </div>
-
-  <div class="toright">
-    {{< video src="snowman_snes" >}}
-    <figcaption class="caption">Mother 2/Earthbound (1994)</figcaption>
-  </div>
+  {{< video src="snowman_nes" class="toleft" >}}
+Mother (1989)
+  {{< /video >}}
+  {{< video src="snowman_snes" class="toright" >}}
+Mother 2/Earthbound (1994)
+  {{< /video >}}
 {{< /side_by_side >}}
 
-#### Advanced usage
+### Advanced usage
 
 {{< float_group >}}
-
-{{< float_block >}}
-  {{< tabs nested="true" >}}
-    {{< tab name="Melody" active="true" >}}
-      {{< video src="kirby/trebble" >}}
-    {{< /tab >}}
-    {{< tab name="Drums" >}}
-      {{< video src="kirby/drums" >}}
-    {{< /tab >}}
-    {{< tab name="Complete" >}}
-      {{< video src="kirby/complete" >}}
-    {{< /tab >}}
-  {{< /tabs >}}
-  <figcaption class="caption">Drums are discriminated for demonstration purposes
-  <br>Kirby's Dream Land 3 (1997)</figcaption>
-{{< /float_block >}}
+{{< tabs nested="true" float="true" figure="true" >}}
+  {{< tab_figure_video name="Melody" active="true" src="kirby/trebble" >}}
+Channels used for melody.
+  {{< /tab_figure_video >}}
+  {{< tab_figure_video name="Drums" src="kirby/drums" >}}
+Drums are discriminated for demonstration purposes.
+  {{< /tab_figure_video >}}
+  {{< tab_figure_video name="Complete" src="kirby/complete" >}}
+All audio channels.
+  {{< /tab_figure_video >}}
+  {{< figcaption group="true" >}}
+Kirby's Dream Land 3 (1997).
+  {{< /figcaption >}}
+{{< /tabs >}}
 
 {{% inner_markdown %}}
 Here's a more instrument-rich composition that takes great advantage of pitch modulation, echo and envelope.
@@ -394,7 +372,7 @@ This combination of techniques allowed the music to only require five channels i
 
 {{< /float_group >}}
 
-#### Stereo confusion
+### Stereo confusion
 
 The DSP's volume controls are organised in chunks of 8-bits signed values, this means that the volume can be set up with **negative values**. *But hang on*, if '0' means mute, what would a number like '-1' do? Well, it will **invert the signal**.
 
@@ -412,11 +390,11 @@ Overall, games are written in **65816 assembly** and when it comes to designing 
 - **LoROM Model**: Data is available in 32 KB chunks with 128 banks to choose.
 - **HiROM Model**: Data is available in 64 KB chunks with 64 banks to choose.
 
-#### Expansion
+### Expansion
 
 The modular architecture of the Super Nintendo allows for numerous type of **Enhancement chips** that are included on cartridges and provide extra features such as the 'SuperFX' for 3D polygon composition or the 'SA-1' for co-processing, some of these chips complemented already complex functions like Mode 7 (which allowed to transform the background but not the sprites).
 
-#### Recognisable behaviour
+### Recognisable behaviour
 
 Have you ever wondered what causes games to lag? When the V-Blank interrupt is called to allow graphics update, sometimes the game is still executing some heavy code and skips the V-Blank window, graphics can't be updated until the next V-Blank call and since the frame wasn't updated, this is manifested as a drop in frame-rate. It can also happen the other way around, extensive processing during a V-Blank won't allow the PPU send video signal since the bus is blocked. Then black lines during a scan will be shown, although this is barely noticeable since the frames update 50 or 60 times per second.
 
@@ -439,51 +417,7 @@ This could be defeated by manually removing these routines but would take a long
 
 ## That's all folks
 
-{{< centered_container >}}
-  {{< linked_img src="mysnes.png" alt="My SNES with Earthbound" >}}
-  <figcaption class="caption">My modded SNES with an american cartridge
-  <br>That game was only released in the states, luckily there was a lad selling it in Glasgow!
-  </figcaption>
-{{< /centered_container >}}
-
----
-
-## Sources / Keep Reading
-
-#### General
-
-- [**Super Nintendo Developer's manual (Book 1)**](https://archive.org/details/SNESDevManual)
-- [**Interesting architectural comparison with the Mega Drive**](https://hackaday.com/2015/11/06/winning-the-console-wars-an-in-depth-architectural-study/)
-- [**Videos about SNES features explained in heavy detail**](https://www.youtube.com/playlist?list=PLHQ0utQyFw5KCcj1ljIhExH_lvGwfn6GV)
-
-#### CPU
-
-- [**Wikibooks programming guide**](https://en.wikibooks.org/wiki/Super_NES_Programming)
-- [**More about the DMA**](https://en.wikibooks.org/wiki/Super_NES_Programming/DMA_tutorial)
-- [**6502 unofficial opcodes**](https://wiki.nesdev.com/w/index.php/CPU_unofficial_opcodes#Games_using_unofficial_opcodes)
-
-#### Graphics
-
-- [**Graphics in detail**](https://megacatstudios.com/blogs/press/super-nintendo-graphic-guide)
-- [**Sprites guidelines**](https://megacatstudios.com/blogs/press/snes-sprite-engine-design-guidelines)
-- [**Advanced Graphics documentation**](https://media.smwcentral.net/Ersanio/SMWCstuff/Advanced%20documentation/qsnesdoc.html)
-- [**Video pinout**](https://pinouts.ru/dev/Nintendo/SNES/)
-
-#### Audio
-
-- [**Overview of the S-SMP**](http://www.vgmpf.com/Wiki/index.php?title=S-SMP)
-- [**Programming the S-SMP**](https://en.wikibooks.org/wiki/Super_NES_Programming/SPC700_reference)
-- [**List of sound drivers found in the market**](http://gdri.smspower.org/wiki/index.php/Super_Famicom/Super_NES_Sound_Driver_List)
-- [**Interesting compilation of audio capabilities**](https://www.youtube.com/watch?v=dtK0t8k6akg)
-
-#### Games
-
-- [**Cartridge pinouts**](https://www.caitsith2.com/snes/flashcart/cart-chip-pinouts.html)
-- [**Every cartridge design that surfed the market**](https://snescentral.com/system.php)
-- [**LoRom in heavy detail (Archived)**](https://web.archive.org/web/20190311181601/https://www.cs.umb.edu/~bazz/snes/cartridges/lorom.html)
-
-#### Photography
-
-- Motherboard: [**Yaca2671**](https://commons.wikimedia.org/wiki/File:SNES-CPU-RGB01_01.jpg)
-- Console: [**Evan Amos Gallery**](https://commons.wikimedia.org/wiki/User:Evan-Amos)
-- Diagrams and game screenshots: **Me**
+{{< figure_img src="mysnes.png" alt="My SNES with Earthbound" class="centered-container" >}}
+My modded SNES with an american cartridge  
+That game was only released in the states, luckily there was a lad selling it in Glasgow!
+{{< /figure_img >}}
