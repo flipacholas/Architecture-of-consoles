@@ -317,7 +317,7 @@ VMU detached from the controller
     {{< tab_figure_img name="Detached" src="controller.png" alt="Controller" >}}
 Controller without VMU attached
     {{< /tab_figure_img >}}
-    {{< tab_figure_img src="controller-vmu.png" alt="Controller with VMU" >}}
+    {{< tab_figure_img name="Attached" src="controller-vmu.png" alt="Controller with VMU" >}}
 Controller with VMU attached
     {{< /tab_figure_img >}}
 {{< /tabs >}}
