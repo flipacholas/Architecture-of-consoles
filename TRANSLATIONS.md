@@ -2,17 +2,13 @@
 
 ### Current State
 
-Right now, all the articles are in English and there's a few translated to Spanish.
+Right now, all the articles are in English and there're a few translated to Spanish.
 
-English writings end with `.md`, while translated articles end with `.(language code).md` (i.e. `.es.md` for Spanish). To start localising, you can either:
-- Sign in to [Crowdin](https://crowdin.com/project/architecture-of-consoles), choose a language and an article; and let Crowdin guide you through the process.
-- Clone the repo, grab any article markdown file, translate it and then submit a merge request.
+English writings end with `.md`, while translated articles end with `.(language code).md` (i.e. `.es.md` in the case of Spanish). To start localising, please go to [Crowdin](https://crowdin.com/project/architecture-of-consoles), choose a language and an article; and then let Crowdin guide you through the process.
 
-For any language except Spanish, the following files need to be translated as well:
-- `_index.md`
-- The list of strings on 'resources' folder.
+Apart from any article, `articles/_index.md`, `resources/strings.toml` and `resources/generations.yaml` need to be translated as well.
 
-When you finish translating a document, please drop me an email (address in the website) or open an issue here so I can review it and deploy it. The same applies if you have any questions.
+When you finish translating a document, please drop me an email (address in the website) or open an issue here so I can review it and deploy it. Feel free to ask me for help if you need.
 
 I hope I don't sound bossy with this, I'm actually very grateful to anyone that helps me improve the site!
 
