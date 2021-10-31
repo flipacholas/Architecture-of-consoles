@@ -1,16 +1,19 @@
 # General
 
-[about]
-other = "About the website and its content"
-
 [author_footer_first]
 other = 'I hope you have enjoyed this article! If you want to know more about the author <a href="{{ . }}">tap here</a>'
 
 [author_footer_second]
 other = 'and if you would like to support him <a href="{{ . }}">tap here</a> instead'
 
+[languages_available]
+other = "Languages available: "
+
 [help_translations]
 other = 'Help with translations'
+
+[add_translation]
+other = 'Add translation'
 
 [report_mistakes]
 other = 'Report mistakes or propose changes'
@@ -24,8 +27,69 @@ other = 'Next'
 [previous]
 other = 'Previous'
 
-[by] # preposition, by 'someone'
-other = 'by'
+[table-of-contents]
+other = "Table of Contents"
+
+[show]
+other = "Show"
+
+[hide]
+other = "Hide"
+
+# Navigation
+
+[home]
+other = "Home"
+
+[writings]
+other = "Writings"
+
+[about]
+other = "About"
+
+[about_website_long]
+other = "About the website and its content"
+
+[support]
+other = "Support"
+
+[about_author]
+other = "About author"
+
+[about_website]
+other = "About website"
+
+[switch_modern]
+other = "Switch to modern edition"
+
+[switch_classic]
+other = "Switch to classic edition"
+
+# Multi edition
+
+[about_edition]
+other = "About this edition"
+
+[book_edition]
+other = "Book edition"
+
+[last_updated]
+other = "Last updated: "
+
+[classic_edition]
+other = "Classic edition"
+
+[book_intro]
+other = 'The ‘book’ edition is a ready-to-print version of the <a href="{{ . }}">online article</a>, it‘s been styled differently to take advantage of the exclusive capabilities of PDF documents.'
+
+[classic_intro]
+other = 'The ‘classic’ edition is an alternative version to the <a href="{{ . }}">‘modern’ counterpart</a>. It doesn‘t require Javascript, state-of-the-art CSS or convoluted HTML to work, which makes it ideal for eBooks users, legacy internet browsers or readers who use accessibility tools.'
+
+[classic_description]
+other = "This edition is identical content-wise. However, interactive widgets have been simplified to work with pure HTML, though these will offer an link to the original article in case the reader wants to try the ‘full version’."
+
+[general_description]
+other = 'As always, this article is available on <a href="{{ .github }}">Github</a> to enable readers to report mistakes or propose changes. There‘s also a <a href="{{ .readings }}">supporting reading list</a> available to help understand the series. The author also accepts <a href="{{ .donations }}">donations</a> to help improve the quality of current articles and upcoming ones.'
 
 # Subscribe form
 
@@ -72,11 +136,20 @@ other = "Architecture of Consoles"
 [top_model]
 other = "Model"
 
-[top_motherboard]
+[top_models]
+other = "Models"
+
+[motherboard_title]
 other = "Motherboard"
 
-[top_diagram]
+[motherboard_note]
+other = "Motherboard with important parts labelled"
+
+[diagram_title]
 other = "Diagram"
+
+[diagram_note]
+other = "Main architecture diagram"
 
 [original]
 other = "Original"
@@ -102,6 +175,27 @@ other = "Changelog"
 [changelog_content]
 other = "It's always nice to keep a record of changes."
 
+[supporting_imagery]
+other = "Supporting imagery"
+
+[consoles_written_by]
+other = 'A practical analysis by {{ . }}'
+
+[translated_by]
+other = 'Translated by {{ . }}'
+
+[interactive_model_origin]
+other = 'Interactive model available in the <a href="{{ . }}">modern edition</a>'
+
+[interactive_player_origin]
+other = 'Interactive player available in the <a href="{{ . }}">modern edition</a>'
+
+[goto_classic]
+other = 'If you use accessibility tools, an eBook or legacy browsers, <a href="{{ . }}">switch to the ‘classic’ edition</a>.'
+
+[audio_samples]
+other = 'Audio samples'
+
 # 3D Model Viewer
 
 [wireframe]
@@ -121,3 +215,50 @@ other = "Buffering..."
 
 [ready_drag_zoom]
 other = "Ready to drag and zoom!"
+
+# Consoles (Sources)
+
+[sources]
+other = "Sources / Keep Reading"
+
+[archived]
+other = "Archived"
+
+[general]
+other = "General"
+
+[cpu]
+other = "CPU"
+
+[graphics]
+other = "Graphics"
+
+[audio]
+other = "Audio"
+
+[audio_video]
+other = "Audio / Video"
+
+[io]
+other = "I/O"
+
+[operating_system]
+other = "Operating System"
+
+[games]
+other = "Games"
+
+[anti_piracy]
+other = "Anti-Piracy"
+
+[copy_protection]
+other = "Copy protection"
+
+[photography]
+other = "Photography"
+
+[other_media]
+other = "Other Media"
+
+[bonus]
+other = "Bonus"
