@@ -1,14 +1,17 @@
-[about]
-other = "О сайте и его содержании"
-
 [author_footer_first]
 other = 'Надеюсь, вам понравилась эта статья! Если вы хотите узнать больше об авторе, <a href="{{ . }}">нажмите сюда</a>'
 
 [author_footer_second]
 other = 'и если вы хотите поддержать его, то <a href="{{ . }}">нажмите сюда</a>'
 
+[languages_available]
+other = "Доступные языки: "
+
 [help_translations]
 other = "Помощь с переводом"
+
+[add_translation]
+other = "Добавить перевод"
 
 [report_mistakes]
 other = "Сообщить об ошибках или предложить изменения"
@@ -22,8 +25,65 @@ other = "Далее"
 [previous]
 other = "Назад"
 
-[by]
-other = "от"
+[table-of-contents]
+other = "Содержание"
+
+[show]
+other = "Показать"
+
+[hide]
+other = "Скрыть"
+
+[home]
+other = "Домашняя страница"
+
+[writings]
+other = "Статьи"
+
+[about]
+other = "Сведения"
+
+[about_website_long]
+other = "О сайте и его содержании"
+
+[support]
+other = "Поддержка"
+
+[about_author]
+other = "Об авторе"
+
+[about_website]
+other = "О сайте"
+
+[switch_modern]
+other = "Переключиться на современную версию"
+
+[switch_classic]
+other = "Переключиться на классическую версию"
+
+[about_edition]
+other = "Об этой версии"
+
+[book_edition]
+other = "Книжная версия"
+
+[last_updated]
+other = "Обновлено: "
+
+[classic_edition]
+other = "Классическая версия"
+
+[book_intro]
+other = '"Книжная" версия - это готовая к печати версия <a href="{{ . }}">онлайн-статьи</a>, но оформленная по-другому, чтобы использовать эксклюзивные возможности PDF-документов.'
+
+[classic_intro]
+other = '"Классическая" версия - альтернативная <a href="{{ . }}">"современной"</a>. версия. Для её работы не требуется JavaScript, современный CSS или сложный HTML, что делает её идеальной для пользователей электронных книг, устаревших интернет-браузеров или читателей, которые используют специальные возможности.'
+
+[classic_description]
+other = 'Эта версия идентично по содержанию. Однако интерактивные виджеты были упрощены для работы с чистым HTML, но они будут предлагать ссылку на оригинальную статью, если читатель захочет попробовать "полную версию".'
+
+[general_description]
+other = 'Как всегда, эта статья доступна на <a href="{{ .github }}">Github</a>, чтобы читатели могли сообщить об ошибках или предложить изменения. Также доступен <a href="{{ .readings }}">дополнительный список чтения</a>, который поможет понять серию. Автор также принимает <a href="{{ .donations }}">пожертвования</a>, чтобы помочь улучшить качество текущих и будущих статей.'
 
 [subscribe_title]
 other = "Получать рассылку"
@@ -64,11 +124,20 @@ other = "Архитектура консолей"
 [top_model]
 other = "Модель"
 
-[top_motherboard]
+[top_models]
+other = "Модели"
+
+[motherboard_title]
 other = "Материнская плата"
 
-[top_diagram]
+[motherboard_note]
+other = "Vатеринская плата с помеченными важными частями"
+
+[diagram_title]
 other = "Диаграмма"
+
+[diagram_note]
+other = "Диаграмма основной архитектуры"
 
 [original]
 other = "Оригинал"
@@ -94,6 +163,27 @@ other = "История изменений"
 [changelog_content]
 other = "Всегда приятно вести учет изменений."
 
+[supporting_imagery]
+other = "Опорные изображения"
+
+[consoles_written_by]
+other = "Практический анализ от {{ . }}"
+
+[translated_by]
+other = "Автор перевода: {{ . }}"
+
+[interactive_model_origin]
+other = 'Интерактивная модель доступна в <a href="{{ . }}">современной версии</a>'
+
+[interactive_player_origin]
+other = 'Интерактивный плеер доступен в <a href="{{ . }}">современной версии</a>'
+
+[goto_classic]
+other = 'Если вы используете инструменты специальных возможностей, электронные книги или устаревшие браузеры, то <a href="{{ . }}">переключитесь на "классическую" версию</a>.'
+
+[audio_samples]
+other = "Примеры аудио"
+
 [wireframe]
 other = "Каркас"
 
@@ -111,3 +201,48 @@ other = "Буферизация..."
 
 [ready_drag_zoom]
 other = "Готово для перетаскивания и увеличения!"
+
+[sources]
+other = "Источники / Продолжить чтение"
+
+[archived]
+other = "В архиве"
+
+[general]
+other = "Общее"
+
+[cpu]
+other = "Процессор"
+
+[graphics]
+other = "Графика"
+
+[audio]
+other = "Аудио"
+
+[audio_video]
+other = "Аудио / Видео"
+
+[io]
+other = "Ввод/вывод"
+
+[operating_system]
+other = "Операционная система"
+
+[games]
+other = "Игры"
+
+[anti_piracy]
+other = "Борьба с пиратством"
+
+[copy_protection]
+other = "Защита от копирования"
+
+[photography]
+other = "Фотографии"
+
+[other_media]
+other = "Другие медиафайлы"
+
+[bonus]
+other = "Бонус"
