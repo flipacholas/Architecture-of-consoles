@@ -27,10 +27,5 @@ This is not a developer manual, just an *in depth* introduction to how each syst
 Basic knowledge of computing is preferable, however, I try really hard to adapt my content for wider audiences, so please don't be afraid to give it a try! But if that's not enough, you may want to look at the [supporting readings]({{< ref "readings" >}}).
 
 While I try to be as accurate as possible, if you find any mistakes please {{< email "give me a shout" >}} or {{< consoles/repo_link "propose changes" >}}.
-<!-- 
-Translated article should add this line:
-
-Another thing, these writings in particular are actually a translation of the [english series]({{< ref path="consoles" lang="en" >}}), so there may be some lacking of a {{< consoles/translation_link "translation" >}}.
--->
 
 Without further ado, here they are!
