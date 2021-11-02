@@ -28,7 +28,7 @@ aliases: [/projects/consoles/gamecube/]
 
 Gone are the days of '3D-attempts', Nintendo's new offering consists of a clean and powerful break from its predecessor that will open the door to new, original and unseen content.
 
-It's worth pointing out that the design of this architecture led to one of the most compact hardware of this generation, attributing at the lack of *slims* or *lite* revisions.
+It's worth pointing out that the design of this architecture led to one of the most compact hardware of this generation, attributing to the lack of *slims* or *lite* revisions.
 
 ---
 
