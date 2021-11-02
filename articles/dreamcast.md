@@ -57,7 +57,7 @@ The programmer decides whether to use these features or not. Games for this syst
 
 ### No UMA but...
 
-While this system is not designed around the strict Unified Memory Architecture like a [well-known competitor]({{< ref "nintendo-64#simplified-memory-access">}}), it does **delegate I/O access to the GPU**. That means that if the CPU has to fetch anything that's beyond its dedicated RAM or a serial interface (which is also connected too), it will have to request the GPU and wait if necessary.
+While this system is not designed around the strict Unified Memory Architecture like a [well-known competitor]({{< ref "nintendo-64#simplified-memory-access">}}), it does **delegate I/O access to the GPU**. That means that if the CPU has to fetch anything that's beyond its dedicated RAM or a serial interface (which is also connected), it will have to request the GPU and wait if necessary.
 
 ### Special queries
 
@@ -85,7 +85,7 @@ Instead of rendering a whole frame at once (as traditional **Immediate Mode Rend
 
 This innovative design brings interesting advantages:
 - It can be greatly **parallelised**, which significantly reduces bandwidth and power usage.
-- It implements a clever solution to the [**visibility problem**]({{< ref "sega-saturn#an-introduction-to-the-visibility-problem" >}}) by automatically sorting the polygons **from front to back** and then performing [z-tests]({{< ref "nintendo-64#modern-visible-surface-determination" >}}) at the first stages of the pipeline. The combination of these tasks not only solves the original issue, but it also **prevents overdraw** (rasterisation of hidden polygons) which wastes resources and degrades performance.
+- It implements a clever solution to the [**visibility problem**]({{< ref "sega-saturn#an-introduction-to-the-visibility-problem" >}}) by automatically sorting the polygons **from front to back** and then performing [z-tests]({{< ref "nintendo-64#modern-visible-surface-determination" >}}) at the first stages of the pipeline. The combination of these tasks not only solves the original issue, but also **prevents overdraw** (rasterisation  of hidden polygons) which wastes resources and degrades performance.
 
 It's no surprise that Imagination took this efficient technology forward to build the Series 4 PowerVR cores which powered an incredible number of devices, including the first generation of iPhone, the iPhone 3G, the Nokia N95 and the Dell Axim x51.
 
@@ -125,7 +125,7 @@ Here is where the graphics are brought into life, the Display Lists received fro
 
 1. The **Image Synthesis Processor** or 'ISP' fetches the primitives (either triangles or quads) and performs **Hidden-Surface Removal** to remove unseen polygons. Then, after calculating its Z-buffers and stencil buffers, the data goes through **Depth Testing** to avoid rendering polygons that would appear behind others and **Stencil Tests** to cull geometry that won't be visible if they are located behind a 2D polygon (also called **Mask**).
     - Notice how these tests are effectively carried out at the start of the pipeline. In contrast, previous consoles [using late z-buffering]({{< ref "nintendo-64#modern-visible-surface-determination" >}}) discard the geometry at the end of the pipeline. The ISP approach prevents processing the geometry that will eventually be discarded, thereby saving resources.
-2. The **Texture and Shading Processor** or 'TSP' applies colouring, shading and multiple effects over the tile area.
+2. The **Texture and Shading Processor** or 'TSP' applies colouring, shading, and multiple effects over the tile area.
     - Textures are not applied until the tile is exported, meaning that emerging overdraw (if any) will not lower the fill rate.
 
 After the operation is completed, the rendered tile is written to the main frame-buffer in VRAM. This process is repeated until all tiles are finished. Once complete, the resulting frame-buffer is picked by the **Video encoder** and sent through the video signal.
@@ -136,7 +136,7 @@ After the operation is completed, the rendered tile is written to the main frame
 
 ### The big picture
 
-Apart from the clear architectural difference, the Texture and Shading Processor comes with many capabilities that give one an idea of how distant this console is from the old [Saturn]({{< ref "sega-saturn">}}). Here are a notable examples:
+Apart from the clear architectural difference, the Texture and Shading Processor comes with many capabilities that give one an idea of how distant this console is from the old [Saturn]({{< ref "sega-saturn">}}). Here are some notable examples:
 
 - **Alpha blending**: Combines colours of overlapping layers to achieve transparency effects.
   - The process used for applying transparency in this system is called **order-independent transparency**. The algorithm automatically sorts the primitives before blending their colours, and while this slows down the rendering process, it avoids relying on the game itself to do all the sorting manually. For this reason, Dreamcast games excelled in displaying transparent objects.
@@ -149,7 +149,7 @@ Apart from the clear architectural difference, the Texture and Shading Processor
 
 ### Gaining detail
 
-Holly can now draw ~10 times more polygons than [its predecessor]({{< ref "sega-saturn">}}), here's a *Before & After* example that shows how model designs are not that limited any more. Try to fiddle with them!
+Holly can now draw ~10 times more polygons than [its predecessor]({{< ref "sega-saturn">}}), here's a *Before & After* example that shows how model designs are not that limited anymore. Try to fiddle with them!
 
 {{< side_by_side >}}
   {{< threejs_canvas model="sonic_r" class="toleft" >}}
@@ -171,7 +171,7 @@ The video system was designed to support multiple types of screens and formats, 
 - **S-Video**: Combines luma and sync while keeping chroma separated (two video lines in total).
 - **RGB**: Sends separate Red-Green-Blue signals and provides different sync types to choose from (composite sync or extracted from video composite or S-Video).
   - A SCART cable will use this type. 
-- **VGA**: Combines RGB with two sync signals (horizontal and vertical) resulting in five video lines in total. This enables to display the biggest resolution possible (720x480) in progressive mode (thus, this mode is often named '480p'). VGA has actually been the standard format/medium used by computer monitors for some time.
+- **VGA**: Combines RGB with two sync signals (horizontal and vertical) resulting in five video lines in total. This enables the display of the largest resolution possible (720x480) in progressive mode (thus, this mode is often named '480p'). VGA has actually been the standard format/medium used by computer monitors for some time.
   - To use this type, Sega provided a VGA adapter as an extra accessory.
 
 Now, the Dreamcast can't encode all of these at the same time, so the GPU and the Audio processor contain a register called **Image Mode** that coordinates which video/audio buses will be activated to generate the requested signal. The CPU detects the type of cable inserted (by checking which 'select bits' of the video connector are active) and writes the required values on the GPU. Finally, the values are forwarded to the Audio processor.
@@ -182,7 +182,7 @@ Since VGA is strictly a progressive type of signal (as opposed to the traditiona
 
 ## Audio
 
-The Audio functionality is handled by a custom chip called **AICA** made by Yamaha, it's an improved version of the [SCSP used in the Saturn]({{< ref "sega-saturn#audio" >}}) and composed of four components:
+The Audio functionality is handled by a custom chip called **AICA** made by Yamaha, it's an improved version of the [SCSP used in the Saturn]({{< ref "sega-saturn#audio" >}}) and is composed of four components:
 
 - The **Sound Integrated Circuit** or 'IC': A set of modules (synthesiser, DSP and mixer) that generates the audio signal and applies effects on it. It supports up to **64 PCM channels** with a resolution of **16 or 8 bits** and a sampling rate of **44.1 kHz**. Overall, this is the optimal quality for playing audio. 
   - Additionally, it includes an **ADPCM decoder** to offload some work from the CPU.
@@ -276,7 +276,7 @@ In the end, 'Windows CE for Dreamcast' was just another SDK of choice for develo
 The GPU also includes another module for handling most of the I/O called **System Bus**. It provides the following interfaces:
 - The **G1** interface: Where the **BIOS ROM** along with its saved configuration and the **GD-ROM** content can be accessed.
 - The **G2** interface: Provides access to the **Modem** and **Sound Controller**.
-- The **Maple** interface: Transfers chunks of data between the controllers (along with its accessories connected to it) and the CPU. It's a **serial bus** and provides a dedicated DMA.
+- The **Maple** interface: Transfers chunks of data between the controllers (along with the accessories connected to them) and the CPU. It's a **serial bus** and provides a dedicated DMA.
 - The **SH-4** interface: Connects the main CPU for general purpose communications.
 - The **DDT** interface: Takes control of the CPU bus to access its main memory during DMA transfers.
 - The **PVR** interface: Connects the CPU with the Tile Accelerator using a dedicated DMA.
@@ -293,13 +293,13 @@ In the case developers chose the Dragon SDK instead, DirectX 6.0 and Visual C++ 
 
 ### Medium
 
-Games are stored in GD-ROMs, which are just CD-ROM with a higher density of pits (reaching a gigabyte of capacity). The speed is 12x, which is *not too shabby* compared to Saturn's 2x CD reader.
+Games are stored in GD-ROMs, which are just CD-ROMs with a higher density of pits (reaching a gigabyte of capacity). The speed is 12x, which is *not too shabby* compared to Saturn's 2x CD reader.
 
 ### Online platform
 
 The Dreamcast shipped with a **modem** module installed which games could use to 'call' a dial-up service for online gaming. Sega provided two services: **SegaNet** (used in America and Japan) and **Dreamarena** (the European counterpart).
 
-Players registered with a service using **DreamKey**, an extra disc that was bundled with some games. DreamKey provided a web browser to register an account. Initially, DreamKey came a pre-configured service depending on the region, but later revisions allowed users to alter its ISP settings to connect to any of them.
+Players registered with a service using **DreamKey**, an extra disc that was bundled with some games. DreamKey provided a web browser to register an account. Initially, DreamKey came as a pre-configured service depending on the region, but later revisions allowed users to alter its ISP settings to connect to any of them.
 
 There was also a Dreamcast-branded keyboard and mouse available to buy, just in case the user fancied surfing the net *PC-style*.
 
