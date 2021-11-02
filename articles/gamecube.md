@@ -245,7 +245,7 @@ The final stage of the rendering process includes applying some optional but use
 
 The resulting frame is finally written to the frame buffer in the embedded 1T-SRAM, but this is still locked inside Flipper (the area is called 'Embedded Frame Buffer' or 'EFB', though it also includes the z-buffer). So, to display it on our TV, we have to copy it to the **External Frame-Buffer** or 'XFB', which can be picked up the **Video Interface** or 'VI'. Besides, the copy process can apply effects like **Antialiasing** (reduces blocky edges), **Deflicker** (smooths sudden changes in brightness), **RGB to YUV conversion** (a similar format that occupies less space in memory) and **Y-scaling** (vertically scales the frame).
 
-It's worth mentioning that the XFB area can also be manipulated by the CPU, this enables to combine previously-rendered bitmaps with our recently-rendered frame; or when certain games need to render very colour-rich frames which can't fit in the EFB, so they are rendered in parts and merged by the CPU afterwards (always keeping in-sync with the VI).
+It's worth mentioning that the XFB area can also be manipulated by the CPU, this enables it to combine previously-rendered bitmaps with our recently-rendered frame; or when certain games need to render very colour-rich frames which can't fit in the EFB, so they are rendered in parts and merged by the CPU afterwards (always keeping in-sync with the VI).
 {{% /inner_markdown %}}
 
 {{< /tab >}}
