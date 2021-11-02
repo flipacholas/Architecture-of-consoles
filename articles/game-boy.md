@@ -59,7 +59,7 @@ The SM83 keeps an 8-bit data bus and a 16-bit address bus, so up to 64 KB of mem
 
 All graphics calculations are done by the CPU, then the **Picture Processing Unit** or 'PPU' renders them. This is another component found inside DMG-CPU and it's actually based on the [predecessor's PPU]({{< ref "nes#graphics" >}}).
 
-The picture is displayed in an integrated LCD screen, it has a resolution of **160×144 pixels** and shows **4 shades of grey** (white, light grey, dark grey and black). But since the original Gameboy has a green LCD, graphics will look *greenish*.
+The picture is displayed on an integrated LCD screen, it has a resolution of **160×144 pixels** and shows **4 shades of grey** (white, light grey, dark grey and black). But since the original Gameboy has a green LCD, graphics will look *greenish*.
 
 If you've read the NES article before, you may remember that the PPU was designed to follow the CRT beam. However (and for obvious reasons), we got an LCD screen in the Gameboy. Well, the new PPU doesn't alter that part, since LCDs require to be refreshed too. In fact, some special effects achieved thanks to this behaviour will also be supported on the Gameboy.
 
@@ -98,7 +98,7 @@ The PPU uses **tiles** as a basic ingredient for rendering graphics, specificall
 
 Tiles are just **8x8 bitmaps** stored in VRAM in a region called **Tile set** or 'Tile pattern table', each pixel corresponds to one of the four shades of grey available. Finally, tiles are grouped into two pattern tables.
 
-In order to build the picture, tiles are referenced in another type of table called **Tile map**. This information will tell the PPU where to render the tiles. Two maps are stored to construct different layers of the frame.
+In order to build the picture, tiles are referenced in another type of table called a **Tile map**. This information will tell the PPU where to render the tiles. Two maps are stored to construct different layers of the frame.
 
 The next sections explain how tile maps are used to construct the layers.
 {{% /inner_markdown %}}
@@ -146,7 +146,7 @@ The Window is a **160x144 pixel** layer containing tiles displayed on top of the
 
 The remaining tile map can be assigned to the window layer. 
 
-At first, this may sound like a silly feature. After all, the window layer overlaps everything else so what's useful for? Well, both Background and Window can be used concurrently at different parts of the screen. This is accomplished by changing the `LCDCONT` register during specific scan-lines.
+At first, this may sound like a silly feature. After all, the window layer overlaps everything else so what's it useful for? Well, both Background and Window can be used concurrently at different parts of the screen. This is accomplished by changing the `LCDCONT` register during specific scan-lines.
 
 Thus, games normally use it to display player stats, score and other 'always-on' information.
 {{% /inner_markdown %}}
@@ -162,7 +162,7 @@ Rendered Sprite layer
 {{% inner_markdown %}}
 Sprites are tiles that can move independently around the screen. They can also overlap each other and appear behind the background, the viewable graphic will be decided based on a priority attribute.
 
-They also have an extra colour available: **Transparent**. So, they can only display three different greys instead of four. Luckily, this layer allows defining two colour palettes make use of every colour.
+They also have an extra colour available: **Transparent**. So, they can only display three different greys instead of four. Luckily, this layer allows defining two colour palettes to make use of every colour.
 
 The **Object Attribute Memory** or 'OAM' is a map stored inside the PPU which specifies the tiles that will be used as sprites. Games fill this region by calling the **DMA unit** found inside the chip, the DMA fetches data from main RAM or game ROM to OAM.
 
@@ -324,7 +324,7 @@ That being said, the boot process is as follows:
 2. Nintendo logo is copied from the cartridge ROM to Display RAM, then it's drawn at the top edge of the screen. If there is no cartridge inserted, the logo will contain garbage tiles. The same may happen if it's badly inserted.
 2. The logo is scrolled down and the famous *po-ling* sound is played.
 3. The game's Nintendo logo is matched against the one stored in the console's ROM, if the check fails the console freezes.
-4. A quick **checksum** is done on the cartridge's ROM header to make sure the cartridge is correctly inserted, if check fails the console freezes.
+4. A quick **checksum** is done on the cartridge's ROM header to make sure the cartridge is correctly inserted, if the check fails the console freezes.
 5. The console's ROM is removed from the memory map.
 6. CPU starts executing the game.
 
