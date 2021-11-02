@@ -163,7 +163,7 @@ During the development process, ArtX got acquired by ATI, which in turn was sold
 
 ### Architecture and design
 
-Flipper handles multiple services, so let's focus on the graphics component for now (since it's the one responsible for bringing our geometry to life). If you've been reading the [N64 article]({{< ref "nintendo-64#graphics" >}}), just letting you know that the core is now functional out of the box, so programmers won't need to worry about injecting code to make it work. Nevertheless, there will some interesting parts that are customisable.
+Flipper handles multiple services, so let's focus on the graphics component for now (since it's the one responsible for bringing our geometry to life). If you've been reading the [N64 article]({{< ref "nintendo-64#graphics" >}}), just letting you know that the core is now functional out of the box, so programmers won't need to worry about injecting code to make it work. Nevertheless, there will be some interesting parts that are customisable.
 
 {{< figure_img src="flipper_pipeline.png" alt="Pipeline design of Flipper" class="centered-container" >}}
 Pipeline design of Flipper
