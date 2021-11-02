@@ -355,7 +355,7 @@ For better or worse, the DSP is programmable with the use of microcode ([_yikes_
 
 That being said, the process of generating sound works as follows:
 1. CPU commands DMA to move raw samples to ARAM.
-2. CPU sends a list of commands that instruct how the DSP should operate these samples. In other words, it uploads the microcode program (only one is official available for developers).
+2. CPU sends a list of commands that instruct how the DSP should operate these samples. In other words, it uploads the microcode program (only one is officially available for developers).
 3. DSP fetches samples from ARAM, applies the required operations and mixes them into two channels. Finally, it stores the resulting data on RAM.
 4. AI fetches processed samples from RAM and outputs them through the audio signal.
 
