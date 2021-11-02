@@ -259,7 +259,7 @@ Time to put all of this into perspective, check out how programmers evolved the 
 {{< tab name="The upgrade" active="true" >}}
 
 {{% inner_markdown %}}
-The famous Mario model which had to be stripped down due to polygon counting on the [previous generation]({{< ref "nintendo-64">}}) got completely redesigned for this one, take a closer look of how the model evolved from plain faces to wrinkled sleeves.
+The famous Mario model which had to be stripped down due to polygon counting on the [previous generation]({{< ref "nintendo-64">}}) got completely redesigned for this one, take a closer look at how the model evolved from plain faces to wrinkled sleeves.
 {{% /inner_markdown %}}
 
 {{< side_by_side nested="true" >}}
