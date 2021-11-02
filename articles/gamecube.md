@@ -66,7 +66,7 @@ Let's find out what makes Gekko so special, and to do that we need to first have
 Additionally and due to its RISC nature, this CPU also includes dedicated units to speed up specific computations:
 
 - **Branch Prediction Unit**: Whenever there is a condition that needs to be evaluated (which would decide if the CPU should follow path 'A' or path 'B'), the CPU will instead follow one of the paths based on previous executions and then evaluate the condition. If the prediction happens to be right then the CPU will have saved some time, if not, it will reverse and follow the correct path.
-- **Dedicated load-store unit**: Separates the units that manipulate registers and the one handling main memory.
+- **Dedicated load-store unit**: Separates the units that manipulate registers and the ones handling main memory.
 - **Integrated Memory Management Unit**: Interfaces all memory access from the CPU.
   - Previous consoles included this component as another co-processor, the MMU is now found inside the same chip, reducing manufacturing costs.
 
