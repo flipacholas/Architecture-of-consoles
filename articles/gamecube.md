@@ -86,7 +86,7 @@ While the previous lists of features are very appreciated (compared to previous 
   - As you can imagine, this saves a lot of bandwidth by making full utilisation of the available buses.
 - **Locked L1 cache**: Programs can take away 16 KB of L1 data cache to use as 'scratchpad' (incredibly fast memory).
 
-Apart from handling the game logic (physics, collisions, etc), these enhancements will allow the CPU to implement parts of the graphics pipeline (geometry transformations, lighting, etc) with acceptable performance. This is very important, since the GPU can only accelerate a limited set of operations, so the end result is not conditioned by the GPU's limitations.
+Apart from handling the game logic (physics, collisions, etc), these enhancements will allow the CPU to implement parts of the graphics pipeline (geometry transformations, lighting, etc) with acceptable performance. This is very important since the GPU can only accelerate a limited set of operations, so the end result is not conditioned by the GPU's limitations.
 
 ### A step forward or a step backwards?
 
