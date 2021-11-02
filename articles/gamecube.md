@@ -506,7 +506,7 @@ Nintendo shipped an accessory known as the **GameBoy Link Cable** which plugged 
 
 ### Online Platform
 
-Well, unlike [the competition]({{< ref "dreamcast">}}), not only Nintendo required users to buy extra accessories to access online content, but they also didn't deploy any internet service that publishers could rely on, making developers solely responsible for providing the necessary internet infrastructure.
+Well, unlike [the competition]({{< ref "dreamcast">}}), not only did Nintendo require users to buy extra accessories to access online content, but they also didn't deploy any internet service that publishers could rely on, making developers solely responsible for providing the necessary internet infrastructure.
 
 As a result, while online gaming was a possible feature, it didn't get widely adopted and only a tiny amount of games made use of this.
 
