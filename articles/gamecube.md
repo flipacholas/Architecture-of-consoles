@@ -60,7 +60,7 @@ Let's find out what makes Gekko so special, and to do that we need to first have
 - **Two Integer Units**: Combined with super-scalar and out-of-order, it basically increments the number of integer operations done per unit of time.
 - External **64-bit data bus**: While the ISA can fit in a 32-bit bus, we still need to move other longer types (explained in the next section) without hitting performance penalties.
 - **Integrated FPU** with 32-bit and 64-bit registers: Accelerates operations with floats and doubles.
-- **Four-stage pipeline (with bonus)**: [Here]({{< ref "game-boy-advance#cpu" >}}) is a previous introduction to instruction pipelining. In the 750CXe, FPU operations are divided into three more stages (7 stages in total) while load-store operations are dividided into two (5 stages in total). 
+- **Four-stage pipeline (with bonus)**: [Here]({{< ref "game-boy-advance#cpu" >}}) is a previous introduction to instruction pipelining. In the 750CXe, FPU operations are divided into three more stages (7 stages in total) while load-store operations are divided into two (5 stages in total). 
   - All in all, this increments the instruction throughput without [getting out of hand]({{< ref "xbox#tab-1-3-the-microarchitecture" >}}).
 
 Additionally and due to its RISC nature, this CPU also includes dedicated units to speed up specific computations:
