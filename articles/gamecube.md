@@ -26,9 +26,9 @@ aliases: [/projects/consoles/gamecube/]
 
 ## A quick introduction
 
-Gone are the days of '3D-attempts', Nintendo's new offering consists in a clean and powerful break from its predecessor that will open the door to new, original and unseen content.
+Gone are the days of '3D-attempts', Nintendo's new offering consists of a clean and powerful break from its predecessor that will open the door to new, original and unseen content.
 
-It's worth pointing out that the design of this architecture led to one of the most compact hardware of this generation, attributing at the lack of *slims* or *lite* revisions.
+It's worth pointing out that the design of this architecture led to one of the most compact hardware of this generation, attributing to the lack of *slims* or *lite* revisions.
 
 ---
 
@@ -60,13 +60,13 @@ Let's find out what makes Gekko so special, and to do that we need to first have
 - **Two Integer Units**: Combined with super-scalar and out-of-order, it basically increments the number of integer operations done per unit of time.
 - External **64-bit data bus**: While the ISA can fit in a 32-bit bus, we still need to move other longer types (explained in the next section) without hitting performance penalties.
 - **Integrated FPU** with 32-bit and 64-bit registers: Accelerates operations with floats and doubles.
-- **Four-stage pipeline (with bonus)**: [Here]({{< ref "game-boy-advance#cpu" >}}) is a previous introduction to instruction pipelining. In the 750CXe, FPU operations are divided into three more stages (7 stages in total) while load-store operations are dividided into two (5 stages in total). 
+- **Four-stage pipeline (with bonus)**: [Here]({{< ref "game-boy-advance#cpu" >}}) is a previous introduction to instruction pipelining. In the 750CXe, FPU operations are divided into three more stages (7 stages in total) while load-store operations are divided into two (5 stages in total). 
   - All in all, this increments the instruction throughput without [getting out of hand]({{< ref "xbox#tab-1-3-the-microarchitecture" >}}).
 
 Additionally and due to its RISC nature, this CPU also includes dedicated units to speed up specific computations:
 
 - **Branch Prediction Unit**: Whenever there is a condition that needs to be evaluated (which would decide if the CPU should follow path 'A' or path 'B'), the CPU will instead follow one of the paths based on previous executions and then evaluate the condition. If the prediction happens to be right then the CPU will have saved some time, if not, it will reverse and follow the correct path.
-- **Dedicated load-store unit**: Separates the units that manipulate registers and the one handling main memory.
+- **Dedicated load-store unit**: Separates the units that manipulate registers and the ones handling main memory.
 - **Integrated Memory Management Unit**: Interfaces all memory access from the CPU.
   - Previous consoles included this component as another co-processor, the MMU is now found inside the same chip, reducing manufacturing costs.
 
@@ -86,11 +86,11 @@ While the previous lists of features are very appreciated (compared to previous 
   - As you can imagine, this saves a lot of bandwidth by making full utilisation of the available buses.
 - **Locked L1 cache**: Programs can take away 16 KB of L1 data cache to use as 'scratchpad' (incredibly fast memory).
 
-Apart from handling the game logic (physics, collisions, etc), these enhancements will allow the CPU to implement parts of the graphics pipeline (geometry transformations, lighting, etc) with acceptable performance. This is very important, since the GPU can only accelerate a limited set of operations, so the end result is not conditioned by the GPU's limitations.
+Apart from handling the game logic (physics, collisions, etc), these enhancements will allow the CPU to implement parts of the graphics pipeline (geometry transformations, lighting, etc) with acceptable performance. This is very important since the GPU can only accelerate a limited set of operations, so the end result is not conditioned by the GPU's limitations.
 
 ### A step forward or a step backwards?
 
-> On your [Nintendo 64 article]({{< ref "nintendo-64" >}}), you explained that the system has a 64-bit CPU, but the Gamecube one is 32-bit. Did Nintendo downgraded their console?
+> On your [Nintendo 64 article]({{< ref "nintendo-64" >}}), you explained that the system has a 64-bit CPU, but the Gamecube one is 32-bit. Did Nintendo downgrade their console?
 
 Indeed Gekko implements a 32-bit PowerPC architecture, while the MIPS R4300i can switch between 32-bit and 64-bit mode (albeit the latter was hardly used). To answer whether this is an improvement or not, you have to ask yourself: Why would you need '64-bitness'?
 - To address more than 4 GB of memory → The Gamecube doesn't have near that amount of memory locations. So this is not a requirement.
@@ -163,7 +163,7 @@ During the development process, ArtX got acquired by ATI, which in turn was sold
 
 ### Architecture and design
 
-Flipper handles multiple services, so let's focus on the graphics component for now (since it's the one responsible for bringing our geometry to life). If you've been reading the [N64 article]({{< ref "nintendo-64#graphics" >}}), just letting you know that the core is now functional out of the box, so programmers won't need to worry about injecting code to make it work. Nevertheless, there will some interesting parts that are customisable.
+Flipper handles multiple services, so let's focus on the graphics component for now (since it's the one responsible for bringing our geometry to life). If you've been reading the [N64 article]({{< ref "nintendo-64#graphics" >}}), just letting you know that the core is now functional out of the box, so programmers won't need to worry about injecting code to make it work. Nevertheless, there will be some interesting parts that are customisable.
 
 {{< figure_img src="flipper_pipeline.png" alt="Pipeline design of Flipper" class="centered-container" >}}
 Pipeline design of Flipper
@@ -245,7 +245,7 @@ The final stage of the rendering process includes applying some optional but use
 
 The resulting frame is finally written to the frame buffer in the embedded 1T-SRAM, but this is still locked inside Flipper (the area is called 'Embedded Frame Buffer' or 'EFB', though it also includes the z-buffer). So, to display it on our TV, we have to copy it to the **External Frame-Buffer** or 'XFB', which can be picked up the **Video Interface** or 'VI'. Besides, the copy process can apply effects like **Antialiasing** (reduces blocky edges), **Deflicker** (smooths sudden changes in brightness), **RGB to YUV conversion** (a similar format that occupies less space in memory) and **Y-scaling** (vertically scales the frame).
 
-It's worth mentioning that the XFB area can also be manipulated by the CPU, this enables to combine previously-rendered bitmaps with our recently-rendered frame; or when certain games need to render very colour-rich frames which can't fit in the EFB, so they are rendered in parts and merged by the CPU afterwards (always keeping in-sync with the VI).
+It's worth mentioning that the XFB area can also be manipulated by the CPU, this enables it to combine previously-rendered bitmaps with our recently-rendered frame; or when certain games need to render very colour-rich frames which can't fit in the EFB, so they are rendered in parts and merged by the CPU afterwards (always keeping in-sync with the VI).
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -259,7 +259,7 @@ Time to put all of this into perspective, check out how programmers evolved the 
 {{< tab name="The upgrade" active="true" >}}
 
 {{% inner_markdown %}}
-The famous Mario model which had to be stripped down due to polygon counting on the [previous generation]({{< ref "nintendo-64">}}) got completely redesigned for this one, take a closer look of how the model evolved from plain faces to wrinkled sleeves.
+The famous Mario model which had to be stripped down due to polygon counting on the [previous generation]({{< ref "nintendo-64">}}) got completely redesigned for this one, take a closer look at how the model evolved from plain faces to wrinkled sleeves.
 {{% /inner_markdown %}}
 
 {{< side_by_side nested="true" >}}
@@ -355,7 +355,7 @@ For better or worse, the DSP is programmable with the use of microcode ([_yikes_
 
 That being said, the process of generating sound works as follows:
 1. CPU commands DMA to move raw samples to ARAM.
-2. CPU sends a list of commands that instruct how the DSP should operate these samples. In other words, it uploads the microcode program (only one is official available for developers).
+2. CPU sends a list of commands that instruct how the DSP should operate these samples. In other words, it uploads the microcode program (only one is officially available for developers).
 3. DSP fetches samples from ARAM, applies the required operations and mixes them into two channels. Finally, it stores the resulting data on RAM.
 4. AI fetches processed samples from RAM and outputs them through the audio signal.
 
@@ -490,7 +490,7 @@ Nintendo provided developers with lots of tools to assist (and encourage) the de
 
 Apart from the software, the company supplied different hardware kits (which range in price) before and after the console was publicly released.
 
-Probably the most popular one worth mentioning is the **Dolphin Development Hardware** or 'DDH' which consisted in a PC-like tower containing some of the Gamecube's I/O and lots of dev-assisting hardware, it was mainly used as a debugging station while the game was being developed on a Windows PC.
+Probably the most popular one worth mentioning is the **Dolphin Development Hardware** or 'DDH' which consisted of a PC-like tower containing some of the Gamecube's I/O and lots of dev-assisting hardware, it was mainly used as a debugging station while the game was being developed on a Windows PC.
 
 ### Medium
 
@@ -506,7 +506,7 @@ Nintendo shipped an accessory known as the **GameBoy Link Cable** which plugged 
 
 ### Online Platform
 
-Well, unlike [the competition]({{< ref "dreamcast">}}), not only Nintendo required users to buy extra accessories to access online content, but they also didn't deploy any internet service that publishers could rely on, making developers solely responsible for providing the necessary internet infrastructure.
+Well, unlike [the competition]({{< ref "dreamcast">}}), not only did Nintendo require users to buy extra accessories to access online content, but they also didn't deploy any internet service that publishers could rely on, making developers solely responsible for providing the necessary internet infrastructure.
 
 As a result, while online gaming was a possible feature, it didn't get widely adopted and only a tiny amount of games made use of this.
 
@@ -522,7 +522,7 @@ We can organise them into these areas:
 
 {{< tabs >}}
 {{% tab name="DVD controller" active="true" %}}
-Even though this is the first Nintendo console to use the disc medium, attempting to play pirated copies of games just wasn't going to be easy. The miniDVD is protected by using proprietary bar codes on the inner side of the disc, in addition to having its data encrypted. The validation and decryption process works seamlessly: The miniDVD controller takes care it while the system is limited on only requesting the data.
+Even though this is the first Nintendo console to use the disc medium, attempting to play pirated copies of games just wasn't going to be easy. The miniDVD is protected by using proprietary bar codes on the inner side of the disc, in addition to having its data encrypted. The validation and decryption process works seamlessly: The miniDVD controller takes care of it while the system is limited to only requesting the data.
 
 The hardware composing the DVD reader can be imagined as a fortress wall which is only accessed using a series of commands, the miniDVD controller features a proprietary CPU that will take care of deciding if the inserted disc is genuine or not, and if it's not, no command issued by the main CPU will convince to read it otherwise.
 
