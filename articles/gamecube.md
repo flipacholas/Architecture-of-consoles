@@ -90,7 +90,7 @@ Apart from handling the game logic (physics, collisions, etc), these enhancement
 
 ### A step forward or a step backwards?
 
-> On your [Nintendo 64 article]({{< ref "nintendo-64" >}}), you explained that the system has a 64-bit CPU, but the Gamecube one is 32-bit. Did Nintendo downgraded their console?
+> On your [Nintendo 64 article]({{< ref "nintendo-64" >}}), you explained that the system has a 64-bit CPU, but the Gamecube one is 32-bit. Did Nintendo downgrade their console?
 
 Indeed Gekko implements a 32-bit PowerPC architecture, while the MIPS R4300i can switch between 32-bit and 64-bit mode (albeit the latter was hardly used). To answer whether this is an improvement or not, you have to ask yourself: Why would you need '64-bitness'?
 - To address more than 4 GB of memory → The Gamecube doesn't have near that amount of memory locations. So this is not a requirement.
