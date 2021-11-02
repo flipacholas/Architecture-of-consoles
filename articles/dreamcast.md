@@ -87,7 +87,7 @@ This innovative design brings interesting advantages:
 - It can be greatly **parallelised**, which significantly reduces bandwidth and power usage.
 - It implements a clever solution to the [**visibility problem**]({{< ref "sega-saturn#an-introduction-to-the-visibility-problem" >}}) by automatically sorting the polygons **from front to back** and then performing [z-tests]({{< ref "nintendo-64#modern-visible-surface-determination" >}}) at the first stages of the pipeline. The combination of these tasks not only solves the original issue, but also **prevents overdraw** (rasterisation  of hidden polygons) which wastes resources and degrades performance.
 
-It's no surprise that Imagination took this efficient technology forward to build the Series 4 PowerVR cores which powered an incredible number of devices, including the first generation of iPhone, the iPhone 3G, the Nokia N95, and the Dell Axim x51.
+It's no surprise that Imagination took this efficient technology forward to build the Series 4 PowerVR cores which powered an incredible number of devices, including the first generation of iPhone, the iPhone 3G, the Nokia N95 and the Dell Axim x51.
 
 ### Architecture
 
@@ -143,7 +143,7 @@ Apart from the clear architectural difference, the Texture and Shading Processor
   - Combined with the tile-based system, order-independent transparency completely addresses previous [mishaps]({{< ref "sega-saturn#the-transparency-issue" >}}).
 - **Mip-Mapping**: Automatically selects a scaled-down version of the texture depending on the level of detail required. This is done to prevent processing large textures that would be seen far away from the camera (which would be a waste of processing power and produce aliasing).
 - **Environment mapping**: Applies reflections on textures.
-- **Bilinear, Trilinear, and anisotropic filtering**: These are different algorithms used to smooth the textures and prevent pixelation. They are ordered from 'worst' to 'best', where the resulting quality of each one is directly proportional to the amount of computation required.
+- **Bilinear, Trilinear and anisotropic filtering**: These are different algorithms used to smooth the textures and prevent pixelation. They are ordered from 'worst' to 'best', where the resulting quality of each one is directly proportional to the amount of computation required.
   - This is a huge step up from the Saturn since the former didn't provide any texture filter!
 - **Bump mapping**: Simulates defects on surfaces without spending extra polygons.
 
@@ -166,7 +166,7 @@ Sonic Adventure (1999) for the Dreamcast
 
 The video system was designed to support multiple types of screens and formats, thus the video encoder outputs to a single-shaped socket that supports the following type of signals:
 
-- **Composite**: Combines the three signals needed to display video (chroma, luma, and sync) into a single one, requiring only a single-pin cable.
+- **Composite**: Combines the three signals needed to display video (chroma, luma and sync) into a single one, requiring only a single-pin cable.
   - This is used on old PAL and NTSC TVs with an RCA connection.
 - **S-Video**: Combines luma and sync while keeping chroma separated (two video lines in total).
 - **RGB**: Sends separate Red-Green-Blue signals and provides different sync types to choose from (composite sync or extracted from video composite or S-Video).
@@ -184,7 +184,7 @@ Since VGA is strictly a progressive type of signal (as opposed to the traditiona
 
 The Audio functionality is handled by a custom chip called **AICA** made by Yamaha, it's an improved version of the [SCSP used in the Saturn]({{< ref "sega-saturn#audio" >}}) and is composed of four components:
 
-- The **Sound Integrated Circuit** or 'IC': A set of modules (synthesiser, DSP, and mixer) that generates the audio signal and applies effects on it. It supports up to **64 PCM channels** with a resolution of **16 or 8 bits** and a sampling rate of **44.1 kHz**. Overall, this is the optimal quality for playing audio. 
+- The **Sound Integrated Circuit** or 'IC': A set of modules (synthesiser, DSP and mixer) that generates the audio signal and applies effects on it. It supports up to **64 PCM channels** with a resolution of **16 or 8 bits** and a sampling rate of **44.1 kHz**. Overall, this is the optimal quality for playing audio. 
   - Additionally, it includes an **ADPCM decoder** to offload some work from the CPU.
   - Curiously enough, it also provides **two MIDI pins** to connect a MIDI instrument, although this is meant to be used during development.
 - **2 MB of SDRAM**: Stores sound data and programs. It's filled by the main CPU using DMA.
@@ -337,7 +337,7 @@ Controller with VMU attached
 The VMU has two modes of operation:
 
 - **Attached to the controller**: The official controller has two slots to connect VMUs and other accessories with the same shape, if the VMU is inserted on the first slot (visible from the front of the controller), it can display drawings during gameplay. Moreover, the Dreamcast can store saves and a program on the VMU.
-- **Detached from the controller**: The gadget becomes a Tamagotchi-like device with a clock, save manager, and can also run whatever program the Dreamcast previously transferred. Two VMUs can be connected to share content as well.
+- **Detached from the controller**: The gadget becomes a Tamagotchi-like device with a clock, save manager and can also run whatever program the Dreamcast previously transferred. Two VMUs can be connected to share content as well.
 
 ---
 
