@@ -490,7 +490,7 @@ Nintendo provided developers with lots of tools to assist (and encourage) the de
 
 Apart from the software, the company supplied different hardware kits (which range in price) before and after the console was publicly released.
 
-Probably the most popular one worth mentioning is the **Dolphin Development Hardware** or 'DDH' which consisted in a PC-like tower containing some of the Gamecube's I/O and lots of dev-assisting hardware, it was mainly used as a debugging station while the game was being developed on a Windows PC.
+Probably the most popular one worth mentioning is the **Dolphin Development Hardware** or 'DDH' which consisted of a PC-like tower containing some of the Gamecube's I/O and lots of dev-assisting hardware, it was mainly used as a debugging station while the game was being developed on a Windows PC.
 
 ### Medium
 
