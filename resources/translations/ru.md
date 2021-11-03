@@ -68,7 +68,7 @@ other = "Об этой версии"
 other = "Книжная версия"
 
 [last_updated]
-other = "Обновлено: "
+other = "Обновлено: {{ . }}"
 
 [classic_edition]
 other = "Классическая версия"
