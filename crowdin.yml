@@ -8,5 +8,5 @@ files:
     translation: /resources/translations/%two_letters_code%.md
     export_only_approved: true
   - source: /resources/generations.yaml
-    translation: /resources/translations_generations/%two_letters_code%.yaml
+    translation: /resources/translations_generations/%two_letters_code%/generations.yaml
     export_only_approved: true
