@@ -11,7 +11,8 @@ nintendods: null
 pcengine: null
 ps1: null
 ps2: null
-ps3: null
+ps3:
+  ru: Vladimir Kovalev
 psp: null
 saturn: null
 snes: null
