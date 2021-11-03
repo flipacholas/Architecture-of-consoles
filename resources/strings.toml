@@ -74,7 +74,7 @@ other = "About this edition"
 other = "Book edition"
 
 [last_updated]
-other = "Last updated: {{ . }}"
+other = "Last updated: "
 
 [classic_edition]
 other = "Classic edition"
