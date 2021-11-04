@@ -900,7 +900,7 @@ Are you getting tired from all this theory? Let me switch to something everyone 
 {{< side_by_side >}}
   {{< figure_img full_src="images/consoles/psp/xmb/main.jpg" class="toleft" >}}
 XMB in the PSP (2004)  
-Rendered at 320×240 pixels
+Rendered at 480×272 pixels
   {{< /figure_img >}}
   {{< figure_img src="xmb/main.jpg" class="toright" >}}
 XMB in the PS3 (2006)  
