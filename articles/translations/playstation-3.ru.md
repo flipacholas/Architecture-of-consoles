@@ -895,7 +895,7 @@ PPU, загрузив `vsh`, предоставляет пользователю
 {{< side_by_side >}}
   {{< figure_img full_src="images/consoles/psp/xmb/main.jpg" class="toleft" >}}
 XMB в PSP (2004)  
-Разрешение 320×240
+Разрешение 480×272
   {{< /figure_img >}}
   {{< figure_img src="xmb/main.jpg" class="toright" >}}
 XMB в PS3 (2006)  
