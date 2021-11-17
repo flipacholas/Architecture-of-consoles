@@ -1,0 +1,248 @@
+[author_footer_first]
+other = "Spero che l'articolo vi sia piaciuto. Se volete saperne di più sull'autore <a href=\"{{ . }}\">toccate qui,</a>"
+
+[author_footer_second]
+other = 'mentre per supportarlo potete <a href="{{ . }}">toccare questo collegamento</a>.'
+
+[languages_available]
+other = "Lingue disponibili: "
+
+[help_translations]
+other = "Contribuisci alle traduzioni"
+
+[add_translation]
+other = "Aggiungi una traduzione"
+
+[report_mistakes]
+other = "Segnala errori o proponi modifiche"
+
+[supporting_readings]
+other = "Controlla le letture di approfondimento"
+
+[next]
+other = "Avanti"
+
+[previous]
+other = "Indietro"
+
+[table-of-contents]
+other = "Sommario"
+
+[show]
+other = "Mostra"
+
+[hide]
+other = "Nascondi"
+
+[home]
+other = "Inizio"
+
+[writings]
+other = "Articoli"
+
+[about]
+other = "Su di me"
+
+[about_website_long]
+other = "Sito e contenuti"
+
+[support]
+other = "Supporta"
+
+[about_author]
+other = "Informazioni sull'autore"
+
+[about_website]
+other = "Informazioni sul sito"
+
+[switch_modern]
+other = "Passa alla versione moderna"
+
+[switch_classic]
+other = "Passa alla versione classica"
+
+[about_edition]
+other = "Informazioni su questa versione"
+
+[book_edition]
+other = "Versione libro"
+
+[last_updated]
+other = "Ultimo aggiornamento: {{ . }}"
+
+[classic_edition]
+other = "Versione classica"
+
+[book_intro]
+other = "La versione libro è una versione stampabile dell'<a href=\"{{ . }}\">articolo online</a> con una formattazione apposita per sfruttare al meglio tutte le funzionalità offerte dai documenti in PDF."
+
+[classic_intro]
+other = "La versione classica è una versione alternativa a quella <a href=\"{{ . }}\">moderna</a>. Il suo funzionamento non richiede Javascript, CSS all'avanguardia o HTML particolarmente complesso, pertanto è ideale per gli utenti con lettori ebook, browser internet legacy o per i lettori che utilizzano strumenti di accessibilità."
+
+[classic_description]
+other = "I contenuti sono identici. Tuttavia, i widget interattivi sono stati semplificati per poter funzionare anche in HTML puro e includono un collegamento all'articolo originale, nel caso in cui il lettore volesse provare la versione completa."
+
+[general_description]
+other = "Come sempre, questo articolo è disponibile su <a href=\"{{ .github }}\">Github</a> per consentire ai lettori di segnalare errori e proporre modifiche. È inoltre presente un <a href=\"{{ .readings }}\">elenco di letture di approfondimento,</a> per aiutare nella comprensione dei contenuti di questa serie di articoli. L'autore accetta <a href=\"{{ .donations }}\">donazioni</a> per migliorare la qualità degli articoli già pubblicati e di quelli futuri."
+
+[subscribe_title]
+other = "Rimanete aggiornati"
+
+[subscribe_content]
+other = "Ricevi un'e-mail quando viene pubblicato un nuovo articolo; puoi annullare l'iscrizione in qualsiasi momento. Le e-mail vengono inviate attraverso Mailchimp."
+
+[generation_title]
+other = "{{ .ordinal }} generazione"
+
+[cpu_subtitle]
+other = "Progressi principali della CPU:"
+
+[gpu_subtitle]
+other = "Caratteristiche principali della GPU:"
+
+[roadmap_title]
+other = "Le tappe del progetto"
+
+[roadmap_content]
+other = "Ci sono così tante console su cui potrei scrivere... ecco cosa bolle in pentola:"
+
+[contribution_content]
+other = "Se trovate i miei articoli interessanti, prendete in considerazione l'idea di una donazione. Il vostro contributo servirà ad acquistare strumenti e risorse in grado di aiutarmi a migliorare la qualità degli articoli esistenti e futuri. Inoltre, alla fine di ogni articolo includo un elenco di hardware interessante da acquistare."
+
+[contribution_footer]
+other = "La donazione può contenere un messaggio in cui chiedere la stesura di un particolare articolo. Come segno di gratitudine, il vostro nome sarà aggiunto nella sezione dei ringraziamenti del successivo articolo pubblicato o dell'articolo che avete chiesto, a meno che non chiediate di restare anonimi."
+
+[contribution_suggestions]
+other = 'In alternativa, potete dare una mano <a href="{{ . }}">suggerendo modifiche</a> e/o <a href="{{ . }}">aggiungendo una traduzione</a>.'
+
+[print]
+other = "Stampa l'articolo (o salva in PDF)"
+
+[architecture_consoles]
+other = "L'architettura delle console"
+
+[top_model]
+other = "Modello"
+
+[top_models]
+other = "Modelli"
+
+[motherboard_title]
+other = "Scheda madre"
+
+[motherboard_note]
+other = "Scheda madre con componenti importanti contrassegnati"
+
+[diagram_title]
+other = "Diagramma"
+
+[diagram_note]
+other = "Diagramma dell'architettura principale"
+
+[original]
+other = "Originale"
+
+[marked]
+other = "Contrassegnato"
+
+[contributing_title]
+other = "Contributi"
+
+[contributing_content]
+other = "Questo articolo fa parte della serie <a href=\"{{ . }}\">L'architettura delle console</a>. Se l'hai trovato interessante, puoi effettuare una donazione. Il contributo sarà usato per finanziare l'acquisto di strumenti e risorse che mi aiuteranno a migliorare la qualità degli articoli pubblicati e futuri."
+
+[contributing_tools]
+other = "Un elenco degli strumenti che vorrei acquistare e degli acquisti per questo articolo è disponibile qui:"
+
+[contributing_thanks]
+other = "Grazie infinite a queste persone per la loro donazione:"
+
+[changelog_title]
+other = "Registro delle modifiche"
+
+[changelog_content]
+other = "Tenere un registro delle modifiche può sempre tornare utile."
+
+[supporting_imagery]
+other = "Immagini di supporto"
+
+[consoles_written_by]
+other = "Un'analisi pratica di {{ . }}"
+
+[translated_by]
+other = "Tradotto da {{ . }}"
+
+[interactive_model_origin]
+other = 'Il modello interattivo è disponibile nella <a href="{{ . }}">versione moderna</a>'
+
+[interactive_player_origin]
+other = 'Il player interattivo è disponibile nella <a href="{{ . }}">versione moderna</a>'
+
+[goto_classic]
+other = 'Se utilizzate strumenti di accessibilità, lettori di ebook o browser legacy, <a href="{{ . }}">passate alla versione classica</a>.'
+
+[audio_samples]
+other = "Esempi audio"
+
+[wireframe]
+other = "Wireframe"
+
+[surface]
+other = "Superficie"
+
+[textured]
+other = "Con texture"
+
+[tap_enable_interaction]
+other = "Tocca per interagire"
+
+[buffering]
+other = "Caricamento..."
+
+[ready_drag_zoom]
+other = "Trascina e ingrandisci"
+
+[sources]
+other = "Fonti / Continua a leggere"
+
+[archived]
+other = "Archivio"
+
+[general]
+other = "Generale"
+
+[cpu]
+other = "CPU"
+
+[graphics]
+other = "Grafica"
+
+[audio]
+other = "Audio"
+
+[audio_video]
+other = "Audio/video"
+
+[io]
+other = "I/O"
+
+[operating_system]
+other = "Sistema operativo"
+
+[games]
+other = "Giochi"
+
+[anti_piracy]
+other = "Antipirateria"
+
+[copy_protection]
+other = "Protezione anticopia"
+
+[photography]
+other = "Fotografie"
+
+[other_media]
+other = "Altri contenuti"
+
+[bonus]
+other = "Bonus"
