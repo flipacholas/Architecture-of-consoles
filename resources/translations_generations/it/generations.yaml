@@ -1,0 +1,28 @@
+---
+- 
+  id: 3
+  ordinal: 3a
+  description: Conosciute come "console a 8-bit", queste macchine offrivano una grafica migliorata rispetto ai loro predecessori e un sonoro più ricco. D'altronde, il precedente crollo del mercato dei videogiochi imponeva la definizione di standard più moderni.
+  gpu: Mappe di tile a scorrimento e palette di colori più ampie
+- 
+  id: 4
+  ordinal: 4a
+  description: DMA, interrupt orizzontali, modalità multiple... sono solo alcune tra le novità introdotte nella "generazione dei 16 bit", che ha aperto la porta a innovative idee di gioco.
+  cpu: Istruzioni per moltiplicazioni e divisioni, DMA e doppi processori
+  gpu: Trasformazioni affini e interrupt orizzontali
+- 
+  id: 5
+  ordinal: 5a
+  description: Il pubblico esige giochi in 3D, ma il loro sviluppo rimane una materia nebulosa. Di conseguenza, ogni casa presenta la propria visione.
+  cpu: Pipeline a stadi e cache L1
+  gpu: Pipeline programmabile per i vertici, Z-buffering e correzioni della prospettiva
+- 
+  id: 6
+  ordinal: 6a
+  description: La maggior parte delle limitazioni grafiche che affliggevano la generazione precedente sono state risolte. Le console portatili iniziano a somigliare ad alcuni sistemi casalinghi.
+  cpu: Architetture superscalari e istruzioni SIMD
+  gpu: Pipeline programmabili per i pixel e filtri anisotropici
+- 
+  id: 7
+  ordinal: 7a
+  description: 'Le console sono ormai sistemi multimediali, macchine in grado di eseguire molto altro rispetto ai soli giochi: la sicurezza diventa fondamentale.'
