@@ -5,7 +5,7 @@ files:
     translation: /articles/translations/%file_name%.%two_letters_code%.md
     export_only_approved: true
   - source: /resources/strings.toml
-    translation: /resources/translations/%two_letters_code%.md
+    translation: /resources/translations/%two_letters_code%.toml
     export_only_approved: true
   - source: /resources/generations.yaml
     translation: /resources/translations_generations/%two_letters_code%/generations.yaml
