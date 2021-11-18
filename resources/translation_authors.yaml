@@ -17,5 +17,6 @@ psp: null
 saturn: null
 snes: null
 virtualboy: null
-wii: null
+wii:
+  it: Valerio Francesco Vallone
 xbox: null
