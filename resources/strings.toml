@@ -36,6 +36,9 @@ other = "Show"
 [hide]
 other = "Hide"
 
+[translations]
+other = "Translations"
+
 # Navigation
 
 [home]

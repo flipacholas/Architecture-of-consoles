@@ -154,7 +154,7 @@ Holly can now draw ~10 times more polygons than [its predecessor]({{< ref "sega-
 {{< side_by_side >}}
   {{< threejs_canvas model="sonic_r" class="toleft" >}}
 Sonic R (1997) for the Saturn  
-298 triangles
+286 triangles (or 185 quadrilaterals)
   {{< /threejs_canvas >}}
   {{< threejs_canvas model="sonic_adventure" class="toright" >}}
 Sonic Adventure (1999) for the Dreamcast  

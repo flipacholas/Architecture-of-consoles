@@ -245,14 +245,16 @@ These are some examples of characters that were re-designed for this console, th
 {{< side_by_side >}}
   {{< threejs_canvas model="sonic_r" class="toleft" >}}
 Sonic in Sonic R (1997)  
-298 triangles
+185 quadrilaterals
   {{< /threejs_canvas >}}
 
   {{< threejs_canvas model="sonic_r_tails" class="toright" >}}
 Tails in Sonic R (1997)  
-425 triangles
+254 quadrilaterals
   {{< /threejs_canvas >}}
 {{< /side_by_side >}}
+
+While the Saturn is only able to draw quadrangles, you'll soon notice that these models exhibit two triangles instead of a single quadrangle in 'Wireframe' mode. This is due to the format used to encode this model (glTF, an open standard for modern 3D modelling) doesn't support quadrangles at the time of this writing, so I recommend switching to 'Surface' mode to observe the quads. In some way, this tells you how present graphics technology can struggle to reproduce their ~30-year-old predecessors.
 
 ### An introduction to the visibility problem
 
