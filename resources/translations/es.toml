@@ -1,35 +1,98 @@
-# General
-
-[about]
-other = "Sobre esta web y su contenido"
-
 [author_footer_first]
 other = 'Espero que hayas disfrutado este artículo, si quieres saber más sobre el autor <a href="{{ . }}">entra aquí</a>'
 
 [author_footer_second]
 other = 'y si quieres ayudarlo <a href="{{ . }}">entra aquí</a>'
 
-[translations]
-other = 'Este articulo ha sido traducido manualmente del Inglés a otros idiomas que puedes escoger, <a href="{{ . }}">entra aquí</a> si quieres ayudar con las traducciones.'
+[languages_available]
+other = "Idiomas disponibles: "
+
+[help_translations]
+other = "Ayudar con traducciones"
+
+[add_translation]
+other = "Añadir traducción"
+
+[report_mistakes]
+other = "Reportar errores o proponer cambios"
+
+[supporting_readings]
+other = "Mirar las lecturas de apoyo"
 
 [next]
-other = 'Siguiente'
+other = "Siguiente"
 
 [previous]
-other = 'Antrás'
+other = "Antrás"
 
-[by] # preposition, by 'someone'
-other = 'por'
+[table-of-contents]
+other = "Tabla de Contenidos"
 
-# Subscribe form
+[show]
+other = "Mostrar"
+
+[hide]
+other = "Ocultar"
+
+[translations]
+other = "Traducciones"
+
+[home]
+other = "Inicio"
+
+[writings]
+other = "Escritos"
+
+[about]
+other = "Acerca de"
+
+[about_website_long]
+other = "Sobre esta web y su contenido"
+
+[support]
+other = "Soporte"
+
+[about_author]
+other = "Acerca del autor"
+
+[about_website]
+other = "Acerca del sitio web"
+
+[switch_modern]
+other = "Ir a la edición moderna"
+
+[switch_classic]
+other = "Ir a la edición clásica"
+
+[about_edition]
+other = "Acerca de esta edición"
+
+[book_edition]
+other = "Edición de libro"
+
+[last_updated]
+other = "Última actualización: {{ . }}"
+
+[classic_edition]
+other = "Edición clásica"
+
+[book_intro]
+other = "La edición 'de libro' es una versión del <a href=\"{{ . }}\">artículo en línea</a> lista para imprimir, ha sido diseñada de diferente manera para aprovechar las capacidades exclusivas de los documentos PDF."
+
+[classic_intro]
+other = "La edición 'clásica' es una versión alternativa a la <a href=\"{{ . }}\">contraparte 'moderna'</a>. No requiere Javascript, CSS de última generación o HTML complicado para funcionar, lo que la hace ideal para usuarios de eBooks, navegadores antiguos o lectores que requieran herramientas de accesibilidad."
+
+[classic_description]
+other = 'Esta edición es idéntica en cuanto al contenido. Sin embargo, los widgets interactivos han sido simplificado para trabajar con HTML puro. De cualquier manera, esto ofrecerá un enlace al artículo original en caso de que el lector quiera comprobar la "versión completa".'
+
+[general_description]
+other = 'Como siempre, este artículo está disponible en <a href="{{ .github }}">Github</a> para permitir a los lectores reportar errores o proponer cambios. También hay una <a href="{{ .readings }}">lista de lectura de apoyo</a> disponible para ayudar a entender la serie. El autor también acepta <a href="{{ .donations }}">donaciones</a> para ayudar a mejorar la calidad de los artículos actuales y próximos.'
 
 [subscribe_title]
 other = "Mantente al tanto"
 
 [subscribe_content]
 other = "Recibe un correo cuando see publique un nuevo artículo, puedes darte de baja en cualquier momento. Uso Mailchimp para llevar al cabo esto."
-
-# Consoles (List)
 
 [generation_title]
 other = "{{ .ordinal }} generación"
@@ -55,7 +118,8 @@ other = "Along with the donation you can leave a note stating which article in p
 [contribution_suggestions]
 other = 'De alternativa, puedes ayudar <a href="{{ . }}">sugiriendo cambios</a> y/o <a href="{{ . }}">agregando traducciones</a>.'
 
-# Consoles (Single)
+[print]
+other = "Imprimir artículo (o guardar en PDF)"
 
 [architecture_consoles]
 other = "Arquitectura de las consolas"
@@ -63,11 +127,26 @@ other = "Arquitectura de las consolas"
 [top_model]
 other = "Modelo"
 
-[top_motherboard]
+[top_models]
+other = "Modelos"
+
+[motherboard_title]
 other = "Motherboard"
 
-[top_diagram]
+[motherboard_note]
+other = "Motherboard con partes importantes etiquetadas"
+
+[diagram_title]
 other = "Diagrama"
+
+[diagram_note]
+other = "Diagrama de arquitectura"
+
+[original]
+other = "Original"
+
+[marked]
+other = "Marcado"
 
 [contributing_title]
 other = "Contribuir"
@@ -76,10 +155,10 @@ other = "Contribuir"
 other = 'Este artículo forma parte de la serie de <a href="{{ . }}">Arquitectura de consolas</a>. Si te ha resultado interesante, por favor considere donar. Tu contribución se usará para tener mas herramientas y recursos que ayudarán a mejorar la calidad de los actuales artículos y próximos.'
 
 [contributing_tools]
-other = 'Esta es la lista de herramientas adquiridas o interesantes a adquirir:'
+other = "Esta es la lista de herramientas adquiridas o interesantes a adquirir:"
 
 [contributing_thanks]
-other = 'Un enorme agradecimiento a las siguientes personas por su donación:'
+other = "Un enorme agradecimiento a las siguientes personas por su donación:"
 
 [changelog_title]
 other = "Registro de cambios"
@@ -87,7 +166,26 @@ other = "Registro de cambios"
 [changelog_content]
 other = "Siempre es bueno mantener un registro de cambios."
 
-# 3D Model Viewer
+[supporting_imagery]
+other = "Imágenes de apoyo"
+
+[consoles_written_by]
+other = "Un análisis práctico por {{ . }}"
+
+[translated_by]
+other = "Traducido por {{ . }}"
+
+[interactive_model_origin]
+other = 'Modelo interactivo disponible en la <a href="{{ . }}">edición moderna</a>'
+
+[interactive_player_origin]
+other = 'Reproductor interactivo disponible en la <a href="{{ . }}">edición moderna</a>'
+
+[goto_classic]
+other = 'Si utiliza herramientas de accesibilidad, eBook o navegador antiguo, <a href="{{ . }}">cambie a la edición "clásica"</a>.'
+
+[audio_samples]
+other = "Muestras de audio"
 
 [wireframe]
 other = "Wireframe"
@@ -106,3 +204,48 @@ other = "Cargando..."
 
 [ready_drag_zoom]
 other = "¡Listo para interactuar!"
+
+[sources]
+other = "Fuentes / Sigue leyendo"
+
+[archived]
+other = "Archivado"
+
+[general]
+other = "General"
+
+[cpu]
+other = "CPU"
+
+[graphics]
+other = "Gráficos"
+
+[audio]
+other = "Audio"
+
+[audio_video]
+other = "Audio / Vídeo"
+
+[io]
+other = "I/O"
+
+[operating_system]
+other = "Sistema Operativo"
+
+[games]
+other = "Juegos"
+
+[anti_piracy]
+other = "Anti-Piratería"
+
+[copy_protection]
+other = "Protección de copia"
+
+[photography]
+other = "Fotografía"
+
+[other_media]
+other = "Otros medios"
+
+[bonus]
+other = "Bonus"
