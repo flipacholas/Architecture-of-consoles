@@ -1,0 +1,28 @@
+---
+- 
+  id: 3
+  ordinal: 3ra
+  description: Conocidas como consolas de '8 bit', estas máquinas ofrecieron gráficos más sofisticados y sonidos más ricos que sus predecesores. Al fin y al cabo, se acababa de producir un gran 'crash' y nuevos estándares debían ser definidos.
+  gpu: '''tile maps'' desplazables y paletas de colores más extensas'
+- 
+  id: 4
+  ordinal: 4ta
+  description: DMA, interrupciones horizontales, múltiples modos de operación... Estos son algunos ejemplos de los nuevos conceptos que trajeron la nueva generación de '16 bits', abriendo paso a nuevos géneros de juegos.
+  cpu: Instrucciones de multiplicación e división, DMA y doble procesamiento
+  gpu: Transformaciónes afín e interrupciones horizontales
+- 
+  id: 5
+  ordinal: 5ta
+  description: Jugabilidad 3D se ha convertido en una necesidad, pero el "cómo" aún no está claro. ¿La respuesta? Cada empresa presentó su propia visión.
+  cpu: Etapas de segmentación y caché L1
+  gpu: Tuberías de vértices programables, Z-buffer y correcciones de perspectiva
+- 
+  id: 6
+  ordinal: 6ta
+  description: La mayoría de las limitaciones gráficas de la generación anterior han desaparecido. Las consolas portátiles empiezan a parecerse a sistemas familiares.
+  cpu: Arquitecturas supercalares e instrucciones SIMD
+  gpu: Filtros anisotropicos y tuberías de píxeles programables
+- 
+  id: 7
+  ordinal: 7ta
+  description: Las consolas se han convertido en plataformas multimedia, estas máquinas son ahora más capaces que ejecutar juegos, por lo que la seguridad es ahora un factor crítico.
