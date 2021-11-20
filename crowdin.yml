@@ -2,7 +2,7 @@ commit_message: 'Crowdin: (%language%) Updated %original_file_name% translations
 append_commit_message: false
 files:
   - source: /articles/*.md
-    translation: /articles/translations/%file_name%.%two_letters_code%.md
+    translation: /articles/translations/%two_letters_code%/%file_name%.md
     export_only_approved: true
   - source: /resources/strings.toml
     translation: /resources/translations/%two_letters_code%.toml
