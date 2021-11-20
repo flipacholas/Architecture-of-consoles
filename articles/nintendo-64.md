@@ -426,6 +426,11 @@ Another reason is the 64-bit instructions, since games barely used them, emulati
 
 ## That's all folks
 
+{{< figure_img src="n64.jpeg" alt="Our N64" class="centered-container" >}}
+My _timeshared_ N64 at a friend's house.  
+While I only wanted the console for the article, my friend always wished for a N64 DD, so we bought a complete (but expensive) Japanese N64 DD set together to avoid spending too much individually. I then installed N64RGB so we can plug it to a modern TV; and the result is a nice piece of entertainment (and topic of discussion!).
+{{< /figure_img >}}
+
 I have to say, this article may be the longest one I've ever written, but hopefully you found it a nice read!
 
 I'll probably take the following days to tide up some things on the website instead of starting to write the next article.
