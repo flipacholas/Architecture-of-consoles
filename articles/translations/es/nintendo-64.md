@@ -144,7 +144,7 @@ Este puede procesar **triángulos** o **rectángulos** como primitivos, el últi
 - Un **Blender**: Mezcla píxeles sobre el actual frame-buffer para aplicar translucidez, anti-aliasing, niebla o dithering. También realiza z-buffering (más sobre esto más adelante).
 - Una **Memory interface**: Utilizada por los bloques anteriores para leer y enviar el frame-buffer procesado a la RAM y/o llenar el TMEM.
 
-El RDP es otro procesador (esta vez con funcionalidad fija) que incluye múltiples motores utilizados para rasterizar vectores, mapear las texturas en nuestros polígonos, mezclar colores y componer el nuevo frame.
+La RDP proporciona cuatro modos de operación, cada uno combina estos bloques de forma diferente para optimizar operaciones específicas.
 
 Dado que este módulo requiere actualizar constantemente el frame-buffer, la RAM se maneja de forma diferente: ¿Recuerdas el inusual 'byte' de 9 bits? El noveno bit se utiliza para los cálculos relacionados con el frame-buffer (z-buffering y el antialiasing) y sólo se puede acceder a él a través de la Memory interface.
 {{% /inner_markdown %}}
@@ -158,7 +158,7 @@ En papel, las capacidades máximas son una profundidad de color de 24 bits (16,8
 
 ### Demostración rápida
 
-El frame que se obtiene debe ser enviado al **Video Encoder** para visualizarlo en pantalla (**DMA** y el **Video Interface** son esenciales para llevar a cabo esto).
+Pongamos todas las explicaciones anteriores en perspectiva. Para ello tomaré prestado el *Super Mario 64* de Nintendo para demostrar, en pocas palabras, cómo se forma un frame:
 
 {{< tabs >}}
 {{< tab active="true" name="Procesado de Vértices" >}}
@@ -170,7 +170,7 @@ Para ahorrar polígonos, algunos caracteres se modelan con sprites (cuadriláter
 {{% inner_markdown %}}
 Inicialmente, nuestros modelos 3D se encuentran en la ROM del cartucho pero para mantener un ancho de banda constante, necesitamos copiarlos a la RAM primero. En algunos casos, los datos se pueden encontrar ya comprimidos en el cartucho, por lo que la CPU tendrá que descomprimirlo antes de utilizarlo.
 
-En cuanto este completado, es hora de construir la escena usando nuestros modelos, la CPU podría hacerlo por sí misma pero esto tardaría *toda una vida*, así que la tarea se delega al RCP. La CPU se limitará a enviar órdenes al RCP,  esto se hace llevando a cabo las siguientes tareas:
+En cuanto este completado, es hora de construir la escena usando nuestros modelos, la CPU podría hacerlo por sí misma pero esto tardaría *toda una vida*, así que la tarea se delega al RCP. La CPU se limitará a enviar órdenes al RCP, esto se hace llevando a cabo las siguientes tareas:
 
 1. Componer la Display List que contiene las operaciones a realizar por el RSP y almacenarla en la RAM.
 2. Apuntar al RSP donde se encuentra la Display List.
@@ -182,12 +182,12 @@ Seguidamente, el RSP comenzará a realizar las tareas y el resultado será envia
 {{< /tab >}}
 
 {{< tab name="Procesado de Píxeles" >}}
-{{< tab_figure_img name="Atrás" src="v64/back.png" alt="Doctor V64" >}}
+{{< figure_img float="true" src="mario/result.png" alt="Mario" renderizado class="pixel" >}}
 Frame renderizado (_Tachán!_)
 {{< /figure_img >}}
 
 {{% inner_markdown %}}
-{{< figure_img float="true" src="mario/result.png" alt="Mario Renderizado" class="pixel" >}}
+Hasta ahora hemos logrado procesar nuestros datos y aplicar algunos efectos sobre ellos, pero todavía tenemos que:
 
 - Rasterizar vectores, aplicar texturas y otros efectos.
 - Mostrar un frame-buffer en pantalla.
@@ -204,12 +204,12 @@ Una vez que el RDP termine de procesar los datos, escribirá el mapa de bits res
 
 ### Diseños
 
-He aquí algunos ejemplos de personajes previamente diseñados en dos dimensionas para la [Super Nintendo]({{< ref path="super-nintendo" lang="en" >}}), pero que han sido rediseñados para la nueva era de tres dimensiones.
+He aquí algunos ejemplos de personajes previamente diseñados en dos dimensionas para la [Super Nintendo]({{< ref "super-nintendo">}}), pero que han sido rediseñados para la nueva era de tres dimensiones. Los modelos son interactivos así que os animo a que les echéis un vistazo.
 
 {{< side_by_side >}}
   {{< threejs_canvas model="zelda_ocarina_link" class="toleft" >}}
 The Legend of Zelda: Ocarina of Time (1998)  
-785 triangulos
+785 triángulos
   {{< /threejs_canvas >}}
   {{< threejs_canvas model="kirby_cristals" class="toright" >}}
 Kirby 64: The Crystal Shards (2000)  
@@ -223,7 +223,7 @@ Si has leído sobre las consolas anteriores, probablemente estás al tanto del i
 
 Una vez que el RDP rasteriza los vectores, el z-value del nuevo píxel se compara con el valor respectivo en el Z-buffer. Si el nuevo píxel contiene un z-value más pequeño, esto significa que el nuevo píxel se posiciona delante del anterior, por lo que se sobrescribe en el frame-buffer y z-buffer. De lo contrario, el píxel se descarta.
 
-Los programadores ya no tienen que preocuparse por implementar métodos para clasificar polígonos [basados en software]({{< ref path="playstation#tab-4-2-visibility-approach" lang="en" >}}) que tienden a consumir bastantes recursos de la CPU. Sin embargo, el Z-buffer no previene procesar geometría innecesaria (eventualmente descartada o sobrescrita, que consumen recursos de todas maneras). Para ello, el motor del juego puede optar por incluir un algoritmo de **'occlusion culling'** para descartar la geometría que no será visible, lo antes posible.
+En general, el nuevo algoritmo es muy beneficioso: Los programadores ya no tienen que preocuparse por implementar métodos para clasificar polígonos [basados en software]({{< ref "playstation#tab-4-2-visibility-approach" >}}) que tienden a consumir bastantes recursos de la CPU. Sin embargo, el Z-buffer no previene procesar geometría innecesaria (eventualmente descartada o sobrescrita, que consumen recursos de todas maneras). Para ello, el motor del juego puede optar por incluir un algoritmo de **'occlusion culling'** para descartar la geometría que no será visible, lo antes posible.
 
 ### Secretos y limitaciones
 
