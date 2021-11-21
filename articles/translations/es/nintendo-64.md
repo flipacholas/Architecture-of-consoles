@@ -330,7 +330,7 @@ Todos los accesorios conectados al mando son manejados por el **Peripheral Inter
 
 ## Juegos
 
-Nintendo se aferró al cartucho como medio para el almacenamiento  y como consecuencia, los juegos disfrutaron de mayores anchos de banda (un promedio de 5 MB/s según Nintendo) mientras que costaban más de producir. El cartucho más grande que hubo en el mercado tiene 64 MB.
+Nintendo se aferró al cartucho como medio para el almacenamiento y como consecuencia, los juegos disfrutaron de mayores anchos de banda (un promedio de 5 MB/s según Nintendo) mientras que costaban más de producir. El cartucho más grande que hubo en el mercado tiene 64 MB.
 
 Dentro de los cartuchos, los fabricantes pueden incluir memoria extra (en forma de *EEPROM*, *flash* o *SRAM* con una batería) para guardar partidas. Sin embargo, no es un requerimiento estricto ya que algunos accesorios también podían ser usados para almacenar los progresos.
 
