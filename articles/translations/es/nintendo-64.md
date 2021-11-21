@@ -239,7 +239,7 @@ Esto siempre se manifestará en una degradación del rendimiento y depende del p
 Por ejemplo, si tenemos que computar múltiples instrucciones `ADD` (suma) a la vez, no hay necesidad de escribir el resultado de la suma en el registro destinatario y luego leerlo de nuevo para ejecutar el siguiente `ADD`. En vez de eso, se puede usar el mismo registro intermediario para llevar al cabo todas las adiciones y al final, enviar el resultado al registro destinatario una vez que el último `ADD` se completa.
 {{% /tab %}}
 
-Debido al gran número de componentes y operaciones en la tubería de gráficos, el RCP terminó siendo muy susceptible a **burbujas de segmentación**: Una situación indeseable caracterizada por subcomponentes que se mantienen inactivos durante períodos considerables de tiempo porque los datos requeridos se retrasan en llegar.
+{{% tab name="Memoria de Textura" %}}
 El RDP usa 4 KB de TMEM ('Texture Memory') como única unidad para procesar las texturas. Desafortunadamente, en la práctica 4 KB resultaron ser insuficientes para las texturas de alta resolución. Además, si se utiliza el mipmapping, la cantidad de memoria disponible se reduce a la mitad.
 
 Como resultado, algunos juegos utilizan colores sólidos con sombreado Gouraud (como *Super Mario 64*) mientras que otros hacen uso de texturas precalculadas (por ejemplo, cuando hay que mezclar varias capas).
@@ -248,7 +248,7 @@ Como resultado, algunos juegos utilizan colores sólidos con sombreado Gouraud (
 
 ### La salida de video universal
 
-Como resultado, algunos juegos utilizan colores sólidos con sombreado Gouraud (como *Super Mario 64*) mientras que otros hacen uso de texturas precalculadas (por ejemplo, cuando hay que mezclar varias capas).
+Nintendo siguió usando la salida 'universal' llamada [Multi Out]({{< ref "super-nintendo.md#a-convenient-video-out" >}}) como su predecesor, pero desafortunadamente, **¡ya no transmite más la señal RGB!**. Esto suena a otra medida para acaparar costes, ya que la misma señal no se había aprovechado en la consola anterior.
 
 Las buenas noticias son que los tres canales pueden ser reconstruidos en las primeras revisiones de la consola mediante la soldadura de algunos cables y la instalación de un amplificador de señal (tiende a ser barato). Esto es debido a que el convertidor digital a analógico de video envía una señal RGB al codificador de video. Sin embargo, las revisiones posteriores de la placa base combinaron los dos chips, así que la única solución disponible es de sobrepasar el video DAC y el codificador con algún chip especializado que pueda exponer la señal RGB.
 
@@ -262,14 +262,14 @@ Antes de entrar en detalles, definamos los dos puntos opuestos del subsistema de
 
 Entonces, ¿cómo conectamos ambos extremos? Las consolas normalmente incluyen un chip de audio dedicado que hace el trabajo por nosotros. Desafortunadamente, la Nintendo 64 **no tiene ese chip dedicado**, por lo que esta tarea se distribuye a través de estos componentes:
 - La **CPU principal**: Transfiere los datos de audio de la ROM del juego a la RAM, y luego crea **Audio Lists** para ser usadas por el RSP.
-- El **RSP**: Con el uso de más microcode, este interpreta las Audio Lists previamente almacenadas en la RAM y realiza las operaciones necesarias sobre los datos de audio.
+- - El **RSP**: Con el uso de más microcode, este interpreta las Audio Lists previamente almacenadas en la RAM y realiza las operaciones necesarias sobre los datos de audio. Esto, por ejemplo, incluye:
   - Descomprimir **ADPCM samples** y aplicar efectos.
   - Secuenciar y mezclar **datos MIDI** utilizando **bancos de audio** almacenados también en la RAM.
 
 Los datos resultantes son, como se espera, datos que contienen la waveform. Estos se envían al bloque de **Audio Interface** o 'AI' que los transferirá al Digital-to-Analog converter. La waveform resultante contiene dos canales (ya que nuestro sistema es estéreo) con una resolución de 16-bits cada uno.
 
 {{< figure_img src="Audio.png" alt="Audio Diagram" class="centered-container" >}}
-Antes de entrar en detalles, definamos los dos puntos opuestos del subsistema de audio de la N64:
+Resumen de cómo se tiende a programar el motor de audio
 {{< /figure_img >}}
 
 ### Repertorio musical
@@ -278,7 +278,8 @@ Es hora de echar un vistazo a las bandas sonoras hechas para la N64. La verdad e
 
 {{< side_by_side >}}
   {{< video src="observatory" class="toleft" >}}
-The Legend of Zelda: Majora's Mask (2000) La música de este juego está ligada a su atmósfera intimidante
+The Legend of Zelda: Majora's Mask (2000)  
+La música de este juego está ligada a su atmósfera intimidante
   {{< /video >}}
   {{< video src="redial" class="toright" >}}
 Bomberman Hero (1998)  
@@ -288,7 +289,7 @@ Este juego tiene una agradable y única banda sonora al estilo 'House'
 
 ### Secretos y limitaciones
 
-Bomberman Hero (1998) Este juego tiene una agradable y única banda sonora al estilo 'House'
+Debido a este diseño, las limitaciones de este sistema dependerán de la implementación:
   - La frecuencia de los samples puede ser de hasta 44,1Hz, pero usar la frecuencia máxima se requiere demasiados ciclos de CPU.
   - No hay un límite estricto en el número de canales, todo depende de cuántos canales sea capaz de mezclar el RSP (a menudo alrededor de 16-24 canales si se procesa ADPCM o ~100 si PCM).
   - La memoria es otro asunto a tener en cuenta. Mientras que la competencia proveía medios más grandes (por ejemplo, CD-ROM) y memoria de audio dedicada, los cartuchos de Nintendo 64 contienen mucha menos capacidad (por no hablar de espacio reservado para música) y deben compartir la RAM principal con otros componentes.
@@ -307,7 +308,7 @@ Este no es el *Sistema Operativo de escritorio* convencional que podemos imagina
 - Scheduling (planificador) y Preemption (Multitarea apropiativa).
 - Acceso a registro y I/O simplificados.
 
-Debido a este diseño, las limitaciones de este sistema dependerán de la implementación:
+Considerándolo todo, estas funciones son críticas para organizar audio, video y tareas lógicas de juegos que deben funcionar al mismo tiempo.
 
 El kernel se almacena automáticamente al utilizar librerías de Nintendo. Además, si los programadores deciden no incluir una de las librerías, la porción respectiva del kernel se quita para evitar desperdiciar el espacio del cartucho.
 
@@ -329,13 +330,13 @@ Todos los accesorios conectados al mando son manejados por el **Peripheral Inter
 
 ## Juegos
 
-Nintendo se aferró al cartucho como medio para el almacenamiento.  y como consecuencia, los juegos disfrutaron de mayores anchos de banda (un promedio de 5 MB/s según Nintendo) mientras que costaban más de producir. El cartucho más grande que hubo en el mercado tiene 64 MB.
+Nintendo se aferró al cartucho como medio para el almacenamiento  y como consecuencia, los juegos disfrutaron de mayores anchos de banda (un promedio de 5 MB/s según Nintendo) mientras que costaban más de producir. El cartucho más grande que hubo en el mercado tiene 64 MB.
 
-Dentro de los cartuchos, los fabricantes pueden incluir memoria extra (en forma de *EEPROM*, *flash* o *SRAM* con una batería) para guardar partidas,  Sin embargo, no es un requerimiento estricto ya que algunos accesorios también podían ser usados para almacenar los progresos.
+Dentro de los cartuchos, los fabricantes pueden incluir memoria extra (en forma de *EEPROM*, *flash* o *SRAM* con una batería) para guardar partidas. Sin embargo, no es un requerimiento estricto ya que algunos accesorios también podían ser usados para almacenar los progresos.
 
 Los cartuchos se comunican al RCP utilizando un bus dedicado de 16 bits llamado **Bus Paralelo** (PBUS) o 'Interfaz Paralela' (PI).
 
-### Accesorios
+### Kit de Desarrollo
 
 En términos generales, desarrollar para la N64 se hacía principalmente en C, aunque también se requería ensamblador para lograr un mejor rendimiento. Si bien este sistema contenía un conjunto de instrucciones de 64 bits, rara vez se utilizaban las de 64 bits, ya que en la práctica, las instrucciones de 32 bits resultaban ser más rápidas de ejecutar y requerían la mitad del almacenamiento.
 
@@ -347,7 +348,7 @@ El hardware utilizado para el desarrollo de videojuegos incluía estaciones de t
 
 Otras herramientas proporcionadas por terceros consistían en cartuchos con un largo cable que se conectaba a la estación de trabajo. Este cartucho se insertaba en una Nintendo 64 pero incluía un circuito interno para redirigir los comandos de lectura de la consola a la RAM de la estación de trabajo. Una vez acabado, la consola se encendía y comenzaba a leer desde la RAM (del ordenador), esto permitía llevar a cabo la implementación y depuración del juego.
 
-### Kit de Desarrollo
+### El medio alternativo
 
 Adicionalmente, El PBUS se ramifica a otro conector en la parte inferior de la placa base de la N64. Esto estaba destinado a ser utilizado por la **Nintendo 64 Disk Drive** (64DD) aún inédita, una especie de 'piso adicional' que contiene un lector de disco magnético patentado. Sus discos contienen hasta 64 MB de capacidad. Aunque solo se lanzó en Japón, la unidad de disco abrió la puerta a un medio alternativo (y más barato) para distribuir juegos.
 
@@ -358,8 +359,7 @@ La Nintendo 64 Disk Drive.
 Lanzada el 01/12/1999 en Japón.
   {{< /tab_figure_img >}}
   {{< tab_figure_img name="Conectado" src="64dd/attached.png" alt="N64 DD conectada" >}}
-La Nintendo 64 Disk Drive.  
-Lanzada el 01/12/1999 en Japón.
+El 64DD conectada a la consola.
   {{< /tab_figure_img >}}
 {{< /tabs >}}
 
@@ -379,7 +379,7 @@ La unidad de disco también alberga una ROM interna (denominada "DDROM") que alm
 
 ## Anti-piratería / Region-lock
 
-El sistema antipiratería es una continuación del [CIC de SNES]({{< ref path="super-nintendo#anti-piracy--region-lock" lang="en" >}}). Como sabéis, la detección de piratería y el 'region lock' son posibles gracias al chip CIC (que debe estar presente en cada cartucho de juego *autorizado*), la Nintendo 64 mejoró este sistema requiriendo que diferentes juegos tuvieran una variante específica del CIC  para asegurarse de que el cartucho no era una falsificación o contenía un clon del CIC. El PIF realizaba comprobaciones por medio de checksums al principio y durante la ejecución juego para supervisar el CIC instalado en el cartucho.
+El sistema antipiratería es una continuación del [CIC de SNES]({{< ref path="super-nintendo#anti-piracy--region-lock" lang="en" >}}). Como sabéis, la detección de piratería y el 'region lock' son posibles gracias al chip CIC (que debe estar presente en cada cartucho de juego *autorizado*), la Nintendo 64 mejoró este sistema requiriendo que diferentes juegos tuvieran una variante específica del CIC para asegurarse de que el cartucho no era una falsificación o contenía un clon del CIC. El PIF realizaba comprobaciones por medio de checksums al principio y durante la ejecución juego para supervisar el CIC instalado en el cartucho.
 
 Si por alguna razón el PIF considera que el cartucho insertado no es válido, este bloquea la ejecución del juego.
 
@@ -387,17 +387,17 @@ El region-lock se realiza alterando ligeramente la forma externa del cartucho en
 
 En general, no hubo demasiada preocupación por la piratería gracias al uso del cartucho como medio, aunque los precios de los juegos eran tres veces más altos que los dependientes del CD.
 
-### El medio alternativo
+### Puertos sin utilizar
 
 Por muy tonto que parezca, Nintendo dejó una 'puerta' abierta: El puerto del Disk Drive.
 
 {{< float_group >}}
 {{< tabs float="true" nested="true" >}}
   {{< tab_figure_img name="Conectado" active="true" src="v64/attached.png" alt="Doctor V64 attached" >}}
-El 64DD conectada a la consola.
+El Doctor V64 conectado a la consola
   {{< /tab_figure_img >}}
   {{< tab_figure_img name="Atrás" src="v64/back.png" alt="Doctor V64" >}}
-El Doctor V64 conectado a la consola
+El V64 visto desde atrás, mostrando conectores especiales para A/V
   {{< /tab_figure_img >}}
 {{< /tabs >}}
 
