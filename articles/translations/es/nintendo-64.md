@@ -182,7 +182,7 @@ Seguidamente, el RSP comenzará a realizar las tareas y el resultado será envia
 {{< /tab >}}
 
 {{< tab name="Procesado de Píxeles" >}}
-{{< figure_img float="true" src="mario/result.png" alt="Mario" renderizado class="pixel" >}}
+{{< figure_img float="true" src="mario/result.png" alt="Mario renderizado" class="pixel" >}}
 Frame renderizado (_Tachán!_)
 {{< /figure_img >}}
 
