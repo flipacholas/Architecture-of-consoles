@@ -27,6 +27,6 @@ Esto no es un manual para desarrolladores, solo una *profunda* introducción de 
 
 Es preferible tener conocimientos básicos de informática; sin embargo, me he esforzado mucho para adaptar mi contenido a un público más amplio, así que no dudes en intentar leer el que más te apetezca. Pero si esto no es suficiente, tal vez quiera mirar las [lecturas de apoyo]({{< ref "readings" >}}).
 
-Intento ser los más preciso posible, pero si encuentras algún error no dudes en {{< email "enviarme un email" >}} o {{< consoles_repo_link "proponer cambios" >}}.
+Intento ser los más preciso posible, pero si encuentras algún error no dudes en {{< email "enviarme un email" >}} o {{< consoles/repo_link "proponer cambios" >}}.
 
 Sin más preámbulos, ¡aquí están!
