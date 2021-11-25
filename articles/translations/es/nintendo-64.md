@@ -3,7 +3,7 @@ name: Nintendo 64
 releaseDate: 1996-06-23
 date: 2019-09-12
 generation: 5
-subtitle: Potente y complicada!
+subtitle: '¡Potente y compleja!'
 cover: nintendo64
 javascript:
   - 'threejs'
