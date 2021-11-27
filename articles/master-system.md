@@ -204,7 +204,7 @@ The VDP doesn't take advantage of this modular approach. Instead, Sega implement
 {{< /tab >}}
 {{< tab name="3D glasses" >}}
 
-{{< figure_img float="true" src="glasses.png" alt="Sega 3-D glasses" >}}
+{{< figure_img float="true" src="glasses.png" alt="Sega 3-D glasses" img_class="no-borders" >}}
 Sega 3-D glasses  
 American variant connected through the card port
 {{< /figure_img >}}

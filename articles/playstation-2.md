@@ -171,6 +171,8 @@ To sum up, procedural rendering is not a new technique, but thanks to the VPUs, 
 
 With these new additions, programmers now have a lot of flexibility to design their graphics engines. In fact, there are multiple research papers published which benchmark popular pipeline designs.
 
+Here are some examples of graphics pipelines set up with different optimisations:
+
 {{< float_group >}}
 {{< tabs nested="true" float="true" >}}
   {{< tab_figure_img name="Parallel" active="true" src="Parallel.png" alt="Parallel EE pipeline" >}}
@@ -182,8 +184,6 @@ Serial pipeline design
 {{< /tabs >}}
 
 {{% inner_markdown %}}
-Here are some examples of graphics pipelines set up with different optimisations:
-
 In the first example, the **Parallel** design, the CPU is combined with the VPU0 in macromode to produce geometry in parallel with the VPU1. The CPU/VPU0 group makes full utilisation of scratchpad and cache to avoid using the main bus, which the VPU1 relies on to fetch data from main memory. At the end, both rendering groups concurrently send their respective Display Lists to the GPU.
 
 The second example, the **Serial** design, proposes a different approach where the CPU/VPU0 group works as a preprocessor for the VPU1. The first stage will fetch and process all the geometry that the VPU1 will subsequently turn into Display List. 
