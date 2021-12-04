@@ -9,13 +9,13 @@ published: true
 top_tabs:
   Models:
     International:
-      caption: "The Super Nintendo or Super Famicom in Japan
+      caption: "The Super Nintendo (in Europe) or Super Famicom (in Japan)
       <br>Released on 21/11/1990 in Japan and 11/04/1992 in Europe"
     American:
       caption: "The Super Nintendo
       <br>Released on 13/08/1991 in America"
   Motherboard:
-    caption: "Showing model 'SNS-RGB-CPU-01'
+    caption: "Showing revision 'SNS-RGB-CPU-01'
     <br>Earlier revisions had the Sound Subsystem connected as a daughterboard, later ones unified both PPUs"
     extension: "jpg"
   Diagram: 
@@ -43,10 +43,9 @@ The CPU employs a **variable clock speed** that will reach up to **3.58 MHz** du
 In summary, the 5A22 features:
 - A **65816 ISA**: A 16-bit instruction set which extends the original 6502 ISA, but doesn't implement undocumented instructions some NES games ended up using.
   - The [broken BCD mode]({{< ref "nes#scrapped-functions" >}}) is **working** again.
-- **16-bit registers**.
-  - The accumulator (where arithmetic operations are performed) and index register (used to compute memory addresses) can switch between 16-bit and 8-bit mode.
+- **16-bit registers**. Furthermore, the accumulator (where arithmetic operations are performed) and index register (used to compute memory addresses) can switch between 16-bit and 8-bit mode.
 - New **16-bit multiplication** and **division units** added by Ricoh, which provide the CPU with the ability to carry out these type of operations by hardware (the 65C816 doesn't include any dedicated instructions for multiplication or division).
-- **8-bits external data bus**: Meaning that it takes twice the cycles to move its registers across external memory!
+- **8-bit external data bus**: Meaning that it takes twice the cycles to move its 16-bit registers across external memory!
 
 ### Ricoh's additions
 
@@ -61,13 +60,15 @@ When a DMA is being set up, the *origin* must come from a different bus than the
 There are two DMAs to choose from depending on the needs:
 
 - **General Purpose DMA**: Performs transfers at any time, bear in mind that the CPU is stopped until the transfer is finished.
-- **Horizontal DMA** (HDMA): Performs a small transfer after each horizontal scan (while the CRT beam is preparing to draw the next row). This avoids interrupting the CPU for long intervals. Transfers are limited to 4 bytes per scan-line.
+- **Horizontal DMA** (HDMA): Performs a small transfer after each horizontal scan (while the CRT beam is preparing to draw the next row). This avoids interrupting the CPU for long intervals but transfers are limited to 4 bytes per scan-line.
 
 The system provides eight *channels* to set up DMA transfers, thus enabling to dispatch eight independent transfers at once.
 
-### Segmentation Fault
+#### Segmentation Fault
 
-This console also features a special 'anomaly' called **Open Bus**: If there is an instruction trying to read from an unmapped/invalid address, the last value read is supplied instead (the CPU stores this value in a register called **Memory Data Register** or 'MDR').
+This console also features a special 'anomaly' called **Open Bus**: If there is an instruction trying to read from an unmapped/invalid address, the last value read is supplied instead (the CPU stores this value in a register called **Memory Data Register** or `MDR`).
+
+I guess this is Ricoh's way of applying the popular 'keep calm and carry on' philosophy whenever the program reaches the unexpected. After all, from the user's perspective, carrying on with the execution can be more favourable than a crash... at the expense of the game becoming unpredictable.
 
 ---
 

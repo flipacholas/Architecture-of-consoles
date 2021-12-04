@@ -92,9 +92,9 @@ It's important to point out that this design can underperform if not managed pro
 
 ## Graphics
 
-_Blast Processing!_
+The answer is _Blast Processing!_, what else do you need to know?
 
-Graphics data is processed by the 68000 and rendered on a proprietary chip called **Video Display Processor** (or 'VDP' for short) which then sends the resulting frame (in the form of scan lines) for display.
+Now, if you want to know the _real_ answer: graphics data is processed by the 68000 and rendered on a proprietary chip called **Video Display Processor** (or 'VDP' for short) which then sends the resulting frame (in the form of scan lines) for display.
 
 The VDP runs at **~13 MHz** and supports multiple resolution modes depending on the region: Up to **320x224 pixels** in NTSC and up to **320x240 pixels** in PAL.
 
@@ -249,7 +249,7 @@ H-Blank is called numerous times but is limited to executing short routines. Als
 
 V-Blank allows for longer routines with the drawback of being called only 50 or 60 times per second (depending on the console's region), but it's able to access all memory locations.
 
-Notice that the overscan area in the example exhibits some random coloured dots at the bottom right corner. This is popularly known as **CRAM dots** and what's happening is that the CPU is updating the palettes in CRAM values at the same time the VDP is beaming the remaining scan-lines (in the example, this happens during overscan). This conflict makes the VDP fetch whatever value the CPU is writing at that time (as opposed to the required location in CRAM) so the image gets corrupted. However, since in this case the game only updates CRAM at overscan, this anomaly goes unnoticed on traditional CRTs. Other games attempt to update the palettes mid-frame to achieve more colours, with the cost of having to balance the appearance of CRAM dots.
+Notice that the overscan area in the example exhibits some random coloured dots at the bottom right corner. This is popularly known as **CRAM dots** and what's happening is that the CPU is updating the palettes in CRAM at the same time the VDP is beaming the remaining scan-lines (in the example, this happens during overscan). This conflict makes the VDP fetch whatever value the CPU is writing at that time (as opposed to the required location in CRAM) so the image gets corrupted. However, since in this case the game only updates CRAM at overscan, this anomaly goes unnoticed on traditional CRTs. Other games attempt to update the palettes mid-frame to achieve more colours, with the cost of having to balance the appearance of CRAM dots.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
