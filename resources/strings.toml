@@ -39,13 +39,19 @@ other = "Hide"
 [translations]
 other = "Translations"
 
+[related]
+other = "More at '{{ . }}' &raquo;"
+
 # Navigation
 
 [home]
 other = "Home"
 
-[writings]
+[nav_writings]
 other = "Writings"
+
+[nav_console]
+other = "Consoles"
 
 [about]
 other = "About"
