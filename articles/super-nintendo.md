@@ -8,10 +8,11 @@ cover: snes
 published: true
 top_tabs:
   Models:
-    International:
+    - title: "International"
       caption: "The Super Nintendo (in Europe) or Super Famicom (in Japan)
       <br>Released on 21/11/1990 in Japan and 11/04/1992 in Europe"
-    American:
+      active: true
+    - title: "American"
       caption: "The Super Nintendo
       <br>Released on 13/08/1991 in America"
   Motherboard:

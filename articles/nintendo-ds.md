@@ -8,13 +8,13 @@ javascript: ['audioswitcher', 'threejs']
 generation: 7
 top_tabs:
   Models:
-    Original:
-        caption: "The original Nintendo DS (Blue edition)
-        <br>Released on 21/11/2004 in America, 02/12/2004 in Japan and 11/03/2005 in Europe"
-        active: true
-    Lite:
-        caption: "The Nintendo DS Lite (Black edition)
-        <br>Released on 02/03/2006 in Japan, 11/06/2006 in America and 23/06/2006 in Europe"
+    - title: "Original"
+      caption: "The original Nintendo DS (Blue edition)
+      <br>Released on 21/11/2004 in America, 02/12/2004 in Japan and 11/03/2005 in Europe"
+      active: true
+    - title: "Lite"
+      caption: "The Nintendo DS Lite (Black edition)
+      <br>Released on 02/03/2006 in Japan, 11/06/2006 in America and 23/06/2006 in Europe"
   Motherboard:
     caption: "Showing first revision"
   Diagram:

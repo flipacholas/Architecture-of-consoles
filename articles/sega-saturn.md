@@ -9,10 +9,11 @@ javascript: ['threejs']
 published: true
 top_tabs:
   Models:
-    International:
-      caption: "The Sega Saturn, released on 11/05/1995 in America and 08/07/1995 in Europe"
-    Japanese:
+    - title: "Japanese"
       caption: "The Sega Saturn, released on 22/11/1994 in Japan"
+    - title: "International"
+      caption: "The Sega Saturn, released on 11/05/1995 in America and 08/07/1995 in Europe"
+      active: true
   Motherboard:
     caption: "Showing 'VA8' revision which includes all components in a single board
     <br>Remaining RAM chips are fitted on the back"

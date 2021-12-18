@@ -8,11 +8,11 @@ cover: ps1
 javascript: ['threejs']
 top_tabs:
   Models:
-    Original: 
+    - title: "Original"
       caption: "The original PlayStation.
       <br>Released on 03/12/1994 in Japan, 09/09/1995 in North America, 29/09/1995 in Europe."
       active: true
-    Slim: 
+    - title: "Slim"
       caption: "The PS One (slim revision).
       <br>Released on 07/07/2000 in Japan, 19/09/2000 in North America, 29/09/2000 in Europe.
       <br>This is what you get after cramming so many custom ICs into a single one."

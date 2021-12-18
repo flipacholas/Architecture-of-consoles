@@ -8,12 +8,13 @@ javascript: []
 generation: 4
 top_tabs:
   Models:
-    Japanese:
+    - title: "Japanese"
       caption: "The PC Engine
       <br>Released on 30/10/1987 in Japan"
-    International:
+    - title: "International"
       caption: "The TurboGrafx-16
       <br>Released on 29/08/1989 in America, 22/11/1989 in France and 1990 in the UK and Spain"
+      active: true
   Motherboard:
     caption: "Showing the TurboGrafx's motherboard
     <br>The PC Engine one was considerably smaller and stacked"

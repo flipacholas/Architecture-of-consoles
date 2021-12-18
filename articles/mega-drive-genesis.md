@@ -7,15 +7,16 @@ generation: 4
 cover: megadrive
 top_tabs:
   Models:
-    European:
-      caption: "The Mega Drive
-      <br>Released on 09/01/1989 in Europe"
-    American:
-      caption: "The Genesis
-      <br>Released on 14/08/1989 in America"
-    Japanese:
+    - title: "Japanese"
       caption: "The Mega Drive
       <br>Released on 29/10/1988 in Japan"
+    - title: "American"
+      caption: "The Genesis
+      <br>Released on 14/08/1989 in America"
+    - title: "European"
+      caption: "The Mega Drive
+      <br>Released on 09/1990 in Europe"
+      active: true
   Motherboard:
     caption: "Showing the Japanese 'VA0' revision
     <br>Notice the unusual daughterboard on top of the VDP used to fix post-manufacturing glitches (properly corrected in later revisions)."

@@ -7,10 +7,11 @@ generation: 3
 cover: nes
 top_tabs:
   Models:
-    International:
+    - title: "International"
       caption: "The NES
       <br>Released on 18/10/1985 in America and 01/09/1986 in Europe"
-    Japanese:
+      active: true
+    - title: "Japanese"
       caption: "The Famicom
       <br>Released on 15/07/1983 in Japan"
   Motherboard:

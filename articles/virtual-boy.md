@@ -9,14 +9,14 @@ generation: 5
 published: true
 top_tabs:
   Models:
-      Back:
-        extension: jpg
-        active: true
-        caption: "The Virtual Boy
-        <br>Released on 21/07/1995 in Japan and 14/08/1995 in America"
-      Front:
-        caption: "Front view of the console
-        <br>Users are meant to look through the eyepieces"
+    - title: "Back"
+      extension: jpg
+      active: true
+      caption: "The Virtual Boy
+      <br>Released on 21/07/1995 in Japan and 14/08/1995 in America"
+    - title: "Front"
+      caption: "Front view of the console
+      <br>Users are meant to look through the eyepieces"
   Motherboard:
     caption: "The mainboard
     <br>Not to be confused with the 'Servo board' which the mainboard connects to.

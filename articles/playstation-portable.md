@@ -8,23 +8,19 @@ javascript: ['audioswitcher', 'threejs']
 generation: 7
 top_tabs:
   Models:
-    Original:
-        order: 0
-        caption: "The original PSP (model 1000, a.k.a. 'Fat')
-        <br>Released on 12/12/2004 in Japan, 24/03/2005 in America and 01/09/2005 in Europe"
-        active: true
-    Slim:
-        order: 1
-        caption: "The updated PSP (model 2000, a.k.a. 'Slim')
-        <br>Released on 05/09/2007 in Europe, 06/09/2007 in America and 20/09/2007 in Japan"
-    Slim & Lite:
-        order: 2
-        caption: "The even-more-updated PSP (model 3000, a.k.a. 'Brite'), silver edition
-        <br>Released on 14/10/2008 in America, 16/10/2008 in Japan and 17/10/2008 in Europe"
-    Go:
-        order: 3
-        caption: "The redesigned PSP (model 'N1000', a.k.a 'Go')
-        <br>Released on 01/10/2009 in America and Europe, and on 01/11/2009 in Japan"
+    - title: "Original"
+      caption: "The original PSP (model 1000, a.k.a. 'Fat')
+      <br>Released on 12/12/2004 in Japan, 24/03/2005 in America and 01/09/2005 in Europe"
+      active: true
+    - title: "Slim"
+      caption: "The updated PSP (model 2000, a.k.a. 'Slim')
+      <br>Released on 05/09/2007 in Europe, 06/09/2007 in America and 20/09/2007 in Japan"
+    - title: "Slim & Lite"
+      caption: "The even-more-updated PSP (model 3000, a.k.a. 'Brite'), silver edition
+      <br>Released on 14/10/2008 in America, 16/10/2008 in Japan and 17/10/2008 in Europe"
+    - title: "Go"
+      caption: "The redesigned PSP (model 'N1000', a.k.a 'Go')
+      <br>Released on 01/10/2009 in America and Europe, and on 01/11/2009 in Japan"
   Motherboard:
     caption: "Such a tiny board... but you can do so much with it.  
 Those zigzags you see between the CPU and memory attempt to correct the length of each bus so all of the signals arrive at the same time. This tells you how fast technology has become!
