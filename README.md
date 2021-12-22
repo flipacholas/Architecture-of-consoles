@@ -8,7 +8,6 @@ This repo is structured as follows:
 * The `articles` folder contains writings in Markdown format, along with some front-matter (mainly meta-data) and [Hugo](https://gohugo.io/) syntax (to generate special HTML).
     * Each file corresponds to a specific console, except `_index` which corresponds to [the index of consoles page](https://www.copetti.org/projects/consoles/).
 * `resources` contains a list of strings that are referenced across the site and are isolated for translation purposes.
-* `changelog` logs changes of translated articles.
 
 ### Localisations
 
