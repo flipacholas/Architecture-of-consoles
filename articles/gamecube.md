@@ -284,7 +284,7 @@ In this case, Sonic Team already designed a Sonic model for [their unique consol
 {{< side_by_side nested="true" >}}
   {{< threejs_canvas model="sonic_adventure" class="toleft" >}}
 Sonic Adventure (1999) for the DC  
-1001 triangles
+1,001 triangles
   {{< /threejs_canvas >}}
   {{< threejs_canvas model="sonic_dx" class="toright" >}}
 Sonic DX (2003) for the GC  

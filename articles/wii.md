@@ -144,14 +144,26 @@ This is not a new feature per se, but a novel use of current capabilities. Gamec
 The extra megahertz of Broadway and Hollywood, combined with avant-garde designs, brought some improvements to character models. It may not be as significant as other generations, but it's still noticeable and appreciated.
 
 {{< side_by_side >}}
+  {{< threejs_canvas model="mario_melee" class="toleft" >}}
+Super Smash Bros. Melee (2001) for the GC  
+2,494 triangles
+  {{< /threejs_canvas >}}
+  
+  {{< threejs_canvas model="mario_brawl" class="toright" >}}
+Super Smash Bros Brawl (2008) for the Wii  
+3,049 triangles
+  {{< /threejs_canvas >}}
+{{< /side_by_side >}}
+
+{{< side_by_side >}}
   {{< threejs_canvas model="sonic_dx_tails" class="toleft" >}}
 Sonic DX (2003) for the Gamecube  
-1985 triangles
+1,985 triangles
   {{< /threejs_canvas >}}
   
   {{< threejs_canvas model="tails_brawl" class="toright" >}}
 Super Smash Bros Brawl (2008) for the Wii  
-3644 triangles
+3,644 triangles
   {{< /threejs_canvas >}}
 {{< /side_by_side >}}
 
