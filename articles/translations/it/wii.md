@@ -516,7 +516,7 @@ Il diagramma della sicurezza di Starlet
 {{< /figure_img >}}
 
 {{% inner_markdown %}}
-Un gruppo di hacker noto come **Team Twiizers** (un gioco di parole con "tweezer", la parola inglese che indica le normali pinzette) si rese conto che l'assenza di firme nella modalità GameCube poteva costituire una buona superficie di attacco. Il team scoprì non solo che 3/4 della RAM GDDR3 non venivano ripuliti dopo l'esecuzione di un gioco per GameCube, ma anche che creando un ponte tra alcuni punti sulla scheda madre (utilizzando, guarda caso, proprio un paio di pinzette) era possibile invertire i banchi della RAM GDDR3 scelti, permettendo di accedere ad aree riservate della RAM. Sorpresa: in queste aree erano presenti anche le chiavi AES. Sorpresa: in queste aree erano presenti anche le chiavi AES.
+Un gruppo di hacker noto come **Team Twiizers** (un gioco di parole con "tweezer", la parola inglese che indica le normali pinzette) si rese conto che l'assenza di firme nella modalità GameCube poteva costituire una buona superficie di attacco. Il team scoprì non solo che 3/4 della RAM GDDR3 non venivano ripuliti dopo l'esecuzione di un gioco per GameCube, ma anche che creando un ponte tra alcuni punti sulla scheda madre (utilizzando, guarda caso, proprio un paio di pinzette) era possibile invertire i banchi della RAM GDDR3 scelti, permettendo di accedere ad aree riservate della RAM. Sorpresa: in queste aree erano presenti anche le chiavi AES.
 {{% /inner_markdown %}}
 {{< /float_group >}}
 
