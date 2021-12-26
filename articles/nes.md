@@ -253,6 +253,21 @@ The PPU is limited to eight sprites per scanline and up to 64 per frame. The sca
 
 {{< /tab >}}
 
+{{< tab name="Background split" >}}
+{{< figure_img float="true" src="ppu_mario/split.png" class="pixel" alt="Background split" >}}
+Rendered background layer highlighting the two portions with different scrolling values defined. Only the second portion scrolls as Mario moves.
+{{< /figure_img >}}
+
+{{% inner_markdown %}}
+Before we move on, there's something I haven't told you yet. If you play Super Mario Bros, you'll notice that when Mario moves, the scene scrolls without a hitch. However, you'll also observe that the top area (where the stats are) remains static **even though both portions are part of the same background layer!** So, what is happening here? Well, the game is altering the scrolling values mid-frame to show the overworld and the stats (residing in a fixed portion of the background) at the same time. The NES doesn't provide this feature natively, but the game deduces the timings by observing the state of the PPU (manifested through its status register {{< cite "graphics-ppustatus" >}}).
+
+To accomplish this, games perform a technique called **Sprite 0 Hit**. Super Mario Bros instructs the PPU to render a dummy sprite behind the coin, this happens to be the first sprite drawn within the frame. After the PPU beams it, it updates its status register with a flag that denotes that the first sprite (a.k.a 'sprite 0') has been drawn. Meanwhile, the game is constantly checking mid-frame if the sprite 0 status has been flagged (a.k.a 'hit'), if that happened, the game proceeds to update the scrolling property of the background table to shift it to where Mario is.
+
+Overall, 'Sprite 0 Hit' is a very delicate procedure, as it's easy to mess up the timings (sprite 0's flag is not cleared after polling it, which leads to 'duplicated' positives {{< cite "graphics-chibiakumas" >}}). Furthermore, since this routine repeats indefinitely, it can be quite expensive (in terms of CPU cycles) to execute. On the bright side, later mappers took over this function with the use of automatic interrupts that are triggered whenever an arbitrary scan-line is hit {{< cite "graphics-nesdoug" >}} (a much more efficient technique), which significantly improved the visual capabilities of Super Mario Bros 3, for instance.
+{{% /inner_markdown %}}
+
+{{< /tab >}}
+
 {{< tab name="Result" >}}
 {{< figure_img float="true" src="ppu_mario/result.png" class="pixel" alt="Result" >}}
 Tada!
@@ -261,10 +276,13 @@ Tada!
 {{% inner_markdown %}}
 Once the frame is finished, it's time to move on to the next one!
 
-However, the CPU can't modify any table that's being used by the PPU, so when all scanlines are completed the **vertical blank** interrupt is triggered. This allows the game to update the tables without tearing the picture currently displayed. At that moment the CRT's beam is pointing below the visible area of the screen, into the overscan (or bottom border area).
+However, the CPU can't modify any table that's currently being used by the PPU, otherwise, artefacts may show up on the screen. So, when all scanlines are completed, the PPU triggers the **Vertical Blank** (V-Blank) interrupt on the CPU {{< cite "graphics-vblank" >}}. This notifies the game that it can start updating the tables without tearing the picture currently displayed. At that moment the CRT's beam is pointing below the visible area of the screen, into the overscan (or bottom border area).
+
+Only a handful of PPU registers can be updated outside the V-Blank window {{< cite "graphics-outside_vblank" >}}, which explains the ability to scroll the background layer mid-frame.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
+
 {{< /tabs >}}
 
 ### Secrets and limitations
@@ -329,7 +347,7 @@ Throughout my research, I came across many interesting articles that explain unu
   - The discrepancies between RGB palettes is most evident with Tim Worthington's DIY kit that adds RGB signal output to the NES, since it also implements a switch that chooses between three pre-defined palettes {{< cite "graphics-nesrgb" >}}.
 - The master palette contains a **'cursed' colour** (`$0D`) which can mess up the NTSC TV signal {{< cite "graphics-cursed_colour" >}}. Well, what happens is that the TV mistakes the signal to display that colour with the blanking signal, so flickering may occur.
 - The PPU relies on DRAM to store its Object Attribute Memory (OAM). Now, DRAM requires to be refreshed constantly to prevent loss of data (unlike SRAM), and it so happens that the PPU won't refresh DRAM when it's not rendering the frame {{< cite "graphics-oam" >}}. This manifests during vertical blanking. For this reason, it is adviced against updating OAM outside vertical blanking, since the non-refreshing period happening during V-blank will have corrupted part of the table.
-  - The PPU variant for PAL systems is not affected by this, as it refreshes during VRAM (which lasts longer on PAL systems).
+  - The PPU variant for PAL systems is not affected by this, as it refreshes during V-Blank (which lasts longer on PAL systems).
 {{% /inner_markdown %}}
 {{< /tab >}}
 {{< /tabs >}}
