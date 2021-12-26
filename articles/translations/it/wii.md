@@ -141,6 +141,18 @@ Non si tratta di una funzionalità nuova in assoluto, bensì di un nuovo modo di
 Grazie ai megahertz aggiuntivi di Broadway e Hollywood e a design all'avanguardia, nei giochi per GameCube è stato possibile migliorare i modelli dei personaggi. Anche se non si è trattato di un salto generazionale pari a quello dei cicli di console precedenti, il miglioramento è stato comunque sensibile e apprezzato.
 
 {{< side_by_side >}}
+  {{< threejs_canvas model="mario_melee" class="toleft" >}}
+Super Smash Bros. Melee (2001) per GC  
+2494 triangoli
+  {{< /threejs_canvas >}}
+
+  {{< threejs_canvas model="mario_brawl" class="toright" >}}
+Super Smash Bros Brawl (2008) per Wii  
+3049 triangoli
+  {{< /threejs_canvas >}}
+{{< /side_by_side >}}
+
+{{< side_by_side >}}
   {{< threejs_canvas model="sonic_dx_tails" class="toleft" >}}
 Sonic DX (2003) per GameCube  
 1985 triangoli
@@ -504,7 +516,7 @@ Il diagramma della sicurezza di Starlet
 {{< /figure_img >}}
 
 {{% inner_markdown %}}
-Un gruppo di hacker noto come **Team Twiizers** (un gioco di parole con "tweezer", la parola inglese che indica le normali pinzette) si rese conto che l'assenza di firme nella modalità GameCube poteva costituire una buona superficie di attacco. Il team scoprì non solo che 3/4 della RAM GDDR3 non venivano ripuliti dopo l'esecuzione di un gioco per GameCube, ma anche che creando un ponte tra alcuni punti sulla scheda madre (utilizzando, guarda caso, proprio un paio di pinzette) era possibile invertire i banchi della RAM GDDR3 scelti, permettendo di accedere ad aree riservate della RAM. Sorpresa: in queste aree erano presenti anche le chiavi AES.
+Un gruppo di hacker noto come **Team Twiizers** (un gioco di parole con "tweezer", la parola inglese che indica le normali pinzette) si rese conto che l'assenza di firme nella modalità GameCube poteva costituire una buona superficie di attacco. Il team scoprì non solo che 3/4 della RAM GDDR3 non venivano ripuliti dopo l'esecuzione di un gioco per GameCube, ma anche che creando un ponte tra alcuni punti sulla scheda madre (utilizzando, guarda caso, proprio un paio di pinzette) era possibile invertire i banchi della RAM GDDR3 scelti, permettendo di accedere ad aree riservate della RAM. Sorpresa: in queste aree erano presenti anche le chiavi AES. Sorpresa: in queste aree erano presenti anche le chiavi AES.
 {{% /inner_markdown %}}
 {{< /float_group >}}
 
