@@ -329,7 +329,7 @@ The SPE is a processor that follows similar structuring to the PPE, being made o
 
 {{< tabs h5="true" >}}
 {{% tab name="The Memory Flow Controller" active="true" %}}
-The **Memory Flow Controller** (MFC) is the block that communicated between the core and the rest of Cell, this is equivalent to the PowerPC Processor Storage Subsystem (PPSS) in the PPE. The MFC's main job is to move data between SPU's local memory and Cell's main memory and keep the SPU in sync with its neighbours.
+The **Memory Flow Controller** (MFC) is the block that interconnects the core with the rest of Cell, this is equivalent to the PowerPC Processor Storage Subsystem (PPSS) in the PPE. The MFC's main job is to move data between SPU's local memory and Cell's main memory and keep the SPU in sync with its neighbours.
 
 To perform its duties, The MFC embeds a **DMA controller** to handle communication between the EIB and the SPU's local memory. Furthermore, the MFC houses another component called **Synergistic Bus Interface** (SBI) that sits between the EIB bus and the DMA controller. It's a very complex piece of circuitry to summarise, but it basically interprets commands and data received from outside and signals the internal units of the SPE. As the front door to Cell, the SBI operates in two modes: bus master (where the SPE is adapted to requests data from outside) or bus slave (where the SPE is set to receive orders from outside).
 
@@ -479,7 +479,7 @@ RSX chip next to Cell
 {{% inner_markdown %}}
 The RSX inherits existing Nvidia technology, it's reported to be based on the 7800 GTX model sold for PCs, which implements the **Geforce7** (or NV47) architecture {{< cite "graphics-nvarch" >}}, also named 'Curie'.
 
-In my [previous Xbox analysis]({{< ref "xbox#graphics" >}}), I talked about the Geforce3 and their debuting pixel shaders, so what has changed since then? There have some been ups and downs, but mostly incremental changes, so nothing too groundbreaking compared to the Geforce3's pixel shaders.
+In my [previous Xbox analysis]({{< ref "xbox#graphics" >}}), I talked about the Geforce3 and their debuting pixel shaders, so what has changed since then? There have some been ups and downs, but mostly incremental changes, so nothing too groundbreaking compared to Geforce3's pixel shaders.
 {{% /inner_markdown %}}
 
 {{< /float_group >}}
@@ -525,7 +525,7 @@ Diagram of the command stage
 {{% inner_markdown %}}
 As with any other GPU, there must be a block of circuitry in charge of receiving the orders from outside. With RSX, this is handled by two blocks, **Host** and **Graphics Front End**.
 
-The host is responsible for reading commands from memory (either at local or main) and translating them into internal signals that other components in RSX understand, this is done with the use of four sub-blocks:
+The Host is responsible for reading commands from memory (either at local or main) and translating them into internal signals that other components in RSX understand, this is done with the use of four sub-blocks:
 - **Pusher**: fetches graphics commands from memory and [interprets]({{< ref "playstation-portable#tab-2-1-commands" >}}) branch instructions. It also contains 1 KB of [prefetch buffer]({{< ref "game-boy-advance#memory-locations" >}}). The processed commands are sent to the FIFO Cache.
 - **FIFO Cache**: stores up to 512 commands decoded by the Pusher in a FIFO manner to provide quick access.
 - **Puller**: as the name indicates, it pulls commands from the FIFO cache whenever RSX is ready to render and sends them to the next unit.
@@ -584,7 +584,7 @@ Next in line we've got the **Fragment Shader & Texture** block, this is a progra
 
 Being an advanced successor of Geforce3's [texture units]({{< ref "xbox#tab-2-3-pixel" >}}), the new block contains **six fragment units** (also called 'pipes'), each one process 2x2 texels (named 'quads'). To organise multiple units working concurrently, another sub-block called **Shader Quad Distributor** (SQD) is placed to dispatch quads to each fragment unit. Afterwards, each fragment unit loads the fragment program.
 
-To compute operations, each pipe contains the _enormous_ amount of **1536 128-bit registers**. On top of all that, each pipe can process multiple quads in parallel (**multi-threading**), though the number of quads processed in parallel depending on the number of registers allocated to the fragment program (`no. threads = 1536 / no. registers reserved by shader`). In global terms, up to 460 quads can be processed in parallel. Furthermore, up to three fragment pipes can process two instructions at the same time (**dual-issuing**, like the PPU) as long as the instructions don't depend on each other.
+To compute operations, each pipe contains the _enormous_ amount of **1536 128-bit registers**. On top of all that, each pipe can process multiple quads in parallel (**multi-threading**), though the number of quads processed in parallel depends on the number of registers allocated to the fragment program (`no. threads = 1536 ÷ no. registers reserved by shader`). In global terms, up to 460 quads can be processed in parallel. Furthermore, up to three fragment pipes can process two instructions at the same time (**dual-issuing**, like the PPU) as long as the instructions don't depend on each other.
 
 The fragment units provide similar arithmetic-type instructions to the vertex unit, with the addition of texture-related opcodes, such as multiple types of texture fetching (since textures can be encoded using many structures and then compressed) and unpacking. Similarly to the vertex block, the fragment shader abides by DirectX's Pixel Shader 3.0 model {{< cite "graphics-vs3" >}}, OpenGL's NV_fragment_program2 profile {{< cite "graphics-khronos" >}} and Cg's 'fp40' profile {{< cite "graphics-fp40" >}}. All of this to ease programming and avoid learning low-level APIs from the ground up.
 
@@ -619,7 +619,7 @@ Back of the PS3, HDMI output on the left side and at the other extreme there's t
 {{< /figure_img >}}
 
 {{% inner_markdown %}}
-The HDMI connector is made of 19 pins {{< cite "graphics-hdmi_wiki" >}}, all in a single socket. It transfers a digital signal, meaning that the picture and audio are broadcast using '0' and '1' and not a range of values found in analogue signals. Consequently, it doesn't suffer from the interference or image degradation that previous equipment did, such as screen artefacts produced by cheap SCART cables.
+The HDMI connector is made of 19 pins {{< cite "graphics-hdmi_wiki" >}}, all in a single socket. It transfers a digital signal, meaning that the picture and audio are broadcast using discrete zeroes and ones (and not a range of continous values found in analogue signals). Consequently, it doesn't suffer from the interference or image degradation that previous equipment did, such as screen artefacts produced by cheap SCART cables.
 
 To this day, the HDMI protocol is continuously being revised {{< cite "graphics-hdmi_spec" >}}, with new versions of the specification offering more features (i.e. larger image resolution, refresh rate, alternative colour spaces, etc) while retaining the same physical medium for backwards compatibility.
 {{% /inner_markdown %}}
