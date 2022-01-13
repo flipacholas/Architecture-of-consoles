@@ -415,14 +415,21 @@ Showing mixed stereo output
 {{< /video >}}
 
 {{% inner_markdown %}}
-Consequently, the new audio system features a total of **16 PCM channels**, allowing to shift the mixing task to the hardware. PCM samples can either be **8-bit** (*GBA-style*), **16-bit** (optimal resolution) or **ACPCM** (compressed form). In any case, the mixer produces a **32 kHz stereo signal** that can be played through the speaker (now stereo) or headphones. The mixer can also write the resulting stereo data to WRAM, enabling the sub-processor (ARM7) to apply some effects such as reverb.
 
-Are we forgetting something else? *Yes*, since this console runs GBA games, then it should have something that reassembles the PSG (whether through hardware or software). Lo and behold, the last 6 channels can become a PSG (where any of them synthesises either a pulse or a custom wave, and two of them create a pulse or noise).
+Consequently, the new audio system features a total of **16 PCM channels**, allowing to shift the mixing task to the hardware. PCM samples can either be **8-bit** (*GBA-style*), **16-bit** (optimal resolution) or **ACPCM** (compressed form). In any case, the mixer produces a stereo signal that can be played through the speaker (now stereo) or headphones. It can also write the resulting stereo data to WRAM, enabling the sub-processor (ARM7) to apply some effects such as reverb.
+
 {{% /inner_markdown %}}
-
 {{< /float_group >}}
 
 With all being said, does this mean that the Nintendo DS can finally play encoded music (i.e. MP3)? It's possible (in fact, a lot of homebrew programs implemented some form of it), but audio decoding takes up a lot of bandwidth and processing power. So audio sequencing still retains its place as the most feasible option.
+
+### An eccentric PSG (or two)
+
+Since this console runs GBA games, it should then have something that reassembles the predecessor's PSG (whether through hardware or software). Well, it so happens the last 6 channels contain a 'PSG mode' allowing any of them to synthesise either a pulse or a custom wave; and only two of them can create noise. But GBA games don't use any of these!
+
+You see, the mixer's output frequency rate is **32 kHz** with a resolution of **10-bit** (considerably lower than the quality of the samples fed). Furthermore, **it does not perform any form of interpolation** to smooth out the loss of precision. These restrictions are not ideal for samples, as it adds noise. Though the actual perception of this phenomenon depends on your auditory capacity (I don't notice the 'hiss' unless I boost the volume and compare it with a 16-bit version side-by-side), besides, it's still a step forward coming from software-mixed samples with 8-bit resolution. Conversely, the aliasing effect is more problematic with PSG sounds, as downsampling the signal may introduce erroneous harmonics which distorts the original PSG tone. Nevertheless, games like New Super Mario Bros. happily makes use of pulse waves for accompaniment, so I wouldn't consider the PSG completely useless.
+
+Back on topic, how does a GBA game handle all of this? _It doesn't_, Nintendo fitted a **separate sound system** (within the same enclosure) for GBA mode that includes its own channels and mixer that follows the specifications of the predecessor. This way, GBA games won't be affected by the new mixer's limitations. Unfortunately, since this subsystem is segregated from the DS one (in other words, it's doesn't output to the DS's mixer), DS games aren't able to use it.
 
 ### Interactive comparison
 
