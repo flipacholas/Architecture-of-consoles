@@ -63,9 +63,9 @@ Other accessories were also built for this port, each one provided different typ
 
 ## CPU
 
-After the success of Gekko, IBM presumably grabbed this design and re-branded it as '750CL' for other manufacturers to use. Then, when Nintendo requested a new CPU to use with their new console, still known as 'Revolution' (hence the RVL prefix on their stock motherboards), IBM and Nintendo agreed to use a 750CL clocked twice the speed as Gekko. This CPU is known as **Broadway** and runs at **729 MHz**.
+After the success of Gekko, IBM presumably grabbed this design and re-branded it as '750CL' for other manufacturers to use. Then, when Nintendo requested a new CPU to use with their new console, still known as 'Revolution' (hence the RVL prefix on their stock motherboards), IBM and Nintendo agreed to use a 750CL clocked 1.5 times the speed of Gekko. This CPU is known as **Broadway** and runs at **729 MHz**.
 
-After having reviewed [Gekko]({{< ref "gamecube#cpu" >}}), I'm afraid there aren't many changes found in the new CPU. However, this may be an advantage: GameCube developers were able to start developing their new Wii games right away thanks to all the experience they gained with Gekko. Moreover, the fact that Broadway runs twice the speed will allow them to push for more features and quality.
+After having reviewed [Gekko]({{< ref "gamecube#cpu" >}}), I'm afraid there aren't many changes found in the new CPU. However, this may be an advantage: GameCube developers were able to start developing their new Wii games right away thanks to all the experience they gained with Gekko. Moreover, the fact that Broadway runs 1.5x the original speed will allow them to push for more features and quality.
 
 ### What about memory?
 
@@ -89,7 +89,7 @@ In later years, new revisions of the Wii saw these ports removed, unfortunately.
 
 ## Graphics
 
-The new graphics package is called **Hollywood**. It still performs the same tasks that [Flipper]({{< ref "gamecube#graphics" >}}) did back in the day but enjoying twice the clock speed (**243 MHz**). This speed increase means that more geometry and effects can be processed during the same unit of time.
+The new graphics package is called **Hollywood**. It still performs the same tasks that [Flipper]({{< ref "gamecube#graphics" >}}) did back in the day but enjoys 1.5x the clock speed (**243 MHz**). This increase means that more geometry and effects can be processed during the same unit of time.
 
 ### Functionality
 
