@@ -4,6 +4,9 @@ files:
   - source: /articles/*.md
     translation: /articles/translations/%two_letters_code%/%file_name%.md
     export_only_approved: true
+  - source: /articles/*.Rmd
+    translation: /articles/translations/%two_letters_code%/%file_name%.Rmd
+    export_only_approved: true
   - source: /resources/strings.toml
     translation: /resources/translations/%two_letters_code%.toml
     export_only_approved: true
