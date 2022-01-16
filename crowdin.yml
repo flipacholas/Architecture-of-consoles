@@ -7,6 +7,7 @@ files:
   - source: /articles/*.Rmd
     translation: /articles/translations/%two_letters_code%/%file_name%.Rmd
     export_only_approved: true
+    type: markdown
   - source: /resources/strings.toml
     translation: /resources/translations/%two_letters_code%.toml
     export_only_approved: true
