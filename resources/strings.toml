@@ -53,6 +53,9 @@ other = "Writings"
 [nav_console]
 other = "Consoles"
 
+[nav_blog]
+other = "Blog"
+
 [about]
 other = "About"
 
