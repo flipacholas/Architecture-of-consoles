@@ -11,11 +11,11 @@ top_tabs:
     caption: "The original Game Boy Advance. Released on 21/03/2001 in Japan, 11/06/2001 in America and 22/06/2001 in Europe"
   Motherboard:
     caption: "Showing revision '03'. Note that 'AGB' is the identifier of the Game Boy Advance model
-    <br>Cartridge slot and amplifier are in the back"
+    <br>Cartridge slot and audio amplifier are on the back"
     extension: "jpg"
   Diagram:
     caption: "Each data bus is labelled with its width.
-    <br>Notice the diagram model doesn't include a mapper for GBA cartridges, there are just a few exceptions to this. For instance, with GBA Video cartridges."
+    <br>The layout shown of the AGB Game Pak doesn't include a mapper (as the new CPU is able to address significantly more memory), although games with a large ROM may still bundle one."
 
 # SEO
 title: Game Boy Advance Architecture
