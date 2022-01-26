@@ -30,38 +30,51 @@ aliases: [/projects/consoles/sega-saturn/]
 
 Welcome to the 3D era! Well... *sorta*. Sega enjoyed quite a success with the Megadrive so there's no reason to force developers to write 3D games *right now*.
 
-Just in case developers want 3D, Sega adapted some bits of the hardware to enable polygon drawing as well. Hopefully, the result didn't get out of hand!
+Just in case developers want the extra dimension, Sega adapted some bits of the hardware to enable polygon drawing as well. Hopefully, the result didn't get out of hand!
 
 ---
 
 ## CPU
 
-The system has not one but **two Hitachi SH-2** CPUs running at **~28.63MHz each**. While both physically identical, they are placed in a master-slave state, where the first one may send commands to the second one. This can achieve some degree of parallelism, albeit both sharing the same external bus (which can lead to congestion).
+Just like its close competitors [drowned with options]({{< ref "playstation#a-bit-of-history" >}}) during the RISC fever, Sega had to go through all the conundrums of choosing a vendor that could bring up the next generation of games (including those with '3D' capabilities). In the end, the company chose a fresh CPU whose creator was desperately looking for an adopter, the **Hitachi SuperH** or 'SH'.
+
+Hitachi's new creation implemented modern arts such as a RISC instruction set and a pipelined data-path, however, Sega wasn't satisfied by the final product, especially due to the small 16-bit multiplier. Thus, Hitachi synthesised a second revision with a larger multiplier unit and other requirements on Sega's checklist, leading to a new CPU called **SH-2**.
+
+Even so, Sega couldn't stand still after hearing what choice of CPU [its]({{< ref "playstation#cpu" >}}) [competitors]({{< ref "nintendo-64#cpu" >}}) went for. So, they asked Hitachi to step up the clock frequency of the SH-2 - an impossible task once the chip is already out for manufacturing. Luckily, Hitachi had another trick up in their sleeve, **multiprocessing**. During the research phase of the SH, the team added minimal circuitry to allow the SH to work with other SHs within the same system at the same time. Upon hearing that, Sega decided on a two-chip configuration for the Sega Saturn. And the rest is history. 
+
+### The final product
+
+Having explained the origins, let's take a look at the shipped product.
+
+This console has not one but **two Hitachi SH-2** CPUs running at **~28.63 MHz each**. While both physically identical, they are placed in a **master-slave state**, where the first one may send commands to the second one. This can achieve some degree of parallelism, albeit both sharing the same external bus (which can lead to congestion).
 
 These processors are part of the Hitachi SH7600 brand, a series designed for embedded systems featuring:
 - **SuperH ISA**: A special 32-bit RISC instruction set where instructions are 16-bit long. Not only does this design reduce the size of the programs, but since the CPU fetches instructions in 32-bit batches, two instructions can be retrieved in one cycle.
-- **Five-stage pipeline**: Execution of instructions is divided into five steps or *stages*. The CPU will queue up to five instructions where each one is allocated in one stage. This allows to take advantage of all the CPU's resources without idling while also incrementing the number of instructions executed per unit of time.
+  - The speciality of compressing instructions to take out half the size was carried on by ARM with [Thumb]({{< ref "game-boy-advance#cpu" >}}).
+- **Five-stage pipeline**: Execution of instructions is divided into five steps or *stages*. The CPU will queue up to five instructions where each one is allocated in one stage. This allows taking advantage of all the CPU's resources without idling while also incrementing the number of instructions executed per unit of time.
 - **One multiplication unit**: Speeds up multiplication operations with 64-bit/32-bit integers.
 - **32-bit data bus**: The external bus is shared across the two CPUs.
-- **4 KB cache**: Stores a small amount of instructions and data previously fetched from memory to speed up future reads.
+- **4 KB cache**: Stores a small number of instructions and data previously fetched from memory to speed up future reads.
 
 The specific CPU model selected for this console, the 'SH7604' or just 'SH-2', contain the following additions:
 - **One division unit**: Speeds up division operations with 64-bit/32-bit integers.
 - **Internal DMA controller**: Transfers data from memory independently (without the intervention of the CPU).
 
-Having two CPUs doesn't mean that games will work twice as fast, in practice, however, this requires very complex programming to efficiently manage CPUs that share the same bus! Cache comes in handy for this occasion.
+Please not that having two CPUs doesn't mean that games will work twice as fast! In practice, however, this requires very complex programming to efficiently manage CPUs that share the same bus. Cache also plays a critical part for this occasion.
 
 ### A divided choice of memory
 
-The system contains a total of **2 MB of RAM** for general purpose usage called **Work RAM** (WRAM). Now, these two megs are split between two very different blocks. The first one provides **1 MB of SDRAM** and due to its fast access rates, this block is also called 'WRAM-H'. The other block contains the other megabyte, but it's named 'WRAM-L' since it uses **DRAM** instead, resulting in lower rates.
+The Sega Saturn contains a total of **2 MB of RAM** for general purpose usage called **Work RAM** (WRAM). Now, these two megs are split between two very different blocks:
+- The first one provides **1 MB of SDRAM** and due to its fast access rates, this block is also called 'WRAM-H'.
+- The other block contains the other megabyte, but it's named 'WRAM-L' since it uses **DRAM** instead, resulting in lower rates.
 
 ### Another processor
 
-The console contains an additional coprocessor, the **Saturn Control Unit** or 'SCU' which is composed of two modules:
+If the two SH-2 CPUs weren't enough, the console contains an additional coprocessor, the **Saturn Control Unit** or 'SCU' which is composed of two modules:
 - **A DMA controller**: Arbitrates access to WRAM across the three main buses without the intervention of the CPUs.
 - **A DSP**: Used as a fixed-point 'geometry unit'. Compared to the SH-2, it does matrix/vectors calculations such as 3D transformations and lighting faster. However, it runs at half-speed and its instruction set is more complex. Moreover, it relies on the SH-2's WRAM to fetch and store data (using the DMA).
 
-The SCU comes with **32 KB of SRAM** for local use. It's worth mentioning that the SCU can't access WRAM-L.
+On the bright side, the SCU comes with **32 KB of SRAM** for local use. On the bad side, the SCU can't access WRAM-L.
 
 ---
 
@@ -216,9 +229,11 @@ Virtua Fighter Remix (1995).
 {{< /figure_img >}}
 
 {{% inner_markdown %}}
-So far we've been using single quadrilaterals to form sprites or background layers. But what if we grab multiple primitives and arrange them to form a more complex figure? This is how 3D models come to fruition.
+So far we've been using individual regular quadrilaterals to form sprites and/or background layers. But what if we group multiple irregular primitives and arrange them to form a more complex figure? This is how 3D models come to fruition.
 
-In a nutshell, the CPUs and SCU are tasked with formulating a 3D world and project it in a 2D space. Then, both VDPs are commanded to render it, apply effects and finally broadcast it on TV.
+To put it in simple terms, classic 2D consoles like the [Super Nintendo]({{< ref "super-nintendo" >}}) arranges its graphics (backgrounds and sprites) in quasi-rectangular areas. In some cases, such as with [Mode 7]({{< ref "super-nintendo#unique-features" >}}), programmers can supply a rotation matrix to apply transformations over some of these areas. The Saturn, by contrast, allows to define 4-point quadrilaterals with arbitrary angles between their edges (Sega calls them 'distorted sprites'). Then, the VDPs' texture mapping capabilities paint the quadrilateral's area with a texture, the latter is scaled to conform to the polygon's shape.
+
+In terms of operations needed with a 3D game, the CPUs and SCU are assigned with formulating a 3D world and project it in a 2D space. Then, both VDPs are commanded to render it, apply effects and finally broadcast it on TV.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -231,9 +246,9 @@ Virtua Fighter Remix (1995).
 {{< /figure_img >}}
 
 {{% inner_markdown %}}
-Either VDP can draw this new 3D space and stamp textures and effects. Now, which chip is 'in charge' varies between each game.
+Either VDP can draw this new (projected) 3D space and stamp textures and effects. Now, which chip is 'in charge' varies between each game.
 
-Some prioritised the VDP1 to draw the closest polygons and left the VDP2 to process distant scenery, others found interesting workarounds to task the VDP2 to draw closer polygons (off-loading the amount of geometry fed into the VDP1). The challenge consists in designing an efficient engine that could display *impressive* graphics while keeping an acceptable frame rate.
+Some prioritised the VDP1 to draw the closest polygons and left the VDP2 to process distant scenery, others found interesting workarounds to task the VDP2 to draw closer polygons (thereby off-loading the amount of geometry fed into the VDP1). The challenge consists in designing an efficient engine that could display *impressive* graphics while keeping an acceptable frame rate.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -255,7 +270,9 @@ Tails in Sonic R (1997)
   {{< /threejs_canvas >}}
 {{< /side_by_side >}}
 
-While the Saturn is only able to draw quadrangles, you'll soon notice that these models exhibit two triangles instead of a single quadrangle in 'Wireframe' mode. This is due to the format used to encode this model (glTF, an open standard for modern 3D modelling) doesn't support quadrangles at the time of this writing, so I recommend switching to 'Surface' mode to observe the quads. In some way, this tells you how present graphics technology can struggle to reproduce their ~30-year-old predecessors.
+While the Saturn is only able to draw quadrangles, you'll soon notice that these models exhibit two triangles instead of a single quadrangle in 'Wireframe' mode. This is because the format used to encode this model (glTF, an open standard for modern 3D modelling), so your modern device can render it, doesn't support quadrangles at the time of this writing. So, I recommend switching to 'Surface' mode to observe the quads.
+
+In some way, this tells you how present graphics technology can struggle to reproduce their ~30-year-old predecessors!
 
 ### An introduction to the visibility problem
 
@@ -324,9 +341,54 @@ This has been possible thanks to a combination of many factors:
 
 ---
 
+## Operating System
+
+Once the user powers on the console, the first component that starts up is the **System Management & Peripheral Control** (SMPC), a 4-bit microcontroller that takes care of initialising the neighbouring chips (such as switching on two SH-2s and setting them in a 'master-slave' configuration).
+
+{{< side_by_side figure="true" >}}
+  {{< figure_img src="ipl/logo_jap.jpg" class="toleft" >}}
+Japanese version
+  {{< /figure_img >}}
+  {{< figure_img src="ipl/logo_eu.jpg" class="toright" >}}
+European and American version
+  {{< /figure_img >}}
+  {{< figcaption group="true" >}}Logo displayed after splash animation finishes.{{< /figcaption >}}
+{{< /side_by_side >}}
+
+Afterwards, the master SH-2's reset vector is set to `0x00000000`, which points to an internal ROM containing the **Initial Program Loader** (IPL). This program performs the following functions:
+1. Finish initialising the hardware.
+2. If there's a cartridge inserted and it includes a program, continue booting from there.
+4. If the 'Video CD' card is inserted, boot it.
+3. If there's a disc inserted, check that it's genuine.
+    - While at it, it displays the splash screen animation.
+4. If the disc is genuine, boot the game.
+4. If the disc is not genuine or there's no disc inserted, run the shell.
+
+### Interactive shell
+
+Alternatively to playing games, the Saturn included a music player called 'Multiplayer', from which a save manager can be opened.
+
+{{< side_by_side >}}
+  {{< figure_img src="ipl/multiplayer.jpg" class="toleft" >}}
+Interactive shell called 'Multiplayer' or 'Audio CD Control Panel'.
+  {{< /figure_img >}}
+  {{< figure_img src="ipl/mem_manager.jpg" class="toright" >}}
+Memory Manager.  
+Moves saves between the cartridge and internal memory.
+  {{< /figure_img >}}
+{{< /side_by_side >}}
+
+If a Video CD card is inserted, the player can reproduce MPEG video decoded from the card itself.
+
+### No BIOS?
+
+Unlike the [Playstation]({{< ref "playstation" >}}) whose ROM chip bundled a [BIOS]({{< ref "playstation#operating-system" >}}), which in turn exposed APIs for programmers to use. The Saturn's ROM is often called 'IPL' pressumably since its main job is to bootstrap the game and run the shell. However, the latter still stores some routines (called 'services') to manipulate the hardware (such as the saves data and power control). It even implements a 'semaphore'! (used to synchronise operations that involves multiple processors at the same time). Hence, that part of the ROM is called 'System program'.
+
+---
+
 ## Games
 
-The console starts by booting from the **IPL (initial program loading) ROM** which initialises the hardware and displays the splash screen. Then the game is loaded from the 2x CD-ROM reader. Its medium (CD) has a capacity of 680 MB.
+Official Sega Saturn games are loaded from the 2x CD-ROM reader. Its medium, the compact disc (CD), has a capacity of 680 MB. Sega Saturn games follow the ISO9660 for storing data in the CD. Many games store audio tracks next to the data tracks for streaming uncompressed audio while executing the game.
 
 ### Development
 
@@ -336,26 +398,39 @@ Later on, Sega released complete SDKs, hardware kits and some libraries to ease 
 
 ### I/O
 
-Peripherals are controlled by the **SMPC** (System Management & Peripheral Control), a micro-controller that also provides a real-time clock and receives commands from the SH-2s.
+Peripheral management and real-time clock are also provided by the aforementioned **System Management & Peripheral Control** (SMPC). The SMPC is controlled with commands sent by the SH-2s.
 
-### Expansion
+### Expansion methods
 
-There's a **cartridge slot** used for **additional storage** (save data) or **extra RAM**.
-
-Another expansion slot is found near the CD Reader, this one expects a **Video CD Card** that, as the name suggests, enables to play Video CD.
-
-Finally, there's a mysterious socket at the back of the console called **Communication Connector**. Sega didn't publish any documentation for developers, but after some reverse engineering efforts, people discovered that it's connected to the SCSP's MIDI pins and the two SH-2's serial interface (SCI). Sega released a Floppy drive that relied on this interface.
+This console bundles a considerable number of external connectors and interfaces that only received a handful of uses, at most.
+- Behind the drive there's a **cartridge slot** officially used for **additional storage** (save data) or **extra RAM**. In Japan and the United Stated, a modem was also offered to provide [online functionality]({{< ref "mega-drive-genesis#early-network-attempts" >}}).
+- At the back of the console there's a slot for a **Video CD Card** that performs MPEG decompression for programs/games that support it.
+- Finally, there's a mysterious socket at the back of the console called **Communication Connector**. Sega didn't publish any documentation for developers, but after some reverse engineering efforts, people discovered that it's connected to the SCSP's MIDI pins and the two SH-2's serial interface (SCI). In any case, Sega released a Floppy drive that relied on this interface.
 
 ---
 
 ## Anti-Piracy & Homebrew
 
-Copy protection on CDs is applied by burning special data out of reach from conventional burners, the Saturn CD reader refuses to read the disc if the out-of-reach data is not found. The disc reader also contains a custom **SH-1** processor that interfaces with the rest of the system using encrypted communication. It's worth mentioning that Saturn CDs don't have any reading protection, so you can actually access its content from a PC.  
+In response to the easiness of cloning a CD, Saturn added a copy protection system (along with region locking) to control the distribution of games.
 
-A popular method of disabling the copy protection was by installing mod-chips that could trick the CD reader when a burned disc is inserted.
+Copy protection on CDs is applied by burning special data (called 'system area') out of reach from conventional burners, the Saturn refuses to boot the disc as a 'game disc' if the out-of-reach data is not found or it's invalid. The disc reader also contains a custom **SH-1** processor that interfaces with the rest of the console using obscured protocols.
 
-A more sophisticated method for running unauthorised code was published in 2016 (almost 20 years later) by exploiting the fact that the Video CD add-on can inject unencrypted code to the CD subsystem (bypassing the CD reader altogether). This finally allowed to load Homebrew without depending on the ageing drive.
+It's worth mentioning that since Saturn CDs follow the ISO9660 (a standard file system for CD data), PCs can read the game disc without problems (but, of course, they can't execute the game unless they use an emulator).
+
+### Defeat
+
+First of all, the classic method used for disabling the copy protection consisted in installing a **mod-chip** that could trick the CD reader when a burned disc is inserted. There was also a 'swap trick' that consisted in **hot-swapping** a genuine disc with a burned one just after the protection checks passed... with the risk of damaging the drive!
+
+After the turn of the century, alternative but more sophisticated methods used for running unauthorised code were discovered, for instance:
+- An **exploit in the copy protection mechanism** was found and it allowed to boot up any disc game without going through the copy protection checks. This was packaged in a program called **pseudosaturn** and required to be executed from a cartridge. Thus, Action Replay cartridges are often re-flashed with pseudosaturn (though the flasher also needs to be bootstrapped somehow, most commonly through the swap trick).
+  - This method is still being used as of 2022, although a new fork of pseudosaturn named 'Pseudo Saturn Kai' is installed instead.
+- Another method was reported in 2016 (almost 20 years later) by exploiting the fact that the **Video CD add-on can inject unencrypted code** to the CD subsystem (bypassing the CD reader altogether). This finally allowed to load Homebrew without depending on the ageing drive. The Video CD exploit is commercially distributed in a product called 'Satiator' (I'm not sponsored, by the way).
+- Finally, there's another commercial alternative that replaces the CD reader with an SD or SATA adapter. The Saturn still thinks it's reading from a CD, but the 'CD' is being emulated by the adapter, which is in turn reading from a disc image.  These products are called **Optical Drive Emulators** (ODE).
 
 ---
 
 ## That's all folks
+
+{{< figure_img src="mine.jpg" alt="My Saturn" class="centered-container" >}}
+A Japanese Saturn I acquired to get more material for this article. While the games look fine, it was thanks to the Saturn's enormous Homebrew library that I was able to understand the real capabilities of this console.
+{{< /figure_img >}}

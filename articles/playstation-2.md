@@ -358,7 +358,7 @@ As stated before, the PCRTC sends the frame-buffer through the video signal. The
 - **NTSC**: Up to 640x448 pixels at 60 Hz, either progressive (480p) or interlaced (480i).
 - **VESA**: Up to 1280x1024 pixels.
 - **DTV**: Up to the *enormous amount* of 720x480 pixels in progressive mode or 1920x1080 in interlaced mode.
-  - By tweaking the PCRTC settings, a game can also force to output in 1080p. However, this mode is undocumented and is subject to unpredictable behaviour.
+  - By tweaking the PCRTC settings, a game can also force to output in 1080p. However, this mode is undocumented and therefore subject to unpredictable behaviour.
   - Does that mean the PS2 can 'display HD'? Technically... yes, but I don't think most game studios risked the performance penalty for a format that wasn't popularised yet.
 
 {{< float_group >}}
