@@ -49,7 +49,7 @@ Welcome to the most recognisable and innovative part of this console.
 
 ### Introduction
 
-The PS3's CPU is massively complex, but it's also a very fascinating work of engineering that intersects complex needs and unusual solutions, prominent in an era of change and experimentation. So, before we step into the internals of the PS3's CPU, I wrote the following paragraphs to bring some historical context into the article. Consequently, we'll be able to decompose the chip from top to bottom in a way that not only you will understand how this chip works, but also get the reasoning behind major design decisions.
+The PS3's CPU is massively complex, but it's also a very fascinating work of engineering that intersects complex needs and unusual solutions, prominent in an era of change and experimentation. So, before we step into the internals of the PS3's CPU, I wrote the following paragraphs to bring some historical context into the article. That way, we'll be able to decompose the chip from top to bottom in a way that not only you will understand how this chip works, but also get the reasoning behind major design decisions.
 
 {{< tabs >}}
 {{< tab name="The state of progress" active="true" >}}
@@ -543,7 +543,7 @@ Diagram of the vertex stage process, notice that the Vertex Processing Engines (
 {{< /figure_img >}}
 
 {{% inner_markdown %}}
-The next unit is the **Geometry Processing** block, an evolution of the 'Vertex Block' in the Geforce3 that performs vertex transformation. It's still programmable with the use of **vertex shaders**, which is now a widely adopted feature in the graphics industry. Furthermore, the instruction limit has been increased to 512 instructions (originally, 136 was the limit!).
+The next unit is the **Geometry Processing** block, an evolution of the 'Vertex Block' in the Geforce3 that performs vertex transformation. It's still programmable with the use of **vertex shaders**, which is now a widely adopted feature in the graphics industry. Furthermore, the instruction limit has been increased to 512 instructions minimum (originally, 136 was the limit!).
 
 The block that executes shaders is called **Vertex Processing Engine** (VPE) and it can process **one vertex per clock cycle**. As if wasn't enough, there are **eight VPEs working in parallel**. Since the Geforce6 series, Nvidia has aligned its shader programming interface to a model called 'Vertex Shader Model 3' or 'vs_3_0_', a standard developed by Microsoft for use with their DirectX 9.0c libraries {{< cite "graphics-vs3" >}}. The VPEs also support the non-proprietary OpenGL 2.1 model {{< cite "graphics-kilgard" >}} and Nvidia's own variant (Cg) {{< cite "graphics-vp40" >}}.
 
@@ -716,7 +716,7 @@ Regarding internal components, SouthBridge connects to:
 
 Having mentioned the PS2 chips, I guess this is my cue to talk about backwards compatibility of the Playstation 3 once in for all.
 
-First things first, let me introduce how backwards compatibility generally work: consoles can either play their predecessor's games with the help of **software** (instructs existing hardware to behave as the old game would expect) and **hardware** (either the existing hardware provides total or partial backwards compatibility; and/or the company added extra chips to recreate the older system within the new motherboard). With the amount of processing power the PS3 shows, you would expect Sony to ship a PS2 emulator running within Cell and accelerated by RSX. Well, for some reason that didn't happen and instead, Sony fitted the PS2's chipset at one corner of the motherboard.
+First things first, let me introduce how backwards compatibility generally works: consoles can either play their predecessor's games with the help of **software** (instructs existing hardware to behave as the old game would expect) and **hardware** (either the existing hardware provides total or partial backwards compatibility; and/or the company added extra chips to recreate the older system within the new motherboard). With the amount of processing power the PS3 shows, you would expect Sony to ship a PS2 emulator running within Cell and accelerated by RSX. Well, for some reason that didn't happen and instead, Sony fitted the PS2's chipset at one corner of the motherboard.
 
 {{< tabs nested="true" centered="true" >}}
   {{< tab_figure_img name="Original" src="eegs.jpg" active="true" >}}
@@ -736,14 +736,14 @@ PS3's user interface showing the game entry after inserting a PS2 disc.
 (Don't worry about the other icons for now, as some are not even official).
 {{< /figure_img >}}
 
-All in all, thanks to this setup, the PS3 runs PS2 games at an impressive compatibility rate. On top of all, you can take advantage of new features that come with the new console (wireless control, HDMI interface, lack of memory cards).
+All in all, thanks to this setup, the PS3 runs PS2 games at an impressive compatibility rate. On top of all, you can take advantage of new features that come with the new console (wireless control, HDMI interface, virtual memory cards).
 
 As if wasn't enough, PS1 games can run as well, this time without needing to embed the old SoC or GPU (it relies on pure software emulation).
 
 #### The strange end of terms
 
 Throughout the lifecycle of the PS3, Sony slowly trimmed PS2-only chips from the PS3 motherboard to the point backwards compatibility was solely software-emulated (with greater limitations, such as only running PS2 games purchased from their online store). Because Sony never replaced the PS2 chipset (like it previously did with the PS1 hardware inside the PS2), it makes you wonder about the technical and executive rationale behind this. Well, as a case study, here's my quick opinion about the reasons for this:
-- **Timing**: Sony likely intended PS2 owners to buy their new product as a replacement of their current one, as this is more affordable for consumers (they can sell their old system). However, for some reason, Sony didn't have a software emulator prepared before release day, so they initially resorted to adding extra chips. Later on, as the software emulation progressed satisfactorily, they slowly removed these in further revisions.
+- **Timing**: Sony likely intended PS2 owners to buy their new product as a replacement of their current one, as this is more affordable for consumers (they can sell their old system). However, for some reason, Sony didn't have a software emulator prepared before release day, so they initially resorted to adding extra chips. Later on, as the software emulation progressed satisfactorily, they slowly removed these in further motherboard revisions.
   - To complement this, developer 'M4j0r' commented: "An interesting point might be that Sony developed the two hardware emulation revisions at the same time (EE/GS and GS only), I guess because some games run better depending on which you use." {{< cite "operating_system-psxplace" >}}.
 - **Costs**: The introductory price of the first revision of the console (_CECHA_, only in Japan and US) in 2006, which was PS2-compatible, was priced at $599.99 or ¥60,000 without taxes (£425 adjusted for 2020 inflation) {{< cite "io-launch_fun" >}}. The following model (_CECHC_, shipped in 2007 internationally) removed the Emotion Engine and RDRAM (shifting those tasks to software emulation) and launched in the UK with a £425 price tag (£603 in 2020 money). Later in the same year, Sony released a new model (_CECHG_) without any PS2-related chip for £126 less {{< cite "io-price_cut" >}}. All this proves that backwards compatibility is, in the end, an expensive feature.
 - **Idling hardware and wasted power**: While Cell and RSX still take care of some tasks to recreate the original environment, these are minimal compared to their full potential. Combined with the fact CECHA models have a cumulative power consumption of 399 Watts {{< cite "io-psu" >}}, it does make you wonder if this design is worth the power consumption, let alone efficient (for comparison, CECHG's new power supply consumes 285 Watts).
@@ -812,7 +812,7 @@ With all being said, where is all this data stored? From the general user perspe
 {{< tab name="Cell BootROM" active="true" >}}
 
 {{% inner_markdown %}}
-It turns out, within Cell there's a small ROM hidden somewhere that manufacturers may store a 'protected' boot-loader. IBM provides this space is to save any company (not just Sony) from having to manually implement [obfuscation methods]({{< ref "xbox#system-protection" >}}) to protect their boot code, as off-the-shelf components are not always prepared for bespoken needs.
+It turns out, within Cell there's a small ROM hidden somewhere that manufacturers may store a 'protected' boot-loader. IBM provides this space to save any company (not just Sony) from having to manually implement [tailored obfuscation methods]({{< ref "xbox#system-protection" >}}) to protect their boot code, as off-the-shelf components are not always prepared for bespoken needs.
 
 Since this piece is already physically protected with obfuscation, it doesn't have to be encrypted. Thus, it's ideal for a first-stage boot-loader (which can't be encrypted) and the PlayStation 3 stores its early boot stage there.
 {{% /inner_markdown %}}

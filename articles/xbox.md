@@ -63,7 +63,7 @@ How is this study organised
 {{< /figure_img >}}
 
 {{% inner_markdown %}}
-First things first, the Xbox's CPU is identified as a **Pentium III**. So what does this mean? Back then (early noughties), the Pentium series represented the next generation of CPUs. They were 'new high-end' that grouped all the fancy technology that made computers super-fast, plus it helped buyers decide which CPU they had to buy if they wanted *the best of the best*.
+First things first, the Xbox's CPU is identified as a **Pentium III**. So what does this mean? Back then (early noughties), the Pentium series represented the next generation of CPUs. They were the 'new high-end' that grouped all the fancy technology that made computers super-fast, plus it helped buyers decide which CPU they had to buy if they wanted *the best of the best*.
 
 Pentium III replaced Pentium II, which in turn replaced the original Pentium. Moreover, when the first Pentium came out, it replaced the 80486, which in turn replaced the 80386... You get the idea. What matters is that 'Pentium' is mainly a brand name, it's not directly associated with its inner workings. Therefore, we must go deeper!
 

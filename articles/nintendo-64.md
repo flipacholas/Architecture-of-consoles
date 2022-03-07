@@ -73,7 +73,7 @@ I presume the CPU-RCP bus speed is either the RCP's clock speed or the CPU one, 
 
 The type of RAM fitted in the board is called **Rambus DRAM** (RDRAM), this was just another design that competed against SDRAM on becoming the next standard. RDRAM is connected in **serial** (where transfers are done one bit at a time) while SDRAM uses a **parallel connection** (transfers multiple bits at a time).
 
-RDRAM latency is directly proportional to the number of banks installed so in this case, with the amount of RAM this system has, the resulting latency is significant (a post on beyond3d's forum state it's around **640 ns**). Though this is compensated with a high clock speed of **250 MHz** (~2.6 times faster than the CPU) applied on the memory banks. Nintendo claims RDRAM can provide high-speed data transfer of 500 MB/sec to read or write consecutive data'.
+RDRAM latency is directly proportional to the number of banks installed so in this case, with the amount of RAM this system has, the resulting latency is significant (a post on beyond3d's forum state it's around **640 ns**). Though this is compensated with a high clock speed of **250 MHz** (~2.6 times faster than the CPU) applied on the memory banks. Nintendo claims RDRAM can provide high-speed data transfer of 500 MB/sec to read or write consecutive data.
 
 Furthermore, there's another discussion on beyond3d's forums that claim that Nintendo chose NEC's uPD488170L memory banks for their motherboard. These chips implement a technology called 'Rambus Signaling Logic', which doubles the transfer rate. This may explain why some sources state the 'effective' rate is 500 MHz.
 
@@ -369,7 +369,7 @@ The 64DD attached to the console.
 {{% inner_markdown %}}
 The magnetic medium is slower than cartridges, with transfer speeds of up to 1 MB/sec, but still faster than 4X CD-ROM readers. Disks are double-sided and operate at 'Constant Angular Velocity' (like the later [miniDVD]({{< ref "gamecube#medium" >}})). The smallest readable area is called 'block' and it's half of a concentric circle.
 
-There's no buffer memory included in this reader, so the bits read are stored in RDRAM for execution. Nintendo bundled the RAM expansion unit with the 64DD, so that compensates for the sudden need for more RAM (apart from standardising the extended RAM with 64DD games).
+There's no buffer memory included in this reader, so the bits read are stored in RDRAM for execution. Nintendo bundled the RAM expansion unit with the 64DD to compensate for the sudden need for more RAM (apart from standardising the extended RAM for all 64DD games).
 {{% /inner_markdown %}}
 
 {{< /float_group >}}
