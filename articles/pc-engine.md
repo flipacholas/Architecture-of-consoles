@@ -358,7 +358,7 @@ If you are curious about other expansions released, check out the catalogue link
 
 ## Anti-Piracy and Homebrew
 
-HuCards are region-locked, meaning that a PC-Engine game won't work on a TurboGrafx-16 (or vice versa) out-of-the-box. This is because the data lines are inverted on the American version. As you can guess, this isn't something a cheap adapter can't tackle. However, games may include routines to check the system's region.
+HuCards are region-locked, meaning that a PC-Engine game won't work on a TurboGrafx-16 (or vice versa) out-of-the-box. This is because the order of the data lines are inverted on the American version. As you can guess, this isn't something a cheap adapter can't tackle. However, games may include routines to check the system's region.
 
 On the other side, CD-ROM games are neither region-locked nor copy-protected, but bear in mind that they still need a System Card to bootstrap them (which is region-locked).
 
