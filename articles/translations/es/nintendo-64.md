@@ -70,7 +70,7 @@ Asumo que la velocidad del CPU-RCP bus es la velocidad de reloj del RCP o la de 
 
 El tipo de memoria RAM instalada en la placa se llama **Rambus DRAM** o 'RDRAM' para abreviar, este fue otro diseño que compitió con SDRAM para convertirse en el siguiente estándar. RDRAM está conectada en **serie** (donde las transferencias se hacen de un bit a la vez) mientras que SDRAM utiliza una **conexión paralela** (transfiere múltiples bits a la vez)..
 
-La latencia de la RDRAM es directamente proporcional al número de bancos instalados, por lo que en este caso, con la cantidad de RAM que tiene este sistema, la latencia resultante **es importante** (un post en el foro beyond3d menciona que es alrededor de **640ns**). Aunque esto es compensado con una alta velocidad de reloj de **250 MHz** (~2.6 veces más rápida que la CPU) aplicada a los bancos de memoria. Nintendo afirma que RDRAM puede proveer una transferencia de datos de alta velocidad a 500MB por segundo para leer o escribir datos consecutivos'.
+La latencia de la RDRAM es directamente proporcional al número de bancos instalados, por lo que en este caso, con la cantidad de RAM que tiene este sistema, la latencia resultante **es importante** (un post en el foro beyond3d menciona que es alrededor de **640ns**). Aunque esto es compensado con una alta velocidad de reloj de **250 MHz** (~2.6 veces más rápida que la CPU) aplicada a los bancos de memoria. Nintendo afirma que RDRAM puede proveer una transferencia de datos de alta velocidad a 500 MB por segundo para leer o escribir datos consecutivos.
 
 Además, hay otro debate en los foros de beyond3d que afirma que Nintendo escogió los bancos de memoria uPD488170L de NEC por su placa base. Estos chips utilizan una tecnología denominada 'Rambus Signaling Logic' que duplica la tasa de transferencia. Esto puede explicar porque algunas fuentes declaran que la tasa 'efectiva' es 500 MHz
 
@@ -366,7 +366,7 @@ El 64DD conectada a la consola.
 {{% inner_markdown %}}
 El medio magnético es más lento que los cartuchos, con velocidades de transferencia de hasta 1 MB/seg, aunque más rápidos que los lectores de 4X CD-ROM. Los discos so de doble-cara y operan a una 'Velocidad Angular Constante' (como la posterior [miniDVD]({{< ref path="gamecube#medium" lang="en" >}})). El área lejible más pequeña se llama 'block' y es la mitad de un círculo concéntrico.
 
-El lector no incluye un búfer de memoria, así que los bits leídos son almacenados en RDRAM para ejecución. Nintendo incluyó la unidad de expansión de RAM con la 64DD, por lo que compensa la necesidad de más RAM (además de estandarizar la RAM extendida con juegos 64DD).
+El lector no incluye un búfer de memoria, así que los bits leídos son almacenados en RDRAM para ejecución. Nintendo incluyó la unidad de expansión de RAM con la 64DD, por lo que compensa la necesidad de más RAM (además de estandarizar la disponibilidad de RAM extendida para todos los juegos de la 64DD).
 {{% /inner_markdown %}}
 
 {{< /float_group >}}
