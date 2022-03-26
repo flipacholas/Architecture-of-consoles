@@ -54,7 +54,7 @@ Lastly, the Wiimote also includes **16 KB of EEPROM** to store user data and a *
 Nintendo shipped this system with another controller to be used on the opposite hand, the **Nunchuk**, this one comes with its own accelerometer, joystick and two buttons. It's connected to a 6-pin proprietary port on the Wiimote.
 
 {{< figure_img src="controllers/both.jpg" alt="Wiimote and Nunchuk" class="centered-container" >}}
-Nunchuck and Wiimote, respectively
+Nunchuk and Wiimote, respectively
 {{< /figure_img >}}
 
 Other accessories were also built for this port, each one provided different types of input.
