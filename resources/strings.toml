@@ -109,7 +109,7 @@ other = 'As always, this article is available on <a href="{{ .github }}">Github<
 other = "Stay updated"
 
 [subscribe_content]
-other = "Get an email when a new article is out, you can unsubscribe at any time. I use Mailchimp to handle this."
+other = 'I post updates on my <a href="{{ . }}">Twitter profile</a>, but you can also get an email when a new article is out. You can unsubscribe at any time, I use Mailchimp to handle this.'
 
 # Consoles (List)
 

@@ -280,7 +280,7 @@ Register combiners are programmable in a similar nature to the [Texture Environm
 {{< /tab >}}
 
 {{< tab name="Post-processing" >}}
-{{< figure_img float="true" src="pipeline/postprocessing.png" alt="Xbox Live" >}}
+{{< figure_img float="true" src="pipeline/postprocessing.png" alt="Post-processing stage" >}}
 Post-processing stage
 {{< /figure_img >}}
 
@@ -308,7 +308,7 @@ Complex animation achieved by vertex program
   {{< tab_figure_video name="Pixel Shader" src="fragment" >}}
 Different texture effects achieved by pixel shaders
   {{< /tab_figure_video >}}
-  {{< figcaption group="true" >}}Chameleon (2001), a demo developed by Nvidia to showcase GeForce3's shaders{{< /figcaption >}}
+  {{< figcaption group="true" >}}ChameleonMark (2002), a demo developed by Nvidia to showcase GeForce3's shaders{{< /figcaption >}}
 {{< /tabs >}}
 
 {{% inner_markdown %}}

@@ -28,7 +28,7 @@ aliases: [/projects/consoles/game-boy-advance/]
 
 The internal design of the Game Boy Advance is quite impressive for a portable console that runs on two AA batteries.
 
-This console will carry on using Nintendo's *signature* GPU. Additionally, it will introduce a relatively new CPU from a UK company that will surge in popularity in the years to come.
+This console will carry on using Nintendo's *signature* GPU. Additionally, it will introduce a relatively new CPU from a British company that will surge in popularity in the years to come.
 
 ---
 
@@ -71,7 +71,7 @@ Usable memory is distributed across the following locations (ordered from fastes
 - **IWRAM** (Internal WRAM) → 32-bit with 32 KB: Useful for storing ARM instructions.
 - **VRAM** (Video RAM) → 16-bit with 96 KB: While this block is dedicated to graphics data (explained in the next section of this article), it's still found in the CPU's memory map, so programmers can store other data if IWRAM is not enough.
 - **EWRAM** (External WRAM) → 16-bit with 256 KB: A separate chip next to CPU AGB. It's optimal for storing Thumb-only instructions and data in small chunks. On the other side, the chip can be up to six times slower to access compared to IWRAM.
-- **Game PAK ROM** → 16-bit with variable size: This is the place where the cartridge ROM is accessed. It has a very slow access rate so it's mirrored in the memory map to manage different access speeds. Additionally, Nintendo fitted a **Prefetch Buffer** that interfaces the cartridge to alleviate excessive stalling. This component independently caches continuous addresses when the CPU is not accessing the cartridge.
+- **Game PAK ROM** → 16-bit with variable size: This is the place where the cartridge ROM is accessed. While it may provide one of the slowest rates, it's also mirrored in the memory map to manage different access speeds. Additionally, Nintendo fitted a **Prefetch Buffer** that interfaces the cartridge to alleviate excessive stalling. This component independently caches continuous addresses when the CPU is not accessing the cartridge, it can hold up to eight 16-bit words.
   - In practice, however, the CPU will rarely let the Prefetch Buffer do its job. Since by default it will keep fetching instructions from the cartridge to continue execution (hence why IWRAM and EWRAM are so critical).
 - **Game PAK RAM** → 8-bit with variable size: This is the place where the cartridge RAM (SRAM or Flash Memory) is accessed.
   - This is strictly an 8-bit bus (the CPU will see 'garbage' in the unused bits) and for this reason, Nintendo states that it can only be operated through their libraries.
