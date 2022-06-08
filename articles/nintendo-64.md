@@ -315,6 +315,22 @@ All in all, those functions are critical for organising audio, video and game lo
 
 The kernel is automatically embedded by using Nintendo's libraries. Additionally, if programmers decide not to include one of the libraries, the respective portion of the kernel is stripped to avoid cartridge space being wasted.
 
+### Boot process
+
+Unlike previous cartridge-based systems, the Nintendo 64 follows a sophisticated boot process to prepare all of its hardware before the actual game runs. This is executed as soon as the user turns on the console and it's very similar to its CD-based contemporaries bundling a [BIOS]({{< ref "playstation#operating-system" >}}) or [IPL]({{< ref "sega-saturn#operating-system" >}}).
+
+These routines are also referred to as **Initial Program Load** (IPL) and work as follows:
+
+1. The user turns on the console.
+2. The **PIF-NUS** (a separate chip in the motherboard) subdues the main CPU into an infinite reset until PIF-NUS validates the CIC chip found in the game cartridge.
+    - The PIF-NUS and the CIC chip are further explained in the I/O and Anti-piracy section, respectively.
+2. If the verification process finished successfully, the CPU starts execution at `0xBFC00000`. This address points to an **internal ROM** within PIF-NUS, particularly, the first boot stage called **IPL1**.
+3. IPL1 initialises part of the hardware (CPU registers, the parallel interface and the RCP) and copies the next stage (**IPL2**) from the internal ROM to the RSP's memory for faster execution. Then, it redirects execution there.
+4. IPL2 initialises RDRAM and CPU cache. Afterwards, it copies the first megabyte of the game ROM into RDRAM. This block contains the next boot stage called **IPL3**.
+5. IPL3 starts the operating system (i.e virtual memory and exception vectors), sets up the program state (i.e. stack pointer) and finally proceeds to call the starting routine of the game.
+
+As IPL3 is found within the game cartridge, not every game bundles the same code. Presumably, the variants are correlated to a different CIC chip found in the cartridge.
+
 ---
 
 ## I/O
@@ -327,7 +343,7 @@ The Nintendo 64 controller includes a connector used to plug-in accessories. Exa
 - The **Controller Pak**: Another medium (similar to Sony's *Memory Card*) used to store save data and share it with other consoles.
 - The **Rumble Pak**: Contains a small motor to provide haptic feedback, useful for 'immersing' the player in certain games.
 
-All accessories connected to the controller are managed by the **Peripheral Interface** (PIF), an obscure block that also handles security. The RCP communicates to the PIF using a 'really slow' (*words from the programming manual*) **Serial bus**.
+All accessories connected to the controller are managed by the **PIF-NUS**, an obscure block that also handles security. The RCP communicates to the PIF using a 'really slow' (words from the programming manual) **Serial bus**.
 
 ---
 
@@ -376,7 +392,7 @@ There's no buffer memory included in this reader, so the bits read are stored in
 
 Furthermore, parts of the disk are re-writable to enable storing saves, the amount of writable area depends on the type of disk used (Nintendo provided seven types). On the software side, game data is structured with a filesystem called 'Multi File System' (MFS) provided by Nintendo with their SDK. Games can either access disk data using the file system or on a block-to-block basis, the latter relies on another library called 'Leo' for low-level functions.
 
-The Disk drive also houses an internal ROM (referred to as 'DDROM') that stores code the N64 executes to bootstrap the disk and show the splash animation, this is called 'Initial Program Loader' (IPL). The ROM also stores fonts (Latin and Kanji) and some sounds. This ROM is only found on retail units (development units relied on external programs loaded through the dev kit).
+The Disk drive also houses an internal ROM (referred to as 'DDROM') that stores code the N64 executes to bootstrap the disk and show the splash animation. This works as a new IPL stage added on top of the traditional boot process. The ROM also stores fonts (Latin and Kanji) and some sounds. The ROM is only found on retail units, as development units relied on external programs loaded through the dev kit.
 
 ---
 
