@@ -18,9 +18,11 @@
 - id: 6
   ordinal: 6th
   description: Most of the graphics limitations from the previous generation are no more. Portable consoles start to resemble familiar systems.
-  cpu: Superscalar architectures and SIMD instructions  
+  cpu: Superscalar architectures, SIMD instructions and L2 cache 
   gpu: Programmable pixel pipelines and anisotropic filters
 
 - id: 7
   ordinal: 7th
-  description: Consoles have become multimedia platforms, this machines are now more capable than just playing games, which is why security is now a critical factor.
+  description: Consoles have evolved into supercomputers and multimedia hubs. These machines are now more capable than just playing games, which is why security is now a critical factor.
+  cpu: Thread level parallelism and symmetrical multi-core architectures
+  gpu: Unified shader model and HDR rendering
