@@ -467,7 +467,7 @@ The ethernet transceiver supplied supports transfer rates of up to 100 Mbps (12.
 
 ### Interactive accessories
 
-The new version of their controller, the **DualShock 2**, is a slightly improved version of DualShock. During the days of the original Playstation, multiple revisions of the original controller were released featuring different features (and also bringing fragmentation to the market). Now, for the benefit of developers, there was a single controller that unified all the previous properties.
+The new version of their controller, the **DualShock 2**, is a slightly improved version of DualShock.
 
 {{< float_group >}}
 {{< tabs nested="true" float="true" >}}
@@ -480,24 +480,19 @@ Official Memory Card (8 MB model)
 {{< /tabs >}}
 
 {{% inner_markdown %}}
-Compared to the DualShock, the new version featured a slight redesign, it included two analogue sticks and two vibration motors for a richer input and feedback, respectively.
+During the days of the original Playstation, multiple revisions of the original controller were released featuring different features (and also bringing fragmentation to the market). Now, for the benefit of developers, there was a single controller that unified all the previous properties.
 
-Next to the controller slot is the **Memory Card slot** which is compatible with PS1 and PS2 cards. The new cards embed extra circuitry for security purposes referred as **MagicGate**, which enable games to block data transfers between different memory cards.
+Compared to the DualShock, the new version featured a slight redesign, it included two analogue sticks and two vibration motors for a richer input and feedback, respectively.
 {{% /inner_markdown %}}
 {{< /float_group >}}
+
+Next to the controller slot is the **Memory Card slot** which is compatible with PS1 and PS2 cards. The new cards embed extra circuitry for security purposes referred as **MagicGate**, which enable games to block data transfers between different memory cards.
 
 ---
 
 ## Operating System
 
-There's a **4 MB ROM** chip fitted on the motherboard that stores a great amount of code used to load a shell menu that the users can interact with, but it also provides system calls to simplify I/O access, games rely on this. 
-
-Upon boot, the CPU will execute instructions in ROM which in turn will:
-1. Initialise the hardware.
-2. Load a **Kernel** into RAM, this will handle system calls and also provide multi-threading support (cooperative and priority-based).
-3. Start the IOP processor and send it **modules**, these will enable the IOP to handle the hardware of this console. At the end, the IOP will be put in a 'waiting for command' state.
-    - The use of modules allows Sony to release new hardware revisions of the PS2 without changing the IOP, lowering production costs.
-3. Load 'OSDSYS', the program that displays the splash animation and the shell menu.
+There's a **4 MB ROM** chip fitted on the motherboard that stores a great amount of code used to load a shell menu that the users can interact with, but it also provides system calls to simplify I/O access, games rely on this.
 
 {{< tabs nested="true" class="centered-container" >}}
   {{< tab_figure_img name="Boot animation" active="true" src="bios/animated.jpg" alt="PS2 Splash screen boot animation" >}}
@@ -508,12 +503,18 @@ PS2 logo showing after a valid PS2 game is inserted
   {{< /tab_figure_img >}}
 {{< /tabs >}}
 
+Upon boot, the CPU will execute instructions in ROM which in turn will:
+1. Initialise the hardware.
+2. Load a **Kernel** into RAM, this will handle system calls and also provide multi-threading support (cooperative and priority-based).
+3. Start the IOP processor and send it **modules**, these will enable the IOP to handle the hardware of this console. At the end, the IOP will be put in a 'waiting for command' state.
+    - The use of modules allows Sony to release new hardware revisions of the PS2 without changing the IOP, lowering production costs.
+3. Load 'OSDSYS', the program that displays the splash animation and the shell menu.
+
 ### Interactive shell
 
 The functionality of the PS2 shell is pretty much in pace with the other 6th gen. consoles.
 
-{{< float_group >}}
-{{< tabs nested="true" float="true" >}}
+{{< tabs nested="true" class="centered-container" >}}
   {{< tab_figure_img name="Menu" active="true" src="bios/menu.jpg" alt="PS2 menu" >}}
 Initial menu.  
 Appears when there's no disc inserted.
@@ -534,11 +535,7 @@ System Configuration
   {{< /tab_figure_img >}}
 {{< /tabs >}}
 
-{{% inner_markdown %}}
 The shell features some practical sections which allow to perform day-to-day operations, like manipulating the saves of the memory card. It also provides some exceptional options, like changing the current video mode.
-{{% /inner_markdown %}}
-
-{{< /float_group >}}
 
 ---
 
