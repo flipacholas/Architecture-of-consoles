@@ -1442,7 +1442,7 @@ And this is pretty much how the hypervisor got hijacked by arbitrary code. A com
 
 ### Protecting King Kong
 
-The Kink Kong exploit was a huge step for the Homebrew scene. I’m not sure if you noticed, but no encryption keys were needed whatsoever (*so much for having a strong security system in place…*).
+The King Kong exploit was a huge step for the Homebrew scene. I’m not sure if you noticed, but no encryption keys were needed whatsoever (*so much for having a strong security system in place…*).
 
 Be as it may, **Microsoft was already made aware of it** and subsequently patched it in January 2007 (one month before the report was published). Nonetheless, efforts continued in finding similar exploits for updated consoles. Additionally, hackers could now obtain an outdated console and make use of the King Kong exploit to expand their research.
 
@@ -1496,7 +1496,7 @@ All of this led to a very important milestone: it was now possible to **boot arb
 
 As homebrew development kept evolving and the King Kong method became too cumbersome, the focus shifted to finding new techniques for automating the hypervisor exploit, and the results were astonishing, to say the least.
 
-{{< tabs class="" float="false" h5="false" >}}{{< tab name="A suspicius update" active="true" >}}{{% inner_markdown %}}
+{{< tabs class="" float="false" h5="false" >}}{{< tab name="A suspicious update" active="true" >}}{{% inner_markdown %}}
 
 Two years after the King Kong exploit publication, in August 2009, Microsoft released an unexpected software update `2.0.8498` that, once again, overwrote the CB (second-stage bootloader) and increased its respective eFuse counter {{< cite "anti_piracy-dangerous" >}}. Not only this update surprisingly writes over crucial parts of the system (with the risk of breaking it irreparably), but it also caught the attention of many hackers to find out what was Microsoft trying to patch.
 
