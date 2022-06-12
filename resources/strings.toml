@@ -82,17 +82,11 @@ other = "Switch to classic edition"
 [about_edition]
 other = "About this edition"
 
-[book_edition]
-other = "Book edition"
-
 [last_updated]
 other = "Last updated: {{ . }}"
 
 [classic_edition]
 other = "Classic edition"
-
-[book_intro]
-other = 'The ‘book’ edition is a ready-to-print version of the <a href="{{ . }}">online article</a>, it‘s been styled differently to take advantage of the exclusive capabilities of PDF documents.'
 
 [classic_intro]
 other = 'The ‘classic’ edition is an alternative version to the <a href="{{ . }}">‘modern’ counterpart</a>. It doesn‘t require Javascript, state-of-the-art CSS or convoluted HTML to work, which makes it ideal for eBooks users, legacy internet browsers or readers who use accessibility tools.'
