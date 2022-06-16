@@ -68,7 +68,7 @@ Finally, there are **8 KB of RAM** available for general purpose.
 
 One thing I didn't mention *yet* is that NEC also added a **Memory Management Unit** or 'MMU' next to the CPU, allowing to handle **21-bit addresses** (remember the original 6502 only has 16-bit addresses). Thus, the amount of memory that can be accessed raises from 64 KB to **2 MB**.
 
-This MMU is very different from any modern-day MMU. The one found in the PC Engine is composed of **eight 8-bit registers** (called **Mapping Register** or 'MPR') which are combined with the CPU's 16 address lines to form a 21-bit address bus.
+This MMU is very different from any modern-day MMU, I would say the former is closer to a [mapper]({{< ref "nes#going-beyond-existing-capabilities">}}). Having said that, the MMU found in the PC Engine is composed of **eight 8-bit registers** (called **Mapping Register** or 'MPR') which are combined with the CPU's 16 address lines to form a 21-bit address bus.
 
 {{< figure_img src="mmu.png" alt="MMU Address Diagram" class="centered-container" >}}
 Addressing approach of the MMU
@@ -76,10 +76,10 @@ Addressing approach of the MMU
 
 This works as follows:
 1. The CPU can read from and/or write to any MPR using the special `TAM` and `TMA` instructions, respectively.
-2. When physical memory is accessed, the MMU reserves the address lines A13-A16 from the CPU to select one of the eight MPRs.
-3. The MMU then combines the CPU lines A0-A12 with the 8-bit value of the selected MPR to set A13-A20. Resulting in a 21-bit address.
+2. When physical memory is accessed, the MMU reserves the address lines A13-A15 from the CPU to select one of the eight MPRs.
+3. The final address is derived by combining the CPU lines (placed at A0-A12) with the MMU lines (placed at A13-A20, where the output is the 8-bit value of the selected MPR), resulting in a 21-bit address.
 
-Consequently, this MMU groups physical memory in 8 KB pages (12 CPU lines = 8 KB pages), which is the amount of memory the CPU can access without swapping out the MPR nor altering its value.
+Consequently, this MMU groups physical memory in 8 KB pages (13 CPU lines = 8 KB pages), which is the amount of memory the CPU can access without swapping out the MPR nor altering its value.
 
 Anyway, don't overwhelm yourself if you have trouble understanding it (it's just an unconventional modus operandi some may find interesting).
 
