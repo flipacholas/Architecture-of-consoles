@@ -1616,7 +1616,7 @@ For one reason or another, Team Xecuter didn’t provide any documentation to re
 
 #### The endgame
 
-With the approach of the Xbox 360’s successor, Microsoft took one last breath and shipped a redesigned version of the console called ‘E’, and within it, another motherboard revision called **Winchester**. The latter finally removed the POST signals and filtered the CPU `RESET` line from *external disturbance* {{< cite "anti_piracy-hack_win" >}}, which rendered the RGH hack, after three years since its discovery, obsolete.
+With the approach of the Xbox 360’s successor, Microsoft took one last breath and shipped a redesigned version of the console called ‘E’, and within it, another motherboard revision called **Winchester**. The latter finally disabled the POST and PLL signals and filtered the CPU `RESET` line from *external disturbance* {{< cite "anti_piracy-hack_win" >}} when it was retail fused, which rendered the RGH hack, after three years since its discovery, obsolete.
 
 However, for the compatible motherboards (which are still found in abundance), only *wonderful things* awaited. Apart from the mentioned RGH variants, there was still a golden discovery to be uncovered. Fast forward to November 2021, 15432 surprised the community again by publishing **RGH 3.0**, a universal RGH variant to rule them all. Behind the scenes, the new technique is an evolution of RGH 1.2 V2 that **doesn’t require a glitcher anymore** {{< cite "anti_piracy-rgh3" >}}. This was done by implementing the glitching stage into the SMC, which now only needs two wires soldered on the motherboard (in particular, `CPU_DBG1_POST1` and `CPU_PLL_BYPASS`) to execute the hack.
 
