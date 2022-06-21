@@ -124,13 +124,13 @@ In a turn of events, IBM agreed to share its IP and to design a new multi-core p
 >
 > – <cite>David Shippy, chief architect of the [Power Processing Unit]({{< ref "playstation-3#the-powerpc-processing-unit" >}}) (PPU)</cite>
 
-Ironically, as of 2022, IBM’s PowerPC chips have vanished from both computers and video consoles, maybe this set a bad precedent and greatly affected IBM’s trust in future businesses? I’m afraid I don’t know the answer to that.
+Ironically, as of 2022, IBM’s PowerPC chips have vanished from both desktop computers and video consoles, maybe this set a bad precedent and greatly affected IBM’s trust in future businesses? I’m afraid I don’t know the answer to that.
 
 To sum it up, IBM signed an agreement with Sony and Toshiba to develop Cell in 2001. Two years later, in 2003, IBM agreed to supply Microsoft with a new low-powered multi-core CPU. Microsoft’s CPU will be called **Xenon** and will inherit part of Cell’s technology, with extra input from Microsoft (focusing on multi-core homogenous computing and bespoke security). Also, while IBM would brand Cell with its ‘BladeCenter’ line of servers, Xenon could only be fitted on an Xbox 360 motherboard.
 
 ### Cell’s half-sibling
 
-Now that we positioned Microsoft and IBM in the map, let’s talk about the new CPU. This is how Xenon materialised at the end of the Xbox 360 project:
+Now that we’ve positioned Microsoft and IBM in the map, let’s talk about the new CPU. This is how Xenon materialised at the end of the Xbox 360 project:
 
 {{< tabs nested="true" centered="true" float="false" class="" figure="false" >}}
 
@@ -157,7 +157,7 @@ Xenon chip, surrounded by an army of decoupling capacitors.
 
 {{% inner_markdown %}}
 
-By doing so, you’ll perceive that Xenon takes a more conservative approach than Cell. If we take another look at the previous diagram of Xenon, you can notice that the latter is equipped with the famous [**PowerPC Processing Elements**]({{< ref "playstation-3#inside-cell-the-leader" >}}) (PPEs), which is also the most important piece of Cell. However, Xenon’s is now equiped with **three** of them. Additionally, **the [Synergic Processors Units (SPUs)]({{< ref "playstation-3#inside-cell-the-assistants" >}}) are no more**.
+By doing so, you’ll perceive that Xenon takes a more conservative approach than Cell. If we take another look at the previous diagram of Xenon, you can notice that the latter is equipped with the famous [**PowerPC Processing Elements**]({{< ref "playstation-3#inside-cell-the-leader" >}}) (PPEs), which is also the most important piece of Cell. However, Xenon’s is now equipped with **three** of them. Additionally, **the [Synergic Processors Units (SPUs)]({{< ref "playstation-3#inside-cell-the-assistants" >}}) are no more**.
 
 After all, Microsoft didn’t want processors of very different nature squashed in their CPU. They instructed IBM to compose three powerful cores and enhance them with the ingredients game developers would expect to find. With this approach, IBM and Microsoft were also able to add non-standard features without disrupting the traditional *modus operandi* of developers.
 
@@ -347,7 +347,9 @@ All rendered at their maximum resolution (1280x720 pixels).
 
 {{< /tabs >}}
 
-The graphics chip is designed and manufactured by no other than **ATI**, [Nvidia]({{< ref "playstation-3#graphics" >}})‘s direct rival. To put it into perspective, ATI (originally named Artx) was set up by former employers of SGI that developed the Nintendo 64’s graphics chip, the [Reality Co-Processor]({{< ref "nintendo-64#graphics" >}}). Afterwards, Nintendo hired them again to produce the Gamecube’s [Flipper]({{< ref "gamecube#graphics" >}}) chip, and by then they were competing in the PC arena with their ’Radeon’ graphics cards. Fast forward to 2005, Nvidia (now supplying Sony) was now facing ATI again in the console market. Ah, *good old competition*, one can only wonder what new innovative product will come out of it.
+The graphics chip is designed and manufactured by no other than **ATI**, [Nvidia]({{< ref "playstation-3#graphics" >}})‘s direct rival. To put it into perspective, a new company called ’Artx’ was set up by former employers of SGI that developed the Nintendo 64’s graphics chip, the [Reality Co-Processor]({{< ref "nintendo-64#graphics" >}}). Afterwards, Nintendo hired them again to produce the Gamecube’s [Flipper]({{< ref "gamecube#graphics" >}}) chip… at the same time ATI was in the process of acquiring them {{< cite "graphics-ati_merger" >}}. By then, ATI was competing in the PC arena with their ‘ATI Rage’ graphics cards and will soon inherit Flipper’s engineers. Fast forward to 2005, Nvidia (now supplying Sony) was now facing ATI again in the console market.
+
+*Good old competition*, one can only wonder what new innovative product will come out of it.
 
 ### Overview
 
@@ -456,7 +458,7 @@ Overview of the vertex stage. You’ll soon find that this stage and the pixel s
 
 {{% inner_markdown %}}
 
-Since the times of [Flipper]({{< ref "gamecube#graphics" >}}) (or even the [RCP]({{< ref "nintendo-64#graphics" >}}), as it shared its core team members), ATI maintained the initiative of providing a geometry block to accelerate vertex operations. With Xenos, it is now fully programmable using Direct3D’s **High-Level Shader Language** (HLSL), which is similar to C but used implementing vertex shaders without the need for assembly, although the latter is still possible.
+Since the times of [Flipper]({{< ref "gamecube#graphics" >}}) (or even the [RCP]({{< ref "nintendo-64#graphics" >}}), as it shared its core team members), ATI maintained the initiative of providing a geometry block to accelerate vertex operations. With Xenos, it is now fully programmable using Direct3D’s **High-Level Shader Language** (HLSL), which is similar to C but used for implementing vertex shaders without needing assembly, although the latter is still possible.
 
 Both Xenos and [RSX]({{< ref "playstation-3#tab-8-2-vertex-shader" >}}) implement the Vertex Shader Model 3.0 (`vs_3_0`) specification, which outlines a common set of capabilities and limitations. This includes providing **512 or more slots** for instructions, **branching opcodes** and support for **texture fetching**, among others. The difference, however, is that Playstation 3 programmers must use Nvidia’s CG compiler (once a collaborative work with Microsoft’s HLSL) while Xenos developers rely on Microsoft’s toolkit instead, and thus use Direct3D’s HLSL compiler.
 
@@ -501,7 +503,7 @@ To execute the pixel shader, Xenos re-uses the same components of the vertex pip
 That being said, the pixel stage works as follows:
 
 1.  The **Sequencer** loads the pixel shader program and forwards pixels to the interpolator.
-2.  The **Shader Pipe interpolator** interpolates colours between four vertices (creates intermediate values to fill in the gap between two extremes) that will be used by the pixel shader. It can generate 16 colours per cycle.
+2.  The **Shader Pipe interpolator** interpolates colours between four vertices (creates intermediate values to fill in the gap between two extremes) that will be used by the pixel shader. It can generate 16 colours per cycle. 
 3.  **32 KB of Texture cache** fetches and decompresses textures from main RAM, then, the **Texture pipes** send up to 16 texels per cycle to the shader pipes. The texture pipes can instantly apply bilinear filtering, but they also offer trilinear and anisotropic filtering at the cost of extra cycles.
 4.  The **3 previous Shader pipes** are now used to execute the pixel shader, each pipe operates vertex made of 16 2x2 pixel blocks coming from the interpolator. The ALUs can process 32-bit floating-point numbers (IEEE 754 compliant) without penalties.
 5.  The **Shader Export** and **Backend Central** forward the results to memory. The latter outputs two blocks of 2x2 pixels (8 pixels in total) per cycle. Other kinds of data that can be exported include new Z-values for the Z-buffer and arbitrary data to main RAM.
@@ -517,7 +519,7 @@ Overview of pixel operations available.
 
 This is as far as it goes for rendering, but one thing we haven’t explored yet is how those 10 MB of EDRAM benefit all of this. Well, this chip is very special, because it contains internal logic to perform automatic **Multisample Antialiasing** (MSAA) along with **Depth and Stencil testing**. Its internal bandwidth (between its internal logic and internal memory) provides an absurd **256 GB/second**, which makes it very attractive for storing intermediate buffers (as opposed to storing them in main RAM).
 
-The only drawback is that 10 MB **is not enough** for storing large buffers, especially those needed for rendering high-definition frames (1280x720 pixels wide with 2x MSAA enabled), let alone 1920x1080 frames. But fear not, as ATI supports **tiled rendering** (the same featured in the [Dreamcast]({{< ref "dreamcast#graphics" >}})!). This enables to render portions of the screen, store the results in EDRAM (for performance reasons) and, finally, reconstruct the tiles in main RAM to form the final frame. Tiled rendering became critical that Microsoft took a step forward and devised **Predicated Tiling** {{< cite "graphics-tiling" >}}, a function in Direct3D that automatically sets up and optimises the rendering pipeline specifically for tiled rendering. This prevents developers from manually programming each pipeline stage to handle tiles.
+The only drawback is that 10 MB **is not enough** for storing large buffers, especially those needed for rendering high-definition frames (1280x720 pixels wide with 2x MSAA enabled), let alone 1920x1080 frames. But fear not, as ATI supports **tiled rendering** (the same featured in the [Dreamcast]({{< ref "dreamcast#graphics" >}})!). This enables to render portions of the screen, store the results in EDRAM (for performance reasons) and, finally, reconstruct the tiles in main RAM to form the final frame. Tiled rendering became so critical that Microsoft took a step forward and devised **Predicated Tiling** {{< cite "graphics-tiling" >}}, a function in Direct3D that automatically sets up and optimises the rendering pipeline specifically for tiled rendering. This prevents developers from manually programming each pipeline stage to handle tiles.
 
 Thanks to the new bandwidth achieved, game designers may push for a level of quality that otherwise would’ve been unfeasible with a traditional rendering system. This includes applying extended antialiasing methods (**4x MSSA**) or even **High-dynamic-range (HDR) rendering**. You see, HDR requires 64-bit pixels, where each channel is encoded as a 16-bit `float`. This has always been very expensive in terms of bandwidth, but in exchange, it provides the right precision to obtain realistic lighting and colour effects, something the Xbox 360 can now enjoy.
 
@@ -550,7 +552,7 @@ Unlike the Playstation 3, which arrived a year later, the release of the Xbox 36
 {{< float_group >}}
 
 {{< figure_img src="photos/xenon_zephyr_back.jpg" full_src="" float="true" class="" img_class="" add_text_overlay="false" >}}
-Two different revisions of the Xbox 360 stacked together, the top one is a Zephyr and the bottom revision is a Xenon. Notice that the Zephyr model adds the HDMI connectior, while Xenon only has the analogue A/V socket.
+Two different revisions of the Xbox 360 stacked together, the top one is a Zephyr and the bottom revision is a Xenon. Notice that the Zephyr model adds the HDMI connector, while Xenon only has the analogue A/V socket.
 {{< /figure_img >}}
 
 {{% inner_markdown %}}
@@ -561,7 +563,7 @@ Later on, in 2006, the follow-up motherboard revision called **Zephyr** ultimate
 
 {{% /inner_markdown %}}{{< /float_group >}}
 
-As outdated as this may seem today, Microsoft still required game developers to consider their games being played on CRT screens, which were prone to overscan. Thus, games couldn’t place any important indicators within the [Danger Zone]({{< ref "nes#constructing-the-frame" >}}).
+As outdated as this may seem today, Microsoft still required developers to consider their games being played on CRT screens, which are prone to overscan. Thus, games couldn’t place any important indicators within the [Danger Zone]({{< ref "nes#constructing-the-frame" >}}).
 
 #### Short-lived features
 
@@ -575,7 +577,7 @@ Even though the video encoder can broadcast signals in a multitude of formats, i
 - The general consensus from 2005 predicted that most consumer TVs will soon be equipped with high-resolution and widescreen screens.
 - Since it would take time to master Xenos’ capabilities, launch titles were assumed to not use all of the GPU resources. Thus, games painlessly added HD support to compensate.
 
-With the same rationale, why is not 1080p the focus instead? Well, 1080p would put a significantly higher workload on Xenos, which would limit effects like anti-aliasing. Instead, Microsoft suggested developers should render at 720p and direct the internal video scaler to upscale it to 1080p, if required. To assist with this, Microsoft released another software update in October 2006 to enable 1080p (initially, only 1080i had been available).
+With the same rationale, why is not 1080p the focus instead? Well, 1080p puts a significantly higher workload on Xenos, which limits effects like anti-aliasing. Instead, Microsoft suggested developers should render at 720p and direct the internal video scaler to upscale it to 1080p, if required. To assist with this, Microsoft released another software update in October 2006 to enable 1080p (initially, only 1080i had been available).
 
 ---
 
@@ -583,7 +585,7 @@ With the same rationale, why is not 1080p the focus instead? Well, 1080p would p
 
 As CPUs evolve to become multi-core jack of all trades, the grounds for housing dedicated audio hardware slowly dissipates. In the end, Microsoft decided that the Xbox 360’s audio department would be the responsibility of the CPU, and as such, the **audio pipeline is implemented through software**. So, the operating system provides routines which games access through the official SDK. This brings in new advantages, as the general-purpose capabilities of CPUs are not restricted to a fixed set of audio functions.
 
-A year later, the PS3 will [follow suit]({{< ref "playstation-3#audio" >}}) and cement this practice throughout the video game industry.
+A year later, the PS3 will [follow suit]({{< ref "playstation-3#audio" >}}), and thus cement this practice across the video game industry.
 
 ### The hidden audio chip
 
@@ -659,7 +661,7 @@ The Southbridge communicates to Xenos using the **PCI Express** protocol, compos
 
 ### Clever L2 access
 
-To keep up with the demand, the Southbridge can write to main RAM. Consequently, there needs to be a mechanism in place to maintain data coherence between the CPU’s caches and the changes done by the Southbridge. Hence, the latter is equipped with an **automatic trigger** that flushes the CPU’s L1 and L2 if, and only if, the memory address the Southbridge wrote to had been cached by the CPU. Nevertheless, the CPU will have to cache that memory again, though programmers won’t need to worry about manually synchronising the CPU caches every time the Southbridge fiddles with main RAM.
+To keep up with the demand, the **Southbridge can write to main RAM**. Consequently, there needs to be a mechanism in place to maintain data coherence between the CPU’s caches and the changes done by the Southbridge. Hence, the latter is equipped with an **automatic trigger** that flushes the CPU’s L1 and L2 if, and only if, the memory address the Southbridge wrote to had been cached by the CPU. Nevertheless, the CPU will have to cache that memory again, though programmers won’t need to worry about manually synchronising the CPU caches every time the Southbridge fiddles with main RAM.
 
 ### The core of Southbridge
 
@@ -669,7 +671,7 @@ You’ve seen before that the abundance of services in 7th generation consoles h
 Diagram of the Southbridge’s connections.
 {{< /figure_img >}}
 
-The Xbox 360 is no stranger to this. Hidden within the Southbridge chip there’s a component called **System Management Controller** (SMC) and, like [the Wii]({{< ref "wii#the-hidden-co-processor" >}}), it draws current even on standby mode. The SMC abstracts lots of I/O operations, including power management, real-time clock, temperature control, LED control and the infrared sensor {{< cite "io-smc" >}}. The CPU communicates to the SMC using a [FIFO command buffer]({{< ref "nintendo-ds#interconnection" >}}), though this task is restricted to the kernel only (more about it in the ‘Operating System’ section). So, neither the user nor the game can fiddle with it.
+The Xbox 360 is no stranger to this. Hidden within the Southbridge chip there’s a component called **System Management Controller** (SMC) and, like [the Wii]({{< ref "wii#the-hidden-co-processor" >}}), it draws current even on standby mode. The SMC abstracts lots of I/O operations, including power management, real-time clock, temperature control, LED control and the infrared sensor {{< cite "io-smc" >}}. The CPU communicates to the SMC using a [FIFO command buffer]({{< ref "nintendo-ds#interconnection" >}}), though this task is restricted to the Kernel only (more about it in the ‘Operating System’ section). So, neither the user nor the game can fiddle with it.
 
 Internally, the SMC is nothing more than a classic **Intel 8051** microcontroller with its own ROM and RAM {{< cite "anti_piracy-smc_hack" >}}. Upon getting power, it boots its internal program and proceeds to read from a separate NAND chip to fetch configuration files.
 
@@ -803,7 +805,7 @@ Since the Hypervisor focuses on bare-metal services, an extra layer of abstracti
 -   **Thread scheduling**: remember the previous paragraph about programming styles? Well, the thread scheduler is found here. Furthermore, the scheduler implements **preemptive multitasking** as its method for alternating between threads and avoiding jams.
     -   To balance performance across all running services, the scheduler applies some constraints. For instance, the fourth hardware thread is reserved for the audio pipeline and software downloads; and the second hardware thread is prioritised for concurrent file system operations.
 
-To work, the kernel **reserves 32 MB from main RAM** to allocate all its resources.
+To work, the kernel **reserves 32 MB from main RAM** to allocate all of its resources.
 
 {{% /inner_markdown %}}{{< /tab >}}{{< tab name="The User land" active="false" >}}{{% inner_markdown %}}
 
@@ -1102,7 +1104,7 @@ The Settings menu hasn't changed much.
 The same applies for the Storage menu.
 {{< /tab_figure_img >}}
 {{< tab_figure_img src="screenshots/metro/guide.jpg" full_src="" active="false" class="" name="Guide" float="false" add_text_overlay="false" >}}
-The guide menu got very few additions.
+It seems the minimalistic phase is here to stay.
 {{< /tab_figure_img >}}
 {{< figcaption >}}
 The ‘Metro’ dashboard. Screens are from {{< cite "operating_system-metro_dash" >}}.
@@ -1149,9 +1151,9 @@ All in all, the suite includes a variety of libraries and tools, for instance:
 -   Old but soon-to-be-replaced APIs like **DirectSound** which, as seen in further revisions of the XDK, was soon succeeded with **XAudio2**. The latter was developed to take advantage of the unique features of the Xbox 360 and to unify the syntax with Windows’s DirectX APIs.
 -   Other non-DirectX APIs like the **Natural User Interface** to operate Kinect; and **Xbox 360 Unified Storage** to abstract the large number of storage mediums available.
 
-Now, for the budget studios using XNA. Well, the latter was designed to facilitate **cross-platform** development for Windows XP and the Xbox 360 {{< cite "games-carter" >}}. XNA worked as a **wrapper of DirectX**, so low-level functions were abstracted by routines that work on both Windows and the Xbox 360. Though additional code is still needed to accommodate the small discrepancies between the two unequal platforms {{< cite "games-considerations" >}}, the platform still benefited many developers that were looking to port their games to the Xbox 360 without a lot of effort or cost. For those who are familiar with Windows’ development ecosystem, XNA is a successor of the old ‘Managed DirectX’ platform, which includes a subset of the **.NET Compact Framework** {{< cite "games-compact" >}}.
+Now, for the budget studios using XNA. Well, the latter was designed to facilitate **cross-platform** development for Windows XP and the Xbox 360 {{< cite "games-carter" >}}. XNA worked as a **wrapper of DirectX**, so low-level functions were abstracted by routines that work on both Windows and the Xbox 360. Even though additional code is still needed to accommodate the small discrepancies between the two unequal platforms {{< cite "games-considerations" >}}, the platform benefited many developers that were looking to port their games to the Xbox 360 without a lot of effort or cost. For those who are familiar with Windows’ development ecosystem, XNA is a successor of the old ‘Managed DirectX’ platform, which includes a subset of the **.NET Compact Framework** {{< cite "games-compact" >}}.
 
-Unfortunately, later years will see new versions of the XNA framework supporting new devices (like Windows Phone 7) but slowly distancing itself away from the now-obsolete Xbox 360 hardware, until Microsoft abandoned XNA altogether in 2013 {{< cite "games-xna_out" >}}.
+Later years will see new versions of the XNA framework supporting new devices (like Windows Phone 7) but slowly distancing itself away from the now-obsolete Xbox 360 hardware, until Microsoft abandoned XNA altogether in 2013 {{< cite "games-xna_out" >}}.
 
 As a final note, for homebrew developers, **libXenon** is a free third-party library that provides low-end access to the hardware without copyright restrictions {{< cite "games-libxenon" >}}, although its executables can only be run from a hacked Xbox 360 with signatures verification disabled.
 
@@ -1187,7 +1189,7 @@ Originally named **Xbox Live Marketplace**, this portal arrived in 2006 as a new
 
 Moreover, in another update, Microsoft promoted a dedicated section for indie developers, this was called ‘Xbox Live Community Games’ {{< cite "games-creators" >}} and separated those developers using the XNA platform from the big studios already possessing retail space.
 
-In the final years of the Xbox 360 and the consolidation of other media platforms (smartphones, smart TVs, Xbox one and online streaming), Microsoft rebranded part of the marketplace to offer content available to use from other devices (that weren’t necessarily an Xbox 360).
+In the final years of the Xbox 360 and the consolidation of other media platforms (smartphones, smart TVs, the Xbox One and online streaming), Microsoft rebranded part of the marketplace to offer content available to use from other devices (that weren’t necessarily an Xbox 360).
 
 {{% /inner_markdown %}}{{< /tab >}}{{< tab name="The Blu-ray competitor" active="false" >}}
 
@@ -1199,11 +1201,11 @@ The HD DVD player, released on November 2006
 
 Not so much related to games, but the film industry had an unusual influence on this console too (or maybe the other way around? *we’ll soon see*). As Microsoft imposed the DVD for games, the company was also pushing a new format that could compete with the Blu-Ray for space on the movie shelves. I’m talking about the **HD-DVD** which, conveniently enough, uses Microsoft-owned API for interactive features (menus and such).
 
-Thus, Microsoft’s goal lead to a separate accessory called **Xbox 360 HD DVD Player**, an external reader placed next to the console and requires its own power supply (so expect all the annoyances that come with it). Anyway, the reader connected through USB and shipped with an ‘HD DVD installation disc’ that installed an additional media player on the console. Although its behaviour differs depending on the Dashboard version: on the Blades Dashboard, the HD-DVD player integrated itself with the UI {{< cite "games-hddvd_install_old" >}}. On newer dashboards, it showed up as a separate app {{< cite "games-hddvd_install_new" >}}.
+Thus, Microsoft’s goal lead to a separate accessory called **Xbox 360 HD DVD Player**, an external reader placed next to the console and requires its own power supply (so expect all the annoyances that come with it). Anyway, the reader connected through USB and shipped with an ‘HD DVD installation disc’ that installed an additional media player on the console. Although, its behaviour differs depending on the Dashboard version: on the Blades Dashboard, the HD-DVD player integrated itself with the UI {{< cite "games-hddvd_install_old" >}}. On newer dashboards, it showed up as a separate app {{< cite "games-hddvd_install_new" >}}.
 
 Internally, HD DVD stores pits and lands at a higher density than conventional DVDs, allowing it to store up to **15 GB** of data if single-layered or **30 GB** if dual-layered. While both Blu-Ray and HD-DVD rely on [blue-light diodes]({{< ref "playstation-3#tab-14-1-blu-ray-discs" >}}), the latter exhibits a sparser distribution of pits; and the focal point of its laser is larger than the Blu-ray’s {{< cite "games-hwu" >}}. Consequently, HD-DVDs can’t reach the competitor’s 25 GB/50 GB milestone.
 
-After only two years of sitting on shelves, both HD-DVDs and the player were phased out in 2008 {{< cite "games-chen" >}}. If you ask me, this duality between HD-DVD and Blu-Ray was just a battle of royalties, manufacturing costs and disagreement between distributors. None of which mattered to the end-user, and yet they had to pay the high price for an experimental technology that would soon be rendered ‘not worth it’ by distributors.
+After only two years sitting on shelves, both HD-DVDs and the player were phased out in 2008 {{< cite "games-chen" >}}. If you ask me, this duality between HD-DVD and Blu-Ray was just a battle of royalties, manufacturing costs and disagreement between distributors. None of which mattered to the end-user, and yet they had to pay the high price for an experimental technology that would soon be rendered ‘not worth it’ by distributors.
 
 {{% /inner_markdown %}}{{< /tab >}}{{< /tabs >}}
 
@@ -1214,10 +1216,10 @@ At the heart of this low-priced console was its highly-promoted online capabilit
 As Xbox Live enjoyed successful adoption with the original Xbox, the successor would be no stranger in following the footsteps and even offer more commodities to get users to join online gaming. I presume the low-price point of this console and continuous marketing efforts - including all the accessories that Microsoft shipped (webcams, headsets, etc) - meant that Microsoft’s main source of profit relied on paid subscriptions and marketplace purchases. With the advent of 3D avatars, the company also found ways to capitalise on avatar customisation {{< cite "games-leggett" >}}.
 
 {{< figure_img src="screenshots/metro/achievements.jpg" full_src="" float="false" class="centered-container" img_class="" add_text_overlay="false" >}}
-Curiously enough, The console calculated a score for the user's Xbox Live profile which was based on the number and type of achievements unlocked.<br>Want to reach the top ranks in online billboards? Play more. Ran out of games? Buy More!
+Curiously enough, the console calculated a score for the user's Xbox Live profile which was based on the number and type of achievements unlocked.<br>Want to reach the top ranks? Play more. Ran out of games? Buy More!
 {{< /figure_img >}}
 
-From the developer’s point of view, Xbox Live servers provided the infrastructure required for multi-playing, voice chat, profile management and so on. Xbox 360 games used a **REST API** (documented on the SDK) to talk with each endpoint. Furthermore, to authenticate with those servers, developers got a custom ‘Xbox Secure Token Service’ that they needed to embed with their REST requests.
+From the developer’s point of view, Xbox Live servers provided the infrastructure required for multi-playing, voice chat, profile management and so on. Xbox 360 games used a **REST API** (documented on the SDK) to talk with each endpoint. To authenticate with those servers, developers received a custom ‘Xbox Secure Token Service’ to be embedded with their REST requests.
 
 ---
 
@@ -1250,7 +1252,7 @@ Moving on, the cryptographic subsystem is split into distinct areas that perform
 
 {{< tabs class="" float="false" h5="true" >}}{{< tab name="Rand unit" active="true" >}}{{% inner_markdown %}}
 
-The **random number generator** unit (or just ‘rand’) produces random sets of numbers without exposing a predictable pattern, or at least it attempts to. This is useful for supplying extra parameters to encryption routines, so they are difficult to trace back (and thus, reverse engineer it) or replicate.
+The **random number generator** unit (or just ‘rand’) produces random sets of numbers without exposing a predictable pattern, or at least it attempts to. This is useful for supplying extra parameters to encryption routines, so they are difficult to trace back, and thus reverse engineer or replicate.
 
 You may now ask ‘Why can’t this be done with software?’ and, well, in the world of traditional computing, there’s no such thing as ‘pure randomness’. Computers can only generate pseudo-random numbers using arguments that may be potentially traced. So, having a dedicated unit for this task obfuscates its reverse engineering further and protects the CPU from possible snooping (as this block is hidden within the CPU and not scattered across the motherboard).
 
@@ -1310,7 +1312,7 @@ To further protect the chain of trust and prevent external alterations, boot sta
 
 {{% /inner_markdown %}}{{< /tab >}}{{< tab name="Secure communication" active="false" >}}{{% inner_markdown %}}
 
-Xenon has a 64-bit address bus, yet, there’re only 512 MB of RAM (and a lump of I/O) to be addressed, meaning it can be [wasteful]({{< ref "gamecube#a-step-forward-or-a-step-backwards" >}}) to make us of 64-bit addressing. As a result, one half of the address space is used for a more practical purpose: **cryptography flags**.
+Xenon has a 64-bit address bus, yet, there’re only 512 MB of RAM (and a lump of I/O) to be addressed, meaning it can be [wasteful]({{< ref "gamecube#a-step-forward-or-a-step-backwards" >}}) to make use of 64-bit addressing. As a result, one half of the address space is used for a more practical purpose: **cryptography flags**.
 
 In essence, programs only use **32-bit virtual addresses**. Then, the MMU uses a page table to convert virtual addresses into 64-bit addresses, where the lower 32 bits encode the virtual address and the upper half store flags that denote whether the selected memory address is (or needs to be) encrypted and/or hashed.
 
@@ -1338,7 +1340,7 @@ From Microsoft’s control, DVD drives authenticate with the system using a uniq
 
 Additionally, to avoid being read by conventional DVD readers and preclude exact duplicates, games are mastered using the new **Xbox Game Disc 2** (XGD2) data format, which engraves a couple of anti-piracy tricks {{< cite "anti_piracy-dvd" >}}:
 
--   A **misleading table of contents** that deceives conventional DVD players into loading a static video, this asks the user to insert the disc into an Xbox 360 console.
+-   A **misleading table of contents** that deceives conventional DVD players into loading a static video, this asks the user to insert the disc into an Xbox 360 console. 
 -   Within the file system, there’s a database stored that contains multiple checks called **challenges** or ‘security sectors’ the driver performs to confirm that the current disc is valid. When referring to the DVD drive, these challenges simply enumerate faulty sectors deliberately made during mastering that the drive needs to find. As conventional burners don’t account for them, a duplicate would never pass the verification process.
 -   The outer area of the disc exposes a [burst-cutting area]({{< ref "xbox#dvd-copy-protection" >}}), although it doesn’t appear to include meaningful data for copy protection.
 
@@ -1513,7 +1515,7 @@ Because I’ve already explained the first exploit, let me go over the second on
 As the motherboard exposes GPIO pins from the SMC and JTAG pins from the CPU and GPU, hackers found out that they could perform the following technique:
 
 1.  Make an image of the NAND’s contents using a NAND reader.
-2.  Using the zero-pairing backdoor, modify the image to only apply updates leading to a King-Kong exploitable Hypervisor.
+2.  Using the zero-pairing backdoor, modify the image to only apply updates leading to a King-Kong exploitable Hypervisor. 
 3.  Modify the SMC firmware area (in the NAND’s image) so, during boot, the SMC commands the GPU to DMA the same block of code used in the King Kong disc.
 4.  Flash the modified NAND image back into the console using a hardware NAND writer.
 5.  Solder two wires with switching diodes between the SMC’s GPIO and the GPU’s JTAG.
