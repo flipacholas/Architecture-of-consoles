@@ -21,6 +21,12 @@ other = 'Report mistakes or propose changes'
 [supporting_readings]
 other = 'Check supporting readings'
 
+[tablet_mode_button]
+other = 'Hide tabs / Tablet mode'
+
+[desktop_mode_button]
+other = 'Show tabs / Desktop mode'
+
 [next]
 other = 'Next'
 
