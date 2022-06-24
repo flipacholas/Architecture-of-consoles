@@ -9,13 +9,16 @@ generation: 7
 top_tabs:
   Models:
     - title: "Original"
+      file: original
       caption: "The original PlayStation 3 or 'PS3'
       <br>Released on 11/11/2006 in Japan, 17/11/2006 in America and 23/03/2007 in Europe"
       active: true
     - title: "Slim"
+      file: slim
       caption: "The PS3 2000/3000 series (a.k.a. 'Slim')
       <br>Released on 01/09/2009 in Europe and America; and 03/09/2009 in Japan"
     - title: "Super Slim"
+      file: super-slim
       caption: "The PS3 4000 series (a.k.a. 'Super Slim')
       <br>Released on 09/2012 internationally"
   Motherboard:
