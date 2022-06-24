@@ -1,0 +1,260 @@
+[author_footer_first]
+other = "J'espère que cet article vous a plu ! Si vous voulez en savoir plus sur l'auteur, <a href=\"{{ . }}\">cliquez ici</a>"
+
+[author_footer_second]
+other = 'et si vous souhaitez le soutenir <a href="{{ . }}">cliquez ici</a>'
+
+[languages_available]
+other = "Langues disponibles : "
+
+[help_translations]
+other = "Aider à traduire"
+
+[add_translation]
+other = "Ajouter une traduction"
+
+[report_mistakes]
+other = "Signaler une erreur ou proposer des modifications"
+
+[supporting_readings]
+other = "Consulter les lectures de référence"
+
+[tablet_mode_button]
+other = "Masquer les onglets / Mode tablette"
+
+[desktop_mode_button]
+other = "Afficher les onglets / Mode bureau"
+
+[next]
+other = "Suivant"
+
+[previous]
+other = "Précédent"
+
+[table-of-contents]
+other = "Table des matières"
+
+[show]
+other = "Afficher"
+
+[hide]
+other = "Masquer"
+
+[translations]
+other = "Traductions"
+
+[related]
+other = 'Plus sur "{{ . }}" &raquo;'
+
+[home]
+other = "Accueil"
+
+[nav_writings]
+other = "Articles"
+
+[nav_console]
+other = "Consoles"
+
+[nav_blog]
+other = "Blog"
+
+[about]
+other = "À propos"
+
+[about_website_long]
+other = "À propos du site et de son contenu"
+
+[support]
+other = "Support"
+
+[about_author]
+other = "À propos de l'auteur"
+
+[about_website]
+other = "À propos du site"
+
+[switch_modern]
+other = "Basculer vers l'édition moderne"
+
+[switch_classic]
+other = "Basculer vers l'édition classique"
+
+[about_edition]
+other = "À propos de cette édition"
+
+[last_updated]
+other = "Dernière mise à jour : {{ . }}"
+
+[classic_edition]
+other = "Édition classique"
+
+[classic_intro]
+other = "L'édition \"classique\" est une alternative à la <a href=\"{{ . }}\">version \"moderne\"</a>. Elle ne nécessite pas JavaScript, de CSS de pointe ni de HTML sophistiqué pour fonctionner, ce qui la rend idéale pour les utilisateurs de liseuses, d'anciens navigateurs web ou pour les lecteurs qui utilisent des outils d'accessibilité."
+
+[classic_description]
+other = "Cette édition est identique du point de vue du contenu. Toutefois, les widgets interactifs ont été simplifiés pour fonctionner avec du HTML pur, bien qu'ils offrent un lien vers l'article original au cas où le lecteur voudrait essayer la \"version complète\"."
+
+[general_description]
+other = "Comme à chaque fois, cet article est disponible sur <a href=\"{{ .github }}\">GitHub</a> pour permettre aux lecteurs de signaler des erreurs ou de proposer des modifications. Une <a href=\"{{ .readings }}\">liste de lectures complémentaires</a> est aussi disponible pour aider à comprendre la série. L'auteur accepte également les <a href=\"{{ .donations }}\">dons</a> pour aider à améliorer la qualité des articles existants et à venir."
+
+[subscribe_title]
+other = "Recevez notre lettre d'information"
+
+[subscribe_content]
+other = "Je publie des mises à jour sur mon <a href=\"{{ . }}\">profil Twitter</a>, mais vous pouvez aussi recevoir un email lorsqu'un nouvel article est publié. Vous pouvez vous désinscrire à tout moment, j'utilise Mailchimp pour gérer cette partie."
+
+[generation_title]
+other = "Génération {{ .ordinal }}"
+
+[cpu_subtitle]
+other = "Avancées notables du processeur :"
+
+[gpu_subtitle]
+other = "Fonctionnalités du notables du processeur graphique :"
+
+[roadmap_title]
+other = "Feuille de route"
+
+[roadmap_content]
+other = "Il y a tellement de consoles sur lesquelles écrire... Si vous vous demandez quelles sont les prochaines sur la liste, les voici :"
+
+[contribution_content]
+other = "Si vous trouvez mes articles intéressants, pensez à faire un don. Votre contribution sera utilisée pour financer l'achat d'outils et de ressources qui m'aideront à améliorer la qualité des articles existants et à venir. Je fournis aussi une liste de ressources intéressantes à acquérir à la fin de chaque article."
+
+[contribution_footer]
+other = "Avec votre don, vous pouvez laisser une note précisant sur quel article en particulier vous voulez que je m'investisse. En guise de remerciement, votre nom sera inclus dans la section des contributions du prochain article ou de celui que vous aurez choisi, sauf indication contraire."
+
+[contribution_suggestions]
+other = 'Sinon, vous pouvez aider en <a href="{{ . }}">suggérant des changements</a> et/ou <a href="{{ . }}">en ajoutant des traductions</a>.'
+
+[print]
+other = "Imprimer l'article (ou l'enregistrer en PDF)"
+
+[architecture_consoles]
+other = "L'architecture des consoles"
+
+[top_model]
+other = "Modèle"
+
+[top_models]
+other = "Modèles"
+
+[motherboard_title]
+other = "Carte-mère"
+
+[motherboard_note]
+other = "Carte mère avec les parties importantes annotées"
+
+[diagram_title]
+other = "Schéma"
+
+[diagram_note]
+other = "Schéma de l'architecture principale"
+
+[original]
+other = "Original"
+
+[marked]
+other = "Annoté"
+
+[contributing_title]
+other = "Contributions"
+
+[contributing_content]
+other = "Cet article fait partie de la série <a href=\"{{ . }}\">Architecture des consoles</a>. Si vous le trouvez intéressant, pensez à faire un don. Votre contribution sera utilisée pour financer l'achat d'outils et de ressources qui m'aideront à améliorer la qualité des articles existants et à venir."
+
+[contributing_tools]
+other = "Une liste des outils souhaitables et des dernières acquisitions pour cet article sont suivis ici:"
+
+[contributing_thanks]
+other = "Un grand merci à ces personnes pour leurs dons :"
+
+[changelog_title]
+other = "Historique des changements"
+
+[changelog_content]
+other = "C'est toujours bon de garder une trace des changements."
+
+[supporting_imagery]
+other = "Images de référence"
+
+[consoles_written_by]
+other = "Une analyse pratique par {{ . }}"
+
+[translated_by]
+other = "Traduit par {{ . }}"
+
+[interactive_model_origin]
+other = "Modèle interactif disponible dans l'<a href=\"{{ . }}\">édition moderne</a>"
+
+[interactive_player_origin]
+other = "Lecteur interactif disponible dans l'<a href=\"{{ . }}\">édition moderne</a>"
+
+[goto_classic]
+other = "Si vous utilisez des outils d'accessibilité, une liseuse ou un ancien navigateur, <a href=\"{{ . }}\">basculez vers l'édition \"classique\"</a>."
+
+[audio_samples]
+other = "Échantillons audio"
+
+[wireframe]
+other = "Wireframe"
+
+[surface]
+other = "Surface"
+
+[textured]
+other = "Texturé"
+
+[tap_enable_interaction]
+other = "Appuyez pour activer l'interaction"
+
+[buffering]
+other = "Chargement..."
+
+[ready_drag_zoom]
+other = "Prêt à glisser et zoomer !"
+
+[sources]
+other = "Sources / Lire ensuite"
+
+[archived]
+other = "Archivé"
+
+[general]
+other = "Général"
+
+[cpu]
+other = "Processeur"
+
+[graphics]
+other = "Graphismes"
+
+[audio]
+other = "Audio"
+
+[audio_video]
+other = "Audio / Vidéo"
+
+[io]
+other = "E/S"
+
+[operating_system]
+other = "Système d'exploitation"
+
+[games]
+other = "Jeux"
+
+[anti_piracy]
+other = "Anti-piratage"
+
+[copy_protection]
+other = "Protection contre la copie"
+
+[photography]
+other = "Photographie"
+
+[other_media]
+other = "Autres médias"
+
+[bonus]
+other = "Bonus"
