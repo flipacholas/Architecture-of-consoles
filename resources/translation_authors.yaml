@@ -6,7 +6,8 @@ gamecube: null
 gba: null
 mastersystem: null
 megadrive: null
-nes: null
+nes:
+  cn: 猫咪啊呀呀
 nintendo64:
   es: Rodrigo Copetti
 nintendods: null
