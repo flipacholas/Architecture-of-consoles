@@ -10,13 +10,16 @@ top_tabs:
   Models:
     - 
       title: "Оригинал"
+      file: original
       caption: "Оригинальная PlayStation 3 или 'PS3'\n<br>Выпущена в 11/11/2006 в Японии, 17/11/2006 в Америке и 23/03/2007 в Европе"
       active: true
     - 
       title: "Slim"
+      file: slim
       caption: "PS3 серии 2000/3000 (модель \"Slim\")\n<br>Выпущена в 01/09/2009 в Европе и Америке, и в 03/09/2009 в Японии"
     - 
       title: "Super Slim"
+      file: super-slim
       caption: "PS3 серии 4000 (модель \"Super Slim\")\n<br>Выпущена в 09/2012 по всему миру"
   Motherboard:
     caption: "Ревизия COK-001 (самая первая), взятая из моей модели CECHA12\n<br>Оставшиеся 128 МБ флэш-памяти NAND и разъемы PATA для привода Blu-ray, дочерняя плата Wi-Fi/BT, передняя панель и карт-ридер установлены сзади."
