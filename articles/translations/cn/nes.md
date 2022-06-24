@@ -60,7 +60,7 @@ NES 的 CPU 是**理光 2A03**{{< cite "cpu-cpu" >}}，该 CPU 基于当时最�
 #### 理光的许可之谜
 
 关于理光*如何*设法克隆 6502，时至今日已无人能说清了。 有人认为 MOS 向理光授权了芯片设计，但此事存在诸多矛盾之处：
-- 虽然理光版和 MOS 版的芯片都有相同的布局，但理光的版本有被断开的总线（禁用了某些功能）{{< citing "cpu-diffences" >}}。 稍后我会详细介绍。
+- 虽然理光版和 MOS 版的芯片都有相同的布局，但理光的版本有被断开的总线（禁用了某些功能）{{< cite "cpu-diffences" >}}。 稍后我会详细介绍。
 - 没有找到明确说明 MOS 向理光授权 6502 的文档。
 - Nikkei Trendy 在 2008 年发表的一篇文章说，理光从罗克韦尔（Rockwell）获得了许可，而罗克韦尔是授权的芯片制造商{{< cite "cpu-trendi" >}}。 虽然第二方能否向第三方提供 IP 仍有争议，但至少经过了 MOS 批准。
 - 这不是任天堂第一次逃避知识产权，例如 *Ikegami Tsushinki 诉 Nintendo* 一案中任天堂在日本就被裁定不拥有原版大金刚街机（Donkey Kong）的源代码{{< cite "cpu-dk" >}}。
@@ -109,7 +109,7 @@ NES 的 CPU 是**理光 2A03**{{< cite "cpu-cpu" >}}，该 CPU 基于当时最�
   {{< /tab_figure_img >}}
 {{< /tabs >}}
 
-例如，任天堂的《超级马力欧兄弟》（Super Mario Bros）”使用了他们称之为 _NES-NROM-256_ 的布局，该布局由 32KB 的程序 ROM 和 8 KB 的图形用“Character RAM”组成（我们将在“图形”部分中看到更多关于它的信息）{{< citing "cpu-nrom" >}}。 _NES-NROM-256_ 还提供了 3 KB 额外的 WRAM，尽管游戏没有使用它。
+例如，任天堂的《超级马力欧兄弟》（Super Mario Bros）”使用了他们称之为 _NES-NROM-256_ 的布局，该布局由 32KB 的程序 ROM 和 8 KB 的图形用“Character RAM”组成（我们将在“图形”部分中看到更多关于它的信息）{{< cite "cpu-nrom" >}}。 _NES-NROM-256_ 还提供了 3 KB 额外的 WRAM，尽管游戏没有使用它。
 
 #### 超越限制
 
