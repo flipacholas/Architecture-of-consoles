@@ -7,7 +7,7 @@
 - 
   id: 4
   ordinal: 4e
-  description: DMA, horizontal interruptis, modes multiples... Voici quelques exemples des nouveaux concepts que la nouvelle génération de 16 bits a apportés, ouvrant la porte à de nouveaux genres de jeux.
+  description: DMA, horizontal interrupts, modes multiples... Voici quelques exemples des nouveaux concepts que la nouvelle génération de 16 bits a apportés, ouvrant la porte à de nouveaux genres de jeux.
   cpu: Instructions de multiplication et de division, DMA et dual-processing
   gpu: Transformations Affine et horizontal interrupts
 - 
