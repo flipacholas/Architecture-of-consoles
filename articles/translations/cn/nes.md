@@ -10,12 +10,12 @@ top_tabs:
     - 
       title: "国际版（International）"
       file: international
-      caption: "NES\n<br>于 1985 年 10 月 18 日在美国发布，于 1986 年 9 月 1 日在欧洲发布"
+      caption: "NES\n<br>于 1985 年 10 月 18 日在美国发售，于 1986 年 9 月 1 日在欧洲发售"
       active: true
     - 
       title: "日版（Japanese）"
       file: japanese
-      caption: "Famicom（FC）\n<br>1983 年 7 月 15 日在日本发布"
+      caption: "Famicom（FC）\n<br>1983 年 7 月 15 日在日本发售"
   Motherboard:
     caption: "“NES”变种"
   Diagram: { }
