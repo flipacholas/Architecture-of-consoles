@@ -1,0 +1,260 @@
+[author_footer_first]
+other = '希望你能喜欢这篇文章！如果想了解作者，<a href="{{ . }}">点击这里</a>；'
+
+[author_footer_second]
+other = '如果你想支持他，<a href="{{ . }}">请点击这里</a>'
+
+[languages_available]
+other = "可用语言："
+
+[help_translations]
+other = "协助翻译"
+
+[add_translation]
+other = "添加翻译"
+
+[report_mistakes]
+other = "报告错误或建议修改"
+
+[supporting_readings]
+other = "查看前置阅读材料"
+
+[tablet_mode_button]
+other = "隐藏选项卡 / 平板模式"
+
+[desktop_mode_button]
+other = "显示选项卡 / 桌面模式"
+
+[next]
+other = "下一页"
+
+[previous]
+other = "上一页"
+
+[table-of-contents]
+other = "目录"
+
+[show]
+other = "显示"
+
+[hide]
+other = "隐藏"
+
+[translations]
+other = "翻译"
+
+[related]
+other = "更多 '{{ . }}' &raquo;"
+
+[home]
+other = "主页"
+
+[nav_writings]
+other = "文章"
+
+[nav_console]
+other = "游戏主机"
+
+[nav_blog]
+other = "博客"
+
+[about]
+other = "关于"
+
+[about_website_long]
+other = "关于网站及其内容"
+
+[support]
+other = "支持"
+
+[about_author]
+other = "关于作者"
+
+[about_website]
+other = "关于此网站"
+
+[switch_modern]
+other = "切换至现代版"
+
+[switch_classic]
+other = "切换至经典版"
+
+[about_edition]
+other = "关于此版本"
+
+[last_updated]
+other = "最后更新于：{{ . }}"
+
+[classic_edition]
+other = "经典版"
+
+[classic_intro]
+other = "'“经典版”是 <a href=\"{{ . }}\">“现代版”</a> 的替代版本。 它不需要 Javascript，最新的 CSS 支持或复杂的 HTML 就能查看。 它更适合电子书用户、过时的浏览器或使用无障碍工具的读者阅读。"
+
+[classic_description]
+other = "两个版本内容完全相同， 只是交互式部件被简化为纯 HTML。 如果读者想尝试“完整版”，可以使用切换回原始文章的链接。"
+
+[general_description]
+other = '和其他文章一样，这篇文章可在 <a href="{{ .github }}">Github</a> 上查看，这样读者可以报告错误或提出修改。 这里还有一个 <a href="{{ .readings }}">前置阅读材料</a> 可用来帮助理解该系列文章。作者还接受 <a href="{{ .donations }}">捐助</a> 以帮助提高现有文章和即将发表的文章的质量。'
+
+[subscribe_title]
+other = "接收更新"
+
+[subscribe_content]
+other = '我在我的 <a href="{{ . }}">Twitter</a> 上发布更新，但您也可以通过电子邮件订阅新文章。 您可以随时退订，我使用 Mailchimp 来支持邮件服务。'
+
+[generation_title]
+other = "{{ .ordinal }}世代"
+
+[cpu_subtitle]
+other = "显著的 CPU 进步："
+
+[gpu_subtitle]
+other = "出色的 GPU 特性："
+
+[roadmap_title]
+other = "路线图"
+
+[roadmap_content]
+other = "我还有许多主机可以写……如果你想知道我列表上的下一个："
+
+[contribution_content]
+other = "如果您觉得我的文章很有趣，请考虑捐赠。您的资助将用于购买工具和资源，这可以帮助我提高现有文章和即将发表的文章的质量。我还在每篇文章结尾列出了我获得的有趣材料。"
+
+[contribution_footer]
+other = "在捐赠的同时，您可以留下一个备注，注明您特别希望我投资于哪篇文章。作为感谢，除非另有说明，您的姓名将被列入下一篇文章或您指定的文章的“Credits”部分。"
+
+[contribution_suggestions]
+other = '或者，您可以通过 <a href="{{ . }}">建议更改</a> 或 <a href="{{ . }}">添加翻译</a> 来提供帮助。'
+
+[print]
+other = "打印文章（或保存到 PDF）"
+
+[architecture_consoles]
+other = "游戏主机的架构"
+
+[top_model]
+other = "型号"
+
+[top_models]
+other = "型号"
+
+[motherboard_title]
+other = "主板"
+
+[motherboard_note]
+other = "带有重要部件标签的主板"
+
+[diagram_title]
+other = "图示"
+
+[diagram_note]
+other = "主架构图"
+
+[original]
+other = "原版"
+
+[marked]
+other = "标注版本"
+
+[contributing_title]
+other = "参与贡献"
+
+[contributing_content]
+other = '这篇文章是 <a href="{{ . }}">游戏主机架构</a> 系列的一部分。如果您觉得我的文章很有趣，请考虑捐赠。您的资助将用于购买工具和资源，以帮助我提高现有文章和即将发表的文章的质量。'
+
+[contributing_tools]
+other = "在这里追踪本文所需工具和最新购置情况："
+
+[contributing_thanks]
+other = "特别感谢下列人员的捐助："
+
+[changelog_title]
+other = "变更日志"
+
+[changelog_content]
+other = "保存变更记录总是好的。"
+
+[supporting_imagery]
+other = "相关影像"
+
+[consoles_written_by]
+other = "{{ . }} 的实用分析"
+
+[translated_by]
+other = "译者：{{ . }}"
+
+[interactive_model_origin]
+other = '<a href="{{ . }}">“现代版本”</a>中可用的互动模型'
+
+[interactive_player_origin]
+other = '<a href="{{ . }}">“现代版本”中的互动播放器</a>'
+
+[goto_classic]
+other = '如果您使用无障碍阅读工具，电子书或旧版浏览器， <a href="{{ . }}">切换到“经典”版</a>。'
+
+[audio_samples]
+other = "音频采样"
+
+[wireframe]
+other = "线框"
+
+[surface]
+other = "表面"
+
+[textured]
+other = "纹理"
+
+[tap_enable_interaction]
+other = "点击启用交互功能"
+
+[buffering]
+other = "加载中..."
+
+[ready_drag_zoom]
+other = "准备拖动或缩放！"
+
+[sources]
+other = "来源 / 继续阅读"
+
+[archived]
+other = "归档"
+
+[general]
+other = "概述"
+
+[cpu]
+other = "CPU"
+
+[graphics]
+other = "图形"
+
+[audio]
+other = "音频"
+
+[audio_video]
+other = "音频 / 视频"
+
+[io]
+other = "I/O"
+
+[operating_system]
+other = "操作系统"
+
+[games]
+other = "游戏"
+
+[anti_piracy]
+other = "反盗版"
+
+[copy_protection]
+other = "复制保护"
+
+[photography]
+other = "影像"
+
+[other_media]
+other = "其他媒体"
+
+[bonus]
+other = "奖励"
