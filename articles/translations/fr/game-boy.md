@@ -28,7 +28,7 @@ La Game Boy peut être vue comme une version portable de la NES avec une puissan
 
 ## Processeur
 
-Au lieu de placer les puces standards sur la carte mère, Nintendo a opté pour une seule puce qui contient (et dissimule) une bonne partie des composants, dont le processeur. Ce type de puce est appelé "System On Chip (SoC, ou "système sur une puce") et celui qui se trouve sur la Game Boy est désigné sous le nom de **DMG-CPU** ou **Sharp LR35902**.
+Au lieu de placer les puces standards sur la carte mère, Nintendo a opté pour une seule puce qui contient (et dissimule) une bonne partie des composants, dont le processeur. Ce type de puce est appelé « System On Chip » (SoC, ou « système sur une puce ») et celui qui se trouve sur la Game Boy est désigné sous le nom de **DMG-CPU** ou **Sharp LR35902**.
 
 Ceci étant dit, le processeur principal est un **Sharp SM83**, un mélange entre le Z80 et l'Intel 8080. Il est cadencé à **~ 4,19 MHz**.
 
@@ -41,7 +41,7 @@ Enfin, ils ont également ajouté **quelques nouvelles instructions** qui ne son
 
 ### Mémoire disponible
 
-Nintendo a incorporé **8 Ko de RAM** pour un usage général (qu'ils appellent **Work RAM** ou "WRAM"). Notez que c'est quatre fois plus que ce que la [NES]({{< ref "nes" >}}) avait.
+Nintendo a incorporé **8 Ko de RAM** pour un usage général (qu'ils appellent **Work RAM** ou « WRAM »). Notez que c'est quatre fois plus que ce que la [NES]({{< ref "nes" >}}) avait.
 
 ### Accès hardware
 
@@ -55,7 +55,7 @@ Le SM83 conserve un bus de données de 8 bits et un bus d'adresse de 16 bits, ce
 
 ## Graphismes
 
-Tous les calculs graphiques sont effectués par le CPU, puis le **Picture Processing Unit** (ou "PPU") en assure le rendu. Il s'agit d'un autre composant trouvé dans le DMG-CPU et il est en réalité basé sur le [PPU de son prédécesseur]({{< ref "nes#graphics" >}}).
+Tous les calculs graphiques sont effectués par le CPU, puis le **Picture Processing Unit** (ou « PPU ») en assure le rendu. Il s'agit d'un autre composant trouvé dans le DMG-CPU et il est en réalité basé sur le [PPU de son prédécesseur]({{< ref "nes#graphics" >}}).
 
 Le rendu est affiché sur un écran LCD intégré, celui-ci a une résolution de **160x144 pixels** et peut afficher **4 nuances de gris** (blanc, gris clair, gris foncé et noir). Mais comme la Game Boy originale a un écran LCD vert, les graphismes auront un aspect *verdâtre*.
 
@@ -67,7 +67,7 @@ Si vous avez lu l'article sur la NES, vous vous souvenez peut-être que le PPU a
 Architecture mémoire du PPU
 {{< /figure_img >}}
 
-Le PPU possède **8 Ko de RAM**, ou "Display RAM", auxquels le PPU et le CPU peuvent accéder directement (mais pas en même temps). Ces 8 Ko contiendront la plupart des données dont le PPU aura besoin pour effectuer les rendus. Les bits restants seront plutôt stockés à l'intérieur du PPU, car ils nécessiteront un taux d'accès plus rapide.
+Le PPU possède **8 Ko de RAM**, ou « Display RAM », auxquels le PPU et le CPU peuvent accéder directement (mais pas en même temps). Ces 8 Ko contiendront la plupart des données dont le PPU aura besoin pour effectuer les rendus. Les bits restants seront plutôt stockés à l'intérieur du PPU, car ils nécessiteront un taux d'accès plus rapide.
 
 Le jeu est chargé de remplir les différentes zones avec les bons types de données. De plus, le PPU expose les registres afin que le jeu puisse lui indiquer comment organiser ces données (il existe toutefois de nombreuses contraintes).
 
@@ -94,7 +94,7 @@ Une seule tuile.
 {{% inner_markdown %}}
 Le PPU utilise les **tuiles** comme ingrédient de base pour le rendu graphique, ou plus précisément, **les sprites et les arrière-plans (background)**.
 
-Les tuiles sont uniquement des **bitmaps 8x8** stockés dans la VRAM dans une région appelée **Tile set** ou "Tile pattern table", chaque pixel correspondant à l'une des quatre nuances de gris disponibles. Enfin, les tuiles sont regroupées dans deux tables de motifs (patterns).
+Les tuiles sont uniquement des **bitmaps 8x8** stockés dans la VRAM dans une région appelée **Tile set** ou « Tile pattern table », chaque pixel correspondant à l'une des quatre nuances de gris disponibles. Enfin, les tuiles sont regroupées dans deux tables de motifs (patterns).
 
 Afin de construire l'image, les tuiles sont référencées dans un autre type de table appelé **Tile map**. Cette information va indiquer au PPU où il doit afficher les tuiles. Deux maps sont stockées pour construire les différentes couches de l'image.
 
@@ -145,7 +145,7 @@ La tile map restante pourra être assignée à la couche fenêtre (Window).
 
 Au premier abord, cela peut sembler être une fonctionnalité absurde. Après tout, la couche Window recouvre tout le reste, alors à quoi cela peut-il servir ? Eh bien, les couches Background et Window peuvent être utilisées simultanément à différents endroits de l'écran. Cela est accompli en modifiant le registre `LCDCONT` pendant des lignes de balayage spécifiques.
 
-De ce fait, les jeux l'utilisent généralement pour afficher les statistiques des joueurs, le score et d'autres informations "persistantes".
+De ce fait, les jeux l'utilisent généralement pour afficher les statistiques des joueurs, le score et d'autres informations « persistantes ».
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -161,11 +161,11 @@ Les sprites sont des tuiles qui peuvent se déplacer indépendamment sur l'écra
 
 Ils ont aussi une couleur supplémentaire disponible : **Transparent**. Ils ne peuvent donc afficher que trois nuances de gris au lieu de quatre. Heureusement, cette couche permet de définir deux palettes de couleurs afin de pouvoir utiliser chaque couleur.
 
-L'**Object Attribute Memory** (ou "OAM") est une map stockée dans le PPU qui spécifie les tuiles qui seront utilisées comme sprites. Les jeux remplissent cette région en appelant l'**unité DMA** qui se trouve à l'intérieur de la puce ; le DMA récupère les données de la RAM principale ou de la ROM du jeu et les envoie à l'OAM.
+L'**Object Attribute Memory** (ou « OAM ») est une map stockée dans le PPU qui spécifie les tuiles qui seront utilisées comme sprites. Les jeux remplissent cette région en appelant l'**unité DMA** qui se trouve à l'intérieur de la puce ; le DMA récupère les données de la RAM principale ou de la ROM du jeu et les envoie à l'OAM.
 
-Outre l'index de la tuile, chaque entrée contient les attributs suivants : position X-Y, palette de couleurs, priorité et "flip flags" (permettant de retourner les tuiles verticalement et horizontalement).
+Outre l'index de la tuile, chaque entrée contient les attributs suivants : position X-Y, palette de couleurs, priorité et « flip flags » (permettant de retourner les tuiles verticalement et horizontalement).
 
-Le PPU est limité au rendu **jusqu'à dix sprites par ligne de balayage** et **jusqu'à 40 par trame**, le dépassement de cette limite aura pour conséquence que ces sprites ne seront pas dessinés.
+Le PPU est limité au rendu **jusqu'à dix sprites par ligne de balayage** et **jusqu'à 40 par frame**, le dépassement de cette limite aura pour conséquence que ces sprites ne seront pas dessinés.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -177,11 +177,11 @@ Résultat final. _Tada !_
 {{< /figure_img >}}
 
 {{% inner_markdown %}}
-Une fois que la trame est terminée, il est temps de passer à la suivante ! Toutefois, le processeur ne peut pas modifier les tables pendant que le PPU est en train de les lire depuis la VRAM, c'est pourquoi le système prévoit un ensemble d'interruptions déclenchées lorsque le PPU est inactif. On peut retrouver ce comportement chez la NES.
+Une fois que la frame est terminée, il est temps de passer à la suivante ! Toutefois, le processeur ne peut pas modifier les tables pendant que le PPU est en train de les lire depuis la VRAM, c'est pourquoi le système prévoit un ensemble d'interruptions déclenchées lorsque le PPU est inactif. On peut retrouver ce comportement chez la NES.
 
 Lorsqu'une ligne de balayage est complétée, l'interruption **Horizontal Blank** est appelée. Cela permet de jouer avec la partie du cadre qui n'a pas encore été dessinée.
 
-Lorsque toutes les lignes de balayage sont complétées, l'interruption **Vertical Blank** est appelée. Le jeu peut maintenant mettre à jour l'affichage pour la trame suivante.
+Lorsque toutes les lignes de balayage sont complétées, l'interruption **Vertical Blank** est appelée. Le jeu peut maintenant mettre à jour l'affichage pour la frame suivante.
 
 Il existe un état supplémentaire appelé **OAM search** qui est déclenché au début de la ligne de balayage ; à ce stade, le PPU traite quels sprites seront affichés dans cette ligne de balayage, pour que le jeu puisse mettre à jour n'importe quelle région, sauf l'OAM.
 {{% /inner_markdown %}}
@@ -200,9 +200,9 @@ The Legend of Zelda: Link's Awakening (1993) _Spoilers !_
 {{< /video >}}
 
 {{% inner_markdown %}}
-Les interruptions horizontales ont permis de modifier la trame (frame) avant d'être terminée. Cela signifie qu'une valeur de défilement différente peut être appliquée à chaque ligne, ce qui entraînerait un déplacement différent pour chaque ligne de la trame.
+Les « horizontal interrupts » ont permis de modifier la frame avant d'être terminée. Cela signifie qu'une valeur de défilement différente peut être appliquée à chaque ligne, ce qui entraînerait un déplacement différent pour chaque ligne de la frame.
 
-On obtient un *effet d'oscillation* (je ne suis pas sûr que ce soit le nom officiel).
+On obtient un *effet d'oscillation* (pas certain que ce soit le nom officiel).
 {{% /inner_markdown %}}
 
 {{< /tab >}}
