@@ -98,7 +98,7 @@ Thus, Microsoft began meeting with Intel, though the talks didn’t last long, a
 {{% /inner_markdown %}}{{< /tab >}}{{< tab name="Resentful old friends" active="false" >}}
 
 {{< figure_img src="photos/ibm_pc.jpeg" full_src="" float="true" class="" img_class="" add_text_overlay="false" >}}
-An IBM PC that I found in the Computer History Museum (San Jose, California), from my visit in June 2019. For some reason, they don't allow to use it...
+An IBM PC that I found in the Computer History Museum (San Jose, California), during my visit in June 2019. For some reason, they don't allow to use it...
 {{< /figure_img >}}
 
 {{% inner_markdown %}}
@@ -1436,7 +1436,7 @@ This solves the first task of filling main RAM, but we still need a way of invok
 
 Recall that the Xbox 360’s kernel provides a scheduler to handle multi-threading. This apparatus takes care of dispatching virtual threads to the CPU cores and saving idle threads into memory for later use. Well, for another unexplained reason, the scheduler stores thread states in RAM as **unencrypted** data!
 
-Combining all explained, one could now craft a shader that corrupts an idle thread in RAM which, once restored, would continue execution with custom parameters. This process would carry on until all parameters are finally in the hacker’s control {{< cite "anti_piracy-smc_hack" >}} so execution can be redirected to the syscall handler and, combined with the use of calculated parameters, would finally jump to the crafted (and unencrypted) syscall. This methodology is known as **Return-Oriented Programming** (ROP) and it was also used for [late hacks]({{< ref "playstation-3#homebrew-revival" >}}) of the Playstation 3.
+Combining all explained, one could now craft a shader that corrupts an idle thread in RAM which, once restored, would continue execution with custom parameters. This process would carry on until all parameters are finally in the hacker’s control {{< cite "anti_piracy-smc_hack" >}} so execution can be redirected to the syscall handler and, combined with the use of calculated parameters, would finally jump to the crafted (and unencrypted) syscall.
 
 And this is pretty much how the hypervisor got hijacked by arbitrary code. A common payload bundled with this process consisted of a **Linux launcher**, as using Linux with full hardware privileges allowed users to extract sensitive information from their console, like the CPU key (which could come in handy in the future, you’ll soon see).
 
