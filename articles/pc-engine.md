@@ -247,9 +247,9 @@ There are **six channels** in this system, each one is set up by writing to a se
 
 ### Extra functions
 
-Some groups of channels have other modes of operations. For instance, the last two channels are connected to a **noise generator**. Moreover, the second channel can act as a **Low-frequency oscillator** to modulate the first channel, much like [FM synthesis]({{< ref "mega-drive-genesis#audio" >}}).
+Some groups of channels have other modes of operation. For instance, the last two channels are connected to a **noise generator**. Moreover, the second channel can act as a **Low-frequency oscillator** to modulate the first channel (I initially assumed this to be a synonym of [FM synthesis]({{< ref "mega-drive-genesis#audio" >}}), but LFOs are more a 'subset' that achieve a **vibrato effect**).
 
-Speaking of modes, there's another one available called **Direct D/A (DDA)** which enables the CPU to write over the audio buffer directly (bypassing the PSG). Consequently, the PC Engine can play **PCM samples**. These are still 5-bit and tightly dependent on CPU cycles. Although, two channels can be combined to reproduce 10-bit samples! I strongly suggest you to check out the 'Sources' section to listen to examples.
+Speaking of modes, there's another one available called **Direct D/A (DDA)** which enables the CPU to write over the audio buffer directly (bypassing the PSG). Consequently, the PC Engine can play **PCM samples**. These are still 5-bit and tightly dependent on CPU cycles. Although, two channels can be combined to reproduce 10-bit samples! I strongly suggest you check out the 'Sources' section to listen to examples.
 
 All in all, this makes the PC Engine's PSG an incredibly flexible piece of hardware.
 
