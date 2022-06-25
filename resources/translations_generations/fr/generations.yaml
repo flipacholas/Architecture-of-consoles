@@ -7,19 +7,19 @@
 - 
   id: 4
   ordinal: 4e
-  description: DMA, horizontal interrupts, modes multiples... Voici quelques exemples des nouveaux concepts que la nouvelle génération de 16 bits a apportés, ouvrant la porte à de nouveaux genres de jeux.
+  description: DMA, « horizontal interrupts », modes multiples... Voici quelques exemples des nouveaux concepts que la nouvelle génération « 16 bits » a apportés, ouvrant la porte à de nouveaux genres de jeux.
   cpu: Instructions de multiplication et de division, DMA et dual-processing
-  gpu: Transformations Affine et horizontal interrupts
+  gpu: Transformations affines et « horizontal interrupts »
 - 
   id: 5
   ordinal: 5e
-  description: Les jeux 3D sont devenus nécessaire mais "comment" n'est pas encore clair. La réponse ? Chaque entreprise a présenté sa propre vision.
+  description: Les jeux en 3D sont devenus incontournables, mais le « comment » n'est pas encore clair. La réponse ? Chaque entreprise a présenté sa propre vision.
   cpu: Pipeline stages et cache L1
-  gpu: Pipelines de vertex programmables, Z-buffering et correction de perspective
+  gpu: Pipelines de vertex programmables, Z-buffering et corrections de perspective
 - 
   id: 6
   ordinal: 6e
-  description: La plupart des limitations graphiques de la génération précédente ne sont plus. Les consoles portables commencent à ressembler à des systèmes familiers.
+  description: La plupart des limitations graphiques de la génération précédente n'existent plus. Les consoles portables commencent à ressembler aux systèmes que nous connaissons.
   cpu: Architectures superscalaires, instructions SIMD et cache L2
   gpu: Pipelines de pixels programmables et filtres anisotropes
 - 
