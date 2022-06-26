@@ -19,6 +19,12 @@ other = "Segnala errori o proponi modifiche"
 [supporting_readings]
 other = "Controlla le letture di approfondimento"
 
+[tablet_mode_button]
+other = "Nascondi schede / Modalità tablet"
+
+[desktop_mode_button]
+other = "Mostra schede / Modalità desktop"
+
 [next]
 other = "Avanti"
 
@@ -37,11 +43,20 @@ other = "Nascondi"
 [translations]
 other = "Traduzioni"
 
+[related]
+other = "Altro nella sezione '{{ . }}' &raquo;"
+
 [home]
 other = "Inizio"
 
-[writings]
+[nav_writings]
 other = "Articoli"
+
+[nav_console]
+other = "Console"
+
+[nav_blog]
+other = "Blog"
 
 [about]
 other = "Su di me"
@@ -67,17 +82,11 @@ other = "Passa alla versione classica"
 [about_edition]
 other = "Informazioni su questa versione"
 
-[book_edition]
-other = "Versione libro"
-
 [last_updated]
 other = "Ultimo aggiornamento: {{ . }}"
 
 [classic_edition]
 other = "Versione classica"
-
-[book_intro]
-other = "La versione libro è una versione stampabile dell'<a href=\"{{ . }}\">articolo online</a> con una formattazione apposita per sfruttare al meglio tutte le funzionalità offerte dai documenti in PDF."
 
 [classic_intro]
 other = "La versione classica è una versione alternativa a quella <a href=\"{{ . }}\">moderna</a>. Il suo funzionamento non richiede Javascript, CSS all'avanguardia o HTML particolarmente complesso, pertanto è ideale per gli utenti con lettori ebook, browser internet legacy o per i lettori che utilizzano strumenti di accessibilità."
@@ -92,7 +101,7 @@ other = "Come sempre, questo articolo è disponibile su <a href=\"{{ .github }}\
 other = "Rimanete aggiornati"
 
 [subscribe_content]
-other = "Ricevi un'e-mail quando viene pubblicato un nuovo articolo; puoi annullare l'iscrizione in qualsiasi momento. Le e-mail vengono inviate attraverso Mailchimp."
+other = "Anche se informo sugli aggiornamenti tramite il mio <a href=\"{{ . }}\">profilo Twitter</a>, potete scegliere di ricevere un'e-mail quando pubblico un nuovo articolo. Per farlo uso Mailchimp, e questo significa che siete liberi di disiscrivervi in qualsiasi momento."
 
 [generation_title]
 other = "{{ .ordinal }} generazione"
