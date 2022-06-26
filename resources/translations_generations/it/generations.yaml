@@ -20,9 +20,11 @@
   id: 6
   ordinal: 6a
   description: La maggior parte delle limitazioni grafiche che affliggevano la generazione precedente sono state risolte. Le console portatili iniziano a somigliare ad alcuni sistemi casalinghi.
-  cpu: Architetture superscalari e istruzioni SIMD
+  cpu: Architetture superscalari, istruzioni SIMD e cache L2
   gpu: Pipeline programmabili per i pixel e filtri anisotropici
 - 
   id: 7
   ordinal: 7a
-  description: 'Le console sono ormai sistemi multimediali, macchine in grado di eseguire molto altro rispetto ai soli giochi: la sicurezza diventa fondamentale.'
+  description: 'Le console si sono ormai evolute in supercomputer e hub multimediali. Le nuove macchine sono in grado di eseguire molto altro rispetto ai soli giochi: la sicurezza diventa quindi fondamentale.'
+  cpu: Parallelismo a livello di thread e architetture multi-core simmetriche
+  gpu: Modello di shader unificato e rendering HDR
