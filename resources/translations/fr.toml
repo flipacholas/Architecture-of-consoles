@@ -44,7 +44,7 @@ other = "Masquer"
 other = "Traductions"
 
 [related]
-other = 'Plus sur "{{ . }}" &raquo;'
+other = "Plus sur « {{ . }} » &raquo;"
 
 [home]
 other = "Accueil"
@@ -89,10 +89,10 @@ other = "Dernière mise à jour : {{ . }}"
 other = "Édition classique"
 
 [classic_intro]
-other = "L'édition \"classique\" est une alternative à la <a href=\"{{ . }}\">version \"moderne\"</a>. Elle ne nécessite pas JavaScript, de CSS de pointe ni de HTML sophistiqué pour fonctionner, ce qui la rend idéale pour les utilisateurs de liseuses, d'anciens navigateurs web ou pour les lecteurs qui utilisent des outils d'accessibilité."
+other = "L'édition « classique » est une alternative à la <a href=\"{{ . }}\">version « moderne »</a>. Elle ne nécessite pas JavaScript, de CSS de pointe ni de HTML sophistiqué pour fonctionner, ce qui la rend idéale pour les utilisateurs de liseuses, d'anciens navigateurs web ou pour les lecteurs qui utilisent des outils d'accessibilité."
 
 [classic_description]
-other = "Cette édition est identique du point de vue du contenu. Toutefois, les widgets interactifs ont été simplifiés pour fonctionner avec du HTML pur, bien qu'ils offrent un lien vers l'article original au cas où le lecteur voudrait essayer la \"version complète\"."
+other = "Cette édition est identique du point de vue du contenu. Toutefois, les widgets interactifs ont été simplifiés pour fonctionner avec du HTML pur, bien qu'ils offrent un lien vers l'article original au cas où le lecteur voudrait essayer la « version complète »."
 
 [general_description]
 other = "Comme à chaque fois, cet article est disponible sur <a href=\"{{ .github }}\">GitHub</a> pour permettre aux lecteurs de signaler des erreurs ou de proposer des modifications. Une <a href=\"{{ .readings }}\">liste de lectures complémentaires</a> est aussi disponible pour aider à comprendre la série. L'auteur accepte également les <a href=\"{{ .donations }}\">dons</a> pour aider à améliorer la qualité des articles existants et à venir."
@@ -110,7 +110,7 @@ other = "Génération {{ .ordinal }}"
 other = "Avancées notables du processeur :"
 
 [gpu_subtitle]
-other = "Fonctionnalités du notables du processeur graphique :"
+other = "Fonctionnalités notables du processeur graphique :"
 
 [roadmap_title]
 other = "Feuille de route"
