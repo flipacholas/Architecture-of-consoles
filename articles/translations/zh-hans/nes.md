@@ -477,14 +477,14 @@ Castlevania III (USA/Europe, 1989)
 {{< /tabs >}}
 
 {{% inner_markdown %}}
-还记得 Famicom 提供了独占的卡带引脚用来扩展音频吗？ 嗯，像*悪魔城伝説*这样的游戏就利用了这一点，它捆绑了一个被称为 **Konami VRC6** 的芯片，添加了**两个额外的脉冲波形和一个锯齿波**。
+还记得 Famicom 提供了独占的卡带引脚用来扩展音频吗？ 嗯，像*悪魔城伝説*这样的游戏就利用了这一点，它捆绑了一个被称为 **Konami VRC6** 的芯片，添加了**两个额外的脉冲波形（Pulse wave）和一个锯齿波（Sawtooth wave）**。
 
 视频中显示了这个游戏的日版和美版之间的差异（后者在没有提供音频扩展功能的 NES 上运行）。
 {{% /inner_markdown %}}
 
 {{< /tab >}}
 
-{{< tab name="颤音" >}}
+{{< tab name="颤音（Tremolo）" >}}
 {{< video src="tremolo_full" float="true" >}}
 Final Fantasy III (1990)
 {{< /video >}}
