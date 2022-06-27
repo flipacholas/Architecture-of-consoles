@@ -122,7 +122,10 @@ other = "Il y a tellement de consoles sur lesquelles écrire... Si vous vous dem
 other = "Si vous trouvez mes articles intéressants, pensez à faire un don. Votre contribution sera utilisée pour financer l'achat d'outils et de ressources qui m'aideront à améliorer la qualité des articles existants et à venir. Je fournis aussi une liste de ressources intéressantes à acquérir à la fin de chaque article."
 
 [contribution_footer]
-other = "Avec votre don, vous pouvez laisser une note précisant sur quel article en particulier vous voulez que je m'investisse. En guise de remerciement, votre nom sera inclus dans la section des contributions du prochain article ou de celui que vous aurez choisi, sauf indication contraire."
+other = "En guise de remerciement, votre nom sera inclus dans la section des contributions du prochain article ou de celui que vous aurez choisi, sauf indication contraire."
+
+[contribution_footer_funding]
+other = "J'ai également mis en place un Ko-fi afin de collecter des fonds pour apporter des améliorations spécifiques au site :"
 
 [contribution_suggestions]
 other = 'Sinon, vous pouvez aider en <a href="{{ . }}">suggérant des changements</a> et/ou <a href="{{ . }}">en ajoutant des traductions</a>.'
