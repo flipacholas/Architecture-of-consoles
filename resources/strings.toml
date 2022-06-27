@@ -132,7 +132,10 @@ other = "There are many consoles I could write about... If you are wondering wha
 other = "If you find my articles interesting then please consider donating. Your contribution will be used to fund the purchase of tools and resources that will help me to improve the quality of existing articles and upcoming ones. I also provide a list of interesting materials to acquire at the end of each article."
 
 [contribution_footer]
-other = "Along with the donation you can leave a note stating which article in particular you want me to invest in. As a token of gratitude, your name will be included in the credits section of the next article or your nominated one, unless stated otherwise."
+other = "As a token of gratitude, your name will be included in the credits section of the next article or your nominated one, unless stated otherwise."
+
+[contribution_footer_funding]
+other = "I've also setup a Ko-fi to raise funds towards particular improvements on the site:"
 
 [contribution_suggestions]
 other = 'Alternatively, you can help out by <a href="{{ . }}">suggesting changes</a> and/or <a href="{{ . }}">adding translations</a>.'
