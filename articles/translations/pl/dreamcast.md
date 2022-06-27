@@ -32,7 +32,7 @@ Sega Dreamcast wprowadziła wiele nowych funkcji w stosunku do swojego poprzedni
 
 Nic dziwnego, że Sega ponownie wybrała Hitachi do opracowania swojego procesora. Jeśli czytałeś [poprzedni artykuł o Sega Saturn]({{< ref "sega-saturn" >}}) to pozwólcie, że przedstawię Wam następną generację procesora SH: **SH-4** działający z niesamowitą prędkością **200 MHz**. Więc co jest interesującego w tym procesorze?
 
-- **Potoky 5-stopniowy**: Do pięciu instrukcji może być przetwarzanych jednocześnie (szczegółowe wyjaśnienie można znaleźć w [poprzednim artykule]({{< ref "sega-saturn#cpu" >}})).
+- **Potok 5-stopniowy**: Do pięciu instrukcji może być przetwarzanych jednocześnie (szczegółowe wyjaśnienie można znaleźć w [poprzednim artykule]({{< ref "sega-saturn#cpu" >}})).
   - Potokowanie instrukcji można teraz znaleźć wszędzie w tej generacji konsol i od teraz będzie standardem.
 - **Dwukierunkowa superskalarność**: Nowy typ równoległości, w którym procesor może przetwarzać więcej niż jedną instrukcję (w tym przypadku dwie) na każdym etapie potoku, co skutkuje większą liczbą instrukcji wykonywanych na sekundę.
 - Dedykowana **Jednostka Zmiennoprzecinkowa** lub 'FPU': Oblicza 32-bitowe liczby dziesiętne (*pojedynczej precyzji*) i 64-bitowe (*podwójnej precyzji*).
@@ -133,7 +133,7 @@ Po zakończeniu operacji wyrenderowany kafelek jest zapisywany w głównym bufor
 
 ### Szersza perspektywa
 
-Oprócz wyraźnej różnicy architektonicznej, Texture and Shading Processor ma wiele możliwości, które dają wyobrażenie o tym, jak daleko ta konsola jest od starego [Saturn]({{< ref "sega-saturn">}}). Oto kilka godnych uwagi przykładów:
+Oprócz wyraźnej różnicy architektonicznej, Texture and Shading Processor ma wiele możliwości, które dają wyobrażenie o tym, jak daleko ta konsola jest od starego [Saturna]({{< ref "sega-saturn">}}). Oto kilka godnych uwagi przykładów:
 
 - **Mieszanie alfa**: Łączy kolory nakładających się warstw, aby uzyskać efekty przezroczystości.
   - Proces stosowany do stosowania przezroczystości w tym systemie nazywa się **przezroczystością niezależną od kolejności**. Algorytm automatycznie sortuje prymitywy przed zmieszaniem ich kolorów i chociaż spowalnia to proces renderowania, unika polegania na tym, że sama gra wykonuje wszystkie czynności ręcznie. Z tego powodu gry Dreamcast są wybitne w wyświetlaniu przezroczystych obiektów.
