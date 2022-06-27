@@ -1,8 +1,8 @@
 ---
 name: Xbox
 subtitle: Un temibile sfidante
-date: 26/06/2020
-releaseDate: 15/11/2001
+date: 2020-06-26
+releaseDate: 2001-11-15
 cover: "xbox"
 generation: 6
 top_tabs:
