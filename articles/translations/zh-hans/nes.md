@@ -368,7 +368,7 @@ APU 为音频数据提供了 5 个音频通道，每个通道能生成特定的�
 
 {{< tabs >}}
 
-{{< tab active="true" name="脉冲" >}}
+{{< tab active="true" name="脉冲（Pulse）" >}}
 {{< tabs nested="true" float="true" figure="true" >}}
   {{< tab_figure_video name="脉冲 1" active="true" src="pulse_single_1" >}}
 脉冲 1 通道。
@@ -394,7 +394,7 @@ APU 为脉冲波形预留了两个通道。 每一个都可以通过更改脉冲
 
 {{< /tab >}}
 
-{{< tab name="三角波" >}}
+{{< tab name="三角波（Triangle）" >}}
 {{< tabs nested="true" float="true" figure="true" >}}
   {{< tab_figure_video name="三角波" active="true" src="triangle_single" >}}
 三角波通道。
@@ -415,7 +415,7 @@ APU 为这种类型的波形保留了一个通道。
 
 {{< /tab >}}
 
-{{< tab name="噪音" >}}
+{{< tab name="噪音（Noise）" >}}
 {{< tabs nested="true" float="true" figure="true" >}}
   {{< tab_figure_video name="噪音" active="true" src="noise_single" >}}
 噪音通道。
@@ -436,7 +436,7 @@ APU 为这种类型的波形保留了一个通道。
 
 {{< /tab >}}
 
-{{< tab name="采样" >}}
+{{< tab name="采样（Sample）" >}}
 {{< tabs nested="true" float="true" figure="true" >}}
   {{< tab_figure_video name="采样" active="true" src="sample_single" >}}
 采样通道。
