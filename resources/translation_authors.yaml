@@ -23,4 +23,5 @@ snes: null
 virtualboy: null
 wii:
   it: Valerio Francesco Vallone
-xbox: null
+xbox:
+  it: Valerio Francesco Vallone
