@@ -189,7 +189,7 @@ Funkcjonalność audio jest obsługiwana przez niestandardowy układ o nazwie **
   - Jeśli się zastanawiasz, podobny procesor jest również używany [tutaj]({{< ref "game-boy-advance">}}).
 - **Memory Controller**: Oddziałuje na 2 MB SDRAM.
 
-Aby pomóc w rozwoju, oficjalny SDK zawierał wiele sterowników dźwięku do różnych potrzeb (sekwencjonowanie, dekodowanie, itp).
+Aby pomóc w programowaniu, oficjalny SDK zawierał wiele sterowników dźwięku do różnych potrzeb (sekwencjonowanie, dekodowanie, itp).
 
 ### Ewolucja
 
@@ -213,7 +213,7 @@ Kompresja ADX umożliwia grze dekodowanie i przesyłanie strumieniowe danych z G
 
 ### Pozostając przy życiu
 
-W jakiś sposób ten układ jest również odpowiedzialny za dostarczanie **Zegara Czasu Rzeczywistego** (RTC) do BIOS-u, jest również podłączony do baterii zegara, aby kontynuować pracę bez zasilania prądem zmiennym.
+Z jakiegoś powodu ten układ jest również odpowiedzialny za dostarczanie **Zegara Czasu Rzeczywistego** (RTC) do BIOS-u, jest również podłączony do baterii zegara, aby kontynuować pracę bez zasilania prądem zmiennym.
 
 ---
 
@@ -235,7 +235,7 @@ Powłoka po uruchomieniu bez dysku
 {{% inner_markdown %}}
 Powłoka zawiera prosty graficzny interfejs użytkownika, który umożliwia użytkownikowi wykonywanie podstawowych, ale niezbędnych zadań, takich jak:
 
-- Uruchomienie gry, jeśli jeszcze tego nie zrobiła.
+- Uruchomienie gry, jeśli jeszcze nie została uruchomiona.
 - Manipulowanie danymi zapisu przechowywanymi w VMU (więcej szczegółów na temat tego urządzenia później!).
 - Odtwarzanie muzyki, jeśli jest włożona płyta Audio CD.
 - Zmienianie niektórych ustawień (Data, Czas, Dźwięk, itp).
@@ -253,16 +253,16 @@ Logo Windows CE wybite z przodu obudowy
 {{< /figure_img >}}
 
 {{% inner_markdown %}}
-W rzeczywistości cel tego 'OS' był bardzo podobny do tego, co Nintendo zrobiło z [Nintendo 64]({{< ref "nintendo-64#operating-system" >}}): aby zapewnić programistom uczciwą warstwę abstrakcji w celu uproszczenia niektórych operacji.
+W rzeczywistości cel tego 'OS' był bardzo podobny do tego, co Nintendo zrobiło z [Nintendo 64]({{< ref "nintendo-64#operating-system" >}}): zapewnienie programistom rzetelnej warstwy abstrakcji w celu uproszczenia niektórych operacji.
 
 Microsoft współpracował z Segą, aby wprowadzić system Windows CE do Dreamcastu. W rezultacie powstał podzbiór CE z minimalnymi komponentami potrzebnymi do zapewnienia grafiki, dźwięku i debugowania. Obejmowało to użycie najlepszego IDE Microsoftu, **Visual Studio**, do rozwoju.
 {{% /inner_markdown %}}
 
 {{< /float_group >}}
 
-Niektórzy programiści uznali tę opcję za bardzo atrakcyjną. Ponieważ struktura audio-graficzna dołączona do CE była niczym innym jak **DirectX 6**, tysiące gier na PC z tamtej epoki można teoretycznie łatwo przenieść do Dreamcast...
+Niektórzy programiści uznali tę opcję za bardzo atrakcyjną. Ponieważ struktura audio-graficzna dołączona do CE była niczym innym jak **DirectX 6**, tysiące gier na PC z tamtej epoki możnaby teoretycznie łatwo przenieść na Dreamcasta...
 
-Jednak różnice architektoniczne między Dreamcastem a konwencjonalnym komputerem PC były zbyt duże, aby je zignorować. Ponadto osadzenie tego systemu wydłużyło czas ładowania gry (w końcu 'system operacyjny' musiał być ładowany z dysku), a Windows CE zużywał znaczną część zasobów z Dreamcastu (*nie jest to zaskoczeniem - komputery PC już cierpiały z tego powodu*).
+Jednak różnice architektoniczne między Dreamcastem a konwencjonalnym komputerem PC były zbyt duże, aby je zignorować. Ponadto osadzenie tego systemu wydłużyło czas ładowania gry (w końcu 'system operacyjny' musiał być ładowany z dysku), a Windows CE zużywał znaczną część zasobów Dreamcasta (*nie jest to zaskoczeniem - komputery PC już cierpiały z tego powodu*).
 
 Ostatecznie 'Windows CE dla Dreamcast' był po prostu kolejnym zestawem SDK wybieranym przez programistów (powszechnie określany jako **Dragon SDK**). Niemniej jednak znaczna liczba gier Dreamcast ostatecznie wybrała Windows API i DirectX.
 
@@ -270,19 +270,19 @@ Ostatecznie 'Windows CE dla Dreamcast' był po prostu kolejnym zestawem SDK wybi
 
 ## WE/WY
 
-GPU zawiera również inny moduł do obsługi większości we/wy o nazwie **System Bus**. Zapewnia następujące interfejsy:
+GPU zawiera również inny moduł do obsługi większości WE/WY o nazwie **System Bus**. Zapewnia następujące interfejsy:
 - Interfejs **G1**: Gdzie możliwy jest dostęp do **BIOS ROM** wraz z zapisaną konfiguracją i zawartości **GD-ROM**.
 - Interfejs **G2**: Zapewnia dostęp do **Modemu** i **Kontrolera Dźwięku**.
 - Interfejs **Maple**: Przesyła porcje danych między kontrolerami (wraz z podłączonymi do nich akcesoriami) a procesorem. Jest to **magistrala szeregowa** i zapewnia dedykowane DMA.
 - Interfejs **SH-4**: Łączy główny procesor w celu komunikacji ogólnego przeznaczenia.
 - Interfejs **DDT**: Przejmuje kontrolę nad magistralą procesora, aby uzyskać dostęp do pamięci głównej podczas transferów DMA.
-- Interfejs **PVR**: Łączy procesor z Tile Accelerator za pomocą dedykowanego DMA.
+- Interfejs **PVR**: Łączy procesor z Tile Acceleratorem za pomocą dedykowanego DMA.
 
 ---
 
 ## Gry
 
-Rozwój odbywał się głównie w **C** lub **C++**. Początkowo zalecanym wyborem było C, ponieważ dostępne kompilatory C++ były początkowo bardzo ograniczone pod względem funkcjonalności.
+Programowanie odbywało się głównie w **C** lub **C++**. Początkowo zalecanym wyborem było C, ponieważ dostępne kompilatory C++ były początkowo bardzo ograniczone pod względem funkcjonalności.
 
 Firma Sega dostarczyła również sprzęt programistyczny w postaci wieży podobnej do komputera PC o nazwie **Sega Katana Development Box**. To jest sprzęt Dreamcast z ulepszonymi WE/WY do rozwoju. Był również dostarczany z płytą CD zawierającą oficjalny **Katana SDK** i narzędzia do zainstalowania na komputerze z systemem Windows 98.
 
@@ -355,7 +355,7 @@ Później pojawiły się pewne problemy: Chociaż GD-ROM-y mogą przechowywać g
 ## To wszystko ludziska
 
 {{< figure_img src="folks.png" alt="Mój Dreamcast" class="centered-container" >}}
-Dreamcast, który musiałem zdobyć, żeby napisać tu dużo rzeczy  
+Dreamcast, którego musiałem zdobyć, żeby napisać tu dużo rzeczy  
 Niezły jak na swój wiek!
 {{< /figure_img >}}
 
