@@ -137,7 +137,7 @@ Oprócz wyraźnej różnicy architektonicznej, Texture and Shading Processor ma 
 
 - **Mieszanie alfa**: Łączy kolory nakładających się warstw, aby uzyskać efekty przezroczystości.
   - Proces stosowany do stosowania przezroczystości w tym systemie nazywa się **przezroczystością niezależną od kolejności**. Algorytm automatycznie sortuje prymitywy przed zmieszaniem ich kolorów i chociaż spowalnia to proces renderowania, unika polegania na tym, że sama gra wykonuje wszystkie czynności ręcznie. Z tego powodu gry Dreamcast są wybitne w wyświetlaniu przezroczystych obiektów.
-  - W połączeniu z systemem opartym na kafelkach przejrzystość niezależna od kolejności całkowicie rozwiązuje poprzednie [wpadki]({{< ref "sega-saturn#the-transparency-issue" >}}).
+  - W połączeniu z systemem opartym na kafelkach przezroczystość niezależna od kolejności całkowicie rozwiązuje poprzednie [wpadki]({{< ref "sega-saturn#the-transparency-issue" >}}).
 - **Mip-Mapping**: Automatycznie wybiera pomniejszoną wersję tekstury w zależności od wymaganego poziomu szczegółowości. Ma to na celu zapobieganie przetwarzaniu dużych tekstur, które byłyby widoczne z dużej odległości od kamery (co byłoby marnowaniem mocy obliczeniowej i powodowałoby aliasing).
 - **Mapowanie środowiska**: Stosuje odbicia na teksturach.
 - **Filtrowanie Dwuliniowe, Trójliniowe i Anizotropowe**: Są to różne algorytmy używane do wygładzania tekstur i zapobiegania pikselizacji. Są one uporządkowane od 'najgorszych' do 'najlepszych', gdzie wynikowa jakość każdego z nich jest wprost proporcjonalna do ilości wymaganych obliczeń.
@@ -161,7 +161,7 @@ Sonic Adventure (1999) dla Dreamcast
 
 ### Tryby Wideo
 
-System wideo został zaprojektowany do obsługi wielu typów ekranów i formatów, stąd wyjścia wideoenkodera do gniazda o jednym kształcie, które obsługuje następujące rodzaje sygnałów:
+System wideo został zaprojektowany do obsługi wielu typów ekranów i formatów, dlatego wideoenkoder wysyła sygnał do gniazda o jednym kształcie, które obsługuje następujące rodzaje sygnałów:
 
 - **Kompozytowy**: łączy trzy sygnały potrzebne do wyświetlania wideo (kolorystyka, jasność i synchronizacja) w jeden, wymagając tylko jednopinowego kabla.
   - Jest to używane w starych telewizorach PAL i NTSC z połączeniem RCA.
