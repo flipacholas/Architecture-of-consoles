@@ -61,9 +61,9 @@ Sono stati prodotti altri accessori in grado di collegarsi a questa porta, ciasc
 
 ## La CPU
 
-Dopo il successo di Gekko, possiamo ipotizzare che IBM abbia rimarchiato lo stesso design come "750CL", affinché potesse essere utilizzato da altri produttori. Quando Nintendo chiese una nuova CPU da utilizzare per la futura console, nota ancora con il nome in codice "Revolution" (da cui il prefisso RVL presente sulle schede madri), IBM si accordò con l'azienda giapponese per utilizzare un 750CL con il doppio della velocità di clock rispetto a Gekko. Questa CPU, nota come **Broadway**, opera a una frequenza di **729 MHz**.
+Dopo il successo di Gekko, possiamo ipotizzare che IBM abbia rimarchiato lo stesso design come "750CL", affinché potesse essere utilizzato da altri produttori. Quando Nintendo chiese una nuova CPU da utilizzare per la futura console, nota ancora con il nome in codice "Revolution" (da cui il prefisso RVL presente sulle schede madri), IBM si accordò con l'azienda giapponese per utilizzare un 750CL con una velocità di clock pari a una volta e mezzo quella di Gekko. Questa CPU, nota come **Broadway**, opera a una frequenza di **729 MHz**.
 
-Dopo aver riesaminato [Gekko]({{< ref "gamecube#cpu" >}}), credo che le novità nella nuova CPU siano piuttosto limitate. Tuttavia, questa familiarità poteva rappresentare un vantaggio: gli sviluppatori GameCube potevano iniziare a sviluppare nuovi giochi per Wii fin da subito, grazie all'esperienza accumulata con Gekko. Inoltre, il raddoppio della velocità di clock di Broadway gli permetteva di aggiungere funzionalità ai software e incrementarne la qualità.
+Dopo aver riesaminato [Gekko]({{< ref "gamecube#cpu" >}}), credo che le novità nella nuova CPU siano piuttosto limitate. Tuttavia, questa familiarità poteva rappresentare un vantaggio: gli sviluppatori GameCube potevano iniziare a sviluppare nuovi giochi per Wii fin da subito, grazie all'esperienza accumulata con Gekko. Inoltre, l'aumento della velocità di clock di Broadway gli permetteva di aggiungere funzionalità ai software e incrementarne la qualità.
 
 ### E la memoria?
 
@@ -86,7 +86,7 @@ Le revisioni hardware degli anni seguenti hanno purtroppo visto la rimozione del
 
 ## La grafica
 
-Il nuovo pacchetto grafico è denominato **Hollywood**. Esegue gli stessi compiti che eseguiva [Flipper]({{< ref "gamecube#graphics" >}}) nel GameCube, ma beneficiando del doppio della velocità di clock (**243 MHz**). Questo aumento di velocità permette di elaborare un numero maggiore di geometrie ed effetti a parità di unità di tempo.
+Il nuovo pacchetto grafico è denominato **Hollywood**. Esegue gli stessi compiti che eseguiva [Flipper]({{< ref "gamecube#graphics" >}}) nel GameCube, ma beneficiando di un aumento della velocità di clock pari a una volta e mezzo quella di Flipper (**243 MHz**). Questo aumento della velocità permette di elaborare un numero maggiore di geometrie ed effetti a parità di unità di tempo.
 
 ### Funzionalità
 
@@ -228,9 +228,9 @@ Un Wii con dispositivi del GameCube collegati
 {{< /figure_img >}}
 
 {{% inner_markdown %}}
-Nonostante il sistema I/O originale sia stato modificato radicalmente, il Wii è pienamente retrocompatibile con i giochi per GameCube. Starlet viene infatti riprogrammato quando si esegue un gioco per GameCube, rimandando virtualmente i dispositivi di I/O secondo la stessa configurazione del GameCube originale.
+Nonostante il sistema I/O originale sia stato modificato radicalmente, il Wii è pienamente retrocompatibile con i giochi per GameCube. Starlet viene infatti riprogrammato quando si esegue un gioco per GameCube, rimappando virtualmente i dispositivi di I/O secondo la stessa configurazione del GameCube originale.
 
-Inoltre, nel chip real-time clock chip è presente della ROM aggiuntiva che contiene i font bitmap (sia per l’alfabeto latino che per il giapponese) utilizzati nei giochi per GameCube, e una SRAM per salvare le impostazioni [relative all’IPL]({{< ref "gamecube#operating-system" >}}).
+Inoltre, nel chip real-time clock è presente della ROM aggiuntiva che contiene i font bitmap (sia per l’alfabeto latino che per il giapponese) utilizzati nei giochi per GameCube, e una SRAM per salvare le impostazioni [relative all’IPL]({{< ref "gamecube#operating-system" >}}).
 {{% /inner_markdown %}}
 
 {{< /float_group >}}
@@ -369,7 +369,7 @@ Anche questa schermata doveva essere inclusa
 {{< /tabs >}}
 
 {{% inner_markdown %}}
-Detto questo, alcune funzionalità che compaiono in molti giochi diversi sono stranamente simili. Ad esempio: ricordate il famoso **menu HOME**? Premendo il pulsante "HOME" sul WiiMote, una schermata sovrimpressa sul gioco permette all'utente di tornare al menu Wii senza dover riavviare la console. Ma dato che il SO non offre una simile funzionalità, com'era possibile che tutti i giochi offrissero la stessa interfaccia grafica?
+Detto questo, alcune funzionalità che compaiono in molti giochi diversi sono stranamente simili. Ad esempio: ricordate il famoso **menu HOME**? Premendo il pulsante "HOME" sul Wiimote, una schermata sovrimpressa sul gioco permette all'utente di tornare al menu Wii senza dover riavviare la console. Ma dato che il SO non offre una simile funzionalità, com'era possibile che tutti i giochi offrissero la stessa interfaccia grafica?
 
 La risposta è semplice: Nintendo includeva nell'SDK alcune **librerie obbligatorie** che dovevano essere incluse nei giochi. *E guarda un po'*, una di queste si occupa di creare proprio quella schermata. È lo stesso motivo per cui solo le applicazioni homebrew utilizzano design originali per il menu HOME.
 {{% /inner_markdown %}}
@@ -455,7 +455,7 @@ Starlet è la sola CPU ad avere accesso ai dati riservati, ed è pertanto lei a 
 {{< tab name="Catena di fiducia" >}}
 
 {{% inner_markdown %}}
-I titoli contengono un ulteriore livello di sicurezza: RSA-2048. Si tratta di un **algoritmo asimmetrico**: sono necessarie una chiave per criptare un dato e una seconda chiave per decriptarlo. In questo modo, Nintendo è in grado di criptare i titoli utilizzando una chiave conosciuta solo dall'azienda stessa (ossia una "chiave privata"), mentre il Wii li decripta utilizzando una "chiave pubblica" memorizzata nella console. Anche se un hacker entrasse in possesso della chiave pubblica, questa non basterebbe per violare il sistema di sicurezza, in quanto i dati devono comunque essere criptati utilizzando la chiave privata nota solo a Nintendo.
+I titoli contengono un ulteriore livello di sicurezza: RSA-2048. Si tratta di un **algoritmo asimmetrico**: sono necessarie una chiave per criptare un dato e una seconda chiave per decriptarlo. In questo modo, Nintendo è in grado di criptare i titoli utilizzando una chiave conosciuta solo dall'azienda stessa (ossia una "chiave privata"), mentre il Wii li decripta utilizzando una "chiave pubblica" memorizzata nella console. Anche se un hacker fosse entrato in possesso della chiave pubblica, questa non sarebbe bastata per violare il sistema di sicurezza, in quanto i dati dovevano comunque essere criptati utilizzando la chiave privata nota solo a Nintendo.
 
 Inoltre, l'RSA non consente solo di criptare contenuti, ma anche di verificare l'integrità della protezione. Nintendo utilizza più chiavi al solo scopo di firmare (ossia criptare) i dati già crittografati, generando quindi una catena crittografica al solo scopo di assicurarsi che:
 - ogni singola chiave utilizzata sia stata autorizzata da Nintendo;
@@ -572,7 +572,7 @@ Il risultato di questo sforzo fu il **canale Homebrew**, un titolo che consentiv
 
 ### La risposta di Nintendo
 
-Naturalmente, Nintendo ha rilasciato molti aggiornamenti di sistema per correggere gli exploit relativi alle firme presenti su diverse versioni di IOS, mentre la sequenza di boot è stata modificata nelle revisioni successive dell'hardware.
+Naturalmente, Nintendo rilasciò molti aggiornamenti di sistema per correggere gli exploit relativi alle firme presenti su diverse versioni di IOS, mentre la sequenza di boot fu modificata nelle revisioni successive dell'hardware.
 
 {{< float_group >}}
 {{< figure_img float="true" src="system/updates.png" alt="La schermata di aggiornamento" >}}

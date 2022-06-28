@@ -32,7 +32,7 @@ Sega Dreamcast wprowadziła wiele nowych funkcji w stosunku do swojego poprzedni
 
 Nic dziwnego, że Sega ponownie wybrała Hitachi do opracowania swojego procesora. Jeśli czytałeś [poprzedni artykuł o Sega Saturn]({{< ref "sega-saturn" >}}) to pozwólcie, że przedstawię Wam następną generację procesora SH: **SH-4** działający z niesamowitą prędkością **200 MHz**. Więc co jest interesującego w tym procesorze?
 
-- **Potoky 5-stopniowy**: Do pięciu instrukcji może być przetwarzanych jednocześnie (szczegółowe wyjaśnienie można znaleźć w [poprzednim artykule]({{< ref "sega-saturn#cpu" >}})).
+- **Potok 5-stopniowy**: Do pięciu instrukcji może być przetwarzanych jednocześnie (szczegółowe wyjaśnienie można znaleźć w [poprzednim artykule]({{< ref "sega-saturn#cpu" >}})).
   - Potokowanie instrukcji można teraz znaleźć wszędzie w tej generacji konsol i od teraz będzie standardem.
 - **Dwukierunkowa superskalarność**: Nowy typ równoległości, w którym procesor może przetwarzać więcej niż jedną instrukcję (w tym przypadku dwie) na każdym etapie potoku, co skutkuje większą liczbą instrukcji wykonywanych na sekundę.
 - Dedykowana **Jednostka Zmiennoprzecinkowa** lub 'FPU': Oblicza 32-bitowe liczby dziesiętne (*pojedynczej precyzji*) i 64-bitowe (*podwójnej precyzji*).
@@ -133,11 +133,11 @@ Po zakończeniu operacji wyrenderowany kafelek jest zapisywany w głównym bufor
 
 ### Szersza perspektywa
 
-Oprócz wyraźnej różnicy architektonicznej, Texture and Shading Processor ma wiele możliwości, które dają wyobrażenie o tym, jak daleko ta konsola jest od starego [Saturn]({{< ref "sega-saturn">}}). Oto kilka godnych uwagi przykładów:
+Oprócz wyraźnej różnicy architektonicznej, Texture and Shading Processor ma wiele możliwości, które dają wyobrażenie o tym, jak daleko ta konsola jest od starego [Saturna]({{< ref "sega-saturn">}}). Oto kilka godnych uwagi przykładów:
 
 - **Mieszanie alfa**: Łączy kolory nakładających się warstw, aby uzyskać efekty przezroczystości.
   - Proces stosowany do stosowania przezroczystości w tym systemie nazywa się **przezroczystością niezależną od kolejności**. Algorytm automatycznie sortuje prymitywy przed zmieszaniem ich kolorów i chociaż spowalnia to proces renderowania, unika polegania na tym, że sama gra wykonuje wszystkie czynności ręcznie. Z tego powodu gry Dreamcast są wybitne w wyświetlaniu przezroczystych obiektów.
-  - W połączeniu z systemem opartym na kafelkach przejrzystość niezależna od kolejności całkowicie rozwiązuje poprzednie [wpadki]({{< ref "sega-saturn#the-transparency-issue" >}}).
+  - W połączeniu z systemem opartym na kafelkach przezroczystość niezależna od kolejności całkowicie rozwiązuje poprzednie [wpadki]({{< ref "sega-saturn#the-transparency-issue" >}}).
 - **Mip-Mapping**: Automatycznie wybiera pomniejszoną wersję tekstury w zależności od wymaganego poziomu szczegółowości. Ma to na celu zapobieganie przetwarzaniu dużych tekstur, które byłyby widoczne z dużej odległości od kamery (co byłoby marnowaniem mocy obliczeniowej i powodowałoby aliasing).
 - **Mapowanie środowiska**: Stosuje odbicia na teksturach.
 - **Filtrowanie Dwuliniowe, Trójliniowe i Anizotropowe**: Są to różne algorytmy używane do wygładzania tekstur i zapobiegania pikselizacji. Są one uporządkowane od 'najgorszych' do 'najlepszych', gdzie wynikowa jakość każdego z nich jest wprost proporcjonalna do ilości wymaganych obliczeń.
@@ -161,7 +161,7 @@ Sonic Adventure (1999) dla Dreamcast
 
 ### Tryby Wideo
 
-System wideo został zaprojektowany do obsługi wielu typów ekranów i formatów, stąd wyjścia wideoenkodera do gniazda o jednym kształcie, które obsługuje następujące rodzaje sygnałów:
+System wideo został zaprojektowany do obsługi wielu typów ekranów i formatów, dlatego wideoenkoder wysyła sygnał do gniazda o jednym kształcie, które obsługuje następujące rodzaje sygnałów:
 
 - **Kompozytowy**: łączy trzy sygnały potrzebne do wyświetlania wideo (kolorystyka, jasność i synchronizacja) w jeden, wymagając tylko jednopinowego kabla.
   - Jest to używane w starych telewizorach PAL i NTSC z połączeniem RCA.
@@ -189,7 +189,7 @@ Funkcjonalność audio jest obsługiwana przez niestandardowy układ o nazwie **
   - Jeśli się zastanawiasz, podobny procesor jest również używany [tutaj]({{< ref "game-boy-advance">}}).
 - **Memory Controller**: Oddziałuje na 2 MB SDRAM.
 
-Aby pomóc w rozwoju, oficjalny SDK zawierał wiele sterowników dźwięku do różnych potrzeb (sekwencjonowanie, dekodowanie, itp).
+Aby pomóc w programowaniu, oficjalny SDK zawierał wiele sterowników dźwięku do różnych potrzeb (sekwencjonowanie, dekodowanie, itp).
 
 ### Ewolucja
 
@@ -213,7 +213,7 @@ Kompresja ADX umożliwia grze dekodowanie i przesyłanie strumieniowe danych z G
 
 ### Pozostając przy życiu
 
-W jakiś sposób ten układ jest również odpowiedzialny za dostarczanie **Zegara Czasu Rzeczywistego** (RTC) do BIOS-u, jest również podłączony do baterii zegara, aby kontynuować pracę bez zasilania prądem zmiennym.
+Z jakiegoś powodu ten układ jest również odpowiedzialny za dostarczanie **Zegara Czasu Rzeczywistego** (RTC) do BIOS-u, jest również podłączony do baterii zegara, aby kontynuować pracę bez zasilania prądem zmiennym.
 
 ---
 
@@ -235,7 +235,7 @@ Powłoka po uruchomieniu bez dysku
 {{% inner_markdown %}}
 Powłoka zawiera prosty graficzny interfejs użytkownika, który umożliwia użytkownikowi wykonywanie podstawowych, ale niezbędnych zadań, takich jak:
 
-- Uruchomienie gry, jeśli jeszcze tego nie zrobiła.
+- Uruchomienie gry, jeśli jeszcze nie została uruchomiona.
 - Manipulowanie danymi zapisu przechowywanymi w VMU (więcej szczegółów na temat tego urządzenia później!).
 - Odtwarzanie muzyki, jeśli jest włożona płyta Audio CD.
 - Zmienianie niektórych ustawień (Data, Czas, Dźwięk, itp).
@@ -253,16 +253,16 @@ Logo Windows CE wybite z przodu obudowy
 {{< /figure_img >}}
 
 {{% inner_markdown %}}
-W rzeczywistości cel tego 'OS' był bardzo podobny do tego, co Nintendo zrobiło z [Nintendo 64]({{< ref "nintendo-64#operating-system" >}}): aby zapewnić programistom uczciwą warstwę abstrakcji w celu uproszczenia niektórych operacji.
+W rzeczywistości cel tego 'OS' był bardzo podobny do tego, co Nintendo zrobiło z [Nintendo 64]({{< ref "nintendo-64#operating-system" >}}): zapewnienie programistom rzetelnej warstwy abstrakcji w celu uproszczenia niektórych operacji.
 
 Microsoft współpracował z Segą, aby wprowadzić system Windows CE do Dreamcastu. W rezultacie powstał podzbiór CE z minimalnymi komponentami potrzebnymi do zapewnienia grafiki, dźwięku i debugowania. Obejmowało to użycie najlepszego IDE Microsoftu, **Visual Studio**, do rozwoju.
 {{% /inner_markdown %}}
 
 {{< /float_group >}}
 
-Niektórzy programiści uznali tę opcję za bardzo atrakcyjną. Ponieważ struktura audio-graficzna dołączona do CE była niczym innym jak **DirectX 6**, tysiące gier na PC z tamtej epoki można teoretycznie łatwo przenieść do Dreamcast...
+Niektórzy programiści uznali tę opcję za bardzo atrakcyjną. Ponieważ struktura audio-graficzna dołączona do CE była niczym innym jak **DirectX 6**, tysiące gier na PC z tamtej epoki możnaby teoretycznie łatwo przenieść na Dreamcasta...
 
-Jednak różnice architektoniczne między Dreamcastem a konwencjonalnym komputerem PC były zbyt duże, aby je zignorować. Ponadto osadzenie tego systemu wydłużyło czas ładowania gry (w końcu 'system operacyjny' musiał być ładowany z dysku), a Windows CE zużywał znaczną część zasobów z Dreamcastu (*nie jest to zaskoczeniem - komputery PC już cierpiały z tego powodu*).
+Jednak różnice architektoniczne między Dreamcastem a konwencjonalnym komputerem PC były zbyt duże, aby je zignorować. Ponadto osadzenie tego systemu wydłużyło czas ładowania gry (w końcu 'system operacyjny' musiał być ładowany z dysku), a Windows CE zużywał znaczną część zasobów Dreamcasta (*nie jest to zaskoczeniem - komputery PC już cierpiały z tego powodu*).
 
 Ostatecznie 'Windows CE dla Dreamcast' był po prostu kolejnym zestawem SDK wybieranym przez programistów (powszechnie określany jako **Dragon SDK**). Niemniej jednak znaczna liczba gier Dreamcast ostatecznie wybrała Windows API i DirectX.
 
@@ -270,19 +270,19 @@ Ostatecznie 'Windows CE dla Dreamcast' był po prostu kolejnym zestawem SDK wybi
 
 ## WE/WY
 
-GPU zawiera również inny moduł do obsługi większości we/wy o nazwie **System Bus**. Zapewnia następujące interfejsy:
+GPU zawiera również inny moduł do obsługi większości WE/WY o nazwie **System Bus**. Zapewnia następujące interfejsy:
 - Interfejs **G1**: Gdzie możliwy jest dostęp do **BIOS ROM** wraz z zapisaną konfiguracją i zawartości **GD-ROM**.
 - Interfejs **G2**: Zapewnia dostęp do **Modemu** i **Kontrolera Dźwięku**.
 - Interfejs **Maple**: Przesyła porcje danych między kontrolerami (wraz z podłączonymi do nich akcesoriami) a procesorem. Jest to **magistrala szeregowa** i zapewnia dedykowane DMA.
 - Interfejs **SH-4**: Łączy główny procesor w celu komunikacji ogólnego przeznaczenia.
 - Interfejs **DDT**: Przejmuje kontrolę nad magistralą procesora, aby uzyskać dostęp do pamięci głównej podczas transferów DMA.
-- Interfejs **PVR**: Łączy procesor z Tile Accelerator za pomocą dedykowanego DMA.
+- Interfejs **PVR**: Łączy procesor z Tile Acceleratorem za pomocą dedykowanego DMA.
 
 ---
 
 ## Gry
 
-Rozwój odbywał się głównie w **C** lub **C++**. Początkowo zalecanym wyborem było C, ponieważ dostępne kompilatory C++ były początkowo bardzo ograniczone pod względem funkcjonalności.
+Programowanie odbywało się głównie w **C** lub **C++**. Początkowo zalecanym wyborem było C, ponieważ dostępne kompilatory C++ były początkowo bardzo ograniczone pod względem funkcjonalności.
 
 Firma Sega dostarczyła również sprzęt programistyczny w postaci wieży podobnej do komputera PC o nazwie **Sega Katana Development Box**. To jest sprzęt Dreamcast z ulepszonymi WE/WY do rozwoju. Był również dostarczany z płytą CD zawierającą oficjalny **Katana SDK** i narzędzia do zainstalowania na komputerze z systemem Windows 98.
 
@@ -355,7 +355,7 @@ Później pojawiły się pewne problemy: Chociaż GD-ROM-y mogą przechowywać g
 ## To wszystko ludziska
 
 {{< figure_img src="folks.png" alt="Mój Dreamcast" class="centered-container" >}}
-Dreamcast, który musiałem zdobyć, żeby napisać tu dużo rzeczy  
+Dreamcast, którego musiałem zdobyć, żeby napisać tu dużo rzeczy  
 Niezły jak na swój wiek!
 {{< /figure_img >}}
 

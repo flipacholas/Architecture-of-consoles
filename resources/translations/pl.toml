@@ -19,6 +19,12 @@ other = "Zgłoś błędy lub zaproponuj zmiany"
 [supporting_readings]
 other = "Sprawdź dodatkowe materiały"
 
+[tablet_mode_button]
+other = "Ukryj zakładki / Tryb tabletu"
+
+[desktop_mode_button]
+other = "Pokaż zakładki / Tryb stacjonarny"
+
 [next]
 other = "Następna"
 
@@ -116,7 +122,10 @@ other = "Jest wiele konsol, o których mógłbym napisać... Jeśli zastanawiasz
 other = "Jeśli uważasz, że moje artykuły są interesujące, rozważ darowiznę. Twój wkład zostanie wykorzystany na sfinansowanie zakupu narzędzi i zasobów, które pomogą mi poprawić jakość istniejących i przyszłych artykułów. Na końcu każdego artykułu podaję również listę interesujących materiałów, które chcę pozyskać."
 
 [contribution_footer]
-other = "Wraz z darowizną możesz zostawić notatkę z informacją, w który konkretnie artykuł chcesz, abym zainwestował. W dowód wdzięczności Twoje imię i nazwisko zostanie uwzględnione w sekcji uznań w następnym lub nominowanym artykule, chyba że wskazano inaczej."
+other = "W dowód wdzięczności Twoja nazwa zostanie umieszczona w sekcji uznań w następnym artykule lub w nominowanym przez Ciebie artykule, chyba że stwierdzono inaczej."
+
+[contribution_footer_funding]
+other = "Założyłem również Ko-fi, aby zebrać fundusze na konkretne ulepszenia na stronie:"
 
 [contribution_suggestions]
 other = 'Możesz też pomóc <a href="{{ . }}">proponując zmiany</a> i/lub <a href="{{ . }}">dodając tłumaczenia</a>.'

@@ -1,12 +1,15 @@
 dreamcast:
   ru: AbsurdlySuspicious
   pl: LunaDook & MoonbowPlushie
-gameboy: null
+gameboy:
+  fr: SuperDelphi
+  pl: LunaDook & MoonbowPlushie
 gamecube: null
 gba: null
 mastersystem: null
 megadrive: null
-nes: null
+nes:
+  zh-hans: 猫咪啊呀呀
 nintendo64:
   es: Rodrigo Copetti
 nintendods: null
@@ -21,4 +24,5 @@ snes: null
 virtualboy: null
 wii:
   it: Valerio Francesco Vallone
-xbox: null
+xbox:
+  it: Valerio Francesco Vallone

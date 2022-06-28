@@ -12,22 +12,17 @@ aliases:
 cover: xbox360
 top_tabs:
   Motherboard:
-    caption: Showing the 'Xenon' revision (the first one), taken from my model from
-      2005. Xenon motherboards are also famous for being defective by design (they
-      get too hot to play games with!). Remaining GDDR3 chips are found on the back.
+    caption: "Showing the 'Xenon' revision (the first one), taken from my model from 2005. Xenon motherboards are also famous for being defective by design (they get too hot to play games with!). Remaining GDDR3 chips are found on the back."
     bib_source: copetti
   Models:
   - active: true
-    caption: The original Xbox 360 with an external HDD plugged at the top.<br>Released
-      on 22/11/2005 in America, 02/12/2005 in Europe and 10/12/2005 in Japan
+    caption: "The original Xbox 360 with an external HDD plugged at the top.<br>Released on 22/11/2005 in America, 02/12/2005 in Europe and 10/12/2005 in Japan"
     title: Original
     img_class: reduced-width
-  - caption: The 'new' Xbox 360 (a.k.a. 'Slim' or 'S').<br>Released on 18/06/2010
-      in America, 24/06/2010 in Japan and 16/07/2010 in Europe
+  - caption: "The 'new' Xbox 360 (a.k.a. 'Slim' or 'S').<br>Released on 18/06/2010 in America, 24/06/2010 in Japan and 16/07/2010 in Europe"
     title: The 'S'
     img_class: reduced-width
-  - caption: Another 'new' Xbox 360 (a.k.a. 'E').<br>Released on 10/06/2013 in America,
-      20/06/2013 in Europe and similar in Japan
+  - caption: "Another 'new' Xbox 360 (a.k.a. 'E').<br>Released on 10/06/2013 in America, 20/06/2013 in Europe and similar in Japan"
     title: The 'E'
     img_class: reduced-width
 ---
@@ -98,7 +93,7 @@ Thus, Microsoft began meeting with Intel, though the talks didn’t last long, a
 {{% /inner_markdown %}}{{< /tab >}}{{< tab name="Resentful old friends" active="false" >}}
 
 {{< figure_img src="photos/ibm_pc.jpeg" full_src="" float="true" class="" img_class="" add_text_overlay="false" >}}
-An IBM PC that I found in the Computer History Museum (San Jose, California), from my visit in June 2019. For some reason, they don't allow to use it...
+An IBM PC that I found in the Computer History Museum (San Jose, California), during my visit in June 2019. For some reason, they don't allow to use it...
 {{< /figure_img >}}
 
 {{% inner_markdown %}}
@@ -1436,7 +1431,7 @@ This solves the first task of filling main RAM, but we still need a way of invok
 
 Recall that the Xbox 360’s kernel provides a scheduler to handle multi-threading. This apparatus takes care of dispatching virtual threads to the CPU cores and saving idle threads into memory for later use. Well, for another unexplained reason, the scheduler stores thread states in RAM as **unencrypted** data!
 
-Combining all explained, one could now craft a shader that corrupts an idle thread in RAM which, once restored, would continue execution with custom parameters. This process would carry on until all parameters are finally in the hacker’s control {{< cite "anti_piracy-smc_hack" >}} so execution can be redirected to the syscall handler and, combined with the use of calculated parameters, would finally jump to the crafted (and unencrypted) syscall. This methodology is known as **Return-Oriented Programming** (ROP) and it was also used for [late hacks]({{< ref "playstation-3#homebrew-revival" >}}) of the Playstation 3.
+Combining all explained, one could now craft a shader that corrupts an idle thread in RAM which, once restored, would continue execution with custom parameters. This process would carry on until all parameters are finally in the hacker’s control {{< cite "anti_piracy-smc_hack" >}} so execution can be redirected to the syscall handler and, combined with the use of calculated parameters, would finally jump to the crafted (and unencrypted) syscall.
 
 And this is pretty much how the hypervisor got hijacked by arbitrary code. A common payload bundled with this process consisted of a **Linux launcher**, as using Linux with full hardware privileges allowed users to extract sensitive information from their console, like the CPU key (which could come in handy in the future, you’ll soon see).
 
@@ -1556,7 +1551,7 @@ First demo showing the RGH hack on a Slim (Trinity) console {{< cite "anti_pirac
 
 After two idling years since the last major breakthrough, in August 2011, user ‘GliGli’ submitted a technical report outlying the discovery of a **Reset Glitch Hack** (RGH) {{< cite "anti_piracy-rgh" >}}. This new technique allowed any type of Xbox 360 (no matter its update installed) to run an arbitrary version of the Hypervisor, just like the SMC/JTAG hack, except that it will now need an **external chip** soldered in.
 
-In a nutshell, RGH exploits a fundamental flaw in the CPU’s circuitry: if the CPU receives a short pulse (10 to 60 ns long) on its `RESET` line, the CPU will not fully reset but continue execution in a corrupted state, and that can work in the hacker’s advantage if the CPU is in the middle of asserting something crucial, like verifying the bootloaders. Additionally, user ‘cjak’ found out that by latching a special line in the motherboard called `CPU_PLL_BYPASS`, the CPU is slowed down to **\~25 MHz**, thereby making room to glitch it.
+In a nutshell, RGH exploits a fundamental flaw in the CPU’s circuitry: if the CPU receives a short pulse (4 to 60 ns long) on its `RESET` line, the CPU will not reset but continue execution in a corrupted state. In other words, if the CPU is in the middle of executing an `mr` (move register) instruction when the glitch happens, the `destination` value will be `0` instead of the content of the `source` register. This can work to the hacker’s advantage if the CPU is in the middle of asserting something crucial, like verifying the bootloaders. Additionally, user ‘cjak’ found out that by latching a special line in the motherboard called `CPU_PLL_BYPASS`, the CPU is slowed down to **\~25 MHz**, thereby making room to glitch it.
 
 With this, GliGli and a group of hackers grabbed a generic but fast CPLD board (similar to an FPGA), soldered it to many useful points on the motherboard and programmed it to:
 
@@ -1582,7 +1577,7 @@ While the new 'Trinity' motherboard brought many long-awaited improvements, such
 
 While the RGH hack attacks the fundamental construction of the CPU at an early stage (thereby making it impossible to tackle it with a software update), Microsoft never displayed any sign of weakness and released further updates of CB (the second stage bootloader) and new motherboard revisions in an attempt to garble the glitching process.
 
-For instance, the new Slim edition of the console released in 2010 (ironically, a year before the publication of RGH) codenamed **Trinity** doesn’t expose the PLL point which is used to slow down the processor. To tackle this, the RGH team found out they can fiddle with the PLL signal of the video encoder chip via I²C, and this will condition the speed of the CPU. Unfortunately, the video encoder can only slow it so much (just \~3 times {{< cite "anti_piracy-hacking_3" >}}) so the precision and success rate is reduced. Nonetheless, it’s still a huge accomplishment.
+For instance, the new Slim edition of the console released in 2010 (ironically, a year before the publication of RGH) codenamed **Trinity** moved the `CPU_PLL_BYPASS` point to a location hackers couldn’t find (yet). Meanwhile, the RGH team found out they can fiddle with the PLL signal of the video encoder chip via I²C, and this will condition the speed of the CPU. Unfortunately, the video encoder can only slow it so much (just \~3 times {{< cite "anti_piracy-hacking_3" >}}) so the precision and success rate is reduced. Nonetheless, it’s still a huge accomplishment.
 
 Additionally, Slim consoles split the CB stage into CB_A and CB_B, where CB_B is further encrypted with the RC4 algorithm and relies on the CPU key. To add more to the despair, the zero pairing backdoor got completely removed. Finally, all of these changes would soon be extended to older models as Microsoft publishes more software updates. Be as it may, hackers never gave up and found out they could modify CB_B in its encrypted form. Thanks to a mathematical flaw in RC4, encrypted information can be altered just by applying `XOR` with an unencrypted delta patch {{< cite "anti_piracy-hacking_3" >}}, thereby allowing to disable encryption routines on CB_B without knowing the CPU Key!
 
@@ -1601,6 +1596,7 @@ Initially, the RGH hack, as a program for the glitcher, materialised into two di
 In any case, the success of RGH paved a wave of commercial glitchers and installation kits. These promised that, at a higher price point, would provide easiness of installation and better success rates. I believe **Team Xecuter** is one of the best examples that greatly capitalised on the RGH fever. The company sold customised versions of Xilinx’s ‘CoolRunner’ development boards to compete against other programmable glitchers on the market. Most notably, Team Xecuter’s boards came either pre-programmed or with support for their new variants of RGH:
 
 -   As a result of Microsoft’s attempts to fix the XOR exploit with update `2.0.15572`, in December 2012, Team Xecuter shipped a new board called **DGX** (Double Glitch Hack) to focus on extracting the CPU Key {{< cite "anti_piracy-dgx" >}}, and then proceeding like any other RGH method. In this way, Microsoft’s update was addressed by flashing old unencrypted bootloaders and then using DGX to glitch the boot process **twice** to bypass both comparison and validation of the modified CB_B.
+    -   It was later found out that Team Xecuter’s method was more of a brute-force attack. A more reliable procedure only requires to glitch when CB_A is preparing to copy data from NAND {{< cite "anti_piracy-balika" >}}.
 -   The **R-JTAG** glitcher for non-Slim consoles {{< cite "anti_piracy-rjtag" >}}. Released in May 2013, this new method for updated consoles attempts to approximate the old success rate of RGH1. Basically, R-JTAG glitches the CPU to load an old version of the Hypervisor vulnerable to the JTAG/SMC exploit, and then proceeds as the latter hack did.
 -   With their new flagship ‘CR4 XL’ glitcher, **RGH2+** was presented as a new mode to improve over the classic RGH2. This time, the CPU slowdown process was delegated to the SMC {{< cite "anti_piracy-rgh_wiki" >}}.
 
@@ -1616,9 +1612,9 @@ For one reason or another, Team Xecuter didn’t provide any documentation to re
 
 #### The endgame
 
-With the approach of the Xbox 360’s successor, Microsoft took one last breath and shipped a redesigned version of the console called ‘E’, and within it, another motherboard revision called **Winchester**. The latter finally removed the POST signals and filtered the CPU `RESET` line from *external disturbance* {{< cite "anti_piracy-hack_win" >}}, which rendered the RGH hack, after three years since its discovery, obsolete.
+With the approach of the Xbox 360’s successor, Microsoft took one last breath and shipped a redesigned version of the console called ‘E’, and within it, another motherboard revision called **Winchester**. In retail models, Winchester finally disables the POST and PLL signals and filters the CPU `RESET` line from *external disturbance* {{< cite "anti_piracy-hack_win" >}}. This rendered the RGH hack, after three years since its discovery, obsolete.
 
-However, for the compatible motherboards (which are still found in abundance), only *wonderful things* awaited. Apart from the mentioned RGH variants, there was still a golden discovery to be uncovered. Fast forward to November 2021, 15432 surprised the community again by publishing **RGH 3.0**, a universal RGH variant to rule them all. Behind the scenes, the new technique is an evolution of RGH 1.2 V2 that **doesn’t require a glitcher anymore** {{< cite "anti_piracy-rgh3" >}}. This was done by implementing the glitching stage into the SMC, which now only needs two wires soldered on the motherboard (in particular, POST and PLL) to execute the hack.
+However, for the compatible motherboards (which are still found in abundance), only *wonderful things* awaited. Apart from the mentioned RGH variants, there was still a golden discovery to be uncovered. Fast forward to November 2021, 15432 surprised the community again by publishing **RGH 3.0**, a universal RGH variant to rule them all. Behind the scenes, the new technique is an evolution of RGH 1.2 V2 that **doesn’t require a glitcher anymore** {{< cite "anti_piracy-rgh3" >}}. This was done by implementing the glitching stage into the SMC, which now only needs two wires soldered on the motherboard (in particular, `CPU_DBG1_POST1` and `CPU_PLL_BYPASS`) to execute the hack.
 
 ---
 
