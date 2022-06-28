@@ -12,22 +12,22 @@ aliases:
 cover: xbox360
 top_tabs:
   Motherboard:
-    caption: Showing the 'Xenon' revision (the first one), taken from my model from
+    caption: "Showing the 'Xenon' revision (the first one), taken from my model from
       2005. Xenon motherboards are also famous for being defective by design (they
-      get too hot to play games with!). Remaining GDDR3 chips are found on the back.
+      get too hot to play games with!). Remaining GDDR3 chips are found on the back."
     bib_source: copetti
   Models:
   - active: true
-    caption: The original Xbox 360 with an external HDD plugged at the top.<br>Released
-      on 22/11/2005 in America, 02/12/2005 in Europe and 10/12/2005 in Japan
+    caption: "The original Xbox 360 with an external HDD plugged at the top.<br>Released
+      on 22/11/2005 in America, 02/12/2005 in Europe and 10/12/2005 in Japan"
     title: Original
     img_class: reduced-width
-  - caption: The 'new' Xbox 360 (a.k.a. 'Slim' or 'S').<br>Released on 18/06/2010
-      in America, 24/06/2010 in Japan and 16/07/2010 in Europe
+  - caption: "The 'new' Xbox 360 (a.k.a. 'Slim' or 'S').<br>Released on 18/06/2010
+      in America, 24/06/2010 in Japan and 16/07/2010 in Europe"
     title: The 'S'
     img_class: reduced-width
-  - caption: Another 'new' Xbox 360 (a.k.a. 'E').<br>Released on 10/06/2013 in America,
-      20/06/2013 in Europe and similar in Japan
+  - caption: "Another 'new' Xbox 360 (a.k.a. 'E').<br>Released on 10/06/2013 in America,
+      20/06/2013 in Europe and similar in Japan"
     title: The 'E'
     img_class: reduced-width
 ---
