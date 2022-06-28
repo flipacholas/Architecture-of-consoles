@@ -122,7 +122,10 @@ other = "Ci sono così tante console su cui potrei scrivere... ecco cosa bolle i
 other = "Se trovate i miei articoli interessanti, prendete in considerazione l'idea di una donazione. Il vostro contributo servirà ad acquistare strumenti e risorse in grado di aiutarmi a migliorare la qualità degli articoli esistenti e futuri. Inoltre, alla fine di ogni articolo includo un elenco di hardware interessante da acquistare."
 
 [contribution_footer]
-other = "La donazione può contenere un messaggio in cui chiedere la stesura di un particolare articolo. Come segno di gratitudine, il vostro nome sarà aggiunto nella sezione dei ringraziamenti del successivo articolo pubblicato o dell'articolo che avete chiesto, a meno che non chiediate di restare anonimi."
+other = "Come segno di gratitudine e salvo che non lo vogliate, inserirò il vostro nome nella sezione dei riconoscimenti dell'articolo successivo o dell'articolo che avete scelto."
+
+[contribution_footer_funding]
+other = "Ho anche aperto un Ko-fi per raccogliere fondi destinati a determinate migliorie del sito:"
 
 [contribution_suggestions]
 other = 'In alternativa, potete dare una mano <a href="{{ . }}">suggerendo modifiche</a> e/o <a href="{{ . }}">aggiungendo una traduzione</a>.'
