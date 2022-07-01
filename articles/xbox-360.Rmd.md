@@ -1102,9 +1102,8 @@ As a final note, for homebrew developers, **libXenon** is a free third-party lib
 Let's now see how the distribution of content worked.
 
 (ref:retailtabtitle) Retail games
-(ref:retailtabcaption) Example of retail game
 ```{r fig.cap=caption, fig.align='center', tab.title="(ref:retailtabtitle)", tab.first=TRUE, tab.active=TRUE}
-image("photos/game.jpg", "(ref:retailtabcaption)", float=TRUE)
+image("photos/game.jpg", "Example of retail game", float=TRUE)
 ```
 
 It may sound hard to believe, but for Microsoft, the same **dual-layer DVD** disc used for the original Xbox worked fine for their new console. I presume it was another cost-effective strategy, as the DVD disc got cheaper to produce and its readers could be outsourced to the most inexpensive and convenient manufacturer. Throughout the console's lifespan, Microsoft had relied on Hitachi, LG, Toshiba, Samsung, Philips, BenQ and LiteON - including teams of two - to produce their DVD drives.
@@ -1114,8 +1113,7 @@ As a reminder, dual-layer DVDs (also called **DVD-9**) have a theoretical capaci
 On the other side, games were greatly constrained by the usable capacity, those 8.5 GB were further limited by a secure filesystem called **Xbox Game Disc 2** or 'XGD2'. This was Microsoft's successor of the [original format](`r ref("xbox#medium")`) employed to prevent unauthorised copies. The actual available size for games was down to **6.8 GB** (80% of the total capacity) `r cite("games-leadbetter")`. In 2011, after many third-party tools managed to crack the protection, **Xbox Game Disc 3** or 'XGD3' was made available to developers. In it, Microsoft managed to revamp the security tricks and reduce the space reserved for anti-piracy mechanisms, leaving a total of **7.9 GB** for games.
 
 ```{r fig.cap=caption, fig.align='center', tab.title="Online store"}
-caption <- "Example of store listing"
-image('screenshots/metro/store.jpg', caption, float=TRUE)
+image('screenshots/metro/store.jpg', "Example of store listing", float=TRUE)
 ```
 
 A new emerging space that Microsoft began experimenting with, until it became a full-blown competitor to retail stores, was the **online marketplace**.
@@ -1128,6 +1126,7 @@ In the final years of the Xbox 360 and the consolidation of other media platform
 
 ```{r fig.cap=caption, fig.align='center', tab.title="The Blu-ray competitor", tab.last=TRUE}
 caption <- "The HD DVD player, released on November 2006"
+
 image('amos/hd_dvd.png', caption, float=TRUE, no_borders=TRUE)
 ```
 
