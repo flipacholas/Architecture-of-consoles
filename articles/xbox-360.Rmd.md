@@ -723,8 +723,8 @@ The most notable difference between the security model of the Xbox 360 and the P
 
 Let's take a deep dive at the operating system's main components, note this doesn't include the boot loaders, but for that, I've dedicated a separate section. For now, we'll check the components that reside in memory after the console boots up.
 
-```{r tab.title="The Hypervisor", tab.first=TRUE, tab.active=TRUE}
-```
+`r tab.simple("The Hypervisor", tab.first=TRUE, tab.active=TRUE)`
+
 The Hypervisor is an incredibly small program that only occupies **128 KB** `r cite("operating_system-renard")`. Furthermore, by being assigned the highest privilege level available, it's tasked with:
 
 - Preventing programs from accessing areas beyond the permitted boundaries.
@@ -736,8 +736,7 @@ The Hypervisor is an incredibly small program that only occupies **128 KB** `r c
 
 The hypervisor is operated through the use of 'system calls' `r cite("operating_system-hypervisor")`, external programs invoke these to request functions from the hypervisor. Though whether the hypervisor complies or not is a matter of the program's accreditations.
 
-```{r tab.title="The Kernel"}
-```
+`r tab.simple("The Kernel")`
 
 Since the Hypervisor focuses on bare-metal services, an extra layer of abstraction is added in the form of a **Kernel**. The latter also resides in memory but gets assigned a lower privilege level. The main job of the Kernel is to expose routines that user-land programs can benefit from, for instance:
 
@@ -749,8 +748,7 @@ Since the Hypervisor focuses on bare-metal services, an extra layer of abstracti
 
 To work, the kernel **reserves 32 MB from main RAM** to allocate all of its resources.
 
-```{r tab.title="The User land", tab.last=TRUE}
-```
+`r tab.simple("The User land", tab.last=TRUE)`
 
 User-land programs encompass any executable running on top of the kernel. These are found in the form of a special container called **Xbox EXecutable** or 'XEX' `r cite("operating_system-fs")`; and follow a similar structure to the traditional EXE container used by Windows - albeit tailored to the specifications of the Xbox 360. The most important difference is that XEX's executable code follows the PowerPC ISA binary structure (instead of x86) and it must be encrypted to run (the code is signed with Microsoft's private keys and the headers/meta-data store a hash to prevent tampering).
 
@@ -774,8 +772,7 @@ Michael Brundage, one of the authors of FU, described the development process as
 
 Now that we've seen the structure of the OS, let's now check how information is scattered across this console. You'll soon find that there's an abundance of mediums available, and Microsoft had to device different file systems and protocols to keep the security integrity in place.
 
-```{r tab.title="Boot ROM", tab.first=TRUE, tab.active=TRUE}
-```
+`r tab.simple("Boot ROM", tab.first=TRUE, tab.active=TRUE)`
 
 Here lies the most critical and fragile program of this console. Similarly to the Playstation 3 (again, both share IBM technology), the Xenon hides **32 KB ROM** that stores the first stage of the boot loader, along with Microsoft's RSA public keys and SHA-1 hashes used to decrypt and validate further boot stages, respectively `r cite("operating_system-boot_process")`.
 
@@ -1183,8 +1180,7 @@ image("cpu/crypto.png", caption, class = "centered-container")
 
 Moving on, the cryptographic subsystem is split into distinct areas that perform unique functions:
 
-```{r tab.title="Rand unit", tab.first=TRUE, tab.active=TRUE, tab.h5=TRUE}
-```
+`r tab.simple("Rand unit", tab.first=TRUE, tab.active=TRUE, tab.h5=TRUE)`
 
 The **random number generator** unit (or just 'rand') produces random sets of numbers without exposing a predictable pattern, or at least it attempts to. This is useful for supplying extra parameters to encryption routines, so they are difficult to trace back, and thus reverse engineer or replicate.
 
@@ -1192,8 +1188,7 @@ You may now ask 'Why can't this be done with software?' and, well, in the world 
 
 I guess the most optimal solution would be to connect the CPU to a quantum computer, but we are not there yet! (_somewhat close_ though).
 
-```{r tab.title="Extra storage", tab.h5=TRUE}
-```
+`r tab.simple("Extra storage", tab.h5=TRUE)`
 
 Furthermore, this subsystem provides two extra memory blocks.
 
@@ -1201,8 +1196,7 @@ Firstly, **32 KB of ROM**, identical to the [Secure ROM](`r ref("playstation-3#t
 
 Secondly, **64 KB of SRAM** are provided as fast general-purpose memory that the CPU can use to work out a sensible operation (most probably cryptographically-related) without fear, again, of being _spied on_.
 
-```{r tab.title="eFuses", tab.h5=TRUE}
-```
+`r tab.simple("eFuses", tab.h5=TRUE)`
 
 Speaking of storage, we've got another special medium called 'eFuses' embedded within Xenon. eFuses are microscopic switches that the CPU reads as `0` or `1`, such as any transistor. The peculiar thing about eFuses is that, once they are switched to `1`, their state is **unchangeable** (as writing a `1` **blows** the eFuse, like traditional fuses). This enables Microsoft to encode permanent counters or store encryption keys which can't be changed once the console leaves the factory. Well, only `0` values may be changed, but their sequence is different on each console. Moreover, once the key is altered by a third party, the console can't decrypt its data anymore!
 
@@ -1210,8 +1204,7 @@ In total, there are **768 individual eFuses** installed and each is treated as a
 
 When eFuses are read or written to, they are done so in groups of **8 eFuses** (like 8-bit/hexadecimal values) and not individually. Albeit, sometimes, information is only encoded in the form of binary values (`0` and `1`) as opposed to hexadecimal format (from `0x0` to `0xF`). In those cases, the whole 8-bit word is blown at once and treated as a single binary value instead.
 
-```{r tab.title="Cryptography unit", tab.last=TRUE, tab.h5=TRUE}
-```
+`r tab.simple("Cryptography unit", tab.last=TRUE, tab.h5=TRUE)`
 
 Next to the L2 cache, Microsoft and IBM added some **hardwired logic** to perform **AES-128** encryption and hashing functions without requiring the CPU at all. Using the previous 64 KB of SRAM, the L2 block automatically decrypts or encrypts data as it enters or leaves Xenon, respectively.
 
@@ -1227,8 +1220,7 @@ To prevent replay attacks (which rely on duplicating old but valid blocks of dat
 
 Let's see what Microsoft came up with the use of all those components.
 
-```{r tab.title="Chain of Trust", tab.active=TRUE, tab.h5=TRUE, tab.first=TRUE}
-```
+`r tab.simple("Chain of Trust", tab.active=TRUE, tab.h5=TRUE, tab.first=TRUE)`
 
 The convoluted boot process you've read before was designed to implement a sophisticated **chain of trust**. This makes sure that, once the hypervisor is ready to execute userland code, the latter is always encrypted and signed by no other than Microsoft.
 
@@ -1238,8 +1230,7 @@ For an increased protection, each console embeds a unique **CPU key** imprinted 
 
 Once the Hypervisor is loaded into main RAM, the chain of trust is in place and no code will be executed without the Hypervisor's permission, especially since the latter possesses **W^X** abilities.
 
-```{r tab.title="Irreversable and unique numbers", tab.h5=TRUE}
-```
+`r tab.simple("Irreversable and unique numbers", tab.h5=TRUE)`
 
 To further protect the chain of trust and prevent external alterations, boot stages also query the cluster of **768 eFuses** to find the following information `r cite("anti_piracy-fusesets")`:
 
@@ -1249,8 +1240,7 @@ To further protect the chain of trust and prevent external alterations, boot sta
   - There are 5 fusesets reserved for the update counter. The counter is encoded in binary form, so eight fuses are blown after each update, which means the Xbox 360 can sustain up to **80 updates** throughout its lifetime. Ironically, Microsoft only started blowing eFuses after the `2.0.4548.0` update shipped.
   - Furthermore, there are **16 eFuses** available for updates on CB.
 
-```{r tab.title="Secure communication", tab.h5=TRUE, tab.last=TRUE}
-```
+`r tab.simple("Secure communication", tab.h5=TRUE, tab.last=TRUE)`
 
 Xenon has a 64-bit address bus, yet, there're only 512 MB of RAM (and a lump of I/O) to be addressed, meaning it can be [wasteful](`r ref("gamecube#a-step-forward-or-a-step-backwards")`) to make use of 64-bit addressing. As a result, one half of the address space is used for a more practical purpose: **cryptography flags**.
 
@@ -1274,8 +1264,7 @@ To execute any userland application, the Kernel copies the (unencrypted) code in
 
 Due to the choice of a highly popular and affordable medium for game distribution, concerns about piracy resonated at Microsoft's headquarters. The anti-piracy system became a joint project between Microsoft and their suppliers, with varying results depending on the manufacturer of the DVD reader.
 
-```{r tab.title="First-party security", tab.active=TRUE, tab.first=TRUE}
-```
+`r tab.simple("First-party security", tab.active=TRUE, tab.first=TRUE)`
 
 From Microsoft's control, DVD drives authenticate with the system using a unique **DVD key** that must match an internal key handled by the Hypervisor. The DVD key is derived from the CPU key `r cite("anti_piracy-hacking_2")`. If the check fails, the reader still works but won't be able to launch Xbox 360 titles.
 
@@ -1287,8 +1276,7 @@ Additionally, to avoid being read by conventional DVD readers and preclude exact
 
 Finally, add to the fact the hypervisor only launches executables signed with Microsoft's private keys.
 
-```{r tab.title="Second-party security", tab.last=TRUE}
-```
+`r tab.simple("Second-party security", tab.last=TRUE)`
 
 In practice, the entity responsible for implementing Microsoft's copy protection protocols is not Microsoft but the DVD drive manufacturer. In most cases, manufacturers just altered the firmware of their off-the-shelf hardware to abide by Microsoft's requirements. In any case, the Hypervisor blindly trusts the drive on detecting which disc is genuine and which is not.
 
@@ -1344,8 +1332,7 @@ image("screenshots/homebrew/xell.jpg", caption, class = "centered-container")
 
 Nonetheless, this is what the early intrusions focused on. In other words, can we inject unsigned code into main RAM and then trick the hypervisor into executing it? Well, in February 2007, an anonymous hacker published a **privilege escalation** exploit that relied on the 2005 game **King Kong** `r cite("anti_piracy-hv_vul")`. In the report, a clever chain of events was outlined to get arbitrary code execution at the hypervisor level (meaning full hardware access). The way it works is not simple to explain, but I'll try my best. Let's see...
 
-```{r tab.title="The compare flaw", tab.active=TRUE, tab.h5=TRUE, tab.first=TRUE}
-```
+`r tab.simple("The compare flaw", tab.active=TRUE, tab.h5=TRUE, tab.first=TRUE)`
 
 To organise all the routines available, the hypervisor stores a **syscall table** in main RAM `r cite("cpu-steil")`, along with a handler that traverses such table.
 
@@ -1357,8 +1344,7 @@ With that in mind, hackers took a look at the assembly code of the syscall handl
 
 Now, where am I going with this? Well, if you recall, the upper 32 bits on 64-bit virtual addresses are used as flags to instruct the L2 block to encrypt/decrypt or hash the memory values, and if the flags are all zeroes, the L2 will interpret the data as **unencrypted** and pass it right away. That being said, if _by some chance_ an external piece of unencrypted code were to be inserted in RAM through external means, there might be a way to execute it through the flawed syscall handler...
 
-```{r tab.title="A new syscall", tab.h5=TRUE}
-```
+`r tab.simple("A new syscall", tab.h5=TRUE)`
 
 The previous discovery seems promising, but there are still many loose ends. For instance, we still need a way to craft an arbitrary syscall that doesn't get corrupted by the L2's decryption block.
 
@@ -1370,8 +1356,7 @@ This was the missing puzzle that would allow hackers to execute a crafted and un
 
 And that's what we'll discuss now.
 
-```{r tab.title="King Kong exploit", tab.h5=TRUE}
-```
+`r tab.simple("King Kong exploit", tab.h5=TRUE)`
 
 Enter the famous King Kong title. Like any other typical game, its discs stores vertex and pixel shaders files which are loaded at some point during gameplay. However, for some unknown reason, these files are found in completely plain (unencrypted) and unsecured form.
 
@@ -1381,8 +1366,7 @@ I guess you see where I'm going with this, if you craft a special copy of King K
 
 This solves the first task of filling main RAM, but we still need a way of invoking the custom syscall...
 
-```{r tab.title="Priviledge escalation", tab.last=TRUE, tab.h5=TRUE}
-```
+`r tab.simple("Priviledge escalation", tab.last=TRUE, tab.h5=TRUE)`
 
 Recall that the Xbox 360's kernel provides a scheduler to handle multi-threading. This apparatus takes care of dispatching virtual threads to the CPU cores and saving idle threads into memory for later use. Well, for another unexplained reason, the scheduler stores thread states in RAM as **unencrypted** data!
 
@@ -1400,8 +1384,7 @@ Be as it may, **Microsoft was already made aware of it** and subsequently patche
 
 As a result, throughout the same year of the King Kong events (2007), new discoveries were made:
 
-```{r tab.title="A hidden maintenance mode", tab.active=TRUE, tab.first=TRUE}
-```
+`r tab.simple("A hidden maintenance mode", tab.active=TRUE, tab.first=TRUE)`
 
 Once CB, the second stage bootloader, was reverse engineered, a new backdoor was discovered. One of the checks CB performs is comparing a string stored in CB's headers against checksums of NAND. Well, if that string (called 'pairing information') turns out to be all zeroes, then the check is skipped and the boot process continues while **ignoring the CPU key**. The only downside is that no update packets are applied and the Kernel ends up launching an alternative app called `MfgBootLauncher` (presumably used during manufacturing) instead of the Dashboard.
 
@@ -1444,15 +1427,13 @@ All of this led to a very important milestone: it was now possible to **boot arb
 
 As homebrew development kept evolving and the King Kong method became too cumbersome, the focus shifted to finding new techniques for automating the hypervisor exploit, and the results were astonishing, to say the least.
 
-```{r tab.title="A suspicious update", tab.active=TRUE, tab.first=TRUE}
-```
+`r tab.simple("A suspicious update", tab.active=TRUE, tab.first=TRUE)`
 
 Two years after the King Kong exploit publication, in August 2009, Microsoft released an unexpected software update `2.0.8498` that, once again, overwrote the CB (second-stage bootloader) and increased its respective eFuse counter `r cite("anti_piracy-dangerous")`. Not only this update surprisingly writes over crucial parts of the system (with the risk of breaking it irreparably), but it also caught the attention of many hackers to find out what was Microsoft trying to patch.
 
 The Free60 group, in their continuous efforts to deliver Linux on the Xbox 360, advised users to hold on to their current system and not succumb to the update. Behind the scenes, they already knew about the implied exploit and were preparing to release a new technique that the public could take advantage of.
 
-```{r tab.title="The JTAG/SMC hack", tab.last=TRUE}
-```
+`r tab.simple("The JTAG/SMC hack", tab.last=TRUE)`
 
 In November 2009, the Free60 group published their technical report which was later known as the **SMC/JTAG hack** `r cite("anti_piracy-smc_hack_report")`. With this, the Xbox hacking community were made aware of two big discoveries.
 
