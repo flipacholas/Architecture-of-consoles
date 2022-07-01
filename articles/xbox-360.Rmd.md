@@ -1101,9 +1101,10 @@ As a final note, for homebrew developers, **libXenon** is a free third-party lib
 
 Let's now see how the distribution of content worked.
 
-```{r fig.cap=caption, fig.align='center', tab.title="Retail games", tab.first=TRUE, tab.active=TRUE}
-caption <- "Example of retail game"
-image('photos/game.jpg', caption, float=TRUE)
+```{r fig.cap=caption, fig.align='center', tab.title=title, tab.first=TRUE, tab.active=TRUE}
+title = "Retail games"
+caption = "Example of retail game"
+image("photos/game.jpg", caption, float=TRUE)
 ```
 
 It may sound hard to believe, but for Microsoft, the same **dual-layer DVD** disc used for the original Xbox worked fine for their new console. I presume it was another cost-effective strategy, as the DVD disc got cheaper to produce and its readers could be outsourced to the most inexpensive and convenient manufacturer. Throughout the console's lifespan, Microsoft had relied on Hitachi, LG, Toshiba, Samsung, Philips, BenQ and LiteON - including teams of two - to produce their DVD drives.
