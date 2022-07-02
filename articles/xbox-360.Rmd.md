@@ -1010,12 +1010,12 @@ In the following paragraphs, you may sense that I'm very critical of each interf
 
 (ref:bladesfootercaption) 'Blades' dashboard. Screens are from `r cite('operating_system-blades_1')` and `r cite('operating_system-blades_2')`.
 
-(ref:dashboardspostcaption) Part of the <!-- 'Blades' dashboard (...) -->
+(ref:dashboardspostcaption) Part of the`r #Blades dashboard (...)`
 
-(ref:dashboardsstartfooter) The <!-- 'Blades' dashboard (...) -->
+(ref:dashboardsstartfooter) The`r #Blades dashboard (...)`
 
 ```{r fig.cap=c(paste0("(ref:bladescaption1)", postcaption), paste0("(ref:bladescaption2)", postcaption), paste0("(ref:bladescaption3)", postcaption), paste0("(ref:bladescaptionstorage)", postcaption), paste0("(ref:bladescaption4)", postcaption), paste0("(ref:bladescaption5)", postcaption)), fig.align="center", tab.nested=TRUE, tab.figure=TRUE, centered=TRUE}
-postcaption <- paste0("(ref:dashboardspostcaption)","(ref:bladesfootercaption)")
+postcaption <- "(ref:dashboardspostcaption) (ref:bladesfootercaption)"
 image('screenshots/blades/home.jpg', "(ref:bladescaption1)", tab.name = "(ref:dashboardshometitle)", tab.active = TRUE, caption.post = postcaption)
 image('screenshots/blades/games.jpg', "(ref:bladescaption2)", tab.name = "(ref:dashboardsgamestitle)", caption.post = postcaption)
 image('screenshots/blades/settings.jpg', "(ref:bladescaption3)", tab.name = "(ref:dashboardssettingstitle)", caption.post = postcaption)
