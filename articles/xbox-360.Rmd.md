@@ -55,9 +55,11 @@ Before we discuss the architecture, I'll start with a bit of history to bring yo
 
 I'll try to keep it short so we can focus on the main topics of [this series](`r ref("consoles")`), but if in the end, you are interested in more, you may enjoy a book called 'The Race For A New Game Machine' which is written by the former executives at IBM.
 
+(ref:e3captiontitle) From complier to ruler
+
 (ref:e3caption) The beginning of Microsoft's presentation at E3 2005, where Robbie Bach, J Allard and Peter Moore unveiled the Xbox 360 `r cite('cpu-microsoft_e3')`.
 
-```{r fig.cap="(ref:e3caption)", fig.align='center', tab.title="From complier to ruler", tab.first=TRUE, tab.active=TRUE}
+```{r fig.cap="(ref:e3caption)", fig.align='center', tab.title="(ref:e3captiontitle)", tab.first=TRUE, tab.active=TRUE}
 image('e3/start.jpg', "(ref:e3caption)", float=TRUE)
 ```
 
@@ -69,11 +71,15 @@ For instance, the security subsystem that protected the console against the exec
 
 Well, now that Microsoft gained more leverage in the console market, they weren't willing to give away those rights anymore.
 
-```{r fig.cap=c(caption1, caption2), fig.align='center', tab.title="Sharing common problems"}
-caption1 <- "The original Xbox's CPU (2001). Designed and manufactured by Intel."
-image('cpu/copermine.png', caption1, float=TRUE)
-caption2 <- "Concept of an homogenous CPU. This is what Microsoft had in mind for their next CPU."
-image("images/consoles/ps3/cpu/paradigm/homogeneous.png", caption2, float = TRUE, full_src = TRUE)
+(ref:sharingcaptiontitle) Sharing common problems
+
+(ref:sharingcaption) The original Xbox's CPU (2001). Designed and manufactured by Intel.
+
+(ref:sharingcaption2) Concept of an homogenous CPU. This is what Microsoft had in mind for their next CPU.
+
+```{r fig.cap=c("(ref:sharingcaption)", "(ref:sharingcaption2)"), fig.align='center', tab.title="(ref:sharingcaptiontitle)"}
+image('cpu/copermine.png', "(ref:sharingcaption)", float=TRUE)
+image("images/consoles/ps3/cpu/paradigm/homogeneous.png", "(ref:sharingcaption2)", float = TRUE, full_src = TRUE)
 ```
 
 As with any other company in the computer business, the [innovation crisis](`r ref("playstation-3#tab-1-2-new-design-philosophies")`) of the early noughties affected both Microsoft and Sony indiscriminately. The difference, however, was that the two placed their bets on different designs for their CPUs. The original Xbox relied on popular off-the-shelf stock (Intel's [Pentium III](`r ref("xbox#cpu")`)) with slight customisations, this was a single-core CPU extended with vectorised instructions and a sophisticated cache design. On the other side, Sony's vectorised venture (the [Emotion Engine](`r ref("playstation-2#cpu")`)) consisted of a low-end CPU surrounded by proprietary but potent assistants.
@@ -84,9 +90,12 @@ The last condition was as critical as the first, as it would enable the Xbox tea
 
 Thus, Microsoft began meeting with Intel, though the talks didn't last long, as Intel wasn't willing to give out its secret recipe. So, Microsoft kept looking.
 
-```{r fig.cap=caption, fig.align='center', tab.title="Resentful old friends", tab.last = TRUE}
-caption <- "An IBM PC that I found in the Computer History Museum (San Jose, California), during my visit in June 2019. For some reason, they don't allow to use it..."
-image('photos/ibm_pc.jpeg', caption, float=TRUE)
+(ref:oldfriendstitle) Resentful old friends
+
+(ref:oldfriendscaption) An IBM PC that I found in the Computer History Museum (San Jose, California), during my visit in June 2019. For some reason, they don't allow to use it...
+
+```{r fig.cap="(ref:oldfriendscaption)", fig.align='center', tab.title="(ref:oldfriendstitle)", tab.last = TRUE}
+image('photos/ibm_pc.jpeg', "(ref:oldfriendscaption)", float=TRUE)
 ```
 
 It so happened that one of the potential candidates for Microsoft was none other than IBM. Maybe I watched too many dramatic documentaries, but I always pictured the two as the kind of passive-aggressive 'friends' who only smile at each other if they are among other people.
@@ -119,12 +128,17 @@ To sum it up, IBM signed an agreement with Sony and Toshiba to develop Cell in 2
 
 Now that we've positioned Microsoft and IBM in the map, let's talk about the new CPU. This is how Xenon materialised at the end of the Xbox 360 project:
 
-```{r fig.cap=c(caption, caption2), fig.align='center', tab.nested=TRUE, centered=TRUE}
-caption <- "Simplified view of Xenon."
-image("cpu/xenon.png", caption, tab.name="Xenon", tab.active=TRUE)
-caption2 <- "A diagram of Cell for comparison purposes.
-Cell also includes 32 KB of ROM not shown here."
-image("images/consoles/ps3/cpu/cell.png", full_src = TRUE, caption2, tab.name="Cell")
+(ref:xenonsimptitle) Xenon
+
+(ref:xenonsimpcaption) Simplified view of Xenon.
+
+(ref:xenonsimptitle2) Cell
+
+(ref:xenonsimpcaption2) A diagram of Cell for comparison purposes. Cell also includes 32 KB of ROM not shown here.
+
+```{r fig.cap=c("(ref:xenonsimpcaption)", "(ref:xenonsimpcaption2)"), fig.align='center', tab.nested=TRUE, centered=TRUE}
+image("cpu/xenon.png", "(ref:xenonsimpcaption)", tab.name="(ref:xenonsimptitle)", tab.active=TRUE)
+image("images/consoles/ps3/cpu/cell.png", full_src = TRUE, "(ref:xenonsimpcaption2)", tab.name="(ref:xenonsimptitle2)")
 ```
 
 Don't worry, all of these components will be explained throughout this article, starting with the 'PPE' blocks shown at the top left corner.
@@ -172,11 +186,17 @@ The original chip (Cell) was required to house **twelve** independent nodes acti
 
 XBAR relies on a **mesh topology** that doesn't direct traffic in a token-style manner. Instead, each node is provided with a dedicated lane to move its data through `r cite("cpu-brown")`. This may appear more optimal than the token topology of the EIB, but that's because the XBAR only needs to serve a small number of nodes. Furthermore, the XBAR operates at full speed (**3.2 GHz**).
 
-```{r fig.cap=c(caption, caption2), fig.align='center', tab.nested=TRUE, centered=TRUE}
-caption <- "Simplified diagram of the XBAR/Crossbar combined with the L2 component."
-image("cpu/crossbar.png", caption, tab.name="Xbox 360's Crossbar", tab.active=TRUE)
-caption2 <- "The architecture of Cell's EIB (found in the PS3) for comparison purposes."
-image("images/consoles/ps3/cpu/eib.png", full_src = TRUE, caption2, tab.name="PS3's EIB")
+(ref:xbartitle) Xbox 360's Crossbar
+
+(ref:xbarcaption) Simplified diagram of the XBAR/Crossbar combined with the L2 component.
+
+(ref:xbartitle2) PS3's EIB
+
+(ref:xbarcaption2) The architecture of Cell's EIB (found in the PS3) for comparison purposes.
+
+```{r fig.cap=c("(ref:xbarcaption)", "(ref:xbarcaption2)"), fig.align='center', tab.nested=TRUE, centered=TRUE}
+image("cpu/crossbar.png", "(ref:xbarcaption)", tab.name="(ref:xbartitle)", tab.active=TRUE)
+image("images/consoles/ps3/cpu/eib.png", full_src = TRUE, "(ref:xbarcaption2)", tab.name="(ref:xbartitle2)")
 ```
 
 To be fair, until now I only talked about the particular interface that interconnects the PPEs. Well, the XBAR is just one piece of the sizeable chunk IBM designed for Xenon. It turns out the leftover space gave them room to incorporate another very important block that speeds up the transactions between the PPEs and the rest of the system: **L2 Cache**.
@@ -189,9 +209,10 @@ Coincidentally, Cell also houses [512 KB of L2 cache](`r ref("playstation-3#comp
 
 First things first, every time the cache fetches data from memory (in the event of a 'cache miss'), it does so by pulling a large slice called 'cache line', this is **128 Bytes wide** in the case of Cell and Xenon. Then, L2 records the cache line on an internal list for locating it in the future. Moreover, in Xenon/Cell, L2 is **8-way associative**, which means that cache sets may store up to eight different cache lines. Don't worry if you don't know what this means, the theory behind CPU cache can be hard to follow, especially if you only want to learn about videogame consoles. In layman's terms, the greater the number of associations, the fewer probabilities of cache misses, but the slower it becomes to iterate through the internal list.
 
-```{r fig.cap=c(caption), fig.align='center', centered=TRUE}
-caption <- "Layout of cache in Xenon"
-image("cpu/caches.png", caption, class = "centered-container")
+(ref:cachelayoutcaption) Layout of cache in Xenon
+
+```{r fig.cap="(ref:cachelayoutcaption)", fig.align='center', centered=TRUE}
+image("cpu/caches.png", "(ref:cachelayoutcaption)", class = "centered-container")
 ```
 
 The choice of an 8-way associative cache was not a rash decision for Xenon, as providing eight associations can alleviate the six simultaneous threads (each PPE is dual-threaded) trying to access the L2 block at the same time. This also balances frequent cache misses and lookup times. All of this, while keeping the costs down. For comparison purposes, the expensive Intel 'Smithfield' (a Pentium D from 2005) provides two cores with 2 MB of L2 cache each! `r cite("cpu-shimpi_intel")`
@@ -204,11 +225,17 @@ This is as far as we go with our description of the XBAR and L2 cache, let's now
 
 To start with, Xenon's PPEs don't feature a [PowerPC Processor Storage Subsystem](`r ref("playstation-3#composition-of-the-ppe")`) (PPSS) anymore, presumably since the interfacing part is handled by the XBAR and the L2 cache is now shared across the three units.
 
-```{r fig.cap=c(caption, caption2), fig.align='center', tab.nested=TRUE, centered=TRUE}
-caption <- "Simplified diagram of Xenon's PowerPC Processing Element (PPE)"
-image("cpu/ppe.png", caption, tab.name="Xenon's PPE", tab.active=TRUE)
-caption2 <- "For comparison purposes, this is Cell's counterpart"
-image("images/consoles/ps3/cpu/ppe.png", full_src = TRUE, caption2, tab.name="Cell's PPE")
+(ref:diagramxenontitle) Xenon's PPE
+
+(ref:diagramxenoncaption) Simplified diagram of Xenon's PowerPC Processing Element (PPE)
+
+(ref:diagramxenontitle2) Cell's PPE
+
+(ref:diagramxenoncaption2) For comparison purposes, this is Cell's counterpart
+
+```{r fig.cap=c("(ref:diagramxenoncaption)", "(ref:diagramxenoncaption2)"), fig.align='center', tab.nested=TRUE, centered=TRUE}
+image("cpu/ppe.png", "(ref:diagramxenoncaption)", tab.name="(ref:diagramxenontitle)", tab.active=TRUE)
+image("images/consoles/ps3/cpu/ppe.png", full_src = TRUE, "(ref:diagramxenoncaption2)", tab.name="(ref:diagramxenontitle2)")
 ```
 
 To be honest, I'm not sure why technical manuals keep calling Xenon's PPEs a 'PPE' as they better resemble a [PPU](`r ref("playstation-3#the-powerpc-processing-unit")`).
@@ -259,9 +286,10 @@ Unlike its competitor equipped with [256 MB of XDR DRAM](`r ref("playstation-3#o
 
 Ok... let me rephrase that. On the motherboard, multiple chips provide a total of **512 MB of GDDR3 SDRAM**, but they are sitting next to the GPU, **not the CPU**. So... you probably guessed it. Just like the [original Xbox](`r ref("xbox#memory-layout")`), Microsoft went for the **Unified Memory Architecture** (UMA) layout, where all components share the same RAM chips. This provides more flexibility in the amount of memory reserved for the CPU or GPU. However, a single point of access for various components means the far away components (like the CPU) will suffer higher latency compared to the hypothetical case where the CPU was given dedicated memory. This was duly noted by IBM and Microsoft engineers and subsequently tackled with the aforementioned L2 cache along with extra circuitry (which is explained in the 'Graphics' section).
 
-```{r fig.cap=c(caption), fig.align='center', centered=TRUE}
-caption <- "Xenon next to 'Xenos' (the GPU) guarding 256 MB of GDDR3, the remaining half is on the back."
-image("photos/mem_path.jpg", caption, class = "centered-container")
+(ref:xenonxenoscaption) Xenon next to 'Xenos' (the GPU) guarding 256 MB of GDDR3, the remaining half is on the back.
+
+```{r fig.cap=c("(ref:xenonxenoscaption)"), fig.align='center', centered=TRUE}
+image("photos/mem_path.jpg", "(ref:xenonxenoscaption)", class = "centered-container")
 ```
 
 The type of memory chips (GDDR3) is the same one found in the [Wii](`r ref("wii#what-about-memory")`) and [PS3](`r ref("playstation-3#organising-the-content")`). Conversely, the Xbox 360 gets the crown for including the largest amount. In fact, it's been reported that Microsoft **initially planned to house 256 MB**, but later doubled the amount out of fear for Sony's upcoming competitor `r cite("cpu-takahashi")`. Though, unlike Sony, Microsoft was extra sensible with the retail price, so it had to cut down on other features. That's why the **hard drive was made optional**. Furthermore, Microsoft expected Samsung (its memory supplier) to deliver their chips operating at 1.4 GHz but then settled for **700 MHz** at the time of shipping the console.
@@ -284,10 +312,10 @@ SMP programming abstracts access to physical CPU cores with the use of 'virtual 
 
 This abstraction layer allows the programmer to avoid discriminating the type of core used (therefore making the program **cross-compatible** with similar platforms) and hardcoding the number of cores (making it **scalable**).
 
-```{r fig.cap=c(caption), fig.align='center', centered=TRUE}
-caption <- "Representation of the multi-threading paradigm on Xenon.
-A program may create n-threads (two in this example), and then the operating system's scheduler takes care of dispatching the threads to physical cores. Bear in mind, the operating system also runs as a thread."
-image("cpu/programming.png", caption, class = "centered-container")
+(ref:programmingcaption) Representation of the multi-threading paradigm on Xenon. A program may create n-threads (two in this example), and then the operating system's scheduler takes care of dispatching the threads to physical cores. Bear in mind, the operating system also runs as a thread.
+
+```{r fig.cap="(ref:programmingcaption)", fig.align='center', centered=TRUE}
+image("cpu/programming.png", "(ref:programmingcaption)", class = "centered-container")
 ```
 
 It's no surprise that this style became a standard in future console generations, as it's easier to scale and program with symmetric systems than asymmetric ones (i.e. Cell). The latter often depends on unusual programming styles, eroding compatibility with other systems.
@@ -298,20 +326,37 @@ Also, it's worth mentioning that, while SMP programming is not necessarily restr
 
 Here's a peculiar aspect of Xenon. While the chip, by itself, incorporates interesting technology to make it a powerful contender against the competition, Xenon was never conceived as a one-man band. To make this console, as a whole, extremely competitive and long-lasting, Xenon was closely bonded to another chip, the GPU.
 
-```{r fig.cap=c(paste0(caption1, postcaption), paste0(caption2, postcaption), paste0(caption3, postcaption), paste0(caption4, postcaption), paste0(caption5, postcaption)), fig.align="center", tab.nested=TRUE, tab.figure=TRUE, centered=TRUE}
-postcaption <- " Rendered at its maximum resolution (1280x720 pixels)."
-caption1 <- "Assassin's Creed (2007)."
-image('screenshots/games/assassins.jpg', caption1, tab.name = "Assassin's", tab.active = TRUE, caption.post = postcaption)
-caption2 <- "Half-life 2 (The Orange Box, 2007)."
-image('screenshots/games/half_life.jpg', caption2, tab.name = "Half-Life", caption.post = postcaption)
-caption3 <- "Portal 2 (2011)."
-image('screenshots/games/portal2.jpg', caption3, tab.name = "Portal", caption.post = postcaption)
-caption4 <- "Borderlands 2 (2012)."
-image('screenshots/games/borderlands.jpg', caption4, tab.name = "Borderlands", caption.post = postcaption)
-caption5 <- "Grand Theft Auto V (2013)."
-image('screenshots/games/gta.jpg', caption5, tab.name = "GTA", caption.post = postcaption)
-caption6 <- "Example of Xbox 360 games.\nAll rendered at their maximum resolution (1280x720 pixels)."
-figcaption(caption6)
+(ref:gamestitle1) Assassin's
+
+(ref:gamescaption1) Assassin's Creed (2007).
+
+(ref:gamestitle2) Half-life
+
+(ref:gamescaption2) Half-life 2 (The Orange Box, 2007).
+
+(ref:gamestitle3) Portal
+
+(ref:gamescaption3) Portal 2 (2011).
+
+(ref:gamestitle4) Borderlands
+
+(ref:gamescaption4) Borderlands 2 (2012).
+
+(ref:gamestitle5) GTA
+
+(ref:gamescaption5) Grand Theft Auto V (2013).
+
+(ref:gamespostcaption) Rendered at its maximum resolution (1280x720 pixels).
+
+(ref:gamesfootcaption) Example of Xbox 360 games. All rendered at their maximum resolution (1280x720 pixels).
+
+```{r fig.cap=c(paste0("(ref:gamescaption1)", "(ref:gamespostcaption)"), paste0("(ref:gamescaption2)", "(ref:gamespostcaption)"), paste0("(ref:gamescaption3)", "(ref:gamespostcaption)"), paste0("(ref:gamescaption4)", "(ref:gamespostcaption)"), paste0("(ref:gamescaption5)", "(ref:gamespostcaption)")), fig.align="center", tab.nested=TRUE, tab.figure=TRUE, centered=TRUE}
+image('screenshots/games/assassins.jpg', "(ref:gamescaption1)", tab.name = "(ref:gamestitle1)", tab.active = TRUE, caption.post = "(ref:gamespostcaption)")
+image('screenshots/games/half_life.jpg', "(ref:gamescaption2)", tab.name = "(ref:gamestitle2)", caption.post = "(ref:gamespostcaption)")
+image('screenshots/games/portal2.jpg', "(ref:gamescaption3)", tab.name = "(ref:gamestitle3)", caption.post = "(ref:gamespostcaption)")
+image('screenshots/games/borderlands.jpg', "(ref:gamescaption4)", tab.name = "(ref:gamestitle4)", caption.post = "(ref:gamespostcaption)")
+image('screenshots/games/gta.jpg', "(ref:gamescaption5)", tab.name = "(ref:gamestitle5)", caption.post = "(ref:gamespostcaption)")
+figcaption("(ref:gamesfootcaption)")
 # Use fig.ncol = 1 for subfigures stacked vertically
 ```
 
@@ -323,9 +368,10 @@ _Good old competition_, one can only wonder what new innovative product will com
 
 Since the early naughties, Nvidia and ATI have been trying to outmatch one another in terms of performance, often by adding incremental improvements to their flagship brands.
 
-```{r fig.cap=caption1, open_float_group=TRUE, fig.align='center'}
-caption1 <- "The Xenos + EDRAM package next to GDDR3 chips. "
-image('photos/xenos.jpg', caption1, float=TRUE)
+(ref:xenospackagecaption) The Xenos + EDRAM package next to GDDR3 chips.
+
+```{r fig.cap="(ref:xenospackagecaption)", open_float_group=TRUE, fig.align='center'}
+image('photos/xenos.jpg', "(ref:xenospackagecaption)", float=TRUE)
 ```
 
 Nvidia enjoyed considerable leverage after the introduction of [programmable pixel pipeline](`r ref("xbox#importance-of-programmability")`) which later became part of the OpenGL and Direct3D specification. Thus, ATI had no other choice but to follow suit. However, in 2003, ATI recovered its userbase after Nvidia's anticipated 'Geforce 5' line disappointed Direct3D 9 users, who were expecting better performance and functionality from Nvidia's flagship card `r cite("graphics-shimpi_5800")`. As a result, attention shifted towards ATI's Radeon 9000 series.
@@ -340,20 +386,20 @@ You'd be surprised that Microsoft's push for homogenous computing also dragged t
 
 You see, there was a time when GPUs were [mere rasterizers](`r ref("playstation#graphics")`) with 'take it or leave it' functionality, meaning they provided a fixed set of functions and programmers could either activate them or not. Later on, thanks to SGIs innovations, workloads were offloaded from the CPU thanks to the new [programmable vertex pipelines](`r ref("nintendo-64#graphics")`). Finally, the 'mere rasterizer' definition was _rendered_ obsolete (_pun intended_) as Nvidia promoted a new stage called [programmable pixel shader](`r ref("xbox#graphics")`) which gave programmers the liberty to control what happens after rasterization.
 
-```{r fig.cap=c(caption), fig.align='center', centered=TRUE}
-caption <- "Overview of the units that compose a GPU with programmable shaders.
-In this example, our GPU provides more units for vertex operations than pixel operations, meaning geometry transformations will be quick at the expense of colour effects, for instance."
-image("gpu/traditional_pipeline.png", caption, class = "centered-container")
+(ref:twoshaderscaption) Overview of the units that compose a GPU with programmable shaders. In this example, our GPU provides more units for vertex operations than pixel operations, meaning geometry transformations will be quick at the expense of colour effects, for instance.
+
+```{r fig.cap="(ref:twoshaderscaption)", fig.align='center', centered=TRUE}
+image("gpu/traditional_pipeline.png", "(ref:twoshaderscaption)", class = "centered-container")
 ```
 
 This pattern shows us that, as GPUs grow in performance and functionality, they eventually open up to allow developers to implement the exact functionality they seek. However, this also increases the overall complexity of the silicon.
 
 Over the years, both vertex and pixel pipelines kept enlarging to accommodate current needs, with new scalability problems emerging. Space, costs and heat emissions have a limit. So, which tasks should be prioritised? vertex operations or pixel effects? A weak vertex pipeline will stall the pixel pipeline. Alternatively, a disappointing pixel unit won't attract users with its dully-composed frames.
 
-```{r fig.cap=c(caption), fig.align='center', centered=TRUE}
-caption <- "Overview of the units that compose a GPU with a new unified pipeline.
-Now that both stages are now provided with the same amount of resources, developers won't have to trim down operations executed by a weak shader units."
-image("gpu/unified_pipeline.png", caption, class = "centered-container")
+(ref:unishaderscaption) Overview of the units that compose a GPU with a new unified pipeline. Now that both stages are now provided with the same amount of resources, developers won't have to trim down operations executed by a weak shader units.
+
+```{r fig.cap="(ref:unishaderscaption)", fig.align='center', centered=TRUE}
+image("gpu/unified_pipeline.png", "(ref:unishaderscaption)", class = "centered-container")
 ```
 
 Thus, architects at ATI took two steps back and asked themselves 'Is there any way to simplify this model instead of adding more transistors on top of it?' which later became 'Why are pixel and vertex pipelines segregated?'. And so, the two stages were ultimately **merged** into a single -unified- block of circuitry. This is what we call the **Unified shader model** and a GPU implementing it still provides both programmable vertex and pixel pipelines, but the circuitry used for computations is shared.
@@ -378,9 +424,10 @@ Another unusual element from Xenos is its **triple memory architecture** (so muc
 
 Those 512 MB store most - if not all - the materials Xenos needs to render a frame, including textures, shaders and many types of buffers as the game sees fit. On the other side, the 10 MB of EDRAM are left for small elements that require rapid access, such as the Z-buffer, the stencil buffer, the back buffer (intermediate frame buffer) and any other custom buffer if needed. This mitigates congestion from the shared GDDR3 RAM and speeds up operations that make use of those buffers.
 
-```{r fig.cap=c(caption), fig.align='center', centered=TRUE}
-caption <- "Example of how data is organised across the memory available"
-image("gpu/content.png", caption, class = "centered-container")
+(ref:gpumemarchcaption) Example of how data is organised across the memory available.
+
+```{r fig.cap="(ref:gpumemarchcaption)", fig.align='center', centered=TRUE}
+image("gpu/content.png", "(ref:gpumemarchcaption)", class = "centered-container")
 ```
 
 As if this wasn't enough, there's a third source that can feed the GPU, and that is a **direct line to the CPU**! Unlike anything seen before, the CPU can stream commands and geometry without going through the traditional steps of storing [command buffers](`r ref("playstation#tab-4-1-commands")`) in external memory, thereby saving once again traffic from main RAM. This is what Microsoft advertised as **Procedural Synthesis** (XPS) and made possible by two changes `r cite("cpu-andrews")`:
@@ -394,9 +441,10 @@ Overall, this synergy is what has enabled the Xbox 360 to achieve such a high le
 
 Having said all that, how does Xenon actually render a frame? Well, similarly to other GPUs in the market, there are many steps involved. Take a look at this diagram of Xenos' pipeline:
 
-```{r fig.cap=c(caption), fig.align='center', centered=TRUE}
-caption <- "Overview of the graphics pipeline in Xenos."
-image("gpu/pipeline.png", caption, class = "centered-container")
+(ref:gpupipearchcaption) Overview of the graphics pipeline in Xenos.
+
+```{r fig.cap="(ref:gpupipearchcaption)", fig.align='center', centered=TRUE}
+image("gpu/pipeline.png", "(ref:gpupipearchcaption)", class = "centered-container")
 ```
 
 As you can see, the pipeline stages are not different at all compared to [other graphics chips](`r ref("playstation-3#graphics")`) that don't employ the unified shader model. This is because the actual change happens at the **circuitry level** and not at the API level (for now). This way, developers are not forced to learn new techniques that will disrupt their traditional methods, but they'll soon find that the new underlying design will benefit them in terms of performance and extra functionality (on top of the 'traditional' one).
@@ -405,9 +453,12 @@ Conversely, this GPU is strongly aligned to a proprietary API developed by Micro
 
 Now it's time to make a full dive and see how this pipeline works, just like we did in the other articles.
 
-```{r fig.cap=caption, fig.align='center', tab.title="Commands", tab.first=TRUE, tab.active=TRUE}
-caption <- "Overview of the command stage"
-image('gpu/pipeline_commands.png', caption, float=TRUE)
+(ref:gpucommandtitle) Commands
+
+(ref:gpucommandcaption) Overview of the command stage.
+
+```{r fig.cap="(ref:gpucommandcaption)", fig.align='center', tab.title="(ref:gpucommandtitle)", tab.first=TRUE, tab.active=TRUE}
+image('gpu/pipeline_commands.png', "(ref:gpucommandcaption)", float=TRUE)
 ```
 
 Welcome to the tour of the _12th polygon factory_ of this series. As always, the starting point is the **command stage**. Commands tell the GPU what, where and how to draw something on the screen. This time, however, commands may be **stored in Main Memory** (within a [buffer](`r ref("gamecube#tab-1-1-database")`)) or **directly streamed** by the CPU. Both are subsequently fetched by the **Command Processor** `r cite("graphics-ati_review")`, which parses it and forwards it to the respective unit that performs the required operations (as commands may encode different types of instructions, such as 'draw a triangle' or 'set X register').
@@ -418,10 +469,12 @@ Furthermore, Direct 3D 9's command buffers (found in the official SDK of the Xbo
 
 Finally, this GPU can also conditionally execute commands depending on arbitrary conditions set by the developers. In Direct3D's world, this is called **Predication** and saves the GPU from processing geometry that may be occluded, for instance.
 
-(ref:vertexcaption) Overview of the vertex stage. You'll soon find that this stage and the pixel stage are not _that_ different.
+(ref:gpuvertextitle) Vertex Shader
 
-```{r fig.cap="(ref:vertexcaption)", fig.align='center', tab.title="Vertex Shader"}
-image('gpu/pipeline_vertex.png', "(ref:vertexcaption)", float=TRUE)
+(ref:gpuvertexcaption) Overview of the vertex stage. You'll soon find that this stage and the pixel stage are not _that_ different.
+
+```{r fig.cap="(ref:gpuvertexcaption)", fig.align='center', tab.title="(ref:gpuvertextitle)"}
+image('gpu/pipeline_vertex.png', "(ref:gpuvertexcaption)", float=TRUE)
 ```
 
 Since the times of [Flipper](`r ref("gamecube#graphics")`) (or even the [RCP](`r ref("nintendo-64#graphics")`), as it shared its core team members), ATI maintained the initiative of providing a geometry block to accelerate vertex operations. With Xenos, it is now fully programmable using Direct3D's **High-Level Shader Language** (HLSL), which is similar to C but used for implementing vertex shaders without needing assembly, although the latter is still possible.
@@ -436,9 +489,12 @@ Furthermore, let's not forget that the hardware carrying out those operations re
 4. The **Shader Export** buffers the results and sends them back to the start of the line where **Primitive Assembler** picks them up for rasterization. Alternatively, the shader export can forward the results to the **Backend Central**, where they are exported to main RAM.
     - The latter capability means **a shader can write raw data into main RAM**, remember this when we reach the 'Anti-piracy' section...
 
-```{r fig.cap=caption, fig.align='center', tab.title="Rasterization"}
-caption <- "Overview of the rasterizer stage."
-image('gpu/pipeline_raster.png', caption, float=TRUE)
+(ref:gpurastertitle) Rasterization
+
+(ref:gpurastercaption) Overview of the rasterizer stage.
+
+```{r fig.cap="(ref:gpurastercaption)", fig.align='center', tab.title="(ref:gpurastertitle)"}
+image('gpu/pipeline_raster.png', "(ref:gpurastercaption)", float=TRUE)
 ```
 
 Once the primitives have been transformed or subdivided as requested, the rasterizer begins the transformation to pixels.
@@ -453,9 +509,12 @@ The Hi-Z block uses dedicated memory for these operations, this memory can store
 
 Finally, the scan converter gets back groups of 2x2 blocks (so 16x16 pixels in total) and sends them in batches of 64 pixels to the next stage, where the pixel shader adds the _eye-catching_ effects.
 
-```{r fig.cap=caption, fig.align='center', tab.title="Pixel Shader"}
-caption <- "Overview of the pixel shader stage."
-image('gpu/pipeline_pixel.png', caption, float=TRUE)
+(ref:gpupixeltitle) Pixel Shader
+
+(ref:gpupixelcaption) Overview of the pixel shader stage.
+
+```{r fig.cap="(ref:gpupixelcaption)", fig.align='center', tab.title="(ref:gpupixeltitle)"}
+image('gpu/pipeline_pixel.png', "(ref:gpupixelcaption)", float=TRUE)
 ```
 
 To execute the pixel shader, Xenos re-uses the same components of the vertex pipeline with slight detours. Similarly, HLSL's Pixel Shader Model 3.0 (`ps_3_0`) specification states what developers can accomplish at this stage, which is not significantly different from [Sony's counterpart](`r ref("playstation-3#tab-8-4-pixel-shader")`). Nevertheless, since the underlying foundation has been simplified (well, unified), resources have been homogenised, improving the balance of performance across all stages.
@@ -469,9 +528,12 @@ That being said, the pixel stage works as follows:
 5. The **Shader Export** and **Backend Central** forward the results to memory. The latter outputs two blocks of 2x2 pixels (8 pixels in total) per cycle. Other kinds of data that can be exported include new Z-values for the Z-buffer and arbitrary data to main RAM.
     - The result from the shader export doesn't necessarily have to be the final frame buffer, games with lots of scenery often render multiple buffers (called 'render targets') that are used to derive the final frame. This is called **Multiple-pass rendering** and Xenos supports outputting **up to four multiple render targets** (MRT) at the same time `r cite("graphics-baumann")`.
 
-```{r fig.cap=caption, fig.align='center', tab.title="Pixel Operations", tab.last=TRUE}
-caption <- "Overview of pixel operations available."
-image('gpu/pipeline_post.png', caption, float=TRUE)
+(ref:gpuposttitle) Pixel Operations
+
+(ref:gpupostcaption) Overview of pixel operations available.
+
+```{r fig.cap="(ref:gpupostcaption)", fig.align='center', tab.title="(ref:gpuposttitle)", tab.last=TRUE}
+image('gpu/pipeline_post.png', "(ref:gpupostcaption)", float=TRUE)
 ```
 
 This is as far as it goes for rendering, but one thing we haven't explored yet is how those 10 MB of EDRAM benefit all of this. Well, this chip is very special, because it contains internal logic to perform automatic **Multisample Antialiasing** (MSAA) along with **Depth and Stencil testing**. Its internal bandwidth (between its internal logic and internal memory) provides an absurd **256 GB/second**, which makes it very attractive for storing intermediate buffers (as opposed to storing them in main RAM).
@@ -486,7 +548,7 @@ Thanks to the new bandwidth achieved, game designers may push for a level of qua
 
 The state of the industry after 15 years has demonstrated that the Unified shader model was meant to become another building block within GPUs. Interestingly enough, when Direct3D 10 and OpenGL 3.3 debuted in 2006 and 2010, respectively, not only they standardised this model, but they also defined new features and applications that were now possible to implement. For instance, a new pipeline stage called **Geometry shader** was added in Direct3D 10 to expand the uses of the tessellator.
 
-(ref:froggycaption) Froggy (2006), Nvidia's next demo that showcased the capabilities of the unified shaders (incorporated with the Geforce 8 line). For demonstration purposes, the demo also allows to, ehem, slap and stretch the _poor ugly_ frog.
+(ref:froggycaption) Froggy (2006), Nvidia's latest demo that showcased the capabilities of the unified shaders (incorporated with the Geforce 8 line). For demonstration purposes, the demo also allows to, ehem, slap and stretch the _poor ugly_ frog.
 
 ```{r fig.cap="(ref:froggycaption)", open_float_group=TRUE, fig.align='center'}
 image('screenshots/windows/froggy.jpg', "(ref:froggycaption)", float=TRUE)
@@ -504,9 +566,10 @@ On the other side, the PC market experienced a different revolution that strange
 
 Unlike the Playstation 3, which arrived a year later, the release of the Xbox 360 in 2005 got caught up in the middle of a transition from analogue video (i.e. RGB and composite) to digital (i.e. HDMI), so the first shipments of the console didn't bundle the famous [HDMI connector](`r ref("playstation-3#a-unified-video-output")`) that quickly displaced the analogue video salad.
 
-```{r fig.cap=caption1, open_float_group=TRUE, fig.align='center'}
-caption1 <- "Two different revisions of the Xbox 360 stacked together, the top one is a Zephyr and the bottom revision is a Xenon. Notice that the Zephyr model adds the HDMI connector, while Xenon only has the analogue A/V socket."
-image('photos/xenon_zephyr_back.jpg', caption1, float=TRUE)
+(ref:xboxbackcaption) Two different revisions of the Xbox 360 stacked together, the top one is a Zephyr and the bottom revision is a Xenon. Notice that the Zephyr model adds the HDMI connector, while Xenon only has the analogue A/V socket.
+
+```{r fig.cap="(ref:xboxbackcaption)", open_float_group=TRUE, fig.align='center'}
+image('photos/xenon_zephyr_back.jpg', "(ref:xboxbackcaption)", float=TRUE)
 ```
 
 Instead, the first revision (called **Xenon**, like the CPU) is only equipped with a multi analogue socket called 'A/V'. This carries all the signals previously featured with the [original Xbox](`r ref("xbox#the-xboxs-frame")`), with the addition of VGA-compliant pins `r cite("graphics-xbox360av")` (its predecessor had the wires in place but, for some reason, were never powered `r cite("graphics-xboxav")`).
@@ -541,9 +604,12 @@ A year later, the PS3 will [follow suit](`r ref("playstation-3#audio")`), and th
 
 Conversely, in the case of the Xbox 360, we find a huge exception to this rule: Microsoft fitted a **hardware audio decoder** on the motherboard `r cite("cpu-andrews")`. Although this circuit is hidden within the Southbridge chip (explained further in the 'I/O' section) and it only supports one codec called **Xbox Media Audio** (XMA). The latter is a variant of Microsoft's proprietary **Windows Media Audio** (WMA), which you may have heard about already. In any case, why was that codec so crucial that Microsoft invested extra hardware in a console already facing budget cuts?
 
-```{r fig.cap=caption, fig.align='center', tab.title="A codec-rich industry", tab.first=TRUE, tab.active=TRUE}
-caption <- "Windows Media Player 6, released in 1999. This was Microsoft's weapon against its contemporaries, namely Quicktime, Winamp and so forth."
-image('screenshots/windows/media6.jpg', caption, float=TRUE, no_borders=TRUE)
+(ref:codectitle) A codec-rich industry
+
+(ref:codeccaption) Windows Media Player 6, released in 1999. This was Microsoft's weapon against its contemporaries, namely Quicktime, Winamp and so forth.
+
+```{r fig.cap="(ref:codeccaption)", fig.align='center', tab.title="(ref:codectitle)", tab.first=TRUE, tab.active=TRUE}
+image('screenshots/windows/media6.jpg', "(ref:codeccaption)", float=TRUE, no_borders=TRUE)
 ```
 
 Back in the naughties (and even the late 90s), during the rise of the World Wide Web and affordable multimedia products (i.e. accelerator cards, SIMD-capable CPUs and fast network bandwidth), many companies which were once narrowly focused on productivity software suddenly ventured into a new area of multimedia services.
@@ -552,9 +618,12 @@ It so happens users now wanted to watch full-motion movies on a PC, listen to an
 
 Now, if we take a deeper dive into the music world and its never-ending sharing systems, we see that the MP3 became the de-facto codec used for transmitting music `r cite("audio-mp3")` and that brings huge demand for media players that decode MP3 (well, technically, MPEG-1). That being said, what is Microsoft's response to this trend? Well, develop _another_ codec to displace MP3, a new format called **Windows Media Audio** or 'WMA' `r cite("audio-wma")`.
 
-```{r fig.cap=caption, fig.align='center', tab.title="A new push for WMA", tab.last=TRUE}
-caption <- "Windows Media Player 11, released in 2006. Now with a fancier UI and more proprietary codecs!"
-image('screenshots/windows/media11.png', caption, float=TRUE, no_borders=TRUE)
+(ref:wmatitle) One more push for WMA
+
+(ref:wmacaption) Windows Media Player 11, released in 2006. Now with a fancier UI and more proprietary codecs!
+
+```{r fig.cap="(ref:wmacaption)", fig.align='center', tab.title="(ref:wmatitle)", tab.last=TRUE}
+image('screenshots/windows/media11.png', "(ref:wmacaption)", float=TRUE, no_borders=TRUE)
 ```
 
 Unfortunately for them, the adoption of WMA wasn't as popular as MP3, presumably due to Microsoft's licensing schemes. To top it off, Microsoft fragmented the WMA user base by releasing non-backwards compatible revisions and offering multiple tiers. Yet, the company still kept pushing for adoption by other means, for instance, through DirectX's audio playback libraries, namely 'DirectShow' `r cite("audio-directshow")`.
@@ -571,9 +640,10 @@ For the coup de grace, Microsoft added dedicated circuitry to offload CPU cycles
 
 In terms of functions, The XMA decoder can either decode up to **5.1 audio channels** with a sample rate of **48 kHz** and a resolution of **16-bit**. No surprises here!
 
-```{r fig.cap=c(caption), fig.align='center', centered=TRUE}
-caption <- "Overview of the audio pipeline"
-image("audio.png", caption, class = "centered-container")
+(ref:audopipelinecaption) Overview of the audio pipeline
+
+```{r fig.cap="(ref:audopipelinecaption)", fig.align='center', centered=TRUE}
+image("audio.png", "(ref:audopipelinecaption)", class = "centered-container")
 ```
 
 Moving on, the decoder works as follows:
@@ -589,11 +659,17 @@ All of this is abstracted with the use of Microsoft libraries, which handle how 
 
 Following in the [footsteps](`r ref("xbox#io")`) of the original Xbox, all I/O operations are handled through a thick and opaque chip called **Southbridge** (though in various documents I've seen it referenced as 'I/O chip' or 'XBS' as well). The Southbridge connects to most, if not all, internal and external interfaces. This chip is only connected to the GPU (not the CPU), so Xenon has to go through Xenos to reach it and subsequently request data from any socket.
 
-```{r fig.cap=c(caption1, caption2), fig.align="center", tab.nested=TRUE, centered=TRUE}
-caption1 <- "The Southbridge chip supervising small I/O chips and sockets."
-image('southbridge.png', caption1, tab.name = "Original", tab.active = TRUE)
-caption2 <- "The same picture with important parts labelled."
-image('southbridge_marked.png', caption2, tab.name = "Marked")
+(ref:iochiptitle) Original
+
+(ref:iochipcaption) The Southbridge chip supervising small I/O chips and sockets.
+
+(ref:iochiptitle2) Marked
+
+(ref:iochipcaption2) The same picture with important parts labelled.
+
+```{r fig.cap=c("(ref:iochipcaption)", "(ref:iochipcaption2)"), fig.align="center", tab.nested=TRUE, centered=TRUE}
+image('southbridge.png', "(ref:iochipcaption)", tab.name = "(ref:iochiptitle)", tab.active = TRUE)
+image('southbridge_marked.png', "(ref:iochipcaption2)", tab.name = "(ref:iochiptitle2)")
 ```
 
 The Southbridge communicates to Xenos using the **PCI Express** protocol, composed of two unidirectional serial buses, one for each direction. In the case of this console, each bus can transfer up to **500 MB/sec** `r cite("graphics-baumann")`.
@@ -606,9 +682,10 @@ To keep up with the demand, the **Southbridge can write to main RAM**. Consequen
 
 You've seen before that the abundance of services in 7th generation consoles has led to the inclusion of many black boxes. These are meant to offload most of (if not all) the security and I/O tasks away from user-accessible components like the CPU and GPU.
 
-```{r fig.cap=caption, fig.align='center', centered=TRUE}
-caption <- "Diagram of the Southbridge’s connections."
-image("southbridge_diagram.png", caption, class = "centered-container")
+(ref:ioconncaption) Diagram of the Southbridge’s connections.
+
+```{r fig.cap="(ref:ioconncaption)", fig.align='center', centered=TRUE}
+image("southbridge_diagram.png", "(ref:ioconncaption)", class = "centered-container")
 ```
 
 The Xbox 360 is no stranger to this. Hidden within the Southbridge chip there's a component called **System Management Controller** (SMC) and, like [the Wii](`r ref("wii#the-hidden-co-processor")`), it draws current even on standby mode. The SMC abstracts lots of I/O operations, including power management, real-time clock, temperature control, LED control and the infrared sensor `r cite("io-smc")`. The CPU communicates to the SMC using a [FIFO command buffer](`r ref("nintendo-ds#interconnection")`), though this task is restricted to the Kernel only (more about it in the 'Operating System' section). So, neither the user nor the game can fiddle with it.
@@ -621,9 +698,10 @@ There are other interesting aspects of the SMC, but we'll discuss them in due ti
 
 The set of external ports is not particularly overwhelming, but there are a fair number of them.
 
-```{r fig.cap=c(caption), fig.align='center', centered=TRUE}
-caption <- "Front view of the console, some interfaces are hidden by springloaded doors."
-image("photos/front.jpg", caption, class = "centered-container")
+(ref:iofrontcaption) Front view of the console, some interfaces are hidden by springloaded doors.
+
+```{r fig.cap="(ref:iofrontcaption)", fig.align='center', centered=TRUE}
+image("photos/front.jpg", "(ref:iofrontcaption)", class = "centered-container")
 ```
 
 In any case, the console offers:
@@ -712,9 +790,10 @@ This design is correlated to the [PPU's privilege levels](`r ref("playstation-3#
 
 IBM enacted three privileges (instead of just two) to allow multiple operating systems running at the same time. With this idea, each OS would only live under the two lowest levels while the highest level would be reserved for the program supervising all operating systems. In practice, the Playstation 3 and Xbox 360 only require a single operating system (except for [OtherOS](`r ref("playstation-3#a-multi-os-proposal")`), but that was quickly scrapped). Consequently, Sony and Microsoft designed a hypervisor that enforces their respective security model and performs memory management tasks. Conversely, the architectural differences between Cell and Xenon led to very distinct implementations of hypervisors, so each is subject to unique flaws and strengths.
 
-```{r fig.cap=caption_os, fig.align='center'}
-caption_os <- "Diagram showing how the components of the Xbox operating system fit in Xenon's privilege levels."
-image("os_levels.png", caption_os, class = "centered-container")
+(ref:osdiagcaption) Diagram showing how the components of the Xbox operating system fit in Xenon's privilege levels.
+
+```{r fig.cap="(ref:osdiagcaption)", fig.align='center'}
+image("os_levels.png", "(ref:osdiagcaption)", class = "centered-container")
 ```
 
 The most notable difference between the security model of the Xbox 360 and the Playstation 3, is that the former runs both the Kernel and user-space programs **under the same privilege mode** (the second level) `r cite("cpu-steil")`. So, all critical tasks rest within Hypervisor, which enjoys extra acceleration from the hardware side (I'll explain more about it in the 'Anti-piracy' section).
@@ -780,9 +859,12 @@ This area happens to be **unencrypted**, as the security system is not set up ye
 
 In any case, the boot ROM is only executed once after the console is powered on.
 
-```{r fig.cap=caption, fig.align='center', tab.title="Internal NAND"}
-caption <- "The NAND chip"
-image('photos/nand.jpg', caption, float=TRUE)
+(ref:osnandtitle) Internal NAND
+
+(ref:osnandcaption) The NAND chip
+
+```{r fig.cap="(ref:osnandcaption)", fig.align='center', tab.title="(ref:osnandtitle)"}
+image('photos/nand.jpg', "(ref:osnandcaption)", float=TRUE)
 ```
 
 In the motherboard of every Xbox 360, you'll find a **NAND Flash** chip. This is what Microsoft uses to store `r cite("operating_system-nand_fs")`:
@@ -798,13 +880,24 @@ All of this data is encrypted in a multitude of ways. The majority uses Microsof
 
 Contrarily to the PS3, Microsoft managed to fit all of this in a smaller **16 MB** chip, although some revisions from 2008 and 2009 featured 256 MB and 512 MB NAND chips `r cite("operating_system-jasper")`. This wasn't a breaking change, however, as the extra space was partitioned and treated as a Memory Unit instead.
 
-```{r fig.cap=c(caption1, caption2), fig.align='center', tab.title="Memory Units and HDDs", tab.nested=TRUE, tab.float=TRUE}
-caption1 <- "Memory Units, the least expensive storage medium. Although, they only work with Xbox 360 revisions before 2010."
-image('amos/mem_units.png', caption1, float=TRUE, tab.name = "Memory Unit", tab.active = TRUE)
-caption2 <- "External HDD. Sold as a separate accessory and bundled with 'premium' editions. Inside the case there is a conventional 2.5\" hard disk connected to a data & power adapter."
-image('amos/hdd.png', caption2, float=TRUE, tab.name = "External HDD")
-caption2 <- "Internal HDD, an alternative packaging for the Slim models (2010). The case is fitted into a hidden slot and doesn't require any type of adapter (its only purpose is to prevent wobbling)."
-image('amos/hdd_slim.png', caption2, float=TRUE, tab.name = "Internal HDD")
+(ref:osmemhddtitle) Memory Units and HDDs
+
+(ref:osmemunittitle) Memory Unit
+
+(ref:osmemunitcaption) Memory Units, the least expensive storage medium. Although, they only work with Xbox 360 revisions before 2010.
+
+(ref:osexthddtitle) External HDD
+
+(ref:osexthddcaption) External HDD. Sold as a separate accessory and bundled with 'premium' editions. Inside the case there is a conventional 2.5" hard disk connected to a data & power adapter.
+
+(ref:osinthddtitle) Internal HDD
+
+(ref:osinthddcaption) Internal HDD, an alternative packaging for the Slim models (2010). The case is fitted into a hidden slot and doesn't require any type of adapter (its only purpose is to prevent wobbling).
+
+```{r fig.cap=c("(ref:osmemunitcaption)", "(ref:osexthddcaption)", "(ref:osinthddcaption)"), fig.align='center', tab.title="(ref:osmemhddtitle)", tab.nested=TRUE, tab.float=TRUE}
+image('amos/mem_units.png', "(ref:osmemunitcaption)", float=TRUE, tab.name = "(ref:osmemunittitle)", tab.active = TRUE)
+image('amos/hdd.png', "(ref:osexthddcaption)", float=TRUE, tab.name = "(ref:osexthddtitle)")
+image('amos/hdd_slim.png', "(ref:osinthddcaption)", float=TRUE, tab.name = "(ref:osinthddtitle)")
 ```
 
 If you place the console in a vertical position, on the front you'll see **two 'Memory Unit' slots**. On the top of it, you'll find a modified SATA socket for a **hard drive** (only fits those encased and sold by Microsoft). Both of these mediums are **optional** and used as **mass storage devices**.
@@ -815,11 +908,12 @@ As long as there's space, either medium can store user profiles, game saves, dow
 
 Microsoft sold Memory Units of up to **512 MB** and hard drives of up to **500 GB** `r cite("operating_system-storage")`. You may think "Well, what if I swap the hard drive inside the case for a bigger one?" but that's been predicted, as all hard drives sold by Microsoft embed a **Security Sector** partition that prevents users from using third-party hard drives `r cite("operating_system-security_sector")`. This block encodes unique properties of the hard drive (serial number, model number, size, etc) that the Kernel compares with the hard drive's metadata, along with a bitmap of Microsoft's logo (to mitigate distribution with the use of trademark laws) and an RSA signature (to prevent third-parties from crafting their own security sector) `r cite("operating_system-hdd_upgrade")`. Although, some users eventually found workarounds by manually overriding the hard drive's metadata `r cite("operating_system-hddHackr")`.
 
+(ref:usbsticktitle) External USB
+
 (ref:usbstickcaption) Typical USB stick `r cite('photography-amos')`.
 
-```{r fig.cap="(ref:usbstickcaption)", fig.align='center', tab.title="External USB", tab.last=TRUE}
-caption <- "(ref:usbstickcaption)"
-image('photos/usb.png', caption, float=TRUE, no_borders=TRUE)
+```{r fig.cap="(ref:usbstickcaption)", fig.align='center', tab.title="(ref:usbsticktitle)", tab.last=TRUE}
+image('photos/usb.png', "(ref:usbstickcaption)", float=TRUE, no_borders=TRUE)
 ```
 
 In April 2010, Microsoft conceded to the _invasion of the cheapo USB sticks_ (which already conquered every household) and released a software update that allowed to use **USB drives** in the Xbox 360, as a method for expanding storage space.
@@ -890,33 +984,45 @@ In the following paragraphs, you may sense that I'm very critical of each interf
 
 #### The 'Blades' dashboard (2005)
 
-(ref:bladescaption) 'Blades' dashboard. Screens are from `r cite('operating_system-blades_1')` and `r cite('operating_system-blades_2')`.
+(ref:dashboardshometitle) Home
 
-```{r fig.cap=c(paste0(caption1, postcaption), paste0(caption2, postcaption), paste0(caption3, postcaption), paste0(caption4, postcaption), paste0(caption5, postcaption)), fig.align="center", tab.nested=TRUE, tab.figure=TRUE, centered=TRUE}
-postcaption <- " Part of the (ref:bladescaption)"
+(ref:bladescaption1) The home screen, the controls are shown on the centre, while the horizontal edges indicates the existance of other blades to navigate to.
 
-caption1 <- "The home screen, the controls are shown on the centre, while the horizontal edges indicates the existance of other blades to navigate to."
-image('screenshots/blades/home.jpg', caption1, tab.name = "Home", tab.active = TRUE, caption.post = postcaption)
+(ref:dashboardsgamestitle) Games
 
-caption2 <- "List of games installed, previously downloaded from the Xbox Live Arcade (a digital marketplace).
-Notice how this is a full-screen view, as there wasn't enough space on the previous type of screen."
-image('screenshots/blades/games.jpg', caption2, tab.name = "Games", caption.post = postcaption)
+(ref:bladescaption2) List of games installed, previously downloaded from the Xbox Live Arcade (a digital marketplace). Notice how this is a full-screen view, as there wasn't enough space on the previous type of screen.
 
-caption3 <- "Settings menu."
-image('screenshots/blades/settings.jpg', caption3, tab.name = "Settings", caption.post = postcaption)
+(ref:dashboardssettingstitle) Settings
 
-caption_storage <- "Storage menu, enabling the user to delete or copy user-only content.
-Notice how it removes the other blades indicators to reclaim a bit more screen space."
-image('screenshots/blades/storage.jpg', caption_storage, tab.name = "Storage", caption.post = postcaption)
+(ref:bladescaption3) Settings menu.
 
-caption4 <- "A simple avatar selector screen."
-image('screenshots/blades/avatar.jpg', caption4, tab.name = "Avatar", caption.post = postcaption)
+(ref:dashboardsstoragetitle) Storage
 
-caption5 <- "Pressing the guide button (a.k.a Xbox logo on the controller) for a long period would bring in the 'Xbox Guide', a popup menu offering various shortcuts."
-image('screenshots/blades/guide.jpg', caption5, tab.name = "Guide", caption.post = postcaption)
+(ref:bladescaptionstorage) Storage menu, enabling the user to delete or copy user-only content. Notice how it removes the other blades indicators to reclaim a bit more screen space.
 
-caption6 <- "The (ref:bladescaption)"
-figcaption(caption6)
+(ref:dashboardsavatartitle) Avatar
+
+(ref:bladescaption4) A simple avatar selector screen.
+
+(ref:dashboardsguidetitle) Guide
+
+(ref:bladescaption5) Pressing the guide button (a.k.a Xbox logo on the controller) for a long period would bring in the 'Xbox Guide', a popup menu offering various shortcuts.
+
+(ref:bladesfootercaption) 'Blades' dashboard. Screens are from `r cite('operating_system-blades_1')` and `r cite('operating_system-blades_2')`.
+
+(ref:dashboardspostcaption) Part of the <!-- 'Blades' dashboard (...) -->
+
+(ref:dashboardsstartfooter) The <!-- 'Blades' dashboard (...) -->
+
+```{r fig.cap=c(paste0("(ref:bladescaption1)", postcaption), paste0("(ref:bladescaption2)", postcaption), paste0("(ref:bladescaption3)", postcaption), paste0("(ref:bladescaptionstorage)", postcaption), paste0("(ref:bladescaption4)", postcaption), paste0("(ref:bladescaption5)", postcaption)), fig.align="center", tab.nested=TRUE, tab.figure=TRUE, centered=TRUE}
+postcaption <- paste0("(ref:dashboardspostcaption)","(ref:bladesfootercaption)")
+image('screenshots/blades/home.jpg', "(ref:bladescaption1)", tab.name = "(ref:dashboardshometitle)", tab.active = TRUE, caption.post = postcaption)
+image('screenshots/blades/games.jpg', "(ref:bladescaption2)", tab.name = "(ref:dashboardsgamestitle)", caption.post = postcaption)
+image('screenshots/blades/settings.jpg', "(ref:bladescaption3)", tab.name = "(ref:dashboardssettingstitle)", caption.post = postcaption)
+image('screenshots/blades/storage.jpg', "(ref:bladescaptionstorage)", tab.name = "(ref:dashboardsstoragetitle)", caption.post = postcaption)
+image('screenshots/blades/avatar.jpg', "(ref:bladescaption4)", tab.name = "(ref:dashboardsavatartitle)", caption.post = postcaption)
+image('screenshots/blades/guide.jpg', "(ref:bladescaption5)", tab.name = "(ref:dashboardsguidetitle)", caption.post = postcaption)
+figcaption(paste0("(ref:dashboardsstartfooter)","(ref:bladesfootercaption)"))
 ```
 
 The first iteration of the user interface, now an element of nostalgia for some, was the **Blades** dashboard. Here, each group of services (game, multimedia, settings, etc) is organised into different overlapping layers called 'blades'. All share the same hierarchy level and focus, meaning the user can only open one blade/category at a time. To navigate around, the user must swap between blades and interact with the actionable controls placed.
@@ -938,32 +1044,31 @@ Nevertheless, this is the GUI that gave this console an identity, and it's obvio
 
 #### The 'New Xbox Experience' (2008)
 
-(ref:nxecaption) 'NXE' dashboard. Screens are from `r cite('operating_system-nxe_dash')` and `r cite('operating_system-nxe_dash_2')`.
+(ref:nxecaption1) The new home menu. Notice how the user can't see all elements available unless he/she scrolls.
+
+(ref:dashboardsappstitle) Apps
+
+(ref:nxecaption2) As the Xbox Live expands its repertoire, many types of applications can now be installed (not only arcades anymore).
+
+(ref:nxecaption3) The settings menu keeps the same layout but inherits a new colour palette.
+
+(ref:nxecaptionstorage) The storage menu and its similar palette update. In this example, a custom background has been set by the user.
 
 (ref:nxecaptionavatar) 2D avatars are still available, though users are now encouraged to define their own 3D avatar too. This will be used by games (ala [Nintendo's Mii](`r ref("wii#personalised-game")`)).
 
-```{r fig.cap=c(paste0(caption1, postcaption), paste0(caption2, postcaption), paste0(caption3, postcaption), paste0("(ref:nxecaptionavatar)", postcaption), paste0(caption4, postcaption)), fig.align="center", tab.nested=TRUE, tab.figure=TRUE, centered=TRUE}
-postcaption <- " Part of the (ref:nxecaption)"
+(ref:nxecaption4) As a nice tribute, the new guide menu resembles the old Blades design, which also helps provide more and better-organised shortcuts.
 
-caption1 <- "The new home menu. Notice how the user can't see all elements available unless he/she scrolls."
-image('screenshots/nxe/home.jpg', caption1, tab.name = "Home", tab.active = TRUE, caption.post = postcaption)
+(ref:nxefootercaption) 'NXE' dashboard. Screens are from `r cite('operating_system-nxe_dash')` and `r cite('operating_system-nxe_dash_2')`.
 
-caption2 <- "As the Xbox Live expands its repertoire, many types of applications can now be installed (not only arcades anymore)."
-image('screenshots/nxe/games.jpg', caption2, tab.name = "Apps", caption.post = postcaption)
-
-caption3 <- "The settings menu keeps the same layout but inherits a new colour palette."
-image('screenshots/nxe/settings.jpg', caption3, tab.name = "Settings", caption.post = postcaption)
-
-caption_storage <- "The storage menu and its similar palette update. In this example, a custom background has been set by the user."
-image('screenshots/nxe/storage.jpg', caption_storage, tab.name = "Storage", caption.post = postcaption)
-
-image('screenshots/nxe/avatar.jpg', "(ref:nxecaptionavatar)", tab.name = "Avatar", caption.post = postcaption)
-
-caption4 <- "As a nice tribute, the new guide menu resembles the old Blades design, which also helps provide more and better-organised shortcuts."
-image('screenshots/nxe/guide.jpg', caption4, tab.name = "Guide", caption.post = postcaption)
-
-caption5 <- "The (ref:nxecaption)"
-figcaption(caption5)
+```{r fig.cap=c(paste0("(ref:nxecaption1)", postcaption), paste0("(ref:nxecaption2)", postcaption), paste0("(ref:nxecaption3)", postcaption), paste0("(ref:nxecaptionstorage)", postcaption), paste0("(ref:nxecaptionavatar)", postcaption), paste0("(ref:nxecaption4)", postcaption)), fig.align="center", tab.nested=TRUE, tab.figure=TRUE, centered=TRUE}
+postcaption <- paste0("(ref:dashboardspostcaption)","(ref:nxefootercaption)")
+image('screenshots/nxe/home.jpg', "(ref:nxecaption1)", tab.name = "(ref:dashboardshometitle)", tab.active = TRUE, caption.post = postcaption)
+image('screenshots/nxe/games.jpg', "(ref:nxecaption2)", tab.name = "(ref:dashboardsappstitle)", caption.post = postcaption)
+image('screenshots/nxe/settings.jpg', "(ref:nxecaption3)", tab.name = "(ref:dashboardssettingstitle)", caption.post = postcaption)
+image('screenshots/nxe/storage.jpg', "(ref:nxecaptionstorage)", tab.name = "(ref:dashboardsstoragetitle)", caption.post = postcaption)
+image('screenshots/nxe/avatar.jpg', "(ref:nxecaptionavatar)", tab.name = "(ref:dashboardsavatartitle)", caption.post = postcaption)
+image('screenshots/nxe/guide.jpg', "(ref:nxecaption4)", tab.name = "(ref:dashboardsguidetitle)", caption.post = postcaption)
+figcaption(paste0("(ref:dashboardsstartfooter)","(ref:nxefootercaption)"))
 ```
 
 As Microsoft expanded its catalogue of services and features, the navigation pattern of the blades turned into a liability (as it constrained the number of navigation screens on the top hierarchy) and the lack of available space became apparent in later software updates. In 2008, Microsoft released a revamped Dashboard interface called **New Xbox Experience** (NXE) which focused on 'infinite scrolling' patterns to offer a wider selection of services on the front page. It also incorporated other elements like a glossy filter and 3D transitions recently popularised by **Windows Vista** and the new range of **Windows Live** applications.
@@ -981,32 +1086,29 @@ With the new design, screens could now enjoy full-screen space without being con
 
 #### The 'Kinect' update (2010)
 
-(ref:kinectdashcaption) 'Kinect' dashboard with a custom wallpaper. Screens are from `r cite('operating_system-kinect_dash')`.
+(ref:kinnectcaption1) The new home screen built for Kinect controls. Notice how the container at the bottom right corner indicates what Kinect is capturing at the moment.
 
-```{r fig.cap=c(paste0(caption1, postcaption), paste0(caption2, postcaption), paste0(caption3, postcaption), paste0(caption4, postcaption), paste0(caption5, postcaption)), fig.align="center", tab.nested=TRUE, tab.figure=TRUE, centered=TRUE}
-postcaption <- " Part of the (ref:kinectdashcaption)"
+(ref:kinnectcaption2) As the Xbox Live expands its repertoire, many types of applications can now be installed (not only games).
 
-caption1 <- "The new home screen built for Kinect controls. Notice how the container at the bottom right corner indicates what Kinect is capturing at the moment."
-image('screenshots/kinect/home.jpg', caption1, tab.name = "Home", tab.active = TRUE, caption.post = postcaption)
+(ref:kinnectcaption3) The Settings menu with minor changes applied.
 
-caption2 <- "As the Xbox Live expands its repertoire, many types of applications can now be installed (not only games)."
-image('screenshots/kinect/apps.jpg', caption2, tab.name = "Apps", caption.post = postcaption)
+(ref:kinnectcaptionstorage) The same goes for the Storage menu.
 
-caption3 <- "The Settings menu with minor changes applied."
-image('screenshots/kinect/settings.jpg', caption3, tab.name = "Settings", caption.post = postcaption)
+(ref:kinnectcaption4) 3D avatars get some enhancements as well.
 
-caption_storage <- "The same goes for the Storage menu."
-image('screenshots/kinect/storage.jpg', caption_storage, tab.name = "Storage", caption.post = postcaption)
+(ref:kinnectcaption5) The Guide menu goes through a minimalistic phase.
 
-caption4 <- "3D avatars get some enhancements as well."
-image('screenshots/kinect/avatar.jpg', caption4, tab.name = "Avatar", caption.post = postcaption)
+(ref:kinnectfootercaption) 'Kinect' dashboard with a custom wallpaper. Screens are from `r cite('operating_system-kinect_dash')`.
 
-caption5 <- "The Guide menu goes through a minimalistic phase."
-image('screenshots/kinect/guide.jpg', caption5, tab.name = "Guide", caption.post = postcaption)
-
-caption6 <- "The (ref:kinectdashcaption)"
-figcaption(caption6)
-# Use fig.ncol = 1 for subfigures stacked vertically
+```{r fig.cap=c(paste0("(ref:kinnectcaption1)", postcaption), paste0("(ref:kinnectcaption2)", postcaption), paste0("(ref:kinnectcaption3)", postcaption), paste0("(ref:kinnectcaptionstorage)", postcaption), paste0("(ref:kinnectcaption4)", postcaption), paste0("(ref:kinnectcaption5)", postcaption)), fig.align="center", tab.nested=TRUE, tab.figure=TRUE, centered=TRUE}
+postcaption <- paste0("(ref:dashboardspostcaption)", "(ref:kinnectfootercaption)")
+image('screenshots/kinect/home.jpg', "(ref:kinnectcaption1)", tab.name = "(ref:dashboardshometitle)", tab.active = TRUE, caption.post = postcaption)
+image('screenshots/kinect/apps.jpg', "(ref:kinnectcaption2)", tab.name = "(ref:dashboardsappstitle)", caption.post = postcaption)
+image('screenshots/kinect/settings.jpg', "(ref:kinnectcaption3)", tab.name = "(ref:dashboardssettingstitle)", caption.post = postcaption)
+image('screenshots/kinect/storage.jpg', "(ref:kinnectcaptionstorage)", tab.name = "(ref:dashboardsstoragetitle)", caption.post = postcaption)
+image('screenshots/kinect/avatar.jpg', "(ref:kinnectcaption4)", tab.name = "(ref:dashboardsavatartitle)", caption.post = postcaption)
+image('screenshots/kinect/guide.jpg', "(ref:kinnectcaption5)", tab.name = "(ref:dashboardsguidetitle)", caption.post = postcaption)
+figcaption(paste0("(ref:dashboardsstartfooter)", "(ref:kinnectfootercaption)"))
 ```
 
 With the arrival of **Kinect**, Microsoft had to adapt the Dashboard to remove its dependency on the controller. As part of the update, the designers replaced the glossy touch with faded greens and greys. The 3D _aero_-like touches were also succeeded by typical zoom-in animations. This coincides with the arrival of **Windows 7** and its modest reduction of visual effects.
@@ -1024,29 +1126,26 @@ I don't think there's anything else to mention apart from the fact it only laste
 
 #### The 'Metro' revamp (2011)
 
-(ref:metrodashcaption) 'Metro' dashboard. Screens are from `r cite('operating_system-metro_dash')`.
+(ref:metrocaption1) The new home screen, where news, advertisements and applications share equivalents amount of screen space. Some types of information (like adverts) are granted more space than what the user would agree.
 
-```{r fig.cap=c(paste0(caption1, postcaption), paste0(caption2, postcaption), paste0(caption3, postcaption), paste0(caption4, postcaption)), fig.align="center", tab.nested=TRUE, tab.figure=TRUE, centered=TRUE}
-postcaption <- " Part of the (ref:metrodashcaption)"
+(ref:metrocaption2) The new app selector resembles a retail shelf.
 
-caption1 <- "The new home screen, where news, advertisements and applications share equivalents amount of screen space. Some types of information (like adverts) are granted more space than what the user would agree."
-image('screenshots/metro/home.jpg', caption1, tab.name = "Home", tab.active = TRUE, caption.post = postcaption)
+(ref:metrocaption3) The Settings menu hasn't changed much.
 
-caption2 <- "The new app selector resembles a retail shelf."
-image('screenshots/metro/apps.jpg', caption2, tab.name = "Apps", caption.post = postcaption)
+(ref:metrocaption4) The same applies for the Storage menu.
 
-caption3 <- "The Settings menu hasn't changed much."
-image('screenshots/metro/settings.jpg', caption3, tab.name = "Settings", caption.post = postcaption)
+(ref:metrocaption5) It seems the minimalistic phase is here to stay.
 
-caption_storage <- "The same applies for the Storage menu."
-image('screenshots/metro/storage.jpg', caption_storage, tab.name = "Storage", caption.post = postcaption)
+(ref:metrofootercaption) 'Metro' dashboard. Screens are from `r cite('operating_system-metro_dash')`.
 
-caption4 <- "It seems the minimalistic phase is here to stay."
-image('screenshots/metro/guide.jpg', caption4, tab.name = "Guide", caption.post = postcaption)
-
-caption5 <- "The (ref:metrodashcaption)"
-figcaption(caption5)
-# Use fig.ncol = 1 for subfigures stacked vertically
+```{r fig.cap=c(paste0("(ref:metrocaption1)", postcaption), paste0("(ref:metrocaption2)", postcaption), paste0("(ref:metrocaption3)", postcaption), paste0("(ref:metrocaption4)", postcaption), paste0("(ref:metrocaption5)", postcaption)), fig.align="center", tab.nested=TRUE, tab.figure=TRUE, centered=TRUE}
+postcaption <- paste0("(ref:dashboardspostcaption)", "(ref:metrofootercaption)")
+image('screenshots/metro/home.jpg', "(ref:metrocaption1)", tab.name = "(ref:dashboardshometitle)", tab.active = TRUE, caption.post = postcaption)
+image('screenshots/metro/apps.jpg', "(ref:metrocaption2)", tab.name = "(ref:dashboardsappstitle)", caption.post = postcaption)
+image('screenshots/metro/settings.jpg', "(ref:metrocaption3)", tab.name = "(ref:dashboardssettingstitle)", caption.post = postcaption)
+image('screenshots/metro/storage.jpg', "(ref:metrocaption4)", tab.name = "(ref:dashboardsstoragetitle)", caption.post = postcaption)
+image('screenshots/metro/guide.jpg', "(ref:metrocaption5)", tab.name = "(ref:dashboardsguidetitle)", caption.post = postcaption)
+figcaption(paste0("(ref:dashboardsstartfooter)", "(ref:metrofootercaption)"))
 ```
 
 The year 2010 saw the debut of **Windows Phone 7** and a new type of interface called **Metro**, whose style now relies on solid colours and white silhouettes. Due to its versatile design, Microsoft envisioned porting Metro to all of its platforms, which became a reality the following year with the arrival of **Windows 8** and a **new update** for the Xbox 360. Though the degree of adoption varied drastically between device, the Xbox 360 enjoyed a mostly unified implementation of Metro (unlike Windows 8, where the majority of applications still relied on the 'classic' design).
@@ -1099,8 +1198,11 @@ As a final note, for homebrew developers, **libXenon** is a free third-party lib
 Let's now see how the distribution of content worked.
 
 (ref:retailtabtitle) Retail games
-```{r fig.cap=caption, fig.align='center', tab.title="(ref:retailtabtitle)", tab.first=TRUE, tab.active=TRUE}
-image("photos/game.jpg", "Example of retail game", float=TRUE)
+
+(ref:retailtabcaption) Example of retail game.
+
+```{r fig.cap="(ref:retailtabcaption)", fig.align='center', tab.title="(ref:retailtabtitle)", tab.first=TRUE, tab.active=TRUE}
+image("photos/game.jpg", "(ref:retailtabcaption)", float=TRUE)
 ```
 
 It may sound hard to believe, but for Microsoft, the same **dual-layer DVD** disc used for the original Xbox worked fine for their new console. I presume it was another cost-effective strategy, as the DVD disc got cheaper to produce and its readers could be outsourced to the most inexpensive and convenient manufacturer. Throughout the console's lifespan, Microsoft had relied on Hitachi, LG, Toshiba, Samsung, Philips, BenQ and LiteON - including teams of two - to produce their DVD drives.
@@ -1109,8 +1211,12 @@ As a reminder, dual-layer DVDs (also called **DVD-9**) have a theoretical capaci
 
 On the other side, games were greatly constrained by the usable capacity, those 8.5 GB were further limited by a secure filesystem called **Xbox Game Disc 2** or 'XGD2'. This was Microsoft's successor of the [original format](`r ref("xbox#medium")`) employed to prevent unauthorised copies. The actual available size for games was down to **6.8 GB** (80% of the total capacity) `r cite("games-leadbetter")`. In 2011, after many third-party tools managed to crack the protection, **Xbox Game Disc 3** or 'XGD3' was made available to developers. In it, Microsoft managed to revamp the security tricks and reduce the space reserved for anti-piracy mechanisms, leaving a total of **7.9 GB** for games.
 
-```{r fig.cap=caption, fig.align='center', tab.title="Online store"}
-image('screenshots/metro/store.jpg', "Example of store listing", float=TRUE)
+(ref:onlinetabtitle) Online store
+
+(ref:onlinetabcaption) Example of store listing.
+
+```{r fig.cap="(ref:onlinetabcaption)", fig.align='center', tab.title="(ref:onlinetabtitle)"}
+image('screenshots/metro/store.jpg', "(ref:onlinetabcaption)", float=TRUE)
 ```
 
 A new emerging space that Microsoft began experimenting with, until it became a full-blown competitor to retail stores, was the **online marketplace**.
@@ -1121,10 +1227,12 @@ Moreover, in another update, Microsoft promoted a dedicated section for indie de
 
 In the final years of the Xbox 360 and the consolidation of other media platforms (smartphones, smart TVs, the Xbox One and online streaming), Microsoft rebranded part of the marketplace to offer content available to use from other devices (that weren't necessarily an Xbox 360).
 
-```{r fig.cap=caption, fig.align='center', tab.title="The Blu-ray competitor", tab.last=TRUE}
-caption <- "The HD DVD player, released on November 2006"
+(ref:bdtabtitle) The Blu-ray competitor
 
-image('amos/hd_dvd.png', caption, float=TRUE, no_borders=TRUE)
+(ref:bdtabcaption) The HD DVD player, released on November 2006.
+
+```{r fig.cap="(ref:bdtabcaption)", fig.align='center', tab.title="(ref:bdtabtitle)", tab.last=TRUE}
+image('amos/hd_dvd.png', "(ref:bdtabcaption)", float=TRUE, no_borders=TRUE)
 ```
 
 Not so much related to games, but the film industry had an unusual influence on this console too (or maybe the other way around? _we'll soon see_). As Microsoft imposed the DVD for games, the company was also pushing a new format that could compete with the Blu-Ray for space on the movie shelves. I'm talking about the **HD-DVD** which, conveniently enough, uses Microsoft-owned API for interactive features (menus and such).
@@ -1143,10 +1251,10 @@ At the heart of this low-priced console was its highly-promoted online capabilit
 
 As Xbox Live enjoyed successful adoption with the original Xbox, the successor would be no stranger in following the footsteps and even offer more commodities to get users to join online gaming. I presume the low-price point of this console and continuous marketing efforts - including all the accessories that Microsoft shipped (webcams, headsets, etc) - meant that Microsoft's main source of profit relied on paid subscriptions and marketplace purchases. With the advent of 3D avatars, the company also found ways to capitalise on avatar customisation `r cite("games-leggett")`.
 
-```{r fig.cap=c(caption), fig.align='center', centered=TRUE}
-caption <- "Curiously enough, the console calculated a score for the user's Xbox Live profile which was based on the number and type of achievements unlocked.
-Want to reach the top ranks? Play more. Ran out of games? Buy More!"
-image("screenshots/metro/achievements.jpg", caption, class = "centered-container")
+(ref:onlineachievcaption) Curiously enough, the console calculated a score for the user's Xbox Live profile which was based on the number and type of achievements unlocked. Want to reach the top ranks? Play more. Ran out of games? Buy More!
+
+```{r fig.cap="(ref:onlineachievcaption)", fig.align='center', centered=TRUE}
+image("screenshots/metro/achievements.jpg", "(ref:onlineachievcaption)", class = "centered-container")
 ```
 
 From the developer's point of view, Xbox Live servers provided the infrastructure required for multi-playing, voice chat, profile management and so on. Xbox 360 games used a **REST API** (documented on the SDK) to talk with each endpoint. To authenticate with those servers, developers received a custom 'Xbox Secure Token Service' to be embedded with their REST requests.
@@ -1172,10 +1280,10 @@ We'll now learn how the hypervisor is protected and, in turn, how it protects th
 
 Remember how complex was the L2 subsystem within Xenon? Well, there's one more thing to explain, and that is the inclusion of a **hidden cryptographic block** in it. I define it as 'hidden' since it's not documented at all by Microsoft or IBM. I was made aware of it thanks to an incredibly insightful talk called 'The Xbox 360 Security System and its Weaknesses' by the Free60 group (lead by Michael Steil and Felix Domke, the former also did 'The ultimate GameBoy talk'!) `r cite("cpu-steil")` and 'Security offence and defence strategies' by Mathieu Renard `r cite("operating_system-renard")`, which is where I rely on for a big part of the information described here.
 
-```{r fig.cap=c(caption), fig.align='center', centered=TRUE}
-caption <- "Overview of the security components placed within Xenon.
-They are strategically placed so the PPEs don't need to be aware of them and/or perform any manual work."
-image("cpu/crypto.png", caption, class = "centered-container")
+(ref:xenonseccaption) Overview of the security components placed within Xenon. They are strategically placed so the PPEs don't need to be aware of them and/or perform any manual work.
+
+```{r fig.cap="(ref:xenonseccaption)", fig.align='center', centered=TRUE}
+image("cpu/crypto.png", "(ref:xenonseccaption)", class = "centered-container")
 ```
 
 Moving on, the cryptographic subsystem is split into distinct areas that perform unique functions:
@@ -1324,10 +1432,10 @@ From Microsoft's headquarters, a new disc format called **XGD3** was devised to 
 
 The fundamentals of the hypervisor may seem flawless at first, however, there's a technical compromise hidden underneath it: external components (the southbridge, the GPU, etc) need access to main RAM too. Yet, they don't understand the hypervisor's encryption mechanisms (as that's a matter between the CPU and main RAM). So, how can the I/O make use of RAM? Simple, through **direct access** ([DMA](`r ref("playstation#taking-over-the-cpu")`)) and **unencrypted data**. This is not a security breach per se, as the hypervisor still enforces its security on CPU-executable pages.
 
-```{r fig.cap=caption, fig.align='center', centered=TRUE}
-caption <- "XeLL-Reloaded, a Linux and Homebrew bootstrapper.
-Loading this program into the Xbox 360 will soon become the No. 1 goal of any modder."
-image("screenshots/homebrew/xell.jpg", caption, class = "centered-container")
+(ref:xellcaption) XeLL-Reloaded, a Linux and Homebrew bootstrapper. Loading this program into the Xbox 360 will soon become the No. 1 goal of any modder.
+
+```{r fig.cap="(ref:xellcaption)", fig.align='center', centered=TRUE}
+image("screenshots/homebrew/xell.jpg", "(ref:xellcaption)", class = "centered-container")
 ```
 
 Nonetheless, this is what the early intrusions focused on. In other words, can we inject unsigned code into main RAM and then trick the hypervisor into executing it? Well, in February 2007, an anonymous hacker published a **privilege escalation** exploit that relied on the 2005 game **King Kong** `r cite("anti_piracy-hv_vul")`. In the report, a clever chain of events was outlined to get arbitrary code execution at the hypervisor level (meaning full hardware access). The way it works is not simple to explain, but I'll try my best. Let's see...
@@ -1392,9 +1500,12 @@ Initially, this discovery didn't attract attention as it didn't seem to lead to 
 
 Before we continue with this story, there's one more hack that needs to be explained...
 
-```{r fig.cap=caption, fig.align='center', tab.title="The timing attack"}
-caption <- "For manufacturing reasons, the motherboard exposes many groups of headers that perform (undocumented) functions, some of which were reverse engineered to work in the hacker's favour."
-image('photos/headers.jpg', caption, float=TRUE)
+(ref:timingtitle) The timing attack
+
+(ref:timingcaption) For manufacturing reasons, the motherboard exposes many groups of headers that perform (undocumented) functions, some of which were reverse engineered to work in the hacker's favour.
+
+```{r fig.cap="(ref:timingcaption)", fig.align='center', tab.title="(ref:timingtitle)"}
+image('photos/headers.jpg', "(ref:timingcaption)", float=TRUE)
 ```
 
 In August 2007, XboxHacker user 'Arnezami' published the **timing attack** method for downgrading any console to a King Kong-vulnerable firmware version `r cite("anti_piracy-timing")`.
@@ -1409,9 +1520,11 @@ Combining all this, one can automate a trial-and-error guesser until the whole s
 
 In the end, Microsoft fixed this bug in early 2008 with a new software update that slightly changed the `memcmp()` function in CB.
 
+(ref:linuxtitle) More CB research
+
 (ref:linuxcaption) Once you manage to boot Linux (Gentoo, in this case, thanks to the efforts of the Free60 group) you can peek at Xbox's privileged areas in memory, like the eFuses (where the CPU Key is). Screenshot by `r cite('anti_piracy-gentoo_pic')`.
 
-```{r fig.cap="(ref:linuxcaption)", fig.align='center', tab.title="More CB research", tab.last=TRUE}
+```{r fig.cap="(ref:linuxcaption)", fig.align='center', tab.title="(ref:linuxtitle)", tab.last=TRUE}
 image('screenshots/homebrew/gentoo.jpg', "(ref:linuxcaption)", float=TRUE)
 ```
 
@@ -1465,9 +1578,10 @@ Even though the aforementioned discoveries were outraced by Microsoft's updates,
 - **XeX Loader** and **XeX Menu** are homebrew launchers that can be run from the official Dashboard.
 - **Dashlaunch** is another program that provides a collection of patches for the official system `r cite("anti_piracy-dashlaunch")`, except they are loaded at runtime (avoiding the need for flashing NAND). One of Dashlaunch's functions includes the ability to automatically load an executable after the Dashboard boots, this is often used to quickly load the alternative homebrew-friendly FreeStyle Dashboard or Aurora.
 
-```{r fig.cap=caption, fig.align='center', centered=TRUE}
-caption <- "FreeStyleDash running on my modified console, offering many controls and indicators not found on the official dashboard. For those veteran Xbox 360 users, you'll notice its interface ressembles the iconic NXE era!"
-image("screenshots/homebrew/fds.jpg", caption, class = "centered-container")
+(ref:fsdcaption) FreeStyleDash running on my modified console, offering many controls and indicators not found on the official dashboard. For those veteran Xbox 360 users, you'll notice its interface ressembles the iconic NXE era!
+
+```{r fig.cap="(ref:fsdcaption)", fig.align='center', centered=TRUE}
+image("screenshots/homebrew/fds.jpg", "(ref:fsdcaption)", class = "centered-container")
 ```
 
 To facilitate the process of building a NAND image with XeLL and/or Freeboot, many Windows programs like **XeBuild**, **J-Runner** and **AutoGG** were developed to automatise this process as much as possible.
@@ -1476,9 +1590,11 @@ To facilitate the process of building a NAND image with XeLL and/or Freeboot, ma
 
 As joyful as the previous events may seem, I'm afraid to say that the SMC/JTAG trick was released just after Microsoft patched it! If you are curious, the software update blacklisted King-Kong vulnerable Hypervisors so they can't be loaded at CB. Moreover, the new CB also blew a new eFuse counter, so it was made impossible to fight back... unless a new unimaginable hack were to be published...
 
+(ref:glitchertitle) The glitcher
+
 (ref:glitchercaption) First demo showing the RGH hack on a Slim (Trinity) console `r cite('anti_piracy-rgh_demo')`.
 
-```{r fig.cap="(ref:glitchercaption)", fig.align='center', tab.title="The glitcher", tab.active=TRUE, tab.first=TRUE}
+```{r fig.cap="(ref:glitchercaption)", fig.align='center', tab.title="(ref:glitchertitle)", tab.active=TRUE, tab.first=TRUE}
 image('photos/rgh_demo.jpg', "(ref:glitchercaption)", float=TRUE)
 ```
 
@@ -1500,9 +1616,12 @@ Because the process relies on correct timings (from a combination of POST inputs
 
 And with this, the homebrew community was gifted with an unfixable exploit to load homebrew.
 
-```{r fig.cap=caption, fig.align='center', tab.title="Microsoft's retaliation"}
-caption <- "While the new 'Trinity' motherboard brought many long-awaited improvements, such as unifying the CPU and GPU into one package to reduce heat, it also difficulted hacker's endeavours."
-image('photos/xcgpu.jpg', caption, float=TRUE)
+(ref:micrettitle) Microsoft's retaliation
+
+(ref:micretcaption) While the new 'Trinity' motherboard brought many long-awaited improvements, such as unifying the CPU and GPU into one package to reduce heat, it also difficulted hacker's endeavours.
+
+```{r fig.cap="(ref:micretcaption)", fig.align='center', tab.title="(ref:micrettitle)"}
+image('photos/xcgpu.jpg', "(ref:micretcaption)", float=TRUE)
 ```
 
 While the RGH hack attacks the fundamental construction of the CPU at an early stage (thereby making it impossible to tackle it with a software update), Microsoft never displayed any sign of weakness and released further updates of CB (the second stage bootloader) and new motherboard revisions in an attempt to garble the glitching process.
@@ -1511,10 +1630,12 @@ For instance, the new Slim edition of the console released in 2010 (ironically, 
 
 Additionally, Slim consoles split the CB stage into CB_A and CB_B, where CB_B is further encrypted with the RC4 algorithm and relies on the CPU key. To add more to the despair, the zero pairing backdoor got completely removed. Finally, all of these changes would soon be extended to older models as Microsoft publishes more software updates. Be as it may, hackers never gave up and found out they could modify CB_B in its encrypted form. Thanks to a mathematical flaw in RC4, encrypted information can be altered just by applying `XOR` with an unencrypted delta patch `r cite("anti_piracy-hacking_3")`, thereby allowing to disable encryption routines on CB_B without knowing the CPU Key!
 
-```{r fig.cap=caption, fig.align='center', tab.title="Selling RGH", tab.last=TRUE}
-caption <- "The 'X360 Squirt 1.2' setup for Trinity motherboards.
-This was one of the many commercial glitchers available to hack your Xbox 360."
-image('photos/squid.jpg', caption, float=TRUE)
+(ref:rghchiptitle) Selling RGH
+
+(ref:rghchipcaption) The 'X360 Squirt 1.2' setup for Trinity motherboards. This was one of the many commercial glitchers available to hack your Xbox 360.
+
+```{r fig.cap="(ref:rghchipcaption)", fig.align='center', tab.title="(ref:rghchiptitle)", tab.last=TRUE}
+image('photos/squid.jpg', "(ref:rghchipcaption)", float=TRUE)
 ```
 
 During the following three years, the resilience of the RGH hack managed to resist all of Microsoft's efforts to mitigate it. Meanwhile, what remained was a good-old cat-and-mouse game, with Microsoft trying to make the task unfeasible. And so, new variants of RGH scattered across many forums to face the incoming wave of software updates. The variants shared the fundamentals of the RGH hack, but each used an alternative program for the glitcher and the modified SMC image to improve the success rates.
