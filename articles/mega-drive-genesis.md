@@ -164,10 +164,10 @@ Tiles are used to build a total of **four planes** which, once merged together, 
 {{< tab name="Background" >}}
 
 {{< tabs nested="true" class="pixel" float="true" >}}
-  {{< tab_figure_img name="Plane" active="true" src="vdp_sonic/layer2.png" >}}
+  {{< tab_figure_img name="Full" active="true" src="vdp_sonic/layer2.png" >}}
 Allocated Background map.
   {{< /tab_figure_img >}}
-  {{< tab_figure_img name="Marked" src="vdp_sonic/layer2_selected.png" >}}
+  {{< tab_figure_img name="Selected" src="vdp_sonic/layer2_selected.png" >}}
 Allocated Background map with selected area marked.
   {{< /tab_figure_img >}}
 {{< /tabs >}}
@@ -179,7 +179,7 @@ This plane can have six different dimensions: 256x256, 256x512, 256x1024, 512x25
 
 Each tile can be **flipped horizontally and/or vertically** and have a **priority** set.
 
-On the showed example you'll notice that the selected area for display is not a square... *It doesn't have to!*. The VDP allows to set up horizontal scrolling values for the whole frame, each individual scan-line or every eight pixels. This means that developers can shape the selected area like a rhomboid and alter its angles as the player moves to simulate **perspective effects**. Tricks like this one don't corrupt the plane, the VDP fetches each (selected) horizontal line and builds a regular frame from it.
+On the showed example you'll notice that the selected area for display is not a square... *It doesn't have to be!*. The VDP allows to set up horizontal scrolling values for the whole frame, each individual scan-line or every eight pixels. This means that developers can shape the selected area like a rhomboid and alter its angles as the player moves to simulate **perspective effects**. Tricks like this one don't corrupt the plane, the VDP fetches each (selected) horizontal line and builds a regular frame from it.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -218,7 +218,7 @@ Allocated Sprite layer with selected area marked.
 {{< /tabs >}}
 
 {{% inner_markdown %}}
-In this plane, tiles are treated as **sprites**, they are positioned in a **512x512 pixel** map and only a part of it (VDP's output resolution) is selected for display. This is convenient for hiding unwanted sprites or preparing others that will be shown in the future. The VDP also provides an old [collision detection]({{< ref "master-system#tab-4-1-collision-detection" >}}) function.
+In this plane, tiles are treated as **sprites**. They are positioned in a **512x512 pixel** map and only a part of it (VDP's output resolution) is selected for display. This is convenient for hiding unwanted sprites or preparing others that will be shown in the future. The VDP also provides an old [collision detection]({{< ref "master-system#tab-4-1-collision-detection" >}}) function.
 
 Sprites are formed by combining up to 4x4 tiles (32x32 pixel map) and selecting up to 16 colours (including *transparent*). If a bigger sprite is needed, then multiple sprites can be combined into one.
 
