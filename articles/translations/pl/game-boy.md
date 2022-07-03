@@ -179,9 +179,9 @@ Ostateczny rezultat. _Tada!_
 {{% inner_markdown %}}
 Gdy klatka jest gotowa, czas przejść do następnej! Jednak procesor nie może modyfikować tabel, gdy PPU czyta z VRAM, więc system zapewnia zestaw przerwań wyzwalanych, gdy PPU jest bezczynny. Możesz pamiętać to zachowanie z czasów NES.
 
-Po zakończeniu pojedynczej linii skanowania wywoływane jest przerwanie **Poziome Blank**. Pozwala to pobawić się częścią klatki, która nie została jeszcze narysowana.
+Po zakończeniu pojedynczej linii skanowania wywoływane jest przerwanie **H-Blank**. Pozwala to pobawić się częścią klatki, która nie została jeszcze narysowana.
 
-Gdy wszystkie linie skanowania zostaną zakończone, wywoływane jest przerwanie **Pionowe Blank**. Gra może teraz zaktualizować grafikę do następnej klatki.
+Gdy wszystkie linie skanowania zostaną zakończone, wywoływane jest przerwanie **V-Blank**. Gra może teraz zaktualizować grafikę do następnej klatki.
 
 Istnieje dodatkowy stan zwany **wyszukiwanie OAM**, który jest wyzwalany na początku linii skanowania, w tym momencie PPU przetwarza, które sprite'y będą wyświetlane w tej linii skanowania, dzięki czemu gra może aktualizować dowolny region z wyjątkiem OAM.
 {{% /inner_markdown %}}
