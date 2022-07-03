@@ -298,7 +298,7 @@ The **Yamaha YM2612** is an **FM synthesiser** {{< cite "audio-ymwiki" >}} that 
 
 Frequency modulation or 'FM' synthesis is one of many professional techniques used for synthesising sound, it significantly rose in popularity during the 80s and made way to completely new sounds (many of which you can find by listening to the pop hits from that era).
 
-In an *incredibly simplified* nutshell, the FM algorithm takes a single waveform (**carrier**) and alters its frequency using another waveform (**modulator**), the result is a new waveform with a different sound. The carrier-modulator combination is called **operator** and multiple operators can be chained together to form the final waveform. Different combinations achieve different results. This chip allows 4 operators per channel.
+In an *incredibly simplified* nutshell, the FM algorithm takes a single waveform (**carrier**) and alters its frequency using another waveform (**modulator**), and the result is a new waveform with a different sound. The carrier-modulator combination is called **operator** and multiple operators can be chained together to form the final waveform. Different combinations achieve different results. This chip allows 4 operators per channel.
 
 Compared to traditional PSG synthesisers, this was a drastic improvement: You were no longer stuck with *pre-defined* waveforms.
 {{% /inner_markdown %}}
