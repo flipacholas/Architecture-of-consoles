@@ -50,7 +50,7 @@ Back on topic, the 68k has the role of 'main' CPU and it will be used for game l
   - **16-bit ALU**: Meaning it needs extra cycles to compute arithmetic operation on 32-bit numbers, but it's fine on 16-bit/8-bit ones.
   - External **16-bit data bus**: As you can see, while this CPU has some '32-bit capabilities', it hasn't been designed to be a complete 32-bit machine. The width of this bus implies better performance when moving 16-bit data around.
     - Interestingly enough, Motorola debuted a complete 32-bit CPU, the **68020**, four years before this console's release. But I imagine costs would've skyrocketed had Sega chosen the latter chip.
-  - **24‑bit address bus**. This means that **up to 16 MB of memory can be accessed**. Memory addresses are still encoded with 32-bit values inside the CPU (the upper byte is just discarded). Having said that, the bus is physically connected to {{< cite "cpu-memorymap" >}}:
+  - **24‑bit address bus**: This means that **up to 16 MB of memory can be accessed**. Memory addresses are still encoded with 32-bit values inside the CPU (the upper byte is just discarded). Having said that, the bus is physically connected to {{< cite "cpu-memorymap" >}}:
     - 64 KB of general-purpose RAM.
     - Cartridge ROM (up to 4 MB).
     - Two Controllers.
@@ -156,7 +156,7 @@ Just like Nintendo's PPU, The VDP is a tile-based engine and as such it uses **t
 
 Game cartridges stores tiles in their **ROM** (found in their cartridge) but they have to be copied to **VRAM** so the VDP can read them {{< cite "graphics-ports" >}}. Traditionally, this was only possible during specific time frames and handled by the CPU, fortunately, this console added special circuitry to offload this task to the VDP (we'll get into details later on).
 
-Tiles are used to build a total of **four planes** which, once merged together, form the frame seen on the screen. Alos, planes' tiles will overlap with each other, so the VDP will decide which tile is going to be visible based on the type of plane and the tile's **priority value**.
+Tiles are used to build a total of **four planes** which, once merged together, form the frame seen on the screen. Also, planes' tiles will overlap with each other, so the VDP will decide which tile is going to be visible based on the type of plane and the tile's **priority value**.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
