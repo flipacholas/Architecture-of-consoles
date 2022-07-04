@@ -50,7 +50,7 @@ Back on topic, the 68k has the role of 'main' CPU and it will be used for game l
   - **16-bit ALU**: Meaning it needs extra cycles to compute arithmetic operation on 32-bit numbers, but it's fine on 16-bit/8-bit ones.
   - External **16-bit data bus**: As you can see, while this CPU has some '32-bit capabilities', it hasn't been designed to be a complete 32-bit machine. The width of this bus implies better performance when moving 16-bit data around.
     - Interestingly enough, Motorola debuted a complete 32-bit CPU, the **68020**, four years before this console's release. But I imagine costs would've skyrocketed had Sega chosen the latter chip.
-  - **24‑bit address bus**. This means that **up to 16 MB of memory can be accessed**. Memory addresses are still encoded with 32-bit values inside the CPU (the upper byte is just discarded). Having said that, the bus is physically connected to {{< cite "cpu-memorymap" >}}:
+  - **24‑bit address bus**: This means that **up to 16 MB of memory can be accessed**. Memory addresses are still encoded with 32-bit values inside the CPU (the upper byte is just discarded). Having said that, the bus is physically connected to {{< cite "cpu-memorymap" >}}:
     - 64 KB of general-purpose RAM.
     - Cartridge ROM (up to 4 MB).
     - Two Controllers.
@@ -156,7 +156,7 @@ Just like Nintendo's PPU, The VDP is a tile-based engine and as such it uses **t
 
 Game cartridges stores tiles in their **ROM** (found in their cartridge) but they have to be copied to **VRAM** so the VDP can read them {{< cite "graphics-ports" >}}. Traditionally, this was only possible during specific time frames and handled by the CPU, fortunately, this console added special circuitry to offload this task to the VDP (we'll get into details later on).
 
-Tiles are used to build a total of **four planes** which, once merged together, form the frame seen on the screen. Alos, planes' tiles will overlap with each other, so the VDP will decide which tile is going to be visible based on the type of plane and the tile's **priority value**.
+Tiles are used to build a total of **four planes** which, once merged together, form the frame seen on the screen. Also, planes' tiles will overlap with each other, so the VDP will decide which tile is going to be visible based on the type of plane and the tile's **priority value**.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -164,10 +164,10 @@ Tiles are used to build a total of **four planes** which, once merged together, 
 {{< tab name="Background" >}}
 
 {{< tabs nested="true" class="pixel" float="true" >}}
-  {{< tab_figure_img name="Plane" active="true" src="vdp_sonic/layer2.png" >}}
+  {{< tab_figure_img name="Full" active="true" src="vdp_sonic/layer2.png" >}}
 Allocated Background map.
   {{< /tab_figure_img >}}
-  {{< tab_figure_img name="Marked" src="vdp_sonic/layer2_selected.png" >}}
+  {{< tab_figure_img name="Selected" src="vdp_sonic/layer2_selected.png" >}}
 Allocated Background map with selected area marked.
   {{< /tab_figure_img >}}
 {{< /tabs >}}
@@ -179,7 +179,7 @@ This plane can have six different dimensions: 256x256, 256x512, 256x1024, 512x25
 
 Each tile can be **flipped horizontally and/or vertically** and have a **priority** set.
 
-On the showed example you'll notice that the selected area for display is not a square... *It doesn't have to!*. The VDP allows to set up horizontal scrolling values for the whole frame, each individual scan-line or every eight pixels. This means that developers can shape the selected area like a rhomboid and alter its angles as the player moves to simulate **perspective effects**. Tricks like this one don't corrupt the plane, the VDP fetches each (selected) horizontal line and builds a regular frame from it.
+On the showed example you'll notice that the selected area for display is not a square... *It doesn't have to be!*. The VDP allows to set up horizontal scrolling values for the whole frame, each individual scan-line or every eight pixels. This means that developers can shape the selected area like a rhomboid and alter its angles as the player moves to simulate **perspective effects**. Tricks like this one don't corrupt the plane, the VDP fetches each (selected) horizontal line and builds a regular frame from it.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -218,7 +218,7 @@ Allocated Sprite layer with selected area marked.
 {{< /tabs >}}
 
 {{% inner_markdown %}}
-In this plane, tiles are treated as **sprites**, they are positioned in a **512x512 pixel** map and only a part of it (VDP's output resolution) is selected for display. This is convenient for hiding unwanted sprites or preparing others that will be shown in the future. The VDP also provides an old [collision detection]({{< ref "master-system#tab-4-1-collision-detection" >}}) function.
+In this plane, tiles are treated as **sprites**. They are positioned in a **512x512 pixel** map and only a part of it (VDP's output resolution) is selected for display. This is convenient for hiding unwanted sprites or preparing others that will be shown in the future. The VDP also provides an old [collision detection]({{< ref "master-system#tab-4-1-collision-detection" >}}) function.
 
 Sprites are formed by combining up to 4x4 tiles (32x32 pixel map) and selecting up to 16 colours (including *transparent*). If a bigger sprite is needed, then multiple sprites can be combined into one.
 
@@ -267,7 +267,7 @@ Exceptional use of these features may provide high-resolution graphics, fluid pa
 
 ### Video Output
 
-This console has the same video out port of [the Master System]({{< ref "master-system#video-output" >}}).
+The first major design of this console (commonly refered to as the Model 1) has the same video out port of [the Master System]({{< ref "master-system#video-output" >}}). The Model 2 and Model 3 use a mini-DIN port instead.
 
 ---
 
@@ -298,7 +298,7 @@ The **Yamaha YM2612** is an **FM synthesiser** {{< cite "audio-ymwiki" >}} that 
 
 Frequency modulation or 'FM' synthesis is one of many professional techniques used for synthesising sound, it significantly rose in popularity during the 80s and made way to completely new sounds (many of which you can find by listening to the pop hits from that era).
 
-In an *incredibly simplified* nutshell, the FM algorithm takes a single waveform (**carrier**) and alters its frequency using another waveform (**modulator**), the result is a new waveform with a different sound. The carrier-modulator combination is called **operator** and multiple operators can be chained together to form the final waveform. Different combinations achieve different results. This chip allows 4 operators per channel.
+In an *incredibly simplified* nutshell, the FM algorithm takes a single waveform (**carrier**) and alters its frequency using another waveform (**modulator**), and the result is a new waveform with a different sound. The carrier-modulator combination is called **operator** and multiple operators can be chained together to form the final waveform. Different combinations achieve different results. This chip allows 4 operators per channel.
 
 Compared to traditional PSG synthesisers, this was a drastic improvement: You were no longer stuck with *pre-defined* waveforms.
 {{% /inner_markdown %}}
