@@ -267,7 +267,7 @@ Exceptional use of these features may provide high-resolution graphics, fluid pa
 
 ### Video Output
 
-The first major design of this console (commonly refered to as the Model 1) has the same video out port of [the Master System]({{< ref "master-system#video-output" >}}). The Model 2 and Model 3 use a mini-DIN port instead.
+The first design of this console (commonly referred to as the 'Model 1') has the same video out port of [the Master System]({{< ref "master-system#video-output" >}}). The subsequent 'Model 2' and 'Model 3' switched to a mini-DIN port instead.
 
 ---
 
