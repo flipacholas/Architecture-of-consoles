@@ -316,7 +316,7 @@ The **Texas Instruments SN76489** is a **PSG chip** that can produce three pulse
 
 This is actually the original Master System's [sound chip]({{< ref "master-system#audio" >}}) and it's embedded in the VDP. It runs at the speed of the Z80.
 
-Notice the 'Pulse 3' channel remains unused, this is because the game uses a mode for the noise channel that reserves the third pulse channel for modulation {{< cite "audio-sonic" >}}, a function was featured on the Master System as well.
+Notice the 'Pulse 3' channel remains unused. This is because the game uses a mode for the noise channel that reserves the third pulse channel for modulation {{< cite "audio-sonic" >}}, a function which was featured on the Master System as well.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
