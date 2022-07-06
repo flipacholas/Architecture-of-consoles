@@ -185,7 +185,7 @@ Compared to the Gamecube, the only major change is that, since ARAM is gone, eit
 
 ## I/O
 
-The I/O subsystem of this console is a truly game changer (*if you'll pardon the pun*). The interfaces are now controlled by a single module that will take care of security too, I'm talking about **Starlet**.
+The I/O subsystem of this console is truly a game changer (*if you'll pardon the pun*). The interfaces are now controlled by a single module that will take care of security too, I'm talking about **Starlet**.
 
 ### The hidden co-processor
 
