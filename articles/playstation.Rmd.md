@@ -85,7 +85,7 @@ The resulting CPU core runs at **33.87 MHz** and features:
   - **Sub Bus** (16/8-bit) → Connects the rest of the chips and I/O. This bus is bridged by the **Bus Interface Unit**, which also enables access to special ports of the GPU and SPU.
 - **32-bit address bus**: Up to 4 GB of physical memory (i.e. RAM, memory-mapped I/O, etc) can be accessed.
 - **5-stage pipeline**: Up to five instructions can be executed simultaneously (a detailed explanation can be found in a [previous article](`r ref("sega-saturn#cpu")`)).
-- **4 KB of instruction cache**: It can be 'isolated' as well, allowing the program to manipulate instruction cache directly.
+- **4 KB of instruction cache**: It can be 'isolated' as well, allowing the program to manipulate the instruction cache directly.
 - Oddly, **there is no data cache**. The **1 KB of memory** normally used for the data cache is mapped to a fixed address `r cite("cpu-mame_cpu")`. This area is also called **Scratchpad** (fast SRAM).
 
 To do something meaningful, Sony provided **2 MB of RAM** for general-purpose use. Curiously enough, they fitted **Extended Data Out** (EDO) chips on the motherboard. These are slightly more efficient than typical DRAM, obtaining lower latency.
@@ -104,7 +104,7 @@ Like other MIPS R3000-based CPUs, the CW33000 supports configurations with up to
 
 `r tab.simple("System Control Coprocessor", tab.active=TRUE, tab.first=TRUE)`
 
-Identified as 'CP0', the **System Control Coprocessor** is a common block found on MIPS CPUs. In R3000-based systems, like this one, the CP0 controls how the cache is implemented. Thus, enabling direct access to data cache (in the form of 'Scratchpad') and instruction cache (with 'cache isolation'). The control coprocessor is also responsible for handling interrupts, exceptions and breakpoints, the latter is useful during debugging.
+Identified as 'CP0', the **System Control Coprocessor** is a common block found on MIPS CPUs. In R3000-based systems, like this one, the CP0 controls how the cache is implemented. Thus, enabling direct access to data cache (in the form of 'Scratchpad') and instruction cache (using 'cache isolation'). The control coprocessor is also responsible for handling interrupts, exceptions and breakpoints, the latter is useful during debugging.
 
 > Wait, shouldn't co-processors only _expand_ CPU functions? Why is CP0 tightly coupled to the CPU?
 
@@ -121,7 +121,7 @@ While only operating fixed-point types, it still provides useful operations for 
 - Matrix or vector multiplication and addition; and vector square.
 - Perspective transformation (used for 3D projections).
 - Outer product of two or three vectors (the latter is used for clipping).
-- Many interpolation functions using different parameters.
+- Many interpolation functions that use different parameters.
 - Depth Cueing and colour value from a light source (used for lighting and colour operations).
 - Z/depth average (I suspect this is for the 'ordering table', more details in the 'Graphics' section).
 
@@ -196,13 +196,13 @@ image("vram/vram.png", "(ref:diagramvramcaption)", tab.name="(ref:diagramvramtit
 image("vram/sgram.png", "(ref:diagramsgramcaption2)", tab.name="(ref:diagramsgramtitle2)")
 ```
 
-Though in later revisions of this console, Sony switched to **SGRAM** chips (the single-ported option using an individual 32-bit data bus). *Boo!*... Well, to be fair, each one comes with its pros and cons. One thing for sure, is that due to the timing differences, later games (such as Jet Moto 3) will display glitched graphics when ran on VRAM-based systems. If you want to know the details, Martin Korth's 'Nocash PSX Specifications' document the different timings and such `r cite("cpu-korth")`.
+Though in later revisions of this console, Sony switched to **SGRAM** chips (the single-ported option using an individual 32-bit data bus). *Boo!*... Well, to be fair, each one comes with its pros and cons. One thing for sure is that due to the timing differences, later games (such as Jet Moto 3) will display glitched graphics when ran on VRAM-based systems. If you want to know the details, Martin Korth's 'Nocash PSX Specifications' document the different timings and such `r cite("cpu-korth")`.
 
 ### Drawing the scene
 
 If you've been reading the [Sega Saturn article](`r ref("sega-saturn")`), let me tell you that the design of this GPU *a lot* simpler!
 
-Now, to show how a scene is drawn, I'll mainly use Insomniac's *Spyro: Year of the Dragon* as an example. Please bear in mind that the internal resolution of this game is too cramped (292x217 px), preventing me to clearly dissect it at each stage, so I've upscaled it a bit for demonstration purposes. `r img_link(label="Here is a sample", src="spyro/result_real.jpg")` at original scale if you are curious.
+Now, to show how a scene is drawn, I'll mainly use Insomniac's *Spyro: Year of the Dragon* as an example. Please bear in mind that the internal resolution of this game is too cramped (292x217 px), preventing me from clearly dissecting it at each stage, so I've upscaled it a bit for demonstration purposes. `r img_link(label="Here is a sample", src="spyro/result_real.jpg")` at original scale if you are curious.
 
 (ref:gpucommandstitle) Commands
 
@@ -212,7 +212,7 @@ Now, to show how a scene is drawn, I'll mainly use Insomniac's *Spyro: Year of t
 image('commands.png', "(ref:gpucommandscaption)", float=TRUE, no_borders=TRUE)
 ```
 
-To start with, the CPU sends geometry data (vertices) to the GPU by filling its internal 64 byte FIFO buffer with **commands** (up to three). Essentially, a command states how and where to draw one primitive. 
+To start with, the CPU sends geometry data (vertices) to the GPU by filling its internal 64-byte FIFO buffer with **commands** (up to three). Essentially, a command states how and where to draw one primitive. 
 
 Once the geometry is received, **clipping** is applied to skip operations over unseen polygons (residing outside the camera's viewport).
 
@@ -261,7 +261,7 @@ image('spyro/shaders.png', "(ref:gpushadcaption)", float=TRUE, no_borders=TRUE)
 In order to apply lighting effects over these polygons, the GPU provides two algorithms:
 
 - **Flat shading**: Each primitive has a constant light level.
-- **Gouraud shading**: Each primitive's vertex embeds its own light level, then the brightness between each point is automatically interpolated.
+- **Gouraud shading**: Each primitive's vertex embeds its own light level. Then, the brightness between each point is automatically interpolated.
   - As you can imagine, the results are more realistic. On the other hand, this algorithm is not available for sprites.
 
 The reason for having this choice comes down to the fact that flat shading fills ~2.5 times more polygons per second than Gouraud, so it's important to optimise which polygons need a more realistic shading than others.
@@ -306,27 +306,27 @@ model_viewer('crash_ps1', class="toright", "(ref:crashmodelcaption)")
 
 ### Playing with VRAM
 
-With the available amount of VRAM (1 *whole megabyte*), one could allocate a *massive* frame buffer of 1024×512 pixels with 16-bit colours or a *realistic* one of 960×512 pixels with 24-bit colours - allowing to draw the best frames any game has ever shown... This sounds pretty impressive, right? Well, it does raise a couple of issues, for instance:
+With the available amount of VRAM (1 *whole megabyte*), one could allocate a *massive* frame buffer of 1024×512 pixels with 16-bit colours or a *realistic* one of 960×512 pixels with 24-bit colours - allowing one to draw the best frames any game has ever shown... This sounds pretty impressive, right? Well, it does raise a couple of issues, for instance:
 
 - Those dimensions will have to be rescaled to follow a standardised definition (i.e. 480 NTSC, 576 PAL) so the video encoder can broadcast it to consumer TVs.
 - How is the GPU going to be able to draw anything decent if there isn't any space left for the rest of the materials (i.e. textures, colour tables, etc)?
 - The PS1's GPU can only draw frame buffers with up to 640×480 pixels and 16 bpp colours.
 
-All right, so let's have a 16 bpp 640x480 buffer instead, which leaves 424 KB of VRAM for materials. So far so good? Again, such resolution may be fine on CRT monitors, but not particularly noticeable on those 90s TVs everyone had at their homes. Then, is there any way to optimise the frame-buffer? Introducing **adjustable frame-buffers**.
+All right, so let's have a 16 bpp 640x480 buffer instead, which leaves 424 KB of VRAM for materials. So far so good? Again, such resolution may be fine on CRT monitors, but not particularly noticeable on those 90s TVs everyone had in their homes. Then, is there any way to optimise the frame-buffer? Introducing **adjustable frame-buffers**.
 
-(ref:vramviscaption) VRAM visualisation on the NO$PSX debugger. You can spot the dual frame buffers, along with textures (to be translated with a colour-lookup table).
+(ref:vramviscaption) VRAM visualisation on the NO$PSX debugger. You can spot the dual-frame buffer, along with textures (to be translated using a colour-lookup table, also stored there).
 
 ```{r fig.cap="(ref:vramviscaption)", open_float_group=TRUE, fig.align='center'}
 image('vram.jpg', "(ref:vramviscaption)", float=TRUE)
 ```
 
-In essence, instead of wasting valuable VRAM by using 'unappreciated' resolutions, this console's GPU allows decreasing the dimensions of the frame buffer to effectively increment the space available for other resources. In 'Gears Episode 2' `r cite("graphics-halkun")`, Halkun shows a setup that divides the 640x480 frame-buffer into two 320x480 ones, and then relies on a technique called **page-flipping** to render multiple scenes at the same time.
+In essence, instead of wasting valuable VRAM by using 'unappreciated' resolutions, this console's GPU allows decreasing the dimensions of the frame buffer to effectively increment the space available for other resources. In 'Gears Episode 2' `r cite("graphics-halkun")`, Halkun shows a setup that divides the 640x480 frame buffer into two 320x480 ones, and then relies on a technique called **page-flipping** to render multiple scenes at the same time.
 
 Page-flipping consists of switching the location of the frame for display between the two available whenever the game wants it, allowing the game to render one scene while displaying another. Thus, hiding any flickering effect and improving loading times (something that the player will certainly appreciate!).
 
 `r close_float_group(with_markdown = TRUE)`
 
-Overall, Halkun's layout only consumes 600 KB of VRAM. The rest (424 KB) can be used to store colour lookup tables and textures that, combined with **2 KB of texture cache available**, results in a very convenient and efficient setup.
+Overall, Halkun's layout only consumes 600 KB of VRAM. The rest (424 KB) can be used to store colour lookup tables and textures that, combined with **2 KB of texture cache available**, result in a very convenient and efficient setup.
 
 Finally, it is worth mentioning that VRAM can be mapped using **multiple colour depths simultaneously**, meaning that programmers can allocate a 16 bpp frame buffer next to 24 bpp bitmaps (used by FMV frames, for instance). This is another feature facilitating further optimisation of space.
 
@@ -377,9 +377,9 @@ GPUs that implement inverse texture mapping such as this one, are subject to a m
 
 A GPU with [Z-buffer](`r ref("nintendo-64#modern-visible-surface-determination")`) solves the [Visible surfaces determination](`r ref("sega-saturn#an-introduction-to-the-visibility-problem")`) problem at a hardware level. The PS1 relies on an ordering table, meaning developers are in charge of determining what geometry is in front of others. To sum up, **any model exhibiting flickering triangles is caused by the sorting routines (software)**, so it's remedied on the same software.
 
-(ref:gpupredtitle) Distorted models/textures
+(ref:gpupredtitle) Pre-rendered graphics
 
-(ref:gpupredcaption) Square Soft's Final Fantasy VII (1997). Scene with Pre-rendered background. The way models interact and move is essential to _trick_ the user's perception.
+(ref:gpupredcaption) Square Soft's Final Fantasy VII (1997). A scene with Pre-rendered background. The way models interact and move is essential to _trick_ the user's perception.
 
 ```{r fig.cap="(ref:gpupredcaption)", fig.align='center', tab.title="(ref:gpupredtitle)", tab.last=TRUE}
 image('prerendered.png', "(ref:gpupredcaption)", float=TRUE)
@@ -422,7 +422,7 @@ The CD controller is also able to send samples directly to the audio mixer witho
 
 ### The streaming era
 
-[Similarly to the Saturn](`r ref("sega-saturn#the-opportunity")`), games are no longer dependant on music sequencing or pre-defined waveforms, and thanks to the amount of storage available on the CD-ROM medium, developers can store fully produced samples and just stream them to the audio chip.
+[Similarly to the Saturn](`r ref("sega-saturn#the-opportunity")`), games are no longer dependent on music sequencing or pre-defined waveforms, and thanks to the amount of storage available on the CD-ROM medium, developers can store fully produced samples and just stream them to the audio chip.
 
 ## I/O
 
@@ -430,7 +430,7 @@ There are two I/O ports (**Serial** and **Parallel**) available for add-ons. How
 
 ### CD subsystem
 
-The block controlling the CD drive is an interesting area, you can imagine it as an separate computer living inside the PlayStation.
+The block controlling the CD drive is an interesting area, you can imagine it as a separate computer living inside the PlayStation.
 
 (ref:cdcaption) CD Subsystem layout.
 
@@ -514,11 +514,11 @@ Programs have all the facilities that the CD medium provides: Large storage (640
 
 The official SDK provided C libraries which are linked to BIOS routines to access the hardware. If you wonder, this is the main factor that helped to emulate the PS1 on a wide range of platforms.
 
-Along with the SDK, Sony also distributed specialised hardware like the **DTL-H2000**: a dual-slot ISA card containing the internals and I/O of the PS1 `r cite("games-shadow")`, plus extra circuitry for debugging purposes. The board has access to the host's hard drive and can execute PS1 software without restrictions. Software and drivers used to communicate with the card ran on PCs with Windows 3.1 or 95.
+Along with the SDK, Sony also distributed specialised hardware like the **DTL-H2000**: a dual-slot ISA card containing the internals and I/O of the PS1 `r cite("games-shadow")`, plus extra circuitry for debugging purposes. The board has access to the host's hard drive and can execute PS1 software without restrictions. The respective software required a PC with Windows 3.1 or 95 installed.
 
 ## Anti-piracy / Region Lock
 
-Like any other optical media, in order to fetch data from a CD, a laser beam is used to read the **pits** (zeroes) and **lands** (ones) from the track of the disc. Now, conventional discs are not 100% flat and they often have tiny fluctuations in their tracks. These *defects* are completely unnoticeable while reading the data since lasers can automatically calibrate themselves as they read.
+Like any other optical media, to fetch data from a CD, a laser beam is used to read the **pits** (zeroes) and **lands** (ones) from the track of the disc. Now, conventional discs are not 100% flat and they often have tiny fluctuations in their tracks. These *defects* are completely unnoticeable while reading the data since lasers can automatically calibrate themselves as they read.
 
 This is what Sony based their copy protection on: The Sub-CPU will allow reading discs whose Table of Contents (TOC) are engraved using a defined frequency informally known as **Wobble Groove**, which is only applied during mastering and cannot be replicated through conventional burners. The TOC is found in the inner section of the CD (called 'Lead-In' area) and instructs the laser on how to navigate throughout the disc `r cite("copy_protection-kalymos")`, it's repeated many times as a fault-tolerance mechanism.
 
@@ -532,7 +532,7 @@ As you can imagine, the reader applies **region-locking** using this technique a
 
 ### Defeat
 
-On the other side, this check is only executed once at the start, so manually swapping the disc just after passing the check can defeat this protection... with the risk of damaging the drive. Later on, some games took matters into their own hands and often reinitialised the drive in-game so the check would be executed again, this was done in an effort to prevent users from performing the 'swap trick'.
+On the other side, this check is only executed once at the start, so manually swapping the disc just after passing the check can defeat this protection... with the risk of damaging the drive. Later on, some games took matters into their own hands and often reinitialised the drive in-game so the check would be executed again, this was done to prevent users from performing the 'swap trick'.
 
 Alternatively, tiny boards programmed to mock the wobble signal could be soldered in the console. These boards are known as **Modchips** and, while legally questionable, they were incredibly popular.
 
@@ -545,7 +545,7 @@ One of the checks I was told consisted of deliberately reinitialising the drive 
 Later on, Sony provided a library called **Lybcrypt** which fortified copy protection with the use of two approaches `r cite("copy_protection-libcrypt")`:
 
 - From the hardware side, checksums of sectors are stored in sub-channels of the disc.
-  - CD-ROM sub-channels traditionally store metadata, mostly to guide the drive. These aren't user accessible and conventional readers rarely allow to manually write over them.
+  - CD-ROM sub-channels traditionally store metadata, mostly to guide the drive. These aren't user-accessible and conventional readers rarely allow to manually write over them.
 - From the software side, a set of routines that get the checksum values and mix them with others are embedded at different points of the game. This attempted to mitigate both emulators and modchips.
 
 ## That's all folks
