@@ -48,7 +48,7 @@ Wracając do tematu, 68k pełni rolę 'głównego' procesora i będzie używany 
   - **ALU 16-bitowe**: Oznacza to, że potrzebuje dodatkowych cykli do obliczenia operacji arytmetycznych na liczbach 32-bitowych, ale radzi sobie z liczbami 16-bitowymi/8-bitowymi.
   - Zewnętrzna **magistrala danych 16-bitowa**: Jak widać, chociaż ten procesor ma pewne 'możliwości 32-bitowe', nie został zaprojektowany jako kompletna maszyna 32-bitowa. Szerokość tej magistrali oznacza lepszą wydajność podczas przenoszenia danych 16-bitowych.
     - Co ciekawe, Motorola zadebiutowała z kompletnym 32-bitowym procesorem, **68020**, cztery lata przed premierą tej konsoli. Ale wyobrażam sobie, że koszty wzrosłyby, gdyby Sega wybrała ten drugi układ.
-  - **Magistrala adresowa 24-bitowa**: Oznacza to, że można uzyskać dostęp do **maksymalnie 16 MB pamięci**. Adresy pamięci są nadal kodowane 32-bitowymi wartościami wewnątrz procesora (górny bajt jest po prostu odrzucany). To powiedziawszy, magistrala jest fizycznie podłączona do {{< cite "cpu-memorymap" >}}:
+  - **Magistrala adresowa 24-bitowa**: Oznacza to, że można uzyskać dostęp do **maksymalnie 16 MB pamięci**. Adresy pamięci są nadal kodowane 32-bitowymi wartościami wewnątrz procesora (górny bajt jest po prostu odrzucany). To powiedziawszy, magistrala jest fizycznie podłączona do {{< cite "cpu-memory map" >}}:
     - 64 KB RAM ogólnego przeznaczenia.
     - ROM na kartridżu (do 4 MB).
     - Dwóch kontrolerów.
@@ -154,7 +154,7 @@ Podobnie jak PPU Nintendo, VDP jest silnikiem opartym na kafelkach i jako taki w
 
 Kartridże z grami przechowują kafelki w swoim **ROM** (znajdują się w kartridżu), ale muszą zostać skopiowane do **VRAM**, żeby VDP mógł je odczytać {{< cite "graphics-ports" >}}. Tradycyjnie było to możliwe tylko w określonych ramach czasowych i obsługiwane przez procesor, na szczęście konsola ta dodała specjalne obwody, aby odciążyć to zadanie na VDP (szczegóły omówimy później).
 
-Kafelki służą do zbudowania w sumie **czterech płaszczyzn**, które po połączeniu tworzą klatkę widzianą na ekranie. Ponadto kafelki w płaszczyznach będą się na siebie nakładać, więc VDP zdecyduje, który kafelek będzie widoczny na podstawie typu płaszczyzny i **wartości priorytetu** kafelka.
+Kafelki służą do zbudowania w sumie **czterech płaszczyzn**, które po połączeniu tworzą klatkę widzianą na ekranie. Ponadto kafelki płaszczyzn będą się na siebie nakładać, więc VDP zdecyduje, który kafelek będzie widoczny na podstawie typu płaszczyzny i **wartości priorytetu** kafelka.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -177,7 +177,7 @@ Ta płaszczyzna może mieć sześć różnych wymiarów: 256x256, 256x512, 256x1
 
 Każdy kafelek może być **odwrócony w poziomie i/lub w pionie** i mieć ustawiony **priorytet**.
 
-Na pokazanym przykładzie zauważysz, że wybrany obszar do wyświetlenia nie jest kwadratem... *Nie musi być!*. VDP umożliwia ustawienie wartości przewijania w poziomie dla całej klatki, każdej pojedynczej linii skanowania lub co osiem pikseli. Oznacza to, że programiści mogą kształtować wybrany obszar jak romb i zmieniać jego kąty podczas ruchu gracza, aby symulować **efekty perspektywy**. Sztuczki takie jak ten nie psują płaszczyzny, VDP pobiera każdą (wybraną) linię poziomą i buduje z niej zwykłą klatkę.
+Na pokazanym przykładzie zauważysz, że obszar wybrany do wyświetlenia nie jest kwadratem... *Nie musi nim być!*. VDP umożliwia ustawienie wartości przewijania w poziomie dla całej klatki, każdej pojedynczej linii skanowania lub co osiem pikseli. Oznacza to, że programiści mogą kształtować wybrany obszar jak romb i zmieniać jego kąty podczas ruchu gracza, aby symulować **efekty perspektywy**. Sztuczki takie jak ten nie psują płaszczyzny, VDP pobiera każdą (wybraną) linię poziomą i buduje z niej zwykłą klatkę.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
@@ -216,7 +216,7 @@ Przydzielona warstwa Sprite z zaznaczonym wybranym obszarem.
 {{< /tabs >}}
 
 {{% inner_markdown %}}
-W tej płaszczyźnie kafelki są traktowane jako **sprite'y**. Są one umieszczone na mapie **512x512 pikseli** i tylko jej część (rozdzielczość wyjściowa VDP) jest wybierana do wyświetlania. Jest to wygodne do ukrywania niechcianych spriteów lub przygotowywania innych, które będą pokazywane w przyszłości. VDP udostępnia również starą funkcję [wykrywania kolizji]({{< ref "master-system#tab-4-1-collision-detection" >}}).
+Na tej płaszczyźnie kafelki są traktowane jako **sprite'y**. Są one umieszczone na mapie **512x512 pikseli** i tylko jej część (rozdzielczość wyjściowa VDP) jest wybierana do wyświetlania. Jest to przydatne do ukrywania niechcianych sprite'ów lub przygotowywania innych, które będą pokazywane w przyszłości. VDP udostępnia również starą funkcję [wykrywania kolizji]({{< ref "master-system#tab-4-1-collision-detection" >}}).
 
 Sprite'y są tworzone przez połączenie maksymalnie 4x4 kafelków (mapa 32x32 piksele) i wybranie do 16 kolorów (w tym *przezroczyste*). Jeśli potrzebny jest większy sprite, można połączyć kilka spriteów w jeden.
 
@@ -265,7 +265,7 @@ Wyjątkowe wykorzystanie tych funkcji może zapewnić grafikę o wysokiej rozdzi
 
 ### Wyjście Wideo
 
-Ta konsola ma ten sam port wyjścia wideo co [Master System]({{< ref "master-system#video-output" >}}).
+Pierwszy projekt tej konsoli (powszechnie określany jako 'Model 1') ma ten sam port wyjścia wideo co [Master System]({{< ref "master-system#video-output" >}}). W kolejnych 'Model 2' i 'Model 3' zamiast tego został użyty port mini-DIN.
 
 ---
 
@@ -296,7 +296,7 @@ Kanał PCM.
 
 Modulacja częstotliwości lub synteza 'FM' to jedna z wielu profesjonalnych technik stosowanych do syntezy dźwięku, znacznie zyskała na popularności w latach 80-tych i utorowała drogę do zupełnie nowych dźwięków (z których wiele można znaleźć słuchając popowych hitów z tamtej epoki).
 
-W *niesamowicie uproszczonym* skrócie, algorytm FM przyjmuje pojedynczą falę (**nośnik**) i zmienia jego częstotliwość za pomocą innej fali (**modulatora**), a wynikiem jest nowa fala z innym dźwiękiem. Kombinacja nośnik-modulator nazywana jest **operatorem** i można połączyć ze sobą wiele operatorów, aby utworzyć ostateczny kształt fali. Różne kombinacje dają różne wyniki. Ten chip pozwala na 4 operatorów na kanał.
+W *niesamowicie uproszczonym* skrócie, algorytm FM przyjmuje pojedynczy falę (**nośnik**) i zmienia jej częstotliwość za pomocą innej fali (**modulatora**). Rezultatem jest nowa fala z innym dźwiękiem. Kombinacja nośnik-modulator nazywana jest **operatorem** i można połączyć ze sobą wiele operatorów, aby utworzyć ostateczną falę. Różne kombinacje dają różne wyniki. Ten czip pozwala na 4 operatorów na kanał.
 
 W porównaniu z tradycyjnymi syntezatorami PSG była to drastyczna poprawa: nie utknąłeś już z *wstępnie zdefiniowanymi* falami.
 {{% /inner_markdown %}}
@@ -314,7 +314,7 @@ Sonic The Hedgehog (1991).
 
 W rzeczywistości jest to [układ dźwiękowy]({{< ref "master-system#audio" >}}) oryginalnego systemu Master System i jest osadzony w VDP. Działa z prędkością Z80.
 
-Zwróć uwagę, że kanał 'Pulse 3' (Impuls 3) pozostaje nieużywany, ponieważ gra używa trybu dla kanału szumów, który rezerwuje trzeci kanał impulsowy do modulacji {{< cite "audio-sonic" >}}, funkcja była dostępna również w Master System.
+Zauważ, że kanał 'Impuls 3' pozostaje nieużywany. Dzieje się tak, ponieważ gra używa trybu dla kanału szumów, który rezerwuje trzeci kanał impulsowy do modulacji {{< cite "audio-sonic" >}}, funkcji która była dostępna również w Master System.
 {{% /inner_markdown %}}
 
 {{< /tab >}}
