@@ -185,7 +185,7 @@ Compared to the Gamecube, the only major change is that, since ARAM is gone, eit
 
 ## I/O
 
-The I/O subsystem of this console is truly a game changer (*if you'll pardon the pun*). The interfaces are now controlled by a single module that will take care of security too, I'm talking about **Starlet**.
+The I/O subsystem of this console is truly a game changer (*if you'll pardon the pun*). The interfaces are now controlled by a single module that will take care of security too. I'm talking about **Starlet**.
 
 ### The hidden co-processor
 
@@ -197,7 +197,7 @@ The core is similar to the one used on the [Nintendo DS]({{< ref "nintendo-ds" >
 
 These enhancements are a bit 'weird' since they are completely unused on the Wii. Nonetheless, Nintendo selected that core for Starlet. This reminds me of the first iPhone (2G), which also included an ARM CPU with Jazelle (wasted as well).
 
-If you wonder, Jazelle never took off, after some iterations, it was discovered that Java Bytecode just ran better on software. Later on, ARM succeeded Jazelle with 'Thumb-2EE'. At the time of this writing (June 2021), both of these units have been phased out.
+If you're wondering, Jazelle never took off, because after some iterations it was discovered that Java Bytecode just ran better on software. Later on, ARM succeeded Jazelle with 'Thumb-2EE'. At the time of this writing (June 2021), both of these units have been phased out.
 
 {{< float_group >}}
 {{< figure_img_distributed float="true" 
@@ -219,7 +219,7 @@ Having said that, Nintendo wired up the I/O in a way that makes use of two AMBA 
 - The **AHB Bus** (AMBA High-performance Bus): As the name indicates, it's designed for high-speed communication. Here we find:
   - The **NAND** Interface: Accesses 512 MB of NAND Flash that stores the operating system and user data.
   - Two **Secure Digital Input Output** (SDIO) interfaces: SDIO is a protocol mainly designed for accessing an SD card, but in this case, a second one is used to control the Wifi module (802.11 b/g) as well.
-  - A **USB 2.0** Controller: Plugs to a Bluetooth 2.0 board and two external USB sockets.
+  - A **USB 2.0** Controller: Controls the two external USB sockets, as well as being the interface the internal Bluetooth 2.0 card uses.
   - A **SHA-1** and **AES** module: Reserved for security tasks (more details in the 'Anti-Piracy' section).
 - The **APB Bus** (Advanced Peripheral Bus): This one is restricted to low-performance components, including:
   - The **Drive interface**: Connects the disc reader.
@@ -234,7 +234,7 @@ Wii using Gamecube equipment
 {{< /figure_img >}}
 
 {{% inner_markdown %}}
-The Wii maintains full backwards compatibility with Gamecube games even though the original I/O system has changed drastically. This is because Starlet can be reprogrammed when a Gamecube game is executed to virtually re-map the I/O, just like the original Gamecube would expect to find.
+The Wii maintains full backwards compatibility with Gamecube games even though the I/O system has changed drastically. This is because Starlet can be reprogrammed when a Gamecube game is executed to virtually re-map the I/O, just like the original Gamecube would expect to find.
 
 Additionally, the Real-Time Clock chip includes some spare ROM that stores bitmap fonts (the Latin and Japanese set) used by Gamecube games; and SRAM to save [IPL-related]({{< ref "gamecube#operating-system" >}}) settings.
 {{% /inner_markdown %}}
@@ -245,11 +245,11 @@ Additionally, the Real-Time Clock chip includes some spare ROM that stores bitma
 
 ## Operating System
 
-Generally speaking, there are **two operating systems** residing in the Wii, one is executed on Broadway (main CPU) and the other one on Starlet (I/O CPU). Both reside inside those 512 MB of NAND memory and can be updated.
+Generally speaking, there are **two operating systems** residing in the Wii. One is executed on Broadway (main CPU) and the other one on Starlet (I/O CPU). Both reside inside those 512 MB of NAND memory and can be updated.
 
 ### Starlet's OS
 
-Starlet is already an interesting piece of hardware, but its software is even more intriguing. You see, not only this OS has complete access to every single corner of this console, but it's also the first thing that runs when the power button is pressed.
+Starlet is already an interesting piece of hardware, but its software is even more intriguing. You see, not only does this OS have complete access to every single corner of the console, but it's also the first thing that runs when the power button is pressed.
 
 Starlet runs a system *unofficially* referred to as **Input/Output Operating System** or 'IOS' (please, do not confuse this with Apple's iOS). IOS is a fully-featured operating system composed of:
   - A **Microkernel**: Controls the ARM9 CPU, executes **processes** and talks with other hardware using **drivers**.
@@ -261,7 +261,7 @@ With this in mind, the **main job of IOS is to offload the workload of the main 
 
 Broadway and Starlet communicate with each other using an **Inter-Process Communication** or 'IPC' protocol: In a nutshell, both CPUs share two registers each. One CPU can write on the other's registers (the written data may represent a command or a value) and from there, the receiver CPU can perform a function in response.
 
-The update system of IOS **is a bit tricky**: Updated IOS versions are not installed on top of old ones, but in another slot instead (the reserved area in NAND for IOS is divided into 'slots'). This is purely **for compatibility reasons**, since it allows older Wii software to keep working using the same IOS version which was developed for.
+The update system of IOS **is a bit tricky**: Updated IOS versions are not installed on top of old ones, but in another slot instead (the reserved area in NAND for IOS is divided into 'slots'). This is purely **for compatibility reasons**, since it allows older Wii software to keep using the same IOS version it was developed for.
 
 Nintendo often released IOS updates to improve hardware support (which was necessary when a new accessory was shipped). There's only **one exception** when IOS updates actually replace older ones: When a specific version was discovered to have an exploitable vulnerability. This was only for security reasons.
 
