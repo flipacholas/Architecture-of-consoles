@@ -289,23 +289,23 @@ The message board stores letters grouped by date
 Compared to IOS, I wouldn't consider this a 'fully fledged' OS, but more like a 'program' that allows the user to perform the following operations:
 
 - **Start the Wii/Gamecube game**: Only if there is a valid one inserted.
-- **Change consoles settings**: Including time, date, video mode or sensor location, among others.
+- **Change console settings**: Including time, date, video mode or sensor bar location, among others.
 - **Run apps**: One of the novelties of this console is the ability to install small Wii games (called 'WiiWare'), retro games ('Virtual Console' games) or just convenient applications (such as an internet browser). Nintendo called these **channels**, but they are also referred to as **titles** by the OS.
   - Users can download/buy channels through a pre-installed channel called **Wii Shop Channel**.
-  - VC channels embedded an emulator to run the game itself, notice that such emulator is not shared across the system to enable optimisations for specific games.
+  - Virtual Console games embedded an emulator to run the game itself. The emulator is not shared across the system or even necessarily between games on the same emulated system. This allows optimisations for specific games.
 - **Send/Receive messages**: Wiis have a unique ID (burned in their SEEPROM chip) which can be shared to exchange messages between other Wiis. Messages can be seen on the **Message Board**.
   - Nintendo and Wii games also used this medium to provide a newsletter as well.
 {{% /inner_markdown %}}
 
 {{< /float_group >}}
 
-Just like IOS, Nintendo released multiple updates to this system too. Some fixed security holes, others added more features. A notable new feature was the ability to store channels in the SD card.
+Just like IOS, Nintendo released multiple updates to this system too. Some fixed security holes, others added more features. A notable new feature was the ability to store channels on the SD card.
 
 Any program running on Broadway (including the System Menu) relies on a specific IOS version to work. When a game or a channel is booted, Starlet reboots itself using the declared version of IOS needed.
 
 ### Update medium
 
-Nintendo refers to them as **System updates**, they contain the two OSs in the same package and use ordinal numbers for versioning, the last version known is `4.3E` and was released in June 2010.
+Nintendo refers to them as **System updates**. They contain the two OSs in the same package and use ordinal numbers for versioning, and the last version known is `4.3E`, released in June 2010.
 
 System update packages can be fetched from Nintendo's Servers or game discs. Users can manually check for updates using the System Menu. Updates are forced if a game requires a specific version of IOS that is not installed (and the disc happens to contain the required packages).
 
@@ -340,7 +340,7 @@ Wii games are distributed using a proprietary disc format called **Wii Optical D
 Standard games are presented in a physical box and disc
   {{< /tab_figure_img >}}
   {{< tab_figure_img name="Digital" src="system/store.png" alt="Store channel" >}}
-Small games (Wiibrew) and old titles (Virtual console) can be purchased and downloaded through the Shop Channel
+Small games (WiiWare) and emulated older games (Virtual console) can be purchased and downloaded through the Shop Channel
   {{< /tab_figure_img >}}
 {{< /tabs >}}
 
@@ -375,7 +375,7 @@ This screen has to be included as well
 {{< /tabs >}}
 
 {{% inner_markdown %}}
-Having said that, there are certain features across different games that look awfully identical, somehow. For instance, do you remember the famous **HOME Menu**? Pressing the 'home' button on the WiiMote will trigger a screen popup in-game, enabling the user to return to the System menu without the need to reboot the console. Still, considering the OS does not provide this feature, how did they all manage to come up with the same graphical interface?
+Having said that, there are certain features across different games that look awfully identical, somehow. For instance, do you remember the famous **HOME Menu**? Pressing the 'HOME' button on the WiiMote will trigger a screen popup in-game, enabling the user to return to the System menu without the need to reboot the console. Considering the OS does not provide this feature, how did they all manage to come up with the same graphical interface?
 
 The answer is simple, Nintendo included in their SDK some **mandatory libraries** that games have to embed. *Lo and behold*, one of them draws that screen. Furthermore, this is the reason you'll find that only homebrew apps feature 'original' designs for the home menu.
 {{% /inner_markdown %}}
@@ -384,7 +384,7 @@ The answer is simple, Nintendo included in their SDK some **mandatory libraries*
 
 The official HOME Menu is one of the 200 or so requirements games had to include, as ruled by the **Wii Programming Guidelines** document (found on the official SDK). Other requirements consisted of displaying the 'Wii Strap reminder' screen (which is just a BMP image) at the start of the game, followed by another rule that dictated how to interact with it.
 
-### Personalised game
+### Personalised games
 
 {{< float_group >}}
 {{< tabs nested="true" float="true" >}}
@@ -392,7 +392,7 @@ The official HOME Menu is one of the 200 or so requirements games had to include
 The Mii channel allows to fiddle with your own 'Mii'...
   {{< /tab_figure_img >}}
   {{< tab_figure_img name="Game" src="ingame/music.png" alt="Wii Music" >}}
-... which then appears in your games  
+...which then appears in your games  
 Wii Music (2008)
   {{< /tab_figure_img >}}
 {{< /tabs >}}
