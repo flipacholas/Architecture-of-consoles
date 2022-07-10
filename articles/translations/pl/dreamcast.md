@@ -58,7 +58,7 @@ Chociaż ten system nie jest zaprojektowany w oparciu o ścisłą architekturę 
 
 ### Zapytania specjalne
 
-Ten CPU posiada również unikalną funkcjonalność o nazwie **Równoległe WE/WY** lub „PIO”, która służy do manipulowania wieloma lokalizacjami WE/WY w tym samym czasie. Sega podłączyło te piny, aby CPU mógł manipulować **trybem wideo** GPU (więcej szczegółów na ten temat później).
+Ten CPU posiada również unikalną funkcjonalność o nazwie **Równoległe WE/WY** lub 'PIO', która służy do manipulowania wieloma lokalizacjami WE/WY w tym samym czasie. Sega podłączyło te piny, aby CPU mógł manipulować **trybem wideo** GPU (więcej szczegółów na ten temat później).
 
 ---
 
