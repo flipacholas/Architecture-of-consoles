@@ -463,7 +463,7 @@ With this, we can see that Starlet is in charge of the encryption/decryption of 
 {{% inner_markdown %}}
 Titles contain another layer of security, RSA-2048. This is an **asymmetric cipher**, meaning that we need one key to encrypt the content and another one to decrypt it. In a nutshell, this allows Nintendo to encrypt titles using an undisclosed key (called 'private key'), while the Wii decrypts them using a 'public key', which is stored in the console. If hackers were to obtain the public key, it would not be enough to crack the security system, as data is still expected to be encrypted using the private key, which only Nintendo knows.
 
-Furthermore, not only RSA allows to encrypt content, but it can also be used to check the integrity of encryption. You see, Nintendo uses multiple keys that are used to sign (encrypt) already-encrypted data, forming a chain of encryption with the only purpose of making sure:
+Furthermore, not only does RSA allow the encryption of content, but it can also be used to check the integrity of said encryption. You see, Nintendo uses multiple keys that are used to sign (encrypt) already-encrypted data, forming a chain of encryption with the only purpose of making sure:
 - Every single key used has been authorised by Nintendo.
 - Data hasn't been altered and re-encrypted without authorisation.
 
@@ -510,7 +510,7 @@ As a final note, the HMAC key is stored in SEEPROM (outside Starlet), not in OTP
 {{< /tab >}}
 {{< /tabs >}}
 
-After all this, it's worth mentioning that when the system runs GameCube games, **none of the mentioned encryption methods are used**. Instead, Starlet will only check that the game only accesses its designated memory locations. This is because 1/4 of GDDR3 RAM is allocated to simulate old [ARAM]({{< ref "gamecube#audio" >}})).
+After all this, it's worth mentioning that when the system runs GameCube games, **none of the mentioned encryption methods are used**. Instead, Starlet will only check that the game only accesses its designated memory locations. This is because 1/4 of GDDR3 RAM is allocated to simulate old [ARAM]({{< ref "gamecube#audio" >}}).
 
 ### The fall of encryption
 
@@ -522,7 +522,7 @@ Starlet's security diagram
 {{< /figure_img >}}
 
 {{% inner_markdown %}}
-Well, a group of hackers called **Team Twiizers** found out that the lack of signatures on Gamecube mode may be a promising attack surface, and not only they discovered that 3/4 of that GDDR3 RAM were not cleared after running a GC program, but they also found out that by bridging some address points on the motherboard (using a pair of tweezers, nonetheless) they could swap the selected banks of GDDR3 RAM, allowing to access restricted areas. Lo and behold, the AES keys were found residing in there.
+Well, a group of hackers called **Team Twiizers** found out that the lack of signatures on Gamecube mode may be a promising attack surface, and not only did they discover that 3/4 of that GDDR3 RAM were not cleared after running a GC program, but they also found out that by bridging some address points on the motherboard (using a pair of tweezers, nonetheless) they could swap the selected banks of GDDR3 RAM, allowing access to restricted areas. Lo and behold, the AES keys were found residing in there.
 {{% /inner_markdown %}}
 {{< /float_group >}}
 
