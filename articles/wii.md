@@ -384,7 +384,7 @@ The answer is simple, Nintendo included in their SDK some **mandatory libraries*
 
 The official HOME Menu is one of the 200 or so requirements games had to include, as ruled by the **Wii Programming Guidelines** document (found on the official SDK). Other requirements consisted of displaying the 'Wii Strap reminder' screen (which is just a BMP image) at the start of the game, followed by another rule that dictated how to interact with it.
 
-### Personalised games
+### Personalised titles
 
 {{< float_group >}}
 {{< tabs nested="true" float="true" >}}
