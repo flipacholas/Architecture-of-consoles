@@ -463,7 +463,7 @@ With this, we can see that Starlet is in charge of the encryption/decryption of 
 {{% inner_markdown %}}
 Titles contain another layer of security, RSA-2048. This is an **asymmetric cipher**, meaning that we need one key to encrypt the content and another one to decrypt it. In a nutshell, this allows Nintendo to encrypt titles using an undisclosed key (called 'private key'), while the Wii decrypts them using a 'public key', which is stored in the console. If hackers were to obtain the public key, it would not be enough to crack the security system, as data is still expected to be encrypted using the private key, which only Nintendo knows.
 
-Furthermore, not only does RSA allow the encryption of content, but it can also be used to check the integrity of said encryption. You see, Nintendo uses multiple keys that are used to sign (encrypt) already-encrypted data, forming a chain of encryption with the only purpose of making sure:
+Furthermore, RSA is not only used for encrypting content, but also to check the integrity of said encryption. You see, Nintendo uses multiple keys that are used to sign (encrypt) already-encrypted data, forming a chain of encryption with the only purpose of making sure:
 - Every single key used has been authorised by Nintendo.
 - Data hasn't been altered and re-encrypted without authorisation.
 
