@@ -219,7 +219,7 @@ Having said that, Nintendo wired up the I/O in a way that makes use of two AMBA 
 - The **AHB Bus** (AMBA High-performance Bus): As the name indicates, it's designed for high-speed communication. Here we find:
   - The **NAND** Interface: Accesses 512 MB of NAND Flash that stores the operating system and user data.
   - Two **Secure Digital Input Output** (SDIO) interfaces: SDIO is a protocol mainly designed for accessing an SD card, but in this case, a second one is used to control the Wifi module (802.11 b/g) as well.
-  - A **USB 2.0** Controller: Controls the two external USB sockets, as well as being the interface the internal Bluetooth 2.0 card uses.
+  - A **USB 2.0** Controller: Interfaces two external USB sockets and an internal Bluetooth 2.0 daughtercard.
   - A **SHA-1** and **AES** module: Reserved for security tasks (more details in the 'Anti-Piracy' section).
 - The **APB Bus** (Advanced Peripheral Bus): This one is restricted to low-performance components, including:
   - The **Drive interface**: Connects the disc reader.
