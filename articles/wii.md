@@ -522,7 +522,7 @@ Starlet's security diagram
 {{< /figure_img >}}
 
 {{% inner_markdown %}}
-Well, a group of hackers called **Team Twiizers** found out that the lack of signatures on Gamecube mode may be a promising attack surface, and not only did they discover that 3/4 of that GDDR3 RAM were not cleared after running a GC program, but they also found out that by bridging some address points on the motherboard (using a pair of tweezers, nonetheless) they could swap the selected banks of GDDR3 RAM, allowing access to restricted areas. Lo and behold, the AES keys were found residing in there.
+Well, a group of hackers called **Team Twiizers** found out that the lack of signatures on Gamecube mode may be a promising attack surface. They not only discovered that **3/4 of that GDDR3 RAM were not cleared** after running a GC program, but also that by bridging some address points on the motherboard (using a pair of tweezers, nonetheless) they could swap the selected banks of GDDR3 RAM, allowing access to restricted areas. Lo and behold, the AES keys were found residing in there.
 {{% /inner_markdown %}}
 {{< /float_group >}}
 
