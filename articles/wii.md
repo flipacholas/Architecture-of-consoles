@@ -305,7 +305,7 @@ Any program running on Broadway (including the System Menu) relies on a specific
 
 ### Update medium
 
-Nintendo refers to them as **System updates**. They contain the two OSs in the same package and use ordinal numbers for versioning, and the last version known is `4.3E`, released in June 2010.
+Nintendo refers to them as **System updates**. They contain the two OSs in the same package and use ordinal numbers for versioning. The last version known is `4.3E`, released in June 2010.
 
 System update packages can be fetched from Nintendo's Servers or game discs. Users can manually check for updates using the System Menu. Updates are forced if a game requires a specific version of IOS that is not installed (and the disc happens to contain the required packages).
 
