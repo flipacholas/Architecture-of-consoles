@@ -375,7 +375,7 @@ This screen has to be included as well
 {{< /tabs >}}
 
 {{% inner_markdown %}}
-Having said that, there are certain features across different games that look awfully identical, somehow. For instance, do you remember the famous **HOME Menu**? Pressing the 'HOME' button on the WiiMote will trigger a screen popup in-game, enabling the user to return to the System menu without the need to reboot the console. Considering the OS does not provide this feature, how did they all manage to come up with the same graphical interface?
+Having said that, there are certain features across different games that look awfully identical, somehow. For instance, do you remember the famous **HOME Menu**? Pressing the 'HOME' button on the WiiMote will trigger a screen popup in-game, enabling the user to return to the System menu without the need to reboot the console. Considering the OS does not provide this feature, how did every single game manage to come up with the same graphical interface?
 
 The answer is simple, Nintendo included in their SDK some **mandatory libraries** that games have to embed. *Lo and behold*, one of them draws that screen. Furthermore, this is the reason you'll find that only homebrew apps feature 'original' designs for the home menu.
 {{% /inner_markdown %}}
