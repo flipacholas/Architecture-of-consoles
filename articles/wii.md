@@ -340,7 +340,7 @@ Wii games are distributed using a proprietary disc format called **Wii Optical D
 Standard games are presented in a physical box and disc
   {{< /tab_figure_img >}}
   {{< tab_figure_img name="Digital" src="system/store.png" alt="Store channel" >}}
-Small games (WiiWare) and emulated older games (Virtual console) can be purchased and downloaded through the Shop Channel
+Small games (WiiWare) and emulated games (Virtual console) can be purchased and downloaded through the Shop Channel
   {{< /tab_figure_img >}}
 {{< /tabs >}}
 
