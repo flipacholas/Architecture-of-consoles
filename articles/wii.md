@@ -197,7 +197,7 @@ The core is similar to the one used on the [Nintendo DS]({{< ref "nintendo-ds" >
 
 These enhancements are a bit 'weird' since they are completely unused on the Wii. Nonetheless, Nintendo selected that core for Starlet. This reminds me of the first iPhone (2G), which also included an ARM CPU with Jazelle (wasted as well).
 
-If you're wondering, Jazelle never took off, because after some iterations it was discovered that Java Bytecode just ran better on software. Later on, ARM succeeded Jazelle with 'Thumb-2EE'. At the time of this writing (June 2021), both of these units have been phased out.
+If you're wondering, Jazelle never took off. After some iterations it was discovered that Java Bytecode just ran better on software. Later on, ARM succeeded Jazelle with 'Thumb-2EE' and, at the time of this writing (June 2021), both of these units have been phased out.
 
 {{< float_group >}}
 {{< figure_img_distributed float="true" 
