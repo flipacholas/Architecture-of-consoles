@@ -292,7 +292,7 @@ Compared to IOS, I wouldn't consider this a 'fully fledged' OS, but more like a 
 - **Change console settings**: Including time, date, video mode or sensor bar location, among others.
 - **Run apps**: One of the novelties of this console is the ability to install small Wii games (called 'WiiWare'), retro games ('Virtual Console' games) or just convenient applications (such as an internet browser). Nintendo called these **channels**, but they are also referred to as **titles** by the OS.
   - Users can download/buy channels through a pre-installed channel called **Wii Shop Channel**.
-  - Virtual Console games embedded an emulator to run the game itself. The emulator is not shared across the system or even necessarily between games on the same emulated system. This allows optimisations for specific games.
+  - Virtual Console titles embed an emulator to run the game itself. Curiously enough, the emulator is not shared across the system or even between games of the same platform. This allows to optimise the emulator for specific games.
 - **Send/Receive messages**: Wiis have a unique ID (burned in their SEEPROM chip) which can be shared to exchange messages between other Wiis. Messages can be seen on the **Message Board**.
   - Nintendo and Wii games also used this medium to provide a newsletter as well.
 {{% /inner_markdown %}}
