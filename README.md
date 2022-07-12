@@ -22,9 +22,9 @@
 
 ## Source
 
-The source has been publicized to enable interested <br>
-readers to discuss improvements, add translations <br>
-and possibly more.
+The source of the page has been publicized to <br>
+enable interested readers to add translations, <br>
+discuss improvements and possibly more.
 
 <br>
 <br>
