@@ -185,7 +185,7 @@ Compared to the Gamecube, the only major change is that, since ARAM is gone, eit
 
 ## I/O
 
-The I/O subsystem of this console is a truly game changer (*if you'll pardon the pun*). The interfaces are now controlled by a single module that will take care of security too, I'm talking about **Starlet**.
+The I/O subsystem of this console is truly a game changer (*if you'll pardon the pun*). The interfaces are now controlled by a single module that will take care of security too. I'm talking about **Starlet**.
 
 ### The hidden co-processor
 
@@ -197,7 +197,7 @@ The core is similar to the one used on the [Nintendo DS]({{< ref "nintendo-ds" >
 
 These enhancements are a bit 'weird' since they are completely unused on the Wii. Nonetheless, Nintendo selected that core for Starlet. This reminds me of the first iPhone (2G), which also included an ARM CPU with Jazelle (wasted as well).
 
-If you wonder, Jazelle never took off, after some iterations, it was discovered that Java Bytecode just ran better on software. Later on, ARM succeeded Jazelle with 'Thumb-2EE'. At the time of this writing (June 2021), both of these units have been phased out.
+If you're wondering, Jazelle never took off. After some iterations it was discovered that Java Bytecode just ran better on software. Later on, ARM succeeded Jazelle with 'Thumb-2EE' and, at the time of this writing (June 2021), both of these units have been phased out.
 
 {{< float_group >}}
 {{< figure_img_distributed float="true" 
@@ -219,7 +219,7 @@ Having said that, Nintendo wired up the I/O in a way that makes use of two AMBA 
 - The **AHB Bus** (AMBA High-performance Bus): As the name indicates, it's designed for high-speed communication. Here we find:
   - The **NAND** Interface: Accesses 512 MB of NAND Flash that stores the operating system and user data.
   - Two **Secure Digital Input Output** (SDIO) interfaces: SDIO is a protocol mainly designed for accessing an SD card, but in this case, a second one is used to control the Wifi module (802.11 b/g) as well.
-  - A **USB 2.0** Controller: Plugs to a Bluetooth 2.0 board and two external USB sockets.
+  - A **USB 2.0** Controller: Interfaces two external USB sockets and an internal Bluetooth 2.0 daughtercard.
   - A **SHA-1** and **AES** module: Reserved for security tasks (more details in the 'Anti-Piracy' section).
 - The **APB Bus** (Advanced Peripheral Bus): This one is restricted to low-performance components, including:
   - The **Drive interface**: Connects the disc reader.
@@ -234,7 +234,7 @@ Wii using Gamecube equipment
 {{< /figure_img >}}
 
 {{% inner_markdown %}}
-The Wii maintains full backwards compatibility with Gamecube games even though the original I/O system has changed drastically. This is because Starlet can be reprogrammed when a Gamecube game is executed to virtually re-map the I/O, just like the original Gamecube would expect to find.
+The Wii maintains full backwards compatibility with Gamecube games even though the I/O system has changed drastically. This is because Starlet can be reprogrammed when a Gamecube game is executed to virtually re-map the I/O, just like the original Gamecube would expect to find.
 
 Additionally, the Real-Time Clock chip includes some spare ROM that stores bitmap fonts (the Latin and Japanese set) used by Gamecube games; and SRAM to save [IPL-related]({{< ref "gamecube#operating-system" >}}) settings.
 {{% /inner_markdown %}}
@@ -245,11 +245,11 @@ Additionally, the Real-Time Clock chip includes some spare ROM that stores bitma
 
 ## Operating System
 
-Generally speaking, there are **two operating systems** residing in the Wii, one is executed on Broadway (main CPU) and the other one on Starlet (I/O CPU). Both reside inside those 512 MB of NAND memory and can be updated.
+Generally speaking, there are **two operating systems** residing in the Wii. One is executed on Broadway (main CPU) and the other one on Starlet (I/O CPU). Both reside inside those 512 MB of NAND memory and can be updated.
 
 ### Starlet's OS
 
-Starlet is already an interesting piece of hardware, but its software is even more intriguing. You see, not only this OS has complete access to every single corner of this console, but it's also the first thing that runs when the power button is pressed.
+Starlet is already an interesting piece of hardware, but its software is even more intriguing. You see, not only does this OS have complete access to every single corner of the console, but it's also the first thing that runs when the power button is pressed.
 
 Starlet runs a system *unofficially* referred to as **Input/Output Operating System** or 'IOS' (please, do not confuse this with Apple's iOS). IOS is a fully-featured operating system composed of:
   - A **Microkernel**: Controls the ARM9 CPU, executes **processes** and talks with other hardware using **drivers**.
@@ -261,7 +261,7 @@ With this in mind, the **main job of IOS is to offload the workload of the main 
 
 Broadway and Starlet communicate with each other using an **Inter-Process Communication** or 'IPC' protocol: In a nutshell, both CPUs share two registers each. One CPU can write on the other's registers (the written data may represent a command or a value) and from there, the receiver CPU can perform a function in response.
 
-The update system of IOS **is a bit tricky**: Updated IOS versions are not installed on top of old ones, but in another slot instead (the reserved area in NAND for IOS is divided into 'slots'). This is purely **for compatibility reasons**, since it allows older Wii software to keep working using the same IOS version which was developed for.
+The update system of IOS **is a bit tricky**: Updated IOS versions are not installed on top of old ones, but in another slot instead (the reserved area in NAND for IOS is divided into 'slots'). This is purely **for compatibility reasons**, since it allows older Wii software to keep using the same IOS version it was developed for.
 
 Nintendo often released IOS updates to improve hardware support (which was necessary when a new accessory was shipped). There's only **one exception** when IOS updates actually replace older ones: When a specific version was discovered to have an exploitable vulnerability. This was only for security reasons.
 
@@ -289,23 +289,23 @@ The message board stores letters grouped by date
 Compared to IOS, I wouldn't consider this a 'fully fledged' OS, but more like a 'program' that allows the user to perform the following operations:
 
 - **Start the Wii/Gamecube game**: Only if there is a valid one inserted.
-- **Change consoles settings**: Including time, date, video mode or sensor location, among others.
+- **Change console settings**: Including time, date, video mode or sensor bar location, among others.
 - **Run apps**: One of the novelties of this console is the ability to install small Wii games (called 'WiiWare'), retro games ('Virtual Console' games) or just convenient applications (such as an internet browser). Nintendo called these **channels**, but they are also referred to as **titles** by the OS.
   - Users can download/buy channels through a pre-installed channel called **Wii Shop Channel**.
-  - VC channels embedded an emulator to run the game itself, notice that such emulator is not shared across the system to enable optimisations for specific games.
+  - Virtual Console titles embed an emulator to run the game itself. Curiously enough, the emulator is not shared across the system or even between games of the same platform. This allows to optimise the emulator for specific games.
 - **Send/Receive messages**: Wiis have a unique ID (burned in their SEEPROM chip) which can be shared to exchange messages between other Wiis. Messages can be seen on the **Message Board**.
   - Nintendo and Wii games also used this medium to provide a newsletter as well.
 {{% /inner_markdown %}}
 
 {{< /float_group >}}
 
-Just like IOS, Nintendo released multiple updates to this system too. Some fixed security holes, others added more features. A notable new feature was the ability to store channels in the SD card.
+Just like IOS, Nintendo released multiple updates to this system too. Some fixed security holes, others added more features. A notable new feature was the ability to store channels on the SD card.
 
 Any program running on Broadway (including the System Menu) relies on a specific IOS version to work. When a game or a channel is booted, Starlet reboots itself using the declared version of IOS needed.
 
 ### Update medium
 
-Nintendo refers to them as **System updates**, they contain the two OSs in the same package and use ordinal numbers for versioning, the last version known is `4.3E` and was released in June 2010.
+Nintendo refers to them as **System updates**. They contain the two OSs in the same package and use ordinal numbers for versioning. The last version known is `4.3E`, released in June 2010.
 
 System update packages can be fetched from Nintendo's Servers or game discs. Users can manually check for updates using the System Menu. Updates are forced if a game requires a specific version of IOS that is not installed (and the disc happens to contain the required packages).
 
@@ -340,7 +340,7 @@ Wii games are distributed using a proprietary disc format called **Wii Optical D
 Standard games are presented in a physical box and disc
   {{< /tab_figure_img >}}
   {{< tab_figure_img name="Digital" src="system/store.png" alt="Store channel" >}}
-Small games (Wiibrew) and old titles (Virtual console) can be purchased and downloaded through the Shop Channel
+Small games (WiiWare) and emulated games (Virtual console) can be purchased and downloaded through the Shop Channel
   {{< /tab_figure_img >}}
 {{< /tabs >}}
 
@@ -375,7 +375,7 @@ This screen has to be included as well
 {{< /tabs >}}
 
 {{% inner_markdown %}}
-Having said that, there are certain features across different games that look awfully identical, somehow. For instance, do you remember the famous **HOME Menu**? Pressing the 'home' button on the WiiMote will trigger a screen popup in-game, enabling the user to return to the System menu without the need to reboot the console. Still, considering the OS does not provide this feature, how did they all manage to come up with the same graphical interface?
+Having said that, there are certain features across different games that look awfully identical, somehow. For instance, do you remember the famous **HOME Menu**? Pressing the 'HOME' button on the WiiMote will trigger a screen popup in-game, enabling the user to return to the System menu without the need to reboot the console. Considering the OS does not provide this feature, how did every single game manage to come up with the same graphical interface?
 
 The answer is simple, Nintendo included in their SDK some **mandatory libraries** that games have to embed. *Lo and behold*, one of them draws that screen. Furthermore, this is the reason you'll find that only homebrew apps feature 'original' designs for the home menu.
 {{% /inner_markdown %}}
@@ -384,7 +384,7 @@ The answer is simple, Nintendo included in their SDK some **mandatory libraries*
 
 The official HOME Menu is one of the 200 or so requirements games had to include, as ruled by the **Wii Programming Guidelines** document (found on the official SDK). Other requirements consisted of displaying the 'Wii Strap reminder' screen (which is just a BMP image) at the start of the game, followed by another rule that dictated how to interact with it.
 
-### Personalised game
+### Personalised titles
 
 {{< float_group >}}
 {{< tabs nested="true" float="true" >}}
@@ -392,7 +392,7 @@ The official HOME Menu is one of the 200 or so requirements games had to include
 The Mii channel allows to fiddle with your own 'Mii'...
   {{< /tab_figure_img >}}
   {{< tab_figure_img name="Game" src="ingame/music.png" alt="Wii Music" >}}
-... which then appears in your games  
+...which then appears in your games  
 Wii Music (2008)
   {{< /tab_figure_img >}}
 {{< /tabs >}}
@@ -463,7 +463,7 @@ With this, we can see that Starlet is in charge of the encryption/decryption of 
 {{% inner_markdown %}}
 Titles contain another layer of security, RSA-2048. This is an **asymmetric cipher**, meaning that we need one key to encrypt the content and another one to decrypt it. In a nutshell, this allows Nintendo to encrypt titles using an undisclosed key (called 'private key'), while the Wii decrypts them using a 'public key', which is stored in the console. If hackers were to obtain the public key, it would not be enough to crack the security system, as data is still expected to be encrypted using the private key, which only Nintendo knows.
 
-Furthermore, not only RSA allows to encrypt content, but it can also be used to check the integrity of encryption. You see, Nintendo uses multiple keys that are used to sign (encrypt) already-encrypted data, forming a chain of encryption with the only purpose of making sure:
+Furthermore, RSA is not only used for encrypting content, but also to check the integrity of said encryption. You see, Nintendo uses multiple keys that are used to sign (encrypt) already-encrypted data, forming a chain of encryption with the only purpose of making sure:
 - Every single key used has been authorised by Nintendo.
 - Data hasn't been altered and re-encrypted without authorisation.
 
@@ -510,7 +510,7 @@ As a final note, the HMAC key is stored in SEEPROM (outside Starlet), not in OTP
 {{< /tab >}}
 {{< /tabs >}}
 
-After all this, it's worth mentioning that when the system runs GameCube games, **none of the mentioned encryption methods are used**. Instead, Starlet will only check that the game only accesses its designated memory locations. This is because 1/4 of GDDR3 RAM is allocated to simulate old [ARAM]({{< ref "gamecube#audio" >}})).
+After all this, it's worth mentioning that when the system runs GameCube games, **none of the mentioned encryption methods are used**. Instead, Starlet will only check that the game only accesses its designated memory locations. This is because 1/4 of GDDR3 RAM is allocated to simulate old [ARAM]({{< ref "gamecube#audio" >}}).
 
 ### The fall of encryption
 
@@ -522,7 +522,7 @@ Starlet's security diagram
 {{< /figure_img >}}
 
 {{% inner_markdown %}}
-Well, a group of hackers called **Team Twiizers** found out that the lack of signatures on Gamecube mode may be a promising attack surface, and not only they discovered that 3/4 of that GDDR3 RAM were not cleared after running a GC program, but they also found out that by bridging some address points on the motherboard (using a pair of tweezers, nonetheless) they could swap the selected banks of GDDR3 RAM, allowing to access restricted areas. Lo and behold, the AES keys were found residing in there.
+Well, a group of hackers called **Team Twiizers** found out that the lack of signatures on Gamecube mode may be a promising attack surface. They not only discovered that **3/4 of that GDDR3 RAM were not cleared** after running a GC program, but also that by bridging some address points on the motherboard (using a pair of tweezers, nonetheless) they could swap the selected banks of GDDR3 RAM, allowing access to restricted areas. Lo and behold, the AES keys were found residing in there.
 {{% /inner_markdown %}}
 {{< /float_group >}}
 
