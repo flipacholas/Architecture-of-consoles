@@ -16,11 +16,15 @@ To start localizing, please visit our **[Crowdin]** page, <br>
 choose a language + article and let Crowdin guide <br>
 you through the process.
 
+<br>
+
 Additional files to be translated:
 
 - `resources/generations.yaml`
 - `resources/strings.toml`
 - `articles/_index.md`
+
+<br>
 
 When you finish translating a document, please drop <br>
 me an email (address in the website) or open an issue <br>
@@ -35,6 +39,8 @@ here so I can review it and deploy it.
 
 Translating can get messy, so these are the <br>
 guidelines to help keep the content consistent:
+
+<br>
 
 -   Common tech terminology is tricky to translate, <br>
     sometimes it can be translated, sometimes not. 
@@ -73,19 +79,25 @@ to give me a shout if you need help.
 It's not very often, but I may add some new content to <br>
 an existing article that has been translated already.
 
+<br>
+
 In this case, I can only maintain:
 
 - `English`
 - `Spanish`
 - `Catalan`
 
+<br>
+
 For the rest of languages, Crowdin can notify previous <br>
 translators whenever there's new changes detected.
 
 As a rule of thumb, please check beforehand that the <br>
 article you are interested in translating doesn't have <br>
-many issues logged, this way you'll see which ones are <br>
-meant to stay as they are.
+many issues logged, this way you'll see which ones <br>
+are meant to stay as they are.
+
+<br>
 
 ***Thanks!***
 
