@@ -5,12 +5,6 @@
 
 <br>
 
-The source has been publicized to enable interested <br>
-readers to discuss improvements, add translations <br>
-and possibly more.
-
-<br>
-
 <div align = center>
 
 ---
@@ -22,6 +16,15 @@ and possibly more.
 ---
 
 </div>
+
+<br>
+<br>
+
+## Source
+
+The source has been publicized to enable interested <br>
+readers to discuss improvements, add translations <br>
+and possibly more.
 
 <br>
 <br>
@@ -39,6 +42,7 @@ and possibly more.
      *Each file corresponds to a specific console,* <br>
      *except  `_index`  which is the **[Index]** page.*
     
+<br>
     
 `/resources/`
 
