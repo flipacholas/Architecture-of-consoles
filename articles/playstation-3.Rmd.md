@@ -205,9 +205,12 @@ Finally, the PPU implements the **PowerPC ISA version 2.02**, including optional
 
 By applying a 'microscopic' view to the PPU, we can observe this unit is composed of different blocks or sub-units which perform independent operations (load values from memory, carry out arithmetic, etc). The capabilities of the PPU are defined by what each block can do and how:
 
-```{r fig.cap=caption, fig.align='center', tab.title="Instructions", tab.first=TRUE, tab.active=TRUE, tab.h5=TRUE}
-caption <- "Simplified diagram of the Instruction Unit (IU)."
-image("cpu/ppu/iu.jpg", caption, float = TRUE)
+(ref:iudiagramtitle) Instructions
+
+(ref:iudiagramcaption) Simplified diagram of the Instruction Unit (IU).
+
+```{r fig.cap="(ref:iudiagramcaption)", fig.align='center', tab.title="(ref:iudiagramtitle)", tab.first=TRUE, tab.active=TRUE, tab.h5=TRUE}
+image("cpu/ppu/iu.jpg", "(ref:iudiagramcaption)", float = TRUE)
 ```
 
 The first block is called **Instruction unit** (IU) and as its name suggests, it pulls instructions from L2 cache and signals other units to perform the requested operation. Like its [i686 contemporaries](`r ref("xbox#cpu")`), part of the instruction set is interpreted with the use of [**microcode**](`r ref("nintendo-64#tab-1-1-reality-signal-processor")`) (the IU embeds a small ROM for this purpose). Lastly, the IU also houses **32 KB of L1 cache for instructions**.
