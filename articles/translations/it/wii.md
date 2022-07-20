@@ -182,7 +182,7 @@ Rispetto al GameCube, l'unico cambiamento principale è rappresentato dal fatto 
 
 ## I/O
 
-Il sottosistema I/O del Wii è una vera rivoluzione (*per restare in tema con il suo nome in codice*). Le interfacce sono ora controllate da un unico modulo deputato anche alla sicurezza della console: **Starlet**.
+Il sottosistema I/O del Wii è una vera rivoluzione (*per restare in tema con il suo nome in codice*). Le interfacce, infatti, sono ora controllate da un solo modulo deputato anche alla gestione della sicurezza della console. Si tratta del modulo **Starlet**.
 
 ### Il coprocessore nascosto
 
@@ -194,7 +194,7 @@ La CPU è simile a quella utilizzata nel [Nintendo DS]({{< ref "nintendo-ds" >}}
 
 Come detto, si tratta miglioramenti “particolari” in quanto non sono mai stati sfruttati dal Wii. Nonostante ciò, Nintendo ha comunque scelto di utilizzare questa CPU per Starlet. Anche il primo iPhone (2G) includeva una CPU ARM con Jazelle, e anche in questo caso la funzionalità è rimasta inutilizzata.
 
-La risposta alla domanda sul perché Jazelle non sia mai stato utilizzato, anche dopo alcune iterazioni, è che si scoprì che veniva eseguito meglio in software. In seguito, ARM sostituì Jazelle con “Thumb-2EE”. Attualmente (nel giugno 2021), entrambe queste unità sono state gradualmente eliminate.
+Alla fine, la tecnologia Jazelle non è mai decollata. Dopo alcune iterazioni si è appurato che, molto semplicemente, Java Bytecode girava meglio su software. In seguito, ARM ha rimpiazzato Jazelle con "Thumb-2EE"; nel momento in cui scrivo (giugno 2021), sia Jazelle che Thumb-2EE sono stati abbandonati.
 
 {{< float_group >}}
 {{< figure_img_distributed float="true" src1="console/front.jpeg" alt1="Lato frontale del Wii" src2="console/back.jpeg" alt2="Lato posteriore del Wii" >}} I/O esterne del Wii  
@@ -213,7 +213,7 @@ Nintendo ha scelto di collegare i dispositivi I/O in modo da utilizzare due bus 
 - Il bus **AHB** (AMBA High-performance Bus, AHB Bus): come suggerisce il nome, è progettato per le comunicazioni ad alta velocità. Qui troviamo:
   - L’interfaccia **NAND**: accede a una NAND flash da 512 MB dove sono memorizzati il sistema operativo e i dati dell’utente.
   - Due interfacce **Secure Digital Input Output** (SDIO): SDIO è un protocollo progettato principalmente per l’accesso alle schede SD, anche se in questo caso la seconda delle due interfacce viene utilizzata per controllare il modulo Wi-Fi (802.11 b/g).
-  - Un controller **USB 2.0**: collegato a un modulo Bluetooth 2.0 e a due prese USB esterne.
+  - Un controller **USB 2.0**: gestisce le due prese USB utilizzabili dall'utente e una scheda figlia Bluetooth 2.0.
   - Un modulo **SHA-1** e **AES**: delegato ai compiti di sicurezza (maggiori informazioni nel capitolo “Antipirateria”).
 - Il bus **APB** (Advanced Peripheral Bus): limitato ai componenti a basse prestazioni, che includono:
   - L’**interfaccia disco**: collegata al lettore dei dischi.
@@ -228,7 +228,7 @@ Un Wii con dispositivi del GameCube collegati
 {{< /figure_img >}}
 
 {{% inner_markdown %}}
-Nonostante il sistema I/O originale sia stato modificato radicalmente, il Wii è pienamente retrocompatibile con i giochi per GameCube. Starlet viene infatti riprogrammato quando si esegue un gioco per GameCube, rimappando virtualmente i dispositivi di I/O secondo la stessa configurazione del GameCube originale.
+Nonostante il sistema I/O sia stato modificato radicalmente, il Wii è pienamente retrocompatibile con i giochi per GameCube. Starlet viene infatti riprogrammato quando si esegue un gioco per GameCube, rimappando virtualmente i dispositivi di I/O secondo la stessa configurazione del GameCube originale.
 
 Inoltre, nel chip real-time clock è presente della ROM aggiuntiva che contiene i font bitmap (sia per l’alfabeto latino che per il giapponese) utilizzati nei giochi per GameCube, e una SRAM per salvare le impostazioni [relative all’IPL]({{< ref "gamecube#operating-system" >}}).
 {{% /inner_markdown %}}
@@ -239,7 +239,7 @@ Inoltre, nel chip real-time clock è presente della ROM aggiuntiva che contiene 
 
 ## Il sistema operativo
 
-Nel Wii sono presenti **due sistemi operativi**: uno viene eseguito su Broadway (la CPU principale), mentre l’altro viene eseguito su Starlet (la CPU I/O). Entrambi risiedono in una memoria NAND da 512 MB e possono essere aggiornati.
+In generale, il Wii contiene **due sistemi operativi**. Uno viene eseguito su Broadway (la CPU principale), mentre l'altro viene eseguito su Starlet (la CPU di I/O). Entrambi sono memorizzati nei 512 MB di memoria NAND e possono essere aggiornati.
 
 ### Il SO di Starlet
 
@@ -286,7 +286,7 @@ Se confrontato con IOS, non definirei “completo” questo SO: si tratta più d
 - **Modificare le impostazioni della console**, come ora e data, modalità video, posizione della barra sensore e altre ancora.
 - **Eseguire applicazioni**: una delle novità di questa console è rappresentata dalla possibilità di installare giochi per Wii di piccole dimensioni (chiamati "WiiWare"), videogiochi del passato (i giochi della "Virtual Console") o semplici applicazioni per uso pratico (come un browser internet). Queste applicazioni sono note ufficialmente come **canali**, anche se a volte all'interno del SO vengono chiamate **titoli**.
   - Gli utenti possono scaricare/acquistare i canali attraverso un canale preinstallato chiamato **Canale Wii Shop**.
-  - I canali della Virtual Console includevano un emulatore utilizzato per eseguire il gioco; questo emulatore non era condiviso con gli altri canali nel sistema, per permettere di ottimizzarlo per ogni singolo gioco.
+  - I titoli della Virtual Console includono un emulatore utilizzato per eseguire il gioco stesso. Una caratteristica interessante dei titoli Virtual Console è che gli emulatori non sono condivisi né con il sistema in generale, né con gli altri giochi Virtual Console appartenenti alla stessa piattaforma. In questo modo, ogni gioco può girare su un emulatore appositamente ottimizzato.
 - **Ricevere/inviare messaggi**: i Wii dispongono di un codice identificativo univoco (impresso nel chip SEEPROM) che può essere condiviso per consentire lo scambio di messaggi con altri Wii. I messaggi possono essere visualizzati nella **Bacheca messaggi**.
   - Sia Nintendo stessa che i giochi per Wii utilizzavano questa funzionalità anche per inviare alle console una newsletter.
 {{% /inner_markdown %}}
@@ -299,7 +299,7 @@ Ogni programma in esecuzione su Broadway (compreso il menu Wii) richiede una ver
 
 ### I pacchetti di aggiornamento
 
-Per gli aggiornamenti, Nintendo utilizza la dicitura **Aggiornamenti di sistema**. Ciascun pacchetto di aggiornamento contiene entrambi i SO e le varie versioni sono numerate con numeri ordinali; l'ultima versione nota è la `4.3E`, rilasciata nel giugno 2010.
+Nel riferirsi agli aggiornamenti, Nintendo utilizza la denominazione **Aggiornamenti di sistema**. Ogni pacchetto di aggiornamento contiene entrambi i sistemi operativi ed è identificato nel sistema di versionamento mediante numeri cardinali. L'ultima versione conosciuta è la `4.3E`, rilasciata nel giugno 2010.
 
 I pacchetti di aggiornamento del sistema possono essere scaricati dai server di Nintendo o installati dai dischi di gioco. Gli utenti possono verificare manualmente la disponibilità di aggiornamenti tramite il menu Wii. Se un gioco richiede una versione specifica di IOS non installata nella console, qualora il disco di gioco contenga i pacchetti necessari l'aggiornamento viene forzato.
 
@@ -334,7 +334,7 @@ I giochi per Wii sono distribuiti su un disco di formato proprietario, il **Wii 
 I giochi standard sono distribuiti fisicamente su un disco all'interno di una custodia
   {{< /tab_figure_img >}}
   {{< tab_figure_img name="Formato digitale" src="system/store.png" alt="Il canale Wii Shop" >}}
-I giochi più piccoli (Wiibrew) e i titoli delle console precedenti (Virtual Console) possono essere acquistati e scaricati nel Canale Wii Shop
+I giochi più piccoli (WiiWare) e i titoli emulati (Virtual Console) possono essere acquistati e scaricati nel Canale Wii Shop
   {{< /tab_figure_img >}}
 {{< /tabs >}}
 
@@ -369,7 +369,7 @@ Anche questa schermata doveva essere inclusa
 {{< /tabs >}}
 
 {{% inner_markdown %}}
-Detto questo, alcune funzionalità che compaiono in molti giochi diversi sono stranamente simili. Ad esempio: ricordate il famoso **menu HOME**? Premendo il pulsante "HOME" sul Wiimote, una schermata sovrimpressa sul gioco permette all'utente di tornare al menu Wii senza dover riavviare la console. Ma dato che il SO non offre una simile funzionalità, com'era possibile che tutti i giochi offrissero la stessa interfaccia grafica?
+Detto questo, alcune funzionalità che compaiono in molti giochi diversi sono stranamente simili. Ad esempio: ricordate il famoso **menu HOME**? Premendo il pulsante "HOME" sul Wiimote, una schermata sovrimpressa sul gioco permette all'utente di tornare al menu Wii senza dover riavviare la console. Ma dato che il SO non offre una simile funzionalità, com'è possibile che tutti i giochi offrivano la stessa interfaccia grafica?
 
 La risposta è semplice: Nintendo includeva nell'SDK alcune **librerie obbligatorie** che dovevano essere incluse nei giochi. *E guarda un po'*, una di queste si occupa di creare proprio quella schermata. È lo stesso motivo per cui solo le applicazioni homebrew utilizzano design originali per il menu HOME.
 {{% /inner_markdown %}}
@@ -457,7 +457,7 @@ Starlet è la sola CPU ad avere accesso ai dati riservati, ed è pertanto lei a 
 {{% inner_markdown %}}
 I titoli contengono un ulteriore livello di sicurezza: RSA-2048. Si tratta di un **algoritmo asimmetrico**: sono necessarie una chiave per criptare un dato e una seconda chiave per decriptarlo. In questo modo, Nintendo è in grado di criptare i titoli utilizzando una chiave conosciuta solo dall'azienda stessa (ossia una "chiave privata"), mentre il Wii li decripta utilizzando una "chiave pubblica" memorizzata nella console. Anche se un hacker fosse entrato in possesso della chiave pubblica, questa non sarebbe bastata per violare il sistema di sicurezza, in quanto i dati dovevano comunque essere criptati utilizzando la chiave privata nota solo a Nintendo.
 
-Inoltre, l'RSA non consente solo di criptare contenuti, ma anche di verificare l'integrità della protezione. Nintendo utilizza più chiavi al solo scopo di firmare (ossia criptare) i dati già crittografati, generando quindi una catena crittografica al solo scopo di assicurarsi che:
+Inoltre, RSA non è utilizzato solo per criptare i dati, ma anche per controllare l'integrità della crittografia stessa. Nintendo utilizza più chiavi al solo scopo di firmare (ossia criptare) i dati già crittografati, generando quindi una catena crittografica per assicurarsi che:
 - ogni singola chiave utilizzata sia stata autorizzata da Nintendo;
 - i dati non siano stati alterati, quindi criptati nuovamente senza autorizzazione.
 
@@ -504,7 +504,7 @@ Per finire: la chiave HMAC è memorizzata nella SEEPROM (al di fuori di Starlet)
 {{< /tab >}}
 {{< /tabs >}}
 
-Dopo questa disamina, vale la pena sottolineare che quando il sistema esegue un gioco per GameCube, **nessuno dei metodi crittografici appena descritti viene utilizzato**. Starlet si limita a verificare che il gioco possa accedere solo alla memoria allocata ad esso. Questo perché 1/4 della RAM GDDR3 viene utilizzato per simulare la vecchia [ARAM]({{< ref "gamecube#audio" >}})).
+Dopo questa disamina, vale la pena sottolineare che quando il sistema esegue un gioco per GameCube, **nessuno dei metodi crittografici appena descritti viene utilizzato**. Starlet si limita a verificare che il gioco possa accedere solo alla memoria allocata ad esso. Questo perché 1/4 della RAM GDDR3 viene utilizzato per simulare la vecchia [ARAM]({{< ref "gamecube#audio" >}}).
 
 ### Come la crittografia è stata sconfitta
 
@@ -516,7 +516,7 @@ Il diagramma della sicurezza di Starlet
 {{< /figure_img >}}
 
 {{% inner_markdown %}}
-Un gruppo di hacker noto come **Team Twiizers** (un gioco di parole con "tweezer", la parola inglese che indica le normali pinzette) si rese conto che l'assenza di firme nella modalità GameCube poteva costituire una buona superficie di attacco. Il team scoprì non solo che 3/4 della RAM GDDR3 non venivano ripuliti dopo l'esecuzione di un gioco per GameCube, ma anche che creando un ponte tra alcuni punti sulla scheda madre (utilizzando, guarda caso, proprio un paio di pinzette) era possibile invertire i banchi della RAM GDDR3 scelti, permettendo di accedere ad aree riservate della RAM. Sorpresa: in queste aree erano presenti anche le chiavi AES.
+Un gruppo di hacker noto come **Team Twiizers** (un gioco di parole con “tweezer”, la parola inglese che indica le normali pinzette) si rese conto che l’assenza di firme nella modalità GameCube poteva costituire una buona superficie di attacco. Il team scoprì non solo che **tre-quarti della RAM GDDR3 non venivano ripuliti** dopo l’esecuzione di un gioco per GameCube, ma anche che creando un ponte tra alcuni punti sulla scheda madre (utilizzando, guarda caso, proprio un paio di pinzette) era possibile invertire i banchi della RAM GDDR3 scelti, permettendo di accedere ad aree riservate della RAM. Sorpresa: in queste aree erano presenti anche le chiavi AES.
 {{% /inner_markdown %}}
 {{< /float_group >}}
 
