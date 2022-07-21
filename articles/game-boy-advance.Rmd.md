@@ -393,7 +393,7 @@ Commercial availability of these cards proved to be a **grey area**: Nintendo co
 
 ## That's all folks
 
-(ref:mygbacaption) My GBA and a couple of games.<br>Too bad it doesn't have a backlit!
+(ref:mygbacaption) My GBA and a couple of games.<br>Too bad it doesn't have a backlight!
 
 ```{r fig.cap="(ref:mygbacaption)", fig.align='center', centered=TRUE}
 image("mygba.png", "(ref:mygbacaption)", class = "centered-container")
