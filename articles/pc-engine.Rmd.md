@@ -63,7 +63,7 @@ Finally, there are **8 KB of RAM** available for general purpose.
 
 One thing I didn't mention *yet* is that NEC also added a **Memory Management Unit** or 'MMU' next to the CPU, allowing it to handle **21-bit addresses** (remember the original 6502 only has 16-bit addresses) `r cite("cpu-hardware_manual")`. Thus, the amount of memory that can be accessed raises from 64 KB to **2 MB**.
 
-This MMU is very different from any modern-day MMU, I would say the former is closer to a [mapper](`r ref("nes#going-beyond-existing-capabilities">}}). Having said that, the MMU found in the PC Engine is composed of **eight 8-bit registers** (called **Mapping Register** or 'MPR') which are combined with the CPU's 16 address lines to form a 21-bit address bus.
+This MMU is very different from any modern-day MMU, I would say the former is closer to a [mapper](`r ref("nes#going-beyond-existing-capabilities")`). Having said that, the MMU found in the PC Engine is composed of **eight 8-bit registers** (called **Mapping Register** or 'MPR') which are combined with the CPU's 16 address lines to form a 21-bit address bus.
 
 (ref:mmucaption) Addressing approach of the MMU.
 
@@ -72,6 +72,7 @@ image("mmu.png", "(ref:mmucaption)", class = "centered-container")
 ```
 
 This works as follows:
+
 1. The CPU can read from and/or write to any MPR using the special `TAM` and `TMA` instructions, respectively.
 2. When physical memory is accessed, the MMU reserves the address lines A13-A15 from the CPU to select one of the eight MPRs.
 3. The final address is derived by combining the CPU lines (placed at A0-A12) with the MMU lines (placed at A13-A20, where the output is the 8-bit value of the selected MPR), resulting in a 21-bit address.
@@ -238,7 +239,7 @@ There are **six audio channels** in this system `r cite("audio-manual")`, each o
 
 Some groups of channels have other modes of operation. For instance, the last two channels are connected to a **noise generator**. Moreover, the second channel can act as a **Low-frequency oscillator** to modulate the first channel (I initially assumed this to be a synonym of [FM synthesis](`r ref("mega-drive-genesis#audio")`), but LFOs are more a 'subset' that achieve a **vibrato effect**).
 
-Speaking of modes, there's another one available called **Direct D/A (DDA)** which enables the CPU to write over the audio buffer directly (bypassing the PSG). Consequently, the PC Engine can play **PCM samples**. These are still 5-bit and tightly dependent on CPU cycles. Although, two channels can be combined to reproduce 10-bit samples! I strongly suggest you check out the 'Sources' section to listen to examples.
+Speaking of modes, there's another one available called **Direct D/A (DDA)** which enables the CPU to write over the audio buffer directly (bypassing the PSG). Consequently, the PC Engine can play **PCM samples**. These are still 5-bit and tightly dependent on CPU cycles. Although, two channels can be combined to reproduce 10-bit samples! I strongly suggest you check out the 'Sources' section to listen to examples `r cite("audio-demo")`.
 
 All in all, this makes the PC Engine's PSG an incredibly flexible piece of hardware.
 
@@ -335,7 +336,7 @@ With the Super CD-ROM², NEC/Hudson also shipped a new variant of the PC-Engine/
 
 ### Other expansions
 
-If you are curious about other expansions released, check out the catalogue link at the 'Sources' section (end of the article).
+If you are curious about other expansions released, check out the online catalague `r cite("games-accessories")`.
 
 ## Anti-Piracy and Homebrew
 
