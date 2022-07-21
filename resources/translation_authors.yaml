@@ -7,7 +7,8 @@ gameboy:
 gamecube: null
 gba: null
 mastersystem: null
-megadrive: null
+megadrive:
+  pl: LunaDook & MoonbowPlushie
 nes:
   zh-hans: 猫咪啊呀呀
 nintendo64:
@@ -24,5 +25,6 @@ snes: null
 virtualboy: null
 wii:
   it: Valerio Francesco Vallone
+  pl: LunaDook & MoonbowPlushie
 xbox:
   it: Valerio Francesco Vallone
