@@ -167,11 +167,11 @@ With these new additions, programmers now have a lot of flexibility to design th
 
 (ref:diagramworktitle) Parallel
 
-(ref:diagramworkcaption) Parallel pipeline design
+(ref:diagramworkcaption) Parallel pipeline design.
 
 (ref:diagramworktitle2) Serial
 
-(ref:diagramworkcaption2) Serial pipeline design
+(ref:diagramworkcaption2) Serial pipeline design.
 
 ```{r fig.cap=c("(ref:diagramworkcaption)", "(ref:diagramworkcaption2)"), open_float_group=TRUE, tab.nested=TRUE, tab.float=TRUE}
 image("Parallel.png", "(ref:diagramworkcaption)", tab.name="(ref:diagramworktitle)", tab.active=TRUE)
@@ -338,7 +338,7 @@ It's worth mentioning that games like *Dragon Quest* implemented a custom lighti
 
 ### Video Output
 
-As stated before, the PCRTC sends the frame buffer through the video signal. The interface can broadcast video using a wide range of formats (to work with TVs from any geographical region) `cite("graphics-opl")`:
+As stated before, the PCRTC sends the frame buffer through the video signal. The interface can broadcast video using a wide range of formats (to work with TVs from any geographical region) `r cite("graphics-opl")`:
 
 - **PAL**: Sends up to 640x512 pixels at 50 Hz, either progressive (576p) or interlaced (576i).
   - No games found in the market use 576p. While some support progressive mode, they do so in 480p mode.
@@ -659,7 +659,7 @@ This only required patching the game image by adding dummy metadata and partitio
 
 Congratulations and thank you for reaching the end of the article! To be honest, there was so much to talk about that I wondered if readers would eventually get tired of Playstation-related stuff after finishing this.
 
-Anyway, in all seriousness, I do hope you discovered new things after reading this article and if you have any comments, don't hesitate to [contact me](`r ref("about")`).
+Anyway, in all seriousness, I do hope you discovered new things after reading this article and if you have any comments, don't hesitate to [contact me](`r ref(about_url, root = TRUE)`).
 
 Until next time!  
 Rodrigo
