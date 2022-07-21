@@ -7,7 +7,6 @@ subtitle: A supercomputer for the rest of us
 generation: 7
 release_date: 2005-11-22
 aliases: [/writings/consoles/xbox-360-private]
-cover: xbox360
 top_tabs:
   Motherboard:
     caption: "Showing the 'Xenon' revision (the first one), taken from my model from 2005. Xenon motherboards are also famous for being defective by design (they get too hot to play games with!). Remaining GDDR3 chips are found on the back."
@@ -16,12 +15,15 @@ top_tabs:
   - active: true
     caption: "The original Xbox 360 with an external HDD plugged at the top.<br>Released on 22/11/2005 in America, 02/12/2005 in Europe and 10/12/2005 in Japan"
     title: Original
+    file: original
     img_class: reduced-width
   - caption: "The 'new' Xbox 360 (a.k.a. 'Slim' or 'S').<br>Released on 18/06/2010 in America, 24/06/2010 in Japan and 16/07/2010 in Europe"
     title: The 'S'
+    file: the-s
     img_class: reduced-width
   - caption: "Another 'new' Xbox 360 (a.k.a. 'E').<br>Released on 10/06/2013 in America, 20/06/2013 in Europe and similar in Japan"
     title: The 'E'
+    file: the-e
     img_class: reduced-width
 ---
 
@@ -264,7 +266,7 @@ In the end, Microsoft purged `xdcbt` from the compiler due to its non-determinis
 
 #### Revisiting old paradigms
 
-There's a recurring subject found in noteworthy writings from 2005 like 'Inside the Xbox 360' by Jon Stokes `r cite("cpu-stokes")` or 'Understanding the Cell Microprocessor' by Anand Lal Shimpi `r cite("cpu-shimpi")`, and that is the **lack of out-of-order execution** that once debuted in early PowerPC chips like Gekko, but for some reason is completely absent in Cell & Xenon. If you recall from the [Gamecube article](`r ref("gamecube#features")`) (which I wrote it two years ago), Gekko is an out-of-order CPU, meaning it's able to analyse the instruction stream as instructions come in, and subsequently re-order them to better distribute the load of Gekko's internal units.
+There's a recurring subject found in noteworthy writings from 2005 like 'Inside the Xbox 360' by Jon Stokes `r cite("cpu-stokes")` or 'Understanding the Cell Microprocessor' by Anand Lal Shimpi `r cite("cpu-shimpi")`, and that is the **lack of out-of-order execution** that once debuted in early PowerPC chips like Gekko, but for some reason is completely absent in Cell & Xenon. If you recall from the [Gamecube article](`r ref("gamecube#features")`) (which I wrote two years ago), Gekko is an out-of-order CPU, meaning it's able to analyse the instruction stream as instructions come in, and subsequently re-order them to better distribute the load of Gekko's internal units.
 
 By then, CPU cores employing out-of-order execution were in the order of the day (_pun intended_). IBM's PowerPC 604 (1994) brought it to high-end Macintosh computers, Intel's P6 (1995) introduced it to the x86 line and MIPS implemented it with the R10000 (1996) CPU, a successor of the R4000 (found on the [Nintendo 64](`r ref("nintendo-64#cpu")`)). Afterwards, all of a sudden, Cell and Xenon arrive with an in-order execution style... _care to explain_?
 
@@ -589,6 +591,7 @@ Additionally, Microsoft shipped a software update in May 2011 to add support for
 #### New attitudes towards resolutions
 
 Even though the video encoder can broadcast signals in a multitude of formats, including PAL, NTSC, 720p and 1080p, Microsoft pushed publishers to **focus on 720p** for two reasons:
+
 - The general consensus from 2005 predicted that most consumer TVs will soon be equipped with high-resolution and widescreen screens.
 - Since it would take time to master Xenos' capabilities, launch titles were assumed to not use all of the GPU resources. Thus, games painlessly added HD support to compensate.
 
@@ -753,6 +756,7 @@ image("amos/kinect.png", "(ref:kinectcaption)", class = "centered-container", no
 ```
 
 The construction of this device isn't anywhere simple, and as such, the sensor carries many forms of technologies:
+
 - An **RGB camera** to capture images of the room and the player `r cite("io-kinect_hardware")`.
 - A **IR emitter** and **IR sensor** that projects IR light and captures its reflection, respectively. This allows to derive a z-buffer of the room, thereby identifying the depth of objects.
 - A **microphone** that listens to the player.
@@ -782,6 +786,7 @@ Throughout the life of this console, I noticed a more chaotic evolution than its
 #### A recallable security design
 
 If you recall [my deconstruction](`r ref("playstation-3#operating-system")`) of the Playstation 3's operating system, the latter was divided into three areas:
+
 - The **Hypervisor**, which has complete control of the hardware.
 - The **Kernel**, interfacing user programs (mostly games) with the hypervisor, and in doing so it provides an extra layer of protection.
 - The **user space**, encompassing all programs executing on top of the kernel, including games and other apps (i.e. the shell and media player).
@@ -843,7 +848,7 @@ Finally, all user data is grouped into a virtual **Profile**. Thus, the Kernel r
 
 As a compelling side note, the Xbox 360 can run a considerable subset of games belonging to the previous Xbox (to avoid confusion, let's call it the 'classic' one). This was done through pure and hard **software emulation** and, while it didn't provide the same degree of compatibility of the [CECHA PS3 revision](`r ref("playstation-3#backwards-compatibility")`), I believe the methods were more clever, cost-effective and consistent.
 
-The emulator was called 'FU' `r cite("operating_system-brundage")` (found as `xefu.xex`) and it could only be installed in the Hard Drive, residing next to other optional assets for the operating system. FU loaded every time the user booted up a classic Xbox game into the Xbox 360. However, for an 'enjoyable experience', FU would only proceed with the emulation if the game was listed in its local **whitelist**, where Microsoft tracked which games were deemed 'playable'. As more system updates were released, more games were added to the whitelist.
+The emulator was called 'FU' `r cite("operating_system-brundage")` (found as `xefu.xex`) and it could only be installed in the Hard Drive, residing next to other optional assets for the operating system. FU loads every time the user booted up a classic Xbox game into the Xbox 360. However, for an 'enjoyable experience', FU only proceeds with the emulation if the game is listed in its local **whitelist**, where Microsoft tracks which games are deemed 'playable'. As more system updates were released, more games were added to the whitelist.
 
 Michael Brundage, one of the authors of FU, described the development process as 'probably the hardest technical challenge of my career' and also mentions 'how inefficient most standard libraries are, especially at math.' `r cite("operating_system-brundage")`.
 
@@ -1363,6 +1368,7 @@ Because there's only **64 KB of SRAM** to store the page table and hashes, all m
 #### The hypervisor's duties
 
 Once the hypervisor is fully running with Level 1 privilege, it dips into the internal SRAM of Xenon to provide the following functions:
+
 - Act as a **Memory Management Unit** (MMU) by handling its private virtual memory page table, where it keeps track of the memory boundaries of every program and whether they are executable or not. This protects the hardware from [buggy software](`r ref("xbox#tab-9-3-permanent-unlock")`) producing buffer overflows.
 - In cooperation with the L2 block, it ensures all executable code is encrypted when stored with RAM.
 
@@ -1459,6 +1465,7 @@ The previous discovery seems promising, but there are still many loose ends. For
 Well, to make a long story short, it was discovered that, while the syscall handler converts the syscall number into a virtual address, if the most significant bit of the resulting virtual address happens to be anything but `0`, then the converter **won't add the encryption flag**. Thus, the L2 block won't mangle the syscall function fetched, whether it's encrypted or not.
 
 This was the missing puzzle that would allow hackers to execute a crafted and unencrypted syscall number, leading to arbitrary code execution. But it's not over yet, as we still need:
+
 - An entry point that enables to inject the arbitrary syscall routine into main RAM.
 - Another entry point to request the crafted syscall number, so the arbitrary routine can be executed.
 
