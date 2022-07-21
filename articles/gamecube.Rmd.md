@@ -13,7 +13,8 @@ top_tabs:
     file: international
     caption: "The one and only GameCube.<br>Released on 14/09/2001 in Japan, 18/11/2001 in America and 03/05/2002 in Europe."
   Motherboard:
-    caption: "Showing revision 'DOL-CPU-10', later ones removed Serial Port 2 and Digital Output. Encoder chip, expansion, controller and PSU slots are on the other side."
+    caption: "Taken from my 'DOL-CPU-10' model, later ones removed Serial Port 2 and Digital Output. Encoder chip, expansion, controller and PSU slots are found on the other side."
+    bib_source: copetti
   Diagram:
     caption: "Each data bus is labelled with its width."
 
@@ -25,7 +26,7 @@ aliases: [/projects/consoles/gamecube/]
 
 Gone are the days of '3D-attempts', Nintendo's new offering consists of a clean and powerful break from its predecessor that will open the door to new, original and unseen content.
 
-It's worth pointing out that the design of this architecture led to one of the most compact hardware of this generation, emphasised by the lack of *slims* or *lite* revisions.
+It's worth pointing out that the design of this architecture led to one of the most compact hardware of this generation. This was emphasised by the lack of *slims* or *lite* revisions.
 
 ```{r results="asis"}
 supporting_imagery()
