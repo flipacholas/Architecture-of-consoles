@@ -1,6 +1,6 @@
 ---
-short_title: PlayStation Portable Architecture
-long_title: Architecture of the PlayStation Portable
+short_title: PlayStation Portable (PSP) Architecture
+long_title: Architecture of the PlayStation Portable (PSP)
 name: PlayStation Portable
 subtitle: "'Portable' does not imply 'Limited'"
 date: 2021-04-21
@@ -38,7 +38,7 @@ Released just one month after the [Nintendo DS](`r ref("nintendo-ds")`), Sony's 
 
 This article is dedicated to anyone that wants to understand, straight to the point, how the PSP operates. It's not a short write-up, but I hope that at the end of the article you will be able to grasp the building blocks of this console (its design rationale, choice of CPUs, GPU pipeline, security system and so forth).
 
-P.S. If you ever feel fed up with information, don't forget to take a look at the diagrams (the `r img_link(label="main one", src="diagram.png")`) plus the others I made for each section).
+P.S. If you ever feel fed up with information, don't forget to take a look at the diagrams (the `r img_link(label="main one", src="diagram.png")` plus the others I made for each section).
 
 ```{r results="asis"}
 supporting_imagery()
@@ -526,7 +526,7 @@ The OS is composed of the following components:
 
 `r tab.simple("Modules", tab.active=TRUE, tab.first=TRUE)`
 
-A **module** is what we would call a 'program' or 'driver' in the PC/Windows world. Once loaded, modules may reside in memory and perform the following tasks: 
+A **module** is what we would call a 'program' or 'driver' in the PC/Windows world. Once loaded, modules may reside in memory and perform the following tasks `r cite("cpu-naked")`: 
 - Expose functions to simplify access to certain hardware.
 - Run as a foreground program (i.e. games).
 

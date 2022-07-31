@@ -11,14 +11,14 @@ javascript: ['threejs']
 top_tabs:
   Models:
     - title: "Original"
-      caption: "The original PlayStation. <br>Released on 03/12/1994 in Japan, 09/09/1995 in North America, 29/09/1995 in Europe."
+      caption: "The original PlayStation.<br>Released on 03/12/1994 in Japan, 09/09/1995 in North America, 29/09/1995 in Europe."
       file: original
       active: true
     - title: "Slim"
-      caption: "The PS One (slim revision). <br>Released on 07/07/2000 in Japan, 19/09/2000 in North America, 29/09/2000 in Europe. <br>This is what you get after cramming so many custom ICs into a single one."
+      caption: "The PS One (slim revision).<br>Released on 07/07/2000 in Japan, 19/09/2000 in North America, 29/09/2000 in Europe. <br>This is what you get after cramming so many custom ICs into a single one."
       file: slim
   Motherboard:
-    caption: "Showing model 'SCPH-1000'. <br>Remaining chips are fitted on the back. <br>Later models included SG-RAM instead of VRAM and removed most of the external I/O and video outs."
+    caption: "Showing model 'SCPH-1000'.<br>Remaining chips are fitted on the back.<br>Later models included SG-RAM instead of VRAM and removed most of the external I/O and video outs."
   Diagram: 
     caption: "The Bus Interface Unit is also connected to special ports of the GPU and SPU."
 
@@ -295,9 +295,9 @@ Once finished, the GPU writes the pixels into the frame buffer area in VRAM, whi
 
 Let's take a break now from all this theory. Here are some examples of game characters designed from the ground up for the 3D era, they are interactive so I encourage you to check them out!
 
-(ref:spyromodelcaption) Spyro the Dragon (1998). 413 triangles.
+(ref:spyromodelcaption) Spyro the Dragon (1998).<br>413 triangles.
 
-(ref:crashmodelcaption) Crash Bandicoot (1996). 732 triangles.
+(ref:crashmodelcaption) Crash Bandicoot (1996).<br>732 triangles.
 
 ```{r fig.cap=c("(ref:spyromodelcaption)", "(ref:crashmodelcaption)"), side_by_side=TRUE, fig.pos = "H"}
 model_viewer('spyro_ps1', class="toleft", "(ref:spyromodelcaption)")

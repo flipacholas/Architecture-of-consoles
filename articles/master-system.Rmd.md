@@ -106,7 +106,7 @@ Now let's see how a frame is drawn step by step, for this, I'll borrow *Sonic Th
 
 (ref:tilsinglecaption) A single tile.
 
-```{r fig.cap=c("(ref:tilallcaption)", "(ref:tilsinglecaption)"), fig.align="center", out.width = split_figure_width, tab.title="(ref:tilestitle)", tab.active = TRUE, tab.first=TRUE, tab.nested=TRUE, tab.float=TRUE, tab_class="pixel", fig.ncol = responsive_columns}
+```{r fig.cap=c("(ref:tilallcaption)", "(ref:tilsinglecaption)"), fig.align="center", out.width = split_figure_width, tab.title="(ref:tilestitle)", tab.active = TRUE, tab.first=TRUE, tab.nested=TRUE, tab.figure=TRUE, tab.float=TRUE, tab_class="pixel", fig.ncol = responsive_columns}
 image('sonic/tiles.png', "(ref:tilallcaption)", tab.name = "(ref:tilalltitle)", tab.active = TRUE)
 image('sonic/tile.png', "(ref:tilsinglecaption)", tab.name = "(ref:tilsingletitle)")
 figcaption("(ref:tilesfooter)")
@@ -151,8 +151,8 @@ Curiously enough, there are 3 unused bits in the entry that the game can use for
 
 (ref:spritecaption) Rendered Sprite layer.
 
-```{r fig.cap="(ref:spritecaption)", fig.align='center', tab.title="(ref:spritetitle)", tab_class="pixel"}
-image('sonic/sprites.png', "(ref:spritecaption)", float=TRUE)
+```{r fig.cap="(ref:spritecaption)", fig.align='center', tab.title="(ref:spritetitle)"}
+image('sonic/sprites.png', "(ref:spritecaption)", float=TRUE, class="pixel")
 ```
 
 Sprites are just tiles that move freely. The VDP can raster **up to 64 sprites** using a single tile (8x8 px) or two tiles stacked vertically (8x16 px).
@@ -165,8 +165,8 @@ The VDP is limited to **up to eight sprites per horizontal scan-line**. Also, if
 
 (ref:resultcaption) Tada!
 
-```{r fig.cap="(ref:resultcaption)", fig.align='center', tab.title="(ref:resulttitle)", tab_class="pixel", tab.last=TRUE}
-image('sonic/result.png', "(ref:resultcaption)", float=TRUE)
+```{r fig.cap="(ref:resultcaption)", fig.align='center', tab.title="(ref:resulttitle)", tab.last=TRUE}
+image('sonic/result.png', "(ref:resultcaption)", float=TRUE, class="pixel")
 ```
 
 The VDP automatically blends the two layers to form the final frame. The rendering process is done scan-line by scan-line, so the VDP doesn't really know how the frame is going to look, that's only seen by the user when the picture is constructed on the TV.
