@@ -35,6 +35,10 @@ I was a bit confused at first while reading about the different models that Sega
 
 From now on I'll use the term 'Master System' or 'SMS' to refer to all of these, except when talking about exclusive features from a particular model.
 
+```{r results="asis"}
+supporting_imagery()
+```
+
 ## CPU
 
 Sega decided on a fully-fledged **Zilog Z80** CPU running at **~3.58 MHz**. A popular choice by other machines like the ZX Spectrum and the Amstrad CPC. The Z80 has an instruction set compatible with the Intel 8080 but expanded with lots of more instructions.

@@ -53,7 +53,7 @@ Lastly, the Wiimote also includes **16 KB of EEPROM** to store user data and a *
 
 Nintendo shipped this system with another controller to be used on the opposite hand, the **Nunchuk**, this one comes with its own accelerometer, joystick and two buttons. It's connected to a 6-pin proprietary port on the Wiimote.
 
-(ref:controllers) Nunchuk and Wiimote, respectively.
+(ref:controllers) Nunchuk and Wiimote `r ref("photography-amos")`, respectively.
 
 ```{r fig.cap="(ref:controllers)", fig.align='center', centered=TRUE}
 image("controllers/both.jpg", "(ref:controllers)", class = "centered-container")
@@ -213,7 +213,7 @@ Having said that, Nintendo wired up the I/O in a way that makes use of two AMBA 
 
 ### Maintaining compatibility
 
-(ref:gcequipcaption) Wii using Gamecube equipment.
+(ref:gcequipcaption) Wii using Gamecube equipment `r ref("photography-amos")`.
 
 ```{r fig.cap="(ref:gcequipcaption)", open_float_group=TRUE, fig.align='center'}
 image('gamecube-mode.png', "(ref:gcequipcaption)", float=TRUE)

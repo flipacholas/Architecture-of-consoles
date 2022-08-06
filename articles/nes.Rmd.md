@@ -349,7 +349,7 @@ Throughout my research, I came across many interesting articles that explain unu
 - Unlike the [Master System's VDP](`r ref("master-system#graphics")`), which generates RGB colours that are later encoded into NTSC/PAL signals for broadcasting, the **NES' PPU does all at once** `r cite("graphics-palettes")`. Hence, there isn't a one-to-one connection between the colours of the PPU master palette and the standard RGB colourspace (widely adopted by present technology). This leaves some room for interpretation and, as a consequence, various emulators will display a different palette.
   - The discrepancies between RGB palettes is most evident with Tim Worthington's DIY kit that adds RGB signal output to the NES, since it also implements a switch that chooses between three pre-defined palettes `r cite("graphics-nesrgb")`.
 - The master palette contains a **'cursed' colour** (`$0D`) which can mess up the NTSC TV signal `r cite("graphics-cursed_colour")`. Well, what happens is that the TV mistakes the signal to display that colour with the blanking signal, so flickering may occur.
-- The PPU relies on DRAM to store its Object Attribute Memory (OAM). Now, DRAM requires to be refreshed constantly to prevent loss of data (unlike SRAM), and it so happens that the PPU won't refresh DRAM when it's not rendering the frame `r cite("graphics-oam")`. This manifests during vertical blanking. For this reason, it is adviced against updating OAM outside vertical blanking, since the non-refreshing period happening during V-blank will have corrupted part of the table.
+- The PPU relies on DRAM to store its Object Attribute Memory (OAM). Now, DRAM requires to be refreshed constantly to prevent loss of data (unlike SRAM), and it so happens that the PPU won't refresh DRAM when it's not rendering the frame `r cite("graphics-oam")`. This manifests during vertical blanking. For this reason, it is advised against updating OAM outside vertical blanking, since the non-refreshing period happening during V-blank will have corrupted part of the table.
   - The PPU variant for PAL systems is not affected by this, as it refreshes during V-Blank (which lasts longer on PAL systems).
 
 `r close_tabs()`
@@ -384,7 +384,7 @@ Let's now discuss the type of wave-forms synthesised by the APU `r cite("audio-r
 
 (ref:audiofooter) Mother (1989).
 
-```{r pulse, fig.cap=c("(ref:pulsecaption1)", "(ref:pulsecaption2)", "(ref:audioallcaption)"), fig.align='center', tab.title="(ref:pulsetitle)", tab.active = TRUE, tab.first=TRUE, tab.nested=TRUE, tab.float=TRUE, tab.figure=TRUE, tab_class="pixel", out.width = standard_figure_width}
+```{r pulse, fig.cap=c("(ref:pulsecaption1)", "(ref:pulsecaption2)", "(ref:audioallcaption)"), fig.align='center', tab.title="(ref:pulsetitle)", tab.active = TRUE, tab.first=TRUE, tab.nested=TRUE, tab.float=TRUE, tab.figure=TRUE, out.width = standard_figure_width}
 video('pulse_single_1', "(ref:pulsecaption1)", tab.name = "(ref:pulsetitle1)", caption.post = "(ref:audiofooter)", tab.active = TRUE)
 video('pulse_single_2', "(ref:pulsecaption2)", tab.name = "(ref:pulsetitle2)", caption.post = "(ref:audiofooter)")
 video('pulse_full', "(ref:audioallcaption)", tab.name = "(ref:completetitle)", caption.post = "(ref:audiofooter)")
@@ -403,7 +403,7 @@ When the game needs to play a sound effect, the accompaniment channel is switche
 
 (ref:trianglecaption) Oscilloscope view of the triangle channel.
 
-```{r triangle, fig.cap=c("(ref:trianglecaption)", "(ref:audioallcaption)"), fig.align='center', tab.title="(ref:triangletitlecaption)", tab.nested=TRUE, tab.float=TRUE, tab.figure=TRUE, tab_class="pixel", out.width = standard_figure_width}
+```{r triangle, fig.cap=c("(ref:trianglecaption)", "(ref:audioallcaption)"), fig.align='center', tab.title="(ref:triangletitlecaption)", tab.nested=TRUE, tab.float=TRUE, tab.figure=TRUE, out.width = standard_figure_width}
 video('triangle_single', "(ref:trianglecaption)", tab.name = "(ref:triangletitlecaption)", caption.post = "(ref:audiofooter)", tab.active = TRUE)
 video('triangle_full', "(ref:audioallcaption)", tab.name = "(ref:completetitle)", caption.post = "(ref:audiofooter)")
 figcaption("(ref:audiofooter)")
@@ -419,7 +419,7 @@ The volume of this channel can't be controlled, possibly because the volume cont
 
 (ref:noisecaption) Oscilloscope view of the noise channel.
 
-```{r noise, fig.cap=c("(ref:noisecaption)", "(ref:audioallcaption)"), fig.align='center', tab.title="(ref:noisetitlecaption)", tab.nested=TRUE, tab.float=TRUE, tab.figure=TRUE, tab_class="pixel", out.width = standard_figure_width}
+```{r noise, fig.cap=c("(ref:noisecaption)", "(ref:audioallcaption)"), fig.align='center', tab.title="(ref:noisetitlecaption)", tab.nested=TRUE, tab.float=TRUE, tab.figure=TRUE, out.width = standard_figure_width}
 video('noise_single', "(ref:noisecaption)", tab.name = "(ref:noisetitlecaption)", caption.post = "(ref:audiofooter)", tab.active = TRUE)
 video('noise_full', "(ref:audioallcaption)", tab.name = "(ref:completetitle)", caption.post = "(ref:audiofooter)")
 figcaption("(ref:audiofooter)")
@@ -435,7 +435,7 @@ This channel has only 32 *presets* available. Half (16) of these presets produce
 
 (ref:samplecaption) Oscilloscope view of the sample channel.
 
-```{r sample, fig.cap=c("(ref:samplecaption)", "(ref:audioallcaption)"), fig.align='center', tab.title="(ref:sampletitlecaption)", tab.last=TRUE, tab.nested=TRUE, tab.float=TRUE, tab.figure=TRUE, tab_class="pixel", out.width = standard_figure_width}
+```{r sample, fig.cap=c("(ref:samplecaption)", "(ref:audioallcaption)"), fig.align='center', tab.title="(ref:sampletitlecaption)", tab.last=TRUE, tab.nested=TRUE, tab.float=TRUE, tab.figure=TRUE, out.width = standard_figure_width}
 video('sample_single', "(ref:samplecaption)", tab.name = "(ref:sampletitlecaption)", tab.active = TRUE)
 video('sample_full', "(ref:audioallcaption)", tab.name = "(ref:completetitle)")
 figcaption("(ref:audiofooter)")
@@ -465,7 +465,7 @@ While the APU was not comparable to the quality of a vinyl, cassette or CD, prog
 
 (ref:akumajocaption) Oscilloscope view of Akumajō Densetsu (Japanese version of Castlevania III, 1989).
 
-```{r extrachannels, fig.cap=c("(ref:castlevaniacaption)", "(ref:akumajocaption)"), fig.align='center', tab.title="(ref:extrachannelstitle)", tab.active = TRUE, tab.first=TRUE, tab.nested=TRUE, tab.float=TRUE, tab.figure=TRUE, tab_class="pixel", out.width = standard_figure_width}
+```{r extrachannels, fig.cap=c("(ref:castlevaniacaption)", "(ref:akumajocaption)"), fig.align='center', tab.title="(ref:extrachannelstitle)", tab.active = TRUE, tab.first=TRUE, tab.nested=TRUE, tab.float=TRUE, tab.figure=TRUE, out.width = standard_figure_width}
 video('castlevania_usa', "(ref:castlevaniacaption)", tab.name = "(ref:castlevaniatitle)", tab.active = TRUE)
 video('castlevania_jap', "(ref:akumajocaption)", tab.name = "(ref:akumajotitle)")
 ```
@@ -478,7 +478,7 @@ Take a look at this video which shows the difference between the Japanese versio
 
 (ref:tremolocaption) Oscilloscope view of Final Fantasy III (1990).
 
-```{r tremolo, fig.cap="(ref:tremolocaption)", fig.align='center', tab.title="(ref:tremolotitle)", tab.last=TRUE, tab.figure=TRUE, tab_class="pixel", out.width = standard_figure_width}
+```{r tremolo, fig.cap="(ref:tremolocaption)", fig.align='center', tab.title="(ref:tremolotitle)", tab.last=TRUE, tab.figure=TRUE, out.width = standard_figure_width}
 video('tremolo_full', "(ref:tremolocaption)", float=TRUE)
 ```
 

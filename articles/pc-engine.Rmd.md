@@ -40,6 +40,10 @@ Just like the Master system, NEC shipped a lot of revisions and strange variatio
 
 This article will focus on the PC Engine/TurboGrafx-16, but will also discuss the expansions that led to the release of the PC Engine Duo/TurboDuo.
 
+```{r results="asis"}
+supporting_imagery()
+```
+
 ## CPU
 
 Inside this console, we find the **HuC6280**, a chip made by **Hudson Soft** that houses two components. One of them is the CPU, which can operate at two speeds: **~1.79 MHz** and **~7.16 MHz**.

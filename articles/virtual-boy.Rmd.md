@@ -62,7 +62,7 @@ The topics involved in explaining this (optics, visual phenomenons, etc) may fee
 
 (ref:scanswitchestitle) Switches
 
-(ref:scanswitchescaption) Bird's-eye view of the console `r cite("photography-amos")`.<br>First switch is the 'Focus slider' and below it is the 'IPD dial'
+(ref:scanswitchescaption) Bird's-eye view of the console.<br>First switch is the 'Focus slider' and below it is the 'IPD dial'
 
 ```{r fig.cap=c("(ref:scandiagramcaption)", "(ref:scanswitchescaption)"), fig.align="center", out.width = split_figure_width, tab.title="(ref:scannertitle)", tab.nested=TRUE, tab.float=TRUE, fig.ncol = responsive_columns, tab.first=TRUE, tab.active=TRUE}
 image('scanner.png', "(ref:scandiagramcaption)", tab.name = "(ref:scandiagramtitle)", tab.active = TRUE)

@@ -25,6 +25,10 @@ aliases: [/projects/consoles/dreamcast/]
 
 The Sega Dreamcast introduced many new features over its predecessor (the [Saturn](`r ref("sega-saturn")`)) to appeal to both game developers and console gamers. While this was Sega's last attempt to conquer the console market, some of the technologies which were pioneered in the Dreamcast carried on and into future mainstream devices.
 
+```{r results="asis"}
+supporting_imagery()
+```
+
 ## CPU
 
 Unsurprisingly, Sega chose Hitachi again to develop their CPU. If you've been reading the [previous article about the Sega Saturn](`r ref("sega-saturn")`) then, lo and behold, I present you the next generation of SH processor: the **SH-4** running at a whopping **200 MHz** `r cite("cpu-spec")`. So, what's interesting about this CPU?
