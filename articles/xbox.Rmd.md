@@ -88,19 +88,19 @@ Now, the Xbox CPU, along with the rest of Pentium III processors, use the **P6 M
 
 - A *massive* **14-stage pipeline**: Meaning up to 14 instructions can be processed in parallel. On the other side, individual instructions may take a lot more cycles to complete. See [a previous explanation](`r ref("game-boy-advance#whats-new")`).
 - **Out-of-order execution**: If possible, the CPU re-orders the sequence of instructions to increase efficiency and performance.
-- **Speculative prediction**: Similar to [branch prediction](`r ref("gamecube#features")`), but it takes it further and executes the branch that the CPU has predicted it will be chosen.
+- **Dynamic execution**: Since the P6 is an out-of-order and [superscalar](`r ref("dreamcast#cpu")`) design. The traditional [branch predictor](`r ref("gamecube#features")`) is now combined with other techniques ('speculative execution' and 'data-flow analysis') to take advantage of the new capabilities. In doing so, it reduces pipeline stalling even further.
 
 Having said that, take a closer look at these features. It so happens they are very similar to [previous consoles](`r ref("gamecube#features")`), however, the other CPUs are very different in terms of design compared to Intel ones. Historically, one could argue that the design of the x86 would've never allowed Intel to produce, let's say, a pipelined CPU. Yet they managed to do so, so let us see why...
 
 `r tab.simple("CISC or RISC")`
 
-All of the competitor's consoles previously analysed contain a **RISC** CPU whereas Intel's x86 ones are **CISC**. RISC CPUs are known for having a simplified instruction set compared to CISC CPUs. This includes, for instance, not providing instructions that operate values directly from memory (as opposed to only using registers). 
+All of the competitor's consoles of the same generation contain a **RISC** CPU whereas Intel's x86 ones are **CISC**. RISC CPUs are known for having a simplified instruction set compared to CISC CPUs. This includes, for instance, not providing instructions that operate values directly from memory (as opposed to only operating values from registers). The simplified model is called **load–store architecture**.
 
-One of the advantages of RISC processors is that their simplistic approach enables its CPUs to be designed with a modular sense, which in turn can be exploited to improve performance with parallelism techniques. This is why we have seen CPUs like MIPS and PowerPC debuting pipeline stages, superscalar designs, out-of-order execution, branch prediction, etc. On the other side, 'CISC' processors were designed many years before the RISC processors appeared and aimed to solve different needs. Consequently, their designs are not as flexible as RISC ones.
+One of the advantages of RISC processors is that their simplistic approach enables its CPUs to be designed with a modular sense, which in turn can be exploited to improve performance with parallelism techniques. This is why we have seen CPUs like MIPS and PowerPC debuting pipeline stages, superscalar designs, out-of-order execution, branch prediction, etc. On the other side, 'CISC' processors were designed many years before RISC processors appeared and the former aimed to solve different needs. Consequently, their designs are not as flexible as RISC ones.
 
-Back to the original question, the P6 is an interesting design, because while this CPU only understands a CISC instruction set (x86), it interprets x86 using **microcode** (called 'micro-operations') and the unit that executes that code is built around the guidelines of RISC. All in all, this allows Intel to apply the optimisations of RISC processors while keeping a 'CISC layer' for compatibility with x86.
+Back to the original question, the P6 is an interesting design, because while this CPU only understands a CISC instruction set (x86), a subset of its opcodes is interpreted using **microcode**. Furthermore, the unit that executes microcode is built around the load-store model `r cite("cpu-gwennap")`. All in all, this allows Intel to gain similar advantages to RISC processors without breaking compatibility with the historic x86 ISA.
 
-Microcode is already embedded in the silicon but it can be patched, allowing Intel to fix its CPUs after production whenever a bug or a security vulnerability is discovered. If you have read previous articles (i.e. [N64](`r ref("nintendo-64")`) or [PS2](`r ref("playstation-2")`)), bear in mind that Intel's microcode is **not publicly accessible** (let alone documented) and Intel is its solely 'maintainer'.
+Moreover, microcode is already embedded in the silicon but it can be patched, allowing Intel to fix its CPUs after production whenever a bug or a security vulnerability is discovered. If you have read previous articles (i.e. [N64](`r ref("nintendo-64")`) or [PS2](`r ref("playstation-2")`)), bear in mind that Intel's microcode is **not publicly accessible** (let alone documented) and Intel is its solely 'maintainer'.
 
 (ref:thecoretitle) The Core
 
@@ -125,7 +125,9 @@ Finally, the chip uses the 'Micro-PGA2' socket fit on the motherboard, but like 
 
 ### P6 and the end of Pentium numbers
 
-Here's a bit more history: After the years of the P6, Intel planned to succeed it with the 'Netburst' microarchitecture (featured in the Pentium IV). However, the line of succession also ended there: The microarchitecture couldn't be improved anymore. This prompted an Intel team in Israel to revisit the old P6 and develop a more efficient successor. The result was **Pentium M**, eventually extended to form the **Core** microarchitecture (and brand). 'Core' is the basis of present designs.
+Here's a bit more history. After the years of the P6, Intel planned to succeed it with the 'NetBurst' microarchitecture (featured in the Pentium IV). However, the line of succession also ended there. Even though NetBurst implemented many contemporary techniques `r cite("cpu-netburst")`, it also suffered from excessive power consumption, heat emission and scalability issues that impeded the design from being continued any further.
+
+Consequently, this prompted an Intel team in Israel to revisit their low-powered P6 CPU called 'Pentium M' and develop a more powerful successor. The first result was **Yonah**, a slight improvement of the P6 design branded as **Core Solo** or **Core Duo**. Months later, the new **Core** microarchitecture became the flagship successor of P6 (and NetBurst) with the arrival of the **Core 2** CPU line. Over the years, subsequent microarchitectures improved on many aspects, but they also managed to re-incorporate forgotten elements from NetBurst without repeating the same mistakes.
 
 ### Motherboard architecture
 
