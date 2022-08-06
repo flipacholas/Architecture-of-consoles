@@ -429,7 +429,7 @@ image('shell/settings.png', "(ref:settingscaption)", float=TRUE, tab.name = "(re
 figcaption("(ref:dashboardfooter)")
 ```
 
-The dashboard is not very different in terms of functionality compared to the [Playstation menu](`r ref("playstation-2#interactive-shell")`), or the [Gamecube's IPL](`r ref("gamecube#splash-and-shell")`). It essentially includes all the functions typical users would expect, like being able to tweak some settings, moving saves around, playing DVD movies or CD audio; and so forth.
+The dashboard is not very different in terms of functionality compared to the [PlayStation menu](`r ref("playstation-2#interactive-shell")`), or the [Gamecube's IPL](`r ref("gamecube#splash-and-shell")`). It essentially includes all the functions typical users would expect, like being able to tweak some settings, moving saves around, playing DVD movies or CD audio; and so forth.
 
 One thing worth mentioning is that the Dashboard also allowed to rip music from an audio CD and store it in the HDD. This music could be subsequently fetched from any game to 'personalise' its soundtrack. *Fun stuff!*
 

@@ -371,7 +371,7 @@ If a Video CD card is inserted, the player can reproduce MPEG video decoded from
 
 ### No BIOS?
 
-Unlike the [Playstation](`r ref("playstation")`) whose ROM chip bundled a [BIOS](`r ref("playstation#operating-system")`), which in turn exposed APIs for programmers to use. The Saturn's ROM is often called 'IPL' presumably since its main job is to bootstrap the game and run the shell. However, the latter still stores some routines (called **services**) to manipulate the hardware (such as managing save data and power control). It even implements a 'semaphore'! (used to synchronise operations that involve multiple processors at the same time). Hence, that part of the ROM is called **System program**.
+Unlike the [PlayStation](`r ref("playstation")`) whose ROM chip bundled a [BIOS](`r ref("playstation#operating-system")`), which in turn exposed APIs for programmers to use. The Saturn's ROM is often called 'IPL' presumably since its main job is to bootstrap the game and run the shell. However, the latter still stores some routines (called **services**) to manipulate the hardware (such as managing save data and power control). It even implements a 'semaphore'! (used to synchronise operations that involve multiple processors at the same time). Hence, that part of the ROM is called **System program**.
 
 ## Games
 

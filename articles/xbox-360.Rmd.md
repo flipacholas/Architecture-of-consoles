@@ -29,7 +29,7 @@ top_tabs:
 
 ## A quick introduction
 
-Released a year before its main competitor, the Xbox 360 was already claiming technological superiority against the yet-to-be-seen Playstation 3. But while the Xbox 360 might be the flagship of the 7th generation, it will need to fight strongly once Nintendo and Sony take up retail space.
+Released a year before its main competitor, the Xbox 360 was already claiming technological superiority against the yet-to-be-seen PlayStation 3. But while the Xbox 360 might be the flagship of the 7th generation, it will need to fight strongly once Nintendo and Sony take up retail space.
 
 This new entry of the [console architecture series](`r ref("consoles")`) will give you an additional perspective of how technology was envisioned during the early naughties, with emphasis on the emerging 'multi-core' processor and unorthodox symbiosis between components, all of which enabled engineers to tackle unsolvable challenges with cost-effective solutions.
 
@@ -115,7 +115,7 @@ When Microsoft approached IBM for a new _frictionless_ venture, IBM was already 
 
 #### The new CPU partner
 
-In a turn of events, IBM agreed to share its IP and to design a new multi-core processor, and so the **Xbox 360's CPU supplier became IBM**. Although, [you may remember](`r ref("playstation-3#tab-1-1-the-state-of-progress")`) this was the same IBM that already signed an agreement with Sony and Toshiba to produce the Playstation's 3 CPU ('Cell'). Apparently, IBM assumed Microsoft was not aware of the Cell project `r cite("cpu-alexander")` and their current contract with Sony didn't forbid them to sell to third parties.
+In a turn of events, IBM agreed to share its IP and to design a new multi-core processor, and so the **Xbox 360's CPU supplier became IBM**. Although, [you may remember](`r ref("playstation-3#tab-1-1-the-state-of-progress")`) this was the same IBM that already signed an agreement with Sony and Toshiba to produce the PlayStation's 3 CPU ('Cell'). Apparently, IBM assumed Microsoft was not aware of the Cell project `r cite("cpu-alexander")` and their current contract with Sony didn't forbid them to sell to third parties.
 
 > All three companies [IBM, Toshiba and Sony]... legally all had rights to go and put any of that technology, any of those processor cores into other spaces. (...) It is very common to develop an interesting, leading-edge new technology and then utilize that technology across multiple platforms. (...) I guess what everyone didn't anticipate was -- before we even got done with the Cell chip and PS3 product -- that **we'd be showing this off specifically to a competitor**. `r cite("cpu-alexander")`
 >
@@ -242,13 +242,13 @@ image("images/consoles/ps3/cpu/ppe.png", full_src = TRUE, "(ref:diagramxenoncapt
 
 To be honest, I'm not sure why technical manuals keep calling Xenon's PPEs a 'PPE' as they better resemble a [PPU](`r ref("playstation-3#the-powerpc-processing-unit")`).
 
-Anyway, let's go over the significant changes that Microsoft liked to brag about when being compared with the Playstation 3.
+Anyway, let's go over the significant changes that Microsoft liked to brag about when being compared with the PlayStation 3.
 
 #### The new vector units
 
 As the [Synergistic Processor Elements](`r ref("playstation-3#inside-cell-the-assistants")`) (SPEs) were Sony's secret weapon and Microsoft was only interested in homogenous systems, IBM presented an alternative approach to speed up the manipulation of vectors and matrices in Xenon `r cite("cpu-gschwind")`. In a nutshell, IBM boosted the [VMX unit](`r ref("playstation-3#tab-3-3-arithmetic")`) (the SIMD block found within the PPEs) which evolved into **VMX128**, now housing more registers and opcodes.
 
-The initial VMX specification implemented in the Playstation 3 provides 32 128-bit registers and instructions for operating up to three 32-bit scalars. This worked to an acceptable degree with general-purpose applications that depend on SIMD operations, although the real performance would be unlocked once the SPEs are added into the equation. By contrast, Microsoft wanted programmers to port SIMD-hungry applications without extra hassle, and the new VMX128 unit reflects that.
+The initial VMX specification implemented in the PlayStation 3 provides 32 128-bit registers and instructions for operating up to three 32-bit scalars. This worked to an acceptable degree with general-purpose applications that depend on SIMD operations, although the real performance would be unlocked once the SPEs are added into the equation. By contrast, Microsoft wanted programmers to port SIMD-hungry applications without extra hassle, and the new VMX128 unit reflects that.
 
 VMX128 supplies **128 128-bit** registers instead, along with an adapted instruction set to manipulate the larger set of registers. To accomplish that, IBM changed the opcode format to allocate 7 bits (as opposed to 5 bits) for referencing its extended register file `r cite("cpu-gschwind")`. This is possible thanks to some trickery applied on the last five bits at the end of the 32-bit opcode `r cite("cpu-biallas")`. The last five bits are mostly, but not completely, unused by VMX. Consequently, VMX128 is incompatible with a subset of VMX instructions (related to integer multiplication and additions).
 
@@ -272,7 +272,7 @@ By then, CPU cores employing out-of-order execution were in the order of the day
 
 To understand this turn of events, let's take a closer look at the Out-of-order execution (OoO) model. OoO is not a Lego piece that engineers fit and then move on to the next part. Pipelined CPUs are susceptible to a whole new range of [hazards](`r ref("playstation#delay-galore")`), which means that the slightest addition may lead to a complete redesign. For instance, OoO requires altering the register file to fit **register renaming** `r cite("cpu-etsion")`, a clever technique where the CPU houses more registers than the instruction set references, enabling the CPU to store multiple copies of the program state and prevent dependency problems that arise after altering the original order of the instructions. All in all, while these solutions are interesting, they add up to complexity to the CPU chip, and that can pose a threat to future scalability.
 
-The PowerPC Processor Element (PPE) derives from POWER4 which is itself an OoO core. However, POWER4 is an independent chip by itself, while the PPE is either surrounded by 7 SPEs (as with the Playstation 3/Cell) or by two more PPEs (as with the Xbox 360/Xenon). These changes take up space and the dimensions of the CPU chip are critical in terms of price and heat emission. So, in the end, I imagine IBM didn't see enough advantages for applying OoO on an application-specific machine like the PS3 or Xbox 360.
+The PowerPC Processor Element (PPE) derives from POWER4 which is itself an OoO core. However, POWER4 is an independent chip by itself, while the PPE is either surrounded by 7 SPEs (as with the PlayStation 3/Cell) or by two more PPEs (as with the Xbox 360/Xenon). These changes take up space and the dimensions of the CPU chip are critical in terms of price and heat emission. So, in the end, I imagine IBM didn't see enough advantages for applying OoO on an application-specific machine like the PS3 or Xbox 360.
 
 ##### An alternative solution
 
@@ -481,7 +481,7 @@ image('gpu/pipeline_vertex.png', "(ref:gpuvertexcaption)", float=TRUE)
 
 Since the times of [Flipper](`r ref("gamecube#graphics")`) (or even the [RCP](`r ref("nintendo-64#graphics")`), as it shared its core team members), ATI maintained the initiative of providing a geometry block to accelerate vertex operations. With Xenos, it is now fully programmable using Direct3D's **High-Level Shader Language** (HLSL), which is similar to C but used for implementing vertex shaders without needing assembly, although the latter is still possible.
 
-Both Xenos and [RSX](`r ref("playstation-3#tab-8-2-vertex-shader")`) implement the Vertex Shader Model 3.0 (`vs_3_0`) specification, which outlines a common set of capabilities and limitations. This includes providing **512 or more slots** for instructions, **branching opcodes** and support for **texture fetching**, among others. The difference, however, is that Playstation 3 programmers must use Nvidia's CG compiler (once a collaborative work with Microsoft's HLSL) while Xenos developers rely on Microsoft's toolkit instead, and thus use Direct3D's HLSL compiler.
+Both Xenos and [RSX](`r ref("playstation-3#tab-8-2-vertex-shader")`) implement the Vertex Shader Model 3.0 (`vs_3_0`) specification, which outlines a common set of capabilities and limitations. This includes providing **512 or more slots** for instructions, **branching opcodes** and support for **texture fetching**, among others. The difference, however, is that PlayStation 3 programmers must use Nvidia's CG compiler (once a collaborative work with Microsoft's HLSL) while Xenos developers rely on Microsoft's toolkit instead, and thus use Direct3D's HLSL compiler.
 
 Furthermore, let's not forget that the hardware carrying out those operations relies on a new formula. The new unified design means vertices are processed through a shared but bigger pipeline, which works as follows:
 
@@ -562,11 +562,11 @@ Similarly, over the next years since the console's release, the concepts of Xeno
 
 Now, if you wonder if any of these advancements were later incorporated into the Xbox 360. I'm afraid by the time this console debuted, the unified shaders were still a relatively new concept. So, unfortunately, none of the consequent developments (i.e. Direct3D 10) got ever back-ported to the Xbox 360. But hey, that's a legacy left for the next generation of consoles to enjoy!
 
-On the other side, the PC market experienced a different revolution that strangely didn't originate from ATI. It turns out **Nvidia** won the race on becoming the first company to ship a graphics card using the unified model, I'm referring to the **Geforce 8** series (and its **Tesla** architecture) that landed in 2006 `r cite("graphics-anand")`. Ironically, it was the same year the Playstation 3 arrived (also powered by Nvidia's technology, though with an older architecture...).
+On the other side, the PC market experienced a different revolution that strangely didn't originate from ATI. It turns out **Nvidia** won the race on becoming the first company to ship a graphics card using the unified model, I'm referring to the **Geforce 8** series (and its **Tesla** architecture) that landed in 2006 `r cite("graphics-anand")`. Ironically, it was the same year the PlayStation 3 arrived (also powered by Nvidia's technology, though with an older architecture...).
 
 ### Video Output
 
-Unlike the Playstation 3, which arrived a year later, the release of the Xbox 360 in 2005 got caught up in the middle of a transition from analogue video (i.e. RGB and composite) to digital (i.e. HDMI), so the first shipments of the console didn't bundle the famous [HDMI connector](`r ref("playstation-3#a-unified-video-output")`) that quickly displaced the analogue video salad.
+Unlike the PlayStation 3, which arrived a year later, the release of the Xbox 360 in 2005 got caught up in the middle of a transition from analogue video (i.e. RGB and composite) to digital (i.e. HDMI), so the first shipments of the console didn't bundle the famous [HDMI connector](`r ref("playstation-3#a-unified-video-output")`) that quickly displaced the analogue video salad.
 
 (ref:xboxbackcaption) Two different revisions of the Xbox 360 stacked together, the top one is a Zephyr and the bottom revision is a Xenon. Notice that the Zephyr model adds the HDMI connector, while Xenon only has the analogue A/V socket.
 
@@ -586,7 +586,7 @@ As outdated as this may seem today, Microsoft still required developers to consi
 
 Following the requirements of the Video Electronics Standards Association (VESA), Microsoft released a software update in November 2008 to support 16:10 aspect ratios, although only available through the VGA signals. Games were still only required to support 16:9 and 4:3 ratios, so using 16:10 would show a black backdrop (a.k.a. letterbox). Curiously enough, the operating system contains routines to allow games to detect whenever 16:10 is activated, though they were never made public.
 
-Additionally, Microsoft shipped a software update in May 2011 to add support for 3D TVs, much like the [Playstation 3 did](`r ref("playstation-3#real-3d-visionprojection")`).
+Additionally, Microsoft shipped a software update in May 2011 to add support for 3D TVs, much like the [PlayStation 3 did](`r ref("playstation-3#real-3d-visionprojection")`).
 
 #### New attitudes towards resolutions
 
@@ -766,11 +766,11 @@ The sensor is operated through the use of Microsoft's opaque APIs, which in turn
 
 ## Operating System (and backwards compatibility)
 
-The Xbox 360 was subject to the same needs and fashions that the Playstation 3 went through. So the former offers many services, including online gaming (through Xbox Live), a digital marketplace, media player, file system explorer (albeit extremely simple) and other utilities.
+The Xbox 360 was subject to the same needs and fashions that the PlayStation 3 went through. So the former offers many services, including online gaming (through Xbox Live), a digital marketplace, media player, file system explorer (albeit extremely simple) and other utilities.
 
 ### Overview
 
-The Operating System of the Xbox 360 is a collection of bare-metal utilities and userland applications tightly squashed together to fit into **16 MB of NAND**. Just like the Playstation 3, Microsoft built their OS to provide multimedia and networking (i.e. multi-player) capabilities, plus the ability to play games and secure the system from external intrusion.
+The Operating System of the Xbox 360 is a collection of bare-metal utilities and userland applications tightly squashed together to fit into **16 MB of NAND**. Just like the PlayStation 3, Microsoft built their OS to provide multimedia and networking (i.e. multi-player) capabilities, plus the ability to play games and secure the system from external intrusion.
 
 That being said, the system contains a few core components that take care of the low-level area of this console (hardware access, security and resource management). The rest is composed of applications (i.e. the splash animation, the interactive shell called 'Dashboard' and the game itself) and user data (i.e. game saves, user profile, network settings).
 
@@ -779,13 +779,13 @@ That being said, the system contains a few core components that take care of the
 Throughout the life of this console, I noticed a more chaotic evolution than its competitor, which involved constant re-branding and radical redesigns of the user interface. I presume Microsoft was trying to shift from one target audience to another. So, to understand this section better, I've organised its evolution into these periods:
 
 - The **multimedia hub era** (2005-2008): as the first home console to debut in the 7th generation, high-definition graphics, Xbox Live (online platform) and HD movies were the main selling points. And in the case you got bored with them, you could resort to buying accessories `r cite("operating_system-acc_promo")` (i.e. the remote controller, the headset, the HD DVD reader) to 'enhance' your experience.
-- The **competitive era** (2008-2011): with the Playstation 3 and the Wii now occupying store space, Microsoft found itself in need to aggressively compete for the consumer's attention. First, a new system update called 'New Xbox Experience' overhauled the old interface to increase user personalisation (i.e. 3D avatars) and enhance the social aspect of this console. Meanwhile, a new 'killer app' lands in the form of a physical accessory: Kinect. Nobody knows its outcome, yet it proves a very engaging topic of conversation. 
+- The **competitive era** (2008-2011): with the PlayStation 3 and the Wii now occupying store space, Microsoft found itself in need to aggressively compete for the consumer's attention. First, a new system update called 'New Xbox Experience' overhauled the old interface to increase user personalisation (i.e. 3D avatars) and enhance the social aspect of this console. Meanwhile, a new 'killer app' lands in the form of a physical accessory: Kinect. Nobody knows its outcome, yet it proves a very engaging topic of conversation. 
 - The **cloud era** (2011-2013): as all the previous enthusiasm slowly dissipates, Microsoft simplified its user interface to align with its other platforms (Windows 8 and Windows Phone 7) and provided users with the chance to move their local data to the cloud (a.k.a Microsoft's servers). In the process, third-party advertising became more prominent in the user interface (possibly to increase their source of income). Nonetheless, users are now expecting the successor of the Xbox 360.
 - The **capitulation** (2014 onwards): with the new successor (Xbox One) reaching the stores, Microsoft dedicated minimum efforts to their (now old) console. Users will only receive system updates in the form of bug fixes.
 
 #### A recallable security design
 
-If you recall [my deconstruction](`r ref("playstation-3#operating-system")`) of the Playstation 3's operating system, the latter was divided into three areas:
+If you recall [my deconstruction](`r ref("playstation-3#operating-system")`) of the PlayStation 3's operating system, the latter was divided into three areas:
 
 - The **Hypervisor**, which has complete control of the hardware.
 - The **Kernel**, interfacing user programs (mostly games) with the hypervisor, and in doing so it provides an extra layer of protection.
@@ -793,7 +793,7 @@ If you recall [my deconstruction](`r ref("playstation-3#operating-system")`) of 
 
 This design is correlated to the [PPU's privilege levels](`r ref("playstation-3#cells-privileged-security")`) (affecting both Cell and Xenon) which prevents 'casual' applications, like games, from accessing sensitive resources, such as decryption keys.
 
-IBM enacted three privileges (instead of just two) to allow multiple operating systems running at the same time. With this idea, each OS would only live under the two lowest levels while the highest level would be reserved for the program supervising all operating systems. In practice, the Playstation 3 and Xbox 360 only require a single operating system (except for [OtherOS](`r ref("playstation-3#a-multi-os-proposal")`), but that was quickly scrapped). Consequently, Sony and Microsoft designed a hypervisor that enforces their respective security model and performs memory management tasks. Conversely, the architectural differences between Cell and Xenon led to very distinct implementations of hypervisors, so each is subject to unique flaws and strengths.
+IBM enacted three privileges (instead of just two) to allow multiple operating systems running at the same time. With this idea, each OS would only live under the two lowest levels while the highest level would be reserved for the program supervising all operating systems. In practice, the PlayStation 3 and Xbox 360 only require a single operating system (except for [OtherOS](`r ref("playstation-3#a-multi-os-proposal")`), but that was quickly scrapped). Consequently, Sony and Microsoft designed a hypervisor that enforces their respective security model and performs memory management tasks. Conversely, the architectural differences between Cell and Xenon led to very distinct implementations of hypervisors, so each is subject to unique flaws and strengths.
 
 (ref:osdiagcaption) Diagram showing how the components of the Xbox operating system fit in Xenon's privilege levels.
 
@@ -801,7 +801,7 @@ IBM enacted three privileges (instead of just two) to allow multiple operating s
 image("os_levels.png", "(ref:osdiagcaption)", class = "centered-container")
 ```
 
-The most notable difference between the security model of the Xbox 360 and the Playstation 3, is that the former runs both the Kernel and user-space programs **under the same privilege mode** (the second level) `r cite("cpu-steil")`. So, all critical tasks rest within Hypervisor, which enjoys extra acceleration from the hardware side (I'll explain more about it in the 'Anti-piracy' section).
+The most notable difference between the security model of the Xbox 360 and the PlayStation 3, is that the former runs both the Kernel and user-space programs **under the same privilege mode** (the second level) `r cite("cpu-steil")`. So, all critical tasks rest within Hypervisor, which enjoys extra acceleration from the hardware side (I'll explain more about it in the 'Anti-piracy' section).
 
 ### Architecture
 
@@ -858,7 +858,7 @@ Now that we've seen the structure of the OS, let's now check how information is 
 
 `r tab.simple("Boot ROM", tab.first=TRUE, tab.active=TRUE)`
 
-Here lies the most critical and fragile program of this console. Similarly to the Playstation 3 (again, both share IBM technology), the Xenon hides **32 KB ROM** that stores the first stage of the boot loader, along with Microsoft's RSA public keys and SHA-1 hashes used to decrypt and validate further boot stages, respectively `r cite("operating_system-boot_process")`.
+Here lies the most critical and fragile program of this console. Similarly to the PlayStation 3 (again, both share IBM technology), the Xenon hides **32 KB ROM** that stores the first stage of the boot loader, along with Microsoft's RSA public keys and SHA-1 hashes used to decrypt and validate further boot stages, respectively `r cite("operating_system-boot_process")`.
 
 This area happens to be **unencrypted**, as the security system is not set up yet and the CPU only understands unencrypted machine code, but it's not a concern for Microsoft since the boot ROM is sealed within the CPU die and the public key can't be used against the system. Although, being a 'ROM' also means that this code can't be patched after it leaves the factory.
 
@@ -1212,7 +1212,7 @@ image("photos/game.jpg", "(ref:retailtabcaption)", float=TRUE)
 
 It may sound hard to believe, but for Microsoft, the same **dual-layer DVD** disc used for the original Xbox worked fine for their new console. I presume it was another cost-effective strategy, as the DVD disc got cheaper to produce and its readers could be outsourced to the most inexpensive and convenient manufacturer. Throughout the console's lifespan, Microsoft had relied on Hitachi, LG, Toshiba, Samsung, Philips, BenQ and LiteON - including teams of two - to produce their DVD drives.
 
-As a reminder, dual-layer DVDs (also called **DVD-9**) have a theoretical capacity of **8.5 GB**. A big advantage compared to the new [_blue-lasered_ discs](`r ref("playstation-3#tab-14-1-blu-ray-discs")`) of the Playstation 3, is that the Xbox 360 enjoys greater read speeds thanks to its **12x drive**, another reason to expel the hard drive from the requirements.
+As a reminder, dual-layer DVDs (also called **DVD-9**) have a theoretical capacity of **8.5 GB**. A big advantage compared to the new [_blue-lasered_ discs](`r ref("playstation-3#tab-14-1-blu-ray-discs")`) of the PlayStation 3, is that the Xbox 360 enjoys greater read speeds thanks to its **12x drive**, another reason to expel the hard drive from the requirements.
 
 On the other side, games were greatly constrained by the usable capacity, those 8.5 GB were further limited by a secure filesystem called **Xbox Game Disc 2** or 'XGD2'. This was Microsoft's successor of the [original format](`r ref("xbox#medium")`) employed to prevent unauthorised copies. The actual available size for games was down to **6.8 GB** (80% of the total capacity) `r cite("games-leadbetter")`. In 2011, after many third-party tools managed to crack the protection, **Xbox Game Disc 3** or 'XGD3' was made available to developers. In it, Microsoft managed to revamp the security tricks and reduce the space reserved for anti-piracy mechanisms, leaving a total of **7.9 GB** for games.
 
@@ -1420,7 +1420,7 @@ I'll try to give a proper summary of events now, but if at the end you feel hung
 
 History seems to impose that whenever a console includes a widely-adopted medium like the CD or DVD, it's just a matter of time before that area is cracked. Especially since piracy is easier to deliver than homebrew.
 
-In May 2006 (before the Playstation 3 reached the stores), user 'commodore4eva' released the **Xtreme Firmware**, a replacement DVD reader firmware for the Xbox 360s bundled with early Toshiba-Samsung drives `r cite("anti_piracy-xtreme")`. The new firmware instructed the drive to look for hardcoded security blocks instead, which pirated copies would have relocated.
+In May 2006 (before the PlayStation 3 reached the stores), user 'commodore4eva' released the **Xtreme Firmware**, a replacement DVD reader firmware for the Xbox 360s bundled with early Toshiba-Samsung drives `r cite("anti_piracy-xtreme")`. The new firmware instructed the drive to look for hardcoded security blocks instead, which pirated copies would have relocated.
 
 The firmware was flashed through the use of ATA commands, but it required a computer with a spare SATA socket and special flashing software. Consequently, users had to open up the console and connect the SATA data cable to their computer, run the flasher while the console supplied energy to the drive and then re-assemble everything back. The act of flashing emerged from a hidden 'maintenance mode' that was discovered in the drive's firmware, this was subsequently reversed and re-enabled. If the process was carried out successfully, the Xbox 360 would now read pirated games just like any genuine one.
 

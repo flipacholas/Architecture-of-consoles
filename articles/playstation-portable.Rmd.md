@@ -508,9 +508,9 @@ The funny thing is that these gadgets were also available for Pocket PCs and PDA
 
 ### Home console connectivity
 
-After the release of the Playstation 3, a new feature appeared on the PSP: **Remote Play**. Using a WiFi connection, the PS3 could be remotely controlled from the PSP.
+After the release of the PlayStation 3, a new feature appeared on the PSP: **Remote Play**. Using a WiFi connection, the PS3 could be remotely controlled from the PSP.
 
-This was many years before the Wii U launched, eh? Unfortunately, only a handful of PS3 games supported Remote Play, meaning users could only navigate through the menus, do some multimedia and play Playstation 1 games.
+This was many years before the Wii U launched, eh? Unfortunately, only a handful of PS3 games supported Remote Play, meaning users could only navigate through the menus, do some multimedia and play PlayStation 1 games.
 
 ## Operating System
 
@@ -626,7 +626,7 @@ Some updates strengthened the PSP's security system by adding more layers of enc
 
 From the developer's standpoint, some updates enhanced the APIs by adding more functions and correcting existing ones. Games were therefore strongly tied to the system version they were developed for, and users would have to update to play newer games. However, new updates were always backwards compatible, so an old game should never break on an updated system (in theory).
 
-From the user's perspective, some updates brought new services, like a web browser, RSS reader and so forth. After the release of the Playstation 3, many online applications were ported to the PSP, such as the 'Playstation Store' and 'Remote Play'.
+From the user's perspective, some updates brought new services, like a web browser, RSS reader and so forth. After the release of the PlayStation 3, many online applications were ported to the PSP, such as the 'PlayStation Store' and 'Remote Play'.
 
 ## Games
 
@@ -686,7 +686,7 @@ The contents are not memory mapped: the file system is accessed through system c
 
 Eventually, Sony caught up with the competition and improved its online infrastructure. They even offered services not yet provided by Microsoft or Nintendo.
 
-(ref:psntitle) Playstation Network
+(ref:psntitle) PlayStation Network
 
 (ref:psncaption) PSN category in XMB.
 
@@ -694,15 +694,15 @@ Eventually, Sony caught up with the competition and improved its online infrastr
 image('xmb/network.jpg', "(ref:psncaption)", float=TRUE)
 ```
 
-In answer to Microsoft's [Xbox Live](`r ref("xbox#network-service")`) and Nintendo's [Nintendo WiFi Connection](`r ref("nintendo-ds#network-service")`), Sony had its own online infrastructure... **Playstation Network**, or PSN.
+In answer to Microsoft's [Xbox Live](`r ref("xbox#network-service")`) and Nintendo's [Nintendo WiFi Connection](`r ref("nintendo-ds#network-service")`), Sony had its own online infrastructure... **PlayStation Network**, or PSN.
 
-This service superseded the primitive [DNAS](`r ref("playstation-2#network-service")`), previously deployed for the Playstation 2. One of the additions was the use of a centralised authentication system.
+This service superseded the primitive [DNAS](`r ref("playstation-2#network-service")`), previously deployed for the PlayStation 2. One of the additions was the use of a centralised authentication system.
 
 Users could register a free PSN account using the console; this enabled them to play with other people around the globe using WiFi connection.
 
-It's worth mentioning that at first, the PSP didn't include many online services. This changed drastically with the release of the Playstation 3, but I guess this is a story for a later article...
+It's worth mentioning that at first, the PSP didn't include many online services. This changed drastically with the release of the PlayStation 3, but I guess this is a story for a later article...
 
-(ref:psstitle) Playstation Store
+(ref:psstitle) PlayStation Store
 
 (ref:psscaption) PlayStation Store.
 
@@ -710,9 +710,9 @@ It's worth mentioning that at first, the PSP didn't include many online services
 image('xmb/store.jpg', "(ref:psscaption)", float=TRUE)
 ```
 
-Another thing that followed after the debut Playstation Network was the **Playstation Store**. As the name indicates, it's an online store that allows users to acquire games digitally and download them onto their Memory Stick.
+Another thing that followed after the debut PlayStation Network was the **PlayStation Store**. As the name indicates, it's an online store that allows users to acquire games digitally and download them onto their Memory Stick.
 
-I suppose this was a great relief for small game studios, as physical distribution always implied a significant cost, which would eventually [impact](`r ref("nintendo-64#games")`) the price of the game. Strangely enough, a later model of the PSP called 'PSP Go' enforced this move away from physical media – by removing the UMD reader, it could only play games acquired from the Playstation Store.
+I suppose this was a great relief for small game studios, as physical distribution always implied a significant cost, which would eventually [impact](`r ref("nintendo-64#games")`) the price of the game. Strangely enough, a later model of the PSP called 'PSP Go' enforced this move away from physical media – by removing the UMD reader, it could only play games acquired from the PlayStation Store.
 
 Later on, the game catalogue drastically expanded with the arrival of **[PS1 games](`r ref("playstation#games")`)**. These were downloaded to the Memory Card and played like any other digital game. PS1 binaries on the PSP worked with the use of **software emulation**; Sony embedded an in-house emulator in the system to make all this work seamlessly.
 
@@ -851,7 +851,7 @@ Furthermore, before Pandora was published, so-called **Custom Firmware** or 'CFW
 
 A CFW can be installed on top of the current firmware with the help of any kernel-level exploit (this was the earliest method). However, it can only be automatically booted with exploits previously used by Pandora to bypass signature checks. Otherwise, users need to rely on cat-and-mouse exploits to reboot to a CFW. That's why the latest PSP models weren't able to kickstart a CFW using the *good-old* methods.
 
-In the end, the last straw was when the security system of the Playstation 3 was hacked, as it contained the **private keys used to decrypt PSP executables** (the PS3's OS includes a PSP emulator). This allowed anyone to sign user-land software and embed a kernel exploit to produce CFW installers and/or CFW loaders, for instance.
+In the end, the last straw was when the security system of the PlayStation 3 was hacked, as it contained the **private keys used to decrypt PSP executables** (the PS3's OS includes a PSP emulator). This allowed anyone to sign user-land software and embed a kernel exploit to produce CFW installers and/or CFW loaders, for instance.
 
 In recent developments, it was discovered that the latest firmware contains a kernel exploit during the boot process, which could be used to kickstart a CFW of choice. This was packaged in an solution called **Infinity 2** `r cite("anti_piracy-davee")`.
 

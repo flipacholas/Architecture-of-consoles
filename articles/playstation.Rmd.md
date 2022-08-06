@@ -496,7 +496,7 @@ image("bios/shell.png", "(ref:shellcaption)", tab.name="(ref:shelltitle)")
 
 Similarly to the [Saturn](`r ref("sega-saturn#games")`)'s boot process, after receiving power, the PS1 will:
 1. Look for the BIOS ROM and execute routines to initialise the hardware.
-2. Load Playstation OS.
+2. Load PlayStation OS.
 2. Display the splash screen.
 3. If there is a CD inserted, the CD-ROM controller will check if it's genuine:
     - **It is** → The controller will allow to read its content.

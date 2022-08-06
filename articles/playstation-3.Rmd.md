@@ -33,7 +33,7 @@ This write-up takes a deep look at Sony, IBM, Toshiba and Nvidia's joint project
 
 ### On the article's length
 
-I'm afraid this article is not the typical 'lunchtime' one that I usually write for other consoles in [this series](`r ref("consoles")`). If you are interested in every area of the Playstation 3, you are in for the whole journey! Having said that, this writing encompasses ~6 years of research and development carried out by countless engineers, so I don't expect you to digest it all at once. Please take your time (and breaks if needed) and if at the end you are hungry for more, help yourself at the 'Sources' section!
+I'm afraid this article is not the typical 'lunchtime' one that I usually write for other consoles in [this series](`r ref("consoles")`). If you are interested in every area of the PlayStation 3, you are in for the whole journey! Having said that, this writing encompasses ~6 years of research and development carried out by countless engineers, so I don't expect you to digest it all at once. Please take your time (and breaks if needed) and if at the end you are hungry for more, help yourself at the 'Sources' section!
 
 ```{r results="asis"}
 supporting_imagery()
@@ -58,11 +58,11 @@ image('cpu/ps1.png', "(ref:intrps1caption)", float=TRUE)
 image('cpu/ee.png', "(ref:intrps2caption)", float=TRUE)
 ```
 
-Almost ten years after the introduction of the [original MIPS-powered Playstation](`r ref("playstation")`), we find ourselves in the early noughties, and things are not looking good for SGI/MIPS. Nintendo recently ditched them for a [low-end PowerPC core](`r ref("gamecube#cpu")`) with IBM as their new supplier while Microsoft, the newcomer in this market, [chose Intel](`r ref("xbox#cpu")`) and their x86 empire.
+Almost ten years after the introduction of the [original MIPS-powered PlayStation](`r ref("playstation")`), we find ourselves in the early noughties, and things are not looking good for SGI/MIPS. Nintendo recently ditched them for a [low-end PowerPC core](`r ref("gamecube#cpu")`) with IBM as their new supplier while Microsoft, the newcomer in this market, [chose Intel](`r ref("xbox#cpu")`) and their x86 empire.
 
-Sony has a history of grabbing existing low-end designs (cheap MIPS cores) and moulding them to achieve acceptable 3D performance at a reduced cost, a process that involved other companies like LSI (for the [PS1's CPU](`r ref("playstation#cpu")`)) and Toshiba (for the PS2's [Emotion Engine](`r ref("playstation-2#cpu")`)). This methodology carried on until 2004 with the release of the [Playstation Portable](`r ref("playstation-portable")`). So, what new MIPS amalgamate were they going to build for the PlayStation 3?
+Sony has a history of grabbing existing low-end designs (cheap MIPS cores) and moulding them to achieve acceptable 3D performance at a reduced cost, a process that involved other companies like LSI (for the [PS1's CPU](`r ref("playstation#cpu")`)) and Toshiba (for the PS2's [Emotion Engine](`r ref("playstation-2#cpu")`)). This methodology carried on until 2004 with the release of the [PlayStation Portable](`r ref("playstation-portable")`). So, what new MIPS amalgamate were they going to build for the PlayStation 3?
 
-Well, it turns out the development of the Playstation 3 predates the Playstation Portable one `r cite("cpu-koranne", "5")`. In 2000, months after the PS2's release, Sony formed an alliance with IBM and Toshiba called 'STI' with the sole goal to deliver the next chip that could power the next generation of supercomputers `r cite("cpu-engine")`. If this didn't sound extravagant enough, the next chip would also be used on the successor of the PS2. In the end, in 2004, IBM unveiled the **Cell Broadband Engine** (also known as 'Cell BE' or just 'Cell') `r cite("cpu-nbc_cell")`.
+Well, it turns out the development of the PlayStation 3 predates the PlayStation Portable one `r cite("cpu-koranne", "5")`. In 2000, months after the PS2's release, Sony formed an alliance with IBM and Toshiba called 'STI' with the sole goal to deliver the next chip that could power the next generation of supercomputers `r cite("cpu-engine")`. If this didn't sound extravagant enough, the next chip would also be used on the successor of the PS2. In the end, in 2004, IBM unveiled the **Cell Broadband Engine** (also known as 'Cell BE' or just 'Cell') `r cite("cpu-nbc_cell")`.
 
 (ref:philosophiestitle) New design philosophies
 
@@ -273,13 +273,13 @@ Thus, Sony fitted **256 MB of XDR DRAM** on the motherboard... But, again, _what
 image('cell_mem.jpg', "(ref:xdrcaption)", float=TRUE)
 ```
 
-First of all, the type of memory fitted is called **Extreme Data Rate** (XDR). You may recognise XDR DRAM as the successor of the _jinxed_ **RDRAM** found in the [Nintendo 64](`r ref("nintendo-64")`) and the [Playstation 2](`r ref("playstation-2#a-recognisable-memory-choice")`). But don't jump to conclusions just yet! 
+First of all, the type of memory fitted is called **Extreme Data Rate** (XDR). You may recognise XDR DRAM as the successor of the _jinxed_ **RDRAM** found in the [Nintendo 64](`r ref("nintendo-64")`) and the [PlayStation 2](`r ref("playstation-2#a-recognisable-memory-choice")`). But don't jump to conclusions just yet! 
 
 Rambus, like any other company, improves upon their inventions. Their third revision (XDR) now operates at octa-rate (four times the rate of its adversary, DDR DRAM) `r cite("cpu-xdr")`. Latency doesn't pose an issue anymore, if we take a look at one of its manufacturers' data-sheets, XDR's latency is reported between 28 ns and 36 ns `r cite("cpu-k4y5016", "2")`, almost [10 times faster](`r ref("nintendo-64#memory-design")`) than the first-generation RDRAM chips.
 
 `r close_float_group(with_markdown = TRUE)`
 
-The first revision of the Playstation 3's motherboard contains four 64 MB chips, handled in pairs. XDR is connected to Cell using two 32-bit buses, one on each pair. So, whenever the PPU writes a word (64-bit data), it's split between two XDR chips. The latter are clocked at at 400 MHz `r cite("cpu-ram")`.
+The first revision of the PlayStation 3's motherboard contains four 64 MB chips, handled in pairs. XDR is connected to Cell using two 32-bit buses, one on each pair. So, whenever the PPU writes a word (64-bit data), it's split between two XDR chips. The latter are clocked at at 400 MHz `r cite("cpu-ram")`.
 
 (ref:xdrdiagramcaption) Cell's memory architecture diagram.
 
@@ -333,7 +333,7 @@ Contrariwise to the PPU, the SPU is isolated from the rest of the Cell. Thus, th
 
 In terms of functionality, the SPU is a lot more limited than the PPU. For instance, SPU doesn't include any memory management functions (address translation and memory protection) or even state-of-the-art functions (i.e. dynamic branch prediction). Nonetheless, it performs exceptionally well at vector processing.
 
-To program this unit, developers use the PPU to invoke routines provided by the Playstation 3's Operating System, these upload the executable specifically written for the SPU to the SPU of choice and signal it to start execution. Afterwards, the PPU keeps a reference of the SPU's thread for synchronisation purposes `r cite("cpu-spuprog")`.
+To program this unit, developers use the PPU to invoke routines provided by the PlayStation 3's Operating System, these upload the executable specifically written for the SPU to the SPU of choice and signal it to start execution. Afterwards, the PPU keeps a reference of the SPU's thread for synchronisation purposes `r cite("cpu-spuprog")`.
 
 `r close_tabs()`
 
@@ -431,7 +431,7 @@ This model is a lot more radical than the rest, in the sense that previous patte
 
 As you can imagine, while the multi-core design of Cell accelerates emerging techniques such as [procedural generation](`r ref("playstation-2#infinite-worlds")`), none of these designs are particularly simple to implement, especially considering game studios prefer codebases that can be shared across different platforms.
 
-To give you an example, the developers of the Unreal Engine 3 (Epic Games) demonstrated the limitations of the SPUs while trying to implement their collision detection system `r cite("cpu-unreal")`. Their design relies on Binary Space Partitioning (BSP), an algorithm strongly dependent on comparisons (branching). Because the SPUs don't provide dynamic branch prediction like the PPU, their implementation disappointed Playstation 3 users when compared side-by-side with other platforms (i.e. Xbox 360 or [i386](`r ref("xbox#tab-1-3-the-microarchitecture")`) PCs, both of which provide advanced prediction techniques in all their cores). Hence, Epic Games had to resort to further optimisations only compatible with Cell.
+To give you an example, the developers of the Unreal Engine 3 (Epic Games) demonstrated the limitations of the SPUs while trying to implement their collision detection system `r cite("cpu-unreal")`. Their design relies on Binary Space Partitioning (BSP), an algorithm strongly dependent on comparisons (branching). Because the SPUs don't provide dynamic branch prediction like the PPU, their implementation disappointed PlayStation 3 users when compared side-by-side with other platforms (i.e. Xbox 360 or [i386](`r ref("xbox#tab-1-3-the-microarchitecture")`) PCs, both of which provide advanced prediction techniques in all their cores). Hence, Epic Games had to resort to further optimisations only compatible with Cell.
 
 I suppose it's just a matter of time, patience and a lot of learning for software engineers to crank up the full potential of Cell. However, history demonstrated [that's not feasible for every studio](`r ref("sega-saturn#as-a-challenging-3d-console")`), which makes me wonder if that's the reason current console hardware (as of 2021) has homogenised so much.
 
@@ -470,7 +470,7 @@ figcaption("(ref:gamesfootcaption)")
 # Use fig.ncol = 1 for subfigures stacked vertically
 ```
 
-It appears that even with a supercomputer chip, Sony still had to fetch a GPU to finalise the Playstation 3. This makes you wonder if IBM/Sony/Toshiba hit a wall while trying to scale Cell further, so Sony had no option but to get help from a graphics company. This is purely speculation however, I'm not sure if I'll ever know the answer.
+It appears that even with a supercomputer chip, Sony still had to fetch a GPU to finalise the PlayStation 3. This makes you wonder if IBM/Sony/Toshiba hit a wall while trying to scale Cell further, so Sony had no option but to get help from a graphics company. This is purely speculation however, I'm not sure if I'll ever know the answer.
 
 What I do know is that the PS3 contains a GPU chip manufactured by **Nvidia** meant to offload part of the graphics pipeline. The chip is called **Reality Synthesizer** or 'RSX' and runs at **500 MHz** `r cite("graphics-rsx_dev")`. Its clock speed looks concerning when compared to Cell's (3.2 GHz), though you'll soon see that the GPU is better equipped for computing huge amounts of operations in parallel. So it's a matter of finding a balance between Cell and RSX when it comes to building the graphics pipeline (though I must confess this sounds simpler on paper than it is in practice).
 
@@ -527,7 +527,7 @@ Let's now take a look at how RSX processes and renders 3D scenes.
 image("gpu/pipeline.png", "(ref:rsxpipeline)", class = "centered-container")
 ```
 
-Its pipeline model is very similar to the [Geforce3](`r ref("xbox#architecture-and-design")`), but super-charged with five years of technological progress. So I suggest checking out that article beforehand since this one will focus on the new features, I also recommend reading about the [Playstation Portable's GPU](`r ref("playstation-portable#functionality")`) because a lot of new developments and needs overlap with that chip. That being said, let's see what we've got here... `r cite("graphics-marcelina")`
+Its pipeline model is very similar to the [Geforce3](`r ref("xbox#architecture-and-design")`), but super-charged with five years of technological progress. So I suggest checking out that article beforehand since this one will focus on the new features, I also recommend reading about the [PlayStation Portable's GPU](`r ref("playstation-portable#functionality")`) because a lot of new developments and needs overlap with that chip. That being said, let's see what we've got here... `r cite("graphics-marcelina")`
 
 (ref:commandstitle) Commands
 
@@ -624,7 +624,7 @@ To save further bandwidth, ROPs also provide colour compression and z-compressio
 
 ### A unified Video Output
 
-Gone are the days of console-proprietary video sockets and dozens of analogue signals squashed together in a single socket to accommodate every region on the earth. The Playstation 3 finally incorporated a unified video signal soon to be adopted worldwide: the **High Definition Media Interface** (HDMI), used for transferring both audio and video at the same time.
+Gone are the days of console-proprietary video sockets and dozens of analogue signals squashed together in a single socket to accommodate every region on the earth. The PlayStation 3 finally incorporated a unified video signal soon to be adopted worldwide: the **High Definition Media Interface** (HDMI), used for transferring both audio and video at the same time.
 
 (ref:ps3backcaption) Back of the PS3, HDMI output on the left side and at the other extreme there's the old Multi A/V for analogue video out.
 
@@ -724,13 +724,13 @@ On a different topic, you can now turn on the console from the wireless controll
 Regarding internal components, SouthBridge connects to:
 
 - **Starship 2**: an adapter for **two 128 MB NAND Flash** chips. Behind the scenes, Starship bridges the Southbridge's local bus with the standardised 'Common Flash Interface Protocol' (widely adopted for interfacing Flash memory) `r cite("io-starship")`. The PS3 stores the operating system on these, among other things.
-- The **Playstation 2 chipset**: at the corner of the motherboard there's an eye-catching chip that houses none other than the [Emotion Engine](`r ref("playstation-2#cpu")`) and the [Graphics Synthesizer](`r ref("playstation-2#graphics")`). The EE+GS combo connects to **32 MB of RDRAM** and an **IO bridge** (named 'PS2 bridge'), which combined form roughly 90% of the original Playstation 2.
+- The **PlayStation 2 chipset**: at the corner of the motherboard there's an eye-catching chip that houses none other than the [Emotion Engine](`r ref("playstation-2#cpu")`) and the [Graphics Synthesizer](`r ref("playstation-2#graphics")`). The EE+GS combo connects to **32 MB of RDRAM** and an **IO bridge** (named 'PS2 bridge'), which combined form roughly 90% of the original PlayStation 2.
   - The EE+GS chip sends the video signal directly to the RSX.
   - These chips are not accessible by developers, they are used for backwards compatibility only!
 
 #### Backwards compatibility
 
-Having mentioned the PS2 chips, I guess this is my cue to talk about backwards compatibility of the Playstation 3 once in for all.
+Having mentioned the PS2 chips, I guess this is my cue to talk about backwards compatibility of the PlayStation 3 once in for all.
 
 First things first, let me introduce how backwards compatibility generally works: consoles can either play their predecessor's games with the help of **software** (instructs existing hardware to behave as the old game would expect) and **hardware** (either the existing hardware provides total or partial backwards compatibility; and/or the company added extra chips to recreate the older system within the new motherboard). With the amount of processing power the PS3 shows, you would expect Sony to ship a PS2 emulator running within Cell and accelerated by RSX. Well, for some reason that didn't happen and instead, Sony fitted the PS2's chipset at one corner of the motherboard.
 
@@ -776,7 +776,7 @@ Personally, I believe pure software emulation is the most feasible option in the
 
 #### Lateral compatibility
 
-We are not over talking about compatibility just yet! It may surprise you that Sony also allowed users to run a subset of [Playstation Portable](`r ref("playstation-portable#games")`) games as well. Though emulation was carried out completely with software, just like the PS2 compatibility in later models.
+We are not over talking about compatibility just yet! It may surprise you that Sony also allowed users to run a subset of [PlayStation Portable](`r ref("playstation-portable#games")`) games as well. Though emulation was carried out completely with software, just like the PS2 compatibility in later models.
 
 As there isn't any [UMD disc](`r ref("playstation-portable#tab-5-1-umd-discs")`) reader in the PS3, users must access a game catalogue from Sony's online store to download and install any PSP game.
 
@@ -816,7 +816,7 @@ As I said before, the OS is quite complex. So, to be able to follow this section
 
 Generally speaking, the PS3's OS is designed with the same modular approach as the PSP. To recall the previous article, the OS is made of multiple **modules**. These may serve the user (like a game or app) or reside in memory indefinitely to serve other modules (in the form of system calls and/or drivers). Some modules have more privilege access than others (kernel module vs. user module).
 
-(ref:osdiagramcaption) Diagram showing how the components of the Playstation operating system fit in Cell's privilege levels.<br>References to 'OtherOS' are further explained in the next sections.
+(ref:osdiagramcaption) Diagram showing how the components of the PlayStation operating system fit in Cell's privilege levels.<br>References to 'OtherOS' are further explained in the next sections.
 
 ```{r fig.cap="(ref:osdiagramcaption)", fig.align='center'}
 image("oslevels.png", "(ref:osdiagramcaption)", class = "centered-container")
@@ -856,7 +856,7 @@ Due to their larger size, models with NAND Flash also store the remaining part o
 - **Blu-ray Player**: programs that handle interaction with the Blu-ray drive and movie decoding.
 - **System assets**: such as fonts and certificates that binaries depend on to work.
 
-As if it wasn't enough, NAND consoles also house other data like the **xRegistry** (collection of network settings, Playstation Network accounts and a list of Bluetooth-paired devices), more revocation records and a Loader for **OtherOS** (a really interesting piece which we'll discuss more in the next paragraphs).
+As if it wasn't enough, NAND consoles also house other data like the **xRegistry** (collection of network settings, PlayStation Network accounts and a list of Bluetooth-paired devices), more revocation records and a Loader for **OtherOS** (a really interesting piece which we'll discuss more in the next paragraphs).
 
 `r tab.simple("Hard Drive")`
 
@@ -917,9 +917,9 @@ image('images/consoles/psp/xmb/main.jpg', "(ref:xmbpspcaption)", class="toleft",
 image('xmb/main.jpg', "(ref:xmbps3caption)", class="toright")
 ```
 
-While PSP users will find many familiarities, Sony added a new set of apps that use the potential of Cell, RSX and the Blu-ray drive. Many of them related to multimedia (i.e. video player and image slideshow), television (such as on-demand TV apps, like BBC's iPlayer), social profile (online avatars) and online purchases (Playstation Now and Playstation Store, to name a few).
+While PSP users will find many familiarities, Sony added a new set of apps that use the potential of Cell, RSX and the Blu-ray drive. Many of them related to multimedia (i.e. video player and image slideshow), television (such as on-demand TV apps, like BBC's iPlayer), social profile (online avatars) and online purchases (PlayStation Now and PlayStation Store, to name a few).
 
-Additionally, since this is a home console that might be shared by multiple members, XMB supports **multiple users**, where each one may use a different Playstation Network account and store separate user data (purchased games and saves).
+Additionally, since this is a home console that might be shared by multiple members, XMB supports **multiple users**, where each one may use a different PlayStation Network account and store separate user data (purchased games and saves).
 
 (ref:gametabtitle) Game
 
@@ -948,9 +948,9 @@ Finally, the inclusion of a hard drive is a relief for the veterans that in the 
 
 #### Lend me your PS3
 
-Impressively enough, not every app bundled with this console had _self-interest_ goals. With the advent of distributed computing and the capabilities of Cell for data science projects, Stanford University joined hands with Sony to enable Playstation 3 owners to contribute to medical research. The result was **Folding&#64;home** (pronounced 'folding at home').
+Impressively enough, not every app bundled with this console had _self-interest_ goals. With the advent of distributed computing and the capabilities of Cell for data science projects, Stanford University joined hands with Sony to enable PlayStation 3 owners to contribute to medical research. The result was **Folding&#64;home** (pronounced 'folding at home').
 
-Folding&#64;home was an application installed in every Playstation 3 that, once opened by the user, connected to a central server and ran protein simulations. Moreover, the app was also allowed to run in the background during off-peak times.
+Folding&#64;home was an application installed in every PlayStation 3 that, once opened by the user, connected to a central server and ran protein simulations. Moreover, the app was also allowed to run in the background during off-peak times.
 
 (ref:foldingcaption) Folding&#64;Home displaying the work accomplished since the user started the app `r cite ("operating_system-folding_app")`.
 
@@ -1034,7 +1034,7 @@ New generation = new medium. As the advantages of DVD start to wear down and its
 
 The Blu-ray, as the name indicates, is a new optical disc format that delivered higher storage density thanks to the use of **blue light diodes** `r cite("games-brit")`, as opposed to red diodes used with DVDs. Since blue light has a shorter wavelength than red light, more information ([pits and lands](`r ref("playstation#anti-piracy--region-lock")`)) can be squashed together in the same space `r cite("games-blue_laser")`. As a result, Blu-ray discs provide a surprisingly large capacity (between 25 GB and 50 GB!) using the same plastic disc with the same dimensions as the CD/DVD.
 
-The Blu-ray data format responds to many needs by different industries: high definition film, digital rights management (DRM), region locking, a new file system and even a runtime environment for Java programs `r cite("games-bdj")`. In the case of the video-game industry, retail games for Playstation 3 were distributed in **25 GB or 50 GB** Blu-ray discs with **copy protection**. These are read by a 2x drive reaching speeds of up to 8.58 MB/sec `r cite("io-bd_rev")`, though the PS3's laser can also read DVDs (at 8x speed) and CDs (at 24x speed) to play old games and movies.
+The Blu-ray data format responds to many needs by different industries: high definition film, digital rights management (DRM), region locking, a new file system and even a runtime environment for Java programs `r cite("games-bdj")`. In the case of the video-game industry, retail games for PlayStation 3 were distributed in **25 GB or 50 GB** Blu-ray discs with **copy protection**. These are read by a 2x drive reaching speeds of up to 8.58 MB/sec `r cite("io-bd_rev")`, though the PS3's laser can also read DVDs (at 8x speed) and CDs (at 24x speed) to play old games and movies.
 
 While launch titles execute from the disc, later games copied part of their assets to the Hard Drive to increase reading speeds. Nevertheless, the game disc is always needed to kickstart the game.
 
@@ -1063,9 +1063,9 @@ image("store/search.jpg", "(ref:storesearchcaption)", tab.name="(ref:storesearch
 image("store/game.jpg", "(ref:storeentrycaption)", tab.name="(ref:storeentrytitle)")
 ```
 
-At the same time of the console's release, Sony launched its proprietary distribution channel called **Playstation Store**, allowing game studios to sell their games digitally and users to purchase new content without leaving their sofa. These don't require any physical medium to work (apart from space in the hard drive) but the digital product's ownership is tied to an online account, something that became a concern for users in March 2021, when Sony announced `r cite("games-closure")` (and later retracted `r cite("games-reversal")`) the closure of this store.
+At the same time of the console's release, Sony launched its proprietary distribution channel called **PlayStation Store**, allowing game studios to sell their games digitally and users to purchase new content without leaving their sofa. These don't require any physical medium to work (apart from space in the hard drive) but the digital product's ownership is tied to an online account, something that became a concern for users in March 2021, when Sony announced `r cite("games-closure")` (and later retracted `r cite("games-reversal")`) the closure of this store.
 
-Within their digital store, Sony also took the opportunity to sell digitalised versions of PS1, PS2 and PSP games called **Playstation Classics**. These are also downloaded and installed in the same way, but use the bundled emulators to work. In fact, PS2 classics invoke the same unaccelerated software emulator independently whether the PS3 models contain the PS2 chipset `r cite("io-ps2emu")`! I guess this is the closing chapter for hardware-based emulation in the PS3.
+Within their digital store, Sony also took the opportunity to sell digitalised versions of PS1, PS2 and PSP games called **PlayStation Classics**. These are also downloaded and installed in the same way, but use the bundled emulators to work. In fact, PS2 classics invoke the same unaccelerated software emulator independently whether the PS3 models contain the PS2 chipset `r cite("io-ps2emu")`! I guess this is the closing chapter for hardware-based emulation in the PS3.
 
 Behind the scenes, the PS Store is just a website only accessible through the PS Store app in XMB. Through its lifecycle, its user interface has been revamped a few times to reflect what I suppose was _a global demand for more fancy user interfaces_.
 
@@ -1073,9 +1073,9 @@ Behind the scenes, the PS Store is just a website only accessible through the PS
 
 ### Network service
 
-Apart from the online store, there were many more online solutions added to the platform, including the debuting **Playstation Network**, a free online service competing directly with Microsoft's paid-for [Xbox Live](`r ref("xbox#network-service")`).
+Apart from the online store, there were many more online solutions added to the platform, including the debuting **PlayStation Network**, a free online service competing directly with Microsoft's paid-for [Xbox Live](`r ref("xbox#network-service")`).
 
-Playstation Network enabled users to create a personal account and assign an avatar, then use that new digital persona to do multiplayer gaming, message and other social interactions. Users can also earn **trophies** if they complete a certain event in a game, and these then show up in the online profile (as in some form of medal of honour) to intimidate rivals and gain the respect of friends, I think.
+PlayStation Network enabled users to create a personal account and assign an avatar, then use that new digital persona to do multiplayer gaming, message and other social interactions. Users can also earn **trophies** if they complete a certain event in a game, and these then show up in the online profile (as in some form of medal of honour) to intimidate rivals and gain the respect of friends, I think.
 
 (ref:trophiestitle) Trophies
 
@@ -1164,7 +1164,7 @@ Before I finally talk about the grand prize of the PS3 homebrew scene, let me de
 
 Just like the PSP saga, the initial exploits required a lot of effort and could be easily patched by Sony, thereby resulting in a disadvantageous cat-and-mouse game. However, as it happened with the PSP, it was a matter of time before a discovery broke the fundamental security of this system: its chain of trust.
 
-In 2011, George Hotz (along with the fail0verflow team) published another breakthrough, **the private encryption keys that Sony uses to sign binaries executed by `metldr`**. Binaries loaded during that boot stage are signed with an ECDSA key. Being an asymmetric encryption system, this means that anyone that possesses the private key (Sony, and now _others_) can encrypt and sign binaries, consequently, they will look 'authentic' in `metldr`'s eyes. Since `metldr` is the third boot stage before loading `lv1` (the hypervisor), this means hackers will be able to customise or develop their own hypervisor, kernel and anything underneath it. On top of that, every Playstation 3 in the market will also think the custom binaries are authentic. All in all, a [Pandora-style](`r ref("playstation-portable#tab-8-3-pandora")`) exploit completely done with software.
+In 2011, George Hotz (along with the fail0verflow team) published another breakthrough, **the private encryption keys that Sony uses to sign binaries executed by `metldr`**. Binaries loaded during that boot stage are signed with an ECDSA key. Being an asymmetric encryption system, this means that anyone that possesses the private key (Sony, and now _others_) can encrypt and sign binaries, consequently, they will look 'authentic' in `metldr`'s eyes. Since `metldr` is the third boot stage before loading `lv1` (the hypervisor), this means hackers will be able to customise or develop their own hypervisor, kernel and anything underneath it. On top of that, every PlayStation 3 in the market will also think the custom binaries are authentic. All in all, a [Pandora-style](`r ref("playstation-portable#tab-8-3-pandora")`) exploit completely done with software.
 
 The discovery of this key, which should have been computationally unfeasible, is possible thanks to what is considered a 'blunder' in Sony's implementation of the ECDSA algorithm. To make a long story short, the mathematical formula used for ECDSA uses a random value which Sony never changed in all the update files they distributed `r cite("anti_piracy-ecsda")`, turning that number into a constant, thereby making it easier to solve the other variables, which is what happened eventually.
 
@@ -1229,7 +1229,7 @@ As you can see, this _gift from the sky_ brought custom firmwares back into the 
 
 #### Sony's partial response
 
-As luck would have it, Sony only took small steps to block PS3Xploit (maybe because this turn of events happened years after the PS3's successor, the Playstation 4, hit the stores). They released a few system updates that didn't fix this chain of exploits but removed the routine used in Webkit for bootstrapping the chain. In response, hackers published slightly modified software updates that restored such entry (and somehow, they didn't need to be re-signed) `r cite("anti_piracy-hfw")`. These custom updates were called **Hybrid firmware** (HFW) and at the time of this writing, they are the de-facto option used to enable homebrew on unhackable systems.
+As luck would have it, Sony only took small steps to block PS3Xploit (maybe because this turn of events happened years after the PS3's successor, the PlayStation 4, hit the stores). They released a few system updates that didn't fix this chain of exploits but removed the routine used in Webkit for bootstrapping the chain. In response, hackers published slightly modified software updates that restored such entry (and somehow, they didn't need to be re-signed) `r cite("anti_piracy-hfw")`. These custom updates were called **Hybrid firmware** (HFW) and at the time of this writing, they are the de-facto option used to enable homebrew on unhackable systems.
 
 And here concludes the anti-piracy/homebrew saga. In my humble opinion, I don't think Sony is interested in putting more effort into this console. So I wouldn't expect any more cat-and-mouse games in this field. 
 

@@ -11,7 +11,7 @@ generation: 6
 top_tabs:
   Model:
     file: international
-    caption: "The original Playstation 2.<br>Released on 04/03/2000 in Japan, 26/10/2000 in America and 24/11/2000 in Europe"
+    caption: "The original PlayStation 2.<br>Released on 04/03/2000 in Japan, 26/10/2000 in America and 24/11/2000 in Europe"
   Motherboard:
     caption: "Showing revision 'GH-001' from model SCPH-10000 only released in Japan.<br>Thanks to the donations received, I was able to purchase this model and take a proper photo to allow me identify most of the chips.<br>I presume the chip at the bottom right corner is the 4 MB BIOS ROM"
     bib_source: copetti
@@ -24,9 +24,9 @@ aliases: [/projects/consoles/playstation-2/]
 
 ## A quick introduction
 
-The Playstation 2 was not one of the most powerful consoles of its generation, yet it managed to achieve a level of popularity unthinkable for other companies.
+The PlayStation 2 was not one of the most powerful consoles of its generation, yet it managed to achieve a level of popularity unthinkable for other companies.
 
-This machine is nowhere near as simple as the [original Playstation](`r ref("playstation")`) was, but we will see why it didn't share the same fate of [previous complicated consoles](`r ref("sega-saturn")`).
+This machine is nowhere near as simple as the [original PlayStation](`r ref("playstation")`) was, but we will see why it didn't share the same fate of [previous complicated consoles](`r ref("sega-saturn")`).
 
 ```{r results="asis"}
 supporting_imagery()
@@ -392,7 +392,7 @@ The audio signal is outputted through two mediums:
 
 The I/O of the PS2 is not complicated, yet multiple revisions of this console completely changed various internal and external interfaces.
 
-To start with, there's a dedicated processor that arbitrates the communication between different components, this CPU is no other than the **original MIPS R3000-based core** found in the [Playstation 1](`r ref("playstation#cpu")`). This time, it's called **IOP** and runs at 37.5 MHz using a 32-bit bus `r cite("io-buses")`.
+To start with, there's a dedicated processor that arbitrates the communication between different components, this CPU is no other than the **original MIPS R3000-based core** found in the [PlayStation 1](`r ref("playstation#cpu")`). This time, it's called **IOP** and runs at 37.5 MHz using a 32-bit bus `r cite("io-buses")`.
 
 The IOP communicates with the Emotion Engine using a specialised I/O interface called **System Interface** or 'SIF', both endpoints use their DMA units to transfer data between each other. The IOP also contains its own memory used as a buffer.
 
@@ -406,7 +406,7 @@ In later revisions of this console, the IOP was replaced with a **PowerPC 401 'D
 
 ### Available interfaces
 
-This console kept the previous front ports that were included in the original Playstation, it also featured a couple of 'experimental' interfaces that looked very promising at first.
+This console kept the previous front ports that were included in the original PlayStation, it also featured a couple of 'experimental' interfaces that looked very promising at first.
 
 (ref:frontcaption) Front of the PS2 showing common ports including Controllers and MemoryCards, plus the new USBs and i.Link `r cite('photography-amos')`.
 
@@ -468,7 +468,7 @@ image("photos/dualshock2.png", "(ref:iodscaption)", tab.name="(ref:iodstitle)", 
 image("photos/memorycard.png", "(ref:iomemcaption)", tab.name="(ref:iomemtitle)")
 ```
 
-During the days of the original Playstation, multiple revisions of the original controller were released featuring different features (and also bringing fragmentation to the market). Now, for the benefit of developers, there was a single controller that unified all the previous properties.
+During the days of the original PlayStation, multiple revisions of the original controller were released featuring different features (and also bringing fragmentation to the market). Now, for the benefit of developers, there was a single controller that unified all the previous properties.
 
 Compared to the DualShock, the new version featured a slight redesign, it included two analogue sticks and two vibration motors for richer input and feedback, respectively.
 
@@ -552,7 +552,7 @@ What happened here is really impressive. The PS2 doesn't have a 'programmer-frie
 
 Sony provided the hardware and software to assist game development.
 
-On the software side, there was the **Playstation 2 SDK** which included `r cite("games-sdkkit")`:
+On the software side, there was the **PlayStation 2 SDK** which included `r cite("games-sdkkit")`:
 
 - The Emotion Engine toolchain: A set of **C** and **C++** compilers, assemblers, linkers and debuggers used to control each element of the EE. The main CPU was mainly programmed using C/C++, however, performance-critical components like the vector units were programmed using assembly (microcode/macrocode) instead.
   - The pack also included an 'Emotion Engine simulator' which could roughly test out the code without sending it to the real hardware, although the simulator wasn't as accurate as the physical EE chip.
@@ -657,7 +657,7 @@ This only required patching the game image by adding dummy metadata and partitio
 
 ## That's all folks
 
-Congratulations and thank you for reaching the end of the article! To be honest, there was so much to talk about that I wondered if readers would eventually get tired of Playstation-related stuff after finishing this.
+Congratulations and thank you for reaching the end of the article! To be honest, there was so much to talk about that I wondered if readers would eventually get tired of PlayStation-related stuff after finishing this.
 
 Anyway, in all seriousness, I do hope you discovered new things after reading this article and if you have any comments, don't hesitate to [contact me](`r ref(about_url, root = TRUE)`).
 
