@@ -2,7 +2,7 @@
 long_title: Architecture of the Wii
 short_title: Wii Architecture
 name: Wii
-subtitle: New ways of innovation
+subtitle: Unique techniques of innovation
 date: 2020-01-05
 release_date: 2006-11-19
 generation: 7
@@ -40,6 +40,7 @@ supporting_imagery()
 Let's start by discussing one of the most iconic aspects of this console: The controllers.
 
 The main device is no other than the **Wii Remote** (also called 'Wiimote'), a gadget with a similar shape of a TV remote that contains many types of input controls:
+
 - For starters, it has a **set of physical buttons** which are used like any conventional controller.
 - It also contains an **accelerometer** to detect orientation changes, this is the main component used to achieve motion sensing.
 - Finally, it includes an **infrared camera** that, combined with the accelerometer and some Wii processing, can be used to point at the screen.
@@ -53,7 +54,7 @@ Lastly, the Wiimote also includes **16 KB of EEPROM** to store user data and a *
 
 Nintendo shipped this system with another controller to be used on the opposite hand, the **Nunchuk**, this one comes with its own accelerometer, joystick and two buttons. It's connected to a 6-pin proprietary port on the Wiimote.
 
-(ref:controllers) Nunchuk and Wiimote `r ref("photography-amos")`, respectively.
+(ref:controllers) Nunchuk and Wiimote `r cite("photography-amos")`, respectively.
 
 ```{r fig.cap="(ref:controllers)", fig.align='center', centered=TRUE}
 image("controllers/both.jpg", "(ref:controllers)", class = "centered-container")
@@ -181,6 +182,7 @@ The I/O subsystem of this console is truly a game changer (*if you'll pardon the
 Starlet is just an **ARM926EJ-S** CPU wired up to most of the internal components of this console. It resides inside Hollywood, runs at **243 MHz** (same as Hollywood) and contains its own ROM and RAM too. Thus, you can consider Starlet an independent computer running alongside the main CPU.
 
 The core is similar to the one used on the [Nintendo DS](`r ref("nintendo-ds")`), except for including two 'special' additions:
+
 - A 'J' in its model name, which denotes the inclusion of **Jazelle**: A dedicated unit that executes 8-bit Java Bytecode. Java programs would still depend on the virtual machine (known as 'JVM'), but some opcodes may get executed directly from the CPU. Overall, this could accelerate the execution of compiled Java code.
 - A dedicated **Memory management unit** (MMU) to enable virtual memory. Useful for general-purpose operating systems.
 
@@ -201,6 +203,7 @@ The chip also inherits some technology from ARM, such as the **Advanced Microcon
 `r close_float_group(with_markdown = TRUE)`
 
 Having said that, Nintendo wired up the I/O in a way that makes use of two AMBA buses:
+
 - The **AHB Bus** (AMBA High-performance Bus): As the name indicates, it's designed for high-speed communication. Here we find:
   - The **NAND** Interface: Accesses 512 MB of NAND Flash that stores the operating system and user data.
   - Two **Secure Digital Input Output** (SDIO) interfaces: SDIO is a protocol mainly designed for accessing an SD card, but in this case, a second one is used to control the Wifi module (802.11 b/g) as well.
@@ -213,7 +216,7 @@ Having said that, Nintendo wired up the I/O in a way that makes use of two AMBA 
 
 ### Maintaining compatibility
 
-(ref:gcequipcaption) Wii using Gamecube equipment `r ref("photography-amos")`.
+(ref:gcequipcaption) Wii using Gamecube equipment `r cite("photography-amos")`.
 
 ```{r fig.cap="(ref:gcequipcaption)", open_float_group=TRUE, fig.align='center'}
 image('gamecube-mode.png', "(ref:gcequipcaption)", float=TRUE)
@@ -438,10 +441,12 @@ With this, we can see that Starlet is in charge of the encryption/decryption of 
 Titles contain another layer of security, RSA-2048. This is an **asymmetric cipher**, meaning that we need one key to encrypt the content and another one to decrypt it. In a nutshell, this allows Nintendo to encrypt titles using an undisclosed key (called 'private key'), while the Wii decrypts them using a 'public key', which is stored in the console. If hackers were to obtain the public key, it would not be enough to crack the security system, as data is still expected to be encrypted using the private key, which only Nintendo knows.
 
 Furthermore, RSA is not only used for encrypting content, but also to check the integrity of said encryption. You see, Nintendo uses multiple keys that are used to sign (encrypt) already-encrypted data, forming a chain of encryption with the only purpose of making sure:
+
 - Every single key used has been authorised by Nintendo.
 - Data hasn't been altered and re-encrypted without authorisation.
 
 Let me give you an example of how this works:
+
 1. Nintendo creates a key named `x`.
 2. Nintendo programs Starlet to trust content only signed with key `x`.
 3. If Starlet finds itself having to decrypt a title with key `y`, it will only proceed if `y` has been signed with key `x`.
