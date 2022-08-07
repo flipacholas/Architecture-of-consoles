@@ -95,7 +95,7 @@ other = "Last updated: {{ . }}"
 other = "Classic edition"
 
 [classic_intro]
-other = 'The ‘classic’ edition is an alternative version to the <a href="{{ . }}">‘modern’ counterpart</a>. It doesn‘t require Javascript, state-of-the-art CSS or convoluted HTML to work, which makes it ideal for eBooks users, legacy internet browsers or readers who use accessibility tools.'
+other = 'The ‘classic’ edition is an alternative version to the <a href="{{ .modern }}">‘modern’ counterpart</a>. It doesn‘t require Javascript, state-of-the-art CSS or convoluted HTML to work, which makes it ideal for readers who use accessibility tools or legacy internet browsers. On the other hand, eBook users can now check the <a href="{{ .ebook }}">eBook edition</a>.'
 
 [classic_description]
 other = "This edition is identical content-wise. However, interactive widgets have been simplified to work with pure HTML, though these will offer an link to the original article in case the reader wants to try the ‘full version’."
@@ -134,8 +134,8 @@ other = "If you find my articles interesting then please consider donating. Your
 [contribution_footer]
 other = "As a token of gratitude, your name will be included in the credits section of the next article or your nominated one, unless stated otherwise."
 
-[contribution_footer_funding]
-other = "I've also setup a Ko-fi to raise funds towards particular improvements on the site:"
+[contribution_footer_ebook]
+other = 'You can also buy the <a href="{{ . }}">eBook edition</a> in English. I treat the profits as donations.'
 
 [contribution_suggestions]
 other = 'Alternatively, you can help out by <a href="{{ . }}">suggesting changes</a> and/or <a href="{{ . }}">adding translations</a>.'
@@ -206,7 +206,7 @@ other = 'Interactive model available in the <a href="{{ . }}">modern edition</a>
 other = 'Interactive player available in the <a href="{{ . }}">modern edition</a>'
 
 [goto_classic]
-other = 'If you use accessibility tools, an eBook or legacy browsers, <a href="{{ . }}">switch to the ‘classic’ edition</a>.'
+other = 'If you use accessibility tools or legacy browsers, <a href="{{ .classic }}">switch to the ‘classic’ edition</a>. You can also get the <a href="{{ .ebook }}">eBook edition</a>.'
 
 [audio_samples]
 other = 'Audio samples'
