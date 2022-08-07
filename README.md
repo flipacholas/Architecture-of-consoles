@@ -36,7 +36,7 @@ Likewise, if you think there's a mistake (whether it's a technicality or involve
 
 [Stylesheet]: STYLES.md
 [Translate]: TRANSLATIONS.md
-[License]: LICENSE
+[License]: LICENSE.md
 
 <!---------------------------------[ Badges ]---------------------------------->
 
