@@ -2,7 +2,7 @@
 long_title: Architektura Wii
 short_title: Architektura Wii
 name: Wii
-subtitle: Nowe metody innowacji
+subtitle: Unikalne techniki innowacji
 date: 2020-01-05
 release_date: 2006-11-19
 generation: 7
@@ -41,6 +41,7 @@ supporting_imagery()
 Zacznijmy od omówienia jednego z najbardziej charakterystycznych aspektów tej konsoli: Kontrolerów.
 
 Główne urządzenie to nic innego jak **Pilot Wii** (zwany także 'Wiimote'), gadżet o kształcie podobnym do pilota telewizora, który zawiera wiele rodzajów elementów sterujących wejściem:
+
 - Na początek ma **zestaw fizycznych przycisków**, które są używane jak każdy konwencjonalny kontroler.
 - Zawiera również **akcelerometr** do wykrywania zmian orientacji, jest to główny składnik używany do wykrywania ruchu.
 - Wreszcie zawiera **kamerę na podczerwień**, która w połączeniu z akcelerometrem i przetwarzaniem Wii może być używana do wskazywania ekranu.
@@ -54,7 +55,7 @@ Wreszcie, Wiimote zawiera również **16 KB EEPROM** do przechowywania danych u�
 
 Nintendo dostarczyło ten system z innym kontrolerem, który ma być używany po drugiej stronie, **Nunchuk**, ten ma własny akcelerometr, joystick i dwa przyciski. Jest podłączony do niestandardowego 6-stykowego portu producenta w Wiimote.
 
-(ref:controllers) Nunchuk i Wiimote, odpowiednio.
+(ref:controllers) Nunchuk i Wiimote `r cite("photography-amos")`, odpowiednio.
 
 ```{r fig.cap="(ref:controllers)", fig.align='center', centered=TRUE}
 image("controllers/both.jpg", "(ref:controllers)", class = "centered-container")
@@ -181,6 +182,7 @@ Podsystem WE/WY tej konsoli naprawdę zmienia zasady gry (*wybaczcie grę słów
 Starlet to po prostu procesor **ARM926EJ-S** podłączony do większości wewnętrznych komponentów tej konsoli. Znajduje się w Hollywood, działa z częstotliwością **243 MHz** (tak samo jak Hollywood) i zawiera również własny ROM i RAM. W ten sposób możesz uznać Starlet za niezależny komputer działający obok głównego procesora.
 
 Rdzeń jest podobny do tego używanego w [Nintendo DS](code>r ref("nintendo-ds")</code), z wyjątkiem dwóch 'specjalnych' dodatków:
+
 - Litery 'J' w nazwie modelu, która oznacza dołączenie **Jazelle**: dedykowanej jednostki wykonującej 8-bitowy kod bajtowy Java. Programy Java nadal będą zależne od maszyny wirtualnej (znanej jako 'JVM'), ale niektóre kody operacyjne mogą być wykonywane bezpośrednio z procesora. Ogólnie rzecz biorąc, może to przyspieszyć wykonanie skompilowanego kodu Java.
 - Dedykowanej **Jednostki Zarządzania Pamięcią** (MMU) umożliwiającej korzystanie z pamięci wirtualnej. Przydatne dla systemów operacyjnych ogólnego przeznaczenia.
 
@@ -201,6 +203,7 @@ Chip dziedziczy również niektóre technologie z ARM, takie jak **Advanced Micr
 `r close_float_group(with_markdown = TRUE)`
 
 Powiedziawszy to, Nintendo podłączyło WE/WY w sposób, który wykorzystuje dwie magistrale AMBA:
+
 - **Magistrala AHB** (Magistrala o Wysokiej Wydajności AMBA [ang. AMBA High-performance Bus]): Jak sama nazwa wskazuje, jest przeznaczona do szybkiej komunikacji. Tutaj znajdujemy:
   - Interfejs **NAND**: Uzyskuje dostęp do 512 MB NAND Flash, która przechowuje system operacyjny i dane użytkownika.
   - Dwa interfejsy **Secure Digital Input Output** (SDIO): SDIO to protokół przeznaczony głównie do uzyskiwania dostępu do karty SD, ale w tym przypadku drugi służy do sterowania modułem Wi-Fi (802.11 b/g).
@@ -213,7 +216,7 @@ Powiedziawszy to, Nintendo podłączyło WE/WY w sposób, który wykorzystuje dw
 
 ### Utrzymanie kompatybilności
 
-(ref:gcequipcaption) Wii z osprzętem Gamecube'a.
+(ref:gcequipcaption) Wii przy użyciu sprzętu Gamecube `r cite("photography-amos")`.
 
 ```{r fig.cap="(ref:gcequipcaption)", open_float_group=TRUE, fig.align='center'}
 image('gamecube-mode.png', "(ref:gcequipcaption)", float=TRUE)
@@ -438,10 +441,12 @@ Dzięki temu widzimy, że Starlet odpowiada za szyfrowanie/odszyfrowywanie senso
 Tytuły zawierają kolejną warstwę zabezpieczeń, RSA-2048. Jest to **szyfr asymetryczny**, co oznacza, że potrzebujemy jednego klucza do zaszyfrowania zawartości i drugiego do jej odszyfrowania. W skrócie, pozwala to Nintendo na szyfrowanie tytułów za pomocą nieujawnionego klucza (zwanego 'kluczem prywatnym'), podczas gdy Wii odszyfrowuje je za pomocą 'klucza publicznego', który jest przechowywany w konsoli. Gdyby hakerzy zdobyli klucz publiczny, nie wystarczyłoby złamać systemu bezpieczeństwa, ponieważ nadal oczekuje się, że dane będą szyfrowane za pomocą klucza prywatnego, o którym wie tylko Nintendo.
 
 Ponadto RSA jest wykorzystywany nie tylko do szyfrowania treści, ale również do sprawdzania integralności tego szyfrowania. Widzisz, Nintendo używa wielu kluczy, które są używane do podpisywania (szyfrowania) już zaszyfrowanych danych, tworząc łańcuch szyfrowania, którego jedynym celem jest upewnienie się, że:
+
 - Każdy użyty klucz został autoryzowany przez Nintendo.
 - Dane nie zostały zmienione i ponownie zaszyfrowane bez autoryzacji.
 
 Podam przykład, jak to działa:
+
 1. Nintendo tworzy klucz o nazwie `x`.
 2. Nintendo programuje Starlet, aby ufała treściom podpisanym tylko kluczem `x`.
 3. Jeśli Starlet stwierdzi, że będzie musiała odszyfrować tytuł kluczem `y`, zadziała tylko wtedy, gdy `y` zostanie podpisany kluczem `x`.
