@@ -89,7 +89,7 @@ other = "Ostatnio zaktualizowany: {{ . }}"
 other = "Edycja klasyczna"
 
 [classic_intro]
-other = 'Edycja „klasyczna” jest wersją alternatywną dla <a href="{{ . }}">‘nowoczesnego’ odpowiednika</a>. Do działania nie wymaga JavaScript, najnowocześniejszego CSS ani zawiłego HTML, co czyni go idealnym dla użytkowników e-booków, starszych przeglądarek internetowych lub czytelników korzystających z narzędzi ułatwień dostępu.'
+other = 'Edycja „klasyczna” jest wersją alternatywną dla <a href="{{ .modern }}">‘nowoczesnego’ odpowiednika</a>. Do działania nie wymaga JavaScript, najnowocześniejszego CSS ani zawiłego HTML, co czyni go idealnym dla czytelników korzystających z narzędzi ułatwień dostępu lub starszych przeglądarek internetowych. Z drugiej strony użytkownicy e-booków mogą teraz sprawdzić <a href="{{ .ebook }}">edycję e-bookow</a>.'
 
 [classic_description]
 other = "Ta edycja jest identyczna merytorycznie. Interaktywne widżety zostały uproszczone do pracy z czystym HTML, chociaż będą oferować link do oryginalnego artykułu na wypadek, gdyby czytelnik chciał wypróbować 'pełną wersję'."
@@ -124,8 +124,8 @@ other = "Jeśli uważasz, że moje artykuły są interesujące, rozważ darowizn
 [contribution_footer]
 other = "W dowód wdzięczności Twoja nazwa zostanie umieszczona w sekcji uznań w następnym artykule lub w nominowanym przez Ciebie artykule, chyba że stwierdzono inaczej."
 
-[contribution_footer_funding]
-other = "Założyłem również Ko-fi, aby zebrać fundusze na konkretne ulepszenia na stronie:"
+[contribution_footer_ebook]
+other = 'Możesz także zakupić <a href="{{ . }}">wydanie e-bookowe</a> w języku angielskim. Zyski traktuję jako darowizny.'
 
 [contribution_suggestions]
 other = 'Możesz też pomóc <a href="{{ . }}">proponując zmiany</a> i/lub <a href="{{ . }}">dodając tłumaczenia</a>.'
@@ -194,7 +194,7 @@ other = 'Model interaktywny dostępny w <a href="{{ . }}">nowoczesnej edycji</a>
 other = 'Interaktywny odtwarzacz dostępny w <a href="{{ . }}">nowoczesnej edycji</a>'
 
 [goto_classic]
-other = "Jeśli korzystasz z narzędzi ułatwień dostępu, e-booka lub starszych przeglądarek, <a href=\"{{ . }}\">przełącz się na edycję 'klasyczną'</a>."
+other = "Jeśli korzystasz z narzędzi ułatwień dostępu lub starszych przeglądarek, <a href=\"{{ .classic }}\">przełącz się na wersję 'klasyczną'</a>. Możesz także pobrać <a href=\"{{ .ebook }}\">edycję e-bookową</a>."
 
 [audio_samples]
 other = "Próbki dźwiękowe"
