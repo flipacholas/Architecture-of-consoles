@@ -494,6 +494,7 @@ image("bios/game_splash.jpg", "(ref:iodisccaption)", tab.name="(ref:iodisctitle)
 ```
 
 Upon boot, the CPU will execute instructions in ROM which in turn will:
+
 1. Initialise the hardware.
 2. Load a **Kernel** into RAM, this will handle system calls and also provide multi-threading support (cooperative and priority-based).
 3. Start the IOP processor and send it **modules**, these will enable the IOP to handle the hardware of this console. In the end, the IOP will be put in a 'waiting for command' state.
