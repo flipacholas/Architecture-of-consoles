@@ -36,6 +36,10 @@ Na początku byłem trochę zdezorientowany, czytając o różnych modelach, kt�
 
 Odtąd będę używał terminu 'Master System' lub 'SMS' w odniesieniu do nich wszystkich, z wyjątkiem mówienia o ekskluzywnych funkcjach konkretnego modelu.
 
+```{r results="asis"}
+supporting_imagery()
+```
+
 ## CPU
 
 Sega zdecydowała się na pełnoprawny procesor **Zilog Z80** pracujący z częstotliwością **~3,58 MHz**. Popularny wybór używany przez maszyny takie jak ZX Spectrum i Amstrad CPC. Z80 ma zestaw instrukcji zgodny z Intel 8080, ale rozszerzony o wiele innych instrukcji.
