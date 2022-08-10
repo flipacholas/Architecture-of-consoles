@@ -26,6 +26,10 @@ aliases:
 
 Sega Dreamcast wprowadziła wiele nowych funkcji w stosunku do swojego poprzednika ([Sega Saturn](code>r ref("sega-saturn")</code)), aby spodobać się zarówno twórcom gier, jak i graczom konsolowym. Chociaż była to ostatnia próba podbicia rynku konsol przez firmę Sega, niektóre z technologii, które były pionierami w Dreamcast, przeniosły się na przyszłe urządzenia głównego nurtu.
 
+```{r results="asis"}
+supporting_imagery()
+```
+
 ## CPU
 
 Nic dziwnego, że Sega ponownie wybrała Hitachi do opracowania swojego procesora. Jeśli czytałeś [poprzedni artykuł o Sega Saturn](code>r ref("sega-saturn")</code) to pozwólcie, że przedstawię Wam następną generację procesora SH: **SH-4** działający z niesamowitą prędkością **200 MHz** `r cite("cpu-spec")`. Więc co jest interesującego w tym procesorze?
