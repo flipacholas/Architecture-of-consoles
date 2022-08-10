@@ -242,6 +242,7 @@ Having said that, you can divide the VIP into three main areas:
 `r close_float_group(with_markdown = TRUE)`
 
 Overall, the pipeline is very simple:
+
 1. The CPU sets up the VIP by writing over its internal registers and filling up VRAM and DRAM with the required materials.
 2. The XP will then generate frame-buffers that will be stored in VRAM.
 3. The DP selects the necessary frame-buffer and sends it to the Scanner for display. This is done by copying the frame, four columns at a time, to a small buffer area in VRAM called **Serial Access Memory** or 'SAM', which is automatically broadcasted to the Scanner.
