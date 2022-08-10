@@ -550,6 +550,8 @@ Thanks to the new bandwidth achieved, game designers may push for a level of qua
 
 The state of the industry after 15 years has demonstrated that the Unified shader model was meant to become another building block within GPUs. Interestingly enough, when Direct3D 10 and OpenGL 3.3 debuted in 2006 and 2010, respectively, not only they standardised this model, but they also defined new features and applications that were now possible to implement. For instance, a new pipeline stage called **Geometry shader** was added in Direct3D 10 to expand the uses of the tessellator.
 
+On a related note, Xenos also introduced new encoding methods for storing HDR pixels using no more than 32-bit values (thus, saving bandwidth and storage). One of their proposals was to encode the three primary colors using 10-bit `floats` and leave the remaining two for the alpha channel (transparency) `r cite("graphics-nopixel")`. A year later (2006), Direct3D 10 and a new OpenGL extension took this idea further and implemented the (now standardised) 'packed float' structure, consisting in encoding Red and Green using 11 bits and Blue using 10 bits `r cite("graphics-packed")`. 
+
 (ref:froggycaption) Froggy (2006), Nvidia's latest demo that showcased the capabilities of the unified shaders (incorporated with the Geforce 8 line). For demonstration purposes, the demo also allows to, ehem, slap and stretch the _poor ugly_ frog.
 
 ```{r fig.cap="(ref:froggycaption)", open_float_group=TRUE, fig.align='center'}
