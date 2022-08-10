@@ -238,9 +238,9 @@ What about how the CPU and GE communicate with each other? As I said before, bot
 
 `r close_float_group(with_markdown = TRUE)`
 
-In a nutshell, there are two **bus matrix** blocks that re-wire the connection between the local bus and the System Bus. Whenever there's a component that wants to access an 'alien' bus, the bus matrices configure the communication so that one unit becomes master of the two buses and no other overlaps, this persists until the designated unit finishes transferring memory.
+In a nutshell, there are two 'bus matrix' blocks that re-wire the connection between the local bus and the System Bus. Whenever there's a component that wants to access an 'alien' bus, the bus matrices configure the communication so that one unit becomes master of the two buses and no other overlaps, until the designated unit finishes transferring memory.
 
-This behaviour reminds me of the commonly known technique called **bus mastering**, where the leading component is the 'bus master' and has complete control of the bus, and the rest are 'slaves' awaiting for commands. However, I'm not sure which protocol/standard Sony's engineers were trying to replicate. Based on my understanding, I think it may be somewhat similar to I²C, a protocol used for serial communications (particularly useful with embedded systems) which also performs bus mastering.
+In Sony's terms, they refer to this as the graphics core or CPU becoming a 'bus master' while the alien bus is set to 'slave'. However, they didn't spend a lot of words trying to explain it and I'm not sure which protocol/standard they are trying to replicate. Based on what's documented, I think it may be somewhat similar to I²C, a protocol used for serial communications (particularly useful with embedded systems) which also performs bus mastering.
 
 ### Organising the content
 
