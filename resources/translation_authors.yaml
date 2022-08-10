@@ -7,7 +7,8 @@ gameboy:
 gamecube: null
 gba:
   pl: LunaDook & MoonbowPlushie
-mastersystem: null
+mastersystem:
+  pl: LunaDook & MoonbowPlushie
 megadrive:
   pl: LunaDook & MoonbowPlushie
 nes:
