@@ -244,8 +244,7 @@ Once the commands are decoded by the GPU, it's time to convert the geometry rece
 
 The GPU uses **triangles as primitives** to form 3D models. Being the only available primitive means that backgrounds and foregrounds make no difference in terms of composition (both are made of triangles). 2D games inherit the same nature: They are just two triangles joined to form a quadrangle (though the GPU provides routines for constructing sprites automatically).
 
-The rasterizer is the unit in charge of converting vectors into triangles; and then into pixels. This is done by:
-
+The rasterizer is the unit in charge of converting vectors into triangles; and then into pixels. This is done by: 
 1. Grabbing each three-point vertex and calculating the edges. This forms a triangle.
 2. Analysing the area of the triangle to identify which pixels of the frame buffer they occupy. Any section of the triangle covering the **sampling point** is turned into a pixel.
 
@@ -496,7 +495,6 @@ image("bios/shell.png", "(ref:shellcaption)", tab.name="(ref:shelltitle)")
 ```
 
 Similarly to the [Saturn](`r ref("sega-saturn#games")`)'s boot process, after receiving power, the PS1 will:
-
 1. Look for the BIOS ROM and execute routines to initialise the hardware.
 2. Load PlayStation OS.
 2. Display the splash screen.
