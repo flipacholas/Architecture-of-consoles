@@ -34,7 +34,7 @@ supporting_imagery()
 
 ## CPU
 
-The main processor is a **NEC VR4300** that runs at **93.75 MHz** `r cite("cpu-anatomy")`, it's a binary-compatible version of Silicon Graphics' **MIPS R4300i** `r cite("cpu-nec")` that features:
+The main processor is a **NEC VR4300** that runs at **93.75 MHz** `r cite("cpu-manual")`, it's a binary-compatible version of Silicon Graphics' **MIPS R4300i** `r cite("cpu-nec")` that features:
 
 - **Two modes of operation**:
   - **32-bit mode**: Traditional mode and the most common one for games. Words are 32-bit long.
