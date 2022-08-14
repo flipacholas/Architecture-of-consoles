@@ -202,7 +202,7 @@ Chip dziedziczy również niektóre technologie z ARM, takie jak **Advanced Micr
 
 `r close_float_group(with_markdown = TRUE)`
 
-Powiedziawszy to, Nintendo podłączyło WE/WY w sposób, który wykorzystuje dwie magistrale AMBA:
+Powiedziawszy to, Nintendo podłączyło WE/WY w sposób, który wykorzystuje dwie magistrale AMBA `r cite("io-diagram")`:
 
 - **Magistrala AHB** (Magistrala o Wysokiej Wydajności AMBA [ang. AMBA High-performance Bus]): Jak sama nazwa wskazuje, jest przeznaczona do szybkiej komunikacji. Tutaj znajdujemy:
   - Interfejs **NAND**: Uzyskuje dostęp do 512 MB NAND Flash, która przechowuje system operacyjny i dane użytkownika.
@@ -237,10 +237,11 @@ Ogólnie rzecz biorąc, w Wii znajdują się **dwa systemy operacyjne**. Jeden w
 Starlet sam w sobie to już ciekawy sprzęt, ale jego oprogramowanie jest jeszcze bardziej intrygujące. Widzisz, ten system operacyjny nie tylko ma pełny dostęp do każdego zakątka konsoli, ale jest także pierwszą rzeczą uruchamianą na konsoli po wciśnięciu przycisku zasilania.
 
 Starlet uruchamia system *nieoficjalnie* określany jako **System Operacyjny Wejścia/Wyjścia** [ang. Input/Output Operating System] lub 'IOS' (proszę, nie myl tego z iOS firmy Apple) `r cite("operating_system-ios")`. IOS to w pełni funkcjonalny system operacyjny składający się z:
-  - **Mikrojądra**: Kontroluje procesor ARM9, wykonuje **procesy** i komunikuje się z innym sprzętem przy użyciu **sterowników**.
-  - **Sterowników**: Umożliwiają komunikację ze sprzętem znajdującym się poza procesorem (WE/WY).
-  - **Procesów**: Wykonują zadanie, takie jak zarządzanie siecią lub wdrażanie systemu plików.
-  - **Rdzenia kryptograficznego**: Przyspiesza operacje związane z szyfrowaniem (**Tylko AES i SHA-1**).
+
+- **Mikrojądra**: Kontroluje procesor ARM9, wykonuje **procesy** i komunikuje się z innym sprzętem przy użyciu **sterowników**.
+- **Sterowników**: Umożliwiają komunikację ze sprzętem znajdującym się poza procesorem (WE/WY).
+- **Procesów**: Wykonują zadanie, takie jak zarządzanie siecią lub wdrażanie systemu plików.
+- **Rdzenia kryptograficznego**: Przyspiesza operacje związane z szyfrowaniem (**Tylko AES i SHA-1**).
 
 Mając to na uwadze, **głównym zadaniem IOS jest odciążenie głównego procesora** poprzez abstrakcję WE/WY i bezpieczeństwa. Z tego powodu programiści nie muszą się nimi martwić. Aby to osiągnąć, Starlet **rezerwuje od 12 do 16 MB** RAM GDDR3 dla swoich zadań, reszta jest używana przez Broadway i GX.
 
