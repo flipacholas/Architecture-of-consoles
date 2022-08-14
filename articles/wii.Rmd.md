@@ -202,7 +202,7 @@ The chip also inherits some technology from ARM, such as the **Advanced Microcon
 
 `r close_float_group(with_markdown = TRUE)`
 
-Having said that, Nintendo wired up the I/O in a way that makes use of two AMBA buses:
+Having said that, Nintendo wired up the I/O in a way that makes use of two AMBA buses `r cite("io-diagram")`:
 
 - The **AHB Bus** (AMBA High-performance Bus): As the name indicates, it's designed for high-speed communication. Here we find:
   - The **NAND** Interface: Accesses 512 MB of NAND Flash that stores the operating system and user data.
@@ -237,10 +237,11 @@ Generally speaking, there are **two operating systems** residing in the Wii. One
 Starlet is already an interesting piece of hardware, but its software is even more intriguing. You see, not only does this OS have complete access to every single corner of the console, but it's also the first thing that runs when the power button is pressed.
 
 Starlet runs a system *unofficially* referred to as **Input/Output Operating System** or 'IOS' (please, do not confuse this with Apple's iOS) `r cite("operating_system-ios")`. IOS is a fully-featured operating system composed of:
-  - A **Microkernel**: Controls the ARM9 CPU, executes **processes** and talks with other hardware using **drivers**.
-  - **Drivers**: Enables the communication with hardware outside the CPU (I/O).
-  - **Processes**: Performs a task, such as network management or implementing a file system.
-  - **Cryptographic core**: Accelerates encryption-related operations (**AES and SHA-1 only**).
+
+- A **Microkernel**: Controls the ARM9 CPU, executes **processes** and talks with other hardware using **drivers**.
+- **Drivers**: Enables the communication with hardware outside the CPU (I/O).
+- **Processes**: Performs a task, such as network management or implementing a file system.
+- **Cryptographic core**: Accelerates encryption-related operations (**AES and SHA-1 only**).
 
 With this in mind, the **main job of IOS is to offload the workload of the main CPU** by abstracting I/O and security. For that reason, programmers don't have to worry about those matters. In order to accomplish this, Starlet **reserves between 12 and 16 MB** of GDDR3 RAM for its tasks, the rest is used by Broadway and GX.
 

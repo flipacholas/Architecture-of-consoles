@@ -1475,7 +1475,7 @@ And that's what we'll discuss now.
 
 `r tab.simple("King Kong exploit", tab.h5=TRUE)`
 
-Enter the famous King Kong title. Like any other typical game, its discs stores vertex and pixel shaders files which are loaded at some point during gameplay. However, for some unknown reason, these files are found in completely plain (unencrypted) and unsecured form.
+Enter the famous King Kong title. Like any other typical game, its disc stores vertex and pixel shaders files which are loaded at some point during gameplay. However, for some unknown reason, these files are found in completely **plain (unencrypted) and unsecured form**.
 
 If you combine this with the fact the DVD drive can be modified to load duplicates, you could now make it load a King Kong game with modified shaders. Why would this be worth it? Well, do you remember the 'memory export' function I mentioned in the 'Graphics' section? Shaders can DMA to main RAM! _Oof_.
 
