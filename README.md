@@ -1,14 +1,4 @@
-# Architecture of Consoles   [![Badge License]][License]
-
-<div align = center>
-
-[![Button Stylesheet]][Stylesheet]   
-[![Button Translate]][Translate]
-
----
-
-</div>
-<br>
+# Architecture of Consoles   [![Badge License]][License] [![Button Stylesheet]][Stylesheet] [![Button Translate]][Translate]
 
 This repo holds the articles that constitute the [Architecture of Consoles] series. It has been made public to enable interested readers to discuss improvements, add translations and possibly more.
 
