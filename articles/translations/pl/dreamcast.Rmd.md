@@ -179,7 +179,7 @@ Funkcjonalność audio jest obsługiwana przez niestandardowy układ o nazwie **
 - **2 MB SDRAM-u**: Przechowuje dane dźwiękowe i programy. Jest wypełniany przez główny procesor za pomocą DMA.
 - **ARM7DI** działający z częstotliwością ~2,82 MHz: Kontroluje Sound IC. Ten procesor jest programowany przez uruchomienie małego oprogramowania (zwanego [sterownikiem](code>r ref("super-nintendo#audio")</code)) przechowywanego w pamięci SRAM, które odpowiednio interpretuje dane audio i manipuluje Sound IC.
   - Jeśli się zastanawiasz, podobny procesor jest również używany [tutaj](code>r ref("game-boy-advance")</code).
-- **Memory Controller**: Oddziałuje na 2 MB SDRAM.
+- **Kontroler Pamięci**: Oddziałuje na 2 MB SDRAM.
 
 Aby pomóc w programowaniu, oficjalny SDK zawierał wiele sterowników dźwięku do różnych potrzeb (sekwencjonowanie, dekodowanie, itp).
 
