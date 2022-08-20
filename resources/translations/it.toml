@@ -89,7 +89,7 @@ other = "Ultimo aggiornamento: {{ . }}"
 other = "Versione classica"
 
 [classic_intro]
-other = "La versione classica è una versione alternativa a quella <a href=\"{{ . }}\">moderna</a>. Il suo funzionamento non richiede Javascript, CSS all'avanguardia o HTML particolarmente complesso, pertanto è ideale per gli utenti con lettori ebook, browser internet legacy o per i lettori che utilizzano strumenti di accessibilità."
+other = "La versione classica è una versione alternativa a quella <a href=\"{{ .modern }}\">moderna</a>. Il suo funzionamento non richiede Javascript, CSS all'avanguardia o HTML particolarmente complesso, pertanto è ideale per i lettori che utilizzano strumenti di accessibilità o browser internet legacy. Chi usa lettori di ebook può consultare la <a href=\"{{ .ebook }}\">versione ebook</a>."
 
 [classic_description]
 other = "I contenuti sono identici. Tuttavia, i widget interattivi sono stati semplificati per poter funzionare anche in HTML puro e includono un collegamento all'articolo originale, nel caso in cui il lettore volesse provare la versione completa."
@@ -124,8 +124,8 @@ other = "Se trovate i miei articoli interessanti, prendete in considerazione l'i
 [contribution_footer]
 other = "Come segno di gratitudine e salvo che non lo vogliate, inserirò il vostro nome nella sezione dei riconoscimenti dell'articolo successivo o dell'articolo che avete scelto."
 
-[contribution_footer_funding]
-other = "Ho anche aperto un Ko-fi per raccogliere fondi destinati a determinate migliorie del sito:"
+[contribution_footer_ebook]
+other = 'Potete anche acquistare la <a href="{{ . }}">versione ebook</a> degli articoli in inglese. I proventi saranno considerati come donazioni.'
 
 [contribution_suggestions]
 other = 'In alternativa, potete dare una mano <a href="{{ . }}">suggerendo modifiche</a> e/o <a href="{{ . }}">aggiungendo una traduzione</a>.'
@@ -194,7 +194,7 @@ other = 'Il modello interattivo è disponibile nella <a href="{{ . }}">versione 
 other = 'Il player interattivo è disponibile nella <a href="{{ . }}">versione moderna</a>'
 
 [goto_classic]
-other = 'Se utilizzate strumenti di accessibilità, lettori di ebook o browser legacy, <a href="{{ . }}">passate alla versione classica</a>.'
+other = 'Se utilizzate strumenti di accessibilità o browser legacy, <a href="{{ .classic }}">passate alla versione classica</a>. In alternativa, potete scaricare la <a href="{{ .ebook }}">versione ebook</a>.'
 
 [audio_samples]
 other = "Esempi audio"
