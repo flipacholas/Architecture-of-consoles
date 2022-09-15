@@ -71,7 +71,7 @@ To put things in context, back when the original Xbox project was still at an ea
 
 For instance, the security subsystem that protected the console against the execution of unauthorised code was implemented outside these two critical chips. This made it vulnerable to [snooping attacks](`r ref("xbox#tab-9-2-bootstrap-search")`) that eventually paved way for the execution of Homebrew and piracy. Moreover, Microsoft did not control the manufacturing stage either, so the production of Xbox consoles was at the mercy of Intel's and Nvidia's supply.
 
-Well, now that Microsoft gained more leverage in the console market, they weren't willing to give away those rights anymore.
+Well, now that Microsoft has gained more leverage in the console market, they aren't willing to give away those rights anymore.
 
 (ref:sharingcaptiontitle) Sharing common problems
 
@@ -94,7 +94,7 @@ Thus, Microsoft began meeting with Intel, though the talks didn't last long, as 
 
 (ref:oldfriendstitle) Resentful old friends
 
-(ref:oldfriendscaption) An IBM PC that I found in the Computer History Museum (San Jose, California), during my visit in June 2019. For some reason, they don't allow to use it...
+(ref:oldfriendscaption) An IBM PC that I found in the Computer History Museum (San Jose, California), during my visit in June 2019. For some reason, they don't allow you to use it...
 
 ```{r fig.cap="(ref:oldfriendscaption)", fig.align='center', tab.title="(ref:oldfriendstitle)", tab.last = TRUE}
 image('photos/ibm_pc.jpeg', "(ref:oldfriendscaption)", float=TRUE)
@@ -156,7 +156,7 @@ image('photos/xenon.jpg', caption1, float=TRUE)
 
 In doing so, you'll perceive that Xenon takes a more conservative approach than Cell. If we take another look at the previous diagram of Xenon, you can notice that the latter is equipped with the famous [**PowerPC Processing Elements**](`r ref("playstation-3#inside-cell-the-leader")`) (PPEs), which is also the most important piece of Cell. However, Xenon's is now equipped with **three** of them. Additionally, **the [Synergic Processors Units (SPUs)](`r ref("playstation-3#inside-cell-the-assistants")`) are no more**.
 
-After all, Microsoft didn't want processors of very different nature squashed in their CPU. They instructed IBM to compose three powerful cores and enhance them with the ingredients game developers would expect to find. With this approach, IBM and Microsoft were also able to add non-standard features without disrupting the traditional _modus operandi_ of developers.
+After all, Microsoft didn't want processors of very different natures squashed in their CPU. They instructed IBM to compose three powerful cores and enhance them with the ingredients game developers would expect to find. With this approach, IBM and Microsoft were also able to add non-standard features without disrupting the traditional _modus operandi_ of developers.
 
 `r close_float_group(with_markdown = TRUE)`
 
@@ -219,7 +219,7 @@ image("cpu/caches.png", "(ref:cachelayoutcaption)", class = "centered-container"
 
 The choice of an 8-way associative cache was not a rash decision for Xenon, as providing eight associations can alleviate the six simultaneous threads (each PPE is dual-threaded) trying to access the L2 block at the same time. This also balances frequent cache misses and lookup times. All of this, while keeping the costs down. For comparison purposes, the expensive Intel 'Smithfield' (a Pentium D from 2005) provides two cores with 2 MB of L2 cache each! `r cite("cpu-shimpi_intel")`
 
-It wouldn't be the first time Microsoft [trimmed the cache for pricing purposes](`r ref("xbox#tab-1-5-the-core")`), so it will be up to developers to optimise its usage. To assist with this, XBAR bundles additional logic like 'Cache locking' which will be further explained in the 'Graphics' section.
+It wouldn't be the first time Microsoft [trimmed the cache for pricing purposes](`r ref("xbox#tab-1-5-the-core")`), so it will be up to developers to optimise its usage. To assist with this, XBAR bundles additional logic like 'cache locking' which will be further explained in the 'Graphics' section.
 
 ### Inside Xenon: The leader(s)
 
@@ -229,11 +229,11 @@ To start with, Xenon's PPEs don't feature a [PowerPC Processor Storage Subsystem
 
 (ref:diagramxenontitle) Xenon's PPE
 
-(ref:diagramxenoncaption) Simplified diagram of Xenon's PowerPC Processing Element (PPE)
+(ref:diagramxenoncaption) Simplified diagram of Xenon's PowerPC Processing Element (PPE).
 
 (ref:diagramxenontitle2) Cell's PPE
 
-(ref:diagramxenoncaption2) For comparison purposes, this is Cell's counterpart
+(ref:diagramxenoncaption2) For comparison purposes, this is Cell's PPE.
 
 ```{r fig.cap=c("(ref:diagramxenoncaption)", "(ref:diagramxenoncaption2)"), fig.align='center', tab.nested=TRUE, centered=TRUE}
 image("cpu/ppe.png", "(ref:diagramxenoncaption)", tab.name="(ref:diagramxenontitle)", tab.active=TRUE)
@@ -252,7 +252,7 @@ The initial VMX specification implemented in the PlayStation 3 provides 32 128-b
 
 VMX128 supplies **128 128-bit** registers instead, along with an adapted instruction set to manipulate the larger set of registers. To accomplish that, IBM changed the opcode format to allocate 7 bits (as opposed to 5 bits) for referencing its extended register file `r cite("cpu-gschwind")`. This is possible thanks to some trickery applied on the last five bits at the end of the 32-bit opcode `r cite("cpu-biallas")`. The last five bits are mostly, but not completely, unused by VMX. Consequently, VMX128 is incompatible with a subset of VMX instructions (related to integer multiplication and additions).
 
-Furthermore, VMX128 adds new instructions that compute the **dot product** of two vectors composed of up to three 32-bit floating-point numbers; and others that handle **Direct3D's data compression formats** `r cite("cpu-brown")` (it's worth mentioning that DirectX is the de-facto API for programming this console). Finally, thanks to the symmetric design of Xenon and its multi-threaded model (dual-issuing), VMX128's register file is duplicated, so there are **256 128-bit registers per core**!
+Furthermore, VMX128 adds new instructions that compute the **dot product** of two vectors composed of up to three 32-bit floating-point numbers; and others that handle **Direct3D's data compression formats** `r cite("cpu-brown")` (it's worth mentioning that DirectX is the sole API for programming this console). Finally, thanks to the symmetric design of Xenon and its multi-threaded model (dual-issuing), VMX128's register file is duplicated, so there are **256 128-bit registers per core**!
 
 As we reach the end of this section, there's still one question left unanswered: which is faster for vector operations, 1 VMX + 6 SPEs (as in the PS3) or 3 VMX128 units (as in the Xbox 360)? Well, their designs are too divergent, so it's hard to quantify. One could say 'The SPE can execute up to two instructions per cycle while Xenon takes 12 cycles to add two vectors (due to the long pipeline of the PPE)' but that's relative, as the SPE's memory scope is restricted to its local memory (requiring DMA calls to interact with the outside), while Xenon's PPEs can access any memory location. So, in conclusion, these are two contrasting models and programmers will just have to get the best out of them.
   
@@ -432,7 +432,7 @@ Those 512 MB store most - if not all - the materials Xenos needs to render a fra
 image("gpu/content.png", "(ref:gpumemarchcaption)", class = "centered-container")
 ```
 
-As if this wasn't enough, there's a third source that can feed the GPU, and that is a **direct line to the CPU**! Unlike anything seen before, the CPU can stream commands and geometry without going through the traditional steps of storing [command buffers](`r ref("playstation#tab-4-1-commands")`) in external memory, thereby saving once again traffic from main RAM. This is what Microsoft advertised as **Procedural Synthesis** (XPS) and made possible by two changes `r cite("cpu-andrews")`:
+As if this wasn't enough, there's a third source that can feed the GPU, and that is a **direct line to the CPU**! Unlike anything seen before, the CPU can stream commands and geometry without going through the traditional steps of storing [command buffers](`r ref("playstation#tab-4-1-commands")`) in external memory, thereby saving once again traffic from main RAM. This is what Microsoft advertised as **Xbox Procedural Synthesis** (XPS) and made possible by two changes `r cite("cpu-andrews")`:
 
 - Firstly, the CPU's front-side bus was adapted so the GPU can directly fetch data from the CPU's L2 cache (where the CPU may [procedurally generate](`r ref("playstation-2#infinite-worlds")`) the geometry) in blocks of **128 Bytes** (the size of a cache line).
 - Secondly, a separate cached location was added into Xenon so the GPU can notify its current state to the CPU as fast as possible. Microsoft calls it the **Tail pointer write-back** and keeps both components in sync while the CPU updates the L2 cache and the GPU pulls from it. According to Microsoft, this routine provides a theoretical bandwidth of 18 GB/sec `r cite("cpu-andrews")`.
@@ -467,7 +467,7 @@ Welcome to the tour of the _12th polygon factory_ of this series. As always, the
 
 It's worth mentioning that by this generation, the traditional practice of using [Display Lists](`r ref("nintendo-64#tab-1-1-reality-signal-processor")`) for composing commands has been long superseded by a new structure called **Command Buffer** (as OpenGL and Direct3D call it). While both terms sound similar, the new entity makes room for new operations that weren't originally envisioned when Display Lists were conceived (primarily related to vertex, pixels and GPU control). As the APIs evolve, Command Buffers are adapted to reflect modern needs, while Display Lists have been deprecated since 2008 (OpenGL removed them with OpenGL 3.2) `r cite("graphics-opengl_history")`.
 
-Furthermore, Direct 3D 9's command buffers (found in the official SDK of the Xbox 360) provide the option to embed an interesting data format called **Index Buffers**. This enables developers to reuse existing vertex points to avoid duplicating geometry data in memory `r cite("graphics-indexbuffer")`.
+Furthermore, Direct3D 9's command buffers (found in the official SDK of the Xbox 360) provide the option to embed an interesting data format called **Index Buffers**. This enables developers to reuse existing vertex points to avoid duplicating geometry data in memory `r cite("graphics-indexbuffer")`.
 
 Finally, this GPU can also conditionally execute commands depending on arbitrary conditions set by the developers. In Direct3D's world, this is called **Predication** and saves the GPU from processing geometry that may be occluded, for instance.
 
@@ -542,13 +542,13 @@ This is as far as it goes for rendering, but one thing we haven't explored yet i
 
 The only drawback is that 10 MB **is not enough** for storing large buffers, especially those needed for rendering high-definition frames (1280x720 pixels wide with 2x MSAA enabled), let alone 1920x1080 frames. But fear not, as ATI supports **tiled rendering** (the same featured in the [Dreamcast](`r ref("dreamcast#graphics")`)!). This enables to render portions of the screen, store the results in EDRAM (for performance reasons) and, finally, reconstruct the tiles in main RAM to form the final frame. Tiled rendering became so critical that Microsoft took a step forward and devised **Predicated Tiling** `r cite("graphics-tiling")`, a function in Direct3D that automatically sets up and optimises the rendering pipeline specifically for tiled rendering. This prevents developers from manually programming each pipeline stage to handle tiles.
 
-Thanks to the new bandwidth achieved, game designers may push for a level of quality that otherwise would've been unfeasible with a traditional rendering system. This includes applying extended antialiasing methods (**4x MSSA**) or even **High-dynamic-range (HDR) rendering**. You see, HDR requires 64-bit pixels, where each channel is encoded as a 16-bit `float`. This has always been very expensive in terms of bandwidth, but in exchange, it provides the right precision to obtain realistic lighting and colour effects, something the Xbox 360 can now enjoy.
+Thanks to the new bandwidth achieved, game designers may push for a level of quality that otherwise would've been unfeasible with a traditional rendering system. This includes applying extended antialiasing methods (**4x MSAA**) or even **High-dynamic-range (HDR) rendering**. You see, HDR requires 64-bit pixels, where each channel is encoded as a 16-bit `float`. This has always been very expensive in terms of bandwidth, but in exchange, it provides the right precision to obtain realistic lighting and colour effects, something the Xbox 360 can now enjoy.
 
 `r close_tabs()`
 
 ### The impact on the industry
 
-The state of the industry after 15 years has demonstrated that the Unified shader model was meant to become another building block within GPUs. Interestingly enough, when Direct3D 10 and OpenGL 3.3 debuted in 2006 and 2010, respectively, not only they standardised this model, but they also defined new features and applications that were now possible to implement. For instance, a new pipeline stage called **Geometry shader** was added in Direct3D 10 to expand the uses of the tessellator.
+The state of the industry after 15 years has demonstrated that the unified shader model was meant to become another building block within GPUs. Interestingly enough, when Direct3D 10 and OpenGL 3.3 debuted in 2006 and 2010, respectively, not only did they standardise this model, but they also defined new features and applications that were now possible to implement. For instance, a new pipeline stage called **Geometry shader** was added in Direct3D 10 to expand the uses of the tessellator.
 
 On a related note, Xenos also introduced new encoding methods for storing HDR pixels using no more than 32-bit values (thus, saving bandwidth and storage). One of their proposals was to encode the three primary colors using 10-bit `floats` and leave the remaining two for the alpha channel (transparency) `r cite("graphics-nopixel")`. A year later (2006), Direct3D 10 and a new OpenGL extension took this idea further and implemented the (now standardised) 'packed float' structure, consisting in encoding Red and Green using 11 bits and Blue using 10 bits `r cite("graphics-packed")`. 
 
@@ -578,7 +578,7 @@ image('photos/xenon_zephyr_back.jpg', "(ref:xboxbackcaption)", float=TRUE)
 
 Instead, the first revision (called **Xenon**, like the CPU) is only equipped with a multi analogue socket called 'A/V'. This carries all the signals previously featured with the [original Xbox](`r ref("xbox#the-xboxs-frame")`), with the addition of VGA-compliant pins `r cite("graphics-xbox360av")` (its predecessor had the wires in place but, for some reason, were never powered `r cite("graphics-xboxav")`).
 
-Later on, in 2006, the follow-up motherboard revision called **Zephyr** ultimately added an HDMI socket to catch up with Sony's quality of signal. Internally, the original video encoder (the 'ANA' chip) had been replaced with the 'HDMI ANA' (or 'HANA') block `r cite("graphics-ana")`.
+Later on, in 2006, the follow-up motherboard revision called **Zephyr** ultimately added an HDMI socket to catch up with Sony's quality of signal. Internally, the original video encoder (known as the **ANA** chip) had been replaced with the 'HDMI ANA' (or **HANA**) block `r cite("graphics-ana")`.
 
 `r close_float_group(with_markdown = TRUE)`
 
@@ -643,7 +643,7 @@ For the coup de grace, Microsoft added dedicated circuitry to offload CPU cycles
 
 ### A look at the XMA accelerator
 
-In terms of functions, The XMA decoder can either decode up to **5.1 audio channels** with a sample rate of **48 kHz** and a resolution of **16-bit**. No surprises here!
+In terms of functions, The XMA decoder can decode up to **5.1 audio channels** with a sample rate of **48 kHz** and a resolution of **16-bit**. No surprises here!
 
 (ref:audopipelinecaption) Overview of the audio pipeline
 
@@ -735,7 +735,7 @@ The console can handle four controllers at the same time, whether wireless or wi
 
 `r close_float_group(with_markdown = TRUE)`
 
-Compared to the [old duke](`r ref("xbox#the-controller")`), the controller doesn't take two memory cards anymore, but it keeps the jack pin (2.5 mm TRS type). The wireless model has a special socket on the front to plug the 'Play and Charge' cable, an optional accessory to connect wireless controllers to the console and charge the battery at the same time. The cable uses a proprietary bus layout composed of USB-compliant pins with additional undocumented ones `r cite("io-gamepad")`.
+Compared to the [old duke](`r ref("xbox#the-controller")`), the controller doesn't take two memory cards anymore, but it keeps the headphone jack (2.5 mm TRS type). The wireless model has a special socket on the front to plug the 'Play and Charge' cable, an optional accessory to connect wireless controllers to the console and charge the battery at the same time. The cable uses a proprietary bus layout composed of USB-compliant pins with additional undocumented ones `r cite("io-gamepad")`.
 
 ### Internal interfaces
 
@@ -749,7 +749,7 @@ These are the interfaces that the Southbridge handles to interconnect chips with
 
 I don't tend to give too much attention to accessories because they deviate from the main focus of the article, but there is one special case where Microsoft dedicated an obsessive amount of marketing effort. They were even convinced that 'gamepads are a thing of the past' and it's only a matter of time before this new product would eradicate current user interaction methods.
 
-Well, that didn't happen, but **Kinect** is still worthy of study. Released in November 2010 with huge fanfare, Kinect is a sensor bar (similar but not identical to the [Wii's sensor bar](`r ref("wii#next-gen-controllers")`), Kinect's 'competitor-slash-inspiration') that captures the user's position, movement and voice in an effort to provide control of the game without requiring any physical object in the user's hands.
+Well, that didn't happen, but **Kinect** is still worthy of study. Released in November 2010 with huge fanfare, Kinect is a sensor bar (very different to the [Wii's sensor bar](`r ref("wii#next-gen-controllers")`), Kinect's 'competitor-slash-inspiration') that captures the user's position, movement and voice in an effort to provide control of the game without requiring any physical object in the user's hands.
 
 (ref:kinectcaption) The Kinect bar, released in November 2010 `r cite('photography-amos')`.
 
@@ -764,7 +764,7 @@ The construction of this device isn't anywhere simple, and as such, the sensor c
 - A **microphone** that listens to the player.
 - A _chip salad_ that handles the sensors and signals to produce meaningful data from it. This includes **64 MB of DDR2 SDRAM** (as a working area), **1 MB of Flash memory** (where the main program is stored), a **Marvell AP102 SoC** (presumably containing the main CPU inside) and a **PS1080-A2 DSP** (to process the image coming from the cameras), among others. All of this is fitted on three different boards stacked together `r cite("io-kinect_teardown")`.
 
-The sensor is operated through the use of Microsoft's opaque APIs, which in turn communicates to super-secret software installed on both the Kinect and the Xbox 360's Operating System. The former uses a **USB 2.0 A** connection to plug into the console. The 'Slim' re-design of the Xbox 360 released in the same year was also branded 'Kinect compatible' as it could supply power to the bar as well (with the provision of an extra proprietary port on the back of the console), older models require a separate power brick for the Kinect.
+The sensor is operated through the use of Microsoft's opaque APIs, which in turn communicates to super-secret software installed on both the Kinect and the Xbox 360's Operating System. The Kinect uses a **USB 2.0 A** connection to plug into the console. The 'Slim' re-design of the Xbox 360 released in the same year was also branded 'Kinect compatible' as it could supply power to the bar as well (with the provision of an extra proprietary port on the back of the console), older models require a separate power brick for the Kinect.
 
 ## Operating System (and backwards compatibility)
 
@@ -937,7 +937,7 @@ Ok, so you've seen how this system works, how it's structured and where it's sto
 
 #### Multicore chaos
 
-Before we begin, we need to address something fundamental. With homogenous multi-core CPUs, all cores are entitled to 'own' the system, but this would only lead to chaos, so only one is tasked with directing the rest. The leader is commonly called 'master core' while the rest is named 'slave core' or just 'core'.
+Before we begin, we need to address something fundamental. With homogenous multi-core CPUs, all cores are entitled to 'own' the system, but this would only lead to chaos, so only one is tasked with directing the rest. The leader is commonly called 'master core' while the rest are named 'slave core' or just 'core'.
 
 Outside the Xbox world, this hierarchy is sometimes found hardwired into the chip, while other architectures need manual intervention. For instance:
 
@@ -956,7 +956,7 @@ For the sake of completion, there will be a tiny mention of a special device cal
 
 Without further ado, here is the how the boot chain works, the starting point being the boot ROM `r cite("operating_system-boot_process")` `r cite("operating_system-kernel_boot")`:
 
-1. **1BL** (as of '1st Boot Loader'): The master core fetches the next stage (called 'CB') from NAND into the internal SRAM. CB is found encrypted with the RC4 algorithm. So, the CPU derives a decryption key using a key stored in 1BL and another stored in the header of CB. Once decrypted, the CPU checks its validity by hashing decrypted area and comparing the resulting hash with another stored in CB. The latter also uses Microsoft's public RSA key, stored in the internal ROM, for validating the hash. Finally, if the whole process completes without the problems, the CPU continues execution at CB, otherwise, the CPU triggers a POST error and the Xbox 360 starts flashing red lights.
+1. **1BL** (as in '1st Boot Loader'): The master core fetches the next stage (called 'CB') from NAND into the internal SRAM. CB is found encrypted with the RC4 algorithm. So, the CPU derives a decryption key using a key stored in 1BL and another stored in the header of CB. Once decrypted, the CPU checks its validity by hashing decrypted area and comparing the resulting hash with another stored in CB. The latter also uses Microsoft's public RSA key, stored in the internal ROM, for validating the hash. Finally, if the whole process completes without the problems, the CPU continues execution at CB, otherwise, the CPU triggers a POST error and the Xbox 360 starts flashing red lights.
     - This process involves a combination of many cyphers, such as HMAC, SHA-1 and ROT.
 2. **2BL** or **CB**: The CPU, now executing from the internal SRAM, queries the eFuses to check that the version of CB running matches the one written on the eFuses. Then, it initialises most of the hardware. Finally, the CPU proceeds to fetch another block from NAND called 'CD' onto main RAM and repeats similar decryption and verification tasks 1BL did, this time using another key derived from the 'CPU key' (stored in the eFuses). If everything goes well, the next stage proceeds.
     - In later software updates, this process was split into two bootloaders (named CB_A and CB_B) to mitigate faults that were exploited to execute homebrew (more details in the 'Anti-piracy' section).
@@ -1186,7 +1186,7 @@ Those using the expensive XDK will see it follows the footsteps of its [predeces
 
 All in all, the suite includes a variety of libraries and tools, for instance:
 
-- Existing front-end **Visual C and C+ 2005+** compilers (Microsoft's variant of C and C++), along with a new backend that generates PowerPC machine code. There are also PowerPC, xvs_3_0 and xps_3_0 assemblers (the latter two are Xenos' microcode shader languages `r cite("graphics-ben")`). The front-end compilers were later updated to the 2010 version.
+- Existing front-end **Visual C and C++ 2005** compilers (Microsoft's variant of C and C++), along with a new backend that generates PowerPC machine code. There are also PowerPC, xvs_3_0 and xps_3_0 assemblers (the latter two are Xenos' microcode shader languages `r cite("graphics-ben")`). The front-end compilers were later updated to the 2010 version.
 - Microsoft's **Visual Studio 2005** as IDE. Later versions of XDK shipped with the 2008 version and, finally, the 2010 one.  
 - **Debuggers** for the Xbox 360 Development Kit.
 - The well-known **Direct3D** API for graphics. Although it's hardly a replica of the Windows version. For example, the shader compiler now generates microcode at compile-time, unlike Windows' edition where it's done at runtime (as Windows games must support a multitude of graphics cards). The APIs have also been extended to accommodate Procedural Synthesis, Predicated Tiling and many more cases. These have been documented by the Xenia emulator's development team `r cite("graphics-nopixel")`.
@@ -1198,7 +1198,7 @@ Now, for the budget studios using XNA. Well, the latter was designed to facilita
 
 Later years will see new versions of the XNA framework supporting new devices (like Windows Phone 7) but slowly distancing itself away from the now-obsolete Xbox 360 hardware, until Microsoft abandoned XNA altogether in 2013 `r cite("games-xna_out")`.
 
-As a final note, for homebrew developers, **libXenon** is a free third-party library that provides low-end access to the hardware without copyright restrictions `r cite("games-libxenon")`, although its executables can only be run from a hacked Xbox 360 with signatures verification disabled.
+As a final note, for homebrew developers, **libXenon** is a free third-party library that provides low-level access to the hardware without copyright restrictions `r cite("games-libxenon")`, although its executables can only be run from a hacked Xbox 360 with signatures verification disabled.
 
 ### Storage medium
 
@@ -1352,7 +1352,7 @@ To further protect the chain of trust and prevent external alterations, boot sta
 - The aforementioned **CPU key**, which is used to encrypt the other keys stored in the console.
 - A flag that states whether the console is a **retail model or a development kit**, which affects the availability of many debugging pins on the motherboard (i.e. JTAG).
 - **Two update counters** (one for the updates applied on 2BL/CB and the other for the updates applied on the Hypervisor and Kernel). Every time Microsoft releases a 'system update' and the user installs it, the updater blows an eFuse. During boot, the CPU compares the eFuses value with the patches applied, if the values don't match you get a famous 'Red light of Dead'. This has prevented users from downgrading to exploitable revisions of the system.
-  - There are 5 fusesets reserved for the update counter. The counter is encoded in binary form, so eight fuses are blown after each update, which means the Xbox 360 can sustain up to **80 updates** throughout its lifetime. Ironically, Microsoft only started blowing eFuses after the `2.0.4548.0` update shipped.
+  - There are 5 fusesets reserved for the update counter. The counter is encoded in binary form, so eight fuses are blown after each update, which means the Xbox 360 can sustain up to **80 updates** throughout its lifetime. Conversely, Microsoft only started blowing eFuses after the `2.0.4548.0` update shipped.
   - Furthermore, there are **16 eFuses** available for updates on CB.
 
 `r tab.simple("Secure communication", tab.h5=TRUE, tab.last=TRUE)`
@@ -1503,7 +1503,7 @@ As a result, throughout the same year of the King Kong events (2007), new discov
 
 `r tab.simple("A hidden maintenance mode", tab.active=TRUE, tab.first=TRUE)`
 
-Once CB, the second stage bootloader, was reverse engineered, a new backdoor was discovered. One of the checks CB performs is comparing a string stored in CB's headers against checksums of NAND. Well, if that string (called 'pairing information') turns out to be all zeroes, then the check is skipped and the boot process continues while **ignoring the CPU key**. The only downside is that no update packets are applied and the Kernel ends up launching an alternative app called `MfgBootLauncher` (presumably used during manufacturing) instead of the Dashboard.
+Once CB, the second stage bootloader, was reverse engineered, a new backdoor was discovered. One of the checks CB performs is comparing a string stored in CB's headers against checksums in NAND. Well, if that string (called 'pairing information') turns out to be all zeroes, then the check is skipped and the boot process continues while **ignoring the CPU key**. The only downside is that no update packets are applied and the Kernel ends up launching an alternative app called `MfgBootLauncher` (presumably used during manufacturing) instead of the Dashboard.
 
 Initially, this discovery didn't attract attention as it didn't seem to lead to any interesting development. However, this changed after Microsoft noticed mentions of `MfgBootLauncher` and subsequently released a new system update, which ended up attracting _too much attention_, even to the point this special 'manufacturing mode' became an opportunity to homebrew!
 
@@ -1521,7 +1521,7 @@ In August 2007, XboxHacker user 'Arnezami' published the **timing attack** metho
 
 This time (_pun intended_), the new attack expects the user to extract the contents of the NAND (a.k.a produce a dump) and use an automated script that merges console-unique information from the dump with a generic image of the system `2.0.1888` (the first revision of the operating system).
 
-The get past the second-stage bootloader checks (which compares the update counter from the eFuses with the updates installed), the crafted firmware needs to match the value of the eFuses' counter. Yet, it's not that simple to tweak, as the counter in NAND is signed (with HMAC) using the CPU key `r cite("anti_piracy-timing_qa")`, and the CPU key can't be extracted if the Xbox 360 is running a patched firmware...
+To get past the second-stage bootloader checks (which compares the update counter from the eFuses with the updates installed), the crafted firmware needs to match the value of the eFuses' counter. Yet, it's not that simple to tweak, as the counter in NAND is signed (with HMAC) using the CPU key `r cite("anti_piracy-timing_qa")`, and the CPU key can't be extracted if the Xbox 360 is running a patched firmware...
 
 Well, for manufacturing purposes, the motherboard exposes **Serial Peripheral Interface** (SPI) pins to write and read from NAND; and POST pins that output different values representing the current state of the boot process. It so happens that during the eFuses validation (implemented with C's `memcmp()`), the comparison is done on a byte basis. Most importantly, during each comparison, successful matches always take **0.22 ms** to complete and failed ones take **0.21 ms** `r cite("operating_system-renard")`.
 
@@ -1647,7 +1647,7 @@ Additionally, Slim consoles split the CB stage into CB_A and CB_B, where CB_B is
 image('photos/squid.jpg', "(ref:rghchipcaption)", float=TRUE)
 ```
 
-During the following three years, the resilience of the RGH hack managed to resist all of Microsoft's efforts to mitigate it. Meanwhile, what remained was a good-old cat-and-mouse game, with Microsoft trying to make the task unfeasible. And so, new variants of RGH scattered across many forums to face the incoming wave of software updates. The variants shared the fundamentals of the RGH hack, but each used an alternative program for the glitcher and the modified SMC image to improve the success rates.
+During the following three years, the resilience of the RGH hack managed to resist all of Microsoft's efforts to mitigate it. Meanwhile, what remained was a good-old cat-and-mouse game, with Microsoft trying to make the task unfeasible. And so, new variants of RGH were scattered across many forums to face the incoming wave of software updates. The variants shared the fundamentals of the RGH hack, but each used an alternative program for the glitcher and the modified SMC image to improve the success rates.
 
 Initially, the RGH hack, as a program for the glitcher, materialised into two different variants: **RGH1**, which depended on the PLL line, and **RGH2**, which relied on the video encoder. The latter could be enjoyed by any motherboard revision and was continuously fixed to tackle Microsoft's attempts to break it; and while RGH1 couldn't get past old hardware (Trinity) and software (update `2.0.14699`), it enjoyed greater reliability.
 
@@ -1661,7 +1661,7 @@ In any case, the success of RGH paved a wave of commercial glitchers and install
 For one reason or another, Team Xecuter didn't provide any documentation to replicate these new techniques on other devices. So users took matters into their own hands to deliver cheaper and/or better alternatives:
 
 - First, 'DrSchottky' managed to create an open-source implementation of R-JTAG called **R-JTOP** for any glitcher to enjoy `r cite("anti_piracy-rjtop")`.
-- Secondly, developer 'blaKCat' bundled the double-glitch routines in its flashing utility, so any board could be programmed without depending on the expensive DGX.
+- Secondly, developer 'blaKCat' bundled the double-glitch routines in his flashing utility, so any board could be programmed without depending on the expensive DGX.
 - Thirdly, in December 2014, hacker '15432' published the 'Speedy RGH' (**S-RGH**) `r cite("anti_piracy-srgh")` as an alternative to CR4's proprietary RGH modes. S-RGH even gained faster speed by reducing the slowdown periods during the glitching process.
 - Later on, in April 2015, 15432 did it again and published a new method called **RGH 1.2**, combining RGH2 and the use of the CPU's PLL line `r cite("anti_piracy-rgh12")`, achieving similar success rates to RGH1.
 - Finally, in August 2021, engineer Josh Davidson managed to port RGH 1.2 to Slims by finding the missing PLL line on the new motherboards `r cite("anti_piracy-rgh12_slim")`, resulting in a new variant named **RGH 1.2 V2**. 
