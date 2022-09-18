@@ -760,7 +760,7 @@ image("amos/kinect.png", "(ref:kinectcaption)", class = "centered-container", no
 The construction of this device isn't anywhere simple, and as such, the sensor carries many forms of technologies:
 
 - An **RGB camera** to capture images of the room and the player `r cite("io-kinect_hardware")`.
-- A **IR emitter** and **IR sensor** that projects IR light and captures its reflection, respectively. This allows to derive a z-buffer of the room, thereby identifying the depth of objects.
+- A **IR emitter** and **IR sensor** that projects IR light and captures its reflection, respectively. This allows deriving a z-buffer of the room, thereby identifying the depth of objects.
 - A **microphone** that listens to the player.
 - A _chip salad_ that handles the sensors and signals to produce meaningful data from it. This includes **64 MB of DDR2 SDRAM** (as a working area), **1 MB of Flash memory** (where the main program is stored), a **Marvell AP102 SoC** (presumably containing the main CPU inside) and a **PS1080-A2 DSP** (to process the image coming from the cameras), among others. All of this is fitted on three different boards stacked together `r cite("io-kinect_teardown")`.
 
