@@ -51,7 +51,7 @@ This console has not one but **two Hitachi SH-2** CPUs running at **~28.63 MHz e
 
 These processors are part of the Hitachi SH7600 brand, a series designed for embedded systems featuring `r cite("cpu-brief")`:
 
--  **SuperH ISA**: A special 32-bit RISC instruction set where instructions are 16-bit long. Not only does this design reduce the size of the programs, but since the CPU fetches instructions in 32-bit batches, two instructions can be retrieved in one cycle.
+- **SuperH ISA**: A special 32-bit RISC instruction set where instructions are 16-bit long. Not only does this design reduce the size of the programs, but since the CPU fetches instructions in 32-bit batches, two instructions can be retrieved in one cycle.
   - The speciality of compressing instructions to take out half the size was carried on by ARM with [Thumb](`r ref("game-boy-advance#cpu")`).
 - **Five-stage pipeline**: Execution of instructions is divided into five steps or *stages*. The CPU will queue up to five instructions where each one is allocated in one stage. This allows taking advantage of all the CPU's resources without idling while also incrementing the number of instructions executed per unit of time.
 - **One multiplication unit**: Speeds up multiplication operations with 64-bit/32-bit integers.
@@ -60,7 +60,7 @@ These processors are part of the Hitachi SH7600 brand, a series designed for emb
 
 The specific CPU model selected for this console, the 'SH7604' or just 'SH-2', contain the following additions:
 
--  **One division unit**: Speeds up division operations with 64-bit/32-bit integers.
+- **One division unit**: Speeds up division operations with 64-bit/32-bit integers.
 - **Internal DMA controller**: Transfers data from memory independently (without the intervention of the CPU).
 
 Please note that having two CPUs doesn't mean that games will work twice as fast! In practice, however, this requires very complex programming to efficiently manage CPUs that share the same bus. Cache also plays a critical part in this occasion.
@@ -69,14 +69,14 @@ Please note that having two CPUs doesn't mean that games will work twice as fast
 
 The Sega Saturn contains a total of **2 MB of RAM** for general purpose usage called **Work RAM** (WRAM). Now, these two megs are split between two very different blocks:
 
--  The first one provides **1 MB of SDRAM** and due to its fast access rates, this block is also called 'WRAM-H'.
+- The first one provides **1 MB of SDRAM** and due to its fast access rates, this block is also called 'WRAM-H'.
 - The other block contains the other megabyte, but it's named 'WRAM-L' since it uses **DRAM** instead, resulting in lower rates.
 
 ### Another processor
 
 If the two SH-2 CPUs weren't enough, the console contains an additional coprocessor, the **Saturn Control Unit** or 'SCU' which is composed of two modules `r cite("cpu-scu")`:
 
--  **A DMA controller**: Arbitrates access to WRAM across the three main buses without the intervention of the CPUs.
+- **A DMA controller**: Arbitrates access to WRAM across the three main buses without the intervention of the CPUs.
 - **A DSP**: Used as a fixed-point 'geometry unit'. Compared to the SH-2, it does matrix/vectors calculations such as 3D transformations and lighting faster. However, it runs at half-speed and its instruction set is more complex. Moreover, it relies on the SH-2's WRAM to fetch and store data (using the DMA).
 
 On the bright side, the SCU comes with **32 KB of SRAM** for local use. On the bad side, the SCU can't access WRAM-L.
@@ -312,7 +312,7 @@ During my terrible gameplay, you'll notice that the background of the first game
 
 The sound subsystem consists of several parts `r cite("audio-scsp")`:
 
--  **Motorola 68EC000**: Controls the other components and interfaces with the main CPUs. It runs a [sound driver](`r ref("mega-drive-genesis#the-conductor")`) to operate the neighbour components.
+- **Motorola 68EC000**: Controls the other components and interfaces with the main CPUs. It runs a [sound driver](`r ref("mega-drive-genesis#the-conductor")`) to operate the neighbour components.
 - **Saturn Custom Sound Processor** (SCSP): Also referred to as Yamaha YMF292, it's composed of two modules:
   - A **multi-function sound generator**: Processes up to **32 channels** with **PCM samples** (up to 16-bit with 44.1 kHz, a.k.a 'CD quality') or [**FM channels**](`r ref("mega-drive-genesis#audio")`). In the case of the latter, a number of channels are reserved for operators.
   - A **DSP**: Applies effects like echo, reverb and chorus. The docs also mention 'filters' but I don't know if it means envelope or frequency filter (i.e. low pass, etc).
@@ -324,7 +324,7 @@ The new audio capabilities mean that studios can finally record/produce soundtra
 
 This has been possible thanks to a combination of many factors:
 
--  The new storage medium for games (CD-ROM) enables developers to store large soundtracks.
+- The new storage medium for games (CD-ROM) enables developers to store large soundtracks.
 - The audio endpoint receives and mixes PCM data with acceptable quality.
 - The audio subsystem provides enough power and bandwidth to stream PCM data in some compressed form, and then decode it on-the-fly.
 
@@ -408,7 +408,7 @@ First of all, the classic method used for disabling the copy protection consiste
 
 After the turn of the century, alternative but more sophisticated methods used for running unauthorised code were discovered, for instance:
 
--  An **exploit in the copy protection mechanism** was found and it allowed to boot up any disc game without going through the copy protection checks. This was subsequently in the form of a cartridge called **pseudosaturn** `r cite("anti_piracy-pseudosaturn")`. Due to the use of the cartridge medium, Action Replay cartridges are often re-flashed with pseudosaturn (though the flasher also needs to be bootstrapped somehow, most commonly through the swap trick).
+- An **exploit in the copy protection mechanism** was found and it allowed to boot up any disc game without going through the copy protection checks. This was subsequently in the form of a cartridge called **pseudosaturn** `r cite("anti_piracy-pseudosaturn")`. Due to the use of the cartridge medium, Action Replay cartridges are often re-flashed with pseudosaturn (though the flasher also needs to be bootstrapped somehow, most commonly through the swap trick).
   - This method is still being used as of 2022, although a new fork of pseudosaturn named 'Pseudo Saturn Kai' is installed instead.
 - Another method was reported in 2016 (almost 20 years later) by exploiting the fact that the **Video CD add-on can inject unencrypted code** to the CD subsystem (bypassing the CD reader altogether). This finally allowed users to load Homebrew independently of the ageing drive. The Video CD exploit is commercially distributed in a product called 'Satiator' (I'm not sponsored, by the way).
 - Finally, there's another commercial alternative that replaces the CD reader with an SD or SATA adapter. The Saturn still thinks it's reading from a CD, but the 'CD' is being emulated by the adapter, which is in turn reading from a disc image `r cite("anti_piracy-ode")`.  These products are called **Optical Drive Emulators** (ODE).
