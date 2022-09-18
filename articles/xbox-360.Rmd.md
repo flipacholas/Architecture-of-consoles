@@ -979,7 +979,7 @@ Though, it may surprise you that no matter the revision, all consoles ship with 
 image('screenshots/blades/update.jpg', "(ref:oldupdatecaption)", class = "centered-container")
 ```
 
-Updates can be fetched from Xbox Live (as an online download), through a retail game, by burning a conventional CD (_that's how we shared files before the 2010_); or through a USB stick. A typical update will typically install the aforementioned patches for the hypervisor and kernel, but it will override user-land files like the dashboard. Finally, to prevent rolling back, the updater will finish by blowing an eFuse so, from now on, the Xbox will only be able to boot the updated version of the system.
+Updates can be fetched from Xbox Live (as an online download), through a retail game, by burning a conventional CD (_that's how we shared files before the 2010s_); or through a USB stick. A typical update will install the aforementioned patches for the hypervisor and kernel, but it will override user-land files like the dashboard. Finally, to prevent rolling back, the updater will finish by blowing an eFuse so, from now on, the Xbox will only be able to boot the updated version of the system.
 
 Updates don't usually require extra storage. However, when Microsoft released the 'NXE' update in 2008, the updater also installed static resources onto the Hard Drive (mainly themes and assets for the new 3D avatars) as NAND wasn't big enough. This led Microsoft to increase the size of NAND in further revisions of the motherboard to bundle up to 512 MB of NAND, and later include internal memory units of up to 4 GB instead. You would only find these enhancements on hard-drive-less models.
 
