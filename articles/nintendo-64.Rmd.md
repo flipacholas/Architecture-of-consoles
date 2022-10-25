@@ -34,20 +34,24 @@ supporting_imagery()
 
 ## CPU
 
-The main processor is a **NEC VR4300** that runs at **93.75 MHz** `r cite("cpu-anatomy")`, it's a binary-compatible version of Silicon Graphics' **MIPS R4300i** `r cite("cpu-nec")` that features:
+The origins of the Nintendo 64's main processor begin with the **MIPS R4000**, Silicon Graphic's new avant-garde CPU. Released in 1991, the R4000's most apparent novelty was the inclusion of **64-bit capabilities**, resulting from widening the size of buses, registers and computation units to manipulate 64-bit values with efficiency. Developers, on the other hand, accessed these capabilities through the new **MIPS III** instruction set. All in all, the R4000 enabled new applications to manipulate larger chunks of data without consuming extra cycles.
+
+Be as it may, the R4000 was an expensive product (around $400 `r cite("cpu-r4000demo")`), which made it unfeasible for a video game console. Yet, Nintendo didn't want to give up on its state-of-the-art offerings, so they went for a low-end variant called **R4300i**, from which NEC was able to second-source it.
+
+In the end, Nintendo's CPU of choice became the **NEC VR4300** running at **93.75 MHz** `r cite("cpu-anatomy")`. This is a binary-compatible version of Silicon Graphics' MIPS R4300i that features `r cite("cpu-nec")`:
 
 - **Two modes of operation**:
-  - **32-bit mode**: Traditional mode and the most common one for games. Words are 32-bit long.
-  - **64-bit mode**: Words are 64-bit long (called 'double-words'). This includes registers, data and memory addresses - though only 40 bits are decoded in the latter case. Consequently, large data can be operated more efficiently, although this also increments the size of the program considerably (for instance, pointers occupy 8 Bytes instead of 4).
+  - **32-bit mode**: Traditional mode where the CPU behaves as a MIPS II-compatible processor. There's nothing special about this mode except that all new functions are locked out.
+  - **64-bit mode**: 'Native' mode where all 64-bit extensions are available. It's also binary-compatible with 32-bit applications.
 - **32 general-purpose registers**: These are 32-bit wide in '32-bit mode' and 64-bit wide in '64-bit mode'.
-- The **MIPS III ISA**: A RISC instruction set that succeeds MIPS II. It features new instructions that operate double-words. The instructions format is 32-bit long, independently of the mode.
+- The **MIPS III ISA**: A RISC instruction set that succeeds MIPS II. It features new instructions that operate 64-bit words called 'doublewords'. Finally, opcodes are always **32-bit long**, independently of the mode.
   - It's worth mentioning that since MIPS II, [load delay slots](`r ref("playstation#delay-galore")`) are gone for good, though branch delay ones still persist.
-- An internal **64-bit bus** connected to an **external 32-bit data bus**: While double-words won't degrade performance when operated internally, the CPU will still need to expend extra cycles to move 64-bit data throughout the system.
+- An internal **64-bit bus** connected to an **external 32-bit data bus**: While doublewords won't degrade performance when operated internally, the CPU will still need to expend extra cycles to move 64-bit data throughout the system. This is one of the cutbacks of the R4300i variant (the R4000 has a full 64-bit data bus).
 - **32-bit address bus**: Up to 4 GB of physical memory can be addressed.
 - **5-stage pipeline**: Up to five instructions can be allocated for execution (a detailed explanation can be found in a [previous article](`r ref("sega-saturn#cpu")`).
 - **24 KB L1 cache**: Divided into 16 KB for instructions and 8 KB for data.
 
-An internal **Floating-point Unit** (FPU) is also included in this package. The VR4300 identifies it as a co-processor (CP1), however, the unit is fitted next to the ALU and it's only accessed through the CPU's internal ALU pipeline, meaning there's no co-processing per se. Though it contains a dedicated register file and will speed up operations with 64-bit and 32-bit floating-point numbers. The FPU follows the IEEE754 standard.
+An internal **Floating-point Unit** (FPU) is also included in this package. The VR4300 identifies it as a co-processor (CP1), however, the unit is fitted next to the ALU and it's only accessed through the CPU's internal ALU pipeline, meaning there's no co-processing per se. On the other side, the FPU still houses a dedicated register file and will speed up operations with 64-bit and 32-bit floating-point numbers. Finally, this unit follows the IEEE754 standard.
 
 ### Simplified memory access
 
@@ -85,9 +89,9 @@ The VR4300 includes another coprocessor called **System Control Coprocessor** (C
 
 At first, this may seem redundant, but each mirror (called 'segment') is connected to different circuitry (i.e. L1 cache, uncached, TLB address) so developers can optimise usage by selecting the most appropriate segment depending on the needs.
 
-Some segments are meant to discriminate 'kernel' locations from 'user' ones for security purposes. The N64 always operate in 'kernel' mode, thus, the 'non-TLB kernel cached' segment (called 'KSEG0') is the most common one for games.
+Some segments are meant to discriminate 'kernel' locations from 'user' ones for security purposes. The N64 always operates in 'kernel' mode, thus, the 'non-TLB kernel cached' segment (called 'KSEG0') is the most common one for games.
 
-The MMU can also work in 64-bit mode, where the virtual address space covers 1 TB worth of addresses. Though for obvious reasons, there's no need to dive into that mode in this article.
+The MMU can also work in 64-bit mode, where memory addresses are 40-bit long. This means virtual address space covers 1 TB worth of addresses... but I don't think the Nintendo 64 will take advantage of this!
 
 ## Graphics
 
@@ -109,8 +113,8 @@ image('RSP.png', "(ref:rspdiagramcaption)", float=TRUE)
 
 Also known as **RSP**, it's just another CPU package composed of:
 
-- The **Scalar Unit**: A MIPS R400-based CPU that implements a subset of the R400 instruction set.
-- The **Vector Unit**: A co-processor that performs vector operations with 32 128-bit registers. Each register is *sliced* into eight parts to operate eight 16-bit vectors at once (just like SIMD instructions on conventional CPUs).
+- The **Scalar Unit**: Another cutdown derivative of the MIPS R4000. This time, it only implements a subset of the MIPS III ISA, thereby lacking many general-purpose functions (i.e. interrupts and exceptions), the 64-bit extension, multiplication and divisions.
+- The **Vector Unit**: A co-processor that performs vector operations with 32 128-bit registers. Each register is *sliced* into eight parts to operate eight 16-bit vectors at once (just like SIMD instructions on conventional CPUs). As you can see, this component does the heavy lifting for the Scalar Unit.
 - The **System Control**: Another co-processor that provides DMA functionality and controls its neighbour module, the RDP (more about it later on).
 
 To operate this module, the CPU stores in RAM a series of commands called **Display list** along with the data that will be manipulated, then the RSP reads the list and applies the required operations on it. The available features include geometry transformations (such as perspective projection), clipping and lighting.
@@ -342,7 +346,7 @@ Cartridges communicate to the RCP using a dedicated 16-bit bus called **Parallel
 
 ### Source Development Kit
 
-In general, development was mainly done in C, assembly was also used to achieve better performance. While this system provides a 64-bit instruction set, 64-bit instructions were rarely used since, in practice, 32-bit instructions happened to be faster to execute and require half the storage.
+In general, development was mainly done in **C** and **assembly**, the latter was often required to achieve better performance. While we've seen this system provides 64-bit operations, the new instructions were rarely used since, in practice, 32-bit instructions happened to be faster to execute (as the R4300i/VR4300 comes with a 32-bit data bus).
 
 Libraries in the official SDK contain several layers of abstractions to command the RCP. For example, C structs like the **Graphics Binary Interface** or 'GBI' were designed to assemble the necessary Display lists more easily, the same applied for audio functions (its struct was called **Audio Binary Interface** or 'ABI').
 

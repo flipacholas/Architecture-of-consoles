@@ -53,10 +53,10 @@ Fast forward, Nintendo required something powerful but cheap, so to comply with 
 Let's find out what makes Gekko so special, and to do that we need to first have to look at the offerings of the 750CXe:
 
 - **PowerPC ISA**: Without going into much detail, it's *another* 32-bit RISC instruction set. The 750CXe implements the v1.10 specification.
+- External **64-bit data bus**: While the ISA can fit in a 32-bit bus, we still need to move wider chunks of data (explained in the next section) without hitting performance penalties.
 - **Super-scalar**: More than one instruction can now be executed in each stage of the pipeline.
 - **Out-of-order execution**: The CPU can re-order the sequence of instructions to keep all of its units working, thus increasing efficiency and performance.
 - **Two Integer Units**: Combined with super-scalar and out-of-order, it basically increments the number of integer operations done per unit of time.
-- External **64-bit data bus**: While the ISA can fit in a 32-bit bus, we still need to move other longer types (explained in the next section) without hitting performance penalties.
 - **Integrated FPU** with 32-bit and 64-bit registers: Accelerates operations with floats and doubles.
 - **Four-stage pipeline (with bonus)**: [Here](`r ref("game-boy-advance#cpu")`) is a previous introduction to instruction pipelining. In the 750CXe, FPU operations are divided into three more stages (7 stages in total) while load-store operations are divided into two (5 stages in total). 
   - All in all, this increments the instruction throughput without [getting out of hand](`r ref("xbox#tab-1-3-the-microarchitecture")`).
@@ -90,16 +90,13 @@ Apart from handling the game logic (physics, collisions, etc), these enhancement
 
 > On your [Nintendo 64 article](`r ref("nintendo-64")`), you explained that the system has a 64-bit CPU, but the Gamecube one is 32-bit. Did Nintendo downgrade their console?
 
-Indeed Gekko implements a 32-bit PowerPC architecture, while the MIPS R4300i can switch between 32-bit and 64-bit mode (albeit the latter was hardly used). To answer whether this is an improvement or not, you have to ask yourself: Why would you need '64-bitness'?
+Indeed Gekko implements a 32-bit PowerPC specification, while the MIPS R4300i can switch between 32-bit and 64-bit mode. To answer whether this is an improvement or not, you have to ask yourself: Why would you need '64-bitness'?
 
-- To address more than 4 GB of memory → The Gamecube doesn't have near that amount of memory locations. So this is not a requirement.
-- To operate larger chunks of data using fewer cycles and bandwidth → That's covered by Gekko's new SIMD instructions and the write-gather pipe, respectively.
-- When the increased memory requirements are not an issue → 64-bit words take double the amount of memory to store. Memory is short on consoles, so none of them can't afford to waste RAM on 64-bit pointers with unused bits, for instance. This is one of the reasons N64 games stuck to 32-bit mode (apart from the implied bandwidth requirement).
+- To address more than 4 GB of memory → The Gamecube doesn't have near that amount of memory locations, so this is not a requirement.
+- To operate larger chunks of data using fewer cycles and bandwidth → That's covered by Gekko's new SIMD instructions, the 64-bit FPU and data bus; and the write-gather pipe.
 - To come up with more advertising terms → Yeah... I don't think that persuades people anymore.
 
-As you can see, the '64-bit' term does not always imply 'faster'. The benefits depend on many more factors, since the 'upgrade' also comes with new constraints. With Gekko, IBM's engineers demonstrated that they can bring the functionality developers need without altering the word size. The result is not perfect, but it will do for this generation.
-
-In conclusion, this is why you and I can't summarise two complex machines by their 'number of bits'.
+As you can see, the GameCube already enjoys the advantages of 64-bit systems without being called a '64-bit console'. This is why you and I can't summarise two complex machines by their 'number of bits'.
 
 ### Clever memory system
 
