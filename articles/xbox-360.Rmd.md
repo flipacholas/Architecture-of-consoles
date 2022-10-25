@@ -1029,7 +1029,7 @@ image('screenshots/blades/settings.jpg', "(ref:bladescaption3)", tab.name = "(re
 image('screenshots/blades/storage.jpg', "(ref:bladescaptionstorage)", tab.name = "(ref:dashboardsstoragetitle)", caption.post = postcaption)
 image('screenshots/blades/avatar.jpg', "(ref:bladescaption4)", tab.name = "(ref:dashboardsavatartitle)", caption.post = postcaption)
 image('screenshots/blades/guide.jpg', "(ref:bladescaption5)", tab.name = "(ref:dashboardsguidetitle)", caption.post = postcaption)
-figcaption(paste0("(ref:dashboardsstartfooter)","(ref:bladesfootercaption)"))
+figcaption(paste0("(ref:dashboardsstartfooter)", " ","(ref:bladesfootercaption)"))
 ```
 
 The first iteration of the user interface, now an element of nostalgia for some, was the **Blades** dashboard. Here, each group of services (game, multimedia, settings, etc) is organised into different overlapping layers called 'blades'. All share the same hierarchy level and focus, meaning the user can only open one blade/category at a time. To navigate around, the user must swap between blades and interact with the actionable controls placed.
@@ -1075,7 +1075,7 @@ image('screenshots/nxe/settings.jpg', "(ref:nxecaption3)", tab.name = "(ref:dash
 image('screenshots/nxe/storage.jpg', "(ref:nxecaptionstorage)", tab.name = "(ref:dashboardsstoragetitle)", caption.post = postcaption)
 image('screenshots/nxe/avatar.jpg', "(ref:nxecaptionavatar)", tab.name = "(ref:dashboardsavatartitle)", caption.post = postcaption)
 image('screenshots/nxe/guide.jpg', "(ref:nxecaption4)", tab.name = "(ref:dashboardsguidetitle)", caption.post = postcaption)
-figcaption(paste0("(ref:dashboardsstartfooter)","(ref:nxefootercaption)"))
+figcaption(paste0("(ref:dashboardsstartfooter)", " ","(ref:nxefootercaption)"))
 ```
 
 As Microsoft expanded its catalogue of services and features, the navigation pattern of the blades turned into a liability (as it constrained the number of navigation screens on the top hierarchy) and the lack of available space became apparent in later software updates. In 2008, Microsoft released a revamped Dashboard interface called **New Xbox Experience** (NXE) which focused on 'infinite scrolling' patterns to offer a wider selection of services on the front page. It also incorporated other elements like a glossy filter and 3D transitions recently popularised by **Windows Vista** and the new range of **Windows Live** applications.
@@ -1115,7 +1115,7 @@ image('screenshots/kinect/settings.jpg', "(ref:kinnectcaption3)", tab.name = "(r
 image('screenshots/kinect/storage.jpg', "(ref:kinnectcaptionstorage)", tab.name = "(ref:dashboardsstoragetitle)", caption.post = postcaption)
 image('screenshots/kinect/avatar.jpg', "(ref:kinnectcaption4)", tab.name = "(ref:dashboardsavatartitle)", caption.post = postcaption)
 image('screenshots/kinect/guide.jpg', "(ref:kinnectcaption5)", tab.name = "(ref:dashboardsguidetitle)", caption.post = postcaption)
-figcaption(paste0("(ref:dashboardsstartfooter)", "(ref:kinnectfootercaption)"))
+figcaption(paste0("(ref:dashboardsstartfooter)", " ", "(ref:kinnectfootercaption)"))
 ```
 
 With the arrival of **Kinect**, Microsoft had to adapt the Dashboard to remove its dependency on the controller. As part of the update, the designers replaced the glossy touch with faded greens and greys. The 3D _aero_-like touches were also succeeded by typical zoom-in animations. This coincides with the arrival of **Windows 7** and its modest reduction of visual effects.
@@ -1152,7 +1152,7 @@ image('screenshots/metro/apps.jpg', "(ref:metrocaption2)", tab.name = "(ref:dash
 image('screenshots/metro/settings.jpg', "(ref:metrocaption3)", tab.name = "(ref:dashboardssettingstitle)", caption.post = postcaption)
 image('screenshots/metro/storage.jpg', "(ref:metrocaption4)", tab.name = "(ref:dashboardsstoragetitle)", caption.post = postcaption)
 image('screenshots/metro/guide.jpg', "(ref:metrocaption5)", tab.name = "(ref:dashboardsguidetitle)", caption.post = postcaption)
-figcaption(paste0("(ref:dashboardsstartfooter)", "(ref:metrofootercaption)"))
+figcaption(paste0("(ref:dashboardsstartfooter)", " ", "(ref:metrofootercaption)"))
 ```
 
 The year 2010 saw the debut of **Windows Phone 7** and a new type of interface called **Metro**, whose style now relies on solid colours and white silhouettes. Due to its versatile design, Microsoft envisioned porting Metro to all of its platforms, which became a reality the following year with the arrival of **Windows 8** and a **new update** for the Xbox 360. Though the degree of adoption varied drastically between device, the Xbox 360 enjoyed a mostly unified implementation of Metro (unlike Windows 8, where the majority of applications still relied on the 'classic' design).
