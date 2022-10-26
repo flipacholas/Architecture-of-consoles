@@ -26,3 +26,7 @@
   description: Consoles have evolved into supercomputers and multimedia hubs. These machines are now more capable than just playing games, which is why security is now a critical factor.
   cpu: Thread level parallelism and symmetrical multi-core architectures
   gpu: Unified shader model and HDR rendering
+-
+  id: 8
+  ordinal: 8th
+  description: The entertainment market has now been conquered by cheap smartphones and tablets. Social media capabilities become the first priority of every peripheral. It's time for traditional video-game companies to renovate their status quo, and they better do it quick.
