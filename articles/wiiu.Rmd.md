@@ -106,7 +106,7 @@ DRH runs a Real-time Operating System (RTOS) which implements the µITRON 4.0 sp
 
 Apart from the personalised implementation of the network stack (which will be explained in a bit), the GamePad does a lot of processing behind the scenes. 
 
-Once the GamePad is up and running, the device is capable of displaying an H.264 video stream by decoding it on-the-fly. The screen resolution is **858x480 pixels** with a refresh rate of **60 Hz**, which isn't exactly HD, but it maintains 16:9 proportionality.
+Once the GamePad is up and running, the device is capable of displaying an H.264 video stream by decoding it on-the-fly. The screen resolution is **854x480 pixels** with a refresh rate of **60 Hz**, which isn't exactly HD, but it maintains 16:9 proportionality.
 
 #### Strange use of standards
 
@@ -394,7 +394,9 @@ image('gpu/pipeline_vertex.png', "(ref:gpuvertexcaption)", float=TRUE)
 
 At first glance, this stage is pretty much in line with Xenos/Crayola except that some blocks have been expanded (increased cache) while others have contracted (reduced number of ALU units and the Memory Export path is shorter). None of this necessarily means a performance decrease, however, as let's not forget GX2 is ~7 years ahead of Xenos.
 
-To start with, let's take a look at the ALUs. Xenos resorted to three shader pipes (blocks of 16 ALUs) to execute the vertex shaders. GX2 only bundles two blocks of 16 ALUs, but each block is now wrapped around a larger circuitry named **SIMD processor**, which I assume denotes the addition of larger circuitry (dedicated **8 KB of L1 cache**, plus the extra interfaces and control units) to sustain more concurrent traffic. Now, instead of the Sequencer dispatching the calculations right away as they come, they are first combined into a larger batch of **64 vertices** along with some meta-data to control the operation `r cite("graphics-r7xxacceleration")`, this is called a **Wavefront**. The batch is then sent to the two SIMDs and, considering the fact there're only 32 ALUs in GX2, they take **four cycles** to be computed.
+To start with, let's take a look at the ALUs. Xenos resorted to three shader pipes (blocks of 16 ALUs) to execute the vertex shaders. GX2 only bundles two blocks of 16 ALUs, but each block is now wrapped around a larger circuitry named **SIMD processor**, which I assume denotes the addition of larger circuitry (dedicated **8 KB of L1 cache**, plus the extra interfaces and control units) to sustain more concurrent traffic. Furthermore, each ALU is made of four 'sub-ALUs', allowing the former to compute **vectors made of four scalars** at once. ATI/AMD calls these sub-ALUs **stream processors** and it's a common marketing term.
+
+Now, instead of the Sequencer dispatching the calculations right away as they come, they are first combined into a larger batch of **64 vertices** along with some meta-data to control the operation `r cite("graphics-r7xxacceleration")`, this is called a **Wavefront**. The batch is then sent to the two SIMDs and, considering the fact there're only 32 ALUs in GX2, they take **four cycles** to be computed.
 
 I assume this new design is what enables manufacturers to devise different ranges of graphics cards, with the most expensive including more SIMD units (thus taking fewer clock cycles to complete). As game consoles are not particularly famous for embedding high-end hardware (instead, they compensate by being more efficient), four clock cycles are what it takes in the Wii U to process a Wavefront.
 
@@ -436,7 +438,7 @@ image('gpu/pipeline_pixel.png', "(ref:gpupixelcaption)", float=TRUE)
 
 The pixel shader stage follows the same methodology as the vertex shader except it's now pixels being shuffled around. After going through Xenos' pixel capabilities and GX2's new vertex pipeline, I'm afraid there's not a lot left to explain here.
 
-The block that fetches textures to the SIMD units is now called **Texture Pipe** and there're two of them. Each contains **8 KB** of L1 cache** and they both share **32 KB of L2 cache** when accessing RAM. Additionally, they can perform up to 16x Anisotropic filtering on the spot and can also fetch cube maps (used for environmental mapping/reflections).
+The block that fetches textures to the SIMD units is now called **Texture Pipe** and there're two of them. Each contains **8 KB of L1 cache** and they both share **32 KB of L2 cache** when accessing RAM. Additionally, they can perform up to 16x Anisotropic filtering on the spot and can also fetch cube maps (used for environmental mapping/reflections).
 
 I guess it's worth pointing out that the shader model (OpenGL GLSL 3.3) adds an abundance of new routines (i.e. new types of texture blending, bitwise operators, texture swizzling) for manipulating textures and removes many constraints (such as the number of instructions allowed per shader). All of which makes the life of developers a bit easier.
 
@@ -556,7 +558,7 @@ As mentioned before, Starbuck is connected to the majority (if not all) of the I
 
 Having said that, Starbuck is connected to the following endpoints:
 
-- The **NAND Interface** pointing to **1** GB of NAND** storage. In practice, only half is used by the Wii U system and the other is reserved for backwards compatibility (the old Wii storage).
+- The **NAND Interface** pointing to **1 GB of NAND** storage. In practice, only half is used by the Wii U system and the other is reserved for backwards compatibility (the old Wii storage).
 - Three **SD Host Controllers**, each providing access to:
   - The separate **Broadcom BCM43362** chip, for Wi-Fi connectivity (2.4 GHz 802.11 b/g/n).
   - The **SDHC card slot**.
@@ -659,13 +661,13 @@ image('photos/motherboard/soc_focus.jpg', "(ref:bootromscaption)", float=TRUE)
 
 The 6th generation cemented the concept of an operating system in a video game console. Yet, the appliance was still exposed to the vulnerabilities resulting from combining off-the-shelf components with in-house ones. As console manufacturers couldn't tailor the design of third-party chips, custom security components had to reside in separate locations within the motherboard, thereby being exposed to tampering and reverse engineering.
 
-With the 7th generation, IBM presented a new range of PowerPC CPUs that embedded a hidden mask ROM within the silicon. This enabled the PlayStation 3 and Xbox 360 to house sensible code in plain form (as CPUs only understand unencrypted code) without fear of being read by hackers. That being said, it's now the turn for the Wii U so IBM also had something prepared for it: Inside Espresso, there is a hidden **16 KB of ROM** connected to one of the cores. This is used as the first boot stage of Espresso and, once it's been executed, it makes sure subsequent binaries are approved by Nintendo.
+With the 7th generation, IBM presented a new range of PowerPC CPUs that embedded a hidden mask ROM within the silicon. This enabled the PlayStation 3 and Xbox 360 to house sensitive code in plain form (as CPUs only understand unencrypted code) without fear of being read by hackers. That being said, it's now the turn for the Wii U so IBM also had something prepared for it: Inside Espresso, there is a hidden **16 KB of ROM** connected to one of the cores. This is used as the first boot stage of Espresso and, once it's been executed, it makes sure subsequent binaries are approved by Nintendo.
 
 Combined this with Starbuck's own **4 KB of Boot ROM** (inherited from the [previous Wii model](`r ref("wii#boot-sequence")`)), you've got two CPUs enforcing Nintendo's security model as soon as they start up.
 
-`r tab.simple("Sensible ROMs")`
+`r tab.simple("Sensitive ROMs")`
 
-Nintendo also bundled other ROMs scattered around Latte containing _very sensible_ information.
+Nintendo also bundled other ROMs scattered around Latte containing _very sensitive_ information.
 
 The first one is **1 KB of One-Time-Programmable (OTP)** memory where many encryption keys are stored. This memory was also found on the Wii but in a smaller size (128 Bytes). OTP stores the information used to encrypt/decrypt data and verify the integrity of existing data `r cite("operating_system-otp")`. It also stores flags for enabling/disabling low-level functionality of the motherboard (i.e. JTAG). Additionally, OTP is segregated between Espresso's bank and Starbuck's one `r cite("anti_piracy-keys")`, as both will need to read different keys and subsequently lock OTP access at different points in time.
 
@@ -732,7 +734,7 @@ Alrighty, let's begin already. Once the user presses the power button, the follo
     2. `boot0` then initialises part of the I/O and nearby blocks by reading the flags found on OTP memory and SEEPROM. It then proceeds to fetch the next bootloader stage (`boot1`) from NAND.
     3. `boot1` is encrypted and signed, so Starbuck first checks its signature (RSA type), the integrity of the content (by comparing the SHA-1 hashes) and then proceeds to decrypt it (using AES). All of the keys and certificates needed are fetched from OTP memory.
     4. More I/O is initialised. Then, SEEPROM and part of OTP is locked down from being accessed again. Finally, `boot1` kicks off.
-    5. `boot1` initialises even more I/O and prepares MEM2 and MEM0 for use `r cite("operating_system-boot1")`. It then transfers `IOSU Firmware` from NAND to MEM1 and performs the same verification & decryption process. If everything went well, Starbuck disables the used OTP memory and zeroes out sensible data. Finally, it jumps to `IOSU Firmware`.
+    5. `boot1` initialises even more I/O and prepares MEM2 and MEM0 for use `r cite("operating_system-boot1")`. It then transfers `IOSU Firmware` from NAND to MEM1 and performs the same verification & decryption process. If everything went well, Starbuck disables the used OTP memory and zeroes out sensitive data. Finally, it jumps to `IOSU Firmware`.
     7. `IOSU Firmware` is a collection of binaries. The first one launched is `IOSU Loader`, which moves the rest of the firmware (a.k.a `IOSU`) to specific memory locations (SRAM and MEM0). It then clears itself from MEM1 and jumps to SRAM, where `IOSU Kernel` awaits.
     8. The `IOSU Kernel` first does a quick MEM1 check `r cite("operating_system-iosu")`, but after that finishes, that's **Starbuck up and running with IOSU**. To perform its functions, IOSU's modules are found on MEM0. 
     9. Espresso is next, so IOSU copies `Cafe OS` (in encrypted form) into MEM2 and kickstarts Espresso.
