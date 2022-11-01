@@ -110,7 +110,7 @@ Once the GamePad is up and running, the device is capable of displaying an H.264
 
 #### Strange use of standards
 
-Similarly to how the Wii Remote [mangles the Bluetooth protocol](`ref ("wii#next-gen-controllers")`) to avoid third-party usage, the GamePad breaks two Wi-FI standards, namely WPS and WPA2-PSK, so they only work with the Wii U `r cite("io-controller_wifi")`.
+Similarly to how the Wii Remote [mangles the Bluetooth protocol](`r ref ("wii#next-gen-controllers")`) to avoid third-party usage, the GamePad breaks two Wi-FI standards, namely WPS and WPA2-PSK, so they only work with the Wii U `r cite("io-controller_wifi")`.
 
 In summary, the Wii U and the GamePad communicate with each other using **802.11n in the 5 GHz band**. The console acts as an access point (AP) and the GamePad acts as its single client. Be as it may, Memahaxx also reported that the console's operating system implemented the possibility of using two GamePads at once, albeit left unused.
 
@@ -653,7 +653,7 @@ Having said that, let's now see what storage options are spread throughout this 
 
 (ref:bootromstitle) Boot ROMs
 
-(ref:bootromscaption) Within this complex package, there are two hidden two ROMs storing boot code in plain form.
+(ref:bootromscaption) Within this complex package, there are two hidden ROMs storing boot code in plain form.
 
 ```{r fig.cap="(ref:bootromscaption)", fig.align='center', tab.title="(ref:bootromstitle)", tab.first=TRUE, tab.active=TRUE}
 image('photos/motherboard/soc_focus.jpg', "(ref:bootromscaption)", float=TRUE)
@@ -763,7 +763,7 @@ As soon as a Wii title is launched, the system proceeds with an 'extra' loader s
 6. Copy the keys from OTP memory to its internal SRAM, as vWii will think the internal SRAM is the [legacy SEEPROM](`r ref("wii#broadways-os")`).
 7. Disable Wii U-exclusive I/O, except the GamePad (unless it's deactivated by the user or game metadata).
 8. Boot IOS. The choice of [IOS slot](`r ref("wii#starlets-os")`) depends on the vWii mode used and, if in HAI mode, the game.
-    - The IOS package for vWii has been slightly modified with additional modules. This includes `OHCI1` to emulate the disc drive and `DI2SD` to translate the input from the GamePad into Bluetooth commands (thus, replicating the Wii Remote controller) `r cite("operating_system-hai")`.
+    - The IOS package for vWii has been slightly modified with additional modules. This includes `DI2SD` to emulate the disc drive and `OHCI1` to translate the input from the GamePad into Bluetooth commands (thus, replicating the Wii Remote controller) `r cite("operating_system-hai")`.
 9. Upload either the `Wii System Menu` or `NAND Boot Program` (the binary that runs Wii titles) to MEM2, the choice depends on the vWii mode used.
     - As Espresso will have booted from its boot ROM first, it will only accept binaries using the Wii U's security model. Therefore, both Wii binaries have been modified to comply with this.
 10. Kickstart Espresso and let it process and run the designated binary.
