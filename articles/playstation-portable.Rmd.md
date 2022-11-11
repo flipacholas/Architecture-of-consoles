@@ -155,6 +155,7 @@ The aspect ratio is *almost* 16:9, a format which during that time was increasin
 Now it's time to talk about the component in charge of producing pixels, the **Graphics Engine** (GE). The engine is found within the 'system group', so you may see it as a 'group within a group'. Below you can see some of the results it achieved:
 
 ::: {.subfigures .tabs-nested}
+
 ![Kingdom Hearts Birth by Sleep (2010).](games/kh.jpg){.tab-nested .active title="KH"}
 
 ![Spider-Man 3 (2007).](games/spider.jpg){.tab-nested title="Spider-Man"}
@@ -168,6 +169,7 @@ Now it's time to talk about the component in charge of producing pixels, the **G
 ![LocoRoco (2006)](games/loco.jpg){.tab-nested title="Loco"}
 
 Example of PSP games. All rendered at their maximum resolution (480x272 pixels).
+
 :::
 
 The GE draws 3D graphics (polygons) with many features applied (texture mapping, lighting and so much more), which you'll see in a bit.

@@ -272,6 +272,7 @@ Also, it's worth mentioning that, while SMP programming is not necessarily restr
 Here's a peculiar aspect of Xenon. While the chip, by itself, incorporates interesting technology to make it a powerful contender against the competition, Xenon was never conceived as a one-man band. To make this console, as a whole, extremely competitive and long-lasting, Xenon was closely bonded to another chip, the GPU.
 
 ::: {.subfigures .tabs-nested}
+
 ![Assassin's Creed (2007).](screenshots/games/assassins.jpg){.tab-nested .active title="Assassin's"}
 
 ![Half-life 2 (The Orange Box, 2007).](screenshots/games/half_life.jpg){.tab-nested title="Half-life"}
@@ -283,6 +284,7 @@ Here's a peculiar aspect of Xenon. While the chip, by itself, incorporates inter
 ![Grand Theft Auto V (2013).](screenshots/games/gta.jpg){.tab-nested title="GTA"}
 
 Example of Xbox 360 games. All rendered at their maximum resolution (1280x720 pixels).
+
 :::
 
 The graphics chip is designed and manufactured by no other than **ATI**, [Nvidia](playstation-3#graphics)'s direct rival. To put it into perspective, a new company called 'Artx' was set up by former employers of SGI that developed the Nintendo 64's graphics chip, the [Reality Co-Processor](nintendo-64#graphics). Afterwards, Nintendo hired them again to produce the Gamecube's [Flipper](gamecube#graphics) chip... at the same time ATI was in the process of acquiring them [@graphics-ati_merger]. By then, ATI was competing in the PC arena with their 'ATI Rage' graphics cards and will soon inherit Flipper's engineers. Fast forward to 2005, Nvidia (now supplying Sony) was now facing ATI again in the console market.
@@ -794,6 +796,7 @@ In the following paragraphs, you may sense that I'm very critical of each interf
 #### The 'Blades' dashboard (2005)
 
 ::: {.subfigures .tabs-nested}
+
 ![The home screen, the controls are shown on the centre, while the horizontal edges indicates the existance of other blades to navigate to.](screenshots/blades/home.jpg){.tab-nested .active title="Home"}
 
 ![List of games installed, previously downloaded from the Xbox Live Arcade (a digital marketplace). Notice how this is a full-screen view, as there wasn't enough space on the previous type of screen.](screenshots/blades/games.jpg){.tab-nested title="Games"}
@@ -807,6 +810,7 @@ In the following paragraphs, you may sense that I'm very critical of each interf
 ![Pressing the guide button (a.k.a Xbox logo on the controller) for a long period would bring in the 'Xbox Guide', a popup menu offering various shortcuts.](screenshots/blades/guide.jpg){.tab-nested title="Guide"}
 
 The 'Blades' dashboard. Screens are from [@operating_system-blades_1] and [@operating_system-blades_2].
+
 :::
 
 The first iteration of the user interface, now an element of nostalgia for some, was the **Blades** dashboard. Here, each group of services (game, multimedia, settings, etc) is organised into different overlapping layers called 'blades'. All share the same hierarchy level and focus, meaning the user can only open one blade/category at a time. To navigate around, the user must swap between blades and interact with the actionable controls placed.
@@ -824,6 +828,7 @@ Nevertheless, this is the GUI that gave this console an identity, and it's obvio
 #### The 'New Xbox Experience' (2008)
 
 ::: {.subfigures .tabs-nested}
+
 ![The new home menu. Notice how the user can't see all elements available unless he/she scrolls.](screenshots/nxe/home.jpg){.tab-nested .active title="Home"}
 
 ![As the Xbox Live expands its repertoire, many types of applications can now be installed (not only arcades anymore).](screenshots/nxe/games.jpg){.tab-nested title="Apps"}
@@ -837,6 +842,7 @@ Nevertheless, this is the GUI that gave this console an identity, and it's obvio
 ![As a nice tribute, the new guide menu resembles the old Blades design, which also helps provide more and better-organised shortcuts.](screenshots/nxe/guide.jpg){.tab-nested title="Guide"}
 
 The 'NXE' dashboard. Screens are from [@operating_system-nxe_dash] and [@operating_system-nxe_dash_2].
+
 :::
 
 As Microsoft expanded its catalogue of services and features, the navigation pattern of the blades turned into a liability (as it constrained the number of navigation screens on the top hierarchy) and the lack of available space became apparent in later software updates. In 2008, Microsoft released a revamped Dashboard interface called **New Xbox Experience** (NXE) which focused on 'infinite scrolling' patterns to offer a wider selection of services on the front page. It also incorporated other elements like a glossy filter and 3D transitions recently popularised by **Windows Vista** and the new range of **Windows Live** applications.
@@ -850,6 +856,7 @@ With the new design, screens could now enjoy full-screen space without being con
 #### The 'Kinect' update (2010)
 
 ::: {.subfigures .tabs-nested}
+
 ![The new home screen built for Kinect controls. Notice how the container at the bottom right corner indicates what Kinect is capturing at the moment.](screenshots/kinect/home.jpg){.tab-nested .active title="Home"}
 
 ![As the Xbox Live expands its repertoire, many types of applications can now be installed (not only games).](screenshots/kinect/apps.jpg){.tab-nested title="Apps"}
@@ -863,6 +870,7 @@ With the new design, screens could now enjoy full-screen space without being con
 ![The Guide menu goes through a minimalistic phase.](screenshots/kinect/guide.jpg){.tab-nested title="Guide"}
 
 The 'Kinect' dashboard with a custom wallpaper. Screens are from [@operating_system-kinect_dash].
+
 :::
 
 With the arrival of **Kinect**, Microsoft had to adapt the Dashboard to remove its dependency on the controller. As part of the update, the designers replaced the glossy touch with faded greens and greys. The 3D _aero_-like touches were also succeeded by typical zoom-in animations. This coincides with the arrival of **Windows 7** and its modest reduction of visual effects.
@@ -876,6 +884,7 @@ I don't think there's anything else to mention apart from the fact it only laste
 #### The 'Metro' revamp (2011)
 
 ::: {.subfigures .tabs-nested}
+
 ![The new home screen, where news, advertisements and applications share equivalents amount of screen space. Some types of information (like adverts) are granted more space than what the user would agree.](screenshots/metro/home.jpg){.tab-nested .active title="Home"}
 
 ![The new app selector resembles a retail shelf.](screenshots/metro/apps.jpg){.tab-nested title="Apps"}
@@ -887,6 +896,7 @@ I don't think there's anything else to mention apart from the fact it only laste
 ![It seems the minimalistic phase is here to stay.](screenshots/metro/guide.jpg){.tab-nested title="Guide"}
 
 The 'Metro' dashboard. Screens are from [@operating_system-metro_dash].
+
 :::
 
 The year 2010 saw the debut of **Windows Phone 7** and a new type of interface called **Metro**, whose style now relies on solid colours and white silhouettes. Due to its versatile design, Microsoft envisioned porting Metro to all of its platforms, which became a reality the following year with the arrival of **Windows 8** and a **new update** for the Xbox 360. Though the degree of adoption varied drastically between device, the Xbox 360 enjoyed a mostly unified implementation of Metro (unlike Windows 8, where the majority of applications still relied on the 'classic' design).

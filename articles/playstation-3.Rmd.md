@@ -356,6 +356,7 @@ I suppose it's just a matter of time, patience and a lot of learning for softwar
 If you thought that Cell, with all its quirks, could take care of every task of this console, then let me tell you something hysterical: **Sony fitted a separate chip for 3D graphics**.
 
 ::: {.subfigures .tabs-nested}
+
 ![Uncharted 3: Drake's Deception (2011).](games/uncharted3.jpg){.tab-nested .active title="Uncharted"}
 
 ![The Elder Scrolls V: Skyrim (2011).](games/skyrim.jpg){.tab-nested title="Skyrim"}
@@ -365,6 +366,7 @@ If you thought that Cell, with all its quirks, could take care of every task of 
 ![One Piece: Pirate Warriors (2012).](games/onepiece.jpg){.tab-nested title="One Piece"}
 
 Example of PS3 games. All rendered at their maximum resolution (1280x720 pixels).
+
 :::
 
 It appears that even with a supercomputer chip, Sony still had to fetch a GPU to finalise the PlayStation 3. This makes you wonder if IBM/Sony/Toshiba hit a wall while trying to scale Cell further, so Sony had no option but to get help from a graphics company. This is purely speculation however, I'm not sure if I'll ever know the answer.

@@ -117,6 +117,7 @@ I'm going to borrow the graphics of Sega's *Sonic Advance 3* to show how a frame
 #### Tiles {.tabs .active}
 
 ::: {.subfigures .tabs-nested .tab-float .pixel}
+
 ![This block is made of 4bpp Tiles.](sonic/tiles1.png){.tab-nested .active title="Block 1"}
 
 ![You may notice some weird vertical patterns in here, these are not graphics but 'Tile Maps' (see next section).](sonic/tiles2.png){.tab-nested title="Block 2"}
@@ -124,6 +125,7 @@ I'm going to borrow the graphics of Sega's *Sonic Advance 3* to show how a frame
 ![This block is reserved for sprites.](sonic/tilesobj.png){.tab-nested title="Block 3"}
 
 Charblocks found in VRAM.
+
 :::
 
 GBA's tiles are strictly 8x8 pixel bitmaps, they can use 16 colours (4bpp) or 256 colours (8bpp). 4bpp tiles consume 32 bytes, while 8bpp ones take 64 bytes.
@@ -137,6 +139,7 @@ Only four charblocks can be used for backgrounds and two can be used for sprites
 #### Backgrounds {.tab}
 
 ::: {.subfigures .tabs-nested .tab-float}
+
 ![Background Layer 0 (BG0).](sonic/bg0.png){.tab-nested .active title="Layer 0"}
 
 ![Background Layer 2 (BG2).](sonic/bg2.png){.tab-nested title="Layer 2"}
@@ -144,6 +147,7 @@ Only four charblocks can be used for backgrounds and two can be used for sprites
 ![Background Layer 3 (BG3).<br>This particular layer will be shifted horizontally at certain scan-lines to simulate water effects.](sonic/bg3.png){.tab-nested title="Layer 3"}
 
 Static background layers in use.
+
 :::
 
 The background layer of this system has improved significantly since the Game Boy Color. It finally includes some features found in the [Super Nintendo](super-nintendo) (remember the [affine transformations](super-nintendo#unique-features)?).
@@ -199,6 +203,7 @@ The good news is that the PPU actually implemented this functionality by includi
 The reason for having two bitmaps is to enable **page-flipping**: Drawing over a displayed bitmap can expose some weird artefacts during the process. If we instead manipulate another one then none of the glitches will be shown to the user. Once the second bitmap is finished the PPU can be updated to point to the second one, effectively swapping the displayed frame.
 
 ::: {.subfigures .tabs-nested .open-float .tab-float}
+
 ![Super Monkey Ball Jr. (2002).<br>Bitmap mode allowed the CPU to provide some rudimentary 3D graphics for the scenery.<br>Foreground objects are sprites (separate layer).](bitmap/monkey.png){.tab-nested .active title="3D"}
 
 ![Tonc's demo.<br>Rendered bitmap with some primitives.<br>Notice the screen doesn't show significant patterns produced by tile engines.](bitmap/demo.png){.tab-nested title="Demo"}
@@ -206,6 +211,7 @@ The reason for having two bitmaps is to enable **page-flipping**: Drawing over a
 ![Nickelodeon's SpongeBob SquarePants.<br>Episode distributed as a _GBA Video_ cartridge (it suffered a lot of compression, of course).](bitmap/spongebob.png){.tab-nested title="Video"}
 
 Examples of programs using bitmap modes.
+
 :::
 
 Overall it sounds like a cutting-the-edge feature, however, most games held on to the tile engine. Why? Because in practice it **costs a lot of CPU resources**.

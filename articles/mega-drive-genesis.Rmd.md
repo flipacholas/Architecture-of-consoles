@@ -137,11 +137,13 @@ The following section explains how the VDP draws each frame, for demonstration p
 #### Tiles {.tabs .active}
 
 ::: {.subfigures .tabs-nested .tab-float .pixel}
+
 ![Multiple tiles squashed together. For demonstration purposes, a default palette is being used.](`r pixel_image("vdp_sonic/tiles.png")`){.tab-nested .active title="All"}
 
 ![A single 8x8 pixel tile.](`r pixel_image("vdp_sonic/tiles_single.png")`){.tab-nested title="Single"}
 
 Some tiles found in VRAM.
+
 :::
 
 Just like Nintendo's PPU, The VDP is a tile-based engine and as such it uses **tiles** (basic 8x8 bitmaps) to compose graphic planes. In the case of the VDP, each tile is encoded with a 4-byte-long array, where each 4-bit entry corresponds to a pixel and its value corresponds to a colour entry (pointing to a colour palette).
@@ -167,11 +169,13 @@ On the showed example you'll notice that the selected area for display is not a 
 #### Foreground {.tab}
 
 ::: {.subfigures .tabs-nested .tab-float .pixel}
+
 ![Allocated Foreground plane.](`r pixel_image("vdp_sonic/layer1.png")`){.tab-nested .active title="Full"}
 
 ![Allocated Foreground plane with selected area marked.](`r pixel_image("vdp_sonic/layer1_selected.png")`){.tab-nested title="Selected"}
 
 Example of Foreground plane, the Window Plane is not used.
+
 :::
 
 The Foreground plane, also known as **Plane A** [@graphics-macdonald], has the same properties as the Background Plane except this plane has a **higher priority**, so tiles rendered here will inherently be on top of the Background Plane.
@@ -197,6 +201,7 @@ The region in VRAM where Sprites are defined is called **Sprite Attribute Table*
 #### Result {.tab}
 
 ::: {.subfigures .tabs-nested .tab-float .pixel}
+
 ![Resulting frame.](`r pixel_image("vdp_sonic/result.png")`){.tab-nested .active title="Frame"}
 
 ![Frame broadcasted to the TV (NTSC format), the VDP automatically covers the frame with overscan area that most CRT TVs will hide.](`r pixel_image("vdp_sonic/overscan.png")`){.tab-nested title="With overscan"}
@@ -239,11 +244,13 @@ Let's now see what each chip offers, as each one is *very* different.
 #### Yamaha YM2612 {.tabs .active}
 
 ::: {.subfigures .tabs-nested .tab-float}
+
 ![FM channels.](fm_single){.tab-nested .active video="true" title="FM"}
 
 ![PCM channel.](pcm_single){.tab-nested video="true" title="PCM Sample"}
 
 Sonic The Hedgehog (1991).
+
 :::
 
 The **Yamaha YM2612** is an **FM synthesiser** [@audio-ymwiki] that runs at the 68000 speed and supplies **six FM channels**, where one can play **PCM samples** (with 8-bit resolution and 32 kHz sampling rate).
@@ -285,11 +292,13 @@ Some music composers may decide to focus on the PCM channel to play more truthfu
 For that reason, I've decided to dedicate this section for a few instances of games which successfully managed to overcome the aforementioned constraint. Instead of just sticking with ordinary drum kits, some games found incredible ways to stream richer samples to that single PCM channel, check out these examples:
 
 ::: {.subfigures .tabs-nested .toleft}
+
 ![PCM channel.](good_sampling/sonic_pcm){.tab-nested .active video="true" title="PCM Sample"}
 
 ![All audio channels.](good_sampling/sonic_complete){.tab-nested video="true" title="Complete"}
 
 Sonic The Hedgehog 3 (1994).<br>This is one of the tracks said to be co-authored by Michael Jackson. In any case, the overall soundtrack had a distinctive beat compared to its predecessors.
+
 :::
 
 ![PCM channel (the only channel used).<br>Toy Story (1995).<br>This is sequenced in real time with the help of the 68000 [@audio-gamehut]. A very intensive task, meaning it could only be played at very particular points of the game (i.e. the main menu).](good_sampling/randy_pcm){.tabs-nested .tabs-nested-last .active .toright video="true" title="PCM Sample/Complete"}

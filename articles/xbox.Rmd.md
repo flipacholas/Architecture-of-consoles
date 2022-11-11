@@ -233,11 +233,13 @@ I find it important to emphasise the significance of the new programmability mod
 The concept of 'shaders' was introduced by **Pixar** in 1989 as a method to extend **Renderman** [@graphics-pixar], their pioneering software used for 3D rendering. This was back in the time when 3D graphics were mainly handled by industrial equipment. Later on, we have seen how certain consoles incorporated [similar principles](nintendo-64#tab-1-1-reality-signal-processor), but it wasn't until Nvidia released their GeForce3 line, that shaders became a standard in the consumer market.
 
 ::: {.subfigures .open-float .tab-float .tabs-nested}
+
 ![Complex animation achieved by vertex program.](vertex){.tab-nested .active video="true" title="Vertex Program"}
 
 ![Different texture effects achieved by pixel shaders.](fragment){.tab-nested video="true" title="Pixel Shader"}
 
 ChameleonMark (2002), a demo developed by Nvidia to showcase GeForce3's shaders.
+
 :::
 
 Thanks to vertex programs, the GPU can now accelerate model transformations, lighting calculations and texture coordinate generation. The latter one is essential for composing [Higher Order surfaces](playstation-2#infinite-worlds). With this, the CPU can concentrate on providing better physics, AI and scene management.
@@ -303,19 +305,23 @@ The MCPX also provides the following interfaces and protocols used to interconne
 The Xbox came with a bulky controller called **The Duke**, its set of inputs aren't any different from what the other competitors had... except the usage of analogue circuitry (8-bit wide) on the face buttons, allowing games to detect 'half-presses' from most of the button set. On the other side, the Duke was so widely criticised that Microsoft replaced it with a new revision called **Controller S** months after the release of the console.
 
 ::: {.subfigures .toleft .tabs-nested}
+
 ![](controller/duke_front.png){.tab-nested .active title="Front"}
 
 ![](controller/duke_back.png){.tab-nested title="Back"}
 
 The Duke (2001) [@photography-amos].
+
 :::
 
 ::: {.subfigures .toright .tabs-nested}
+
 ![](controller/s_front.png){.tab-nested .active title="Front"}
 
 ![](controller/s_back.png){.tab-nested title="Back"}
 
 Controller S (2002) [@photography-amos].
+
 :::
 
 On closer inspection, both controllers did include something special: Two **Memory Unit** slots to plug in a proprietary memory card, enabling to share saves between consoles. I assumed this feature was inherited from a [previous competitor](dreamcast#interactive-memory-card). Days after publishing this article, I sent it to Seamus Blackley, the co-creator of this console, who quickly replied to me with very interesting comments. Regarding the Dreamcast similarities, he told me:

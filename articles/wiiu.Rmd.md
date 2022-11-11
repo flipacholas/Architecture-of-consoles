@@ -226,6 +226,7 @@ But hey, just like with Xenon or Cell, it's all part of an evolutionary line. I 
 So while the CPU can be considered a _tribute_ to legacy technologies, let me tell you that the GPU is _officially_ part of the next generation.
 
 ::: {.subfigures .tabs-nested}
+
 ![Super Mario 3D World (2013).](screenshots/mario3d.jpg){.tab-nested .active title="Mario 3D"}
 
 ![Hyrule Warriors (2014).](screenshots/zelda_warriors.jpg){.tab-nested title="Hyrule"}
@@ -237,6 +238,7 @@ So while the CPU can be considered a _tribute_ to legacy technologies, let me te
 ![The Legend of Zelda: The Wind Waker (2016). Rendered at an exceptional 1920x1080 pixels!](screenshots/zelda_windwaker.jpg){.tab-nested title="Zelda"}
 
 Example of Wii U games as seen from the TV. All are rendered at their maximum resolution (1280x720 pixels) except for Wind Waker.
+
 :::
 
 The graphics logic is found within a big silicon chip sitting next to Espresso, it's called **Latte**, operates at **550 MHz** [@graphics-speed] and, to make a long story short, it's broad and complex. Latte houses a lot more infrastructure than just graphics, so don't worry as the former will be explained in the next sections of the article. For now, just remember that the graphics block lives in Latte.

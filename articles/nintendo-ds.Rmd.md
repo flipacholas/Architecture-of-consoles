@@ -186,6 +186,7 @@ These modes can't be chosen arbitrary, instead, the console provides a series of
 #### Background modes {.tab}
 
 ::: {.subfigures .tabs-nested .tab-float .pixel}
+
 ![Background Layer 0 (BG0). This particular layer will be shifted horizontally at certain scan lines to simulate the clouds moving.](mario/bg1.png){.tab-nested .active title="Layer 0"}
 
 ![Background Layer 2 (BG2).](mario/bg2.png){.tab-nested title="Layer 2"}
@@ -193,6 +194,7 @@ These modes can't be chosen arbitrary, instead, the console provides a series of
 ![Background Layer 3 (BG3).](mario/bg3.png){.tab-nested title="Layer 3"}
 
 Static Background layers in use.
+
 :::
 
 Here the background types are put into action. 'Main' and 'Sub' provide six modes of operations, all of them generate four background layers, but each one will have different capabilities:

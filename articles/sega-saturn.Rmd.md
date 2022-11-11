@@ -156,6 +156,7 @@ The CPU sets up the VDP1 by writing over its registers and filling its VRAM with
 #### Backgrounds {.tab}
 
 ::: {.subfigures .tabs-nested .tab-float .pixel}
+
 ![2D plane 1.](2d/bg1.png){.active title="2D plane 1"}
 
 ![2D plane 2.](2d/bg2.png){title="2D plane 2"}
@@ -163,6 +164,7 @@ The CPU sets up the VDP1 by writing over its registers and filling its VRAM with
 ![2D plane 3.](2d/bg3.png){title="2D plane 3"}
 
 Mega Man X4 (1997). VDP2's Background planes.
+
 :::
 
 The VDP2 is then instructed to draw background planes. These, along with the sprite layer, are automatically mixed to form a fully coloured scene.
@@ -250,11 +252,13 @@ As a workaround, games can activate the 'mesh' property on a texture. With 'mesh
 As you may suspect, this just wasn't viable for some games, so in the end, these had no option but to ditch half-transparency altogether... Although some studios found ingenious fixes, take a look at these two cases:
 
 ::: {.subfigures .side-by-side}
+
 ![Sega's Daytona (1993).](daytona){.toleft video="true"}
 
 ![Traveller's Tales' Sonic R (1997).](sonicr){.toright video="true"}
 
 Both games command the VDP1 to draw foreground objects and background scenery. In turn, the VDP2 renders the landscape image far away and the stats in front of the 3D models. Consequently, VDP1 models with half-transparency won't refract the VDP2's landscape as the VDP1 is not aware of the VDP2's frame buffers.
+
 :::
 
 Apart from my terrible gameplay, you'll notice that the background of the first game pops out of nowhere (no half-transparency) whereas the second game not only accomplished half-transparency but also a **fading effect**: Traveller's Tales found a workaround by changing the 'mix ratio' registers of the VDP2 (used for defining the texture's alpha) combined with switching the lighting levels as the character gets closer [@graphics-burton].
@@ -284,11 +288,13 @@ This has been possible thanks to a combination of many factors:
 Once the user powers on the console, the first component that starts up is the **System Management & Peripheral Control** (SMPC), a 4-bit microcontroller that takes care of initialising the neighbouring chips (such as switching on two SH-2s and setting them in a 'master-slave' configuration) [@games-smpc].
 
 ::: {.subfigures .side-by-side}
+
 ![Japanese version.](ipl/logo_jap.jpg){.toleft}
 
 ![European and American versions.](ipl/logo_eu.jpg){.toright}
 
 Logo displayed after splash animation finishes.
+
 :::
 
 Afterwards, the master SH-2's reset vector is set to `0x00000000` [@games-sh2], which points to an internal ROM containing the **Initial Program Loader** (IPL). This program performs the following functions [@operating_system-bootrom]:
