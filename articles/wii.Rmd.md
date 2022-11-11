@@ -93,6 +93,7 @@ The 3D engine is still [Flipper's](gamecube#graphics) but now called **GX**. So 
 #### Standardised Widescreen {.tabs .active}
 
 ::: {.subfigures .tabs-nested .tab-float}
+
 ![4:3 mode.](mario/4_3.png){.tab-nested .active title="Traditional"}
 
 ![16:9 mode, as composed by the video encoder.](mario/16_9.png){.tab-nested title="Wide"}
@@ -100,6 +101,7 @@ The 3D engine is still [Flipper's](gamecube#graphics) but now called **GX**. So 
 ![16:9 mode, as displayed on a widescreen TV.](mario/16_9_stretched.png){.tab-nested title="Stretched"}
 
 Super Mario Galaxy (2007).
+
 :::
 
 Gamecube games lacked proper support for widescreen displays (that is, composing 16:9 frames, departing from the traditional 4:3). Nevertheless, Flipper was already able to do so and a handful of games provided options to activate it, although this was still considered an exclusive feature.
@@ -450,11 +452,13 @@ Since signatures could now be forged, this crafted save file was easily distribu
 While further reversing IOS, it was discovered that signatures are only checked during the installation of titles, not during their execution.
 
 ::: {.subfigures .open-float .tabs-nested .tab-float}
+
 ![](system/homebrew_channel.png){.tab-nested .active title="Splash"}
 
 ![](system/homebrew/menu.png){.tab-nested title="Inside"}
 
 The _unofficial_ Homebrew channel (2008).<br>The most user-friendly hack of all times.
+
 :::
 
 Thus, TT did it again. They carefully forged an installable channel that could load arbitrary programs from the SD card. If this channel were to be installed before Nintendo had taken action to mitigate the security issues, then the Wii would enjoy homebrew permanently (independently of Nintendo patching their signature flaws in the future, which they did).
