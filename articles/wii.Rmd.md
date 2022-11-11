@@ -29,7 +29,7 @@ Even though the Wii lacked the state of art graphics its competitors enjoyed, ne
 
 Here we will analyse every aspect of this console, from its already-familiar hardware to its overlooked security system, including its major flaws.
 
-Quick Note: Some sections overlap part of the previous article about the [Gamecube](`r ref("gamecube")`), so instead of repeating the information I will just put a link to the respective part of the article.
+Quick Note: Some sections overlap part of the previous article about the [Gamecube](gamecube), so instead of repeating the information I will just put a link to the respective part of the article.
 
 ```{r results="asis"}
 supporting_imagery()
@@ -46,7 +46,7 @@ The main device is no other than the **Wii Remote** (also called 'Wiimote'), a g
 - Finally, it includes an **infrared camera** that, combined with the accelerometer and some Wii processing, can be used to point at the screen.
   - This sensor requires the **Sensor Bar** (included with the console). The bar contains two sets of infrared LEDs which the camera can sense, the Wii uses triangulation to calculate the position of the Wiimote from the TV.
 
-The remote is powered by **Broadcom's BCM2042** `r cite("io-wiimote")`, a chip that includes all the necessary circuitry to become an independent Bluetooth device (CPU, RAM, ROM and, of course, a Bluetooth module). While the Wiimote is programmed to follow the 'Bluetooth HID' protocol to be identified as an input device, it doesn't comply with the standard method of exchanging data (possibly to disallow being used on non-Wii systems).
+The remote is powered by **Broadcom's BCM2042** [@io-wiimote], a chip that includes all the necessary circuitry to become an independent Bluetooth device (CPU, RAM, ROM and, of course, a Bluetooth module). While the Wiimote is programmed to follow the 'Bluetooth HID' protocol to be identified as an input device, it doesn't comply with the standard method of exchanging data (possibly to disallow being used on non-Wii systems).
 
 Lastly, the Wiimote also includes **16 KB of EEPROM** to store user data and a **small speaker** limited to low-quality samples (3 kHz 4-bit ADPCM or 1.5 kHz 8-bit PCM).
 
@@ -54,25 +54,21 @@ Lastly, the Wiimote also includes **16 KB of EEPROM** to store user data and a *
 
 Nintendo shipped this system with another controller to be used on the opposite hand, the **Nunchuk**, this one comes with its own accelerometer, joystick and two buttons. It's connected to a 6-pin proprietary port on the Wiimote.
 
-(ref:controllers) Nunchuk and Wiimote `r cite("photography-amos")`, respectively.
-
-```{r fig.cap="(ref:controllers)", fig.align='center', centered=TRUE}
-image("controllers/both.jpg", "(ref:controllers)", class = "centered-container")
-```
+![Nunchuk and Wiimote [@photography-amos], respectively.](controllers/both.jpg)
 
 Other accessories were also built for this port, each one provided different types of input.
 
 ## CPU
 
-After the success of Gekko, IBM presumably grabbed this design and re-branded it as '750CL' for other manufacturers to use `r cite("cpu-ibmcl")`. Then, when Nintendo requested a new CPU to use with their new console, still known as 'Revolution' (hence the RVL prefix on their stock motherboards), IBM and Nintendo agreed to use a 750CL clocked 1.5 times the speed of Gekko. This CPU is known as **Broadway** `r cite("cpu-ibmuser")` and runs at **729 MHz**.
+After the success of Gekko, IBM presumably grabbed this design and re-branded it as '750CL' for other manufacturers to use [@cpu-ibmcl]. Then, when Nintendo requested a new CPU to use with their new console, still known as 'Revolution' (hence the RVL prefix on their stock motherboards), IBM and Nintendo agreed to use a 750CL clocked 1.5 times the speed of Gekko. This CPU is known as **Broadway** [@cpu-ibmuser] and runs at **729 MHz**.
 
-After having reviewed [Gekko](`r ref("gamecube#cpu")`), I'm afraid there aren't many changes found in the new CPU. However, this may be an advantage: GameCube developers were able to start developing their new Wii games right away thanks to all the experience they gained with Gekko. Moreover, the fact that Broadway runs 1.5x the original speed will allow them to push for more features and quality.
+After having reviewed [Gekko](gamecube#cpu), I'm afraid there aren't many changes found in the new CPU. However, this may be an advantage: GameCube developers were able to start developing their new Wii games right away thanks to all the experience they gained with Gekko. Moreover, the fact that Broadway runs 1.5x the original speed will allow them to push for more features and quality.
 
 ### What about memory?
 
 This one is an interesting bit, the old Gamecube memory layout has been re-arranged and enhanced with the following changes:
 
-- Splash (24 MB of 1T-SRAM) now resides inside the GPU package, it is now referred to as **MEM1** `r cite("operating_system-memory")`.
+- Splash (24 MB of 1T-SRAM) now resides inside the GPU package, it is now referred to as **MEM1** [@operating_system-memory].
 - ARAM (16 MB of serial SDRAM) is long **gone**, however...
 - There's a new memory chip, **MEM2**, which includes **64 MB of GDDR3 SDRAM** for general purpose.
   - This type of memory is based on the traditional DDR2 system but revamped with higher bandwidths (~2 times the original transfer rates) and reduced power consumption, which is ideal for GPUs.
@@ -88,34 +84,23 @@ In later years, new revisions of the Wii saw these ports removed, unfortunately.
 
 ## Graphics
 
-The new graphics package is called **Hollywood**. It still performs the same tasks that [Flipper](`r ref("gamecube#graphics")`) did back in the day but enjoys 1.5x the clock speed (**243 MHz**). This increase means that more geometry and effects can be processed during the same unit of time.
+The new graphics package is called **Hollywood**. It still performs the same tasks that [Flipper](gamecube#graphics) did back in the day but enjoys 1.5x the clock speed (**243 MHz**). This increase means that more geometry and effects can be processed during the same unit of time.
 
 ### Functionality
 
-The 3D engine is still [Flipper's](`r ref("gamecube#graphics")`) but now called **GX**. So instead of repeating the pipeline overview, I will mention some interesting design changes that games had to undergo:
+The 3D engine is still [Flipper's](gamecube#graphics) but now called **GX**. So instead of repeating the pipeline overview, I will mention some interesting design changes that games had to undergo:
 
-(ref:widescreentitle) Standardised Widescreen
+#### Standardised Widescreen {.tabs .active}
 
-(ref:traditionaltitle) Traditional
+::: {.subfigures .tabs-nested .tab-float}
+![4:3 mode.](mario/4_3.png){.tab-nested .active title="Traditional"}
 
-(ref:traditionalcaption) 4:3 mode.
+![16:9 mode, as composed by the video encoder.](mario/16_9.png){.tab-nested title="Wide"}
 
-(ref:widetitle) Wide
+![16:9 mode, as displayed on a widescreen TV.](mario/16_9_stretched.png){.tab-nested title="Stretched"}
 
-(ref:widecaption) 16:9 mode, as composed by the video encoder.
-
-(ref:stretchedtitle) Stretched
-
-(ref:stretchedcaption) 16:9 mode, as displayed on a widescreen TV.
-
-(ref:widescreenfooter) Super Mario Galaxy (2007).
-
-```{r tiles, fig.cap="(ref:widescreenfooter)", fig.subcap=c("(ref:traditionalcaption)", "(ref:widecaption)", "(ref:stretchedcaption)"), fig.align="center", out.width = split_figure_width, tab.title="(ref:widescreentitle)", tab.active = TRUE, tab.first=TRUE, tab.nested=TRUE, tab.float=TRUE, tab.figure=TRUE, fig.ncol = responsive_columns}
-image('mario/4_3.png', "(ref:traditionalcaption)", tab.name = "(ref:traditionaltitle)", tab.active = TRUE, caption.post = "(ref:widescreenfooter)")
-image('mario/16_9.png', "(ref:widecaption)", tab.name = "(ref:widetitle)", caption.post = "(ref:widescreenfooter)")
-image('mario/16_9_stretched.png', "(ref:stretchedcaption)", tab.name = "(ref:stretchedtitle)", caption.post = "(ref:widescreenfooter)")
-figcaption("(ref:widescreenfooter)")
-```
+Super Mario Galaxy (2007).
+:::
 
 Gamecube games lacked proper support for widescreen displays (that is, composing 16:9 frames, departing from the traditional 4:3). Nevertheless, Flipper was already able to do so and a handful of games provided options to activate it, although this was still considered an exclusive feature.
 
@@ -123,23 +108,17 @@ Truth to be told, the video encoder always outputs a PAL or NTSC-compliant frame
 
 Back to the point, the Wii standardised this feature by allowing 'widescreen mode' to be activated from its system settings, which in turn promoted its _wide_ adoption (pun intended).
 
-(ref:interactitle) Screen Interaction
+#### Screen Interaction {.tab}
 
-(ref:interaccaption) Super Mario Galaxy (2007).<br>You can pick up the stars by pointing at them.
-
-```{r fig.cap="(ref:interaccaption)", fig.align='center', tab.title="(ref:interactitle)", tab.last=TRUE}
-image("mario/mario_galaxy.png", "(ref:interaccaption)", float = TRUE)
-```
+![Super Mario Galaxy (2007).<br>You can pick up the stars by pointing at them.](mario/mario_galaxy.png){.tab-float}
 
 The new and disruptive controller design meant new types of interactions on Wii games. Since the WiiMote enabled users to point at the screen, some games like *Super Mario Galaxy* or *The Legend of Zelda: Twilight Princess* used this feature to allow the player to interact with the scenery.
 
-In the report titled _Myth Debugging: Is the Wii More Demanding to Emulate than the GameCube?_ `r cite("graphics-dolphin")`, developers of the Dolphin emulator explain that games like Super Mario Galaxy and other first-person shooters rely on the [embedded z-buffer](`r ref("gamecube#tab-1-4-render")`) to identify the object the Wiimote is pointing at and/or check how far the object is from the Wiimote cursor.
+In the report titled _Myth Debugging: Is the Wii More Demanding to Emulate than the GameCube?_ [@graphics-dolphin], developers of the Dolphin emulator explain that games like Super Mario Galaxy and other first-person shooters rely on the [embedded z-buffer](gamecube#tab-1-4-render) to identify the object the Wiimote is pointing at and/or check how far the object is from the Wiimote cursor.
 
 This is not a new feature per se, but a novel use of current capabilities. Gamecube games didn't depend on a multi-use controller with pointer functionality. Now, players can control the character and point at the screen at the same time.
 
-`r close_tabs()`
-
-### Updated Designs
+### Updated Designs {.tabs-close}
 
 The extra megahertz of Broadway and Hollywood, combined with avant-garde designs, brought some improvements to character models. It may not be as significant as other generations, but it's still noticeable and appreciated.
 
@@ -163,13 +142,13 @@ model_viewer('tails_brawl_wii', class="toright", "(ref:tailsbrawlmodelcaption)")
 
 ### Video Signal
 
-Surprisingly enough, this console doesn't use the old [Multi Out](`r ref("super-nintendo.md#a-convenient-video-out")`) port anymore, but a variation of it called **AV Multi Out** (so much for a name) with a slightly different shape. This one carries all of the previous signals plus **YPbPr** (known as 'component') `r cite("graphics-video")`. It also includes some data lines that the system uses to identify the type of cable plugged in.
+Surprisingly enough, this console doesn't use the old [Multi Out](super-nintendo.md#a-convenient-video-out) port anymore, but a variation of it called **AV Multi Out** (so much for a name) with a slightly different shape. This one carries all of the previous signals plus **YPbPr** (known as 'component') [@graphics-video]. It also includes some data lines that the system uses to identify the type of cable plugged in.
 
-Unfortunately, this medium inherits the same [limitations](`r ref("gamecube.md#connections")`) of the Gamecube. That is, no S-Video on PAL systems and no RGB on NTSC ones. Also, RGB can only broadcast interlaced signals (no progressive). On the other side, Nintendo finally shipped a SCART cable (as an extra accessory) which finally makes use of the RGB lines (remember they were ignored since the times of the [SNES](`r ref("super-nintendo#a-convenient-video-out")`)).
+Unfortunately, this medium inherits the same [limitations](gamecube.md#connections) of the Gamecube. That is, no S-Video on PAL systems and no RGB on NTSC ones. Also, RGB can only broadcast interlaced signals (no progressive). On the other side, Nintendo finally shipped a SCART cable (as an extra accessory) which finally makes use of the RGB lines (remember they were ignored since the times of the [SNES](super-nintendo#a-convenient-video-out)).
 
 ## Audio
 
-The Wii includes the same **Macronix DSP** found in the [Gamecube](`r ref("gamecube#audio")`), you can take a look at that article for the detailed analysis.
+The Wii includes the same **Macronix DSP** found in the [Gamecube](gamecube#audio), you can take a look at that article for the detailed analysis.
 
 Compared to the Gamecube, the only major change is that, since ARAM is gone, either MEM1 or MEM2 can be used as audio buffer.
 
@@ -181,7 +160,7 @@ The I/O subsystem of this console is truly a game changer (*if you'll pardon the
 
 Starlet is just an **ARM926EJ-S** CPU wired up to most of the internal components of this console. It resides inside Hollywood, runs at **243 MHz** (same as Hollywood) and contains its own ROM and RAM too. Thus, you can consider Starlet an independent computer running alongside the main CPU.
 
-The core is similar to the one used on the [Nintendo DS](`r ref("nintendo-ds")`), except for including two 'special' additions:
+The core is similar to the one used on the [Nintendo DS](nintendo-ds), except for including two 'special' additions:
 
 - A 'J' in its model name, which denotes the inclusion of **Jazelle**: A dedicated unit that executes 8-bit Java Bytecode. Java programs would still depend on the virtual machine (known as 'JVM'), but some opcodes may get executed directly from the CPU. Overall, this could accelerate the execution of compiled Java code.
 - A dedicated **Memory management unit** (MMU) to enable virtual memory. Useful for general-purpose operating systems.
@@ -202,7 +181,7 @@ The chip also inherits some technology from ARM, such as the **Advanced Microcon
 
 `r close_float_group(with_markdown = TRUE)`
 
-Having said that, Nintendo wired up the I/O in a way that makes use of two AMBA buses `r cite("io-diagram")`:
+Having said that, Nintendo wired up the I/O in a way that makes use of two AMBA buses [@io-diagram]:
 
 - The **AHB Bus** (AMBA High-performance Bus): As the name indicates, it's designed for high-speed communication. Here we find:
   - The **NAND** Interface: Accesses 512 MB of NAND Flash that stores the operating system and user data.
@@ -212,19 +191,15 @@ Having said that, Nintendo wired up the I/O in a way that makes use of two AMBA 
 - The **APB Bus** (Advanced Peripheral Bus): This one is restricted to low-performance components, including:
   - The **Drive interface**: Connects the disc reader.
   - The **Serial interface**: Connects the Gamecube controllers.
-  - The **External Interface** (EXI): We've seen this one [before](`r ref("gamecube#internal-io")`). It communicates with other Gamecube hardware, used for backwards compatibility.
+  - The **External Interface** (EXI): We've seen this one [before](gamecube#internal-io). It communicates with other Gamecube hardware, used for backwards compatibility.
 
 ### Maintaining compatibility
 
-(ref:gcequipcaption) Wii using Gamecube equipment `r cite("photography-amos")`.
-
-```{r fig.cap="(ref:gcequipcaption)", open_float_group=TRUE, fig.align='center'}
-image('gamecube-mode.png', "(ref:gcequipcaption)", float=TRUE)
-```
+![Wii using Gamecube equipment [@photography-amos].](gamecube-mode.png){.open-float .no-borders}
 
 The Wii maintains full backwards compatibility with Gamecube games even though the I/O system has changed drastically. This is because Starlet can be reprogrammed when a Gamecube game is executed to virtually re-map the I/O, just like the original Gamecube would expect to find.
 
-Additionally, the Real-Time Clock chip includes some spare ROM that stores bitmap fonts (the Latin and Japanese set) used by Gamecube games; and SRAM to save [IPL-related](`r ref("gamecube#operating-system")`) settings.
+Additionally, the Real-Time Clock chip includes some spare ROM that stores bitmap fonts (the Latin and Japanese set) used by Gamecube games; and SRAM to save [IPL-related](gamecube#operating-system) settings.
 
 `r close_float_group(with_markdown = TRUE)`
 
@@ -236,7 +211,7 @@ Generally speaking, there are **two operating systems** residing in the Wii. One
 
 Starlet is already an interesting piece of hardware, but its software is even more intriguing. You see, not only does this OS have complete access to every single corner of the console, but it's also the first thing that runs when the power button is pressed.
 
-Starlet runs a system *unofficially* referred to as **Input/Output Operating System** or 'IOS' (please, do not confuse this with Apple's iOS) `r cite("operating_system-ios")`. IOS is a fully-featured operating system composed of:
+Starlet runs a system *unofficially* referred to as **Input/Output Operating System** or 'IOS' (please, do not confuse this with Apple's iOS) [@operating_system-ios]. IOS is a fully-featured operating system composed of:
 
 - A **Microkernel**: Controls the ARM9 CPU, executes **processes** and talks with other hardware using **drivers**.
 - **Drivers**: Enables the communication with hardware outside the CPU (I/O).
@@ -251,29 +226,17 @@ The update system of IOS **is a bit tricky**: Updated IOS versions are not insta
 
 Nintendo often released IOS updates to improve hardware support (which was necessary when a new accessory was shipped). There's only **one exception** when IOS updates actually replace older ones: When a specific version was discovered to have an exploitable vulnerability. This was only for security reasons.
 
-When a Gamecube game is inserted, a different thing happens: Startlet boots a **MIOS** instead. This IOS variant just orders Starlet to emulate the original [IPL](`r ref("gamecube#operating-system")`).
+When a Gamecube game is inserted, a different thing happens: Startlet boots a **MIOS** instead. This IOS variant just orders Starlet to emulate the original [IPL](gamecube#operating-system).
 
 ### Broadway's OS
 
 This one is commonly known as the **System Menu** and effectively runs on the main PowerPC CPU (**Broadway**).
 
-(ref:hometitle) Home
+![System menu with _lots_ of channels installed.](system/home.png){.tabs-nested .open-float .tab-float .active title="Home"}
 
-(ref:homecaption) System menu with _lots_ of channels installed.
+![Settings menu used to change settings.](system/settings.png){.tab-nested title="Settings"}
 
-(ref:settingstitle) Settings
-
-(ref:settingscaption) Settings menu used to change settings.
-
-(ref:boardtitle) Message Board
-
-(ref:boardcaption) The message board stores letters grouped by date.
-
-```{r fig.cap=c("(ref:homecaption)", "(ref:settingscaption)", "(ref:boardcaption)"), fig.align='center', open_float_group=TRUE, tab.nested=TRUE, tab.float=TRUE}
-image("system/home.png", "(ref:homecaption)", tab.name="(ref:hometitle)", tab.active=TRUE)
-image("system/settings.png", "(ref:settingscaption)", tab.name="(ref:settingstitle)")
-image("system/mail.png", "(ref:boardcaption)", tab.name="(ref:boardtitle)")
-```
+![The message board stores letters grouped by date.](system/mail.png){.tabs-nested-last title="Message Board"}
 
 Compared to IOS, I wouldn't consider this a 'fully fledged' OS, but more like a 'program' that allows the user to perform the following operations:
 
@@ -301,7 +264,7 @@ System update packages can be fetched from Nintendo's Servers or game discs. Use
 
 So far we have discussed two very different operating systems that reside in this console and run concurrently. This seems fairly simple, although both have to be carefully coordinated during the start of the console to work properly afterwards.
 
-That being said, the boot process of this console is as follows `r cite("operating_system-boot")`:
+That being said, the boot process of this console is as follows [@operating_system-boot]:
 
 1. User taps the ON button on the console.
 2. **Boot0** stage: Starlet runs a hardwired program found in its embedded Mask ROM (1.5 KB).
@@ -319,18 +282,9 @@ While new games did not always come with considerable graphical leaps, they did 
 
 Wii games are distributed using a proprietary disc format called **Wii Optical Disc** (I know, the name can't get more obvious). Anyhow, Matsushita/Panasonic designed this format based on the traditional DVD disc while adding non-standard features, like a **burst cutting area** on the inner section of the disc to prevent unauthorised reproductions.
 
-(ref:physicaltitle) Physical
+![Standard games are presented in a physical box and disc.](box_case.jpeg){.tabs-nested .open-float .tab-float .active title="Physical"}
 
-(ref:physicalcaption) Standard games are presented in a physical box and disc.
-
-(ref:digitaltitle) Digital
-
-(ref:digitalcaption) Small games (WiiWare) and emulated games (Virtual console) can be purchased and downloaded through the Shop Channel.
-
-```{r fig.cap=c("(ref:physicalcaption)", "(ref:digitalcaption)"), fig.align='center', open_float_group=TRUE, tab.nested=TRUE, tab.float=TRUE}
-image("box_case.jpeg", "(ref:physicalcaption)", tab.name="(ref:physicaltitle)", tab.active=TRUE)
-image("system/store.png", "(ref:digitalcaption)", tab.name="(ref:digitaltitle)")
-```
+![Small games (WiiWare) and emulated games (Virtual console) can be purchased and downloaded through the Shop Channel.](system/store.png){.tabs-nested-last title="Digital"}
 
 The Wii disc provides either **4.7 GB** (if single-layer) or **8.54 GB** (if double-layer) of space available. They often contain **two partitions**: The first one for system updates and the other one for the actual game.
 
@@ -340,9 +294,9 @@ Some games like *Super Smash Bros Brawl* included more partitions to store multi
 
 ### Development
 
-As part of the tradition, Nintendo supplied a development kit. This one was called **NDEV** `r cite("games-ndev")` and shaped like an enlarged black _brick_. NDEV shipped with enhanced I/O and two times the amount of MEM2 (128 MB in total) for debugging purposes.
+As part of the tradition, Nintendo supplied a development kit. This one was called **NDEV** [@games-ndev] and shaped like an enlarged black _brick_. NDEV shipped with enhanced I/O and two times the amount of MEM2 (128 MB in total) for debugging purposes.
 
-The official software suite was named **Revolution SDK** `r cite("games-rsdk")` and it included various tools, compilers, debuggers and frameworks to carry out development (mostly in **C/C++**). Nintendo distributed subsequent updates through a web portal called **Warioworld.com** (now offline/redirected) which only approved developers could access.
+The official software suite was named **Revolution SDK** [@games-rsdk] and it included various tools, compilers, debuggers and frameworks to carry out development (mostly in **C/C++**). Nintendo distributed subsequent updates through a web portal called **Warioworld.com** (now offline/redirected) which only approved developers could access.
 
 The official SDK relies on IOS calls to interact with the Wii hardware, this is why IOS updates are often correlated to SDK updates.
 
@@ -350,18 +304,9 @@ The official SDK relies on IOS calls to interact with the Wii hardware, this is 
 
 Considering all the software advancements of this console, it may surprise you that games **still run on bare metal**, which means that they have complete control of Broadway, but not of Starlet (hence, security mechanisms are implemented here). Needless to say, the game's behaviour is still subject to Nintendo's approval before getting distributed.
 
-(ref:homemenutitle) Menu
+![Home menu showing in-game.](ingame/home.png){.tabs-nested .open-float .tab-float .active title="Menu"}
 
-(ref:homemenucaption) Home menu showing in-game.
-
-(ref:remindertitle) Reminder
-
-(ref:remindercaption) This screen has to be included as well.
-
-```{r fig.cap=c("(ref:homemenucaption)", "(ref:remindercaption)"), fig.align='center', open_float_group=TRUE, tab.nested=TRUE, tab.float=TRUE}
-image("ingame/home.png", "(ref:homemenucaption)", tab.name="(ref:homemenutitle)", tab.active=TRUE)
-image("ingame/strap_warning.png", "(ref:remindercaption)", tab.name="(ref:remindertitle)")
-```
+![This screen has to be included as well.](ingame/strap_warning.png){.tabs-nested-last title="Reminder"}
 
 Having said that, there are certain features across different games that look awfully identical, somehow. For instance, do you remember the famous **HOME Menu**? Pressing the 'HOME' button on the WiiMote will trigger a screen popup in-game, enabling the user to return to the System menu without the need to reboot the console. Considering the OS does not provide this feature, how did every single game manage to come up with the same graphical interface?
 
@@ -373,18 +318,9 @@ The official HOME Menu is one of the 200 or so requirements games had to include
 
 ### Personalised titles
 
-(ref:editortitle) Editor
+![The Mii channel allows to fiddle with your own 'Mii'...](system/mii-editor.png){.tabs-nested .open-float .tab-float .active title="Editor"}
 
-(ref:editorcaption) The Mii channel allows to fiddle with your own 'Mii'...
-
-(ref:gamemiiedtitle) Game
-
-(ref:gamemiiedcaption) ...which then appears in your games.<br>Wii Music (2008).
-
-```{r fig.cap=c("(ref:editorcaption)", "(ref:gamemiiedcaption)"), fig.align='center', open_float_group=TRUE, tab.nested=TRUE, tab.float=TRUE}
-image("system/mii-editor.png", "(ref:editorcaption)", tab.name="(ref:editortitle)", tab.active=TRUE)
-image("ingame/music.png", "(ref:gamemiiedcaption)", tab.name="(ref:gamemiiedtitle)")
-```
+![...which then appears in your games.<br>Wii Music (2008).](ingame/music.png){.tabs-nested-last title="Game"}
 
 Another new feature I would like to emphasise is the introduction of **Miis**, some sort of avatars that users could create using a dedicated channel called *Mii Channel*.
 
@@ -402,13 +338,9 @@ Let's start with the common victim: **The disc drive**.
 
 Wii discs include the aforementioned 'burst cutting' area which is inaccessible by conventional readers. So, in the absence of this, the driver will always refuse to read the content.
 
-(ref:invaliddisccaption) The disc drive won't let anyone pass this screen until a valid disc is inserted.
+![The disc drive won't let anyone pass this screen until a valid disc is inserted.](system/disc.png){.open-float}
 
-```{r fig.cap="(ref:invaliddisccaption)", open_float_group=TRUE, fig.align='center'}
-image('system/disc.png', "(ref:invaliddisccaption)", float=TRUE)
-```
-
-Modchip developers discovered that the drive contained a debug interface called 'Serial Writer' `r cite("anti_piracy-disc")`, though this port is locked until a *secret key* is entered. Still, it was a matter of time before the key was discovered. Once this happened, modders were able to disable the copy protection and subsequently developed a modchip that automatised this process.
+Modchip developers discovered that the drive contained a debug interface called 'Serial Writer' [@anti_piracy-disc], though this port is locked until a *secret key* is entered. Still, it was a matter of time before the key was discovered. Once this happened, modders were able to disable the copy protection and subsequently developed a modchip that automatised this process.
 
 Matsushita released further revisions of this drive obfuscating the debug interface, however, other flaws in the reader were discovered to re-enable it again.
 
@@ -416,7 +348,7 @@ Matsushita released further revisions of this drive obfuscating the debug interf
 
 It's worth mentioning that the main benefit of modchips was plain piracy, as the disc content is still encrypted, so more research and tools were needed to run custom code.
 
-Gamecube homebrew, on the other hand, was already possible to execute by following [previous exploits](`r ref("gamecube#tab-5-3-honourable-mention")`) discovered on the predecessor.
+Gamecube homebrew, on the other hand, was already possible to execute by following [previous exploits](gamecube#tab-5-3-honourable-mention) discovered on the predecessor.
 
 ### System encryption
 
@@ -424,11 +356,11 @@ This is probably the most complex section of this console, yet its never-stoppin
 
 The Wii designed its internal security around a couple of cryptographic ciphers (AES, RSA, ECC, SHA-1 and HMAC). To keep explanations easy-to-follow, let's take a look at each group separately:
 
-`r tab.simple("Shared encryption", tab.first=TRUE, tab.active=TRUE)`
+#### Shared encryption {.tabs .active}
 
-The communication between many components (NAND, game disc and SD card) is encrypted to avoid being tampered with. Nintendo chose a **symmetric key** system to protect it `r cite("anti_piracy-security")`, meaning that the Wii uses the same key to encrypt and decrypt its data.
+The communication between many components (NAND, game disc and SD card) is encrypted to avoid being tampered with. Nintendo chose a **symmetric key** system to protect it [@anti_piracy-security], meaning that the Wii uses the same key to encrypt and decrypt its data.
 
-Starlet has three 128-bit AES keys stored in its OTP memory `r cite("anti_piracy-keys")`, these are written once during manufacturing:
+Starlet has three 128-bit AES keys stored in its OTP memory [@anti_piracy-keys], these are written once during manufacturing:
 
 - **Common key**: A global key generated by Nintendo that's found on all Wiis, it is used to decrypt the first layer of encryption used on channels and disc-based games (we'll refer to them as **titles** from now on).
 - **SD Key**: This one is used to encrypt/decrypt data transferred to the SD card, and only the System Menu can perform these transfers.
@@ -437,7 +369,7 @@ Starlet has three 128-bit AES keys stored in its OTP memory `r cite("anti_piracy
 
 With this, we can see that Starlet is in charge of the encryption/decryption of sensible content, this is why this CPU is the only one that has access to confidential data.
 
-`r tab.simple("Chain of trust")`
+#### Chain of trust {.tab}
 
 Titles contain another layer of security, RSA-2048. This is an **asymmetric cipher**, meaning that we need one key to encrypt the content and another one to decrypt it. In a nutshell, this allows Nintendo to encrypt titles using an undisclosed key (called 'private key'), while the Wii decrypts them using a 'public key', which is stored in the console. If hackers were to obtain the public key, it would not be enough to crack the security system, as data is still expected to be encrypted using the private key, which only Nintendo knows.
 
@@ -454,9 +386,9 @@ Let me give you an example of how this works:
 
 This is called a **Chain of trust**. Outside the Wii, this technique is commonly used to protect most of our communications across the globe (for instance, web browsers using HTTPS rely upon 'root certificates' to validate the authenticity of unknown certificates).
 
-`r tab.simple("Starlet's chain")`
+#### Starlet's chain {.tab}
 
-Starlet's OTP stores public keys (meaning that, for our purposes, it can only decrypt and verify the signature of content). Its chain of trust is made of the following keys `r cite("anti_piracy-certificate")`:
+Starlet's OTP stores public keys (meaning that, for our purposes, it can only decrypt and verify the signature of content). Its chain of trust is made of the following keys [@anti_piracy-certificate]:
 
 - **Root Key**: Signs the CA key.
   - Starlet only needs to stores this (public) key, the rest can be decrypted (and subsequently trusted) if it's been signed by this key.
@@ -467,7 +399,7 @@ Starlet's OTP stores public keys (meaning that, for our purposes, it can only de
 
 As you can see, all of this **enables Nintendo to be the sole distributor of content**, which can be a good thing for game studios concerned about piracy.
 
-`r tab.simple("More keys", tab.last=TRUE)`
+#### More keys {.tab}
 
 This system also contains a pair of **ECC private and public keys**. Elliptic Curve Cryptography (ECC) is another algorithm similar to RSA. In this case, it's only used to sign the content transferred through the SD card. This is what prevents content copied from one Wii to be used in another one.
 
@@ -479,19 +411,15 @@ As a final note, the HMAC key is stored in SEEPROM (outside Starlet), not in OTP
 
 `r close_tabs()`
 
-After all this, it's worth mentioning that when the system runs GameCube games, **none of the mentioned encryption methods are used**. Instead, Starlet will only check that the game only accesses its designated memory locations. This is because 1/4 of GDDR3 RAM is allocated to simulate old [ARAM](`r ref("gamecube#audio")`).
+After all this, it's worth mentioning that when the system runs GameCube games, **none of the mentioned encryption methods are used**. Instead, Starlet will only check that the game only accesses its designated memory locations. This is because 1/4 of GDDR3 RAM is allocated to simulate old [ARAM](gamecube#audio).
 
 ### The fall of encryption
 
 Let's start with AES keys, the algorithm may be hard to crack, but if the keys are extracted somehow (especially the common key), that layer of security would be instantly nullified. Thus, the main challenge is **how to extract them**.
 
-(ref:starletdiagramcaption) Starlet's security diagram.
+![Starlet's security diagram.](encryption.png){.open-float}
 
-```{r fig.cap="(ref:starletdiagramcaption)", open_float_group=TRUE, fig.align='center'}
-image('encryption.png', "(ref:starletdiagramcaption)", float=TRUE)
-```
-
-Well, a group of hackers called **Team Twiizers** found out that the lack of signatures on Gamecube mode may be a promising attack surface `r cite("cpu-ccc")`. They not only discovered that **3/4 of that GDDR3 RAM were not cleared** after running a GC program, but also that by bridging some address points on the motherboard (using a pair of tweezers, nonetheless) they could swap the selected banks of GDDR3 RAM, allowing access to restricted areas. Lo and behold, the AES keys were found residing in there.
+Well, a group of hackers called **Team Twiizers** found out that the lack of signatures on Gamecube mode may be a promising attack surface [@cpu-ccc]. They not only discovered that **3/4 of that GDDR3 RAM were not cleared** after running a GC program, but also that by bridging some address points on the motherboard (using a pair of tweezers, nonetheless) they could swap the selected banks of GDDR3 RAM, allowing access to restricted areas. Lo and behold, the AES keys were found residing in there.
 
 `r close_float_group(with_markdown = TRUE)`
 
@@ -507,11 +435,7 @@ As if that wasn't enough, this flaw was discovered on multiple IOS versions - an
 
 After this, there was only one thing left: Make the exploit permanent and implement a 'user-friendly' tool, so it could run custom programs without hassle.
 
-(ref:twilighthackcaption) Running third-party apps was initially done by using a forged save game.
-
-```{r fig.cap="(ref:twilighthackcaption)", open_float_group=TRUE, fig.align='center'}
-image('system/twilight_hack.png', "(ref:twilighthackcaption)", float=TRUE)
-```
+![Running third-party apps was initially done by using a forged save game.](system/twilight_hack.png){.open-float}
 
 So far, these exploits required the use of extra hardware, so not every user could make use of it... Until Team Twizzers discovered *yet another* exploit: A game buffer overflow.
 
@@ -525,17 +449,13 @@ Since signatures could now be forged, this crafted save file was easily distribu
 
 While further reversing IOS, it was discovered that signatures are only checked during the installation of titles, not during their execution.
 
-(ref:splashtitle) Splash
+::: {.subfigures .open-float .tabs-nested .tab-float}
+![](system/homebrew_channel.png){.tab-nested .active title="Splash"}
 
-(ref:hcinsidetitle) Inside
+![](system/homebrew/menu.png){.tab-nested title="Inside"}
 
-(ref:hcfooter) The _unofficial_ Homebrew channel (2008).<br>The most user-friendly hack of all times.
-
-```{r fig.cap=c("", "(ref:hcfooter)"), fig.align='center', open_float_group=TRUE, tab.nested=TRUE, tab.float=TRUE, tab.figure=TRUE}
-image("system/homebrew_channel.png", tab.name="(ref:splashtitle)", tab.active=TRUE)
-image("system/homebrew/menu.png", caption.post="(ref:hcfooter)", tab.name="(ref:hcinsidetitle)")
-figcaption("(ref:hcfooter)")
-```
+The _unofficial_ Homebrew channel (2008).<br>The most user-friendly hack of all times.
+:::
 
 Thus, TT did it again. They carefully forged an installable channel that could load arbitrary programs from the SD card. If this channel were to be installed before Nintendo had taken action to mitigate the security issues, then the Wii would enjoy homebrew permanently (independently of Nintendo patching their signature flaws in the future, which they did).
 
@@ -547,11 +467,7 @@ Thus, TT did it again. They carefully forged an installable channel that could l
 
 For obvious reasons, Nintendo issued several system updates that fixed the signature exploits on multiple versions of IOS, they also took care of their flawed boot stages by shipping new hardware revisions.
 
-(ref:updatescreencaption) Lots of these coming through.
-
-```{r fig.cap="(ref:updatescreencaption)", open_float_group=TRUE, fig.align='center'}
-image('system/updates.png', "(ref:updatescreencaption)", float=TRUE)
-```
+![Lots of these coming through.](system/updates.png){.open-float}
 
 However, there were still fundamental flaws discovered in this system:
 

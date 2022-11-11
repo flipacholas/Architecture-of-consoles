@@ -47,25 +47,21 @@ The motherboard picture at the start of the article shows an NEC D780C-1 CPU, th
 
 ### Memory available
 
-The Z80 has a 16-bit address bus, so the CPU can find up to 64 KB worth of memory. In the memory map you'll find **8 KB of RAM** for general purpose use `r cite("cpu-map")`, this is mirrored in another 8 KB block. Finally, **up to 48 KB of game ROM** are mapped as well.
+The Z80 has a 16-bit address bus, so the CPU can find up to 64 KB worth of memory. In the memory map you'll find **8 KB of RAM** for general purpose use [@cpu-map], this is mirrored in another 8 KB block. Finally, **up to 48 KB of game ROM** are mapped as well.
 
 ### Accessing the rest of the components
 
-As you can read from the previous paragraph, only main RAM and some cartridge ROM is found on the address space, so how can the program access other components? Well, unlike Nintendo's [Famicom/NES](`r ref("nes")`), not all the hardware of the Master System is mapped using memory locations. Instead, some peripherals are found on the **I/O space**.
+As you can read from the previous paragraph, only main RAM and some cartridge ROM is found on the address space, so how can the program access other components? Well, unlike Nintendo's [Famicom/NES](nes), not all the hardware of the Master System is mapped using memory locations. Instead, some peripherals are found on the **I/O space**.
 
 This is because the Z80 family contains an interesting feature called **I/O ports** which enables the CPU to communicate with other hardware without running out of memory addresses. For this, there's a separate address space for 'I/O devices' called **ports** and both share the same data and address bus. The difference, however, is that ports are read and written using `IN` and `OUT` instructions, respectively - as opposed to the traditional load/store instruction (`LD`).
 
 When an `IN` or `OUT` instruction is executed, the Z80 sets up the address lines pointing to the peripheral (which could be, for instance, a keyboard), flags its `IORQ` pin indicating that an I/O request has been initiated and finally flags the `RD` pin or the `WR` pin whether it's an `IN` or `OUT` instruction, respectively. The addressed peripheral must manually check for the address bus and the I/O pins and perform the required operation. In the case of an `IN` instruction, the CPU will store the received value on a pre-defined register.
 
-(ref:memaddcaption) SMS' Addressing layout.
-
-```{r fig.cap="(ref:memaddcaption)", fig.align='center', centered=TRUE}
-image("addressing.png", "(ref:memaddcaption)", class = "centered-container")
-```
+![SMS' Addressing layout.](addressing.png)
 
 The way SEGA interconnected the CPU with the rest of the components enables not only to access values but also to show/hide certain components from appearing in the memory map. 
 
-Curiously enough, the [Game Boy](`r ref("game-boy#cpu")`) had a Z80 'variant' that completely omitted the I/O ports. Thus, it had to fit everything in the memory map.
+Curiously enough, the [Game Boy](game-boy#cpu) had a Z80 'variant' that completely omitted the I/O ports. Thus, it had to fit everything in the memory map.
 
 ### Backwards compatibility
 
@@ -73,23 +69,19 @@ The architecture of this console is very similar to its predecessor, the **Sega 
 
 ## Graphics
 
-The drawings on the screen are produced by a proprietary chip called **Video Display Processor** or 'VDP'. Internally, it has the same design as the Texas instrument TMS9918 (used in the SG-1000) `r cite("graphics-texas")` though enhanced with more features which we will discuss in the following sections.
+The drawings on the screen are produced by a proprietary chip called **Video Display Processor** or 'VDP'. Internally, it has the same design as the Texas instrument TMS9918 (used in the SG-1000) [@graphics-texas] though enhanced with more features which we will discuss in the following sections.
 
 ### Organising the content
 
-(ref:vdpaddcaption) Memory architecture of the VDP.
+![Memory architecture of the VDP.](vdp.png)
 
-```{r fig.cap="(ref:vdpaddcaption)", fig.align='center', centered=TRUE}
-image("vdp.png", "(ref:vdpaddcaption)", class = "centered-container")
-```
-
-Next to the VDP is connected **16 KB of VRAM** which only the VDP can access using a **16-bit data bus** (Sega modified the original design to access two memory chips with 8-bit buses at the same time `r cite("cpu-service")`). If you look at the motherboard picture again, you'll notice that both RAM and VRAM chips are roughly the same, except that VRAM uses the chip model ending in '20' which has lower latency `r cite("cpu-nec")`.
+Next to the VDP is connected **16 KB of VRAM** which only the VDP can access using a **16-bit data bus** (Sega modified the original design to access two memory chips with 8-bit buses at the same time [@cpu-service). If you look at the motherboard picture again, you'll notice that both RAM and VRAM chips are roughly the same, except that VRAM uses the chip model ending in '20' which has lower latency [@cpu-nec].
 
 In the case of the Master System, VRAM houses everything the VDP will require for rendering (except Colour RAM). The CPU fills VRAM by writing to specific VDP registers, which will in turn forward the values to VRAM. Since the VDP is accessed using I/O ports, the CPU must use `IN` and `OUT` instructions.
 
 ### Constructing the frame
 
-The VDP renders frames with a resolution of **up to 256x192 pixels**, further revisions added support for 256x224 px and 256x240 px, however, to maintain compatibility with all models, developers held on to the standard resolution. This chip has the same *modus operandi* as Nintendo's [PPU](`r ref("nes#constructing-the-frame")`), in other words, graphics are rendered on the spot.
+The VDP renders frames with a resolution of **up to 256x192 pixels**, further revisions added support for 256x224 px and 256x240 px, however, to maintain compatibility with all models, developers held on to the standard resolution. This chip has the same *modus operandi* as Nintendo's [PPU](nes#constructing-the-frame), in other words, graphics are rendered on the spot.
 
 On the other side, the VDP has four different modes of operation which will alter the characteristics of the frame (colour depth and resolution):
 
@@ -98,7 +90,7 @@ On the other side, the VDP has four different modes of operation which will alte
 
 Now let's see how a frame is drawn step by step, for this, I'll borrow *Sonic The Hedgehog*'s assets. Also, to make explanations easier, I'm going to focus on the standard memory layout that Sega suggests for organising the graphics content (just remember that the VDP is very flexible with this, so games are allowed to optimise it).
 
-(ref:tilestitle) Tiles
+#### Tiles {.tabs}
 
 (ref:tilesfooter) Tiles Found in VRAM.
 
@@ -116,7 +108,7 @@ image('sonic/tile.png', "(ref:tilsinglecaption)", tab.name = "(ref:tilsingletitl
 figcaption("(ref:tilesfooter)")
 ```
 
-Mode IV is based on the **tile system**. To recall [previous explanations](`r ref("nes#tab-2-1-tiles")`) about tile engines, tiles are just **8x8 pixel bitmaps** which the renderer fetches to draw the game's graphics. In the case of the VDP, the frame is composed of two planes, the background layer and the sprite layer.
+Mode IV is based on the **tile system**. To recall [previous explanations](nes#tab-2-1-tiles) about tile engines, tiles are just **8x8 pixel bitmaps** which the renderer fetches to draw the game's graphics. In the case of the VDP, the frame is composed of two planes, the background layer and the sprite layer.
 
 Inside VRAM, there's an area dedicated for tiles called **Character generator** (Sega calls 'Characters' to tiles) and it's set to be **14 KB long**. Each tile occupies 32 bytes, so we can store up to 448 tiles.
 
@@ -141,7 +133,7 @@ image('sonic/tilemap_marked.png', "(ref:bgselcaption)", tab.name = "(ref:bgselti
 
 A background layer is a large plane where static tiles are drawn. To place something here, there's another area on VRAM called **Screen map** that takes 1.75 KB. 
 
-This enables developers to build a layer of 896 tiles (32x28 tiles) `r cite("graphics-vdp")`, but if we do the math we'll see that this layer is larger than the display resolution of this console. The reality is, only 768 tiles (32x24 tiles) are visible, so the visible area is manually selected at the programmer's will. Hence, by slowly alternating the X and Y coordinates of the selected area, a **scrolling effect** is accomplished.
+This enables developers to build a layer of 896 tiles (32x28 tiles) [@graphics-vdp], but if we do the math we'll see that this layer is larger than the display resolution of this console. The reality is, only 768 tiles (32x24 tiles) are visible, so the visible area is manually selected at the programmer's will. Hence, by slowly alternating the X and Y coordinates of the selected area, a **scrolling effect** is accomplished.
 
 Each entry of the map is 2 bytes wide (as wide as the VDP data-bus) and contains the address of the tile in the Character generator and the following attributes:
 
@@ -185,25 +177,21 @@ To update the graphics for the next frame without breaking the image currently b
 
 At first glance, the VDP may seem like another chip with minimal functionality that we now take for granted. Although, it happened to divert a lot of attention from Nintendo's offering at that time. So, why would that be?
 
-`r tab.simple("Collision detection", tab.first=TRUE, tab.active=TRUE)`
+#### Collision detection {.tabs .active}
 
-Well, first of all, the VDP was able to **tell if two sprites were colliding**. This was done by checking its `status` register `r cite("graphics-collision")`. It couldn't detect which ones in particular, but that limitation was tackled by reading other registers as well, like the `scan-line counter` one. You can imagine it as a method of 'triangulation'.
+Well, first of all, the VDP was able to **tell if two sprites were colliding**. This was done by checking its `status` register [@graphics-collision]. It couldn't detect which ones in particular, but that limitation was tackled by reading other registers as well, like the `scan-line counter` one. You can imagine it as a method of 'triangulation'.
 
 This feature is not new actually, as the TMS9918 also included it, thus the SG-1000 had collision detection too.
 
-`r tab.simple("The need for modularity")`
+#### The need for modularity {.tab}
 
-When I previously analysed the design of Nintendo's PPU, I made emphasis on its internal memory architecture. While limited, some constraints were [somewhat beneficial](`r ref("nes#secrets-and-limitations")`) as it enabled the system to be expanded with the use of extra hardware included in the game cartridge, keeping the costs down in the process.
+When I previously analysed the design of Nintendo's PPU, I made emphasis on its internal memory architecture. While limited, some constraints were [somewhat beneficial](nes#secrets-and-limitations) as it enabled the system to be expanded with the use of extra hardware included in the game cartridge, keeping the costs down in the process.
 
 The VDP doesn't take advantage of this modular approach. Instead, Sega implemented a different solution that in turn saves cartridge costs. The smaller background layer and horizontal interrupts are examples of this.
 
-(ref:threedtitle) 3D glasses
+#### 3D glasses {.tab}
 
-(ref:threedcaption) Sega 3-D glasses `r cite("photography-amos")`.<br>American variant connected through the card port.
-
-```{r fig.cap="(ref:threedcaption)", fig.align='center', tab.title="(ref:threedtitle)", tab.last=TRUE}
-image('glasses.png', "(ref:threedcaption)", float=TRUE, no_borders=TRUE)
-```
+![Sega 3-D glasses [@photography-amos].<br>American variant connected through the card port.](glasses.png){.tab-float}
 
 It turns out Sega also shipped **'3D glasses'** as an official accessory! The glasses worked in-sync with the CRT. During gameplay, the game switches the position of objects between frames. Each lens has an LCD screen that shuts black to block your eyesight. So, the correct combination of graphics flickering and shutters alternating eventually creates a stereoscopic image in your head. Thus, a '3D' effect.
 
@@ -211,9 +199,7 @@ The shutters are controlled from a couple of memory addresses, but none of them 
 
 The LCD controllers are interfaced with a jack cable, which is plugged into the console. The European and American versions didn't include the jack input, so they rely on the card port to connect an adaptor (we'll see more about the card slot later on).
 
-`r close_tabs()`
-
-### Video Output
+### Video Output {.tabs-close}
 
 The video-out connector of this system is *incredibly* handy. It exposes **composite** and **RGB** signals, which can be imagined as the two 'extremes' of video quality.
 
@@ -221,23 +207,19 @@ On the downside, it doesn't carry 'composite sync', so making use of the RGB wil
 
 ## Audio
 
-The audio capabilities of this console are pretty much aligned with the rest of the 80s equipment. Inside the VDP chip, we find a slightly-customised version of the **Texas Instruments SN76489** `r cite("audio-sn76489")`, which is a **Programmable Sound Generator** or 'PSG'. This is the same type used for the NES/Famicom, albeit having different functions.
+The audio capabilities of this console are pretty much aligned with the rest of the 80s equipment. Inside the VDP chip, we find a slightly-customised version of the **Texas Instruments SN76489** [@audio-sn76489], which is a **Programmable Sound Generator** or 'PSG'. This is the same type used for the NES/Famicom, albeit having different functions.
 
 ### Functionality
 
-A PSG can only synthesise a limited set of waveforms, each channel allocates a single waveform. I've previously introduced some PSGs on the [NES](`r ref("nes#audio")`) article and the [Gameboy](`r ref("game-boy#audio")`) if you want to read more about this type of sound synthesis.
+A PSG can only synthesise a limited set of waveforms, each channel allocates a single waveform. I've previously introduced some PSGs on the [NES](nes#audio) article and the [Gameboy](game-boy#audio) if you want to read more about this type of sound synthesis.
 
 With the SMS, the PSG is programmed by altering its set of external registers using the aforementioned I/O ports.
 
 Now let's take a look at each type of waveform the SN76489 can generate:
 
-(ref:pulsetitle) Pulse
+#### Pulse {.tabs .active}
 
-(ref:pulsecaption) Sonic The Hedgehog (1991).<br>Pulse channel.
-
-```{r fig.cap="(ref:pulsecaption)", fig.align='center', tab.title="(ref:pulsetitle)", tab.first=TRUE, tab.active=TRUE}
-video('pulse', "(ref:pulsecaption)", float=TRUE)
-```
+![Sonic The Hedgehog (1991).<br>Pulse channel.](pulse){.tab-float video="true"}
 
 Pulse/Tone waves produce that iconic sound from the 8-bit generation. The sound wave is generated by latching up the voltage, keeping it steady and then dropping it altogether. Repeat this at a constant rate and a tone will be heard.
 
@@ -245,13 +227,9 @@ The period of the wave will define the frequency of the sound (musical note). It
 
 All of this is handled by the PSG, which can produce **three pulse waves at the same time**. The SN76489 in particular exposes a 10-bit counter on each channel that will be used internally to latch at a high rate, resulting in a pulse wave at a programmable frequency.
 
-(ref:noisetitle) Noise
+#### Noise {.tab}
 
-(ref:noisecaption) Sonic The Hedgehog (1991).<br>Noise channel.
-
-```{r fig.cap="(ref:noisecaption)", fig.align='center', tab.title="(ref:noisetitle)"}
-video('noise', "(ref:noisecaption)", float=TRUE)
-```
+![Sonic The Hedgehog (1991).<br>Noise channel.](noise){.tab-float video="true"}
 
 Noise is a type of signal which is associated with interference. When outputted to a speaker, it sounds like static.
 
@@ -261,21 +239,15 @@ The oscillator used can also be altered to change the pitch, there are four opti
 
 Games normally use the noise channel for **percussion and/or sound effects**.
 
-(ref:mixedtitle) Mixed
+#### Mixed {.tab}
 
-(ref:mixedcaption) Sonic The Hedgehog (1991).<br>All audio channels.
-
-```{r fig.cap="(ref:mixedcaption)", fig.align='center', tab.title="(ref:mixedtitle)", tab.last=TRUE}
-video('pulse_complete', "(ref:mixedcaption)", float=TRUE)
-```
+![Sonic The Hedgehog (1991).<br>All audio channels.](pulse_complete){.tab-float video="true"}
 
 So far we've discussed what each channel does separately, but the TV will just receive a mono signal with all the channels mixed by the PSG.
 
 Finally, the chip also contains programmable attenuators used to lower the decibels of each channel, effectively acting as a **volume control**.
 
-`r close_tabs()`
-
-### Secrets and limitations
+### Secrets and limitations {.tabs-closee}
 
 Just like the VDP, the PSG is a no-brainer, but it does hide some interesting functionality:
 
@@ -291,7 +263,7 @@ Just like the VDP, the PSG is a no-brainer, but it does hide some interesting fu
 audio_switcher("(ref:fmexpcaption)", class="float-side", src1="psg", label1="(ref:psgtitle)", src2="fm", label2="(ref:fmtitle)")
 ```
 
-The Japanese version of the Master System embedded an extra chip for audio made by Yamaha called **YM2413**. It's drastically different from the previous PSG as it uses the **frequency modulation** technique to generate sound. I've explained briefly how this works in the [Mega Drive article](`r ref("mega-drive-genesis#tab-7-1-yamaha-ym2612")`), in case you are interested.
+The Japanese version of the Master System embedded an extra chip for audio made by Yamaha called **YM2413**. It's drastically different from the previous PSG as it uses the **frequency modulation** technique to generate sound. I've explained briefly how this works in the [Mega Drive article](mega-drive-genesis#tab-7-1-yamaha-ym2612), in case you are interested.
 
 This chip in particular has **nine channels** of audio. Each channel can either select one of the 16 preset instruments, or define a custom one by programming the carrier and modulator. Unfortunately, only one custom instrument is allowed at a time. On the other side, the new instrument provides some interesting functions, such as ADSR envelope controls and feedback.
 
@@ -301,15 +273,11 @@ The final sound output is generated by the YM2413, which mixes its own channels 
 
 The Mark III version didn't include this chip, but FM was available as an expansion unit called **FM Sound Unit**. The rest (European and American Master Systems) had to stick with the PSG, although some third-party installations eventually appeared.
 
-(ref:decaytitle) Emulation accuracy
+#### Emulation accuracy {.tab}
 
-(ref:decaycaption) Pulse waveform comparison using emulators.<br>NES' shows some decay while SGM's is squared-shaped.
+![Pulse waveform comparison using emulators.<br>NES' shows some decay while SGM's is squared-shaped.](decay.jpg){.tab-float}
 
-```{r fig.cap="(ref:decaycaption)", fig.align='center', tab.title="(ref:decaytitle)"}
-image('decay.jpg', "(ref:decaycaption)", float=TRUE)
-```
-
-While I was reading through SMS Power (a website which collects a lot of technical info about the system), I came across one interesting section called 'The imperfect SN76489' `r cite("audio-sn76489")` that discusses some discrepancies that I was encountering while writing the article.
+While I was reading through SMS Power (a website which collects a lot of technical info about the system), I came across one interesting section called 'The imperfect SN76489' [@audio-sn76489] that discusses some discrepancies that I was encountering while writing the article.
 
 If you take a look again at the example video for the pulse wave, you'll see that it's visualised with an almost-perfect square wave. The pulse generator works by latching the voltage to generate the tone. However, in electrical circuits, components don't just go from zero to one (or vice-versa) instantly, there's always a transient period (mainly attributed to the existence of filters in the electrical circuit).
 
@@ -317,15 +285,11 @@ Now, I use emulators to capture separate channels and avoid interference during 
 
 I don't have the necessary tools right now to confirm whether the SMS should show similar behaviour. But if it does, it doesn't imply that what you heard is incorrect, just at a slightly different volume (barely noticeable).
 
-(ref:sampletitle) Sample play
+#### Sample play {.tab}
 
-(ref:samplecaption) Alex Kidd - The Lost Stars (1986).<br>1-bit PCM sample.
+![Alex Kidd - The Lost Stars (1986).<br>1-bit PCM sample.](ball){.tab-float video="true"}
 
-```{r fig.cap="(ref:samplecaption)", fig.align='center', tab.title="(ref:sampletitle)", tab.last=TRUE}
-video('ball', "(ref:samplecaption)", float=TRUE)
-```
-
-While the SN76489 doesn't have a [PCM channel](`r ref("nes#tab-7-4-sample")`) to reproduce samples, there are some tricks that can be used to simulate this feature.
+While the SN76489 doesn't have a [PCM channel](nes#tab-7-4-sample) to reproduce samples, there are some tricks that can be used to simulate this feature.
 
 These rely on the pulse channels, it's discovered that if the tone level is fixed at `1`, the volume level (which alters the amplitude) will condition the shape of the waveform.
 
@@ -333,9 +297,7 @@ smspower.org describes different designs that would allow playing 1-bit, 4-bit a
 
 It's worth pointing out that streaming samples consume a good amount of CPU cycles, and there's only one processor in this system, so the game may need to be halted for a short period.
 
-`r close_tabs()`
-
-## I/O
+## I/O {.tabs-close}
 
 Like the other systems from its generation, the CPU is mostly in charge of handling I/O. In this case, the Z80 processor is unique for having that special I/O addressing, but still, there will be CPU cycles spent in moving bits around components.
 
@@ -343,19 +305,15 @@ On the other side, the SMS uses a dedicated **I/O controller** chip to not only 
 
 ### Available interfaces
 
-Apart from the two controller ports, the system contains one proprietary cartridge slot, one 'Sega Card' slot and one expansion slot reserved for 'future accessories'. The latter was never used, except for the FM expansion in the Mark III. Even so, the SMS and Mark III had a different expansion port design `r cite("cpu-mk3")`.
+Apart from the two controller ports, the system contains one proprietary cartridge slot, one 'Sega Card' slot and one expansion slot reserved for 'future accessories'. The latter was never used, except for the FM expansion in the Mark III. Even so, the SMS and Mark III had a different expansion port design [@cpu-mk3].
 
 ### Top interruptors
 
 Another speciality about this console is that includes two buttons on the top of its case, `PAUSE` and `RESET`, you can guess what they do!
 
-(ref:topcaption) Top of the case `r cite("photography-amos")`.
+![Top of the case [@photography-amos].](top.png){.open-float}
 
-```{r fig.cap="(ref:topcaption)", open_float_group=TRUE, fig.align='center'}
-image('top.png', "(ref:topcaption)", float=TRUE)
-```
-
-When the `PAUSE` button is pressed, a non-maskable interrupt is sent to the CPU `r cite("io-pause")`. The interrupt vector is stored in the game itself, meaning that it's up to the game to honour the press.
+When the `PAUSE` button is pressed, a non-maskable interrupt is sent to the CPU [@io-pause]. The interrupt vector is stored in the game itself, meaning that it's up to the game to honour the press.
 
 By contrast and for some strange reason, the `RESET` button is handled like a keypress on the controller.
 
@@ -384,14 +342,9 @@ The boot process works as follows:
 
 If any of the checks fail, the console will loop indefinitely while showing a screen that prompts the user to insert a valid game:
 
-(ref:usacaption) USA/Europe error message (after the initial splash).
+![USA/Europe error message (after the initial splash).](bios/usa){.toleft video="true"}
 
-(ref:japancaption) Japanese 'error' message (enhanced by the FM chip!).
-
-```{r fig.cap=c("(ref:usacaption)", "(ref:japancaption)"), side_by_side=TRUE, fig.pos = "H"}
-video('bios/usa', class="toleft", "(ref:usacaption)")
-video('bios/japanese', class="toright", "(ref:japancaption)")
-```
+![Japanese 'error' message (enhanced by the FM chip!).](bios/japanese){.toright video="true"}
 
 As you can see, there're some creative differences between regions. The first time I heard the Japanese one I thought it came from Electric Light Orchestra (the band), but it's actually from Space Harrier (the game). By the way, the perspective effect on the floor is accomplished by altering the colour palettes.
 
