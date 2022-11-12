@@ -94,11 +94,11 @@ The 3D engine is still [Flipper's](gamecube#graphics) but now called **GX**. So 
 
 ::: {.subfigures .tabs-nested .tab-float}
 
-![4:3 mode.](mario/4_3.png){.tab-nested .active title="Traditional"}
+![4:3 mode.](mario/4_3.png){.active title="Traditional"}
 
-![16:9 mode, as composed by the video encoder.](mario/16_9.png){.tab-nested title="Wide"}
+![16:9 mode, as composed by the video encoder.](mario/16_9.png){title="Wide"}
 
-![16:9 mode, as displayed on a widescreen TV.](mario/16_9_stretched.png){.tab-nested title="Stretched"}
+![16:9 mode, as displayed on a widescreen TV.](mario/16_9_stretched.png){title="Stretched"}
 
 Super Mario Galaxy (2007).
 

@@ -357,13 +357,13 @@ If you thought that Cell, with all its quirks, could take care of every task of 
 
 ::: {.subfigures .tabs-nested}
 
-![Uncharted 3: Drake's Deception (2011).](games/uncharted3.jpg){.tab-nested .active title="Uncharted"}
+![Uncharted 3: Drake's Deception (2011).](games/uncharted3.jpg){.active title="Uncharted"}
 
-![The Elder Scrolls V: Skyrim (2011).](games/skyrim.jpg){.tab-nested title="Skyrim"}
+![The Elder Scrolls V: Skyrim (2011).](games/skyrim.jpg){title="Skyrim"}
 
-![Killzone 3 (2011).](games/killzone.jpg){.tab-nested title="Killzone"}
+![Killzone 3 (2011).](games/killzone.jpg){title="Killzone"}
 
-![One Piece: Pirate Warriors (2012).](games/onepiece.jpg){.tab-nested title="One Piece"}
+![One Piece: Pirate Warriors (2012).](games/onepiece.jpg){title="One Piece"}
 
 Example of PS3 games. All rendered at their maximum resolution (1280x720 pixels).
 

@@ -156,17 +156,17 @@ Now it's time to talk about the component in charge of producing pixels, the **G
 
 ::: {.subfigures .tabs-nested}
 
-![Kingdom Hearts Birth by Sleep (2010).](games/kh.jpg){.tab-nested .active title="KH"}
+![Kingdom Hearts Birth by Sleep (2010).](games/kh.jpg){.active title="KH"}
 
-![Spider-Man 3 (2007).](games/spider.jpg){.tab-nested title="Spider-Man"}
+![Spider-Man 3 (2007).](games/spider.jpg){title="Spider-Man"}
 
-![Grand Theft Auto: Vice City Stories (2006).](games/gta.jpg){.tab-nested title="GTA"}
+![Grand Theft Auto: Vice City Stories (2006).](games/gta.jpg){title="GTA"}
 
-![The Sims 2 (2005)](games/sims2.jpg){.tab-nested title="Sims 2"}
+![The Sims 2 (2005)](games/sims2.jpg){title="Sims 2"}
 
-![OutRun 2006: Coast 2 Coast (2006)](games/outrun.jpg){.tab-nested title="OutRun"}
+![OutRun 2006: Coast 2 Coast (2006)](games/outrun.jpg){title="OutRun"}
 
-![LocoRoco (2006)](games/loco.jpg){.tab-nested title="Loco"}
+![LocoRoco (2006)](games/loco.jpg){title="Loco"}
 
 Example of PSP games. All rendered at their maximum resolution (480x272 pixels).
 

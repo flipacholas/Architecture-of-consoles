@@ -234,9 +234,9 @@ The concept of 'shaders' was introduced by **Pixar** in 1989 as a method to exte
 
 ::: {.subfigures .open-float .tab-float .tabs-nested}
 
-![Complex animation achieved by vertex program.](vertex){.tab-nested .active video="true" title="Vertex Program"}
+![Complex animation achieved by vertex program.](vertex){.active video="true" title="Vertex Program"}
 
-![Different texture effects achieved by pixel shaders.](fragment){.tab-nested video="true" title="Pixel Shader"}
+![Different texture effects achieved by pixel shaders.](fragment){video="true" title="Pixel Shader"}
 
 ChameleonMark (2002), a demo developed by Nvidia to showcase GeForce3's shaders.
 
@@ -306,9 +306,9 @@ The Xbox came with a bulky controller called **The Duke**, its set of inputs are
 
 ::: {.subfigures .toleft .tabs-nested}
 
-![](controller/duke_front.png){.tab-nested .active title="Front"}
+![](controller/duke_front.png){.active title="Front"}
 
-![](controller/duke_back.png){.tab-nested title="Back"}
+![](controller/duke_back.png){title="Back"}
 
 The Duke (2001) [@photography-amos].
 
@@ -316,9 +316,9 @@ The Duke (2001) [@photography-amos].
 
 ::: {.subfigures .toright .tabs-nested}
 
-![](controller/s_front.png){.tab-nested .active title="Front"}
+![](controller/s_front.png){.active title="Front"}
 
-![](controller/s_back.png){.tab-nested title="Back"}
+![](controller/s_back.png){title="Back"}
 
 Controller S (2002) [@photography-amos].
 

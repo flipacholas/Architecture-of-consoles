@@ -118,11 +118,11 @@ I'm going to borrow the graphics of Sega's *Sonic Advance 3* to show how a frame
 
 ::: {.subfigures .tabs-nested .tab-float .pixel}
 
-![This block is made of 4bpp Tiles.](sonic/tiles1.png){.tab-nested .active title="Block 1"}
+![This block is made of 4bpp Tiles.](sonic/tiles1.png){.active title="Block 1"}
 
-![You may notice some weird vertical patterns in here, these are not graphics but 'Tile Maps' (see next section).](sonic/tiles2.png){.tab-nested title="Block 2"}
+![You may notice some weird vertical patterns in here, these are not graphics but 'Tile Maps' (see next section).](sonic/tiles2.png){title="Block 2"}
 
-![This block is reserved for sprites.](sonic/tilesobj.png){.tab-nested title="Block 3"}
+![This block is reserved for sprites.](sonic/tilesobj.png){title="Block 3"}
 
 Charblocks found in VRAM.
 
@@ -140,11 +140,11 @@ Only four charblocks can be used for backgrounds and two can be used for sprites
 
 ::: {.subfigures .tabs-nested .tab-float}
 
-![Background Layer 0 (BG0).](sonic/bg0.png){.tab-nested .active title="Layer 0"}
+![Background Layer 0 (BG0).](sonic/bg0.png){.active title="Layer 0"}
 
-![Background Layer 2 (BG2).](sonic/bg2.png){.tab-nested title="Layer 2"}
+![Background Layer 2 (BG2).](sonic/bg2.png){title="Layer 2"}
 
-![Background Layer 3 (BG3).<br>This particular layer will be shifted horizontally at certain scan-lines to simulate water effects.](sonic/bg3.png){.tab-nested title="Layer 3"}
+![Background Layer 3 (BG3).<br>This particular layer will be shifted horizontally at certain scan-lines to simulate water effects.](sonic/bg3.png){title="Layer 3"}
 
 Static background layers in use.
 
@@ -204,11 +204,11 @@ The reason for having two bitmaps is to enable **page-flipping**: Drawing over a
 
 ::: {.subfigures .tabs-nested .open-float .tab-float}
 
-![Super Monkey Ball Jr. (2002).<br>Bitmap mode allowed the CPU to provide some rudimentary 3D graphics for the scenery.<br>Foreground objects are sprites (separate layer).](bitmap/monkey.png){.tab-nested .active title="3D"}
+![Super Monkey Ball Jr. (2002).<br>Bitmap mode allowed the CPU to provide some rudimentary 3D graphics for the scenery.<br>Foreground objects are sprites (separate layer).](bitmap/monkey.png){.active title="3D"}
 
-![Tonc's demo.<br>Rendered bitmap with some primitives.<br>Notice the screen doesn't show significant patterns produced by tile engines.](bitmap/demo.png){.tab-nested title="Demo"}
+![Tonc's demo.<br>Rendered bitmap with some primitives.<br>Notice the screen doesn't show significant patterns produced by tile engines.](bitmap/demo.png){title="Demo"}
 
-![Nickelodeon's SpongeBob SquarePants.<br>Episode distributed as a _GBA Video_ cartridge (it suffered a lot of compression, of course).](bitmap/spongebob.png){.tab-nested title="Video"}
+![Nickelodeon's SpongeBob SquarePants.<br>Episode distributed as a _GBA Video_ cartridge (it suffered a lot of compression, of course).](bitmap/spongebob.png){title="Video"}
 
 Examples of programs using bitmap modes.
 

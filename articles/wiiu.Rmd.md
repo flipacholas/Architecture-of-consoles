@@ -227,15 +227,15 @@ So while the CPU can be considered a _tribute_ to legacy technologies, let me te
 
 ::: {.subfigures .tabs-nested}
 
-![Super Mario 3D World (2013).](screenshots/mario3d.jpg){.tab-nested .active title="Mario 3D"}
+![Super Mario 3D World (2013).](screenshots/mario3d.jpg){.active title="Mario 3D"}
 
-![Hyrule Warriors (2014).](screenshots/zelda_warriors.jpg){.tab-nested title="Hyrule"}
+![Hyrule Warriors (2014).](screenshots/zelda_warriors.jpg){title="Hyrule"}
 
-![Pikmin 3 (2013).](screenshots/pikmin.jpg){.tab-nested title="Pikmin"}
+![Pikmin 3 (2013).](screenshots/pikmin.jpg){title="Pikmin"}
 
-![Splatoon (2015).](screenshots/splatoon.jpg){.tab-nested title="Splatoon"}
+![Splatoon (2015).](screenshots/splatoon.jpg){title="Splatoon"}
 
-![The Legend of Zelda: The Wind Waker (2016). Rendered at an exceptional 1920x1080 pixels!](screenshots/zelda_windwaker.jpg){.tab-nested title="Zelda"}
+![The Legend of Zelda: The Wind Waker (2016). Rendered at an exceptional 1920x1080 pixels!](screenshots/zelda_windwaker.jpg){title="Zelda"}
 
 Example of Wii U games as seen from the TV. All are rendered at their maximum resolution (1280x720 pixels) except for Wind Waker.
 

@@ -273,15 +273,15 @@ Here's a peculiar aspect of Xenon. While the chip, by itself, incorporates inter
 
 ::: {.subfigures .tabs-nested}
 
-![Assassin's Creed (2007).](screenshots/games/assassins.jpg){.tab-nested .active title="Assassin's"}
+![Assassin's Creed (2007).](screenshots/games/assassins.jpg){.active title="Assassin's"}
 
-![Half-life 2 (The Orange Box, 2007).](screenshots/games/half_life.jpg){.tab-nested title="Half-life"}
+![Half-life 2 (The Orange Box, 2007).](screenshots/games/half_life.jpg){title="Half-life"}
 
-![Portal 2 (2011).](screenshots/games/portal2.jpg){.tab-nested title="Portal"}
+![Portal 2 (2011).](screenshots/games/portal2.jpg){title="Portal"}
 
-![Borderlands 2 (2012).](screenshots/games/borderlands.jpg){.tab-nested title="Borderlands"}
+![Borderlands 2 (2012).](screenshots/games/borderlands.jpg){title="Borderlands"}
 
-![Grand Theft Auto V (2013).](screenshots/games/gta.jpg){.tab-nested title="GTA"}
+![Grand Theft Auto V (2013).](screenshots/games/gta.jpg){title="GTA"}
 
 Example of Xbox 360 games. All rendered at their maximum resolution (1280x720 pixels).
 
@@ -797,17 +797,17 @@ In the following paragraphs, you may sense that I'm very critical of each interf
 
 ::: {.subfigures .tabs-nested}
 
-![The home screen, the controls are shown on the centre, while the horizontal edges indicates the existance of other blades to navigate to.](screenshots/blades/home.jpg){.tab-nested .active title="Home"}
+![The home screen, the controls are shown on the centre, while the horizontal edges indicates the existance of other blades to navigate to.](screenshots/blades/home.jpg){.active title="Home"}
 
-![List of games installed, previously downloaded from the Xbox Live Arcade (a digital marketplace). Notice how this is a full-screen view, as there wasn't enough space on the previous type of screen.](screenshots/blades/games.jpg){.tab-nested title="Games"}
+![List of games installed, previously downloaded from the Xbox Live Arcade (a digital marketplace). Notice how this is a full-screen view, as there wasn't enough space on the previous type of screen.](screenshots/blades/games.jpg){title="Games"}
 
-![Settings menu.](screenshots/blades/settings.jpg){.tab-nested title="Settings"}
+![Settings menu.](screenshots/blades/settings.jpg){title="Settings"}
 
-![Storage menu, enabling the user to delete or copy user-only content. Notice how it removes the other blades indicators to reclaim a bit more screen space.](screenshots/blades/storage.jpg){.tab-nested title="Storage"}
+![Storage menu, enabling the user to delete or copy user-only content. Notice how it removes the other blades indicators to reclaim a bit more screen space.](screenshots/blades/storage.jpg){title="Storage"}
 
-![A simple avatar selector screen.](screenshots/blades/avatar.jpg){.tab-nested title="Avatar"}
+![A simple avatar selector screen.](screenshots/blades/avatar.jpg){title="Avatar"}
 
-![Pressing the guide button (a.k.a Xbox logo on the controller) for a long period would bring in the 'Xbox Guide', a popup menu offering various shortcuts.](screenshots/blades/guide.jpg){.tab-nested title="Guide"}
+![Pressing the guide button (a.k.a Xbox logo on the controller) for a long period would bring in the 'Xbox Guide', a popup menu offering various shortcuts.](screenshots/blades/guide.jpg){title="Guide"}
 
 The 'Blades' dashboard. Screens are from [@operating_system-blades_1] and [@operating_system-blades_2].
 
@@ -829,17 +829,17 @@ Nevertheless, this is the GUI that gave this console an identity, and it's obvio
 
 ::: {.subfigures .tabs-nested}
 
-![The new home menu. Notice how the user can't see all elements available unless he/she scrolls.](screenshots/nxe/home.jpg){.tab-nested .active title="Home"}
+![The new home menu. Notice how the user can't see all elements available unless he/she scrolls.](screenshots/nxe/home.jpg){.active title="Home"}
 
-![As the Xbox Live expands its repertoire, many types of applications can now be installed (not only arcades anymore).](screenshots/nxe/games.jpg){.tab-nested title="Apps"}
+![As the Xbox Live expands its repertoire, many types of applications can now be installed (not only arcades anymore).](screenshots/nxe/games.jpg){title="Apps"}
 
-![The settings menu keeps the same layout but inherits a new colour palette.](screenshots/nxe/settings.jpg){.tab-nested title="Settings"}
+![The settings menu keeps the same layout but inherits a new colour palette.](screenshots/nxe/settings.jpg){title="Settings"}
 
-![The storage menu and its similar palette update. In this example, a custom background has been set by the user.](screenshots/nxe/storage.jpg){.tab-nested title="Storage"}
+![The storage menu and its similar palette update. In this example, a custom background has been set by the user.](screenshots/nxe/storage.jpg){title="Storage"}
 
-![2D avatars are still available, though users are now encouraged to define their own 3D avatar too. This will be used by games (ala [Nintendo's Mii](wii#personalised-game)).](screenshots/nxe/avatar.jpg){.tab-nested title="Avatar"}
+![2D avatars are still available, though users are now encouraged to define their own 3D avatar too. This will be used by games (ala [Nintendo's Mii](wii#personalised-game)).](screenshots/nxe/avatar.jpg){title="Avatar"}
 
-![As a nice tribute, the new guide menu resembles the old Blades design, which also helps provide more and better-organised shortcuts.](screenshots/nxe/guide.jpg){.tab-nested title="Guide"}
+![As a nice tribute, the new guide menu resembles the old Blades design, which also helps provide more and better-organised shortcuts.](screenshots/nxe/guide.jpg){title="Guide"}
 
 The 'NXE' dashboard. Screens are from [@operating_system-nxe_dash] and [@operating_system-nxe_dash_2].
 
@@ -857,17 +857,17 @@ With the new design, screens could now enjoy full-screen space without being con
 
 ::: {.subfigures .tabs-nested}
 
-![The new home screen built for Kinect controls. Notice how the container at the bottom right corner indicates what Kinect is capturing at the moment.](screenshots/kinect/home.jpg){.tab-nested .active title="Home"}
+![The new home screen built for Kinect controls. Notice how the container at the bottom right corner indicates what Kinect is capturing at the moment.](screenshots/kinect/home.jpg){.active title="Home"}
 
-![As the Xbox Live expands its repertoire, many types of applications can now be installed (not only games).](screenshots/kinect/apps.jpg){.tab-nested title="Apps"}
+![As the Xbox Live expands its repertoire, many types of applications can now be installed (not only games).](screenshots/kinect/apps.jpg){title="Apps"}
 
-![The Settings menu with minor changes applied.](screenshots/kinect/settings.jpg){.tab-nested title="Settings"}
+![The Settings menu with minor changes applied.](screenshots/kinect/settings.jpg){title="Settings"}
 
-![The same goes for the Storage menu.](screenshots/kinect/storage.jpg){.tab-nested title="Storage"}
+![The same goes for the Storage menu.](screenshots/kinect/storage.jpg){title="Storage"}
 
-![3D avatars get some enhancements as well.](screenshots/kinect/avatar.jpg){.tab-nested title="Avatar"}
+![3D avatars get some enhancements as well.](screenshots/kinect/avatar.jpg){title="Avatar"}
 
-![The Guide menu goes through a minimalistic phase.](screenshots/kinect/guide.jpg){.tab-nested title="Guide"}
+![The Guide menu goes through a minimalistic phase.](screenshots/kinect/guide.jpg){title="Guide"}
 
 The 'Kinect' dashboard with a custom wallpaper. Screens are from [@operating_system-kinect_dash].
 
@@ -885,15 +885,15 @@ I don't think there's anything else to mention apart from the fact it only laste
 
 ::: {.subfigures .tabs-nested}
 
-![The new home screen, where news, advertisements and applications share equivalents amount of screen space. Some types of information (like adverts) are granted more space than what the user would agree.](screenshots/metro/home.jpg){.tab-nested .active title="Home"}
+![The new home screen, where news, advertisements and applications share equivalents amount of screen space. Some types of information (like adverts) are granted more space than what the user would agree.](screenshots/metro/home.jpg){.active title="Home"}
 
-![The new app selector resembles a retail shelf.](screenshots/metro/apps.jpg){.tab-nested title="Apps"}
+![The new app selector resembles a retail shelf.](screenshots/metro/apps.jpg){title="Apps"}
 
-![The Settings menu hasn't changed much.](screenshots/metro/settings.jpg){.tab-nested title="Settings"}
+![The Settings menu hasn't changed much.](screenshots/metro/settings.jpg){title="Settings"}
 
-![The same applies for the Storage menu.](screenshots/metro/storage.jpg){.tab-nested title="Storage"}
+![The same applies for the Storage menu.](screenshots/metro/storage.jpg){title="Storage"}
 
-![It seems the minimalistic phase is here to stay.](screenshots/metro/guide.jpg){.tab-nested title="Guide"}
+![It seems the minimalistic phase is here to stay.](screenshots/metro/guide.jpg){title="Guide"}
 
 The 'Metro' dashboard. Screens are from [@operating_system-metro_dash].
 

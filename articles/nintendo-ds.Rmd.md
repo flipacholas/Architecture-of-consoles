@@ -187,11 +187,11 @@ These modes can't be chosen arbitrary, instead, the console provides a series of
 
 ::: {.subfigures .tabs-nested .tab-float .pixel}
 
-![Background Layer 0 (BG0). This particular layer will be shifted horizontally at certain scan lines to simulate the clouds moving.](mario/bg1.png){.tab-nested .active title="Layer 0"}
+![Background Layer 0 (BG0). This particular layer will be shifted horizontally at certain scan lines to simulate the clouds moving.](mario/bg1.png){.active title="Layer 0"}
 
-![Background Layer 2 (BG2).](mario/bg2.png){.tab-nested title="Layer 2"}
+![Background Layer 2 (BG2).](mario/bg2.png){title="Layer 2"}
 
-![Background Layer 3 (BG3).](mario/bg3.png){.tab-nested title="Layer 3"}
+![Background Layer 3 (BG3).](mario/bg3.png){title="Layer 3"}
 
 Static Background layers in use.
 

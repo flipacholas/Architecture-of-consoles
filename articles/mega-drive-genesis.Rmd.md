@@ -138,9 +138,9 @@ The following section explains how the VDP draws each frame, for demonstration p
 
 ::: {.subfigures .tabs-nested .tab-float .pixel}
 
-![Multiple tiles squashed together. For demonstration purposes, a default palette is being used.](`r pixel_image("vdp_sonic/tiles.png")`){.tab-nested .active title="All"}
+![Multiple tiles squashed together. For demonstration purposes, a default palette is being used.](vdp_sonic/tiles.png){.active title="All"}
 
-![A single 8x8 pixel tile.](`r pixel_image("vdp_sonic/tiles_single.png")`){.tab-nested title="Single"}
+![A single 8x8 pixel tile.](vdp_sonic/tiles_single.png){title="Single"}
 
 Some tiles found in VRAM.
 
@@ -170,9 +170,9 @@ On the showed example you'll notice that the selected area for display is not a 
 
 ::: {.subfigures .tabs-nested .tab-float .pixel}
 
-![Allocated Foreground plane.](`r pixel_image("vdp_sonic/layer1.png")`){.tab-nested .active title="Full"}
+![Allocated Foreground plane.](vdp_sonic/layer1.png){.active title="Full"}
 
-![Allocated Foreground plane with selected area marked.](`r pixel_image("vdp_sonic/layer1_selected.png")`){.tab-nested title="Selected"}
+![Allocated Foreground plane with selected area marked.](vdp_sonic/layer1_selected.png){title="Selected"}
 
 Example of Foreground plane, the Window Plane is not used.
 
@@ -202,9 +202,9 @@ The region in VRAM where Sprites are defined is called **Sprite Attribute Table*
 
 ::: {.subfigures .tabs-nested .tab-float .pixel}
 
-![Resulting frame.](`r pixel_image("vdp_sonic/result.png")`){.tab-nested .active title="Frame"}
+![Resulting frame.](vdp_sonic/result.png){.active title="Frame"}
 
-![Frame broadcasted to the TV (NTSC format), the VDP automatically covers the frame with overscan area that most CRT TVs will hide.](`r pixel_image("vdp_sonic/overscan.png")`){.tab-nested title="With overscan"}
+![Frame broadcasted to the TV (NTSC format), the VDP automatically covers the frame with overscan area that most CRT TVs will hide.](vdp_sonic/overscan.png){title="With overscan"}
 
 Tada!
 :::
@@ -245,9 +245,9 @@ Let's now see what each chip offers, as each one is *very* different.
 
 ::: {.subfigures .tabs-nested .tab-float}
 
-![FM channels.](fm_single){.tab-nested .active video="true" title="FM"}
+![FM channels.](fm_single){.active video="true" title="FM"}
 
-![PCM channel.](pcm_single){.tab-nested video="true" title="PCM Sample"}
+![PCM channel.](pcm_single){video="true" title="PCM Sample"}
 
 Sonic The Hedgehog (1991).
 
@@ -293,9 +293,9 @@ For that reason, I've decided to dedicate this section for a few instances of ga
 
 ::: {.subfigures .tabs-nested .toleft}
 
-![PCM channel.](good_sampling/sonic_pcm){.tab-nested .active video="true" title="PCM Sample"}
+![PCM channel.](good_sampling/sonic_pcm){.active video="true" title="PCM Sample"}
 
-![All audio channels.](good_sampling/sonic_complete){.tab-nested video="true" title="Complete"}
+![All audio channels.](good_sampling/sonic_complete){video="true" title="Complete"}
 
 Sonic The Hedgehog 3 (1994).<br>This is one of the tracks said to be co-authored by Michael Jackson. In any case, the overall soundtrack had a distinctive beat compared to its predecessors.
 
