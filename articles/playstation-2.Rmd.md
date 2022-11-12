@@ -287,7 +287,7 @@ As stated before, the PCRTC sends the frame buffer through the video signal. The
   - By tweaking the PCRTC settings, a game can also force to output in 1080p. However, this mode is undocumented and therefore subject to unpredictable behaviour.
   - Does that mean the PS2 can 'display HD'? Technically... yes, but I don't think most game studios risked the performance penalty for a format that wasn't popularised yet.
 
-![The right side of the console `r cite('photography-amos')`, as seen from the back. Showing A/C port, Digital audio port and AV Multi Out.](photos/ps2_back.png){.open-float}
+![The right side of the console [@photography-amos], as seen from the back. Showing A/C port, Digital audio port and AV Multi Out.](photos/ps2_back.png){.open-float}
 
 There're quite a lot of modes to choose from, but it all comes down to the format adoption during the early 2000s, which narrows it down to PAL and NTSC. Also, even though PAL provided a higher resolution than NTSC, some European versions of NTSC games resorted to letterboxing to mask the unused horizontal lines and slowed down the refresh rate to fit in the 50Hz limit (I call these 'bad ports'!).
 
@@ -338,7 +338,7 @@ In later revisions of this console, the IOP was replaced with a **PowerPC 401 'D
 
 This console kept the previous front ports that were included in the original PlayStation, it also featured a couple of 'experimental' interfaces that looked very promising at first.
 
-![Front of the PS2 showing common ports including Controllers and MemoryCards, plus the new USBs and i.Link `r cite('photography-amos')`.](photos/ps2_front.png){.open-float}
+![Front of the PS2 showing common ports including Controllers and MemoryCards, plus the new USBs and i.Link [@photography-amos].](photos/ps2_front.png){.open-float}
 
 The most popular addition: **Two USB 1.1 ports**. Widely adopted by third-party accessories, these persisted in all future revisions.
 
@@ -348,11 +348,11 @@ What about the 'experimental' ones? To start with, there was initially a front *
 
 On the back of the console we also had a slot for **PC cards**, you could buy the 'Network Adaptor card' from Sony that provided two extra ports. One for connecting an ethernet cable, and another one for plugging in a proprietary and external 'Hard Disk Drive Unit', also sold by Sony. Having a drive allowed games to store temporary data (or permanently install themselves there) for faster load times. Just a few games used this feature, though.
 
-![Back of PS2 showing hard drive bay (cover removed) `r cite('photography-amos')`.](photos/back_bay.png){.tabs-nested .open-float .tab-float .active title="Bay"}
+![Back of PS2 showing hard drive bay (cover removed) [@photography-amos].](photos/back_bay.png){.tabs-nested .open-float .tab-float .active title="Bay"}
 
-![Network adaptor as seen from the front `r cite('photography-amos')`. This particular model provided modem and ethernet ports.](photos/harddrive_adaptor_front.png){.tab-nested title="Front"}
+![Network adaptor as seen from the front [@photography-amos]. This particular model provided modem and ethernet ports.](photos/harddrive_adaptor_front.png){.tab-nested title="Front"}
 
-![Network adaptor as seen from the back `r cite('photography-amos')`, with a hard drive fitted.](photos/harddrive_adaptor_back.png){.tab-nested title="Back"}
+![Network adaptor as seen from the back [@photography-amos], with a hard drive fitted.](photos/harddrive_adaptor_back.png){.tab-nested title="Back"}
 
 ![Back of the slim model showing a fixed ethernet port.](photos/ps2_slim_back.jpg){.tabs-nested-last title="Slim"}
 
@@ -366,9 +366,9 @@ The ethernet transceiver supplied supports transfer rates of up to 100 Mbps (12.
 
 The new version of their controller, the **DualShock 2**, is a slightly improved version of DualShock.
 
-![DualShock 2 controller `r cite('photography-amos')`.](photos/dualshock2.png){.tabs-nested .open-float .tab-float .active title="DualShock 2"}
+![DualShock 2 controller [@photography-amos].](photos/dualshock2.png){.tabs-nested .open-float .tab-float .active title="DualShock 2"}
 
-![Official Memory Card (8 MB model) `r cite('photography-amos')`.](photos/memorycard.png){.tabs-nested-last title="Memory Card"}
+![Official Memory Card (8 MB model) [@photography-amos].](photos/memorycard.png){.tabs-nested-last title="Memory Card"}
 
 During the days of the original PlayStation, multiple revisions of the original controller were released featuring different features (and also bringing fragmentation to the market). Now, for the benefit of developers, there was a single controller that unified all the previous properties.
 
