@@ -69,7 +69,7 @@ The GPU package is a custom-made chip called **Holly** running at **100 MHz**, i
 
 VideoLogic chose an alternative approach for the construction of their 3D engine called **Tile-Based Deferred Rendering** (TBDR).
 
-Instead of rendering a whole frame at once (as traditional **Immediate Mode Renderers** or 'IMR' do [@graphics-arch), TBDR divides the rendering area into multiple sections called 'tiles'. Then, it carries out the rendering process on each tile individually and the result is combined to form the final frame [@graphics-powervr].
+Instead of rendering a whole frame at once (as traditional **Immediate Mode Renderers** or 'IMR' do [@graphics-arch]), TBDR divides the rendering area into multiple sections called 'tiles'. Then, it carries out the rendering process on each tile individually and the result is combined to form the final frame [@graphics-powervr].
 
 `r close_float_group(with_markdown = TRUE)`
 
