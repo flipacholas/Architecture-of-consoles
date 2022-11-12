@@ -90,23 +90,17 @@ On the other side, the VDP has four different modes of operation which will alte
 
 Now let's see how a frame is drawn step by step, for this, I'll borrow *Sonic The Hedgehog*'s assets. Also, to make explanations easier, I'm going to focus on the standard memory layout that Sega suggests for organising the graphics content (just remember that the VDP is very flexible with this, so games are allowed to optimise it).
 
-#### Tiles {.tabs}
+#### Tiles {.tabs .active}
 
-(ref:tilesfooter) Tiles Found in VRAM.
+::: {.subfigures .tabs-nested .tab-float .pixel}
 
-(ref:tilalltitle) All
+![All tiles.](sonic/tiles.png){.active title="All"}
 
-(ref:tilallcaption) All tiles.
+![A single tile.](sonic/tile.png){title="Single"}
 
-(ref:tilsingletitle) Single
+Tiles Found in VRAM.
 
-(ref:tilsinglecaption) A single tile.
-
-```{r fig.cap=c("(ref:tilallcaption)", "(ref:tilsinglecaption)"), fig.align="center", out.width = split_figure_width, tab.title="(ref:tilestitle)", tab.active = TRUE, tab.first=TRUE, tab.nested=TRUE, tab.figure=TRUE, tab.float=TRUE, tab_class="pixel", fig.ncol = responsive_columns}
-image('sonic/tiles.png', "(ref:tilallcaption)", tab.name = "(ref:tilalltitle)", tab.active = TRUE)
-image('sonic/tile.png', "(ref:tilsinglecaption)", tab.name = "(ref:tilsingletitle)")
-figcaption("(ref:tilesfooter)")
-```
+:::
 
 Mode IV is based on the **tile system**. To recall [previous explanations](nes#tab-2-1-tiles) about tile engines, tiles are just **8x8 pixel bitmaps** which the renderer fetches to draw the game's graphics. In the case of the VDP, the frame is composed of two planes, the background layer and the sprite layer.
 
@@ -116,20 +110,17 @@ There are 64 pixels defined on every tile, the VDP rules that each pixel must we
 
 Colour RAM stores **two palettes of 16 colours each**. Each entry is 6-bit wide and each 2-bit set defines one colour from the RGB model. This means that there are 64 colours available to choose from.
 
-(ref:bgtitle) Background Layer
+#### Background Layer {.tab}
 
-(ref:bgalltitle) Overall
+::: {.subfigures .tabs-nested .tab-float .pixel}
 
-(ref:bgallcaption) Allocated Screen map.
+![Allocated Screen map.](sonic/tilemap.png){.active title="Overall"}
 
-(ref:bgseltitle) Selected
+![Allocated Screen map with selected area marked.](sonic/tilemap_marked.png){title="Selected"}
 
-(ref:bgselcaption) Allocated Screen map with selected area marked.
+Allocated Screen map with selected area marked.
 
-```{r fig.cap=c("(ref:bgallcaption)", "(ref:bgselcaption)"), fig.align="center", out.width = split_figure_width, tab.title="(ref:bgtitle)", tab.float=TRUE, tab.nested=TRUE, tab_class="pixel", fig.ncol = responsive_columns}
-image('sonic/tilemap.png', "(ref:bgallcaption)", tab.name = "(ref:bgalltitle)", tab.active = TRUE)
-image('sonic/tilemap_marked.png', "(ref:bgselcaption)", tab.name = "(ref:bgseltitle)")
-```
+:::
 
 A background layer is a large plane where static tiles are drawn. To place something here, there's another area on VRAM called **Screen map** that takes 1.75 KB. 
 
@@ -143,13 +134,9 @@ Each entry of the map is 2 bytes wide (as wide as the VDP data-bus) and contains
 
 Curiously enough, there are 3 unused bits in the entry that the game can use for other purposes (i.e. extra flags to assist the game engine).
 
-(ref:spritetitle) Sprites
+#### Sprites {.tab}
 
-(ref:spritecaption) Rendered Sprite layer.
-
-```{r fig.cap="(ref:spritecaption)", fig.align='center', tab.title="(ref:spritetitle)"}
-image('sonic/sprites.png', "(ref:spritecaption)", float=TRUE, class="pixel")
-```
+![Rendered Sprite layer.](sonic/sprites.png){.tab-float .pixel}
 
 Sprites are just tiles that move freely. The VDP can raster **up to 64 sprites** using a single tile (8x8 px) or two tiles stacked vertically (8x16 px).
 
@@ -157,13 +144,9 @@ The **Sprite Attribute Table** is a 256-byte area in VRAM that contains an array
 
 The VDP is limited to **up to eight sprites per horizontal scan-line**. Also, if two sprites overlap, the last one in the list will be the one displayed.
 
-(ref:resulttitle) Result
+#### Result {.tab}
 
-(ref:resultcaption) Tada!
-
-```{r fig.cap="(ref:resultcaption)", fig.align='center', tab.title="(ref:resulttitle)", tab.last=TRUE}
-image('sonic/result.png', "(ref:resultcaption)", float=TRUE, class="pixel")
-```
+![Tada!](sonic/result.png){.tab-float .pixel}
 
 The VDP automatically blends the two layers to form the final frame. The rendering process is done scan-line by scan-line, so the VDP doesn't really know how the frame is going to look, that's only seen by the user when the picture is constructed on the TV.
 
@@ -171,9 +154,7 @@ If you look at the example image, you may notice the frame has a vertical column
 
 To update the graphics for the next frame without breaking the image currently being displayed, the VDP sends two types of **interrupts** to the CPU. One which notifies that the CRT TV has finished beaming a chosen number of scan-lines (called **horizontal interrupt**) and another when the CRT finished drawing the last scan-line (called **vertical interrupt**) indicating the frame is finished. During those events, the CRT's beam is re-allocating to draw the next scan-line (**blanking interval**), so any alteration of the VDP's state won't tear the image down. Horizontal blanking has a shorter time-frame than vertical blanking, yet it still allows to change, let's say, the colour palette. This still can achieve some effects.
 
-`r close_tabs()`
-
-### Secrets and limitation
+### Secrets and limitation {.tabs-close}
 
 At first glance, the VDP may seem like another chip with minimal functionality that we now take for granted. Although, it happened to divert a lot of attention from Nintendo's offering at that time. So, why would that be?
 
@@ -247,7 +228,7 @@ So far we've discussed what each channel does separately, but the TV will just r
 
 Finally, the chip also contains programmable attenuators used to lower the decibels of each channel, effectively acting as a **volume control**.
 
-### Secrets and limitations {.tabs-closee}
+### Secrets and limitations {.tabs-close}
 
 Just like the VDP, the PSG is a no-brainer, but it does hide some interesting functionality:
 
