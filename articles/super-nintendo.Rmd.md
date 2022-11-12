@@ -38,14 +38,14 @@ supporting_imagery()
 
 ## CPU
 
-The main processor is a **Ricoh 5A22**. It's based on the **Western 65C816**, a 16-bit upgrade of the classic [MOS Technology 6502](`r ref("nes#cpu")`). Since the SNES shares the same foundation as the NES' CPU, there's a slight possibility that the SNES was originally planned to be compatible with NES games.
+The main processor is a **Ricoh 5A22**. It's based on the **Western 65C816**, a 16-bit upgrade of the classic [MOS Technology 6502](nes#cpu). Since the SNES shares the same foundation as the NES' CPU, there's a slight possibility that the SNES was originally planned to be compatible with NES games.
 
 The CPU employs a **variable clock speed** that will reach up to **3.58 MHz** during register operations and down to **1.79 MHz** when accessing slow external buses (i.e. the serial/controller port).
 
 In summary, the 5A22 features:
 
-- A **65816 ISA**: A 16-bit instruction set which extends the original 6502 ISA, but doesn't implement undocumented instructions some NES games resorted to use `r cite("cpu-opcodes")`.
-  - The [broken BCD mode](`r ref("nes#scrapped-functions")`) is **working** again.
+- A **65816 ISA**: A 16-bit instruction set which extends the original 6502 ISA, but doesn't implement undocumented instructions some NES games resorted to use [@cpu-opcodes].
+  - The [broken BCD mode](nes#scrapped-functions) is **working** again.
 - **16-bit registers**. Furthermore, the accumulator (where arithmetic operations are performed) and index register (used to compute memory addresses) can switch between 16-bit and 8-bit modes.
 - New **16-bit multiplication** and **division units** added by Ricoh, which provide the CPU with the ability to carry out these types of operations by hardware (the 65C816 doesn't include any dedicated instructions for multiplication or division).
 - **8-bit external data bus**: Meaning that it takes twice the cycles to move its 16-bit registers across external memory!
@@ -54,14 +54,14 @@ In summary, the 5A22 features:
 
 Apart from the extra registers, Ricoh customised the core design to include **two exclusive DMAs** (Direct Memory Access) that enable to move data around without the intervention of the CPU (resulting in faster speeds).
 
-For this design to work, regions of memory are referenced using two different address buses `r cite("cpu-manual")`:
+For this design to work, regions of memory are referenced using two different address buses [@cpu-manual]:
 
 - 24-bit **'A Bus'** controlled by the CPU: Connects the cartridge, CPU and WRAM.
 - 8-bit **'B Bus'** controlled by the S-PPU: Connects the cartridge, CPU, WRAM, S-PPU and the Audio CPU.
 
 When a DMA is being set up, the *origin* must come from a different bus than the *destination*.
 
-There are two DMAs to choose from depending on the needs `r cite("graphics-piepgrass")`:
+There are two DMAs to choose from depending on the needs [@graphics-piepgrass]:
 
 - **General Purpose DMA**: Performs transfers at any time, bear in mind that the CPU is stopped until the transfer is finished.
 - **Horizontal DMA** (HDMA): Performs a small transfer after each horizontal scan (while the CRT beam is preparing to draw the next row). This avoids interrupting the CPU for long intervals but transfers are limited to 4 bytes per scan-line.
@@ -76,15 +76,15 @@ I guess this is Ricoh's way of applying the popular 'keep calm and carry on' phi
 
 ## Graphics
 
-Before we go in-depth I strongly recommend reading the [NES article](`r ref("nes")`) first since it introduces useful concepts that will be revisited here.
+Before we go in-depth I strongly recommend reading the [NES article](nes) first since it introduces useful concepts that will be revisited here.
 
 ### Design
 
 Nintendo improved their previous architecture by using two different *PPU* chips to build the graphics sub-system, both combined are known as **Super PPU** or 'S-PPU'.
 
-The system outputs a standard resolution of 256x224 `r cite("graphics-guide")`. PAL systems output 256×240, however, most games don't use the extra pixels and show a *letterbox* (black lines) instead.
+The system outputs a standard resolution of 256x224 [@graphics-guide]. PAL systems output 256×240, however, most games don't use the extra pixels and show a *letterbox* (black lines) instead.
 
-Overall, both PPU packages are designed to serve different functionality `r cite("cpu-manual")`:
+Overall, both PPU packages are designed to serve different functionality [@cpu-manual]:
 
 - **PPU 1**: Renders graphics (*tiles*) and applies transformations on them (rotation and scaling).
 - **PPU 2**: Provides effects such as *window*, *mosaic* and *fades* over the rendered graphics.
@@ -93,11 +93,7 @@ This separation, from the programming point of view, is unnecessary since both c
 
 ### Organising the content
 
-(ref:sppucaption) Memory architecture of the S-PPU.
-
-```{r fig.cap="(ref:sppucaption)", fig.align='center', centered=TRUE}
-image("SPPU_architecture.png", "(ref:sppucaption)", class = "centered-container")
-```
+![Memory architecture of the S-PPU.](SPPU_architecture.png)
 
 Graphics data is distributed across three regions of memory:
 
@@ -109,13 +105,9 @@ Graphics data is distributed across three regions of memory:
 
 For demonstration purposes, *Super Mario World* will be used to show how graphics are rendered.
 
-(ref:tilestitle) Tiles
+#### Tiles {.tabs .active}
 
-(ref:tilescaption) Some 16x16 Tiles found in VRAM.
-
-```{r fig.cap="(ref:tilescaption)", fig.align='center', tab.title="(ref:tilestitle)", tab.first=TRUE, tab.active=TRUE}
-image('sppu_mario/tiles.png', "(ref:tilescaption)", float=TRUE, class="pixel")
-```
+![Some 16x16 Tiles found in VRAM.](sppu_mario/tiles.png){.tab-float .pixel}
 
 Just like its predecessor, the S-PPU uses tiles to build sophisticated graphics. Although, there are significant improvements compared to the original PPU:
 
@@ -123,51 +115,33 @@ Just like its predecessor, the S-PPU uses tiles to build sophisticated graphics.
 - Tiles are no longer restricted to their traditional dimension (8x8 pixels), from now on they can also be **16x16 pixels** wide.
 - When tiles are stored in memory, these will be compressed depending on how many colours per pixel they need to use. The unit of size is *bpp* (bits per pixel), the minimum is **2bpp** (each pixel only occupies two bits in memory and has only 4 colours available) while the maximum is **8bpp**, which allows using 256 colours (at the expense of requiring a whole byte).
 
-(ref:backgroundtitle) Background
+#### Background {.tab}
 
-(ref:backlayermapcaption) Background Layer
+::: {.subfigures .tabs-nested .tab-float .pixel}
 
-(ref:backlayerrendcaption) Rendered Background Layer
+![Background Layer 1 (BG1).](sppu_mario/background1_map.png){.active title="Layer 1"}
 
-(ref:backlayertitle) Layer
+![Background Layer 2 (BG2).](sppu_mario/background2_map.png){title="Layer 2"}
 
-(ref:backmapsfooter) Background maps in VRAM.
+![Background Layer 3 (BG3).](sppu_mario/background3_map.png){title="Layer 3"}
 
-(ref:backcombinedtitle) Combined
+Background maps in VRAM.
 
-(ref:backcombinedcaption) Rendered Background Layers combined.
+:::
 
-(ref:backlayersfooter) Rendered Background layers after selection and transparency are applied.
+::: {.subfigures .tabs-nested .tab-float .pixel}
 
-```{r fig.cap=c("(ref:backmapsfooter)", "(ref:backlayersfooter)"), fig.align='center', tab.title="(ref:backgroundtitle)", out.width = standard_figure_width}
+![Rendered Background Layer 1 (BG1).](sppu_mario/background1.png){.active title="Layer 1"}
 
-number_caption <- function(caption, number) {
-  return(stringr::str_replace_all(caption, "-NMBR-", number))
-}
-  
-background_map_tab <- function(number, src, active=FALSE) {
-  return(image(src, caption=paste0("(ref:backlayermapcaption)", " (BG", number,")."), tab.name=paste0("(ref:backlayertitle) ", number), tab.active=active))
-}
+![Rendered Background Layer 2 (BG2).](sppu_mario/background2.png){title="Layer 2"}
 
-background_rend_tab <- function(number, src, active=FALSE) {
-  return(image(src, caption=paste0("(ref:backlayerrendcaption)", " (BG", number,")."), tab.name=paste0("(ref:backlayertitle) ", number), tab.active=active))
-}
+![Rendered Background Layer 3 (BG3).](sppu_mario/background3.png){title="Layer 3"}
 
-tabs(nested=TRUE, class="pixel", float=TRUE, figure=TRUE, content=c(
-  background_map_tab("1", 'sppu_mario/background1_map.png', active=TRUE), 
-  background_map_tab("2", 'sppu_mario/background2_map.png'), 
-  background_map_tab("3", 'sppu_mario/background3_map.png'),
-  figcaption("(ref:backmapsfooter)"))
-)
+![Rendered Background Layers combined.](sppu_mario/background_complete.png){title="Combined"}
 
-tabs(nested=TRUE, class="pixel", float=TRUE, figure=TRUE, content=c(
-  background_rend_tab("1", 'sppu_mario/background1.png', active=TRUE),
-  background_rend_tab("2", 'sppu_mario/background2.png'),
-  background_rend_tab("3", 'sppu_mario/background3.png'),
-  image('sppu_mario/background_complete.png', caption="(ref:backcombinedcaption)", tab.name = "(ref:backcombinedtitle)", caption.post = "(ref:backlayersfooter)"), 
-  figcaption("(ref:backlayersfooter)"))
-)
-```
+Rendered Background layers after selection and transparency are applied.
+
+:::
 
 The Super Nintendo can generate up to four different background planes. Using either 8x8 or 16x16 tiles, blocks will take up to 32x32 pixels (2x2 tiles). That being said, the size of each background layer can be up to 1024x1024 pixels wide (32x32 tiles). The region in VRAM where these layers are configured is called **Tilemap** and is structured as a table (continuous values in memory).
 
@@ -180,9 +154,9 @@ Each entry in the Tilemap contains the following attributes:
 
 As always, these planes are scrollable, though the number of features available (colour, number of layers, independent scrolling region and size of selection) will depend on the **Background mode** selected.
 
-`r tab.simple("Modes")`
+#### Modes {.tab}
 
-This system provides eight background modes to choose from, each one provides a different set of features `r cite("cpu-rgme")`:
+This system provides eight background modes to choose from, each one provides a different set of features [@cpu-rgme]:
 
 - **Mode 0**: 4 layers with 4 colours each.
   - This is very limited in colours since it's the only one allowing the most number of layers.
@@ -190,7 +164,7 @@ This system provides eight background modes to choose from, each one provides a 
   - One layer can be split into foreground and background.
   - This is the most common one.
 - **Mode 2**: 2 layers with 16 colours each.
-  - This mode has an extra effect: Layers can have each of their columns scrolled independently (Similar to the [GameBoy](`r ref("game-boy#graphics")`)).
+  - This mode has an extra effect: Layers can have each of their columns scrolled independently (Similar to the [GameBoy](game-boy#graphics)).
 - **Mode 3**: 1 Background layer with 128 colours + 1 Background with 16 colours.
   - Colours can be set as RGB values instead of using CGRAM references.
 - **Mode 4**: Mode 2 and 3 combined (Column scroll + RGB colour mapping).
@@ -203,15 +177,11 @@ This system provides eight background modes to choose from, each one provides a 
 
 As you can see, programmers now have the choice to prioritize either the number of colours, layers, effects or resolution of the selected area.
 
-(ref:spritestitle) Tiles
+#### Sprites {.tab}
 
-(ref:spritescaption) Rendered Sprite layer.
+![Rendered Sprite layer.](sppu_mario/sprites.png){.tab-float .pixel}
 
-```{r fig.cap="(ref:spritescaption)", fig.align='center', tab.title="(ref:spritestitle)"}
-image('sppu_mario/sprites.png', "(ref:spritescaption)", float=TRUE, class="pixel")
-```
-
-An area on memory called **Object Attribute Memory** (OAM) stores a table with references of up to 128 sprites with these properties `r cite("graphics-guidelines")`:
+An area on memory called **Object Attribute Memory** (OAM) stores a table with references of up to 128 sprites with these properties [@graphics-guidelines]:
 
 - **Size**: The PPU can combine up to 16 small Tiles in the form of 4x4 to build a sprite.
 - **Tile References**.  
@@ -222,13 +192,9 @@ An area on memory called **Object Attribute Memory** (OAM) stores a table with r
 
 The S-PPU can draw up to 32 sprites per scan-line (overflowing this will only make it discard the ones with the lowest priority).
 
-(ref:resulttitle) Result
+#### Result {.tab}
 
-(ref:resultcaption) Tada!
-
-```{r fig.cap="(ref:resultcaption)", fig.align='center', tab.title="(ref:resulttitle)", tab.last=TRUE}
-image('sppu_mario/complete.png', "(ref:resultcaption)", float=TRUE, class="pixel")
-```
+![Tada!](sppu_mario/complete.png){.tab-float .pixel}
 
 The S-PPU draws each scan-line on-the-fly by first processing the respective portion of each layer and then mixing them together.
 
@@ -236,34 +202,25 @@ One of the main constraints of NES games was the fact that they could only updat
 
 Well, now thanks to the new capabilities of the SNES, this limitation gained a different meaning.
 
-You see, because DMA/HDMA allows performing memory transfers without waiting for V-Scan `r cite("cpu-dma")`, games can now update tiles, colours and registers without waiting for the whole frame to be drawn. However, we can think beyond that: Since games can now change the S-PPU settings during **mid-frame**, this means that it's possible to activate different background modes **at different stages of the same frame**, opening the door to new and original game designs!
+You see, because DMA/HDMA allows performing memory transfers without waiting for V-Scan [@cpu-dma], games can now update tiles, colours and registers without waiting for the whole frame to be drawn. However, we can think beyond that: Since games can now change the S-PPU settings during **mid-frame**, this means that it's possible to activate different background modes **at different stages of the same frame**, opening the door to new and original game designs!
 
-`r close_tabs()`
-
-### Unique features
+### Unique features {.tabs-close}
 
 Truth to be told, I still haven't mentioned the most important characteristic of this console...
 
-(ref:mode7bgcaption) Rendered Background layer.
+::: {.subfigures .tabs-nested .tab-float .open-float .pixel}
 
-(ref:mode7maptitle) Map
+![Rendered Background layer.](mode7/layer.png){.active title="Background"}
 
-(ref:mode7mapcaption) Allocated Background map.
+![Allocated Background map.](mode7/map.png){title="Map"}
 
-(ref:mode7disptitle) Displayed
+![Rendered frame on the screen.<br>The first quarter of scan-lines use another mode to simulate distance, Mode 7 starts at the second quarter (this is possible thanks to HDMA).](mode7/displayed.png){title="Displayed"}
 
-(ref:mode7dispcaption) Rendered frame on the screen.<br>The first quarter of scan-lines use another mode to simulate distance, Mode 7 starts at the second quarter (this is possible thanks to HDMA).
+F-Zero (1990).
 
-(ref:mode7footer) F-Zero (1990).
+:::
 
-```{r fig.cap=c("(ref:mode7bgcaption)", "(ref:mode7mapcaption)", "(ref:mode7dispcaption)"), open_float_group=TRUE, tab.nested=TRUE, tab.float=TRUE, tab.figure=TRUE}
-image("mode7/layer.png", "(ref:mode7bgcaption)", tab.name="(ref:backgroundtitle)", tab.active=TRUE)
-image("mode7/map.png", "(ref:mode7mapcaption)", tab.name="(ref:mode7maptitle)")
-image("mode7/displayed.png", "(ref:mode7dispcaption)", tab.name="(ref:mode7disptitle)", caption.post="(ref:mode7footer)")
-figcaption("(ref:mode7footer)")
-```
-
-Introducing **Mode 7**, *yet another* background mode, but this time, with a completely different way of working. While it can only render a single 8bpp background layer, it provides the exclusive ability to apply the following **affine transformations** on that plane `r cite("cpu-rgme")`:
+Introducing **Mode 7**, *yet another* background mode, but this time, with a completely different way of working. While it can only render a single 8bpp background layer, it provides the exclusive ability to apply the following **affine transformations** on that plane [@cpu-rgme]:
 
 - Translation.
 - Scaling.
@@ -281,7 +238,7 @@ Finally, due to the high number of calculations needed, the memory map is change
 
 ### A convenient video out
 
-All of the aforementioned advancements will be futile unless the console sends the picture to the TV in a format both can understand. With the Super Nintendo, the company debuted some sort of *universal-but-proprietary* connection called **Multi Out** which can transport many types of signals at the same time, including **Composite**, **S-Video** and **RGB** `r cite("graphics-pinouts")`.
+All of the aforementioned advancements will be futile unless the console sends the picture to the TV in a format both can understand. With the Super Nintendo, the company debuted some sort of *universal-but-proprietary* connection called **Multi Out** which can transport many types of signals at the same time, including **Composite**, **S-Video** and **RGB** [@graphics-pinouts].
 
 Along with the console, Nintendo included a 'Multi Out to composite' cable since that was pretty much the common denominator of TVs back then. In Europe however, the **SCART** port was also very popular as many set-top boxes and VCRs relied on it. A great thing about SCART is that it can also carry many types of signals, this enables AV equipment to use the most optimal signal type without encountering compatibility issues. Unfortunately, Nintendo never shipped an official SCART cable that took advantage of the RGB pins exposed in the Super Nintendo.
 
@@ -298,39 +255,30 @@ This console provided some unique audio capabilities thanks to a dedicated set o
   - **ADSR envelope control**: Sets how the volume changes at different times.
   - **Delay**: Simulates *echo*, it also includes a frequency filter to cut out some frequencies during the feedback. Do not confuse this with *Reverb*!
   - **Noise generator**: Creates random waveforms that sound like white static.
-  - **Pitch modulation**: Allows some channels to distort others. Similar to FM synthesis (used by [its competitor](`r ref("mega-drive-genesis#audio")`)).
-- **The SPC700 CPU**: Also named 'S-SMP', it's an independent 8-bit CPU that communicates with the DSP and receives commands from the main CPU `r cite("audio-smp")`.
+  - **Pitch modulation**: Allows some channels to distort others. Similar to FM synthesis (used by [its competitor](mega-drive-genesis#audio)).
+- **The SPC700 CPU**: Also named 'S-SMP', it's an independent 8-bit CPU that communicates with the DSP and receives commands from the main CPU [@audio-smp].
 - **64 KB of PSRAM**: Stores audio data and programs. The main CPU is responsible for filling this up.
   - If 'Delay' is activated, some space will be allocated for feedback data (this is actually very dangerous, since if not used properly it can override some of our data!).
 
-This sub-system functions independently: When the console is turned on, the SPC700 boots a 64-byte internal ROM that enables it to receive commands from the main CPU `r cite("audio-spc")`. After that, it stays idle.
+This sub-system functions independently: When the console is turned on, the SPC700 boots a 64-byte internal ROM that enables it to receive commands from the main CPU [@audio-spc]. After that, it stays idle.
 
-(ref:sfmelodytitle) Melody
+::: {.subfigures .tabs-nested .tab-float .open-float}
 
-(ref:sfmelodycaption) Channels used for melody.
+![Channels used for melody.](melody){.active video="true" title="Melody"}
 
-(ref:sfdrumstitle) Drums
+![Drums are discriminated for demonstration purposes.](drums){video="true" title="Drums"}
 
-(ref:sfdrumscaption) Drums are discriminated for demonstration purposes.
+![All audio channels.](complete){video="true" title="Complete"}
 
-(ref:sfcompletetitle) Complete
+StarFox (1993).
 
-(ref:sfcompletecaption) All audio channels.
-
-(ref:sffooter) StarFox (1993).
-
-```{r fig.cap=c("(ref:sfmelodycaption)", "(ref:sfdrumscaption)", "(ref:sfcompletecaption)"), open_float_group=TRUE, tab.nested=TRUE, tab.float=TRUE, tab.figure=TRUE}
-video("melody", "(ref:sfmelodycaption)", tab.name="(ref:sfmelodytitle)", tab.active=TRUE)
-video("drums", "(ref:sfdrumscaption)", tab.name="(ref:sfdrumstitle)")
-video("complete", "(ref:sfcompletecaption)", tab.name="(ref:sfcompletetitle)", caption.post="(ref:sffooter)")
-figcaption("(ref:sffooter)")
-```
+:::
 
 In order for the S-SMP to start doing some useful work, it needs to load a type of program called **Sound Driver**. The latter instructs the chip on how to manipulate the raw audio data that the main CPU sends to PSRAM. The driver also directs how to command the S-DSP.
 
 As you can see, the sound subsystem was a huge advancement compared to the previous generation, but it was challenging to program as well. The documentation that Nintendo provided was notably known for including unintelligible sections and skipping important features altogether, so it was up to the programmers to carry out their own research.
 
-As a consequence, there were tons of different sound drivers found on the market `r cite("audio-drivers")`, and some of them ended up uncovering impressive features. The flexibility that this system allowed meant that programmers could make their soundtrack shine or fade into oblivion... 
+As a consequence, there were tons of different sound drivers found on the market [@audio-drivers], and some of them ended up uncovering impressive features. The flexibility that this system allowed meant that programmers could make their soundtrack shine or fade into oblivion... 
 
 `r close_float_group(with_markdown = TRUE)`
 
@@ -338,38 +286,31 @@ As a consequence, there were tons of different sound drivers found on the market
 
 Pitch modulation enabled to play different notes using the same sample, the S-SMP also included a useful bender to alter the pitch in a smooth manner. Take a look at this extracted channel from Mother 2/Earthbound, both examples come from the original soundtrack, however, the first one has the pitch control disabled.
 
-(ref:nopitchcaption) No pitch bend.
+![No pitch bend.](pitch/no_pitch){.toleft video="true"}
 
-(ref:pitchcaption) With pitch bend enabled.
-
-```{r fig.cap=c("(ref:nopitchcaption)", "(ref:pitchcaption)"), side_by_side=TRUE, fig.pos = "H"}
-video('pitch/no_pitch', class="toleft", "(ref:nopitchcaption)")
-video('pitch/pitch', class="toright", "(ref:pitchcaption)")
-```
+![With pitch bend enabled.](pitch/pitch){.toright video="true"}
 
 ### Evolution from the NES
 
 In order to demonstrate the evolution of sounds from the NES to the Super NES, here are two music scores, one from a NES game and another from its Super NES sequel. Both used the same composition:
 
-(ref:nessnowcaption) Mother (1989).
+![Mother (1989).](snowman_nes){.toleft video="true"}
 
-(ref:snessnowcaption) Mother 2/Earthbound (1994).
-
-```{r fig.cap=c("(ref:nessnowcaption)", "(ref:snessnowcaption)"), side_by_side=TRUE, fig.pos = "H"}
-video('snowman_nes', class="toleft", "(ref:nessnowcaption)")
-video('snowman_snes', class="toright", "(ref:snessnowcaption)")
-```
+![Mother 2/Earthbound (1994).](snowman_snes){.toright video="true"}
 
 ### Advanced usage
 
-(ref:kirbyfooter) Kirby's Dream Land 3 (1997).
+::: {.subfigures .tabs-nested .tab-float .open-float}
 
-```{r fig.cap=c("(ref:sfmelodycaption)", "(ref:sfdrumscaption)", "(ref:sfcompletecaption)"), open_float_group=TRUE, tab.nested=TRUE, tab.float=TRUE, tab.figure=TRUE}
-video("kirby/trebble", "(ref:sfmelodycaption)", tab.name="(ref:sfmelodytitle)", tab.active=TRUE)
-video("kirby/drums", "(ref:sfdrumscaption)", tab.name="(ref:sfdrumstitle)")
-video("kirby/complete", "(ref:sfcompletecaption)", tab.name="(ref:sfcompletetitle)", caption.post="(ref:kirbyfooter)")
-figcaption("(ref:kirbyfooter)")
-```
+![Channels used for melody.](kirby/trebble){.active video="true" title="Melody"}
+
+![Drums are discriminated for demonstration purposes.](kirby/drums){video="true" title="Drums"}
+
+![All audio channels.](kirby/complete){video="true" title="Complete"}
+
+Kirby's Dream Land 3 (1997).
+
+:::
 
 Here's a more instrument-rich composition that takes great advantage of pitch modulation, echo and envelope.
 
@@ -379,7 +320,7 @@ This combination of techniques allowed the music to only require five channels i
 
 ### Stereo confusion
 
-The DSP's volume controls are organised in chunks of 8-bits signed values `r cite("audio-gst")`, this means that the volume can be set up with **negative values**. *But hang on*, if '0' means mute, what would a number like '-1' do? Well, it will **invert the signal**.
+The DSP's volume controls are organised in chunks of 8-bits signed values [@audio-gst], this means that the volume can be set up with **negative values**. *But hang on*, if '0' means mute, what would a number like '-1' do? Well, it will **invert the signal**.
 
 This is notably used for creating a special **surrounding effect**, which is accomplished by setting the stereo channels to output **out of phase** (one channel outputs the normal signal and the other outputs the same signal but inverted). 
 
@@ -389,7 +330,7 @@ Additionally, out-of-phase stereo gets cancelled out on mono devices, so games i
 
 ## Games
 
-Overall, games are written in **65816 assembly** and when it comes to designing the cartridge, there are two ways of electrically connecting the address pins between the ROM and the CPU `r cite("games-bazzinotti")`:
+Overall, games are written in **65816 assembly** and when it comes to designing the cartridge, there are two ways of electrically connecting the address pins between the ROM and the CPU [@games-bazzinotti]:
 
 - **LoROM Model**: Data is available in 32 KB chunks with 128 banks to choose.
 - **HiROM Model**: Data is available in 64 KB chunks with 64 banks to choose.
@@ -417,8 +358,4 @@ This could be defeated by manually removing these routines but would take a long
 
 ## That's all folks
 
-(ref:glasgowcaption) My modded SNES with an American cartridge.<br>That game was only released in the states. Luckily, a lad was selling it in Glasgow!
-
-```{r fig.cap="(ref:glasgowcaption)", fig.align='center', centered=TRUE}
-image("mysnes.png", "(ref:glasgowcaption)", class = "centered-container")
-```
+![My modded SNES with an American cartridge.<br>That game was only released in the states. Luckily, a lad was selling it in Glasgow!](mysnes.png)
