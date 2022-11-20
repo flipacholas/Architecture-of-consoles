@@ -100,7 +100,7 @@ Moreover, microcode is already embedded in the silicon but it can be patched, al
 
 #### The Core {.tab}
 
-![Coppermine design.](cpu/core.png){.tab-float}
+![The Coppermine design.](cpu/core.png){.tab-float}
 
 There were numerous chips shipped that implement the P6 microarchitecture. Specifically, the Xbox includes one model called **Coppermine**. This was also released as the second revision of the Pentium III (replacing the 'Katmai' core) and features the following components:
 
@@ -140,23 +140,19 @@ Both chips are interconnected using a specialised bus called the **HyperTranspor
 
 The Xbox includes a total of **64 MiB of DDR SDRAM**, this type of RAM is very fast compared to what the competition offers. However, it's also shared across all components of this system. Hence, once more, we find ourselves in front of another **unified memory architecture** or 'UMA' layout.
 
-![Representation of the switching network. GPU uses two banks while the CPU uses a different one, reducing contention in the process.](cpu/memory.png){.open-float}
+![Representation of the switching network. GPU uses two banks while the CPU uses a different one, reducing contention in the process.](cpu/memory.png)
 
 We have previously seen how [troublesome](playstation-2#preventing-past-mishaps) this design can be sometimes. Nonetheless, programs can address this issue by spreading their data between different banks of memory. NV2A implements a **switching network** that enables different units (CPU, GPU, etc) to concurrently access them [@cpu-huang] [@cpu-informit].
 
 Furthermore, the console features an internal HardDisk, and it *so happens* to be set up with three partitions of 750 MiB each reserved for temporary storage. The CPU can offload some of its data from main RAM, then upload it back whenever it's needed. Bear in mind this is a manual process and does not involve virtual RAM.
 
-`r close_float_group(with_markdown = TRUE)`
-
 ## Graphics
 
 As we've seen before, the graphics processor resides in the NV2A chip and just like MCPX, it is manufactured by Nvidia.
 
-![Halo (2001) in 720p mode.](halo.png){.open-float}
+![Halo (2001) in 720p mode.](halo.png)
 
 This company has been in the graphics business for a long time, their *GeForce* series are one of the most popular GPU brands in the computer market, directly competing against the Radeon series from Artx/ATI. Overall, this provides good leverage on the quality of graphics found in the Xbox, considering it's Microsoft's first attempt in the console market.
-
-`r close_float_group(with_markdown = TRUE)`
 
 It all seems reasonable, but was it *really* a certain decision to make back then? It's easy to rely on present history to find out why Microsoft chose Nvidia over other popular brands from the time (3dfx, PowerVR, S3, etc), but if we read more about the competition back then, the panorama of options made it much more complex.
 

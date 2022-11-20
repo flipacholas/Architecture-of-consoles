@@ -253,9 +253,9 @@ There's a dedicated component inside the GS called **Programmable CRT Controller
 
 With all being said, this surely brought better designs to refresh already-famous characters. Take a look at this 'Before & After':
 
-(ref:crashmodelcaption) Crash Bandicoot (1996) for the PS1. 732 triangles.
+(ref:crashmodelcaption) Crash Bandicoot (1996) for the PS1.<br>732 triangles.
 
-(ref:wrathmodelcaption) Crash Bandicoot: The Wrath of Cortex (2001). 2226 triangles.
+(ref:wrathmodelcaption) Crash Bandicoot: The Wrath of Cortex (2001).<br>2226 triangles.
 
 ```{r fig.cap=c("(ref:crashmodelcaption)", "(ref:wrathmodelcaption)"), side_by_side=TRUE, fig.pos = "H"}
 model_viewer('crash_ps1', class="toleft", "(ref:crashmodelcaption)")
@@ -264,9 +264,9 @@ model_viewer('crash_wrath_ps2', class="toright", "(ref:wrathmodelcaption)")
 
 Here are characters from new game series, these were modelled with high levels of detail from the ground up:
 
-(ref:khmodelcaption) Kingdom Hearts (2002). 2744 triangles.
+(ref:khmodelcaption) Kingdom Hearts (2002).<br>2744 triangles.
 
-(ref:dqmodelcaption) Dragon Quest VIII (2004). 2700 triangles.
+(ref:dqmodelcaption) Dragon Quest VIII (2004).<br>2700 triangles.
 
 ```{r fig.cap=c("(ref:khmodelcaption)", "(ref:dqmodelcaption)"), side_by_side=TRUE, fig.pos = "H"}
 model_viewer('sora_kh1_ps2', class="toleft", "(ref:khmodelcaption)")

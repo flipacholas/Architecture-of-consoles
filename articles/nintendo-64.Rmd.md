@@ -44,7 +44,7 @@ In the end, Nintendo's CPU of choice became the **NEC VR4300** running at **93.7
   - **32-bit mode**: Traditional mode where the CPU behaves as a MIPS II-compatible processor. There's nothing special about this mode except that all new functions are locked out.
   - **64-bit mode**: 'Native' mode where all 64-bit extensions are available. It's also binary-compatible with 32-bit applications.
 - **32 general-purpose registers**: These are 32-bit wide in '32-bit mode' and 64-bit wide in '64-bit mode'.
-- The **MIPS III ISA**: A RISC instruction set that succeeds MIPS II. It features new instructions that operate 64-bit words called 'doublewords'. Finally, opcodes are always **32-bit long**, independently of the mode.
+- The **MIPS III ISA**: A RISC instruction set that succeeds MIPS II. It features new opcodes that compute 64-bit words called 'doublewords'. Finally, instructions are always **32-bit long**, independently of the mode.
   - It's worth mentioning that since MIPS II, [load delay slots](playstation#delay-galore) are gone for good, though branch delay ones still persist.
 - An internal **64-bit bus** connected to an **external 32-bit data bus**: While doublewords won't degrade performance when operated internally, the CPU will still need to expend extra cycles to move 64-bit data throughout the system. This is one of the cutbacks of the R4300i variant (the R4000 has a full 64-bit data bus).
 - **32-bit address bus**: Up to 4 GB of physical memory can be addressed.

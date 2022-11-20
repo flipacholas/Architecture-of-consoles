@@ -170,9 +170,9 @@ When I previously analysed the design of Nintendo's PPU, I made emphasis on its 
 
 The VDP doesn't take advantage of this modular approach. Instead, Sega implemented a different solution that in turn saves cartridge costs. The smaller background layer and horizontal interrupts are examples of this.
 
-#### 3D glasses {.tab}
+#### 3D glasses {.tab}
 
-![Sega 3-D glasses [@photography-amos].<br>American variant connected through the card port.](glasses.png){.tab-float}
+![Sega 3-D glasses [@photography-amos].<br>American variant connected through the card port.](glasses.png){.tab-float .no-borders}
 
 It turns out Sega also shipped **'3D glasses'** as an official accessory! The glasses worked in-sync with the CRT. During gameplay, the game switches the position of objects between frames. Each lens has an LCD screen that shuts black to block your eyesight. So, the correct combination of graphics flickering and shutters alternating eventually creates a stereoscopic image in your head. Thus, a '3D' effect.
 

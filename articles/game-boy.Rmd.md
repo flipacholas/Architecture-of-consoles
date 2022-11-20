@@ -137,7 +137,7 @@ Thus, games normally use it to display player stats, scores and other 'always-on
 
 #### Sprites {.tab}
 
-![Rendered Sprite layer.](ppu_mario/sprite.png){.tab-float}
+![Rendered Sprite layer.](ppu_mario/sprite.png){.tab-float .pixel}
 
 Sprites are tiles that can move independently around the screen. They can also overlap each other and appear behind the background, the viewable graphic will be decided based on a priority attribute.
 
@@ -151,7 +151,7 @@ The PPU is limited to rendering up to **ten sprites per scan-line** and **up to 
 
 #### Result {.tab}
 
-![Final result. _Tada!_](ppu_mario/result.png){.tab-float}
+![Final result. _Tada!_](ppu_mario/result.png){.tab-float .pixel}
 
 Once the frame is finished, it's time to move on to the next one! However, the CPU can't modify the tables while the PPU is reading from VRAM, so the system provides a set of interrupts triggered when the PPU is idle. You can recall this behaviour from the times of the NES.
 

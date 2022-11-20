@@ -120,7 +120,7 @@ So, did this mean game studios could only develop games that didn't exceed the 4
 
 ![Simplified representation of how a mapper extends the addressing capabilities of the CPU. With the inclusion of a mapper, the CPU can access extra banks (groups of addresses) of a large Program ROM. Although the game/program has the new task of manually switching between banks whenever needed.](mapper/mapper.png){.tabs-nested .active title="With mapper"}
 
-![The same setup but without a mapper installed. While simpler and inexpensive, the CPU can only access a finite number of banks.](mapper/mapper.png){.tabs-nested-last title="Without mapper"}
+![The same setup but without a mapper installed. While simpler and inexpensive, the CPU can only access a finite number of banks.](mapper/no_mapper.png){.tabs-nested-last title="Without mapper"}
 
 A mapper is an extra chip included in the cartridge that sits between the memory chips and the console's address lines. Its main job is to extend the address space so developers may fit more chips. This is done by **bank switching**: Memory addresses are grouped into banks, and the mapper provides switches (controlled through memory addresses) to alternate between banks. Now, the CPU still sees the same amount of memory, so it's the game that's been programmed with a mapper present in charge of operating it. Due to their cost-effectiveness, mappers were the order of the day in 80s-to-early 90s technology.
 

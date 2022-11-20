@@ -567,7 +567,7 @@ In any case, the console offers:
 
 While Sony went straight for wireless controls using Bluetooth technology, the Xbox 360 shipped with different kinds of controllers depending on the 'edition' purchased (this doesn't necessarily affect the motherboard revision, only the amount of accessories bundled with the box).
 
-![The new wireless controller/gamepad [@photography-amos]. Two AA batteries are fitted on the back.](amos/controller.png){.open-float .no_borders}
+![The new wireless controller/gamepad [@photography-amos]. Two AA batteries are fitted on the back.](amos/controller.png){.open-float .no-borders}
 
 As you may guess, wireless controllers were only given out with the posh 'premium' editions, while the low-end & HDD-less 'Arcade' model shipped with a single wired controller (this time, using a standard **USB A cable**). Wireless controllers required two AA batteries, though Microsoft also sold a rechargeable battery block.
 
@@ -713,7 +713,7 @@ All of this data is encrypted in a multitude of ways. The majority uses Microsof
 
 Contrarily to the PS3, Microsoft managed to fit all of this in a smaller **16 MB** chip, although some revisions from 2008 and 2009 featured 256 MB and 512 MB NAND chips [@operating_system-jasper]. This wasn't a breaking change, however, as the extra space was partitioned and treated as a Memory Unit instead.
 
-#### Memory Units and HDDs {.tab}
+#### Memory Units and HDDs {.tab}
 
 ![Memory Units, the least expensive storage medium. Although, they only work with Xbox 360 revisions before 2010.](amos/mem_units.png){.tabs-nested .active .tab-float title="Memory Unit"}
 
@@ -1344,7 +1344,7 @@ For one reason or another, Team Xecuter didn't provide any documentation to repl
 
 With the approach of the Xbox 360’s successor, Microsoft took one last breath and shipped a redesigned version of the console called ‘E’, and within it, another motherboard revision called **Winchester**. In retail models, Winchester finally disables the POST and PLL signals and filters the CPU `RESET` line from _external disturbance_ [@anti_piracy-hack_win]. This rendered the RGH hack, after three years since its discovery, obsolete.
 
-However, for the compatible motherboards (which are still found in abundance), only _wonderful things_ awaited. Apart from the mentioned RGH variants, there was still a golden discovery to be uncovered. Fast forward to November 2021, 15432 surprised the community again by publishing **RGH 3.0**, a universal RGH variant to rule them all. Behind the scenes, the new technique is an evolution of RGH 1.2 V2 that **doesn't require a glitcher anymore** [@anti_piracy-rgh3]. This was done by implementing the glitching stage into the SMC, which now only needs two wires soldered on the motherboard (in particular, `CPU_DBG1_POST1` and `CPU_PLL_BYPASS`) to execute the hack.
+However, for the compatible motherboards (which are still found in abundance), only _wonderful things_ awaited. Apart from the mentioned RGH variants, there was still a golden discovery to be uncovered. Fast forward to November 2021, 15432 surprised the community again by publishing **RGH 3.0**, a universal RGH variant to rule them all. Behind the scenes, the new technique is an evolution of RGH 1.2 V2 that **doesn't require a glitcher anymore** [@anti_piracy-rgh3]. This was done by implementing the glitching stage into the SMC, which now only needs two wires soldered on the motherboard (in particular, the newly located `CPU_DBG1_POST1` and `CPU_PLL_BYPASS`) to execute the hack.
 
 ## That's all folks
 
