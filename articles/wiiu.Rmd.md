@@ -139,7 +139,7 @@ At this point, it's fair to say that neither Nintendo nor IBM have publicly docu
 
 #### 'Multi-coring' Broadway {.tabs .active}
 
-![The big SoC (housing Espresso, among others) next to four 512 DDR3 chips](photos/motherboard/soc.jpg){.tab-float}
+![The big SoC (housing Espresso, among others) next to four 512 MB DDR3 chips](photos/motherboard/soc.jpg){.tab-float}
 
 Espresso bundles three CPU cores based on the **PowerPC 750CXe** architecture. The design of these dates all the way back to 2001, meaning that the datapath and instruction set are roughly in the same state as they were 10 years before. For comparison, the PowerPC Processing Element (the main core of Xenon and Cell) grabbed the design of the POWER4 and re-engineered it for the requirements of the respective console.
 
@@ -273,7 +273,7 @@ Now, for the Wii U, ATI prepared a Terascale-based card for Nintendo, but it's n
 
 ### Architecture of GX2
 
-The TeraScale architecture is the materialisation of Xenos/Crayola ported to the PC market... and GX2 is TeraScale brought back to a console. Its most identifiable treat is the use of an [unified shader model](xbox-360#a-new-foundation-on-the-way) that centralises both vertex and pixel units into a single block, now called **SIMD unit**.
+The TeraScale architecture is the materialisation of Xenos/Crayola ported to the PC market... and GX2 is TeraScale brought back to a console. Its most identifiable trait is the use of an [unified shader model](xbox-360#a-new-foundation-on-the-way) that centralises both vertex and pixel units into a single block, now called **SIMD unit**.
 
 It's worth emphasising that when Xenos arrived, the API model was still based on the [segregated shader model](xbox#graphics), so the libraries didn't provide additional functionality that was now possible with a consolidated compute unit. Well, thanks to the subsequent updates (Direct3D 10 and OpenGL 3.3), that's not the case anymore (albeit only OpenGL is available on the Wii U).
 
@@ -465,7 +465,7 @@ For another status-quo-breaking moment, let's now go over some unusual features 
 
 ![An amiibo figurine of Mario related to the new Super Smash Bros title [@games-marioamiibo].](mario_amiibo.png){.open-float .no-borders}
 
-When the Wii U reached the hand of users, they quickly noticed the GamePad had a **Near-Field Communication** (NFC) reader. Initially, Nintendo didn't share the goals of such capabilities and some outlets even speculated that it would eventually enable NFC payments [@io-nfc_note]. It wasn't until 2014 that Nintendo finally unveiled their intentions with NFC technology: Figurines, which they called **Amiibos**. These embed a unique NFC tag [@io-nfc_e3] and games that support them allow the user to 'scan' their Amiibo (by placing them on top of the reader area of the GamePad). Then, the game will detect which type of figurine is placed and react accordingly (i.e. unlock premium content, create a special avatar and so forth). Tags may also bundle small storage (just 512 Bytes [@io-gamepad_brew]) that games may use to store user data.
+When the Wii U reached the hand of users, they quickly noticed the GamePad had a **Near-Field Communication** (NFC) reader. Initially, Nintendo didn't share the goals of such capabilities and some outlets even speculated that it would eventually enable NFC payments [@io-nfc_note]. It wasn't until 2014 that Nintendo finally unveiled their intentions with NFC technology: Figurines, which they called **amiibos**. These embed a unique NFC tag [@io-nfc_e3] and games that support them allow the user to 'scan' their amiibo (by placing them on top of the reader area of the GamePad). Then, the game will detect which type of figurine is placed and react accordingly (i.e. unlock premium content, create a special avatar and so forth). Tags may also bundle small storage (just 512 Bytes [@io-gamepad_brew]) that games may use to store user data.
 
 `r close_float_group(with_markdown = TRUE)`
 
@@ -497,7 +497,7 @@ First things first, Espresso now runs an actual operating system. That's the mos
 - A **Kernel** that provides a layer of abstraction between the hardware (in this case, through Starbuck) and applications. In doing so, it runs under the highest privileges of the CPU and provides many low-level functions (memory management, security, etc). Curiously enough, this component runs on the middle core (Core 1) as it provides more cache [@cpu-fail0verflow_espresso].
 - **User applications** that run on top of the Kernel and provide functionality for the user. This includes the interactive shell, the game and other applications installed.
 
-Moving on, the Kernel runs in [supervisor mode](playstation-3#os-security-hierarchy) and communicates with Starbuck using the same [Inter-Process Communication](wii#starlets-os) (IPC) channel that the Wii relied on. This component can load multiple programs (processes) in memory, but it's very limited in the amount of processes it can run at the same (especially if they require foreground capabilities), I'll talk more about it in a bit.
+Moving on, the Kernel runs in [supervisor mode](playstation-3#os-security-hierarchy) and communicates with Starbuck using the same [Inter-Process Communication](wii#starlets-os) (IPC) channel that the Wii relied on. This component can load multiple programs (processes) in memory, but it's very limited in the number of processes it can run simultaneously (especially if they require foreground capabilities), I'll talk more about it in a bit.
 
 ![Overview of the privilege levels in the Wii U, after combining both operating systems.](os_levels.png)
 
@@ -793,7 +793,7 @@ Thirdly, Starbuck disposes of **considerable amounts of memory within Latte** to
 
 Next, Starbucks embeds **SHA-1** and **AES-128** accelerators on its hardware to hash, encrypt and decrypt data without performance penalties.
 
-Moving on, while Stabuck is technically an outdated [ARM9 CPU](nintendo-ds#tab-2-2-a-question-about-the-hardware-choice), Nintendo enhanced it with a custom **eXecute Never** (XN) controller that restricts which memory locations Starbuck may execute [@anti_piracy-xn]. The XN block fulfils the role of an [NX bit](xbox-360#the-hypervisors-duties).
+Moving on, while Starbuck is technically an outdated [ARM9 CPU](nintendo-ds#tab-2-2-a-question-about-the-hardware-choice), Nintendo enhanced it with a custom **eXecute Never** (XN) controller that restricts which memory locations Starbuck may execute [@anti_piracy-xn]. The XN block fulfils the role of an [NX bit](xbox-360#the-hypervisors-duties).
 
 Finally, encryption keys and certificates are stored in **OTP memory** inside Latte and both Espresso and Starbuck can seal access to each entry as soon as they are finished with it.
 
@@ -863,7 +863,7 @@ On 2013, during the 30th Chaos Communication Congress, fail0overflow published a
 
 Taking into account that this was the first security-related presentation about the Wii U, the immense amount of work and achievements presented were astonishing. With this, homebrew developers could now start fiddling with vWii entry points.
 
-Be as it may, there were still some gaps to be solved. Native homebrew was still not possible as Wii U executables are still checked for their RSA checks. Plus, there was system code (i.e. `boot2`) remaining to be extracted and decrypted.
+Be as it may, there were still some gaps to be solved. Native homebrew was still not possible as Wii U executables still require valid RSA signatures. Plus, there was system code (i.e. `boot2`) remaining to be extracted and decrypted.
 
 In any case, fail0verflow didn't publish their Wii U exploits right away, as they worried it would lead to piracy developments before homebrew or Linux support [@cpu-fail0verflow15]. They did however publish a guide to write Wii U code (including the possibility of bringing in Linux). Their environment still relied on vWii, with no access to Cafe OS or the whole of MEM2 [@anti_piracy-maxternal], although it provided instructions for re-enabling multi-coring on Espresso.
 
