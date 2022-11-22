@@ -669,7 +669,7 @@ Once in vWii mode, the Wii's [Home Menu](wii#return-to-home) is also capable of 
 
 ![The Wii System Menu in vWii Mode. Not much difference except for three new channels installed (related to the Wii U) and others removed. Take a look at the thin letterboxing produced by the video encoder trying to fit the original 480p image in a 720p/1080p signal.](screenshots/vwii/system.jpg)
 
-vWii mode doesn't necessarily require a TV to use. If the user chose to activate the GamePad, this will work as a display, sensor bar and 'classic controller' (an optional accessory during the Wii days).
+vWii mode doesn't necessarily require a TV to use. If the user chose to activate the GamePad, this will work as a display, sensor bar and 'classic controller' (an optional accessory during the Wii days). The last function, however, is only available for Wii games purchased from the eShop (part of the Virtual Console catalogue).
 
 ![vWii mode with GamePad enabled, notice how my camera captured the two infrared lights being emitted by the GamePad.](photos/gamepad_vwii.jpg)
 
@@ -735,7 +735,7 @@ Apart from discs, users had the option to buy Wii U games and expansions (a.k.a 
 
 ![Main screen of the eShop store.](screenshots/store.jpeg)
 
-On the surprising side, the Virtual console inventory has been expanded with titles from [Nintendo DS](nintendo-ds) and [Game Boy Advance](game-boy-advance). The structure of a VC game is the same as the Wii's, where both the emulator and game are packaged up as a game title. In other words, there's no shared emulator, unlike the [PlayStation 3](playstation-3#backwards-compatibility).
+On the surprising side, the Virtual console inventory has been expanded with [Wii](wii), [Nintendo DS](nintendo-ds) and [Game Boy Advance](game-boy-advance) titles. In the case of DS and GBA ones, the structure of a VC game is the same as their predecessors' (Wii's VC games), where both the emulator and game are packaged up as a game title. In other words, there's no shared emulator, unlike the [PlayStation 3](playstation-3#backwards-compatibility).
 
 Finally, eShop purchases are installed into the eMMC storage or external USB devices, whichever the user prefers.
 
