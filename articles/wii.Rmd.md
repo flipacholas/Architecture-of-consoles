@@ -106,9 +106,9 @@ Super Mario Galaxy (2007).
 
 Gamecube games lacked proper support for widescreen displays (that is, composing 16:9 frames, departing from the traditional 4:3). Nevertheless, Flipper was already able to do so and a handful of games provided options to activate it, although this was still considered an exclusive feature.
 
-Truth to be told, the video encoder always outputs a PAL or NTSC-compliant frame, so this 'widescreen' feature works by drawing a wider internal frame buffer and letting the video encoder squash it in order to fit in a 480i or 576i signal. Afterwards, your 16:9 TV would stretch the image so the final result could look *more or less* in the correct ratio. This technique is not new, it has been used in film projection and it's referred to as **anamorphic widescreen**.
+Be as it may, the framebuffer remains identical and the video encoder still outputs a PAL or NTSC-compliant frame, so this 'widescreen' feature is instead accomplished by **widening the field of view** in the projection matrix. The result is a scene rendered with a larger view angle that now appears squashed horizontally. However, the widescreen TV also plays a part in this process, as it will subsequently stretch the 4:3 frame (coming from the console) and the displayed image will thus look *more or less* in the correct ratio. If you are curious, this technique is not new, it's been used in film projection and it's referred to as **anamorphic widescreen**. Also, it's amusing how SNES developers had to deal with the [opposite effect](super-nintendo#display-modalities).
 
-Back to the point, the Wii standardised this feature by allowing 'widescreen mode' to be activated from its system settings, which in turn promoted its _wide_ adoption (pun intended).
+Back to the point, the Wii standardised this feature by allowing a 'widescreen mode' to be activated from its system settings, which in turn promoted its _wide_ adoption (pun intended).
 
 #### Screen Interaction {.tab}
 
