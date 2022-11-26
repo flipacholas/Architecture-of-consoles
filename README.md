@@ -4,7 +4,7 @@ This repo holds the articles that constitute the [Architecture of Consoles] seri
 
 This repo is structured as follows:
 
-* The `articles` folder contains writings in RMarkdown format, along with some front-matter (mainly meta-data).
+* The `articles` folder contains writings in Pandoc Markdown format, along with some front-matter (mainly meta-data) and R snippets.
     * Each file corresponds to a specific console, except `_index` which corresponds to [the index of consoles page].
 * `resources` contains a list of strings that are referenced across the site and are isolated for translation purposes.
 
