@@ -48,6 +48,12 @@ other = "Translations"
 [related]
 other = "More at '{{ . }}' &raquo;"
 
+[ebook_edition_title]
+other = "Get the eBook editions"
+
+[ebook_edition_content]
+other = 'You can now read the <a href="{{ .consoles }}">Architecture of Consoles</a> series on eBook readers too. <a href="{{ .ebooks }}">Check it out here</a>.'
+
 # Navigation
 
 [home]
@@ -84,6 +90,9 @@ other = "Switch to modern edition"
 other = "Switch to classic edition"
 
 # Multi edition
+
+[ebook_edition]
+other = "eBook edition"
 
 [about_edition]
 other = "About this edition"
@@ -135,7 +144,7 @@ other = "If you find my articles interesting then please consider donating. Your
 other = "As a token of gratitude, your name will be included in the credits section of the next article or your nominated one, unless stated otherwise."
 
 [contribution_footer_ebook]
-other = 'You can also buy the <a href="{{ . }}">eBook edition</a> in English. I treat the profits as donations.'
+other = 'You can also buy the <a href="{{ . }}">eBook edition</a> in English. I treat profits as donations.'
 
 [contribution_suggestions]
 other = 'Alternatively, you can help out by <a href="{{ . }}">suggesting changes</a> and/or <a href="{{ . }}">adding translations</a>.'
@@ -206,7 +215,7 @@ other = 'Interactive model available in the <a href="{{ . }}">modern edition</a>
 other = 'Interactive player available in the <a href="{{ . }}">modern edition</a>'
 
 [goto_classic]
-other = 'If you use accessibility tools or legacy browsers, <a href="{{ .classic }}">switch to the ‘classic’ edition</a>. You can also get the <a href="{{ .ebook }}">eBook edition</a>.'
+other = 'If you use accessibility tools or old browsers, <a href="{{ .classic }}">switch to the ‘classic’ edition</a>.'
 
 [audio_samples]
 other = 'Audio samples'
