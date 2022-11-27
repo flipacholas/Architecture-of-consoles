@@ -25,7 +25,9 @@ top_tabs:
     caption: "Bus 'A' and 'B' are address buses, the data bus follows the trail of bus 'B' and it's 8 bits wide."
 
 # Historical
-aliases: [/projects/consoles/super-nintendo/]
+aliases:
+  - /projects/consoles/super-nintendo/
+  - /writings/consoles/snes/
 ---
 
 ## A quick introduction
@@ -65,7 +67,7 @@ In summary, the 5A22 features:
   - Unlike later [MIPS CPUs](nintendo-64#cpu), there isn't a mixed instruction set with dedicated opcodes for 8-bit and 16-bit words. Instead, the same instruction set will be interpreted differently based on the mode activated.
   - For compatibility reasons, the CPU always starts in 'emulation' mode (pure 6502) and it's up to the program to switch to a particular 'native' mode to enable 16-bit functionality. On a side note, it's amusing how Intel's x86 still applies the [same _modus operandi_](xbox#boot-process) on their modern CPUs.
 - **16-bit registers**. Also and due to the different modes of operation, the accumulator (where arithmetic operations are performed) and index register (used to compute memory addresses) can switch between 16-bit and 8-bit modes.
-- **16-bit internal data bus** and a **8-bit external data bus**: Meaning that there're performance penalties for moving values larger than 8 bits across memory (the CPU spends additional cycles), especially considering most instructions are 16-bit long. Although, the overall cost is relative since Ricoh's variant includes DMA units (explained later on) and the CPU clock will vary depending on the operation.
+- **16-bit internal data bus** and an **8-bit external data bus**: Meaning that there're performance penalties for moving values larger than 8 bits across memory (the CPU spends additional cycles), especially considering most instructions are 16-bit long. Although, the overall cost is relative since Ricoh's variant includes DMA units (explained later on) and the CPU clock will vary depending on the operation.
 - **24-bit address space**: Allowing the CPU to access **up to 16 MB worth of memory**. Just like the [Motorola 68000](mega-drive-genesis#cpu), except that the 65C816 gets its 24-bit addresses by combining extra 8-bit registers (`DBR` and `PBR`) with the original 16-bit addressing lines of the 6502 [@cpu-chibi]. Overall, this methodology is similar to using an [internal mapper](pc-engine#memory-access).
 
 ### Ricoh's additions
@@ -131,7 +133,7 @@ Kirby's Dream Land 3 (1997).
 
 :::
 
-Some games like 'The Legend of Zelda: A Link to the Past' account for this factor so shapes are explicitly squashed by design, which look correct after being stretched by the TV. This, however, is an exceptional case since the majority of games take no extra measure to account for this factor.
+Some games like 'The Legend of Zelda: A Link to the Past' account for this factor so shapes are explicitly squashed by design, which looks correct after being stretched by the TV. This, however, is an exceptional case since the majority of games take no extra measure to account for this factor.
 
 ### Organising the content
 
@@ -204,7 +206,7 @@ The S-PPU provides many operations for backgrounds, but these can't be chosen ar
   - The colour palette is particularly bland since this mode is the only one allowing the largest number of layers.
 - **Mode 1**: 2 layers with 16 colours each + 1 layer with 4 colours.
   - One layer can be split into foreground and background.
-  - This is the most common mode useed.
+  - This is the most common mode used.
 - **Mode 2**: 2 layers with 16 colours each.
   - This mode has an extra effect: Layers can have each of their columns scrolled independently (similarly to [GameBoy](game-boy#graphics) effects but vertically scrolled).
 - **Mode 3**: 1 Background layer with 128 colours + 1 Background with 16 colours.
@@ -255,7 +257,7 @@ Truth to be told, I still haven't mentioned the most important characteristic of
 
 ![Allocated Background map.](mode7/map.png){title="Map"}
 
-![Rendered frame on the screen.<br>The first quarter of scan-lines use another mode to simulate distance, Mode 7 starts at the second quarter (this is possible thanks to HDMA).](mode7/displayed.png){title="Displayed"}
+![Rendered frame on the screen.<br>The first quarter of scan-lines uses another mode to simulate distance, Mode 7 starts at the second quarter (this is possible thanks to HDMA).](mode7/displayed.png){title="Displayed"}
 
 F-Zero (1990).
 
@@ -289,7 +291,7 @@ All of the aforementioned advancements will be futile unless the console sends t
 
 Along with the console, Nintendo bundled a 'Multi Out to composite' cable since that was pretty much the common denominator of TVs back then. In Europe however, the **SCART** port was also very popular as many set-top boxes and VCRs relied on it. A great thing about SCART is that it can also carry many types of signals, this enables AV equipment to use the most optimal signal type without encountering compatibility issues. Unfortunately, Nintendo never shipped an official SCART cable that took advantage of the RGB pins exposed in the Super Nintendo.
 
-Nonetheless, Nintendo altered the pinout of its PAL consoles to comply with the SCART protocol, and in doing so it replaced the 'composite sync' pin for a 12 Volts one (which tells the TV to set the 4:3 aspect ratio). So, even though Multi out is 'universal', the resulting RGB cables, if any, are region-specific.
+Nonetheless, Nintendo altered the pinout of its PAL consoles to comply with the SCART protocol, and in doing so it replaced the 'composite sync' pin with a 12 Volts one (which tells the TV to set the 4:3 aspect ratio). So, even though Multi out is 'universal', the resulting RGB cables, if any, are region-specific.
 
 I think the real benefits of Multi Out started to become evident during present times, as it allowed users to take advantage of the RGB signal with their state-of-the-art tellies without tampering with the internals of this console. Although, unlike composite and S-Video, RGB requires an extra 'sync' signal. For this, the cable can be wired up to capture the sync signal from composite or S-Video; or for best results, use a dedicated sync line called 'composite sync'. But, as mentioned in the previous paragraph, only NTSC consoles carried the latter.
 
@@ -299,9 +301,9 @@ Just like graphical abilities, the audio department of this console has gone thr
 
 ### Architecture
 
-Some companies [partner with Yamaha](mega-drive-genesis#audio), others device an [in-house solution](pc-engine#audio). Well, Nintendo partnered with Sony so they provide them a good synthesiser. And so, Sony gave them two processors: a DSP that can sequence and mix samples; and a CPU that drives that DSP. 
+Some companies [partnered with Yamaha](mega-drive-genesis#audio), others devised an [in-house solution](pc-engine#audio). Well, Nintendo partnered with **Sony** (the electronics conglomerate and authors of the _Walkman_) so they provide them with a sophisticated synthesiser. And so, Sony gave them two processors: a DSP that can sequence and mix samples; and a CPU that drives that DSP. 
 
-Hence, the resulting audio subsystem is composed of:
+Hence, the resulting audio subsystem of this console is composed of:
 
 - **The S-DSP**: Plays ADPCM samples across eight different channels, they are mixed and sent through the audio output. The DSP is capable of manipulating samples with 16-bit resolution and a sampling rate of 32 kHz, it also provides:
   - **Stereo Panning**: Distributes our channels to provide stereo sound.
@@ -337,7 +339,7 @@ As a consequence, there were tons of different sound drivers found on the market
 
 ### Pitch control
 
-Pitch bending enables to play different notes using the same sample, the S-SMP also included a useful bender to alter the pitch in a smooth manner. Take a look at this extracted channel from Mother 2/Earthbound, both examples come from the original soundtrack, however, the first one has the pitch control disabled.
+Pitch bending enables to produce distinct notes using the same sample. Well, the S-SMP included a useful bender to alter the pitch in a smooth manner. Take a look at this extracted channel from Mother 2/Earthbound, both examples come from the original soundtrack, however, the first one has the pitch control disabled.
 
 ![No pitch bend.](pitch/no_pitch){.toleft video="true"}
 
@@ -345,7 +347,7 @@ Pitch bending enables to play different notes using the same sample, the S-SMP a
 
 ### Evolution from the NES
 
-In order to demonstrate the evolution of sounds from the NES to the Super NES, here are two music scores, one from a NES game and another from its Super NES sequel. Both used the same composition:
+In order to demonstrate the evolution of sounds from the NES to the Super NES, here are two music scores, one from an NES game and another from its Super NES sequel. Both used the same composition:
 
 ![Mother (1989).](snowman_nes){.toleft video="true"}
 
@@ -373,7 +375,7 @@ This combination of techniques allowed the music to only require five channels i
 
 ### Stereo confusion
 
-The DSP's volume controls are organised in chunks of 8-bits signed values [@audio-gst], this means that the volume can be set up with **negative values**. *But hang on*, if '0' means mute, what would a number like '-1' do? Well, it will **invert the signal**.
+The DSP's volume controls are organised in chunks of signed 8 bits values [@audio-gst], this means that the volume can be set up with **negative values**. *But hang on*, if '0' means mute, what would a number like '-1' do? Well, it will **invert the signal**.
 
 This is particularly used for creating a special **surrounding effect**, which is accomplished by setting the stereo channels to output **out of phase** (one channel outputs the normal signal and the other outputs the same signal but inverted).
 
@@ -390,7 +392,7 @@ There were, however, some tools distributed by Nintendo, Intelligent Systems and
 - Different types of **development units** with the capacity of being controlled by a **debugger** from a host machine (typically running MS-DOS).
 - **Flashable cartridges** (a.k.a _Flashcarts_). Not for _piracy_ but to enable developers to try out their code on retail units.
 - 65816 and SPC700 **assemblers**.
-- **Development Manuals** which explain from a low-level perspective how this console works. Some manuals also notes the guidelines and norms developers must abide by to get their game approved by Nintendo (required for distribution).
+- **Development Manuals** which explain from a low-level perspective how this console works. These may also include guidelines and norms developers must abide by to get their game approved by Nintendo (required for distribution).
 
 Curiously enough, multiple game studios like Argonaut Software, Accolade, SN Systems and so forth also developed their own in-house equipment that provided more capabilities than the official offerings (i.e. memory editor, floppy disk reader, devkit as an ISA daughterboard, etc) [@games-devkit].
 
@@ -398,11 +400,11 @@ Curiously enough, multiple game studios like Argonaut Software, Accolade, SN Sys
 
 When it comes to accessing the cartridge, things get a lot more confusing compared to the relatively simpler mapping model of the NES. I find it interesting nonetheless, especially for understanding how it could be expanded.
 
-The 65C816 uses a 24-bit address bus. This allows it to access of to 16 MB worth of data however, and due to the way this console is designed, part of the address space is consumed by [memory-mapped components](nes#memory). Moreover, 65C816 only comes with 16 address lines, which are then combined with an internal register to form a 24-bit address. This is analogous to housing an [internal mapper](pc-engine#memory-access) and requiring [bank switching](nes#cartridgegame-data) to access extra data beyond the boundaries of the address bus. If you read other articles of the same generation, you'll find this methodology somewhat familiar.
+The 65C816 uses a 24-bit address bus, which allows it to access up to 16 MB worth of data. However and due to the way this console is designed, part of the address space is consumed by [memory-mapped components](nes#memory). Moreover, 65C816 only comes with 16 address lines, which are then combined with an internal register to form a 24-bit address. This is analogous to housing an [internal mapper](pc-engine#memory-access) and requiring [bank switching](nes#cartridgegame-data) to access extra data beyond the boundaries of the address bus. If you read other articles of the same generation, you'll find this methodology somewhat familiar.
 
 ![Example cartridge boards designed with different configurations [@photography-amos].<br>From top to bottom: LoROM (dual ROM with battery-backed SRAM), LoROM (single ROM with battery-backed SRAM) and LoROM (single ROM)](cartridges.png){.no-borders}
 
-That being said, when it comes to designing the cartridge, there are many ways of electrically connecting the address pins between the ROM and the CPU. Each take advantage of bank switching in a different way. There are two fundamental models that enables accessing up to **4 MB of ROM** and **64 KB of SRAM** [@games-memory]; and they work like this:
+That being said, when it comes to designing the cartridge, there are many ways of electrically connecting the address pins between the ROM and the CPU. Each takes advantage of bank switching in a different way. There are two fundamental models that enables accessing up to **4 MB of ROM** and **64 KB of SRAM** [@games-memory], and they work like this:
 
 - With the **LoROM Model**, ROM Data is available in 32 KB chunks with 128 banks to choose from [@games-bazzinotti]. SRAM, on the other side, fits in two banks, but it's been made accessible across 15 banks where ROM data can also be found.
   - This will mean the game/program may need to perform significant bank switching during execution. On the other side, half of the banks are mapped to part of WRAM as well (meaning ROM, SRAM and WRAM can be accessed without switching banks).
@@ -416,14 +418,14 @@ Something I haven't mentioned yet is that cartridges that bundle SRAM also need 
 
 Now, if programmers need more space, that's when derivative models of LoROM and HiROM come into place. For instance, two variations commonly referred to as **ExHiROM** and **ExLoROM** expand the ROM's addressing space by reducing the mirrored area. Both can access **~7.9 MB of ROM**.
 
-![Star Fox (1993) using the Super FX GSU chip to render 3D surfaces (the S-PPU only sees a background layer made of _erratic_ tiles).](fox.png){.open-float .pixel}
+![Star Fox (1993) uses the Super FX GSU chip to render 3D surfaces (the S-PPU only sees a background layer made of _erratic_ tiles).](fox.png){.open-float .pixel}
 
 Alternatively and most importantly, LoRom and HiROM can also be adapted to house **enhancement chips** in the cartridge. These are additional processors that expand the capabilities of the console. To name a few examples of new configurations:
 
 - The **MMC** model enables bank switching by the local enhancement chip. This was used by components like the **S-DD1** or the **SPC7110**, both hardware tile decompressors.
-- The **Super Accelerator System** model was designed for the much acclaimed **SA-1**, a secondary **65C816-based CPU** that operates at **10.74 MHz** and bundles extra functionality. It builds upon the MMC model with extra circuitry for the additional memory-mapped components.
+- The **Super Accelerator System** model was designed for the much-acclaimed **SA-1**, a secondary **65C816-based CPU** that operates at **10.74 MHz** and bundles extra functionality. It builds upon the MMC model with extra circuitry for the additional memory-mapped components.
 - Two extra configurations, one based on LoROM and the other on HiROM, make way for the **DSP** series of chips. These are the same derivative of the NEC µPD77C25 CPU, but running a different program. They provide vector and matrix computations [@games-dsp] and different games have used it to compute affine transformations, graphics decompressing and shortest path calculations.
-- The **SFX** model targets the popular **Super FX GSU** chip. This configuration maps up to 8 MB of ROM, where 2 MB are shared between the main CPU and the Super FX. The rest of the address space also includes additional backup RAM and SRAM. The Super FX is a proprietary processor made by Argonaut that it specialises in **3D surface rendering** and **2D affine transformations**, the results are then streamed as tiles for the S-PPU to be able to display. A handful of notable games used it for drawing 3D models and/or extend Mode 7 for sprites (as Mode 7 can only transform backgrounds).
+- The **SFX** model targets the popular **Super FX GSU** chip. This configuration maps up to 8 MB of ROM, where 2 MB are shared between the main CPU and the Super FX. The rest of the address space also includes additional backup RAM and SRAM. The Super FX is a proprietary processor made by Argonaut that specialises in **3D surface rendering** and **2D affine transformations**, the results are then streamed as tiles for the S-PPU to be able to display. A handful of notable games used it for drawing 3D models and/or extending Mode 7 for sprites (as Mode 7 can only transform backgrounds).
 
 `r close_float_group()`
 
@@ -433,14 +435,14 @@ It's difficult to ignore the impact this engineering made on games during the 90
 
 With the Super Nintendo, Nintendo once again became the sole authority on game distribution. Thus, in an attempt to enforce the company's rules, engineers devised three different layers to protect cartridges against third-party distribution (and subsequently circumvention of royalties).
 
-Firstly, the external shape of cartridges **is different between regions**, so they won't fit on consoles from a different region. Be as it may, anybody could easily go around this by using a third-party adapter.
+Firstly, the external shape of cartridges **is different between regions**, so they won't fit on consoles from different regions. Be as it may, anybody could easily go around this by using a third-party adapter.
 
 Secondly, this console, like the NES, still incorporates the [**10NES** protection system](nes#anti-piracy-and-region-lock) to lock out non-authorised distributors. Be as it may, the CIC chip was eventually cloned.
 
-As a final layer - and especially made to protect against bootlegging - games also included a chain of piracy checks like:
+As a final layer (and specially made to protect against bootlegging) games also included a chain of piracy checks like:
 
 1. Comparing the SRAM size (bootlegs normally include large SRAM blocks to fit any kind of game).
-2. A series of checksums on the code that check if the previous check was removed. These checks would be dispersed at different stages of the game, so they'd be difficult to find.
+2. A series of checksums on the code to check if the previous comparison was removed. These checks would be dispersed at different stages of the game, so they'd be difficult to find.
 
 This could be nullified by manually removing these routines but, naturally, it would take significant time to find all of them. After all, they would be scattered around the game only to upset the player (and eventually make them buy a legitimate copy). Truth to be told, you'll notice that most ROMs surfing the internet had all their piracy checks removed.
 
