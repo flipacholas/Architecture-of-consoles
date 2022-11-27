@@ -163,7 +163,7 @@ The Audio functionality is handled by a custom chip called **AICA** made by Yama
   - Curiously enough, it also provides **two MIDI pins** to connect a MIDI instrument, although this is meant to be used during development.
 - **2 MB of SDRAM**: Stores sound data and programs. It's filled by the main CPU using DMA.
 - An **ARM7DI** running at ~2.82 MHz: Controls the Sound IC. This CPU is programmed by booting a small software (called [driver](super-nintendo#audio)) stored in SRAM which interprets the audio data and manipulates the Sound IC accordingly. 
-  - If you wonder, a similar CPU is also used [here](game-boy-advance).
+  - If you wonder, a similar CPU is also found in the [Game Boy Advance](game-boy-advance).
 - **Memory Controller**: Interfaces the 2 MB of SDRAM.
 
 To help with development, the official SDK included multiple sound drivers for different needs (sequencing, decoding, etc).

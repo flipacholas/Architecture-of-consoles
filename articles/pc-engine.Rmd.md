@@ -50,7 +50,7 @@ Inside this console, we find the **HuC6280**, a chip made by **Hudson Soft** tha
 
 The HuC6280 is not an off-the-shelf component, like the [Z80](master-system#cpu), but instead a proprietary CPU designed by NEC. After checking out the official docs, it does seem to replicate a lot of behaviour from the famous **MOS 6502** and **WDC's 65C02**. That being said, what does all of this mean for the programmer?
 
-Before we start, we've already covered some parts of the MOS 6502 [here](nes#cpu) and also described a 16-bit variant made by WDC and Ricoh [here](super-nintendo#cpu), in case you want to check them out first.
+Before we start, we've already covered some parts of the MOS 6502 [in the NES article](nes#cpu) and also described a 16-bit variant made by WDC and Ricoh [in the SNES one](super-nintendo#cpu), in case you want to check them out first.
 
 The 65C02 is another modified version of the MOS 6502 made by Western Design Center, it's a lot more efficient due to its manufacturing approach (CMOS). From the software side, the 65C02 adds a couple of new instructions and modifies the behaviour of some existing ones [@cpu-opcodes].
 
