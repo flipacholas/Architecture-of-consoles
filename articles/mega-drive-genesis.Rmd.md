@@ -263,7 +263,7 @@ Compared to traditional PSG synthesisers, this was a drastic improvement: You we
 
 #### Texas Instruments SN76489 {.tab}
 
-![PSG Channels.<br>Sonic The Hedgehog (1991).](fm_single){.tab-float video="true"}
+![PSG Channels.<br>Sonic The Hedgehog (1991).](psg_single){.tab-float video="true"}
 
 The **Texas Instruments SN76489** is a **PSG chip** that can produce three pulse waves and one noise.
 
