@@ -251,7 +251,7 @@ By the way, for the Italian readers, as you may know, the Wii U's codenames are 
 
 Homologous to Nintendo's good relationship with IBM, the company also maintained a unique partnership they started all the way back with the Nintendo 64.
 
-Artx was the group known for designing the [Reality Coprocessor](nintendo-64#graphics) (then as part of Silicon Graphics) which then went on to invent [Flipper](gamecube#graphics), the GameCube's unique graphics chip. Years later, after being acquired by 'ATI', they supplied [GX](wii#graphics), a sped-up version of Flipper for the Wii. But most importantly and around the same time, ATI had been working on a cutting-edge invention for Microsoft. The result was [Xenos](xbox-360#graphics) and [its new shader model](xbox-360#a-new-foundation-on-the-way) for the masses.
+Artx was the group known for designing the [Reality Coprocessor](nintendo-64#graphics) (then as part of Silicon Graphics) which then went on to invent [Flipper](gamecube#graphics), the GameCube's unique SoC that houses its signature graphics processor. Years later, after being acquired by 'ATI', they supplied [Hollywood](wii#graphics) for the Wii, from which we find a sped-up version of Flipper's GPU. But most importantly and around the same time, ATI had been working on a cutting-edge invention for Microsoft. The result was [Xenos](xbox-360#graphics) and [its new shader model](xbox-360#a-new-foundation-on-the-way) for the masses.
 
 Years after the release of the Xbox 360, ATI got acquired by a silicon company named 'AMD', which brings us to explain a bit of AMD history...
 
@@ -269,13 +269,15 @@ Now that we've positioned AMD on the map, let's analyse the state of ATI's Radeo
 
 After the introduction of Xenos and its new architecture based on the 'unified shaders' model, ATI was still too busy with Microsoft's project so they couldn't allocate enough resources to bring Xenos to the PC market in the short term. Thus, the remaining teams focused on maintaining their classical x1000/R500 series, which left enough gap for Nvidia to ship their unified card named **GeForce 8** (featuring the **Tesla** architecture) before ATI. Finally, in 2007 (two years after Xenos), ATI presented the **Radeon 2000** series (codenamed **R600**) and its **TeraScale** architecture. The new design, now free of Microsoft's budget and licensing control, brought all the advancements of Xenos along with optional extras for those users who were willing to pay the premium pricing.
 
-Now, for the Wii U, ATI prepared a Terascale-based card for Nintendo, but it's never been officially confirmed which model they based it on. In any case, Nintendo calls it **GX2** and fail0verflow relates it to the Radeon HD 4000 series (codenamed **R700**) [@cpu-fail0verflow]. R700-based cards launched in 2008 and were an incremental update to the R670 and R600 series. The most apparent changes are the inclusion of faster video decoding hardware and support for OpenCL, though only the former will be usable on the Wii U.
+Now, for the Wii U, ATI prepared a Terascale-based card for Nintendo, but it's never been officially confirmed which model they based it on. Fail0verflow relates it to the Radeon HD 4000 series (codenamed **R700**) [@cpu-fail0verflow]. For reference, R700-based cards launched in 2008 and were an incremental update to the R670 and R600 series. The most apparent changes are the inclusion of faster video decoding hardware and support for OpenCL, though only the former will be usable (to some degree) on the Wii U.
 
-### Architecture of GX2
+In any case, the Wii U's GPU goes by two names, Nintendo calls it **GPU7** when referring to the hardware and **GX2** when referring to the API. For this article, I'll use the term 'GPU7' as I'll be focusing on the physical capabilities.
 
-The TeraScale architecture is the materialisation of Xenos/Crayola ported to the PC market... and GX2 is TeraScale brought back to a console. Its most identifiable trait is the use of an [unified shader model](xbox-360#a-new-foundation-on-the-way) that centralises both vertex and pixel units into a single block, now called **SIMD unit**.
+### Architecture of GPU7
 
-It's worth emphasising that when Xenos arrived, the API model was still based on the [segregated shader model](xbox#graphics), so the libraries didn't provide additional functionality that was now possible with a consolidated compute unit. Well, thanks to the subsequent updates (Direct3D 10 and OpenGL 3.3), that's not the case anymore (albeit only OpenGL is available on the Wii U).
+The TeraScale architecture is the materialisation of Xenos/Crayola ported to the PC market... and GPU7 is TeraScale brought back to a console. Its most identifiable trait is the use of a [unified shader model](xbox-360#a-new-foundation-on-the-way) that centralises both vertex and pixel units into a single block, now called **SIMD unit**.
+
+It's worth emphasising that when Xenos arrived, the API model was still based on the [segregated shader model](xbox#graphics), so the libraries didn't provide additional functionality that was now possible with a consolidated compute unit. Well, thanks to the subsequent updates (Direct3D 10 and OpenGL 3.3), that's not the case anymore. Back to the Wii U, GX2 is the only API available and it's based on **OpenGL 3.3**.
 
 #### Organising the content
 
@@ -289,17 +291,17 @@ Conversely, the Wii U's EDRAM is larger than the Xbox 360's (meaning the need fo
 
 This is the signature section of the Architecture of Consoles series where I attempt to explain the process of converting the geometry (coming from the CPU) into pixels (which users eventually see on the telly). Nevertheless, in this article the explanations will be a bit different as the fundamentals of TeraScale were already explained in the [Xbox 360 article](xbox-360#overview).
 
-The most important changes since Xenos is the implementation (or better said, standardisation) of **Geometry Shaders** and **Compute Shaders**, both of which take advantage of the new capabilities of the unified shaders. This doesn't mean GX2 had to be completely re-designed to make way for these two stages, what happened is that APIs had been expanded to enable new applications without considerably changing the existing circuitry.
+The most important changes since Xenos is the implementation (or better said, standardisation) of **Geometry Shaders** and **Compute Shaders**, both of which take advantage of the new capabilities of the unified shaders. This doesn't mean GPU7 had to be completely re-designed to make way for these two stages, what happened is that APIs had been expanded to enable new applications without considerably changing the existing circuitry.
 
-Being an AMD/ATI chip built for a Nintendo console, GX2 supports two shader APIs, **OpenGL's GLSL 3.3** and **OpenGL ESSL**. The SDK also comes with some extensions to provide functionality only available on GX2, but it doesn't support OpenCL and certainly not Direct3D.
+Being an AMD/ATI chip built for a Nintendo console, GX2 supports two shader APIs, **OpenGL's GLSL 3.3** and **OpenGL ESSL**. The SDK also comes with some extensions to provide functionality only available on GPU7, but it doesn't support OpenCL and certainly not Direct3D.
 
-![Overview of the graphics pipeline in GX2.](gpu/gpu_pipeline.png)
+![Overview of the graphics pipeline in GPU7.](gpu/gpu_pipeline.png)
 
-Be as it may, GX2 still inherits the designs of the Radeon R700 series, so GX2's pipeline is somewhat aligned to Direct3D 10.1 and OpenGL 3.3 standards, even though not all shader languages are supported.
+Be as it may, GPU7 still inherits the designs of the Radeon R700 series, so GPU7's pipeline is somewhat aligned to Direct3D 10.1 and OpenGL 3.3 standards. Although, their respective shader languages aren't natively understood by GPU7 (they require proprietary compilers shipped with the official SDK).
 
 As a side note, typical Radeon cards for the PC market use AGP or PCI-e bus interfaces. Well, the Wii U hardware still relies on the old-school practice of exposing I/O registers as memory locations [@graphics-mmio]. I guess neither Nintendo nor AMD were concerned as this is all part of a custom design.
 
-Let's now go over the pipeline, stage by stage. Since the design is very similar to the Xbox 360's [Xenos GPU](xbox-360#graphics), I'll try to focus on the novelties of GX2 instead to avoid repeating information.
+Let's now go over the pipeline, stage by stage. Since the design is very similar to the Xbox 360's [Xenos GPU](xbox-360#graphics), I'll try to focus on the novelties of GPU7 instead to avoid repeating information.
 
 #### Commands {.tabs .active}
 
@@ -307,19 +309,19 @@ Let's now go over the pipeline, stage by stage. Since the design is very similar
 
 With most graphics cards, especially ATI/AMD ones, the starting point is always the **Command Processor** [@graphics-r700isa]. As we've seen many times before, this is the door between the GPU and the outside world (i.e. the CPU).
 
-In the case of the GX2, the Command Processor reads commands stored in RAM and activates the necessary engines within the chip. Most notably, GX2 features a dedicated **Direct Memory Access** (DMA) controller to manipulate data between MEM1 and MEM2 without the intervention of the CPU.
+In the case of the GPU7, the Command Processor reads commands stored in RAM and activates the necessary engines within the chip. Most notably, GPU7 features a dedicated **Direct Memory Access** (DMA) controller to manipulate data between MEM1 and MEM2 without the intervention of the CPU.
 
-Furthermore, DMA may work asynchronously (out of pace with the rest of the circuitry), so GX2 provides a few commands to refresh its cache and synchronise with DMA (in the form of a semaphore) to maintain order.
+Furthermore, DMA may work asynchronously (out of pace with the rest of the circuitry), so GPU7 provides a few commands to refresh its cache and synchronise with DMA (in the form of a semaphore) to maintain order.
 
 #### Vertex {.tab}
 
 ![Overview of the vertex stage. You'll soon find that this stage and the pixel stage are not _that_ different.](gpu/pipeline_vertex.png){.tab-float}
 
-At first glance, this stage is pretty much in line with Xenos/Crayola except that some blocks have been expanded (increased cache) while others have contracted (reduced number of ALU units and the Memory Export path is shorter). None of this necessarily means a performance decrease, however, as let's not forget GX2 is ~7 years ahead of Xenos.
+At first glance, this stage is pretty much in line with Xenos/Crayola except that some blocks have been expanded (increased cache) while others have contracted (reduced number of ALU units and the Memory Export path is shorter). None of this necessarily means a performance decrease, however, as let's not forget GPU7 is ~7 years ahead of Xenos.
 
-To start with, let's take a look at the ALUs. Xenos resorted to three shader pipes (blocks of 16 ALUs) to execute the vertex shaders. GX2 only bundles two blocks of 16 ALUs, but each block is now wrapped around a larger circuitry named **SIMD processor**, which I assume denotes the addition of larger circuitry (dedicated **8 KB of L1 cache**, plus the extra interfaces and control units) to sustain more concurrent traffic. Furthermore, each ALU is made of four 'sub-ALUs', allowing the former to compute **vectors made of four scalars** at once. ATI/AMD calls these sub-ALUs **stream processors** and it's a common marketing term.
+To start with, let's take a look at the ALUs. Xenos resorted to three shader pipes (blocks of 16 ALUs) to execute the vertex shaders. GPU7 only bundles two blocks of 16 ALUs, but each block is now wrapped around a larger circuitry named **SIMD processor**, which I assume denotes the addition of larger circuitry (dedicated **8 KB of L1 cache**, plus the extra interfaces and control units) to sustain more concurrent traffic. Furthermore, each ALU is made of four 'sub-ALUs', allowing the former to compute **vectors made of four scalars** at once. ATI/AMD calls these sub-ALUs **stream processors** and it's a common marketing term.
 
-Now, instead of the Sequencer dispatching the calculations right away as they come, they are first combined into a larger batch of **64 vertices** along with some meta-data to control the operation [@graphics-r7xxacceleration], this is called a **Wavefront**. The batch is then sent to the two SIMDs and, considering the fact there're only 32 ALUs in GX2, they take **four cycles** to be computed.
+Now, instead of the Sequencer dispatching the calculations right away as they come, they are first combined into a larger batch of **64 vertices** along with some meta-data to control the operation [@graphics-r7xxacceleration], this is called a **Wavefront**. The batch is then sent to the two SIMDs and, considering the fact there're only 32 ALUs in GPU7, they take **four cycles** to be computed.
 
 I assume this new design is what enables manufacturers to devise different ranges of graphics cards, with the most expensive including more SIMD units (thus taking fewer clock cycles to complete). As game consoles are not particularly famous for embedding high-end hardware (instead, they compensate by being more efficient), four clock cycles are what it takes in the Wii U to process a Wavefront.
 
@@ -327,7 +329,7 @@ I assume this new design is what enables manufacturers to devise different range
 
 ![Overview of the geometry stage.](gpu/pipeline_geometry.png){.tab-float}
 
-The geometry shader is a new stage of the graphics pipeline that appeared right after the two famous APIs (Direct3D and OpenGL) incorporated the unified shader into their specification. The purpose of this new stage is to allow developers to manipulate primitives (points, lines or triangles) as opposed to single vertices [@graphics-geometryshader]. This can be useful for [proceduraly generating](playstation-2#infinite-worlds) new geometry out of existing one (i.e. devise shadows, fur and so forth). The GX2, like the Radeon R700, inherits compliance with OpenGL 3.3 and therefore supports this new shader type.
+The geometry shader is a new stage of the graphics pipeline that appeared right after the two famous APIs (Direct3D and OpenGL) incorporated the unified shader into their specification. The purpose of this new stage is to allow developers to manipulate primitives (points, lines or triangles) as opposed to single vertices [@graphics-geometryshader]. This can be useful for [proceduraly generating](playstation-2#infinite-worlds) new geometry out of existing one (i.e. devise shadows, fur and so forth). The GPU7, like the Radeon R700, inherits compliance with OpenGL 3.3 and therefore supports this new shader type.
 
 Behind the scenes, however, the geometry stage is just another 'mode' of the vertex stage. To make a long story short, if geometry shaders are activated, the vertex stage doesn't forward the data for rasterisation right away. Instead, the outputted data is saved into a dedicated buffer in MEM2 and the vertex stage starts over but fetches data from the geometry buffer. Then, Wavefronts are assembled to grab the indices of up to 64 primitives along with meta-data denoting a geometry shader will be executed. Afterwards, the Sequencer reads the new Wavefront, parses the primitives and sends them to the two SIMDs for computing. The process is repeated until all primitives are processed.
 
@@ -347,7 +349,7 @@ The rasteriser can compose frames of up to 8192 x 8192 pixels using 128-bit pixe
 
 ![Overview of the Pixel/Fragment Shader stage.](gpu/pipeline_pixel.png){.tab-float}
 
-The pixel shader stage follows the same methodology as the vertex shader except it's now pixels being shuffled around. After going through Xenos' pixel capabilities and GX2's new vertex pipeline, I'm afraid there's not a lot left to explain here.
+The pixel shader stage follows the same methodology as the vertex shader except it's now pixels being shuffled around. After going through Xenos' pixel capabilities and GPU7's new vertex pipeline, I'm afraid there's not a lot left to explain here.
 
 The block that fetches textures to the SIMD units is now called **Texture Pipe** and there're two of them. Each contains **8 KB of L1 cache** and they both share **32 KB of L2 cache** when accessing RAM. Additionally, they can perform up to 16x Anisotropic filtering on the spot and can also fetch cube maps (used for environmental mapping/reflections).
 
@@ -359,13 +361,13 @@ I guess it's worth pointing out that the shader model (OpenGL GLSL 3.3) adds an 
 
 Once the frame has been rendered, developers can apply more Z-testing (in case it wasn't activated at an earlier stage), colour blending and, finally, export the pixels to the frame-buffer for display. This is all performed by the **Render backends** (there's of two of them) which are found at the end of the Pixel shader stage.
 
-Finally, even though the Wii U doesn't feature the sophisticated circuitry that the Xbox 360 bundles within its EDRAM module, there are still many interesting capabilities provided by GX2. This includes automatic Multisample Anti-aliasing of up to 16 passes (**MSAA 16x**) to soften edges, which surprisingly doesn't require [tiled rendering](xbox-360#tab-6-5-pixel-operations) since the larger 32 MB of EDRAM (MEM1) of the Wii U is more than enough for these operations (well, maybe MSAA 16x will eat up too much MEM1, however, MSAA 8x is still acceptable).
+Finally, even though the Wii U doesn't feature the sophisticated circuitry that the Xbox 360 bundles within its EDRAM module, there are still many interesting capabilities provided by GPU7. This includes automatic Multisample Anti-aliasing of up to 16 passes (**MSAA 16x**) to soften edges, which surprisingly doesn't require [tiled rendering](xbox-360#tab-6-5-pixel-operations) since the larger 32 MB of EDRAM (MEM1) of the Wii U is more than enough for these operations (well, maybe MSAA 16x will eat up too much MEM1, however, MSAA 8x is still acceptable).
 
 Apart from that, we have to take into account the custom algorithms programmers may decide to implement. This is thanks to the flexibility of the APIs and the vast amount of shader operations available, including [Compute Shaders](xbox-360#the-impact-on-the-industry) (which offload CPU computations into the GPU).
 
 ### Interactive comparison {.tabs-close}
 
-I've added new 3D models on the interactive viewer so you can check out the before (GX) and after (GX2) 'effect' by yourself:
+I've added new 3D models on the interactive viewer so you can check out the before (Hollywood's GPU) and after (Latte's GPU/GPU7) 'effect' by yourself:
 
 (ref:brawlmodelcaption) Super Mario Galaxy (2007) for the Wii.<br>4,877 triangles.
 
@@ -376,11 +378,11 @@ model_viewer('mario_galaxy_wii', class="toleft", "(ref:brawlmodelcaption)")
 model_viewer('mario_3d_wiiu', class="toright", "(ref:meleemodelcaption)")
 ```
 
-While Mario's textures don't seem to offer a lot of extras on the Wii U, GX2's improvements lie in the extra surfaces and bones, especially on the hands and face, which make the model react more realistically to ambient effects and animations. In doing so, scenes look more natural throughout gameplay.
+While Mario's textures don't seem to offer a lot of extras on the Wii U, GPU7's improvements lie in the extra surfaces and bones, especially on the hands and face, which make the model react more realistically to ambient effects and animations. In doing so, scenes look more natural throughout gameplay.
 
 ### Video decoding
 
-An additional feature beyond the 3D rendering capabilities of GX2 is the inclusion of **H.264 decoding circuitry** that transforms streams of H.264-compressed data into raw frames that the GPU can understand (and subsequently render on the screen). The main advantage being bandwidth efficiency without performance penalties.
+An additional feature beyond the 3D rendering capabilities of GPU7 is the inclusion of **H.264 decoding circuitry** that transforms streams of H.264-compressed data into raw frames that the GPU can understand (and subsequently render on the screen). The main advantage being bandwidth efficiency without performance penalties.
 
 Consequently, the H.264 block is used for displaying motion video on the game in any way the developer prefers (i.e. within gameplay or as a cinematic).
 
@@ -394,11 +396,11 @@ Now, even though the output resolution can go as high as 1080p, most games resor
 
 ### A secondary GPU
 
-With all being said, how come this console can still play Wii games? is there some sort of GX2-to-GX emulator running behind the scenes? Well, the short answer is no. It may surprise you Nintendo went straight ahead and added the [old GX circuit](wii#graphics) inside Latte as well [@cpu-fail0verflow]. This block only works when a Wii game is running. Although, GX houses the old [3 MB of 1T-SRAM](gamecube#clever-memory-system) which is the one we know as **MEM0**. So, at least the extra memory is used by the new hardware.
+With all being said, how come this console can still play Wii games? is there some sort of GPU7-to-Hollywood emulator running behind the scenes? Well, the short answer is **no**. It may surprise you Nintendo went straight ahead and added the [old GPU circuit from Hollywood](wii#graphics) (let's call it 'Wii GPU') inside Latte as well [@cpu-fail0verflow]. This block only works when a Wii game is running. Although, the Wii GPU houses the old [3 MB of 1T-SRAM](gamecube#clever-memory-system) which is the one we now know as **MEM0**. So, at least the extra memory is used by the new hardware.
 
-Furthermore, Nintendo also fitted an extra chip called **DMCU** to replicate the old [Video Interface](gamecube#internal-io). According to fail0verflow, the DMCU is just a **Motorola 68HC11** controller programmed to behave like the precursor. Its only purpose is to receive commands from Wii games and forward the frame to GX2, so the latter can broadcast it to the TV. Due to the fact Wii games are made for PAL/NTSC screens, the GX2's video encoder must upscale it (which, in my experience, is not very good at doing so...).
+Furthermore, Nintendo also fitted an extra chip called **DMCU** to replicate the old [Video Interface](gamecube#internal-io). According to fail0verflow, the DMCU is just a **Motorola 68HC11** controller programmed to behave like the precursor. Its only purpose is to receive commands from Wii games and forward the frame to GPU7, so the latter can broadcast it to the TV. Due to the fact Wii games are made for PAL/NTSC screens, the GPU7's video encoder must upscale it (which, in my experience, is not very good at doing so...).
 
-If you wonder, there's no 'GX and GX2' co-processing available for Wii U games. It would've been 'interesting' though, albeit knowing one would bottleneck the other...
+If you wonder, there's no 'Wii GPU and GPU7' co-processing available for Wii U games. It would've been 'interesting' though, albeit knowing one would bottleneck the other...
 
 ## Audio
 
@@ -487,7 +489,7 @@ To start with, Starbuck's operating system is now called **IOSU** (another name 
 
 IOSU is still composed of a **multi-threaded microkernel**, which is now able to allocate up to 180 threads (previously 100), along with **drivers** and **modules** to take care of I/O access and security.
 
-One interesting aspect is that Starbuck disposes of two secured memory blocks for loading its kernel: Its internal **96 KB of SRAM** and **3 MB of 1T-SRAM** (known as 'MEM0') from the old GX block. This is for performance and security reasons, as it prevents Starbuck from being exposed to tampering and reduces congestion.
+One interesting aspect is that Starbuck disposes of two secured memory blocks for loading its kernel: Its internal **96 KB of SRAM** and **3 MB of 1T-SRAM** (known as 'MEM0') from the Wii GPU block. This is for performance and security reasons, as it prevents Starbuck from being exposed to tampering and reduces congestion.
 
 #### Espresso's new OS
 
@@ -712,7 +714,7 @@ The official Software Development Kit (SDK) was called **Cafe SDK** and came bun
 - Green Hill's **MULTI compilers and Integrated Development Environment** (IDE), now that [CodeWarrior](gamecube#games) reached obsolescence.
     - It's worth noting the competition [relied on Visual Studio](playstation-3#development-ecosystem) as their IDE of choice.
 - Various **utilities** to connect to CAT-DEV equipment.
-- **Shader compilers**, along with some transpilers that convert HLSL (Direct3D) and standard GLSL (OpenGL) shaders into GX2-compatible code.
+- A **GLSL shader compiler** and an **HLSL→GLSL shader transpiler**. This is the reason GPU7 is said to be compatible with GLSL (OpenGL's shaders) or even HLSL (Direct3D's shaders). However, programmers can't use GLSL and/or HLSL shaders on GPU7 without compiling them into native GPU7 code first.
 - **Proprietary linkers** to package up Wii U executables/libraries (in the form of `RPX` and `RPL` files).
 
 These tools expect a host running the **64-bit version of Windows 7** along with **Cygwin** installed.
@@ -900,7 +902,7 @@ You may now think that further aspirations for homebrew were completely eclipsed
 Now, for those who updated to `5.5.0`, good news awaited (at last):
 
   - Since November 2015, new vulnerabilities were discovered on the web browser, thereby restoring userland execution. The new exploits relied on buffer overflows induced after pulling an MP4 file from a crafted PHP server [@anti_piracy-fright].
-  - It seems a new kernel exploit compatible with the latest firmware was being beta-tested among a private group. That is, until May 2016, when the exploit got leaked by one of its testers [@anti_piracy-gxleak]. The new vulnerability relied on GX2's direct access to MEM2 which inherently allows it to override parts of the kernel heap. Hackers used this finding to reconstruct the old trick that exploited `OSDriver` [@anti_piracy-flaws].
+  - It seems a new kernel exploit compatible with the latest firmware was being beta-tested among a private group. That is, until May 2016, when the exploit got leaked by one of its testers [@anti_piracy-gxleak]. The new vulnerability relied on GPU7's direct access to MEM2 which inherently allows it to override parts of the kernel heap. Hackers used this finding to reconstruct the old trick that exploited `OSDriver` [@anti_piracy-flaws].
   
 In conclusion, users on `5.5.0` were now able to enjoy the latest homebrew developments. In fact, these exploits haven't been patched to this day.
 
