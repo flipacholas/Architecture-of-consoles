@@ -36,7 +36,7 @@ supporting_imagery()
 
 After the loss of SGI's dominance in the graphics market, Nintendo needed new players to partner up with.
 
-![Construction of Gekko.](cpu/cpu_features.png){.open-float}
+![Construction of Gekko.](cpu/cpu_features.png){.open-float .no-borders}
 
 A promising candidate seems to be IBM: Apart from their famous work on mainframes, they recently allied with Motorola and Apple to create a CPU powerful enough to compete with Intel's ruling in the PC market. The resulting product is a series of processors carrying the name **PowerPC**, which were selected to *power* 99% of Apple's Macintoshes and some embedded systems.
 
@@ -135,7 +135,7 @@ In conclusion, with some clever tricks, these general-purpose capabilities enabl
 
 This is one of the most critical sections of this console, it basically makes the Gamecube, a *Gamecube*.
 
-The history of this console's GPU has some interesting connections: Wei Yen, the director of N64's GPU ([the RCP](nintendo-64#graphics)), later founded Artx and landed a contract with Nintendo to develop their next-gen GPU: **Flipper**.
+The history of this console's GPU has some interesting connections: Wei Yen, the director of N64's SoC ([the RCP](nintendo-64#graphics)), later founded Artx and landed a contract with Nintendo to develop their next-gen chip: **Flipper**.
 
 ![Super Mario Sunshine (2002).](sunshine.png){.open-float}
 
@@ -147,11 +147,11 @@ During the development process, ArtX got acquired by ATI, which in turn was sold
 
 ### Architecture and design
 
-Flipper handles multiple services, so let's focus on the graphics component for now (since it's the one responsible for bringing our geometry to life). If you've been reading the [N64 article](nintendo-64#graphics), just letting you know that the core is now functional out of the box, so programmers won't need to worry about injecting code to make it work. Nevertheless, there will be some interesting parts that are customisable.
+Flipper is a complex block that handles multiple services [@graphics-cheng], so let's focus on the graphics component for now (since it's the one responsible for bringing our geometry to life). We'll call this area the **GPU** or **Graphics Engine** and, if you've been reading the [N64 article](nintendo-64#graphics), just letting you know that the core is now functional out of the box, so programmers won't need to worry about injecting code to make it work. Nevertheless, there will be some interesting parts that are customisable.
 
-![Pipeline design of Flipper.](flipper_pipeline.png)
+![Pipeline design of Flipper's GPU.](flipper_pipeline.png)
 
-As always, in order to draw a frame on the screen, our data will be pumped through Flipper's pipeline. Data goes through lots of different components which we can group into four stages:
+As always, in order to draw a frame on the screen, our data will be pumped through the GPU's pipeline. Data goes through lots of different components which we can group into four stages:
 
 #### Database {.tabs .active}
 
@@ -182,7 +182,7 @@ Once loaded, the primitives can be **transformed**, **clipped**, **lighted** (ea
 
 ![Texture stage diagram using a default setup.](flipper_pipeline/texture.jpg){.tab-float}
 
-Now it's time to apply textures and effects to our models, and for that Flipper includes multiple units which will process our pixels. Now, this is a very sophisticated (yet quite complex) procedure, so if you find it difficult to follow, just think of it as a big assembly line that processes pixels. Having said that, there are three groups of units available:
+Now it's time to apply textures and effects to our models, and for that the GPU includes multiple units which will process our pixels. Now, this is a very sophisticated (yet quite complex) procedure, so if you find it difficult to follow, just think of it as a big assembly line that processes pixels. Having said that, there are three groups of units available:
 
 - **Four parallel Pixel units** (also called 'pixel pipelines'): Rasterises our primitives (converts them to pixels). Having four units available enables to deliver up to 2x2 pixels on each cycle. 
 - **One Texture mapping unit** at the end of each Pixel unit (giving **four in total**): Together they process up to eight textures for our primitives (now mere pixels) at each cycle.
@@ -254,7 +254,7 @@ As you can see from the inner working of this pipeline, graphics technology has 
 
 ![The Legend of Zelda: The Wind Waker (2003).](wind_waker.png){.open-float}
 
-During the same time, PC graphics cards were starting to discard fixed-function pipelines in favour of **shader cores** (units that run small programs which define how pixels are operated). Flipper is still a fixed-function GPU, however by including components such as the TEV unit, one could argue that Nintendo provided their own shader-like solution.
+During the same time, PC graphics cards were starting to discard fixed-function pipelines in favour of **shader cores** (units that run small programs which define how pixels are operated). Flipper still contains a fixed-function GPU, however, by including components such as the TEV unit, one could argue that Nintendo provided their own shader-like solution.
 
 I guess one of the best examples of games that exploited this new capability is **The Legend of Zelda: Wind Waker** which implements a unique colour/lighting technique known as **Cel shading** to make its textures look *cartoonish*.
 
@@ -317,7 +317,9 @@ It seems that this generation is putting a lot of work into expandability and ac
 
 ### Internal I/O
 
-Flipper is in charge of interfacing the CPU with the rest of the components so, apart from including sound and graphics circuitry, it also provides a collection of hardware named **(internal) Northbridge** composed of [@cpu-tree]:
+![Main diagram of the Gamecube's architecture. In there, we find the 'Northbridge' which controls most of the I/O.](diagram.png)
+
+Flipper is in charge of interfacing the CPU with the rest of the components so, apart from including sound and graphics circuitry, it also provides a collection of hardware named **Northbridge** that is composed of [@cpu-tree]:
 
 - **Audio Interface** or 'AI': Connects the Audio Encoder.
 - **Video Interface** or 'VI': Connects the Video Encoder.
@@ -365,7 +367,7 @@ Upon turning on the console, the CPU will start loading an operating system call
 
 After finishing the boot process, the OS will load a small program *unofficially* called **Main Menu**.
 
-![Main Menu with multiple settings available.](ipl/menu.png){.tabs-nested .active .open-float .tab-float title="Menu"}
+![Main Menu with multiple settings available.](ipl/menu.png){.tabs-nested .active title="Menu"}
 
 ![Clock settings.](ipl/clock.png){.tab-nested title="Clock"}
 
@@ -378,13 +380,11 @@ This program is responsible for displaying the famous splash animation (the wee 
 - Manage saves on any Memory Card.
 - Change sound settings and screen position.
 
-`r close_float_group(with_markdown = TRUE)`
-
 ## Games
 
 Nintendo provided developers with lots of tools to assist (and encourage) the development of games for their console [@games-sdk]:
 
-- **Dolphin SDK**: The official set of APIs and useful libraries.
+- **Dolphin SDK**: The official set of APIs and useful libraries. This includes the **GX** library in charge of programming Flipper's GPU.
 - **C** and **C++** Compilers.
 - **Debuggers** and **Testers**: Meant to be used with an official Dev Kit.
 - **Cygnus**: Now known as 'Cygwin', it's basically used to replicate the UNIX environment on Windows.
@@ -460,7 +460,7 @@ Well, this is it, the **10^th^ article**!
 
 I really tried to set a rough limit on the length of this article but you have to understand, technology has gotten *so complex* that if I accidentally skip anything important, the whole topic gets impossible to follow.
 
-Anyway, I'd like to thank the #dolphin-dev IRC community for helping me understand the complicated pipeline of Flipper, these guys have been developing the Gamecube emulator for quite some years now and it's really impressive how much they had to put up with.
+Anyway, I'd like to thank the #dolphin-dev IRC community for helping me understand the complicated pipeline of Flipper's GPU, these guys have been developing the Gamecube emulator for quite some years now and it's really impressive how much they had to put up with.
 
 And finally, please consider [contributing](support) if you found it an interesting read. I strive to make it as complete as I can, and in the process, I forget how much time it's suddenly costing me, I find it a good investment nonetheless.
 

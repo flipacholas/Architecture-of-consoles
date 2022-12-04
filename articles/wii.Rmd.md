@@ -68,15 +68,14 @@ After having reviewed [Gekko](gamecube#cpu), I'm afraid there aren't many change
 
 This one is an interesting bit, the old Gamecube memory layout has been re-arranged and enhanced with the following changes:
 
-- Splash (24 MB of 1T-SRAM) now resides inside the GPU package, it is now referred to as **MEM1** [@operating_system-memory].
+- Splash (24 MB of 1T-SRAM) now resides inside the Hollywood SoC (explained later) and it is now called **MEM1** [@operating_system-memory].
 - ARAM (16 MB of serial SDRAM) is long **gone**, however...
 - There's a new memory chip, **MEM2**, which includes **64 MB of GDDR3 SDRAM** for general purpose.
   - This type of memory is based on the traditional DDR2 system but revamped with higher bandwidths (~2 times the original transfer rates) and reduced power consumption, which is ideal for GPUs.
 
 ### Backwards compatibility
 
-(For now) You can think of this console as a superset of the GameCube and as such, compatibility with the previous generation of games is naturally inherited. That being said, in order to make the Wii *fully* backwards compatible, the old set of external ports were brought to the Wii, these include the GameCube controller and memory card ports.
-However, there's a new constraint: The new memory map is incompatible with the old one. Thus, a thin 'emulation' layer was implemented in software (more details in the 'I/O' and 'Operating System' section).
+For now, you can think of this console as a superset of the GameCube and as such, compatibility with the previous generation of games is naturally inherited. That being said, in order to make the Wii *fully* backwards compatible, the old set of external ports were brought to the Wii, these include the GameCube controller and memory card ports. However, there's a new constraint: The new memory map is incompatible with the old one. Thus, a thin 'emulation' layer was implemented in software (more details in the 'I/O' and 'Operating System' section).
 
 Regarding the GameCube accessories using the Serial/Hi-Speed socket, I'm afraid the Wii didn't include these ports, so those accessories can't be used here.
 
@@ -84,11 +83,13 @@ In later years, new revisions of the Wii saw these ports removed, unfortunately.
 
 ## Graphics
 
-The new graphics package is called **Hollywood**. It still performs the same tasks that [Flipper](gamecube#graphics) did back in the day but enjoys 1.5x the clock speed (**243 MHz**). This increase means that more geometry and effects can be processed during the same unit of time.
+Similarly to the GameCube (where the graphics component, I/O interfaces and audio capabilities were combined into a single package called 'Flipper'), the Wii follows suit and houses a big chip next to Broadway called **Hollywood**. In here, we find the graphics subsystem which, to be fair, is identical to Flipper's albeit with minimal corrections.
+
+Thus, Hollywood's GPU still performs the same tasks that [Flipper's counterpart](gamecube#graphics) did back in the day but now enjoys **1.5x** the clock speed (**243 MHz**). This increase means that more geometry and effects can be processed during the same unit of time.
 
 ### Functionality
 
-The 3D engine is still [Flipper's](gamecube#graphics) but now called **GX**. So instead of repeating the pipeline overview, I will mention some interesting design changes that games had to undergo:
+As the 3D engine is still [Flipper's](gamecube#graphics), instead of repeating the same pipeline overview, I will mention some interesting design changes that games had to undergo:
 
 #### Standardised Widescreen {.tabs .active}
 
@@ -104,7 +105,7 @@ Super Mario Galaxy (2007).
 
 :::
 
-Gamecube games lacked proper support for widescreen displays (that is, composing 16:9 frames, departing from the traditional 4:3). Nevertheless, Flipper was already able to do so and a handful of games provided options to activate it, although this was still considered an exclusive feature.
+Gamecube games lacked proper support for widescreen displays (that is, composing 16:9 frames, departing from the traditional 4:3). Nevertheless, Flipper's GPU was already able to do so and a handful of games provided options to activate it, although this was still considered an exclusive feature.
 
 Be as it may, the framebuffer remains identical and the video encoder still outputs a PAL or NTSC-compliant frame, so this 'widescreen' feature is instead accomplished by **widening the field of view** in the projection matrix. The result is a scene rendered with a larger view angle that now appears squashed horizontally. However, the widescreen TV also plays a part in this process, as it will subsequently stretch the 4:3 frame (coming from the console) and the displayed image will thus look *more or less* in the correct ratio. If you are curious, this technique is not new, it's been used in film projection and it's referred to as **anamorphic widescreen**. Also, it's amusing how SNES developers had to deal with the [opposite effect](super-nintendo#display-modalities).
 
@@ -161,6 +162,8 @@ The I/O subsystem of this console is truly a game changer (*if you'll pardon the
 ### The hidden co-processor
 
 Starlet is just an **ARM926EJ-S** CPU wired up to most of the internal components of this console. It resides inside Hollywood, runs at **243 MHz** (same as Hollywood) and contains its own ROM and RAM too. Thus, you can consider Starlet an independent computer running alongside the main CPU.
+
+![Main diagram of the Wii's architecture. Notice how Starlet is able to control most of the I/O, and even hide some from Broadway.](diagram.png)
 
 The core is similar to the one used on the [Nintendo DS](nintendo-ds), except for including two 'special' additions:
 
@@ -220,7 +223,7 @@ Starlet runs a system *unofficially* referred to as **Input/Output Operating Sys
 - **Processes**: Performs a task, such as network management or implementing a file system.
 - **Cryptographic core**: Accelerates encryption-related operations (**AES and SHA-1 only**).
 
-With this in mind, the **main job of IOS is to offload the workload of the main CPU** by abstracting I/O and security. For that reason, programmers don't have to worry about those matters. In order to accomplish this, Starlet **reserves between 12 and 16 MB** of GDDR3 RAM for its tasks, the rest is used by Broadway and GX.
+With this in mind, the **main job of IOS is to offload the workload of the main CPU** by abstracting I/O and security. For that reason, programmers don't have to worry about those matters. In order to accomplish this, Starlet **reserves between 12 and 16 MB** of GDDR3 RAM for its tasks, the rest is used by Broadway and the GPU.
 
 Broadway and Starlet communicate with each other using an **Inter-Process Communication** or 'IPC' protocol: In a nutshell, both CPUs share two registers each. One CPU can write on the other's registers (the written data may represent a command or a value) and from there, the receiver CPU can perform a function in response.
 
@@ -234,7 +237,7 @@ When a Gamecube game is inserted, a different thing happens: Startlet boots a **
 
 This one is commonly known as the **System Menu** and effectively runs on the main PowerPC CPU (**Broadway**).
 
-![System menu with _lots_ of channels installed.](system/home.png){.tabs-nested .open-float .tab-float .active title="Home"}
+![System menu with _lots_ of channels installed.](system/home.png){.tabs-nested .active title="Home"}
 
 ![Settings menu used to change settings.](system/settings.png){.tab-nested title="Settings"}
 
@@ -249,8 +252,6 @@ Compared to IOS, I wouldn't consider this a 'fully fledged' OS, but more like a 
   - Virtual Console titles embed an emulator to run the game itself. Curiously enough, the emulator is not shared across the system or even between games of the same platform. This allows to optimise the emulator for specific games.
 - **Send/Receive messages**: Wiis have a unique ID (burned in their SEEPROM chip) which can be shared to exchange messages between other Wiis. Messages can be seen on the **Message Board**.
   - Nintendo and Wii games also used this medium to provide a newsletter as well.
-
-`r close_float_group(with_markdown = TRUE)`
 
 Just like IOS, Nintendo released multiple updates to this system too. Some fixed security holes, others added more features. A notable new feature was the ability to store channels on the SD card.
 
@@ -457,7 +458,7 @@ While further reversing IOS, it was discovered that signatures are only checked 
 
 ![](system/homebrew/menu.png){.tab-nested title="Inside"}
 
-The _unofficial_ Homebrew channel (2008).<br>The most user-friendly hack of all times.
+The _unofficial_ Homebrew channel (2008).<br>Probably the most user-friendly hack of all times.
 
 :::
 
