@@ -24,7 +24,7 @@ aliases:
 
 ## Wstęp
 
-Sega Dreamcast wprowadziła wiele nowych funkcji w stosunku do swojego poprzednika ([Sega Saturn](code>r ref("sega-saturn")</code)), aby spodobać się zarówno twórcom gier, jak i graczom konsolowym. Chociaż była to ostatnia próba podbicia rynku konsol przez firmę Sega, niektóre z technologii, które były pionierami w Dreamcast, przeniosły się na przyszłe urządzenia głównego nurtu.
+Sega Dreamcast wprowadziła wiele nowych funkcji w stosunku do swojego poprzednika (Sega [Saturn](sega-saturn)), aby spodobać się zarówno twórcom gier, jak i graczom konsolowym. Chociaż była to ostatnia próba podbicia rynku konsol przez firmę Sega, niektóre z technologii, które były pionierami w Dreamcast, przeniosły się na przyszłe urządzenia głównego nurtu.
 
 ```{r results="asis"}
 supporting_imagery()
@@ -32,9 +32,9 @@ supporting_imagery()
 
 ## CPU
 
-Nic dziwnego, że Sega ponownie wybrała Hitachi do opracowania swojego procesora. Jeśli czytałeś [poprzedni artykuł o Sega Saturn](code>r ref("sega-saturn")</code) to pozwólcie, że przedstawię Wam następną generację procesora SH: **SH-4** działający z niesamowitą prędkością **200 MHz** `r cite("cpu-spec")`. Więc co jest interesującego w tym procesorze?
+Nic dziwnego, że Sega ponownie wybrała Hitachi do opracowania swojego procesora. Jeśli czytałeś [poprzedni artykuł o Sega Saturn](sega-saturn) to pozwólcie, że przedstawię Wam następną generację procesora SH: **SH-4** działający z niesamowitą prędkością **200 MHz** [@cpu-spec]. Więc co jest interesującego w tym procesorze?
 
-- **Potok 5-stopniowy**: Do pięciu instrukcji może być przetwarzanych jednocześnie (szczegółowe wyjaśnienie można znaleźć w [poprzednim artykule](code>r ref("sega-saturn#cpu")</code)).
+- **Potok 5-stopniowy**: Do pięciu instrukcji może być przetwarzanych jednocześnie (szczegółowe wyjaśnienie można znaleźć w [poprzednim artykule](sega-saturn#cpu)).
   - Potokowanie instrukcji można teraz znaleźć wszędzie w tej generacji konsol i od teraz będzie standardem.
 - **Dwukierunkowa superskalarność**: Nowy typ równoległości, w którym procesor może przetwarzać więcej niż jedną instrukcję (w tym przypadku dwie) na każdym etapie potoku, co skutkuje większą liczbą instrukcji wykonywanych na sekundę.
 - Dedykowana **Jednostka Zmiennoprzecinkowa** lub 'FPU': Oblicza 32-bitowe liczby dziesiętne (*pojedynczej precyzji*) i 64-bitowe (*podwójnej precyzji*).
@@ -44,19 +44,19 @@ Nic dziwnego, że Sega ponownie wybrała Hitachi do opracowania swojego procesor
 
 ### Dodatkowa praca
 
-Typowe obowiązki CPU konsoli do gier obejmują obsługę logiki gry, prowadzenie wrogiej sztucznej inteligencji i dostarczanie instrukcji GPU. W Dreamcast SH-4 jest również zaangażowany w większość potoku graficznego, przetwarzając dane geometryczne, takie jak obliczanie przekształceń perspektywy. W rezultacie zawiera **128-bitową jednostkę SIMD**, która może przyspieszyć operacje wektorowe `r cite("cpu-arch")`.
+Typowe obowiązki CPU konsoli do gier obejmują obsługę logiki gry, prowadzenie wrogiej sztucznej inteligencji i dostarczanie instrukcji GPU. W Dreamcast SH-4 jest również zaangażowany w większość potoku graficznego, przetwarzając dane geometryczne, takie jak obliczanie przekształceń perspektywy. W rezultacie zawiera **128-bitową jednostkę SIMD**, która może przyspieszyć operacje wektorowe [@cpu-arch].
 
 ### Polepszenie dostępu do pamięci
 
 Procesor zawiera dedykowaną **Jednostkę Zarządzania Pamięcią** lub 'MMU' do adresowania wirtualnego, jest to pomocne, ponieważ fizyczna przestrzeń adresowa pamięci tego procesora ma **szerokość 29 bitów**. Tak więc za pomocą czterech TLB programiści mogą używać adresów 32-bitowych bez pogorszenia wydajności.
 
-Ponieważ do adresowania potrzeba tylko 29 bitów, dodatkowe trzy bity kontrolują ochronę pamięci, odpowiednio zmieniając mapę pamięci i omijając pamięć podręczną `r cite("cpu-marcus")` `r cite("cpu-akiba")`.
+Ponieważ do adresowania potrzeba tylko 29 bitów, dodatkowe trzy bity kontrolują ochronę pamięci, odpowiednio zmieniając mapę pamięci i omijając pamięć podręczną \[@cpu-marcus\] \[@cpu-akiba\].
 
 Programista decyduje, czy korzystać z tych funkcji, czy nie. Gry dla tego systemu z pewnością niekoniecznie _wymagają_ ochrony pamięci, a MMU musi być ręcznie włączane przy starcie.
 
 ### Brak UMA ale...
 
-Chociaż ten system nie jest zaprojektowany w oparciu o ścisłą architekturę zunifikowanej pamięci, [jak znany konkurent](code>r ref("nintendo-64#simplified-memory-access")</code), **deleguje dostęp WE/WY do GPU**. Oznacza to, że jeśli procesor musi pobrać coś, co jest poza dedykowaną RAM lub interfejsem szeregowym (który jest również podłączony), będzie musiał zażądać GPU i poczekać, jeśli to konieczne.
+Chociaż ten system nie jest zaprojektowany w oparciu o ścisłą architekturę zunifikowanej pamięci, [jak znany konkurent](nintendo-64#simplified-memory-access), **deleguje dostęp WE/WY do GPU**. Oznacza to, że jeśli procesor musi pobrać coś, co jest poza dedykowaną RAM lub interfejsem szeregowym (który jest również podłączony), będzie musiał zażądać GPU i poczekać, jeśli to konieczne.
 
 ### Zapytania specjalne
 
@@ -66,36 +66,28 @@ Ten CPU posiada również unikalną funkcjonalność o nazwie **Równoległe WE/
 
 Pakiet GPU to wykonany na zamówienie układ o nazwie **Holly** działający z częstotliwością **100 MHz**, zaprojektowany przez firmę VideoLogic (obecnie znana jako Imagination Technologies) i wyprodukowany przez NEC. Tak się składa, że rdzeniem 3D Holly jest **PowerVR2** firmy Videologic (nazywany również 'PowerVR Series2' i 'CLX2').
 
-(ref:sonicadvcaption) Sonic Adventure (1999).
-
-```{r fig.cap="(ref:sonicadvcaption)", open_float_group=TRUE, fig.align='center'}
-image('sonic.png', "(ref:sonicadvcaption)", float=TRUE)
-```
+![Sonic Adventure (1999).](sonic.png) {.open-float}
 
 Firma VideoLogic wybrała alternatywne podejście do budowy swojego silnika 3D o nazwie **Opóźnione Renderowanie Oparte na Kafelkach** (lub TBDR).
 
-Zamiast renderować całą klatkę naraz (jak to robią tradycyjne **Renderery w Trybie Natychmiastowym** lub 'IMR' `r cite("graphics-arch")`), TBDR dzieli obszar renderowania na wiele sekcji zwanych 'kafelki'. Następnie wykonuje proces renderowania na każdym kafelku osobno, a wynik jest łączony, tworząc ostateczną klatkę `r cite("graphics-powervr")`.
+Zamiast renderować całą klatkę naraz (jak to robią tradycyjne **Renderery w Trybie Natychmiastowym** lub 'IMR' [@graphics-arch]), TBDR dzieli obszar renderowania na wiele sekcji zwanych 'kafelki'. Następnie wykonuje proces renderowania na każdym kafelku osobno, a wynik jest łączony, tworząc ostateczną klatkę [@graphics-powervr].
 
 `r close_float_group(with_markdown = TRUE)`
 
 Ta innowacyjna konstrukcja przynosi ciekawe korzyści:
 
 - Może być znacznie **zrównoleglony**, co znacznie zmniejsza wykorzystanie przepustowości i zużycie energii.
-- Implementuje sprytne rozwiązanie [**problemu z widocznością**](code>r ref("sega-saturn#an-introduction-to-the-visibility-problem")</code) automatycznie sortując wielokąty **od przodu do tyłu** a następnie przeprowadzając [testy z](code>r ref("nintendo-64#modern-visible-surface-determination")</code) na pierwszych etapach potoku. Połączenie tych zadań nie tylko rozwiązuje pierwotny problem, ale także **zapobiega przerysowywaniu** (rasteryzacji ukrytych wielokątów) która marnuje zasoby i obniża wydajność.
+- Implementuje sprytne rozwiązanie [**problemu z widocznością**](sega-saturn#an-introduction-to-the-visibility-problem) automatycznie sortując wielokąty **od przodu do tyłu** a następnie przeprowadzając [testy z](nintendo-64#modern-visible-surface-determination) na pierwszych etapach potoku. Połączenie tych zadań nie tylko rozwiązuje pierwotny problem, ale także **zapobiega przerysowywaniu** (rasteryzacji ukrytych wielokątów) która marnuje zasoby i obniża wydajność.
 
 Nic dziwnego, że firma Imagination wykorzystała tę wydajną technologię do budowy rdzeni PowerVR z serii 4, które zasilały niewiarygodną liczbę urządzeń, w tym pierwszą generację iPhone'a, iPhone'a 3G, Nokię N95 i Della Axim x51.
 
 ### Architektura
 
-Przyjrzyjmy się dwóm głównym komponentom GPU Dreamcasta `r cite("graphics-marcus")`:
+Przyjrzyjmy się dwóm głównym komponentom GPU Dreamcasta [@graphics-marcus]:
 
-(ref:tadiagramtitle) Tile Accelerator
+#### Tile Accelerator {.tabs.active}
 
-(ref:tadiagramcaption) Architektura Tile Accelerator.
-
-```{r fig.cap="(ref:tadiagramcaption)", fig.align='center', tab.title="(ref:tadiagramtitle)", tab.first=TRUE, tab.active=TRUE}
-image('tile_accelerator.png', "(ref:tadiagramcaption)", float=TRUE)
-```
+![Architektura Tile Accelerator.](tile_accelerator.png) {.tab-float}
 
 Przed rozpoczęciem procesu renderowania komponent znany jako **Tile Accelerator** wykonuje wstępne przetwarzanie. Rozpoczyna się od przydzielenia kilku pojemników 32x32 kafelków, w których zostanie wyrenderowana geometria.
 
@@ -108,32 +100,26 @@ Następnie Tile Accelerator:
 
 Te listy wyświetlania są następnie interpretowane przez silnik 3D: PowerVR2.
 
-(ref:powervr2diagramtitle) Rdzeń PowerVR2
+#### Rdzeń PowerVR2 {.tab}
 
-(ref:powervr2diagramcaption) Architektura Rdzenia PowerVR2.
-
-```{r fig.cap="(ref:powervr2diagramcaption)", fig.align='center', tab.title="(ref:powervr2diagramtitle)", tab.last=TRUE}
-image('powervr2.png', "(ref:powervr2diagramcaption)", float=TRUE)
-```
+![Architektura Rdzenia PowerVR2.](powervr2.png) {.tab-float}
 
 W tym miejscu grafika zostaje ożywiona, listy wyświetlania otrzymane od TA informują rdzeń o renderowaniu geometrii pojedynczego kafelka przy użyciu **wewnętrznego bufora-klatki**. Proces wygląda następująco:
 
 1. **Image Synthesis Processor** lub 'ISP' pobiera prymitywy (trójkąty lub czworokąty) i wykonuje **Usuwanie ukrytych powierzchni** aby usunąć niewidoczne wielokąty. Następnie, po obliczeniu buforów Z i szablonów, dane przechodzą przez **Testowanie Głębokości**, aby uniknąć renderowania wielokątów, które pojawiałyby się za innymi i **Testy Szablonowe**, aby usunąć geometrię, która nie będzie widoczna, jeśli znajduje się za wielokątem 2D (nazywanym również **Maską**).
-    - Zwróć uwagę na to, że testy te są przeprowadzane na początku potoku. W przeciwieństwie do tego poprzednie konsole [używające późnego buforowania Z](code>r ref("nintendo-64#modern-visible-surface-determination")</code) odrzucają geometrię na końcu potoku. Podejście ISP zapobiega przetwarzaniu geometrii, która ostatecznie zostanie odrzucona `r cite("graphics-surface")`, oszczędzając w ten sposób zasoby.
+    - Zwróć uwagę na to, że testy te są przeprowadzane na początku potoku. W przeciwieństwie do tego poprzednie konsole [używające późnego buforowania Z](nintendo-64#modern-visible-surface-determination) odrzucają geometrię na końcu potoku. Podejście ISP zapobiega przetwarzaniu geometrii, która ostatecznie zostanie odrzucona [@graphics-surface], oszczędzając w ten sposób zasoby.
 2. **Texture and Shading Processor** lub 'TSP' stosuje kolorowanie, cieniowanie i wiele efektów na obszarze kafelka.
     - Tekstury nie są stosowane, dopóki kafelek nie zostanie wyeksportowany, co oznacza, że pojawiające się przerysowanie (jeśli występuje) nie obniży współczynnika wypełniania.
 
 Po zakończeniu operacji wyrenderowany kafelek jest zapisywany w głównym buforze klatki w VRAM. Ten proces jest powtarzany, aż wszystkie kafelki zostaną ukończone. Po zakończeniu wynikowy bufor ramki jest pobierany przez **enkoder wideo** i wysyłany przez sygnał wideo.
 
-`r close_tabs()`
+### Szersza perspektywa {.tabs-close}
 
-### Szersza perspektywa
-
-Oprócz wyraźnej różnicy architektonicznej, Texture and Shading Processor ma wiele możliwości, które dają wyobrażenie o tym, jak daleko ta konsola jest od starego [Saturna](code>r ref("sega-saturn")</code). Oto kilka godnych uwagi przykładów:
+Oprócz wyraźnej różnicy architektonicznej, Texture and Shading Processor ma wiele możliwości, które dają wyobrażenie o tym, jak daleko ta konsola jest od starego [Saturna](sega-saturn). Oto kilka godnych uwagi przykładów:
 
 - **Mieszanie alfa**: Łączy kolory nakładających się warstw, aby uzyskać efekty przezroczystości.
   - Proces stosowany do stosowania przezroczystości w tym systemie nazywa się **przezroczystością niezależną od kolejności**. Algorytm automatycznie sortuje prymitywy przed zmieszaniem ich kolorów i chociaż spowalnia to proces renderowania, unika polegania na tym, że sama gra wykonuje wszystkie czynności ręcznie. Z tego powodu gry Dreamcast są wybitne w wyświetlaniu przezroczystych obiektów.
-  - W połączeniu z systemem opartym na kafelkach przezroczystość niezależna od kolejności całkowicie rozwiązuje poprzednie [wpadki](code>r ref("sega-saturn#the-transparency-issue")</code).
+  - W połączeniu z systemem opartym na kafelkach przezroczystość niezależna od kolejności całkowicie rozwiązuje poprzednie [wpadki](sega-saturn#the-transparency-issue).
 - **Mip-Mapping**: Automatycznie wybiera pomniejszoną wersję tekstury w zależności od wymaganego poziomu szczegółowości. Ma to na celu zapobieganie przetwarzaniu dużych tekstur, które byłyby widoczne z dużej odległości od kamery (co byłoby marnowaniem mocy obliczeniowej i powodowałoby aliasing).
 - **Mapowanie środowiska**: Stosuje odbicia na teksturach.
 - **Filtrowanie Dwuliniowe, Trójliniowe i Anizotropowe**: Są to różne algorytmy używane do wygładzania tekstur i zapobiegania pikselizacji. Są one uporządkowane od 'najgorszych' do 'najlepszych', gdzie wynikowa jakość każdego z nich jest wprost proporcjonalna do ilości wymaganych obliczeń.
@@ -142,7 +128,7 @@ Oprócz wyraźnej różnicy architektonicznej, Texture and Shading Processor ma 
 
 ### W rezultacie...
 
-Holly może teraz narysować ~10 razy więcej wielokątów niż [jego poprzednik](code>r ref("sega-saturn")</code), oto przykład *Przed & Po* który pokazuje, że projekty modeli nie są już tak ograniczone. Spróbuj się z nimi pobawić!
+Holly może teraz narysować ~10 razy więcej wielokątów niż [jego poprzednik](sega-saturn), oto przykład *Przed & Po* który pokazuje, że projekty modeli nie są już tak ograniczone. Spróbuj się z nimi pobawić!
 
 (ref:sonicrmodelcaption) Sonic R (1997) dla Saturna.<br>286 trójkątów (lub 185 czworokątów).
 
@@ -171,30 +157,25 @@ Ponieważ VGA jest ściśle progresywnym typem sygnału (w przeciwieństwie do t
 
 ## Dźwięk
 
-Funkcjonalność audio jest obsługiwana przez niestandardowy układ o nazwie **AICA** firmy Yamaha, jest to ulepszona wersja [SCSP używanego w Saturnie](code>r ref("sega-saturn#audio")</code) i składa się z czterech komponentów:
+Funkcjonalność audio jest obsługiwana przez niestandardowy układ o nazwie **AICA** firmy Yamaha, jest to ulepszona wersja [SCSP używanego w Saturnie](sega-saturn#audio) i składa się z czterech komponentów:
 
 - **Sound Integrated Circuit** lub 'IC': Zestaw modułów (syntezator, DSP i mikser) generujący sygnał audio i nakładający na niego efekty. Obsługuje do **64 kanałów PCM** z rozdzielczością **16 lub 8 bitów** i częstotliwością próbkowania **44,1 kHz**. Ogólnie rzecz biorąc, jest to optymalna jakość odtwarzania dźwięku.
   - Dodatkowo zawiera **dekoder ADPCM**, aby odciążyć część pracy z procesora.
   - Co ciekawe, zapewnia również **dwa piny MIDI** do podłączenia instrumentu MIDI, chociaż ma to być używane podczas programowania.
 - **2 MB SDRAM-u**: Przechowuje dane dźwiękowe i programy. Jest wypełniany przez główny procesor za pomocą DMA.
-- **ARM7DI** działający z częstotliwością ~2,82 MHz: Kontroluje Sound IC. Ten procesor jest programowany przez uruchomienie małego oprogramowania (zwanego [sterownikiem](code>r ref("super-nintendo#audio")</code)) przechowywanego w pamięci SRAM, które odpowiednio interpretuje dane audio i manipuluje Sound IC.
-  - Jeśli się zastanawiasz, podobny procesor jest również używany [tutaj](code>r ref("game-boy-advance")</code).
+- **ARM7DI** działający z częstotliwością ~2,82 MHz: Kontroluje Sound IC. Ten procesor jest programowany przez uruchomienie małego oprogramowania (zwanego [sterownikiem](super-nintendo#audio)) przechowywanego w pamięci SRAM, które odpowiednio interpretuje dane audio i manipuluje Sound IC.
+  - Jeśli się zastanawiasz, podobny procesor można znaleźć w [Game Boy Advance](game-boy-advance).
 - **Kontroler Pamięci**: Oddziałuje na 2 MB SDRAM.
 
 Aby pomóc w programowaniu, oficjalny SDK zawierał wiele sterowników dźwięku do różnych potrzeb (sekwencjonowanie, dekodowanie, itp).
 
 ### Ewolucja
 
-Zaszliśmy tak daleko od czasów [Mega Drive/Genesis](code>r ref("mega-drive-genesis#audio")</code), aby pokazać, jak bardzo poczyniono postępy w syntezie dźwięku, oto przykład dwóch gier, jednej dla Mega Drive i drugiej dla Dreamcast, które wykorzystywały tą samą kompozycję:
+Zaszliśmy tak daleko od czasów [Mega Drive/Genesis](mega-drive-genesis#audio), aby pokazać, jak bardzo poczyniono postępy w syntezie dźwięku, oto przykład dwóch gier, jednej dla Mega Drive i drugiej dla Dreamcast, które wykorzystywały tą samą kompozycję:
 
-(ref:sonic3daucaption) Sonic 3D Blast (1996) dla Mega Drive.<br>Poprzednik wykonuje syntezę FM w celu generowania sygnałów audio w locie.
+![Sonic 3D Blast (1996) dla Mega Drive.<br>Poprzednik wykonuje syntezę FM w celu generowania sygnałów audio w locie.](megadrive){.toleft video="true"}
 
-(ref:sonicadvaucaption) Sonic Adventure (1999) dla Dreamcastu.<br>Nowy podsystem audio przetwarza próbki PCM bez żadnych problemów.
-
-```{r fig.cap=c("(ref:sonic3daucaption)", "(ref:sonicadvaucaption)"), side_by_side=TRUE, fig.pos = "H"}
-video('megadrive', class="toleft", "(ref:sonic3daucaption)")
-video('dreamcast', class="toright", "(ref:sonicadvaucaption)")
-```
+![Sonic Adventure (1999) dla Dreamcastu.<br>Nowy podsystem audio przetwarza próbki PCM bez żadnych problemów.](dreamcast){.toright video="true"}
 
 Zamiast programować chip FM, kompozytorzy Sonic Adventure wyprodukowali własną ścieżkę dźwiękową, a następnie zakodowali ją w 'ADX', stratnym formacie opracowanym przez CRI Middleware. W związku z tym wykorzystuje tylko dwa z 64 kanałów PCM (stereo).
 
@@ -208,17 +189,13 @@ Z jakiegoś powodu ten układ jest również odpowiedzialny za dostarczanie **Ze
 
 2 MB 'System ROM' przechowuje **BIOS**, który uruchamia grę lub małą powłokę, gdy konsola jest włączona.
 
-BIOS zawiera również procedury, których używają gry do uproszczenia funkcji WE/WY `r cite("games-redream")`, takich jak odczyt z napędu GD-ROM.
+BIOS zawiera również procedury, których używają gry do uproszczenia funkcji WE/WY [@games-redream], takich jak odczyt z napędu GD-ROM.
 
 ### Powłoka
 
 Jeśli nie ma włożonej prawidłowej płyty z grą, konsola uruchomi powłokę graficzną.
 
-(ref:shellcaption) Powłoka po uruchomieniu bez dysku.
-
-```{r fig.cap="(ref:shellcaption)", open_float_group=TRUE, fig.align='center'}
-image('shell.png', "(ref:shellcaption)", float=TRUE)
-```
+![Powłoka po uruchomieniu bez dysku.](shell.png) {.open-float}
 
 Powłoka zawiera prosty graficzny interfejs użytkownika, który umożliwia użytkownikowi wykonywanie podstawowych, ale niezbędnych zadań, takich jak:
 
@@ -233,21 +210,17 @@ Powłoka zawiera prosty graficzny interfejs użytkownika, który umożliwia uży
 
 Od czasu ogłoszenia Dreamcasta mówiono, że na konsoli można uruchomić **Windows CE**: uproszczoną wersję systemu Windows zaprojektowaną do użytku na urządzeniach osadzonych. Jest to trochę mylące, biorąc pod uwagę, że niektórzy użytkownicy spodziewaliby się, że na ich konsoli będzie działać pełne środowisko graficzne Windows CE.
 
-(ref:wincecaption) Logo Windows CE wybite z przodu obudowy.
+![Logo Windows CE wybite z przodu obudowy.](windows_ce.jpeg) {.open-float}
 
-```{r fig.cap="(ref:wincecaption)", open_float_group=TRUE, fig.align='center'}
-image('windows_ce.jpeg', "(ref:wincecaption)", float=TRUE)
-```
+W rzeczywistości cel tego 'OS' był bardzo podobny do tego, co Nintendo zrobiło z [Nintendo 64](nintendo-64#operating-system): zapewnienie programistom rzetelnej warstwy abstrakcji w celu uproszczenia niektórych operacji.
 
-W rzeczywistości cel tego 'OS' był bardzo podobny do tego, co Nintendo zrobiło z [Nintendo 64](code>r ref("nintendo-64#operating-system")</code): zapewnienie programistom rzetelnej warstwy abstrakcji w celu uproszczenia niektórych operacji.
-
-Microsoft współpracował z firmą Sega, aby wprowadzić system Windows CE do Dreamcasta `r cite("games-sdk")`. W rezultacie powstał podzbiór CE z minimalnymi komponentami potrzebnymi do zapewnienia grafiki, dźwięku i debugowania. Obejmowało to użycie najlepszego IDE Microsoftu, **Visual Studio**, do rozwoju.
+Microsoft współpracował z firmą Sega, aby wprowadzić system Windows CE do Dreamcasta [@games-sdk]. W rezultacie powstał podzbiór CE z minimalnymi komponentami potrzebnymi do zapewnienia grafiki, dźwięku i debugowania. Obejmowało to użycie najlepszego IDE Microsoftu, **Visual Studio**, do rozwoju.
 
 `r close_float_group(with_markdown = TRUE)`
 
 Niektórzy programiści uznali tę opcję za bardzo atrakcyjną. Ponieważ struktura audio-graficzna dołączona do CE była niczym innym jak **DirectX 6**, tysiące gier na PC z tamtej epoki możnaby teoretycznie łatwo przenieść na Dreamcasta...
 
-Jednak różnice architektoniczne między Dreamcastem a konwencjonalnym komputerem PC były zbyt duże, aby je zignorować `r cite("games-direct")`. Ponadto osadzenie tego systemu wydłużyło czas ładowania gry (w końcu 'system operacyjny' musiał być ładowany z dysku), a Windows CE zużywał znaczną część zasobów Dreamcasta (*nie jest to zaskoczeniem - komputery PC już cierpiały z tego powodu*).
+Jednak różnice architektoniczne między Dreamcastem a konwencjonalnym komputerem PC były zbyt duże, aby je zignorować [@games-direct]. Ponadto osadzenie tego systemu wydłużyło czas ładowania gry (w końcu 'system operacyjny' musiał być ładowany z dysku), a Windows CE zużywał znaczną część zasobów Dreamcasta (*nie jest to zaskoczeniem - komputery PC już cierpiały z tego powodu*).
 
 Ostatecznie 'Windows CE dla Dreamcast' był po prostu kolejnym zestawem SDK wybieranym przez programistów (powszechnie określany jako **Dragon SDK**). Niemniej jednak znaczna liczba gier Dreamcast ostatecznie wybrała Windows API i DirectX.
 
@@ -286,25 +259,13 @@ Niestety SegaNet i Dreamarena zostały porzucone dwa lata po premierze. W ten sp
 
 ### Interaktywna karta pamięci
 
-Inną innowacyjną funkcją, którą zaprezentował Dreamcast, była **Visual Memory Unit** lub 'VMU'. Jest dołączony do kontrolera i oprócz tego, że służy jako karta pamięci, jest pełnoprawnym urządzeniem, które zawiera `r cite("games-vmu")`:
+Inną innowacyjną funkcją, którą zaprezentował Dreamcast, była **Visual Memory Unit** lub 'VMU'. Jest dołączony do kontrolera i oprócz tego, że służy jako karta pamięci, jest pełnoprawnym urządzeniem, które zawiera [@games-vmu]:
 
-(ref:vmutitle) VMU
+![VMU odłączony od kontrolera.](vmu.png){.tabs-nested .active .open-float .tab-float title="VMU"}
 
-(ref:vmucaption) VMU odłączony od kontrolera.
+![Kontroler bez podłączonego VMU.](controller.png){.tab-nested title="Osobny"}
 
-(ref:detachedtitle) Odłączony
-
-(ref:detachedcaption) Kontroler bez podłączonego VMU.
-
-(ref:attachedtitle) Podłączony
-
-(ref:attachedcaption) Kontroler z podłączonym VMU.
-
-```{r fig.cap=c("(ref:vmucaption)", "(ref:detachedcaption)", "(ref:attachedcaption)"), open_float_group=TRUE, tab.nested=TRUE, tab.float=TRUE}
-image("vmu.png", "(ref:vmucaption)", tab.name="(ref:vmutitle)", tab.active=TRUE)
-image("controller.png", "(ref:detachedcaption)", tab.name="(ref:detachedtitle)")
-image("controller-vmu.png", "(ref:attachedcaption)", tab.name="(ref:attachedtitle)")
-```
+![Kontroler z dołączonym VMU.](controller-vmu.png){.tabs-nested-last title="Przytwierdzony"}
 
 - **Sanyo LC86K87**: 8-bitowy procesor o małej mocy.
 - **Monochromatyczny wyświetlacz LCD 32x48** z czterema dodatkowymi ikonami: Sterowany przy użyciu 196B XRAM (zewnętrznej pamięci RAM) jako bufora klatki.
@@ -327,7 +288,7 @@ Korzystanie z zastrzeżonego formatu GD-ROM pomogło zahamować produkcję nieau
 
 ### Pokonywanie
 
-W praktyce środki antypirackie były *całkowicie* bezużyteczne, ponieważ firma Sega pozostawiła otwarte drzwi: **MIL-CD**. Music Interactive Live-CD lub 'MIL-CD' to format stworzony przez firmę Sega w celu rozszerzenia płyty Audio-CD o programy interaktywne... i Dreamcast jest z nim kompatybilny `r cite("anti_piracy-history")`.
+W praktyce środki antypirackie były *całkowicie* bezużyteczne, ponieważ firma Sega pozostawiła otwarte drzwi: **MIL-CD**. Music Interactive Live-CD lub 'MIL-CD' to format stworzony przez firmę Sega w celu rozszerzenia płyty Audio-CD o programy interaktywne... i Dreamcast jest z nim kompatybilny [@anti_piracy-history].
 
 Nieautoryzowane płyty komercyjne (programy ładujące kody, odtwarzacze filmów, itp.) zamaskowane jako płyty MIL-CD mogły działać na konsoli bez zgody firmy Sega. Później różne społeczności hakerów przeanalizowały ten exploit i opracowały obejście umożliwiające uruchamianie pirackich gier przy użyciu dysków CD-ROM. To spowodowało, że w sieci pojawiła się niepowstrzymana fala obrazów ISO.
 
@@ -335,11 +296,7 @@ Później pojawiły się pewne problemy: Chociaż GD-ROM-y mogą przechowywać g
 
 ## To wszystko ludziska
 
-(ref:mydccaption) Dreamcast, którego musiałem zdobyć, żeby napisać tu dużo rzeczy.<br>Niezły jak na swój wiek!
-
-```{r fig.cap="(ref:mydccaption)", fig.align='center', centered=TRUE}
-image("folks.png", "(ref:mydccaption)", class = "centered-container")
-```
+![Dreamcast, którego musiałem zdobyć, żeby napisać tu dużo rzeczy.<br>Niezły jak na swój wiek!](folks.png)
 
 Mam nadzieję, że podobało Ci się czytanie tego artykułu. Skończyłem go pisać na początku mojego ostatniego roku na uniwersytecie.
 
