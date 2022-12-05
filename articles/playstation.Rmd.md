@@ -443,11 +443,7 @@ The shell is a simple graphical interface that enables the user to copy or delet
 
 ## Games
 
-As you know, Sony chose the **CD-ROM** as the only medium for distributing PlayStation games. The CD is an optical medium where its data is engraved using **pits** and **lands** on the CD's polycarbonate surface. The CD reader, on the other side, houses a laser that beams over the CD's surface, and the reflection of light is then interpreted as ones and zeroes.
-
-This process of converting pits and lands into zeros and ones is not simple by any means, especially since CDs must be robust enough to sustain day-to-day damage and intensive use. As part of its design, data is engraved using **Non-Return-to-Zero inverted** (NRZi), meaning that bits read will stay constant until a pit is detected, from which it will change from 0 to 1 and viceversa. Furthermore, **Eight-to-Fourteen** (ETF) Modulation is used to pad bits since the reader has problems to read consecutive pits.
-
-That's as far as the medium goes, but let's not forget that this brings lots of advantages for games: Large storage (640 MB), good audio quality and a 'not-so-slow' read speed (thanks to the 2x drive included with the console).
+Programs have all the facilities that the CD medium provides: Large storage (640 MB), good audio quality and a 'not-so-slow' read speed thanks to the 2x drive.
 
 ### Development ecosystem
 
