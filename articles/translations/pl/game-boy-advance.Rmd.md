@@ -36,14 +36,14 @@ supporting_imagery()
 
 Większość komponentów jest połączona w jeden pakiet o nazwie **CPU AGB**. Ten pakiet zawiera dwa zupełnie różne procesory:
 
-- **Sharp SM83** działający z szybkością 8,4 lub 4,2 MHz: *Jeśli to nie ten sam procesor, co w Game Boyu!* Jest skutecznie używany do uruchamiania gier Game Boy (**DMG**) i Game Boy Color (**CGB**). Oto [mój poprzedni artykuł](code>r ref("game-boy")</code), jeśli chcesz dowiedzieć się więcej na ten temat.
+- **Sharp SM83** działający z szybkością 8,4 lub 4,2 MHz: *Jeśli to nie ten sam procesor, co w Game Boyu!* Jest skutecznie używany do uruchamiania gier Game Boy (**DMG**) i Game Boy Color (**CGB**). Oto [mój poprzedni artykuł](game-boy), jeśli chcesz dowiedzieć się więcej na ten temat.
 - **ARM7TDMI** działający z częstotliwością 16,78 MHz: jest to nowy procesor, na którym się skupimy i który obsługuje gry Game Boy Advance.
 
 Zauważ, że oba procesory **nigdy nie będą działać w tym samym czasie** ani nie będą wykonywać żadnego fantazyjnego współprzetwarzania. **Jedynym** powodem uwzględnienia *bardzo* starego Sharpa jest **wsteczna zgodność**.
 
 ### Co nowego?
 
-Zanim ARM Holdings (obecnie 'Arm') stał się niezwykle popularny w świecie smartfonów, licencjonował swoje projekty procesorów do zasilania komputerów Acorn, Newtona Apple, telefonów Nokii i Panasonic 3DO. Wybrany przez Nintendo procesor, ARM7TDMI, oparty jest na wcześniejszej konstrukcji ARM710 i zawiera `r cite("cpu-arm")`:
+Zanim ARM Holdings (obecnie 'Arm') stał się niezwykle popularny w świecie smartfonów, licencjonował swoje projekty procesorów do zasilania komputerów Acorn, Newtona Apple, telefonów Nokii i Panasonic 3DO. Wybrany przez Nintendo procesor, ARM7TDMI, oparty jest na wcześniejszej konstrukcji ARM710 i zawiera [@cpu-arm]:
 
 - **ARM v4** ISA: Czwartą wersję 32-bitowego zestawu instrukcji ARM.
 - **Trzyetapowy potok**: Wykonywanie instrukcji jest podzielone na trzy etapy. Procesor pobierze, zdekoduje i wykona do trzech instrukcji jednocześnie. Umożliwia to maksymalne wykorzystanie zasobów procesora (co zmniejsza bezczynność krzemu), jednocześnie zwiększając liczbę instrukcji wykonywanych na jednostkę czasu.
@@ -51,7 +51,7 @@ Zanim ARM Holdings (obecnie 'Arm') stał się niezwykle popularny w świecie sma
 
 Co więcej, ten rdzeń zawiera kilka rozszerzeń, do których odwołuje się jego nazwa (*TDMI*):
 
-- **T** → **Thumb**: Podzbiór zestawu instrukcji ARM, którego instrukcje są zakodowane w słowach 16-bitowych `r cite("cpu-thomas")`.
+- **T** → **Thumb**: Podzbiór zestawu instrukcji ARM, którego instrukcje są zakodowane w słowach 16-bitowych [@cpu-thomas].
   - Będąc 16-bitowymi, instrukcje Thumb wymagają połowy szerokości magistrali i zajmują połowę pamięci. Jednak ponieważ instrukcje Thumb oferują tylko funkcjonalny podzbiór ARM, może być konieczne napisanie większej liczby instrukcji, aby osiągnąć ten sam efekt.
   - Thumb oferuje tylko warunkowe wykonanie na gałęziach, jego operacje przetwarzania danych używają formatu dwuadresowego, a nie trzyadresowego, i ma dostęp tylko do dolnej połowy pliku rejestru.
   - W praktyce Thumb wykorzystuje 70% miejsca w kodzie ARM. W przypadku pamięci 16-bitowej Thumb działa *szybciej* niż ARM.
@@ -64,19 +64,15 @@ Co więcej, ten rdzeń zawiera kilka rozszerzeń, do których odwołuje się jeg
 
 Dołączenie Thumb miało szczególnie duży wpływ na ostateczny projekt tej konsoli. Nintendo połączyło magistrale 16-bitowe i 32-bitowe między różnymi modułami, aby obniżyć koszty, jednocześnie zapewniając programistom niezbędne zasoby do optymalizacji kodu.
 
-(ref:memoryarchcaption) Architektura pamięci tego systemu.
+![Architektura pamięci tego systemu.](memory.png)
 
-```{r fig.cap="(ref:memoryarchcaption)", fig.align='center', centered=TRUE}
-image("memory.png", "(ref:memoryarchcaption)", class = "centered-container")
-```
-
-Pamięć do wykorzystania jest podzielona na następujące lokalizacje (w kolejności od najszybszej do najwolniejszej) `r cite("cpu-vijn")`:
+Pamięć do wykorzystania jest podzielona na następujące lokalizacje (w kolejności od najszybszej do najwolniejszej) [@cpu-vijn]:
 
 - **IWRAM** (wewnętrzny WRAM) → 32-bitowy z 32 KB: Przydatny do przechowywania instrukcji ARM.
 - **VRAM** (Wideo RAM) → 16-bitowy z 96 KB: Chociaż ten blok jest przeznaczony na dane graficzne (wyjaśniono to w następnej części tego artykułu), nadal można go znaleźć w mapie pamięci procesora, więc programiści mogą przechowywać tu inne dane, jeśli IWRAM nie wystarcza.
 - **EWRAM** (zewnętrzny WRAM) → 16-bitowy z 256 KB: Osobny układ obok CPU AGB. Jest optymalny do przechowywania instrukcji Thumb i danych w małych porcjach. Z drugiej strony dostęp do chipa może być do sześciu razy wolniejszy w porównaniu z IWRAM.
 - **Game PAK ROM** → 16-bitowy ze zmiennym rozmiarem: To jest miejsce, w którym uzyskuje się dostęp do pamięci ROM kartridża. Chociaż może zapewniać jedną z najwolniejszych szybkości, jest również odzwierciedlany w mapie pamięci, aby zarządzać różnymi szybkościami dostępu. Dodatkowo Nintendo dołączyło **Bufor Prefetch**, który łączy się z kartridżem, aby złagodzić nadmierne przeciąganie. Ten komponent niezależnie buforuje ciągłe adresy, gdy procesor nie uzyskuje dostępu do kartridża, może przechowywać do ośmiu 16-bitowych słów.
-  - W praktyce jednak procesor rzadko pozwala Buforowi Prefetch wykonać swoją pracę. Ponieważ domyślnie będzie pobierać instrukcje z kartridża, aby kontynuować wykonywanie `r cite("cpu-pfau")` (dlatego IWRAM i EWRAM są tak ważne).
+  - W praktyce jednak procesor rzadko pozwala Buforowi Prefetch wykonać swoją pracę. Ponieważ domyślnie będzie pobierać instrukcje z kartridża, aby kontynuować wykonywanie \[@cpu-pfau\] (dlatego IWRAM i EWRAM są tak ważne).
 - **Game PAK RAM** → 8-bitowy o zmiennym rozmiarze: To jest miejsce, w którym uzyskuje się dostęp do pamięci RAM (SRAM lub Pamięci Flash).
   - Jest to ściśle 8-bitowa magistrala (procesor zobaczy 'śmieci' w nieużywanych bitach) i z tego powodu Nintendo twierdzi, że może być obsługiwana tylko przez ich biblioteki.
 
@@ -88,7 +84,7 @@ Oprócz włączenia osprzętu GBC (Sharp SM83, oryginalny BIOS, tryby audio i wi
 
 Od strony sprzętowej konsola opiera się na przełącznikach, aby wykryć, czy włożono kartridż Game Boy lub Game Boy Color. **Detektor kształtu** w gnieździe kartridża skutecznie identyfikuje typ kartridża i pozwala procesorowi odczytać jego stan. Zakłada się, że jakiś element CPU AGB odczytuje tę wartość i automatycznie wyłącza sprzęt, który nie jest potrzebny w trybie GBC.
 
-Od strony oprogramowania istnieje specjalny 16-bitowy rejestr o nazwie `REG_DISPCNT`, który może zmieniać wiele właściwości wyświetlacza, ale jeden z jego bitów ustawia konsolę w 'tryb GBC' `r cite("cpu-diaz")`. Początkowo miałem trudności ze zrozumieniem, kiedy dokładnie GBA próbuje zaktualizować ten rejestr. Na szczęście niektórzy programiści pomogli to wyjaśnić:
+Od strony oprogramowania istnieje specjalny 16-bitowy rejestr o nazwie `REG_DISPCNT`, który może zmieniać wiele właściwości wyświetlacza, ale jeden z jego bitów ustawia konsolę w 'tryb GBC' [@cpu-diaz]. Początkowo miałem trudności ze zrozumieniem, kiedy dokładnie GBA próbuje zaktualizować ten rejestr. Na szczęście niektórzy programiści pomogli to wyjaśnić:
 
 > Myślę, że to, co dzieje się podczas rozruchu GBC, polega na tym, że sprawdza przełącznik (czytelny pod adresem REG_WAITCNT 0x4000024), zanika (bardzo szybkie zanikanie, trudne do zauważenia), a następnie w końcu przełącza się w tryb GBC (BIOS zapisuje do REG_DISPCNT 0x4000000), zatrzymując ARM7.
 > 
@@ -98,17 +94,13 @@ Od strony oprogramowania istnieje specjalny 16-bitowy rejestr o nazwie `REG_DISP
 
 ## Grafika
 
-Zanim zaczniemy, znajdziesz w systemie mieszankę [SNES-a](code>r ref("super-nintendo.md#graphics")</code) i [Game Boy'a](code>r ref("game-boy#graphics")</code), a rdzeniem graficznym nadal jest dobrze znany silnik 2D o nazwie **PPU**. Zalecam przeczytanie tych artykułów przed kontynuowaniem, ponieważ powrócę do wielu wcześniej wyjaśnionych koncepcji.
+Zanim zaczniemy, znajdziesz w systemie mieszankę [SNES-a](super-nintendo.md#graphics) i [Game Boy'a](game-boy#graphics), a rdzeniem graficznym nadal jest dobrze znany silnik 2D o nazwie **PPU**. Zalecam przeczytanie tych artykułów przed kontynuowaniem, ponieważ powrócę do wielu wcześniej wyjaśnionych koncepcji.
 
 W porównaniu z poprzednimi Game Boy'ami mamy teraz kolorowy ekran LCD, który może wyświetlać do 32 768 kolorów (15 bitów). Ma rozdzielczość 240x160 pikseli i częstotliwość odświeżania ~60Hz.
 
 ### Organizowanie treści
 
-(ref:ppuarchcaption) Architektura pamięci PPU.
-
-```{r fig.cap="(ref:ppuarchcaption)", fig.align='center', centered=TRUE}
-image("ppu.png", "(ref:ppuarchcaption)", class = "centered-container")
-```
+![Architektura pamięci PPU.](ppu.png)
 
 Mamy następujące regiony pamięci, w których możemy dystrybuować naszą grafikę:
 
@@ -122,28 +114,19 @@ Jeśli czytałeś poprzednie artykuły, GBA będzie Ci znajomy, chociaż istniej
 
 Wypożyczę grafikę z *Sonic Advance 3* firmy Sega, aby pokazać, jak składa się klatka.
 
-(ref:tilestitle) Kafelki
+#### Kafelki {.tabs.active}
 
-(ref:tilesfooter) Charblocks znalezione w pamięci VRAM.
+::: {.subfigures .tabs-nested .tab-float .pixel}
 
-(ref:block1title) Blok 1
+![Ten blok jest wykonany z Kafelków 4bpp.](sonic/tiles1.png){.active title="Blok 1"}
 
-(ref:block1caption) Ten blok jest wykonany z Kafelków 4bpp.
+![Możesz zauważyć tutaj dziwne pionowe wzory, nie są to grafiki, ale 'Mapy Kafelków' (patrz następna sekcja).](sonic/tiles2.png){title="Blok 2"}
 
-(ref:block2title) Blok 2
+![Ten blok jest zarezerwowany dla sprite'ów.](sonic/tilesobj.png){title="Blok 3"}
 
-(ref:block2caption) Możesz zauważyć tutaj dziwne pionowe wzory, nie są to grafiki, ale 'Mapy Kafelków' (patrz następna sekcja).
+Charblocks znajdujące sie w VRAM.
 
-(ref:block3title) Blok 3
-
-(ref:block3caption) Ten blok jest zarezerwowany dla sprite'ów.
-
-```{r fig.cap=c("(ref:block1caption)", "(ref:block2caption)", "(ref:block3caption)"), fig.align="center", out.width = split_figure_width, tab.title="(ref:tilestitle)", tab.active = TRUE, tab.first=TRUE, tab.nested=TRUE, tab.float=TRUE, tab_class="pixel", tab.figure=TRUE, fig.ncol = responsive_columns}
-image('sonic/tiles1.png', "(ref:block1caption)", tab.name = "(ref:block1title)", tab.active = TRUE)
-image('sonic/tiles2.png', "(ref:block2caption)", tab.name = "(ref:block2title)")
-image('sonic/tilesobj.png', "(ref:block3caption)", tab.name = "(ref:block3title)")
-figcaption("(ref:tilesfooter)")
-```
+:::
 
 Kafelki GBA są ściśle bitmapami 8x8 pikseli, mogą używać 16 kolorów (4bpp) lub 256 kolorów (8bpp). Kafelki 4bpp zajmują 32 bajty, a 8bpp zajmują 64 bajty.
 
@@ -153,32 +136,23 @@ Ze względu na rozmiar charblock'a, w jednym bloku można przechowywać do 256 p
 
 Tylko cztery charblock'i mogą być użyte jako tła, a dwa mogą być użyte jako sprite'y.
 
-(ref:bgtitle) Tła
+#### Tła {.tab}
 
-(ref:bgfooter) Używane są statyczne warstwy tła.
+::: {.subfigures .tabs-nested .tab-float}
 
-(ref:blayer1title) Warstwa 0
+![Warstwa Tła 0 (BG0).](sonic/bg0.png){.active title="Warstwa 0"}
 
-(ref:blayercaption) Warstwa Tła 0 (BG0).
+![Warstwa Tła 2 (BG2).](sonic/bg2.png){title="Warstwa 2"}
 
-(ref:blayer2title) Warstwa 2
+![Warstwa Tła 3 (BG3).<br>Ta konkretna warstwa będzie przesuwana poziomo na pewnych liniach skanowania, aby zasymulować efekty wody.](sonic/bg3.png){title="Warstwa 3"}
 
-(ref:blayer2caption) Warstwa Tła 2 (BG2).
+Statyczne warstwy tła w użyciu.
 
-(ref:blayer3title) Warstwa 3
+:::
 
-(ref:blayer3caption) Warstwa Tła 3 (BG3).<br>Ta konkretna warstwa będzie przesuwana poziomo na pewnych liniach skanowania, aby zasymulować efekty wody.
+Warstwa tła tego systemu znacznie się poprawiła od czasu Game Boy Color. W końcu zawiera niektóre funkcje znalezione w [Super Nintendo](super-nintendo) (pamiętasz [przekształcenia afiniczne](super-nintendo#unique-features)?).
 
-```{r fig.cap=c("(ref:blayercaption)", "(ref:blayer2caption)", "(ref:blayer3caption)"), fig.align="center", out.width = split_figure_width, tab.title="(ref:bgtitle)", tab.nested=TRUE, tab.figure=TRUE, tab.float=TRUE, tab_class="pixel", fig.ncol = responsive_columns}
-image('sonic/bg0.png', "(ref:blayercaption)", tab.name = "(ref:blayer1title)", tab.active = TRUE)
-image('sonic/bg2.png', "(ref:blayer2caption)", tab.name = "(ref:blayer2title)")
-image('sonic/bg3.png', "(ref:blayer3caption)", tab.name = "(ref:blayer3title)")
-figcaption("(ref:bgfooter)")
-```
-
-Warstwa tła tego systemu znacznie się poprawiła od czasu Game Boy Color. W końcu zawiera niektóre funkcje znalezione w [Super Nintendo](code>r ref("super-nintendo")</code) (pamiętasz [przekształcenia afiniczne](code>r ref("super-nintendo#unique-features")</code)?).
-
-PPU może narysować do czterech warstw tła. Możliwości każdego z nich będą zależeć od wybranego trybu działania `r cite("graphics-tiles")`:
+PPU może narysować do czterech warstw tła. Możliwości każdego z nich będą zależeć od wybranego trybu działania [@graphics-tiles]:
 
 - **Tryb 0**: Zapewnia cztery warstwy statyczne.
 - **Tryb 1**: Dostępne są tylko trzy warstwy, chociaż jedna z nich jest **afiniczna** (można ją obracać i/lub skalować).
@@ -188,13 +162,9 @@ Każda warstwa ma wymiar do 512x512 pikseli. Jeśli jest afiniczna, to będzie m
 
 Fragment danych definiujący warstwę tła to **Mapa Kafelków**. Aby wdrożyć ją w sposób zrozumiały dla PPU, programiści używają **screenblock'ów**, konstrukcji definiującej części warstwy tła (32x32 kafelki). Screenblock zajmuje tylko 2 KB, ale do zbudowania całej warstwy będzie potrzebny więcej niż jeden. Programiści mogą umieścić je gdziekolwiek wewnątrz charblocków tła, co oznacza, że nie wszystkie wpisy kafelków będą zawierały grafikę!
 
-(ref:spritetitle) Sprite'y
+#### Sprite'y {.tab}
 
-(ref:spritecaption) Renderowana warstwa Sprite
-
-```{r fig.cap="(ref:spritecaption)", fig.align='center', tab.title="(ref:spritetitle)"}
-image('sonic/sprites.png', "(ref:spritecaption)", float=TRUE, class="pixel")
-```
+![Renderowana warstwa Sprite](sonic/sprites.png) {.tab-float.pixel}
 
 Rozmiar sprite może mieć szerokość do 64x64 pikseli, jak na tak mały ekran będą okupywać jego dużą część.
 
@@ -205,13 +175,9 @@ Wpisy sprtie mają szerokość 32 bitów, a ich wartości można podzielić na d
 - **Atrybuty**: Zawiera pozycję x/y, przesunięcie h/v, rozmiar, kształt (kwadratowy lub prostokątny), typ sprite'u (afiniczny lub regularny) i położenie pierwszego kafelka.
 - **Dane afiniczne**: Używany tylko wtedy, gdy sprite jest afiniczny, określają skalowanie i obrót.
 
-(ref:resulttitle) Rezultat
+#### Rezultat {.tab}
 
-(ref:resultcaption) Wszystkie warstwy scalone (_Tada!_).
-
-```{r fig.cap="(ref:resultcaption)", fig.align='center', tab.title="(ref:resulttitle)", tab.last=TRUE}
-image('sonic/result.png', "(ref:resultcaption)", float=TRUE, class="pixel")
-```
+![Wszystkie warstwy scalone (_Tada!_).](sonic/result.png) {.tab-float.pixel}
 
 Jak zawsze, PPU automatycznie połączy wszystkie warstwy, ale to jeszcze nie koniec! System może również zastosować kilka efektów na tych warstwach:
 
@@ -224,13 +190,11 @@ Z drugiej strony, aby zaktualizować klatkę, dostępne jest wiele opcji:
 - Wydaj polecenie **CPU**: Procesor ma teraz pełny dostęp do pamięci VRAM, kiedy tylko chce. Może jednak powodować niechciane artefakty, jeżeli zmieni niektóre dane w połowie klatki, więc oczekiwanie na VBlank/HBlank (*tradycyjny sposób*) pozostaje w większości przypadków najbezpieczniejszą opcją.
 - Użyj **Kontrolera DMA**: DMA zapewnia ~10-cio krotnie szybszy transfer i może być zaplanowany podczas VBlank i HBlank. Ta konsola zapewnia 4 kanały DMA (dwa przeznaczone na dźwięk, jeden do operacji krytycznych, a ostatni do celów ogólnych). Miej na uwadzę, że kontroler zatrzyma procesor podczas operacji (chociaż praktycznie tego nie zauważy!).
 
-`r close_tabs()`
-
-### Poza Kafelkami
+### Poza Kafelkami {.tabs-close}
 
 Czasami możemy chcieć utworzyć tło, z którego tile engine nie będzie w stanie narysować wszystkich wymaganych grafiki. Nowoczesne konsole rozwiązały ten problem, implementując architekturę **bufora-klatek**, ale nie jest to możliwe, gdy jest bardzo mało RAM... Cóż, tak się składa, że GBA ma 96 KB pamięci VRAM, co wystarcza do przydzielenia **bitmapy** o wymiarach naszego ekranu LCD.
 
-Dobrą wiadomością jest to, że PPU faktycznie implementuje tę funkcjonalność, uwzględniając trzy dodatkowe tryby, zwane **trybami bitmapy** `r cite("graphics-bitmap")`:
+Dobrą wiadomością jest to, że PPU faktycznie implementuje tę funkcjonalność, uwzględniając trzy dodatkowe tryby, zwane **trybami bitmapy** [@graphics-bitmap]:
 
 - **Tryb 3**: Przydziela pojedynczą w pełni kolorową klatkę (8bpp).
 - **Tryb 4**: Zapewnia dwie klatki z połową kolorów (4bpp) każda.
@@ -238,26 +202,17 @@ Dobrą wiadomością jest to, że PPU faktycznie implementuje tę funkcjonalnoś
 
 Powodem posiadania dwóch bitmap jest włączenie **przewracania-stron**: Rysowanie na wyświetlanej bitmapie może ujawnić pewne dziwne artefakty podczas procesu. Jeśli zamiast tego manipulujemy inną, żaden z błędów nie zostanie pokazany użytkownikowi. Po zakończeniu drugiej bitmapy, PPU można zaktualizować, aby wskazywał na drugą, skutecznie zamieniając wyświetlaną klatkę.
 
-(ref:monkeytitle) 3D
+::: {.subfigures .tabs-nested .open-float .tab-float}
 
-(ref:monkeycaption) Super Monkey Ball Jr. (2002).<br>Tryb bitmapowy umożliwił procesorowi dostarczenie podstawowej grafiki 3D do scenerii.<br>Obiekty pierwszego planu to sprite'y (oddzielna warstwa).
+![Super Monkey Ball Jr. (2002).<br>Tryb bitmapowy umożliwił procesorowi dostarczenie podstawowej grafiki 3D do scenerii.<br>Obiekty pierwszego planu to sprite'y (oddzielna warstwa).](bitmap/monkey.png){.active title="3D"}
 
-(ref:tonctitle) Demo
+![Demo Tonc'a.<br>Renderowana bitmapa z kilkoma prymitywami.<br>Zauważ, że ekran nie pokazuje znaczących wzorów generowanych przez silniki kafelków.](bitmap/demo.png){title="Demo"}
 
-(ref:tonccaption) Demo Tonc'a.<br>Renderowana bitmapa z kilkoma prymitywami.<br>Zauważ, że ekran nie pokazuje znaczących wzorów generowanych przez silniki kafelków.
+![SpongeBob Kanciastoporty Nickelodeon'a.<br>Odcinek rozpowszechniany jako kartridż Gba Video (oczywiście był mocno skompresowany).](bitmap/spongebob.png){title="Wideo"}
 
-(ref:videotitle) Wideo
+Przykłady programów wykorzystujących tryby bitmapowe.
 
-(ref:videocaption) SpongeBob Kanciastoporty Nickelodeon'a.<br>Odcinek rozpowszechniany jako kartridż _GBA Video_ (oczywiście był mocno skompresowany).
-
-(ref:bitmapfooter) Przykłady programów wykorzystujących tryby bitmapowe.
-
-```{r fig.cap=c("(ref:monkeycaption)", "(ref:tonccaption)" , "(ref:videocaption)"), open_float_group=TRUE, tab.nested=TRUE, tab.float=TRUE, figure=TRUE, tab_class="pixel"}
-image("bitmap/monkey.png", "(ref:monkeycaption)", tab.name="(ref:monkeytitle)", tab.active=TRUE)
-image("bitmap/demo.png", "(ref:tonccaption)", tab.name="(ref:tonctitle)")
-image("bitmap/spongebob.png", "(ref:videocaption)", tab.name="(ref:videotitle)")
-figcaption("(ref:bitmapfooter)")
-```
+:::
 
 Ogólnie rzecz biorąc, brzmi to jak najnowocześniejsza funkcja, jednak większość gier trzymała się silnika kafelków. Czemu? Ponieważ w praktyce **kosztuje dużo zasobów procesora**.
 
@@ -275,13 +230,9 @@ GBA posiada **2-kanałowy odtwarzacz próbek**, który działa w połączeniu ze
 
 Oto podział na komponenty audio przy użyciu *Sonic Advance 2* jako przykładu:
 
-(ref:pcmtitle) PCM
+#### PCM {.tabs.active}
 
-(ref:pcmcaption) Kanały tylko PCM.
-
-```{r fig.cap="(ref:pcmcaption)", fig.align='center', tab.title="(ref:pcmtitle)", tab.first=TRUE, tab.active=TRUE}
-video('pcm', "(ref:pcmcaption)", float=TRUE)
-```
+![Kanały wyłącznie PCM.](pcm){.tab-float video="true"}
 
 Nowy system dźwiękowy może teraz odtwarzać próbki PCM, udostępnia dwa kanały o nazwie **Direct Sound**, w których odbiera próbki za pomocą **kolejki FIFO** (zaimplementowany jako 16-bajtowy bufor).
 
@@ -289,52 +240,37 @@ Próbki są **8-bitowe** i **znakowane** (zakodowane w wartościach od -128 do 1
 
 **DMA** jest niezbędne, aby uniknąć zapychania cykli procesora. Dostępne są również **liczniki czasu**, które umożliwiają synchronizację z kolejką.
 
-(ref:psgtitle) PSG
+#### PSG {.tab}
 
-(ref:psgcaption) Kanały tylko PSG.
+![Kanały wyłącznie PSG.](psg){.tab-float video="true"}
 
-```{r fig.cap="(ref:psgcaption)", fig.align='center', tab.title="(ref:psgtitle)"}
-video('psg', "(ref:psgcaption)", float=TRUE)
-```
-
-Chociaż podsystem Game Boy nie współdzieli swojego procesora, daje dostęp do PSG. Ze względu na kompatybilność jest to ten sam projekt, który można znaleźć w oryginalnym Game Boy'u. Wcześniej napisałem [ten artykuł](code>r ref("game-boy#audio")</code), który szczegółowo omawia każdy kanał.
+Chociaż podsystem Game Boy nie współdzieli swojego procesora, daje dostęp do PSG. Ze względu na kompatybilność jest to ten sam projekt, który można znaleźć w oryginalnym Game Boy'u. Wcześniej napisałem [ten artykuł](game-boy#audio), który szczegółowo omawia każdy kanał.
 
 Większość gier GBA używała go do akompaniamentu lub efektów. Późniejsze tytuły zoptymalizują swoją muzykę pod kątem PCM, a PSG nie będzie używane.
 
-(ref:combinedtitle) Połączone
+#### Połączone {.tab}
 
-(ref:combinedcaption) Tada!
-
-```{r fig.cap="(ref:combinedcaption)", fig.align='center', tab.title="(ref:combinedtitle)", tab.last=TRUE}
-video('complete', "(ref:combinedcaption)", float=TRUE)
-```
+![Tada!](complete){.tab-float video="true"}
 
 Wreszcie wszystko jest automatycznie miksowane i przesyłane przez gniazdo głośnika/słuchawek.
 
-Mimo że GBA ma tylko dwa kanały PCM, niektóre gry mogą magicznie odtwarzać więcej niż dwie równoczesne próbki. Jak to możliwe? Cóż, chociaż posiadanie tylko dwóch kanałów może wydawać się nieco słabe na papierze, główny procesor może wykorzystać niektóre ze swoich cykli do zapewnienia zarówno sekwencjonowania dźwięku, jak i miksowania `r cite("audio-programming")` (co powinno dać wyobrażenie o tym, jak potężny jest ARM7!). Ponadto w sekcji 'System Operacyjny' dowiesz się, że BIOS ROM zawiera sekwencer audio!
+Mimo że GBA ma tylko dwa kanały PCM, niektóre gry mogą magicznie odtwarzać więcej niż dwie równoczesne próbki. Jak to możliwe? Cóż, chociaż posiadanie tylko dwóch kanałów może wydawać się nieco słabe na papierze, główny procesor może wykorzystać niektóre ze swoich cykli do zapewnienia zarówno sekwencjonowania dźwięku, jak i miksowania \[@audio-programming\] (co powinno dać wyobrażenie o tym, jak potężny jest ARM7!). Ponadto w sekcji 'System Operacyjny' dowiesz się, że BIOS ROM zawiera sekwencer audio!
 
-`r close_tabs()`
-
-### Podwójna korzyść
+### Podwójna korzyść {.tabs-close}
 
 Niektóre gry szły dalej w dualizmie PCM-PSG i 'zamieniały' wiodący układ w zależności od kontekstu.
 
 W tej grze (*Mother 3*) gracz może wejść do dwóch różnych pokoi, jednego *stosunkowo normalnego* i drugiego z atmosferą *nostalgiczną*. W zależności od pokoju, w którym znajduje się postać, ten sam utwór będzie brzmieć *nowocześnie* lub *8bit-owo*.
 
-(ref:cinemapcmcaption) Normalny pokój, używa tylko PCM.
+![W normalnym pomieszczeniu używa się wyłącznie PCM.](crackers/cinema){.toleft video="true"}
 
-(ref:cinemapsgcaption) Nostalgiczny pokój, PSG prowadzi melodię.
-
-```{r fig.cap=c("(ref:cinemapcmcaption)", "(ref:cinemapsgcaption)"), side_by_side=TRUE, fig.pos = "H"}
-video('crackers/cinema', class="toleft", "(ref:cinemapcmcaption)")
-video('crackers/8bit', class="toright", "(ref:cinemapsgcaption)")
-```
+![Pokój nostalgiczny, muzykę prowadzi PSG.](crackers/8bit){.toright video="true"}
 
 ## System Operacyjny
 
 Wektor resetowania ARM7 to `0x00000000`, co wskazuje na **16 KB BIOS ROM**. Oznacza to, że Game Boy Advance najpierw uruchamia się z BIOS-u, który z kolei pokazuje ikoniczny ekran powitalny, a następnie decyduje, czy załadować grę, czy nie.
 
-Ten ROM przechowuje również procedury oprogramowania, które gry mogą wywoływać w celu uproszczenia pewnych operacji i zmniejszenia rozmiaru kartridża `r cite("operating_system-vijn")`. Obejmują one:
+Ten ROM przechowuje również procedury oprogramowania, które gry mogą wywoływać w celu uproszczenia pewnych operacji i zmniejszenia rozmiaru kartridża [@operating_system-vijn]. Obejmują one:
 
 - **Funkcje arytmetyczne**: Procedury wykonywania Dzielenia, Pierwiastka Kwadratowego i Tangensa Łuku.
 - **Obliczanie macierzy afinicznej**: Mając wartość i kąt 'powiększenia', oblicza macierz afiniczną, która zostanie wprowadzona do PPU w celu skalowania/obracania tła lub sprite.
@@ -365,7 +301,7 @@ Czy to oznacza, że dane znajdujące się pod nieparzystymi adresami (z najmniej
 
 ### Przestrzeń RAM kartridża
 
-Aby przechowywać zapisy, Game Pak'i mogą zawierać `r cite("games-ziegler")`:
+Aby przechowywać zapisy, Game Pak'i mogą zawierać [@games-ziegler]:
 
 - **SRAM**: Wymagają one baterii do przechowywania zawartości i mogą mieć rozmiar do 64 KB (chociaż gry komercyjne nie przekraczały 32 KB). Dostęp do niego uzyskuje się poprzez mapę pamięci GBA.
 - **Flash ROM**: Podobny do SRAM, ale bez baterii, może mieć rozmiar do 128 KB.
@@ -379,20 +315,16 @@ Słynny **Game Boy Link Cable** zapewniał możliwość gry wieloosobowej. Dodat
 
 Ogólnie rzecz biorąc, używanie zastrzeżonych kartridży stanowiło dużą barierę w porównaniu z ciągłą grą w kotka i myszkę, z którą musieli walczyć inni producenci konsol podczas korzystania z CD-ROM-u.
 
-Aby walczyć z *bootlegami* (nieautoryzowanymi reprodukcjami), BIOS GBA wbudował [ten sam proces uruchamiania](code>r ref("game-boy#anti-piracy")</code), który można znaleźć w oryginalnym Game Boy'u.
+Aby walczyć z *bootlegami* (nieautoryzowanymi reprodukcjami), BIOS GBA wbudował [ten sam proces uruchamiania](game-boy#anti-piracy), który można znaleźć w oryginalnym Game Boy'u.
 
 ### Flashcarty
 
 Gdy pamięć masowa stała się bardziej przystępna cenowo, na rynku pojawił się nowy typ kartridża. **Flashcarty** wyglądały jak zwykłe Game Pak'i, ale miały pamięć wielokrotnego zapisu lub gniazdo kart pamięci, które umożliwiało uruchamianie ROM-ów z grami. Koncepcja ta nie jest w rzeczywistości nowa, deweloperzy stosowali wewnętrznie podobne narzędzia do testowania swoich gier na prawdziwej konsoli (i producenci dostarczyli sprzęt, aby to umożliwić).
 
-Wcześniejsze rozwiązania obejmowały pamięć NOR Flash z możliwością nagrywania (nieprzekraczającą 32 MB) i SRAM z podtrzymaniem bateryjnym. Aby przesłać pliki binarne do kartridża, produkt zawierał kabel Link-do-USB używany z GBA i komputerem z systemem Windows XP. Za pomocą zastrzeżonego oprogramowania flashera i sterowników komputer przesyłał do GBA program multi-boot, który z kolei był używany do przesyłania pliku binarnego gry z komputera do Flashcarta umieszczonego w GBA. Ogólnie rzecz biorąc, całe zadanie przesyłania gry zostało uznane za *powolne*. Późniejsze Flashcarty (takie jak 'EZ-Flash') oferowały większą pamięć i możliwość programowania bez konieczności używania GBA jako pośrednika `r cite("anti_piracy-ezflash")`. Te ostatnie opierały się na pamięci wymiennej (SD, MiniSD, MicroSD lub cokolwiek innego).
+Wcześniejsze rozwiązania obejmowały pamięć NOR Flash z możliwością nagrywania (nieprzekraczającą 32 MB) i SRAM z podtrzymaniem bateryjnym. Aby przesłać pliki binarne do kartridża, produkt zawierał kabel Link-do-USB używany z GBA i komputerem z systemem Windows XP. Za pomocą zastrzeżonego oprogramowania flashera i sterowników komputer przesyłał do GBA program multi-boot, który z kolei był używany do przesyłania pliku binarnego gry z komputera do Flashcarta umieszczonego w GBA. Ogólnie rzecz biorąc, całe zadanie przesyłania gry zostało uznane za *powolne*. Późniejsze Flashcarty (takie jak 'EZ-Flash') oferowały większą pamięć i możliwość programowania bez konieczności używania GBA jako pośrednika [@anti_piracy-ezflash]. Te ostatnie opierały się na pamięci wymiennej (SD, MiniSD, MicroSD lub cokolwiek innego).
 
 Dostępność komercyjna tych kartridży okazała się **szarą strefą**: Nintendo potępiło ich używanie ze względu na umożliwienie piractwa, podczas gdy niektórzy użytkownicy bronili, że jest to jedyna metoda uruchamiania **Homebrew** (programów stworzonych poza studiami gier, a co za tym idzie bez zgody Nintendo). Argument Nintendo był poparty faktem, że flashery, takie jak EZ-Writer, pomagały użytkownikom łatać ROMy gier, aby mogli bez problemów działać w kartridżach EZ-Flash. Po bataliach prawnych Nintendo kartridże te zostały zakazane w niektórych krajach (np. w Wielkiej Brytanii). Niemniej jednak przetrwały na całym świecie.
 
 ## To wszystko ludziska
 
-(ref:mygbacaption) Mój GBA i kilka gier.<br>Szkoda, że nie ma podświetlenia!
-
-```{r fig.cap="(ref:mygbacaption)", fig.align='center', centered=TRUE}
-image("mygba.png", "(ref:mygbacaption)", class = "centered-container")
-```
+![Mój GBA i kilka gier.<br>Szkoda, że nie ma podświetlenia!](mygba.png)
