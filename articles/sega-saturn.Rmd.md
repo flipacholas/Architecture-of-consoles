@@ -323,7 +323,17 @@ Unlike the [PlayStation](playstation) whose ROM chip bundled a [BIOS](playstatio
 
 ## Games
 
-Official Sega Saturn games are loaded from the 2x CD-ROM reader. Its medium, the compact disc (CD), has a capacity of 680 MB. Sega Saturn games follow the ISO9660 for storing data in the CD [@games-format]. Many games store audio tracks next to the data tracks for streaming uncompressed audio while executing the game.
+Official Sega Saturn games are loaded from the **2x CD-ROM reader**. Its medium, the compact disc (CD), has a capacity of **680 MB** and Sega Saturn games follow the **ISO9660** standard for storing data [@games-format]. Additionally, many games store audio tracks next to the data tracks for streaming uncompressed audio while executing the game.
+
+### The Compact Disc (CD)
+
+The CD is an optical medium where information is stored by engraving **pits** and **lands** on its polycarbonate surface [@cpu-optical]. Then, an infrared light is beamed from the reader and the reflection produced on the CD's surface is used to read the information back.
+
+The process of converting digital information (ones and zeroes) into pits and lands and viceversa is not simple by any means, especially since CDs must be robust enough to sustain day-to-day damage and intensive use; and reliable enough to store any kind of information without fear of data loss. Hence, as part of its specification, data is encoded using the **Non-Return-to-Zero inverted** (NRZi) model, meaning that the bitstream will be all zeroes until a land-to-pit or pit-to-land change is detected, at which a `1` will be appended instead.
+
+This design works well until the reader encounters a sequence of ones (continuous pit and land changes) or long sequences of zeroes (constant pits or lands), at which the sensor will struggle to detect or keep synchronised, respectively. Thus, an additional model called **Eight-to-Fourteen** (ETF) modulation is applied. With this, a handful of zeroes are padded in-between the encodings, these help the sensor during the reading process.
+
+On top of all this, further mechanisms of error detection may be added, although these are beyond the scope of this article. If you are interested in learning more, you can check out a slide presentation from RWTH Aachen University [@cpu-optical].
 
 ### Development
 

@@ -443,7 +443,9 @@ The shell is a simple graphical interface that enables the user to copy or delet
 
 ## Games
 
-Programs have all the facilities that the CD medium provides: Large storage (640 MB), good audio quality and a 'not-so-slow' read speed thanks to the 2x drive.
+Just like the [Sega Saturn](sega-saturn) and any other console that made the switch to the CD medium, games are now provided with a new set of facilities: Large storage (640 MB), good audio quality and a 'not-so-slow' read speed thanks to the 2x drive.
+
+If you'd like to know how the Compact Disc (CD), I've written a quick explanation on the [Sega Saturn article](sega-saturn#the-compact-disc-cd).
 
 ### Development ecosystem
 
@@ -453,11 +455,11 @@ Along with the SDK, Sony also distributed specialised hardware like the **DTL-H2
 
 ## Anti-piracy / Region Lock
 
-Like any other optical media, to fetch data from a CD, a laser beam is used to read the **pits** (zeroes) and **lands** (ones) from the track of the disc.
+As you may know, to fetch data from a CD, a laser beam is used to detect the **pits** and **lands** from the track of the disc.
 
 Now, conventional discs are not 100% flat and they often have tiny fluctuations in their tracks. These *defects* are completely unnoticeable while reading the data since lasers can automatically calibrate themselves as they read.
 
-This is what Sony based their copy protection on: The Sub-CPU will allow reading discs whose Table of Contents (TOC) are engraved using a defined frequency informally known as **Wobble Groove**, which is only applied during mastering and cannot be replicated through conventional burners. The TOC is found in the inner section of the CD (called 'Lead-In' area) and instructs the laser on how to navigate throughout the disc [@copy_protection-kalymos], it's repeated many times as a fault-tolerance mechanism.
+This is what Sony based their copy protection on: The Sub-CPU will allow reading discs whose Table of Contents (TOC) are engraved using a defined frequency informally known as **Wobble Groove**, which is only applied during mastering and cannot be replicated through conventional burners. The TOC is found in the inner section of the CD (called 'Lead-In' area) and instructs the laser on how to navigate throughout the disc [@copy_protection-kalymos]. Moreover, it's repeated many times as a fault-tolerance mechanism.
 
 Within the PS1 game's TOC, one of the following character strings is embedded:
 
