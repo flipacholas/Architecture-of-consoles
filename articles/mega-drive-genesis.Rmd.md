@@ -207,6 +207,7 @@ The region in VRAM where Sprites are defined is called **Sprite Attribute Table*
 ![Frame broadcasted to the TV (NTSC format), the VDP automatically covers the frame with overscan area that most CRT TVs will hide.](vdp_sonic/overscan.png){title="With overscan"}
 
 Tada!
+
 :::
 
 While the frame is being drawn, the system will sequentially call different interrupt routines depending on where the CRT's beam is pointing to. As you have probably seen in previous consoles, this allows the CPU to work on the next frame (or alter the current one).
