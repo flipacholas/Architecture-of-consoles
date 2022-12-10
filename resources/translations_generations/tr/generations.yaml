@@ -1,0 +1,34 @@
+---
+- 
+  id: 3
+  ordinal: Üçüncü
+  description: '''8 bit'' konsollar olarak bilinen bu makineler, daha gelişmiş grafikler ve daha zengin sesler getirdi. Sonuçta, büyük bir pazar çöküşü meydana gelmişti ve daha yeni standartların belirlenmesi gerekiyordu.'
+  gpu: Kaydırılabilir tile map ve daha büyük renk paletleri
+- 
+  id: 4
+  ordinal: Dördüncü
+  description: DMA, yatay kesmeler, çoklu modlar... Bunlar, yeni '16-bit' neslini getiren ve yeni oyun türlerine kapı açan yeni kavramların bazı örnekleridir.
+  cpu: Çarpma ve bölme talimatları, DMA ve çift işlem
+  gpu: Afin dönüşümler ve yatay kesintiler
+- 
+  id: 5
+  ordinal: Beşinci
+  description: 3D oyun bir ihtiyaç haline geldi ancak 'nasıl' olacağı henüz net değil. Yanıt ne oldu? Her şirket kendi farklı vizyonunu sundu.
+  cpu: Veri hattı aşamaları ve L1 önbelleği
+  gpu: Programlanabilir veri hatları, Z-arabelleğe alma ve perspektif düzeltmeleri
+- 
+  id: 6
+  ordinal: Altıncı
+  description: Önceki nesildeki grafik sınırlamalarının çoğu artık yok. Taşınabilir konsollar tanıdık sistemlere benzemeye başlar.
+  cpu: Superscalar mimariler, SIMD komutları ve L2 önbellek
+  gpu: Programlanabilir piksel işlem hatları ve anizotropik filtreler
+- 
+  id: 7
+  ordinal: Yedinci
+  description: Konsollar, süper bilgisayarlara ve multimedya merkezlerine dönüşmüştür. Bu makineler artık sadece oyun oynamaktan daha yetenekli, bu yüzden güvenlik artık kritik bir faktör.
+  cpu: İş parçacığı düzeyinde paralellik ve simetrik çok çekirdekli mimariler
+  gpu: Birleşik gölgelendirici modeli ve HDR oluşturma
+- 
+  id: 8
+  ordinal: 8.
+  description: Eğlence pazarı artık ucuz akıllı telefonlar ve tabletler tarafından fethedildi. Sosyal medya yetenekleri her çevre biriminin birinci önceliği haline geldi. Geleneksel video oyun şirketlerinin statükolarını yenileme zamanı geldi ve bunu bir an önce yapsalar iyi olur.
