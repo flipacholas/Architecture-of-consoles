@@ -104,7 +104,7 @@ Nintendo kartuş hatlarını sadece 49120 Bayt (~ 49.97 KB) kartuş verisine eri
 
 - Oyunun programının bulunduğu bir **Program ROM**'u. Bu, daha sonra 'Grafikler' bölümünde göreceğiniz gibi grafik verilerini hariç tutar. Doğal olarak ve diğer çiplerden farklı olarak, bu çip zorunludur.
 - WRAM'i genişletmek için **RAM çipleri**.
-- Kayıtları saklamak için bir **pil dolu RAM çipi**.
+- Kayıtları saklamak için bir **pilden güç alan RAM çipi**.
 
 Farklı kombinasyonların olması, CPU'nun ne tür bir bileşenden okuma yapıldığını önemsememesi, sadece bellek konumlarını görmesi gerçeğinden kaynaklanmaktadır. Dolayısıyla, oyunlarını sığdırmak için uygun bir düzen seçmek (veya bulmak) oyun stüdyolarına kalmıştır.
 
