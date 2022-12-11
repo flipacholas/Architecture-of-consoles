@@ -56,7 +56,7 @@ Bu özelliklerin kullanılıp kullanılmayacağına programcı karar verir. Bu s
 
 ### UMA yok ama...
 
-Bu sistem, [tanınmış bir rakibi](nintendo-64#simplified-memory-access) gibi katı Birleşik Bellek Mimarisi etrafında tasarlanmamış olsa da, **I/O erişimini GPU'ya devretmektedir**. Bu da CPU'nun kendi özel RAM'i ya da seri arayüzü (ki bunlar da bağlı) dışında bir şey alması gerektiğinde GPU'dan talepte bulunması ve gerekirse beklemesi gerektiği anlamına geliyor.
+Bu sistem, [tanınmış bir rakibi](nintendo-64#simplified-memory-access) gibi katı Birleşik Bellek Mimarisi (Unified Memory Architecture veya UMA) etrafında tasarlanmamış olsa da, **I/O erişimini GPU'ya devretmektedir**. Bu da CPU'nun kendi özel RAM'i ya da seri arayüzü (ki bunlar da bağlı) dışında bir şey alması gerektiğinde GPU'dan talepte bulunması ve gerekirse beklemesi gerektiği anlamına geliyor.
 
 ### Özel sorgular
 
