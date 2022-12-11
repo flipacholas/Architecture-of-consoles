@@ -12,12 +12,12 @@ top_tabs:
   Models:
     - 
       title: "Uluslararası"
-      file: uluslararası
+      file: international
       caption: "NES.<br>18/10/1985 tarihinde Amerika'da ve 01/09/1986 tarihinde Avrupa'da piyasaya sürüldü."
       active: true
     - 
       title: "Japonca"
-      file: japonca
+      file: japanese
       caption: "Famicom.<br>15/07/1983 tarihinde Japonya'da piyasaya sürüldü."
   Motherboard:
     caption: "\"NES\" varyantı gösteriliyor."
