@@ -1,0 +1,272 @@
+[author_footer_first]
+other = 'Umarım bu makaleyi beğenmişsinizdir! Yazar hakkında daha fazla bilgi edinmek istiyorsanız <a href="{{ . }}">buraya tıklayın</a>'
+
+[author_footer_second]
+other = 've eğer desteklemek isterseniz <a href="{{ . }}">buraya tıklayın</a>'
+
+[languages_available]
+other = "Mevcut olan diller: "
+
+[help_translations]
+other = "Çevirilerle ilgili yardım"
+
+[add_translation]
+other = "Çeviri ekleyin"
+
+[report_mistakes]
+other = "Hataları bildirin veya değişiklik teklif edin"
+
+[supporting_readings]
+other = "Destekleyici okumaları kontrol edin"
+
+[tablet_mode_button]
+other = "Sekmeleri gizle / Tablet modu"
+
+[desktop_mode_button]
+other = "Sekmeleri göster / Masaüstü modu"
+
+[next]
+other = "Sonraki"
+
+[previous]
+other = "Önceki"
+
+[table-of-contents]
+other = "İçindekiler"
+
+[show]
+other = "Göster"
+
+[hide]
+other = "Gizle"
+
+[translations]
+other = "Çeviriler"
+
+[related]
+other = "Daha fazlası için '{{ . }}' &raquo;"
+
+[ebook_edition_title]
+other = "E-Kitap sürümlerini edinin"
+
+[ebook_edition_content]
+other = '<a href="{{ .consoles }}">Konsolların Mimarileri</a> serisini artık e-Kitap okuyucularda da okuyabilirsiniz. <a href="{{ .ebooks }}">Buradan göz atabilirsiniz</a>.'
+
+[home]
+other = "Ana sayfa"
+
+[nav_writings]
+other = "Yazılar"
+
+[nav_console]
+other = "Konsollar"
+
+[nav_blog]
+other = "Blog"
+
+[about]
+other = "Hakkında"
+
+[about_website_long]
+other = "Web sitesi ve içeriği hakkında"
+
+[support]
+other = "Destek"
+
+[about_author]
+other = "Yazar hakkında"
+
+[about_website]
+other = "Web sitesini hakkında"
+
+[switch_modern]
+other = "Modern baskıya geçin"
+
+[switch_classic]
+other = "Klasik basıma geç"
+
+[ebook_edition]
+other = "eBook"
+
+[about_edition]
+other = "Bu baskı hakkında"
+
+[last_updated]
+other = "Son güncelleme: {{ . }}"
+
+[classic_edition]
+other = "Klasik"
+
+[classic_intro]
+other = "'Klasik' sürüm, <a href=\"{{ .modern }}\">'modern'</a> muadiline alternatif bir sürümdür. Çalışması için Javascript, son teknoloji CSS veya karmaşık HTML gerektirmez, bu da onu erişilebilirlik araçları veya eski internet tarayıcıları kullanan okuyucular için ideal hale getirir. Öte yandan, e-Kitap kullanıcıları artık <a href=\"{{ .ebook }}\">e-Kitap sürümünü</a> kontrol edebilirler."
+
+[classic_description]
+other = "Bu basım içerik açısından aynıdır. Bununla birlikte, etkileşimli widget'lar saf HTML ile çalışacak şekilde basitleştirilmiştir, ancak bunlar okuyucunun \"tam sürümü\" denemek istemesi durumunda orijinal makaleye bir bağlantı sunacaktır."
+
+[general_description]
+other = "Her zaman olduğu gibi, bu makale okuyucuların hataları bildirmesine veya değişiklik önermesine olanak sağlamak için <a href=\"{{ .github }}\">Github'da</a> mevcuttur. Ayrıca seriyi anlamaya yardımcı olacak destekleyici bir <a href=\"{{ .readings }}\">okuma listesi de mevcuttur</a>. Yazar ayrıca mevcut ve gelecek makalelerin kalitesini artırmaya yardımcı olmak için <a href=\"{{ .donations }}\">bağışları</a> da kabul etmektedir."
+
+[subscribe_title]
+other = "Güncel kal"
+
+[subscribe_content]
+other = '<a href="{{ . }}">Twitter hesabımda</a> güncellemeleri paylaşıyorum ancak yeni bir makale çıktığında da bir e-posta alabilirsiniz. Aboneliğinizi istediğiniz zaman iptal edebilirsiniz, bunu halletmek için Mailchimp kullanıyorum.'
+
+[generation_title]
+other = "{{ .ordinal }} nesil"
+
+[cpu_subtitle]
+other = "Önemli CPU gelişmeleri:"
+
+[gpu_subtitle]
+other = "Olağanüstü GPU özellikleri:"
+
+[roadmap_title]
+other = "Yol Haritası"
+
+[roadmap_content]
+other = "Hakkında yazabileceğim pek çok konsol var... Listemde sırada ne var diye merak ediyorsanız işte burada:"
+
+[contribution_content]
+other = "Eğer makalelerimi ilginç buluyorsanız lütfen bağış yapmayı düşünün. Katkınız, mevcut makalelerin ve yeni makalelerin kalitesini artırmama yardımcı olacak araç ve kaynakların satın alınmasını finanse etmek için kullanılacaktır. Ayrıca her makalenin sonunda edinilebilecek ilginç materyallerin bir listesini de veriyorum."
+
+[contribution_footer]
+other = "Minnettarlığın bir göstergesi olarak, belirtilmedikçe adınız bir sonraki makalenin krediler bölümünde veya aday gösterdiğiniz bölümde yer alacaktır."
+
+[contribution_footer_ebook]
+other = 'Ayrıca <a href="{{ . }}">eBook sürümünü</a> İngilizce olarak da satın alabilirsiniz. Kârları bağış olarak kabul ediyorum.'
+
+[contribution_suggestions]
+other = 'Alternatif olarak, <a href="{{ . }}">değişiklikler önererek</a> ve/veya <a href="{{ . }}">çeviriler ekleyerek</a> yardımcı olabilirsiniz.'
+
+[print]
+other = "Yazdır (veya PDF olarak kaydet)"
+
+[architecture_consoles]
+other = "Konsol Mimarileri"
+
+[top_model]
+other = "Model"
+
+[top_models]
+other = "Modeller"
+
+[motherboard_title]
+other = "Anakart"
+
+[motherboard_note]
+other = "Önemli parçaları etiketlenmiş anakart"
+
+[diagram_title]
+other = "Diyagram"
+
+[diagram_note]
+other = "Ana mimari diyagramı"
+
+[original]
+other = "Orijinal"
+
+[marked]
+other = "İşaretlenmiş"
+
+[contributing_title]
+other = "Katkıda Bulunma"
+
+[contributing_content]
+other = 'Bu makale <a href="{{ . }}">Konsolların Mimarileri</a> serisinin bir parçasıdır. Eğer ilginç bulduysanız lütfen bağış yapmayı düşünün. Bağışınız, mevcut ve gelecek makalelerin kalitesini artırmama yardımcı olacak araç ve kaynakların satın alınmasını finanse etmek için kullanılacaktır.'
+
+[contributing_tools]
+other = "Bu makale için arzu edilen araçların ve en son kazanımların bir listesi burada takip edilmektedir:"
+
+[contributing_thanks]
+other = "Aşağıdaki kişilere bağışları için teşekkürler ediyorum:"
+
+[changelog_title]
+other = "Değişiklik Notları"
+
+[changelog_content]
+other = "Değişikliklerin kaydını tutmak her zaman güzeldir."
+
+[supporting_imagery]
+other = "Destekleyici görüntüler"
+
+[consoles_written_by]
+other = "Tarafından pratik bir analiz {{ . }}"
+
+[translated_by]
+other = "{{ . }} tarafından çevrildi"
+
+[interactive_model_origin]
+other = 'Etkileşimli model <a href="{{ . }}">modern sürümde</a> kullanılabilir'
+
+[interactive_player_origin]
+other = 'Etkileşimli oynatıcı <a href="{{ . }}">modern sürümde</a> kullanılabilir'
+
+[goto_classic]
+other = "Erişilebilirlik araçları veya eski tarayıcılar kullanıyorsanız, <a href=\"{{ .classic }}\">'klasik' sürüme geçin</a>."
+
+[audio_samples]
+other = "Ses örnekleri"
+
+[wireframe]
+other = "Tel Çerçeve"
+
+[surface]
+other = "Yüzey"
+
+[textured]
+other = "Dokular"
+
+[tap_enable_interaction]
+other = "Etkileşime girmek için dokunun"
+
+[buffering]
+other = "Arabelleğe alınıyor..."
+
+[ready_drag_zoom]
+other = "Sürüklemeye ve yakınlaştırmaya hazır!"
+
+[sources]
+other = "Kaynaklar / Okumaya Devam Edin"
+
+[archived]
+other = "Arşivlenen"
+
+[general]
+other = "Genel"
+
+[cpu]
+other = "İşlemci (CPU)"
+
+[graphics]
+other = "Grafikler"
+
+[audio]
+other = "Ses"
+
+[audio_video]
+other = "Ses / Görüntü"
+
+[io]
+other = "Giriş/Çıkış"
+
+[operating_system]
+other = "İşletim Sistemi"
+
+[games]
+other = "Oyunlar"
+
+[anti_piracy]
+other = "Korsanlıkla Mücadele"
+
+[copy_protection]
+other = "Kopya Koruma"
+
+[photography]
+other = "Fotoğrafçılık"
+
+[other_media]
+other = "Diğer"
+
+[bonus]
+other = "Bonus"
