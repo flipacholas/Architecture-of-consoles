@@ -25,7 +25,7 @@ Video oyun konsollarının gelişimine bakmak büyüleyici. Geleneksel Masaüst�
 
 Bu bir geliştirici kılavuzu değildir, yalnızca her bir sistemin dahili olarak nasıl çalıştığına ilişkin derinlemesine bir *giriş niteliğindedir*. Teknolojinin son zamanlarda gerçekten karmaşıklaştığını unutmayın, bu nedenle en son makalelerimi takip etmekte zorlanıyorsanız, önce ilk makaleleri okumayı deneyin. Sürekli olarak yeniden gözden geçirilen birçok kavram ve tanım sunarlar.
 
-Temel bilgisayar bilgisi olan kişiler içindir, ancak içeriğimi daha geniş kitlelere uyarlamak için gerçekten çok çalışıyorum, bu yüzden lütfen denemekten korkmayın! Ancak bu yeterli değilse, [destekleyici okumalara]({{< ref "readings" >}) bakmak isteyebilirsiniz.
+Temel bilgisayar bilgisi olan kişiler içindir, ancak içeriğimi daha geniş kitlelere uyarlamak için gerçekten çok çalışıyorum, bu yüzden lütfen denemekten korkmayın! Ancak bu yeterli değilse, [destekleyici okumalara]({{< ref "readings" >}}) bakmak isteyebilirsiniz.
 
 Mümkün olduğunca doğru olmaya çalışsam da, herhangi bir hata bulursanız lütfen {{< email "give me a shout" >}}} veya {{< consoles/repo_link "değişiklik önerin" >}}.
 
