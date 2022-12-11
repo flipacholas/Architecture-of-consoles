@@ -209,7 +209,9 @@ Region w pamięci VRAM, w którym zdefiniowane są sprite'y, nazywa się **Tabel
 
 ![Klatka transmitowana do telewizora (format NTSC), VDP automatycznie pokrywa klatkę obszarem overscan, który ukrywa większość telewizorów CRT.](vdp_sonic/overscan.png){title="Z overscanem"}
 
-Tada! :::
+Tada!
+
+:::
 
 Podczas rysowania klatki system będzie kolejno wywoływał różne procedury przerwań w zależności od tego, na co wskazuje wiązka CRT. Jak zapewne widzieliście w poprzednich konsolach, pozwala to procesorowi pracować nad następną klatką (lub zmieniać obecną).
 
