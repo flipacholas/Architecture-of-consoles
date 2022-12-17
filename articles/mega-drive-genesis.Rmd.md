@@ -104,7 +104,11 @@ Technically speaking, the VDP can either fit 40 or 32 columns of [tiles](master-
 
 You can see which PAL games render in NTSC mode by checking the `Mode Set Register #2` in an emulator with debugging capabilities (i.e. Exodus). If the fourth bit from the right is `0`, then the VDP is running in NTSC mode [@graphics-resolution].
 
-Furthermore, there's an additional parameter that can be set on the VDP to stack two tiles to form **8x16 maps** and then treat them as a single tile. Hence, doubling the vertical resolution. However, this halves the refresh rate as frames are now rendered with interlacing (one frame renders even scan-lines, the next beams odd ones, and so forth) so it's more limited in terms of functionality. The multiplayer mode of Sonic 2 and 3 are a good representation of this mode.
+![To provide a quick multiplayer mode in Sonic 2 (1992), the game activates 'interlaced mode' to render a single-player level using 8x16 pixel tiles instead (along with other changes).](twopsonic/sonic2.png){.side-by-side .toleft .pixel}
+
+![By contrast, the more sophisticated multiplayer mode of Sonic 3 (1994) relies on dedicated 8x8 pixel tiles that are separate from single-player levels.](twopsonic/sonic3.png){.toright .pixel}
+
+Furthermore, there's an additional parameter that can be set on the VDP to stack two tiles to form **8x16 maps** and then treat them as a single tile. Hence, doubling the vertical resolution. However, this halves the refresh rate as frames are now rendered with interlacing (one frame renders even scan-lines, the next beams odd ones, and so forth) so it's more limited in terms of functionality. The multiplayer mode of Sonic 2 is a good representation of this mode [@graphics-sonicmultip].
 
 Finally, it's worth pointing out that the VDP automatically takes care of adding padding for the overscan area, so games don't have to worry about which areas are safe to draw graphics into (as it happened with the [NES' 'danger zones'](nes#constructing-the-frame))
 
