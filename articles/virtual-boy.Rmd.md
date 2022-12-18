@@ -303,7 +303,7 @@ The fact is, to display any of the previous layers mentioned, we have to place t
 Windows provide different **rendering modes**. You can grab a Background or Sprite layer and display it as it is. For that, the Window has to be set to **Normal mode** and **Object mode**, depending which type of layer you are using. However, you can also take advantage of additional modes which apply extra effects on background layers:
 
 - **Line Shift Mode**: Individual rows of pixels can be shifted horizontally. This resembles the good ol' effects applied during [horizontal interrupts](game-boy#tab-5-1-wobble-effect).
-- **Affine Mode**: As the name indicates, you get to apply [affine transformations](super-nintendo#unique-features)! (scaling and rotation or combined to form perspective projection [@graphics-tucker).
+- **Affine Mode**: As the name indicates, you get to apply [affine transformations](super-nintendo#unique-features)! (scaling and rotation or combined to form perspective projection [@graphics-tucker]).
 
 #### Result {.tab}
 

@@ -525,7 +525,7 @@ All I/O operations are delegated to another chunky chip called **Southbridge** [
 
 ![The same picture with important parts labelled.](southbridge_marked.png){.tabs-nested-last title="Marked"}
 
-Like the PS2's [IOP](playstation-2#io), the Southbridge is completely proprietary, though this time made by Toshiba (they called it the 'Super Companion Chip' [@io-supercompanion). So, while it still remains an obscure piece of silicon, it does a superior job consolidating many interfaces and protocols, both external (i.e. USB, Ethernet, etc) and internal (i.e. SATA). For reference, in the past, the IOP's slow clock speed ended up [bottlenecking](playstation-2#available-interfaces) speedy interfaces like ATA and Ethernet, greatly reducing their full bandwidth.
+Like the PS2's [IOP](playstation-2#io), the Southbridge is completely proprietary, though this time made by Toshiba (they called it the 'Super Companion Chip' [@io-supercompanion]). So, while it still remains an obscure piece of silicon, it does a superior job consolidating many interfaces and protocols, both external (i.e. USB, Ethernet, etc) and internal (i.e. SATA). For reference, in the past, the IOP's slow clock speed ended up [bottlenecking](playstation-2#available-interfaces) speedy interfaces like ATA and Ethernet, greatly reducing their full bandwidth.
 
 Furthermore, the southbridge implements encryption algorithms to protect the communication between standard protocols in a seamless way, such as the Hard Drive data.
 
@@ -701,7 +701,7 @@ Curiously enough, if the user decides to fit a Hard Drive into the eMMC model, t
 
 Alright, using all the previous knowledge, you are going to learn now how the system boots up - and let me tell you, it's pretty complicated. The reason is simple: Sony doesn't want you fiddling with their hardware or software, so they built many layers of obfuscation and encryption to prevent you from breaking in and side-loading your own code (and hopefully _give up and keep buying games/movies/whatever_) but, as history will tell you, the opposite happened.
 
-In the following section, I'm going to describe what this console does once you push the power button. Note that this process only drastically changed once (after hackers cracked it). So, for simplicity purposes, we'll start with the 'original' boot process (implemented before system version `3.60`)[@operating_system-levin][@operating_system-boot][@operating_system-the_exploit]:
+In the following section, I'm going to describe what this console does once you push the power button. Note that this process only drastically changed once (after hackers cracked it). So, for simplicity purposes, we'll start with the 'original' boot process (implemented before system version `3.60`)[@operating_system-levin] [@operating_system-boot] [@operating_system-the_exploit]:
 
 1. A separate chip in the motherboard (called **Syscon**) powers on and executes instructions from its internal ROM. It then sends a 'Configuration Ring' to Cell via SPI (a serial connection), this initialises Cell and deactivates the eighth SPU. Finally, it latches the power line and gives life to Cell.
 2. Cell's PPU reset vector points to its hidden ROM, which stores the routines to locate and decrypt `bootldr` from Flash. The decrypted piece is then loaded by the first SPU in isolation mode.
@@ -833,7 +833,7 @@ While launch titles execute from the disc, later games copied part of their asse
 
 ![Example of game entry (accompanied by suggestions that only work on other consoles...).](store/game.jpg){.tabs-nested-last title="Game"}
 
-At the same time of the console's release, Sony launched its proprietary distribution channel called **PlayStation Store**, allowing game studios to sell their games digitally and users to purchase new content without leaving their sofa. These don't require any physical medium to work (apart from space in the hard drive) but the digital product's ownership is tied to an online account, something that became a concern for users in March 2021, when Sony announced [@games-closure] (and later retracted [@games-reversal) the closure of this store.
+At the same time of the console's release, Sony launched its proprietary distribution channel called **PlayStation Store**, allowing game studios to sell their games digitally and users to purchase new content without leaving their sofa. These don't require any physical medium to work (apart from space in the hard drive) but the digital product's ownership is tied to an online account, something that became a concern for users in March 2021, when Sony announced [@games-closure] (and later retracted [@games-reversal]) the closure of this store.
 
 Within their digital store, Sony also took the opportunity to sell digitalised versions of PS1, PS2 and PSP games called **PlayStation Classics**. These are also downloaded and installed in the same way, but use the bundled emulators to work. In fact, PS2 classics invoke the same unaccelerated software emulator independently whether the PS3 models contain the PS2 chipset [@io-ps2emu]! I guess this is the closing chapter for hardware-based emulation in the PS3.
 

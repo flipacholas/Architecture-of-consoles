@@ -80,7 +80,7 @@ As an example for the curious, the decimal number `42` is represented as:
 
 We could go on and on talking about it, but to give an outline: BCD is useful for applications that require treating each decimal place separately (for instance, a digital clock). However, it requires more storage since each 8-bit word can only encode up to the decimal number `99` - whereas traditional binary can encode up to `255`.
 
-In any case, Ricoh deliberately broke BCD mode in its chip by severing the control lines that activate it. This was presumably done to avoid paying royalties to MOS, since BCD was patented by them (and the legislation that enabled to copyright integrated circuit layouts in the United States wasn't enacted until 1984 [@cpu-protection_act).
+In any case, Ricoh deliberately broke BCD mode in its chip by severing the control lines that activate it. This was presumably done to avoid paying royalties to MOS, since BCD was patented by them (and the legislation that enabled to copyright integrated circuit layouts in the United States wasn't enacted until 1984 [@cpu-protection_act]).
 
 ### Memory
 
@@ -223,7 +223,7 @@ The PPU is limited to eight sprites per scanline and up to 64 per frame. The sca
 
 ![Rendered background layer highlighting the two portions with different scrolling values defined. Only the second portion scrolls as Mario moves.](ppu_mario/split.png){.tab-float .pixel}
 
-Before we move on, there's something I haven't told you yet. If you play Super Mario Bros, you'll notice that when Mario moves, the scene scrolls without a hitch. However, you'll also observe that the top area (where the stats are) remains static **even though both portions are part of the same background layer!** So, what is happening here? Well, the game is altering the scrolling values mid-frame to show the overworld and the stats (residing in a fixed portion of the background) at the same time. The NES doesn't provide this feature natively, but the game deduces the timings by observing the state of the PPU (manifested through its status register [@graphics-ppustatus).
+Before we move on, there's something I haven't told you yet. If you play Super Mario Bros, you'll notice that when Mario moves, the scene scrolls without a hitch. However, you'll also observe that the top area (where the stats are) remains static **even though both portions are part of the same background layer!** So, what is happening here? Well, the game is altering the scrolling values mid-frame to show the overworld and the stats (residing in a fixed portion of the background) at the same time. The NES doesn't provide this feature natively, but the game deduces the timings by observing the state of the PPU (manifested through its status register [@graphics-ppustatus]).
 
 To accomplish this, games perform a technique called **Sprite 0 Hit**. Super Mario Bros instructs the PPU to render a dummy sprite behind the coin, this happens to be the first sprite drawn within the frame. After the PPU beams it, it updates its status register with a flag that denotes that the first sprite (a.k.a 'sprite 0') has been drawn. Meanwhile, the game is constantly checking mid-frame if the sprite 0 status has been flagged (a.k.a 'hit'), if that happened, the game proceeds to update the scrolling property of the background table to shift it to where Mario is.
 

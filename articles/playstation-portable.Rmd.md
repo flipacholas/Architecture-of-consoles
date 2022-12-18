@@ -682,7 +682,7 @@ After the release of the PSP in Japan, it was a matter of time before user-land 
 
 These early blunders helped to build a knowledge base of the inner workings of the PSP, which led to more attack vectors and software routines built to interact with the hardware (keep in mind only game studios had access to official SDKs and documentation).
 
-As with any other cat and mouse game, Sony responded with more system updates (which were required by new games) while newer exploits (the so-called 'TIFF', 'GTA' exploit and so forth [@anti_piracy-homebrew) kept appearing. It's worth mentioning that these were only considered 'Homebrew launchers' as kernel access wasn't obtained yet.
+As with any other cat and mouse game, Sony responded with more system updates (which were required by new games) while newer exploits (the so-called 'TIFF', 'GTA' exploit and so forth [@anti_piracy-homebrew]) kept appearing. It's worth mentioning that these were only considered 'Homebrew launchers' as kernel access wasn't obtained yet.
 
 #### Updatable content {.tab}
 

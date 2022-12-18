@@ -451,7 +451,7 @@ Unlike the PlayStation 3, which arrived a year later, the release of the Xbox 36
 
 ![Two different revisions of the Xbox 360 stacked together, the top one is a Zephyr and the bottom revision is a Xenon. Notice that the Zephyr model adds the HDMI connector, while Xenon only has the analogue A/V socket.](photos/xenon_zephyr_back.jpg){.open-float}
 
-Instead, the first revision (called **Xenon**, like the CPU) is only equipped with a multi analogue socket called 'A/V'. This carries all the signals previously featured with the [original Xbox](xbox#the-xboxs-frame), with the addition of VGA-compliant pins [@graphics-xbox360av] (its predecessor had the wires in place but, for some reason, were never powered [@graphics-xboxav).
+Instead, the first revision (called **Xenon**, like the CPU) is only equipped with a multi analogue socket called 'A/V'. This carries all the signals previously featured with the [original Xbox](xbox#the-xboxs-frame), with the addition of VGA-compliant pins [@graphics-xbox360av] (its predecessor had the wires in place but, for some reason, were never powered [@graphics-xboxav]).
 
 Later on, in 2006, the follow-up motherboard revision called **Zephyr** ultimately added an HDMI socket to catch up with Sony's quality of signal. Internally, the original video encoder (known as the **ANA** chip) had been replaced with the 'HDMI ANA' (or **HANA**) block [@graphics-ana].
 
@@ -926,7 +926,7 @@ Those using the expensive XDK will see it follows the footsteps of its [predeces
 
 All in all, the suite includes a variety of libraries and tools, for instance:
 
-- Existing front-end **Visual C and C++ 2005** compilers (Microsoft's variant of C and C++), along with a new backend that generates PowerPC machine code. There are also PowerPC, xvs_3_0 and xps_3_0 assemblers (the latter two are Xenos' microcode shader languages [@graphics-ben). The front-end compilers were later updated to the 2010 version.
+- Existing front-end **Visual C and C++ 2005** compilers (Microsoft's variant of C and C++), along with a new backend that generates PowerPC machine code. There are also PowerPC, xvs_3_0 and xps_3_0 assemblers (the latter two are Xenos' microcode shader languages [@graphics-ben]). The front-end compilers were later updated to the 2010 version.
 - Microsoft's **Visual Studio 2005** as IDE. Later versions of XDK shipped with the 2008 version and, finally, the 2010 one.  
 - **Debuggers** for the Xbox 360 Development Kit.
 - The well-known **Direct3D** API for graphics. Although it's hardly a replica of the Windows version. For example, the shader compiler now generates microcode at compile-time, unlike Windows' edition where it's done at runtime (as Windows games must support a multitude of graphics cards). The APIs have also been extended to accommodate Procedural Synthesis, Predicated Tiling and many more cases. These have been documented by the Xenia emulator's development team [@graphics-nopixel].
@@ -1313,7 +1313,7 @@ And with this, the homebrew community was gifted with an unfixable exploit to lo
 
 While the RGH hack attacks the fundamental construction of the CPU at an early stage (thereby making it impossible to tackle it with a software update), Microsoft never displayed any sign of weakness and released further updates of CB (the second stage bootloader) and new motherboard revisions in an attempt to garble the glitching process.
 
-For instance, the new Slim edition of the console released in 2010 (ironically, a year before the publication of RGH) codenamed **Trinity** moved the `CPU_PLL_BYPASS` point to a location hackers couldn't find (yet). Meanwhile, the RGH team found out they can fiddle with the PLL signal of the video encoder chip via I²C, and this will condition the speed of the CPU. Unfortunately, the video encoder can only slow it so much (just ~3 times [@anti_piracy-hacking_3) so the precision and success rate is reduced. Nonetheless, it's still a huge accomplishment.
+For instance, the new Slim edition of the console released in 2010 (ironically, a year before the publication of RGH) codenamed **Trinity** moved the `CPU_PLL_BYPASS` point to a location hackers couldn't find (yet). Meanwhile, the RGH team found out they can fiddle with the PLL signal of the video encoder chip via I²C, and this will condition the speed of the CPU. Unfortunately, the video encoder can only slow it so much (just ~3 times [@anti_piracy-hacking_3]) so the precision and success rate is reduced. Nonetheless, it's still a huge accomplishment.
 
 Additionally, Slim consoles split the CB stage into CB_A and CB_B, where CB_B is further encrypted with the RC4 algorithm and relies on the CPU key. To add more to the despair, the zero pairing backdoor got completely removed. Finally, all of these changes would soon be extended to older models as Microsoft publishes more software updates. Be as it may, hackers never gave up and found out they could modify CB_B in its encrypted form. Thanks to a mathematical flaw in RC4, encrypted information can be altered just by applying `XOR` with an unencrypted delta patch [@anti_piracy-hacking_3], thereby allowing to disable encryption routines on CB_B without knowing the CPU Key!
 
