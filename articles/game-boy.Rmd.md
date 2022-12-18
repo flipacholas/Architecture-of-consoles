@@ -258,7 +258,7 @@ It doesn't run the game right away however, it first executes a series of checks
 
 To be able to pass these checks, games had to include a copy of Nintendo's logo (in the form of tiles) in its ROM header [@games-dhole], this way Nintendo could make use of **Copyright and Trademark** laws to control the distribution, *Clever huh?*. The Gameboy ROM also embeds a copy of the logo to be able to compare it.
 
-That being said, the boot process is as follows [@anti-piracy-boot]:
+That being said, the boot process is as follows [@anti_piracy-boot]:
 
 1. After the console is switched on, the CPU starts reading at address **0x00** (Gameboy's ROM location).
 2. RAM and Sound are initialised.
