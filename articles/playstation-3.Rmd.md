@@ -73,9 +73,9 @@ Consequently, Cell is part of this new wave of research and development. This ne
 
 #### A new multicore era {.tab}
 
-![Example of homogenous design.<br>Each core can carry the same tasks as before, but they are not necessary restricted to such task.](cpu/paradigm/heterogeneous.png){.tab-float}
+![Example of heterogeneous design.<br>This is has been the de-facto architecture of many powerful consoles to this date.](cpu/paradigm/heterogeneous.png){.tab-float}
 
-![Example of heterogeneous design.<br>This is has been the de-facto architecture of many powerful consoles to this date.](cpu/paradigm/homogeneous.png){.tab-float}
+![Example of homogenous design.<br>Each core can carry the same tasks as before, but they are not necessary restricted to such task.](cpu/paradigm/homogeneous.png){.tab-float}
 
 If you stop to think about it, both the PS1's CPU and the Emotion Engine were already multi-core processors. So why was there so much fanfare about Cell? Well, the previous two chips were composed of one general-purpose core and several application-specific cores (i.e. audio processor, image decompression, etc) mixing different architectures, where the general-purpose core is in charge of commanding the others.
 
@@ -939,7 +939,7 @@ In the meantime, many CFW appeared on the net with many names (i.e. 'Rebug', 'Fe
 - Disabling signature verifications on any module installed or to be installed.
 - Enabling to read and write (the classic _peek and poke_) over any memory address, either using the Hypervisor (level 1) or the Kernel (level 2).
 - Activating hidden debug functions to install modules packaged as 'pkg' files. These didn't need to be signed with Sony's keys to work inside a CFW environment.
-- Enabling to mount disc image as there was a Blu-ray disc inserted.
+- Enabling to mount disc images as a virtual Blu-ray disc.
 - Restoring OtherOS and even enhance it by removing the restrictions imposed by the Hypervisor. The result was called OtherOS++.
 - Writing over Syscon EEPROM's database to enable to install any system version of choice. This is also known as _QA Toggling_.
 - Altering the style of XMB (i.e. removing the epilepsy warning, allow to take screenshots in-game, etc).
