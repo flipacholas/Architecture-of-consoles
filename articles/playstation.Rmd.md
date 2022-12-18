@@ -445,7 +445,7 @@ The shell is a simple graphical interface that enables the user to copy or delet
 
 Just like the [Sega Saturn](sega-saturn) and any other console that made the switch to the CD medium, games are now provided with a new set of facilities: Large storage (640 MB), good audio quality and a 'not-so-slow' read speed thanks to the 2x drive.
 
-If you'd like to know how the Compact Disc (CD), I've written a quick explanation on the [Sega Saturn article](sega-saturn#the-compact-disc-cd).
+If you'd like to know how the Compact Disc (CD) works, I've written a quick explanation on the [Sega Saturn article](sega-saturn#the-compact-disc-cd).
 
 ### Development ecosystem
 
