@@ -257,7 +257,7 @@ Bu konsol, kartuşun ROM'unu önyüklemek için kullanılan CPU'ya yerleştirilm
 
 Bu kontrollerden geçebilmek için, oyunların ROM başlığına Nintendo'nun logosunun bir kopyasını (kutucuklar şeklinde) eklemesi gerekiyordu [@gamesdhole], bu şekilde Nintendo dağıtımı kontrol etmek için **Telif Hakkı ve Ticari Marka** yasalarından yararlanabilirdi, *Zekice değil mi?*. Gameboy ROM'u aynı zamanda karşılaştırma yapabilmek için logonun bir kopyasını da içermektedir.
 
-Bununla birlikte, önyükleme işlemi aşağıdaki gibidir [@anti-piracy-boot]:
+Bununla birlikte, önyükleme işlemi aşağıdaki gibidir [@anti_piracy-boot]:
 
 1. Konsol açıldıktan sonra, CPU **0x00** adresinden (Gameboy'un ROM konumu) okumaya başlar.
 2. RAM ve Ses başlatılır.
