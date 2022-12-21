@@ -82,7 +82,7 @@ Meraklısı için bir örnek olarak, ondalık sayı `42` olarak gösterilir:
 
 Bu konuda konuşmaya devam edebiliriz, ancak ana hatlarını vermek gerekirse: BCD, her ondalık basamağın ayrı ayrı ele alınmasını gerektiren uygulamalar için kullanışlıdır (örneğin, dijital bir saat). Bununla birlikte, her 8 bitlik kelime yalnızca `99` ondalık sayısına kadar kodlayabildiğinden daha fazla depolama gerektirir - oysa geleneksel ikili `255`'e kadar kodlayabilir.
 
-6502, 8 bit 'kelime' kullanır - yani her kelime iki ondalık basamak depolar. Bu muhtemelen MOS'a telif ücreti ödememek için yapıldı, çünkü BCD'nin patenti onlar tarafından alınmıştı (ve Amerika Birleşik Devletleri'nde entegre devre düzenlerinin telif hakkını sağlayan mevzuat 1984 yılına kadar yürürlüğe girmemişti [@cpu-protection_act).
+6502, 8 bit 'kelime' kullanır - yani her kelime iki ondalık basamak depolar. Bu muhtemelen MOS'a telif ücreti ödememek için yapıldı, çünkü BCD'nin patenti onlar tarafından alınmıştı (ve Amerika Birleşik Devletleri'nde entegre devre düzenlerinin telif hakkını sağlayan mevzuat 1984 yılına kadar yürürlüğe girmemişti [@cpu-protection_act]).
 
 ### Bellek
 
@@ -229,7 +229,7 @@ Devam etmeden önce, size henüz söylemediğim bir şey var. Super Mario Bros o
 
 Bunu başarmak için oyunlar **Sprite 0 Hit** adı verilen bir teknik uygular. Super Mario Bros, PPU'ya madeni paranın arkasında sahte bir sprite oluşturmasını söyler, bu kare içinde çizilen ilk sprite olur. PPU bunu ışınladıktan sonra, durum kaydını ilk sprite'ın (diğer adıyla 'sprite 0') çizildiğini belirten bir bayrakla günceller. Bu arada oyun, sprite 0 durumunun işaretlenip işaretlenmediğini (diğer bir deyişle 'isabet') sürekli olarak kare ortasında kontrol eder, eğer bu olursa, oyun Mario'nun bulunduğu yere kaydırmak için arka plan tablosunun kaydırma özelliğini güncellemeye devam eder.
 
-Genel olarak, 'Sprite 0 Hit' çok hassas bir prosedürdür, çünkü zamanlamaları karıştırmak kolaydır (sprite 0'ın bayrağı yoklandıktan sonra temizlenmez, bu da 'yinelenen' pozitiflere yol açar \[@graphics-chibiakumas). Ayrıca, bu rutin süresiz olarak tekrarlandığından, yürütülmesi oldukça pahalı (CPU döngüleri açısından) olabilir. İşin iyi tarafı, daha sonraki haritacılar bu işlevi, örneğin Super Mario Bros 3'ün görsel yeteneklerini önemli ölçüde geliştiren rastgele bir tarama çizgisine [@graphics-nesdoug\] (çok daha verimli bir teknik) her vurulduğunda tetiklenen otomatik kesintiler kullanarak devraldılar.
+Genel olarak, 'Sprite 0 Hit' çok hassas bir prosedürdür, çünkü zamanlamaları karıştırmak kolaydır (sprite 0'ın bayrağı yoklandıktan sonra temizlenmez, bu da 'yinelenen' pozitiflere yol açar \[@graphics-chibiakumas]). Ayrıca, bu rutin süresiz olarak tekrarlandığından, yürütülmesi oldukça pahalı (CPU döngüleri açısından) olabilir. İşin iyi tarafı, daha sonraki haritacılar bu işlevi, örneğin Super Mario Bros 3'ün görsel yeteneklerini önemli ölçüde geliştiren rastgele bir tarama çizgisine [@graphics-nesdoug\] (çok daha verimli bir teknik) her vurulduğunda tetiklenen otomatik kesintiler kullanarak devraldılar.
 
 #### Sonuç {.tab}
 
