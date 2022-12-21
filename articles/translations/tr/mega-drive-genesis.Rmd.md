@@ -107,6 +107,10 @@ Teknik olarak, VDP tarama satırı başına 40 veya 32 sütun [tiles](master-sys
 
 Hata ayıklama özelliklerine sahip bir emülatörde `Mode Set Register #2`'yi kontrol ederek hangi PAL oyunlarının NTSC modunda işlendiğini görebilirsiniz (örn. Exodus). Sağdan dördüncü bit `0` ise, VDP NTSC modunda [@graphics-resolution] çalışıyor demektir.
 
+![Sonic 2'de (1992) hızlı bir çok oyunculu mod sağlamak için oyun, bunun yerine 8x16 piksel karolar kullanarak (diğer değişikliklerle birlikte) tek oyunculu bir seviye oluşturmak için 'taramalı modu' etkinleştirir.](twopsonic/sonic2.png) {.side-by-side.toleft.pixel}
+
+![Buna karşılık, Sonic 3'ün (1994) daha sofistike çok oyunculu modu, tek oyunculu seviyelerden ayrı olan özel 8x8 piksel karolara dayanır.](twopsonic/sonic3.png) {.toright.pixel}
+
 Ayrıca, VDP'de **8x16 haritalar** oluşturmak üzere iki karoyu yığmak ve ardından bunları tek bir karo olarak ele almak için ayarlanabilen ek bir parametre vardır. Böylece dikey çözünürlük iki katına çıkar. Ancak bu, kareler artık taramalı olarak işlendiğinden (bir kare çift tarama çizgilerini, bir sonraki tek tarama çizgilerini ve benzerlerini işler) yenileme hızını yarıya indirir, bu nedenle işlevsellik açısından daha sınırlıdır. Sonic 2 ve 3'ün çok oyunculu modu bu modun iyi bir temsilidir.
 
 Son olarak, VDP'nin aşırı tarama alanı için otomatik olarak dolgu eklediğini belirtmek gerekir, böylece oyunların hangi alanlara grafik çizmenin güvenli olduğu konusunda endişelenmesine gerek kalmaz ([NES'in 'tehlikeli bölgeleri'](nes#constructing-the-frame) ile olduğu gibi)
