@@ -107,7 +107,11 @@ Technicznie rzecz biorąc, VDP może zmieścić 40 lub 32 kolumny [kafelków](ma
 
 Możesz zobaczyć, które gry PAL są renderowane w trybie NTSC, sprawdzając `Mode Set Register #2` w emulatorze z możliwościami debugowania (tj. Exodus). Jeśli czwarty bit od prawej to `0`, to VDP działa w trybie NTSC [@graphics-resolution].
 
-Co więcej, istnieje dodatkowy parametr, który można ustawić na VDP, aby ułożyć dwa kafelki, tworząc **mapy 8x16**, a następnie traktować je jako jeden kafelek. Podwaja to rozdzielczość pionową. Jednak zmniejsza to o połowę częstotliwość odświeżania, ponieważ klatki są teraz renderowane z przeplotem (jedna klatka renderuje parzyste linie skanowania, następna nieparzyste itd.), więc jest to bardziej ograniczone pod względem funkcjonalności. Tryb multiplayer w Sonic 2 i 3 jest dobrą reprezentacją tego trybu.
+![Aby zapewnić szybki tryb dla wielu graczy w Sonic 2 (1992), gra aktywuje 'tryb z przeplotem', aby zamiast tego renderować poziom dla jednego gracza przy użyciu kafelków 8x16 pikseli (wraz z innymi zmianami).](twopsonic/sonic2.png) {.side-by-side.toleft.pixel}
+
+![Z kolei bardziej wyrafinowany tryb wieloosobowy Sonic 3 (1994) opiera się na dedykowanych kafelkach 8x8 pikseli, które są oddzielone od poziomów dla jednego gracza.](twopsonic/sonic3.png) {.toright.pixel}
+
+Co więcej, istnieje dodatkowy parametr, który można ustawić na VDP, aby ułożyć dwa kafelki, tworząc **mapy 8x16**, a następnie traktować je jako jeden kafelek. Podwaja to rozdzielczość pionową. Jednak zmniejsza to o połowę częstotliwość odświeżania, ponieważ klatki są teraz renderowane z przeplotem (jedna klatka renderuje parzyste linie skanowania, następna nieparzyste itd.), więc jest to bardziej ograniczone pod względem funkcjonalności. Tryb wieloosobowy w Sonic 2 jest dobrą reprezentacją tego trybu [@graphics-sonicmultip].
 
 Na koniec warto zauważyć, że VDP automatycznie zajmuje się dodawaniem dopełnienia dla obszaru overscan, więc gry nie muszą się martwić o to, w które obszary można bezpiecznie rysować grafikę (jak to miało miejsce w przypadku ['stref niebezpiecznych' NES](nes#constructing-the-frame))
 
