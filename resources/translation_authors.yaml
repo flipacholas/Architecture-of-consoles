@@ -6,7 +6,8 @@ gameboy:
   fr: SuperDelphi
   pl: LunaDook & MoonbowPlushie
   tr: EuropaYou
-gamecube: null
+gamecube:
+  tr: EuropaYou
 gba:
   pl: LunaDook & MoonbowPlushie
 mastersystem:
