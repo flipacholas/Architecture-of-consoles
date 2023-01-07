@@ -212,14 +212,9 @@ Some prioritised the VDP1 to draw the closest polygons and left the VDP2 to proc
 
 These are some examples of characters that were re-designed for this console, the models are interactive so do try to fiddle with them!
 
-(ref:sonicrmodelcaption) Sonic in Sonic R (1997).<br>185 quadrilaterals.
+![Sonic in Sonic R (1997).<br>185 quadrilaterals.](sonic_r_saturn){.toleft model3d="true"}
 
-(ref:tailsrmodelcaption) Tails in Sonic R (1997).<br>254 quadrilaterals.
-
-```{r fig.cap=c("(ref:sonicrmodelcaption)", "(ref:tailsrmodelcaption)"), side_by_side=TRUE, fig.pos = "H"}
-model_viewer('sonic_r_saturn', class="toleft", "(ref:sonicrmodelcaption)")
-model_viewer('tails_r_saturn', class="toright", "(ref:tailsrmodelcaption)")
-```
+![Tails in Sonic R (1997).<br>254 quadrilaterals.](tails_r_saturn){.toright model3d="true"}
 
 While the Saturn is only able to draw quadrangles, you'll soon notice that these models exhibit two triangles instead of a single quadrangle in 'Wireframe' mode. This is because the format used to encode this model (glTF, an open standard for modern 3D modelling), so your modern device can render it, doesn't support quadrangles at the time of this writing. So, I recommend switching to 'Surface' mode to observe the quads.
 

@@ -129,14 +129,9 @@ Apart from the clear architectural difference, the Texture and Shading Processor
 
 Holly can now draw ~10 times more polygons than [its predecessor](sega-saturn), here's a *Before & After* example that shows how model designs are not that limited anymore. Try to fiddle with them!
 
-(ref:sonicrmodelcaption) Sonic R (1997) for the Saturn.<br>286 triangles (or 185 quadrilaterals).
+![Sonic R (1997) for the Saturn.<br>286 triangles (or 185 quadrilaterals).](sonic_r_saturn){.toleft model3d="true"}
 
-(ref:sonicadvmodelcaption) Sonic Adventure (1999) for the Dreamcast.<br>1001 triangles.
-
-```{r fig.cap=c("(ref:sonicrmodelcaption)", "(ref:sonicadvmodelcaption)"), side_by_side=TRUE, fig.pos = "H"}
-model_viewer('sonic_r_saturn', class="toleft", "(ref:sonicrmodelcaption)")
-model_viewer('sonic_adventure_dc', class="toright", "(ref:sonicadvmodelcaption)")
-```
+![Sonic Adventure (1999) for the Dreamcast.<br>1001 triangles.](sonic_adventure_dc){.toright model3d="true"}
 
 ### Video Modes
 

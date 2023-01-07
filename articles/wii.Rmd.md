@@ -125,23 +125,13 @@ This is not a new feature per se, but a novel use of current capabilities. Gamec
 
 The extra megahertz of Broadway and Hollywood, combined with avant-garde designs, brought some improvements to character models. It may not be as significant as other generations, but it's still noticeable and appreciated.
 
-(ref:brawlmodelcaption) Super Smash Bros Brawl (2008) for the Wii.<br>3,049 triangles.
+![Super Smash Bros Brawl (2008) for the Wii.<br>3,049 triangles.](mario_melee_gc){.toleft model3d="true"}
 
-(ref:meleemodelcaption) Super Smash Bros. Melee (2001) for the GC.<br>2,494 triangles.
+![Super Smash Bros. Melee (2001) for the GC.<br>2,494 triangles.](mario_brawl_wii){.toright model3d="true"}
 
-```{r fig.cap=c("(ref:brawlmodelcaption)", "(ref:meleemodelcaption)"), side_by_side=TRUE, fig.pos = "H"}
-model_viewer('mario_melee_gc', class="toleft", "(ref:brawlmodelcaption)")
-model_viewer('mario_brawl_wii', class="toright", "(ref:meleemodelcaption)")
-```
+![Sonic DX (2003) for the GC.<br>1,985 triangles.](tails_dx_gc){.toleft model3d="true"}
 
-(ref:dxmodelcaption) Sonic DX (2003) for the GC.<br>1,985 triangles.
-
-(ref:tailsbrawlmodelcaption) Super Smash Bros Brawl (2008) for the Wii.<br>3,644 triangles.
-
-```{r fig.cap=c("(ref:dxmodelcaption)", "(ref:tailsbrawlmodelcaption)"), side_by_side=TRUE, fig.pos = "H"}
-model_viewer('tails_dx_gc', class="toleft", "(ref:dxmodelcaption)")
-model_viewer('tails_brawl_wii', class="toright", "(ref:tailsbrawlmodelcaption)")
-```
+![Super Smash Bros Brawl (2008) for the Wii.<br>3,644 triangles.](tails_brawl_wii){.toright model3d="true"}
 
 ### Video Signal
 

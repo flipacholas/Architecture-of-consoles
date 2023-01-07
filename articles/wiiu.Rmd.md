@@ -369,14 +369,9 @@ Apart from that, we have to take into account the custom algorithms programmers 
 
 I've added new 3D models on the interactive viewer so you can check out the before (Hollywood's GPU) and after (Latte's GPU/GPU7) 'effect' by yourself:
 
-(ref:brawlmodelcaption) Super Mario Galaxy (2007) for the Wii.<br>4,877 triangles.
+![Super Mario Galaxy (2007) for the Wii.<br>4,877 triangles.](mario_galaxy_wii){.toleft model3d="true"}
 
-(ref:meleemodelcaption) Super Mario 3D World (2013) for the Wii U.<br>9,304 triangles.
-
-```{r fig.cap=c("(ref:brawlmodelcaption)", "(ref:meleemodelcaption)"), side_by_side=TRUE, fig.pos = "H"}
-model_viewer('mario_galaxy_wii', class="toleft", "(ref:brawlmodelcaption)")
-model_viewer('mario_3d_wiiu', class="toright", "(ref:meleemodelcaption)")
-```
+![Super Mario 3D World (2013) for the Wii U.<br>9,304 triangles.](mario_3d_wiiu){.toright model3d="true"}
 
 While Mario's textures don't seem to offer a lot of extras on the Wii U, GPU7's improvements lie in the extra surfaces and bones, especially on the hands and face, which make the model react more realistically to ambient effects and animations. In doing so, scenes look more natural throughout gameplay.
 

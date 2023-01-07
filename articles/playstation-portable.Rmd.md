@@ -326,14 +326,9 @@ As evidenced, the PSP inherits various features from the PS2. The difference, ho
 
 To show how this system impacted model design and to help compare it to the [PS2](playstation-2#better-models) and [Nintendo DS](nintendo-ds#interactive-models), here are two examples of models designed for the PSP. Don't forget the viewer is interactive!
 
-(ref:snakemodelcaption) Metal Gear Solid: Portable Ops Plus (2006).<br>1,383 triangles.
+![Metal Gear Solid: Portable Ops Plus (2006).<br>1,383 triangles.](snake_psp){.toleft model3d="true"}
 
-(ref:daxtermodelcaption) Daxter (2006).<br>.1,374 triangles.
-
-```{r fig.cap=c("(ref:snakemodelcaption)", "(ref:daxtermodelcaption)"), side_by_side=TRUE, fig.pos = "H"}
-model_viewer('snake_psp', class="toleft", "(ref:snakemodelcaption)")
-model_viewer('daxter_psp', class="toright", "(ref:daxtermodelcaption)")
-```
+![Daxter (2006).<br>.1,374 triangles.](daxter_psp){.toright model3d="true"}
 
 ### Video out
 
@@ -375,7 +370,7 @@ Games don't have access to these modules directly. Instead, they call many libra
 - **VoIP audio decoding** (G729 and u-law).
   - The operating system of the PSP bundled a variant of the 'Skype' app, if you wonder what uses VoIP could have here.
 
-### Audio comparison
+### Audio comparison {.interactive-only}
 
 Let's put all this into practice by taking a look at how games reproduced their sound. I wrote this special player that allows you to swap between consoles (to enable side-by-side comparisons):
 

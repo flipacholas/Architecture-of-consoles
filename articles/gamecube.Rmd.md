@@ -218,31 +218,17 @@ Time to put all of this into perspective, check out how programmers evolved the 
 
 The famous Mario model which had to be stripped down due to polygon counting on the [previous generation](nintendo-64) got completely redesigned for this one, take a closer look at how the model evolved from plain faces to wrinkled sleeves.
 
-(ref:mario64caption) Super Smash Bros (1999) for the N64.<br>229 triangles.
+![Super Smash Bros (1999) for the N64.<br>229 triangles.](mario_smash_64){.toleft .nested model3d="true"}
 
-(ref:mariogccaption) Super Smash Bros. Melee (2001) for the GC.<br>2,494 triangles.
-
-```{r}
-side_by_side(c(
-  model_viewer('mario_smash_64', class="toleft", "(ref:mario64caption)"),
-  model_viewer('mario_melee_gc', class="toright", "(ref:mariogccaption)")
-), nested=TRUE)
-```
+![Super Smash Bros. Melee (2001) for the GC.<br>2,494 triangles.](mario_melee_gc){.toright model3d="true"}
 
 #### The update {.tab}
 
 In this case, Sonic Team already designed a Sonic model for [their unique console](dreamcast), but after porting their game to the Gamecube they found themselves able to add more polygons to their model, achieving better detail.
 
-(ref:sonicdccaption) Sonic Adventure (1999) for the DC.<br>1,001 triangles.
+![Sonic Adventure (1999) for the DC.<br>1,001 triangles.](sonic_adventure_dc){.toleft .nested model3d="true"}
 
-(ref:sonicgccaption) Sonic DX (2003) for the GC.<br>1,993 triangles.
-
-```{r}
-side_by_side(c(
-  model_viewer('sonic_adventure_dc', class="toleft", "(ref:sonicdccaption)"),
-  model_viewer('sonic_dx_gc', class="toright", "(ref:sonicgccaption)")
-), nested=TRUE)
-```
+![Sonic DX (2003) for the GC.<br>1,993 triangles.](sonic_dx_gc){.toright model3d="true"}
 
 `r close_tabs()`
 

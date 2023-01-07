@@ -259,14 +259,9 @@ Once finished, the GPU writes the pixels into the frame buffer area in VRAM, whi
 
 Let's take a break now from all this theory. Here are some examples of game characters designed from the ground up for the 3D era, they are interactive so I encourage you to check them out!
 
-(ref:spyromodelcaption) Spyro the Dragon (1998).<br>413 triangles.
+![Spyro the Dragon (1998).<br>413 triangles.](spyro_ps1){.toleft model3d="true"}
 
-(ref:crashmodelcaption) Crash Bandicoot (1996).<br>732 triangles.
-
-```{r fig.cap=c("(ref:spyromodelcaption)", "(ref:crashmodelcaption)"), side_by_side=TRUE, fig.pos = "H"}
-model_viewer('spyro_ps1', class="toleft", "(ref:spyromodelcaption)")
-model_viewer('crash_ps1', class="toright", "(ref:crashmodelcaption)")
-```
+![Crash Bandicoot (1996).<br>732 triangles.](crash_ps1){.toright model3d="true"}
 
 ### Playing with VRAM
 

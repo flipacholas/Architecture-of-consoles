@@ -296,14 +296,9 @@ That's pretty much in a nutshell, for more specialised cases, you'll have to div
 
 I've updated the wee model viewer to apply 'nearest neighbour', allowing you to visualise Nintendo DS models using your GPU.
 
-(ref:mariomodelcaption) New Super Mario Bros (2004).<br>636 triangles.
+![New Super Mario Bros (2004).<br>636 triangles.](mario_ds){.toleft model3d="true"}
 
-(ref:dogmodelcaption) Nintendogs (2005).<br>750 triangles.
-
-```{r fig.cap=c("(ref:mariomodelcaption)", "(ref:dogmodelcaption)"), side_by_side=TRUE, fig.pos = "H"}
-model_viewer('mario_ds', class="toleft", "(ref:mariomodelcaption)")
-model_viewer('dalmatian_ds', class="toright", "(ref:dogmodelcaption)")
-```
+![Nintendogs (2005).<br>750 triangles.](dalmatian_ds){.toright model3d="true"}
 
 Despite the fact we talked about a lot of limitations of the graphics subsystem, lots of games did make really good use of it.
 
@@ -327,7 +322,7 @@ You see, the mixer's output frequency rate is **32 kHz** with a resolution of **
 
 Back on topic, how does a GBA game handle all of this? _It doesn't_, Nintendo fitted a **separate sound system** (within the same enclosure) for GBA mode that includes its own channels and mixer that follows the specifications of the predecessor. This way, GBA games won't be affected by the new mixer's limitations. Unfortunately, since this subsystem is segregated from the DS one (in other words, it doesn't output to the DS's mixer), DS games aren't able to use it.
 
-### Interactive comparison
+### Interactive comparison {.interactive-only}
 
 I've constructed this interactive widget that will allow you to compare by yourself how the new audio system affected the new generation of soundtracks. Each widget plays the same score but allows you to alternate between the old and new arrangements (I suggest wearing headphones to really notice the difference). Give it a whirl!
 
@@ -348,7 +343,7 @@ audio_switcher("(ref:audiokartcaption)", class="toleft", src1="yoshi_gba", label
 
 Be as it may, I had to boost the gain of the GBA soundtrack a little bit to normalise the loudness, which tends to affect the signal-to-noise ratio (just something to bear in mind while you switch between the two). Anyway, I hope you got a sense of how the sound subsystem has evolved.
 
-### Some struggles
+### Some struggles {.interactive-only}
 
 Let me show you some tricky cases now, where the original console had some unique audio features that weren't straightforward to recreate for this console, but I'll let you be the judge of that:
 
