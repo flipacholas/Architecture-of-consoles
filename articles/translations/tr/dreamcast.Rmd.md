@@ -130,14 +130,9 @@ Açık mimari farkın yanı sıra, Doku ve Gölgelendirme İşlemcisi, bu konsol
 
 Holly artık [selefine](sega-saturn) göre ~10 kat daha fazla poligon çizebiliyor, işte model tasarımlarının artık o kadar da sınırlı olmadığını gösteren bir *Önce & Sonra* örneği. Onlarla oynamaya çalışın!
 
-(ref:sonicrmodelcaption) Satürn için Sonic R (1997).<br> 286 üçgen (veya 185 dörtgen).
+![Satürn için Sonic R (1997).<br>286 üçgen (veya 185 dörtgen).](sonic_r_saturn){.toleft model3d="true"}
 
-(ref:sonicadvmodelcaption) Dreamcast için Sonic Adventure (1999).<br> 1001 üçgen.
-
-```{r fig.cap=c("(ref:sonicrmodelcaption)", "(ref:sonicadvmodelcaption)"), side_by_side=TRUE, fig.pos = "H"}
-model_viewer('sonic_r_saturn', class="toleft", "(ref:sonicrmodelcaption)")
-model_viewer('sonic_adventure_dc', class="toright", "(ref:sonicadvmodelcaption)")
-```
+![DC için Sonic Adventure (1999).<br>1001 üçgen.](sonic_adventure_dc){.toright model3d="true"}
 
 ### Video Modları
 
