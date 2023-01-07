@@ -219,31 +219,17 @@ Tüm bunları bir perspektife oturtmanın zamanı geldi, programcıların bu kon
 
 [Önceki nesilde](nintendo-64) poligon sayısı nedeniyle küçültülmek zorunda kalan ünlü Mario modeli bu nesil için tamamen yeniden tasarlandı, modelin düz yüzlerden buruşuk kollara nasıl evrildiğine yakından bakın.
 
-(ref:mario64caption) Super Smash Bros (1999) N64.<br>229 üçgen.
+![Super Smash Bros (1999) N64.<br>229 üçgen.](mario_smash_64){.toleft .nested model3d="true"}
 
-(ref:mariogccaption) GC için Super Smash Bros. Melee (2001).<br>2,494 üçgen.
-
-```{r}
-side_by_side(c(
-  model_viewer('mario_smash_64', class="toleft", "(ref:mario64caption)"),
-  model_viewer('mario_melee_gc', class="toright", "(ref:mariogccaption)")
-), nested=TRUE)
-```
+![GC için Super Smash Bros. Melee (2001).<br>2,494 üçgen.](mario_melee_gc){.toright model3d="true"}
 
 #### Güncelleme {.tab}
 
 Bu durumda, Sonic Team zaten [kendi benzersiz konsolları](dreamcast) için bir Sonic modeli tasarlamıştı, ancak oyunlarını Gamecube'e taşıdıktan sonra modellerine daha fazla poligon ekleyebildiklerini ve daha iyi ayrıntılar elde ettiklerini gördüler.
 
-(ref:sonicdccaption) DC için Sonic Adventure (1999).<br>1,001 üçgen.
+![DC için Sonic Adventure (1999).<br>1,001 üçgen.](sonic_adventure_dc){.toleft .nested model3d="true"}
 
-(ref:sonicgccaption) GC için Sonic DX (2003).<br>1,993 üçgen.
-
-```{r}
-side_by_side(c(
-  model_viewer('sonic_adventure_dc', class="toleft", "(ref:sonicdccaption)"),
-  model_viewer('sonic_dx_gc', class="toright", "(ref:sonicgccaption)")
-), nested=TRUE)
-```
+![DC için Sonic DX (2003).<br>1,993 üçgen.](sonic_dx_gc){.toright model3d="true"}
 
 `r close_tabs()`
 
