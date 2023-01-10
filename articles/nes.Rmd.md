@@ -289,21 +289,21 @@ A dedicated component called **Audio Processing Unit** (APU) provides this servi
 
 ### Functionality
 
-This audio chip is a **Programmable Sound Generator** (PSG), which means that it can only produce pre-defined waveforms. It's controlled by the CPU.
+This audio circuitry is commonly referred to as a **Programmable Sound Generator** (PSG), which vaguely implies that it can only produce a pre-defined set of waveforms, that's _mostly_ true in this case. The APU sequences audio data over **five channels** of audio – each one reserved for a specific waveform or signal. Each channel contains different properties that alter the waveform's pitch, sound, volume and/or duration. They are continuously mixed and sent through the output audio signal.
 
-The APU sequences audio data over five channels of audio – each one reserved for a specific waveform. The music data is found in the Program ROM. Each waveform contains different properties that can be altered to produce a specific note, sound or volume. These five channels are continuously mixed and sent through the audio signal.
+The APU's functionality is exposed through memory addresses, the CPU reads the music-related data found in the Program ROM and programs the APU accordingly.
 
-Moreover, the Famicom model contains cartridge pins that send the mixed audio signal to the cartridge, so the latter can mix it with extra channels (requiring extra chips) [@general-cartridge].
+Furthermore, the Famicom model in particular provides cartridge pins that send the mixed audio signal to the cartridge, so the latter can mix it with **extra channels** (requiring additional chips) [@general-cartridge].
 
-Let's now discuss the type of wave-forms synthesised by the APU [@audio-review]:
+Let's now go over the five channels the APU provides [@audio-review]:
 
 #### Pulse {.tabs .active}
 
 ::: {.subfigures .tabs-nested .tab-float}
 
-![Oscilloscope view of the pulse 1 channel.](pulse_single_1){.active video="true" title="Pulse 1"}
+![Oscilloscope view of the pulse 1 channel.](pulse_single_1){video="true" title="Pulse 1"}
 
-![Oscilloscope view of the pulse 2 channel.](pulse_single_2){video="true" title="Pulse 2"}
+![Oscilloscope view of the pulse 2 channel.](pulse_single_2){.active video="true" title="Pulse 2"}
 
 ![Oscilloscope view of all audio channels.](pulse_full){video="true" title="Complete"}
 
@@ -311,13 +311,11 @@ Mother (1989).
 
 :::
 
-Pulse waves have a very distinct *beep* sound that is mainly used for **melody or sound effects**.
+The first **two channels** produce **pulse waves** [@audio-apupulse]. When heard, they exhibit a very distinct *beep* sound that is mainly used for **melody or sound effects**. The respective sequencer can generate three types of pulse waves, made from varying the pulse width (a.k.a. **duty cycle**). The circuits are also connected to a **sweep unit** (allowing to bend the pitch) and an **envelope generator** to lower the volume over time (a.k.a. **decay**).
 
-The APU reserves two channels for pulse waves. Each can use one of three different voices, produced by varying their pulse widths.
+Most games use one pulse channel for melody and the other for accompaniment. You'll often find that when a game needs to play a sound effect, the accompaniment channel is switched to play the effect and then returns to accompanying. This avoids interrupting the melody during gameplay.
 
-Most games used one pulse channel for melody and the other for accompaniment.
-
-When the game needs to play a sound effect, the accompaniment channel is switched to play the effect and then returns to accompanying. This avoids interrupting the melody during gameplay.
+I think it's fair to say that pulse waves are one of the emblems of this generation of consoles. I assume its adoption was purely made for cost-effective reasons: the (limited) CPU can only process so much data at a time, and pulse waves are ideal in the sense they don't require many parameters to play simple melodies (which, in turn, frees up CPU cycles for other operations).
 
 #### Triangle {.tab}
 
@@ -331,11 +329,11 @@ Mother (1989).
 
 :::
 
-This waveform serves as a bassline for the melody. Modifying its pitch dramatically can also produce percussion.
+One of the specialities of the APU, when compared to the competition, is the ability to produce **triangle waves**. These are often used as a **bassline** for the melody. Moreover, by modifying its pitch dramatically one can also use it for **percussion**.
 
-The APU has one channel reserved for this type of wave.
+The APU has one channel reserved for this type of wave. Behind the scenes, a dedicated sequencer takes 32 cycles to generate a triangle signal [@audio-aputriangle], this limitation makes the resulting triangle waveform take the shape of a step ladder.
 
-The volume of this channel can't be controlled, possibly because the volume control is used to construct the triangle.
+On the other side, the respective circuitry does not provide volume control. In any case, some games found other ways by fiddling with the mixer's volume control.
 
 #### Noise {.tab}
 
@@ -349,11 +347,13 @@ Mother (1989).
 
 :::
 
-Noise is basically a set of random waveforms that sound like white static. One channel is allocated for it.
+The concept of 'Noise' is attributed to a series of waveforms that don't follow any pattern or order. In turn, our ears interpret it as white static. Having said that, the APU allocates one channel that can play different kinds of noise.
 
-Games use the noise channel for percussion or *ambient* effects.
+Behind the scenes, the noise generator relies on an envelope generator (similar to the Pulse channel) which gets randomly muted by an OR gate [@audio-apunoise]. The condition for muting depends on the value of a 15-bit shift register connected to a feedback loop. All in all, this makes the circuitry output a signal with _pseudo-unpredictable_ patterns, therefore noise.
 
-This channel has only 32 *presets* available. Half (16) of these presets produce **clean static**, and the other half produce **robotic static**.
+In terms of control, 4 bits alter the period of the envelope generator and one bit alters the 'Mode' of the shift register. That leaves 32 noise presets available. Half (16) of these presets produce **clean static**, and the other half produce **robotic static**.
+
+Generally speaking, games use the noise channel for percussion or ambient effects.
 
 #### Sample {.tab}
 
@@ -367,17 +367,17 @@ Mother (1989).
 
 :::
 
-Samples are recorded pieces of music that can be replayed. As you can see, samples is not limited to a single waveform, but they weight a lot more space.
+Samples are recorded pieces of music that can be replayed. As you can see, samples are not limited to a single waveform, but they consume a lot more space.
 
-The APU has one channel dedicated to samples. With the APU, samples are limited to **7-bit resolution** (encoded with values from `0` to `127`) and **~15.74 KHz sampling rate** [@audio-2a03ref]. To program this channel, games can either stream 7-bit values (which steals a lot of cycles and storage) or use **delta modulation** to only encode the variation between the next sample and the previous one.
+The APU has one channel dedicated to samples. In here, samples are limited to **7-bit resolution** (encoded with values from `0` to `127`) and a **~15.74 KHz sampling rate** [@audio-2a03ref]. To program this channel, games can either stream 7-bit values (which steals a lot of cycles and storage) or use **delta modulation** to only encode the variation between the next sample and the previous one.
 
 The delta modulation implementation in the APU only receives 1-bit values, this means games can only tell if the sample increments or decrements by `1` every time the counter kicks in. So, at the cost of fidelity, delta modulation can save games from having to stream continuous values to the APU.
 
-Since programming this channel takes longer space and CPU cycles, games normally store small pieces (like drum samples) that can be played repeatedly. But throughout the lifetime of the NES, many studio have come up with clever uses of this channel.
+Since programming this channel takes longer space and CPU cycles, games normally store small pieces (like drum samples) that can be played repeatedly. Be as it may, throughout the lifetime of the NES, numerous developers have come up with clever uses for this channel.
 
 ### Secrets and limitations {.tabs-close}
 
-While the APU was not comparable to the quality of a vinyl, cassette or CD, programmers did find ways of expanding its capability, thanks to the modular architecture of the NES.
+While the APU was not comparable to the quality of vinyl, cassette or CD, programmers did find ways of expanding its capability, mainly thanks to the modular architecture of the NES.
 
 #### Extra Channels {.tabs .active}
 
@@ -387,7 +387,7 @@ While the APU was not comparable to the quality of a vinyl, cassette or CD, prog
 
 Remember that the Famicom provided exclusive cartridge pins available for sound expansion? Well, games like *Castlevania 3* took advantage of this and bundled an extra chip called **Konami VRC6**, which added **two extra pulse waves and a sawtooth wave** to the mix.
 
-Take a look at this video which shows the difference between the Japanese version and the American versions the game (the latter runs on the NES, which didn't provide sound expansion capabilities).
+Take a look at the two examples that show the difference between the Japanese and the American version of the game (the latter runs on the NES variant, which didn't provide sound expansion capabilities).
 
 #### Tremolo {.tab}
 
@@ -395,9 +395,90 @@ Take a look at this video which shows the difference between the Japanese versio
 
 Instead of incrementing cartridge costs, some games prioritised creativity over technology to add more channels.
 
-In this example, Final Fantasy III came up with the idea of using tremolo effects to 'simulate' extra channels.
+In this example, Final Fantasy III came up with the idea of using tremolo effects to give the feeling of extra channels.
 
-## Games {.tabs-close}
+### A more refined observation {.tabs-close}
+
+Now that you've got a glance at what the APU is capable of, let me show you an alternative method for observing how its sound behaves. This not only will complement what you already know about the APU, but it will also provide a more objective examination, especially since it doesn't rely on your ears anymore.
+
+First things first, let's start with a quick introduction to sound theory.
+
+Thanks to the principles of **Fourier Analysis**, we can decompose every single sound we hear into a **sum of sine waves** of different frequencies and amplitudes [@audio-complexwaveforms]. The bassiest sine wave (at the lowest frequency) is called **fundamental** and the rest are called **overtones**. If you add the fundamental wave and its overtones, you get the original sound back. Having said that, with sounds that have a recognisable pitch, you'll find most (if not all) overtones have frequencies that are multiples of the fundamental frequency. Thus, these overtones are called **harmonics** [@audio-harmonics].
+
+Harmonics will become a recurrent topic in this section, as waveforms such as pulses, triangles and sawtooths follow a formula that dictates the harmonics they contain. Otherwise, these waveforms may deviate from their 'perfect' shape.
+
+#### Introduction to spectrograms
+
+As sine waves are now the key ingredient that can make up any sound, we can now analyse the sounds that we hear by its sine waves. Now, for any kind of data analysis, there's nothing more convenient than plotting a graph to organise vast amounts of information. Well, in the case of sound analysis, we've got **Spectrograms**. These encode all the information of an audio sample in a single plot. The X-axis denotes time (in seconds), the Y-axis denotes the frequencies (in Hz) of sine waves produced during that time and the Z-axis (colour brightness of each dot) denotes the power/loudness (in decibels) of each frequency.
+
+![Example of spectrogram visualising six seconds of a Pulse channel.](spectrogram_example){video="true"}
+
+As you can observe from this example, each horizontal line (a.k.a sequences of dots) corresponds to a sine wave (the lowest is the fundamental, while the rest are the harmonics) and their brightness indicates the amplitude. With this in mind, we can extract the following information:
+
+- Over time, horizontal lines tend to drastically displace. That's the pitch of the Pulse channel changing.
+- The start of each note is loud (the dots are bright) followed by a quick quell. That's the APU's envelope control in action.
+  - Moreover, at the end of the decay period, a bright vertical line shows up. It's quite brief so it's not easily audible but, in any case, that's noise (a short popping sound) and I suspect it's a deficiency of the APU.
+- Holding a note for more than 0.25 seconds makes **vibrato** emerge (continuous fluctuations in the Y-axis). I'm not sure if that's intentional (using the sweep function) or an adverse effect of the APU.
+
+Notice how most of these observations are not easily derived by just hearing an audio simple, this is the reason for writing this section.
+
+#### Plotting the APU
+
+To study the NES' APU, I've compiled five spectrograms, each corresponding to a channel of the APU using the previous examples. Alongside them, you'll find my attempt at unravelling what the data is exhibiting.
+
+Before we start, I must confess that to be able to gather the data without inaccuracies (like extra noise), there have been some compromises. The recordings were obtained using a Windows program called 'towave', which uses **band-limited synthesis** to solve a fundamental problem with the emulation of PSG-based audio chips. Basically, pulses, triangles and sawtooths are made of **infinite harmonics**. However, that doesn't mix well with modern sound cards that are limited to 44.1 kHz samples. So, a technique called 'band-limited synthesis' is used to choose the right harmonics within the sound card's limit. All in all, this technique provides a feasible balance between performance, accuracy and aliasing prevention. However, the data may not be 100% identical to its analogue counterpart (which, by contrast, would also introduce other issues, like noise from the recording equipment), but I believe it is to an acceptable degree and, most importantly, it does the job for this section of the article.
+
+That being said, let's get on with the analysis.
+
+##### Pulse {.tabs .active}
+
+![Spectrogram of the Pulse 1 channel.](spectrograms/eb0_pulse_nes.png){.tab-float}
+
+The theory says that a pulse tone only contains odd harmonics. In other words, the fundamental is combined with its third harmonic, fifth and so forth. Moreover, each harmonic decreases its amplitude as further away it is from the fundamental. The amplitude formula is `amplitude = 1 ÷ harmonic number` [@audio-pulse].
+
+Hence, notice how the brightness of each harmonic on the spectrogram dims the higher it is on the Y-axis. However, the APU's pulse waves also seem to exhibit the aforementioned vibrato effect which increases at each harmonic number. Moreover, areas of the spectrogram which should be empty of any sound contain hushed overtones (possibly the result of noise and other imperfections).
+
+##### Triangle {.tab}
+
+![Spectrogram of the Triangle channel.](spectrograms/eb0_triangle_nes.png){.tab-float}
+
+A triangle wave is also made of odd harmonics but with a faster decrease of their amplitude (where `amplitude = 1 ÷ harmonic number²` [@audio-triangle]).
+
+However, this is not what's shown here, the step ladder-shaped triangle that the APU produces leads to extra harmonics and increased amplitudes.
+
+##### Noise {.tab}
+
+![Spectrogram of the Noise channel.](spectrograms/eb0_noise_nes.png){.tab-float}
+
+Naturally, noise doesn't abide by the rules of harmonics and may randomly fill the whole frequency space, hence the lack of an easily recognisable pitch.
+
+Although, by following the timeline you can differentiate the different noise presets the APU provides, each exhibiting a distinct set of overtones.
+
+##### Sample {.tab}
+
+![Spectrogram of the Sample channel.](spectrograms/eb0_dcm_nes.png){.tab-float}
+
+Unlike the previous channels, the sample channel only plays back whatever low-resolution recording the developer feeds to the APU. Considering the example played a drum kit, I can't see any identifiable treats on the spectrogram (apart from similarities to white noise).
+
+##### Sawtooth {.tab}
+
+![Spectrogram of the VRC6's Sawtooth channel.](spectrograms/castlevania_saw_nes.png){.tab-float}
+
+As a bonus, let's also check out the Sawtooth channel from the VRC6 expansion. To begin with, a perfect Sawtooth wave is made of all the harmonics and each exhibit decreasing amplitudes (where `amplitude = 1 ÷ harmonic number` [@audio-sawtooth]).
+
+This is quite a requirement for digital equipment and it's naturally unaffordable for a game cartridge (it may not even need such perfection!). So, similarly to the APU's triangle waves, the VRC6 sequences Sawtooth waves in 7 cycles (and thus produces similar step ladder effects).
+
+Consequently, the respective spectrogram is very messy, the VRC6's approximation techniques fill the wave with extra harmonics in many places.
+
+#### Conclusion {.tabs-close}
+
+Well, it seems that the NES' synthetic waveforms are nowhere near shaped like the theory dictates. Does this mean the APU is flawed? No! The way the APU was designed ended up granting this console unique and identifiable sounds - and these properties, whether intentional or not, made the spectrograms display unusual results.
+
+As a side note, perfect geometry may be pleasant to look at with our eyes, but curiously enough, our ears are not particularly fond of waveforms with perfect edges! (you may start hearing popping noises).
+
+Looking forward, sound analysis using spectrograms will come in handy in other articles, whether it's for a simple analysis or for making comparisons with other systems. Please note that these graphs are not _the mother lode_ tool by all means, especially with sound samples that have been mixed up with too many channels/instruments (greatly difficulting its decomposition). But I think they will provide a solid start for any kind of objective study.
+
+## Games
 
 NES games are mainly written in the 6502 assembly language and reside in the **Program ROM**, while the game's graphics (tiles) are stored in **Character memory**.
 
