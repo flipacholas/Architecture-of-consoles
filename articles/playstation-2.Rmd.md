@@ -123,7 +123,7 @@ The memory map of the VPU0 also has access to some of the other VPU's registers 
 
 ![Architecture of VPU1.](VUP1.png){.tab-float}
 
-The second VPU found, the **VPU1**, is an enhanced version of the VPU0 with double the amount of micro memory and VU memory. Moreover, this unit includes an additional component called **Elementary function unit** or 'EFU' which speeds up the execution of exponential and trigonometric functions.
+The second VPU found, the **VPU1**, is an enhanced version of the VPU0 with quadruple the amount of micro memory and VU memory. Moreover, this unit includes an additional component called **Elementary function unit** or 'EFU' which speeds up the execution of exponential and trigonometric functions.
 
 The VPU1 is located between the VPU0 and the Graphics Interface (the 'gate' to the GPU), so it includes additional buses to feed the geometry to the GPU as quickly as possible and without using the main bus.
 
