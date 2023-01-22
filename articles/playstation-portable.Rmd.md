@@ -38,7 +38,7 @@ Released just one month after the [Nintendo DS](nintendo-ds), Sony's PSP proved 
 
 This article is dedicated to anyone that wants to understand, straight to the point, how the PSP operates. It's not a short write-up, but I hope that at the end of the article you will be able to grasp the building blocks of this console (its design rationale, choice of CPUs, GPU pipeline, security system and so forth).
 
-P.S. If you ever feel fed up with information, don't forget to take a look at the diagrams (the `r img_link(label="main one", src="diagram.png] plus the others I made for each section).
+P.S. If you ever feel fed up with information, don't forget to take a look at the diagrams (the `r img_link(label="main one", src="diagram.png")`) plus the others I made for each section).
 
 ```{r results="asis"}
 supporting_imagery()
