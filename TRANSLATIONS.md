@@ -8,7 +8,7 @@ Within the `articles` folder you'll find the English writings, while translated 
 
 Apart from any article, `articles/_index.md`, `resources/strings.toml` and `resources/generations.yaml` need to be translated as well.
 
-When you finish translating a document, please drop me an email (address in the website) or open an issue here so I can review it and deploy it. Feel free to ask me for help if you need.
+When you finish translating a document, please open an issue here so I can review it and deploy it. Feel free to ask me for help if you need.
 
 ## Guidelines
 
