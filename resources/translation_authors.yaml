@@ -23,7 +23,8 @@ nintendo64:
 nintendods: null
 pcengine: null
 ps1: null
-ps2: null
+ps2:
+  pt-br: Lucas Akira Morishita
 ps3:
   ru: Vladimir Kovalev
 psp: null
