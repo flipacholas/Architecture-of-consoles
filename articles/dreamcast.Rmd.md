@@ -243,13 +243,11 @@ Games are stored in GD-ROMs, which are just CD-ROMs with a higher density of pit
 
 ### Online platform
 
-The Dreamcast shipped with a **modem** module installed which games could use to 'call' a dial-up service for online gaming. Sega provided two services: **SegaNet** (used in America and Japan) and **Dreamarena** (the European counterpart).
+The Dreamcast shipped with a **modem** module that enabled games to connect to Sega's online platform for online gaming. The platform was known as SegaNet in America and Japan and as Dreamarena in Europe. Players could register for the service using **DreamKey**, a disc that also provided a web browser for account registration. At first, DreamKey was pre-configured for a specific region, but later versions allowed users to change the ISP settings to connect to any of the services. A Dreamcast-branded keyboard and mouse were also available for purchase, in case users preferred a *PC-style* browsing experience. The European online service, Dreamarena, was a free dial-up-based platform created through a partnership between ICL, BT, and various ISPs. Although the service was free in the UK, other European countries had different access requirements and prices, which made the service expensive for some users. By September 2000, Dreamarena had reached 300,000 registrations, with over half of these users being "active or very active."
 
-Players registered with a service using **DreamKey**, an extra disc that was bundled with some games. DreamKey provided a web browser to register an account. Initially, DreamKey came as a pre-configured service depending on the region, but later revisions allowed users to alter its ISP settings to connect to any of them.
+In Australia, Sega partnered with Telstra to develop an online service for the Dreamcast, but it was unavailable at launch due to delays in development and testing. Users had to use Telstra's Big Pond service and the Internet access disc came with 150 hours of free Internet access. The browser went to the Comma web portal powered by LookSmart's search engine.
 
-There was also a Dreamcast-branded keyboard and mouse available to buy, just in case the user fancied surfing the net *PC-style*.
-
-Unfortunately, SegaNet and Dreamarena were discontinued two years after launch. Thus, games that exclusively relied on them became unusable, unless such services are emulated using extra tools (like the DreamPi, a Raspberry Pi image that replicates them with the help of servers maintained by a community of users).
+Despite the popularity, both SegaNet and Dreamarena faced criticism and legal issues. SegaNet's online service was discontinued on July 20, 2001, and Dreamarena's was discontinued on February 28, 2002. However, the online game servers for both platforms remained active until September 30, 2003. Users who did not register for the service before its closure were unable to access the internet using the Dreamcast. The SegaNet platform was shut down on September 30, 2003, and Dreamarena was shut down on February 28, 2003. Thus, games that exclusively relied on them became unusable, unless such services are emulated using extra tools (like the DreamPi, a Raspberry Pi image that replicates them with the help of servers maintained by a community of users).
 
 ### Interactive memory card
 
