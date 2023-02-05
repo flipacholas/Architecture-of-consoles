@@ -251,19 +251,19 @@ You can replace the modem adapter with a broadband adapter to get faster connect
 
 A Dreamcast-branded keyboard and mouse were also available for purchase, in case users preferred a *PC-style* browsing experience. The mouse also had one more button called 'programmable button', 'side button' or 'thumb button'. But it is not clear how to program this programmable button. At the same time, some developers integrated the Mouse and Keyboard into their games. Games like Quake 3, Unreal Tournament, and Outtrigger are some of them.
 
-- Europe 
+- **European Online Service**
 
   The European online service, Dreamarena, was a free dial-up-based platform created through a partnership between ICL, BT, and various ISPs. Although the service was free in the UK, other European countries had different access requirements and prices, which made the service expensive for some users. By September 2000, Dreamarena had reached 300,000 registrations, with over half of these users being "active or very active."
 
-- America
+- **America Online Service**
 
   TODO
 
-- Japan
+- **Japan Online Service**
 
   TODO
 
-- Australia and New Zeland
+- **Australia and New Zeland Online Service**
 
   In Australia and New Zeland, Sega partnered with Telstra to develop an online service for the Dreamcast, but it was unavailable at launch due to delays in development and testing. Users had to use Telstra's Big Pond service and the Internet access disc came with 150 hours of free Internet access. The browser went to the Comma web portal powered by LookSmart's search engine.
 
