@@ -328,7 +328,7 @@ To show how this system impacted model design and to help compare it to the [PS2
 
 ![Metal Gear Solid: Portable Ops Plus (2006).<br>1,383 triangles.](snake_psp){.toleft model3d="true"}
 
-![Daxter (2006).<br>.1,374 triangles.](daxter_psp){.toright model3d="true"}
+![Daxter (2006).<br>1,374 triangles.](daxter_psp){.toright model3d="true"}
 
 ### Video out
 
