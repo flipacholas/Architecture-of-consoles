@@ -142,7 +142,7 @@ Sprites are just tiles that move freely. The VDP can raster **up to 64 sprites**
 
 The **Sprite Attribute Table** is a 256-byte area in VRAM that contains an array of all the sprites defined, its entries are similar to the background layer, except each sprite contain two additional values representing the X/Y coordinates.
 
-The VDP is limited to **up to eight sprites per horizontal scan-line**. Also, if two sprites overlap, the last one in the list will be the one displayed.
+The VDP is limited to **up to eight sprites per horizontal scan-line** [@graphics-macdonald]. Also, if multiple sprites overlap, the first one in the list will be the one displayed.
 
 #### Result {.tab}
 
