@@ -130,14 +130,9 @@ Oprócz wyraźnej różnicy architektonicznej, Texture and Shading Processor ma 
 
 Holly może teraz narysować ~10 razy więcej wielokątów niż [jego poprzednik](sega-saturn), oto przykład *Przed & Po* który pokazuje, że projekty modeli nie są już tak ograniczone. Spróbuj się z nimi pobawić!
 
-(ref:sonicrmodelcaption) Sonic R (1997) dla Saturna.<br>286 trójkątów (lub 185 czworokątów).
+![Sonic R (1997) dla Saturna.<br>286 trójkątów (lub 185 czworokątów).](sonic_r_saturn){.toleft model3d="true"}
 
-(ref:sonicadvmodelcaption) Sonic Adventure (1999) dla Dreamcasta.<br>1001 trójkątów.
-
-```{r fig.cap=c("(ref:sonicrmodelcaption)", "(ref:sonicadvmodelcaption)"), side_by_side=TRUE, fig.pos = "H"}
-model_viewer('sonic_r_saturn', class="toleft", "(ref:sonicrmodelcaption)")
-model_viewer('sonic_adventure_dc', class="toright", "(ref:sonicadvmodelcaption)")
-```
+![Sonic Adventure (1999) dla Dreamcast.<br>1001 trójkątów.](sonic_adventure_dc){.toright model3d="true"}
 
 ### Tryby Wideo
 
