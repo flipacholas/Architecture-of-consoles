@@ -6,7 +6,7 @@ release_date: 2001-09-14
 date: 2019-11-19
 subtitle: Powerful and compact
 generation: 6
-javascript: ['threejs']
+javascript: ['threejs', 'audioswitcher']
 cover: gamecube
 top_tabs:
   Model:
@@ -296,6 +296,34 @@ Let me show you an example using two games, one released for the Nintendo 64 and
 ![Paper Mario: The Thousand-Year Door (2004) for the GC.<br>Streamed to the DSP.](PaperMario){.toright video="true"}
 
 *As you can hear*, the DSP finally gave music composers the flexibility and richness they always asked for.
+
+#### Additional material
+
+For a more direct side-by-side comparison, I've prepared this interactive widget that shows how composers ended up adapting their arrangements for the GameCube and its predecessor. Here, the same upbeat score is utilised for a Nintendo 64 title and a GameCube one, and the resulting comparison allows me to demonstrate (once again) the technical advantages of the GameCube's DSP.
+
+(ref:n64title) Nintendo 64
+
+(ref:gctitle) GameCube
+
+(ref:audion64gccaption) **Nintendo 64:** Kirby 64: The Crystal Shards (2000).<br>**GameCube:** Kirby Air Ride (2003).
+
+```{r}
+audio_switcher("(ref:audion64gccaption)", class="centered-container", src1="kirbycrystal_n64", label1="(ref:n64title)", src2="kirbyair_gc", label2="(ref:gctitle)")
+```
+
+Now, to visualise what's happening behind each track, here are the two respective spectrograms. Before I start, if you are not familiar with these kinds of charts, I recommend reading my previous NES article, in particular the [audio section](nes#audio) (where I introduced them).
+
+![Spectrogram of the PCM channel in Kirby 64: The Crystal Shards (2000).](spectrograms/kirbycrystal_n64.png){.toleft}
+
+![Spectrogram of the PCM channel in Kirby Air Ride (2003)](spectrograms/kirbyair_gc.png){.toright}
+
+To be fair, mixed tracks are difficult to decompose in a spectrogram, but I believe I can attempt to deduce some patterns from it.
+
+To begin with, almost all the frequency spectrum is being evenly utilised in the GameCube track, which may be attributed to the additional instruments used for accompaniment (which add harmonics and therefore fill more areas on the chart).
+
+Finally, the amplitudes on the GameCube spectrogram look more uniformly distributed. In other words, the volume of each instrument is differently balanced and includes effects like reverb. I'm guessing the latter is what the composer originally intended while producing this score, and these types of controls are possible by the fact that the GameCube supports audio streaming. Thus, composers can use any tool of choice to sequence and mix their music, as opposed to strictly depending on the console (and its limitations) to sequence and mix at runtime.
+
+I wouldn't say that the Nintendo 64 is completely incapable of producing the same result. However, one thing for sure is that, in the world of the Nintendo 64, every single audio function costs extra cycles and/or memory, and this can have an impact on other areas of the game. Hence the need to ration resources. On the other hand, with the GameCube's support for large samples, one can just stream the full produced score altogether.
 
 ## I/O
 
