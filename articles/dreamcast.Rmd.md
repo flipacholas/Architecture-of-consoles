@@ -247,9 +247,9 @@ The Dreamcast shipped with a **modem** module that allowed games to be 'dial-up'
 
 Because it used dial-up, Sega released an accessory called the '**DreamPhone**'. This enabled you to talk on the phone while playing games. It was available directly from Sega using 4000 Dream points accumulated through Dream point certificates included with software sold only in Japan. It is extremely rare and little is known about it, as it was only available from Sega.
 
-You can replace the modem adapter with a broadband adapter to get faster connections.  Broadband adapters were not sold in Europe, but they were not region coded. But if you do so, you cannot talk to DreamPhone and few games supported the broadband adapter.
+You can replace the modem adapter with a broadband adapter to get faster connections. However, Broadband adapters were not sold in Europe, but they were not region coded. But if you do so, you cannot talk to DreamPhone, and only a few games supported the broadband adapter.
 
-A Dreamcast-branded keyboard and mouse were also available for purchase, in case users preferred a *PC-style* browsing experience. The mouse also had one more button called 'programmable button', 'side button' or 'thumb button'. But it is not clear how to program this programmable button. At the same time, some developers integrated the Mouse and Keyboard into their games. Games like Quake 3, Unreal Tournament, and Outtrigger are some of them.
+To enhance the browsing experience, a Dreamcast-branded keyboard and mouse were also available for purchase, in case users preferred a PC-style browsing experience. The mouse also had one more button called 'programmable button', 'side button' or 'thumb button'. But it is not clear how to program this programmable button. At the same time, some developers integrated the Mouse and Keyboard into their games. Games like Quake 3, Unreal Tournament, and Outtrigger are some of them.
 
 - **European Online Service**
 
