@@ -257,7 +257,7 @@ To enhance the browsing experience, a Dreamcast-branded keyboard and mouse were 
 
 - **America Online Service**
 
-  TODO
+  The America Online Service for the Dreamcast was called SegaNet, which was launched in September 7, 2000. SegaNet was not free, and players needed to pay a monthly subscription fee to use the service. The subscription cost $21.95 per month, and it provided unlimited access to the service. A puzzle game, Sega Swirl, that was given away for free to SegaNet subscribers. However, the subscription fee for SegaNet was seen as a major drawback by some players.
 
 - **Japan Online Service**
 
