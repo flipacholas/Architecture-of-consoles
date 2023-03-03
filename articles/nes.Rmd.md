@@ -110,7 +110,7 @@ The fact there are different combinations comes down to the fact the CPU doesn't
 
 ![The same PCB with important parts labelled. The meaning of the 'Lockout' chip is explained in the 'Anti-piracy' section.](nrom_marked.png){.tabs-nested-last title="Marked"}
 
-For example, Nintendo's 'Super Mario Bros' used a layout they call _NES-NROM-256_ and consists of 32 KB of program ROM and 8 KB of 'Character RAM' for graphics (we'll see more about it in the 'Graphics' section) [@cpu-nrom]. _NES-NROM-256_ was also prepared to house up to 3 KB of extra WRAM, though the game doesn't make use of it.
+For example, Nintendo's 'Super Mario Bros' used a layout they call _NES-NROM-256_ and consists of 32 KB of program ROM and 8 KB of 'Character ROM' for graphics (we'll see more about it in the 'Graphics' section) [@cpu-nrom]. _NES-NROM-256_ was also prepared to house up to 3 KB of extra WRAM, though the game doesn't make use of it.
 
 #### Going beyond existing capabilities
 
