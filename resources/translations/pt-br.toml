@@ -107,13 +107,16 @@ other = 'Esta edição é idêntica no quesito de conteúdo. No entanto, widgets
 other = 'Como sempre, este artigo está disponível no <a href="{{ .github }}">Github</a> para permitir que os leitores reportem erros ou proponham mudanças. Há também uma <a href="{{ .readings }}">lista de leitura de suporte</a> disponível para ajudar a entender os artigos. O autor também aceita <a href="{{ .donations }}">doações</a> para ajudar a melhorar a qualidade dos artigos existentes e dos próximos artigos.'
 
 [subscribe_title]
-other = "Mantenha-se atualizado"
+other = "Receba atualizações"
 
 [subscribe_content]
 other = 'Eu publico atualizações no meu <a href="{{ . }}">perfil do Twitter</a>, mas você também pode receber um email quando um novo artigo for postado. Você pode cancelar a inscrição a qualquer momento, eu uso o Mailchimp para lidar com isso.'
 
 [generation_title]
-other = "Geração {{ .ordinal }}"
+other = "{{ .ordinal }} Geração"
+
+[untranslated_article_title]
+other = "{{.}} (em Inglês)"
 
 [cpu_subtitle]
 other = "Avanços notáveis dos processadores:"
