@@ -23,7 +23,7 @@ top_tabs:
       file: european
       active: true
   Motherboard:
-    caption: "Mostrando a revisão 'VA0' japonesa.<br> Perceba a placa-filha incomum sobre o VDP usada para corrigir problemas pós-fabricação (corrigidos em revisões posteriores)."
+    caption: "Mostrando a revisão 'VA0' japonesa.<br>Perceba a placa-filha incomum sobre o VDP usada para corrigir problemas pós-fabricação (corrigidos em revisões posteriores)."
     extension: "jpg"
     bib_source: photography-okqubit
   Diagram: { }
