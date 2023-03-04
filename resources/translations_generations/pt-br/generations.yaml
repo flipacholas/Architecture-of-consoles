@@ -26,9 +26,9 @@
   id: 7
   ordinal: 7ª
   description: Consoles evoluíram para supercomputadores e centros multimídia. Agora estas máquinas são capazes de mais do que apenas rodar jogos, e é por isso que a segurança agora é um fator crítico.
-  cpu: Paralelismo ao nível de thread e arquiteturas multi-núcleo simétricas
+  cpu: Paralelismo a nível de thread e arquiteturas multinúcleo simétricas
   gpu: Modelo de sombreador (shader) unificado e renderização HDR
 - 
   id: 8
   ordinal: 8ª
-  description: O mercado de entretenimento agora foi conquistado por smartphones baratos e tablets. As capacidades de redes sociais tornaram-se prioridade número um de todo periférico. É hora das empresas tradicionais de videogame renovarem seu status quo, e é melhor que o façam rápido.
+  description: O mercado de entretenimento agora foi conquistado por smartphones e tablets baratos. Integrações com redes sociais tornaram-se a prioridade número um de todo periférico. É hora das empresas tradicionais de videogame renovarem seu status quo, e é melhor que o façam rápido.
