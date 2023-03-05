@@ -12,7 +12,7 @@ top_tabs:
     - 
       title: "Japonês"
       caption: "O Mega Drive.<br>Lançado em 29/10/1988 no Japão."
-      file: japonês
+      file: japanese
     - 
       title: "Americano"
       caption: "O Genesis.<br>Lançado em 14/08/1989 nos EUA."
@@ -211,7 +211,7 @@ A região na memória VRAM onde os *sprites* são definidos é chamada de ***Spr
 
 ![Quadro resultante.](vdp_sonic/result.png){.active title="Quadro"}
 
-![Quadro transmitido para TV (formato NTSC), o VDP cobre automaticamente o quadro com a área de <em>overscan</em> que a maioria das TV CRT escondem.](vdp_sonic/overscan.png){title="Com *overscan*"}
+![Quadro transmitido para TV (formato NTSC), o VDP cobre automaticamente o quadro com a área de <em>overscan</em> que a maioria das TV CRT escondem.](vdp_sonic/overscan.png){title="Com overscan"}
 
 Tan-ran!
 
