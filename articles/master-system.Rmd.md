@@ -150,7 +150,7 @@ The VDP is limited to **up to eight sprites per horizontal scan-line** [@graphic
 
 The VDP automatically blends the two layers to form the final frame. The rendering process is done scan-line by scan-line, so the VDP doesn't really know how the frame is going to look, that's only seen by the user when the picture is constructed on the TV.
 
-If you look at the example image, you may notice the frame has a vertical column at the left side. This is because the screen map is only tall enough to provide vertical scrolling without producing artefacts, **but not wide enough for horizontal scrolling**. So, the VDP can **mask** the left-most side with an 8 px column to protect the image from showing intermediate tiles.
+If you look at the example image, you may notice the frame has a vertical column at the left side. This is because the screen map is only tall enough to provide vertical scrolling without producing artefacts, **but not wide enough for horizontal scrolling**. So, the VDP can **mask** the left-most side with an 8px column to protect the image from showing intermediate tiles.
 
 To update the graphics for the next frame without breaking the image currently being displayed, the VDP sends two types of **interrupts** to the CPU. One which notifies that the CRT TV has finished beaming a chosen number of scan-lines (called **horizontal interrupt**) and another when the CRT finished drawing the last scan-line (called **vertical interrupt**) indicating the frame is finished. During those events, the CRT's beam is re-allocating to draw the next scan-line (**blanking interval**), so any alteration of the VDP's state won't tear the image down. Horizontal blanking has a shorter time-frame than vertical blanking, yet it still allows to change, let's say, the colour palette. This still can achieve some effects.
 
@@ -192,7 +192,7 @@ The audio capabilities of this console are pretty much aligned with the rest of 
 
 ### Functionality
 
-A PSG can only synthesise a limited set of waveforms, each channel allocates a single waveform. I've previously introduced some PSGs on the [NES](nes#audio) article and the [Gameboy](game-boy#audio) if you want to read more about this type of sound synthesis.
+A PSG can only synthesise a limited set of waveforms, each channel allocates a single waveform. I've previously introduced some PSGs on the [NES](nes#audio) article and the [Game Boy](game-boy#audio) if you want to read more about this type of sound synthesis.
 
 With the SMS, the PSG is programmed by altering its set of external registers using the aforementioned I/O ports.
 
@@ -274,7 +274,7 @@ While the SN76489 doesn't have a [PCM channel](nes#tab-7-4-sample) to reproduce 
 
 These rely on the pulse channels, it's discovered that if the tone level is fixed at `1`, the volume level (which alters the amplitude) will condition the shape of the waveform.
 
-smspower.org describes different designs that would allow playing 1-bit, 4-bit and 8-bit PCM samples. Although storage requirements skyrocket as bigger the sample resolution and rate, so the best uses of these exploits are found in Homebrew games.
+smspower.org describes different designs that would allow playing 1-bit, 4-bit and 8-bit PCM samples. Although storage requirements skyrocket as bigger the sample resolution and rate, so the best uses of these exploits are found in homebrew games.
 
 It's worth pointing out that streaming samples consume a good amount of CPU cycles, and there's only one processor in this system, so the game may need to be halted for a short period.
 

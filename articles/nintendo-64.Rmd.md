@@ -105,7 +105,7 @@ This chip is divided into three main modules, two of them are used for graphics 
 
 Also known as **RSP**, it's just another CPU package composed of:
 
-- The **Scalar Unit**: Another cutdown derivative of the MIPS R4000. This time, it only implements a subset of the MIPS III ISA, thereby lacking many general-purpose functions (i.e. interrupts and exceptions), the 64-bit extension, multiplication and divisions.
+- The **Scalar Unit**: Another cut down derivative of the MIPS R4000. This time, it only implements a subset of the MIPS III ISA, thereby lacking many general-purpose functions (i.e. interrupts and exceptions), the 64-bit extension, multiplication and divisions.
 - The **Vector Unit**: A co-processor that performs vector operations with 32 128-bit registers. Each register is *sliced* into eight parts to operate eight 16-bit vectors at once (just like SIMD instructions on conventional CPUs). As you can see, this component does the heavy lifting for the Scalar Unit.
 - The **System Control**: Another co-processor that provides DMA functionality and controls its neighbour module, the RDP (more about it later on).
 
