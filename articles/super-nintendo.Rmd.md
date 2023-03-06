@@ -208,7 +208,7 @@ The S-PPU provides many operations for backgrounds, but these can't be chosen ar
   - One layer can be split into foreground and background.
   - This is the most common mode used.
 - **Mode 2**: 2 layers with 16 colours each.
-  - This mode has an extra effect: Layers can have each of their columns scrolled independently (similarly to [GameBoy](game-boy#graphics) effects but vertically scrolled).
+  - This mode has an extra effect: Layers can have each of their columns scrolled independently (similarly to [Game Boy](game-boy#graphics) effects but vertically scrolled).
 - **Mode 3**: 1 Background layer with 128 colours + 1 Background with 16 colours.
   - Colours can be set as RGB values instead of using CGRAM references.
 - **Mode 4**: Mode 2 and 3 combined (Column scroll + RGB colour mapping).
@@ -241,7 +241,7 @@ The S-PPU can draw up to 32 sprites per scanline, overflowing this will only mak
 
 The S-PPU draws each scanline on-the-fly by first processing the respective portion of each layer and then mixing them together.
 
-One of the main constraints of NES games was the fact that they could only update their graphics during **V-Blank**. The moment from which the CRT's beam was returning to the starting point provided a reasonable timeframe to reshuffle some tiles without breaking the image.
+One of the main constraints of NES games was the fact that they could only update their graphics during **V-Blank**. The moment from which the CRT's beam was returning to the starting point provided a reasonable time frame to reshuffle some tiles without breaking the image.
 
 Well, now thanks to the new capabilities of the SNES, this limitation gained a different meaning.
 
@@ -429,7 +429,7 @@ Alternatively and most importantly, LoRom and HiROM can also be adapted to house
 
 `r close_float_group()`
 
-It's difficult to ignore the impact this engineering made on games during the 90s, many of which managed to exceed the expectations of this console without requiring expansion modules and whatnot. You could say this difficulted Nintendo's plans to deliver a successor of this console (which may explain why advanced games like Starfox 2 were cancelled).
+It's difficult to ignore the impact this engineering made on games during the 90s, many of which managed to exceed the expectations of this console without requiring expansion modules and whatnot. You could say this complicated Nintendo's plans to deliver a successor of this console (which may explain why advanced games like Star Fox 2 were cancelled).
 
 ## Anti-piracy / Region Lock
 

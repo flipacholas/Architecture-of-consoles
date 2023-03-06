@@ -207,7 +207,7 @@ The CPU needs to manually sort the polygons first, and then reference them in th
 
 Multiple DMA functions are also provided to assist both CPU and GPU with the creation and traversal of this table.
 
-#### Rasterization {.tab}
+#### Rasterisation {.tab}
 
 ![Wireframe view of the scene.](spyro/wireframes.png){.tab-float}
 
@@ -215,7 +215,7 @@ Once the commands are decoded by the GPU, it's time to convert the geometry rece
 
 The GPU uses **triangles as primitives** to form 3D models. Being the only available primitive means that backgrounds and foregrounds make no difference in terms of composition (both are made of triangles). 2D games inherit the same nature: They are just two triangles joined to form a quadrangle (though the GPU provides routines for constructing sprites automatically).
 
-The rasterizer is the unit in charge of converting vectors into triangles; and then into pixels. This is done by:
+The rasteriser is the unit in charge of converting vectors into triangles; and then into pixels. This is done by:
 
 1. Grabbing each three-point vertex and calculating the edges. This forms a triangle.
 2. Analysing the area of the triangle to identify which pixels of the frame buffer they occupy. Any section of the triangle covering the **sampling point** is turned into a pixel.
@@ -240,9 +240,9 @@ The reason for having this choice comes down to the fact that flat shading fills
 
 Finally, shaded surfaces are blended with textures (2D bitmaps) to produce the final result.
 
-The GPU performs **inverse texture mapping**, where the GPU traverses each rasterized pixel and looks for its corresponding pixel in the texture map (called **texel**). Texels are calculated by linearly interpolating the texture map (found in VRAM) to conform to the shape of the polygon. The routine used for interpolation is called **Affine Texture Mapping**, this technique only operates using 2D coordinates (X/Y values) while discarding the third coordinate (Z/depth) used for perspective.
+The GPU performs **inverse texture mapping**, where the GPU traverses each rasterised pixel and looks for its corresponding pixel in the texture map (called **texel**). Texels are calculated by linearly interpolating the texture map (found in VRAM) to conform to the shape of the polygon. The routine used for interpolation is called **Affine Texture Mapping**, this technique only operates using 2D coordinates (X/Y values) while discarding the third coordinate (Z/depth) used for perspective.
 
-Because texture maps rarely have the exact dimension of the rasterized polygon, **aliasing** (incorrect results) may appear. This is manifested with unwanted distortions, such as missing or enlarged texels. To remedy this, sophisticated GPUs employ **texture filtering** to smooth out (interpolate) sudden colour changes. Now, The PS1's GPU doesn't implement any filter, so it resorts to an algorithm named **nearest neighbour** to correct scales without smoothing out the results. This is very fast (and cheap) but it also explains why textured models may look 'blocky'. 
+Because texture maps rarely have the exact dimension of the rasterised polygon, **aliasing** (incorrect results) may appear. This is manifested with unwanted distortions, such as missing or enlarged texels. To remedy this, sophisticated GPUs employ **texture filtering** to smooth out (interpolate) sudden colour changes. Now, The PS1's GPU doesn't implement any filter, so it resorts to an algorithm named **nearest neighbour** to correct scales without smoothing out the results. This is very fast (and cheap) but it also explains why textured models may look 'blocky'. 
 
 The unit also includes the following effects available to use:
 
@@ -253,7 +253,7 @@ It's worth mentioning that the PS1 happened to excel at those effects!
 
 `r close_tabs()`
 
-Once finished, the GPU writes the pixels into the frame buffer area in VRAM, which is in turn picked up by the video encoder and broadcasted to the screen.
+Once finished, the GPU writes the pixels into the frame buffer area in VRAM, which is in turn picked up by the video encoder and broadcast to the screen.
 
 ### Designs
 
@@ -295,7 +295,7 @@ Whereas the PS1 had a very simple and suitable architecture, problems ended up a
 
 The routines used for handling geometry and applying textures are known to carry some inaccuracies.
 
-Firstly, **the rasteriser only handles pixel units**: While vertex coordinates are integers, the calculated triangle edges may only occupy a fraction of a pixel. However, the rasterizer will only draw the pixel if the triangle area covers the pixel's sampling point, and it **won't keep track of the fraction occupied** [@graphics-raster]. This brings up some problems:
+Firstly, **the rasteriser only handles pixel units**: While vertex coordinates are integers, the calculated triangle edges may only occupy a fraction of a pixel. However, the rasteriser will only draw the pixel if the triangle area covers the pixel's sampling point, and it **won't keep track of the fraction occupied** [@graphics-raster]. This brings up some problems:
 
 - External edges of models make sudden jumps when moved slightly.
 - Triangles within a mesh (sharing the same vertices and edges) will be 'fighting' to draw over the same pixels. With the ordering table, the GPU will draw following a 'last-come first served' basis, which can lead to triangle intersections flickering or overlapping when moved slightly.
@@ -318,7 +318,7 @@ An FPU doesn't dictate whether a computer can operate or not fractional numbers.
 
 > Models/textures wobble due to the GPU's integer coordinate system
 
-Employing integer coordinates is a common approach to make calculations less expensive in the GPU. It's the fact of not employing sub-pixel resolution that turns this into a visible problem. To sum up, **anti-aliasing could be applied to smooth out sudden changes of colours** if the rasterizer kept count of the pixel's fraction occupied by the triangle.
+Employing integer coordinates is a common approach to make calculations less expensive in the GPU. It's the fact of not employing sub-pixel resolution that turns this into a visible problem. To sum up, **anti-aliasing could be applied to smooth out sudden changes of colours** if the rasteriser kept count of the pixel's fraction occupied by the triangle.
 
 > Textures warp due to lack of mipmapping
 
@@ -351,7 +351,7 @@ Later revisions of the console removed these ports and at the end, only 'AV Mult
 
 ## Audio
 
-Sony's signature **Sound Processing Unit** (SPU) takes care of this. This chip supports the enormous amount of **24 channels** of **16-bit ADPCM samples** (a more efficient version of the well-known PCM sampling) with a sampling rate of **44.1 KHz** (Audio CD quality).
+Sony's signature **Sound Processing Unit** (SPU) takes care of this. This chip supports the enormous amount of **24 channels** of **16-bit ADPCM samples** (a more efficient version of the well-known PCM sampling) with a sampling rate of **44.1 kHz** (Audio CD quality).
 
 This chip also provides the following capabilities:
 
