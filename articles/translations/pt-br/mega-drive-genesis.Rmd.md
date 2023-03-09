@@ -99,13 +99,13 @@ A resposta é _Blast Processing!_ O que mais você precisa saber?
 
 Ok, se você quer saber a _verdadeira_ resposta: os gráficos são processados pelo 68000 e renderizados em um chip proprietário chamado ***Video Display Processor** *(VDP), o qual envia o quadro resultante (na forma de linhas de varredura) para exibição.
 
-O VDP opera a** ~13 MHz** e suporta múltiplos modos de resolução dependendo da região: até **320x224 pixels** em NTSC e até **320x240 pixels** em PAL.
+O VDP opera a **~13 MHz** e suporta múltiplos modos de resolução dependendo da região: até **320x224 pixels** em NTSC e até **320x240 pixels** em PAL.
 
 ### Por trás das múltiplas resoluções de exibição
 
 Tecnicamente falando, o VDP pode acomodar tanto 40 ou 32 colunas de *[tiles](master-system#tiles)* (ladrilhos) por linha de varredura, e o número de linhas de *tiles* depende da região (28 no NTSC ou 30 no PAL) [@graphics-keil]. No entanto, a maioria dos jogos PAL não se preocupa com os *tiles* extras permitidos em sistemas PAL (provavelmente porque precisam manter a consistência entre as duas regiões, e o NTSC é o denominador comum), então eles instruem o VDP a renderizar apenas 28 linhas (como fariam em sistemas NTSC). Assim, o VDP não tem opção se não preencher a área não utilizada com uma cor de fundo (também usada durante o *overscan*).
 
-É possível ver quais jogos em PAL renderizam no modo NTSC verificando o `Mode Set Register #2` em um emulador com recursos de depuração (por exemplo, o Exodus). Se o quarto bit da direita for `0`, então o VDP está sendo executado no modo NTSC [@graphics-resolution].
+É possível ver quais jogos em PAL renderizam no modo NTSC verificando o `Mode Set Register #2` em um emulador com recursos de depuração (por exemplo, o Exodus). Se o quarto bit contando da direita for `0`, então o VDP está sendo executado no modo NTSC [@graphics-resolution].
 
 ![Para fornecer um modo dois jogadores de forma rápida no Sonic 2 (1992), o jogo ativa o 'modo entrelaçado' para renderizar um nível do modo um jogador usando blocos de 8x16 píxeis no lugar (juntamente com outras mudanças).](twopsonic/sonic2.png) {.side-by-side.toleft.pixel}
 
@@ -133,7 +133,7 @@ Uma nota interessante: fui informado posteriormente por um ex-desenvolvedor dest
 
 O conteúdo gráfico é distribuído em três regiões de memória [@graphics-keil]:
 
-- 64 KB de **VRAM** (Vídeo RAM): contém a maioria dos dados gráficos.
+- 64 KB de **VRAM** (*Video RAM*): contém a maioria dos dados gráficos.
 - 80 B de **VSRAM** (*Vertical Scroll* RAM): o VDP suporta rolagem vertical e horizontal. Os valores de *V-scroll* são armazenados neste espaço separado, por alguma razão.
 - 128 B de **CRAM** (*Colour* RAM): armazena quatro entradas de paleta com 16 cores cada (incluindo `transparent`), o sistema oferece 512 cores para escolher. Além disso, efeitos de *luz* e *sombra* podem ser aplicados a cada paleta para alcançar uma ampla gama de cores por paleta.
 
@@ -325,7 +325,7 @@ Os canais também poderiam reagir a **lógica** ao implementar condicionais em s
 
 ### (Bônus) Som do Mega CD
 
-Aqui está um fato interessante: o add-on Mega CD (Sega CD no Brasil) fornecia 2 canais extras para áudio de CD (entre outras coisas). Um de seus jogos mais famosos, o Sonic CD, tinha uma qualidade de música muito impressionante, mas como todos os jogos, precisava repetir sua música sem interrupção. O problema era que lacunas perceptíveis surgiam ao repetir a faixa de música em um leitor de CD de velocidade 1x, então o jogo incluiu faixas adicionais para preencher esses vazios, mas que eram executados a partir de outro chip (este PCM), enquanto o cabeçalho do CD voltava ao início da faixa.
+Aqui está um fato interessante: o add-on Mega CD (Sega CD no Brasil) fornecia 2 canais extras para áudio de CD (entre outras coisas). Um de seus jogos mais famosos, o Sonic CD, tinha uma qualidade de música muito impressionante, mas como todos os jogos, precisava repetir sua música sem interrupção. O problema era que lacunas perceptíveis surgiam ao repetir a faixa de música em um leitor de CD de velocidade 1x, então o jogo incluiu faixas adicionais para preencher esses vazios, mas que eram executadas a partir de outro chip (este PCM), enquanto o cabeçalho do CD voltava ao início da faixa.
 
 Esses trechos adicionais só são encontrados nas primeiras versões beta do jogo, e não foram incluídos no lançamento original. O remake de 2011 finalmente os incluiu. Este é um dos níveis do jogo:
 
