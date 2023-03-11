@@ -40,13 +40,13 @@ supporting_imagery()
 
 ## CPU
 
-和任天堂的 [上一代掌机](game-boy-advance)一样，NDS的系统围绕一个名为 **CPU NTR** 的大芯片展开。 其中“NTR”是“Nitro”的缩写，是最初的NDS的代号。
+和任天堂的[上一代掌机](game-boy-advance)一样，NDS的系统围绕一个名为**CPU NTR**的大芯片展开。 其中“NTR”是“Nitro”的缩写，是最初的NDS的代号。
 
 CPU NTR使用两个不同的ARM CPU实现了一个有趣的多处理器架构。在ARM Holdings正式发布多处理器解决方案之前这个设计就完成了。 因此，考虑到当前的技术实现，可能有人认为NDS的多处理器架构不是很正统。
 
 ### 设计
 
-虽然这不是[本系列](consoles)第一次分析游戏机的并行系统，但是NDS的设计确与其他游戏机有很大不同。 例如， NDS的设计有别于[世嘉土星](sega-saturn)“实验性质”的主从配置，也不同于[PS1](playstation)或者[N64](nintendo-64)的“协处理器”方案。 NDS包括两台非常独立的计算机，可以分别独立执行操作。每台计算机都有一条专用的总线。 这种设计方法被称为**非对称多处理（Asymmetric multiprocessing）**。CPU因此而相互依赖，并将左右这款游戏机的整体性能。
+虽然这不是[本系列](consoles)第一次分析游戏机的并行系统，但是NDS的设计确与其他游戏机有很大不同。 例如，NDS的设计有别于[世嘉土星](sega-saturn)“实验性质”的主从配置，也不同于[PS1](playstation)或者[N64](nintendo-64)的“协处理器”方案。 NDS包括两台非常独立的计算机，可以分别独立执行操作。每台计算机都有一条专用的总线。 这种设计方法被称为**非对称多处理（Asymmetric multiprocessing）**。CPU因此而相互依赖，并将左右这款游戏机的整体性能。
 
 话是这么说，现在我们来看看这两个CPU：
 
