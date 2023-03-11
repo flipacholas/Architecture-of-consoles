@@ -115,6 +115,9 @@ other = '我在我的 <a href="{{ . }}">Twitter</a> 上发布更新，但您也�
 [generation_title]
 other = "{{ .ordinal }}世代"
 
+[untranslated_article_title]
+other = "{{.}} （英文版）"
+
 [cpu_subtitle]
 other = "显著的 CPU 进步："
 
