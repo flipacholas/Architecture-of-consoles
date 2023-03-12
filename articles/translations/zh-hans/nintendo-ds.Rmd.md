@@ -52,7 +52,7 @@ CPU NTR使用两个不同的ARM CPU实现了一个有趣的多处理器架构。
 
 #### ARM7TDMI {.tabs.active}
 
-![ARM7 的结构与组成部分。](cpu/arm7_core.png) {.tab-float}
+![ARM7的结构与组成部分。](cpu/arm7_core.png) {.tab-float}
 
 首先说说我们较为熟悉的CPU。 **ARM7TDMI** 与 [GBA](game-boy-advance#cpu) 的 CPU相同，但现在运行速度提高到**约34 MHz**（原速度的两倍）。 它仍然包含所有原有功能（特别是[Thumb](game-boy-advance#whats-new)）。
 
@@ -60,9 +60,9 @@ CPU NTR使用两个不同的ARM CPU实现了一个有趣的多处理器架构。
 
 #### ARM946E-S {.tab}
 
-![ARM9 的结构与组成部分。](cpu/arm9_core.png) {.tab-float}
+![ARM9的结构与组成部分。](cpu/arm9_core.png) {.tab-float}
 
-这是运行频率**约67 MHz**的“主”CPU 。 如果忽略掉时运不济的ARM8系列，可以认为ARM946E-S是ARM7的“下一代"处理器。 作为**ARM9系列**的一部分，它不仅继承了**ARM7TDMI**的所有特性，还包括一些额外的部分 [@cpu-arm9reference]：
+这是运行频率**约67 MHz**的“主”CPU。 如果忽略掉时运不济的ARM8系列，可以认为ARM946E-S是ARM7的“下一代"处理器。 作为**ARM9系列**的一部分，它不仅继承了**ARM7TDMI**的所有特性，还包括一些额外的部分[@cpu-arm9reference]：
 
 - **ARMv5TEISA**：与以前的4代相比，支持了一些新的指令，乘法器也更快。
   - 如果仔细观察核心的名称，字母“E”表示**增强型（Enhanced）DSP**。这意味着这些新指令大多与信号处理有关。
@@ -97,10 +97,10 @@ CPU NTR使用两个不同的ARM CPU实现了一个有趣的多处理器架构。
 ![该掌机的RAM模型。](cpu/ram.png) {.open-float}
 
 - **32位**总线的**32 KB WRAM**（Work RAM）：用于存储在ARM7和ARM9之间共享的快速数据。
-  - 请记住，同一地址一次只能由一个 CPU 访问。
+  - 请记住，同一地址一次只能由一个CPU访问。
 - **32位**总线的**64 KB WRAM**：同样用于快速数据，但只能从ARM7访问，就像GBA一样。
 - **16位**总线的**4 MB PSRAM**：速度较慢，可以由任一CPU访问，由内存接口单元控制。
-  - 伪静态随机存取存储器（Pseudo SRAM, PSRAM）是DRAM的一种变种，与DRAM相比，PSRAM芯片自己就能执行刷新操作。 因此，它的行为类似于 SRAM（DRAM的一种替代品，更快但更昂贵）。 这种设计让我想起了[1T-SRAM](gamecube#clever-memory-system)。
+  - 伪静态随机存取存储器（Pseudo SRAM, PSRAM）是DRAM的一种变种，与DRAM相比，PSRAM芯片自己就能执行刷新操作。 因此，它的行为类似于SRAM（DRAM的一种替代品，更快但更昂贵）。 这种设计让我想起了[1T-SRAM](gamecube#clever-memory-system)。
 
 `r close_float_group(with_markdown = TRUE)`
 
@@ -148,7 +148,7 @@ CPU NTR使用两个不同的ARM CPU实现了一个有趣的多处理器架构。
 
 图形子系统可以绘制2D和3D对象。 前者由二维几何图形组成，其中填充了8x8像素的位图（称为“图块”），而后者则使用顶点绘制三维对象（多边形）。
 
-深入了解操作这些屏幕的内部芯片，我们可以观察到这个掌机具有独特的2D和3D几何图形硬件。 2D数据由我们熟悉的引擎 PPU（现在只称之为**2D引擎**）操作，而3D数据由一个全新的子系统处理。 值得一提的是，虽然这并不是[第一款](nintendo-64)推出3D图形功能的游戏机，但它仍然是第一款使用自研图形渲染器来呈现3D图形的游戏机。
+深入了解操作这些屏幕的内部芯片，我们可以观察到这个掌机具有独特的2D和3D几何图形硬件。 2D数据由我们熟悉的引擎PPU（现在只称之为**2D引擎**）操作，而3D数据由一个全新的子系统处理。 值得一提的是，虽然这并不是[第一款](nintendo-64)推出3D图形功能的游戏机，但它仍然是第一款使用自研图形渲染器来呈现3D图形的游戏机。
 
 ![不同图形单元的布局。](gpu/overall.png)
 
@@ -177,9 +177,9 @@ CPU NTR使用两个不同的ARM CPU实现了一个有趣的多处理器架构。
 在我们讨论2D引擎显示背景的不同模式之前，让我们先了解一下引擎可以生成哪些类型的背景：
 
 - **字符类型（Character type）组**：这些背景类型遵循传统的图块系统，通过填充图块来渲染帧。
-    - **静态（Static）** 或者说“文本”（text）背景： 普通背景， 最大支持512x512像素，256色和16个调色板。 包括了所有典型的[特效（effects）](super-nintendo#tab-1-2-background)（H/V翻转、H/V滚动、马赛克、alpha混合），外加一个额外的 "褪色”效果。 最多可使用1024个图块。
-    - **仿射（Affine）** 背景：一个带有 [仿射变换（affine transformations）](super-nintendo#unique-features) 的背景， 不支持水平/垂直翻转，并且只能获取256个图块(最大值的四分之一)。 图层大小为1024x1024像素。
-    - **仿射扩展（Affine Extended）** 背景：与affine背景相同，但是可使用1024个图块，并且支持水平/垂直翻转。
+    - **静态（Static）**或者说“文本”（text）背景： 普通背景， 最大支持512x512像素，256色和16个调色板。 包括了所有典型的[特效（effects）](super-nintendo#tab-1-2-background)（H/V翻转、H/V滚动、马赛克、alpha混合），外加一个额外的“褪色”效果。 最多可使用1024个图块。
+    - **仿射（Affine）** 背景：一个带有[仿射变换（affine transformations）](super-nintendo#unique-features)的背景， 不支持水平/垂直翻转，并且只能获取256个图块(最大值的四分之一)。 图层大小为1024x1024像素。
+    - **仿射扩展（Affine Extended）**背景：与affine背景相同，但是可使用1024个图块，并且支持水平/垂直翻转。
 - **位图（Bitmap）类型组**：引擎不再处理图块，直接把VRAM用作frame buffer。 所有的位图类型都继承了character affine背景的所有效果。
     - **256色扩展（256 colours Extended）**：使用 512x512 px的帧缓冲区。
     - **直接颜色扩展（Direct colour Extended）**：与256色扩展类似，但frame buffer支持的颜色提高到32768种（15位）。
@@ -191,11 +191,11 @@ CPU NTR使用两个不同的ARM CPU实现了一个有趣的多处理器架构。
 
 ::: {.subfigures .tabs-nested .tab-float .pixel}
 
-![背景图层 0 (BG0)。 这个特定的图层将在某些扫描线上水平位移以模拟云的移动。](mario/bg1.png){.active title="Layer 0"}
+![背景图层0 (BG0)。 这个特定的图层将在某些扫描线上水平位移以模拟云的移动。](mario/bg1.png){.active title="Layer 0"}
 
-![背景图层 2 (BG2)。](mario/bg2.png){title="Layer 2"}
+![背景图层2 (BG2)。](mario/bg2.png){title="Layer 2"}
 
-![背景图层 3 (BG3)。](mario/bg3.png){title="Layer 3"}
+![背景图层3 (BG3)。](mario/bg3.png){title="Layer 3"}
 
 使用的Static背景图层。
 
