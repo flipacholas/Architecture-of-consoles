@@ -196,8 +196,8 @@ Sometimes we may want to compose a background from which the tile engine won't b
 
 The good news is that the PPU actually implemented this functionality by including three extra modes, these are called **bitmap modes** [@graphics-bitmap]:
 
-- **Mode 3**: Allocates a single fully-coloured (8bpp) frame.
-- **Mode 4**: Provides two frames with half the colours (4bpp) each.
+- **Mode 3**: Allocates a single fully-coloured (16bpp, 32,768 colours) frame.
+- **Mode 4**: Provides two frames with half the colours (8bpp, 256 colours) each.
 - **Mode 5**: There're two fully-coloured frames with half the size each (160x128 pixels).
 
 The reason for having two bitmaps is to enable **page-flipping**: Drawing over a displayed bitmap can expose some weird artefacts during the process. If we instead manipulate another one then none of the glitches will be shown to the user. Once the second bitmap is finished the PPU can be updated to point to the second one, effectively swapping the displayed frame.
