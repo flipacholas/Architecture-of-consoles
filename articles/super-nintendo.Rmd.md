@@ -61,7 +61,7 @@ Moving on, the CPU employs a **variable clock speed** that will reach up to **3.
 In summary, the 5A22 features:
 
 - The **65816 ISA**: The debuting 16-bit instruction of the 65C816. It's based on the 6502 ISA but doesn't implement undocumented instructions some NES games resorted to [@cpu-unoffopcodes].
-  - The size of instructions can vary between 1 byte (8 bits) and 4 bytes (64 bits) depending on how memory addresses are referenced (a.k.a the 'addressing mode' used) [@cpu-isaref].
+  - The size of instructions can vary between 1 byte (8 bits) and 4 bytes (32 bits) depending on how memory addresses are referenced (a.k.a the 'addressing mode' used) [@cpu-isaref].
   - The [broken BCD mode](nes#scrapped-functions) is **working** again (I'm guessing as a consequence of _appropriate_ licensing).
 - **10 different modes of operation**: Due to the combination of a backward compatibility mode, the return of the BCD mode (missing on the NES) and the ability to switch between groups of 16-bit and 8-bit registers [@cpu-opcodes], developers can utilise this CPU using different combinations of these.
   - Unlike later [MIPS CPUs](nintendo-64#cpu), there isn't a mixed instruction set with dedicated opcodes for 8-bit and 16-bit words. Instead, the same instruction set will be interpreted differently based on the mode activated.
