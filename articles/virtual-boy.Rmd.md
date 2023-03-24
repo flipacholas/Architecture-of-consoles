@@ -210,7 +210,7 @@ Overall, the pipeline is very simple:
 
 1. The CPU sets up the VIP by writing over its internal registers and filling up VRAM and DRAM with the required materials.
 2. The XP will then generate frame-buffers that will be stored in VRAM.
-3. The DP selects the necessary frame-buffer and sends it to the Scanner for display. This is done by copying the frame, four columns at a time, to a small buffer area in VRAM called **Serial Access Memory** or 'SAM', which is automatically broadcasted to the Scanner.
+3. The DP selects the necessary frame-buffer and sends it to the Scanner for display. This is done by copying the frame, four columns at a time, to a small buffer area in VRAM called **Serial Access Memory** or 'SAM', which is automatically broadcast to the Scanner.
 
 ### Organising the content
 
@@ -337,7 +337,7 @@ At first, I thought the [Game Boy Advance](game-boy-advance) was the first porta
 
 Furthermore, all these new functions worked alongside the Parallax effects, something that the VIP also took care of.
 
-I wonder what kind of games we would've seen if this console had lasted a little bit more, just enough so developers could get more confortable with this hardware.
+I wonder what kind of games we would've seen if this console had lasted a little bit more, just enough so developers could get more comfortable with this hardware.
 
 `r close_float_group(with_markdown = TRUE)`
 
@@ -357,7 +357,7 @@ Unfortunately, fundamental issues like [visible surface determination](sega-satu
 
 ## Audio
 
-Imagine you grab the GameBoy's [Wave channel](game-boy#tab-7-3-wave), multiply it by five and add a noise channel: That's pretty much the offering of the Virtual Boy's sound chip. You can also think of it as a sibling of the [PC Engine's](pc-engine#audio).
+Imagine you grab the Game Boy's [Wave channel](game-boy#tab-7-3-wave), multiply it by five and add a noise channel: That's pretty much the offering of the Virtual Boy's sound chip. You can also think of it as a sibling of the [PC Engine's](pc-engine#audio).
 
 ![Mario's Tennis (1995).](tennis){.open-float video="true"}
 
@@ -373,7 +373,7 @@ The sixth/last channel can only output **noise**.
 
 ### Output
 
-The mixed result is **stereo** with a resolution of **10-bit** and a sampling rate of **41.7 KHz**. It's also worth pointing out that the console has stereo speakers, so you don't have to wear headphones to be able to enjoy this!
+The mixed result is **stereo** with a resolution of **10-bit** and a sampling rate of **41.7 kHz**. It's also worth pointing out that the console has stereo speakers, so you don't have to wear headphones to be able to enjoy this!
 
 ## I/O
 
@@ -389,7 +389,7 @@ Externally, there are two connectors available for accessories:
 
 - The **Serial Port**: Connects the **controller**. Data transfer is performed in a serial manner (1 bit at a time) [@cpu-diagrams], but the interface adapts it to return a 16-bit value for the CPU to read (each bit place signifies a button pressed). Interrupts can also be set up to notify the CPU the instant any key is pressed.
   - One pin of this connector also sends **5 Volts** from the controller to the console. This is actually used to **power the console**!
-- The **Communications Port**: Whilst not an accessory *per se*, this port is used to talk to another Virtual Boy. This reminds me of the [Link cable](game-boy#external-communications) that the GameBoy uses. The two Virtual Boys communicate in a master-slave manner using serial data streams.
+- The **Communications Port**: Whilst not an accessory *per se*, this port is used to talk to another Virtual Boy. This reminds me of the [Link cable](game-boy#external-communications) that the Game Boy uses. The two Virtual Boys communicate in a master-slave manner using serial data streams.
   - This really makes you wonder what kind of multiplayer functionality was Nintendo envisioning. Unfortunately, no game ended up using this feature.
 
 `r close_float_group(with_markdown = TRUE)`
@@ -436,17 +436,17 @@ The hardware kit was called **VUE Development System** ('VUE' was the codename o
 
 The software kit consisted in a linker, assembler and debugger. At request, Nintendo also offered a **C compiler**. That means it was no longer needed to write programs directly in assembly! All in all, this setup took 1.5 MB of your precious -and noisy- hard disk.
 
-It's too bad that this model of development was eventually reverted with the release of the GameBoy Colour. I'm guessing that this was because the [Gameboy's CPU](game-boy#cpu) can't handle 'unoptimised' code from a compiler.
+It's too bad that this model of development was eventually reverted with the release of the Game Boy Colour. I'm guessing that this was because the [Game Boy's CPU](game-boy#cpu) can't handle 'unoptimised' code from a compiler.
 
 ### Medium
 
-Game cartridges are called **Game Paks**. They have the same name of the GameBoy medium but they are completely different in terms of shape and functionality.
+Game cartridges are called **Game Paks**. They have the same name of the Game Boy medium but they are completely different in terms of shape and functionality.
 
 ![Example of retail game.](wario.jpg){.open-float}
 
 Due to the memory address space, the ROM can be up to **16 MB without a mapper**. This applies to external RAM too (up to 16 MB). Just like the Game Boy, they can have battery-packed SRAM. The cartridge is accessed using a **16-bit data bus**.
 
-Come to think of it, 16 MB of ROM is quite a lot for the mid-90s. After all, the max size of a GB ROM was 128 KB! (without a mapper). On the other side, let's not forget this console uses 32-bit addresses, so every pointer is 4 bytes long. This is two times the size of GameBoy's addresses (2 bytes), so it adds up to the space requirements.
+Come to think of it, 16 MB of ROM is quite a lot for the mid-90s. After all, the max size of a GB ROM was 128 KB! (without a mapper). On the other side, let's not forget this console uses 32-bit addresses, so every pointer is 4 bytes long. This is two times the size of Game Boy's addresses (2 bytes), so it adds up to the space requirements.
 
 `r close_float_group(with_markdown = TRUE)`
 

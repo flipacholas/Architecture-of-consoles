@@ -93,7 +93,7 @@ Once the GamePad is up and running, the device is capable of displaying an H.264
 
 #### Strange use of standards
 
-Similarly to how the Wii Remote [mangles the Bluetooth protocol](wii#next-gen-controllers) to avoid third-party usage, the GamePad breaks two Wi-FI standards, namely WPS and WPA2-PSK, so they only work with the Wii U [@io-controller_wifi].
+Similarly to how the Wii Remote [mangles the Bluetooth protocol](wii#next-gen-controllers) to avoid third-party usage, the GamePad breaks two Wi-Fi standards, namely WPS and WPA2-PSK, so they only work with the Wii U [@io-controller_wifi].
 
 In summary, the Wii U and the GamePad communicate with each other using **802.11n in the 5 GHz band**. The console acts as an access point (AP) and the GamePad acts as its single client. Be as it may, Memahaxx also reported that the console's operating system implemented the possibility of using two GamePads at once, albeit left unused.
 
@@ -103,7 +103,7 @@ To establish a communication channel for the first time, both devices must be 'p
 
 From there on, subsequent connections rely on the **WPA2-PSK** protocol and both devices transfer their information using TCP/IP packets.
 
-As a curious fact, the GamePad takes advantage of **timestamps** to keep Audio and Video streams synchronised. Timestamps are an attribute found on 'Beacon Frames', broadcasted by access points for many reasons, one of which is to synchronise the internal clocks of in-range devices.
+As a curious fact, the GamePad takes advantage of **timestamps** to keep Audio and Video streams synchronised. Timestamps are an attribute found on 'Beacon Frames', broadcast by access points for many reasons, one of which is to synchronise the internal clocks of in-range devices.
 
 ## CPU
 
@@ -251,7 +251,7 @@ By the way, for the Italian readers, as you may know, the Wii U's codenames are 
 
 Homologous to Nintendo's good relationship with IBM, the company also maintained a unique partnership they started all the way back with the Nintendo 64.
 
-Artx was the group known for designing the [Reality Coprocessor](nintendo-64#graphics) (then as part of Silicon Graphics) which then went on to invent [Flipper](gamecube#graphics), the GameCube's unique SoC that houses its signature graphics processor. Years later, after being acquired by 'ATI', they supplied [Hollywood](wii#graphics) for the Wii, from which we find a sped-up version of Flipper's GPU. But most importantly and around the same time, ATI had been working on a cutting-edge invention for Microsoft. The result was [Xenos](xbox-360#graphics) and [its new shader model](xbox-360#a-new-foundation-on-the-way) for the masses.
+ArtX was the group known for designing the [Reality Coprocessor](nintendo-64#graphics) (then as part of Silicon Graphics) which then went on to invent [Flipper](gamecube#graphics), the GameCube's unique SoC that houses its signature graphics processor. Years later, after being acquired by 'ATI', they supplied [Hollywood](wii#graphics) for the Wii, from which we find a sped-up version of Flipper's GPU. But most importantly and around the same time, ATI had been working on a cutting-edge invention for Microsoft. The result was [Xenos](xbox-360#graphics) and [its new shader model](xbox-360#a-new-foundation-on-the-way) for the masses.
 
 Years after the release of the Xbox 360, ATI got acquired by a silicon company named 'AMD', which brings us to explain a bit of AMD history...
 
@@ -261,7 +261,7 @@ Initially known as the sidekick of Intel, AMD used to be the second supplier of 
 
 Such was the competition, that in the late 90s, Intel's plans to captivate the 64-bit market with their new line of 'Itanium' CPUs were soon thwarted by AMD's simpler alternative: an extension of x86 called 'amd64' (also referred to as 'x86-64'). Thus, Intel was forced to adopt AMD's standard instead. For reference, amd64 still serves as the ISA of current x86 CPUs (as of 2022).
 
-It's never been all jolly for AMD, however. As the pressure from competing with Intel also brought a share of flops out of them (i.e. the abandoned 3dNow! extension, the delay of Fusion, etc) and now, with the acquisition of ATI in 2006, AMD found itself facing two fronts: Intel in the CPU market and Nvidia on the graphics side.
+It's never been all jolly for AMD, however. As the pressure from competing with Intel also brought a share of flops out of them (i.e. the abandoned "3DNow!" extension, the delay of Fusion, etc) and now, with the acquisition of ATI in 2006, AMD found itself facing two fronts: Intel in the CPU market and Nvidia on the graphics side.
 
 #### The next Radeon
 
@@ -335,9 +335,9 @@ Behind the scenes, however, the geometry stage is just another 'mode' of the ver
 
 Finally, the pipeline continues to the rasterisation stage.
 
-#### Rasterizer {.tab}
+#### Rasteriser {.tab}
 
-![Overview of the rasterizer stage.](gpu/pipeline_raster.png){.tab-float}
+![Overview of the rasteriser stage.](gpu/pipeline_raster.png){.tab-float}
 
 The rasterisation stage tends to be much simpler than other stages. The main reason being the act of converting vertices into pixels is mostly systematic, and no extra programmability is needed (aside from a few parameters available to tweak). As such, this stage is identical to Crayola/Xenos.
 
@@ -391,7 +391,7 @@ Now, even though the output resolution can go as high as 1080p, most games resor
 
 ### A secondary GPU
 
-With all being said, how come this console can still play Wii games? is there some sort of GPU7-to-Hollywood emulator running behind the scenes? Well, the short answer is **no**. It may surprise you Nintendo went straight ahead and added the [old GPU circuit from Hollywood](wii#graphics) (let's call it 'Wii GPU') inside Latte as well [@cpu-fail0verflow]. This block only works when a Wii game is running. Although, the Wii GPU houses the old [3 MB of 1T-SRAM](gamecube#clever-memory-system) which is the one we now know as **MEM0**. So, at least the extra memory is used by the new hardware.
+With all being said, how come this console can still play Wii games? Is there some sort of GPU7-to-Hollywood emulator running behind the scenes? Well, the short answer is **no**. It may surprise you Nintendo went straight ahead and added the [old GPU circuit from Hollywood](wii#graphics) (let's call it 'Wii GPU') inside Latte as well [@cpu-fail0verflow]. This block only works when a Wii game is running. Although, the Wii GPU houses the old [3 MB of 1T-SRAM](gamecube#clever-memory-system) which is the one we now know as **MEM0**. So, at least the extra memory is used by the new hardware.
 
 Furthermore, Nintendo also fitted an extra chip called **DMCU** to replicate the old [Video Interface](gamecube#internal-io). According to fail0verflow, the DMCU is just a **Motorola 68HC11** controller programmed to behave like the precursor. Its only purpose is to receive commands from Wii games and forward the frame to GPU7, so the latter can broadcast it to the TV. Due to the fact Wii games are made for PAL/NTSC screens, the GPU7's video encoder must upscale it (which, in my experience, is not very good at doing so...).
 
@@ -399,7 +399,7 @@ If you wonder, there's no 'Wii GPU and GPU7' co-processing available for Wii U g
 
 ## Audio
 
-At first, I had assumed the Wii U implemented its audio functions through software (like its competitors [started doing](playstation-3#audio)). But then, other questions arose: How is the [complex DSP](wii#audio) of the Wii emulated? is Espresso powerful enough?
+At first, I had assumed the Wii U implemented its audio functions through software (like its competitors [started doing](playstation-3#audio)). But then, other questions arose: How is the [complex DSP](wii#audio) of the Wii emulated? Is Espresso powerful enough?
 
 Well, that's not all. Unlike the Wii, the audio pipeline of the Wii U must service three endpoints:
 - The **Television**, expecting up to 6 channels (typically only 2/stereo).
@@ -942,7 +942,7 @@ As running a CFW quickly became the chosen method for any hacked Wii U, subseque
 
 December 2016 saw the developments of CFWs that didn't require an `fw.img` anymore. Instead, the exploits altered the running IOSU and Cafe OS on-the-fly, they also disabled signature checks and added new system calls. FIX94's fork of Haxchi and Dimok's Mocha CFW [@anti_piracy-mocha] are examples of these.
 
-Moreover, the turn of 2017 saw the flourishment of sophisticated Wii U homebrew apps. To name a few:
+Moreover, the turn of 2017 saw the flourishing of sophisticated Wii U homebrew apps. To name a few:
 
 - **SwapDRC** allows to swap the TV's framebuffer and audio with the GamePad ones on-the-fly [@anti_piracy-swapdrc]. This is particularly useful for games that don't provide mirroring capabilities.
 - **Nintendont** (another authoring of FIX94) maps the legacy hardware on unsupported Wiis (or vWii mode) so GameCube games can be played without resorting to any kind of emulation [@anti_piracy-nintendont]. While originally a Wii-only app, Nintendont can also be packaged with a GameCube game and installed as a Wii U channel (meaning it would take advantage of the Wii U's native storage). Then, the GameCube game would run on vWii mode but with extra support for the GamePad (as any other vWii virtual console game enjoyed).

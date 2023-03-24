@@ -94,7 +94,7 @@ It's important to point out that this design can underperform if not managed pro
 
 The answer is _Blast Processing!_, what else do you need to know?
 
-Ok, if you want to know the _real_ answer: graphics data is processed by the 68000 and rendered on a proprietary chip called **Video Display Processor** (or 'VDP' for short) which then sends the resulting frame (in the form of scan lines) for display.
+Okay, if you want to know the _real_ answer: graphics data is processed by the 68000 and rendered on a proprietary chip called **Video Display Processor** (or 'VDP' for short) which then sends the resulting frame (in the form of scan lines) for display.
 
 The VDP runs at **~13 MHz** and supports multiple resolution modes depending on the region: Up to **320x224 pixels** in NTSC and up to **320x240 pixels** in PAL.
 
@@ -208,7 +208,7 @@ The region in VRAM where Sprites are defined is called **Sprite Attribute Table*
 
 ![Resulting frame.](vdp_sonic/result.png){.active title="Frame"}
 
-![Frame broadcasted to the TV (NTSC format), the VDP automatically covers the frame with overscan area that most CRT TVs will hide.](vdp_sonic/overscan.png){title="With overscan"}
+![Frame broadcast to the TV (NTSC format), the VDP automatically covers the frame with overscan area that most CRT TVs will hide.](vdp_sonic/overscan.png){title="With overscan"}
 
 Tada!
 
@@ -338,7 +338,7 @@ Games are mainly written in **68000 assembly** while the sound driver is impleme
 
 ### Extra functions
 
-In terms of expandability, this design wasn't as modular as the [NES](nes) or the [SNES](super-nintendo). Hence, laters add-ons like the 32x (which included a new chipset that takes over the 68k) had to bypass the VDP (hence the need for the 'Connector Cable').
+In terms of expandability, this design wasn't as modular as the [NES](nes) or the [SNES](super-nintendo). Hence, later add-ons like the 32x (which included a new chipset that takes over the 68k) had to bypass the VDP (hence the need for the 'Connector Cable').
 
 Only one custom chip was produced for cartridges, the **Sega Virtua Processor** [@games-virtua] (a rebranding of the Samsung SSP1601, a 16-bit Digital Signal Processor), which produced polygons subsequently encoded in the form of tiles (so the VDP can read them). In any case, only one game shipped with it, as the SVP turned out very expensive to produce.
 

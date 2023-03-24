@@ -144,7 +144,7 @@ The Xbox includes a total of **64 MiB of DDR SDRAM**, this type of RAM is very f
 
 We have previously seen how [troublesome](playstation-2#preventing-past-mishaps) this design can be sometimes. Nonetheless, programs can address this issue by spreading their data between different banks of memory. NV2A implements a **switching network** that enables different units (CPU, GPU, etc) to concurrently access them [@cpu-huang] [@cpu-informit].
 
-Furthermore, the console features an internal HardDisk, and it *so happens* to be set up with three partitions of 750 MiB each reserved for temporary storage. The CPU can offload some of its data from main RAM, then upload it back whenever it's needed. Bear in mind this is a manual process and does not involve virtual RAM.
+Furthermore, the console features an internal hard disk, and it *so happens* to be set up with three partitions of 750 MiB each reserved for temporary storage. The CPU can offload some of its data from main RAM, then upload it back whenever it's needed. Bear in mind this is a manual process and does not involve virtual RAM.
 
 ## Graphics
 
@@ -152,13 +152,13 @@ As we've seen before, the graphics processor resides in the NV2A chip and just l
 
 ![Halo (2001) in 720p mode.](halo.png)
 
-This company has been in the graphics business for a long time, their *GeForce* series are one of the most popular GPU brands in the computer market, directly competing against the Radeon series from Artx/ATI. Overall, this provides good leverage on the quality of graphics found in the Xbox, considering it's Microsoft's first attempt in the console market.
+This company has been in the graphics business for a long time, their *GeForce* series are one of the most popular GPU brands in the computer market, directly competing against the Radeon series from ArtX/ATI. Overall, this provides good leverage on the quality of graphics found in the Xbox, considering it's Microsoft's first attempt in the console market.
 
 It all seems reasonable, but was it *really* a certain decision to make back then? It's easy to rely on present history to find out why Microsoft chose Nvidia over other popular brands from the time (3dfx, PowerVR, S3, etc), but if we read more about the competition back then, the panorama of options made it much more complex.
 
-For instance, 3dfx's popular 'Voodoo 2' series had ~70% of marketshare in the PC market by the end of the 90s [@graphics-ign], while Nvidia was struggling to promote adoption of the new 'GeForce 256' (the first of the GeForce series). After this, Microsoft's choice now sounds more like a risk than a safe bet, but as we know by now, this risk eventually paid off.
+For instance, 3dfx's popular 'Voodoo 2' series had ~70% of market share in the PC market by the end of the 90s [@graphics-ign], while Nvidia was struggling to promote adoption of the new 'GeForce 256' (the first of the GeForce series). After this, Microsoft's choice now sounds more like a risk than a safe bet, but as we know by now, this risk eventually paid off.
 
-> Nvidia was NOT the #1 player they are now, in 1999. They were in trouble. The new Geforce architecture was still young and lots of people didn’t like it. Now it seems forgone. But you’d need to research that history to know that, and why I had to fight to use it. I was right but I didn’t know I was right; I was very worried.
+> Nvidia was NOT the #1 player they are now, in 1999. They were in trouble. The new GeForce architecture was still young and lots of people didn’t like it. Now it seems forgone. But you’d need to research that history to know that, and why I had to fight to use it. I was right but I didn’t know I was right; I was very worried.
 >
 > -- <cite>Seamus Blackley (Co-author of the original Xbox)</cite>
 
@@ -176,7 +176,7 @@ The units analysed contain a lot more features that go beyond the scope of this 
 
 `r close_float_group(with_markdown = TRUE)`
 
-Having said that, let's take a look at how frames are drawn in the Xbox. Some explanations are very similar to Gamecube's [Flipper](gamecube#graphics), so you may benefit from reading that article as well in case you struggle to follow this one.
+Having said that, let's take a look at how frames are drawn in the Xbox. Some explanations are very similar to GameCube's [Flipper](gamecube#graphics), so you may benefit from reading that article as well in case you struggle to follow this one.
 
 #### Commands {.tabs .active}
 
@@ -210,7 +210,7 @@ At this stage, vertices are transformed into pixels. The process starts with a r
 
 Afterwards, **4 texture shaders** are used to fetch textures from memory [@graphics-domine], these also offer to automatically apply anisotropic filtering, mipmapping and **shadow buffering**. The latter one is used to test whether a pixel is visible or overshadowed by the lighting source, so the correct colour can be applied. At this point, the GPU also offers to perform clipping and an early [Z-test](nintendo-64#modern-visible-surface-determination) (the NV2A compresses the Z-buffer four times its original size to save bandwidth, contributing to a lot of performance improvements).
 
-The resulting pixels are stored in a **set of shared registers** and then cycled through **8 register combiners**, where each one applies arithmetic operations on them. This process is **programmable** with the use of **pixel shaders** (another type of program executed by the gpu) [@graphics-wasson]. At each cycle, each combiner receives RGBA values (RGB + Alpha) from the register set [@graphics-spitzer]. Then, based on the operation set by the shader, it will operate the values and write back the result. Finally, a larger amount of values are sent to the **final combiner** which can exclusively blend specular colours and/or fog.
+The resulting pixels are stored in a **set of shared registers** and then cycled through **8 register combiners**, where each one applies arithmetic operations on them. This process is **programmable** with the use of **pixel shaders** (another type of program executed by the GPU) [@graphics-wasson]. At each cycle, each combiner receives RGBA values (RGB + Alpha) from the register set [@graphics-spitzer]. Then, based on the operation set by the shader, it will operate the values and write back the result. Finally, a larger amount of values are sent to the **final combiner** which can exclusively blend specular colours and/or fog.
 
 Register combiners are programmable in a similar nature to the [Texture Environment Unit](gamecube#tab-1-3-texture). That is, by altering its registers with a specific combination of settings. In the case of the Xbox, the PFIFO reads pushbuffers to set up PGRAPH, which includes the register combiners and texture shaders.
 
@@ -220,7 +220,7 @@ Register combiners are programmable in a similar nature to the [Texture Environm
 
 Before the pixels are written to the frame-buffer, the NV2A contains four dedicated engines called **Raster Output Unit** or 'ROP' which perform necessary tests (alpha, depth and stencil) using allocated blocks in main memory. Finally, batches of pixels (four per cycle) are written back only if they passed these tests. 
 
-Moreover, the frame-buffer can be antialiased using a technique called **multisampling** [@graphics-geforce3]. Essentially, this technique samples edges of polygons multiple times with different offsets added in the process. Afterwards, all samples are averaged and to form the antialiased image. This approach replaced the previous (and more resource-hungry) anti-aliasing function called 'supersampling', used by previous Nvidia GPUs.
+Moreover, the frame-buffer can be anti-aliased using a technique called **multisampling** [@graphics-geforce3]. Essentially, this technique samples edges of polygons multiple times with different offsets added in the process. Afterwards, all samples are averaged and to form the anti-aliased image. This approach replaced the previous (and more resource-hungry) anti-aliasing function called 'supersampling', used by previous Nvidia GPUs.
 
 ### Importance of programmability {.tabs-close}
 
@@ -262,7 +262,7 @@ The audio subsystem of this console was heavily influenced by the technology of 
 
 The Audio Processing Unit or 'APU' is the dedicated audio processor and composed of three sub-components:
 
-- The **Voice Processor** or 'VP': A specialised circuit that can synthesise 256 voices at a sampling rate of 48 KHz. It also includes two DAHDSR envelope controls and various filters. Furthermore, 64 voices can be 3D (as opposed to Stereo or Mono). At the end, the processor mixes and outputs the voices through 32 channels, where groups of 8 channels have their own volume control.
+- The **Voice Processor** or 'VP': A specialised circuit that can synthesise 256 voices at a sampling rate of 48 kHz. It also includes two DAHDSR envelope controls and various filters. Furthermore, 64 voices can be 3D (as opposed to Stereo or Mono). At the end, the processor mixes and outputs the voices through 32 channels, where groups of 8 channels have their own volume control.
 - The **Global Processor** or 'GP': A programmable DSP used to process the audio data from the VP and apply various effects on it.
   - Not all the channels coming from the VP have to be fed here, instead, specific groups can be sent to apply specific effects (i.e reverb) exclusively on them.
 - The **Encode Processor** or 'EP': As the name indicates, it generates the final stereo signal coming from the GP and stores it in main RAM.
@@ -282,7 +282,7 @@ The console includes the following external connectors:
 
 - **4 USB 1.1 ports**: Used to connect the controllers, however, the external shape of the port is modified to only allow Xbox controllers.
   - These ports also contain an extra pin called 'Video Sync' to connect peripherals that interact with the screen.
-- **10/100BASE-TX Ethernet port**: Used for online services (more details later). The actual ethernet function is performed by a separate transceiver found in the motherboard.
+- **10/100BASE-TX Ethernet port**: Used for online services (more details later). The actual Ethernet function is performed by a separate transceiver found in the motherboard.
 
 ### Internal interfaces
 
@@ -291,7 +291,7 @@ The MCPX also provides the following interfaces and protocols used to interconne
 - **SMBus**: Also referred to as I²C, it's a serial interface that connects these components:
   - **System Management Controller** or 'SMC': Manages multiple services, such as power, temperature and fan control. It's actually a PIC16LC microcontroller.
   - **System Temperature Monitor** or 'STM': A digital thermometer (ADM1032) used by the SMC to detect overheating.
-  - A **256 B EEPROM**: A re-writable ROM that stores unique identifiers (serial number, region, ethernet MAC address, etc).
+  - A **256 B EEPROM**: A re-writable ROM that stores unique identifiers (serial number, region, Ethernet MAC address, etc).
   - **Video Encoder**: The encoder is primarily connected to the GPU but controlled through the SMBus.
 - **IDE Controller**: This is a standard protocol widely used on PCs to communicate with Hard drives, optical readers and so forth. A single wide ribbon cable is used to connect the motherboard with the DVD drive and the HDD.
 - **Low Pin Count** or 'LPC' bus: This is another interface borrowed from the PC, but instead of connecting the *good old* PC BIOS, it communicates with a Flash ROM, which in turn stores the equivalent of a BIOS. The Flash is 1 MiB large.
@@ -372,7 +372,7 @@ image('shell/settings.png', "(ref:settingscaption)", float=TRUE, tab.name = "(re
 figcaption("(ref:dashboardfooter)")
 ```
 
-The dashboard is not very different in terms of functionality compared to the [PlayStation menu](playstation-2#interactive-shell), or the [Gamecube's IPL](gamecube#splash-and-shell). It essentially includes all the functions typical users would expect, like being able to tweak some settings, moving saves around, playing DVD movies or CD audio; and so forth.
+The dashboard is not very different in terms of functionality compared to the [PlayStation menu](playstation-2#interactive-shell), or the [GameCube's IPL](gamecube#splash-and-shell). It essentially includes all the functions typical users would expect, like being able to tweak some settings, moving saves around, playing DVD movies or CD audio; and so forth.
 
 One thing worth mentioning is that the Dashboard also allowed to rip music from an audio CD and store it in the HDD. This music could be subsequently fetched from any game to 'personalise' its soundtrack. *Fun stuff!*
 
@@ -512,7 +512,7 @@ The substitute BIOS contained patched routines that could enable reading any typ
 
 Microsoft released many hardware revisions reducing the amount of exposure in their electronics and saving up costs. Meanwhile, software updates were released that updated both the Kernel and the Dashboard in an effort to reduce the number of vulnerabilities. However, some game exploits still managed to persist and what remained was another 'cat-and-mouse' game.
 
-Another point to mention is that Xbox live was itself an effective prevention mechanism against piracy. Microsoft was able to block Xbox Live to those consoles with unauthorised modifications, which was a tradeoff that typical users had to consider before hacking their consoles with the only goal of playing pirated copies.
+Another point to mention is that Xbox live was itself an effective prevention mechanism against piracy. Microsoft was able to block Xbox Live to those consoles with unauthorised modifications, which was a trade-off that typical users had to consider before hacking their consoles with the only goal of playing pirated copies.
 
 ## That's all folks {.tabs-close}
 

@@ -271,7 +271,7 @@ With the Super CD-ROM², NEC/Hudson also shipped a new variant of the PC-Engine/
 
 ### Other expansions
 
-If you are curious about other expansions released, check out the online catalague [@games-accessories].
+If you are curious about other expansions released, check out the online catalogue [@games-accessories].
 
 ## Anti-Piracy and Homebrew
 
@@ -287,7 +287,7 @@ This is it! You've just read the last article of the year.
 
 2020 has been an 'interesting' year for the website (setting aside all those negative events that have affected all of us). The year started with the [Wii article](wii) and then carried on with the [PS2](playstation-2), [Xbox](xbox), [Nintendo DS](nintendo-ds), [Master System](master-system) and finally, this one.
 
-A lot has changed in the number of visitors too. It had a slow start at first, but then during the summer, it caught an amazingly high number of visits. I want to thank Hackernews users, OSNews, Reddit, Gigazine, Youtubers, Twitter users and lots of other forums and people for sharing the articles. And of course, a big shoutout to the donors whose generosity helped keep the site afloat!
+A lot has changed in the number of visitors too. It had a slow start at first, but then during the summer, it caught an amazingly high number of visits. I want to thank Hacker News users, OSNews, Reddit, Gigazine, YouTubers, Twitter users and lots of other forums and people for sharing the articles. And of course, a big shout-out to the donors whose generosity helped keep the site afloat!
 
 Have a nice Christmas, happy New Year 2021 and until next time!  
 Rodrigo

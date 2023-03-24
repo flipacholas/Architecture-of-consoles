@@ -55,7 +55,7 @@ Allegrex is a complete 32-bit core offering [@cpu-hitmen] [@cpu-naked]:
 - A **custom MIPS ISA**: mixes instructions from different MIPS revisions. To be precise, it implements all MIPS I instructions for general purposes while adding branch instructions from MIPS II. Furthermore, Sony added exclusive instructions for **arithmetic operations** (multiplication, subtraction, min/max, bit-shifts) and **interrupt control**. These are called 'Allegrex Extended instructions'. All of this, while still retaining the 'RISC' badge.
 - A **32-bit address bus**: this means that up to 4 GB of memory can be seen by this CPU.
 - **32 general-purpose registers**: all of them store 32-bit numbers, and two (the zero register and link register) are reserved for special uses. This should come as no surprise.
-- **7-stage pipeline**: same as the [Gamecube](gamecube#cpu). [Here](game-boy-advance#cpu) is a previous explanation of CPU pipelining if you don't remember.
+- **7-stage pipeline**: same as the [GameCube](gamecube#cpu). [Here](game-boy-advance#cpu) is a previous explanation of CPU pipelining if you don't remember.
 - A **Memory Protection Unit** or 'MPU' (not to be confused with an 'MMU'): this is a dedicated unit that maps the physical hardware onto the CPU's memory space with some special quirks in-between. We'll see more about it in a bit.
 - **32 KB of L1 Cache**: of which 16 KB is for instructions and 16 KB for data.
 - A **cache write-back buffer**: the CPU can write over cache believing it has updated physical memory as well. Then, the cache takes care of updating memory when the buffer is full.
@@ -212,7 +212,7 @@ There are three memory locations from which the GE will end up pulling from or f
 
 ### Functionality
 
-Like its [home sibling](playstation-2#graphics), the PSP's graphics system focuses on **rasterization**. However, the PSP's VRAM is half the size of the PS2's, and its bus is not as fast. To compensate, the PSP's Graphics Engine features a vector processor!
+Like its [home sibling](playstation-2#graphics), the PSP's graphics system focuses on **rasterisation**. However, the PSP's VRAM is half the size of the PS2's, and its bus is not as fast. To compensate, the PSP's Graphics Engine features a vector processor!
 
 ![Pipeline design of the Graphics Engine.<br>I've skipped the interfaces since it's becoming too convoluted.](pipeline.png)
 
@@ -261,9 +261,9 @@ It's important to denote that the CPU may still need to compute animations to pr
 
 Finally, the surface engine provides **scissoring** (discarding vertices outside the viewport/rectangular area) as well.
 
-#### Rasterization {.tab}
+#### Rasterisation {.tab}
 
-![Rasterizing stage.](gpu/rasterizing.png){.tab-float}
+![Rasterising stage.](gpu/rasterizing.png){.tab-float}
 
 The next stage of graphics generation takes place in the **rendering engine** (skipping the command processor). In here, vector data is transformed into pixels, which is pretty much in pace with any other GPU in the market.
 
@@ -336,7 +336,7 @@ The first model of this console (1000) has a proprietary video port called **rem
 
 ![Bottom-right corner of the PSP (3000 model) showing the proprietary 'Video Out'.](io/bottom.jpg){.open-float}
 
-The remote port uses the RS232 protocol [@io-nil], an old standard for transferring data in serial. Though the specification wasn't publicly available to developers (let alone documented), a couple of audio headsets with control buttons appeared on the market. They apparently use the serial port to send commands (play, pause, etc.) to the console.
+The remote port uses the RS-232 protocol [@io-nil], an old standard for transferring data in serial. Though the specification wasn't publicly available to developers (let alone documented), a couple of audio headsets with control buttons appeared on the market. They apparently use the serial port to send commands (play, pause, etc.) to the console.
 
 `r close_float_group(with_markdown = TRUE)`
 
@@ -350,7 +350,7 @@ The video cable will send a frame with a resolution of **720x480 pixels (in NTSC
 
 In this section we tend to encounter a [PSG](master-system#audio), [sequencer](nintendo-64#audio) or a *large* [mixer](nintendo-ds#audio). This is because, at the end of the day, dedicated audio hardware is meant to offload audio operations from the CPU. Although if this hardware turns out to be 'weak', it degrades the sound capabilities of the console.
 
-Now, what we consider 'sound hardware' in the PSP is very barebones: only **two PCM channels and a stereo mixer**. The maximum sampling rate and resolution are **48 KHz** and **16-bit**, respectively.
+Now, what we consider 'sound hardware' in the PSP is very bare-bones: only **two PCM channels and a stereo mixer**. The maximum sampling rate and resolution are **48 kHz** and **16-bit**, respectively.
 
 I don't see any of the accelerators I mentioned in the first paragraph. So, does this imply that the sound will be as limited as [other](nintendo-64#secrets-and-limitations-1) [cases](game-boy-advance#audio) showed? No! Because the hardware of the PSP enables to compensate it with more software.
 
@@ -554,13 +554,13 @@ CDs and DVDs are too big, and easily copiable. On the other hand, conventional r
 
 UMDs hold either **900 MB or 1.8 GB** depending on whether they are single-layered or dual-layered, respectively. UMDs not only differ physically from a DVD or MiniDVD, but they also contain a different internal structure. Apart from games, Sony published the 'UMD video' and 'UMD audio' specifications, allowing other distributors to ship their content to PSP users – remember, this is the year 2004 (when the *iPod Photo* had a 2" display).
 
-These discs are presented with an **unremovable caddy**; the centre is magnetic so it attaches itself to the reader's motor once the disc is inserted.
+These discs are presented with an **non-removable caddy**; the centre is magnetic so it attaches itself to the reader's motor once the disc is inserted.
 
 #### Memory Stick Duo {.tab}
 
 ![A Memory Stick next to a conventional SD card.](io/memory_stick.jpg){.tab-float}
 
-The 'portable' equivalent of the Memory Card is the **Memory Stick Pro Duo**, another product of Sony's insistence to bring another medium to a flooded market (remember the massive number of options back then? Even [flashcarts](game-boy-advance#flashcarts) acommodated many of them). This was released during the boom in consumer photography and cellphones, when people wanted lots of storage for a cheap price; and just before the SD card took over.
+The 'portable' equivalent of the Memory Card is the **Memory Stick Pro Duo**, another product of Sony's insistence to bring another medium to a flooded market (remember the massive number of options back then? Even [flashcarts](game-boy-advance#flashcarts) accommodated many of them). This was released during the boom in consumer photography and cellphones, when people wanted lots of storage for a cheap price; and just before the SD card took over.
 
 The Memory Stick, like the rest, is a protocol that interfaces internal memory (like Flash) with any peripheral in a way that's convenient. So, you may swap cards between the computer and the camera without having disassemble anything. The 'Pro Duo' variant (used by the PSP) has a capacity of **up to 32 GB** and **1.23 MB/s read** and **0.54 MB/s write speed**.
 
@@ -737,7 +737,7 @@ There you go, you've just finished reading about the last portable console befor
 
 Nevertheless, I want to thank the PSP Homebrew Community discord for not only taking the time to proofread this *endless* article, but also to enlighten me with even more information. Various members of that group have dedicated great effort to develop free tools and Homebrew applications to expand the capabilities of this console. My acknowledgement is also directed to all the authors that produced the documents listed in the sources. It took me ~3 months to write this article, but it was possible thanks to the combined years of work that other people dedicated to reverse-engineer this console.
 
-As for the next article, I'll need to first take one month or two to focus on all the issues and requests submitted on the [Github repo](https://github.com/flipacholas/Architecture-of-consoles) and do some maintenance work on the site, but rest assured I'm striving to make the next writing as complete as this one!
+As for the next article, I'll need to first take one month or two to focus on all the issues and requests submitted on the [GitHub repo](https://github.com/flipacholas/Architecture-of-consoles) and do some maintenance work on the site, but rest assured I'm striving to make the next writing as complete as this one!
 
 Until next time!  
 Rodrigo

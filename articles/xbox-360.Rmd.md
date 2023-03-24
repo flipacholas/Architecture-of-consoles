@@ -73,11 +73,11 @@ Well, now that Microsoft has gained more leverage in the console market, they ar
 
 ![The original Xbox's CPU (2001). Designed and manufactured by Intel.](cpu/copermine.png){.tab-float}
 
-![Concept of an homogenous CPU. This is what Microsoft had in mind for their next CPU.](images/consoles/ps3/cpu/paradigm/homogeneous.png){.tab-float}
+![Concept of an homogeneous CPU. This is what Microsoft had in mind for their next CPU.](images/consoles/ps3/cpu/paradigm/homogeneous.png){.tab-float}
 
 As with any other company in the computer business, the [innovation crisis](playstation-3#tab-1-2-new-design-philosophies) of the early noughties affected both Microsoft and Sony indiscriminately. The difference, however, was that the two placed their bets on different designs for their CPUs. The original Xbox relied on popular off-the-shelf stock (Intel's [Pentium III](xbox#cpu)) with slight customisations, this was a single-core CPU extended with vectorised instructions and a sophisticated cache design. On the other side, Sony's vectorised venture (the [Emotion Engine](playstation-2#cpu)) consisted of a low-end CPU surrounded by proprietary but potent assistants.
 
-For their new generation, Microsoft settled for a conservative design combined with some experimental ideas. According to their checklist, the new CPU would be **multi-core** (that is, a chip housing many CPU cores in a symmetrical and homogenous layout) and the supplier would have to **share their Intellectual property (IP)** with Microsoft [@cpu-takahashi].
+For their new generation, Microsoft settled for a conservative design combined with some experimental ideas. According to their checklist, the new CPU would be **multi-core** (that is, a chip housing many CPU cores in a symmetrical and homogeneous layout) and the supplier would have to **share their Intellectual property (IP)** with Microsoft [@cpu-takahashi].
 
 The last condition was as critical as the first, as it would enable the Xbox team to **bundle a security system inside the chip** (which, unlike the original Xbox, would be properly shielded). Furthermore, the IP rights would grant Microsoft a choice of **third-party manufacturers** to handle demand and negotiate better costs, resulting in a new console with competitive pricing.
 
@@ -108,7 +108,7 @@ In a turn of events, IBM agreed to share its IP and to design a new multi-core p
 
 Ironically, as of 2022, IBM's PowerPC chips have vanished from both desktop computers and video consoles, maybe this set a bad precedent and greatly affected IBM's trust in future businesses? I'm afraid I don't know the answer to that.
 
-To sum it up, IBM signed an agreement with Sony and Toshiba to develop Cell in 2001. Two years later, in 2003, IBM agreed to supply Microsoft with a new low-powered multi-core CPU. Microsoft's CPU will be called **Xenon** and will inherit part of Cell's technology, with extra input from Microsoft (focusing on multi-core homogenous computing and bespoke security). Also, while IBM would brand Cell with its 'BladeCenter' line of servers, Xenon could only be fitted on an Xbox 360 motherboard.
+To sum it up, IBM signed an agreement with Sony and Toshiba to develop Cell in 2001. Two years later, in 2003, IBM agreed to supply Microsoft with a new low-powered multi-core CPU. Microsoft's CPU will be called **Xenon** and will inherit part of Cell's technology, with extra input from Microsoft (focusing on multi-core homogeneous computing and bespoke security). Also, while IBM would brand Cell with its 'BladeCenter' line of servers, Xenon could only be fitted on an Xbox 360 motherboard.
 
 ### Cell's half-sibling
 <!-- TODO: Explain Power mac g5 prototype?? -->
@@ -173,7 +173,7 @@ Once the PPEs pass through the XBAR, they get access to **1 MB worth of L2 cache
 
 Coincidentally, Cell also houses [512 KB of L2 cache](playstation-3#composition-of-the-ppe) for its single PPE. I only described it in one sentence in my previous article. Now, however, we find ourselves with a larger space that's also shared between three cores, so I find it necessary to dive into the properties of the L2 block so we can understand how it will condition the performance of the PPEs.
 
-First things first, every time the cache fetches data from memory (in the event of a 'cache miss'), it does so by pulling a large slice called 'cache line', this is **128 Bytes wide** in the case of Cell and Xenon. Then, L2 records the cache line on an internal list for locating it in the future. Moreover, in Xenon/Cell, L2 is **8-way associative**, which means that cache sets may store up to eight different cache lines. Don't worry if you don't know what this means, the theory behind CPU cache can be hard to follow, especially if you only want to learn about videogame consoles. In layman's terms, the greater the number of associations, the fewer probabilities of cache misses, but the slower it becomes to iterate through the internal list.
+First things first, every time the cache fetches data from memory (in the event of a 'cache miss'), it does so by pulling a large slice called 'cache line', this is **128 Bytes wide** in the case of Cell and Xenon. Then, L2 records the cache line on an internal list for locating it in the future. Moreover, in Xenon/Cell, L2 is **8-way associative**, which means that cache sets may store up to eight different cache lines. Don't worry if you don't know what this means, the theory behind CPU cache can be hard to follow, especially if you only want to learn about game consoles. In layman's terms, the greater the number of associations, the fewer probabilities of cache misses, but the slower it becomes to iterate through the internal list.
 
 ![Layout of cache in Xenon](cpu/caches.png)
 
@@ -197,7 +197,7 @@ Anyway, let's go over the significant changes that Microsoft liked to brag about
 
 #### The new vector units
 
-As the [Synergistic Processor Elements](playstation-3#inside-cell-the-assistants) (SPEs) were Sony's secret weapon and Microsoft was only interested in homogenous systems, IBM presented an alternative approach to speed up the manipulation of vectors and matrices in Xenon [@cpu-gschwind]. In a nutshell, IBM boosted the [VMX unit](playstation-3#tab-3-3-arithmetic) (the SIMD block found within the PPEs) which evolved into **VMX128**, now housing more registers and opcodes.
+As the [Synergistic Processor Elements](playstation-3#inside-cell-the-assistants) (SPEs) were Sony's secret weapon and Microsoft was only interested in homogeneous systems, IBM presented an alternative approach to speed up the manipulation of vectors and matrices in Xenon [@cpu-gschwind]. In a nutshell, IBM boosted the [VMX unit](playstation-3#tab-3-3-arithmetic) (the SIMD block found within the PPEs) which evolved into **VMX128**, now housing more registers and opcodes.
 
 The initial VMX specification implemented in the PlayStation 3 provides 32 128-bit registers and instructions for operating up to three 32-bit scalars. This worked to an acceptable degree with general-purpose applications that depend on SIMD operations, although the real performance would be unlocked once the SPEs are added into the equation. By contrast, Microsoft wanted programmers to port SIMD-hungry applications without extra hassle, and the new VMX128 unit reflects that.
 
@@ -217,7 +217,7 @@ In the end, Microsoft purged `xdcbt` from the compiler due to its non-determinis
 
 #### Revisiting old paradigms
 
-There's a recurring subject found in noteworthy writings from 2005 like 'Inside the Xbox 360' by Jon Stokes [@cpu-stokes] or 'Understanding the Cell Microprocessor' by Anand Lal Shimpi [@cpu-shimpi], and that is the **lack of out-of-order execution** that once debuted in early PowerPC chips like Gekko, but for some reason is completely absent in Cell & Xenon. If you recall from the [Gamecube article](gamecube#features) (which I wrote two years ago), Gekko is an out-of-order CPU, meaning it's able to analyse the instruction stream as instructions come in, and subsequently re-order them to better distribute the load of Gekko's internal units.
+There's a recurring subject found in noteworthy writings from 2005 like 'Inside the Xbox 360' by Jon Stokes [@cpu-stokes] or 'Understanding the Cell Microprocessor' by Anand Lal Shimpi [@cpu-shimpi], and that is the **lack of out-of-order execution** that once debuted in early PowerPC chips like Gekko, but for some reason is completely absent in Cell & Xenon. If you recall from the [GameCube article](gamecube#features) (which I wrote two years ago), Gekko is an out-of-order CPU, meaning it's able to analyse the instruction stream as instructions come in, and subsequently re-order them to better distribute the load of Gekko's internal units.
 
 By then, CPU cores employing out-of-order execution were in the order of the day (_pun intended_). IBM's PowerPC 604 (1994) brought it to high-end Macintosh computers, Intel's P6 (1995) introduced it to the x86 line and MIPS implemented it with the R10000 (1996) CPU, a successor of the R4000 (found on the [Nintendo 64](nintendo-64#cpu)). Afterwards, all of a sudden, Cell and Xenon arrive with an in-order execution style... _care to explain_?
 
@@ -237,7 +237,7 @@ The interesting thing is that neither approach is better or worse, out-of-order 
 
 Unlike its competitor equipped with [256 MB of XDR DRAM](playstation-3#outside-cell-main-memory), there's 0 MB of external memory installed next to Xenon. That's right, a 100% decrease compared to the Japanese counterpart.
 
-Ok... let me rephrase that. On the motherboard, multiple chips provide a total of **512 MB of GDDR3 SDRAM**, but they are sitting next to the GPU, **not the CPU**. So... you probably guessed it. Just like the [original Xbox](xbox#memory-layout), Microsoft went for the **Unified Memory Architecture** (UMA) layout, where all components share the same RAM chips. This provides more flexibility in the amount of memory reserved for the CPU or GPU. However, a single point of access for various components means the far away components (like the CPU) will suffer higher latency compared to the hypothetical case where the CPU was given dedicated memory. This was duly noted by IBM and Microsoft engineers and subsequently tackled with the aforementioned L2 cache along with extra circuitry (which is explained in the 'Graphics' section).
+Okay... let me rephrase that. On the motherboard, multiple chips provide a total of **512 MB of GDDR3 SDRAM**, but they are sitting next to the GPU, **not the CPU**. So... you probably guessed it. Just like the [original Xbox](xbox#memory-layout), Microsoft went for the **Unified Memory Architecture** (UMA) layout, where all components share the same RAM chips. This provides more flexibility in the amount of memory reserved for the CPU or GPU. However, a single point of access for various components means the far away components (like the CPU) will suffer higher latency compared to the hypothetical case where the CPU was given dedicated memory. This was duly noted by IBM and Microsoft engineers and subsequently tackled with the aforementioned L2 cache along with extra circuitry (which is explained in the 'Graphics' section).
 
 ![Xenon next to 'Xenos' (the GPU) guarding 256 MB of GDDR3, the remaining half is on the back.](photos/mem_path.jpg)
 
@@ -255,11 +255,11 @@ It's all jolly on paper, but let's not forget that the CPU still has to walk a l
 
 With all being said, how can anybody take advantage of this _fascinating_ chip? Well, there's only one way: Multi-threading.
 
-From the programming perspective, a CPU that's made of multiple homogenous cores sharing the same memory is what we call a **Symmetric Multi-Processing** (SMP) design. This conditions how the application will be designed and implemented. As of 2022, this is the de-facto layout for consumer multi-core CPUs (i.e. x86 and ARM) as well.
+From the programming perspective, a CPU that's made of multiple homogeneous cores sharing the same memory is what we call a **Symmetric Multi-Processing** (SMP) design. This conditions how the application will be designed and implemented. As of 2022, this is the de-facto layout for consumer multi-core CPUs (i.e. x86 and ARM) as well.
 
 SMP programming abstracts access to physical CPU cores with the use of 'virtual threads'. A virtual thread is a sequence of instructions the programmer defines. Threads can then be submitted to a 'scheduler' for their execution. The scheduler is another program (often part of the operating system) that handles how virtual threads are dispatched to the physical CPU cores.
 
-This abstraction layer allows the programmer to avoid discriminating the type of core used (therefore making the program **cross-compatible** with similar platforms) and hardcoding the number of cores (making it **scalable**).
+This abstraction layer allows the programmer to avoid discriminating the type of core used (therefore making the program **cross-compatible** with similar platforms) and hard-coding the number of cores (making it **scalable**).
 
 ![Representation of the multi-threading paradigm on Xenon. A program may create n-threads (two in this example), and then the operating system's scheduler takes care of dispatching the threads to physical cores. Bear in mind, the operating system also runs as a thread.](cpu/programming.png)
 
@@ -287,7 +287,7 @@ Example of Xbox 360 games. All rendered at their maximum resolution (1280x720 pi
 
 :::
 
-The graphics chip is designed and manufactured by no other than **ATI**, [Nvidia](playstation-3#graphics)'s direct rival. To put it into perspective, a new company called 'Artx' was set up by former employers of SGI that developed the Nintendo 64's graphics chip, the [Reality Co-Processor](nintendo-64#graphics). Afterwards, Nintendo hired them again to produce the Gamecube's [Flipper](gamecube#graphics) chip... at the same time ATI was in the process of acquiring them [@graphics-ati_merger]. By then, ATI was competing in the PC arena with their 'ATI Rage' graphics cards and will soon inherit Flipper's engineers. Fast forward to 2005, Nvidia (now supplying Sony) was now facing ATI again in the console market.
+The graphics chip is designed and manufactured by no other than **ATI**, [Nvidia](playstation-3#graphics)'s direct rival. To put it into perspective, a new company called 'ArtX' was set up by former employers of SGI that developed the Nintendo 64's graphics chip, the [Reality Co-Processor](nintendo-64#graphics). Afterwards, Nintendo hired them again to produce the GameCube's [Flipper](gamecube#graphics) chip... at the same time ATI was in the process of acquiring them [@graphics-ati_merger]. By then, ATI was competing in the PC arena with their 'ATI Rage' graphics cards and will soon inherit Flipper's engineers. Fast forward to 2005, Nvidia (now supplying Sony) was now facing ATI again in the console market.
 
 _Good old competition_, one can only wonder what new innovative product will come out of it.
 
@@ -297,7 +297,7 @@ Since the early naughties, Nvidia and ATI have been trying to outmatch one anoth
 
 ![The Xenos + EDRAM package next to GDDR3 chips.](photos/xenos.jpg){.open-float}
 
-Nvidia enjoyed considerable leverage after the introduction of [programmable pixel pipeline](xbox#importance-of-programmability) which later became part of the OpenGL and Direct3D specification. Thus, ATI had no other choice but to follow suit. However, in 2003, ATI recovered its userbase after Nvidia's anticipated 'Geforce 5' line disappointed Direct3D 9 users, who were expecting better performance and functionality from Nvidia's flagship card [@graphics-shimpi_5800]. As a result, attention shifted towards ATI's Radeon 9000 series.
+Nvidia enjoyed considerable leverage after the introduction of [programmable pixel pipeline](xbox#importance-of-programmability) which later became part of the OpenGL and Direct3D specification. Thus, ATI had no other choice but to follow suit. However, in 2003, ATI recovered its user base after Nvidia's anticipated 'GeForce 5' line disappointed Direct3D 9 users, who were expecting better performance and functionality from Nvidia's flagship card [@graphics-shimpi_5800]. As a result, attention shifted towards ATI's Radeon 9000 series.
 
 These events allowed ATI to keep the crown for a while longer, but unbeknownst to Nvidia, ATI had been working on a new disrupting ingredient that could hold Nvidia for another decade. This project eventually materialised in the form of **Unified Shaders** and debuted in no other than the Xbox 360, with the new graphics chip called **Xenos**.
 
@@ -305,15 +305,15 @@ These events allowed ATI to keep the crown for a while longer, but unbeknownst t
 
 #### A new foundation on the way
 
-You'd be surprised that Microsoft's push for homogenous computing also dragged the GPU into this mix.
+You'd be surprised that Microsoft's push for homogeneous computing also dragged the GPU into this mix.
 
-You see, there was a time when GPUs were [mere rasterizers](playstation#graphics) with 'take it or leave it' functionality, meaning they provided a fixed set of functions and programmers could either activate them or not. Later on, thanks to SGIs innovations, workloads were offloaded from the CPU thanks to the new [programmable vertex pipelines](nintendo-64#graphics). Finally, the 'mere rasterizer' definition was _rendered_ obsolete (_pun intended_) as Nvidia promoted a new stage called [programmable pixel shader](xbox#graphics) which gave programmers the liberty to control what happens after rasterization.
+You see, there was a time when GPUs were [mere rasterisers](playstation#graphics) with 'take it or leave it' functionality, meaning they provided a fixed set of functions and programmers could either activate them or not. Later on, thanks to SGI's innovations, workloads were offloaded from the CPU thanks to the new [programmable vertex pipelines](nintendo-64#graphics). Finally, the 'mere rasteriser' definition was _rendered_ obsolete (_pun intended_) as Nvidia promoted a new stage called [programmable pixel shader](xbox#graphics) which gave programmers the liberty to control what happens after rasterisation.
 
 ![Overview of the units that compose a GPU with programmable shaders. In this example, our GPU provides more units for vertex operations than pixel operations, meaning geometry transformations will be quick at the expense of colour effects, for instance.](gpu/traditional_pipeline.png)
 
 This pattern shows us that, as GPUs grow in performance and functionality, they eventually open up to allow developers to implement the exact functionality they seek. However, this also increases the overall complexity of the silicon.
 
-Over the years, both vertex and pixel pipelines kept enlarging to accommodate current needs, with new scalability problems emerging. Space, costs and heat emissions have a limit. So, which tasks should be prioritised? vertex operations or pixel effects? A weak vertex pipeline will stall the pixel pipeline. Alternatively, a disappointing pixel unit won't attract users with its dully-composed frames.
+Over the years, both vertex and pixel pipelines kept enlarging to accommodate current needs, with new scalability problems emerging. Space, costs and heat emissions have a limit. So, which tasks should be prioritised? Vertex operations or pixel effects? A weak vertex pipeline will stall the pixel pipeline. Alternatively, a disappointing pixel unit won't attract users with its dully-composed frames.
 
 ![Overview of the units that compose a GPU with a new unified pipeline. Now that both stages are now provided with the same amount of resources, developers won't have to trim down operations executed by a weak shader units.](gpu/unified_pipeline.png)
 
@@ -331,7 +331,7 @@ In essence, Xenos is based on R400 (also known as 'Crayola'), a new architecture
 
 In the end, ATI brought the unified shader model to the masses through their new R600 architecture (an evolution of R400), also known as 'TeraScale', released in 2007 with the Radeon HD 2000. And the rest is history.
 
-Interestingly enough, the R400 branch carried on in the smartphone world with the ATI Imageon Z430 [@graphics-nopixel], later called Qualcom Adreno 200, which also went through many iterations. This is another example of innovative technology that finds its way into the mobile market!
+Interestingly enough, the R400 branch carried on in the smartphone world with the ATI Imageon Z430 [@graphics-nopixel], later called Qualcomm Adreno 200, which also went through many iterations. This is another example of innovative technology that finds its way into the mobile market!
 
 ### Organising the content
 
@@ -385,14 +385,14 @@ Furthermore, let's not forget that the hardware carrying out those operations re
 1. Based on the received commands, the **Vertex grouper** reads the memory addresses where vertices are located in main RAM and the **Tessellator** transforms non-triangular geometry (i.e. quadrangles and parametric curves) into triangles, so the rest of the GPU can process it. The latter can also split triangles into smaller primitives, so bigger detail can be achieved without consuming extra bandwidth. The grouper can read **16 Bytes** of data per clock and caches the **last 14 vertices** processed.
 2. The **Sequencer** loads the vertex shader and pulls vertex data using **8 KB of cache**.
 3. Now that all vertex data is ready to be processed, **3 Shader Pipes** (groups of 16 ALUs, each) execute the shader program. Each shader pipe receives batches of 64 Bytes. Vector-to-vector arithmetic takes four cycles while vector-to-scalar operations take only one.
-4. The **Shader Export** buffers the results and sends them back to the start of the line where **Primitive Assembler** picks them up for rasterization. Alternatively, the shader export can forward the results to the **Backend Central**, where they are exported to main RAM.
+4. The **Shader Export** buffers the results and sends them back to the start of the line where **Primitive Assembler** picks them up for rasterisation. Alternatively, the shader export can forward the results to the **Backend Central**, where they are exported to main RAM.
     - The latter capability means **a shader can write raw data into main RAM**, remember this when we reach the 'Anti-piracy' section...
 
-#### Rasterization {.tab}
+#### Rasterisation {.tab}
 
-![Overview of the rasterizer stage.](gpu/pipeline_raster.png){.tab-float}
+![Overview of the rasteriser stage.](gpu/pipeline_raster.png){.tab-float}
 
-Once the primitives have been transformed or subdivided as requested, the rasterizer begins the transformation to pixels.
+Once the primitives have been transformed or subdivided as requested, the rasteriser begins the transformation to pixels.
 
 Firstly, the **Primitive Assembler** receives vertex data from the Tessellator and/or Shader Export and begins building triangles out of vertices. This operation takes one cycle, except when vertices require clipping and culling applied (to discard unseen triangles outside the bounding area).
 
@@ -415,7 +415,7 @@ That being said, the pixel stage works as follows:
 1. The **Sequencer** loads the pixel shader program and forwards pixels to the interpolator.
 2. The **Shader Pipe interpolator** interpolates colours between four vertices (creates intermediate values to fill in the gap between two extremes) that will be used by the pixel shader. It can generate 16 colours per cycle. <!-- TODO: Outputs or inputs 16 colours? -->
 3. **32 KB of Texture cache** fetches and decompresses textures from main RAM, then, the **Texture pipes** send up to 16 texels per cycle to the shader pipes. The texture pipes can instantly apply bilinear filtering, but they also offer trilinear and anisotropic filtering at the cost of extra cycles.
-4. The **3 previous Shader pipes** are now used to execute the pixel shader, each pipe operates vertex made of 16 2x2 pixel blocks coming from the interpolator. <!-- TODO: where did i get this: 16x16 pixel blocks (from the rasterizer) and up to 16 texels (from the texture pipes). -->The ALUs can process 32-bit floating-point numbers (IEEE 754 compliant) without penalties.
+4. The **3 previous Shader pipes** are now used to execute the pixel shader, each pipe operates vertex made of 16 2x2 pixel blocks coming from the interpolator. <!-- TODO: where did i get this: 16x16 pixel blocks (from the rasteriser) and up to 16 texels (from the texture pipes). -->The ALUs can process 32-bit floating-point numbers (IEEE 754 compliant) without penalties.
 5. The **Shader Export** and **Backend Central** forward the results to memory. The latter outputs two blocks of 2x2 pixels (8 pixels in total) per cycle. Other kinds of data that can be exported include new Z-values for the Z-buffer and arbitrary data to main RAM.
     - The result from the shader export doesn't necessarily have to be the final frame buffer, games with lots of scenery often render multiple buffers (called 'render targets') that are used to derive the final frame. This is called **Multiple-pass rendering** and Xenos supports outputting **up to four multiple render targets** (MRT) at the same time [@graphics-baumann].
 
@@ -435,7 +435,7 @@ The state of the industry after 15 years has demonstrated that the unified shade
 
 On a related note, Xenos also introduced new encoding methods for storing HDR pixels using no more than 32-bit values (thus, saving bandwidth and storage). One of their proposals was to encode the three primary colors using 10-bit `floats` and leave the remaining two for the alpha channel (transparency) [@graphics-nopixel]. A year later (2006), Direct3D 10 and a new OpenGL extension took this idea further and implemented the (now standardised) 'packed float' structure, consisting in encoding Red and Green using 11 bits and Blue using 10 bits [@graphics-packed]. 
 
-![Froggy (2006), Nvidia's latest demo that showcased the capabilities of the unified shaders (incorporated with the Geforce 8 line). For demonstration purposes, the demo also allows to, ehem, slap and stretch the _poor ugly_ frog.](screenshots/windows/froggy.jpg){.open-float}
+![Froggy (2006), Nvidia's latest demo that showcased the capabilities of the unified shaders (incorporated with the GeForce 8 line). For demonstration purposes, the demo also allows to, ehem, slap and stretch the _poor ugly_ frog.](screenshots/windows/froggy.jpg){.open-float}
 
 Similarly, over the next years since the console's release, the concepts of Xenos' shader exports would be embraced by many new APIs, namely Apple & Khronos' **OpenCL**, Nvidia's **CUDA**, Direct3D 10's **DirectCompute** and OpenGL 4.3's **Compute shaders**. All of which provide a platform to access the power of GPUs without necessarily having to render anything, just perform computation using the fast shader pipes. Overall, this was another great leap for [General-purpose GPU](xbox#importance-of-programmability) programming.
 
@@ -443,7 +443,7 @@ Similarly, over the next years since the console's release, the concepts of Xeno
 
 Now, if you wonder if any of these advancements were later incorporated into the Xbox 360. I'm afraid by the time this console debuted, the unified shaders were still a relatively new concept. So, unfortunately, none of the consequent developments (i.e. Direct3D 10) got ever back-ported to the Xbox 360. But hey, that's a legacy left for the next generation of consoles to enjoy!
 
-On the other side, the PC market experienced a different revolution that strangely didn't originate from ATI. It turns out **Nvidia** won the race on becoming the first company to ship a graphics card using the unified model, I'm referring to the **Geforce 8** series (and its **Tesla** architecture) that landed in 2006 [@graphics-anand]. Ironically, it was the same year the PlayStation 3 arrived (also powered by Nvidia's technology, though with an older architecture...).
+On the other side, the PC market experienced a different revolution that strangely didn't originate from ATI. It turns out **Nvidia** won the race on becoming the first company to ship a graphics card using the unified model, I'm referring to the **GeForce 8** series (and its **Tesla** architecture) that landed in 2006 [@graphics-anand]. Ironically, it was the same year the PlayStation 3 arrived (also powered by Nvidia's technology, though with an older architecture...).
 
 ### Video Output
 
@@ -486,7 +486,7 @@ Conversely, in the case of the Xbox 360, we find a huge exception to this rule: 
 
 #### A codec-rich industry {.tabs .active}
 
-![Windows Media Player 6, released in 1999. This was Microsoft's weapon against its contemporaries, namely Quicktime, Winamp and so forth.](screenshots/windows/media6.jpg){.tab-float}
+![Windows Media Player 6, released in 1999. This was Microsoft's weapon against its contemporaries, namely QuickTime, Winamp and so forth.](screenshots/windows/media6.jpg){.tab-float}
 
 Back in the naughties (and even the late 90s), during the rise of the World Wide Web and affordable multimedia products (i.e. accelerator cards, SIMD-capable CPUs and fast network bandwidth), many companies which were once narrowly focused on productivity software suddenly ventured into a new area of multimedia services.
 
@@ -551,12 +551,12 @@ There are other interesting aspects of the SMC, but we'll discuss them in due ti
 
 The set of external ports is not particularly overwhelming, but there are a fair number of them.
 
-![Front view of the console, some interfaces are hidden by springloaded doors.](photos/front.jpg)
+![Front view of the console, some interfaces are hidden by spring-loaded doors.](photos/front.jpg)
 
 In any case, the console offers:
 
-- **Three USB 2.0 A sockets**: one is found at the back of the console and it's meant to connect to an external accessory (like an official Wifi module) that Microsoft sold separately. The other two are on the front and can be used to connect wired controllers.
-  - With the arrival of the 'Slim' Xbox 360 model in 2010, an internal Wifi card has since been bundled with (internally connected with USB as well) and two more USB sockets were added on the back.
+- **Three USB 2.0 A sockets**: one is found at the back of the console and it's meant to connect to an external accessory (like an official Wi-Fi module) that Microsoft sold separately. The other two are on the front and can be used to connect wired controllers.
+  - With the arrival of the 'Slim' Xbox 360 model in 2010, an internal Wi-Fi card has since been bundled with (internally connected with USB as well) and two more USB sockets were added on the back.
 - A special socket (combining **USB and proprietary interfaces**) for the **RF module**, also known as the front panel that lights up when the console turns on. This component also handles the communication between the wireless controllers (through a **proprietary wireless protocol**) [@io-rf].
 - **Two Memory Unit ports**: these are mangled USB ports that fit a [Memory Unit](xbox#the-controller), a proprietary Memory Card of up to 512 MB of size [@io-storage].
 - An **RJ45 port** for Ethernet connectivity.
@@ -658,7 +658,7 @@ The hypervisor is operated through the use of 'system calls' [@operating_system-
 
 Since the Hypervisor focuses on bare-metal services, an extra layer of abstraction is added in the form of a **Kernel**. The latter also resides in memory but gets assigned a lower privilege level. The main job of the Kernel is to expose routines that user-land programs can benefit from, for instance:
 
-- **Device drivers**: in essence, I/O is interfaced by the Kernel so programs are not hardcoded to specific hardware (resulting in platform-dependent code), which would prevent old games from working on late Xbox 360 revisions.
+- **Device drivers**: in essence, I/O is interfaced by the Kernel so programs are not hard-coded to specific hardware (resulting in platform-dependent code), which would prevent old games from working on late Xbox 360 revisions.
 - **File system management**: a file system defines how data is organised in a physical medium, the Xbox 360 supports many types of mediums and the Kernel implements various file systems for each one. This enables programs to manipulate persistent storage using files and directories and not raw sectors.
 - **Bootstrapping** core applications: once the Kernel is up and running, it makes sure that the user interface and other executables are running, allowing the user to interact with the console.
 - **Thread scheduling**: remember the previous paragraph about programming styles? Well, the thread scheduler is found here. Furthermore, the scheduler implements **preemptive multitasking** as its method for alternating between threads and avoiding jams.
@@ -723,7 +723,7 @@ Contrarily to the PS3, Microsoft managed to fit all of this in a smaller **16 MB
 
 If you place the console in a vertical position, on the front you'll see **two 'Memory Unit' slots**. On the top of it, you'll find a modified SATA socket for a **hard drive** (only fits those encased and sold by Microsoft). Both of these mediums are **optional** and used as **mass storage devices**.
 
-Upon fitting any of them, the Xbox 360 initialises it and adds a multitude of partitions. Though it doesn't write a master partition table! It turns out the locations (offsets) of each partition are already hardcoded into the Kernel and all partitions - except the one storing user data - are fixed in size. Additionally, every partition uses proprietary and undocumented filesystems (recall that this is coming from the company that co-authored FAT, NTFS and exFAT), including one called 'FAT Xbox' (**FATX**) for generic data and 'Secure Transacted File System' (**STFS**) for caching purposes [@operating_system-fatx].
+Upon fitting any of them, the Xbox 360 initialises it and adds a multitude of partitions. Though it doesn't write a master partition table! It turns out the locations (offsets) of each partition are already hard-coded into the Kernel and all partitions - except the one storing user data - are fixed in size. Additionally, every partition uses proprietary and undocumented filesystems (recall that this is coming from the company that co-authored FAT, NTFS and exFAT), including one called 'FAT Xbox' (**FATX**) for generic data and 'Secure Transacted File System' (**STFS**) for caching purposes [@operating_system-fatx].
 
 As long as there's space, either medium can store user profiles, game saves, downloaded games (initially called 'arcades') and downloadable content (DLCs). Only the HDD can store the Xbox classic emulator (the console automatically downloads it after a classic disc game is inserted).
 
@@ -741,11 +741,11 @@ Behind the scenes, USBs are formatted with the popular **FAT32** filesystem. Now
 
 ### Boot process {.tabs-close}
 
-Ok, so you've seen how this system works, how it's structured and where it's stored. But, there's still a missing piece, how do you go from 'nothing' (off state) to a 'Hypervisor running an encrypted Kernel loading up executables signed by Microsoft'? That's what the boot loader is for, and there are many, _many_ stages in this system.
+Okay, so you've seen how this system works, how it's structured and where it's stored. But, there's still a missing piece, how do you go from 'nothing' (off state) to a 'Hypervisor running an encrypted Kernel loading up executables signed by Microsoft'? That's what the boot loader is for, and there are many, _many_ stages in this system.
 
 #### Multicore chaos
 
-Before we begin, we need to address something fundamental. With homogenous multi-core CPUs, all cores are entitled to 'own' the system, but this would only lead to chaos, so only one is tasked with directing the rest. The leader is commonly called 'master core' while the rest are named 'slave core' or just 'core'.
+Before we begin, we need to address something fundamental. With homogeneous multi-core CPUs, all cores are entitled to 'own' the system, but this would only lead to chaos, so only one is tasked with directing the rest. The leader is commonly called 'master core' while the rest are named 'slave core' or just 'core'.
 
 Outside the Xbox world, this hierarchy is sometimes found hardwired into the chip, while other architectures need manual intervention. For instance:
 
@@ -797,7 +797,7 @@ In the following paragraphs, you may sense that I'm very critical of each interf
 
 ::: {.subfigures .tabs-nested}
 
-![The home screen, the controls are shown on the centre, while the horizontal edges indicates the existance of other blades to navigate to.](screenshots/blades/home.jpg){.active title="Home"}
+![The home screen, the controls are shown on the centre, while the horizontal edges indicates the existence of other blades to navigate to.](screenshots/blades/home.jpg){.active title="Home"}
 
 ![List of games installed, previously downloaded from the Xbox Live Arcade (a digital marketplace). Notice how this is a full-screen view, as there wasn't enough space on the previous type of screen.](screenshots/blades/games.jpg){title="Games"}
 
@@ -948,7 +948,7 @@ Let's now see how the distribution of content worked.
 
 ![Example of retail game.](photos/game.jpg){.tab-float}
 
-It may sound hard to believe, but for Microsoft, the same **dual-layer DVD** disc used for the original Xbox worked fine for their new console. I presume it was another cost-effective strategy, as the DVD disc got cheaper to produce and its readers could be outsourced to the most inexpensive and convenient manufacturer. Throughout the console's lifespan, Microsoft had relied on Hitachi, LG, Toshiba, Samsung, Philips, BenQ and LiteON - including teams of two - to produce their DVD drives.
+It may sound hard to believe, but for Microsoft, the same **dual-layer DVD** disc used for the original Xbox worked fine for their new console. I presume it was another cost-effective strategy, as the DVD disc got cheaper to produce and its readers could be outsourced to the most inexpensive and convenient manufacturer. Throughout the console's lifespan, Microsoft had relied on Hitachi, LG, Toshiba, Samsung, Philips, BenQ and Lite-ON - including teams of two - to produce their DVD drives.
 
 As a reminder, dual-layer DVDs (also called **DVD-9**) have a theoretical capacity of **8.5 GB**. A big advantage compared to the new [_blue-lasered_ discs](playstation-3#tab-14-1-blu-ray-discs) of the PlayStation 3, is that the Xbox 360 enjoys greater read speeds thanks to its **12x drive**, another reason to expel the hard drive from the requirements.
 
@@ -1007,7 +1007,7 @@ We'll now learn how the hypervisor is protected and, in turn, how it protects th
 
 #### A hidden cryptographic system
 
-Remember how complex was the L2 subsystem within Xenon? Well, there's one more thing to explain, and that is the inclusion of a **hidden cryptographic block** in it. I define it as 'hidden' since it's not documented at all by Microsoft or IBM. I was made aware of it thanks to an incredibly insightful talk called 'The Xbox 360 Security System and its Weaknesses' by the Free60 group (lead by Michael Steil and Felix Domke, the former also did 'The ultimate GameBoy talk'!) [@cpu-steil] and 'Security offence and defence strategies' by Mathieu Renard [@operating_system-renard], which is where I rely on for a big part of the information described here.
+Remember how complex was the L2 subsystem within Xenon? Well, there's one more thing to explain, and that is the inclusion of a **hidden cryptographic block** in it. I define it as 'hidden' since it's not documented at all by Microsoft or IBM. I was made aware of it thanks to an incredibly insightful talk called 'The Xbox 360 Security System and its Weaknesses' by the Free60 group (lead by Michael Steil and Felix Domke, the former also did 'The ultimate Game Boy talk'!) [@cpu-steil] and 'Security offence and defence strategies' by Mathieu Renard [@operating_system-renard], which is where I rely on for a big part of the information described here.
 
 ![Overview of the security components placed within Xenon. They are strategically placed so the PPEs don't need to be aware of them and/or perform any manual work.](cpu/crypto.png)
 
@@ -1277,7 +1277,7 @@ Even though the aforementioned discoveries were outraced by Microsoft's updates,
 - **XeX Loader** and **XeX Menu** are homebrew launchers that can be run from the official Dashboard.
 - **Dashlaunch** is another program that provides a collection of patches for the official system [@anti_piracy-dashlaunch], except they are loaded at runtime (avoiding the need for flashing NAND). One of Dashlaunch's functions includes the ability to automatically load an executable after the Dashboard boots, this is often used to quickly load the alternative homebrew-friendly FreeStyle Dashboard or Aurora.
 
-![FreeStyleDash running on my modified console, offering many controls and indicators not found on the official dashboard. For those veteran Xbox 360 users, you'll notice its interface ressembles the iconic NXE era!](screenshots/homebrew/fds.jpg)
+![FreeStyleDash running on my modified console, offering many controls and indicators not found on the official dashboard. For those veteran Xbox 360 users, you'll notice its interface resembles the iconic NXE era!](screenshots/homebrew/fds.jpg)
 
 To facilitate the process of building a NAND image with XeLL and/or Freeboot, many Windows programs like **XeBuild**, **J-Runner** and **AutoGG** were developed to automatise this process as much as possible.
 
@@ -1309,7 +1309,7 @@ And with this, the homebrew community was gifted with an unfixable exploit to lo
 
 #### Microsoft's retaliation {.tab}
 
-![While the new 'Trinity' motherboard brought many long-awaited improvements, such as unifying the CPU and GPU into one package to reduce heat, it also difficulted hacker's endeavours.](photos/xcgpu.jpg){.tab-float}
+![While the new 'Trinity' motherboard brought many long-awaited improvements, such as unifying the CPU and GPU into one package to reduce heat, it also complicated hacker's endeavours.](photos/xcgpu.jpg){.tab-float}
 
 While the RGH hack attacks the fundamental construction of the CPU at an early stage (thereby making it impossible to tackle it with a software update), Microsoft never displayed any sign of weakness and released further updates of CB (the second stage bootloader) and new motherboard revisions in an attempt to garble the glitching process.
 
@@ -1356,9 +1356,9 @@ I think this writing has shown us [again](super-nintendo) that you don't need an
 
 Moving on, to gather materials for this study, I end up hoarding an absurd amount of models, mainly because I needed to find consoles with specific operating versions installed (as they can't be downgraded). This later became a hit-and-miss challenge and, to make matters worse, my old one broke just before starting this site. Anyhow, at the end of the day I found myself surrounded with:
 
-- An unused **Xenon** from 2005 that the owner was afraid to open the box. To my surprise, it's running `2.0.1888` (too reliclike for me to fiddle with), so I had to let it be...
+- An unused **Xenon** from 2005 that the owner was afraid to open the box. To my surprise, it's running `2.0.1888` (too relic-like for me to fiddle with), so I had to let it be...
 - A **Zephyr** model that the previous owner sent for repair, but by the time Microsoft shipped it back, the owner had already bought another one. It's got an NXE system installed.
-- A **Jasper** from a store clearout that never got used as well, it's running NXE too.
+- A **Jasper** from a store clear-out that never got used as well, it's running NXE too.
 - A **Falcon** with RGH 1.2. I bought it to attempt to downgrade it to a Blades-era system, which turned out to be impossible without proper tools. Fortunately, thanks to the software provided by Octal's Console Shop, it's now straightforward to do so.
 - My old **Trinity** that I had since I was a teenager. Unfortunately, it got cursed with the Red Lights of Death and I couldn't manage to repair it. Luckily, after RGH 3.0 came out, I bought a cheap spare Trinity, applied RGH and transplanted the internal Flash unit to recover my old profile and saves. All of the game screenshots in this article come from this model.
 
