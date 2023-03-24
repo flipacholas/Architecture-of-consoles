@@ -19,19 +19,24 @@ megadrive:
 nes:
   tr: EuropaYou
   zh-hans: 猫咪啊呀呀
+  pt-br: Walper, Estrelaura e Pedro Bertella
 nintendo64:
   es: Rodrigo Copetti
+  zh-hans: heihei123456780
+  pl: michasrutek
 nintendods:
   zh-hans: Cerallin
 pcengine: null
-ps1: null
+ps1:
+  pt-br: Walper
 ps2:
   pt-br: Lucas Akira Morishita
 ps3:
   ru: Vladimir Kovalev
 psp: null
 saturn: null
-snes: null
+snes:
+  pt-br: Walper
 virtualboy: null
 wii:
   it: Valerio Francesco Vallone
