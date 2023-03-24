@@ -12,12 +12,12 @@ top_tabs:
   Models:
     - 
       title: "Internacional"
-      file: internacional
+      file: international
       caption: "O Super Nintendo (na Europa) ou Super Famicom (no Japão).<br>Lançado em 21/11/1990 no Japão e 11/04/1992 na Europa."
       active: true
     - 
       title: "Americano"
-      file: americano
+      file: american
       caption: "O Super Nintendo.<br>Lançado em 13/08/1991 na América."
   Motherboard:
     caption: "Revisão 'SNS-RGB-CPU-01'.<br>Revisões anteriores tinham o Subsistema de Som conectado como uma placa-filha, as mais recentes unificaram ambos as PPUs."
