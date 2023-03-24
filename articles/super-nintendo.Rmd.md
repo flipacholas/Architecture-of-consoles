@@ -157,7 +157,7 @@ Just like its predecessor, the S-PPU uses tiles to build sophisticated graphics.
 
 - Game **cartridges are no longer wired to the PPU** so tiles will have to be copied to VRAM first (just like Sega's Mega Drive). Here is where the DMA unit comes in very handy.
 - Tiles are no longer restricted to their traditional dimension (8x8 pixels), from now on they can also be up to **16x16 pixels** wide.
-- When tiles are stored in memory, these will be compressed depending on how many colours per pixel they need to use. The unit of size is **bpp** (bits per pixel). The minimum value is **2bpp** (where each pixel only occupies two bits in memory and has only 4 colours available) while the maximum is **8bpp**, which encodes up to 256 colours (at the expense of consuming a whole byte).
+- When tiles are stored in memory, these will be compressed depending on how many colours per pixel they need to use. The unit of size is **bpp** (bits per pixel). The minimum value is **2 bpp** (where each pixel only occupies two bits in memory and has only 4 colours available) while the maximum is **8 bpp**, which encodes up to 256 colours (at the expense of consuming a whole byte).
 
 #### Background {.tab}
 

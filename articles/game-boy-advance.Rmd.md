@@ -118,7 +118,7 @@ I'm going to borrow the graphics of Sega's *Sonic Advance 3* to show how a frame
 
 ::: {.subfigures .tabs-nested .tab-float .pixel}
 
-![This block is made of 4bpp Tiles.](sonic/tiles1.png){.active title="Block 1"}
+![This block is made of 4 bpp Tiles.](sonic/tiles1.png){.active title="Block 1"}
 
 ![You may notice some weird vertical patterns in here, these are not graphics but 'Tile Maps' (see next section).](sonic/tiles2.png){title="Block 2"}
 
@@ -128,11 +128,11 @@ Charblocks found in VRAM.
 
 :::
 
-GBA's tiles are strictly 8x8 pixel bitmaps, they can use 16 colours (4bpp) or 256 colours (8bpp). 4bpp tiles consume 32 bytes, while 8bpp ones take 64 bytes.
+GBA's tiles are strictly 8x8 pixel bitmaps, they can use 16 colours (4 bpp) or 256 colours (8 bpp). 4 bpp tiles consume 32 bytes, while 8 bpp ones take 64 bytes.
 
 Tiles can be stored anywhere in VRAM, however, the PPU wants them grouped into **charblocks**: A region of **16 KB**. Each block is reserved for a specific type of layer (background and sprites) and programmers decide where each charblock starts. This can result in some overlapping which, as a consequence, enables two charblocks to share the same tiles.
 
-Due to the size of a charblock, up to 256 8bpp tiles or 512 4bpp tiles can be stored per block. Up to six charblocks are allowed, which combined require 96 KB of memory: The exact amount of VRAM this console has.
+Due to the size of a charblock, up to 256 8 bpp tiles or 512 4 bpp tiles can be stored per block. Up to six charblocks are allowed, which combined require 96 KB of memory: The exact amount of VRAM this console has.
 
 Only four charblocks can be used for backgrounds and two can be used for sprites.
 
@@ -196,8 +196,8 @@ Sometimes we may want to compose a background from which the tile engine won't b
 
 The good news is that the PPU actually implemented this functionality by including three extra modes, these are called **bitmap modes** [@graphics-bitmap]:
 
-- **Mode 3**: Allocates a single fully-coloured (16bpp, 32,768 colours) frame.
-- **Mode 4**: Provides two frames with half the colours (8bpp, 256 colours) each.
+- **Mode 3**: Allocates a single fully-coloured (16 bpp, 32,768 colours) frame.
+- **Mode 4**: Provides two frames with half the colours (8 bpp, 256 colours) each.
 - **Mode 5**: There're two fully-coloured frames with half the size each (160x128 pixels).
 
 The reason for having two bitmaps is to enable **page-flipping**: Drawing over a displayed bitmap can expose some weird artefacts during the process. If we instead manipulate another one then none of the glitches will be shown to the user. Once the second bitmap is finished the PPU can be updated to point to the second one, effectively swapping the displayed frame.
