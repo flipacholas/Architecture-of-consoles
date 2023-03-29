@@ -97,7 +97,7 @@ Devido uma CPU ter que entrar no barramento da outra e ambas não poderem usá-l
 
 A resposta é _Blast Processing!_ O que mais você precisa saber?
 
-Ok, se você quer saber a _verdadeira_ resposta: os gráficos são processados pelo 68000 e renderizados em um chip proprietário chamado ***Video Display Processor** *(VDP), o qual envia o quadro resultante (na forma de linhas de varredura) para exibição.
+Ok, se você quer saber a _verdadeira_ resposta: os gráficos são processados pelo 68000 e renderizados em um chip proprietário chamado ***Video Display Processor*** (VDP), o qual envia o quadro resultante (na forma de linhas de varredura) para exibição.
 
 O VDP opera a **~13 MHz** e suporta múltiplos modos de resolução dependendo da região: até **320x224 pixels** em NTSC e até **320x240 pixels** em PAL.
 
@@ -211,7 +211,7 @@ A região na memória VRAM onde os *sprites* são definidos é chamada de ***Spr
 
 ![Quadro resultante.](vdp_sonic/result.png){.active title="Quadro"}
 
-![Quadro transmitido para TV (formato NTSC), o VDP cobre automaticamente o quadro com a área de <em>overscan</em> que a maioria das TV CRT escondem.](vdp_sonic/overscan.png){title="Com overscan"}
+![Quadro transmitido para a TV (formato NTSC), o VDP automaticamente cobre o quadro com uma área de <em>overscan</em> que a maioria das TVs CRT escondem.](vdp_sonic/overscan.png){title="Com overscan"}
 
 Tan-ran!
 
@@ -341,7 +341,7 @@ Os jogos são codificados principalmente em **linguagem assembly do 68000** enqu
 
 ### Funções extras
 
-Em termos de expansibilidade, esse projeto não foi tão modular quanto o [NES](nes) ou o [SNES](super-nintendo). Portanto, as expansões posteriores como o 32x (que incluía um novo chipset que assumia o controle do 68k) tiveram que buscar alternativas para se comunicar com o VDP (daí a necessidade do "Cabo Conector").
+Em termos de expansibilidade, esse projeto não foi tão modular quanto o [NES](nes) ou o [SNES](super-nintendo). Portanto, as expansões posteriores como o 32x (que incluía um novo chipset que assumia o controle do 68k) tiveram que buscar alternativas para se comunicar com o VDP (daí a necessidade do “Cabo Conector”).
 
 Apenas um chip personalizado foi produzido para cartuchos, o **Sega Virtua Processor** \[@games-virtua\] (uma reformulação do Samsung SSP1601, um DSP (processador de sinal digital) de 16 bits), que produzia polígonos subsequentemente codificados na forma de *tiles* (para que o VDP possa lê-los). De qualquer forma, apenas um jogo foi distribuído com ele, já que o SVP acabou sendo muito caro para produzir.
 
