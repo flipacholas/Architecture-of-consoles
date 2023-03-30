@@ -12,7 +12,7 @@ top_tabs:
   Models:
     - 
       title: "Internacional"
-      file: internacional
+      file: international
       caption: "O NES.<br>Lançado em 18/10/1985 na América e 01/09/1986 na Europa."
       active: true
     - 
@@ -41,7 +41,7 @@ supporting_imagery()
 
 A Nintendo distribuiu vários modelos diferentes do mesmo console através do globo [@general-variants], e mesmo que todos tenham a mesma arquitetura, muitos têm visuais extremamente diferentes e alguns podem incluir acessórios embutidos. Então, para manter as coisas simples neste artigo, vou me concentrar nas duas revisões mais populares:
 
-- O **Family Computer** (conhecido como _Famicom_) foi a primeira encarnação, lançado somente no Japão. Esse design parecido com um brinquedo possui dois controles não removídeis (dos quais o segundo controle conta com um microfone integrado), uma porta para a pistola (*light gun*, chamada de _Zapper_), saída de vídeo RF (utilizando sinal NTSC-J) e pinos extras na entrada para cartuchos, a fim de expandir as capacidades de aúdio. Esse modelo foi a base para clones populares no Brasil, como o *Dynavision*, *Phantom System* e <em">PolyStation</em>.
+- O **Family Computer** (conhecido como _Famicom_) foi a primeira encarnação, lançado somente no Japão. Esse design parecido com um brinquedo possui dois controles não removídeis (dos quais o segundo controle conta com um microfone integrado), uma porta para a pistola (*light gun*, chamada de _Zapper_), saída de vídeo RF (utilizando sinal NTSC-J) e pinos extras na entrada para cartuchos, a fim de expandir as capacidades de aúdio. Esse modelo foi a base para clones populares no Brasil, como o *Dynavision*, *Phantom System* e *PolyStation*.
 - O **Nintendo Entertainment System** (conhecido como _NES_ ou informalmente *Nintendinho*) foi uma versão repaginada para o público da América do Norte, Europa e Oceania; com uma aparência bastante similar à de um aparelho VHS. Do ponto de vista técnico, os controles agora são removíveis (sem microfone) e o vídeo foi aprimorado com mais opções de saída (componente RCA), embora a expansão de áudio tenha sido substituída por um subsistema antipirataria. Por fim, a parte inferior do aparelho carrega uma "porta de expansão" que nunca foi utilizada, junto com pinos de cartucho extras que se comunicam com aquela porta [@general-cartridge].
 
 Como o autor cresceu com o nome "NES", esse termo será usado para se referir ao console em geral, mas trocarei para o nome "Famicom" quando me referir a capacidades únicas só encontradas na variante japonesa e seus clones.
@@ -177,7 +177,7 @@ Por trás dos panos, o quadro que a saí da PPU é composto por duas camadas dif
 
 :::
 
-Para começar, a PPU usa **tiles** como um ingrediente básico para produzir *sprites* e *backgrounds*.
+Para começar, a PPU usa ***tiles*** como um ingrediente básico para produzir *sprites* e *backgrounds*.
 
 O NES define *tiles* como **mapas básicos de 8x8 píxeis**, estes são armazenados na **Character memory** (localizada no cartucho do jogo) e organizados em uma grande estrutura de dados chamada **Tabela de Padrões** [@graphics-rust]. Cada *tile* ocupa 16 B e a Tabela de Padrões contém 256 *tiles* [@graphics-pattern]. Como a PPU acessa até 8 KB de *Character memory*, ela pode acessar até duas Tabelas de Padrões.
 
@@ -371,7 +371,7 @@ Mother (1989).
 
 Amostras são pedaços gravados de música que podem ser reproduzidos. Como você pode ver, as amostras não se limitam a uma única forma de onda, mas consomem muito mais espaço.
 
-A APU possui um canal dedicado a amostras. Nesse canal, as amostras são limitadas a uma **resolução de 7 bits** (codificadas com valores de `0` a `127`) e uma **taxa de amostragem de ~15,74 kHz** [@audio-2a03ref]. Para programar esse canal, os jogos podem transmitir valores de 7 bits (o que consome muitos ciclos e espaço de armazenamento) ou usar **modulação delta** para codificar apenas a variação entre a próxima amostra e a anterior.
+A APU possui um canal dedicado a amostras. Nesse canal, as amostras são limitadas a uma **resolução de 7 bits** (codificadas com valores de `0` a `127`) e uma taxa de amostragem de **~15,74 kHz** [@audio-2a03ref]. Para programar esse canal, os jogos podem transmitir valores de 7 bits (o que consome muitos ciclos e espaço de armazenamento) ou usar **modulação delta** para codificar apenas a variação entre a próxima amostra e a anterior.
 
 A implementação da modulação delta na APU só recebe valores de 1 bit, o que significa que os jogos só podem informar se a amostra aumenta ou diminui `1` a cada vez que o contador é acionado. Assim, em detrimento da fidelidade, a modulação delta pode poupar os jogos de ter que transmitir valores contínuos para a APU.
 
