@@ -175,13 +175,14 @@ Before we discuss the different modes the 2D engine can operate to generate back
 - **Character type group**: These background types follow the traditional tile system, the frame is rendered by filling it with tiles.
     - **Static** or 'Text' background: An ordinary background. Up to 512x512 pixels wide, 256 colours and 16 palettes. It includes all the typical [effects](super-nintendo#tab-1-2-background) (H/V flipping, H/V scrolling, mosaic, alpha blending) plus an extra 'fading' effect. Up to 1024 tiles can be used.
     - **Affine** background: A background with [affine transformations](super-nintendo#unique-features). However, it doesn't allow H/V flipping and can only fetch 256 tiles (one quarter from the maximum). The size of this layer is 1024x1024 pixels wide.
-    - **Affine Extended** background: Same as affine but restores the full amount of tiles and supports H/V flip.
-- **Bitmap type group**: Instead of processing tiles, the engine treats VRAM as a frame buffer. All of them inherit all the effects available from the character affine background.
-    - **256 colours Extended**: Uses a 512x512 px frame-buffer.
-    - **Direct colour Extended**: Similar to the previous one but the frame buffer now supports up to 32,768 colours (15-bit).
+    - **Affine Extended - Character**: Same as affine but restores the full amount of tiles and supports H/V flip.
+- **Bitmap type group**: Instead of processing tiles, the engine treats VRAM as a frame buffer.
+    - **Affine Extended - 256 colours**: Inherit all the effects available from the 'Affine Extended - Character'. The difference is that they are applied on a single 512x512 px bitmap.
+    - **Affine Extended - Direct colour**: Similar to the previous one but the frame buffer now supports up to 32,768 colours (15-bit).
     - **Large screen**: Eats up a whole 128 KB chunk of VRAM to render a large 1024x512 px frame-buffer.
+- **3D background**: Displays the rendering of the 3D engine as a background layer, which is essential to show whatever the 3D engine has processed. While it doesn't provide a lot of 2D effects, there're interesting features like horizontal scrolling and alpha blending (with other background layers). Also, it's the only type that supports up to 262,144 colours (18-bit)
 
-These modes can't be chosen arbitrary, instead, the console provides a series of **background modes** with different combinations set.
+These modes can't be chosen arbitrarily, instead, the console provides a series of **background modes** with different combinations set. Nevertheless, you can see here that the Affine Extended mode is available in three different flavours ('Character', '256 colours' and 'Direct colour'). So, in the next section, when you see that X background mode supports the 'Affine Extended' type, developers can choose which variant they want.
 
 #### Background modes {.tab}
 
@@ -197,17 +198,19 @@ Static Background layers in use.
 
 :::
 
-Here the background types are put into action. 'Main' and 'Sub' provide six modes of operations, all of them generate four background layers, but each one will have different capabilities:
+Here the background types are put into action. 'Main' and 'Sub' provide multiple modes of operation. All of them generate **four background layers**, however, each layer will have different capabilities depending on the mode activated:
 
-- **Mode 0**: 4 static layers.
-- **Mode 1**: 3 static layers + 1 affine layer.
-- **Mode 2**: 2 static layers + 2 affine layers.
-- **Mode 3**: 3 static layers + 1 extended affine layer.
-- **Mode 4**: 2 static layers + 1 affine layer + 1 extended affine layer.
-- **Mode 5**: 2 static layers + 2 extended affine layers.
+- **Mode 0**: 4 Static layers.
+- **Mode 1**: 3 Static layers + 1 Affine layer.
+- **Mode 2**: 2 Static layers + 2 Affine layers.
+- **Mode 3**: 3 Static layers + 1 Affine Extended layer.
+- **Mode 4**: 2 Static layers + 1 Affine layer + 1 Affine Extended layer.
+- **Mode 5**: 2 Static layers + 2 Affine Extended layers.
     - This is the most common mode used since it's incredibly flexible.
-- **Mode 6**: 1 static layer drawn by the 3D engine + 1 large screen.
+- **Mode 6**: 1 3D background layer + 1 Large screen.
     - Since there is only space for a single frame buffer, this mode is only available on 'Main'.
+
+Additionally, in Mode 0 to 5, the 'Main' engine can use the first static layer as a 3D background instead. The 3D capabilities will be discussed later on.
 
 #### Sprites {.tab}
 
@@ -223,13 +226,13 @@ Secondly, OAM can now reference **bitmaps from VRAM** as opposed to only using t
 
 ![All layers merged... is there something missing?](mario/halfcomplete.png){.tab-float .pixel}
 
-As each layer renders on-the-fly, the final stage is tasked with merging everything and send it to the selected screen. This is pretty much what happens with previous PPU-based consoles, does that mean we are done here?
+As each layer renders on-the-fly, the final stage is tasked with merging everything and sending it to the selected screen. This is pretty much what happens with previous PPU-based consoles, does that mean we are done here?
 
 Not yet! 'Main' still has to fetch a layer from another engine, the most powerful one.
 
 ### The 3D accelerator {.tabs-close}
 
-If you played with a Nintendo DS before, you know by now that this console can display a *particular* amount of 3D graphics. Unlike some GBA games, these aren't processed by the CPU. Instead, CPU-NTR includes **two components** that compose the **3D engine**. Curiously enough, the design Nintendo applied reminds me to [SGI's RCP](nintendo-64#graphics).
+If you played with a Nintendo DS before, you know by now that this console can display a *particular* amount of 3D graphics. Unlike some GBA games, these aren't processed by the CPU. Instead, CPU-NTR includes **two components** that compose the **3D engine**. Curiously enough, the design Nintendo applied reminds me of [SGI's RCP](nintendo-64#graphics).
 
 Revisiting the 'Background modes' section, you'll notice every mode has at least one static background, this is because you can fill that layer with graphics produced by the 3D engine. The only caveat is that only the 'Main' can do this, hence one of the reasons Mode 6 is only available for 'Main'.
 
@@ -259,7 +262,7 @@ Regarding effects, the unit also provides **shadowing** and a distinct feature c
 
 ![Ah, that's more like it.](mario/complete.png){.tab-float .pixel}
 
-Instead of writing the results back to a frame buffer for display, the rendering engine will write to a block called **Colour Buffer** which stores up to 48 scan lines. Each scan-line is fetched by the 2D engine to fill the BG0 layer in a FIFO manner.
+Instead of writing the results back to a frame buffer for display, the rendering engine will write to a block called **Colour Buffer** which stores up to 48 scan lines. Each scan line is fetched by the 2D engine to fill the BG0 layer in a FIFO manner.
 
 3D rendering starts before the 2D one, enabling the latter to apply transformations on the new layer if required. 'Main' also allows to capture the 2D, 3D or combined frame generated, blend it with another frame in VRAM and write the result back to VRAM, which can be displayed afterwards.
 
