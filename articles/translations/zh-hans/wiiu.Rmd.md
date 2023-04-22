@@ -229,7 +229,7 @@ PowerPC有一段有趣的发展历程，起起落落. 虽然它没有成功地�
 
 ::: {.subfigures .tabs-nested}
 
-![超级马里奥 3D 世界 (2013).](screenshots/mario3d.jpg){.activity title="3D馬里奧"}
+![超级马里奥 3D 世界 (2013).](screenshots/mario3d.jpg){.active title="3D馬里奧"}
 
 ![塞尔达无双 (2014).](screenshots/zelda_warriors.jpg){title="海拉鲁"}
 
@@ -660,7 +660,7 @@ Wii U提供的大多数服务（例如： 光盘游戏启动器、设置、在�
 
 #### 传统的 shell
 
-系统菜单有一个叫做 **Wii 模式** 的特定应用程序。 这是启动 [旧的系统菜单](wii#broadways-os) 来游玩 Wii 游戏的程序。 在背后，这个应用会启动之前说到的 `cafe2wi` 程序，并且我们已经知道了这种方法是如何运作的。
+系统菜单有一个叫做 **Wii 模式** 的特定应用程序。 这是启动 [旧的系统菜单](wii#broadways-os) 来游玩 Wii 游戏的程序。 在背后，这个应用会启动之前说到的 `cafe2wii` 程序，并且我们已经知道了这种方法是如何运作的。
 
 ![在进入 vWii 模式之前，系统会询问用户是否要保持 GamePad 为使用状态(作为输入设备和镜像屏幕).](screenshots/vwii_popup.jpg)
 
@@ -734,7 +734,7 @@ vWii 模式不一定需要电视。 如果用户选择激活 GamePad 显示，Ga
 
 ![eShop商店的主界面。](screenshots/store.jpeg)
 
-令人惊讶的是，VC已经扩展到[ wii ](wii)， [Nintendo DS](nintendo-ds)和[Game Boy Advance](game-boy-advance)。 就NDS和GBA而言，VC游戏的结构与其前身(Wii的VC游戏) 相同，模拟器和游戏都被打包为一个单独游戏。 换句话说，与 [PlayStation 3](playstation-3#backwards-compatibility) 不同，没有共享的模拟器。
+令人惊讶的是，VC已经扩展到[ Wii ](wii)， [Nintendo DS](nintendo-ds)和[Game Boy Advance](game-boy-advance)。 就NDS和GBA而言，VC游戏的结构与其前身(Wii的VC游戏) 相同，模拟器和游戏都被打包为一个单独游戏。 换句话说，与 [PlayStation 3](playstation-3#backwards-compatibility) 不同，没有共享的模拟器。
 
 最后，将 eShop 购买的产品安装到 eMMC 存储或外置 USB 设备中，这取决于用户的喜好。
 
