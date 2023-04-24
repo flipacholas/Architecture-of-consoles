@@ -125,9 +125,9 @@ This is not a new feature per se, but a novel use of current capabilities. GameC
 
 The extra megahertz of Broadway and Hollywood, combined with avant-garde designs, brought some improvements to character models. It may not be as significant as other generations, but it's still noticeable and appreciated.
 
-![Super Smash Bros Brawl (2008) for the Wii.<br>3,049 triangles.](mario_melee_gc){.toleft model3d="true"}
+![Super Smash Bros. Melee (2001) for the GC.<br>2,494 triangles.](mario_melee_gc){.toleft model3d="true"}
 
-![Super Smash Bros. Melee (2001) for the GC.<br>2,494 triangles.](mario_brawl_wii){.toright model3d="true"}
+![Super Smash Bros Brawl (2008) for the Wii.<br>3,049 triangles.](mario_brawl_wii){.toright model3d="true"}
 
 ![Sonic DX (2003) for the GC.<br>1,985 triangles.](tails_dx_gc){.toleft model3d="true"}
 
