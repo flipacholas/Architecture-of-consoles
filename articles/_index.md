@@ -15,7 +15,7 @@ cascade:
     seo_type: TechArticle
 
 # Historical
-aliases: [/projects/consoles]
+aliases: [../projects/consoles]
 ---
 
 {{< linked_img src="banner.png" alt="Architecture of Consoles" no_link="true" no_lazyload="true" >}}
