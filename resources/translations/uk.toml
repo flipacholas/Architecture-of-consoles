@@ -1,0 +1,275 @@
+[author_footer_first]
+other = 'Сподіваюся, вам сподобалася ця стаття! Якщо хочете дізнатися більше про автора <a href="{{ . }}">натисніть тут</a>'
+
+[author_footer_second]
+other = 'і якщо ви хочете підтримати його, то <a href="{{ . }}">зробіть це тут</a>'
+
+[languages_available]
+other = "Доступні мови: "
+
+[help_translations]
+other = "Допомогти з перекладами"
+
+[add_translation]
+other = "Додати переклад"
+
+[report_mistakes]
+other = "Повідомити про помилки або запропонувати зміни"
+
+[supporting_readings]
+other = "Додаткова література"
+
+[tablet_mode_button]
+other = "Приховати поля / Режим для планшета"
+
+[desktop_mode_button]
+other = "Показати поля / Режим для комп'ютерів"
+
+[next]
+other = "Наступна"
+
+[previous]
+other = "Попередня"
+
+[table-of-contents]
+other = "Зміст"
+
+[show]
+other = "Показати"
+
+[hide]
+other = "Приховати"
+
+[translations]
+other = "Переклади"
+
+[related]
+other = "Більше на '{{ . }}' &raquo;"
+
+[ebook_edition_title]
+other = "Отримати eBook видання"
+
+[ebook_edition_content]
+other = 'Тепер Ви можете прочитати серію <a href="{{ .consoles }}">Архітектура консолей</a> на читачах електронних книг також. <a href="{{ .ebooks }}">Дивіться тут</a>.'
+
+[home]
+other = "Головна"
+
+[nav_writings]
+other = "Дописи"
+
+[nav_console]
+other = "Консолі"
+
+[nav_blog]
+other = "Блог"
+
+[about]
+other = "Про сайт"
+
+[about_website_long]
+other = "Про вебсайт і його вміст"
+
+[support]
+other = "Підтримка"
+
+[about_author]
+other = "Про автора"
+
+[about_website]
+other = "Про вебсайт"
+
+[switch_modern]
+other = "Перейти до сучасної версії"
+
+[switch_classic]
+other = "Перейти до класичної версії"
+
+[ebook_edition]
+other = "eBook видання"
+
+[about_edition]
+other = "Про цю версію"
+
+[last_updated]
+other = "Останнє оновлення: {{ . }}"
+
+[classic_edition]
+other = "Класична версія"
+
+[classic_intro]
+other = '"Класичний" варіант - це альтернатива <a href="{{ .modern }}">"сучасному" дизайну сайту</a>. Він не вимагає Javascript чи складного CSS чи специфічного HTML для роботи і прекрасно підходить для тих, хто використовує інструменти доступності чи старі веб-браузери. З іншого боку, користувачі електронних книг тепер можуть мати <a href="{{ .ebook }}">eBook видання</a>.'
+
+[classic_description]
+other = 'Це видання є повністю ідентичним за контентом. Проте, інтерактивні віджети були спрощені, щоб могти працювати тільки на HTML, хоча вони надають посилання на оригінальну версію, щоб читач міг спробувати "повну версію".'
+
+[general_description]
+other = 'Як завжди, ця стаття доступна на <a href="{{ .github }}">Github</a>, що дозволяє читачам повідомляти про помилки чи пропонувати зміни. Також є <a href="{{ .readings }}">список допоміжної літератури</a>, що може допомогти зрозуміти цю статтю. Автор також приймає <a href="{{ .donations }}">пожертви</a>, які допомагають покращити якість наявних та нових статей.'
+
+[subscribe_title]
+other = "Отримувати повідомлення про оновлення"
+
+[subscribe_content]
+other = 'Я викладаю оновлення на моєму <a href="{{ . }}">профілі у Twitter</a>, але Ви також можете отримувати електронні листи коли виходить наступна стаття. Ви можете відписатися від цих електронних листів будь-коли, я використовую Mailchimp для обробки цього.'
+
+[generation_title]
+other = "{{ .ordinal }} покоління"
+
+[untranslated_article_title]
+other = "{{.}} (Англійською)"
+
+[cpu_subtitle]
+other = "Основні переваги CPU:"
+
+[gpu_subtitle]
+other = "Видатні якості CPU:"
+
+[roadmap_title]
+other = "Дорожня карта"
+
+[roadmap_content]
+other = "Є багато консолей про які я можу написати... Якщо Вам цікаво, яка буде наступною, тут є список:"
+
+[contribution_content]
+other = "Якщо Вам цікаві мої статті, будь ласка подумайте над пожертвами. Ваші внески будуть використані для покупки інструментів та матеріалів, які допоможуть мені покращити якість наявних та нових статей. Також я маю список цікавих для придбання матеріалів в кінці кожної статті."
+
+[contribution_footer]
+other = "Як подяка, Ваше ім'я буде внесеним до списку в кінці наступної статті чи вибраної Вами, якщо не вказано інакше."
+
+[contribution_footer_ebook]
+other = 'Також Ви можете купити <a href="{{ . }}">eBook видання</a> англійською. Я розглядаю прибутки від цього, як пожертви.'
+
+[contribution_suggestions]
+other = 'Також Ви можете допомогти <a href="{{ . }}">запропонувавши зміни</a> і/чи <a href="{{ . }}">добавивши переклад</a>.'
+
+[print]
+other = "Друкувати статтю (або зберегти в PDF)"
+
+[architecture_consoles]
+other = "Архітектура Консолей"
+
+[top_model]
+other = "Модель"
+
+[top_models]
+other = "Моделі"
+
+[motherboard_title]
+other = "Материнська плата"
+
+[motherboard_note]
+other = "Материнська плата з позначками важливих елементів"
+
+[diagram_title]
+other = "Діаграма"
+
+[diagram_note]
+other = "Діаграма архітектури"
+
+[original]
+other = "Оригінал"
+
+[marked]
+other = "З позначеннями"
+
+[contributing_title]
+other = "Зробити внесок"
+
+[contributing_content]
+other = 'Ця стаття є частиною циклу <a href="{{ . }}">Архітектура консолей</a>. Якщо Ви знайшли її цікавою, розгляньте можливість пожертв. Ваші пожертви будуть використані для покупки інструментів і матеріалів, які допоможуть покращити якість цієї та наступних статей.'
+
+[contributing_tools]
+other = "Список потрібних інструментів та останніх надходжень для цієї статті знаходиться тут:"
+
+[contributing_thanks]
+other = "Велика подяка цим людям за їхню підтримку:"
+
+[changelog_title]
+other = "Історія змін"
+
+[changelog_content]
+other = "Добре коли ведеться список змін."
+
+[supporting_imagery]
+other = "Допоміжні зображення"
+
+[consoles_written_by]
+other = "Практичний аналіз від {{ . }}"
+
+[translated_by]
+other = "Переклав {{ . }}"
+
+[interactive_model_origin]
+other = 'Інтерактивна модель доступна у <a href="{{ . }}">сучасній версії</a>'
+
+[interactive_player_origin]
+other = 'Інтерактивний програвач доступний у <a href="{{ . }}">сучасній версії</a>'
+
+[goto_classic]
+other = 'Якщо Ви використовуєте старий браузер, <a href="{{ .classic }}">включіть "класичний" режим</a>.'
+
+[audio_samples]
+other = "Зразки аудіо"
+
+[wireframe]
+other = "Каркас"
+
+[surface]
+other = "Поверхні"
+
+[textured]
+other = "Текстури"
+
+[tap_enable_interaction]
+other = "Натисніть, щоби взаємодіяти"
+
+[buffering]
+other = "Буферизація..."
+
+[ready_drag_zoom]
+other = "Можна перетягувати та збільшувати!"
+
+[sources]
+other = "Джерела / Додаткові читання"
+
+[archived]
+other = "Архів"
+
+[general]
+other = "Загальне"
+
+[cpu]
+other = "ЦП"
+
+[graphics]
+other = "Графіка"
+
+[audio]
+other = "Аудіо"
+
+[audio_video]
+other = "Аудіо / Відео"
+
+[io]
+other = "Ввід / Вивід"
+
+[operating_system]
+other = "Операційна система"
+
+[games]
+other = "Ігри"
+
+[anti_piracy]
+other = "Антипіратство"
+
+[copy_protection]
+other = "Захист від копіювання"
+
+[photography]
+other = "Фотоматеріали"
+
+[other_media]
+other = "Інші матеріали"
+
+[bonus]
+other = "Бонус"
