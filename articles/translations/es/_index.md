@@ -16,17 +16,17 @@ cascade:
   seo_type: TechArticle
 #Historical
 aliases:
-  - Un análisis en profundidad que explica como esta consola funciona internamente
+  - ../projects/consoles
 ---
 
-{{< linked_img src="banner.png" alt="Arquitectura de las consolas" noLink="true" no_lazyload="true" >}}
+{{< linked_img src="banner.png" alt="Arquitectura de las consolas" no_link="true" no_lazyload="true" >}}
 
-Observar la evolución de los videojuegos es fascinante. Observar la evolución de las consolas de videojuegos es fascinante, mientras los ordenadores convencionales tienden a evolucionar 'incrementalmente', las nuevas generaciones de consolas introducen nuevos métodos de funcionamiento. He aquí una serie de artículos que intentarán explicar la lógica detrás de las últimas tendencias en tecnología. He aquí una serie de artículos que intentarán explicar la lógica detrás de las últimas tendencias en tecnología, también se demostrará por qué cada sistema no se puede resumir por sus 'bits', megahertz, cantidad de RAM y demás.
+Observar la evolución de los videojuegos es fascinante. Mientras que las PCs convencionales tienden a evolucionar "incrementalmente", nuevas generaciones de consolas presentan formas de trabajar completamente nuevas. He aquí una serie de artículos que intentarán explicar la lógica detrás de las últimas tendencias en tecnología. También demostrarán por qué cada sistema no puede resumirse por sus "bits", megahertz, tamaño de RAM, entre otras cosas.
 
-Esto no es un manual para desarrolladores, solo una *profunda* introducción de cómo funcionaba cada sistema internamente. Ten en cuenta que últimamente la tecnología se ha vuelto bastante complicada, por lo que si te cuesta seguir mis últimos artículos, échale un vistazo a los primeros antes, que introducen muchos conceptos y definiciones repasados en nuevos artículos. Es preferible tener conocimientos básicos de informática; sin embargo, me he esforzado mucho para adaptar mi contenido a un público más amplio, así que no dudes en intentar leer el que más te apetezca.
+Esto no es un manual para desarrolladores, solo una *profunda* introducción de cómo funcionaba cada sistema internamente. Hay que tener en cuenta que últimamente la tecnología se ha vuelto muy compleja, así que si le cuesta entender mis últimos artículos, intente comenzar con los primeros. Estos presentan conceptos y definiciones que se repiten constantemente.
 
-Es preferible tener conocimientos básicos de informática; sin embargo, me he esforzado mucho para adaptar mi contenido a un público más amplio, así que no dudes en intentar leer el que más te apetezca. Pero si esto no es suficiente, tal vez quiera mirar las [lecturas de apoyo]({{< ref "readings" >}}).
+Es preferible tener conocimientos básicos de informática; sin embargo, me he esforzado mucho para adaptar mi contenido a un público más amplio, así que no dude en intentar leer los que más te apetezca. Pero si esto no es suficiente, tal vez quiera mirar las [lecturas de apoyo]({{< ref "readings" >}}).
 
-Intento ser los más preciso posible, pero si encuentras algún error no dudes en {{< email "enviarme un email" >}} o {{< consoles/repo_link "proponer cambios" >}}.
+Si bien intento ser los más preciso posible, si encuentra algún error no dude en {{< email "enviarme un email" >}} o {{< consoles/repo_link "proponer cambios" >}}. Por último, si prefiere leer con un lector de eBooks, échele un vistazo a la [edición eBook]({{< ref "ebook" >}}).
 
 Sin más preámbulos, ¡aquí están!
