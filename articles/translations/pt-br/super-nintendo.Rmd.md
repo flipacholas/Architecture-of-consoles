@@ -209,7 +209,7 @@ A S-PPU fornece muitas operações para planos de fundo, mas elas não podem ser
   - Uma camada pode ser dividida em primeiro plano e plano de fundo.
   - Este é o modo mais comum usado.
 - **Modo 2**: 2 camadas com 16 cores cada.
-  - Este modo tem um efeito extra: as camadas podem ter cada uma de suas colunas roladas independentemente (semelhante aos efeitos do [GameBoy](game-boy#graphics), mas rolados verticalmente).
+  - Este modo tem um efeito extra: as camadas podem ter cada uma de suas colunas roladas independentemente (semelhante aos efeitos do [Game Boy](game-boy#graphics), mas rolados verticalmente).
 - **Modo 3**: 1 camada de plano de fundo com 128 cores + 1 plano de fundo com 16 cores.
   - As cores podem ser definidas como valores RGB em vez de usar as referências da CGRAM.
 - **Modo 4**: Modo 2 e 3 combinados (rolagem de coluna + mapeamento de cores RGB).
@@ -242,7 +242,7 @@ A S-PPU pode desenhar até 32 *sprites* por linha de varredura, ultrapassar isso
 
 A S-PPU desenha cada varredura na tela dinamicamente, processando primeiro a parte respectiva de cada camada e depois as mesclando.
 
-Uma das principais restrições dos jogos do NES era o fato de só poderem atualizar seus gráficos durante o **V-Blank**. O momento em que o feixe do CRT estava retornando ao ponto de partida fornecia um intervalo de tempo razoável para reorganizar alguns *tiles* sem quebrar a imagem.
+Uma das principais restrições dos jogos do NES era o fato de só poderem atualizar seus gráficos durante o **V-Blank**. O momento em que o feixe do CRT estava retornando ao ponto de partida fornecia um intervalo de tempo razoável para reorganizar alguns tiles sem quebrar a imagem.
 
 Bem, agora, graças às novas capacidades do SNES, essa limitação ganhou um significado diferente.
 
@@ -419,7 +419,7 @@ Algo que ainda não mencionei é que os cartuchos que contém SRAM também preci
 
 Agora, se os programadores precisarem de mais espaço, é aí que entra em jogo os modelos derivados da LoROM e HiROM. Por exemplo, duas variações comumente referidas como **ExHiROM** e **ExLoROM** expandem o espaço de endereçamento da ROM, reduzindo a área espelhada. Ambas podem acessar cerca de **7,9 MB de ROM**.
 
-![Star Fox (1993) usa o chip Super FX GSU para renderizar superfícies 3D (a S-PPU apenas enxerga a camada de plano de fundo feita de <em>tiles<em> _erráticas_).](fox.png) {.open-float.pixel}
+![Star Fox (1993) usa o chip Super FX GSU para renderizar superfícies 3D (a S-PPU apenas enxerga a camada de plano de fundo feita de <em>tiles</em> _erráticas_).](fox.png) {.open-float.pixel}
 
 Alternativamente, e o mais importante, a LoROM e a HiROM também podem ser adaptadas para abrigar **chips de aprimoramento** no cartucho. Esses são processadores adicionais que expandem as capacidades do console. Para citar alguns exemplos de novas configurações:
 
@@ -430,7 +430,7 @@ Alternativamente, e o mais importante, a LoROM e a HiROM também podem ser adapt
 
 `r close_float_group()`
 
-É difícil ignorar o impacto que essa engenharia teve nos jogos durante os anos 90, muitos dos quais conseguiram superar as expectativas destes consoles sem exigir módulos de expansão e afins. Pode-se dizer que isso dificultou os planos da Nintendo de lançar um sucessor do SNES (o que pode explicar por que jogos em estágio de desenvolvimento avançado como Starfox 2 foram cancelados).
+É difícil ignorar o impacto que essa engenharia teve nos jogos durante os anos 90, muitos dos quais conseguiram superar as expectativas destes consoles sem exigir módulos de expansão e afins. Pode-se dizer que isso dificultou os planos da Nintendo de lançar um sucessor do SNES (o que pode explicar por que jogos em estágio de desenvolvimento avançado como Star Fox 2 foram cancelados).
 
 ## Anti-pirataria / Trava de região
 
