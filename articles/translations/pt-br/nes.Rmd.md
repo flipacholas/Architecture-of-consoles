@@ -203,7 +203,7 @@ A camada de *background* é um mapa de 512x480 píxeis contendo *tiles* estátic
 
 Para economizar memória, grupos de quatro *tiles* são combinados em mapas de 16x16 pixeis chamados de **blocos**, nos quais todos os *tiles* compartilham uma paleta de cores.
 
-As **tabelas de nomes** (armazenadas na VRAM) especificam quais *tiles* exibir na camada de *background*. A PPU procura por quatro tabelas de nomes de tamanho 1024 bytes, onde cada uma correspondendo a um quadrante da camada. No entanto, só 2 KB de VRAM está disponível! Como consequência, apenas duas tabelas de nomes podem ser armazenadas sem o uso de hardware adicional no cartucho. Apesar de ainda ser necessário endereçar as duas tabelas de nomes restantes em algum lugar, a maioria dos jogos apenas as aponta para onde as primeiras duas estão localizadas (o que é conhecido como **espelhamento**).</p>
+As **tabelas de nomes** (armazenadas na VRAM) especificam quais *tiles* exibir na camada de *background*. A PPU procura por quatro tabelas de nomes de tamanho 1024 bytes, onde cada uma correspondendo a um quadrante da camada. No entanto, só 2 KB de VRAM está disponível! Como consequência, apenas duas tabelas de nomes podem ser armazenadas sem o uso de hardware adicional no cartucho. Apesar de ainda ser necessário endereçar as duas tabelas de nomes restantes em algum lugar, a maioria dos jogos apenas as aponta para onde as primeiras duas estão localizadas (o que é conhecido como **espelhamento**).
 
 Embora essa arquitetura possa parecer falha à primeira vista, ela foi projetada para manter os custos baixos enquanto oferecer uma **expansibilidade** simples: se os jogos precisassem de um *background* mais amplo, mais VRAM poderia ser incluída no cartucho.
 
@@ -313,7 +313,7 @@ Mother (1989).
 
 :::
 
-Os primeiros **dois canais** produzem </strong>ondas de pulso</0> [@audio-apupulse]. Quando ouvidas, apresentam um som de *beep* muito distinto que é principalmente usado para **melodias ou efeitos sonoros**. O sequenciador respectivo pode gerar três tipos de ondas de pulso, feitas variando a duração do pulso (também conhecido como ***duty cycle***, ou razão cíclica). Os circuitos também estão conectados a uma **unidade de *sweep*** (permitindo modular o tom) e a um **gerador de envelope** para alterar o volume ao longo do tempo (também conhecido como **decaimento**).
+Os primeiros **dois canais** produzem **ondas de pulso** [@audio-apupulse]. Quando ouvidas, apresentam um som de *beep* muito distinto que é principalmente usado para **melodias ou efeitos sonoros**. O sequenciador respectivo pode gerar três tipos de ondas de pulso, feitas variando a duração do pulso (também conhecido como ***duty cycle***, ou razão cíclica). Os circuitos também estão conectados a uma **unidade de *sweep*** (permitindo modular o tom) e a um **gerador de envelope** para alterar o volume ao longo do tempo (também conhecido como **decaimento**).
 
 A maioria dos jogos usa um canal de pulso para a melodia e outro para o acompanhamento. Você pode notar que frequentemente quando um jogo precisa reproduzir um efeito sonoro, o canal de acompanhamento é alterado para reproduzir o efeito e depois retorna ao acompanhamento. Isso evita interromper a melodia durante o jogo.
 
