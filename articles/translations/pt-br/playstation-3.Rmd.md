@@ -920,11 +920,7 @@ Antes de finalmente falar sobre o grande vencedor da cena *homebrew* do PS3, dei
 - O **USB Jig**: outro pendrive, dessa vez programado para enganar o console para entrar no **Modo de Serviço de Fábrica**, que é destinado apenas para manutenção do console por pessoal autorizado. O programa embutido no Jig replica o que a Sony fornece para seus engenheiros. A principal vantagem do modo de serviço é permitir um [*downgrade*](playstation-portable#tab-8-2-downgrading) do console para uma versão compatível com o PS Jailbreak. O *payload* também estava disponível na forma de um aplicativo *Homebrew* para o PSP [@anti_piracy-pspjig]. A Sony respondeu corrigindo o modo de serviço para tornar mais difícil restaurá-lo ao modo "normal" ou alterar o firmware dele, desencorajando os usuários a recorrerem ao modo de serviço.
 - O **Emulador de Disco Óptico** (ODE, de *Optical Disc Emulator*): uma série de produtos de hardware que diferentes empresas (Cobra, E3, etc.) lançaram. Em vez de mexer no firmware do console, eles mexeram na interface SATA/PATA do Blu-ray. Os ODEs são placas que ficam entre a placa-mãe e o drive de Blu-ray, agindo como intermediários que enganam o console fazendo-o pensar que contém um jogo em disco válido, mas está, na verdade, carregando uma imagem de disco de um dispositivo USB externo. Entretanto, esses dispositivos eram bastante caros quando foram lançados. A história *hacking* do PS3 inclui longos períodos de "inviolabilidade" em que não havia nenhum *exploit* de software disponível para novos consoles, então os ODEs foram capazes de preencher essa lacuna.
 - O **Downgrader**: à medida que a Sony continuava a mitigar as vulnerabilidades com mais atualizações de software, os usuários não tinham outra opção senão fazer *downgrade* para um firmware explorável. Assim, empresas como a E3 lançaram equipamentos especializados que podiam sobrescrever o sistema do console "à moda antiga". Ou seja, diretamente programando os chips NAND ou NOR. Por razões óbvias, esse método exigia mais habilidade e paciência em comparação com os métodos baseados em dispositivos USB.
-- **Vazamentos isolados**: este é para fins de pesquisa, ao contrário de uma "funcionalidade" que o usuário verá (mas ainda é imperativo para futuros desenvolvimentos). De qualquer maneira, os dados de revogação (usados para listar certificados comprometidos) são analisados pelo `lv2ldr`, até aí tudo bem? Bem, foi descoberto que esse processo continha muitas vulnerabilidades. Em primeiro lugar e por alguma razão inexplicável, **os dados de revogação podem ser escritos no espaço do usuário**. Em segundo lugar, **o analisador não realiza verificação de limites** nos dados coletados (
-
-lá vamos nós novamente</em>). Portanto, os hackers conseguiram criar dados personalizados de revogação que poderiam produzir um estouro de *buffer* e, em última instância, permitir que eles executassem **código arbitrário no modo isolado da SPU**. Isso permitiu que eles acessassem dados confidenciais (ou seja, chaves) que presumivelmente estavam protegidos do restante do sistema [@operating_system-psxplace].</li> </ul> 
-  
-  
+- **Vazamentos isolados**: este é para fins de pesquisa, ao contrário de uma "funcionalidade" que o usuário verá (mas ainda é imperativo para futuros desenvolvimentos). De qualquer maneira, os dados de revogação (usados para listar certificados comprometidos) são analisados pelo `lv2ldr`, até aí tudo bem? Bem, foi descoberto que esse processo continha muitas vulnerabilidades. Em primeiro lugar e por alguma razão inexplicável, **os dados de revogação podem ser escritos no espaço do usuário**. Em segundo lugar, **o analisador não realiza verificação de limites** nos dados coletados ([_lá vamos nós novamente_](playstation-2#tab-8-4-ps1-overflow)). Portanto, os hackers conseguiram criar dados personalizados de revogação que poderiam produzir um estouro de *buffer* e, em última instância, permitir que eles executassem **código arbitrário no modo isolado da SPU**. Isso permitiu que eles acessassem dados confidenciais (ou seja, chaves) que presumivelmente estavam protegidos do restante do sistema [@operating_system-psxplace].
 
 #### A quebra da criptografia {.tab}
 
@@ -935,8 +931,6 @@ Em 2011, George Hotz (junto com a equipe failOverflow) publicou outro avanço: *
 A descoberta dessa chave, que deveria ser computacionalmente inviável, é possível graças ao que é considerado um "erro" na implementação da Sony do algoritmo ECDSA. Para resumir, a fórmula matemática usada para o ECDSA usa um valor aleatório que a Sony nunca mudou em todos os arquivos de atualização que distribuiu [@anti_piracy-ecsda], tornando aquele número uma constante, e deixando mais fácil descobrir as outras variáveis. Foi o que acabou acontecendo.
 
 Os efeitos desta descoberta estão descritos nos próximos parágrafos.
-
-
 
 ### A era dos Custom Firmware (CFW) {.tabs-close}
 
@@ -956,8 +950,6 @@ Enquanto isso, muitos CFW apareceram na rede com muitos nomes (por exemplo, "Reb
 
 Há também o meu favorito: trazer as funções de depuração de um kit de teste, permitindo que qualquer console de varejo se torne uma estação de depuração. Isso era feito instalando uma CFW com capacidades de depuração ou uma CFW que pudesse converter o console de varejo (chamdo de "CEX") em um modelo de depuração (chamado de "DEX") alterando dados específicos do console na memória Flash.
 
-
-
 #### A resposta rígida da Sony
 
 <!-- TODO: metldr.2 is not mentioned. -->
@@ -967,16 +959,14 @@ Semelhante aos eventos que ocorreram após a criação de [CFWs](playstation-por
 Do **lado do software**, a Sony lançou duas atualizações de sistema que aprimoraram o sistema de segurança:
 
 - Com o sistema `3.56`, os binários eram assinados com novas chaves de criptografia resistentes à descoberta anterior do ECSDA [@anti_piracy-keys], portanto, os criadores de CFW não podiam personalizar os novos binários (já que não possuíam as chaves privadas para recriptografá-los). Além disso, uma nova revisão do aplicativo "atualizador de sistema" (*system updater*) também foi lançada, que impôs novos certificados nos arquivos de atualização do sistema (`PS3UPDAT.PUP`). Isto significava que mesmo que os hackers consiguissem empacotar uma nova CFW, apenas os consoles com a versão do sistema `3.55` ou anterior poderiam instalá-lo [@anti_piracy-spkg].
-- Posteriormente, a atualização de sistema `3.60` reformulou o processo de inicialização, anulou o `metldr` e promoveu o `lv0` para assumir o *bootstrap* dos carregadores (`lv1ldr`, `lv2ldr`, `appldr` e `isoldr`). Isso significava que os hackers não podiam modificar os novos arquivos do sistema sem primeiro quebrar o `lv0` (ou seja, encontrando sua chave privada). 
-    - Isso acabou acontecendo no final de 2012, quando uma equipe chamada "Os três mosqueteiros" publicou as chaves do `lv0` [@anti_piracy-lv0leak], o que abriu caminho para novas CFW feitas a partir de versões do sistema mais recentes do que `3.55`. No entanto, devido às mudanças mencionadas no atualizador, apenas usuários com a versão do sistema `3.55` ou anterior (incluindo qualquer CFW com verificações de assinatura desativadas) poderiam instalá-lo.
+- Posteriormente, a atualização de sistema `3.60` reformulou o processo de inicialização, anulou o `metldr` e promoveu o `lv0` para assumir o *bootstrap* dos carregadores (`lv1ldr`, `lv2ldr`, `appldr` e `isoldr`). Isso significava que os hackers não podiam modificar os novos arquivos do sistema sem primeiro quebrar o `lv0` (ou seja, encontrando sua chave privada).
+  - Isso acabou acontecendo no final de 2012, quando uma equipe chamada "Os três mosqueteiros" publicou as chaves do `lv0` [@anti_piracy-lv0leak], o que abriu caminho para novas CFW feitas a partir de versões do sistema mais recentes do que `3.55`. No entanto, devido às mudanças mencionadas no atualizador, apenas usuários com a versão do sistema `3.55` ou anterior (incluindo qualquer CFW com verificações de assinatura desativadas) poderiam instalá-lo.
 
 Do **lado do hardware**, não apenas os modelos posteriores do PS3 (CECH-25xxx, CECH-3xxx e CECH-4xxx) vieram pré-instalados com uma versão de sistema mais recente que a versão `3.55`, mas também continham uma versão diferente do `bootldr`/`lv0ldr` (chamdo `lv0ldr.1`) que não apenas descriptografa e carrega o `lv0`, mas também buscava um novo arquivo de sistema chamado `lv0.2`. Este último contém metadados sobre `lv0` [@anti_piracy-lv0ldr] para garantir que o `lv0` não tenha sido adulterado. O `lv0.2` é assinado com uma nova chave criptográfica (também é imune à descoberta ECDSA anterior), impedindo assim que hackers pudessem assumir o controle da cadeia de inicialização.
 
 Até hoje, **esses modelos não conseguem executar um CFW**, por isso foram apelidados de _invioláveis_. No entanto, eles podem executar um "Firmware Híbrido" (HFW) e falaremos mais sobre isso posteriormente.
 
 Com o tempo, o número de consoles compatíveis com o CFW foi diminuindo, tornando os PS3s que não foram atualizados além de 3.55 uma espécie de _relíquia_. Enquanto isso, houve um aumento na demanda por alternativas, como *downgraders* (para reverter para a versão do sistema `3.55` em modelos antigos) e ODEs (para jogar jogos pirateados em modelos novos).
-
-
 
 #### O renascimento do Homebrew
 
@@ -993,15 +983,11 @@ O *payload* principal do PS3Xploit replica o trabalho de um *downgrader* de hard
 
 Como você pode ver, esse _presente dos céus_ trouxe os firmwares personalizados de volta à atenção e tornou os *downgraders* de hardware e os ODEs obsoletos. Por outro lado, para as unidades que não podiam instalar um CFW de qualquer maneira (os _não hackeáveis_), a equipe posteriormente ofereceu o **PS3Hen**, um pacote de *exploits* diferente que se concentrou em habilitar um subconjunto de funções do CFW (incluíndo a capacidade de executar homebrew). Ele se instala como uma entrada no XMB e o usuário deve executá-lo toda vez que ligar o console para reativar a execução de aplicativos homebew.
 
-
-
 #### A resposta parcial da Sony
 
 Por sorte, a Sony tomou apenas medidas pequenas para bloquear o PS3Xploit (talvez porque esse acontecimento tenha ocorrido anos após o lançamento do sucessor do PS3, o PlayStation 4). Eles lançaram algumas atualizações de sistema que não corrigiram essa cadeia de *exploits*, mas removeram a rotina usada no Webkit para inicializar a cadeia. Em resposta, os hackers publicaram atualizações de software ligeiramente modificadas que restauraram tal entrada (e de alguma forma, eles não precisavam ser re-assinadas) [@anti_piracy-hfw]. Essas atualizações personalizadas foram chamadas de **Hybrid firmware** (HFW) e, no momento em que este texto foi escrito, são a opção de fato usada para habilitar homebrew em sistemas não-hackeáveis.
 
-E aqui termina a saga anti-pirataria/homebrew. Em minha humilde opinião, não acredito que a Sony esteja interessada em colocar mais esforço no console. Portanto, não esperaria mais jogos de gato e rato neste campo. 
-
-
+E aqui termina a saga anti-pirataria/homebrew. Em minha humilde opinião, não acredito que a Sony esteja interessada em colocar mais esforço no console. Portanto, não esperaria mais jogos de gato e rato neste campo.
 
 ## Isso é tudo pessoal
 
