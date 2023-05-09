@@ -262,6 +262,8 @@ To enhance the browsing experience, a Dreamcast-branded keyboard and mouse were 
   SegaNet was launched in September 7, 2000. SegaNet was not free, and players needed to pay a monthly subscription fee to use the service. The subscription cost $21.95 per month, and it provided unlimited access to the service. A puzzle game, Sega Swirl, that was given away for free to SegaNet subscribers. However, the subscription fee for SegaNet was seen as a major drawback by some players.
   
   The service was not just for Dreamcast owners. PC owners could also sign up and use the service on their PCs instead of, or in conjunction with, their existing ISP. Subscribe to the service and receive a free Dreamcast, or if you already owned a Dreamcast, receive a cheque from Sega for $200, the price of your Dreamcast purchase.
+  
+  SegaNet reached 100,000 subscribers a month after its launch
 
 - **Japan Online Service**
 
