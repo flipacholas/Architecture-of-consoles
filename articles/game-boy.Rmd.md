@@ -30,13 +30,13 @@ supporting_imagery()
 
 ## CPU
 
-Instead of placing many off-the-shelf chips on the motherboard, Nintendo opted for a single chip to house (and hide) most of the components, including the CPU. This type of chip is called 'System On Chip' (SoC) and the one found on the GameBoy is referred to as **DMG-CPU** or **Sharp LR35902** [@cpu-realboy].
+Instead of placing many off-the-shelf chips on the motherboard, Nintendo opted for a single chip to house (and hide) most of the components, including the CPU. This type of chip is called 'System On Chip' (SoC) and the one found on the Game Boy is referred to as **DMG-CPU** or **Sharp LR35902** [@cpu-realboy].
 
 Having said that, the main processor is a **Sharp SM83** [@cpu-gekkio] and it's a mix between the Z80 and the Intel 8080. It runs at **~4.19 MHz**.
 
 The Z80 is itself a superset of the 8080, so what does the SM83 actually has and has not from those two? [@cpu-steil]
 
-- Neither Z80's `IX` and `IY` registers nor 8080's `IN` or `OUT` instructions are included: This means that [I/O ports](master-system#accessing-the-rest-of-the-components) are not available. I'm not certain if that's just a measure to reduce costs, but one thing for sure is that components will have to be **completely memory-mapped** [@cpu-fayzullin].
+- Neither of the Z80's `IX` or `IY` registers nor 8080's `IN` or `OUT` instructions are included: This means that [I/O ports](master-system#accessing-the-rest-of-the-components) are not available. I'm not certain if that's just a measure to reduce costs, but one thing for sure is that components will have to be **completely memory-mapped** [@cpu-fayzullin].
 - Only 8080's set of registers are implemented.
 - Includes Z80's extended instruction set. Although, only bit manipulation instructions are found.
 
@@ -59,9 +59,9 @@ The SM83 keeps an 8-bit data bus and a 16-bit address bus, so up to 64 KB of mem
 
 All graphics calculations are done by the CPU, and then the **Picture Processing Unit** or 'PPU' renders them. This is another component found inside DMG-CPU and it's actually based on the [predecessor's PPU](nes#graphics).
 
-The picture is displayed on an integrated LCD screen, it has a resolution of **160×144 pixels** and shows **4 shades of grey** (white, light grey, dark grey and black). But since the original Gameboy has a green LCD, graphics will look *greenish*.
+The picture is displayed on an integrated LCD screen, it has a resolution of **160×144 pixels** and shows **4 shades of grey** (white, light grey, dark grey and black). But since the original Game Boy has a green LCD, graphics will look *greenish*.
 
-If you've read the NES article before, you may remember that the PPU was designed to follow the CRT beam. However (and for obvious reasons), we got an LCD screen in the Gameboy. Well, the new PPU doesn't alter that part, since LCDs require to be refreshed too. In fact, some special effects achieved thanks to this behaviour will also be supported on the Gameboy.
+If you've read the NES article before, you may remember that the PPU was designed to follow the CRT beam. However (and for obvious reasons), we got an LCD screen in the Game Boy. Well, the new PPU doesn't alter that part, since LCDs require to be refreshed too. In fact, some special effects achieved thanks to this behaviour will also be supported on the Game Boy.
 
 ### Organising the content
 
@@ -256,11 +256,11 @@ For the first time, games can communicate with other Game Boys using of a **Game
 This console contains a **256 Byte ROM** stacked in the CPU that is used to bootstrap the cartridge's ROM.
 It doesn't run the game right away however, it first executes a series of checks that **prevent the execution of unauthorised cartridges** and also makes sure the cartridge is **correctly inserted**.
 
-To be able to pass these checks, games had to include a copy of Nintendo's logo (in the form of tiles) in its ROM header [@games-dhole], this way Nintendo could make use of **Copyright and Trademark** laws to control the distribution, *Clever huh?*. The Gameboy ROM also embeds a copy of the logo to be able to compare it.
+To be able to pass these checks, games had to include a copy of Nintendo's logo (in the form of tiles) in its ROM header [@games-dhole], this way Nintendo could make use of **Copyright and Trademark** laws to control the distribution, *Clever huh?*. The Game Boy ROM also embeds a copy of the logo to be able to compare it.
 
 That being said, the boot process is as follows [@anti_piracy-boot]:
 
-1. After the console is switched on, the CPU starts reading at address **0x00** (Gameboy's ROM location).
+1. After the console is switched on, the CPU starts reading at address **0x00** (Game Boy's ROM location).
 2. RAM and Sound are initialised.
 3. Nintendo logo is copied from the cartridge ROM to Display RAM, and then it's drawn at the top edge of the screen. If there is no cartridge inserted, the logo will contain garbage tiles. The same may happen if it's badly inserted.
 4. The logo is scrolled down and the famous *po-ling* sound is played.

@@ -126,23 +126,13 @@ Nie jest to nowa funkcja per se, ale nowatorskie wykorzystanie obecnych możliwo
 
 Dodatkowa szybkość Broadwaya i Hollywood w połączeniu z awangardowymi projektami przyniosła pewne ulepszenia modeli postaci. Może nie są tak znaczące jak w innych generacjach, ale nadal są zauważalne i doceniane.
 
-(ref:brawlmodelcaption) Super Smash Bros Brawl (2008) dla Wii.<br>3,049 trójkątów.
+![Super Smash Bros Brawl (2008) dla Wii.<br>3,049 trójkątów.](mario_melee_gc){.toleft model3d="true"}
 
-(ref:meleemodelcaption) Super Smash Bros. Melee (2001) dla GC.<br>2,494 trójkąty.
+![Super Smash Bros. Melee (2001) dla GC.<br>2,494 trójkąty.](mario_brawl_wii){.toright model3d="true"}
 
-```{r fig.cap=c("(ref:brawlmodelcaption)", "(ref:meleemodelcaption)"), side_by_side=TRUE, fig.pos = "H"}
-model_viewer('mario_melee_gc', class="toleft", "(ref:brawlmodelcaption)")
-model_viewer('mario_brawl_wii', class="toright", "(ref:meleemodelcaption)")
-```
+![Sonic Adventure DX (2003) dla Gamecube.<br>1,985 trójkątów.](tails_dx_gc){.toleft model3d="true"}
 
-(ref:dxmodelcaption) Sonic DX (2003) dla GC.<br>1,985 trójkątów.
-
-(ref:tailsbrawlmodelcaption) Super Smash Bros Brawl (2008) dla Wii.<br>3,644 trójkąty.
-
-```{r fig.cap=c("(ref:dxmodelcaption)", "(ref:tailsbrawlmodelcaption)"), side_by_side=TRUE, fig.pos = "H"}
-model_viewer('tails_dx_gc', class="toleft", "(ref:dxmodelcaption)")
-model_viewer('tails_brawl_wii', class="toright", "(ref:tailsbrawlmodelcaption)")
-```
+![Super Smash Bros Brawl (2008) dla Wii.<br>3,644 trójkąty.](tails_brawl_wii){.toright model3d="true"}
 
 ### Sygnał Wideo
 

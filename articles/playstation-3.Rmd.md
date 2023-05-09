@@ -65,7 +65,7 @@ Well, it turns out the development of the PlayStation 3 predates the PlayStation
 
 To understand Cell's _radical_ proposal, we must first take into account the problems affecting that era (late 90s-early 00s).
 
-Every year, consumers ask for more speed. That's always been the case. However, the last approach used to solve that ([pipeline the datapath](xbox#tab-1-4-cisc-or-risc) and step up the clock frequency) is now failing to scale. Intel's Netburst [can't evolve any further](xbox#p6-and-the-end-of-pentium-numbers) and its promised successor is nowhere to be seen. Similarly, IBM's PowerPC 970/G5 can't deliver its '3 GHz' promise nor their low-power CPU (hence Apple can't ship any laptop carrying their last-gen CPU) [@cpu-no5g]. All in all, it looks like engineers have a new [scalability crisis](playstation#tab-1-1-a-bit-of-history) on their hands.
+Every year, consumers ask for more speed. That's always been the case. However, the last approach used to solve that ([pipeline the datapath](xbox#tab-1-4-cisc-or-risc) and step up the clock frequency) is now failing to scale. Intel's NetBurst [can't evolve any further](xbox#p6-and-the-end-of-pentium-numbers) and its promised successor is nowhere to be seen. Similarly, IBM's PowerPC 970/G5 can't deliver its '3 GHz' promise nor their low-power CPU (hence Apple can't ship any laptop carrying their last-gen CPU) [@cpu-no5g]. All in all, it looks like engineers have a new [scalability crisis](playstation#tab-1-1-a-bit-of-history) on their hands.
 
 So, the focus turns to **distributed computing** [@cpu-mit]. In other words, why obsess with cranking up the performance of a single machine where you could instead have multiple smaller machines distributing their workload? Conversely, this approach is anything but new, considering all of the consoles analysed on this website contain more than one processor. However, it's the development of a 'single processor with multiple cores' that opens up new opportunities for CPU design (which are not necessarily limited to the console market).
 
@@ -75,13 +75,13 @@ Consequently, Cell is part of this new wave of research and development. This ne
 
 ![Example of heterogeneous design.<br>This is has been the de-facto architecture of many powerful consoles to this date.](cpu/paradigm/heterogeneous.png){.tab-float}
 
-![Example of homogenous design.<br>Each core can carry the same tasks as before, but they are not necessary restricted to such task.](cpu/paradigm/homogeneous.png){.tab-float}
+![Example of homogeneous design.<br>Each core can carry the same tasks as before, but they are not necessary restricted to such task.](cpu/paradigm/homogeneous.png){.tab-float}
 
 If you stop to think about it, both the PS1's CPU and the Emotion Engine were already multi-core processors. So why was there so much fanfare about Cell? Well, the previous two chips were composed of one general-purpose core and several application-specific cores (i.e. audio processor, image decompression, etc) mixing different architectures, where the general-purpose core is in charge of commanding the others.
 
-This type of CPU design is called **Heterogeneous computing** and it's been the de-facto choice for building machines that are specialised in a particular set of applications (gaming, in this case). Its counterpart, **Homogenous computing**, is more predominant on the PC market, where CPUs are required to perform a wider range of tasks (and they all have the same priority). Hence, the latter type may house multiple cores, but of the same type.
+This type of CPU design is called **Heterogeneous computing** and it's been the de-facto choice for building machines that are specialised in a particular set of applications (gaming, in this case). Its counterpart, **Homogeneous computing**, is more predominant on the PC market, where CPUs are required to perform a wider range of tasks (and they all have the same priority). Hence, the latter type may house multiple cores, but of the same type.
 
-Back on topic, **Cell combines both models**: there are two types of cores in this CPU, **one general-purpose 'leader' and eight vector 'assistants'**. These vector cores may take up various roles, and in doing so, they fulfil previous tasks that were originally solved by heterogeneous designs, but since Cell's vectors are not limited to a single type of task, their cores provide the flexibility of homogenous computers. All in all, this design is not perfect and will inherit some compromises, but throughout this writing, you'll see the different problems that Cell will attempt to solve and how did it manage to do so.
+Back on topic, **Cell combines both models**: there are two types of cores in this CPU, **one general-purpose 'leader' and eight vector 'assistants'**. These vector cores may take up various roles, and in doing so, they fulfil previous tasks that were originally solved by heterogeneous designs, but since Cell's vectors are not limited to a single type of task, their cores provide the flexibility of homogeneous computers. All in all, this design is not perfect and will inherit some compromises, but throughout this writing, you'll see the different problems that Cell will attempt to solve and how did it manage to do so.
 
 ### A glance at Cell {.tabs-close}
 
@@ -141,7 +141,7 @@ Remember how I divided Cell into different areas before? Well, the same can be d
 
 Having said that, the PowerPC Processor element is _surprisingly_ composed of two parts:
 
-- **PowerPC Processing Unit** (PPU): This is the logical part of the PPE (the 'core'). Don't forget this is not Nintendo's [PPU](nes#graphics)! (even though they are sharing the same letters of the latin alphabet... in the same order...).
+- **PowerPC Processing Unit** (PPU): This is the logical part of the PPE (the 'core'). Don't forget this is not Nintendo's [PPU](nes#graphics)! (even though they are sharing the same letters of the Latin alphabet... in the same order...).
 - **PowerPC Processor Storage Subsystem** (PPSS): The big interface that connects the PPU to the outside world. Furthermore, it provides a whopping **512 KB of L2 cache**.
 
 As you can see, the design of the PPE (and the rest of Cell) is pretty modular, which follows the teachings of RISC design, you'll soon see that the modularity is applied even inside the PPU.
@@ -160,7 +160,7 @@ It's worth mentioning that IBM was one of the authors of the first PowerPC chips
 
 ##### Distinctive features {.tab}
 
-The PPU shares some history with the PowerPC 970 (called _G5_ by Apple), both are descendants of POWER4, a PowerPC predecessor mainly used in workstations and supercomputers. This will become more evident when I show you the modularised execution units soon. This is a radical change compared to the Gamecube's [750-line CPU](gamecube#cpu), which had considerable input from Motorola but was then slightly modified by IBM.
+The PPU shares some history with the PowerPC 970 (called _G5_ by Apple), both are descendants of POWER4, a PowerPC predecessor mainly used in workstations and supercomputers. This will become more evident when I show you the modularised execution units soon. This is a radical change compared to the GameCube's [750-line CPU](gamecube#cpu), which had considerable input from Motorola but was then slightly modified by IBM.
 
 Back on topic, the PPU is a **complete 64-bit processor**. This means:
 
@@ -185,7 +185,7 @@ Instruction issuing is carried out with a **12-stage pipeline**, though in pract
 
 Now for the interesting parts, The IU is **dual-issued**: in some cases, the IU will dispatch up to two instructions at the same time, consequently improving throughput greatly. In practice, however, there are many conditions for this to work, so programmers/compilers are responsible for optimising their routines so their sequence of instructions can take advantage of this function. By the way, dual-issuing has been implemented by other CPUs as well, and the term varies between vendors, so here I used IBM's definition.
 
-Furthermore, to top it off, the IU is also **multi-threaded**, where the unit can execute two different sequences of instructions (called 'threads') at the same time. Behind the scenes, the IU is just alternating between the two threads at each cycle, giving the appearance of multi-threading. For some reason, this behaviour overlaps with what Intel currently defines as **hyper-threading**, it's possible that the latter wasn't coined yet. Nevertheless, IBM's multi-threading mitigates unwanted effects like [pipeline stalls](nintendo-64#tab-3-1-pipeline-stalls), since the CPU will no longer be blocked if one instruction jams up the flow. To accomplish multi-threading, IBM engineers duplicated the internal resources of the IU, which includes general-purpose registers (previously I said there are 32 registers available, that's per thread. In reality, there are 64 in total!), however, resources that don't belong to the PowerPC specification (such as L1 and L2 cache; and the interfaces) are still shared. Thus, the latter group is single-threaded.
+Furthermore, to top it off, the IU is also **multi-threaded**, where the unit can execute two different sequences of instructions (called 'threads') at the same time. Behind the scenes, the IU is just alternating between the two threads at each cycle, giving the appearance of multi-threading. This technique is historically known as **simultaneous multi-threading** (SMT) or _hyper-threading_, as Intel later coined. Nevertheless, IBM's multi-threading mitigates unwanted effects like [pipeline stalls](nintendo-64#tab-3-1-pipeline-stalls), since the CPU will no longer be blocked if one instruction jams up the flow. To accomplish multi-threading, IBM engineers duplicated the internal resources of the IU, which includes general-purpose registers (previously I said there are 32 registers available, that's per thread. In reality, there are 64 in total!), however, resources that don't belong to the PowerPC specification (such as L1 and L2 cache; and the interfaces) are still shared. Thus, the latter group is single-threaded.
 
 All in all, combining dual-threading with dual-issuing, the PPU can execute **up to four instructions per cycle**. Even though this is a 'best-case scenario', it still provides optimisation opportunities that users will ultimately notice in the game's frame rate!
 
@@ -209,7 +209,7 @@ The first one is a traditional **Fixed-Point Integer Unit** (FXU). It carries ou
 
 If you look at the diagram, you'll see that the FXU, LSU and MMU are grouped into a single unit called **Execution Unit** (XU), this is because they share the same register file.
 
-The second unit is way more interesting, the **Vector/Scalar Unit** (VSU) performs operations with floating-point numbers and vectors. It's made up of a **64-bit FPU** (follows the IEEE 754 standard) and a **Vector/SIMD Multimedia Extension unit** (VXU), which executes a set of SIMD instructions called _VMX_. These are 128-bit long encode vectors made of two or three 8/16/32-bit values. You may have heard about this extension before, as 'VMX' is IBM's name to Motorola's 'Altivec' or Apple's 'Velocity Engine' (_long live trademarks_). Conversely, Cell's competitive SIMD capabilities are found in another processor, so don't relax just yet!
+The second unit is way more interesting, the **Vector/Scalar Unit** (VSU) performs operations with floating-point numbers and vectors. It's made up of a **64-bit FPU** (follows the IEEE 754 standard) and a **Vector/SIMD Multimedia Extension unit** (VXU), which executes a set of SIMD instructions called _VMX_. These are 128-bit long encode vectors made of two or three 8/16/32-bit values. You may have heard about this extension before, as 'VMX' is IBM's name to Motorola's 'AltiVec' or Apple's 'Velocity Engine' (_long live trademarks_). Conversely, Cell's competitive SIMD capabilities are found in another processor, so don't relax just yet!
 
 #### Wrapping the PPE up {.tabs-close}
 
@@ -243,9 +243,9 @@ This is as far as it goes for main RAM, but there's more memory elsewhere: the h
 
 ### Inside Cell: The assistants
 
-We've [seen before](playstation-2#the-leader) how Sony always supplies a general-purpose processor (the PPE in this case) accompanied by accelerators to reach acceptable gaming performance (the VPUs and IPU in the case of the PS2; and the GTE and MDEC with the PS1). This is common practice with video console hardware, as general-purpose can perform a wide range of tasks, but are not specialised in anything. Videogame consoles require only a subset of skills (physics, graphics and audio, for instance) so co-processors bring them up to their task.
+We've [seen before](playstation-2#the-leader) how Sony always supplies a general-purpose processor (the PPE in this case) accompanied by accelerators to reach acceptable gaming performance (the VPUs and IPU in the case of the PS2; and the GTE and MDEC with the PS1). This is common practice with video console hardware, as general-purpose can perform a wide range of tasks, but are not specialised in anything. Game consoles require only a subset of skills (physics, graphics and audio, for instance) so co-processors bring them up to their task.
 
-> [The PPE] is a watered-down version to reduce power consumption. So it doesn't have the horsepower that you see in say a Pentium 4 (...) If you take the code that runs today on your Intel or AMD, whatever your power,  and you recompile it on Cell, it'll run today - maybe you have to change the library or two, but it'll run today here, no problem. But it'll be about 60% slower, 50% slower and so people say "oh my god! this cell processor's terrible!" **but that's because you're only using that one piece** [@cpu-mit].
+> [The PPE] is a watered-down version to reduce power consumption. So it doesn't have the horsepower that you see in say a Pentium 4 (...) If you take the code that runs today on your Intel or AMD, whatever your power,  and you recompile it on Cell, it'll run today - maybe you have to change the library or two, but it'll run today here, no problem. But it'll be about 60% slower, 50% slower and so people say "Oh my god! This cell processor's terrible!" **but that's because you're only using that one piece** [@cpu-mit].
 >
 > -- <cite>Dr. Michael Perrone, manager of the IBM TJ Watson Research Center's Cell Solutions Department</cite>
 
@@ -377,17 +377,17 @@ I will now perform the same level of analysis previously done with Cell, this ti
 
 ### Overview
 
-It's been five years since Nvidia debuted the [Geforce3/NV30 lineup](xbox#graphics) in 2001, and by then the arena was battled by strong players like 3dfx, S3 and Artx/Ati. Though in subsequent years, the number of companies slowly reduced to the point that by 2006, only Ati and Nvidia remained as the flagship video card suppliers in the PC market.
+It's been five years since Nvidia debuted the [GeForce3/NV30 lineup](xbox#graphics) in 2001, and by then the arena was battled by strong players like 3dfx, S3 and ArtX/ATI. Though in subsequent years, the number of companies slowly reduced to the point that by 2006, only ATI and Nvidia remained as the flagship video card suppliers in the PC market.
 
 ![RSX chip next to Cell.](rsx.jpg){.open-float}
 
-The RSX inherits existing Nvidia technology, it's reported to be based on the 7800 GTX model sold for PCs, which implements the **Geforce7** (or NV47) architecture [@graphics-nvarch], also named 'Curie'.
+The RSX inherits existing Nvidia technology, it's reported to be based on the 7800 GTX model sold for PCs, which implements the **GeForce7** (or NV47) architecture [@graphics-nvarch], also named 'Curie'.
 
-In my [previous Xbox analysis](xbox#graphics), I talked about the Geforce3 and their debuting pixel shaders, so what has changed since then? There have some been ups and downs, but mostly incremental changes, so nothing too groundbreaking compared to Geforce3's pixel shaders.
+In my [previous Xbox analysis](xbox#graphics), I talked about the GeForce3 and their debuting pixel shaders, so what has changed since then? There have some been ups and downs, but mostly incremental changes, so nothing too groundbreaking compared to GeForce3's pixel shaders.
 
 `r close_float_group(with_markdown = TRUE)`
 
-On the other side, while the 7800 GTX relies on the PCI-express protocol to communicate with the CPU, the RSX has been remodelled to work with a proprietary protocol called **Flex I/O** [@graphics-gschwind], a distinct interface within Cell designed to connect to neighbouring chips. Flex I/O operates in two modes:
+On the other side, while the 7800 GTX relies on the PCI Express protocol to communicate with the CPU, the RSX has been remodelled to work with a proprietary protocol called **Flex I/O** [@graphics-gschwind], a distinct interface within Cell designed to connect to neighbouring chips. Flex I/O operates in two modes:
 
 - **BIC** mode for connecting other Cell processors (to be used in multi-processor environments).
 - The slower **IOIF** mode for connecting up to two peripherals, a 'fast' one and a 'slow' one.
@@ -414,7 +414,7 @@ Let's now take a look at how RSX processes and renders 3D scenes.
 
 ![Pipeline overview of the RSX.](gpu/pipeline.png)
 
-Its pipeline model is very similar to the [Geforce3](xbox#architecture-and-design), but super-charged with five years of technological progress. So I suggest checking out that article beforehand since this one will focus on the new features, I also recommend reading about the [PlayStation Portable's GPU](playstation-portable#functionality) because a lot of new developments and needs overlap with that chip. That being said, let's see what we've got here... [@graphics-marcelina]
+Its pipeline model is very similar to the [GeForce3](xbox#architecture-and-design), but super-charged with five years of technological progress. So I suggest checking out that article beforehand since this one will focus on the new features, I also recommend reading about the [PlayStation Portable's GPU](playstation-portable#functionality) because a lot of new developments and needs overlap with that chip. That being said, let's see what we've got here... [@graphics-marcelina]
 
 #### Commands {.tabs .active}
 
@@ -429,7 +429,7 @@ The Host is responsible for reading commands from memory (either at local or mai
 - **Puller**: as the name indicates, it pulls commands from the FIFO cache whenever RSX is ready to render and sends them to the next unit.
 - **Graphics FIFO**: stores up to eight commands that will be read by the Graphics Front End.
 
-The Graphics Front end then reads from the Graphics FIFO and signals the required units inside RSX to compute the operations. If you remember, this is equivalent to the 'pfifo' in the Geforce3.
+The Graphics Front end then reads from the Graphics FIFO and signals the required units inside RSX to compute the operations. If you remember, this is equivalent to the 'pfifo' in the GeForce3.
 
 As you can see, commands and data pass through many buffers and caches before reaching the final destination. This is intentional, as it prevents stalling the pipeline due to different units and buses operating at different speeds. So, cached memory takes advantage of fast bandwidth whenever it's possible.
 
@@ -437,11 +437,11 @@ As you can see, commands and data pass through many buffers and caches before re
 
 ![Diagram of the vertex stage process, notice that the Vertex Processing Engines (VPE) are bypassed if the vertices don't need further processing by the vertex shader.](gpu/vertex.png){.tab-float}
 
-The next unit is the **Geometry Processing** block, an evolution of the 'Vertex Block' in the Geforce3 that performs vertex transformation. It's still programmable with the use of **vertex shaders**, which is now a widely adopted feature in the graphics industry. Furthermore, the instruction limit has been increased to 512 instructions minimum (originally, 136 was the limit!).
+The next unit is the **Geometry Processing** block, an evolution of the 'Vertex Block' in the GeForce3 that performs vertex transformation. It's still programmable with the use of **vertex shaders**, which is now a widely adopted feature in the graphics industry. Furthermore, the instruction limit has been increased to 512 instructions minimum (originally, 136 was the limit!).
 
-The block that executes shaders is called **Vertex Processing Engine** (VPE) and it can process **one vertex per clock cycle**. As if wasn't enough, there are **eight VPEs working in parallel**. Since the Geforce6 series, Nvidia has aligned its shader programming interface to a model called 'Vertex Shader Model 3' or 'vs_3_0_', a standard developed by Microsoft for use with their DirectX 9.0c libraries [@graphics-vs3]. The VPEs also support the non-proprietary OpenGL 2.1 model [@graphics-kilgard] and Nvidia's own variant (Cg) [@graphics-vp40].
+The block that executes shaders is called **Vertex Processing Engine** (VPE) and it can process **one vertex per clock cycle**. As if wasn't enough, there are **eight VPEs working in parallel**. Since the GeForce6 series, Nvidia has aligned its shader programming interface to a model called 'Vertex Shader Model 3' or 'vs_3_0_', a standard developed by Microsoft for use with their DirectX 9.0c libraries [@graphics-vs3]. The VPEs also support the non-proprietary OpenGL 2.1 model [@graphics-kilgard] and Nvidia's own variant (Cg) [@graphics-vp40].
 
-Compared to the Geforce3, we've got new instructions available for branching and subroutine calls. Also, the VPE contains four texture samplers that pull texture colours during this stage, in case programmers want to use this unit to perform some operations on them.
+Compared to the GeForce3, we've got new instructions available for branching and subroutine calls. Also, the VPE contains four texture samplers that pull texture colours during this stage, in case programmers want to use this unit to perform some operations on them.
 
 The Geometry Processing block works like this:
 
@@ -469,7 +469,7 @@ A separate unit is used for rasterizing 2D objects (sprites), although this one 
 
 Next in line we've got the **Fragment Shader & Texture** block, this is a programmable unit (through the use of 'fragment programs' or 'shader') that applies texture mapping and other effects.
 
-Being an advanced successor of Geforce3's [texture units](xbox#tab-2-3-pixel), the new block contains **six fragment units** (also called 'pipes'), each one process 2x2 texels (named 'quads'). To organise multiple units working concurrently, another sub-block called **Shader Quad Distributor** (SQD) is placed to dispatch quads to each fragment unit. Afterwards, each fragment unit loads the fragment program.
+Being an advanced successor of GeForce3's [texture units](xbox#tab-2-3-pixel), the new block contains **six fragment units** (also called 'pipes'), each one process 2x2 texels (named 'quads'). To organise multiple units working concurrently, another sub-block called **Shader Quad Distributor** (SQD) is placed to dispatch quads to each fragment unit. Afterwards, each fragment unit loads the fragment program.
 
 To compute operations, each pipe contains the _enormous_ amount of **1536 128-bit registers**. On top of all that, each pipe can process multiple quads in parallel (**multi-threading**), though the number of quads processed in parallel depends on the number of registers allocated to the fragment program (`no. threads = 1536 ÷ no. registers reserved by shader`). In global terms, up to 460 quads can be processed in parallel. Furthermore, up to three fragment pipes can process two instructions at the same time (**dual-issuing**, like the PPU) as long as the instructions don't depend on each other.
 
@@ -785,7 +785,7 @@ This section encompasses topics related to game development, distribution and se
 
 ### Development ecosystem
 
-As this console amalgamates technology from various companies, including products already commercialised in other markets (i.e. Nvidia's Geforce7 GPU line for PCs), developers were drowned with many different tools to develop their software. Note that this doesn't imply development was easy, but it's something to appreciate compared to the [assembly days](master-system#games).
+As this console amalgamates technology from various companies, including products already commercialised in other markets (i.e. Nvidia's GeForce7 GPU line for PCs), developers were drowned with many different tools to develop their software. Note that this doesn't imply development was easy, but it's something to appreciate compared to the [assembly days](master-system#games).
 
 To program Cell, IBM and Sony shipped separate development suites, IBM ones targeted non-restrictive environments like Linux (and OtherOS), while Sony's tools explicitly targeted the PS3's GameOS as the only execution environment.
 
@@ -893,7 +893,7 @@ The exploit requires two materials: A Linux installation running under OtherOS (
 
 In summary, Hotz discovered that under Linux/OtherOS, programs can request the Hypervisor many blocks of memory pointing to the same physical address, but if the program deallocates them while there's an external interference in the XDR bus (due to a glitcher sending electrical pulses), the deallocation process ends half-done [@anti_piracy-lv1xploit_summary]. As a consequence, the hypervisor's hash table (residing in RAM) still contains an entry of the allocated addresses, but at the same time, it thinks that that space has been freed. Hotz' exploit then proceeds to request more blocks so the Hypervisor extends its table with more entries, and the process continues until an entry of the hash table overlaps the memory location of the block that was supposed to deallocate. Since the hash table kept the old entry granting the user access to that address, the hypervisor ends up giving the user access to modify a hash table entry! Thus, the exploit amends the entry to extend access to all memory space.
 
-While this exploit required a Linux-running-under-OtherOS environment, it was a huge step towards further reverse-engineering and research projects, since hackers were now able to investigate critical areas of the system that were originally unaccessible. It's worth mentioning that, during the same time, Sony released software update `3.21` removing OtherOS. You would think that this would deter hackers from continuing their work, but it just gave them more reasons to speed it up.
+While this exploit required a Linux-running-under-OtherOS environment, it was a huge step towards further reverse-engineering and research projects, since hackers were now able to investigate critical areas of the system that were originally inaccessible. It's worth mentioning that, during the same time, Sony released software update `3.21` removing OtherOS. You would think that this would deter hackers from continuing their work, but it just gave them more reasons to speed it up.
 
 #### PSJailbreak {.tab}
 
@@ -905,7 +905,7 @@ Behind the scenes, this dongle carries out a huge amount of work, which can be d
 
 1. The **USB exploit**: Once the console is turned on, the dongle tricks the system into thinking it's connected to a six-port USB hub, and then performs a complex sequence of USB commands until it reaches a **heap overflow** and escalates access to the PS3's Kernel (level 2), it then proceeds to execute a payload.
 2. The **Payload**: this is another complex package that patches the original shell to enable hidden functions only available on debug units (i.e. the 'Install PKG' entry), disable signature verification (to load any arbitrary module/package); and redirect Blu-ray commands to the hard drive instead (for loading games from the hard drive). The fact this program can alter so much from the kernel level makes you wonder what's the hypervisor good at?
-    - To complement this, I was later told by M4j0r: "Interestingly it doesn't even exploit Sonys code, this part of lv2 was written by Logitech and the developers of that exploit might had access to the source code (due to the 2008 hack)." [@operating_system-psxplace].
+    - To complement this, I was later told by M4j0r: "Interestingly it doesn't even exploit Sony's code, this part of lv2 was written by Logitech and the developers of that exploit might had access to the source code (due to the 2008 hack)." [@operating_system-psxplace].
 
 This product was subsequently reversed-engineered by other communities and shortly after, open-source clones appeared (i.e. PS Groove) which removed many restrictions (for instance, users could now unplug the device after the exploit finishes). Some forks were even deployed on a Texas Instruments calculator [@anti_piracy-tijb]. In any case, Sony acted quickly with software update `3.42` to remove this gold mine [@anti_piracy-ps3history], although the door for Homebrew was already opened.
 
@@ -970,7 +970,7 @@ After a long waiting period for users that missed the window to install a CFW, i
 
 PS3Xploit's main payload replicates the job of a hardware downgrader (patching CoreOS files) entirely by software, it works as follows:
 
-1. The starting point is the XMB's internet browser, built on top of Webkit. PS3Xploit uses Javascript to gain **arbitrary code execution within the system's userspace** (and outside Javascript's environment). To kickstart this, users only have to open XMB's native web browser, enter an URL pointing to the PS3Xploit's host an let it do its job.
+1. The starting point is the XMB's internet browser, built on top of WebKit. PS3Xploit uses JavaScript to gain **arbitrary code execution within the system's userspace** (and outside JavaScript's environment). To kickstart this, users only have to open XMB's native web browser, enter an URL pointing to the PS3Xploit's host an let it do its job.
 2. It so happens the kernel provides system calls that can be used to **overwrite the operating system's files in Flash memory**. On top of this, the Visual Shell (XMB) and its plugins store routines in memory that make use of those calls.
 3. PS3Xploit can't trigger those system calls directly due to the Hypervisor's 'no-execute' protection, preventing the exploit from loading new code in userland. However, it can find a way to overwrite Flash memory by 'borrowing' Visual Shell's routines.
 4. Consequently, PS3Xploit proceeds to modify Webkit's execution stack to redirect execution to Visual Shell's routines. This type of technique (corrupting the stack to deviate execution to other code residing in memory) is called **Return Oriented Programming** (ROP) and it's very popular in the InfoSec genre. One way of mitigating this is by implementing **Address space layout randomisation** (ASLR), which makes it difficult to guess the location of the routines (called _gadgets_) but, as you can guess, Sony's hypervisor lacks of ASLR.

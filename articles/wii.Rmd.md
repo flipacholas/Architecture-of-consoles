@@ -29,7 +29,7 @@ Even though the Wii lacked the state of art graphics its competitors enjoyed, ne
 
 Here we will analyse every aspect of this console, from its already-familiar hardware to its overlooked security system, including its major flaws.
 
-Quick Note: Some sections overlap part of the previous article about the [Gamecube](gamecube), so instead of repeating the information I will just put a link to the respective part of the article.
+Quick Note: Some sections overlap part of the previous article about the [GameCube](gamecube), so instead of repeating the information I will just put a link to the respective part of the article.
 
 ```{r results="asis"}
 supporting_imagery()
@@ -66,7 +66,7 @@ After having reviewed [Gekko](gamecube#cpu), I'm afraid there aren't many change
 
 ### What about memory?
 
-This one is an interesting bit, the old Gamecube memory layout has been re-arranged and enhanced with the following changes:
+This one is an interesting bit, the old GameCube memory layout has been re-arranged and enhanced with the following changes:
 
 - Splash (24 MB of 1T-SRAM) now resides inside the Hollywood SoC (explained later) and it is now called **MEM1** [@operating_system-memory].
 - ARAM (16 MB of serial SDRAM) is long **gone**, however...
@@ -105,7 +105,7 @@ Super Mario Galaxy (2007).
 
 :::
 
-Gamecube games lacked proper support for widescreen displays (that is, composing 16:9 frames, departing from the traditional 4:3). Nevertheless, Flipper's GPU was already able to do so and a handful of games provided options to activate it, although this was still considered an exclusive feature.
+GameCube games lacked proper support for widescreen displays (that is, composing 16:9 frames, departing from the traditional 4:3). Nevertheless, Flipper's GPU was already able to do so and a handful of games provided options to activate it, although this was still considered an exclusive feature.
 
 Be as it may, the framebuffer remains identical and the video encoder still outputs a PAL or NTSC-compliant frame, so this 'widescreen' feature is instead accomplished by **widening the field of view** in the projection matrix. The result is a scene rendered with a larger view angle that now appears squashed horizontally. However, the widescreen TV also plays a part in this process, as it will subsequently stretch the 4:3 frame (coming from the console) and the displayed image will thus look *more or less* in the correct ratio. If you are curious, this technique is not new, it's been used in film projection and it's referred to as **anamorphic widescreen**. Also, it's amusing how SNES developers had to deal with the [opposite effect](super-nintendo#display-modalities).
 
@@ -115,19 +115,19 @@ Back to the point, the Wii standardised this feature by allowing a 'widescreen m
 
 ![Super Mario Galaxy (2007).<br>You can pick up the stars by pointing at them.](mario/mario_galaxy.png){.tab-float}
 
-The new and disruptive controller design meant new types of interactions on Wii games. Since the WiiMote enabled users to point at the screen, some games like *Super Mario Galaxy* or *The Legend of Zelda: Twilight Princess* used this feature to allow the player to interact with the scenery.
+The new and disruptive controller design meant new types of interactions on Wii games. Since the Wiimote enabled users to point at the screen, some games like *Super Mario Galaxy* or *The Legend of Zelda: Twilight Princess* used this feature to allow the player to interact with the scenery.
 
 In the report titled _Myth Debugging: Is the Wii More Demanding to Emulate than the GameCube?_ [@graphics-dolphin], developers of the Dolphin emulator explain that games like Super Mario Galaxy and other first-person shooters rely on the [embedded z-buffer](gamecube#tab-1-4-render) to identify the object the Wiimote is pointing at and/or check how far the object is from the Wiimote cursor.
 
-This is not a new feature per se, but a novel use of current capabilities. Gamecube games didn't depend on a multi-use controller with pointer functionality. Now, players can control the character and point at the screen at the same time.
+This is not a new feature per se, but a novel use of current capabilities. GameCube games didn't depend on a multi-use controller with pointer functionality. Now, players can control the character and point at the screen at the same time.
 
 ### Updated Designs {.tabs-close}
 
 The extra megahertz of Broadway and Hollywood, combined with avant-garde designs, brought some improvements to character models. It may not be as significant as other generations, but it's still noticeable and appreciated.
 
-![Super Smash Bros Brawl (2008) for the Wii.<br>3,049 triangles.](mario_melee_gc){.toleft model3d="true"}
+![Super Smash Bros. Melee (2001) for the GC.<br>2,494 triangles.](mario_melee_gc){.toleft model3d="true"}
 
-![Super Smash Bros. Melee (2001) for the GC.<br>2,494 triangles.](mario_brawl_wii){.toright model3d="true"}
+![Super Smash Bros Brawl (2008) for the Wii.<br>3,049 triangles.](mario_brawl_wii){.toright model3d="true"}
 
 ![Sonic DX (2003) for the GC.<br>1,985 triangles.](tails_dx_gc){.toleft model3d="true"}
 
@@ -137,13 +137,13 @@ The extra megahertz of Broadway and Hollywood, combined with avant-garde designs
 
 Surprisingly enough, this console doesn't use the old [Multi Out](super-nintendo.md#a-convenient-video-out) port anymore, but a variation of it called **AV Multi Out** (so much for a name) with a slightly different shape. This one carries all of the previous signals plus **YPbPr** (known as 'component') [@graphics-video]. It also includes some data lines that the system uses to identify the type of cable plugged in.
 
-Unfortunately, this medium inherits the same [limitations](gamecube.md#connections) of the Gamecube. That is, no S-Video on PAL systems and no RGB on NTSC ones. Also, RGB can only broadcast interlaced signals (no progressive). On the other side, Nintendo finally shipped a SCART cable (as an extra accessory) which finally makes use of the RGB lines (remember they were ignored since the times of the [SNES](super-nintendo#a-convenient-video-out)).
+Unfortunately, this medium inherits the same [limitations](gamecube.md#connections) of the GameCube. That is, no S-Video on PAL systems and no RGB on NTSC ones. Also, RGB can only broadcast interlaced signals (no progressive). On the other side, Nintendo finally shipped a SCART cable (as an extra accessory) which finally makes use of the RGB lines (remember they were ignored since the times of the [SNES](super-nintendo#a-convenient-video-out)).
 
 ## Audio
 
-The Wii includes the same **Macronix DSP** found in the [Gamecube](gamecube#audio), you can take a look at that article for the detailed analysis.
+The Wii includes the same **Macronix DSP** found in the [GameCube](gamecube#audio), you can take a look at that article for the detailed analysis.
 
-Compared to the Gamecube, the only major change is that, since ARAM is gone, either MEM1 or MEM2 can be used as audio buffer.
+Compared to the GameCube, the only major change is that, since ARAM is gone, either MEM1 or MEM2 can be used as audio buffer.
 
 ## I/O
 
@@ -180,21 +180,21 @@ Having said that, Nintendo wired up the I/O in a way that makes use of two AMBA 
 
 - The **AHB Bus** (AMBA High-performance Bus): As the name indicates, it's designed for high-speed communication. Here we find:
   - The **NAND** Interface: Accesses 512 MB of NAND Flash that stores the operating system and user data.
-  - Two **Secure Digital Input Output** (SDIO) interfaces: SDIO is a protocol mainly designed for accessing an SD card, but in this case, a second one is used to control the Wifi module (802.11 b/g) as well.
+  - Two **Secure Digital Input Output** (SDIO) interfaces: SDIO is a protocol mainly designed for accessing an SD card, but in this case, a second one is used to control the Wi-Fi module (802.11 b/g) as well.
   - A **USB 2.0** Controller: Interfaces two external USB sockets and an internal Bluetooth 2.0 daughtercard.
   - A **SHA-1** and **AES** module: Reserved for security tasks (more details in the 'Anti-Piracy' section).
 - The **APB Bus** (Advanced Peripheral Bus): This one is restricted to low-performance components, including:
   - The **Drive interface**: Connects the disc reader.
-  - The **Serial interface**: Connects the Gamecube controllers.
-  - The **External Interface** (EXI): We've seen this one [before](gamecube#internal-io). It communicates with other Gamecube hardware, used for backwards compatibility.
+  - The **Serial interface**: Connects the GameCube controllers.
+  - The **External Interface** (EXI): We've seen this one [before](gamecube#internal-io). It communicates with other GameCube hardware, used for backwards compatibility.
 
 ### Maintaining compatibility
 
-![Wii using Gamecube equipment [@photography-amos].](gamecube-mode.png){.open-float .no-borders}
+![Wii using GameCube equipment [@photography-amos].](gamecube-mode.png){.open-float .no-borders}
 
-The Wii maintains full backwards compatibility with Gamecube games even though the I/O system has changed drastically. This is because Starlet can be reprogrammed when a Gamecube game is executed to virtually re-map the I/O, just like the original Gamecube would expect to find.
+The Wii maintains full backwards compatibility with GameCube games even though the I/O system has changed drastically. This is because Starlet can be reprogrammed when a GameCube game is executed to virtually re-map the I/O, just like the original GameCube would expect to find.
 
-Additionally, the Real-Time Clock chip includes some spare ROM that stores bitmap fonts (the Latin and Japanese set) used by Gamecube games; and SRAM to save [IPL-related](gamecube#operating-system) settings.
+Additionally, the Real-Time Clock chip includes some spare ROM that stores bitmap fonts (the Latin and Japanese set) used by GameCube games; and SRAM to save [IPL-related](gamecube#operating-system) settings.
 
 `r close_float_group(with_markdown = TRUE)`
 
@@ -221,7 +221,7 @@ The update system of IOS **is a bit tricky**: Updated IOS versions are not insta
 
 Nintendo often released IOS updates to improve hardware support (which was necessary when a new accessory was shipped). There's only **one exception** when IOS updates actually replace older ones: When a specific version was discovered to have an exploitable vulnerability. This was only for security reasons.
 
-When a Gamecube game is inserted, a different thing happens: Startlet boots a **MIOS** instead. This IOS variant just orders Starlet to emulate the original [IPL](gamecube#operating-system).
+When a GameCube game is inserted, a different thing happens: Starlet boots a **MIOS** instead. This IOS variant just orders Starlet to emulate the original [IPL](gamecube#operating-system).
 
 ### Broadway's OS
 
@@ -235,7 +235,7 @@ This one is commonly known as the **System Menu** and effectively runs on the ma
 
 Compared to IOS, I wouldn't consider this a 'fully fledged' OS, but more like a 'program' that allows the user to perform the following operations:
 
-- **Start the Wii/Gamecube game**: Only if there is a valid one inserted.
+- **Start the Wii/GameCube game**: Only if there is a valid one inserted.
 - **Change console settings**: Including time, date, video mode or sensor bar location, among others.
 - **Run apps**: One of the novelties of this console is the ability to install small Wii games (called 'WiiWare'), retro games ('Virtual Console' games) or just convenient applications (such as an internet browser). Nintendo called these **channels**, but they are also referred to as **titles** by the OS.
   - Users can download/buy channels through a pre-installed channel called **Wii Shop Channel**.
@@ -249,7 +249,7 @@ Any program running on Broadway (including the System Menu) relies on a specific
 
 ### Update medium
 
-Nintendo refers to them as **System updates**. They contain the two OSs in the same package and use ordinal numbers for versioning. The last version known is `4.3E`, released in June 2010.
+Nintendo refers to them as **System updates**. They contain the two OSes in the same package and use ordinal numbers for versioning. The last version known is `4.3E`, released in June 2010.
 
 System update packages can be fetched from Nintendo's Servers or game discs. Users can manually check for updates using the System Menu. Updates are forced if a game requires a specific version of IOS that is not installed (and the disc happens to contain the required packages).
 
@@ -301,7 +301,7 @@ Considering all the software advancements of this console, it may surprise you t
 
 ![This screen has to be included as well.](ingame/strap_warning.png){.tabs-nested-last title="Reminder"}
 
-Having said that, there are certain features across different games that look awfully identical, somehow. For instance, do you remember the famous **HOME Menu**? Pressing the 'HOME' button on the WiiMote will trigger a screen popup in-game, enabling the user to return to the System menu without the need to reboot the console. Considering the OS does not provide this feature, how did every single game manage to come up with the same graphical interface?
+Having said that, there are certain features across different games that look awfully identical, somehow. For instance, do you remember the famous **HOME Menu**? Pressing the 'HOME' button on the Wiimote will trigger a screen popup in-game, enabling the user to return to the System menu without the need to reboot the console. Considering the OS does not provide this feature, how did every single game manage to come up with the same graphical interface?
 
 The answer is simple, Nintendo included in their SDK some **mandatory libraries** that games have to embed. *Lo and behold*, one of them draws that screen. Furthermore, this is the reason you'll find that only homebrew apps feature 'original' designs for the home menu.
 
@@ -341,7 +341,7 @@ Matsushita released further revisions of this drive obfuscating the debug interf
 
 It's worth mentioning that the main benefit of modchips was plain piracy, as the disc content is still encrypted, so more research and tools were needed to run custom code.
 
-Gamecube homebrew, on the other hand, was already possible to execute by following [previous exploits](gamecube#tab-5-3-honourable-mention) discovered on the predecessor.
+GameCube homebrew, on the other hand, was already possible to execute by following [previous exploits](gamecube#tab-5-3-honourable-mention) discovered on the predecessor.
 
 ### System encryption
 
@@ -398,7 +398,7 @@ This system also contains a pair of **ECC private and public keys**. Elliptic Cu
 
 The ECC key is signed by *yet another* RSA public key called **MS**, which will allow Starlet to trust the ECC key.
 
-The last key used by this console is the **HMAC key**, which uses another algorithm that combines SHA1 hashes and HMAC. During the boot process, Starlet checks that NAND hasn't been altered by third-party hardware. To do that, it computes the SHA1 hash of NAND and compares it against a hardwired hash to check if they match. In addition to that, the saved hash is signed using the HMAC key to make sure it's authentic.
+The last key used by this console is the **HMAC key**, which uses another algorithm that combines SHA-1 hashes and HMAC. During the boot process, Starlet checks that NAND hasn't been altered by third-party hardware. To do that, it computes the SHA-1 hash of NAND and compares it against a hardwired hash to check if they match. In addition to that, the saved hash is signed using the HMAC key to make sure it's authentic.
 
 As a final note, the HMAC key is stored in SEEPROM (outside Starlet), not in OTP.
 
@@ -412,7 +412,7 @@ Let's start with AES keys, the algorithm may be hard to crack, but if the keys a
 
 ![Starlet's security diagram.](encryption.png){.open-float}
 
-Well, a group of hackers called **Team Twiizers** found out that the lack of signatures on Gamecube mode may be a promising attack surface [@cpu-ccc]. They not only discovered that **3/4 of that GDDR3 RAM were not cleared** after running a GC program, but also that by bridging some address points on the motherboard (using a pair of tweezers, nonetheless) they could swap the selected banks of GDDR3 RAM, allowing access to restricted areas. Lo and behold, the AES keys were found residing in there.
+Well, a group of hackers called **Team Twiizers** found out that the lack of signatures on GameCube mode may be a promising attack surface [@cpu-ccc]. They not only discovered that **3/4 of that GDDR3 RAM were not cleared** after running a GC program, but also that by bridging some address points on the motherboard (using a pair of tweezers, nonetheless) they could swap the selected banks of GDDR3 RAM, allowing access to restricted areas. Lo and behold, the AES keys were found residing in there.
 
 `r close_float_group(with_markdown = TRUE)`
 
@@ -454,7 +454,7 @@ The _unofficial_ Homebrew channel (2008).<br>Probably the most user-friendly hac
 
 Thus, TT did it again. They carefully forged an installable channel that could load arbitrary programs from the SD card. If this channel were to be installed before Nintendo had taken action to mitigate the security issues, then the Wii would enjoy homebrew permanently (independently of Nintendo patching their signature flaws in the future, which they did).
 
-**Homebrew Channel** was the result of this, this title allowed any user to kickstart homebrew programs that benefitted from full control of this system (with all the implications that this means).
+**Homebrew Channel** was the result of this, this title allowed any user to kickstart homebrew programs that benefited from full control of this system (with all the implications that this means).
 
 `r close_float_group(with_markdown = TRUE)`
 
@@ -482,7 +482,7 @@ I guess there's no arguing about the impact the hacking scene made on this syste
 
 Happy new year 2020!
 
-This one took me quite a while, I naively predicted that since most of the content was already done for the Gamecube, I would just have to write short paragraphs and add links here and there...
+This one took me quite a while, I naively predicted that since most of the content was already done for the GameCube, I would just have to write short paragraphs and add links here and there...
 
 I think it turned out more informational than I expected, so I hope you found it a nice read.
 

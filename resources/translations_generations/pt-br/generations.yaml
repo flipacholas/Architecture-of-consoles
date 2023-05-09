@@ -2,19 +2,19 @@
 - 
   id: 3
   ordinal: 3ª
-  description: Conhecidos como consoles '8 bits', esses aparelhos trouxeram gráficos mais sofisticados e áudio melhor que seus antecessores. Afinal, um grande colapso do mercado havia acabado de ocorrer e novos padrões tinham que ser estabelecidos.
-  gpu: Mapas de tile manipuláveis e maiores paletas de cores
+  description: Conhecidos como consoles "8 bits", esses aparelhos trouxeram gráficos mais sofisticados e áudio melhor que seus antecessores. Afinal, um grande colapso do mercado havia acabado de ocorrer e novos padrões tinham que ser estabelecidos.
+  gpu: '"Tilemaps" manipuláveis e paletas de cores maiores'
 - 
   id: 4
   ordinal: 4ª
-  description: DMA, interruptores horizontais, vários modos... Estes são alguns exemplos dos novos conceitos que trouxeram a nova geração de 16 bits, abrindo as portas a novos gêneros dos jogos.
+  description: DMA, interrupções horizontais, vários modos... Estes são alguns exemplos dos novos conceitos que trouxeram a nova geração "16 bits", abrindo as portas para novos gêneros de jogos.
   cpu: Instruções de multiplicação e divisão, DMA e duplo processamento
-  gpu: Transformação afim e interrupções horizontais
+  gpu: Transformações afim e interrupções horizontais
 - 
   id: 5
   ordinal: 5ª
-  description: Jogos 3D se tornaram uma necessidade, mas o 'como' ainda não está claro. A resposta? Cada empresa apresentou sua própria visão diferente.
-  cpu: Estágios de Pipeline e cache L1
+  description: Jogos 3D se tornaram uma necessidade, mas o "como" ainda não está claro. A resposta? Cada empresa apresentou sua própria visão.
+  cpu: Segmentação de Instruções e cache L1
   gpu: Pipeline de vértices programável, Z-buffering e correção de perspectiva
 - 
   id: 6
@@ -25,10 +25,10 @@
 - 
   id: 7
   ordinal: 7ª
-  description: Consoles evoluíram para supercomputadores e centros multimídia. Estas máquinas são agora mais capazes do que simplesmente jogar jogos, e é por isso que a segurança é agora um fator crítico.
-  cpu: Paralelismo ao nível de thread e arquiteturas multi-núcleo simétricas
-  gpu: Modelo unificado de sombreamento e renderização HDR
+  description: Consoles evoluíram para supercomputadores e centros multimídia. Agora estas máquinas são capazes de mais do que apenas rodar jogos, e é por isso que a segurança agora é um fator crítico.
+  cpu: Paralelismo a nível de thread e arquiteturas multinúcleo simétricas
+  gpu: Modelo de sombreador (shader) unificado e renderização HDR
 - 
   id: 8
   ordinal: 8ª
-  description: O mercado de entretenimento agora foi conquistado por smartphones baratos e tablets. As capacidades de redes sociais tornaram-se prioridade número um de todo periférico. É hora das empresas tradicionais de video-game renovarem seu status quo, e é melhor que o façam rápido.
+  description: O mercado de entretenimento agora foi conquistado por smartphones e tablets baratos. Integrações com redes sociais tornaram-se a prioridade número um de todo periférico. É hora das empresas tradicionais de videogame renovarem seu status quo, e é melhor que o façam rápido.

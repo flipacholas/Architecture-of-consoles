@@ -65,7 +65,7 @@ Data transfers are done in batches of 128-bits, but here is the interesting part
 
 ### Preventing past mishaps
 
-Whether we want it or not, with the amount of traffic happening inside the Emotion Engine, this design will eventually suffer the consequences of the **Unified memory architecture** or 'UMA'. That is... multiple independent components trying to access main memory at the same time, causing congestion. Well, to correct these issues, Sony alleviated the constant need for memory by:
+Whether we want it or not, with the amount of traffic happening inside the Emotion Engine, this design will eventually suffer the consequences of the **Unified memory architecture** or 'UMA'. That is: multiple independent components trying to access main memory at the same time, causing congestion. Well, to correct these issues, Sony alleviated the constant need for memory by:
 
 - Wrapping their processors with **lots of cache**. Thus, only requiring access to main memory if it's absolutely necessary.
     - 99% of cache/scratchpad mentions in this article will be for this reason.
@@ -139,7 +139,7 @@ Compared to using explicit data, procedural content is ideal for parallelised ta
 
 - **Complex surfaces** (e.g. spheres and wheels).
 - **World rendering** (e.g terrains, particles, trees).
-- **Bezier curves** (a very popular equation in computer graphics which is used to draw curves), these are turned into a **Bezier patch** (explicit geometry) and support different degrees of precision based on the level of detail required.
+- **Bézier curves** (a very popular equation in computer graphics which is used to draw curves), these are turned into a **Bézier patch** (explicit geometry) and support different degrees of precision based on the level of detail required.
 
 On the other side, procedural content may struggle with animations and, if the algorithm is too complex, the VPU might not generate the geometry at the required time.
 
@@ -197,9 +197,9 @@ The Emotion Engine kickstarts the Graphics Synthesizer by filling its embedded D
 
 Additionally, the GS will preprocess some values that will be needed for later calculations. Most notably, the **Digital Differential Algorithm** value, which will be used for interpolations during drawing.
 
-#### Rasterization {.tab}
+#### Rasterisation {.tab}
 
-![Rasterizing stage.](gs_pipeline/Rasterizing.png){.tab-float}
+![Rasterising stage.](gs_pipeline/Rasterizing.png){.tab-float}
 
 Using the previous values calculated, the renderer generates pixels from the primitives. This unit can generate 8 pixels (with textures) or 16 pixels (without textures) concurrently, each pixel entry contains the following properties calculated:
 
@@ -208,7 +208,7 @@ Using the previous values calculated, the renderer generates pixels from the pri
 - **Fog**: Optional, to simulate fog in the environment.
 - **Texture properties**: Contains the address of the texture in DRAM and other properties (coordinates, level of detail, filter, etc) that will be used in the next stage.
 
-It also performs **Scissoring Tests** to discard polygons outside the frame area (based on their X/Y values), some pixel properties are forwarded to the 'Pixel testing' stage for further checks. **Lighting** is also provided by selecting one of the two choices available, **Gauraud** and **Flat**.
+It also performs **Scissoring Tests** to discard polygons outside the frame area (based on their X/Y values), some pixel properties are forwarded to the 'Pixel testing' stage for further checks. **Lighting** is also provided by selecting one of the two choices available, **Gouraud** and **Flat**.
 
 The pack is then delivered to the 'Texture mapping' engine, but each property is operated by a specialised 'sub-engine', which enables to process of different properties in parallel.
 
@@ -336,21 +336,21 @@ What about the 'experimental' ones? To start with, there was initially a front *
 
 `r close_float_group(with_markdown = TRUE)`
 
-On the back of the console we also had a slot for **PC cards**, you could buy the 'Network Adaptor card' from Sony that provided two extra ports. One for connecting an ethernet cable, and another one for plugging in a proprietary and external 'Hard Disk Drive Unit', also sold by Sony. Having a drive allowed games to store temporary data (or permanently install themselves there) for faster load times. Just a few games used this feature, though.
+On the back of the console we also had a slot for **PC cards**, you could buy the 'Network Adaptor card' from Sony that provided two extra ports. One for connecting an Ethernet cable, and another one for plugging in a proprietary and external 'Hard Disk Drive Unit', also sold by Sony. Having a drive allowed games to store temporary data (or permanently install themselves there) for faster load times. Just a few games used this feature, though.
 
 ![Back of PS2 showing hard drive bay (cover removed) [@photography-amos].](photos/back_bay.png){.tabs-nested .open-float .tab-float .active title="Bay"}
 
-![Network adaptor as seen from the front [@photography-amos]. This particular model provided modem and ethernet ports.](photos/harddrive_adaptor_front.png){.tab-nested title="Front"}
+![Network adaptor as seen from the front [@photography-amos]. This particular model provided modem and Ethernet ports.](photos/harddrive_adaptor_front.png){.tab-nested title="Front"}
 
 ![Network adaptor as seen from the back [@photography-amos], with a hard drive fitted.](photos/harddrive_adaptor_back.png){.tab-nested title="Back"}
 
-![Back of the slim model showing a fixed ethernet port.](photos/ps2_slim_back.jpg){.tabs-nested-last title="Slim"}
+![Back of the slim model showing a fixed Ethernet port.](photos/ps2_slim_back.jpg){.tabs-nested-last title="Slim"}
 
-In later revisions, the PCMCIA port was replaced by an **Expansion Bay** where a 3.5" Hard drive could be fitted inside the console. You had to buy first a **Network adaptor** which not only provided Modem and/or ethernet ports (depending on the model), but also included the required connections for an ATA-66 hard disk. 'Slim' revisions completely removed this feature, but left an ethernet port permanently installed on the back. In addition to that, the new revision added a new front 'port', the **infrared sensor**.
+In later revisions, the PCMCIA port was replaced by an **Expansion Bay** where a 3.5" Hard drive could be fitted inside the console. You had to buy first a **Network adaptor** which not only provided Modem and/or Ethernet ports (depending on the model), but also included the required connections for an ATA-66 hard disk. 'Slim' revisions completely removed this feature, but left an Ethernet port permanently installed on the back. In addition to that, the new revision added a new front 'port', the **infrared sensor**.
 
 `r close_float_group(with_markdown = TRUE)`
 
-The ethernet transceiver supplied supports transfer rates of up to 100 Mbps (12.5 MB/s). However, the **observed rate is notoriously lower** (down to 2 MB/s in some cases). The explanation for that is relatively simple: To achieve usable network communication, one is required to implement all the layers of the standard 'OSI Model'; and the transceiver is just one piece of the puzzle. The rest is often delegated to the IOP (thus, done in software) but due to the IOP's limited performance [@io-bottleneck], this results in bottlenecks.
+The Ethernet transceiver supplied supports transfer rates of up to 100 Mbps (12.5 MB/s). However, the **observed rate is notoriously lower** (down to 2 MB/s in some cases). The explanation for that is relatively simple: To achieve usable network communication, one is required to implement all the layers of the standard 'OSI Model'; and the transceiver is just one piece of the puzzle. The rest is often delegated to the IOP (thus, done in software) but due to the IOP's limited performance [@io-bottleneck], this results in bottlenecks.
 
 ### Interactive accessories
 
@@ -386,7 +386,7 @@ Upon boot, the CPU will execute instructions in ROM which in turn will:
 
 ### Interactive shell
 
-The functionality of the PS2 shell is pretty much in pace with the other 6th gen. consoles.
+The functionality of the PS2 shell is pretty much in pace with the other 6th generation consoles.
 
 ![Initial menu. Appears when there's no disc inserted.](bios/menu.jpg){.tabs-nested .active title="Menu"}
 
@@ -425,7 +425,7 @@ On the software side, there was the **PlayStation 2 SDK** which included [@games
 
 On the hardware side, Sony provided studios with dedicated hardware to run and debug games in-house. The initial devkits were bare boards stacked together to replicate the un-released hardware of the PS2. Later kits (named **Development Tool**), had a more presentable appearance, enhanced I/O and combined workstation hardware (running RedHat 5.2) with PS2 hardware to build and deploy the game in the same case [@games-devkit].
 
-The combination of the Devkit, the official SDK and Codewarrior (a famous IDE) was one of the most popular setups.
+The combination of the Devkit, the official SDK and CodeWarrior (a famous IDE) was one of the most popular setups.
 
 ### Medium
 

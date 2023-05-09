@@ -39,7 +39,7 @@ supporting_imagery()
 
 Nintendo ended up shipping lots of different variants of the same console across the world [@general-variants] and even though they all share the same architecture, many look dramatically different and some may include built-in accessories. So, to keep it simple for this article, I'll focus on the two most popular revisions:
 
-- The **Family Computer** (known as _Famicom_) was the first incarnation, but was only released in Japan. This toy-looking design features two unremovable controllers (from which the second controller bundles an internal microphone), a front socket for the light gun (called _Zapper_), RF video out (using NTSC-J signal) and extra pins in the cartridge slot to expand the audio capabilities.
+- The **Family Computer** (known as _Famicom_) was the first incarnation, but was only released in Japan. This toy-looking design features two non-removable controllers (from which the second controller bundles an internal microphone), a front socket for the light gun (called _Zapper_), RF video out (using NTSC-J signal) and extra pins in the cartridge slot to expand the audio capabilities.
 - The **Nintendo Entertainment System** (known as _NES_) was the redesigned edition for western audiences living in North America, Europe and Oceania; with a look that matches the typical set-top box. On the technical side, the controllers are now detachable (and microphone-lacking) and the video out has been improved with extra NTSC/PAL composite RCA connectors, although the audio expansion has been replaced with an anti-piracy subsystem. To top it off, the bottom of the case seals an 'expansion port' that was left unused, along with extra cartridge pins that communicate to that port [@general-cartridge].
 
 Because the author grew up with the 'NES' name, I'll default to using that term to refer to the console in general, but I will switch to the 'Famicom' name when referring to unique capabilities only found in the Japanese variant.
@@ -110,7 +110,7 @@ The fact there are different combinations comes down to the fact the CPU doesn't
 
 ![The same PCB with important parts labelled. The meaning of the 'Lockout' chip is explained in the 'Anti-piracy' section.](nrom_marked.png){.tabs-nested-last title="Marked"}
 
-For example, Nintendo's 'Super Mario Bros' used a layout they call _NES-NROM-256_ and consists of 32 KB of program ROM and 8 KB of 'Character RAM' for graphics (we'll see more about it in the 'Graphics' section) [@cpu-nrom]. _NES-NROM-256_ was also prepared to house up to 3 KB of extra WRAM, though the game doesn't make use of it.
+For example, Nintendo's 'Super Mario Bros' used a layout they call _NES-NROM-256_ and consists of 32 KB of program ROM and 8 KB of 'Character ROM' for graphics (we'll see more about it in the 'Graphics' section) [@cpu-nrom]. _NES-NROM-256_ was also prepared to house up to 3 KB of extra WRAM, though the game doesn't make use of it.
 
 #### Going beyond existing capabilities
 
@@ -369,7 +369,7 @@ Mother (1989).
 
 Samples are recorded pieces of music that can be replayed. As you can see, samples are not limited to a single waveform, but they consume a lot more space.
 
-The APU has one channel dedicated to samples. In here, samples are limited to **7-bit resolution** (encoded with values from `0` to `127`) and a **~15.74 KHz sampling rate** [@audio-2a03ref]. To program this channel, games can either stream 7-bit values (which steals a lot of cycles and storage) or use **delta modulation** to only encode the variation between the next sample and the previous one.
+The APU has one channel dedicated to samples. In here, samples are limited to **7-bit resolution** (encoded with values from `0` to `127`) and a **~15.74 kHz sampling rate** [@audio-2a03ref]. To program this channel, games can either stream 7-bit values (which steals a lot of cycles and storage) or use **delta modulation** to only encode the variation between the next sample and the previous one.
 
 The delta modulation implementation in the APU only receives 1-bit values, this means games can only tell if the sample increments or decrements by `1` every time the counter kicks in. So, at the cost of fidelity, delta modulation can save games from having to stream continuous values to the APU.
 

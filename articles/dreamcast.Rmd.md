@@ -63,7 +63,7 @@ This CPU also features a unique functionality called **Parallel I/O** or 'PIO' t
 
 ## Graphics
 
-The GPU package is a custom-made chip called **Holly** running at **100 MHz**, it's designed by VideoLogic (now known as Imagination Technologies) and manufactured by NEC. Holly's 3D core happens to be Videologic's **PowerVR2** (also called 'PowerVR Series2' and 'CLX2').
+The GPU package is a custom-made chip called **Holly** running at **100 MHz**, it's designed by VideoLogic (now known as Imagination Technologies) and manufactured by NEC. Holly's 3D core happens to be VideoLogic's **PowerVR2** (also called 'PowerVR Series2' and 'CLX2').
 
 ![Sonic Adventure (1999).](sonic.png){.open-float}
 
@@ -76,7 +76,7 @@ Instead of rendering a whole frame at once (as traditional **Immediate Mode Rend
 This innovative design brings interesting advantages:
 
 - It can be greatly **parallelised**, which significantly reduces bandwidth and power usage.
-- It implements a clever solution to the [**visibility problem**](sega-saturn#an-introduction-to-the-visibility-problem) by automatically sorting the polygons **from front to back** and then performing [z-tests](nintendo-64#modern-visible-surface-determination) at the first stages of the pipeline. The combination of these tasks not only solves the original issue, but also **prevents overdraw** (rasterisation  of hidden polygons) which wastes resources and degrades performance.
+- It implements a clever solution to the [**visibility problem**](sega-saturn#an-introduction-to-the-visibility-problem) by automatically sorting the polygons **from front to back** and then performing [z-tests](nintendo-64#modern-visible-surface-determination) at the first stages of the pipeline. The combination of these tasks not only solves the original issue, but also **prevents overdraw** (rasterisation of hidden polygons) which wastes resources and degrades performance.
 
 It's no surprise that Imagination took this efficient technology forward to build the Series 4 PowerVR cores which powered an incredible number of devices, including the first generation of iPhone, the iPhone 3G, the Nokia N95 and the Dell Axim x51.
 

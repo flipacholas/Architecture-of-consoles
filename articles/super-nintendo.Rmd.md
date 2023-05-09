@@ -61,7 +61,7 @@ Moving on, the CPU employs a **variable clock speed** that will reach up to **3.
 In summary, the 5A22 features:
 
 - The **65816 ISA**: The debuting 16-bit instruction of the 65C816. It's based on the 6502 ISA but doesn't implement undocumented instructions some NES games resorted to [@cpu-unoffopcodes].
-  - The size of instructions can vary between 1 byte (8 bits) and 4 bytes (64 bits) depending on how memory addresses are referenced (a.k.a the 'addressing mode' used) [@cpu-isaref].
+  - The size of instructions can vary between 1 byte (8 bits) and 4 bytes (32 bits) depending on how memory addresses are referenced (a.k.a the 'addressing mode' used) [@cpu-isaref].
   - The [broken BCD mode](nes#scrapped-functions) is **working** again (I'm guessing as a consequence of _appropriate_ licensing).
 - **10 different modes of operation**: Due to the combination of a backward compatibility mode, the return of the BCD mode (missing on the NES) and the ability to switch between groups of 16-bit and 8-bit registers [@cpu-opcodes], developers can utilise this CPU using different combinations of these.
   - Unlike later [MIPS CPUs](nintendo-64#cpu), there isn't a mixed instruction set with dedicated opcodes for 8-bit and 16-bit words. Instead, the same instruction set will be interpreted differently based on the mode activated.
@@ -157,7 +157,7 @@ Just like its predecessor, the S-PPU uses tiles to build sophisticated graphics.
 
 - Game **cartridges are no longer wired to the PPU** so tiles will have to be copied to VRAM first (just like Sega's Mega Drive). Here is where the DMA unit comes in very handy.
 - Tiles are no longer restricted to their traditional dimension (8x8 pixels), from now on they can also be up to **16x16 pixels** wide.
-- When tiles are stored in memory, these will be compressed depending on how many colours per pixel they need to use. The unit of size is **bpp** (bits per pixel). The minimum value is **2bpp** (where each pixel only occupies two bits in memory and has only 4 colours available) while the maximum is **8bpp**, which encodes up to 256 colours (at the expense of consuming a whole byte).
+- When tiles are stored in memory, these will be compressed depending on how many colours per pixel they need to use. The unit of size is **bpp** (bits per pixel). The minimum value is **2 bpp** (where each pixel only occupies two bits in memory and has only 4 colours available) while the maximum is **8 bpp**, which encodes up to 256 colours (at the expense of consuming a whole byte).
 
 #### Background {.tab}
 
@@ -208,7 +208,7 @@ The S-PPU provides many operations for backgrounds, but these can't be chosen ar
   - One layer can be split into foreground and background.
   - This is the most common mode used.
 - **Mode 2**: 2 layers with 16 colours each.
-  - This mode has an extra effect: Layers can have each of their columns scrolled independently (similarly to [GameBoy](game-boy#graphics) effects but vertically scrolled).
+  - This mode has an extra effect: Layers can have each of their columns scrolled independently (similarly to [Game Boy](game-boy#graphics) effects but vertically scrolled).
 - **Mode 3**: 1 Background layer with 128 colours + 1 Background with 16 colours.
   - Colours can be set as RGB values instead of using CGRAM references.
 - **Mode 4**: Mode 2 and 3 combined (Column scroll + RGB colour mapping).
@@ -241,7 +241,7 @@ The S-PPU can draw up to 32 sprites per scanline, overflowing this will only mak
 
 The S-PPU draws each scanline on-the-fly by first processing the respective portion of each layer and then mixing them together.
 
-One of the main constraints of NES games was the fact that they could only update their graphics during **V-Blank**. The moment from which the CRT's beam was returning to the starting point provided a reasonable timeframe to reshuffle some tiles without breaking the image.
+One of the main constraints of NES games was the fact that they could only update their graphics during **V-Blank**. The moment from which the CRT's beam was returning to the starting point provided a reasonable time frame to reshuffle some tiles without breaking the image.
 
 Well, now thanks to the new capabilities of the SNES, this limitation gained a different meaning.
 
@@ -429,7 +429,7 @@ Alternatively and most importantly, LoRom and HiROM can also be adapted to house
 
 `r close_float_group()`
 
-It's difficult to ignore the impact this engineering made on games during the 90s, many of which managed to exceed the expectations of this console without requiring expansion modules and whatnot. You could say this difficulted Nintendo's plans to deliver a successor of this console (which may explain why advanced games like Starfox 2 were cancelled).
+It's difficult to ignore the impact this engineering made on games during the 90s, many of which managed to exceed the expectations of this console without requiring expansion modules and whatnot. You could say this complicated Nintendo's plans to deliver a successor of this console (which may explain why advanced games like Star Fox 2 were cancelled).
 
 ## Anti-piracy / Region Lock
 

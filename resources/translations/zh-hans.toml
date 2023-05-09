@@ -1,5 +1,5 @@
 [author_footer_first]
-other = '希望你能喜欢这篇文章！如果想了解作者，<a href="{{ . }}">点击这里</a>；'
+other = '希望你能喜欢这篇文章！如果想了解本文作者的相关信息，<a href="{{ . }}">点击这里</a>'
 
 [author_footer_second]
 other = '如果你想支持他，<a href="{{ . }}">请点击这里</a>'
@@ -20,10 +20,10 @@ other = "报告错误或建议修改"
 other = "查看前置阅读材料"
 
 [tablet_mode_button]
-other = "隐藏选项卡 / 平板模式"
+other = "隐藏标签页 / 平板模式"
 
 [desktop_mode_button]
-other = "显示选项卡 / 桌面模式"
+other = "显示标签页 / 桌面模式"
 
 [next]
 other = "下一页"
@@ -45,6 +45,12 @@ other = "翻译"
 
 [related]
 other = "更多 '{{ . }}' &raquo;"
+
+[ebook_edition_title]
+other = "获取电子书版本"
+
+[ebook_edition_content]
+other = '你现在也可以在电子书上阅读 <a href="{{ .consoles }}">游戏主机架构</a> 系列。<a href="{{ .ebooks }}">点击这里查看</a>。'
 
 [home]
 other = "主页"
@@ -79,6 +85,9 @@ other = "切换至现代版"
 [switch_classic]
 other = "切换至经典版"
 
+[ebook_edition]
+other = "电子书版本"
+
 [about_edition]
 other = "关于此版本"
 
@@ -89,7 +98,7 @@ other = "最后更新于：{{ . }}"
 other = "经典版"
 
 [classic_intro]
-other = "'“经典版”是 <a href=\"{{ . }}\">“现代版”</a> 的替代版本。 它不需要 Javascript，最新的 CSS 支持或复杂的 HTML 就能查看。 它更适合电子书用户、过时的浏览器或使用无障碍工具的读者阅读。"
+other = "'“经典版”是 <a href=\"{{ .modern }}\">“现代版”</a> 的替代版本。 它不需要 Javascript、最新的 CSS 或复杂的 HTML 支持就能工作。 它更适合电子书用户、过时的浏览器或使用无障碍工具的读者阅读。另外，电子书用户现在可以从这里查看 <a href=\"{{ .ebook }}\">电子书版</a>。"
 
 [classic_description]
 other = "两个版本内容完全相同， 只是交互式部件被简化为纯 HTML。 如果读者想尝试“完整版”，可以使用切换回原始文章的链接。"
@@ -106,6 +115,9 @@ other = '我在我的 <a href="{{ . }}">Twitter</a> 上发布更新，但您也�
 [generation_title]
 other = "{{ .ordinal }}世代"
 
+[untranslated_article_title]
+other = "{{.}} （英文版）"
+
 [cpu_subtitle]
 other = "显著的 CPU 进步："
 
@@ -119,13 +131,13 @@ other = "路线图"
 other = "我还有许多主机可以写……如果你想知道我列表上的下一个："
 
 [contribution_content]
-other = "如果您觉得我的文章很有趣，请考虑捐赠。您的资助将用于购买工具和资源，这可以帮助我提高现有文章和即将发表的文章的质量。我还在每篇文章结尾列出了我获得的有趣材料。"
+other = "如果您觉得我的文章很有趣，请考虑捐赠。您的资助将用于购买工具和资源，这可以帮助我提高现有文章和即将发表的文章的质量。我还在每篇文章结尾提供了我获得的有趣材料的列表。"
 
 [contribution_footer]
 other = "为了表示感谢，除非另有说明，您的名字将被列入下一篇文章或您指定的文章的致谢部分。"
 
-[contribution_footer_funding]
-other = "我还创建了 Ko-fi 账户，为特定项目的改进筹集资金："
+[contribution_footer_ebook]
+other = '你也可以购买英语版本的<a href="{{ . }}">电子书</a>。我会将获得的利润视为捐赠。'
 
 [contribution_suggestions]
 other = '或者，您可以通过 <a href="{{ . }}">建议更改</a> 或 <a href="{{ . }}">添加翻译</a> 来提供帮助。'
@@ -134,7 +146,7 @@ other = '或者，您可以通过 <a href="{{ . }}">建议更改</a> 或 <a href
 other = "打印文章（或保存到 PDF）"
 
 [architecture_consoles]
-other = "游戏主机的架构"
+other = "游戏主机架构"
 
 [top_model]
 other = "型号"
@@ -194,7 +206,7 @@ other = '<a href="{{ . }}">“现代版本”</a>中可用的互动模型'
 other = '<a href="{{ . }}">“现代版本”中的互动播放器</a>'
 
 [goto_classic]
-other = '如果您使用无障碍阅读工具，电子书或旧版浏览器， <a href="{{ . }}">切换到“经典”版</a>。'
+other = '如果您使用无障碍阅读工具、电子书或旧版浏览器，<a href="{{ .classic }}">切换到“经典”版</a>。'
 
 [audio_samples]
 other = "音频采样"

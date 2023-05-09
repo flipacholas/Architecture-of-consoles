@@ -46,6 +46,12 @@ other = "Tłumaczenia"
 [related]
 other = "Więcej: '{{ . }}' &raquo;"
 
+[ebook_edition_title]
+other = "Uzyskaj dostęp do e-booka"
+
+[ebook_edition_content]
+other = 'Możesz teraz przeczytać serię <a href="{{ .consoles }}">Architektura Konsol</a> na czytnikach e-book. <a href="{{ .ebooks }}">Sprawdź tutaj</a>.'
+
 [home]
 other = "Strona Główna"
 
@@ -79,6 +85,9 @@ other = "Przełącz na wersję nowoczesną"
 [switch_classic]
 other = "Przełącz na wersję klasyczną"
 
+[ebook_edition]
+other = "Edycja e-bookowa"
+
 [about_edition]
 other = "O tej edycji"
 
@@ -89,7 +98,7 @@ other = "Ostatnio zaktualizowany: {{ . }}"
 other = "Edycja klasyczna"
 
 [classic_intro]
-other = 'Edycja „klasyczna” jest wersją alternatywną dla <a href="{{ .modern }}">‘nowoczesnego’ odpowiednika</a>. Do działania nie wymaga JavaScript, najnowocześniejszego CSS ani zawiłego HTML, co czyni go idealnym dla czytelników korzystających z narzędzi ułatwień dostępu lub starszych przeglądarek internetowych. Z drugiej strony użytkownicy e-booków mogą teraz sprawdzić <a href="{{ .ebook }}">edycję e-bookow</a>.'
+other = "Edycja 'klasyczna' jest wersją alternatywną dla <a href=\"{{ .modern }}\">‘nowoczesnego’ odpowiednika</a>. Do działania nie wymaga JavaScript, najnowocześniejszego CSS ani zawiłego HTML, co czyni go idealnym dla czytelników korzystających z narzędzi ułatwień dostępu lub starszych przeglądarek internetowych. Z drugiej strony użytkownicy e-booków mogą teraz sprawdzić <a href=\"{{ .ebook }}\">edycję e-bookow</a>."
 
 [classic_description]
 other = "Ta edycja jest identyczna merytorycznie. Interaktywne widżety zostały uproszczone do pracy z czystym HTML, chociaż będą oferować link do oryginalnego artykułu na wypadek, gdyby czytelnik chciał wypróbować 'pełną wersję'."
@@ -194,7 +203,7 @@ other = 'Model interaktywny dostępny w <a href="{{ . }}">nowoczesnej edycji</a>
 other = 'Interaktywny odtwarzacz dostępny w <a href="{{ . }}">nowoczesnej edycji</a>'
 
 [goto_classic]
-other = "Jeśli korzystasz z narzędzi ułatwień dostępu lub starszych przeglądarek, <a href=\"{{ .classic }}\">przełącz się na wersję 'klasyczną'</a>. Możesz także pobrać <a href=\"{{ .ebook }}\">edycję e-bookową</a>."
+other = "Jeśli korzystasz z narzędzi ułatwień dostępu lub starszych przeglądarek, <a href=\"{{ .classic }}\">przełącz się na wersję 'klasyczną'</a>."
 
 [audio_samples]
 other = "Próbki dźwiękowe"

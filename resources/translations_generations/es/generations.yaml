@@ -20,9 +20,15 @@
   id: 6
   ordinal: 6ta
   description: La mayoría de las limitaciones gráficas de la generación anterior han desaparecido. Las consolas portátiles empiezan a parecerse a sistemas familiares.
-  cpu: Arquitecturas supercalares e instrucciones SIMD
+  cpu: Arquitecturas superescalares, instrucciones SIMD y caché L2
   gpu: Filtros anisotropicos y tuberías de píxeles programables
 - 
   id: 7
   ordinal: 7ta
-  description: Las consolas se han convertido en plataformas multimedia, estas máquinas son ahora más capaces que ejecutar juegos, por lo que la seguridad es ahora un factor crítico.
+  description: Las consolas han evolucionado hasta el punto de ser supercomputadoras y centros multimedia. Estas máquinas ahora son más capaces que para solo jugar, por lo que la seguridad es un factor crítico.
+  cpu: Paralelismo a nivel de threads y arquitecturas multinúcleo simétricas
+  gpu: Unified shader model (modelo de sombreador unificado) y renderizado HDR
+- 
+  id: 8
+  ordinal: 8va
+  description: El mercado del entretenimiento ha sido conquistado por smartphones baratos y tablets. La funcionalidad social es ahora prioridad número uno de cada periférico. Es hora de que las compañías de videojuegos renueven su status quo, y más vale que se apresuren.

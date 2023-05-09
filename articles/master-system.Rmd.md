@@ -142,7 +142,7 @@ Sprites are just tiles that move freely. The VDP can raster **up to 64 sprites**
 
 The **Sprite Attribute Table** is a 256-byte area in VRAM that contains an array of all the sprites defined, its entries are similar to the background layer, except each sprite contain two additional values representing the X/Y coordinates.
 
-The VDP is limited to **up to eight sprites per horizontal scan-line**. Also, if two sprites overlap, the last one in the list will be the one displayed.
+The VDP is limited to **up to eight sprites per horizontal scan-line** [@graphics-macdonald]. Also, if multiple sprites overlap, the first one in the list will be the one displayed.
 
 #### Result {.tab}
 
@@ -192,7 +192,7 @@ The audio capabilities of this console are pretty much aligned with the rest of 
 
 ### Functionality
 
-A PSG can only synthesise a limited set of waveforms, each channel allocates a single waveform. I've previously introduced some PSGs on the [NES](nes#audio) article and the [Gameboy](game-boy#audio) if you want to read more about this type of sound synthesis.
+A PSG can only synthesise a limited set of waveforms, each channel allocates a single waveform. I've previously introduced some PSGs on the [NES](nes#audio) article and the [Game Boy](game-boy#audio) if you want to read more about this type of sound synthesis.
 
 With the SMS, the PSG is programmed by altering its set of external registers using the aforementioned I/O ports.
 
@@ -274,7 +274,7 @@ While the SN76489 doesn't have a [PCM channel](nes#tab-7-4-sample) to reproduce 
 
 These rely on the pulse channels, it's discovered that if the tone level is fixed at `1`, the volume level (which alters the amplitude) will condition the shape of the waveform.
 
-smspower.org describes different designs that would allow playing 1-bit, 4-bit and 8-bit PCM samples. Although storage requirements skyrocket as bigger the sample resolution and rate, so the best uses of these exploits are found in Homebrew games.
+smspower.org describes different designs that would allow playing 1-bit, 4-bit and 8-bit PCM samples. Although storage requirements skyrocket as bigger the sample resolution and rate, so the best uses of these exploits are found in homebrew games.
 
 It's worth pointing out that streaming samples consume a good amount of CPU cycles, and there's only one processor in this system, so the game may need to be halted for a short period.
 

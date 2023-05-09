@@ -19,6 +19,12 @@ other = "Reportar errores o proponer cambios"
 [supporting_readings]
 other = "Mirar las lecturas de apoyo"
 
+[tablet_mode_button]
+other = "Ocultar pestañas / modo tablet"
+
+[desktop_mode_button]
+other = "Mostrar pestañas / Modo escritorio"
+
 [next]
 other = "Siguiente"
 
@@ -37,11 +43,26 @@ other = "Ocultar"
 [translations]
 other = "Traducciones"
 
+[related]
+other = "Más en '{{ . }}' &raquo;"
+
+[ebook_edition_title]
+other = "Obtén las ediciones eBook"
+
+[ebook_edition_content]
+other = 'Ahora puedes leer la serie <a href="{{ .consoles }}">Arquitectura de consolas</a> en lectores de eBooks también. <a href="{{ .ebooks }}">Échale un vistazo aquí</a>.'
+
 [home]
 other = "Inicio"
 
-[writings]
+[nav_writings]
 other = "Escritos"
+
+[nav_console]
+other = "Consolas"
+
+[nav_blog]
+other = "Blog"
 
 [about]
 other = "Acerca de"
@@ -64,11 +85,11 @@ other = "Ir a la edición moderna"
 [switch_classic]
 other = "Ir a la edición clásica"
 
+[ebook_edition]
+other = "Edición eBook"
+
 [about_edition]
 other = "Acerca de esta edición"
-
-[book_edition]
-other = "Edición de libro"
 
 [last_updated]
 other = "Última actualización: {{ . }}"
@@ -76,11 +97,8 @@ other = "Última actualización: {{ . }}"
 [classic_edition]
 other = "Edición clásica"
 
-[book_intro]
-other = "La edición 'de libro' es una versión del <a href=\"{{ . }}\">artículo en línea</a> lista para imprimir, ha sido diseñada de diferente manera para aprovechar las capacidades exclusivas de los documentos PDF."
-
 [classic_intro]
-other = "La edición 'clásica' es una versión alternativa a la <a href=\"{{ . }}\">contraparte 'moderna'</a>. No requiere Javascript, CSS de última generación o HTML complicado para funcionar, lo que la hace ideal para usuarios de eBooks, navegadores antiguos o lectores que requieran herramientas de accesibilidad."
+other = "La edición 'clásico' es una versión alternativa a la <a href=\"{{ .modern }}\">contraparte 'moderna'</a>. No requiere Javascript, CSS de última generación o HTML convoluted para trabajar, lo que lo hace ideal para lectores que utilizan herramientas de accesibilidad o navegadores de Internet heredados. Por otra parte, los usuarios de eBooks ahora pueden consultar la <a href=\"{{ .ebook }}\">edición eBook</a>."
 
 [classic_description]
 other = 'Esta edición es idéntica en cuanto al contenido. Sin embargo, los widgets interactivos han sido simplificado para trabajar con HTML puro. De cualquier manera, esto ofrecerá un enlace al artículo original en caso de que el lector quiera comprobar la "versión completa".'
@@ -92,10 +110,13 @@ other = 'Como siempre, este artículo está disponible en <a href="{{ .github }}
 other = "Mantente al tanto"
 
 [subscribe_content]
-other = "Recibe un correo cuando see publique un nuevo artículo, puedes darte de baja en cualquier momento. Uso Mailchimp para llevar al cabo esto."
+other = 'Publico actualizaciones en mi perfil de <a href="{{ . }}">Twitter</a>, pero tambien puedes recibir un correo electrónico cuando se publique un nuevo articulo. Puedes darte de baja en cualquier momento, uso Mailchimp para gestionar esto.'
 
 [generation_title]
 other = "{{ .ordinal }} generación"
+
+[untranslated_article_title]
+other = "{{.}} (en inglés)"
 
 [cpu_subtitle]
 other = "Avances notables de la CPU:"
@@ -113,7 +134,10 @@ other = "Hay tantas consolas de que hablar... Si quieres saber cual es la siguie
 other = "Si encuentras mis artículos interesantes, por favor considere donar. Tu contribución se usará para tener mas herramientas y recursos que ayudarán a mejorar la calidad de los actuales artículos y próximos. También comparto una lista de materiales interesantes para adquirir al final de cada artículo."
 
 [contribution_footer]
-other = "Along with the donation you can leave a note stating which article in particular you want me to invest in. As a token of gratitude, your name will be included in the credits section of the next article or the particular one, unless stated otherwise."
+other = "Como muestra de gratitud, tu nombre se incluirá en la sección de créditos del siguiente artículo o nominado, a menos que indiques lo contrario."
+
+[contribution_footer_ebook]
+other = 'También puedes comprar la <a href="{{ . }}">edición eBook</a> en inglés. Trato las ganancias como donaciones.'
 
 [contribution_suggestions]
 other = 'De alternativa, puedes ayudar <a href="{{ . }}">sugiriendo cambios</a> y/o <a href="{{ . }}">agregando traducciones</a>.'
@@ -182,7 +206,7 @@ other = 'Modelo interactivo disponible en la <a href="{{ . }}">edición moderna<
 other = 'Reproductor interactivo disponible en la <a href="{{ . }}">edición moderna</a>'
 
 [goto_classic]
-other = 'Si utiliza herramientas de accesibilidad, eBook o navegador antiguo, <a href="{{ . }}">cambie a la edición "clásica"</a>.'
+other = 'Si utiliza herramientas de accesibilidad o algún navegador antiguo, <a href="{{ .classic }}">cambie a la edición "clásica"</a>.'
 
 [audio_samples]
 other = "Muestras de audio"

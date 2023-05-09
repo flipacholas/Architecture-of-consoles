@@ -10,29 +10,41 @@ gamecube:
   tr: EuropaYou
 gba:
   pl: LunaDook & MoonbowPlushie
+  ru: Pawel Ryndovskiy и L1Q
 mastersystem:
   pl: LunaDook & MoonbowPlushie
 megadrive:
   tr: EuropaYou
   pl: LunaDook & MoonbowPlushie
+  pt-br: Walper e Estrelaura
+  ru: Pawel Ryndovskiy
 nes:
   tr: EuropaYou
   zh-hans: 猫咪啊呀呀
+  pt-br: Walper, Estrelaura e Pedro Bertella
 nintendo64:
   es: Rodrigo Copetti
-nintendods: null
+  zh-hans: heihei123456780
+  pl: michasrutek
+nintendods:
+  zh-hans: Cerallin
 pcengine: null
-ps1: null
+ps1:
+  pt-br: Walper
 ps2:
   pt-br: Lucas Akira Morishita
 ps3:
   ru: Vladimir Kovalev
+  pt-br: Walper
 psp: null
 saturn: null
-snes: null
+snes:
+  pt-br: Walper
 virtualboy: null
 wii:
   it: Valerio Francesco Vallone
   pl: LunaDook & MoonbowPlushie
 xbox:
   it: Valerio Francesco Vallone
+wiiu:
+  zh-hans: 晓晓的锋 和 总比没有强, 我在, 合二为一, BLACKFEATHER, 东风 以及其他群友

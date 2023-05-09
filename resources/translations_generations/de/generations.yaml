@@ -1,0 +1,34 @@
+---
+- 
+  id: 3
+  ordinal: 3te
+  description: Diese als "8-Bit"-Konsolen bekannten Geräte brachten anspruchsvollere Grafiken und reichhaltigere Sounds als ihre Vorgänger. Schließlich war der Markt gerade zusammengebrochen und es mussten neue Standards gesetzt werden.
+  gpu: Bewegliche Karten und größere Farbpaletten
+- 
+  id: 4
+  ordinal: 4te
+  description: DMA, horizontale Interrupts, mehrere Modi... Dies sind nur einige Beispiele für die neuen Konzepte, die die neue "16-Bit"-Generation hervorbrachte und die Tür zu neuen Spielgenres öffnete.
+  cpu: Multiplikations- und Divisionsbefehle, DMA und Dual-Processing
+  gpu: Affine Abbildungen und Rasterzeileninterrupts
+- 
+  id: 5
+  ordinal: 5te
+  description: 3D-Spiele sind mittlerweile eine Notwendigkeit, aber das "Wie" ist noch nicht klar. Die Antwort? Jedes Unternehmen präsentierte seine eigene Vision.
+  cpu: Pipeline-Stufen und L1-Cache
+  gpu: Programmierbare Vertex-Pipelines, Z-Pufferung und perspektivische Korrekturen
+- 
+  id: 6
+  ordinal: 6te
+  description: Die meisten grafischen Beschränkungen der vorherigen Generation sind nicht mehr vorhanden. Tragbare Konsolen beginnen, vertrauten Systemen zu ähneln.
+  cpu: Superskalare Architekturen, SIMD-Befehle und L2-Cache
+  gpu: Programmierbare Pixel-Pipelines und anisotrope Filter
+- 
+  id: 7
+  ordinal: 7te
+  description: Konsolen haben sich zu Supercomputern und Multimedia-Zentren entwickelt. Diese Geräte können jetzt mehr als nur Spiele spielen, weshalb die Sicherheit jetzt ein entscheidender Faktor ist.
+  cpu: Parallelität auf Thread-Ebene und symmetrische Multicore-Architekturen
+  gpu: Vereinheitlichtes Shader-Modell und HDR-Rendering
+- 
+  id: 8
+  ordinal: 8te
+  description: Der Unterhaltungsmarkt wurde inzwischen von billigen Smartphones und Tablets erobert. Social-Media-Fähigkeiten werden zur ersten Priorität eines jeden Endgeräts. Es ist an der Zeit, dass die traditionellen Videospielunternehmen ihren Status quo überarbeiten - und das am besten schnell.
