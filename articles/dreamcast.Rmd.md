@@ -256,8 +256,12 @@ To enhance the browsing experience, a Dreamcast-branded keyboard and mouse were 
   The European online service, Dreamarena, was a free dial-up-based platform created through a partnership between ICL, BT, and various ISPs. Although the service was free in the UK, other European countries had different access requirements and prices, which made the service expensive for some users. By September 2000, Dreamarena had reached 300,000 registrations, with over half of these users being "active or very active."
 
 - **America Online Service**
-
-  The America Online Service for the Dreamcast was called SegaNet, which was launched in September 7, 2000. SegaNet was not free, and players needed to pay a monthly subscription fee to use the service. The subscription cost $21.95 per month, and it provided unlimited access to the service. A puzzle game, Sega Swirl, that was given away for free to SegaNet subscribers. However, the subscription fee for SegaNet was seen as a major drawback by some players.
+  
+  Sega announced a new business strategy in 2000 with the creation of a new company called Sega.com, Inc. The company was designed to function as an internet service provider (ISP) and launch an internet service called "SegaNet" later that year. Sega.com's website would be featuring chat, instant messaging, message boards, and other functionality. The company aimed to attract a user base similar to that of AOL. By signing up for two years of SegaNet service, users received a free Dreamcast system and keyboard.
+  
+  SegaNet was launched in September 7, 2000. SegaNet was not free, and players needed to pay a monthly subscription fee to use the service. The subscription cost $21.95 per month, and it provided unlimited access to the service. A puzzle game, Sega Swirl, that was given away for free to SegaNet subscribers. However, the subscription fee for SegaNet was seen as a major drawback by some players.
+  
+  The service was not just for Dreamcast owners. PC owners could also sign up and use the service on their PCs instead of, or in conjunction with, their existing ISP. Subscribe to the service and receive a free Dreamcast, or if you already owned a Dreamcast, receive a cheque from Sega for $200, the price of your Dreamcast purchase.
 
 - **Japan Online Service**
 
