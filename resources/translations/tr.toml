@@ -115,6 +115,9 @@ other = '<a href="{{ . }}">Twitter hesabımda</a> güncellemeleri paylaşıyorum
 [generation_title]
 other = "{{ .ordinal }} nesil"
 
+[untranslated_article_title]
+other = "{{.}} (İngilizce)"
+
 [cpu_subtitle]
 other = "Önemli CPU gelişmeleri:"
 
