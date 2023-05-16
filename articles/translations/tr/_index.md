@@ -27,6 +27,6 @@ Bu bir geliştirici kılavuzu değildir, yalnızca her bir sistemin dahili olara
 
 Temel bilgisayar bilgisi olan kişiler içindir, ancak içeriğimi daha geniş kitlelere uyarlamak için gerçekten çok çalışıyorum, bu yüzden lütfen denemekten korkmayın! Ancak bu yeterli değilse, [destekleyici okumalara]({{< ref "readings" >}}) bakmak isteyebilirsiniz.
 
-Mümkün olduğunca doğru olmaya çalışsam da, herhangi bir hata bulursanız lütfen {{< email "give me a shout" >}}} veya {{< consoles/repo_link "değişiklik önerin" >}}. Son olarak, bir e-Kitap okuyucu kullanarak okumayı tercih ediyorsanız, <a href="{{< ref "ebook" >}}e-Kitap baskısına</a> göz atın.
+Mümkün olduğunca doğru olmaya çalışsam da, herhangi bir hata bulursanız lütfen {{< email "give me a shout" >}}} veya {{< consoles/repo_link "değişiklik önerin" >}}. Son olarak, bir e-Kitap okuyucu kullanarak okumayı tercih ediyorsanız, [e-Kitap baskısına]({{< ref "ebook" >}}) göz atın.
 
 Lafı fazla uzatmadan başlayalım!
