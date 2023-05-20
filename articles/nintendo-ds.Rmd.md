@@ -299,9 +299,9 @@ That's pretty much in a nutshell, for more specialised cases, you'll have to div
 
 I've updated the wee model viewer to apply 'nearest neighbour', allowing you to visualise Nintendo DS models using your GPU.
 
-![New Super Mario Bros (2004).<br>636 triangles.](mario_ds){.toleft model3d="true"}
+![Nintendogs (2005).<br>750 triangles.](dalmatian_ds){.toleft model3d="true"}
 
-![Nintendogs (2005).<br>750 triangles.](dalmatian_ds){.toright model3d="true"}
+![New Super Mario Bros (2006).<br>636 triangles.](mario_ds){.toright model3d="true"}
 
 Despite the fact we talked about a lot of limitations of the graphics subsystem, lots of games did make really good use of it.
 
