@@ -679,9 +679,9 @@ These early blunders helped to build a knowledge base of the inner workings of t
 
 As with any other cat and mouse game, Sony responded with more system updates (which were required by new games) while newer exploits (the so-called 'TIFF', 'GTA' exploit and so forth [@anti_piracy-homebrew]) kept appearing. It's worth mentioning that these were only considered 'Homebrew launchers' as kernel access wasn't obtained yet.
 
-#### Updatable content {.tab}
+#### Downgrading {.tab}
 
-!['Update game' option in XMB.](downgrader.jpg){.tab-float}
+![Chronoswitch downgrader, a modern downgrade tool.](downgrader.jpg){.tab-float}
 
 As soon as Sony gained momentum with strong firmware updates with security patches and attractive features (i.e. a web browser), old versions became some sort of promised land, where advanced users enjoyed the ability to run their Homebrew. However, acquiring a PSP with that system version became increasingly challenging. Thus, 'downgrading' quickly gained popularity. Downgrading is the opposite of upgrading, consisting of replacing the current firmware installed with an earlier (and better exploited) version.
 
