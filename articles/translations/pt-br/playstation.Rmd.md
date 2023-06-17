@@ -245,7 +245,7 @@ Finalmente, superfícies sombreadas são mescladas com as texturas (*bitmaps* 2D
 
 A GPU realiza o **mapeamento de textura inversa**, onde a GPU percorre cada píxel rasterizado e procura o píxel correspondente no mapa de textura (chamado de **textel**). Os texels são calculados interpolando linearmente o mapa de textura (encontrado na VRAM) para ajustar ao formato do polígono. A rotina usada para a interpolação é chamada de **mapeamento de textura afim**, essa técnica opera apenas usando coordenadas 2D (valores de X e Y) enquanto descarta a terceira coordenada (Z ou profundidade) usada para perspectiva.
 
-Devido os mapas de textura raramente terem a dimensão exata do polígono rasterizado, os **serrilhamentos** (resultados incorretos) podem aparecer. Isso se manifesta com distorções indesejadas, como texels faltantes ou ampliados. Para remediar isso, GPUs sofisticadas empregam **filtragem de textura** para suavizar (interpolando) mudanças repentinas de cor. Agora, a GPU do PS1 não implementa nenhum filtro, então ele recorre a um algoritmo chamado **vizinho mais próximo** para corrigir escalas sem suavizar os resultados. Isso é muito rápido (e barato), mas também explica porque os modelos texturizados podem parecer "quadriculados".
+Devido os mapas de textura raramente terem a dimensão exata do polígono rasterizado, os **serrilhados** (resultados incorretos) podem aparecer. Isso se manifesta com distorções indesejadas, como texels faltantes ou ampliados. Para remediar isso, GPUs sofisticadas empregam **filtragem de textura** para suavizar (interpolando) mudanças repentinas de cor. Agora, a GPU do PS1 não implementa nenhum filtro, então ele recorre a um algoritmo chamado **vizinho mais próximo** para corrigir escalas sem suavizar os resultados. Isso é muito rápido (e barato), mas também explica porque os modelos texturizados podem parecer "quadriculados".
 
 A unidade gráfica também inclui os seguintes efeitos disponíveis para uso:
 
@@ -276,7 +276,7 @@ Com a quantidade disponível de VRAM (1 *megabyte inteiro*), pode-se alocar um *
 
 Tudo bem, então vamos ter um *buffer* de 640x480 com 16 bpp, o que deixa 424 KB de VRAM para recursos visuais. Até agora tudo bem? Novamente, tal resolução pode ser boa em monitores CRT, mas não particularmente notável naquelas TVs dos anos 90 que todo mundo tinha em casa. Então, há alguma maneira de otimizar o *buffer* de imagem? Apresentando o ***buffer* de imagem ajustável**.
 
-![Visualização da VRAM no depurador NO$PSX. Você pode ver o <em>buffer</me> de dois quadros de imagem, juntamente com as texturas (que são traduzidas usando uma tabela de cores, também armazenadas ali).](vram.jpg) {.open-float}
+![Visualização da VRAM no depurador NO$PSX. Você pode ver o <em>buffer</em> de dois quadros de imagem, juntamente com as texturas (que são traduzidas usando uma tabela de cores, também armazenadas ali).](vram.jpg) {.open-float}
 
 Em essência, em vez de desperdiçar a valiosa VRAM usando resoluções "não apreciadas", a GPU permite diminuir as dimensões do *buffer* de imagem para aumentar efetivamente o espaço disponível para outros recursos. Em "Gears Episode 2" [@graphics-halkun], Halkun mostra uma configuração que divide o *buffer* de imagem de 640x480 em dois de 320x480 e, em seguida, confia em uma técnica chamada de **page-flipping** (alternância de página, em tradução livre) para renderizar várias cenas simultaneamente.
 
@@ -354,7 +354,7 @@ Revisões posteriores do console removeram essas portas e, no final, apenas a po
 
 ## Áudio
 
-A **unidade de processamento de som** (SPU, do inglês *Sound Processing Unit*) cuida disso. Este chip suporta a enorme quantidade de **24 canais** de **amostras de 16 bits ADPCM** (uma versão mais eficiente da, já conhecida, amostragem PCM) com uma taxa de amostragem de **44,1 KHz** (qualidade de áudio de CD).
+A **unidade de processamento de som** (SPU, do inglês *Sound Processing Unit*) cuida disso. Este chip suporta a enorme quantidade de **24 canais** de **amostras de 16 bits ADPCM** (uma versão mais eficiente da, já conhecida, amostragem PCM) com uma taxa de amostragem de **44,1 kHz** (qualidade de áudio de CD).
 
 Este chip também oferece as seguintes capacidades:
 
