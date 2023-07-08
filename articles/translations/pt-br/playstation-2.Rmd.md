@@ -66,7 +66,7 @@ Transferências de dados são feitas em lotes de 128 bits, mas aqui fica a parte
 
 ### Prevenindo contratempos passados
 
-Quer queiramos ou não, com a quantidade de tráfego ocorrendo dentro do Emotion Engine, esse design vai eventualmente sofrer as consequências da **arquitetura de memória unificada** ou 'UMA' (Unified Memory Architecture). Isto é... múltiplos componentes independentes tentando acessar a memória principal ao mesmo tempo, causando congestionamento. Bem, para corrigir esses problemas, a Sony aliviou o uso constante de memória com os seguintes métodos:
+Quer queiramos ou não, com a quantidade de tráfego ocorrendo dentro do Emotion Engine, esse design vai eventualmente sofrer as consequências da **arquitetura de memória unificada** ou 'UMA' (Unified Memory Architecture). Isto é: múltiplos componentes independentes tentando acessar a memória principal ao mesmo tempo, causando congestionamento. Bem, para corrigir esses problemas, a Sony aliviou o uso constante de memória com os seguintes métodos:
 
 - Envolvendo seus processadores com **bastante cache**. Assim, apenas pedindo acesso à memória principal se for absolutamente necessário.
     - 99% das menções de cache/scratchpad neste artigo serão por esta razão.
@@ -209,7 +209,7 @@ Usando os valores calculados anteriormente, o renderizador gera pixels a partir 
 - **Fog**: opcional, usado para simular névoa no ambiente.
 - **Propriedade de texturas**: contém o endereço de DRAM da textura dentre outras propriedades (coordenadas, nível de detalhe, filtro, etc.) que serão usadas no estágio seguinte.
 
-Também são feitos **testes de corte (Scissoring Tests)** que descartam polígonos fora do quadro (baseado nos seus valores X/Y), e algumas propriedades de pixel são encaminhadas a um estágio de 'teste de pixel' para verificações adicionais. A **Iluminação** é também fornecida ao selecionar uma das duas opções disponíveis, **Gauraud** e **Flat**.
+Também são feitos **testes de corte (Scissoring Tests)** que descartam polígonos fora do quadro (baseado nos seus valores X/Y), e algumas propriedades de pixel são encaminhadas a um estágio de 'teste de pixel' para verificações adicionais. A **Iluminação** é também fornecida ao selecionar uma das duas opções disponíveis, **Gouraud** e **Flat**.
 
 O pacote é então entregue ao motor de 'mapeamento de texturas', mas cada propriedade é operada por um 'submotor' especializado, o que permite o processamento de diferentes propriedades em paralelo.
 
@@ -337,21 +337,21 @@ E quanto às 'experimentais'? Para começar, havia inicialmente uma **porta i.Li
 
 `r close_float_group(with_markdown = TRUE)`
 
-Na parte de trás do console também havia um slot para **placas de PC**, e você podia comprar uma 'placa Network Adaptor' da Sony que fornecia duas portas extras. Uma para conectar um cabo ethernet, e outra para conectar uma 'Unidade de Disco Rígido' (Hard Disk Drive Unit) externa e proprietária, também vendida pela Sony. Ter um disco rígido permitiu que jogos guardassem dados temporários (ou instalá-los permanentemente) para obter tempos de carregamento mais rápidos. No entanto, apenas alguns poucos jogos usaram esse recurso.
+Na parte de trás do console também havia um slot para **placas de PC**, e você podia comprar uma 'placa Network Adaptor' da Sony que fornecia duas portas extras. Uma para conectar um cabo Ethernet, e outra para conectar uma 'Unidade de Disco Rígido' (Hard Disk Drive Unit) externa e proprietária, também vendida pela Sony. Ter um disco rígido permitiu que jogos guardassem dados temporários (ou instalá-los permanentemente) para obter tempos de carregamento mais rápidos. No entanto, apenas alguns poucos jogos usaram esse recurso.
 
 ![Parte traseira do PS2 mostrando o compartimento do disco rígido (tampa removida) [@photography-amos].](photos/back_bay.png){.tabs-nested .open-float .tab-float .active title="Compartimento"}
 
-![Network adaptor (adaptador de rede) visto de frente [@photography-amos]. Este modelo em particular fornece portas modem e ethernet.](photos/harddrive_adaptor_front.png){.tab-nested title="Parte da Frente"}
+![Network adaptor (adaptador de rede) visto de frente [@photography-amos]. Este modelo em particular fornece portas modem e Ethernet.](photos/harddrive_adaptor_front.png){.tab-nested title="Parte da Frente"}
 
 ![Network adaptor visto de trás [@photography-amos], com um disco rígido inserido.](photos/harddrive_adaptor_back.png){.tab-nested title="Parte de trás"}
 
-![Parte traseira do modelo slim com a porta ethernet fixa visível.](photos/ps2_slim_back.jpg){.tabs-nested-last title="Slim"}
+![Parte traseira do modelo slim com a porta Ethernet fixa visível.](photos/ps2_slim_back.jpg){.tabs-nested-last title="Slim"}
 
-Em revisões posteriores, a porta PCMCIA foi substituída por um **Compartimento de Expansão (Expansion Bay)** onde um disco rígido de 3,5 polegadas poderia ser instalado dentro do console. Você precisava comprar antes um **Network adaptor** que não apenas fornecia as portas de modem e/ou ethernet (dependendo do modelo), mas também incluía as conexões necessárias para um disco rígido ATA-66. Revisões 'Slim' removeram completamente essa funcionalidade, mas deixaram uma porta ethernet permanentemente instalada na parte de trás do console. Além disso, a nova revisão adicionou uma nova 'porta' frontal, o **sensor infravermelho**.
+Em revisões posteriores, a porta PCMCIA foi substituída por um **Compartimento de Expansão (Expansion Bay)** onde um disco rígido de 3,5 polegadas poderia ser instalado dentro do console. Você precisava comprar antes um **Network adaptor** que não apenas fornecia as portas de modem e/ou Ethernet (dependendo do modelo), mas também incluía as conexões necessárias para um disco rígido ATA-66. Revisões 'Slim' removeram completamente essa funcionalidade, mas deixaram uma porta Ethernet permanentemente instalada na parte de trás do console. Além disso, a nova revisão adicionou uma nova 'porta' frontal, o **sensor infravermelho**.
 
 `r close_float_group(with_markdown = TRUE)`
 
-O transceptor ethernet fornecido suporta taxas de transferência de até 100 Mbps (12,5 MB/s). Porém, a **taxa observada é notoriamente menor** (diminui para até 2 MB/s em alguns casos). A explicação para isso é relativamente simples: para conseguir uma comunicação de rede utilizável, é necessário implementar todas as camadas do padrão 'Modelo OSI', e o transceptor é apenas uma peça do quebra-cabeça. O resto é geralmente delegado à IOP (logo, feito em software), mas o desempenho limitado da IOP [@io-bottleneck] resulta em gargalos.
+O transceptor Ethernet fornecido suporta taxas de transferência de até 100 Mbps (12,5 MB/s). Porém, a **taxa observada é notoriamente menor** (diminui para até 2 MB/s em alguns casos). A explicação para isso é relativamente simples: para conseguir uma comunicação de rede utilizável, é necessário implementar todas as camadas do padrão 'Modelo OSI', e o transceptor é apenas uma peça do quebra-cabeça. O resto é geralmente delegado à IOP (logo, feito em software), mas o desempenho limitado da IOP [@io-bottleneck] resulta em gargalos.
 
 ### Acessórios interativos
 
@@ -387,7 +387,7 @@ Durante a inicialização, a CPU irá executar instruções na ROM que irão:
 
 ### Shell interativo
 
-A funcionalidade do shell do PS2 está praticamente em pé de igualdade com os outros consoles da 6ª geração.
+A funcionalidade do shell do PS2 está praticamente à mesma altura dos outros consoles da 6ª geração.
 
 ![Menu inicial. Aparece quando não há disco inserido.](bios/menu.jpg){.tabs-nested .active title="Menu"}
 
@@ -426,7 +426,7 @@ No lado do software, havia o **PlayStation 2 SDK** que incluía [@games-sdkkit]:
 
 No lado do hardware, a Sony forneceu hardware dedicado aos estúdios para executar e realizar debug de jogos internamente. Os kits de desenvolvimento (devkits) iniciais eram um conjunto de placas expostas empilhadas que replicavam o hardware ainda não lançado do PS2. Os kits posteriores (chamados **Development Tool**), possuíam uma aparência mais apresentável, E/S aprimorada e combinavam um workstation (rodando RedHat 5.2) com o hardware do PS2 para compilar e instalar o jogo dentro do mesmo kit [@games-devkit].
 
-A combinação do Devkit, do SDK oficial e do Codewarrior (um IDE famoso) era uma das configurações mais populares.
+A combinação do Devkit, do SDK oficial e do CodeWarrior (um IDE famoso) era uma das configurações mais populares.
 
 ### Mídia
 
