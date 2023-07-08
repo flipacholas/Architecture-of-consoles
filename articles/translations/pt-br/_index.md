@@ -16,10 +16,10 @@ cascade:
   seo_type: TechArticle
 #Historical
 aliases:
-  - /projects/consoles
+  - ../projects/consoles
 ---
 
-{{< linked_img src="banner.png" alt="Arquitetura dos Consoles" noLink="true" no_lazyload="true" >}}
+{{< linked_img src="banner.png" alt="Arquitetura dos Consoles" no_link="true" no_lazyload="true" >}}
 
 Olhar para a evolução dos consoles de videogame é fascinante. Enquanto os PCs convencionais tendem a evoluir 'incrementalmente', novas gerações de consoles introduzem formas completamente novas de trabalhar. O que você vai ver aqui é uma série de artigos que vão, assim eu espero, revelar a lógica por trás das últimas tendências tecnológicas. Eles também vão demonstrar porque cada sistema não pode ser resumido pelos seus 'bits', megahertz, quantidade de RAM e outras coisas.
 
@@ -27,6 +27,6 @@ Esse não é um "Manual do desenvolvedor", mas sim, apenas uma introdução *apr
 
 Conhecimento básico de computação é preferível, porém, eu me esforço muito para adaptar meu conteúdo para públicos maiores, então não se sinta intimidado de ler! Mas se isso não for suficiente, você pode querer dar uma olhada nas [leituras de ajuda]({{< ref "readings" >}}).
 
-Por mais que eu tente ser o mais preciso possível, se você encontrar algum erro, por favor {{< email "me avise" >}} ou {{< consoles/repo_link "proponha mudanças" >}}.
+Por mais que eu tente ser o mais preciso possível, se você encontrar algum erro, por favor {{< email "me avise" >}} ou {{< consoles/repo_link "proponha mudanças" >}}. Por fim, se você prefere ler usando um leitor de eBook, confira a [edição eBook]({{< ref "ebook" >}}).
 
 Sem mais delongas, aqui estão eles!
