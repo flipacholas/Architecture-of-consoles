@@ -118,13 +118,13 @@ I'm going to borrow the graphics of Sega's *Sonic Advance 3* to show how a frame
 
 ::: {.subfigures .tabs-nested .tab-float .pixel}
 
-![This block is made of 4 bpp Tiles.](sonic/tiles1.png){.active title="Block 1"}
+![These two blocks are made of 4 bpp Tiles.](sonic/tiles1.png){.active title="Blocks 1-2"}
 
-![You may notice some weird vertical patterns in here, these are not graphics but 'Tile Maps' (see next section).](sonic/tiles2.png){title="Block 2"}
+![You may notice some weird vertical patterns in here, these are not graphics but 'Tile Maps' (see next section).](sonic/tiles2.png){title="Blocks 3-4"}
 
-![This block is reserved for sprites.](sonic/tilesobj.png){title="Block 3"}
+![These two blocks are reserved for sprites.](sonic/tilesobj.png){title="Block 5-6"}
 
-Charblocks found in VRAM.
+Pairs of charblocks found in VRAM.
 
 :::
 
