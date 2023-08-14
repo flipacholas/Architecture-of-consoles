@@ -301,7 +301,7 @@ First of all, you'll find the **SPU load/store unit** (SLS) does three essential
 - Executes load and store instructions.
 - Forwards instructions to another block for issuing.
 
-Notice that there are **only 256 KB available to store the program**. Considering SPU programs can be compiled using C/C++, it's not easy to predict how large the program will be. For this reason, it is recommended that the programmes assume there's only half the memory available (128 KB) [@cpu-hpc, p. 4], which leaves enough window for the compiled code to take up as much space as it needs, although this comes at the cost of storage and efficiency.
+Notice that there are **only 256 KB available to store the program**. Considering SPU programs can be compiled using C/C++, it's not easy to predict how large the binary will be. For this reason, it is recommended that developers assume there's only half the memory available (128 KB) [@cpu-hpc, p. 4], which leaves enough window for the compiled code to take up as much space as it needs, although this comes at the cost of storage and efficiency.
 
 Finally, there's also a **SPU Channel and DMA Transport** (SSC) unit, which the Memory Flow controller uses to fill and/or fetch local memory, and a _puny_ **Fixed-Point Unit** that only does shuffling and vector rotation.
 
