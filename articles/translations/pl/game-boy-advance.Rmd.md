@@ -118,21 +118,21 @@ Wypożyczę grafikę z *Sonic Advance 3* firmy Sega, aby pokazać, jak składa s
 
 ::: {.subfigures .tabs-nested .tab-float .pixel}
 
-![Ten blok jest wykonany z Kafelków 4bpp.](sonic/tiles1.png){.active title="Blok 1"}
+![Te dwa bloki są wykonane z Kafelków 4 bpp.](sonic/tiles1.png){.active title="Bloki 1-2"}
 
-![Możesz zauważyć tutaj dziwne pionowe wzory, nie są to grafiki, ale 'Mapy Kafelków' (patrz następna sekcja).](sonic/tiles2.png){title="Blok 2"}
+![Możesz zauważyć tutaj dziwne pionowe wzory, nie są to grafiki, ale 'Mapy Kafelków' (patrz następna sekcja).](sonic/tiles2.png){title="Bloki 3-4"}
 
-![Ten blok jest zarezerwowany dla sprite'ów.](sonic/tilesobj.png){title="Blok 3"}
+![Te dwa bloki są zarezerwowane dla sprite'ów.](sonic/tilesobj.png){title="Bloki 5-6"}
 
-Charblocks znajdujące sie w VRAM.
+Para Charblock'ów znajdująca się w VRAM.
 
 :::
 
-Kafelki GBA są ściśle bitmapami 8x8 pikseli, mogą używać 16 kolorów (4bpp) lub 256 kolorów (8bpp). Kafelki 4bpp zajmują 32 bajty, a 8bpp zajmują 64 bajty.
+Kafelki GBA są ściśle bitmapami 8x8 pikseli, mogą używać 16 kolorów (4 bpp) lub 256 kolorów (8 bpp). Kafelki 4 bpp zajmują 32 bajty, a 8 bpp zajmują 64 bajty.
 
 Kafelki mogą być przechowywane w dowolnym miejscu w pamięci VRAM, jednak PPU chce je pogrupować w **charblock'i**: Regiony **16 KB**. Każdy blok jest zarezerwowany dla określonego typu warstwy (tła i sprite'ów), a programiści decydują, gdzie zaczyna się każdy charblock. Może to spowodować pewne nakładanie się, co w konsekwencji umożliwia dwóm charblock'om współdzielenie tych samych kafelków.
 
-Ze względu na rozmiar charblock'a, w jednym bloku można przechowywać do 256 płytek 8bpp lub 512 płytek 4bpp. Dozwolonych jest do sześciu charblock'ów, które łącznie wymagają 96 KB pamięci: dokładnej ilości pamięci VRAM, jaką ma ta konsola.
+Ze względu na rozmiar charblock'a, w jednym bloku można przechowywać do 256 płytek 8 bpp lub 512 płytek 4 bpp. Dozwolonych jest do sześciu charblock'ów, które łącznie wymagają 96 KB pamięci: dokładnej ilości pamięci VRAM, jaką ma ta konsola.
 
 Tylko cztery charblock'i mogą być użyte jako tła, a dwa mogą być użyte jako sprite'y.
 
@@ -196,8 +196,8 @@ Czasami możemy chcieć utworzyć tło, z którego tile engine nie będzie w sta
 
 Dobrą wiadomością jest to, że PPU faktycznie implementuje tę funkcjonalność, uwzględniając trzy dodatkowe tryby, zwane **trybami bitmapy** [@graphics-bitmap]:
 
-- **Tryb 3**: Przydziela pojedynczą w pełni kolorową klatkę (8bpp).
-- **Tryb 4**: Zapewnia dwie klatki z połową kolorów (4bpp) każda.
+- **Tryb 3**: Przydziela pojedynczą w pełni kolorową klatkę (16 bpp, 32,768 kolorów).
+- **Tryb 4**: Zapewnia dwie klatki z połową kolorów (8 bpp, 256 kolorów) każda.
 - **Tryb 5**: Dwie w pełni kolorowe klatki, każda o połowę mniejsza (160x128 pikseli).
 
 Powodem posiadania dwóch bitmap jest włączenie **przewracania-stron**: Rysowanie na wyświetlanej bitmapie może ujawnić pewne dziwne artefakty podczas procesu. Jeśli zamiast tego manipulujemy inną, żaden z błędów nie zostanie pokazany użytkownikowi. Po zakończeniu drugiej bitmapy, PPU można zaktualizować, aby wskazywał na drugą, skutecznie zamieniając wyświetlaną klatkę.
