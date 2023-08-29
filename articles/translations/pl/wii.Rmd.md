@@ -30,7 +30,7 @@ Mimo że na Wii brakowało najnowocześniejszej grafiki, którą cieszyli się j
 
 Tutaj przeanalizujemy każdy aspekt tej konsoli, od znanego już sprzętu po przeoczany system bezpieczeństwa, w tym jego główne wady.
 
-Szybka Uwaga: Niektóre sekcje pokrywają się z częścią poprzedniego artykułu o [Gamecube](gamecube), więc zamiast powtarzać informacje, po prostu umieszczę link do odpowiedniej części artykułu.
+Szybka Uwaga: Niektóre sekcje pokrywają się z częścią poprzedniego artykułu o [GameCube](gamecube), więc zamiast powtarzać informacje, po prostu umieszczę link do odpowiedniej części artykułu.
 
 ```{r results="asis"}
 supporting_imagery()
@@ -67,7 +67,7 @@ Po zapoznaniu się z [Gekko](gamecube#cpu) obawiam się, że nie ma zbyt wielu z
 
 ### A co z pamięcią?
 
-Ta jest ciekawa, stary układ pamięci Gamecube został przearanżowany i wzbogacony o następujące zmiany:
+Ta jest ciekawa, stary układ pamięci GameCube został przearanżowany i wzbogacony o następujące zmiany:
 
 - Splash (24 MB 1T-SRAM) znajduje się teraz w pakiecie Hollywood SoC (wyjaśnione później) i jest teraz określany jako **MEM1** [@operating_system-memory].
 - ARAM-u (16 MB szeregowej pamięci SDRAM) już dawno **nie ma**, jednak...
@@ -106,7 +106,7 @@ Super Mario Galaxy (2007).
 
 :::
 
-Gry Gamecube nie miały odpowiedniego wsparcia dla wyświetlaczy szerokoekranowych (czyli komponowania klatek 16:9, odbiegających od tradycyjnego 4:3). Niemniej jednak GPU Flippera był już w stanie to zrobić, a kilka gier zapewniało opcje jego aktywacji, chociaż nadal było to uważane za ekskluzywną funkcję.
+Gry GameCube nie miały odpowiedniego wsparcia dla wyświetlaczy szerokoekranowych (czyli komponowania klatek 16:9, odbiegających od tradycyjnego 4:3). Niemniej jednak GPU Flippera był już w stanie to zrobić, a kilka gier zapewniało opcje jego aktywacji, chociaż nadal było to uważane za ekskluzywną funkcję.
 
 Tak czy inaczej, bufor ramki pozostaje identyczny, a koder wideo nadal wysyła klatkę zgodną z PAL lub NTSC, więc ta funkcja "widescreen" jest realizowana przez **poszerzenie pola widzenia** w macierzy projekcji. Rezultatem jest renderowana scena z większym kątem widzenia, która jest teraz ściśnięta w poziomie. Jednak szerokoekranowy telewizor również odgrywa rolę w tym procesie, ponieważ następnie rozciągnie klatkę 4:3 (pochodzącą z konsoli), a wyświetlany obraz będzie wyglądał *mniej więcej* we właściwym stosunku. Jeśli jesteś ciekawy, ta technika nie jest nowa, była wykorzystywana w projekcji filmowej i jest określana jako **anamorficzny widescreen**. Zabawne jest też to, jak programiści SNES musieli radzić sobie z [odwrotnym efektem](super-nintendo#display-modalities).
 
@@ -116,19 +116,19 @@ Wracając do sedna, Wii ustandaryzowało tę funkcję, umożliwiając aktywację
 
 ![Super Mario Galaxy (2007).<br>Możesz podnieść gwiazdy, wskazując na nie.](mario/mario_galaxy.png) {.tab-float}
 
-Nowy i śmiały projekt kontrolera oznaczał nowe rodzaje interakcji w grach Wii. Ponieważ WiiMote umożliwiał użytkownikom wskazywanie ekranu, niektóre gry, takie jak *Super Mario Galaxy* lub *The Legend of Zelda: Twilight Princess* użyło tej funkcji, aby umożliwić graczowi interakcję ze scenerią.
+Nowy i śmiały projekt kontrolera oznaczał nowe rodzaje interakcji w grach Wii. Ponieważ Wiimote umożliwiał użytkownikom wskazywanie ekranu, niektóre gry, takie jak *Super Mario Galaxy* lub *The Legend of Zelda: Twilight Princess* użyło tej funkcji, aby umożliwić graczowi interakcję ze scenerią.
 
 W raporcie zatytułowanym _Myth Debugging: Is the Wii More Demanding to Emulate than the GameCube?_ [@graphics-dolphin], developerzy emulatora Dolphin wyjaśniają, że gry takie jak Super Mario Galaxy i inne pierwszoosobowe strzelanki polegają na [wbudowanym buforze-Z](gamecube#tab-1-4-render), aby zidentyfikować obiekt, na który wskazuje Wiimote i/lub sprawdzić, jak daleko obiekt znajduje się od kursora Wiimote.
 
-Nie jest to nowa funkcja per se, ale nowatorskie wykorzystanie obecnych możliwości. Gry Gamecube nie były zależne od wielofunkcyjnego kontrolera z funkcją wskaźnika. Teraz gracze mogą sterować postacią i jednocześnie wskazywać na ekran.
+Nie jest to nowa funkcja per se, ale nowatorskie wykorzystanie obecnych możliwości. Gry GameCube nie były zależne od wielofunkcyjnego kontrolera z funkcją wskaźnika. Teraz gracze mogą sterować postacią i jednocześnie wskazywać na ekran.
 
 ### Zaktualizowane Design'y {.tabs-close}
 
 Dodatkowa szybkość Broadwaya i Hollywood w połączeniu z awangardowymi projektami przyniosła pewne ulepszenia modeli postaci. Może nie są tak znaczące jak w innych generacjach, ale nadal są zauważalne i doceniane.
 
-![Super Smash Bros Brawl (2008) dla Wii.<br>3,049 trójkątów.](mario_melee_gc){.toleft model3d="true"}
+![Super Smash Bros. Melee (2001) dla GC.<br>2,494 trójkąty.](mario_melee_gc){.toleft model3d="true"}
 
-![Super Smash Bros. Melee (2001) dla GC.<br>2,494 trójkąty.](mario_brawl_wii){.toright model3d="true"}
+![Super Smash Bros Brawl (2008) dla Wii.<br>3,049 trójkątów.](mario_brawl_wii){.toright model3d="true"}
 
 ![Sonic Adventure DX (2003) dla Gamecube.<br>1,985 trójkątów.](tails_dx_gc){.toleft model3d="true"}
 
@@ -138,13 +138,13 @@ Dodatkowa szybkość Broadwaya i Hollywood w połączeniu z awangardowymi projek
 
 Co zaskakujące, ta konsola nie używa już starego portu [Multi Out](super-nintendo.md#a-convenient-video-out), ale jego odmianę o nazwie **AV Multi Out** (to tyle jeśli chodzi o nazwę) o nieco innym kształcie. Ten przenosi wszystkie poprzednie sygnały plus **YPbPr** (znany jako 'komponent') [@graphics-video]. Zawiera również niektóre linie danych, których system używa do identyfikacji typu podłączonego kabla.
 
-Niestety, to medium dziedziczy te same [ograniczenia](gamecube.md#connections) co Gamecube. Oznacza to brak S-Video w systemach PAL i brak RGB w systemach NTSC. Ponadto RGB może nadawać tylko sygnały z przeplotem (bez progresywnego). Z drugiej strony Nintendo w końcu dostarczyło kabel SCART (jako dodatkowe akcesorium), który w końcu wykorzystuje linie RGB (pamiętaj, że zostały one zignorowane od czasów [SNES](super-nintendo#a-convenient-video-out)).
+Niestety, to medium dziedziczy te same [ograniczenia](gamecube.md#connections) co GameCube. Oznacza to brak S-Video w systemach PAL i brak RGB w systemach NTSC. Ponadto RGB może nadawać tylko sygnały z przeplotem (bez progresywnego). Z drugiej strony Nintendo w końcu dostarczyło kabel SCART (jako dodatkowe akcesorium), który w końcu wykorzystuje linie RGB (pamiętaj, że zostały one zignorowane od czasów [SNES](super-nintendo#a-convenient-video-out)).
 
 ## Dźwięk
 
-Wii zawiera ten sam **DSP Macronix**, który znajduje się w [Gamecube](gamecube#audio), możesz rzucić okiem na ten artykuł w celu szczegółowej analizy.
+Wii zawiera ten sam **DSP Macronix**, który znajduje się w [GameCube](gamecube#audio), możesz rzucić okiem na ten artykuł w celu szczegółowej analizy.
 
-W porównaniu z Gamecube jedyną poważną zmianą jest to, że skoro ARAM zniknął, MEM1 lub MEM2 mogą być używane jako bufor audio.
+W porównaniu z GameCube jedyną poważną zmianą jest to, że skoro ARAM zniknął, MEM1 lub MEM2 mogą być używane jako bufor audio.
 
 ## WE/WY
 
@@ -186,16 +186,16 @@ Powiedziawszy to, Nintendo podłączyło WE/WY w sposób, który wykorzystuje dw
   - Moduł **SHA-1** i **AES**: Zarezerwowany do zadań związanych z bezpieczeństwem (więcej szczegółów w sekcji 'Przeciwdziałanie-Piractwu').
 - **Magistrala APB** (Zaawansowana Magistrala Peryferyjna [ang. Advanced Peripheral Bus]): Ta jest ograniczona do komponentów o niskiej wydajności, w tym:
   - **Interfejsu stacji dysków**: Podłącza czytnik dysków.
-  - **Interfejsu szeregowego**: Łączy kontrolery Gamecube.
-  - **Interfejsu zewnętrznego** \[ang. External Interface\] (EXI): Widzieliśmy już ten interfejs [wcześniej](gamecube#internal-io). Komunikuje się z innym sprzętem Gamecube, i jest używany do wstecznej kompatybilności.
+  - **Interfejsu szeregowego**: Łączy kontrolery GameCube.
+  - **Interfejsu zewnętrznego** \[ang. External Interface\] (EXI): Widzieliśmy już ten interfejs [wcześniej](gamecube#internal-io). Komunikuje się z innym sprzętem GameCube, i jest używany do wstecznej kompatybilności.
 
 ### Utrzymanie kompatybilności
 
-![Wii z akcesoriami Gamecube [@photography-amos].](gamecube-mode.png) {.open-float.no-borders}
+![Wii z akcesoriami GameCube [@photography-amos].](gamecube-mode.png) {.open-float.no-borders}
 
-Wii zachowuje pełną wsteczną kompatybilność z grami Gamecube, mimo że system WE/WY uległ drastycznej zmianie. Dzieje się tak, ponieważ Starlet można przeprogramować, gdy uruchamiana jest gra Gamecube, aby wirtualnie ponownie mapować WE/WY na takie, jakiego spodziewałby się oryginalny Gamecube.
+Wii zachowuje pełną wsteczną kompatybilność z grami GameCube, mimo że system WE/WY uległ drastycznej zmianie. Dzieje się tak, ponieważ Starlet można przeprogramować, gdy uruchamiana jest gra GameCube, aby wirtualnie ponownie mapować WE/WY na takie, jakiego spodziewałby się oryginalny GameCube.
 
-Dodatkowo układ zegara czasu rzeczywistego zawiera zapasową pamięć ROM, która przechowuje czcionki bitmapowe (zestaw Łaciński i Japoński) używane przez gry Gamecube; i SRAM do zapisywania [ustawień związanych z IPL](gamecube#operating-system).
+Dodatkowo układ zegara czasu rzeczywistego zawiera zapasową pamięć ROM, która przechowuje czcionki bitmapowe (zestaw Łaciński i Japoński) używane przez gry GameCube; i SRAM do zapisywania [ustawień związanych z IPL](gamecube#operating-system).
 
 `r close_float_group(with_markdown = TRUE)`
 
@@ -222,7 +222,7 @@ System aktualizacji IOS **jest nieco skomplikowany**: Zaktualizowane wersje IOS 
 
 Nintendo często publikowało aktualizacje IOS w celu poprawy obsługi sprzętu (co było konieczne, gdy dostarczono nowe akcesorium). Jest tylko **jeden wyjątek**, gdy aktualizacje IOS faktycznie zastępują starsze: Gdy wykryto, że konkretna wersja ma lukę, którą można wykorzystać. Robione to było tylko ze względów bezpieczeństwa.
 
-Po włożeniu gry Gamecube dzieje się coś innego: Startlet zamiast tego uruchamia **MIOS**. Ten wariant IOS po prostu nakazuje Starletowi emulację oryginalnego [IPL](gamecube#operating-system).
+Po włożeniu gry GameCube dzieje się coś innego: Startlet zamiast tego uruchamia **MIOS**. Ten wariant IOS po prostu nakazuje Starletowi emulację oryginalnego [IPL](gamecube#operating-system).
 
 ### System operacyjny Broadway
 
@@ -236,7 +236,7 @@ Ten jest powszechnie znany jako **Menu Systemowe** i działa na głównym proces
 
 W porównaniu z IOS nie uważałbym tego za 'w pełni rozwinięty' system operacyjny, ale bardziej za 'program', który pozwala użytkownikowi wykonywać następujące operacje:
 
-- **Uruchom grę Wii/Gamecube**: Tylko wtedy, gdy włożona jest prawidłowa gra.
+- **Uruchom grę Wii/GameCube**: Tylko wtedy, gdy włożona jest prawidłowa gra.
 - **Zmień ustawienia konsoli**: W tym między innymi godzinę, datę, tryb wideo lub lokalizację czujnika.
 - **Uruchom aplikacje**: Jedną z nowości tej konsoli jest możliwość instalacji niewielkich gier Wii (tzw. 'WiiWare'), gier retro (gry 'Virtual Console') lub po prostu wygodnych aplikacji (takich jak przeglądarka internetowa). Nintendo nazwało je **kanałami**, ale w systemie operacyjnym są one również określane jako **tytuły**.
   - Użytkownicy mogą pobierać/kupować kanały za pośrednictwem wstępnie zainstalowanego kanału o nazwie **Kanał Sklepowy Wii**.
@@ -302,7 +302,7 @@ Biorąc pod uwagę wszystkie ulepszenia oprogramowania tej konsoli, może Cię z
 
 ![Ten ekran również musi być uwzględniony.](ingame/strap_warning.png){.tabs-nested-last title="Przypomnienie"}
 
-Powiedziawszy to, istnieją pewne funkcje w różnych grach, które w jakiś sposób wyglądają strasznie identycznie. Czy pamiętasz na przykład słynne **Menu HOME**? Naciśnięcie przycisku 'HOME' na WiiMote uruchomi wyskakujące okienko w grze, umożliwiając użytkownikowi powrót do menu systemowego bez konieczności ponownego uruchamiania konsoli. Biorąc pod uwagę, że system operacyjny nie zapewnia tej funkcji, w jaki sposób wszystkim udało się stworzyć ten sam interfejs graficzny?
+Powiedziawszy to, istnieją pewne funkcje w różnych grach, które w jakiś sposób wyglądają strasznie identycznie. Czy pamiętasz na przykład słynne **Menu HOME**? Naciśnięcie przycisku 'HOME' na Wiimote uruchomi wyskakujące okienko w grze, umożliwiając użytkownikowi powrót do menu systemowego bez konieczności ponownego uruchamiania konsoli. Biorąc pod uwagę, że system operacyjny nie zapewnia tej funkcji, w jaki sposób wszystkim udało się stworzyć ten sam interfejs graficzny?
 
 Odpowiedź jest prosta, Nintendo zawarło w swoim SDK kilka **obowiązkowych bibliotek**, które gry muszą zawierać. *Okazuje się*, że jedna z nich rysuje ten ekran. Co więcej, jest to powód dla którego, jak się przekonasz, tylko aplikacje homebrew zawierają 'oryginalne' projekty menu home.
 
@@ -342,7 +342,7 @@ Matsushita opublikowało kolejne wersje tego napędu, blokujące interfejs debug
 
 Warto wspomnieć, że główną zaletą modchipów było zwykłe piractwo, ponieważ zawartość dysku jest nadal zaszyfrowana, więc do uruchomienia niestandardowego kodu potrzeba było więcej badań i narzędzi.
 
-Z drugiej strony, Gamecube homebrew był już możliwy do wykonania, wykorzystując [poprzednie wykryte exploity](gamecube#tab-5-3-honourable-mention) na poprzedniku.
+Z drugiej strony, GameCube homebrew był już możliwy do wykonania, wykorzystując [poprzednie wykryte exploity](gamecube#tab-5-3-honourable-mention) na poprzedniku.
 
 ### Szyfrowanie systemu
 
@@ -399,7 +399,7 @@ Ten system zawiera również parę **kluczy prywatnych i publicznych ECC**. Kryp
 
 Klucz ECC jest podpisany przez *jeszcze inny* klucz publiczny RSA o nazwie **MS**, co pozwoli Starlet zaufać kluczowi ECC.
 
-Ostatnim kluczem używanym przez tę konsolę jest **klucz HMAC**, który korzysta z innego algorytmu łączącego hashe SHA1 i HMAC. Podczas procesu uruchamiania Starlet sprawdza, czy NAND nie został zmieniony przez sprzęt innej firmy. Aby to zrobić, oblicza hash SHA1 pamięci NAND i porównuje go z hashem zakodowanym, aby sprawdzić, czy pasują. Oprócz tego zapisany skrót jest podpisany przy użyciu klucza HMAC, aby upewnić się, że jest autentyczny.
+Ostatnim kluczem używanym przez tę konsolę jest **klucz HMAC**, który korzysta z innego algorytmu łączącego hashe SHA-1 i HMAC. Podczas procesu uruchamiania Starlet sprawdza, czy NAND nie został zmieniony przez sprzęt innej firmy. Aby to zrobić, oblicza hash SHA-1 pamięci NAND i porównuje go z hashem zakodowanym, aby sprawdzić, czy pasują. Oprócz tego zapisany skrót jest podpisany przy użyciu klucza HMAC, aby upewnić się, że jest autentyczny.
 
 Na koniec klucz HMAC jest przechowywany w SEEPROM (poza Starlet), a nie w OTP.
 
@@ -413,7 +413,7 @@ Zacznijmy od kluczy AES, algorytm może być trudny do złamania, ale jeśli klu
 
 ![Diagram bezpieczeństwa Starlet.](encryption.png) {.open-float}
 
-Więc, grupa hakerów o nazwie **Team Twiizers** odkryła, że brak podpisów w trybie Gamecube może być obiecującą powierzchnią do ataku [@cpu-ccc]. Nie tylko odkryli, że **3/4 z tego RAM GDDR3 nie zostaje wyczyszczone** po uruchomieniu programu GC, ale również odkryli, że poprzez pomostowanie niektórych punktów adresowych na płycie głównej (przy użyciu pary pęset), mogą zamienić wybrane banki RAM GDDR3, umożliwiając im dostęp do obszarów ograniczonych. I oto znaleziono tam klucze AES.
+Więc, grupa hakerów o nazwie **Team Twiizers** odkryła, że brak podpisów w trybie GameCube może być obiecującą powierzchnią do ataku [@cpu-ccc]. Nie tylko odkryli, że **3/4 z tego RAM GDDR3 nie zostaje wyczyszczone** po uruchomieniu programu GC, ale również odkryli, że poprzez pomostowanie niektórych punktów adresowych na płycie głównej (przy użyciu pary pęset), mogą zamienić wybrane banki RAM GDDR3, umożliwiając im dostęp do obszarów ograniczonych. I oto znaleziono tam klucze AES.
 
 `r close_float_group(with_markdown = TRUE)`
 
@@ -483,7 +483,7 @@ Myślę, że nie ma żadnych sporów o wpływ, jaki scena hakerska wywarła na t
 
 Szczęśliwego nowego roku 2020!
 
-Ten artykuł zajął mi trochę czasu, naiwnie przewidywałem, że skoro większość treści była już napisana dla Gamecube'a, będę musiał tylko napisać krótkie akapity i dodać linki tu i tam...
+Ten artykuł zajął mi trochę czasu, naiwnie przewidywałem, że skoro większość treści była już napisana dla GameCube'a, będę musiał tylko napisać krótkie akapity i dodać linki tu i tam...
 
 Myślę, że wyszedł bardziej informacyjny niż oczekiwałem, więc mam nadzieję, że spodobała ci się jego lektura.
 
