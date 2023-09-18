@@ -1187,7 +1187,7 @@ I guess you see where I'm going with this, if you craft a special copy of King K
 
 This solves the first task of filling main RAM, but we still need a way of invoking the custom syscall...
 
-##### Priviledge escalation {.tab}
+##### Privilege escalation {.tab}
 
 Recall that the Xbox 360's kernel provides a scheduler to handle multi-threading. This apparatus takes care of dispatching virtual threads to the CPU cores and saving idle threads into memory for later use. Well, for another unexplained reason, the scheduler stores thread states in RAM as **unencrypted** data!
 

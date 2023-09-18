@@ -327,7 +327,7 @@ Back on topic, how does a GBA game handle all of this? _It doesn't_, Nintendo fi
 
 ### Interactive comparison {.interactive-only}
 
-I've constructed this interactive widget that will allow you to compare by yourself how the new audio system affected the new generation of soundtracks. Each widget plays the same score but allows you to alternate between the old and new arrangements (I suggest wearing headphones to really notice the difference). Give it a whirl!
+I've constructed this interactive widget that will allow you to compare how the new audio system affected the new generation of soundtracks. Each widget plays the same score but allows you to alternate between the old and new arrangements (I suggest wearing headphones to really notice the difference). Give it a whirl!
 
 (ref:gbatitle) GB Advance
 

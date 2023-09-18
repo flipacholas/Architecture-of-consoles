@@ -845,8 +845,6 @@ Apart from the online store, there were many more online solutions added to the 
 
 PlayStation Network enabled users to create a personal account and assign an avatar, then use that new digital persona to do multiplayer gaming, message and other social interactions. Users can also earn **trophies** if they complete a certain event in a game, and these then show up in the online profile (as in some form of medal of honour) to intimidate rivals and gain the respect of friends, I think.
 
-(ref:trophiestitle) Trophies
-
 ![Games offer an achievement catalogue to challenge their users. The intent is to provide players with a sense of pride and accomplishment.](xmb/trophies.jpg){.tabs-nested .active title="Trophies"}
 
 ![Friends list. (Names are redacted for obvious reasons).](xmb/friends.jpg){.tab-nested title="Friends"}

@@ -354,23 +354,17 @@ When the kernel loads, it injects microcode into the CPU (not to program it, but
 
 Let's take a look now at the program that the Xbox loads when there isn't a game disc inserted: The **Dashboard**.
 
-(ref:dashboardtitle) Interactive shell
+#### Interactive shell {.tabs .active}
 
-(ref:hometitle) Home
+::: {.subfigures .tabs-nested .tab-float}
 
-(ref:homecaption) Home screen.
+![Home screen.](shell/home.png){.active title="Home"}
 
-(ref:settingstitle) Settings
+![Settings screen.](shell/settings.png){title="Settings"}
 
-(ref:settingscaption) Settings screen.
+The Dashboard offers multiple services.
 
-(ref:dashboardfooter) The Dashboard offers multiple services.
-
-```{r fig.cap=c("(ref:homecaption)", "(ref:settingscaption)", "(ref:osinthddcaption)"), fig.align='center', tab.title="(ref:dashboardtitle)", tab.nested=TRUE, tab.float=TRUE, tab.figure=TRUE, tab.first=TRUE, tab.active=TRUE}
-image('shell/home.png', "(ref:homecaption)", float=TRUE, tab.name = "(ref:hometitle)", tab.active = TRUE)
-image('shell/settings.png', "(ref:settingscaption)", float=TRUE, tab.name = "(ref:settingstitle)", caption.post="(ref:dashboardfooter)")
-figcaption("(ref:dashboardfooter)")
-```
+:::
 
 The dashboard is not very different in terms of functionality compared to the [PlayStation menu](playstation-2#interactive-shell), or the [GameCube's IPL](gamecube#splash-and-shell). It essentially includes all the functions typical users would expect, like being able to tweak some settings, moving saves around, playing DVD movies or CD audio; and so forth.
 
