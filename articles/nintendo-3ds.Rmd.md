@@ -113,7 +113,7 @@ The technology is not perfect, however, as there are a few caveats:
 
 - The parallax barrier requires extra brightness, thereby impacting the battery life.
 - The user must not hold the screen in a tilted position (compared to the user's eyes). Otherwise, the user will end up seeing a confusing mix of the two parallax frames, which can be a disorienting experience. Not to mention the eyes won't enjoy the extra fatigue.
-- Combining the fact the user must maintain a fixed posture while playing, and that stereoscopic parallax can tire the eyes quicker. The 3D feature, as a whole, can be an unnecessary hassle for most.
+- Combining the fact that the user must maintain a fixed posture while playing, and that stereoscopic parallax can tire the eyes quicker. The 3D feature, as a whole, can be an unnecessary hassle for most.
 
 ![My attempt to capture the tilt effect of the original 3DS. The 3D depth slider (at the right side of the screen) is all the way up, and by looking at the screen from one side, a ghosting effect appears on the top screen. This is quite eye-straining to look at in reality!](stereoscopy/tilt.webp){.open-float .no-borders}
 
@@ -145,7 +145,7 @@ Now that we know how the display works, let's look at the internals of this cons
 
 CPU CTR follows the design methods of previous portable consoles from Nintendo. That is, squash all your engineering into a single block. In doing so, it will reduce the production of counterfeits, protect sensible components and improve heat dissipation.
 
-In terms of the actual CPU, Nintendo partnered again with their old friend, **ARM**, to produce their next-generation core. ARM's licensing model happens to be favourable to Nintendo as they have always offered synthesisable designs, which allows Nintendo to mould to their needs (including, fitting them into a big SoC). In the end, ARM gave them a relatively antiquated with substantial upgrades. Their choice was the **ARM11** core, a successor of the ARM9 (featured with the [Nintendo DS](nintendo-ds#cpu)). More specifically, the **MPCore** variant, ARM's first **homogenous multi-core** solution.
+In terms of the actual CPU, Nintendo partnered again with their old friend, **ARM**, to produce their next-generation core. ARM's licensing model happens to be favourable to Nintendo as they have always offered synthesisable designs, which allows Nintendo to mould to their needs (including, fitting them into a big SoC). In the end, ARM gave them a relatively antiquated product with substantial upgrades. Their choice was the **ARM11** core, a successor of the ARM9 (featured with the [Nintendo DS](nintendo-ds#cpu)). More specifically, the **MPCore** variant, ARM's first **homogenous multi-core** solution.
 
 Using ARM's designs, Nintendo crafted an ARM11 MPCore cluster housing **two** ARM11 cores [@cpu-lioncash]. Three years later, with the arrival of the 'New' 3DS, the SoC was expanded to contain **four** ARM11 cores. The effects of this will be explained in due time so, before anything else, let's analyse what the new CPU cores offered to this console.
 
@@ -361,7 +361,7 @@ Nintendo only provided **6 MB of VRAM** exclusively for the GPU. Ideally, progra
 
 ![Example of how data is organised across the memory available.](gpu/content.png)
 
-During rendering, programmers allocate dedicated render buffers (i.e. frame, stencil, depth, etc.) for many operations. That's always been the case. With the 3DS, alongside these buffers, programmers are also expected to reserve extra space for **Display buffers**, these are bound to the physical screens. The 3DS requires to allocate **three Display buffers** (two for the stereoscopic upper screen and one for the bottom one). To give you an idea, the display process works as follows:
+During rendering, programmers allocate dedicated render buffers (i.e. frame, stencil, depth, etc.) for many operations. That's always been the case. With the 3DS, alongside these buffers, programmers are also expected to reserve extra space for **Display buffers**, these are bound to the physical screens. The 3DS is required to allocate **three Display buffers** (two for the stereoscopic upper screen and one for the bottom one). To give you an idea, the display process works as follows:
 
 1. The LCD continuously displays the content of the front (active) Display buffer, as instructed by the value of the buffer index.
 2. Meanwhile, the GPU finishes rendering geometry in a framebuffer.
@@ -532,7 +532,7 @@ This section tends to be very rich in technologies considering Nintendo's consol
 
 ### External interfaces and peripherals
 
-The Nintendo DS had tons of modules built-in and the Nintendo DSi added more on top of it (after removing the GBA Slot). Now we found ourselves with a new console combining interfaces from two decades (the 2000s and 2010s).
+The Nintendo DS had tons of modules built-in and the Nintendo DSi added more on top of it (after removing the GBA Slot). Now we find ourselves with a new console combining interfaces from two decades (the 2000s and 2010s).
 
 ![Main diagram of the console's architecture. You can sense that the I/O area on the left side was a strong selling point of this console.](diagram.png)
 
@@ -779,10 +779,10 @@ Having said that, once the console is powered on, the following sequence of even
 The ARM11 MPCore will now start execution of Boot11 in parallel:
 
 1. ARM11's reset vector is at address `0x00000000` [@cpu-arm_reference], which happens to be in the same place as Boot11.
-2. Boot11 will branch depending on which core is it being executed on. If it's greater than core 2, it hangs indefinitely.
+2. Boot11 will branch depending on which core it is being executed on. If it's greater than core 2, it hangs indefinitely.
 3. Wait until ARM9 is finished bootstrapping a firmware.
 
-Meanwhile, the ARM9 will be busy continuig with Boot9 execution:
+Meanwhile, the ARM9 will be busy continuing with Boot9 execution:
 
 4. The AES and RSA public keys are exported to the AES and RSA engines (these will be explained in the 'Anti-piracy' section).
 5. Boot9 will try to boot from NAND.
@@ -839,7 +839,7 @@ The NS module is not only responsible for launching the interactive shell, it al
 
 Furthermore, 3DS software may also invoke 'mini applications' for attending other events (i.e. show the virtual keyboard), these are known as **Applets** [@operating_system-ns].
 
-Both sets are a crucial dependency for all applications, as they are responsible for properly reacting to external events consistently. Interestingly enough, since Applets and NS routines are not part of the game itself, in the case of New 3DS systems, even if a game is running in compatibility mode (that is, with all the 'New' hardware disabled), they will still be executed using the full extend of hardware, giving a small performance boost to unoptimised 3DS games.
+Both sets are a crucial dependency for all applications, as they are responsible for properly reacting to external events consistently. Interestingly enough, since Applets and NS routines are not part of the game itself, in the case of New 3DS systems, even if a game is running in compatibility mode (that is, with all the 'New' hardware disabled), they will still be executed using the full extent of hardware, giving a small performance boost to unoptimised 3DS games.
 
 #### The legacy shell
 
@@ -863,7 +863,7 @@ It's time to check how game development and distribution were carried out. Addit
 
 Before the Nintendo 3DS arrived, developing for embedded system involved monumental efforts and high levels of patience. Compared to desktop applications, the tooling wasn't standardised and sometimes it didn't converge well with each other (ActiveSync is the clearest example I remember). The range of documentation didn't usually go beyond what the manufacturer provided, the same applied for technical support.
 
-Enter the 2010s decade, coinciding with the influx of an ARM-based smartphone industry and more efficient compilers, development for those platforms was no longer a complicated endeavour. Consequently, game studios developing for the Nintendo 3DS were able to enjoy this evolution. Now, Nintendo was not providing a standard toolchain yet, but they were on the right track (finally reached with the Nintendo Switch).
+Entering the 2010s decade, and coinciding with the influx of an ARM-based smartphone industry and more efficient compilers, development for those platforms was no longer a complicated endeavour. Consequently, game studios developing for the Nintendo 3DS were able to enjoy this evolution. Now, Nintendo was not providing a standard toolchain yet, but they were on the right track (finally reached with the Nintendo Switch).
 
 Curiously enough (and this is an interesting contrast), back in 2011, Apple offered Clang/LLVM 1.3 and OpenGL ES 3.0 for developing iOS apps, this was considered state-of-the-art for mobile projects. Well, you'll see throughout this section that this wasn't the case for Nintendo. Yet, at present, if you grab an old iPhone 4s and try to install any app on the App Store (its only official medium), it will tell you your system is too old. Whereas you can still play any retail game on your 3DS. Food for thought.
 
@@ -1076,7 +1076,7 @@ There was much progress during the first two years of this console (a big achiev
 
 ![The Gateway3DS package [@anti_piracy-gateway_review].](homebrew/gateway3ds.jpg){.tab-float}
 
-Ignoring teasers of '3DS Flascards' that never appeared [@anti_piracy-crown3ds]. **Gateway3DS** can be considered the first 3DS Flashcard to reach the stores. The instructions were not as simple as DS Flashcards, however. You can sense this by looking at the contents of the box:
+Ignoring teasers of '3DS Flashcards' that never appeared [@anti_piracy-crown3ds]. **Gateway3DS** can be considered the first 3DS Flashcard to reach the stores. The instructions were not as simple as DS counterparts, however. You can sense this by looking at the contents of the box:
 
 - A whitelisted **DS Flashcard** (known as _Blue Gateway_) whose only purpose is to run a Nintendo DS ROM crafted by Gateway. As part of the 'installation' process, users were first required to run this 'game' and follow the instructions.
 - A **Launcher.dat** to be placed in the 3DS' SD card.
