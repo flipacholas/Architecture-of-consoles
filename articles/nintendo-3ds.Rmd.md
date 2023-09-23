@@ -625,7 +625,7 @@ With such a heavy list of I/O hardware, you can now see how Nintendo tried to co
 
 - A **QR Reader** bundled with the camera app.
 - **AR Games**: Nintendo shipped 'AR Cards' that could be scanned with the 3DS camera using an app called 'AR Games'. This would make static Nintendo characters pop up in your room, like any traditional augmented-reality-based application.
-- **Face Riders**: Another camera-based app, but in this case, takes a photo of the player to compose the game's characters. The player must then use the gyroscope and microphone to battle his/her evil clones.
+- **Face Raiders**: Another camera-based app, but in this case, takes a photo of the player to compose the game's characters. The player must then use the gyroscope and microphone to battle his/her evil clones.
 - **Amiibos**: Uses the NFC reader to scan figurines and unlock game bonuses, the same service was also [implemented in the Wii U](wiiu#the-supplemental-interface).
 - **SpotPass**: The continuation of [WiiConnect24](wii#games), now automatically connects to unsecured Wi-Fi access points.
 - **StreetPass**: Automatically exchanges data between nearby 3DS systems. Nintendo marketed it as a way of connecting random 3DS players on the street. 
