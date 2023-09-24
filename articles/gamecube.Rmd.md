@@ -218,9 +218,9 @@ Time to put all of this into perspective, check out how programmers evolved the 
 
 The famous Mario model which had to be stripped down due to polygon counting on the [previous generation](nintendo-64) got completely redesigned for this one, take a closer look at how the model evolved from plain faces to wrinkled sleeves.
 
-![Super Smash Bros (1999) for the N64.<br>229 triangles.](mario_smash_64){.toleft .nested model3d="true"}
+![Super Smash Bros (1999) for the N64.<br>320 triangles.](mario_smash_64){.toleft .nested model3d="true"}
 
-![Super Smash Bros. Melee (2001) for the GC.<br>2,494 triangles.](mario_melee_gc){.toright model3d="true"}
+![Super Smash Bros. Melee (2001) for the GC.<br>4,718 triangles.](mario_melee_gc){.toright model3d="true"}
 
 #### The update {.tab}
 

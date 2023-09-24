@@ -125,13 +125,13 @@ This is not a new feature per se, but a novel use of current capabilities. GameC
 
 The extra megahertz of Broadway and Hollywood, combined with avant-garde designs, brought some improvements to character models. It may not be as significant as other generations, but it's still noticeable and appreciated.
 
-![Super Smash Bros. Melee (2001) for the GC.<br>2,494 triangles.](mario_melee_gc){.toleft model3d="true"}
+![Super Smash Bros. Melee (2001) for the GC.<br>4,718 triangles.](mario_melee_gc){.toleft model3d="true"}
 
-![Super Smash Bros Brawl (2008) for the Wii.<br>3,049 triangles.](mario_brawl_wii){.toright model3d="true"}
+![Super Smash Bros. Brawl (2008) for the Wii.<br>5,455 triangles.](mario_brawl_wii){.toright model3d="true"}
 
 ![Sonic DX (2003) for the GC.<br>1,985 triangles.](tails_dx_gc){.toleft model3d="true"}
 
-![Super Smash Bros Brawl (2008) for the Wii.<br>3,644 triangles.](tails_brawl_wii){.toright model3d="true"}
+![Super Smash Bros. Brawl (2008) for the Wii.<br>3,644 triangles.](tails_brawl_wii){.toright model3d="true"}
 
 ### Video Signal
 
@@ -281,7 +281,7 @@ Wii games are distributed using a proprietary disc format called **Wii Optical D
 
 The Wii disc provides either **4.7 GB** (if single-layer) or **8.54 GB** (if double-layer) of space available. They often contain **two partitions**: The first one for system updates and the other one for the actual game.
 
-Some games like *Super Smash Bros Brawl* included more partitions to store multiple Virtual Console games, which were executed inside the main game.
+Some games like *Super Smash Bros. Brawl* included more partitions to store multiple Virtual Console games, which were executed inside the main game.
 
 `r close_float_group(with_markdown = TRUE)`
 

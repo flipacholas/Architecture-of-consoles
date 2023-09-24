@@ -465,9 +465,9 @@ Once the framebuffer is ready to be displayed, it must be copied into another bl
 
 ### Interactive comparison {.tabs-close}
 
-Now that you've seen how the PICA200 draws its triangles on the screen, it's time for some practical examples. Here I've gathered two Marios from Smash Bros games, the Wii and 3DS one. Notice how the level of detail of 'angry Mario' hasn't changed that much, considering we're comparing a 2006 home console with its 2011 portable.
+Now that you've seen how the PICA200 draws its triangles on the screen, it's time for some practical examples. Here I've gathered two Marios from Smash Bros games, the Wii and 3DS one. Notice how the perceived level of detail of the newer 'angry Mario' is very close to its home console equivalent.
 
-![Super Smash Bros Brawl (2008) for the Wii.<br>3,049 triangles.](mario_brawl_wii){.toleft model3d="true"}
+![Super Smash Bros. Brawl (2008) for the Wii.<br>5,455 triangles.](mario_brawl_wii){.toleft model3d="true"}
 
 ![Super Smash Bros. for 3DS (2014).<br>3,080 triangles.](mario_ssb_3ds){.toright model3d="true"}
 

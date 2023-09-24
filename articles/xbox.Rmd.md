@@ -512,7 +512,7 @@ Another point to mention is that Xbox live was itself an effective prevention me
 
 After a couple of months with deadlines and exams in the middle, the next article has finally been finished. I admit this one continues the trend of adding *too much* information and trivia, but while this research started with small (and frustrating) steps, I'm glad I found a lot of support from one special community, XboxDev, that helped me gather lots of information.
 
-For anyone who would like to know more about this console, XboxDev is actively working on nxdk (along with different emulators) which strive to do things that were previously considered impossible in Xbox homebrew, so I suggest visiting their community for more information.
+For anyone who would like to know more about this console, XboxDev is actively working on nxdk (along with different emulators) which strives to do things that were previously considered impossible in Xbox homebrew, so I suggest visiting their community for more information.
 
 From my side, I'm going to take a few days to think carefully about the *next article* (and potentially go back a couple of generations to analyse a console I forgot about).
 

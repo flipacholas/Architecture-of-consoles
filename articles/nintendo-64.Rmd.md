@@ -183,7 +183,7 @@ Once the RDP finishes processing the data, it will then write the final bitmap t
 
 Here are some examples of previous 2D characters for the [Super Nintendo](super-nintendo) that have been redesigned for the new 3D era, they are interactive so I encourage you to check them out!
 
-![The Legend of Zelda: Ocarina of Time (1998).<br>785 triangles.](link_ocarina_64){.toleft model3d="true"}
+![The Legend of Zelda: Ocarina of Time (1998).<br>704 triangles.](link_ocarina_64){.toleft model3d="true"}
 
 ![Kirby 64: The Crystal Shards (2000).<br>516 triangles.](kirby_cristals_64){.toright model3d="true"}
 
