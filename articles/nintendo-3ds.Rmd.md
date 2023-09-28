@@ -163,7 +163,7 @@ Now, by the time Nintendo adopted the ARM11, its creator had already succeeded i
 
 Along with the new shiny CPUs, a new instruction set arrived, the **ARMv6**.
 
-From a programmer's perspective, the ARMv6 ISA innovates with a new set of vector instructions and multi-core support [@cpu-thomas]. The new vector set provides SIMD instructions that operate groups of **four 8-bit values** or **two 16-bit values** at the same time (using the existing 32-bit registers) [@cpu-armcc]. The new multi-core instructions consist of `Store` and `Load` opcodes with special care for synchronisation (crucial for an environment of multiple CPUs using the same memory locations) [@cpu-sync].
+From a programmer's perspective, the ARMv6 ISA innovates with a new set of vector instructions and multi-core support [@cpu-thomas]. The new vector set provides SIMD instructions that operate groups of **four 8-bit values** or **two 16-bit values** at the same time (using the existing 32-bit registers) [@cpu-armcc]. The new multi-core instructions consist of 'store' and 'load' opcodes with special care for synchronisation (crucial for an environment of multiple CPUs using the same memory locations) [@cpu-sync].
 
 All in all, this may not seem that thriving for a new chip series, but remember that ARM's CPUs speak many 'languages'. In the case of an ARM11-based core, you are provided with:
 
@@ -180,16 +180,16 @@ The adoption of extensions and alternative instruction sets eventually made thin
 
 Debian, one of the most popular distributions, tried to tackle the disparities by developing two ports in parallel:
 
-- `armel`: unoptimized, compatible with ARMv4T onwards.
-- `armhf`: accelerated with VFP, but only compatible with ARMv7 onwards.
+- `armel`: Widely compatible (ARMv4T, onwards).
+- `armhf`: Accelerated with VFP, but only compatible with ARMv7 onwards.
 
 Yet, with the arrival of the Raspberry Pi (powered by ARMv6 and accelerated with VFP), neither of them was deemed acceptable. Thus, an unofficial port called 'Raspbian' was developed to provide a VFP-accelerated version for ARMv6 CPUs [@cpu-armhf]. Even so, the trend continued: years later, with the arrival of ARMv8 and AArch64, Debian spawned yet-another port, `arm64`, optimised for the new 64-bits ISA.
 
-I don't remember seeing this labyrinth with x86, but at least things are now getting more orderly. AArch64 has unified many extensions and dropped alternative modes (_farewell, Thumb and Jazelle_).
+I don't remember seeing this labyrinth with x86 (even though the adoption of x86 SIMD extensions hasn't been consistent, to say the least), but at least things are now getting more orderly. AArch64 has unified many extensions and dropped alternative modes (_farewell, Thumb and Jazelle_).
 
 ### Core functionality
 
-That was a big deviation. Let's go back to the 3DS CPU, the ARM11, and check what's inside.
+Let's go back to analysing what's in the 3DS CPU.
 
 For this study, we can divide the ARM11 MPCore into two areas:
 
@@ -226,15 +226,15 @@ Moving on, all cores now run at **804 MHz** (three times the original speed, whi
 
 #### The AXI bus {.tab}
 
-![Example of how the AXI protocol interconnects different types of components](cpu/axi.png){.tab-float}
+![Example of the Nintendo 3DS' AXI implementation interconnecting different types of components. Here, the CPU and DMA act as masters while the RAM node is the slave. However, the roles can change as deemed fit.](cpu/axi.png){.tab-float}
 
-Whether there are two or four cores, all of these are connected using a specialised bus, proudly authored by ARM, called the **Advanced eXtensible Interface** (AXI). This protocol is part of the AMBA3 model, a successor of the original AMBA revision that we've seen in the [Wii](wii#the-hidden-co-processor) and [Wii U](wiiu#internal-interfaces) (both housing an ARM9 CPU).
+Whether we're talking about two or four MP11 cores, all of these are connected using a popular bus, proudly authored by ARM, called the **Advanced eXtensible Interface** (AXI). This protocol is part of the AMBA3 model, a successor of the original AMBA revision that we've seen in the [Wii](wii#the-hidden-co-processor) and [Wii U](wiiu#internal-interfaces) (both housing an ARM9 CPU). In doing so, ARM offered the AXI model as a critical building block for **System On Chips** (SoC).
 
-Generally speaking, the AMBA model provides a set of protocols for connecting components with distinct bandwidth requirements using a **bus topology**. Compare this to the token-ring model of the [PlayStation 3](playstation-3#inside-cell-the-heart) or the mesh solution made for the [Xbox 360](xbox-360#inside-xenon-the-messenger). All of these consoles shared the same problem, but each came up with different solutions, neither better nor worse, just different.
+Generally speaking, the AXI model provides a set of protocols for connecting components with distinct bandwidth requirements. These **are free to choose any particular topology**, like the token-ring model of the [PlayStation 3](playstation-3#inside-cell-the-heart) or the mesh solution made for the [Xbox 360](xbox-360#inside-xenon-the-messenger). Now, within the Nintendo 3DS, we find a combination of **bus and star designs**.
 
-Following AMBA's methodologies for interconnecting components, there will be a master-slave hierarchy imposed to maintain order. The master components (typically, the CPU cores) will be the ones sending commands to the slaves (i.e. memory and I/O blocks).
+Following AMBA's methodologies for interconnecting nodes, there will be a master-slave hierarchy to denote which entity is in charge. The master components (typically, the CPU cores) will be the ones sending commands to the slaves (i.e. memory and I/O blocks).
 
-Now, as part of the AMBA3 specification, ARM offered the AXI model as a critical ingredient for building **System On Chips** (SoC). Instead of using a single bus, AXI uses a dedicated block (called **AXI interconnect**) acting as a **bus matrix** [@cpu-axi], this is connected to every single component using **64-bit dedicated buses** [@cpu-arm11_overview]. In doing so, AXI overcomes the limitations of high-bandwidth components sharing the same bus (as it happened with the [PlayStation 2](playstation-2#cpu)). Moreover, multiple master devices can communicate with slave nodes using separate channels to avoid waiting for other masters to finish. Finally, traditional enhancements like [burst transactions](gamecube#ibms-enhancements) are implemented, from which the MP11 cores take advantage.
+Furthermore, the AXI network can be arbitrated using a dedicated block (called **AXI interconnect**) acting as a **bus matrix** [@cpu-axi]. This is what we find in the MPCore and relies on **individual 64-bit buses** [@cpu-arm11_overview]. In doing so, the network tackles the congestion of high-bandwidth components (something that consoles like the [PlayStation 2](playstation-2#cpu) struggled with). Moreover, multiple master devices can communicate with slave nodes using separate channels to avoid waiting for other masters to finish. And if that's not enough, traditional enhancements like [burst transactions](gamecube#ibms-enhancements) are also implemented, from which the MP11 cores take advantage.
 
 In the case of the 3DS, the AXI interconnect is housed in a bigger block called **Snoop Control Unit** (SCU) that also takes care of automatically maintaining L1 cache coherency between the MP11 cores.
 
@@ -323,7 +323,7 @@ You may be wondering what happens with the rest of the exclusive hardware the Ne
 
 Next to a new CPU is always a modern GPU. So, what kind of [Picture Processing Unit](nintendo-ds#graphics) did Nintendo build this time? To tell the truth, none. For the first time in their portable line, **they resorted to a GPU supplier**.
 
-Nevertheless, the requirements of Nintendo haven't shifted. The company still wanted a chip with acceptable performance... and the **intellectual property**. This will allow them to embed the GPU into their SoC, in the same way they did with the ARM CPUs.
+Nevertheless, the requirements of Nintendo haven't shifted. The company still wanted a chip with acceptable performance... and the **intellectual property core**. This will allow them to embed the GPU into their SoC, in the same way they did with the ARM CPUs.
 
 ::: {.subfigures .tabs-nested .desktop-margined}
 
