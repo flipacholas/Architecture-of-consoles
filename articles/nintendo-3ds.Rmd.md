@@ -296,12 +296,9 @@ FCRAM competes directly with DDR DRAM by offering a revamped design of the memor
 
 The inventors of the MPCore and the AMBA bus happen to also offer a brand of [DMA controllers](playstation#taking-over-the-cpu) called **CoreLink**, with Nintendo being a loyal client. So, it's no mystery as to why the 3DS bundles multiple blocks of **CoreLink DMA-330** into their SoC [@cpu-korth].
 
-These DMAs in particular are attached to an AXI bus and act as master devices. They can transfer data between two slaves interconnected with the AMBA protocol (either AXI or the slower APB) with the following advantages:
+These DMAs in particular are attached to an AXI bus and act as master devices. Each can transfer data between two slaves interconnected with the AMBA protocol (either AXI or the slower APB) [@cpu-corelink].
 
-- Faster transfer rates compared to either CPU.
-- Support of up to eight channels (eight transfers at the same time) [@cpu-corelink].
-
-To be precise, Nintendo fitted one CoreLink DMA next to the ARM9, this is referred to as **XDMA** and provides **up to four channels**. There's another DMA next to the ARM11 block, this time called **CDMA**, which provides **up to eight channels**. With the arrival of the New 3DS, another CoreLink DMA-330 is fitted next to the ARM11 block (now a quad-core cluster).
+Nintendo fitted one CoreLink DMA next to the ARM9, this is referred to as **XDMA** and provides **up to four channels** (thus, up to four concurrent transfers). There's another DMA next to the ARM11 block, this time called **CDMA**, which provides **up to eight channels**. With the arrival of the New 3DS, another CoreLink DMA-330 is fitted next to the ARM11 block (now a quad-core cluster).
 
 ### Programming
 
