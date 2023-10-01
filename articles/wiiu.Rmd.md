@@ -601,7 +601,7 @@ Alrighty, let's begin already. Once the user presses the power button, the follo
     1. The reset vector is at address `0x00000100`, which at this point is masked by the Boot ROM, so it starts execution there.
     2. MMU, L1/L2 caches and registers are cleared. Then, Espresso switches to 'Translated mode' (activates [virtual memory](gamecube#organising-memory-and-sorting-out-aram)).
     3. By fiddling with locked L1 cache and empty memory writes, the BootROM is copied to L1 (to run faster) without reaching external RAM.
-    4. The reset vector becomes an infinite loop (to prevent intruders attempting to [reset the CPU](xbox-360#tab-23-1-the-glitcher)).
+    4. The reset vector becomes an infinite loop (to prevent intruders from attempting to [reset the CPU](xbox-360#tab-23-1-the-glitcher)).
     4. AES keys from OTP are copied into L1. Then, OTP is disabled.
     5. `Cafe OS Kernel`'s header is copied to L1 and its signature is verified using the stored keys.
     6. `Cafe OS Kernel`'s data is hashed and decrypted by using the DMA engine to send blocks to L1 back and forth.
@@ -666,7 +666,7 @@ Once in vWii mode, the Wii's [Home Menu](wii#return-to-home) is also capable of 
 
 ![The Wii System Menu in vWii Mode. Not much difference except for three new channels installed (related to the Wii U) and others removed. Take a look at the thin letterboxing produced by the video encoder trying to fit the original 480p image in a 720p/1080p signal.](screenshots/vwii/system.jpg)
 
-vWii mode doesn't necessarily require a TV to use. If the user chose to activate the GamePad, this will work as a display, sensor bar and 'classic controller' (an optional accessory during the Wii days). The last function, however, is only available for Wii games purchased from the eShop (part of the Virtual Console catalogue).
+vWii mode doesn't necessarily require a TV to use. If the user chooses to activate the GamePad, this will work as a display, sensor bar and 'classic controller' (an optional accessory during the Wii days). The last function, however, is only available for Wii games purchased from the eShop (part of the Virtual Console catalogue).
 
 ![vWii mode with GamePad enabled, notice how my camera captured the two infrared lights being emitted by the GamePad.](photos/gamepad_vwii.jpg)
 
@@ -722,9 +722,9 @@ This section is very much aligned with the 7th generation of consoles. In summar
 
 ![Example of a retail game.](photos/retail_game.jpg){.open-float}
 
-Retail stores sold **Wii U optical disc**, a proprietary disc medium designed by Panasonic in an attempt to replicate many capabilities of the [Blu-Ray disc](playstation-3#tab-14-1-blu-ray-discs)... without using Blu-Ray discs. These can hold ~24 GB of data but only **~20 GB is available for actual game data**, the rest is used for storing software update files, meta-data and other information Cafe OS needs to read.
+Retail stores sold **Wii U optical disc**, a proprietary disc medium designed by Panasonic in an attempt to replicate many capabilities of the [Blu-ray disc](playstation-3#tab-14-1-blu-ray-discs)... without using Blu-ray discs. These can hold ~24 GB of data but only **~20 GB is available for actual game data**, the rest is used for storing software update files, meta-data and other information Cafe OS needs to read.
 
-The same drive is also able of reading [Wii optical discs](wii#medium) which, in turn, are similar to the standard DVD format. However, the drive doesn't support either DVD or Blu-Ray's playback capabilities.
+The same drive is also able to read [Wii optical](wii#medium) discs](wii#medium) which, in turn, are similar to the standard DVD format. However, the drive doesn't support either DVD or Blu-ray's playback capabilities.
 
 `r close_float_group(with_markdown = TRUE)`
 
@@ -772,9 +772,9 @@ Nintendo had to defend three fronts with code-execution capabilities:
 
 First things first: The disc drive.
 
-... Well, to this date, **the drive hasn't been cracked**.
+... Well, to this date, **the drive hasn't been publicly cracked**. There have been reports about the development of 'WiiKeyU' [@anti_piracy-wiiukey], a drive emulator that can load disc images, but nothing ever reached the stores.
 
-Considering the low adoption of Blu-Ray drives throughout the Wii U's lifecycle, I presume there wasn't enough enthusiasm to crack the drive and/or deeply research its new protection methods. For the curious, the Wii U's motherboard now authenticates with the drive in a similar way to the [Xbox 360's drive](xbox-360#tab-19-1-first-party-security) and, from there, all communication appears encrypted [@games-drive].
+Considering the low adoption of Blu-ray drives throughout the Wii U's lifecycle, I presume there wasn't enough enthusiasm to crack the drive and/or deeply research its new protection methods. For the curious, the Wii U's motherboard now authenticates with the drive in a similar way to the [Xbox 360's drive](xbox-360#tab-19-1-first-party-security) and, from there, all communication appears encrypted [@games-drive].
 
 That leaves us with two remaining targets (IOSU and Cafe OS) and, this time, there's plenty of research done.
 
@@ -851,7 +851,7 @@ On 2013, during the 30th Chaos Communication Congress, fail0overflow published a
     - With this, fail0overflow managed to extract the AES keys used by Espresso to decrypt binaries.
 5. Starbuck's Boot ROM (`boot0`) is hidden after this CPU updates a register. Well, the same register **can still be re-enabled in vWii mode**...
     - ...allowing fail0verflow to extract Starbuck's Boot ROM without much hassle.
-6. The Wii U web browser's source code is public (as dictates WebKit's LGPL license). Well, **the commit history of the project exposes references to past vulnerabilities**. One of them was able to produce a heap overflow that leads to arbitrary code execution.
+6. The Wii U web browser's source code is public (as dictates WebKit's LGPL license). Well, **the commit history of the project exposes references to past vulnerabilities**. One of them was able to produce a heap overflow that led to arbitrary code execution.
     - Reproducing this vulnerability allowed the group to execute code in Wii U mode and subsequently extract Cafe OS for study purposes. Moreover, this environment also interacts with IOSU, which leads to the next discovery...
 7. An exploit of IOSU was eventually found by the team, which led to code execution with Starbuck's kernel privileges in Wii U mode.
     - ... Resulting in Starbuck's encryption keys being extracted.
