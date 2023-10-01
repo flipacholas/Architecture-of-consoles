@@ -49,7 +49,7 @@ Due to its abundance of hardware, you could consider it an independent computer 
 
 - **Input device** by forwarding sensor data and button presses to the console. 
 - **Output device** by receiving audio and video streams from the console and reproducing them on the internal display and speakers.
-- **Signal processing** by seamlessly encoding and decoding data streams traveling from or to the console.
+- **Signal processing** by seamlessly encoding and decoding data streams travelling from or to the console.
 
 In doing so, apart from being a controller, the GamePad was marketed with two functionalities in mind: A 'second screen' and a 'mirror screen'. In the first case, the console may display exclusive information on the GamePad without consuming TV space. In the other, the user may use the console without requiring a TV anymore.
 
@@ -289,7 +289,7 @@ Conversely, the Wii U's EDRAM is larger than the Xbox 360's (meaning the need fo
 
 ### Constructing the frame
 
-This is the signature section of the Architecture of Consoles series where I attempt to explain the process of converting the geometry (coming from the CPU) into pixels (which users eventually see on the telly). Nevertheless, in this article the explanations will be a bit different as the fundamentals of TeraScale were already explained in the [Xbox 360 article](xbox-360#overview).
+This is the signature section of the Architecture of Consoles series where I attempt to explain the process of converting the geometry (coming from the CPU) into pixels (which users eventually see on the telly). Nevertheless, in this article, the explanations will be a bit different as the fundamentals of TeraScale were already explained in the [Xbox 360 article](xbox-360#overview).
 
 The most important changes since Xenos is the implementation (or better said, standardisation) of **Geometry Shaders** and **Compute Shaders**, both of which take advantage of the new capabilities of the unified shaders. This doesn't mean GPU7 had to be completely re-designed to make way for these two stages, what happened is that APIs had been expanded to enable new applications without considerably changing the existing circuitry.
 

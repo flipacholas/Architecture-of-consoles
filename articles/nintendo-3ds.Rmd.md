@@ -123,13 +123,13 @@ Setting the 3D slider to the max can be disorienting at first. In my experience,
 
 `r close_float_group()`
 
-As a side note, one can't help but find it amusing how the graphics pipeline has gone full circle when rendering stereoscopic frames. During rendering, 3D data is projected into a 2D space, and now with the stereoscopic screen, that 2D space is displayed again as 3D. At this point, let's just use holograms and skip the 3D projection stage altogether.
+As a side note, one can't help but find it amusing how the graphics pipeline has gone full circle when rendering stereoscopic frames. During rendering, 3D data is projected into a 2D space, and now with the stereoscopic screen, the third dimension is 'restored'. At this point, let's just use holograms and skip the 3D projection stage altogether!
 
 #### A small update
 
 ![Top part of the New 3DS XL. At its centre, there's a front camera and an infrared LED, both used for head tracking.](stereoscopy/new3ds.webp)
 
-With the advent of the 'New 3DS' model, Nintendo revisioned their stereoscopic screen in an effort to reach enjoyability levels. In the new model, the console incorporates a face-tracking mechanism to tackle the tilting effect, so issues don't need to worry about keeping a good head-console posture anymore.
+With the advent of the 'New 3DS' model, Nintendo revisioned their stereoscopic screen in an effort to reach enjoyability levels. In the new model, the console incorporates a face-tracking mechanism to tackle the tilting effect, so users don't need to worry about keeping a good 'head-console posture' anymore.
 
 ### The special games
 
