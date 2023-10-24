@@ -68,7 +68,7 @@ Here is the 'main' CPU of the Nintendo DS running at **~67 MHz**. If you ignore 
 
 Nintendo also added the following components around it:
 
-- A **Divisor and Square root unit** to speed up these types of operations (the ARM9 by itself is not capable of performing this type of math).
+- A **Divider and Square root unit** to speed up these types of operations (the ARM9 by itself is not capable of performing this type of math).
 - A **Direct Memory Access Controller**: Accelerates memory transfers without depending on the CPU. Combined with the use of cache, both CPU and DMA can potentially work concurrently.
   - Cache and DMA can provide a lot of performance but also create new problems, such as data integrity. So programmers will have to manually maintain memory consistency by flushing the [write-buffer](playstation-2#preventing-past-mishaps) before triggering DMA, for instance.
 
