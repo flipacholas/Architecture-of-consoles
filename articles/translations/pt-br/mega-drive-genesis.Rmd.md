@@ -323,7 +323,7 @@ Além do mais, o subsistema de áudio permitia que os jogos designassem mais can
 
 Os canais também poderiam reagir a **lógica** ao implementar condicionais em seus dados, permitindo que a música "evoluísse" dependendo de como o jogador progredia no jogo.
 
-### (Bônus) Som do Mega CD
+### (Bônus) Som do Mega CD {.interactive-only}
 
 Aqui está um fato interessante: o add-on Mega CD (Sega CD no Brasil) fornecia 2 canais extras para áudio de CD (entre outras coisas). Um de seus jogos mais famosos, o Sonic CD, tinha uma qualidade de música muito impressionante, mas como todos os jogos, precisava repetir sua música sem interrupção. O problema era que lacunas perceptíveis surgiam ao repetir a faixa de música em um leitor de CD de velocidade 1x, então o jogo incluiu faixas adicionais para preencher esses vazios, mas que eram executadas a partir de outro chip (este PCM), enquanto o cabeçalho do CD voltava ao início da faixa.
 
