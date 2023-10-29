@@ -323,7 +323,7 @@ Ayrıca, ses alt sistemi oyunların izin verilenden daha fazla kanal oluşturmas
 
 Kanallar ayrıca verilerinin içinde koşullular uygulayarak bazı **mantık** içeriyordu ve oyuncunun oyunda nasıl ilerlediğine bağlı olarak müziğin 'gelişmesini' sağlıyordu.
 
-### (Bonus) Mega CD Sound
+### (Bonus) Mega CD Sound {.interactive-only}
 
 İşte ilginç bir gerçek: Mega CD eklentisi CD Ses için 2 ekstra kanal sağladı (diğer şeylerin yanı sıra). En ünlü oyunlarından biri olan Sonic CD çok etkileyici bir müzik kalitesine sahipti, ancak tüm oyunlar gibi döngüye girmesi gerekiyordu, sorun 1x CD okuyucuda müziğin döngüye girmesinin fark edilebilir boşluklara neden olmasıydı, bu nedenle oyun CD başlığı başlangıca dönerken başka bir PCM çipinden yürütülen döngü dolguları içeriyordu.
 
