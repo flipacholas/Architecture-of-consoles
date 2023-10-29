@@ -17,14 +17,17 @@ top_tabs:
     title: Original
     file: original
     img_class: reduced-width
+    landscape: false
   - caption: "The 'new' Xbox 360 (a.k.a. 'Slim' or 'S').<br>Released on 18/06/2010 in America, 24/06/2010 in Japan and 16/07/2010 in Europe"
     title: The 'S'
     file: the-s
     img_class: reduced-width
+    landscape: false
   - caption: "Another 'new' Xbox 360 (a.k.a. 'E').<br>Released on 10/06/2013 in America, 20/06/2013 in Europe and similar in Japan"
     title: The 'E'
     file: the-e
     img_class: reduced-width
+    landscape: false
 ---
 
 ## A quick introduction
@@ -602,7 +605,7 @@ The construction of this device isn't anywhere simple, and as such, the sensor c
 
 The sensor is operated through the use of Microsoft's opaque APIs, which in turn communicates to super-secret software installed on both the Kinect and the Xbox 360's Operating System. The Kinect uses a **USB 2.0 A** connection to plug into the console. The 'Slim' re-design of the Xbox 360 released in the same year was also branded 'Kinect compatible' as it could supply power to the bar as well (with the provision of an extra proprietary port on the back of the console), older models require a separate power brick for the Kinect.
 
-## Operating System (and backwards compatibility)
+## Operating System
 
 The Xbox 360 was subject to the same needs and fashions that the PlayStation 3 went through. So the former offers many services, including online gaming (through Xbox Live), a digital marketplace, media player, file system explorer (albeit extremely simple) and other utilities.
 

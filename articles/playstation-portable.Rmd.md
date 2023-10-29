@@ -38,7 +38,7 @@ Released just one month after the [Nintendo DS](nintendo-ds), Sony's PSP proved 
 
 This article is dedicated to anyone that wants to understand, straight to the point, how the PSP operates. It's not a short write-up, but I hope that at the end of the article you will be able to grasp the building blocks of this console (its design rationale, choice of CPUs, GPU pipeline, security system and so forth).
 
-P.S. If you ever feel fed up with information, don't forget to take a look at the diagrams (the `r img_link(label="main one", src="diagram.png")`) plus the others I made for each section).
+P.S. If you ever feel fed up with information, don't forget to take a look at the diagrams that I made for each section.
 
 ```{r results="asis"}
 supporting_imagery()
@@ -374,20 +374,13 @@ Games don't have access to these modules directly. Instead, they call many libra
 
 Let's put all this into practice by taking a look at how games reproduced their sound. I wrote this special player that allows you to swap between consoles (to enable side-by-side comparisons):
 
-(ref:ndstitle) Nintendo DS
+::: {.subfigures .side-by-side figure="false"}
 
-(ref:psptitle) PSP
+![**Nintendo DS:** Final Fantasy IV (2007).<br>**PSP:** Final Fantasy IV - The Complete Collection (2011).](){audio_switcher="true" src1="overworld_nds" src2="overworld_psp" label1="Nintendo DS" label2="PSP" .toleft}
 
-(ref:ps2title) PlayStation 2
+![**PlayStation 2:** Kingdom Hearts 2 (2005).<br>**PSP:** Kingdom Hearts Birth by Sleep (2010).](){audio_switcher="true" src1="encounter_ps2" src2="encounter_psp" label1="PlayStation 2" label2="PSP" .toright}
 
-(ref:audioffivcaption) **Nintendo DS:** Final Fantasy IV (2007).<br>**PSP:** Final Fantasy IV - The Complete Collection (2011).
-
-(ref:audiokhcaption) **PlayStation 2:** Kingdom Hearts 2 (2005).<br>**PSP:** Kingdom Hearts Birth by Sleep (2010).
-
-```{r side_by_side=TRUE}
-audio_switcher("(ref:audioffivcaption)", class="toleft", src1="overworld_nds", label1="(ref:ndstitle)", src2="overworld_psp", label2="(ref:psptitle)")
-audio_switcher("(ref:audiokhcaption)", class="toleft", src1="encounter_ps2", label1="(ref:ps2title)", src2="encounter_psp", label2="(ref:psptitle)")
-```
+:::
 
 In the first example, the Nintendo DS game sequences its music on the fly, while the PSP one decodes ATRAC3. As you can hear, having no dedicated sound hardware *per se* doesn't imply poor sound quality. In fact, one could argue the opposite, as the Media Engine provided more features than the sound chips of most previous portable consoles ever did.
 

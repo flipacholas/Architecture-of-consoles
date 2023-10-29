@@ -320,7 +320,7 @@ Moreover, the audio subsystem enabled games to instantiate more channels than al
 
 Channels also contained some **logic** by implementing conditionals inside their data, enabling music to 'evolve' depending on how the player progresses in the game.
 
-### (Bonus) Mega CD Sound
+### (Bonus) Mega CD Sound {.interactive-only}
 
 Here's an interesting fact: The Mega CD add-on provided 2 extra channels for CD Audio (among other things). One of its most famous games, Sonic CD, had very impressive music quality but like all games it had to loop, the problem was that looping music on a 1x CD reader exposed noticeable gaps, so the game included loop fillers that were executed from another PCM chip while the CD header was returning to the start.
 

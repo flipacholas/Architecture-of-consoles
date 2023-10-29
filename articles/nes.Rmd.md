@@ -261,11 +261,17 @@ As an interesting *fix*: the PPU allowed developers to apply a vertical mask on 
 
 #### Tile-Swapping {.tab}
 
-![Hypothetical if it were rendered using tiles available during the first scan lines.](secrets/multiplexing_1.png){.tabs-nested .tab-float .pixel .active title="Scan 1"}
+::: {.subfigures .tabs-nested .tab-float}
 
-![Hypothetical if it were rendered using tiles available during the later scan lines.](secrets/multiplexing_2.png){.tab-nested .pixel title="Scan 2"}
+![Early scan lines.](secrets/multiplexing_1.png){.pixel .active title="Early"}
 
-![Actual frame displayed to the user.](secrets/multiplexing_complete.png){.tabs-nested-last .pixel title="Displayed"}
+![Late scan lines.](secrets/multiplexing_2.png){.pixel title="Late"}
+
+![Actual frame displayed to the user.](secrets/multiplexing_complete.png){.pixel title="Displayed"}
+
+Hypothetical frames rendered using tiles available during specific scan lines.
+
+:::
 
 Another speciality of Super Mario Bros. 3 is the amount of graphics it could display.
 

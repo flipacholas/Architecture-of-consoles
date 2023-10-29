@@ -164,11 +164,15 @@ These enhancements are a bit 'weird' since they are completely unused on the Wii
 
 If you're wondering, Jazelle never took off. After some iterations it was discovered that Java Bytecode just ran better on software. Later on, ARM succeeded Jazelle with 'Thumb-2EE' and, at the time of this writing (June 2021), both of these units have been phased out.
 
-(ref:iocaption) External I/O on the Wii.<br>The dark & small front slot is an SD card reader.
+::: {.subfigures .distributed .open-float .float}
 
-```{r fig.cap="(ref:iocaption)", open_float_group=TRUE, fig.align='center'}
-img_distributed(src1='console/front.jpeg', src2='console/back.jpeg', "(ref:iocaption)", float=TRUE, figureid="iowii")
-```
+![](console/front.jpeg)
+
+![](console/back.jpeg)
+
+External I/O on the Wii.<br>The dark & small front slot is an SD card reader.
+
+:::
 
 Moving on, this 'I/O CPU' is tasked with arbitrating access between many I/O and Broadway, and in doing so it also takes care of security (which decides whether to allow access or not). This is especially crucial when it comes to granting access to NAND, for instance, which is where the main operating system and user data are stored.
 

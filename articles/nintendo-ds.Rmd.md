@@ -329,18 +329,13 @@ Back on topic, how does a GBA game handle all of this? _It doesn't_, Nintendo fi
 
 I've constructed this interactive widget that will allow you to compare how the new audio system affected the new generation of soundtracks. Each widget plays the same score but allows you to alternate between the old and new arrangements (I suggest wearing headphones to really notice the difference). Give it a whirl!
 
-(ref:gbatitle) GB Advance
+::: {.subfigures .side-by-side figure="false"}
 
-(ref:ndstitle) Nintendo DS
+![**GBA:** Gyakuten Saiban (2001, JAP only).<br>**NDS:** Phoenix Wright: Ace Attorney (2005).](){audio_switcher="true" src1="trial_gba" src2="trial_nds" label1="GB Advance" label2="Nintendo DS" .toleft}
 
-(ref:audioattourneycaption) **GBA:** Gyakuten Saiban (2001, JAP only).<br>**NDS:** Phoenix Wright: Ace Attorney (2005).
+![**GBA:** Mario Kart: Super Circuit (2001).<br>**NDS:** Mario Kart DS (2005).](){audio_switcher="true" src1="yoshi_gba" src2="yoshi_nds" label1="GB Advance" label2="Nintendo DS" .toright}
 
-(ref:audiokartcaption) **GBA:** Mario Kart: Super Circuit (2001).<br>**NDS:** Mario Kart DS (2005).
-
-```{r side_by_side=TRUE}
-audio_switcher("(ref:audioattourneycaption)", class="toleft", src1="trial_gba", label1="(ref:gbatitle)", src2="trial_nds", label2="(ref:ndstitle)")
-audio_switcher("(ref:audiokartcaption)", class="toleft", src1="yoshi_gba", label1="(ref:gbatitle)", src2="yoshi_nds", label2="(ref:ndstitle)")
-```
+:::
 
 (If you have trouble listening to it, please [contact me](`r ref(about_url, root=TRUE)`) mentioning the browser and device you are using)
 
@@ -350,18 +345,13 @@ Be as it may, I had to boost the gain of the GBA soundtrack a little bit to norm
 
 Let me show you some tricky cases now, where the original console had some unique audio features that weren't straightforward to recreate for this console, but I'll let you be the judge of that:
 
-(ref:snestitle) SNES
+::: {.subfigures .side-by-side figure="false"}
 
-(ref:megadrivetitle) Mega Drive
+![**SNES:** Super Mario Kart (1992).<br>**NDS:** Mario Kart DS (2005).](){audio_switcher="true" src1="mario_snes" src2="mario_nds" label1="SNES" label2="Nintendo DS" .toleft}
 
-(ref:audiosnescaption) **SNES:** Super Mario Kart (1992).<br>**NDS:** Mario Kart DS (2005).
+![**Mega Drive:** Sonic 3D Blast (1996).<br>**NDS:** Sonic Chronicles (2008).](){audio_switcher="true" src1="sonic_megadrive" src2="sonic_nds" label1="Mega Drive" label2="Nintendo DS" .toright}
 
-(ref:audiosoniccaption) **Mega Drive:** Sonic 3D Blast (1996).<br>**NDS:** Sonic Chronicles (2008).
-
-```{r side_by_side=TRUE}
-audio_switcher("(ref:audiosnescaption)", class="toleft", src1="mario_snes", label1="(ref:snestitle)", src2="mario_nds", label2="(ref:ndstitle)")
-audio_switcher("(ref:audiosoniccaption)", class="toleft", src1="sonic_megadrive", label1="(ref:megadrivetitle)", src2="sonic_nds", label2="(ref:ndstitle)")
-```
+:::
 
 As you can hear from the first example (especially in the last 10 seconds), it's a bit hard to compete with the features that the SNES' [S-SMP](super-nintendo#audio) provided.
 

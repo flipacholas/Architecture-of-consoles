@@ -92,7 +92,7 @@ Now let's see how a frame is drawn step by step, for this, I'll borrow *Sonic Th
 
 #### Tiles {.tabs .active}
 
-::: {.subfigures .tabs-nested .tab-float .pixel}
+::: {.subfigures .tabs-nested .tab-float .pixel max_subfigures=1}
 
 ![All tiles.](sonic/tiles.png){.active title="All"}
 
@@ -232,17 +232,9 @@ Finally, the chip also contains programmable attenuators used to lower the decib
 
 Just like the VDP, the PSG is a no-brainer, but it does hide some interesting functionality:
 
-(ref:fmexptitle) FM Expansion
+#### FM Expansion {.tabs .active}
 
-(ref:fmexpcaption) Double Dragon (1987).
-
-(ref:psgtitle) PSG
-
-(ref:fmtitle) FM
-
-```{r fig.cap="(ref:fmexpcaption)", fig.align='center', tab.title="(ref:fmexptitle)", tab.first=TRUE, tab.active=TRUE}
-audio_switcher("(ref:fmexpcaption)", class="float-side", src1="psg", label1="(ref:psgtitle)", src2="fm", label2="(ref:fmtitle)")
-```
+![Double Dragon (1987).](){audio_switcher="true" src1="psg" src2="fm" label1="PSG" label2="FM" .float}
 
 The Japanese version of the Master System embedded an extra chip for audio made by Yamaha called **YM2413**. It's drastically different from the previous PSG as it uses the **frequency modulation** technique to generate sound. I've explained briefly how this works in the [Mega Drive article](mega-drive-genesis#tab-7-1-yamaha-ym2612), in case you are interested.
 

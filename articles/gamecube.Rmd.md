@@ -301,15 +301,7 @@ Let me show you an example using two games, one released for the Nintendo 64 and
 
 For a more direct side-by-side comparison, I've prepared this interactive widget that shows how composers ended up adapting their arrangements for the GameCube and its predecessor. Here, the same upbeat score is utilised for a Nintendo 64 title and a GameCube one, and the resulting comparison allows me to demonstrate (once again) the technical advantages of the GameCube's DSP.
 
-(ref:n64title) Nintendo 64
-
-(ref:gctitle) GameCube
-
-(ref:audion64gccaption) **Nintendo 64:** Kirby 64: The Crystal Shards (2000).<br>**GameCube:** Kirby Air Ride (2003).
-
-```{r}
-audio_switcher("(ref:audion64gccaption)", class="centered-container", src1="kirbycrystal_n64", label1="(ref:n64title)", src2="kirbyair_gc", label2="(ref:gctitle)")
-```
+![**Nintendo 64:** Kirby 64: The Crystal Shards (2000).<br>**GameCube:** Kirby Air Ride (2003).](){audio_switcher="true" src1="kirbycrystal_n64" src2="kirbyair_gc" label1="Nintendo 64" label2="GameCube" .centered-container}
 
 Now, to visualise what's happening behind each track, here are the two respective spectrograms. Before I start, if you are not familiar with these kinds of charts, I recommend reading my previous NES article, in particular the [audio section](nes#audio) (where I introduced them).
 
