@@ -323,7 +323,7 @@ Co więcej, podsystem audio umożliwiał grom tworzenie większej liczby kanał�
 
 Kanały zawierały również pewną **logikę**, implementując warunki w swoich danych, umożliwiając muzyce 'ewoluowanie' w zależności od postępów gracza w grze.
 
-### (Bonus) Dźwięk Mega CD
+### (Bonus) Dźwięk Mega CD {.interactive-only}
 
 Oto ciekawostka: dodatek Mega CD zapewniał 2 dodatkowe kanały dla CD Audio (między innymi). Jedna z jej najsłynniejszych gier, Sonic CD, miała imponującą jakość muzyki, ale jak wszystkie gry musiała zapętlać się. Problem polegał na tym, że zapętlenie muzyki na 1x czytniku CD ujawniło zauważalne luki, więc gra zawierała wypełniacze pętli, które były wykonywane z innego układu PCM, podczas gdy nagłówek CD powracał do początku.
 
