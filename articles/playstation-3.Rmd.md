@@ -35,9 +35,7 @@ This write-up takes a deep look at Sony, IBM, Toshiba and Nvidia's joint project
 
 I'm afraid this article is not the typical 'lunchtime' one that I usually write for other consoles in [this series](consoles). If you are interested in every area of the PlayStation 3, you are in for the whole journey! Having said that, this writing encompasses ~6 years of research and development carried out by countless engineers, so I don't expect you to digest it all at once. Please take your time (and breaks if needed) and if at the end you are hungry for more, help yourself at the 'Sources' section!
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## CPU
 
@@ -229,7 +227,7 @@ First of all, the type of memory fitted is called **Extreme Data Rate** (XDR). Y
 
 Rambus, like any other company, improves upon their inventions. Their third revision (XDR) now operates at octa-rate (four times the rate of its adversary, DDR DRAM) [@cpu-xdr]. Latency doesn't pose an issue anymore, if we take a look at one of its manufacturers' data-sheets, XDR's latency is reported between 28 ns and 36 ns [@cpu-k4y5016, p. 2], almost [10 times faster](nintendo-64#memory-design) than the first-generation RDRAM chips.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 The first revision of the PlayStation 3's motherboard contains four 64 MB chips, handled in pairs. XDR is connected to Cell using two 32-bit buses, one on each pair. So, whenever the PPU writes a word (64-bit data), it's split between two XDR chips. The latter are clocked at at 400 MHz [@cpu-ram].
 
@@ -385,7 +383,7 @@ The RSX inherits existing Nvidia technology, it's reported to be based on the 78
 
 In my [previous Xbox analysis](xbox#graphics), I talked about the GeForce3 and their debuting pixel shaders, so what has changed since then? There have some been ups and downs, but mostly incremental changes, so nothing too groundbreaking compared to GeForce3's pixel shaders.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 On the other side, while the 7800 GTX relies on the PCI Express protocol to communicate with the CPU, the RSX has been remodelled to work with a proprietary protocol called **Flex I/O** [@graphics-gschwind], a distinct interface within Cell designed to connect to neighbouring chips. Flex I/O operates in two modes:
 
@@ -497,7 +495,7 @@ The HDMI connector is made of 19 pins [@graphics-hdmi_wiki], all in a single soc
 
 To this day, the HDMI protocol is continuously being revised [@graphics-hdmi_spec], with new versions of the specification offering more features (i.e. larger image resolution, refresh rate, alternative colour spaces, etc) while retaining the same physical medium for backwards compatibility.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Throughout the PS3 lifecycle, Sony added certain HDMI features of new revisions into the PS3 through software updates [@graphics-hdmi_dev]. The last protocol compatible with the PS3 is version 1.4, most notably bringing support for '3D television', though other capabilities such as higher video resolutions stayed capped at **1920x1080 pixels** (and even so most games rendered their frame-buffer at 1280x720 pixels).
 
@@ -547,7 +545,7 @@ In the case of user-accessible ports, the Southbridge is connected to:
 - **1000/100/10 (Gigabit) Ethernet Controller**: in the form of an RJ45 socket on the back, but it also forks to a Wireless daughterboard, providing **Wi-Fi 802.11b/g** and **Bluetooth 2.0** connection.
 - A **Multi-card reader**: provides slots for [Memory Stick](playstation-portable#tab-5-2-memory-stick-duo), SD, MultiMediaCard (MMC), Microdrive and Compact Flash.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 #### 'Less wire' equipment
 
@@ -765,7 +763,7 @@ Thanks to OtherOS, experienced users had the opportunity to develop homebrew app
 
 On the other side, while OtherOS' privileges may surpass GameOS' (at the kernel level), **they don't overtake the hypervisor**, which still resides in memory. So, any hardware access from OtherOS still depends on the will of Sony's hypervisor, and it so happens that the latter **blocks access to RSX's command buffers** (preventing the use of the shader units, among other components used for accelerating graphics operations). Consequently, resulting Linux distribution resort to software rendering (all graphics are drawn by Cell) and then stream the frame-buffer to the RSX for display. While it's disappointing that OtherOS can't make use of the full capabilities of this console, this was probably done to reduce attack surfaces. Ironically, OtherOS' use of Cell is similar to how IBM/Toshiba/Sony may have originally envisioned the PS3!
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Sharing the same fate of Folding&#64;home, OtherOS was eventually removed in a subsequent update, but due to different causes (mainly related to security). Shortly afterwards, OtherOS was _unofficially_ restored thanks to software exploits and reverse engineering efforts. At the moment, OtherOS is available if the user installs a _custom firmware_. I explain this further in the 'Anti-piracy and homebrew' section.
 

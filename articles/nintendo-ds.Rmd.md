@@ -30,9 +30,7 @@ aliases: [/projects/consoles/nintendo-ds/]
 
 This console is an interesting answer to many needs that weren't possible to fulfil in the handheld ecosystem. There will be some innovation and a few compromises, but this combination may pave the way for new and ingenious content.
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## CPU
 
@@ -72,11 +70,9 @@ Nintendo also added the following components around it:
 - A **Direct Memory Access Controller**: Accelerates memory transfers without depending on the CPU. Combined with the use of cache, both CPU and DMA can potentially work concurrently.
   - Cache and DMA can provide a lot of performance but also create new problems, such as data integrity. So programmers will have to manually maintain memory consistency by flushing the [write-buffer](playstation-2#preventing-past-mishaps) before triggering DMA, for instance.
 
-`r close_tabs()`
-
 I guess with hardware like this, it's easy to figure out the *real* reason kids loved this console, eh?
 
-### Interconnection
+### Interconnection {.tabs-close}
 
 So far I've talked about how the two CPUs work individually. But to work as a whole, they require to co-operate constantly. To accomplish this, both CPUs directly 'talk' to each other using a dedicated **FIFO unit** [@cpu-double], this block of data holds two 64-byte queues (up to 16 elements) for **bi-directional communication**.
 
@@ -98,7 +94,7 @@ Just like its predecessor, RAM is spread around many different locations, enabli
 - **4 MB of PSRAM** using a **16-bit** bus: A slower type, available from either CPU and it's controlled by a memory interface unit.
   - Pseudo SRAM or 'PSRAM' is a variant of DRAM that, by contrast, performs refreshes from within the chip. Therefore, behaving like SRAM (the faster, but more expensive alternative to DRAM). This design reminds me of [1T‑SRAM](gamecube#clever-memory-system).
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Backwards compatibility
 
@@ -282,9 +278,7 @@ Some of the first games released for this console attempt to resemble the ones f
 
 ![Mario Kart 64 (1996).<br>Rendered at 320×240 pixels.](comparison/kart_n64.png){.toleft .pixel}
 
-![Mario Kart DS (2005).<br>Rendered at 256x192 pixels.](comparison/kart_nds.png){.toright .pixel}
-
-`r close_tabs(FALSE)`
+![Mario Kart DS (2005).<br>Rendered at 256x192 pixels.](comparison/kart_nds.png){.toright .pixel .tabs-close}
 
 So, to explain what's happening here, I've organised the different explanations based on what some people said on forums:
 
@@ -313,7 +307,7 @@ Most of the audio improvements focus on enhancing those PCM channels that the GB
 
 Consequently, the new audio system features a total of **16 PCM channels**, allowing to shift the mixing task to the hardware. PCM samples can either be **8-bit** (*GBA-style*), **16-bit** (optimal resolution) or **ACPCM** (compressed form). In any case, the mixer produces a stereo signal that can be played through the speaker (now stereo) or headphones. It can also write the resulting stereo data to WRAM, enabling the sub-processor (ARM7) to apply some effects such as reverb.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 With all being said, does this mean that the Nintendo DS can finally play encoded music (i.e. MP3)? It's possible (in fact, a lot of homebrew programs implemented some form of it), but audio decoding takes up a lot of bandwidth and processing power [@cpu-homebrew]. So, audio sequencing still retains its place as the most feasible option.
 
@@ -371,7 +365,7 @@ Now, here's the important bit: DS cards are **not memory-mapped**, so for either
 
 The 'backup' chip used for saves (i.e. EEPROM, FLASH or FRAM) is accessed through an SPI bus (serial) which uses its own set of commands and it's connected to a 24-bit address bus.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 The Slot-2 cartridge is memory-mapped using the original pinout, but the addresses are shifted in DS mode to accommodate the hardware that provides expansion functionality (extra RAM, rumble, etc). Just like the GBA, the ROM bus is 16-bit wide and the RAM bus is 8-bit wide.
 
@@ -387,7 +381,7 @@ A curious thing about this touchscreen is that apart from detecting the X/Y posi
 
 Many have pointed out that 'Hotel Dusk: Room 215' relied on this feature for one of its puzzles, which required users to use two fingers at the same time. This is not the case, however. After experimenting with the no$gba debugger, the puzzle does not make use of pressure data. Instead, it checks whether the x/y values alternate drastically. The game interprets this effect as if the user had pressed the screen with two fingers.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Finally, in the same stack, we find the **real-time clock** or 'RTC'.
 
@@ -440,7 +434,7 @@ The shell is more-or-less the same as the rest of its contemporaries. Users rely
 
 It's worth emphasising that both read-only and writable data reside in the same re-writable chip, so it's theoretically possible to write over the firmware! Luckily (or for obvious reasons), Nintendo protected the upper quarter of the chip (64 KB) from being written by requiring a jumper placed on a point in the motherboard called `SL1`, which is exposed by removing the battery compartment. Nonetheless, over-writing the rest of the flash memory can still produce catastrophic results [@operating_system-bricker]!
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Updatability
 
@@ -461,7 +455,7 @@ This console runs games from three sources, where only two of them can make 'ful
 - **Download Play or 'Wireless MultiBoot'**: This is an evolved version of the original [Multi-Boot](game-boy-advance#accessories) which enables another console with an NDS game to upload a program using Wireless communication. The downloaded content is stored in WRAM and booted after the transfer finishes. Since WRAM is volatile, the data will be lost on shut down.
   - Authorised retail stores used this function to deploy **Download Stations**, where users were invited to download game demos as part of their visit to the store. 
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Program structure
 
@@ -495,7 +489,7 @@ With all the new forms of interaction available, studios had the opportunity to 
 
 For the first time in consumer electronics, there was a touchscreen, microphone, Wi-Fi and a real-time clock packaged in the same console. Nevertheless, some games even presented new forms of interaction, such as instructing the user to hold the console sideways.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Network service
 
@@ -565,7 +559,7 @@ Anyway, these led to a massive influx of **plug-and-play Slot-1 flashcards** whi
 
 Since the encryption system couldn't be altered without making breaking changes that affect all existing retail games, Nintendo ultimately lost this battle. The only thing left was to pursue the legal route, just like they did with their previous console.
 
-`r close_tabs()`
+#### Observations {.tabs-close}
 
 This is my personal opinion, but it's really striking how simple are flashcards compared to other homebrew methods from previous consoles. In older articles, I've described that if users ultimately wanted to run homebrew programs or pirated games, they would have to get down in the rabbit hole and follow some sort of complicated method.
 

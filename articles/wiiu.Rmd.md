@@ -33,9 +33,7 @@ You'd be surprised that the Wii U shares its DNA with two somewhat distinct cons
 
 Furthermore, Wii backwards compatibility is a recurrent topic of this article. In contrast with the software emulation on the Xbox 360 and the provisional PS2 hardware on the PlayStation 3, the Wii U takes it to an obsessive level. It does come at a cost, though, which you'll eventually see as well. In any case, the main goal of this article is to analyse the Wii U. So, Wii-related capabilities will be discussed separately from the main functions.
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## Next-gen controller
 
@@ -464,7 +462,7 @@ For another status-quo-breaking moment, let's now go over some unusual features 
 
 When the Wii U reached the hand of users, they quickly noticed the GamePad had a **Near-Field Communication** (NFC) reader. Initially, Nintendo didn't share the goals of such capabilities and some outlets even speculated that it would eventually enable NFC payments [@io-nfc_note]. It wasn't until 2014 that Nintendo finally unveiled their intentions with NFC technology: Figurines, which they called **amiibos**. These embed a unique NFC tag [@io-nfc_e3] and games that support them allow the user to 'scan' their amiibo (by placing them on top of the reader area of the GamePad). Then, the game will detect which type of figurine is placed and react accordingly (i.e. unlock premium content, create a special avatar and so forth). Tags may also bundle small storage (just 512 Bytes [@io-gamepad_brew]) that games may use to store user data.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Overall, not only these figurines opened up another market for Nintendo but they also quickly turned into a rare collectible (for the enjoyment of scalpers). Though the market of these figurines wasn't exactly 'new' as other companies like Activision and Disney were already commercialising this type of product.
 
@@ -726,7 +724,7 @@ Retail stores sold **Wii U optical disc**, a proprietary disc medium designed by
 
 The same drive is also able to read [Wii optical](wii#medium) discs](wii#medium) which, in turn, are similar to the standard DVD format. However, the drive doesn't support either DVD or Blu-ray's playback capabilities.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Apart from discs, users had the option to buy Wii U games and expansions (a.k.a DLCs) using the **eShop** channel. The catalogue also included [Virtual Console](wii#broadways-os) games.
 

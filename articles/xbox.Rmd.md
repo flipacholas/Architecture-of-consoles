@@ -37,9 +37,7 @@ Some months after writing this, I've realised this is one of the densest write-u
 
 Now, if you're really interested in understanding this system but find this article difficult to follow, my advice to you is: **Take your time**, the article is not going anywhere. Focus on what you like, read at your own pace, check out the links on the 'Sources' section for support and finally, don't put pressure on yourself, there's no exam!
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## CPU
 
@@ -132,7 +130,7 @@ The new standard developed relied on two dedicated chips to handle most of the m
 
 The combination of these chips is called **chipset** and they are important enough to condition the capabilities and performance of a motherboard. The Xbox, being so close to a PC, includes two chips as well: The **NV2A**, a combination of Northbridge and GPU; and the **MCPX** which handles the rest of I/O.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Both chips are interconnected using a specialised bus called the **HyperTransport**. It's worth pointing out that some PC motherboards also included this technology, just with a different brand (*nForce MCP-D*).
 
@@ -174,7 +172,7 @@ Please note that, while the pipeline of the Xbox's GPU is based on the NV20 arch
 
 The units analysed contain a lot more features that go beyond the scope of this article, so I recommend checking out the sources/references if this section catches your attention. Also, since graphics-related terminology is constantly evolving (which can lead to some confusion), I've decided to rely on the terms used by Microsoft/Nvidia during the years of the Xbox, so remember this if you plan to read more graphics-related articles from other sources.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Having said that, let's take a look at how frames are drawn in the Xbox. Some explanations are very similar to GameCube's [Flipper](gamecube#graphics), so you may benefit from reading that article as well in case you struggle to follow this one.
 
@@ -244,7 +242,7 @@ In the case of pixel shaders, programmers can manipulate and blend textures in m
 
 A new programming concept that emerges thanks to this approach is the **General Purpose GPU** or 'GPGPU', which consists of assigning tasks to the GPU that would have been exclusively done by the CPU. So not only the GPU has taken over most of the graphics pipeline, but now can act as an efficient co-processor for specialised computations (i.e. physics calculations). This is a new area that will evolve as GPUs become more powerful and flexible. However, the NV2A was already able to achieve this thanks to a combination of hardware capabilities (vertex & pixel shaders) and specialised APIs developed (OpenGL's 'state programs').
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 I have a feeling that shaders will be regularly revisited in future articles. Please remember that in this article, however, they may be considered a bit 'primitive' and some people may argue that the pixel shaders are not even 'shaders' (compared to what GPUs offers nowadays).
 
@@ -438,7 +436,7 @@ Furthermore, not only Xbox Live enabled online multiplayer but it also included 
 
 But what exactly is Xbox Live? Well, it's just a collection of interconnected online services which companies can use to build their online platform. For instance, one of the services provide user profiles, so studios can use it as an authentication method when accessing the online functionalities of a game. In the official SDK, Microsoft includes some APIs to talk with the Xbox Live servers.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 It's important to point out that Microsoft controls whom to grant Xbox Live access to, so developers will have to register to Microsoft to obtain the authentication keys that will be used by their games.
 

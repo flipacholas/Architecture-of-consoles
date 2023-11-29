@@ -35,9 +35,7 @@ I was a bit confused at first while reading about the different models that Sega
 
 From now on I'll use the term 'Master System' or 'SMS' to refer to all of these, except when talking about exclusive features from a particular model.
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## CPU
 
@@ -290,7 +288,7 @@ When the `PAUSE` button is pressed, a non-maskable interrupt is sent to the CPU 
 
 By contrast and for some strange reason, the `RESET` button is handled like a keypress on the controller.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ## Operating System
 

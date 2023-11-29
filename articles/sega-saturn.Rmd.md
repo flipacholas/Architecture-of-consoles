@@ -31,9 +31,7 @@ Welcome to the 3D era! Well... *sorta*. Sega enjoyed quite a success with the Me
 
 Just in case developers want the extra dimension, Sega adapted some bits of the hardware to enable polygon drawing as well. Hopefully, the result didn't get out of hand!
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## CPU
 
@@ -133,11 +131,9 @@ This chip also houses **4 KB of Colour RAM (CRAM)** which is used to translate V
 
 Finally, even though the VDP2 is limited to two 3D planes, nothing prevents the CPU from using its VRAM as frame-buffer area to draw additional 2D or 3D graphics in software.
 
-`r close_tabs()`
-
 I recommend checking out the sources (at the end of the article) if this section got your attention, since the VDPs have a lot more quirks that are beyond the scope of this article.
 
-### Defining the problem
+### Defining the problem {.tabs-close}
 
 As you can see, the architecture of the graphics sub-system is quite complex, so it's interpreted differently depending on the needs:
 
@@ -232,7 +228,7 @@ The Sega Saturn approach is what I consider a 'semi-solved' case. The VDP1 doesn
 
 Essentially, SGL allocates a buffer to sort the polygons based on the distance from the camera (from furthest to nearest), then, issues the display commands to the VDP1 in that order.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 One of the issues of Z-sort with 3D spaces is that its distance value (Z-order) is **approximated**, so graphic glitches may still appear. For this, programmers can skip SGL in favour of implementing their own algorithm.
 

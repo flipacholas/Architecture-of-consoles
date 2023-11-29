@@ -31,9 +31,7 @@ At first glance, the NES appears to be just another 6502 computer, with a sophis
 
 And while this is *technically* true, let me show you why the CPU is not the *central* part of this system.
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## Models and variants
 
@@ -515,7 +513,7 @@ Since the floppy is a single medium (as opposed to the multi-chip cartridges), a
 
 Nonetheless, the Famicom/NES strictly requires segregated Program and Character memory to function, so that's the job of the 'RAM adapter' to sort out. This component houses **32 KB of Program RAM** and **8 KB of Character RAM** to buffer the game data read from the floppy disc, and in doing so, it enables the console to read from it as if it were a cartridge-based game.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 To operate the drive, the RAM adapter embeds an additional 8 KB ROM to store a **BIOS** [@games-fds_bios]. This program performs the following tasks:
 

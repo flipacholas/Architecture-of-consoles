@@ -35,9 +35,7 @@ Sega (and their TV ads) want you to know: Developers can't come up with decent g
 
 Their new system includes lots of *already familiar* components ready to be programmed. This means that, in theory, developers would only need to learn about Sega's new GPU... right?
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## CPU
 

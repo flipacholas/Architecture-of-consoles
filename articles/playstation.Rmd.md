@@ -28,11 +28,9 @@ aliases: [/projects/consoles/playstation/]
 
 ## A quick introduction
 
-Sony knew that 3D hardware can get very messy to develop for. Thus, their debuting console will keep its design *simple* and *practical*... Although this may come with a cost!
+Sony knew that 3D hardware could get very messy to develop for. Thus, their debuting console will keep its design *simple* and *practical*... Although this may come with a cost!
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## CPU
 
@@ -159,7 +157,7 @@ Consequently, MIPS I CPUs exhibit the following behaviour:
   - Modern CPUs converted this phenomenon into an advantage: [Branch prediction](gamecube#cpu). By adding extra circuitry to detect the hazard, the CPU discards the new computations if the branch/jump condition didn't meet. But if it did, then the CPU has saved some time.
 - **'Load' instructions don't stall the pipeline until the retrieved data is made available**: The second stage of the pipeline (called 'RD' or 'Read and Decode') gathers the operators [@cpu-manual], which will be used to perform a computation at the third stage (ALU). The fourth stage ('MEM', from 'access MEMory') looks for data in memory (i.e. main RAM, CD reader, etc). Now, here's the problem: by the time a `load` instruction gathered the data from outside, the following instruction had already fetched the operators. This means that an instruction depending on the values of the previous `load` instruction requires a filler in-between, so the correct operators can be fetched on time.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 As we can see from the example, some delay slots are filled with meaningful instructions, which perform computations that are not affected by the hazard. Hence, delay slots don't always imply a waste of cycles.
 
@@ -251,7 +249,7 @@ The unit also includes the following effects available to use:
 
 It's worth mentioning that the PS1 happened to excel at those effects!
 
-`r close_tabs()`
+#### Remaining steps {.tabs-close}
 
 Once finished, the GPU writes the pixels into the frame buffer area in VRAM, which is in turn picked up by the video encoder and broadcast to the screen.
 
@@ -279,7 +277,7 @@ In essence, instead of wasting valuable VRAM by using 'unappreciated' resolution
 
 Page-flipping consists of switching the location of the frame for display between the two available whenever the game wants it, allowing the game to render one scene while displaying another. Thus, hiding any flickering effect and improving loading times (something that the player will certainly appreciate!).
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Overall, Halkun's layout only consumes 600 KB of VRAM. The rest (424 KB) can be used to store colour lookup tables and textures that, combined with **2 KB of texture cache available**, result in a very convenient and efficient setup.
 
@@ -386,7 +384,7 @@ This subsystem is composed of:
 - A **CD Controller**: This is the middle-man between the CD subsystem and the rest of the console, receiving commands from main CPU (in a FIFO manner) and triggering interrupts after certain events. As a controller, the chip talks to the Sub-CPU and receives CD data from the DSP. Furthermore, the controller contains a DMA unit and it's connected to the SPU, which allows it to stream audio directly.
 - **32 KB of SRAM** connected to the controller: This is presumably used as a buffer for data read from the disc.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 The subsystem somewhat resembles a typical CD reader everyone had at their home, except with the tweaks Sony implemented in the Sub-CPU program to perform anti-piracy checks.
 

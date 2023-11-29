@@ -28,9 +28,7 @@ Gone are the days of '3D-attempts', Nintendo's new offering consists of a clean 
 
 It's worth pointing out that the design of this architecture led to one of the most compact hardware of this generation. This was emphasised by the lack of *slims* or *lite* revisions.
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## CPU
 
@@ -42,7 +40,7 @@ A promising candidate seems to be IBM: Apart from their famous work on mainframe
 
 Fast forward, Nintendo required something powerful but cheap, so to comply with those red lines, IBM grabbed one of its past designs, the *PowerPC 750CXe* (found on the late iMac G3, known as the *Early-Summer 2001*), and beefed it up with capabilities that would please game developers. The result was the **PowerPC Gekko** and runs at **486 MHz**. 
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Features
 
@@ -143,7 +141,7 @@ There were lots of advancements done from the previous iteration, for instance, 
 
 During the development process, ArtX got acquired by ATI, which in turn was sold to AMD six years later. Hence, this is why you see an ATI sticker stamped on the front of the case.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Architecture and design
 
@@ -222,6 +220,8 @@ The famous Mario model which had to be stripped down due to polygon counting on 
 
 ![Super Smash Bros. Melee (2001) for the GC.<br>4,718 triangles.](mario_melee_gc){.toright model3d="true"}
 
+It's really impressive how much detail has been gained in just two years, eh?
+
 #### The update {.tab}
 
 In this case, Sonic Team already designed a Sonic model for [their unique console](dreamcast), but after porting their game to the GameCube they found themselves able to add more polygons to their model, achieving better detail.
@@ -230,11 +230,7 @@ In this case, Sonic Team already designed a Sonic model for [their unique consol
 
 ![Sonic DX (2003) for the GC.<br>1,993 triangles.](sonic_dx_gc){.toright model3d="true"}
 
-`r close_tabs()`
-
-It's really impressive how much detail has been gained in just two years, eh?
-
-### Creativity
+### Creativity {.tabs-close}
 
 As you can see from the inner working of this pipeline, graphics technology has been evolving to point that programmers can now take control of certain functions of the rendering process.
 
@@ -244,7 +240,7 @@ During the same time, PC graphics cards were starting to discard fixed-function 
 
 I guess one of the best examples of games that exploited this new capability is **The Legend of Zelda: Wind Waker** which implements a unique colour/lighting technique known as **Cel shading** to make its textures look *cartoonish*.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Video output system
 
@@ -264,7 +260,7 @@ The console included not one, but two video output connectors:
   - Nintendo released a component cable set that connected to this socket. The same plug incorporated a video DAC and encoder to convert the digital signal into YPbPr (optimal quality).
   - The cable was sold as an extra accessory and now is considered some sort of a relic!
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ## Audio
 
@@ -351,7 +347,7 @@ Both are technically identical (serial bus running at 32 MHz), yet they are pres
 
 These ports are operated on the EXI stack.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Unusual I/O
 

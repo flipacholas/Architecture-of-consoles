@@ -32,9 +32,7 @@ A console often summarised by its short lifespan and limited colour space. While
 
 In this article, I invite readers to learn more about its internal features, many of which became predominant in the market only after the Virtual Boy's discontinuation.
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## Display
 
@@ -106,11 +104,11 @@ Consequently of this design, there are going to be periods of:
 - **Active Display 2**: Same as before but now the other Display unit is operating.
 - **Drawing idle**: A period where none of the LEDs are operating and the angular velocity of the mirror is unstable.
 
-This cycle is repeated 50 times per second (hence the 50 Hz refresh rate). That means that for every frame, the CPU and GPU would have around 10ms worth of time to update the picture that the user will see. In reality, Nintendo's engineers implemented something more sophisticated. Again, I'll try to explain this with more depth in the 'Graphics' section. But for now I hoped you got a good understanding of how the Virtual Boy cleverly managed to produce a picture with inexpensive hardware.
+This cycle is repeated 50 times per second (hence the 50 Hz refresh rate). That means that for every frame, the CPU and GPU would have around 10ms worth of time to update the picture that the user will see. In reality, Nintendo's engineers implemented something more sophisticated. Again, I'll try to explain this with more depth in the 'Graphics' section. But for now, I hope you got a good understanding of how the Virtual Boy cleverly managed to produce a picture with inexpensive hardware.
 
-`r close_tabs()`
+#### Some comments {.tabs-close}
 
-This has been a quick explanation of how optics can turn a single vertical line into a picture. If you own or have read about the Virtual Boy before, you may be wondering when the three-dimensional imagery takes place. I just want to make it clear that none of the previous explanation have a connection with that effect. I'm mentioning this because in the past I've seen many places arguing that the oscillating mirrors are the cause of the 'depth perception', however, with all the information I've gathered in this study, I don't think that claim is accurate.
+This has been a quick explanation of how optics can turn a single vertical line into a picture. If you own or have read about the Virtual Boy before, you may be wondering when the three-dimensional imagery takes place. I just want to make it clear that none of the previous explanations have a connection with that effect. I'm mentioning this because in the past I've seen many places arguing that the oscillating mirrors are the cause of the 'depth perception', however, with all the information I've gathered in this study, I don't think that claim is accurate.
 
 That being said, I think it's time we discuss the 3D phenomenon...
 
@@ -134,7 +132,7 @@ The technique is very simple: Each of the two frames displayed (one on each eye)
 
 Objects shifted towards the centre of your eyes (moved right on the left frame and moved left on the right frame) will appear closer, objects shifted away from the center of your eyes will appear further away. Finally, objects with no shifting will appear between the two other. This approach is called **Stereoscopic parallax**.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 One of the drawbacks of stereoscopy is **eyestrain**. This was alleviated by the fact games provided an 'automatic pause' system which reminded the user to take breaks every 30 min. Nintendo also wrote down various warning messages in their packaging and documentation to prevent serious conditions. In any case, there's no way to turn 3D off.
 
@@ -204,7 +202,7 @@ Having said that, you can divide the VIP into three main areas:
 - The **Display Processor** or 'DP': Controls the Scanner and sends a frame-buffer for display.
 - The **Interfaces**: Provide access to two blocks of memory: **128 KB of VRAM** and **128 KB of DRAM** [@cpu-ic]. They also arbitrate access between VRAM and the CPU (called 'Host' from the VIP side).
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Overall, the pipeline is very simple:
 
@@ -339,7 +337,7 @@ Furthermore, all these new functions worked alongside the Parallax effects, some
 
 I wonder what kind of games we would've seen if this console had lasted a little bit more, just enough so developers could get more comfortable with this hardware.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Another interesting feature was that by allowing the CPU to alter the frame-buffer, it provided developers with the ability to construct their own renderer if the VIP wasn't enough for them. This is what some games relied on to present their innovative graphics. For instance, 'Red Alarm' implemented a scenery constructed with polygons rendered by the CPU.
 
@@ -365,7 +363,7 @@ In the motherboard there's another chip called **Virtual Sound Unit** or 'VSU' t
 
 Each wave is made of 32 PCM samples (encoded in 6-bit values). Channels have a panning control setting (with a volume level from 0 to 15 for each left and right) and a 11-bit frequency control.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 There's also a basic envelope control for each channel that makes the volume grow or decay over time. The fifth channel supports more effects, namely a **sweeping function** to progressively shift the frequency and a **modulator** to alter the waveform based on some values stored in the internal RAM.
 
@@ -392,7 +390,7 @@ Externally, there are two connectors available for accessories:
 - The **Communications Port**: Whilst not an accessory *per se*, this port is used to talk to another Virtual Boy. This reminds me of the [Link cable](game-boy#external-communications) that the Game Boy uses. The two Virtual Boys communicate in a master-slave manner using serial data streams.
   - This really makes you wonder what kind of multiplayer functionality was Nintendo envisioning. Unfortunately, no game ended up using this feature.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### The provider
 
@@ -408,7 +406,7 @@ Also, because the controller is also supposed to supply power, it comes with a r
 
 In the case of using the latter accessory, playing with everything interconnected with cables may feel like a house of cards (specially if you can't look at during gameplay) but I guess that's the price to pay if you don't want to worry about batteries 🙂.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ## Operating System
 
@@ -448,7 +446,7 @@ Due to the memory address space, the ROM can be up to **16 MB without a mapper**
 
 Come to think of it, 16 MB of ROM is quite a lot for the mid-90s. After all, the max size of a GB ROM was 128 KB! (without a mapper). On the other side, let's not forget this console uses 32-bit addresses, so every pointer is 4 bytes long. This is two times the size of Game Boy's addresses (2 bytes), so it adds up to the space requirements.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Rules
 
@@ -468,7 +466,7 @@ The second one was some sort of a 'test card' that was used to properly adjust t
 
 The third one asked the user if they would like to be remained to take a break every thirty minutes.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 The first and third screen were often customised to fit the game's theme.
 

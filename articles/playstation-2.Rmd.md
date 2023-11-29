@@ -28,9 +28,7 @@ The PlayStation 2 was not one of the most powerful consoles of its generation, y
 
 This machine is nowhere near as simple as the [original PlayStation](playstation) was, but we will see why it didn't share the same fate of [previous complicated consoles](sega-saturn).
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## CPU
 
@@ -163,7 +161,7 @@ These have been so far examples from the theoretical point of view, but to expla
 
 The former director of Travellers Tales explained how his team achieved a particle system fully encapsulated within the VPU1. In a nutshell, the VPU1 focused on reading a pre-populated database from its VU memory, the database was used to calculate the coordinates of particles at any given time without depending on any other component. The result of the operation could be transformed into Display Lists and sent right away.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 With this approach, the CPU was significantly offloaded, allowing it to carry out other tasks like AI and physics.
 
@@ -179,7 +177,7 @@ There's a simple but speedy chip specialised in that: The **Graphics Synthesizer
 
 The GS has fewer features than other graphics systems [previously reviewed](gamecube#graphics) on this site. Nonetheless, it's very fast at what it does.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Architecture and design
 
@@ -281,7 +279,7 @@ As stated before, the PCRTC sends the frame buffer through the video signal. The
 
 There're quite a lot of modes to choose from, but it all comes down to the format adoption during the early 2000s, which narrows it down to PAL and NTSC. Also, even though PAL provided a higher resolution than NTSC, some European versions of NTSC games resorted to letterboxing to mask the unused horizontal lines and slowed down the refresh rate to fit in the 50Hz limit (I call these 'bad ports'!).
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 The video-out port (**Multi A/V**) is very convenient. It carries RGB, Component, S-Video and composite. So, all the important signals are there without requiring proprietary adapters or internal modifications.
 
@@ -334,7 +332,7 @@ The most popular addition: **Two USB 1.1 ports**. Widely adopted by third-party 
 
 What about the 'experimental' ones? To start with, there was initially a front **i.Link port** (also known as IEEE 1394, or 'FireWire' in the Apple world). This port was used to connect two PS2 to enable local multiplayer, but it was removed after the third revision (presumably replaced by the 'Network card', more details below).
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 On the back of the console we also had a slot for **PC cards**, you could buy the 'Network Adaptor card' from Sony that provided two extra ports. One for connecting an Ethernet cable, and another one for plugging in a proprietary and external 'Hard Disk Drive Unit', also sold by Sony. Having a drive allowed games to store temporary data (or permanently install themselves there) for faster load times. Just a few games used this feature, though.
 
@@ -348,7 +346,7 @@ On the back of the console we also had a slot for **PC cards**, you could buy th
 
 In later revisions, the PCMCIA port was replaced by an **Expansion Bay** where a 3.5" Hard drive could be fitted inside the console. You had to buy first a **Network adaptor** which not only provided Modem and/or Ethernet ports (depending on the model), but also included the required connections for an ATA-66 hard disk. 'Slim' revisions completely removed this feature, but left an Ethernet port permanently installed on the back. In addition to that, the new revision added a new front 'port', the **infrared sensor**.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 The Ethernet transceiver supplied supports transfer rates of up to 100 Mbps (12.5 MB/s). However, the **observed rate is notoriously lower** (down to 2 MB/s in some cases). The explanation for that is relatively simple: To achieve usable network communication, one is required to implement all the layers of the standard 'OSI Model'; and the transceiver is just one piece of the puzzle. The rest is often delegated to the IOP (thus, done in software) but due to the IOP's limited performance [@io-bottleneck], this results in bottlenecks.
 
@@ -364,7 +362,7 @@ During the days of the original PlayStation, multiple revisions of the original 
 
 Compared to the DualShock, the new version featured a slight redesign, it included two analogue sticks and two vibration motors for richer input and feedback, respectively.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Next to the controller slot is the **Memory Card slot** which is compatible with PS1 and PS2 cards. The new cards embed extra circuitry for security purposes referred to as **MagicGate**, which enables games to block data transfers between different memory cards.
 
@@ -408,7 +406,7 @@ It is unprecedented the level of popularity this system achieved during the noug
 
 What happened here is really impressive. The PS2 doesn't have a 'programmer-friendly' architecture, (as seen from the perspective of a PC programmer) yet with such an amount of games developed, I too wonder if there were more factors involved (such as 'licensing reliefs', low distribution costs, cost of development, small form factor and so on).
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Development ecosystem
 
@@ -437,7 +435,7 @@ DVDs can hold up **4.7 GB** of data in the case of DVD-5 (the most common 'sub-f
 
 Due to the type of medium used, not only games could be played, but also movies. Now, this requires a decoder to be able to read the DVD movie format, and for that, the PS2 initially included the required bits installed in the memory card (after all, the card is just a storage medium) but later models came with the DVD software pre-installed in the BIOS ROM.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 In terms of speed, CD-ROMs are read at 24x speed (so 3.6 MB/s) and DVD-ROMs are read at 4x speed (5.28 MB/s) [@games-transfer].
 
@@ -463,7 +461,7 @@ This section was particularly concerning for game studios, since this console us
 
 When the OS loads a game, it does so by sending specific commands to the DVD reader. The commands specifically used to read the content of a game behave very differently from standard DVD commands (i.e. to read a DVD movie). It turns out authorised games contain an out-of-reach 'map file' in the inner section of the disc that indexes the filesystem by name, position and size. When the DVD is asked to read a game disc, it will always navigate through the disc using the map file, meaning that a pirated copy of a game, which could not include the map file, will be impossible to read. This was complemented by a region lock system that prevented imported games from working in a console from a different region.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Exploits discovered
 

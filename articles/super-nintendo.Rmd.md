@@ -34,9 +34,7 @@ aliases:
 
 It seems Nintendo managed to bring the next generation of graphics and sounds without using expensive off-the-shelf components. But there's a catch: the new console was also **designed with expandability in mind**. In a world where CPUs are evolving faster than the speed of light, Nintendo ultimately depended on game cartridges to make its console shine.
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## CPU
 
@@ -273,7 +271,7 @@ Introducing **Mode 7**, *yet another* background mode, but this time, with a com
 
 The S-PPU is controlled with a **rotation matrix** to alter the parameters of this mode. I won't go into the linear algebra here, but depending on the desired effect, the CPU will have to perform some trigonometric functions (sine and cosine) to fill the entries of this table accordingly. This is really expensive for the 65C816, even with the use of fixed-point precision. For this reason, with the 5A22, Ricoh added multiplication and division registers to offload some cycles.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 By the way, notice that the list of transformations doesn't mention **perspective**, which is what you see in the example game (F-Zero). This is achieved by altering the rotation matrix at each HDMA call, creating a pseudo-3D effect in the process. That should give you an idea about how practical the S-PPU is!
 
@@ -335,7 +333,7 @@ As you can see, the sound subsystem was a huge advancement compared to the previ
 
 As a consequence, there were tons of different sound drivers found on the market [@audio-drivers], and some of them ended up uncovering impressive features.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Pitch control
 
@@ -371,7 +369,7 @@ Here's a more instrument-rich composition that takes great advantage of pitch be
 
 This combination of techniques allowed the music to only require five channels in total, leaving the other three for sound effects.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Stereo confusion
 
@@ -427,7 +425,7 @@ Alternatively and most importantly, LoRom and HiROM can also be adapted to house
 - Two extra configurations, one based on LoROM and the other on HiROM, make way for the **DSP** series of chips. These are the same derivative of the NEC µPD77C25 CPU, but running a different program. They provide vector and matrix computations [@games-dsp] and different games have used it to compute affine transformations, graphics decompressing and shortest path calculations.
 - The **SFX** model targets the popular **Super FX GSU** chip. This configuration maps up to 8 MB of ROM, where 2 MB are shared between the main CPU and the Super FX. The rest of the address space also includes additional backup RAM and SRAM. The Super FX is a proprietary processor made by Argonaut that specialises in **3D surface rendering** and **2D affine transformations**, the results are then streamed as tiles for the S-PPU to be able to display. A handful of notable games used it for drawing 3D models and/or extending Mode 7 for sprites (as Mode 7 can only transform backgrounds).
 
-`r close_float_group()`
+{.close-float}
 
 It's difficult to ignore the impact this engineering made on games during the 90s, many of which managed to exceed the expectations of this console without requiring expansion modules and whatnot. You could say this complicated Nintendo's plans to deliver a successor of this console (which may explain why advanced games like Star Fox 2 were cancelled).
 

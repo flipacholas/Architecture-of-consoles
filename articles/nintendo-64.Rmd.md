@@ -28,9 +28,7 @@ The result was a nice-looking console for the family... and a 500-page manual fo
 
 Don't worry, I promise you this article will not be *that* long... Enjoy!
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## CPU
 
@@ -140,7 +138,7 @@ The RDP provides four modes of functioning, each mode combines these blocks diff
 
 Since this module is constantly updating the frame buffer, it handles RAM very differently: Remember the unusual 9-bit 'byte'? The ninth bit is used for frame buffer-related calculations (z-buffering and antialiasing) and can only be operated through the Memory interface.
 
-`r close_tabs()`
+#### Remaining steps {.tabs-close}
 
 The resulting frame must be sent to the **Video Encoder** to display it on-screen (**DMA** and the **Video Interface** component are essential to accomplish this).
 
@@ -330,7 +328,7 @@ The magnetic medium is slower than cartridges, with transfer speeds of up to 1 M
 
 There's no buffer memory included in this reader, so the bits read are stored in RDRAM for execution. Nintendo bundled the RAM expansion unit with the 64DD to compensate for the sudden need for more RAM (apart from standardising the extended RAM for all 64DD games).
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Furthermore, parts of the disk are re-writable to enable storing saves, the amount of writable area depends on the type of disk used (Nintendo provided seven types). On the software side, game data is structured with a filesystem called 'Multi File System' (MFS) provided by Nintendo with their SDK. Games can either access disk data using the file system or on a block-to-block basis, the latter relies on another library called 'Leo' for low-level functions.
 
@@ -360,7 +358,7 @@ I guess the one worth mentioning is the **Doctor v64**, this device has the same
 
 The expansion can rip the contents of the cartridge to a CD, the opposite (reading ROM files from a CD) is also possible.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Emulation
 

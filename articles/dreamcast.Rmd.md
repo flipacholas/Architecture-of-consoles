@@ -25,9 +25,7 @@ aliases: [/projects/consoles/dreamcast/]
 
 The Sega Dreamcast introduced many new features over its predecessor (the [Saturn](sega-saturn)) to appeal to both game developers and console gamers. While this was Sega's last attempt to conquer the console market, some of the technologies which were pioneered in the Dreamcast carried on and into future mainstream devices.
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## CPU
 
@@ -71,7 +69,7 @@ VideoLogic chose an alternative approach for the construction of their 3D engine
 
 Instead of rendering a whole frame at once (as traditional **Immediate Mode Renderers** or 'IMR' do [@graphics-arch]), TBDR divides the rendering area into multiple sections called 'tiles'. Then, it carries out the rendering process on each tile individually and the result is combined to form the final frame [@graphics-powervr].
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 This innovative design brings interesting advantages:
 
@@ -198,7 +196,7 @@ The shell contains a simple graphical user interface to enable the user to perfo
 - Play music, if there's an Audio CD inserted.
 - Change some settings (Date, Time, Sound, etc).
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Windows CE
 
@@ -210,7 +208,7 @@ In reality, the purpose of this 'OS' was very similar to what Nintendo did with 
 
 Microsoft worked with Sega to bring Windows CE to the Dreamcast [@games-sdk]. The result was a subset of CE with the minimal components needed to provide graphics, audio and debugging. This included the use of Microsoft's star IDE, **Visual Studio**, for development.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Some developers found this option very attractive. Since the audio-graphics framework included with CE was none other than **DirectX 6**, thousands of PC games of that era could, in theory, be easily ported to the Dreamcast...
 
@@ -269,7 +267,7 @@ Another innovative feature that the Dreamcast featured was the **Visual Memory U
 - **64 KB of Flash**: 32 KB for storing a single program (transferred from the console) and the other 32 KB for keeping Dreamcast's saves.
 - **512 B of RAM**: 256 B is reserved for the system, leaving only 256 B available for the program.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 The VMU has two modes of operation:
 

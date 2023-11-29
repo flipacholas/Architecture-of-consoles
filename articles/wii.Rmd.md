@@ -31,9 +31,7 @@ Here we will analyse every aspect of this console, from its already-familiar har
 
 Quick Note: Some sections overlap part of the previous article about the [GameCube](gamecube), so instead of repeating the information I will just put a link to the respective part of the article.
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## Next-gen controllers
 
@@ -178,7 +176,7 @@ Moving on, this 'I/O CPU' is tasked with arbitrating access between many I/O and
 
 The chip also inherits some technology from ARM, such as the **Advanced Microcontroller Bus Architecture** (AMBA), a protocol that facilitates the communication between devices using a set of specialised buses.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Having said that, Nintendo wired up the I/O in a way that makes use of two AMBA buses [@io-diagram]:
 
@@ -200,7 +198,7 @@ The Wii maintains full backwards compatibility with GameCube games even though t
 
 Additionally, the Real-Time Clock chip includes some spare ROM that stores bitmap fonts (the Latin and Japanese set) used by GameCube games; and SRAM to save [IPL-related](gamecube#operating-system) settings.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ## Operating System
 
@@ -287,7 +285,7 @@ The Wii disc provides either **4.7 GB** (if single-layer) or **8.54 GB** (if dou
 
 Some games like *Super Smash Bros. Brawl* included more partitions to store multiple Virtual Console games, which were executed inside the main game.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Development
 
@@ -309,7 +307,7 @@ Having said that, there are certain features across different games that look aw
 
 The answer is simple, Nintendo included in their SDK some **mandatory libraries** that games have to embed. *Lo and behold*, one of them draws that screen. Furthermore, this is the reason you'll find that only homebrew apps feature 'original' designs for the home menu.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 The official HOME Menu is one of the 200 or so requirements games had to include, as ruled by the **Wii Programming Guidelines** document (found on the official SDK). Other requirements consisted of displaying the 'Wii Strap reminder' screen (which is just a BMP image) at the start of the game, followed by another rule that dictated how to interact with it.
 
@@ -323,7 +321,7 @@ Another new feature I would like to emphasise is the introduction of **Miis**, s
 
 But the fun didn't stop there, since games could also fetch these new-created Miis to personalise gameplay.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ## Anti-Piracy & Homebrew
 
@@ -341,7 +339,7 @@ Modchip developers discovered that the drive contained a debug interface called 
 
 Matsushita released further revisions of this drive obfuscating the debug interface, however, other flaws in the reader were discovered to re-enable it again.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 It's worth mentioning that the main benefit of modchips was plain piracy, as the disc content is still encrypted, so more research and tools were needed to run custom code.
 
@@ -406,7 +404,7 @@ The last key used by this console is the **HMAC key**, which uses another algori
 
 As a final note, the HMAC key is stored in SEEPROM (outside Starlet), not in OTP.
 
-`r close_tabs()`
+#### Observations {.tabs-close}
 
 After all this, it's worth mentioning that when the system runs GameCube games, **none of the mentioned encryption methods are used**. Instead, Starlet will only check that the game only accesses its designated memory locations. This is because 1/4 of GDDR3 RAM is allocated to simulate old [ARAM](gamecube#audio).
 
@@ -418,7 +416,7 @@ Let's start with AES keys, the algorithm may be hard to crack, but if the keys a
 
 Well, a group of hackers called **Team Twiizers** found out that the lack of signatures on GameCube mode may be a promising attack surface [@cpu-ccc]. They not only discovered that **3/4 of that GDDR3 RAM were not cleared** after running a GC program, but also that by bridging some address points on the motherboard (using a pair of tweezers, nonetheless) they could swap the selected banks of GDDR3 RAM, allowing access to restricted areas. Lo and behold, the AES keys were found residing in there.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Let's not forget that this only allows to decrypt the 'first layer' of security, but in order to execute unsigned programs (Homebrew), RSA has to be cracked too. Unfortunately, this can be computationally impossible... Unless there are flaws in its implementation. Well, Team Twizzers didn't stop there so they started reversing how IOS was coded, focusing on its signature verification functions.
 
@@ -438,7 +436,7 @@ So far, these exploits required the use of extra hardware, so not every user cou
 
 I'm referring to the famous **The Legend of Zelda: Twilight Princess** (a game by Nintendo, by the way). TT discovered that the game's save file could be modified to overflow the number of characters used for naming the player's horse. So, when the player attempts to read the overflowed name, it would trigger a chain reaction ending in arbitrary code execution. This could be used to run, let's say, a program loader.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Since signatures could now be forged, this crafted save file was easily distributed on the net for other people to use. As a result, the homebrew community was now able to execute their custom software.
 
@@ -460,7 +458,7 @@ Thus, TT did it again. They carefully forged an installable channel that could l
 
 **Homebrew Channel** was the result of this, this title allowed any user to kickstart homebrew programs that benefited from full control of this system (with all the implications that this means).
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Nintendo's response
 
@@ -474,7 +472,7 @@ However, there were still fundamental flaws discovered in this system:
 - Hidden IOS APIs can still be used without special privileges, allowing even more unauthorised control of the hardware.
 - The disc drive can receive commands to read conventional DVDs and some IOS contained hidden calls to send those commands. This was particularly worrying for piracy reasons.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 So, to wrap this up, what was left after this was just a cat-and-mouse game. Over the next months, different exploits were discovered with Nintendo subsequently trying to patch one after another. This 'game' continued until the console reached its end-of-life and no more updates were issued. We can assume the mouse won this one.
 

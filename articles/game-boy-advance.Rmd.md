@@ -28,9 +28,7 @@ The internal design of the Game Boy Advance is quite impressive for a portable c
 
 This console will carry on using Nintendo's *signature* GPU. Additionally, it will introduce a relatively new CPU from a British company that will surge in popularity in the years to come.
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## CPU
 
@@ -218,7 +216,7 @@ Overall it sounds like a cutting-the-edge feature, however, most games held on t
 
 You see, while using a tile engine the CPU can delegate most of the computations to the graphics chip. By contrast, the frame-buffer system that the PPU provides is limited to only displaying that segment of memory as a **single background layer**, which means no more individual affine transformations, layering or effects unless the CPU computes them. Also, the frame-buffer occupies 80 KB of memory, so only 16 KB (half) are available to store sprite tiles.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 For this reason, these modes are used exceptionally, such as for playing motion video (**Game Boy Advance Video** completely relied on this) or rendering **3D geometry** with the CPU.
 

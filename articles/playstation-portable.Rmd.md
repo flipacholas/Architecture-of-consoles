@@ -40,9 +40,7 @@ This article is dedicated to anyone that wants to understand, straight to the po
 
 P.S. If you ever feel fed up with information, don't forget to take a look at the diagrams that I made for each section.
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## Main CPU
 
@@ -193,7 +191,7 @@ The local bus is as wide as the System Bus (128 bits), but if that wasn't enough
 
 What about how the CPU and GE communicate with each other? As I said before, both CPU and graphics core can read from eDRAM. Additionally, the graphics core can access the System Bus to fetch data from any other component (including the main RAM). So, all of that just doesn't happen magically.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 In a nutshell, there are two **bus matrix** blocks that re-wire the connection between the local bus and the System Bus. Whenever there's a component that wants to access an 'alien' bus, the bus matrices configure the communication so that one unit becomes master of the two buses and no other overlaps, this persists until the designated unit finishes transferring memory.
 
@@ -318,7 +316,7 @@ Afterwards, pixels will also travel through these optional blocks for further ef
 
 Complex functions like **antialiasing** are the result of a strategic combination of the above. Finally, the outputted pixel is written to the frame-buffer, which in turn is sent for display.
 
-`r close_tabs()`
+#### Observations {.tabs-close}
 
 As evidenced, the PSP inherits various features from the PS2. The difference, however, is that functionality is now hardwired in the silicon, as opposed to offering many general-purpose programmable units (which require manual work to set them up). I presume this was done for two reasons: to use fewer transistors (so it fits in Tachyon and the board remains 'portable') and to facilitate porting PS2 codebases to the new console.
 
@@ -338,7 +336,7 @@ The first model of this console (1000) has a proprietary video port called **rem
 
 The remote port uses the RS-232 protocol [@io-nil], an old standard for transferring data in serial. Though the specification wasn't publicly available to developers (let alone documented), a couple of audio headsets with control buttons appeared on the market. They apparently use the serial port to send commands (play, pause, etc.) to the console.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 In later models (2000 and 3000), the remote port was expanded with an extra YCbCr pinout. Sony shipped three **video cables** (component, S-Video and composite) that rely on this interface to enable users to see the contents of the PSP screen on the TV.
 
@@ -641,11 +639,9 @@ Inside NAND Flash, IDStorage stores an encrypted key known as the 'master key'. 
 
 By the way, even though SPOCK is found within Tachyon, it's operated by Lepton.
 
-`r close_tabs()`
-
 To sum up, having these routines in hardware allows the system to execute games without consuming general-purpose resources to apply encryption/decryption.
 
-### Software security
+### Software security {.tabs-close}
 
 The operating system will use the hardware provided to compose a security system. Overall, the software is protected using the following principles:
 
@@ -712,11 +708,9 @@ In the end, the last straw was when the security system of the PlayStation 3 was
 
 In recent developments, it was discovered that the latest firmware contains a kernel exploit during the boot process, which could be used to kickstart a CFW of choice. This was packaged in an solution called **Infinity 2** [@anti_piracy-davee].
 
-`r close_tabs()`
-
 To sum it up, Sony was right when they claimed the UMDs were un-hackable. After all, hacking was achieved instead thanks to (many) flaws in software.
 
-### Homebrew encouragement
+### Homebrew encouragement {.tabs-close}
 
 Not only Homebrew development centred on breaking security mechanisms, but there were also communities committed to providing Homebrew developers with the necessary tools to build their software without legal repercussions. For instance, the pspdev group published an open-source SDK called **PSPSDK** that replicated many of the official interfaces and didn't enforce previous restrictions imposed by Sony.
 

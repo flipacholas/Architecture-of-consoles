@@ -32,9 +32,7 @@ And so, this new production of the Architecture of Consoles series will give you
 
 If you are new to this [article series](consoles), I strongly suggest reading the [GameCube](gamecube), [Game Boy Advance](game-boy-advance) and [Nintendo DS](nintendo-ds) articles beforehand, as they will explain various terms and concepts referenced in this one.
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## Models and variants
 
@@ -107,7 +105,7 @@ Moreover, to perform stereoscopic parallax, this particular LCD houses an extra 
 
 All in all, this recreates the original effect of the Virtual Boy without requiring controls for adjustment.
 
-`r close_float_group()`
+{.close-float}
 
 The technology is not perfect, however, as there are a few caveats:
 
@@ -121,7 +119,7 @@ To remediate things, Nintendo added a slider control (called **3D depth slider**
 
 Setting the 3D slider to the max can be disorienting at first. In my experience, my eyes eventually got focused, at which point I perceived the top LCD screen as if I were looking through a window. The main problem is that users will need to continuously shift their eyes to see the bottom screen, and the repeated action can be very straining.
 
-`r close_float_group()`
+{.close-float}
 
 As a side note, one can't help but find it amusing how the graphics pipeline has gone full circle when rendering stereoscopic frames. During rendering, 3D data is projected into a 2D space, and now with the stereoscopic screen, the third dimension is 'restored'. At this point, let's just use holograms and skip the 3D projection stage altogether!
 

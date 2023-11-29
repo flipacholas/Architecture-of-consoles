@@ -24,9 +24,7 @@ aliases: [/projects/consoles/game-boy/]
 
 The Game Boy can be imagined as a portable version of the NES with limited power, but you'll see that it included very interesting new functionality.
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## CPU
 
