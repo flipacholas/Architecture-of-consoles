@@ -201,7 +201,7 @@ Furthermore, the LSU is coupled with **Memory Management Unit** (MMU), which is 
 
 ![Simplified diagram of the units that perform arithmetic.](cpu/ppu/vsu_fxu.png){.tab-float}
 
-There're only two more units of the PPU left two explain, the ones computing the math any game will need.
+There're only two more units of the PPU left to explain, the ones computing the math any game will need.
 
 The first one is a traditional **Fixed-Point Integer Unit** (FXU). It carries out integer arithmetic, such as division, multiplication, bit rotation (similar to bit shifting but discarded bits are returned to the other end) and count-leading zero (useful for normalising vertex coordinates, for instance). Its pipeline is 11-stages long. 
 
