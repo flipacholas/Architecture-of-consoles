@@ -39,17 +39,33 @@ From now on I'll use the term 'Master System' or 'SMS' to refer to all of these,
 
 ## CPU
 
-Sega decided on a fully-fledged **Zilog Z80** CPU running at **~3.58 MHz**. A popular choice by other machines like the ZX Spectrum and the Amstrad CPC. The Z80 has an instruction set compatible with the Intel 8080 but expanded with lots of more instructions.
+Sega decided on a fully-fledged **Zilog Z80** CPU running at **~3.58 MHz**. A popular choice by other machines like the ZX Spectrum and the Amstrad CPC.
+
+The Z80 CPU has an interesting background, as it was authored by no other than the creators of the Intel 8080, who then became disenchanted with Intel's direction and decided to start their own silicon company, Zilog, in 1974. Their debuting product can be thought of as the unofficial successor of the Intel 8080, now featuring:
+
+- The **Z80 ISA**: An instruction set compatible with the Intel 8080 but expanded with lots more instructions. It handles **8-bit** words.
+- **8-bit data bus**, ideal for moving 8-bit data around. Larger values will consume extra CPU cycles.
+- **14 8-bit general-purpose registers** [@cpu-registers]: This is quite a lot, considering the [6502 CPU](nes#cpu) only features three (`X`, `Y` and `A`). However, the Z80's register file exhibits some caveats (or advantages, depending on how you see it):
+  - Only **seven registers** are accessible at a time, the other seven are called 'Alternative Registers' and must be swapped with the first set to be able to access them. This correlates with the principle of [bank switching](nes#going-beyond-existing-capabilities). Also, the Z80 provides specialised instructions like `EX` and `EXX` to transfer the contents between each set.
+  - Within each set, six 8-bit registers may also be paired together to provide up to **three 16-bit registers**, allowing the manipulation of larger values.
+- **16-bit address bus**, the consequences are explained in the next section.
+- **4-bit ALU**: This may be a bit shocking, but it just means that operations done to 8-bit values take twice the cycles to compute.
 
 The motherboard picture at the start of the article shows an NEC D780C-1 CPU, that's just SEGA second-sourcing the chip to different manufacturers, other revisions even included the chip manufactured by Zilog. But for this article, it doesn't matter who fabricated the CPU, as the internal features remain the same.
 
+### Relative comparison
+
+Notice how the 6502 CPU (featured in the [NES](nes#cpu)) runs at a mere ~2 MHz. That's around half the speed of the Master System's chip. Combined with the Z80's larger register file, one would think the Master System should outperform the NES without doubt.
+
+Conversely, if we dig deeper, you'll see that the 6502 houses a larger (8-bit) ALU. Thus, arithmetical operations that may only take two cycles in the 6502, **will consume four** in the case of the Z80. At the end of the day, this tells you that relative qualities like CPU clock speed or register file size, when analysed in isolation, may be deceiving. Both Z80 and 6502 excel and struggle at different tasks, it all comes down to the skills of the programmer.
+
 ### Memory available
 
-The Z80 has a 16-bit address bus, so the CPU can find up to 64 KB worth of memory. In the memory map you'll find **8 KB of RAM** for general purpose use [@cpu-map], this is mirrored in another 8 KB block. Finally, **up to 48 KB of game ROM** are mapped as well.
+As said before, the Z80 has a 16-bit address bus, so the CPU can find up to **64 KB worth of memory**. Now, in the Master System's memory map, you'll find **8 KB of RAM** for general-purpose use [@cpu-map], this is mirrored in another 8 KB block. Finally, **up to 48 KB of game ROM** are mapped as well.
 
 ### Accessing the rest of the components
 
-As you can read from the previous paragraph, only main RAM and some cartridge ROM is found on the address space, so how can the program access other components? Well, unlike Nintendo's [Famicom/NES](nes), not all the hardware of the Master System is mapped using memory locations. Instead, some peripherals are found on the **I/O space**.
+As you can read from the previous paragraph, only main RAM and some cartridge ROM are found in the address space, so how can the program access other components? Well, unlike Nintendo's [Famicom/NES](nes), not all the hardware of the Master System is mapped using memory locations. Instead, some peripherals are found in the **I/O** space**.
 
 This is because the Z80 family contains an interesting feature called **I/O ports** which enables the CPU to communicate with other hardware without running out of memory addresses. For this, there's a separate address space for 'I/O devices' called **ports** and both share the same data and address bus. The difference, however, is that ports are read and written using `IN` and `OUT` instructions, respectively - as opposed to the traditional load/store instruction (`LD`).
 
