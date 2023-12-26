@@ -94,7 +94,7 @@ One of the advantages of RISC processors is that their simplistic approach enabl
 
 Back to the original question, the P6 is an interesting design, because while this CPU only understands a CISC instruction set (x86), a subset of its opcodes is interpreted using **microcode**. Furthermore, the unit that executes microcode is built around the load-store model [@cpu-gwennap]. All in all, this allows Intel to gain similar advantages to RISC processors without breaking compatibility with the historic x86 ISA.
 
-Moreover, microcode is already embedded in the silicon but it can be patched, allowing Intel to fix its CPUs after production whenever a bug or a security vulnerability is discovered. If you have read previous articles (i.e. [N64](nintendo-64) or [PS2](playstation-2)), bear in mind that Intel's microcode is **not publicly accessible** (let alone documented) and Intel is its solely 'maintainer'.
+Moreover, microcode is already embedded in the silicon but it can be patched, allowing Intel to fix its CPUs after production whenever a bug or a security vulnerability is discovered. If you have read previous articles (i.e. [N64](nintendo-64) or [PS2](playstation-2)), bear in mind that Intel's microcode is **not publicly accessible** (let alone documented) and Intel is its sole 'maintainer'.
 
 #### The Core {.tab}
 
