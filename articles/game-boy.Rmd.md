@@ -33,7 +33,7 @@ The Game Boy can be imagined as a portable version of the NES with limited power
 
 ### The rainbow analysis
 
-The immense popularity of this console resulted in a variety of revisions (i.e. Game Boy Pocket, Light, and even in the form of [Super Nintendo](super-nintendo) cartridges). As a matter of fact, the Game Boy brand covers two generations. Within the 4th generation we find the monochrome Game Boy and its revisions, and in the next generation resides the Game Boy Color (shipped after the demise of the Virtual Boy). The good news is that this article covers both ends, so at the end, you'll get a good idea of how the Game Boy works and how its technology subsequently evolved to become the Game Boy Color.
+The immense popularity of this console resulted in a variety of revisions (i.e. Game Boy Pocket, Light, and even in the form of [Super Nintendo](super-nintendo) cartridges). As a matter of fact, the Game Boy brand covers two generations. Within the 4th generation we find the monochrome Game Boy and its revisions, and in the next generation resides the Game Boy Color (shipped after the demise of the [Virtual Boy](virtual-boy)). The good news is that this article covers both ends. So, in the end, you'll get a good understanding of how the Game Boy works and how its technology subsequently evolved to become the Game Boy Color.
 
 ## {.supporting-imagery}
 
@@ -73,7 +73,7 @@ It's hard to think that after a decade Nintendo would still bundle the same CPU,
   - **Normal mode**: The SM83 operates at **~4.19 MHz**.
   - **Dual-speed mode**: The SM83 operates at **~8.38 MHz**.
 
-Albeit, this comes at the cost of adopting outdated technology by late-90s standards. You only have to look at the [state of the CPU market](playstation##tab-1-1-a-bit-of-history) to notice the capabilities Nintendo was missing out. To be fair, Nintendo did try with the [Virtual Boy](virtual-boy).
+Albeit, this comes at the cost of adopting outdated technology by late-90s standards. You only have to look at the [state of the CPU market](playstation##tab-1-1-a-bit-of-history) to notice the capabilities Nintendo was missing out (to be fair, Nintendo did try with the [Virtual Boy](virtual-boy)).
 
 ### Hardware access
 
@@ -96,7 +96,7 @@ There's an additional **127 B** of RAM housed in the SoC. It goes by many names 
 
 ![Expanded memory architecture of the CGB (Game Boy Color). Again, the PPU arbitrates access to VRAM.](cgb-ram.png)
 
-Later on, with the Color variant, Nintendo enlarged WRAM to **32 KB**. However, since the CPU remained unchanged (particularly its addressing capabilities), it's not possible to connect all the new memory without first overflowing the available address space. To tackle this, Nintendo's engineers implemented [bank switching](nes#going-beyond-existing-capabilities). Originally found in [NES cartridges](nes#cartridgegame-data), the Game Boy Color uses the same principle those 32 KB only using 8 KB of memory space. The trick is simple: the last 4 KB can be swapped using eight different banks. Consequently, the CPU bundles an extra register (called `SVBK`) acting as the bank switcher, this is what developers must use.
+Later on, with the Color variant, Nintendo enlarged WRAM to **32 KB**. However, since the CPU remained unchanged (particularly its addressing capabilities), it's not possible to connect all the new memory without first overflowing the available address space. To tackle this, Nintendo's engineers implemented [bank switching](nes#going-beyond-existing-capabilities). Originally found in [NES cartridges](nes#cartridgegame-data), the Game Boy Color uses the same principle to access those 32 KB only using 8 KB of memory space. The trick is simple: the last 4 KB can be swapped using eight different banks. Consequently, the CPU bundles an extra register (called `SVBK`) acting as the bank switcher, this is what developers must use to examine the extended memory.
 
 ## Graphics
 
@@ -362,7 +362,7 @@ Once again, in the case of the Game Boy Color, we find drastic changes in the co
 
 ## Games
 
-Games are written in assembly and they have a maximum size of **32 KB**, this is due to the limited address space available. However, with the use of a **Memory Bank Controller** ([mapper](nes#going-beyond-existing-capabilities)), games can reach bigger sizes. The biggest Game Pak (cartridge) found in the market has a 1 MB ROM.
+Games are written in assembly and they have a maximum size of **32 KB**, this is due to the limited address space available. However, with the use of a **Memory Bank Controller** ([mapper](nes#going-beyond-existing-capabilities)), games can reach bigger sizes. The biggest Game Pak (cartridge) found in the market has a 1 MB ROM (or 8 MB, in the case of the Game Boy Color).
 
 Game Paks can include a real-time clock and an external battery along with SRAM to hold saves, although all of these are optional.
 
@@ -381,6 +381,8 @@ Due to the two modes of operation the Game Boy Color supported, Nintendo listed 
 For the first time, games can communicate with other Game Boys using a **Game Boy Link** cable, which provides multiplayer functionality, for instance. The interface relies on a very primitive type of **serial connection**.
 
 The original Game Boy transfers information at 8 Kbit/second (1 KB/sec), while the Color variant may reach up to 512 Kbit/second (64 KB/sec), the latter speed was known as 'high speed' mode.
+
+The latter variant is also bundled with an **Infrared emitter and receiver** (made of an LED and a phototransistor, respectively) [@cpu-nintendo]. This made it possible to exchange data wirelessly between Game Boy Colors, as seen in games like Pokemon Gold and similar. However, you will find that the system doesn't implement any communication protocol, only a single register (`RP`) that encodes the IR sensor's action (emit or receive), the single bit (`0` or `1`) being transferred and the last bit received. Nevertheless, to alleviate things for developers, Nintendo did include a reference implementation in the official Game Boy Developer manual [@cpu-nintendo].
 
 ## Anti-piracy
 
