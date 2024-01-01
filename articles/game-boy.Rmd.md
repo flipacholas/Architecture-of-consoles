@@ -39,7 +39,7 @@ The immense popularity of this console resulted in a variety of revisions (i.e. 
 
 ## CPU
 
-Instead of placing many off-the-shelf chips on the motherboard, Nintendo opted for a **single-chip design** to house (and hide) most of the components, including the CPU. This type of chip is called **System On Chip** (SoC) and, in this case, it's been specifically crafted for this console, enabling Nintendo to tailor it to their needs (power efficiency, anti-piracy and extra I/O, among other things). At the same time, this chip can't be found in any retail catalog, meaning competitors back then had a harder time cloning it.
+Instead of placing many off-the-shelf chips on the motherboard, Nintendo opted for a **single-chip design** to house (and hide) most of the components, including the CPU. This type of chip is called **System On a Chip** (SoC) and, in this case, it's been specifically crafted for this console, enabling Nintendo to tailor it to their needs (power efficiency, anti-piracy and extra I/O, among other things). At the same time, this chip can't be found in any retail catalog, meaning competitors back then had a harder time cloning it.
 
 That being said, the SoC found on the Game Boy is referred to as **DMG-CPU** or **Sharp LR35902** [@cpu-realboy] and, as the name indicates, it's manufactured by **Sharp Corporation**. This company, along with Ricoh (the [NES' CPU supplier](nes#a-bit-of-context)), enjoyed a close relationship with Nintendo.
 
@@ -52,10 +52,10 @@ Within DMG-CPU, the main processor is a **Sharp SM83** [@cpu-gekkio] and it's a 
 Now, back when I did the [analysis of the Master system](master-system), I explained the Z80 is itself a superset of the 8080. So, what does the SM83 actually have and lack from those two? [@cpu-steil]
 
 - Neither the Z80's `IX` or `IY` registers nor the 8080's `IN` or `OUT` instructions are included. This means that [I/O ports](master-system#accessing-the-rest-of-the-components) are not available. I'm not certain if that's just a measure to reduce costs, but one thing for sure is that components will have to be **completely memory-mapped** [@cpu-fayzullin].
-- Only Intel 8080's set of registers are implemented. Consequently, there are **only eight general-purpose registers**, unlike the Z80 with its 16 registers (due to the addition of an 'alternative' set).
+- Only Intel 8080's set of registers are implemented. Consequently, there are **only seven general-purpose registers**, unlike the Z80 with its 14 registers (due to the addition of an 'alternative' set).
 - Includes some of the Z80's extended instruction set (only bit manipulation instructions).
 
-Furthermore, Sharp also added a **few new instructions** that are not present in either Z80 or 8080. They optimise certain operations related to the way Nintendo/Sharp arranged the hardware. One example is the new `LDH` instruction (meaning 'load from high RAM' [@cpu-ldh]), which has been specifically included to operate the second half of the memory map (where addresses start at `$ff`) and, most importantly, fits in a single byte (instead of requiring two or more).
+Furthermore, Sharp also added a **few new instructions** that are not present in either Z80 or 8080. They optimise certain operations related to the way Nintendo/Sharp arranged the hardware. One example is the new `LDH` instruction (meaning 'load from high memory' [@cpu-ldh]), which has been specifically included to operate on the last 256 bytes of the memory map (where addresses start at `$ff00`) and, most importantly, fits in one fewer byte (and is thus slightly faster).
 
 #### The Color effect
 
@@ -65,13 +65,13 @@ Furthermore, Sharp also added a **few new instructions** that are not present in
 
 Almost 10 years later, after the abandonment of the [Virtual Boy](virtual-boy) and its [cutting-edge hardware](virtual-boy#cpu), a humble successor arrived: the **Game Boy Color**. Inside it, there's a new SoC named **CPU CGB** that carries a few additions. However, its SM83 CPU core remains the same, except for its doubled clock speed (now running at **~8.38 MHz**).
 
-It's hard to think that after a decade Nintendo would still bundle the same CPU, but such decision does come with the following advantages:
+It's hard to think that after a decade Nintendo would still bundle the same CPU, but such a decision does come with the following advantages:
 
-- Developers can re-use their current skills to program the new console.
+- Developers can re-use their acquired skills to program the new console.
 - There's a cost saving by not having to re-design their system to work for a new architecture.
 - Backwards compatibility becomes possible without considerable effort. In fact, Nintendo implemented it by programming two modes of operation on CPU CGB:
-  - **Normal mode**: The SM83 operates at **~4.19 MHz**.
-  - **Dual-speed mode**: The SM83 operates at **~8.38 MHz**.
+  - **Non-CGB mode**: The PPU retains backwards-compatible sprite priority, and no Color-exclusive features can be accessed.
+  - **CGB mode**: The PPU switches to a more convenient sprite priority, and new functionality is unlocked such as color control, extra VRAM, 8.38 MHz CPU speed...
 
 Albeit, this comes at the cost of adopting outdated technology by late-90s standards. You only have to look at the [state of the CPU market](playstation##tab-1-1-a-bit-of-history) to notice the capabilities Nintendo was missing out (to be fair, Nintendo did try with the [Virtual Boy](virtual-boy)).
 
@@ -88,19 +88,19 @@ These will be explained throughout this article.
 
 ### Memory available
 
-![Memory architecture of the DMG (original Game Boy). The PPU arbitrates access to VRAM.](dmg-ram.png)
+![Memory architecture of the DMG (original Game Boy). The PPU arbitrates access to VRAM and OAM.](dmg-ram.png)
 
 Nintendo fitted **8 KB of RAM** on the motherboard, this is for general purpose use (which they call **Work RAM** or 'WRAM') [@cpu-nintendo]. Notice that this is four times larger than what the [NES](nes) included.
 
-There's an additional **127 B** of RAM housed in the SoC. It goes by many names ('H', 'High', 'Working' and 'Stack' RAM) but the purpose is the same: provide a small space for data that must be accessed instantly, such as the stack. It's not technically faster to access than general RAM, but it's an area prioritised for the CPU. You'll see what this means when you reach the 'Graphics' section, where I discuss the DMA component.
+There's an additional **127 B** of RAM housed in the SoC. It is called **High RAM** or 'HRAM', and provides a small space for data that can be accessed faster via the SM83's unique `LDH` instruction (vaguely echoing the 6502's Zero Page). It's not technically faster to access than general RAM, but it's an area prioritised for the CPU. You'll see what this means when you reach the 'Graphics' section, where I discuss the DMA component.
 
-![Expanded memory architecture of the CGB (Game Boy Color). Again, the PPU arbitrates access to VRAM.](cgb-ram.png)
+![Expanded memory architecture of the CGB (Game Boy Color). Again, the PPU arbitrates access to VRAM, OAM, but now to palettes as well.](cgb-ram.png)
 
-Later on, with the Color variant, Nintendo enlarged WRAM to **32 KB**. However, since the CPU remained unchanged (particularly its addressing capabilities), it's not possible to connect all the new memory without first overflowing the available address space. To tackle this, Nintendo's engineers implemented [bank switching](nes#going-beyond-existing-capabilities). Originally found in [NES cartridges](nes#cartridgegame-data), the Game Boy Color uses the same principle to access those 32 KB only using 8 KB of memory space. The trick is simple: the last 4 KB can be swapped using eight different banks. Consequently, the CPU bundles an extra register (called `SVBK`) acting as the bank switcher, this is what developers must use to examine the extended memory.
+Later on, with the Color variant, Nintendo enlarged WRAM to **32 KB**. However, since the CPU remained unchanged (particularly its addressing capabilities), it's not possible to connect all the new memory without first overflowing the available address space. To tackle this, Nintendo's engineers implemented [bank switching](nes#going-beyond-existing-capabilities). Originally found in [NES cartridges](nes#cartridgegame-data), the Game Boy Color uses the same principle to access those 32 KB only using 8 KB of memory space. The trick is simple: the last 4 KB can be swapped using seven different banks. Consequently, the CPU bundles an extra register (called `SVBK`) acting as the bank switcher, this is what developers must use to examine the extended memory.
 
 ## Graphics
 
-All graphics calculations are done by the CPU, and then the **Picture Processing Unit** or 'PPU' renders them. This is another component found inside DMG-CPU and it's based on the [predecessor's graphics chip](nes#graphics) (of the same name).
+All graphics calculations are done by the CPU, and then the **Picture Processing Unit** or 'PPU' renders them. This is another component found inside DMG-CPU and functions like an improved version of the [predecessor's graphics chip](nes#graphics) (of the same name).
 
 The picture is displayed on an integrated LCD screen, it has a resolution of **160×144 pixels** and, in the case of the monochrome Game Boy, shows **4 shades of grey** (white, light grey, dark grey and black). Since the original Game Boy has a green LCD, the picture will look *greenish*.
 
@@ -176,7 +176,7 @@ The Window is a **160x144 pixel** layer containing tiles displayed on top of the
 
 The remaining tile map can be assigned to the Window layer, it also shares the same palette with the Background layer.
 
-All in all, this may sound like a silly feature. In theory, the Window layer overlaps every other layer, so what is it useful for? Well, both Background and Window can be used **concurrently** at different parts of the screen. This is accomplished by changing the `LCDCONT` register during specific scan lines.
+All in all, this may sound like a silly feature. Since the Window has no transparency and thus completely obscures the Background, what is it useful for? Well, both Background and Window can be used **concurrently** at different parts of the screen. This is intended for status bars (chiefly at the bottom of the screen), but whereas on the NES this required performing complex timed writes ~insert-ref-here~, on the Game Boy the PPU can automatically handle it.
 
 Thus, games normally use it to display player stats, scores and other 'always-on' information.
 
@@ -188,7 +188,7 @@ Sprites are tiles that can move independently around the screen. They can also o
 
 This layer also has an extra colour available/required: **Transparent**. Initially, this means they can only display three different greys instead of four. Luckily, this layer in particular is provided with **two dedicated palettes** to choose from.
 
-The **Object Attribute Memory** or 'OAM' is a map stored inside the PPU that specifies the tiles that will be used as sprites. Instead of using a tile map, **sprites are defined in OAM**. Games fill this region by calling the **DMA unit** found inside the chip, the DMA fetches data from main RAM or game ROM and send it to OAM. Now, whilst DMA is at work, the CPU can't access external RAM (hence the importance of using HRAM during that period).
+The **Object Attribute Memory** or 'OAM' is a map stored inside the PPU that specifies the tiles that will be used as sprites. Instead of using a tile map, **sprites are defined in OAM**. Games typically fill this region by calling the **OAM DMA unit** found inside the chip, the DMA fetches data from main RAM or game ROM and sends it to OAM. Now, whilst DMA is at work, the CPU can't access external memory (hence the importance of using HRAM during that period).
 
 Apart from the tile index, each entry contains the following attributes: X-Y position, chosen palette, priority and flip flags (allowing to rotate the tile vertically and horizontally).
 
@@ -200,9 +200,9 @@ The PPU is limited to rendering up to **ten sprites per scan-line** and **up to 
 
 Once the frame is finished, it's time to move on to the next one! However, the CPU can't modify the tables while the PPU is reading from VRAM, so the system provides a set of interrupts triggered when the PPU is idle. You can recall this behaviour from the times of the NES.
 
-When a single scan line is complete, the **Horizontal Blank** interrupt is called. This allows to fiddle with the part of the frame that has not yet been drawn.
+When a single scan line is complete, the **Horizontal Blank** period starts. This allows to fiddle with the part of the frame that has not yet been drawn.
 
-When all scan lines are complete, the **Vertical Blank** interrupt is called. The game can now update the graphics for the next frame.
+When all scan lines are complete, the **Vertical Blank** period starts, and a dedicated interrupt is called. The game can now update the graphics for the next frame.
 
 There's an extra state called **OAM search** that is triggered at the start of the scan-line, at this point the PPU is processing which sprites will be displayed in that scan-line, so the game can update any region except OAM.
 
@@ -239,15 +239,15 @@ The CGB motherboard now houses **16 KB of VRAM** instead, which is double the or
 
 That being said, what can you do with the extra VRAM? Many things:
 
-- Store more tiles.
-- Store more palettes, especially _coloured_ ones.
+- Store twice as many tiles.
+- Store more palettes, which offer a wider colour gamut as well.
 - Extend the tile metadata space to encode more effects and address extra palettes.
 
 ##### The visuals
 
 Thanks to the new PPU, programmers can now define colour palettes with **32,768 colors** to choose from.
 
-Firstly, developers must now populate a new area called **Palette Memory**, which stores up to **eight colour palettes** that encode **four colours** [@cpu-nintendo]. Each entry fits in a 16-bit value (2 bytes) and only 15 bits are used. Palette Memory is not addressed by the CPU, however, a new register is used as a buffer to write over this memory. This is what the CPU follows to define the palettes.
+Firstly, developers must now populate a new area called **Palette Memory**, which stores up to **sixteen colour palettes** (half for the Background and Window, half for sprites) that encode **four colours** [@cpu-nintendo]. Each entry fits in a 16-bit value (2 bytes) and only 15 bits are used. Palette Memory is not addressed by the CPU, however, a new register is used as a buffer to write over this memory ~can xref SNES article here?~. This is what the CPU follows to define the palettes.
 
 Having said that, Background and Window tiles can reference any of those eight palettes. The same happens with Sprite tiles, except they are constrained to three-colour palettes, as one entry is reserved for the 'transparent' colour.
 
@@ -255,22 +255,22 @@ Having said that, Background and Window tiles can reference any of those eight p
 
 Moving on, **Tile sets are now twice as big**. Thus, programmers can store double the amount of tiles in VRAM. **Background/Window Tile maps have been extended** as well, resulting in extra meta-data being encoded. Consequently, expanding the capabilities of these layers. For instance, their tiles can now be **horizontally and vertically flipped**, saving the game from storing duplicated graphics in VRAM (which, in turn, can be exploited to draw more unique content).
 
-Furthermore, CPU CGB also bundles **two extra DMA units**, both can copy the contents of the Game Pak or WRAM to VRAM, but their timings differ [@cpu-nintendo]:
+Furthermore, CPU CGB also bundles **one extra DMA unit**, which can copy the contents of the Game Pak or WRAM to VRAM, and can be operated in two modes [@cpu-nintendo]:
 
 - **General-purpose DMA**: The transfer will happen at any time and the DMA will get priority over any other memory access. So, programmers need to be careful about when to use this component (i.e. during or outside scanning) and how (the amount of data to copy), as misuse can lead to screen tearing (VRAM access will be blocked during the transfer).
 - **Horizontal Blank (H-Blank) DMA**: The transfer will only happen during H-Blank periods. This avoids screen artifacts, but can only transfer content in batches of 16 Bytes, and pauses during LCD scanning.
 
-Once more, these units offer programmers new possibilities to provide richer content, as they take advantage of periods originally left for idling.
+Once more, this unit offers programmers new possibilities to provide richer content, as it takes advantage of periods originally left for idling.
 
 ## Audio
 
 The audio system is carried out by the **Audio Processing Unit** (APU), a [PSG chip](master-system#audio) with four channels [@audio-wiki].
 
-Curiously enough, this is one of the few sections that hasn't evolved on either model. In fact, it can't even be sped up, since if you change the speed of the oscillators, you won't hear 'better' sounds, but a higher pitch.
+Curiously enough, this is one of the few sections that hasn't evolved between models. In fact, it can't even be sped up, since if you change the speed of the oscillators, you won't hear 'better' sounds, but a higher pitch.
 
 ### Functionality
 
-Each channel of the four channels is reserved for a single type of waveform:
+Each of the four channels is reserved for a single type of waveform:
 
 #### Pulse {.tabs .active}
 
@@ -290,7 +290,7 @@ Pulse waves have a very distinct *beep* sound that is mainly used for **melody o
 
 The APU reserves two channels for one pulse wave each. These use one of four different tones constructed by varying their pulse width. The first channel has an exclusive **Sweep control** available.
 
-Due to the limited number of channels, the melody will often be interrupted when effects have to be played as part of the gameplay. This is very noticeable in games like Pokemon Red/Blue when, during a battle, the Pokemon's cry will overlap all the channels used for music.
+Due to the limited number of channels, the melody will often be interrupted when effects have to be played as part of the gameplay. This is very noticeable in games like Pokemon Red/Blue when, during a battle, the Pokemon's cry will overlap all the channels used for music; this is also why no Pokémon battle music uses percussion.
 
 #### Noise {.tab}
 
@@ -322,7 +322,7 @@ Pokemon Red/Blue (1996).
 
 :::
 
-The APU allows defining a **custom waveform** to be heard from its fourth channel. The wave is composed of 32 4-bit samples which are stored in a wavetable.
+The APU allows defining a **custom waveform** to be heard from its third channel. The wave is composed of 32 4-bit samples which are stored in a wavetable.
 
 This channel also allows controlling its frequency (enabling it to produce different musical notes from the same entry) and volume.
 
@@ -330,13 +330,13 @@ This channel also allows controlling its frequency (enabling it to produce diffe
 
 The mixer outputs stereo sound, so the channels can be assigned to the left side or on the right one, this is only possible to hear from the headphones though! The speaker is mono.
 
-Furthermore, the mixer chip is also connected to a dedicated pin on the cartridge, allowing it to stream an **extra channel** with the condition that the cartridge outputs the analogue sound (only possible with extra hardware). Nevertheless, no game in the market ended up using this feature.
+Furthermore, the mixer chip is also connected to a dedicated pin on the cartridge, allowing it to stream an **extra channel** with the condition that the cartridge outputs the analogue sound (only possible with extra hardware). Nevertheless, no game in the market ended up using this feature, and the pin was dropped from the Game Boy Advance's backwards compatible mode.
 
 ## Operating System
 
 Unlike the NES, which booted straight into the game, the Game Boy was designed to always boot from an internal **256 Byte ROM**, and only then jump into the game code. The boot process is as follows [@operating_system-boot]:
 
-1. After the console is switched on, the CPU starts reading at address **0x00** (Game Boy's ROM location).
+1. After the console is switched on, the CPU starts reading at address **0x0000** (Game Boy's ROM location).
 2. RAM and APU are initialised.
 3. The Nintendo logo is copied from the cartridge ROM to Display RAM, and then it's drawn at the top edge of the screen. If there is no cartridge inserted, the logo will contain garbage tiles. The same may happen if it's improperly inserted.
 4. The logo is scrolled down and the famous *po-ling* sound is played.
@@ -357,8 +357,7 @@ Once again, in the case of the Game Boy Color, we find drastic changes in the co
 - The boot sequence will now check if it's got a Game Boy-only or Game Boy Color game inserted, and then set the corresponding registers to activate DMG or CGB mode. The boot code checks for specific game metadata (within the cartridge's ROM) that is structured differently for CGB games.
 - In the case a DMG game is inserted, the boot program will also fill Palette RAM with calculated palettes, these are based on a simple but clever algorithm that also relies on the game's metadata. This is what makes monochrome games look coloured when running on the next-gen console.
   - At this stage, the user may press a button combination that will alter the boot code's palette of choice.
-- The Nintendo logo check now makes use of HRAM as well.
-
+- The Nintendo logo check now makes use of HRAM as well, to no avail however.
 
 ## Games
 
@@ -382,13 +381,13 @@ For the first time, games can communicate with other Game Boys using a **Game Bo
 
 The original Game Boy transfers information at 8 Kbit/second (1 KB/sec), while the Color variant may reach up to 512 Kbit/second (64 KB/sec), the latter speed was known as 'high speed' mode.
 
-The latter variant is also bundled with an **Infrared emitter and receiver** (made of an LED and a phototransistor, respectively) [@cpu-nintendo]. This made it possible to exchange data wirelessly between Game Boy Colors, as seen in games like Pokemon Gold and similar. However, you will find that the system doesn't implement any communication protocol, only a single register (`RP`) that encodes the IR sensor's action (emit or receive), the single bit (`0` or `1`) being transferred and the last bit received. Nevertheless, to alleviate things for developers, Nintendo did include a reference implementation in the official Game Boy Developer manual [@cpu-nintendo].
+The latter variant is also bundled with an **Infrared emitter and receiver** (made of an LED and a phototransistor, respectively) [@cpu-nintendo]. This made it possible to exchange data wirelessly between Game Boy Colors. However, you will find that the system doesn't implement any communication protocol, only a single register (`RP`) that encodes the IR sensor's action (emit or receive), the single bit (`0` or `1`) being transferred and the last bit received. Nevertheless, to alleviate things for developers, Nintendo did include a reference implementation in the official Game Boy Developer manual [@cpu-nintendo].
 
 ## Anti-piracy
 
 As you've seen in the 'Operating System' section, the console will never run a game right away, it first executes a series of checks that **prevent the execution of unauthorised cartridges** and also makes sure the cartridge is **correctly inserted**.
 
-To be able to pass these checks, games had to include a copy of Nintendo's logo (in the form of tiles) in its ROM header [@games-dhole], this way Nintendo could make use of **Copyright and Trademark** laws to control the distribution, *Clever huh?*.
+To be able to pass these checks, games had to include a copy of Nintendo's logo (in the form of tiles) in its ROM header [@games-dhole], this way Nintendo could make use of **Copyright and Trademark** laws to control the distribution, *clever huh?* (Though courts later voided that control.)
 
 That being said, more anti-piracy measures can be implemented inside games, like checking the SRAM size (it's normally bigger in Bootlegs) and checksumming the ROM at random points of the game.
 
