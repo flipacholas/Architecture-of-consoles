@@ -162,7 +162,7 @@ These enhancements are a bit 'weird' since they are completely unused on the Wii
 
 If you're wondering, Jazelle never took off. After some iterations it was discovered that Java Bytecode just ran better on software. Later on, ARM succeeded Jazelle with 'Thumb-2EE' and, at the time of this writing (June 2021), both of these units have been phased out.
 
-::: {.subfigures .distributed .open-float .float}
+::: {.subfigures .distributed .open-float .float max_subfigures=1}
 
 ![](console/front.jpeg)
 

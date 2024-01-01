@@ -78,7 +78,7 @@ Although this console was marketed as a 32-bit system, the majority of its memor
 
 ### Becoming a Game Boy Color
 
-Apart from the inclusion of GBC hardware (Sharp SM83, original BIOS, audio and video modes, compatible cartridge slot and so forth), there are two extra functions required to make backwards compatibility work.
+Apart from the inclusion of [GBC hardware](game-boy) (Sharp SM83, original BIOS, audio and video modes, compatible cartridge slot and so forth), there are two extra functions required to make backwards compatibility work.
 
 From the hardware side, the console relies on switches to detect if a Game Boy or Game Boy Color cartridge is inserted. A **shape detector** in the cartridge slot effectively identifies the type of cartridge and allows the CPU to read its state. It is assumed that some component of CPU AGB reads that value and automatically powers off the hardware not needed in GBC mode.
 
@@ -114,7 +114,7 @@ I'm going to borrow the graphics of Sega's *Sonic Advance 3* to show how a frame
 
 #### Tiles {.tabs .active}
 
-::: {.subfigures .tabs-nested .tab-float .pixel}
+::: {.subfigures .tabs-nested .tab-float .pixel max_subfigures=1}
 
 ![These two blocks are made of 4 bpp Tiles.](sonic/tiles1.png){.active title="Blocks 1-2"}
 
@@ -200,7 +200,7 @@ The good news is that the PPU actually implemented this functionality by includi
 
 The reason for having two bitmaps is to enable **page-flipping**: Drawing over a displayed bitmap can expose some weird artefacts during the process. If we instead manipulate another one then none of the glitches will be shown to the user. Once the second bitmap is finished the PPU can be updated to point to the second one, effectively swapping the displayed frame.
 
-::: {.subfigures .tabs-nested .open-float .tab-float}
+::: {.subfigures .tabs-nested .open-float .tab-float .pixel}
 
 ![Super Monkey Ball Jr. (2002).<br>Bitmap mode allowed the CPU to provide some rudimentary 3D graphics for the scenery.<br>Foreground objects are sprites (separate layer).](bitmap/monkey.png){.active title="3D"}
 

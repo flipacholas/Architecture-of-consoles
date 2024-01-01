@@ -134,7 +134,7 @@ The following section explains how the VDP draws each frame, for demonstration p
 
 #### Tiles {.tabs .active}
 
-::: {.subfigures .tabs-nested .tab-float .pixel}
+::: {.subfigures .tabs-nested .tab-float .pixel max_subfigures=1}
 
 ![Multiple tiles squashed together. For demonstration purposes, a default palette is being used.](vdp_sonic/tiles.png){.active title="All"}
 
@@ -242,7 +242,7 @@ Let's now see what each chip offers, as each one is *very* different.
 
 #### Yamaha YM2612 {.tabs .active}
 
-::: {.subfigures .tabs-nested .tab-float}
+::: {.subfigures .tabs-nested .tab-float max_subfigures=1}
 
 ![FM channels.](fm_single){.active video="true" title="FM"}
 
@@ -290,7 +290,7 @@ Some music composers may decide to focus on the PCM channel to play more truthfu
 
 For that reason, I've decided to dedicate this section for a few instances of games which successfully managed to overcome the aforementioned constraint. Instead of just sticking with ordinary drum kits, some games found incredible ways to stream richer samples to that single PCM channel, check out these examples:
 
-::: {.subfigures .tabs-nested .toleft}
+::: {.subfigures .tabs-nested .toleft max_subfigures=1}
 
 ![PCM channel.](good_sampling/sonic_pcm){.active video="true" title="PCM Sample"}
 

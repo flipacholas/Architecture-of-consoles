@@ -242,7 +242,7 @@ One may wonder what's the point of colour palettes if the LEDs are monochrome. W
 
 #### Backgrounds {.tab}
 
-::: {.subfigures .tabs-nested .tab-float .pixel}
+::: {.subfigures .tabs-nested .tab-float .pixel max_subfigures=1}
 
 ![Background Layer 0 (BG0).](wario/background_1.jpg){.active title="BG0"}
 

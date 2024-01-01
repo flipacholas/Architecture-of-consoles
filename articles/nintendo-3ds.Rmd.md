@@ -51,9 +51,9 @@ Now, for this article, the focus will be on the original Nintendo 3DS (after all
 
 ## Displays
 
-There's only one company that keeps altering the standard structure of all my analyses, and that's Nintendo. This time, I'll start with the **stereoscopic screens** (a.k.a. '3D without glasses').
+There's only one company that keeps altering the standard structure of all my analyses, and that's Nintendo. This time, I need to start with the **stereoscopic screens** (a.k.a. '3D without glasses') before diving into anything else.
 
-First things first, the Nintendo 3DS, as a successor of the Nintendo DS, includes two LCD screens. The upper screen has a resolution of **800 x 240 pixels** and somehow can display images with a sense of depth. When I first read this, only questions popped into my head:
+First things first, the Nintendo 3DS, as a successor of the Nintendo DS, includes two LCD screens. The upper screen has a resolution of **800 x 240 pixels** and somehow can display images with a **sense of depth**. When I first read this, only questions popped into my head:
 
 - What optics principles are they applying?
 - How is the screen designed?
@@ -98,7 +98,7 @@ Take a look again at the resolution of the upper LCD screen. On paper, it says i
 In reality, the physical screen is made of **half-width pixels** and operates in two modes:
 
 - **Traditional/2D mode**: When the stereoscopic function is disabled, groups of two horizontal pixel pairs are treated as a single one.
-  - Truth be told, the screen can still display a frame of 800 x 240 px, although no commercial game ever used this.
+  - To tell the truth, the screen can still display a frame of 800 x 240 px, although no commercial game ever used this.
 - **Stereoscopic/3D mode**: All pixels are treated individually, and with it, the screen displays **two frames** of **400 x 240 pixels** at the same time.
 
 Moreover, to perform stereoscopic parallax, this particular LCD houses an extra layer called **Parallax Barrier** [@graphics-display_teardown]. These opaque shutters deviate the backlight beamed behind the pixels of the LCD, so each eye will receive the light of a different subset of pixels [@graphics-display_howworks]. The half-width pixels will also appear to be wider, thereby giving the feeling they have the traditional aspect ratio.
@@ -320,7 +320,7 @@ Next to a new CPU is always a modern GPU. So, what kind of [Picture Processing U
 
 Nevertheless, the requirements of Nintendo haven't shifted. The company still wanted a chip with acceptable performance... and the **intellectual property core**. This will allow them to embed the GPU into their SoC, in the same way they did with the ARM CPUs.
 
-::: {.subfigures .tabs-nested .desktop-margined}
+::: {.subfigures .tabs-nested .desktop-margined max_subfigures=1}
 
 ![Mario Kart 7 (2011)](games/mario_kart.png){.active title="Kart"}
 

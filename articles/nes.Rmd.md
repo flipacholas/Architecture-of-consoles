@@ -163,7 +163,7 @@ Behind the scenes, the frame that the PPU outputs is composed of two different l
 
 #### Tiles {.tabs .active}
 
-::: {.subfigures .tabs-nested .tab-float .pixel .desktop-margined}
+::: {.subfigures .tabs-nested .tab-float .pixel .desktop-margined max_subfigures=1}
 
 ![Two pattern tables with multiple tiles squashed together.](ppu_mario/chr_map.png){.active title="All"}
 
@@ -185,7 +185,7 @@ I will now explain how each layer/table works and how do they differ in terms of
 
 #### Background Layer {.tab}
 
-::: {.subfigures .tabs-nested .tab-float .pixel}
+::: {.subfigures .tabs-nested .tab-float .pixel max_subfigures=1}
 
 ![Allocated background map.](ppu_mario/nametable.png){.active title="Overall"}
 
@@ -259,7 +259,7 @@ As an interesting *fix*: the PPU allowed developers to apply a vertical mask on 
 
 #### Tile-Swapping {.tab}
 
-::: {.subfigures .tabs-nested .tab-float}
+::: {.subfigures .tabs-nested .tab-float max_subfigures=1}
 
 ![Early scan lines.](secrets/multiplexing_1.png){.pixel .active title="Early"}
 

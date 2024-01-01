@@ -249,7 +249,7 @@ You see, because the new DMA/HDMA units now enable programmers to perform memory
 
 Truth to be told, I still haven't mentioned the most important characteristic of this console...
 
-::: {.subfigures .tabs-nested .tab-float .open-float .pixel}
+::: {.subfigures .tabs-nested .tab-float .open-float .pixel max_subfigures=1}
 
 ![Rendered Background layer.](mode7/layer.png){.active title="Background"}
 
@@ -315,7 +315,7 @@ Hence, the resulting audio subsystem of this console is composed of:
 
 This block functions in parallel with the main CPU. When the console is turned on, the SPC700 boots a 64-byte internal ROM that sets it up to receive commands from the main CPU [@audio-spc]. After that, it stays idle.
 
-::: {.subfigures .tabs-nested .tab-float .open-float}
+::: {.subfigures .tabs-nested .tab-float .open-float max_subfigures=1}
 
 ![Channels used for melody.](melody){.active video="true" title="Melody"}
 
@@ -353,7 +353,7 @@ In order to demonstrate the evolution of sounds from the NES to the Super NES, h
 
 ### Advanced usage
 
-::: {.subfigures .tabs-nested .tab-float .open-float}
+::: {.subfigures .tabs-nested .tab-float .open-float max_subfigures=1}
 
 ![Channels used for melody.](kirby/trebble){.active video="true" title="Melody"}
 
