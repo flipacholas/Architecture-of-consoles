@@ -176,7 +176,7 @@ The Window is a **160x144 pixel** layer containing tiles displayed on top of the
 
 The remaining tile map can be assigned to the Window layer, it also shares the same palette with the Background layer.
 
-All in all, this may sound like a silly feature. Since the Window has no transparency and thus completely obscures the Background, you may wonder 'What is it useful for?'. Well, both Background and Window can be used **concurrently** at different parts of the screen. This is intended for displaying information chiefly at the bottom of the screen, but whereas on the NES this required performing [complex and timed writes](nes#tab-5-4-background-split), the Game Boy's PPU can automatically handle it (by changing the `LCDCONT` register during specific scan lines).
+All in all, this may sound like a silly feature. Since the Window has no transparency and thus completely obscures the Background, you may wonder 'What is it useful for?'. Well, both Background and Window can be used **concurrently** at different parts of the screen. This is intended for displaying information chiefly at the bottom of the screen, but whereas on the NES this required performing [complex and timed writes](nes#tab-5-4-background-split), the Game Boy's PPU can automatically handle it.
 
 Thus, games normally use it to display player stats, scores and other 'always-on' information.
 
@@ -381,13 +381,15 @@ For the first time, games can communicate with other Game Boys using a **Game Bo
 
 The original Game Boy transfers information at 8 Kbit/second (1 KB/sec), while the Color variant may reach up to 512 Kbit/second (64 KB/sec), the latter speed was known as 'high speed' mode.
 
-The latter variant is also bundled with an **Infrared emitter and receiver** (made of an LED and a phototransistor, respectively) [@cpu-nintendo]. This made it possible to exchange data wirelessly between Game Boy Colors. However, you will find that the system doesn't implement any communication protocol, only a single register (`RP`) that encodes the IR sensor's action (emit or receive), the single bit (`0` or `1`) being transferred and the last bit received. Nevertheless, to alleviate things for developers, Nintendo did include a reference implementation in the official Game Boy Developer manual [@cpu-nintendo].
+The latter variant is also bundled with an **Infrared emitter and receiver** (made of an LED and a phototransistor, respectively) [@cpu-nintendo]. This made it possible to exchange data wirelessly between Game Boy Colors, as seen in games like Pokemon Gold and similar. However, you will find that the system doesn't implement any communication protocol, only a single register (`RP`) that encodes the IR sensor's action (emit or receive), the single bit (`0` or `1`) being transferred and the last bit received. Nevertheless, to alleviate things for developers, Nintendo did include a reference implementation in the official Game Boy Developer manual [@cpu-nintendo].
 
 ## Anti-piracy
 
 As you've seen in the 'Operating System' section, the console will never run a game right away, it first executes a series of checks that **prevent the execution of unauthorised cartridges** and also makes sure the cartridge is **correctly inserted**.
 
-To be able to pass these checks, games had to include a copy of Nintendo's logo (in the form of tiles) in its ROM header [@games-dhole], this way Nintendo could make use of **Copyright and Trademark** laws to control the distribution, *clever huh?* <!-- Find Source: (Though courts later voided that control.) -->
+To be able to pass these checks, games had to include a copy of Nintendo's logo (in the form of tiles) in its ROM header [@games-dhole], this way Nintendo could make use of **Copyright and Trademark** laws to control the distribution, *pretty clever, huh?*
+
+Conversely, _Sega v. Accolade_ later awarded any company with the right to use copyrighted logos for this kind of requirement, as it falls under fair use.
 
 That being said, more anti-piracy measures can be implemented inside games, like checking the SRAM size (it's normally bigger in Bootlegs) and checksumming the ROM at random points of the game.
 
