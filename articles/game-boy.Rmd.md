@@ -387,7 +387,7 @@ The latter variant is also bundled with an **Infrared emitter and receiver** (ma
 
 As you've seen in the 'Operating System' section, the console will never run a game right away, it first executes a series of checks that **prevent the execution of unauthorised cartridges** and also makes sure the cartridge is **correctly inserted**.
 
-To be able to pass these checks, games had to include a copy of Nintendo's logo (in the form of tiles) in its ROM header [@games-dhole], this way Nintendo could make use of **Copyright and Trademark** laws to control the distribution, *pretty clever, huh?*
+To be able to pass these checks, games had to include a copy of Nintendo's logo (in the form of tiles) in its ROM header [@games-dhole], this way Nintendo could make use of **Copyright and Trademark** laws to control the distribution. *Pretty clever, huh?*
 
 Conversely, _Sega v. Accolade_ later awarded any company with the right to use copyrighted logos for this kind of requirement, as it falls under fair use.
 
