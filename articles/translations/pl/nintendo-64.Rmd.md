@@ -29,9 +29,7 @@ Rezultatem była ładnie wyglądającą konsola dla rodziny... i ponad 500 stron
 
 Nie przejmuj się. Obiecuję że ten artykuł nie będzie *taki* długi... Baw się dobrze!
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## CPU
 
@@ -141,7 +139,7 @@ RDP zapewnia cztery różne tryby działania, każdy tryb łączy te bloki w ró
 
 Ponieważ ten moduł stale aktualizuje bufor klatki, obsługuje RAM bardzo różnie: Pamiętasz o nietypowym 9-bitowym 'bajcie'? Dziewiąty bit jest używany do obliczeń związanych z buforem klatki (buforowanie głębi i antyaliasing) i może być obsługiwany tylko przez interfejs pamięci.
 
-`r close_tabs()`
+#### Pozostałe kroki {.tabs-close}
 
 Powstała klatka musi zostać wysłana do **Kodera Wideo**, żeby wyświetlić ją na ekranie (**DMA** i komponent **Interfejsu Wideo** są niezbędne do osiągnięcia tego).
 
@@ -184,7 +182,7 @@ Gdy RDP zakończy przetwarzanie danych, zapisze ostateczną bitmapę do bufora k
 
 Oto kilka przykładów poprzednich projektów 2D dla [Super Nintendo](super-nintendo), które zostały przeprojektowane dla nowej ery 3D, są interaktywne, więc zachęcam Cię do ich sprawdzenia!
 
-![The Legend of Zelda: Ocarina of Time (1998).<br>785 wierzchołków.](link_ocarina_64){.toleft model3d="true"}
+![The Legend of Zelda: Ocarina of Time (1998).<br>704 wierzchołków.](link_ocarina_64){.toleft model3d="true"}
 
 ![Kirby 64: The Crystal Shards (2000).<br>516 wierzchołków.](kirby_cristals_64){.toright model3d="true"}
 
@@ -331,7 +329,7 @@ Nośnik magnetyczny jest wolniejszy niż kartridże, z prędkością transferu d
 
 Nie ma pamięci buforowej dołączonej do czytnika, więc odczytane bity są przechowywane w RDRAM przed ich wykonaniem. Nintendo dołączyło jednostkę rozbudowy pamięci RAM z 64DD, aby zrekompensować nagłe zapotrzebowanie na większą ilość pamięci RAM (z wyjątkiem standaryzacji rozszerzonego RAM dla wszystkich gier 64DD).
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Ponadto części dysku mogą być ponownie zapisywane, aby umożliwić zapisywanie danych, ilość powierzchni zapisywalnej zależy od rodzaju używanego dysku (Nintendo dostarczyło 7 typów). Po stronie oprogramowania dane gry są zorganizowane w system plików o nazwie 'Multi File System' (MFS) dostarczanym przez Nintendo z ich SDK. Gry mogą uzyskać dostęp do danych dysku za pomocą systemu plików lub blokowania, ta ostatnia opiera się na innej bibliotece o nazwie „Leo” dla funkcji niskiego poziomu.
 
@@ -351,7 +349,7 @@ Ogólnie rzecz biorąc, piractwo nie wzbudzało zbyt dużego zaniepokojenia dzi�
 
 Co siuę wydaje zabawne, Nintendo pozostawiło jedną furtkę otwartą: **Port napędu dyskowego**.
 
-![64DD podłączony do konsoli [@photography-amos].](v64/attached.png){.open-float .tabs-nested .tab-float .active title="Attached"}
+![64DD podłączony do konsoli [@photography-amos].](v64/attached.png){.open-float .tabs-nested .tab-float .active title="Załączony"}
 
 ![Tył V64 [@photography-amos], pokazujący kilka ciekawych wyjść Audio/Wideo.](v64/back.png){.tabs-nested-last title="Tył"}
 
@@ -361,7 +359,7 @@ Myślę, że warto wspomnieć o **Doctor v64**, to urządzenie ma taki sam kszta
 
 Rozszerzenie może skopiować zawartość kartridża do płyty CD, jak i w drugą stronę (odczyt plików ROM z płyt CD) jest również możliwy.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Emulacja
 
