@@ -26,9 +26,7 @@ aliases:
 
 Sega Dreamcast wprowadziła wiele nowych funkcji w stosunku do swojego poprzednika (Sega [Saturn](sega-saturn)), aby spodobać się zarówno twórcom gier, jak i graczom konsolowym. Chociaż była to ostatnia próba podbicia rynku konsol przez firmę Sega, niektóre z technologii, które były pionierami w Dreamcast, przeniosły się na przyszłe urządzenia głównego nurtu.
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## CPU
 
@@ -72,7 +70,7 @@ Firma VideoLogic wybrała alternatywne podejście do budowy swojego silnika 3D o
 
 Zamiast renderować całą klatkę naraz (jak to robią tradycyjne **Renderery w Trybie Natychmiastowym** lub 'IMR' [@graphics-arch]), TBDR dzieli obszar renderowania na wiele sekcji zwanych 'kafelki'. Następnie wykonuje proces renderowania na każdym kafelku osobno, a wynik jest łączony, tworząc ostateczną klatkę [@graphics-powervr].
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Ta innowacyjna konstrukcja przynosi ciekawe korzyści:
 
@@ -199,7 +197,7 @@ Powłoka zawiera prosty graficzny interfejs użytkownika, który umożliwia uży
 - Odtwarzanie muzyki, jeśli jest włożona płyta Audio CD.
 - Zmienianie niektórych ustawień (Data, Czas, Dźwięk, itp).
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Windows CE
 
@@ -211,7 +209,7 @@ W rzeczywistości cel tego 'OS' był bardzo podobny do tego, co Nintendo zrobił
 
 Microsoft współpracował z firmą Sega, aby wprowadzić system Windows CE do Dreamcasta [@games-sdk]. W rezultacie powstał podzbiór CE z minimalnymi komponentami potrzebnymi do zapewnienia grafiki, dźwięku i debugowania. Obejmowało to użycie najlepszego IDE Microsoftu, **Visual Studio**, do rozwoju.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Niektórzy programiści uznali tę opcję za bardzo atrakcyjną. Ponieważ struktura audio-graficzna dołączona do CE była niczym innym jak **DirectX 6**, tysiące gier na PC z tamtej epoki możnaby teoretycznie łatwo przenieść na Dreamcasta...
 
@@ -270,7 +268,7 @@ Inną innowacyjną funkcją, którą zaprezentował Dreamcast, była **Visual Me
 - **64 KB Flash**: 32 KB do przechowywania pojedynczego programu (przeniesionego z konsoli) i pozostałe 32 KB do przechowywania zapisów Dreamcast.
 - **512 B RAM**: 256 B jest zarezerwowane dla systemu, pozostawiając tylko 256 B dostępne dla programu.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 VMU ma dwa tryby pracy:
 
