@@ -38,9 +38,7 @@ Sega (i ich reklamy telewizyjne) chcą, abyś wiedział: programiści nie mogą 
 
 Ich nowy system zawiera wiele *już znanych* komponentów gotowych do zaprogramowania. Oznacza to, że teoretycznie programiści musieliby jedynie poznać nowe GPU Segi… prawda?
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## CPU
 
@@ -66,13 +64,9 @@ Wracając do tematu, 68k pełni rolę 'głównego' procesora i będzie używany 
 
 (Jeśli zastanawiasz się nad powodem używania adresów 24-bitowych z procesorem, który obsługuje 32-bitowe słowa, wątpię, aby w latach 80. wielu prosiło o zarządzanie 4 GB RAM, a dodawanie nieużywanych linii jest kosztowne pod względem wydajności i pieniędzy).
 
-Po drugie, w tej konsoli jest zainstalowany inny procesor, **Zilog Z80** działający z częstotliwością **~3,5 MHz**. Jest to ten sam procesor, który znajduje się w [Master System](master-system#cpu) i jest używany głównie do **kontroli dźwięku**. Zawiera [@cpu-z80manual]:
+Po drugie, w tej konsoli jest zainstalowany inny procesor, **Zilog Z80** działający z częstotliwością **~3,5 MHz**. Jest to ten sam procesor wcześniej analizowany w artykule o [Master System](master-system#cpu).
 
-- **ISA Z80**: Rozszerzenie Intel 8080 ISA, obsługuje **8-bitowe** słowa.
-- **Rejestry 8-bitowe** i **magistralę danych 8-bitową**: _Bez niespodzianek_.
-- **ALU 4-bitowe**: To może być trochę szokujące, ale poradziło sobie z 8-bitowymi operacjami bez problemów, po prostu wymaga to dwa razy więcej cykli.
-  - Zauważ, że 6502 działa z częstotliwością ~2 MHz w [niektórych systemach](nes#cpu), podczas gdy ten osiąga prawie 4 MHz: Z80 jest szybszy per se, ale pomaga zrównoważyć brak tranzystorów w niektórych obszarach.
-- **Magistralę adresową 16-bitową** z następującą mapą adresów [@cpu-z80map]:
+Z80 jest głównie używany do **sterowania dźwiękiem**. A zatem jego **16-bitowa magistrala adresu** składa się z następujących [@cpu-z80map]:
   - 8 KB RAM.
   - Dwa chipy dźwiękowe.
   - RAM 68000 (ponownie, obsługiwany przez arbitra magistrali).
@@ -143,7 +137,7 @@ Poniższa sekcja wyjaśnia, w jaki sposób VDP rysuje każdą klatkę, dla celó
 
 #### Kafelki {.tabs.active}
 
-::: {.subfigures .tabs-nested .tab-float .pixel}
+::: {.subfigures .tabs-nested .tab-float .pixel max_subfigures=1}
 
 ![Wiele kafelków zgniecionych razem. Do celów demonstracyjnych wykorzystywana jest paleta domyślna.](vdp_sonic/tiles.png){.active title="Wszystkie"}
 
@@ -251,7 +245,7 @@ Zobaczmy teraz, co oferują te chipy, ponieważ każdy z nich jest *bardzo* inny
 
 #### Yamaha YM2612 {.tabs.active}
 
-::: {.subfigures .tabs-nested .tab-float}
+::: {.subfigures .tabs-nested .tab-float max_subfigures=1}
 
 ![Kanały FM.](fm_single){.active video="true" title="FM"}
 
@@ -299,7 +293,7 @@ Niektórzy kompozytorzy muzyki mogą zdecydować się na skupienie się na kanal
 
 Z tego powodu postanowiłem poświęcić tę sekcję kilku instancjom gier, którym udało się pokonać wspomniane wcześniej ograniczenie. Zamiast trzymać się zwykłych zestawów perkusyjnych, niektóre gry znalazły niesamowite sposoby na strumieniowe przesyłanie bogatszych próbek do tego pojedynczego kanału PCM, sprawdź te przykłady:
 
-::: {.subfigures .tabs-nested .toleft}
+::: {.subfigures .tabs-nested .toleft max_subfigures=1}
 
 ![Kanał PCM.](good_sampling/sonic_pcm){.active video="true" title="Sample PCM"}
 
