@@ -1,7 +1,7 @@
 ---
-short_title: Architektura Mega Drive/Genesis
-title: Architektura Mega Drive/Genesis
-name: Mega Drive/Genesis
+short_title: Architektura Mega Drive / Genesis
+title: Architektura Mega Drive / Genesis
+name: Mega Drive / Genesis
 subtitle: Nowe techniki kompozycji
 date: 2019-05-18
 release_date: 1988-10-29
