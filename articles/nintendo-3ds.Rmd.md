@@ -204,7 +204,7 @@ The first ARM11 MPCore variant, which debuted with the original 3DS, includes tw
 
 Apart from implementing the ARMv6k instruction set, the CPU features an **8-stage pipeline** [@cpu-arm_reference]. Furthermore, the core provides **two levels of branch prediction**, 'dynamic' (based on previous executions) and 'static' (based on the current instruction alone). Overall, both enhancements will be quickly noticed, considering the 5-stage ARM9 couldn't predict a thing!
 
-Additionally, since the ARM946E-S CPU, ARM has been fitting a **System Control Coprocessor** called **CP15**. This time, it provides **Memory-Management** (MMU functions) and registers that output information about the MPCore cluster.
+Additionally, since the [ARM946E-S CPU](nintendo-ds#tab-1-2-arm946e-s), ARM has been fitting a **System Control Coprocessor** called **CP15**. This time, it provides **Memory-Management** (MMU functions) and registers that output information about the MPCore cluster.
 
 Now, there's no more **Tightly-Coupled Memory** (TCM). There are however **16 KB of instruction cache** and **16 KB of data cache**, this change of model resembles other systems of the same generation. If you are curious, this L1 cache is 4-way set associative.
 
