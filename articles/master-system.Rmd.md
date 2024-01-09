@@ -65,7 +65,7 @@ As said before, the Z80 has a 16-bit address bus, so the CPU can find up to **64
 
 ### Accessing the rest of the components
 
-As you can read from the previous paragraph, only main RAM and some cartridge ROM are found in the address space, so how can the program access other components? Well, unlike Nintendo's [Famicom/NES](nes), not all the hardware of the Master System is mapped using memory locations. Instead, some peripherals are found in the **I/O** space**.
+As you can read from the previous paragraph, only main RAM and some cartridge ROM are found in the address space, so how can the program access other components? Well, unlike Nintendo's [Famicom/NES](nes), not all the hardware of the Master System is mapped using memory locations. Instead, some peripherals are found in the **I/O space**.
 
 This is because the Z80 family contains an interesting feature called **I/O ports** which enables the CPU to communicate with other hardware without running out of memory addresses. For this, there's a separate address space for 'I/O devices' called **ports** and both share the same data and address bus. The difference, however, is that ports are read and written using `IN` and `OUT` instructions, respectively - as opposed to the traditional load/store instruction (`LD`).
 
