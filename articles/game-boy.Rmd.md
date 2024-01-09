@@ -73,7 +73,7 @@ It's hard to think that after a decade Nintendo would still bundle the same CPU,
   - **Normal mode**: The SM83 operates at **~4.19 MHz**.
   - **Dual-speed mode**: The SM83 operates at **~8.38 MHz**.
 
-Albeit, this comes at the cost of adopting outdated technology by late-90s standards. You only have to look at the [state of the CPU market](playstation##tab-1-1-a-bit-of-history) to notice the capabilities Nintendo was missing out (to be fair, Nintendo did try with the [Virtual Boy](virtual-boy)).
+Albeit, this comes at the cost of adopting outdated technology by late-90s standards. You only have to look at the [state of the CPU market](playstation#tab-1-1-a-bit-of-history) to notice the capabilities Nintendo was missing out (to be fair, Nintendo did try with the [Virtual Boy](virtual-boy)).
 
 ### Hardware access
 
@@ -104,7 +104,7 @@ All graphics calculations are done by the CPU, and then the **Picture Processing
 
 The picture is displayed on an integrated LCD screen, it has a resolution of **160×144 pixels** and, in the case of the monochrome Game Boy, shows **4 shades of grey** (white, light grey, dark grey and black). Since the original Game Boy has a green LCD, the picture will look *greenish*.
 
-If you've read the NES article before, you may remember that the PPU was designed to follow the CRT beam. However (and for obvious reasons), we got an LCD screen in the Game Boy. Well, the new PPU also follows that methodology as LCDs require to be refreshed too. In doing so, this console will enjoy [CRT-based effects](nes##tab-5-4-background-split) that previously enabled NES developers to come up with imaginative content.
+If you've read the NES article before, you may remember that the PPU was designed to follow the CRT beam. However (and for obvious reasons), we got an LCD screen in the Game Boy. Well, the new PPU also follows that methodology as LCDs require to be refreshed too. In doing so, this console will enjoy [CRT-based effects](nes#tab-5-4-background-split) that previously enabled NES developers to come up with imaginative content.
 
 ### Organising the content
 

@@ -111,7 +111,7 @@ I hope you've got some time left as we still have to check out the internals of 
 
 Since the Wii U was announced (then known as **Project Cafe**), there's been significant speculation about what would the new CPU be made of. At some point, journalists speculated that Nintendo would embrace a modern version of IBM's **POWER** line [@cpu-early_cpu]. I guess audiences were expecting a ground-breaking CPU as Cell and Xenon proved six years before. Moreover, with the decline of PowerPC (most apparently with Apple switching to [Intel Core](xbox#p6-and-the-end-of-pentium-numbers) in 2006), the idea that any new CPU from IBM would come as a derivative of POWER wasn't too far-fetched.
 
-Well, there is one fault with the previous logic, which is that **Nintendo doesn't favour emerging technology**. Their formula focuses instead on grabbing existing technology and finding innovative and clever uses. This is not necessarily a bad characteristic, as Nintendo engineers have been very clever in showing state-of-the-art applications with technology deemed 'outdated'. Take a look at the [Z80-hybrid](game-boy#cpu) of a Game Boy, or the [under-clocked ARM9](nintendo-ds#tab-2-2-a-question-about-the-hardware-choice) on the Nintendo DS, or even the [partially-updated](wii#cpu) GameCube called 'Wii'. If there's something common among all of these, is that all have broken sales records. Now, will the Wii U be part of that club? You'll be the judge of that.
+Well, there is one fault with the previous logic, which is that **Nintendo doesn't favour emerging technology**. Their formula focuses instead on grabbing existing technology and finding innovative and clever uses. This is not necessarily a bad characteristic, as Nintendo engineers have been very clever in showing state-of-the-art applications with technology deemed 'outdated'. Take a look at the [Z80-hybrid](game-boy#cpu) of a Game Boy, or the [under-clocked ARM9](nintendo-ds#tab-1-2-arm946e-s) on the Nintendo DS, or even the [partially-updated](wii#cpu) GameCube called 'Wii'. If there's something common among all of these, is that all have broken sales records. Now, will the Wii U be part of that club? You'll be the judge of that.
 
 ### The 8th-generation architecture
 
@@ -788,7 +788,7 @@ Thirdly, Starbuck disposes of **considerable amounts of memory within Latte** to
 
 Next, Starbucks embeds **SHA-1** and **AES-128** accelerators on its hardware to hash, encrypt and decrypt data without performance penalties.
 
-Moving on, while Starbuck is technically an outdated [ARM9 CPU](nintendo-ds#tab-2-2-a-question-about-the-hardware-choice), Nintendo enhanced it with a custom **eXecute Never** (XN) controller that restricts which memory locations Starbuck may execute [@anti_piracy-xn]. The XN block fulfils the role of an [NX bit](xbox-360#the-hypervisors-duties).
+Moving on, while Starbuck is technically an outdated [ARM9 CPU](nintendo-ds#tab-1-2-arm946e-s), Nintendo enhanced it with a custom **eXecute Never** (XN) controller that restricts which memory locations Starbuck may execute [@anti_piracy-xn]. The XN block fulfils the role of an [NX bit](xbox-360#the-hypervisors-duties).
 
 Finally, encryption keys and certificates are stored in **OTP memory** inside Latte and both Espresso and Starbuck can seal access to each entry as soon as they are finished with it.
 

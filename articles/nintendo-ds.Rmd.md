@@ -66,7 +66,7 @@ Unfortunately for DEC, this CPU will be their last major achievement before bein
 
 ### Nintendo's debuting SoC
 
-Aside from the afforementioned advancements, CPU NTR also bundles an interesting multi-processor architecture using two different ARM CPUs, the **ARM7TDMI** and the **ARM946E-S**. This design was done before ARM Holdings officially released [multi-processor solutions](nintendo-3ds#cpu). So, their functioning may be considered a bit unorthodox (taking into account the present technology available).
+Aside from the aforementioned advancements, CPU NTR also bundles an interesting multi-processor architecture using two different ARM CPUs, the **ARM7TDMI** and the **ARM946E-S**. This design was done before ARM Holdings officially released [multi-processor solutions](nintendo-3ds#cpu). So, their functioning may be considered a bit unorthodox (taking into account the present technology available).
 
 ![The CPU NTR chip.](cpu_ntr.jpg)
 
