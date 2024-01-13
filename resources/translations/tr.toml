@@ -8,7 +8,7 @@ other = 've eğer desteklemek isterseniz <a href="{{ . }}">buraya tıklayın</a>
 other = "Mevcut olan diller: "
 
 [help_translations]
-other = "Çevirilerle ilgili yardım"
+other = "Çevirmeye yardım et"
 
 [add_translation]
 other = "Çeviri ekleyin"
@@ -17,7 +17,7 @@ other = "Çeviri ekleyin"
 other = "Hataları bildirin veya değişiklik teklif edin"
 
 [supporting_readings]
-other = "Destekleyici okumaları kontrol edin"
+other = "Destekleyici makaleleri okuyun"
 
 [tablet_mode_button]
 other = "Sekmeleri gizle / Tablet modu"
