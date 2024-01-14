@@ -26,9 +26,7 @@ aliases:
 
 Sega Dreamcast, hem oyun geliştiricilerine hem de konsol oyuncularına hitap etmek için selefine ([Satürn](sega-saturn)) göre birçok yeni özellik sundu. Bu Sega'nın konsol pazarını fethetmek için son girişimi olsa da, Dreamcast'te öncülük edilen bazı teknolojiler devam etti ve gelecekteki ana akım cihazlara taşındı.
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## İşlemci (CPU)
 
@@ -64,7 +62,7 @@ Bu CPU aynı zamanda **Paralel I/O** veya 'PIO' olarak adlandırılan ve aynı a
 
 ## Grafikler
 
-GPU paketi **100 MHz hızında** çalışan **Holly** adlı özel yapım bir çiptir, VideoLogic (şimdi Imagination Technologies olarak biliniyor) tarafından tasarlanmış ve NEC tarafından üretilmiştir. Holly'nin 3D çekirdeği Videologic'in **PowerVR2'si** ('PowerVR Series2' ve 'CLX2' olarak da adlandırılır).
+GPU paketi **100 MHz hızında** çalışan **Holly** adlı özel yapım bir çiptir, VideoLogic (şimdi Imagination Technologies olarak biliniyor) tarafından tasarlanmış ve NEC tarafından üretilmiştir. Holly'nin 3D çekirdeği VideoLogic'in **PowerVR2'si** ('PowerVR Series2' ve 'CLX2' olarak da adlandırılır).
 
 ![Sonic Adventure (1999).](sonic.png) {.open-float}
 
@@ -72,7 +70,7 @@ VideoLogic, 3D motorunun yapımı için **Karo Tabanlı Ertelenmiş Görüntü O
 
 TBDR, tüm kareyi bir kerede oluşturmak yerine (geleneksel **Anında Mod Oluşturucuların** veya 'IMR'nin yaptığı gibi [@graphics-arch]), oluşturma alanını 'karo' adı verilen birden çok bölüme ayırır. Ardından, her bir karo üzerinde ayrı ayrı render işlemini gerçekleştirir ve sonuç nihai kareyi oluşturmak için birleştirilir [@graphics-powervr].
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Bu yenilikçi tasarım ilginç avantajları da beraberinde getiriyor:
 
@@ -199,7 +197,7 @@ Shell, kullanıcının aşağıdaki gibi temel ancak gerekli görevleri yerine g
 - Takılı bir Ses CD'si varsa müzik çalar.
 - Bazı ayarları değiştirin (Tarih, Saat, Ses, vb.).
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Windows CE
 
@@ -211,7 +209,7 @@ Gerçekte, bu 'işletim sisteminin' amacı Nintendo'nun [Nintendo 64](nintendo-6
 
 Microsoft, Windows CE'yi Dreamcast'e getirmek için Sega ile birlikte çalıştı [@games-sdk]. Sonuç, grafik, ses ve hata ayıklama sağlamak için gereken minimum bileşenlere sahip bir CE alt kümesiydi. Bu, geliştirme için Microsoft'un yıldız IDE'si **Visual Studio'**nun kullanımını içeriyordu.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Bazı geliştiriciler bu seçeneği çok cazip buldu. CE ile birlikte gelen ses-grafik çerçevesi **DirectX 6'dan başkası olmadığından,** o dönemin binlerce PC oyunu teorik olarak Dreamcast'e kolayca taşınabilirdi...
 
@@ -270,7 +268,7 @@ Dreamcast'in sahip olduğu bir diğer yenilikçi özellik de **Görsel Bellek Bi
 - **64 KB Flash**: 32 KB tek bir programı saklamak için (konsoldan aktarılan) ve diğer 32 KB Dreamcast'in kayıtlarını tutmak için.
 - **512 B RAM**: 256 B sistem için ayrılmıştır ve program için yalnızca 256 B kullanılabilir.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 VMU'nun iki çalışma modu vardır:
 
