@@ -66,7 +66,7 @@ Jak wspomniano wcześniej, Z80 ma 16-bitową magistralę adresową, więc proces
 
 ### Dostęp do pozostałych komponentów
 
-Jak można wyczytać z poprzedniego akapitu, w przestrzeni adresowej znajduje się tylko główna pamięć RAM i część pamięci ROM kartridża, więc jak program może uzyskać dostęp do innych komponentów? Cóż, w przeciwieństwie do [Famicom'u/NES-a](nes) Nintendo, nie cały sprzęt Master System jest mapowany przy użyciu lokalizacji pamięci. Zamiast tego niektóre urządzenia peryferyjne znajdują się w **przestrzeni WE/WY****.
+Jak można wyczytać z poprzedniego akapitu, w przestrzeni adresowej znajduje się tylko główna pamięć RAM i część pamięci ROM kartridża, więc jak program może uzyskać dostęp do innych komponentów? Cóż, w przeciwieństwie do [Famicom'u/NES-a](nes) Nintendo, nie cały sprzęt Master System jest mapowany przy użyciu lokalizacji pamięci. Zamiast tego niektóre urządzenia peryferyjne znajdują się w **przestrzeni WE/WY**.
 
 Dzieje się tak, ponieważ rodzina Z80 zawiera interesującą funkcję o nazwie **porty WE/WY**, która umożliwia procesorowi komunikację z innym sprzętem bez wyczerpania adresów pamięci. W tym celu istnieje oddzielna przestrzeń adresowa dla 'urządzeń WE/WY' o nazwie **porty** i obie mają tę samą magistralę danych i adresową. Różnica polega jednak na tym, że porty są odczytywane i zapisywane odpowiednio za pomocą instrukcji `IN` i `OUT` - w przeciwieństwie do tradycyjnej instrukcji ładowania/przechowywania (`LD`).
 
