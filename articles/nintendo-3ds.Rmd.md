@@ -101,11 +101,11 @@ In reality, the physical screen is made of **half-width pixels** and operates in
   - To tell the truth, the screen can still display a frame of 800 x 240 px, although no commercial game ever used this.
 - **Stereoscopic/3D mode**: All pixels are treated individually, and with it, the screen displays **two frames** of **400 x 240 pixels** at the same time.
 
+{.close-float}
+
 Moreover, to perform stereoscopic parallax, this particular LCD houses an extra layer called **Parallax Barrier** [@graphics-display_teardown]. These opaque shutters deviate the backlight beamed behind the pixels of the LCD, so each eye will receive the light of a different subset of pixels [@graphics-display_howworks]. The half-width pixels will also appear to be wider, thereby giving the feeling they have the traditional aspect ratio.
 
 All in all, this recreates the original effect of the Virtual Boy without requiring controls for adjustment.
-
-{.close-float}
 
 The technology is not perfect, however, as there are a few caveats:
 
