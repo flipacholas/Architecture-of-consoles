@@ -32,9 +32,7 @@ Tutaj przeanalizujemy każdy aspekt tej konsoli, od znanego już sprzętu po prz
 
 Szybka Uwaga: Niektóre sekcje pokrywają się z częścią poprzedniego artykułu o [GameCube](gamecube), więc zamiast powtarzać informacje, po prostu umieszczę link do odpowiedniej części artykułu.
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## Kontrolery nowej generacji
 
@@ -126,13 +124,13 @@ Nie jest to nowa funkcja per se, ale nowatorskie wykorzystanie obecnych możliwo
 
 Dodatkowa szybkość Broadwaya i Hollywood w połączeniu z awangardowymi projektami przyniosła pewne ulepszenia modeli postaci. Może nie są tak znaczące jak w innych generacjach, ale nadal są zauważalne i doceniane.
 
-![Super Smash Bros. Melee (2001) dla GC.<br>2,494 trójkąty.](mario_melee_gc){.toleft model3d="true"}
+![Super Smash Bros. Melee (2001) dla GC.<br>4,718 trójkąty.](mario_melee_gc){.toleft model3d="true"}
 
-![Super Smash Bros Brawl (2008) dla Wii.<br>3,049 trójkątów.](mario_brawl_wii){.toright model3d="true"}
+![Super Smash Bros. Brawl (2008) dla Wii.<br>5,455 trójkąty.](mario_brawl_wii){.toright model3d="true"}
 
 ![Sonic Adventure DX (2003) dla Gamecube.<br>1,985 trójkątów.](tails_dx_gc){.toleft model3d="true"}
 
-![Super Smash Bros Brawl (2008) dla Wii.<br>3,644 trójkąty.](tails_brawl_wii){.toright model3d="true"}
+![Super Smash Bros. Brawl (2008) dla Wii.<br>3,644 trójkąty.](tails_brawl_wii){.toright model3d="true"}
 
 ### Sygnał Wideo
 
@@ -165,17 +163,21 @@ Te ulepszenia są nieco 'dziwne', ponieważ są całkowicie nieużywane na Wii. 
 
 Jeśli zastanawiasz się, Jazelle nigdy się nie przyjęło. Po kilku iteracjach odkryto, że Java Bytecode po prostu działa lepiej na oprogramowaniu. Później ARM zastąpił Jazelle wprowadzając "Thumb-2EE”, a w momencie pisania (czerwiec 2021 r.) obie te jednostki zostały wycofane.
 
-(ref:iocaption) Zewnętrzne WE/WY na Wii.<br>Ciemne & małe przednie gniazdo to czytnik kart SD.
+::: {.subfigures .distributed .open-float .float max_subfigures=1}
 
-```{r fig.cap="(ref:iocaption)", open_float_group=TRUE, fig.align='center'}
-img_distributed(src1='console/front.jpeg', src2='console/back.jpeg', "(ref:iocaption)", float=TRUE, figureid="iowii")
-```
+![](console/front.jpeg)
+
+![](console/back.jpeg)
+
+Zewnętrzne WE/WY na Wii.<br>Ciemne & małe przednie gniazdo to czytnik kart SD.
+
+:::
 
 Idąc dalej, ten 'procesor WE/WY' ma za zadanie rozstrzygać dostęp między wieloma WE/WY i Broadwayem, a tym samym dba o bezpieczeństwo (które decyduje, czy zezwolić na dostęp, czy nie). Jest to szczególnie ważne, jeśli chodzi na przykład o przyznanie dostępu do pamięci NAND, w której przechowywany jest główny system operacyjny i dane użytkownika.
 
 Chip dziedziczy również niektóre technologie z ARM, takie jak **Advanced Microcontroller Bus Architecture** (AMBA), protokół, który ułatwia komunikację między urządzeniami za pomocą zestawu wyspecjalizowanych magistral.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Powiedziawszy to, Nintendo podłączyło WE/WY w sposób, który wykorzystuje dwie magistrale AMBA [@io-diagram]:
 
@@ -197,7 +199,7 @@ Wii zachowuje pełną wsteczną kompatybilność z grami GameCube, mimo że syst
 
 Dodatkowo układ zegara czasu rzeczywistego zawiera zapasową pamięć ROM, która przechowuje czcionki bitmapowe (zestaw Łaciński i Japoński) używane przez gry GameCube; i SRAM do zapisywania [ustawień związanych z IPL](gamecube#operating-system).
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ## System Operacyjny
 
@@ -282,9 +284,9 @@ Gry Wii są dystrybuowane przy użyciu zastrzeżonego formatu dysku o nazwie **W
 
 Dysk Wii zapewnia **4,7 GB** (w przypadku jednowarstwowego) lub **8,54 GB** (w przypadku dwuwarstwowego) wolnego miejsca. Często zawierają **dwie partycje**: Pierwszą na aktualizacje systemu, a drugą na rzeczywistą grę.
 
-Niektóre gry, takie jak *Super Smash Bros Brawl*, zawierały więcej partycji do przechowywania wielu gier Virtual Console, które były uruchamiane w głównej grze.
+Niektóre gry, takie jak *Super Smash Bros. Brawl*, zawierały więcej partycji do przechowywania wielu gier Virtual Console, które były uruchamiane w głównej grze.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Tworzenie
 
@@ -306,7 +308,7 @@ Powiedziawszy to, istnieją pewne funkcje w różnych grach, które w jakiś spo
 
 Odpowiedź jest prosta, Nintendo zawarło w swoim SDK kilka **obowiązkowych bibliotek**, które gry muszą zawierać. *Okazuje się*, że jedna z nich rysuje ten ekran. Co więcej, jest to powód dla którego, jak się przekonasz, tylko aplikacje homebrew zawierają 'oryginalne' projekty menu home.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Oficjalne menu HOME jest jednym z około 200 wymagań, które gry musiały spełnić, zgodnie z dokumentem **Wii Programming Guidelines** (znajdującym się w oficjalnym SDK). Inne wymagania polegały na wyświetleniu ekranu 'Przypomnienie o Pasku Wii' (który jest tylko obrazem BMP) na początku gry, po którym następowała kolejna reguła, która dyktowała sposób interakcji z nim.
 
@@ -320,7 +322,7 @@ Kolejną nową funkcją, na którą chciałbym zwrócić uwagę, jest wprowadzen
 
 Ale zabawa na tym się nie skończyła, ponieważ gry mogły również pobierać te nowo stworzone Mii, aby spersonalizować rozgrywkę.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ## Przeciwdziałanie-Piractwu & Homebrew
 
@@ -338,7 +340,7 @@ Deweloperzy Modchipa odkryli, że napęd zawiera interfejs debugowania o nazwie 
 
 Matsushita opublikowało kolejne wersje tego napędu, blokujące interfejs debugowania, jednak odkryto inne wady czytnika, aby ponownie go włączyć.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Warto wspomnieć, że główną zaletą modchipów było zwykłe piractwo, ponieważ zawartość dysku jest nadal zaszyfrowana, więc do uruchomienia niestandardowego kodu potrzeba było więcej badań i narzędzi.
 
@@ -403,7 +405,7 @@ Ostatnim kluczem używanym przez tę konsolę jest **klucz HMAC**, który korzys
 
 Na koniec klucz HMAC jest przechowywany w SEEPROM (poza Starlet), a nie w OTP.
 
-`r close_tabs()`
+#### Obserwacje {.tabs-close}
 
 Po tym wszystkim warto wspomnieć, że gdy system uruchamia gry GameCube, **żadna z wymienionych metod szyfrowania nie jest używana**. Zamiast tego Starlet sprawdzi tylko, czy gra uzyskuje dostęp tylko do wyznaczonych lokalizacji pamięci. Dzieje się tak, ponieważ 1/4 pamięci RAM GDDR3 jest przydzielona do symulacji starego [ARAM](gamecube#audio).
 
@@ -415,13 +417,13 @@ Zacznijmy od kluczy AES, algorytm może być trudny do złamania, ale jeśli klu
 
 Więc, grupa hakerów o nazwie **Team Twiizers** odkryła, że brak podpisów w trybie GameCube może być obiecującą powierzchnią do ataku [@cpu-ccc]. Nie tylko odkryli, że **3/4 z tego RAM GDDR3 nie zostaje wyczyszczone** po uruchomieniu programu GC, ale również odkryli, że poprzez pomostowanie niektórych punktów adresowych na płycie głównej (przy użyciu pary pęset), mogą zamienić wybrane banki RAM GDDR3, umożliwiając im dostęp do obszarów ograniczonych. I oto znaleziono tam klucze AES.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Nie zapominajmy, że pozwala to odszyfrować tylko 'pierwszą warstwę' bezpieczeństwa, ale aby uruchomić niepodpisane programy (Homebrew), RSA również musi zostać złamany. Niestety może to być obliczeniowo niemożliwe... Chyba że istnieją wady w jego realizacji. Cóż, Team Twizzers nie poprzestali na tym, więc zaczęli analizować sposób kodowania IOS, skupiając się na jego funkcjach weryfikacji podpisów.
 
-Weryfikacja podpisu RSA, bez wchodzenia w szczegóły, polega na porównaniu skrótu obliczonej operacji RSA z odszyfrowanym podpisem. Po kilku manipulacjach grupa odkryła coś zabawnego: **Nintendo zaimplementowało tę funkcję za pomocą `strcmp`** (porównanie 'ciągu' w C).
+Weryfikacja podpisu RSA, bez wchodzenia w szczegóły, polega na porównaniu skrótu obliczonej operacji RSA z odszyfrowanym podpisem. Po kilku manipulacjach grupa odkryła coś zabawnego: **Nintendo zaimplementowało tę funkcję za pomocą `strncmp`** (porównanie 'ciągu' w C).
 
-Dla osób nieznających C, `strcmp` jest procedurą używaną do sprawdzania, czy dwa łańcuchy są równe. Ta kompozycja zawiera: dwa łańcuchy i kompozycja, która określa nazwę produktu. Następnie, strcmp zaczyna porównywać każdy znak aż do osiągnięcia końca dowolnego ciągu. Łańcuchy w C to po prostu ciąg znaków zakończony znakiem `\0`, co oznacza, że strcmp przestaje porównywać, gdy dowolny łańcuch osiągnie `\0`. W związku z tym, tworząc tytuł Wii w taki sposób, że jego hash zawiera na początku zera, obliczenia Starlet RSA przekażą ciąg znaków zaczynający się od `\0` do strcmp. Zatem porównanie zawsze zwróci `równe`... **Tytuł jest podpisany!**
+Dla osób nieznających C, `strncmp` jest procedurą używaną do sprawdzania, czy dwa łańcuchy są równe. Ta kompozycja zawiera: dwa łańcuchy i jedną liczbę całkowitą, ta ostatnia określa liczbę znaków do porównania. Następnie, `strncmp` zaczyna porównywać każdy znak aż do osiągnięcia końca dowolnego ciągu (lub licznika znaków). Łańcuchy w C to po prostu ciąg znaków zakończony znakiem `\0`, co oznacza, że `strncmp` przestaje porównywać, gdy dowolny łańcuch osiągnie `\0`. Dlatego też, tworząc tytuł Wii w taki sposób, aby jego hash zawierał na początku `\0`, obliczenia RSA Starleta spowodują, że porównane zostaną bardzo krótkie hashe (lub nawet puste) ze znacznymi szansami na kolizję (różne dane, które dają tę samą wartość hash). Ostatecznie, przy użyciu możliwej ilości brute-forceowania, umożliwiło to porównanie i zwrócenie `równość`... **Tytuł jest podpisany!**
 
 Jakby tego było mało, ta luka została wykryta w wielu wersjach IOS - a nawet w procedurach znalezionych na boot1 i boot2!
 
@@ -435,7 +437,7 @@ Do tej pory exploity te wymagały użycia dodatkowego sprzętu, więc nie każdy
 
 Mam na myśli słynną **The Legend of Zelda: Twilight Princess** (nawiasem mówiąc, grę firmy Nintendo). TT odkryli, że plik zapisu gry może zostać zmodyfikowany, aby przepełnić liczbę znaków używanych do nazwania konia gracza. Tak więc, gdy gracz spróbuje odczytać przepełnioną nazwę, wywoła to reakcję łańcuchową kończącą się wykonaniem dowolnego kodu. Można to wykorzystać do uruchomienia, powiedzmy, programu ładującego.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Ponieważ podpisy można było teraz sfałszować, ten spreparowany plik zapisu można było łatwo rozpowszechniać w sieci, aby inne osoby mogły z niego korzystać. W rezultacie społeczność homebrew mogła teraz uruchamiać swoje niestandardowe oprogramowanie.
 
@@ -457,7 +459,7 @@ Tak więc TT ponownie zabłysnęli. Ostrożnie stworzyli kanał do zainstalowani
 
 **Kanał Homebrew** był tego wynikiem, ten tytuł pozwolił każdemu użytkownikowi na odpalenie programów homebrew, które mogły korzystać z pełnej kontroli nad tym systemem (z wszystkimi tego konsekwencjami).
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Odpowiedź Nintendo
 
@@ -471,7 +473,7 @@ W systemie tym wykryto jednak inne zasadnicze wady:
 - Ukryte API IOS nadal mogą być używane bez specjalnych uprawnień, umożliwiając jeszcze większą nieupoważnioną kontrolę sprzętu.
 - Napęd dysków może otrzymać polecenia odczytu konwencjonalnych DVD, a niektóre IOS zawierają ukryte wywołania tych poleceń. Było to szczególnie niepokojące z powodu piractwa.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Więc, podsumowując, po tym wszystkim jedyne co pozostało to zabawa w kotka i myszkę. W ciągu następnych miesięcy odkryto kolejne różne exploity, które następnie Nintendo próbowało patchować jeden po drugim. Ta 'zabawa' trwała aż do końca życia konsoli i nie wydano już żadnych aktualizacji. Możemy założyć, że tutaj wygrała mysz.
 
