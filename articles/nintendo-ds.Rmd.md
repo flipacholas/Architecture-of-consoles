@@ -30,27 +30,55 @@ aliases: [/projects/consoles/nintendo-ds/]
 
 This console is an interesting answer to many needs that weren't possible to fulfil in the handheld ecosystem. There will be some innovation and a few compromises, but this combination may pave the way for new and ingenious content.
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## CPU
 
-As with Nintendo's [previous portable console](game-boy-advance), the system revolves around a big chip named **CPU NTR**. 'NTR' is shorthand for 'Nitro', the codename of the original Nintendo DS.
+As with Nintendo's [previous portable console](game-boy-advance), the system revolves around a big chip named **CPU NTR**. 'NTR' is shorthand for **Nitro**, the codename of the original Nintendo DS. This SoC is also the continuation of a prosperous [Nintendo-ARM partnership](game-boy-advance#the-nintendo-partnership), which originally started with the Game Boy Advance.
 
-Now, CPU NTR implements an interesting multi-processor architecture using two different ARM CPUs, this design was done before ARM Holdings officially released multi-processor solutions. So, their functioning may be considered a bit unorthodox taking into account the present technology available.
+Now, before we check out the new CPUs, let's look at how ARM evolved during the late 90s, as this impacted the technology ultimately found inside the Nintendo DS.
 
-### Design
+### ARM's new territories
+
+During the mid-90s, ARM was experiencing an influx of businesses from the mobile market (before cellphones became 'smart'). Yet, it struggled to please a particular sector: **high-performance computing**. The ARM7 was enjoyed by many mobile devices, but it didn't quite satisfy Apple (with its 'Newton' PDA line) and Acorn (with its RiscPC line), both of whom shipped software that could benefit from a faster CPU. Aside from the lack of a 64-bit solution (something [MIPS was already commercialising](nintendo-64#cpu)), ARM was also unable to produce a CPU that operated faster than 40 MHz. Altogether, the bottlenecks were starting to pile up.
+
+Nevertheless, during the commercialisation of the ARM7 line, ARM had already started work on a successor called **ARM8**, in an attempt to please the high-performance market. In the meantime, **Digital Equipment Corporation (DEC)**, the American company historically famous for their line of PDPs (the so-called 'minicomputers'), was experiencing an opposite problem: They struggled to deliver a low-power CPU based on their high-performance solutions. Well, it so happened that [ARM's licensing model](game-boy-advance#tab-1-2-a-new-cpu-venture) turned into an opportunity for DEC, who chose to develop a new CPU by borrowing materials from ARM (its instruction set and microarchitecture).
+
+In the end, DEC grabbed the datapath design of their **Alpha** processor and, with the help of ARM, mixed it with ARM's microarchitecture [@cpu-jaggar]. This collaboration led to the **StrongARM** CPU, which was released in 1996 and targeted the performance sector.
+
+![A 233 MHz StrongARM CPU, part of the CPU upgrade card offered for the Acorn RiscPC.](strongarm.jpg)
+
+StrongARM was a new ARM-based CPU that featured [@cpu-furber]:
+
+- The **ARMv4 instruction set**. If you want to know more about it, I've [previously analysed it](game-boy-advance#tab-2-1-the-instruction-set) in the Game Boy Advance article.
+- Up to **233 MHz** of clock speed, roughly 583% faster than the beefiest ARM7 chip.
+- **5-stage pipeline**, an increment from the original [3-stage design](game-boy-advance#tab-2-2-the-core).
+- A **new cache system** implementing a **Harvard architecture**, where **16 KB** are allocated for instructions and another **16 KB** for data.
+  - This design helped alleviate memory bottlenecks (something the von Neumann/Princeton model suffered from).
+
+It's worth mentioning that this chip still managed to work with a **3.3 V** supply, like previous ARM chips. In fact, the StrongARM only needs 2 Volts [@cpu-furber].
+
+As expected, Acorn and Apple were so dazzled by the new chip that they immediately shipped CPU upgrades and further Newton models, respectively, using DEC's invention.
+
+In the same year, ARM also released their promised ARM8-based CPU (called ARM810). The latter was comparably slower and offered no practical advantages over the StrongARM. So, too little and too late resulted in no commercial interest. Consequently, ARM moved on to improving the ARM7 line for the mobile market. However, the potential of StrongARM was so disruptive that ARM Holdings absorbed some of StrongARM's features to produce their next line of CPUs, the **ARM9** (which the Nintendo DS houses).
+
+Unfortunately for DEC, this CPU will be their last major achievement before being acquired by Compaq in 1998.
+
+### Nintendo's debuting SoC
+
+Aside from the aforementioned advancements, CPU NTR also bundles an interesting multi-processor architecture using two different ARM CPUs, the **ARM7TDMI** and the **ARM946E-S**. This design was done before ARM Holdings officially released [multi-processor solutions](nintendo-3ds#cpu). So, their functioning may be considered a bit unorthodox (taking into account the present technology available).
+
+![The CPU NTR chip.](cpu_ntr.jpg)
 
 While this is not the first parallel system analysed for [this series](consoles), its design is very different from the rest. For instance, we are not talking about the 'experimental' master-slave configuration that the [Saturn](sega-saturn) debuted or the 'co-processor' approach found on the [PS1](playstation) or [N64](nintendo-64). The Nintendo DS includes two very independent computers that will perform exclusive operations, each one having a dedicated bus. This design methodology is called **Asymmetric multiprocessing** and the resulting CPUs' co-dependency will condition the overall performance of this console.
 
-That being said, let's take a look now at the two CPUs:
+Let's now take a look at the two CPUs:
 
 #### ARM7TDMI {.tabs .active}
 
 ![ARM7 structure and components.](cpu/arm7_core.png){.tab-float}
 
-Starting with the more familiar one, the **ARM7TDMI** is the same CPU found on the [Game Boy Advance](game-boy-advance#cpu) but now running at **~34 MHz** (double its original speed). It still includes all its original features (especially [Thumb](game-boy-advance#whats-new)).
+Starting with the more familiar one, the **ARM7TDMI** is the same CPU found on the [Game Boy Advance](game-boy-advance#cpu) but now running at **~34 MHz** (double its original speed). It still includes all its original features (especially [Thumb](game-boy-advance#tab-2-3-squeezing-performance)).
 
 Now for the changes: Because Nintendo's engineers placed the ARM7 next to most of the I/O ports, this CPU will be tasked with arbitrating and assisting I/O operations. In fact, no other processor can directly connect to the I/O. As you can see, this is not the 'main' processor that will be in charge of the system, but rather the 'sub-processor' offloading the main CPU by passing data around many components.
 
@@ -58,31 +86,31 @@ Now for the changes: Because Nintendo's engineers placed the ARM7 next to most o
 
 ![ARM9 structure and components.](cpu/arm9_core.png){.tab-float}
 
-Here is the 'main' CPU of the Nintendo DS running at **~67 MHz**. If you ignore the ill-fated ARM8 series, you could say the ARM946E-S is the 'next-gen' version of the ARM7. Part of the **ARM9 series**, this core in particular not only inherits all the features of the **ARM7TDMI** but also includes some additional bits [@cpu-arm9reference]:
+Here is the 'main' CPU of the Nintendo DS, the **ARM946E-S**. It runs at **~67 MHz**, so not exactly 'StrongARM speed'. Yet, being part of the **ARM9 series**, this core in particular not only inherits all the features of the **ARM7TDMI** and **StrongARM**, but also includes some additional bits you may find interesting [@cpu-arm9reference]:
 
-- The **ARMv5TE ISA**: Compared to the previous v4, features some new instructions and a faster multiplier.
+- The **ARMv5TE ISA**, consisting of the [previous ARMv4 ISA](game-boy-advance#tab-2-1-the-instruction-set) and [Thumb](game-boy-advance#tab-2-3-squeezing-performance), along with more instructions and a faster multiplier.
   - If you take a look at the core name, the letter 'E' means **Enhanced DSP** which implies that lots of these new instructions have to do with applications for signal processing.
-- **5-stage Pipeline**: This is another increment from the previous 3-stage pipeline.
-- **12 KB of L1 Cache**: The core now features cache, where 8 KB are allocated for instructions and 4 KB for data.
-- **48 KB of Tightly-Coupled Memory** or 'TCM': Similar to [Scratchpad memory](playstation#cpu), however this one discriminates between instructions (32 KB) and data (16 KB).
+- **5-stage Pipeline**, like the StrongARM and ARM8 line.
+- **12 KB of L1 Cache**: The core now features cache (originally lacking in the ARM7TDMI) and, similar to the Hardvard-based StrongARM, **8 KB** are allocated for instructions and **4 KB** for data.
+  - The cache employs a **write buffer** mechanism where RAM is updated asynchronously, so the CPU can work on other tasks.
+- **48 KB of Tightly-Coupled Memory** or 'TCM': Similar to [Scratchpad memory](playstation#cpu). Although, this one discriminates between instructions (32 KB) and data (16 KB).
+- An integrated **CP15 co-processor**. It acts as a **Memory Protection Unit (MPU)**, stipulating which memory ranges can be accessed, cached and/or written to.
 
 Nintendo also added the following components around it:
 
-- A **Divisor and Square root unit** to speed up these types of operations (the ARM9 by itself is not capable of performing this type of math).
+- A **Divider and Square root unit** to speed up these types of operations, as the ARM9 by itself is not capable of performing this type of arithmetic.
 - A **Direct Memory Access Controller**: Accelerates memory transfers without depending on the CPU. Combined with the use of cache, both CPU and DMA can potentially work concurrently.
-  - Cache and DMA can provide a lot of performance but also create new problems, such as data integrity. So programmers will have to manually maintain memory consistency by flushing the [write-buffer](playstation-2#preventing-past-mishaps) before triggering DMA, for instance.
-
-`r close_tabs()`
+  - Cache and DMA can provide a lot of performance but also create new problems, such as **data integrity and coherence**. So, programmers will have to manually maintain memory consistency by [flushing the write buffer](playstation-2#preventing-past-mishaps) before triggering DMA, for instance.
 
 I guess with hardware like this, it's easy to figure out the *real* reason kids loved this console, eh?
 
-### Interconnection
+### Interconnection {.tabs-close}
 
-So far I've talked about how the two CPUs work individually. But to work as a whole, they require to co-operate constantly. To accomplish this, both CPUs directly 'talk' to each other using a dedicated **FIFO unit** [@cpu-double], this block of data holds two 64-byte queues (up to 16 elements) for **bi-directional communication**.
+So far I've talked about how the two CPUs work individually. But to work as a whole, they are required to cooperate constantly. To accomplish this, both CPUs directly 'talk' to each other using a dedicated **FIFO unit** [@cpu-double], this block of data holds two 64-byte queues (up to 16 elements) for **bi-directional communication**.
 
 ![Representation of FIFO unit.](cpu/fifo.png)
 
-This works as follows: The 'sender' CPU (that effectively needs to send the other a message) places a 32-bit block of data in the queue, the CPU acting as a 'receiver' can then pull that block from the queue and perform the required operations with it.
+This works as follows: The 'sender' CPU (that effectively needs to send the other a message) places a 32-bit block of data in the queue, and the CPU acting as a 'receiver' can then pull that block from the queue and perform the required operations with it.
 
 Whenever there's a value written on the queue, either CPU can fetch it manually (**polling**) however, this requires constantly checking for new values (which can be expensive). Alternatively, an **interrupt unit** can be activated to notify the receiver whenever there's a new value in the queue.
 
@@ -98,7 +126,7 @@ Just like its predecessor, RAM is spread around many different locations, enabli
 - **4 MB of PSRAM** using a **16-bit** bus: A slower type, available from either CPU and it's controlled by a memory interface unit.
   - Pseudo SRAM or 'PSRAM' is a variant of DRAM that, by contrast, performs refreshes from within the chip. Therefore, behaving like SRAM (the faster, but more expensive alternative to DRAM). This design reminds me of [1T‑SRAM](gamecube#clever-memory-system).
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Backwards compatibility
 
@@ -108,33 +136,19 @@ But for the DS to revert to an 'internal' GBA, the former includes a set of soft
 
 Once in GBA mode **there's no going back**, the console must be reset to re-activate the rest of the hardware.
 
-### Secrets and limitations
+### Unused Power
 
 With so many sophisticated components fitted in a single and inexpensive chip, it's no mystery that some issues emerged due to the way they were forced to work with each other.
 
-#### Unused Power {.tabs .active}
-
-Sometimes I wonder how Nintendo planned the way the two CPU's would be used, and if they already assumed some performance would be hit by the design they chose. 
-
-Let me start with the ARM9, this CPU runs at twice the speed of the ARM7, but most (if not all) of the I/O depends on the ARM7, so the ARM9 is vulnerable to excessive stalling until the ARM7 answers. If that wasn't enough, **ARM9's external bus runs at half the speed**, so there are a few bottlenecks identified.
+Let me start with the ARM9, this CPU runs at twice the speed of the ARM7, but most (if not all) of the I/O depends on the ARM7. Thus, the ARM9 is vulnerable to excessive stalling until the ARM7 answers. If that wasn't enough, **ARM9's external bus runs at half the speed**, another bottleneck to add to the list.
 
 Additionally, the Main Memory bus is only **16-bit wide**. Thus, whenever any CPU needs to fetch a word (32-bit wide) from memory, the interface **stalls the CPU**, using up to 3 'wait' cycles, until a full word is reconstructed. The worst impact happens when memory access is not sequential, which makes it stall for every single access. This issue will also arise when instructions are fetched (unfortunately, ARM didn't support sequential opcode fetching back then) which, to my dismay, also affects Thumb code (since every 16-bit fetch is done as a 32-bit block). On the other hand, this 'penalty', as some sources call it, can be alleviated by making full use of cache and TCM.
 
-All in all, this means that in the worst case, the ARM9's whopping 66 MHz horsepower is practically reduced to a mere ~8&nbsp;MHz. That is if the program makes an abysmal use of cache/TCM.
+All in all, this means that in the worst case, the ARM9's whopping 66 MHz horsepower is practically reduced to a mere ~8 MHz. That is if the program makes an abysmal use of cache and TCM.
 
 For a detailed report, I recommend checking out Martin Korth's document [@cpu-korth], specifically, the 'DS Memory Timings' section.
 
-#### A question about the hardware choice {.tab}
-
-Back when I read about the CPU of the Game Boy Advance, I was really surprised by the potential of the ARM7: The CPU not only performed its designated tasks, but could also assist with others, such as providing audio sequencing or pseudo-3D graphics.
-
-On a related note, during the commercialisation ARM7, ARM Holdings joined forces with DEC to design a high-end version of ARM's chips. For this, DEC grabbed the datapath design of their processor, **Alpha**, and mixed it with ARM's [@cpu-jaggar]. The result was a new series of CPUs called **StrongARM** which was surprisingly *fast*. At the expense of removing certain features (Thumb and debug), DEC managed to cross the megahertz threshold by reaching speeds of up to 233 MHz. As a normal user prepared to buy a new ARM PC (let's say a *RiscPC*), you could either choose one with the old ARM710 at 40 MHz or another one with a StrongARM running ~582% faster. The impact of StrongARM was so disruptive that ARM Holdings absorbed some of StrongARM's features to produce their next line of CPUs, starting with ARM9. And the rest is history.
-
-But here's where my question resides: Considering the new developments in the ARM world, why did Nintendo ultimately choose an awfully slow ARM9 combined with an even slower ARM7, instead of a faster ARM9 (or even a StrongARM)? To give you an idea, other companies like Apple just adopted the StrongARM with their Newton PDA line.
-
-I don't mean to criticise Nintendo's choice, but I believe the amount of emerging technology was just too great for me to ignore. I guess their choice was done in an effort to preserve battery life and maintain production costs (by using the same CPU found in the GBA).
-
-## Graphics {.tabs-close}
+## Graphics
 
 This section is a bit unusual because not only this console has multiple screens to draw, but also a combination of traditional tile engines working alongside a modern renderer.
 
@@ -240,7 +254,7 @@ Revisiting the 'Background modes' section, you'll notice every mode has at least
 
 ![Architecture of the Geometry Engine.](gpu/geometry.png){.tab-float}
 
-If you read any of the articles from the 4th or 5th generation, you may be wondering... Where's the [SIMD processor](sega-saturn#graphics)? That's a good question because the ARM9 is not particularly good at vector operations and I don't think the dedicated divider is enough. That's why Nintendo embedded a component called **Geometry Engine** that takes care of **vertex transformations**, **projection**, **lighting**, **clipping**, **culling** and **polygon sorting**, the latter one is essential to properly use the transparency features.
+If you read any of the articles from the 4th or 5th generation, you may be wondering... Where's the [SIMD processor](sega-saturn#graphics)? That's a good question because the ARM9 is not particularly good at vector operations and I don't think the dedicated divider is enough. That's why Nintendo embedded a component called **Geometry Engine** that takes care of **vertex transformations**, **projection**, **lighting**, **clipping**, **culling** and **polygon sorting**, the latter is essential to properly use the transparency features.
 
 This engine has some strict limitations, specifically the count of polygons it can process: There's an extra **248 KB of RAM** available used to store processed geometry, this amount accounts for up to **2048 triangles or 1706 quadrilaterals**, although this limit is reduced by using polygon strips (as opposed to individual polys). To get a sense of this number, I suggest checking out the 'interactive models' sections in previous articles, you'll see that it's a concerning constraint, but don't forget that the screen resolution of this console is also much smaller... so that compensates a bit.
 
@@ -250,7 +264,7 @@ Anyway, this engine is commanded using a **Command FIFO** which is filled with d
 
 ![The architecture of the Rendering Engine.](gpu/rendering.png){.tab-float}
 
-The rendering engine is in charge of converting vectors to pixels (rasterising), colouring them (texture mapping) and applying lighting and other effects. It relies on **perspective correction** and **Gouraud shading** for interpolating textures and light, respectively. Moreover, the unit provides modern features like **fog**, **alpha blending**, **depth buffering** (either [Z-buffering](nintendo-64#modern-visible-surface-determination) or a variant called W-buffering), **stencil tests** and **anti-aliasing**. Though the latter is very primitive (it just sets the outer edges of polygons as transparent) and it only works with opaque pixels.
+The rendering engine is in charge of converting vectors to pixels (rasterising), colouring them (texture mapping) and applying lighting and other effects. It relies on **perspective correction** and **Gouraud shading** for interpolating textures and light, respectively. Moreover, the unit provides modern features like **fog**, **alpha blending**, **depth buffering** (either [Z-buffering](nintendo-64#modern-visible-surface-determination) or a variant called W-buffering), **stencil tests** and **anti-aliasing**. However, the latter is very primitive (it just sets the outer edges of polygons as transparent) and it only works with opaque pixels.
 
 The rendering system is a mix of old and new: Instead of rendering to a frame buffer, it employs **line buffer rendering**, where it fills scan lines (similarly to the 2D engine) and stores the results in a smaller buffer. This is because the 3D engine must work at pace with the 2D drawer.
 
@@ -282,9 +296,7 @@ Some of the first games released for this console attempt to resemble the ones f
 
 ![Mario Kart 64 (1996).<br>Rendered at 320×240 pixels.](comparison/kart_n64.png){.toleft .pixel}
 
-![Mario Kart DS (2005).<br>Rendered at 256x192 pixels.](comparison/kart_nds.png){.toright .pixel}
-
-`r close_tabs(FALSE)`
+![Mario Kart DS (2005).<br>Rendered at 256x192 pixels.](comparison/kart_nds.png){.toright .pixel .tabs-close}
 
 So, to explain what's happening here, I've organised the different explanations based on what some people said on forums:
 
@@ -299,9 +311,9 @@ That's pretty much in a nutshell, for more specialised cases, you'll have to div
 
 I've updated the wee model viewer to apply 'nearest neighbour', allowing you to visualise Nintendo DS models using your GPU.
 
-![New Super Mario Bros (2004).<br>636 triangles.](mario_ds){.toleft model3d="true"}
+![Nintendogs (2005).<br>750 triangles.](dalmatian_ds){.toleft model3d="true"}
 
-![Nintendogs (2005).<br>750 triangles.](dalmatian_ds){.toright model3d="true"}
+![New Super Mario Bros (2006).<br>636 triangles.](mario_ds){.toright model3d="true"}
 
 Despite the fact we talked about a lot of limitations of the graphics subsystem, lots of games did make really good use of it.
 
@@ -313,7 +325,7 @@ Most of the audio improvements focus on enhancing those PCM channels that the GB
 
 Consequently, the new audio system features a total of **16 PCM channels**, allowing to shift the mixing task to the hardware. PCM samples can either be **8-bit** (*GBA-style*), **16-bit** (optimal resolution) or **ACPCM** (compressed form). In any case, the mixer produces a stereo signal that can be played through the speaker (now stereo) or headphones. It can also write the resulting stereo data to WRAM, enabling the sub-processor (ARM7) to apply some effects such as reverb.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 With all being said, does this mean that the Nintendo DS can finally play encoded music (i.e. MP3)? It's possible (in fact, a lot of homebrew programs implemented some form of it), but audio decoding takes up a lot of bandwidth and processing power [@cpu-homebrew]. So, audio sequencing still retains its place as the most feasible option.
 
@@ -327,20 +339,15 @@ Back on topic, how does a GBA game handle all of this? _It doesn't_, Nintendo fi
 
 ### Interactive comparison {.interactive-only}
 
-I've constructed this interactive widget that will allow you to compare by yourself how the new audio system affected the new generation of soundtracks. Each widget plays the same score but allows you to alternate between the old and new arrangements (I suggest wearing headphones to really notice the difference). Give it a whirl!
+I've constructed this interactive widget that will allow you to compare how the new audio system affected the new generation of soundtracks. Each widget plays the same score but allows you to alternate between the old and new arrangements (I suggest wearing headphones to really notice the difference). Give it a whirl!
 
-(ref:gbatitle) GB Advance
+::: {.subfigures .side-by-side figure="false"}
 
-(ref:ndstitle) Nintendo DS
+![**GBA:** Gyakuten Saiban (2001, JAP only).<br>**NDS:** Phoenix Wright: Ace Attorney (2005).](){audio_switcher="true" src1="trial_gba" src2="trial_nds" label1="GB Advance" label2="Nintendo DS" .toleft}
 
-(ref:audioattourneycaption) **GBA:** Gyakuten Saiban (2001, JAP only).<br>**NDS:** Phoenix Wright: Ace Attorney (2005).
+![**GBA:** Mario Kart: Super Circuit (2001).<br>**NDS:** Mario Kart DS (2005).](){audio_switcher="true" src1="yoshi_gba" src2="yoshi_nds" label1="GB Advance" label2="Nintendo DS" .toright}
 
-(ref:audiokartcaption) **GBA:** Mario Kart: Super Circuit (2001).<br>**NDS:** Mario Kart DS (2005).
-
-```{r side_by_side=TRUE}
-audio_switcher("(ref:audioattourneycaption)", class="toleft", src1="trial_gba", label1="(ref:gbatitle)", src2="trial_nds", label2="(ref:ndstitle)")
-audio_switcher("(ref:audiokartcaption)", class="toleft", src1="yoshi_gba", label1="(ref:gbatitle)", src2="yoshi_nds", label2="(ref:ndstitle)")
-```
+:::
 
 (If you have trouble listening to it, please [contact me](`r ref(about_url, root=TRUE)`) mentioning the browser and device you are using)
 
@@ -350,18 +357,13 @@ Be as it may, I had to boost the gain of the GBA soundtrack a little bit to norm
 
 Let me show you some tricky cases now, where the original console had some unique audio features that weren't straightforward to recreate for this console, but I'll let you be the judge of that:
 
-(ref:snestitle) SNES
+::: {.subfigures .side-by-side figure="false"}
 
-(ref:megadrivetitle) Mega Drive
+![**SNES:** Super Mario Kart (1992).<br>**NDS:** Mario Kart DS (2005).](){audio_switcher="true" src1="mario_snes" src2="mario_nds" label1="SNES" label2="Nintendo DS" .toleft}
 
-(ref:audiosnescaption) **SNES:** Super Mario Kart (1992).<br>**NDS:** Mario Kart DS (2005).
+![**Mega Drive:** Sonic 3D Blast (1996).<br>**NDS:** Sonic Chronicles (2008).](){audio_switcher="true" src1="sonic_megadrive" src2="sonic_nds" label1="Mega Drive" label2="Nintendo DS" .toright}
 
-(ref:audiosoniccaption) **Mega Drive:** Sonic 3D Blast (1996).<br>**NDS:** Sonic Chronicles (2008).
-
-```{r side_by_side=TRUE}
-audio_switcher("(ref:audiosnescaption)", class="toleft", src1="mario_snes", label1="(ref:snestitle)", src2="mario_nds", label2="(ref:ndstitle)")
-audio_switcher("(ref:audiosoniccaption)", class="toleft", src1="sonic_megadrive", label1="(ref:megadrivetitle)", src2="sonic_nds", label2="(ref:ndstitle)")
-```
+:::
 
 As you can hear from the first example (especially in the last 10 seconds), it's a bit hard to compete with the features that the SNES' [S-SMP](super-nintendo#audio) provided.
 
@@ -381,7 +383,7 @@ Now, here's the important bit: DS cards are **not memory-mapped**, so for either
 
 The 'backup' chip used for saves (i.e. EEPROM, FLASH or FRAM) is accessed through an SPI bus (serial) which uses its own set of commands and it's connected to a 24-bit address bus.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 The Slot-2 cartridge is memory-mapped using the original pinout, but the addresses are shifted in DS mode to accommodate the hardware that provides expansion functionality (extra RAM, rumble, etc). Just like the GBA, the ROM bus is 16-bit wide and the RAM bus is 8-bit wide.
 
@@ -397,7 +399,7 @@ A curious thing about this touchscreen is that apart from detecting the X/Y posi
 
 Many have pointed out that 'Hotel Dusk: Room 215' relied on this feature for one of its puzzles, which required users to use two fingers at the same time. This is not the case, however. After experimenting with the no$gba debugger, the puzzle does not make use of pressure data. Instead, it checks whether the x/y values alternate drastically. The game interprets this effect as if the user had pressed the screen with two fingers.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Finally, in the same stack, we find the **real-time clock** or 'RTC'.
 
@@ -450,7 +452,7 @@ The shell is more-or-less the same as the rest of its contemporaries. Users rely
 
 It's worth emphasising that both read-only and writable data reside in the same re-writable chip, so it's theoretically possible to write over the firmware! Luckily (or for obvious reasons), Nintendo protected the upper quarter of the chip (64 KB) from being written by requiring a jumper placed on a point in the motherboard called `SL1`, which is exposed by removing the battery compartment. Nonetheless, over-writing the rest of the flash memory can still produce catastrophic results [@operating_system-bricker]!
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Updatability
 
@@ -471,7 +473,7 @@ This console runs games from three sources, where only two of them can make 'ful
 - **Download Play or 'Wireless MultiBoot'**: This is an evolved version of the original [Multi-Boot](game-boy-advance#accessories) which enables another console with an NDS game to upload a program using Wireless communication. The downloaded content is stored in WRAM and booted after the transfer finishes. Since WRAM is volatile, the data will be lost on shut down.
   - Authorised retail stores used this function to deploy **Download Stations**, where users were invited to download game demos as part of their visit to the store. 
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Program structure
 
@@ -505,7 +507,7 @@ With all the new forms of interaction available, studios had the opportunity to 
 
 For the first time in consumer electronics, there was a touchscreen, microphone, Wi-Fi and a real-time clock packaged in the same console. Nevertheless, some games even presented new forms of interaction, such as instructing the user to hold the console sideways.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Network service
 
@@ -527,17 +529,19 @@ The 'Header' area of the card contains a value called **Gamecode** (the unique i
 
 Afterwards, KEY1 is mixed with the internal clock and some other values of the cartridge header to generate a new key called **KEY2**. The fundamental difference with KEY1 is that the former uses random values to make it unpredictable. KEY2 encryption relies on multiple XOR and Shift operations to obfuscate the data.
 
+KEY1 and KEY2 are used, at different stages, by the Slot-1 interface to protect its communication with the card. While KEY1 is also used by the ARM7 BIOS to validate the DS card and initialise the card interface.
+
 #### DS card validation {.tab}
 
 As we've seen before, the BIOS includes some routines that validate the NDS card upon startup. This works as follows:
 
-1. The console retrieves the chip ID of the cartridge, saves it on RAM and then proceeds to enable KEY1 encryption.
-2. The first 2 KB of the 'Secure area' are copied to RAM as well. The first 8 B of this chunk stores a string called **Secure Area ID**, the next values contain some checksums (CRC16 type) and other metadata.
-4. 'Secure Area ID' is already encrypted with KEY1, but it's encrypted again using KEY2 encryption and decrypted afterwards, if the decrypted value matches the string `encryObj` it means card validation **passed the first test**. After this, the string is destroyed to prevent revealing the algorithm. If the validation failed, the 2 KB of Secure Area are filled with garbage, preventing the rest of the card from being read.
-5. The second test consists in retrieving the chip ID again and encrypting it with KEY2 a random amount of times (the seed depends on the internal clock). If the value of chip ID matches the first chip ID stored, the **second test passed**.
-6. Finally, the rest of the Secure area is fetched in random order and re-constructed in RAM. After this, the firmware is executed.
+1. The ARM7 BIOS retrieves the chip ID of the cartridge, saves it on RAM and then proceeds to enable KEY1 encryption.
+2. The first 2 KB of the 'Secure area' are copied to RAM as well. The first 8 B of this chunk stores a string called **Secure Area ID**, the next values contain some checksums (CRC16 type) and other metadata. All of it comes encrypted with KEY1, and the Secure Area ID is encrypted twice with KEY1 using different parameters.
+3. The ARM7 BIOS decrypts the Secure Area ID and checks that the decrypted value matches `encryObj`. If it does, it means card validation **passed the first test**. After this, the string is destroyed to prevent revealing the algorithm. If the validation fails, the 2 KB of Secure Area are filled with garbage, preventing the rest of the card from being read.
+4. At this point, the cartridge interface is setup with KEY2. The second test consists of retrieving the chip ID again at random times (the seed depends on the internal clock). If the value of chip ID matches the first chip ID stored, the **second test passes**.
+5. Finally, the rest of the Secure area is fetched in random order and re-constructed in RAM. After this, the firmware is executed.
 
-If everything went well, the firmware will find the required executable of the card in RAM, allowing the user to boot up the game. Otherwise, the game selector will be shown greyed out.
+If everything goes well, the firmware will find the required executable of the card in RAM, allowing the user to boot up the game. Otherwise, the game selector will be shown greyed out.
 
 #### Download Play protection {.tab}
 
@@ -565,7 +569,7 @@ Thus, a new generation of Slot-2 flashcarts appeared on the market. They embed A
 - Using **WifiMe**: Requires a PC with a compatible Wi-Fi card. With the use of a modified driver, it's possible to broadcast a customised program that the DS can download through the use of Download Play [@anti_piracy-wifime]. Once booted up, it would redirect execution to Slot-2. This exploited the fact the firmware didn't check the RSA signatures of particular areas of the binary.
 - Using **FlashMe**: A permanent solution. By chaining a previous method and bridging the `SL1` terminal, it was possible to run a homebrew program that could write over the firmware to boot from Slot-2 if a flash cartridge was present. This hack also removed the digital signature check to boot homebrew from Download Play as well.
 
-As expected, Nintendo produced DS revisions that included an updated firmware which patched these tricks. So hackers tried to find other methods that focused on more BIOS exploitation (which is difficult to patch).
+As expected, Nintendo produced DS revisions that included an updated firmware that patched these tricks. So hackers tried to find other methods that focused on more BIOS exploitation (which is difficult to patch).
 
 #### Native Slot-1 {.tab}
 
@@ -575,17 +579,17 @@ Anyway, these led to a massive influx of **plug-and-play Slot-1 flashcards** whi
 
 Since the encryption system couldn't be altered without making breaking changes that affect all existing retail games, Nintendo ultimately lost this battle. The only thing left was to pursue the legal route, just like they did with their previous console.
 
-`r close_tabs()`
+#### Observations {.tabs-close}
 
 This is my personal opinion, but it's really striking how simple are flashcards compared to other homebrew methods from previous consoles. In older articles, I've described that if users ultimately wanted to run homebrew programs or pirated games, they would have to get down in the rabbit hole and follow some sort of complicated method.
 
 In the case of the DS, flashcards were literally sold just like retail games, and I bet it was truly concerning for game studios to see how painless was to resort to piracy.
 
-Another thing, it's also surprising the amount of branded flashcards (ignoring all knock-offs) that appeared on the market. If you look at it from a technical perspective, flashcards are just SD adapters [@anti_piracy-acekard]. The only thing that differentiates one card from another is the boot code and SD reader. Some manufacturers also took more effort to design a better file browser (referred to as kernel/firmware) and include some additional hardware.
+Another thing, it's also surprising the amount of branded flashcards (aside from all knock-offs) that appeared on the market. If you look at it from a technical perspective, flashcards are just SD adapters [@anti_piracy-acekard]. The only thing that differentiates one card from another is the boot code and SD reader. Some manufacturers also took more effort to design a better file browser (referred to as kernel/firmware) and include some additional hardware.
 
 ## That's all folks
 
-![My _current_ DS used for this study.<br>I actually sold my first one long time ago... I wonder where it's now.](myds.jpg)
+![My _current_ DS used for this study.<br>I actually sold my first one a long time ago... I wonder where it's now.](myds.jpg)
 
 Alrighty! I think I covered 99% of what I wanted to talk about...
 

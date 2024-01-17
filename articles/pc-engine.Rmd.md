@@ -40,9 +40,7 @@ Just like the Master system, NEC shipped a lot of revisions and strange variatio
 
 This article will focus on the PC Engine/TurboGrafx-16, but will also discuss the expansions that led to the release of the PC Engine Duo/TurboDuo.
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## CPU
 
@@ -173,7 +171,7 @@ The Video encoder outputs RGB (along with Sync) and YPbPr, this is ideal for use
 
 On the bright side, the Expansion Port contains pins that carry RGB video and multiple sync types, but they will need an external accessory to be able to advantage of them.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ## Audio
 
@@ -188,7 +186,7 @@ There are **six audio channels** in this system [@audio-manual], each one is set
 - **Frequency control**: Two 8-bit registers alter the frequency of the channel to produce different musical notes with the same waveform.
 - **Amplitude level**: A single 8-bit register stores two 4-bits values that specify how loud the channel will sound. The two values correspond to the 'Left' and 'Right' **panning control**, a pioneering feature compared to what the competition offered.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Extra functions
 
@@ -218,7 +216,7 @@ This is greatly attributed to the inclusion of the **Expansion Port** on the bac
 - **CPU control lines**: Reads the HuCard and CD detection flag, speed mode used and also has access to interrupt lines.
 - **Analogue video out**: Including RGB + Vertical Sync and Horizontal Sync + Composite sync.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 I'm curious to know to which extent NEC or Hudson envisioned this console, were they trying to build some sort of 'modular console' that could be upgraded to step into the next generation?  
 
@@ -247,7 +245,7 @@ Curiously enough, they are very similar to the [Sega Card](master-system#medium)
 - The CPU memory map can access up to **1 MB of HuCard memory without a mapper**, hence the majority of games stuck to 1 MB ROMs. Meanwhile, games like 'Street Fighter II' resided in a 2.5 MB ROM! [@games-secrets]
 - There's an **Audio In** pin which seems to allow the card to feed the console an extra audio channel. 
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### CD-ROM Expansion
 
@@ -261,7 +259,7 @@ That expansion port opened the door to such a massive amount of accessories and 
 
 Let's take a look at the **CD-ROM²** expansion, which consists of a CD-ROM reader and a special HuCard called **System Card**, the latter acts as a **BIOS** to bootstrap the game and provide some routines to interface the reader. Internally, the reader included **64 KB of RAM** for general purpose, another **64 KB of RAM** to stream ADPCM samples and finally, **2 KB** for save data. As you can guess, this enabled game developers to take the advantage of extra storage and CD audio, while giving publishers the economic relief to distribute their games in a non-proprietary medium.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Years later, NEC released another CD module called **Super CD-ROM²** and while the reader's hardware remained mostly the same, its general-purpose RAM was incremented to 256 KB. Customers that already owned a CD-ROM² unit were able to 'update it' by purchasing the **Super System Card**, which included the extra RAM (and one more I/O routine!). On top of all that, NEC later shipped new BIOS updates called **Arcade Card**, which in this case contained **2 MB of RAM**.
 

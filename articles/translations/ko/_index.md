@@ -16,10 +16,10 @@ cascade:
   seo_type: TechArticle
 #Historical
 aliases:
-  - /projects/consoles
+  - ../projects/consoles
 ---
 
-{{< linked_img src="banner.png" alt="콘솔 아키텍처" noLink="true" no_lazyload="true" >}}
+{{< linked_img src="banner.png" alt="콘솔 아키텍처" no_link="true" no_lazyload="true" >}}
 
 비디오 게임 콘솔의 진화는 매우 흥미로운 이야기 입니다. 기존의 PC는 '점증적으로' 진화하는 경향이 있는 반면, 새로운 세대의 콘솔은 완전히 새로운 방식을 도입하기 때문입니다. 이 시리즈에선 최신 기술 동향 뒤에 감춰진 것들을 볼 수 있습니다. 또, 왜 콘솔 시스템의 성능을 'bits', 'Hhz', RAM의 크기로 요약할 수 없는지 알게 될것입니다.
 
@@ -27,6 +27,6 @@ aliases:
 
 컴퓨팅에 대한 기본 지식이 있는 것이 좋겠지만, 독자들에게 쉽게 설명하기 위해 정말 애쓰며 글을 작성했습니다. 그러니 읽어보는 걸 두려워하지 마세요! 그래도 이해가 안되신다면, [참고 문헌]({{< ref "readings" >}})을 보시는 게 좋을 겁니다.
 
-글을 보시다가 만약 여러분이 오류나 실수를 발견하신다면, {{< email "이메일로 알려주세요" >}} 아니면 {{< consoles/repo_link "수정 제안" >}} 도 괜찮고요.
+가능한 정확한 정보를 전달드리려고 합니다만 글을 보시다가 오류를 발견하신다면, {{< email "이메일로 알려주세요" >}} 아니면 {{< consoles/repo_link "수정 제안" >}} 도 괜찮습니다. 이북 리더기를 사용하신다면 [eBook edition]({{< ref "ebook" >}})을 이용해주세요.
 
 이제 본론으로 갑시다!

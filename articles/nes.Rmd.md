@@ -31,9 +31,7 @@ At first glance, the NES appears to be just another 6502 computer, with a sophis
 
 And while this is *technically* true, let me show you why the CPU is not the *central* part of this system.
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## Models and variants
 
@@ -165,7 +163,7 @@ Behind the scenes, the frame that the PPU outputs is composed of two different l
 
 #### Tiles {.tabs .active}
 
-::: {.subfigures .tabs-nested .tab-float .pixel .desktop-margined}
+::: {.subfigures .tabs-nested .tab-float .pixel .desktop-margined max_subfigures=1}
 
 ![Two pattern tables with multiple tiles squashed together.](ppu_mario/chr_map.png){.active title="All"}
 
@@ -187,7 +185,7 @@ I will now explain how each layer/table works and how do they differ in terms of
 
 #### Background Layer {.tab}
 
-::: {.subfigures .tabs-nested .tab-float .pixel}
+::: {.subfigures .tabs-nested .tab-float .pixel max_subfigures=1}
 
 ![Allocated background map.](ppu_mario/nametable.png){.active title="Overall"}
 
@@ -261,11 +259,17 @@ As an interesting *fix*: the PPU allowed developers to apply a vertical mask on 
 
 #### Tile-Swapping {.tab}
 
-![Hypothetical if it were rendered using tiles available during the first scan lines.](secrets/multiplexing_1.png){.tabs-nested .tab-float .pixel .active title="Scan 1"}
+::: {.subfigures .tabs-nested .tab-float max_subfigures=1}
 
-![Hypothetical if it were rendered using tiles available during the later scan lines.](secrets/multiplexing_2.png){.tab-nested .pixel title="Scan 2"}
+![Early scan lines.](secrets/multiplexing_1.png){.pixel .active title="Early"}
 
-![Actual frame displayed to the user.](secrets/multiplexing_complete.png){.tabs-nested-last .pixel title="Displayed"}
+![Late scan lines.](secrets/multiplexing_2.png){.pixel title="Late"}
+
+![Actual frame displayed to the user.](secrets/multiplexing_complete.png){.pixel title="Displayed"}
+
+Hypothetical frames rendered using tiles available during specific scan lines.
+
+:::
 
 Another speciality of Super Mario Bros. 3 is the amount of graphics it could display.
 
@@ -509,7 +513,7 @@ Since the floppy is a single medium (as opposed to the multi-chip cartridges), a
 
 Nonetheless, the Famicom/NES strictly requires segregated Program and Character memory to function, so that's the job of the 'RAM adapter' to sort out. This component houses **32 KB of Program RAM** and **8 KB of Character RAM** to buffer the game data read from the floppy disc, and in doing so, it enables the console to read from it as if it were a cartridge-based game.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 To operate the drive, the RAM adapter embeds an additional 8 KB ROM to store a **BIOS** [@games-fds_bios]. This program performs the following tasks:
 

@@ -16,10 +16,10 @@ cascade:
   seo_type: TechArticle
 #Historical
 aliases:
-  - /projects/consoles
+  - ../projects/consoles
 ---
 
-{{< linked_img src="banner.png" alt="Architektur von Konsolen" noLink="true" no_lazyload="true" >}}
+{{< linked_img src="banner.png" alt="Architektur von Konsolen" no_link="true" no_lazyload="true" >}}
 
 Der Blick auf die Entwicklung von Videospielkonsolen ist faszinierend. Während sich herkömmliche PCs tendenziell "inkrementell" entwickeln, führt jede neue Generation von Konsolen völlig neue Arbeitsweisen ein. Was Sie hier sehen, ist eine Reihe von Artikeln, die hoffentlich die Gründe für die neuesten Technologietrends aufdecken und auch aufzeigen, Warum sich nicht jedes System nach seinen "Bits", Megahertz, der Menge an RAM und so weiter zusammenfassen lässt.
 
@@ -27,6 +27,6 @@ Dies ist kein Entwicklerhandbuch, sondern bietet im Wesentlichen eine ausführli
 
 Grundkenntnisse in der Informatik sind von Vorteil, aber ich bemühe mich wirklich sehr, meinen Inhalt für ein breiteres Publikum zu schreiben, also scheuen Sie sich bitte nicht, es zu versuchen! Aber wenn das nicht genug ist, solltest du dir die [Unterstützende Lesungen]({{< ref "readings" >}}) ansehen.
 
-Ich versuche, so genau wie möglich zu sein, sollten Sie dennoch Fehler finden, bitte {{< email "benachrichtigen Sie mich" >}} oder {{< consoles/repo_link "Änderungen vorschlagen wollen" >}}.
+Ich versuche, so genau wie möglich zu sein, sollten Sie dennoch Fehler finden, bitte {{< email "benachrichtigen Sie mich" >}} oder {{< consoles/repo_link "Änderungen vorschlagen wollen" >}}. Wenn Sie es vorziehen, auf einem E-Reader zu lesen, schauen Sie sich die [eBook-Edition]({{< ref "ebook" >}}) an.
 
 Kurzerhand, hier sind sie!

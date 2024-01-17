@@ -16,10 +16,10 @@ cascade:
   seo_type: TechArticle
 #Historical
 aliases:
-  - /projects/consoles
+  - ../projects/consoles
 ---
 
-{{< linked_img src="banner.png" alt="Architektura Konsol" noLink="true" no_lazyload="true" >}}
+{{< linked_img src="banner.png" alt="Architektura Konsol" no_link="true" no_lazyload="true" >}}
 
 Patrzenie na ewolucję konsol do gier wideo jest fascynujące. Podczas gdy konwencjonalne komputery mają tendencję do stopniowej ewolucji, nowe generacje konsol wprowadzają zupełnie nowe sposoby pracy. To, co widzisz tutaj, to seria artykułów, które, miejmy nadzieję, odkryją uzasadnienie najnowszych trendów w technologii. Pokażą również, dlaczego nie można podsumować każdego systemu według jego „bitów”, megaherców, ilości pamięci RAM i tak dalej.
 
@@ -27,6 +27,6 @@ To nie jest podręcznik programisty, tylko *dogłębne* wprowadzenie do tego, ja
 
 Podstawowa wiedza na temat komputerów jest przydatna, jednak bardzo staram się dostosować moje treści do szerszej publiczności, więc proszę, nie bój się spróbować! Ale jeśli to nie wystarczy, możesz chcieć spojrzeć na [dodatkowe materiały]({{< ref "readings" >}}).
 
-Chociaż staram się być jak najdokładniejszy, jeśli znajdziesz jakieś błędy, proszę, {{< email "daj mi znać " >}} lub {{< consoles/repo_link "zaproponuj zmiany" >}}.
+Chociaż staram się być jak najdokładniejszy, jeśli znajdziesz jakieś błędy, proszę, {{< email "daj mi znać " >}} lub {{< consoles/repo_link "zaproponuj zmiany" >}}. Wreszcie, jeśli wolisz czytać za pomocą czytnika eBook, sprawdź [edycję eBook'ową]({{< ref "ebook" >}}).
 
 Bez dalszych ceregieli, oto one!

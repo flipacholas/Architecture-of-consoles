@@ -35,9 +35,7 @@ This write-up takes a deep look at Sony, IBM, Toshiba and Nvidia's joint project
 
 I'm afraid this article is not the typical 'lunchtime' one that I usually write for other consoles in [this series](consoles). If you are interested in every area of the PlayStation 3, you are in for the whole journey! Having said that, this writing encompasses ~6 years of research and development carried out by countless engineers, so I don't expect you to digest it all at once. Please take your time (and breaks if needed) and if at the end you are hungry for more, help yourself at the 'Sources' section!
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## CPU
 
@@ -203,7 +201,7 @@ Furthermore, the LSU is coupled with **Memory Management Unit** (MMU), which is 
 
 ![Simplified diagram of the units that perform arithmetic.](cpu/ppu/vsu_fxu.png){.tab-float}
 
-There're only two more units of the PPU left two explain, the ones computing the math any game will need.
+There're only two more units of the PPU left to explain, the ones computing the math any game will need.
 
 The first one is a traditional **Fixed-Point Integer Unit** (FXU). It carries out integer arithmetic, such as division, multiplication, bit rotation (similar to bit shifting but discarded bits are returned to the other end) and count-leading zero (useful for normalising vertex coordinates, for instance). Its pipeline is 11-stages long. 
 
@@ -229,7 +227,7 @@ First of all, the type of memory fitted is called **Extreme Data Rate** (XDR). Y
 
 Rambus, like any other company, improves upon their inventions. Their third revision (XDR) now operates at octa-rate (four times the rate of its adversary, DDR DRAM) [@cpu-xdr]. Latency doesn't pose an issue anymore, if we take a look at one of its manufacturers' data-sheets, XDR's latency is reported between 28 ns and 36 ns [@cpu-k4y5016, p. 2], almost [10 times faster](nintendo-64#memory-design) than the first-generation RDRAM chips.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 The first revision of the PlayStation 3's motherboard contains four 64 MB chips, handled in pairs. XDR is connected to Cell using two 32-bit buses, one on each pair. So, whenever the PPU writes a word (64-bit data), it's split between two XDR chips. The latter are clocked at at 400 MHz [@cpu-ram].
 
@@ -301,7 +299,7 @@ First of all, you'll find the **SPU load/store unit** (SLS) does three essential
 - Executes load and store instructions.
 - Forwards instructions to another block for issuing.
 
-Notice that there are **only 256 KB available to store the program**. Considering SPU programs can be compiled using C/C++, it's not easy to predict how large the program will be. For this reason, it is recommended that the programmes assume there's only half the memory available (128 KB) [@cpu-hpc, p. 4], which leaves enough window for the compiled code to take up as much space as it needs, although this comes at the cost of storage and efficiency.
+Notice that there are **only 256 KB available to store the program**. Considering SPU programs can be compiled using C/C++, it's not easy to predict how large the binary will be. For this reason, it is recommended that developers assume there's only half the memory available (128 KB) [@cpu-hpc, p. 4], which leaves enough window for the compiled code to take up as much space as it needs, although this comes at the cost of storage and efficiency.
 
 Finally, there's also a **SPU Channel and DMA Transport** (SSC) unit, which the Memory Flow controller uses to fill and/or fetch local memory, and a _puny_ **Fixed-Point Unit** that only does shuffling and vector rotation.
 
@@ -385,7 +383,7 @@ The RSX inherits existing Nvidia technology, it's reported to be based on the 78
 
 In my [previous Xbox analysis](xbox#graphics), I talked about the GeForce3 and their debuting pixel shaders, so what has changed since then? There have some been ups and downs, but mostly incremental changes, so nothing too groundbreaking compared to GeForce3's pixel shaders.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 On the other side, while the 7800 GTX relies on the PCI Express protocol to communicate with the CPU, the RSX has been remodelled to work with a proprietary protocol called **Flex I/O** [@graphics-gschwind], a distinct interface within Cell designed to connect to neighbouring chips. Flex I/O operates in two modes:
 
@@ -497,7 +495,7 @@ The HDMI connector is made of 19 pins [@graphics-hdmi_wiki], all in a single soc
 
 To this day, the HDMI protocol is continuously being revised [@graphics-hdmi_spec], with new versions of the specification offering more features (i.e. larger image resolution, refresh rate, alternative colour spaces, etc) while retaining the same physical medium for backwards compatibility.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Throughout the PS3 lifecycle, Sony added certain HDMI features of new revisions into the PS3 through software updates [@graphics-hdmi_dev]. The last protocol compatible with the PS3 is version 1.4, most notably bringing support for '3D television', though other capabilities such as higher video resolutions stayed capped at **1920x1080 pixels** (and even so most games rendered their frame-buffer at 1280x720 pixels).
 
@@ -547,7 +545,7 @@ In the case of user-accessible ports, the Southbridge is connected to:
 - **1000/100/10 (Gigabit) Ethernet Controller**: in the form of an RJ45 socket on the back, but it also forks to a Wireless daughterboard, providing **Wi-Fi 802.11b/g** and **Bluetooth 2.0** connection.
 - A **Multi-card reader**: provides slots for [Memory Stick](playstation-portable#tab-5-2-memory-stick-duo), SD, MultiMediaCard (MMC), Microdrive and Compact Flash.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 #### 'Less wire' equipment
 
@@ -765,7 +763,7 @@ Thanks to OtherOS, experienced users had the opportunity to develop homebrew app
 
 On the other side, while OtherOS' privileges may surpass GameOS' (at the kernel level), **they don't overtake the hypervisor**, which still resides in memory. So, any hardware access from OtherOS still depends on the will of Sony's hypervisor, and it so happens that the latter **blocks access to RSX's command buffers** (preventing the use of the shader units, among other components used for accelerating graphics operations). Consequently, resulting Linux distribution resort to software rendering (all graphics are drawn by Cell) and then stream the frame-buffer to the RSX for display. While it's disappointing that OtherOS can't make use of the full capabilities of this console, this was probably done to reduce attack surfaces. Ironically, OtherOS' use of Cell is similar to how IBM/Toshiba/Sony may have originally envisioned the PS3!
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Sharing the same fate of Folding&#64;home, OtherOS was eventually removed in a subsequent update, but due to different causes (mainly related to security). Shortly afterwards, OtherOS was _unofficially_ restored thanks to software exploits and reverse engineering efforts. At the moment, OtherOS is available if the user installs a _custom firmware_. I explain this further in the 'Anti-piracy and homebrew' section.
 
@@ -845,8 +843,6 @@ Apart from the online store, there were many more online solutions added to the 
 
 PlayStation Network enabled users to create a personal account and assign an avatar, then use that new digital persona to do multiplayer gaming, message and other social interactions. Users can also earn **trophies** if they complete a certain event in a game, and these then show up in the online profile (as in some form of medal of honour) to intimidate rivals and gain the respect of friends, I think.
 
-(ref:trophiestitle) Trophies
-
 ![Games offer an achievement catalogue to challenge their users. The intent is to provide players with a sense of pride and accomplishment.](xmb/trophies.jpg){.tabs-nested .active title="Trophies"}
 
 ![Friends list. (Names are redacted for obvious reasons).](xmb/friends.jpg){.tab-nested title="Friends"}
@@ -914,7 +910,7 @@ This product was subsequently reversed-engineered by other communities and short
 Before I finally talk about the grand prize of the PS3 homebrew scene, let me describe to you a couple of methods that were developed around the same time:
 
 - The **USB Jig**: another USB stick, this time programmed to trick the console into entering **Factory Service Mode**, which is only intended for servicing the console by authorised personnel. The program embedded in the Jig replicates what Sony provides to their engineers. The main advantage of service mode is to enable to [downgrade](playstation-portable#tab-8-2-downgrading) the console to a PSJailbreak-compatible version. The payload was also available in the form of a Homebrew app for the PSP [@anti_piracy-pspjig]. Sony responded by patching service mode to make it harder to restore it to 'normal' mode or alter the firmware from it, discouraging users from resorting to Service mode.
-- The **Optical Disc Emulator** (ODE): a series of hardware products that different companies (Cobra, E3, etc) shipped. Instead of tampering with the console's firmware, these tampered with the Blu-ray's SATA/PATA interface. ODEs are boards that sit between the motherboard the Blu-ray drive, thereby acting as a middleman that tricks the console into thinking it contains a valid disc game, but it's instead loading a disc image from an external USB drive. These devices were quite pricey when they came out, however. The hacking history of the PS3 contains long gaps of 'unhackable periods' where there was no software exploit available for new consoles, so ODEs were able to fill that gap.
+- The **Optical Disc Emulator** (ODE): a series of hardware products that different companies (Cobra, E3, etc) shipped. Instead of tampering with the console's firmware, these tampered with the Blu-ray's SATA/PATA interface. ODEs are boards that sit between the motherboard and the Blu-ray drive, thereby acting as a middleman that tricks the console into thinking it contains a valid disc game, but it's instead loading a disc image from an external USB drive. The hacking history of the PS3 contains long gaps of 'unhackable periods' where there was no software exploit available for new consoles. So, at a hefty price tag, ODEs came to fill that gap.
 - The **Downgrader**: as Sony kept mitigating exploits with more software updates, users were left with no viable options but to downgrade to an exploitable firmware. Thus, there were companies like E3 that shipped specialised equipment that could overwrite the console's system the 'hard way'. That is, by directly flashing the NAND or NOR chips. For obvious reasons, this method required more skill and patience compared to the USB-based ones.
 - **Isolated leaks**: this one is for research purposes, as opposed to a 'feature' the user will see (but imperative for further developments, nonetheless). Anyway, the revocation data (used to blacklist compromised certificates) is parsed by `lv2ldr`, so far so good? Well, it was discovered that this process contained many vulnerabilities. Firstly and for some unexplained reason, **revocation data is writable in userland**. Secondly, **the parser doesn't perform bounds checking** on the data fetched ([_here we go again_](playstation-2#tab-8-4-ps1-overflow)). Therefore, hackers managed to craft custom revocation data that could produce a buffer overflow and ultimately enable them to run **arbitrary code inside the SPU's isolated mode**. This allowed them to get access to confidential data (i.e. keys) that was presumably protected from the rest of the system [@operating_system-psxplace].
 
@@ -960,13 +956,13 @@ From the **software side**, Sony shipped two system updates that enhanced the se
 
 From the **hardware side**, not only subsequent PS3 models (late CECH-25xxx, CECH-3xxx and CECH-4xxx) came pre-installed with a system version higher than `3.55`, but they also contain a different variant of  `bootldr`/`lv0ldr` (called `lv0ldr.1`) that not only decrypts and loads `lv0` but it also fetches a new system file called `lv0.2`. The latter contains metadata about `lv0` [@anti_piracy-lv0ldr] to ensure that `lv0` hasn't been tampered with. `lv0.2` is signed with a new key (also invulnerable to the previous ECDSA discovery), thus, preventing hackers from taking control of the boot chain.
 
-To this day, **these models are not able to run a CFW**, thus nicknamed _unhackables_. Though they can run a 'Hybrid Firmware' (HFW) and we'll discuss more about it later on.
+To this day, **these models are not able to run a CFW**, therefore nicknamed _unhackables_. Though they can run a 'Hybrid Firmware' (HFW) and we'll discuss more about it later on.
 
-As time went by, the number of CFW-compatible consoles only decreased, thus, PS3s that weren't updated past 3.55 became some sort of _relics_. In the meantime, there was a surge in demand for alternatives, like downgraders (to revert to system version `3.55` on old models) and ODEs (to play pirated games on new models).
+As time went by, the number of CFW-compatible consoles only decreased. Hence, PS3s that weren't updated past 3.55 became some sort of _relics_. In the meantime, there was a surge in demand for alternatives, like downgraders (to revert to system version `3.55` on old models) and ODEs (to play pirated games on new models).
 
 #### Homebrew revival
 
-After a long waiting period for users that missed the window to install a CFW, in late 2017, a team of hackers released **PS3Xploit**, a collection of exploits and utilities [@anti_piracy-ps3xploit] that brought back the ability to install CFW on old models without needing an expensive downgrader (and skills to operate it).
+After a long waiting period for users that missed the window to install a CFW, in late 2017, a team of hackers released **PS3Xploit**, a collection of exploits and utilities [@anti_piracy-ps3xploit] that brought back the ability to install a CFW on old models without needing an expensive downgrader (and skills to operate it).
 
 PS3Xploit's main payload replicates the job of a hardware downgrader (patching CoreOS files) entirely by software, it works as follows:
 

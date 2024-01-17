@@ -30,13 +30,13 @@ supporting_imagery()
 
 ## İşlemci (CPU)
 
-Nintendo, anakarta birçok hazır yonga yerleştirmek yerine, CPU dahil bileşenlerin çoğunu barındırmak (ve gizlemek) için tek bir yongayı seçti. Bu tür çiplere 'Çip Üzerinde Sistem' (SoC) adı verilir ve GameBoy'da bulunan çip **DMG-CPU** veya **Sharp LR35902** [@cpu-realboy] olarak adlandırılır.
+Nintendo, anakarta birçok hazır yonga yerleştirmek yerine, CPU dahil bileşenlerin çoğunu barındırmak (ve gizlemek) için tek bir yongayı seçti. Bu tür çiplere 'Çip Üzerinde Sistem' (SoC) adı verilir ve Game Boy'da bulunan çip **DMG-CPU** veya **Sharp LR35902** [@cpu-realboy] olarak adlandırılır.
 
 Bunu söylediğimize göre, ana işlemci **Sharp SM83**dür [@cpu-gekkio] ve Z80 ile Intel 8080'in birleşiminden ortaya çıkmıştır. **Yaklaşık 4.19MHz** hızında çalışır.
 
 Z80'in kendisi 8080'in bir üst kümesidir, peki SM83'ün aslında bu ikisinden farkları nelerdir? [@cpu-steil]
 
-- Ne Z80'in `IX` ve `IY` kayıtları ne de 8080'in `IN` veya `OUT` komutları dahil edilmiştir: Bu, [I/O portlarının](master-system#accessing-the-rest-of-the-components) mevcut olmadığı anlamına gelir. Bunun sadece maliyetleri düşürmek için bir önlem olup olmadığından emin değilim, ancak kesin olan bir şey var ki bileşenlerin **tamamen bellek eşlemeli** olması gerekecek [@cpu-fayzullin].
+- Ne Z80'in `IX` veya `IY` kayıtları ne de 8080'in `IN` veya `OUT` komutları dahil edilmiştir: Bu, [I/O portlarının](master-system#accessing-the-rest-of-the-components) mevcut olmadığı anlamına gelir. Bunun sadece maliyetleri düşürmek için bir önlem olup olmadığından emin değilim, ancak kesin olan bir şey var ki bileşenlerin **tamamen bellek eşlemeli** olması gerekecek [@cpu-fayzullin].
 - Yalnızca 8080'in komut kümesi uygulanmıştır.
 - Z80'in genişletilmiş komut setini içerir. Bununla birlikte, sadece bit manipülasyon talimatları bulunur.
 
@@ -59,9 +59,9 @@ SM83, 8 bitlik bir veri yolu ve 16 bitlik bir adres yolu bulundurur, böylece 64
 
 Tüm grafik hesaplamaları CPU tarafından yapılıyor, daha sonra **Resim İşleme Ünitesi** veya 'PPU' ekrana gönderiyor. Bu, DMG-CPU içinde bulunan başka bir bileşendir ve aslında [önceki PPU](nes#graphics)'ya dayanmaktadır.
 
-Resim entegre bir LCD ekranda görüntülenir, **160×144 piksel** çözünürlüğe sahiptir ve **4 gri tonu** (beyaz, açık gri, koyu gri ve siyah) gösterir. Ancak orijinal Gameboy yeşil bir LCD'ye sahip olduğundan, grafikler *yeşilimsi* görünecektir.
+Resim entegre bir LCD ekranda görüntülenir, **160×144 piksel** çözünürlüğe sahiptir ve **4 gri tonu** (beyaz, açık gri, koyu gri ve siyah) gösterir. Ancak orijinal Game Boy yeşil bir LCD'ye sahip olduğundan, grafikler *yeşilimsi* görünecektir.
 
-NES makalesini daha önce okuduysanız, PPU'nun CRT ışınını takip edecek şekilde tasarlandığını hatırlayabilirsiniz. Ancak (ve bariz nedenlerden dolayı), Gameboy'da bir LCD ekranımız var. LCD'lerin de yenilenmesi gerektiğinden, yeni PPU bu kısmı değiştirmiyor. Hatta bu davranış sayesinde elde edilen bazı özel efektler Gameboy'da da desteklenebilir.
+NES makalesini daha önce okuduysanız, PPU'nun CRT ışınını takip edecek şekilde tasarlandığını hatırlayabilirsiniz. Ancak (ve bariz nedenlerden dolayı), Game Boy'da bir LCD ekranımız var. LCD'lerin de yenilenmesi gerektiğinden, yeni PPU bu kısmı değiştirmiyor. Hatta bu davranış sayesinde elde edilen bazı özel efektler Game Boy'da da desteklenebilir.
 
 ### İçeriğin düzenlenmesi
 
@@ -255,11 +255,11 @@ Kartuşlar, oyun kayıtlarını tutmak için SRAM, saat ve harici bir pil içere
 
 Bu konsol, kartuşun ROM'unu önyüklemek için kullanılan CPU'ya yerleştirilmiş bir **256 Bayt ROM** içerir. Ancak oyunu hemen çalıştırmaz, önce **yetkisiz kartuşların çalıştırılmasını önleyen** ve ayrıca kartuşun **doğru takıldığından emin olan** bir dizi kontrol gerçekleştirir.
 
-Bu kontrollerden geçebilmek için, oyunların ROM başlığına Nintendo'nun logosunun bir kopyasını (kutucuklar şeklinde) eklemesi gerekiyordu [@gamesdhole], bu şekilde Nintendo dağıtımı kontrol etmek için **Telif Hakkı ve Ticari Marka** yasalarından yararlanabilirdi, *Zekice değil mi?*. Gameboy ROM'u aynı zamanda karşılaştırma yapabilmek için logonun bir kopyasını da içermektedir.
+Bu kontrollerden geçebilmek için, oyunların ROM başlığına Nintendo'nun logosunun bir kopyasını (kutucuklar şeklinde) eklemesi gerekiyordu [@gamesdhole], bu şekilde Nintendo dağıtımı kontrol etmek için **Telif Hakkı ve Ticari Marka** yasalarından yararlanabilirdi, *Zekice değil mi?*. Game Boy ROM'u aynı zamanda karşılaştırma yapabilmek için logonun bir kopyasını da içermektedir.
 
 Bununla birlikte, önyükleme işlemi aşağıdaki gibidir [@anti_piracy-boot]:
 
-1. Konsol açıldıktan sonra, CPU **0x00** adresinden (Gameboy'un ROM konumu) okumaya başlar.
+1. Konsol açıldıktan sonra, CPU **0x00** adresinden (Game Boy'un ROM konumu) okumaya başlar.
 2. RAM ve Ses başlatılır.
 3. Nintendo logosu kartuş ROM'undan Display RAM'e kopyalanır ve ardından ekranın üst kenarına çizilir. Kartuş takılı değilse, logo çöp kutucukları içerecektir. Kötü yerleştirilmişse aynı şey olabilir.
 4. Logo aşağı kaydırılır ve ünlü *po-ling* sesi çalınır.

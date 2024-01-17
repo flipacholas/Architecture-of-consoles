@@ -1,0 +1,275 @@
+[author_footer_first]
+other = 'Espero que vos gustara este artigo! Se queres saber máis sobre o autor <a href="{{ . }}">preme aquí</a>'
+
+[author_footer_second]
+other = 'e se queres apoialo <a href="{{ . }}">preme aquí</a>'
+
+[languages_available]
+other = "Idiomas dispoñibles: "
+
+[help_translations]
+other = "Axuda coas traducións"
+
+[add_translation]
+other = "Engadir tradución"
+
+[report_mistakes]
+other = "Informar de erros ou propoñer cambios"
+
+[supporting_readings]
+other = "Consulta as lecturas complementarias"
+
+[tablet_mode_button]
+other = "Ocultar pestanas / Modo tableta"
+
+[desktop_mode_button]
+other = "Mostrar pestanas / Modo escritorio"
+
+[next]
+other = "Seguinte"
+
+[previous]
+other = "Anterior"
+
+[table-of-contents]
+other = "Táboa de contidos"
+
+[show]
+other = "Amosar"
+
+[hide]
+other = "Agochar"
+
+[translations]
+other = "Traducións"
+
+[related]
+other = "Máis en '{{ . }}' &raquo;"
+
+[ebook_edition_title]
+other = "Obtén as edicións en eBook"
+
+[ebook_edition_content]
+other = 'Agora podes ler a serie <a href="{{ .consoles }}">Arquitectura de consolas</a> tamén nos lectores de libros electrónicos. <a href="{{ .ebooks }}">Consulta aquí</a>.'
+
+[home]
+other = "Inicio"
+
+[nav_writings]
+other = "Escritos"
+
+[nav_console]
+other = "Consolas"
+
+[nav_blog]
+other = "Blog"
+
+[about]
+other = "Acerca de"
+
+[about_website_long]
+other = "Acerca do sitio web e o seu contido"
+
+[support]
+other = "Soporte"
+
+[about_author]
+other = "Acerca do autor"
+
+[about_website]
+other = "Acerca da páxina web"
+
+[switch_modern]
+other = "Cambia á edición moderna"
+
+[switch_classic]
+other = "Cambia á edición clásica"
+
+[ebook_edition]
+other = "Edición eBook"
+
+[about_edition]
+other = "Acerca desta edición"
+
+[last_updated]
+other = "Última actualización: {{ . }}"
+
+[classic_edition]
+other = "Edición clásica"
+
+[classic_intro]
+other = 'A edición "clásica" é unha versión alternativa á <a href="{{ .modern }}">homóloga "moderna"</a>. Non require Javascript, CSS de última xeración ou complexo HTML para funcionar, o que o fai ideal para lectores que usan ferramentas de accesibilidade ou navegadores de Internet herdados. Por outra banda, os usuarios de libros electrónicos agora poden consultar a <a href="{{ .ebook }}">Edición eBook</a>.'
+
+[classic_description]
+other = 'Esta edición é idéntica en canto ao contido. Non obstante, simplificáronse os widgets interactivos para que funcionen con HTML puro, aínda que ofrecerán unha ligazón ao artigo orixinal no caso de que o lector queira probar a "versión completa".'
+
+[general_description]
+other = 'Como sempre, este artigo está dispoñible en <a href="{{ .github }}">Github</a> para que os lectores poidan informar de erros ou propoñer cambios. Tamén hai unha <a href="{{ .readings }}">lista de lecturas complementarias</a> dispoñible para axudar a comprender a serie. O autor tamén acepta <a href="{{ .donations }}">doazóns</a> para axudar a mellorar a calidade dos artigos actuais e dos próximos.'
+
+[subscribe_title]
+other = "Manterse actualizado"
+
+[subscribe_content]
+other = 'Publico actualizacións no meu <a href="{{ . }}">perfil de Twitter</a>, pero tamén podes recibir un correo electrónico cando saia un artigo novo. Podes cancelar a subscrición en calquera momento, eu uso Mailchimp para xestionar isto.'
+
+[generation_title]
+other = "{{ .ordinal }} xeración"
+
+[untranslated_article_title]
+other = "{{.}} (en Inglés)"
+
+[cpu_subtitle]
+other = "Avances notables da CPU:"
+
+[gpu_subtitle]
+other = "Características destacadas da GPU:"
+
+[roadmap_title]
+other = "Planificación"
+
+[roadmap_content]
+other = "Hai moitas consolas sobre as que podería escribir... Se estás a preguntar cal é a seguinte na miña lista, aquí podes consultalo:"
+
+[contribution_content]
+other = "Se atopas interesantes os meus artigos, considera aportar cunha doazón. A túa contribución servirá para financiar a compra de ferramentas e recursos que me axuden a mellorar a calidade dos artigos existentes e dos próximos. Tamén ofrezo unha lista de materiais interesantes para adquirir ao final de cada artigo."
+
+[contribution_footer]
+other = "Como mostra de agradecemento, o teu nome incluirase na sección de créditos do seguinte artigo ou do teu nomeado, a non ser que se indique o contrario."
+
+[contribution_footer_ebook]
+other = 'Tamén podes mercar a <a href="{{ . }}">Edición eBook</a> en inglés. Considero os beneficios como doazóns.'
+
+[contribution_suggestions]
+other = 'Tamén podes axudar <a href="{{ . }}">suxerindo cambios</a> e/ou <a href="{{ . }}">engadindo traducións</a>.'
+
+[print]
+other = "Imprimir artigo (ou gardar en PDF)"
+
+[architecture_consoles]
+other = "Arquitectura de consolas"
+
+[top_model]
+other = "Modelo"
+
+[top_models]
+other = "Modelos"
+
+[motherboard_title]
+other = "Placa base"
+
+[motherboard_note]
+other = "Placa base coas partes importantes etiquetadas"
+
+[diagram_title]
+other = "Diagrama"
+
+[diagram_note]
+other = "Diagrama principal da arquitectura"
+
+[original]
+other = "Orixinal"
+
+[marked]
+other = "Marcado"
+
+[contributing_title]
+other = "Contribuír"
+
+[contributing_content]
+other = 'Este artigo forma parte da serie <a href="{{ . }}">Arquitectura de consolas</a>. Se che parece interesante, considera doar. A túa contribución servirá para financiar a compra de ferramentas e recursos que me axuden a mellorar a calidade dos artigos existentes e dos próximos.'
+
+[contributing_tools]
+other = "Aquí móstrase unha lista de ferramentas desexables e as últimas adquisicións para este artigo:"
+
+[contributing_thanks]
+other = "Moitas grazas ás seguintes persoas pola súa doazón:"
+
+[changelog_title]
+other = "Rexistro de cambios"
+
+[changelog_content]
+other = "Sempre é bo manter un rexistro de cambios."
+
+[supporting_imagery]
+other = "Imaxes de apoio"
+
+[consoles_written_by]
+other = "Unha análise práctica realizada por {{ . }}"
+
+[translated_by]
+other = "Traducido por {{ . }}"
+
+[interactive_model_origin]
+other = 'Modelo interactivo dispoñible na <a href="{{ . }}">edición moderna</a>'
+
+[interactive_player_origin]
+other = 'Reprodutor interactivo dispoñible na <a href="{{ . }}">edición moderna</a>'
+
+[goto_classic]
+other = 'Se usas ferramentas de accesibilidade ou navegadores antigos, <a href="{{ .classic }}">cambia á edición "clásica"</a>.'
+
+[audio_samples]
+other = "Mostras de audio"
+
+[wireframe]
+other = "Estrutura alámbrica"
+
+[surface]
+other = "Superficie"
+
+[textured]
+other = "Texturizado"
+
+[tap_enable_interaction]
+other = "Toca para activar a interacción"
+
+[buffering]
+other = "Almacenamento en búfer..."
+
+[ready_drag_zoom]
+other = "Listo para arrastrar e ampliar!"
+
+[sources]
+other = "Fontes / Segue lendo"
+
+[archived]
+other = "Arquivado"
+
+[general]
+other = "Xeral"
+
+[cpu]
+other = "CPU"
+
+[graphics]
+other = "Gráficos"
+
+[audio]
+other = "Son"
+
+[audio_video]
+other = "Son / Vídeo"
+
+[io]
+other = "I/O"
+
+[operating_system]
+other = "Sistema Operativo"
+
+[games]
+other = "Xogos"
+
+[anti_piracy]
+other = "Anti-Piratería"
+
+[copy_protection]
+other = "Protección de copia"
+
+[photography]
+other = "Fotografía"
+
+[other_media]
+other = "Outros Medios"
+
+[bonus]
+other = "Extras"

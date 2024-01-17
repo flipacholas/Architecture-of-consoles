@@ -38,11 +38,9 @@ Released just one month after the [Nintendo DS](nintendo-ds), Sony's PSP proved 
 
 This article is dedicated to anyone that wants to understand, straight to the point, how the PSP operates. It's not a short write-up, but I hope that at the end of the article you will be able to grasp the building blocks of this console (its design rationale, choice of CPUs, GPU pipeline, security system and so forth).
 
-P.S. If you ever feel fed up with information, don't forget to take a look at the diagrams (the `r img_link(label="main one", src="diagram.png")`) plus the others I made for each section).
+P.S. If you ever feel fed up with information, don't forget to take a look at the diagrams that I made for each section.
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## Main CPU
 
@@ -193,7 +191,7 @@ The local bus is as wide as the System Bus (128 bits), but if that wasn't enough
 
 What about how the CPU and GE communicate with each other? As I said before, both CPU and graphics core can read from eDRAM. Additionally, the graphics core can access the System Bus to fetch data from any other component (including the main RAM). So, all of that just doesn't happen magically.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 In a nutshell, there are two **bus matrix** blocks that re-wire the connection between the local bus and the System Bus. Whenever there's a component that wants to access an 'alien' bus, the bus matrices configure the communication so that one unit becomes master of the two buses and no other overlaps, this persists until the designated unit finishes transferring memory.
 
@@ -318,7 +316,7 @@ Afterwards, pixels will also travel through these optional blocks for further ef
 
 Complex functions like **antialiasing** are the result of a strategic combination of the above. Finally, the outputted pixel is written to the frame-buffer, which in turn is sent for display.
 
-`r close_tabs()`
+#### Observations {.tabs-close}
 
 As evidenced, the PSP inherits various features from the PS2. The difference, however, is that functionality is now hardwired in the silicon, as opposed to offering many general-purpose programmable units (which require manual work to set them up). I presume this was done for two reasons: to use fewer transistors (so it fits in Tachyon and the board remains 'portable') and to facilitate porting PS2 codebases to the new console.
 
@@ -338,7 +336,7 @@ The first model of this console (1000) has a proprietary video port called **rem
 
 The remote port uses the RS-232 protocol [@io-nil], an old standard for transferring data in serial. Though the specification wasn't publicly available to developers (let alone documented), a couple of audio headsets with control buttons appeared on the market. They apparently use the serial port to send commands (play, pause, etc.) to the console.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 In later models (2000 and 3000), the remote port was expanded with an extra YCbCr pinout. Sony shipped three **video cables** (component, S-Video and composite) that rely on this interface to enable users to see the contents of the PSP screen on the TV.
 
@@ -374,20 +372,13 @@ Games don't have access to these modules directly. Instead, they call many libra
 
 Let's put all this into practice by taking a look at how games reproduced their sound. I wrote this special player that allows you to swap between consoles (to enable side-by-side comparisons):
 
-(ref:ndstitle) Nintendo DS
+::: {.subfigures .side-by-side figure="false"}
 
-(ref:psptitle) PSP
+![**Nintendo DS:** Final Fantasy IV (2007).<br>**PSP:** Final Fantasy IV - The Complete Collection (2011).](){audio_switcher="true" src1="overworld_nds" src2="overworld_psp" label1="Nintendo DS" label2="PSP" .toleft}
 
-(ref:ps2title) PlayStation 2
+![**PlayStation 2:** Kingdom Hearts 2 (2005).<br>**PSP:** Kingdom Hearts Birth by Sleep (2010).](){audio_switcher="true" src1="encounter_ps2" src2="encounter_psp" label1="PlayStation 2" label2="PSP" .toright}
 
-(ref:audioffivcaption) **Nintendo DS:** Final Fantasy IV (2007).<br>**PSP:** Final Fantasy IV - The Complete Collection (2011).
-
-(ref:audiokhcaption) **PlayStation 2:** Kingdom Hearts 2 (2005).<br>**PSP:** Kingdom Hearts Birth by Sleep (2010).
-
-```{r side_by_side=TRUE}
-audio_switcher("(ref:audioffivcaption)", class="toleft", src1="overworld_nds", label1="(ref:ndstitle)", src2="overworld_psp", label2="(ref:psptitle)")
-audio_switcher("(ref:audiokhcaption)", class="toleft", src1="encounter_ps2", label1="(ref:ps2title)", src2="encounter_psp", label2="(ref:psptitle)")
-```
+:::
 
 In the first example, the Nintendo DS game sequences its music on the fly, while the PSP one decodes ATRAC3. As you can hear, having no dedicated sound hardware *per se* doesn't imply poor sound quality. In fact, one could argue the opposite, as the Media Engine provided more features than the sound chips of most previous portable consoles ever did.
 
@@ -648,11 +639,9 @@ Inside NAND Flash, IDStorage stores an encrypted key known as the 'master key'. 
 
 By the way, even though SPOCK is found within Tachyon, it's operated by Lepton.
 
-`r close_tabs()`
-
 To sum up, having these routines in hardware allows the system to execute games without consuming general-purpose resources to apply encryption/decryption.
 
-### Software security
+### Software security {.tabs-close}
 
 The operating system will use the hardware provided to compose a security system. Overall, the software is protected using the following principles:
 
@@ -679,9 +668,9 @@ These early blunders helped to build a knowledge base of the inner workings of t
 
 As with any other cat and mouse game, Sony responded with more system updates (which were required by new games) while newer exploits (the so-called 'TIFF', 'GTA' exploit and so forth [@anti_piracy-homebrew]) kept appearing. It's worth mentioning that these were only considered 'Homebrew launchers' as kernel access wasn't obtained yet.
 
-#### Updatable content {.tab}
+#### Downgrading {.tab}
 
-!['Update game' option in XMB.](downgrader.jpg){.tab-float}
+![Chronoswitch downgrader, a modern downgrade tool.](downgrader.jpg){.tab-float}
 
 As soon as Sony gained momentum with strong firmware updates with security patches and attractive features (i.e. a web browser), old versions became some sort of promised land, where advanced users enjoyed the ability to run their Homebrew. However, acquiring a PSP with that system version became increasingly challenging. Thus, 'downgrading' quickly gained popularity. Downgrading is the opposite of upgrading, consisting of replacing the current firmware installed with an earlier (and better exploited) version.
 
@@ -698,7 +687,7 @@ The 'Pandora battery method' is a popular (and respected) collection of achievem
 - **Find a way of entering entering 'Service Mode'**: by tampering with the PSP's removable battery, which had some circuitry attached for identification purposes, hackers discovered that overriding its serial number value to `0xFFFFFFFF` triggered service mode at boot time. Thus, the Pre-IPL would look for a secondary system in the Memory Stick. The modified battery was referred to as **JigKick** or 'Pandora' Battery.
   - Users could create a Jigkick battery with a hacked PSP, or by desoldering the ground pin of the battery's EEPROM. The latter is riskier, taking into account casual users are disassembling a Lithium battery! Thus, some companies distributed their own 'Pandora battery' maker.
   - A Jigkick battery works like any other battery. However, when inserted, the PSP will always boot from the Memory Stick.
-- **Trick KIRK into loading fake/unsigned firmware**: the next step was to find a way to load a fake IPL in service mode (it still has to be encrypted and signed to work). Well, hackers found a way, by embedding an unencrypted payload next to the encrypted block. The Pre-IPL would try to validate it (due to the Pre-IPL not checking that the encrypted block is 1 KB long). The encrypted section had to be crafted in a way that, once decrypted, will tell the Pre-IPL to 'jump 100 bytes down'. This bypassed the security routines and redirected execution to the payload, enabling anyone to **execute code with maximum privileges** in service mode. This reminds me of what happened to the [Wii](wii#the-fall-of-encryption).
+- **Trick 'Service mode' into loading fake/unsigned firmware**: the next step was to find a way to load a fake IPL in service mode (it still has to be encrypted and signed to work). Well, hackers found a way, by embedding an unencrypted payload next to the encrypted block. The Pre-IPL would try to validate it (due to the Pre-IPL not checking that the encrypted block is 1 KB long). The encrypted section had to be crafted in a way that, once decrypted, will tell the Pre-IPL to 'jump 100 bytes down'. This bypassed the security routines and redirected execution to the payload, enabling anyone to **execute code with maximum privileges** in service mode. This reminds me of what happened to the [Wii](wii#the-fall-of-encryption).
   - The custom IPL needed to be executed from a specific sector in the Memory Stick. A Memory Stick with a custom IPL installed to this location is called **Magic Memory Stick**. Special programs were developed, allowing any user to create one. 
 
 What remained was to embed a useful payload. Popular options included a 'de-bricker' which (re)installed a clean official firmware onto the PSP (thereby repairing it if the NAND was previously corrupted), a 'downgrader', or a custom firmware installer (more details later).
@@ -719,11 +708,9 @@ In the end, the last straw was when the security system of the PlayStation 3 was
 
 In recent developments, it was discovered that the latest firmware contains a kernel exploit during the boot process, which could be used to kickstart a CFW of choice. This was packaged in an solution called **Infinity 2** [@anti_piracy-davee].
 
-`r close_tabs()`
-
 To sum it up, Sony was right when they claimed the UMDs were un-hackable. After all, hacking was achieved instead thanks to (many) flaws in software.
 
-### Homebrew encouragement
+### Homebrew encouragement {.tabs-close}
 
 Not only Homebrew development centred on breaking security mechanisms, but there were also communities committed to providing Homebrew developers with the necessary tools to build their software without legal repercussions. For instance, the pspdev group published an open-source SDK called **PSPSDK** that replicated many of the official interfaces and didn't enforce previous restrictions imposed by Sony.
 

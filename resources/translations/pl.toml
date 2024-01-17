@@ -115,6 +115,9 @@ other = 'Publikuję aktualizacje na moim <a href="{{ . }}">profilu na Twitterze<
 [generation_title]
 other = "{{ .ordinal }} generacja"
 
+[untranslated_article_title]
+other = "{{.}} (po angielsku)"
+
 [cpu_subtitle]
 other = "Istotne ulepszenia CPU:"
 

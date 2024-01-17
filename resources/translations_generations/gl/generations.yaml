@@ -1,0 +1,34 @@
+---
+- 
+  id: 3
+  ordinal: 3ª
+  description: Coñecidas como consolas de "8 bits", estas máquinas aportaron gráficos máis sofisticados e sons máis ricos que os seus predecesores. Despois de todo, acaba de producirse un gran colapso do mercado e houbo que establecer estándares máis novos.
+  gpu: Mapas de mosaicos que se poden desprazar e paletas de cores máis grandes
+- 
+  id: 4
+  ordinal: 4ª
+  description: DMA, interrupcións horizontais, modos múltiples... Estes son algúns exemplos dos novos conceptos que trouxo a nova xeración de '16 bits', abrindo a porta a novos xéneros de xogos.
+  cpu: Instrucións de multiplicación e división, DMA e procesamento dual
+  gpu: Transformacións afines e interrupcións horizontais
+- 
+  id: 5
+  ordinal: 5ª
+  description: Os xogos en 3D convertéronse nunha necesidade, pero aínda non está claro "como". A resposta? Cada empresa presentou a súa propia visión diferente.
+  cpu: Etapas de canalización e caché L1
+  gpu: Canalizacións de vértices programables, Z-buffering e correccións de perspectiva
+- 
+  id: 6
+  ordinal: 6ª
+  description: A maioría das limitacións gráficas da xeración anterior xa non existen. As consolas portátiles comezan a parecerse a sistemas familiares.
+  cpu: Arquitecturas superescalares, instrucións SIMD e caché L2
+  gpu: Canalizacións de píxeles programables e filtros anisótropos
+- 
+  id: 7
+  ordinal: 7ª
+  description: As consolas evolucionaron en supercomputadoras e concentradores multimedia. Estas máquinas agora non solo se usan para xogar, polo que a seguridade é agora un factor crítico.
+  cpu: Paralelismo a nivel de subprocesos e arquitecturas multinúcleo simétricas
+  gpu: Modelo de sombreado unificado e renderizado HDR
+- 
+  id: 8
+  ordinal: 8ª
+  description: O mercado do entretemento actual foi conquistado por teléfonos intelixentes e tabletas de baixo prezo. As funcionalidades de redes sociais convértense na prioridade de todos os periféricos. É hora de que as empresas de videoxogos tradicionais renoven o seu status quo, canto antes mellor.

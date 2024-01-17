@@ -34,27 +34,25 @@ aliases:
 
 It seems Nintendo managed to bring the next generation of graphics and sounds without using expensive off-the-shelf components. But there's a catch: the new console was also **designed with expandability in mind**. In a world where CPUs are evolving faster than the speed of light, Nintendo ultimately depended on game cartridges to make its console shine.
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## CPU
 
-The Super Nintendo's choice of processor is a peculiar one. Unlike [its competition](mega-drive-genesis#cpu) bundling a fully-fledged 68000, the SNES' chip is not a radical break from its predecessor. To recap, the NES employed a [modified 6502](nes#cpu) CPU, an admired ingredient of late-70s and early-80s computers. Now, to pave way for the new decade (the 90s), Nintendo went for a more conservative (and cheaper) solution: the **65C816**, a 16-bit extension of the 6502.
+The Super Nintendo's choice of processor is a peculiar one. Unlike [its competition](mega-drive-genesis#cpu) bundling a fully-fledged 68000, the SNES' chip is not a radical break from its predecessor. To recap, the NES employed a [modified 6502](nes#cpu) CPU, an admired ingredient of late-70s and early-80s computers. Now, to pave way for the new decade (the 90s), Nintendo went for a more conservative (and cheaper) solution: the **WDC 65C816**, a 16-bit extension of the 6502.
 
 ### Modernising the 6502
 
-The 65C816 CPU originates at Western Design Center, particularly from Bill Mensch, a former member of the 6502 team at MOS and, before that, part of the 6800 team at Motorola. In 1978, one year after leaving MOS, Mensch founded Western Design Center (WDC), a semiconductor company that ships clones of the MOS 6502 with attractive enhancements (i.e CMOS design, extra opcodes, circuitry fixes, new addressing modes, etc).
+The 65C816 CPU originates at Western Design Center, particularly from Bill Mensch, a former member of the 6502 team (at MOS) and the 6800 team (at Motorola). In 1978, one year after leaving MOS, Mensch founded Western Design Center (WDC), a semiconductor company that ships clones of the MOS 6502 with attractive enhancements (i.e CMOS design, extra opcodes, circuitry fixes, new addressing modes, etc).
 
-One day, WDC got approached by Apple to design a backwards-compatible variant of the 6502 that could process larger amounts of data. This became the 65C816 which, after some setbacks during development, Apple finally shipped with a new machine called Apple IIGS.
+One day, WDC was approached by Apple to design a backwards-compatible variant of the 6502 that could process larger amounts of data. This resulted in the WDC 65C816 CPU, released in 1983. Curiously enough, Apple went through many setbacks during the development of a computer that would use the new CPU, until three years later, with the release of the Apple IIGS.
 
 Meanwhile, Nintendo was enjoying a good relationship with Ricoh and their set of bespoken chips for the NES. I haven't found the exact document outlining what connected Ricoh with WDC, but what I can confirm is that at some point in time, WDC agreed to license their 65C816 designs to Ricoh [@cpu-interview]. Consequently, the latter tailored it to the new requirements of the Super Nintendo and became the **Ricoh 5A22**, exclusively supplied to Nintendo.
 
 ### The new CPU
 
-As you've seen before, the main processor of this console is the **Ricoh 5A22**, a 16-bit CPU.
+As you've seen before, the main processor of this console is the **Ricoh 5A22**, a super set of the 65C816.
 
-Unlike the Apple IIGS, which enjoyed backward compatibility with Apple II software, the Super Nintendo is **not compatible with NES games** (although, by looking at the choice of processor, there's a slight possibility that the SNES was originally planned to be compatible with NES games, who knows).
+Unlike the Apple IIGS, which enjoyed backward compatibility with Apple II software, the Super Nintendo is **not compatible with NES games**. To be fair, by looking at the choice of processor, there's a slight possibility that the SNES was originally planned to be compatible with NES games, who knows.
 
 Moving on, the CPU employs a **variable clock speed** that will reach up to **3.58 MHz** during register operations and down to **1.79 MHz** when accessing the slowest buses (i.e. the serial/controller port).
 
@@ -66,8 +64,8 @@ In summary, the 5A22 features:
 - **10 different modes of operation**: Due to the combination of a backward compatibility mode, the return of the BCD mode (missing on the NES) and the ability to switch between groups of 16-bit and 8-bit registers [@cpu-opcodes], developers can utilise this CPU using different combinations of these.
   - Unlike later [MIPS CPUs](nintendo-64#cpu), there isn't a mixed instruction set with dedicated opcodes for 8-bit and 16-bit words. Instead, the same instruction set will be interpreted differently based on the mode activated.
   - For compatibility reasons, the CPU always starts in 'emulation' mode (pure 6502) and it's up to the program to switch to a particular 'native' mode to enable 16-bit functionality. On a side note, it's amusing how Intel's x86 still applies the [same _modus operandi_](xbox#boot-process) on their modern CPUs.
-- **16-bit registers**. Also and due to the different modes of operation, the accumulator (where arithmetic operations are performed) and index register (used to compute memory addresses) can switch between 16-bit and 8-bit modes.
-- **16-bit internal data bus** and an **8-bit external data bus**: Meaning that there're performance penalties for moving values larger than 8 bits across memory (the CPU spends additional cycles), especially considering most instructions are 16-bit long. Although, the overall cost is relative since Ricoh's variant includes DMA units (explained later on) and the CPU clock will vary depending on the operation.
+- **Three 16-bit general-purpose registers**. This set matches the 6502's (`X`, `Y` and `A`). However, due to the different modes of operation, these registers can now switch between 16-bit and 8-bit.
+- **16-bit internal data bus** and an **8-bit external data bus**: Meaning that there are performance penalties for moving values larger than 8 bits across memory (the CPU spends additional cycles), especially considering most instructions are 16-bit long. However, the overall cost is relative since Ricoh's variant includes DMA units (explained later on) and the CPU clock will vary depending on the operation.
 - **24-bit address space**: Allowing the CPU to access **up to 16 MB worth of memory**. Just like the [Motorola 68000](mega-drive-genesis#cpu), except that the 65C816 gets its 24-bit addresses by combining extra 8-bit registers (`DBR` and `PBR`) with the original 16-bit addressing lines of the 6502 [@cpu-chibi]. Overall, this methodology is similar to using an [internal mapper](pc-engine#memory-access).
 
 ### Ricoh's additions
@@ -78,7 +76,7 @@ As a consequence, the first apparent upgrade was the addition of **16-bit multip
 
 #### Speedy memory access
 
-The second addition were **two exclusive DMAs** (Direct Memory Access) that enable to move data around without the intervention of the CPU (resulting in faster speeds). For this design to work, regions of memory are referenced using two different address buses [@cpu-manual]:
+The second group of additions was the **two** exclusive DMAs** (Direct Memory Access) that enable to move data around without the intervention of the CPU (resulting in faster speeds). For this design to work, regions of memory are referenced using two different address buses [@cpu-manual]:
 
 - 24-bit **'A Bus'** controlled by the CPU: Connects the cartridge, CPU and WRAM.
 - 8-bit **'B Bus'** controlled by the S-PPU: Connects the cartridge, CPU, WRAM, S-PPU and the Audio CPU.
@@ -98,9 +96,15 @@ This console also features a special 'anomaly' called **Open Bus**: If there is 
 
 For comparison, the 68000 uses a vector table to handle exceptions, so execution will be redirected whenever a fault is detected.
 
+### (Lots of) more memory
+
+It's fascinating to realise the amount of content the NES managed to show with only [2 KB of RAM](nes#memory). Well, the Super Nintendo now features **128 KB of SRAM** (still called 'Work RAM' or WRAM). That's 6400% more general-purpose memory than its predecessor.
+
+So, what can developers do with this? Anything they desire, really. WRAM is used to store variable information for the game. The greater the space, the more information can be stored and processed (thus, saving in [catridge hardware](nes#cartridgegame-data)). Bear in mind, however, the following sections in this article will show you that the Super Nintendo is a fairly complex machine (albeit its 'simplistic' CPU), I tend to call this console a 'collection of mini-computers/subsystems'. Now, each subsystem may need data from the CPU. Thus, programmers may allocate part of WRAM to process that information, thereby justifying the need for 128 KB.
+
 ## Graphics
 
-After everything said so far, let me tell you that the graphic subsystem of this console is a true work of engineering. With such a constrained CPU, one would imagine the SNES could never cast a shadow on its competitor featuring a '32-bit' Motorola 68000. Yet, Nintendo and Ricoh engineers managed to find clever tricks that take advantage of the way CRT displays behave, thereby expanding the capabilities of this console without requiring expensive state-of-art components.
+After everything said so far, let me tell you that the graphic subsystem of this console is a true work of engineering. With such a constrained CPU, one would imagine the SNES could never cast a shadow on [its competitor](mega-drive-genesis) featuring a '32-bit' Motorola 68000. Yet, Nintendo and Ricoh engineers managed to find clever tricks that take advantage of the way CRT displays behave, thereby expanding the capabilities of this console without requiring expensive state-of-the-art components.
 
 In any case, before we go in-depth I strongly recommend reading the [NES article](nes#graphics) first since it introduces useful concepts that will be revisited here.
 
@@ -251,7 +255,7 @@ You see, because the new DMA/HDMA units now enable programmers to perform memory
 
 Truth to be told, I still haven't mentioned the most important characteristic of this console...
 
-::: {.subfigures .tabs-nested .tab-float .open-float .pixel}
+::: {.subfigures .tabs-nested .tab-float .open-float .pixel max_subfigures=1}
 
 ![Rendered Background layer.](mode7/layer.png){.active title="Background"}
 
@@ -273,7 +277,7 @@ Introducing **Mode 7**, *yet another* background mode, but this time, with a com
 
 The S-PPU is controlled with a **rotation matrix** to alter the parameters of this mode. I won't go into the linear algebra here, but depending on the desired effect, the CPU will have to perform some trigonometric functions (sine and cosine) to fill the entries of this table accordingly. This is really expensive for the 65C816, even with the use of fixed-point precision. For this reason, with the 5A22, Ricoh added multiplication and division registers to offload some cycles.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 By the way, notice that the list of transformations doesn't mention **perspective**, which is what you see in the example game (F-Zero). This is achieved by altering the rotation matrix at each HDMA call, creating a pseudo-3D effect in the process. That should give you an idea about how practical the S-PPU is!
 
@@ -289,7 +293,7 @@ This can also happen the other way around, extensive processing during a V-Blank
 
 All of the aforementioned advancements will be futile unless the console sends the picture to the TV through a medium both can understand. With the Super Nintendo, the company debuted some sort of *universal-but-proprietary* connection called **Multi Out** which can transport many types of signals at the same time, including **Composite**, **S-Video** and **RGB** [@graphics-pinouts].
 
-Along with the console, Nintendo bundled a 'Multi Out to composite' cable since that was pretty much the common denominator of TVs back then. In Europe however, the **SCART** port was also very popular as many set-top boxes and VCRs relied on it. A great thing about SCART is that it can also carry many types of signals, this enables AV equipment to use the most optimal signal type without encountering compatibility issues. Unfortunately, Nintendo never shipped an official SCART cable that took advantage of the RGB pins exposed in the Super Nintendo.
+Along with the console, Nintendo bundled a 'Multi Out to composite' cable since that was pretty much the common denominator of TVs back then. In Europe however, the **SCART** port was also very popular as many set-top boxes and VCRs relied on it. A great thing about SCART is that it can also carry many types of signals, this enables AV equipment to use the most optimal signal type without encountering compatibility issues. As far as I know, only French consumers were offered an official SCART cable that took advantage of the RGB pins exposed in the Super Nintendo [@graphics-manuel].
 
 Nonetheless, Nintendo altered the pinout of its PAL consoles to comply with the SCART protocol, and in doing so it replaced the 'composite sync' pin with a 12 Volts one (which tells the TV to set the 4:3 aspect ratio). So, even though Multi out is 'universal', the resulting RGB cables, if any, are region-specific.
 
@@ -317,7 +321,7 @@ Hence, the resulting audio subsystem of this console is composed of:
 
 This block functions in parallel with the main CPU. When the console is turned on, the SPC700 boots a 64-byte internal ROM that sets it up to receive commands from the main CPU [@audio-spc]. After that, it stays idle.
 
-::: {.subfigures .tabs-nested .tab-float .open-float}
+::: {.subfigures .tabs-nested .tab-float .open-float max_subfigures=1}
 
 ![Channels used for melody.](melody){.active video="true" title="Melody"}
 
@@ -335,7 +339,7 @@ As you can see, the sound subsystem was a huge advancement compared to the previ
 
 As a consequence, there were tons of different sound drivers found on the market [@audio-drivers], and some of them ended up uncovering impressive features.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Pitch control
 
@@ -355,7 +359,7 @@ In order to demonstrate the evolution of sounds from the NES to the Super NES, h
 
 ### Advanced usage
 
-::: {.subfigures .tabs-nested .tab-float .open-float}
+::: {.subfigures .tabs-nested .tab-float .open-float max_subfigures=1}
 
 ![Channels used for melody.](kirby/trebble){.active video="true" title="Melody"}
 
@@ -371,7 +375,7 @@ Here's a more instrument-rich composition that takes great advantage of pitch be
 
 This combination of techniques allowed the music to only require five channels in total, leaving the other three for sound effects.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Stereo confusion
 
@@ -427,7 +431,7 @@ Alternatively and most importantly, LoRom and HiROM can also be adapted to house
 - Two extra configurations, one based on LoROM and the other on HiROM, make way for the **DSP** series of chips. These are the same derivative of the NEC µPD77C25 CPU, but running a different program. They provide vector and matrix computations [@games-dsp] and different games have used it to compute affine transformations, graphics decompressing and shortest path calculations.
 - The **SFX** model targets the popular **Super FX GSU** chip. This configuration maps up to 8 MB of ROM, where 2 MB are shared between the main CPU and the Super FX. The rest of the address space also includes additional backup RAM and SRAM. The Super FX is a proprietary processor made by Argonaut that specialises in **3D surface rendering** and **2D affine transformations**, the results are then streamed as tiles for the S-PPU to be able to display. A handful of notable games used it for drawing 3D models and/or extending Mode 7 for sprites (as Mode 7 can only transform backgrounds).
 
-`r close_float_group()`
+{.close-float}
 
 It's difficult to ignore the impact this engineering made on games during the 90s, many of which managed to exceed the expectations of this console without requiring expansion modules and whatnot. You could say this complicated Nintendo's plans to deliver a successor of this console (which may explain why advanced games like Star Fox 2 were cancelled).
 

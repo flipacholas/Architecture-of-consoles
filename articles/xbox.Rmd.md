@@ -37,9 +37,7 @@ Some months after writing this, I've realised this is one of the densest write-u
 
 Now, if you're really interested in understanding this system but find this article difficult to follow, my advice to you is: **Take your time**, the article is not going anywhere. Focus on what you like, read at your own pace, check out the links on the 'Sources' section for support and finally, don't put pressure on yourself, there's no exam!
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## CPU
 
@@ -96,7 +94,7 @@ One of the advantages of RISC processors is that their simplistic approach enabl
 
 Back to the original question, the P6 is an interesting design, because while this CPU only understands a CISC instruction set (x86), a subset of its opcodes is interpreted using **microcode**. Furthermore, the unit that executes microcode is built around the load-store model [@cpu-gwennap]. All in all, this allows Intel to gain similar advantages to RISC processors without breaking compatibility with the historic x86 ISA.
 
-Moreover, microcode is already embedded in the silicon but it can be patched, allowing Intel to fix its CPUs after production whenever a bug or a security vulnerability is discovered. If you have read previous articles (i.e. [N64](nintendo-64) or [PS2](playstation-2)), bear in mind that Intel's microcode is **not publicly accessible** (let alone documented) and Intel is its solely 'maintainer'.
+Moreover, microcode is already embedded in the silicon but it can be patched, allowing Intel to fix its CPUs after production whenever a bug or a security vulnerability is discovered. If you have read previous articles (i.e. [N64](nintendo-64) or [PS2](playstation-2)), bear in mind that Intel's microcode is **not publicly accessible** (let alone documented) and Intel is its sole 'maintainer'.
 
 #### The Core {.tab}
 
@@ -132,7 +130,7 @@ The new standard developed relied on two dedicated chips to handle most of the m
 
 The combination of these chips is called **chipset** and they are important enough to condition the capabilities and performance of a motherboard. The Xbox, being so close to a PC, includes two chips as well: The **NV2A**, a combination of Northbridge and GPU; and the **MCPX** which handles the rest of I/O.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Both chips are interconnected using a specialised bus called the **HyperTransport**. It's worth pointing out that some PC motherboards also included this technology, just with a different brand (*nForce MCP-D*).
 
@@ -174,7 +172,7 @@ Please note that, while the pipeline of the Xbox's GPU is based on the NV20 arch
 
 The units analysed contain a lot more features that go beyond the scope of this article, so I recommend checking out the sources/references if this section catches your attention. Also, since graphics-related terminology is constantly evolving (which can lead to some confusion), I've decided to rely on the terms used by Microsoft/Nvidia during the years of the Xbox, so remember this if you plan to read more graphics-related articles from other sources.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Having said that, let's take a look at how frames are drawn in the Xbox. Some explanations are very similar to GameCube's [Flipper](gamecube#graphics), so you may benefit from reading that article as well in case you struggle to follow this one.
 
@@ -244,7 +242,7 @@ In the case of pixel shaders, programmers can manipulate and blend textures in m
 
 A new programming concept that emerges thanks to this approach is the **General Purpose GPU** or 'GPGPU', which consists of assigning tasks to the GPU that would have been exclusively done by the CPU. So not only the GPU has taken over most of the graphics pipeline, but now can act as an efficient co-processor for specialised computations (i.e. physics calculations). This is a new area that will evolve as GPUs become more powerful and flexible. However, the NV2A was already able to achieve this thanks to a combination of hardware capabilities (vertex & pixel shaders) and specialised APIs developed (OpenGL's 'state programs').
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 I have a feeling that shaders will be regularly revisited in future articles. Please remember that in this article, however, they may be considered a bit 'primitive' and some people may argue that the pixel shaders are not even 'shaders' (compared to what GPUs offers nowadays).
 
@@ -354,23 +352,17 @@ When the kernel loads, it injects microcode into the CPU (not to program it, but
 
 Let's take a look now at the program that the Xbox loads when there isn't a game disc inserted: The **Dashboard**.
 
-(ref:dashboardtitle) Interactive shell
+#### Interactive shell {.tabs .active}
 
-(ref:hometitle) Home
+::: {.subfigures .tabs-nested .tab-float}
 
-(ref:homecaption) Home screen.
+![Home screen.](shell/home.png){.active title="Home"}
 
-(ref:settingstitle) Settings
+![Settings screen.](shell/settings.png){title="Settings"}
 
-(ref:settingscaption) Settings screen.
+The Dashboard offers multiple services.
 
-(ref:dashboardfooter) The Dashboard offers multiple services.
-
-```{r fig.cap=c("(ref:homecaption)", "(ref:settingscaption)", "(ref:osinthddcaption)"), fig.align='center', tab.title="(ref:dashboardtitle)", tab.nested=TRUE, tab.float=TRUE, tab.figure=TRUE, tab.first=TRUE, tab.active=TRUE}
-image('shell/home.png', "(ref:homecaption)", float=TRUE, tab.name = "(ref:hometitle)", tab.active = TRUE)
-image('shell/settings.png', "(ref:settingscaption)", float=TRUE, tab.name = "(ref:settingstitle)", caption.post="(ref:dashboardfooter)")
-figcaption("(ref:dashboardfooter)")
-```
+:::
 
 The dashboard is not very different in terms of functionality compared to the [PlayStation menu](playstation-2#interactive-shell), or the [GameCube's IPL](gamecube#splash-and-shell). It essentially includes all the functions typical users would expect, like being able to tweak some settings, moving saves around, playing DVD movies or CD audio; and so forth.
 
@@ -444,7 +436,7 @@ Furthermore, not only Xbox Live enabled online multiplayer but it also included 
 
 But what exactly is Xbox Live? Well, it's just a collection of interconnected online services which companies can use to build their online platform. For instance, one of the services provide user profiles, so studios can use it as an authentication method when accessing the online functionalities of a game. In the official SDK, Microsoft includes some APIs to talk with the Xbox Live servers.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 It's important to point out that Microsoft controls whom to grant Xbox Live access to, so developers will have to register to Microsoft to obtain the authentication keys that will be used by their games.
 
@@ -518,7 +510,7 @@ Another point to mention is that Xbox live was itself an effective prevention me
 
 After a couple of months with deadlines and exams in the middle, the next article has finally been finished. I admit this one continues the trend of adding *too much* information and trivia, but while this research started with small (and frustrating) steps, I'm glad I found a lot of support from one special community, XboxDev, that helped me gather lots of information.
 
-For anyone who would like to know more about this console, XboxDev is actively working on nxdk (along with different emulators) which strive to do things that were previously considered impossible in Xbox homebrew, so I suggest visiting their community for more information.
+For anyone who would like to know more about this console, XboxDev is actively working on nxdk (along with different emulators) which strives to do things that were previously considered impossible in Xbox homebrew, so I suggest visiting their community for more information.
 
 From my side, I'm going to take a few days to think carefully about the *next article* (and potentially go back a couple of generations to analyse a console I forgot about).
 

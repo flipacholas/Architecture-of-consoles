@@ -28,3 +28,7 @@
   description: Les consoles sont devenues de véritables plateformes-multimédia. Leur capacité ne se limite plus seulement à jouer à des jeux, c'est pourquoi la sécurité est à présent un facteur essentiel.
   cpu: '"Thread level parallelism" et multiprocesseurs symétriques'
   gpu: Modèle de shader unifié et rendu HDR
+- 
+  id: 8
+  ordinal: 8e
+  description: L'industrie du divertissement a été conquise par des smartphones peu chers et les tablettes. Les capacités des réseaux sociaux sont devenus la priorité de chaque périphérique. Il est temps pour les studios de jeux vidéos traditionnels de défier le status quo, et ils feraient mieux de le faire vite.

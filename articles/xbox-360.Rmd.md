@@ -17,14 +17,17 @@ top_tabs:
     title: Original
     file: original
     img_class: reduced-width
+    landscape: false
   - caption: "The 'new' Xbox 360 (a.k.a. 'Slim' or 'S').<br>Released on 18/06/2010 in America, 24/06/2010 in Japan and 16/07/2010 in Europe"
     title: The 'S'
     file: the-s
     img_class: reduced-width
+    landscape: false
   - caption: "Another 'new' Xbox 360 (a.k.a. 'E').<br>Released on 10/06/2013 in America, 20/06/2013 in Europe and similar in Japan"
     title: The 'E'
     file: the-e
     img_class: reduced-width
+    landscape: false
 ---
 
 ## A quick introduction
@@ -43,9 +46,7 @@ For those who are already familiar with the PS3's architecture, I've structured 
 
 Because this article is way longer than my previous ones, I also made a quick video where I (attempt to) present this article and give you an idea of the content you will find. [You can watch it here](https://youtu.be/uZXHQT3NRss). It's my first 'personal introduction' so you'll have to forgive my occasional fillers :)
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## CPU
 
@@ -131,7 +132,7 @@ In doing so, you'll perceive that Xenon takes a more conservative approach than 
 
 After all, Microsoft didn't want processors of very different natures squashed in their CPU. They instructed IBM to compose three powerful cores and enhance them with the ingredients game developers would expect to find. With this approach, IBM and Microsoft were also able to add non-standard features without disrupting the traditional _modus operandi_ of developers.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Truth to be told, this also resulted in aggressive budget cuts to keep this design (and the rest of the system) at a competitive price range. To put it in context, multi-core CPUs for PCs weren't on the store shelves while IBM was building Xenon, and when they debuted in 2005 (coincidentally, the same year the Xbox 360 reached the stores), AMD priced their cheapest Athlon X2 at $537 (equivalent to ~£452 in 2021 money) and Intel charged $241 (equivalent to ~£203 in 2021 money) for their low-end Pentium D [@cpu-hachman] - and let's not forget the box only included the CPU.
 
@@ -301,7 +302,7 @@ Nvidia enjoyed considerable leverage after the introduction of [programmable pix
 
 These events allowed ATI to keep the crown for a while longer, but unbeknownst to Nvidia, ATI had been working on a new disrupting ingredient that could hold Nvidia for another decade. This project eventually materialised in the form of **Unified Shaders** and debuted in no other than the Xbox 360, with the new graphics chip called **Xenos**.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 #### A new foundation on the way
 
@@ -439,7 +440,7 @@ On a related note, Xenos also introduced new encoding methods for storing HDR pi
 
 Similarly, over the next years since the console's release, the concepts of Xenos' shader exports would be embraced by many new APIs, namely Apple & Khronos' **OpenCL**, Nvidia's **CUDA**, Direct3D 10's **DirectCompute** and OpenGL 4.3's **Compute shaders**. All of which provide a platform to access the power of GPUs without necessarily having to render anything, just perform computation using the fast shader pipes. Overall, this was another great leap for [General-purpose GPU](xbox#importance-of-programmability) programming.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Now, if you wonder if any of these advancements were later incorporated into the Xbox 360. I'm afraid by the time this console debuted, the unified shaders were still a relatively new concept. So, unfortunately, none of the consequent developments (i.e. Direct3D 10) got ever back-ported to the Xbox 360. But hey, that's a legacy left for the next generation of consoles to enjoy!
 
@@ -455,7 +456,7 @@ Instead, the first revision (called **Xenon**, like the CPU) is only equipped wi
 
 Later on, in 2006, the follow-up motherboard revision called **Zephyr** ultimately added an HDMI socket to catch up with Sony's quality of signal. Internally, the original video encoder (known as the **ANA** chip) had been replaced with the 'HDMI ANA' (or **HANA**) block [@graphics-ana].
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 As outdated as this may seem today, Microsoft still required developers to consider their games being played on CRT screens, which are prone to overscan. Thus, games couldn't place any important indicators within the [Danger Zone](nes#constructing-the-frame).
 
@@ -573,7 +574,7 @@ As you may guess, wireless controllers were only given out with the posh 'premiu
 
 The console can handle four controllers at the same time, whether wireless or wired, but note that the console only provides three user-accessible USB ports.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Compared to the [old duke](xbox#the-controller), the controller doesn't take two memory cards anymore, but it keeps the headphone jack (2.5 mm TRS type). The wireless model has a special socket on the front to plug the 'Play and Charge' cable, an optional accessory to connect wireless controllers to the console and charge the battery at the same time. The cable uses a proprietary bus layout composed of USB-compliant pins with additional undocumented ones [@io-gamepad].
 
@@ -602,7 +603,7 @@ The construction of this device isn't anywhere simple, and as such, the sensor c
 
 The sensor is operated through the use of Microsoft's opaque APIs, which in turn communicates to super-secret software installed on both the Kinect and the Xbox 360's Operating System. The Kinect uses a **USB 2.0 A** connection to plug into the console. The 'Slim' re-design of the Xbox 360 released in the same year was also branded 'Kinect compatible' as it could supply power to the bar as well (with the provision of an extra proprietary port on the back of the console), older models require a separate power brick for the Kinect.
 
-## Operating System (and backwards compatibility)
+## Operating System
 
 The Xbox 360 was subject to the same needs and fashions that the PlayStation 3 went through. So the former offers many services, including online gaming (through Xbox Live), a digital marketplace, media player, file system explorer (albeit extremely simple) and other utilities.
 
@@ -1187,7 +1188,7 @@ I guess you see where I'm going with this, if you craft a special copy of King K
 
 This solves the first task of filling main RAM, but we still need a way of invoking the custom syscall...
 
-##### Priviledge escalation {.tab}
+##### Privilege escalation {.tab}
 
 Recall that the Xbox 360's kernel provides a scheduler to handle multi-threading. This apparatus takes care of dispatching virtual threads to the CPU cores and saving idle threads into memory for later use. Well, for another unexplained reason, the scheduler stores thread states in RAM as **unencrypted** data!
 

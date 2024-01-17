@@ -1,7 +1,7 @@
 ---
-short_title: Mega Drive/Genesis Architecture
-title: Architecture of the Mega Drive/Genesis
-name: Mega Drive/Genesis
+short_title: Mega Drive / Genesis Architecture
+title: Architecture of the Mega Drive / Genesis
+name: Mega Drive / Genesis
 subtitle: New techniques of composition
 date: 2019-05-18
 release_date: 1988-10-29
@@ -35,9 +35,7 @@ Sega (and their TV ads) want you to know: Developers can't come up with decent g
 
 Their new system includes lots of *already familiar* components ready to be programmed. This means that, in theory, developers would only need to learn about Sega's new GPU... right?
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## CPU
 
@@ -63,13 +61,9 @@ Back on topic, the 68k has the role of 'main' CPU and it will be used for game l
 
 (If you wonder the reason behind using 24-bit addresses with a CPU that can handle 32-bit words, I doubt that in the 80s many were asking to manage 4 GB of RAM and adding unused lines is costly in terms of performance and money).
 
-Secondly, there's another CPU fitted in this console, a **Zilog Z80** running at **~3.5 MHz**. This is the same processor found on the [Master System](master-system#cpu) and it's mainly used for **sound control**. It features [@cpu-z80manual]:
+Secondly, there's another CPU fitted in this console, a **Zilog Z80** running at **~3.5 MHz**. This is the same processor previously analyzed in the [Master System's article](master-system#cpu).
 
-- **Z80 ISA**: An extension of the Intel 8080 ISA, it handles **8-bit** words.
-- **8-bit registers** and **8-bit data bus**: _No surprises here_.
-- **4-bit ALU**: This may be a bit shocking, but it managed to handle 8-bit operations without problems, it just takes twice the cycles to compute.
-  - Notice how the 6502 runs at ~2 MHz in [some systems](nes#cpu) while this one almost reaches 4 MHz: Clock speed doesn't make the Z80 faster per se, but helps to balance the lack of transistors in some areas.
-- **16-bit address bus** with the following address map [@cpu-z80map]:
+The Z80 is mainly used for **sound control**. Thus, its **16-bit address bus** is composed of the following [@cpu-z80map]:
   - 8 KB of RAM.
   - Two sound chips.
   - 68000's RAM (again, handled by the bus arbiter).
@@ -140,7 +134,7 @@ The following section explains how the VDP draws each frame, for demonstration p
 
 #### Tiles {.tabs .active}
 
-::: {.subfigures .tabs-nested .tab-float .pixel}
+::: {.subfigures .tabs-nested .tab-float .pixel max_subfigures=1}
 
 ![Multiple tiles squashed together. For demonstration purposes, a default palette is being used.](vdp_sonic/tiles.png){.active title="All"}
 
@@ -248,7 +242,7 @@ Let's now see what each chip offers, as each one is *very* different.
 
 #### Yamaha YM2612 {.tabs .active}
 
-::: {.subfigures .tabs-nested .tab-float}
+::: {.subfigures .tabs-nested .tab-float max_subfigures=1}
 
 ![FM channels.](fm_single){.active video="true" title="FM"}
 
@@ -296,7 +290,7 @@ Some music composers may decide to focus on the PCM channel to play more truthfu
 
 For that reason, I've decided to dedicate this section for a few instances of games which successfully managed to overcome the aforementioned constraint. Instead of just sticking with ordinary drum kits, some games found incredible ways to stream richer samples to that single PCM channel, check out these examples:
 
-::: {.subfigures .tabs-nested .toleft}
+::: {.subfigures .tabs-nested .toleft max_subfigures=1}
 
 ![PCM channel.](good_sampling/sonic_pcm){.active video="true" title="PCM Sample"}
 
@@ -320,7 +314,7 @@ Moreover, the audio subsystem enabled games to instantiate more channels than al
 
 Channels also contained some **logic** by implementing conditionals inside their data, enabling music to 'evolve' depending on how the player progresses in the game.
 
-### (Bonus) Mega CD Sound
+### (Bonus) Mega CD Sound {.interactive-only}
 
 Here's an interesting fact: The Mega CD add-on provided 2 extra channels for CD Audio (among other things). One of its most famous games, Sonic CD, had very impressive music quality but like all games it had to loop, the problem was that looping music on a 1x CD reader exposed noticeable gaps, so the game included loop fillers that were executed from another PCM chip while the CD header was returning to the start.
 
