@@ -722,7 +722,7 @@ This section is very much aligned with the 7th generation of consoles. In summar
 
 Retail stores sold **Wii U optical disc**, a proprietary disc medium designed by Panasonic in an attempt to replicate many capabilities of the [Blu-ray disc](playstation-3#tab-14-1-blu-ray-discs)... without using Blu-ray discs. These can hold ~24 GB of data but only **~20 GB is available for actual game data**, the rest is used for storing software update files, meta-data and other information Cafe OS needs to read.
 
-The same drive is also able to read [Wii optical](wii#medium) discs](wii#medium) which, in turn, are similar to the standard DVD format. However, the drive doesn't support either DVD or Blu-ray's playback capabilities.
+The same drive is also able to read [Wii optical discs](wii#medium) which, in turn, are similar to the standard DVD format. However, the drive doesn't support either DVD or Blu-ray's playback capabilities.
 
 {.close-float}
 
