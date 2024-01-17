@@ -1,6 +1,6 @@
 ---
 long_title: Arquitectura de la Wii
-short_title: Arquitectura Wii
+short_title: Arquitectura de la Wii
 name: Wii
 subtitle: Técnicas únicas de innovación
 date: 2020-01-05
@@ -13,7 +13,7 @@ javascript:
 top_tabs:
   Model:
     file: internacional
-    caption: "La Wii.<br>Lanzada el 19/11/2006 en América, el 02/12/2006 en Japón y el 08/12/2006 en Europa."
+    caption: "Le Wii.<br>Lanzada el 19/11/2006 en América, el 02/12/2006 en Japón y el 08/12/2006 en Europa."
   Motherboard:
     caption: "Mostrando la revisión \"RVL-CPU-40\", las revisiones anteriores tenían un proceso de fabricación significativamente más grande y las posteriores eliminaron la mayor parte del I/O de la GameCube.<br>La NAND Flash está instalada en la parte posterior."
     bib_source: photography-okqubit
