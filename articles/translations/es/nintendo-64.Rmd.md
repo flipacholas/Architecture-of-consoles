@@ -44,7 +44,7 @@ Al final, la CPU elegida de Nintendo fue la **NEC VR4300** corriendo a **93.75 M
   - **Modo de 64 bits**: Modo 'Nativo' donde todas las extensiones de 64 bits están disponibles. También es compatible con código binario de aplicaciones de 32 bits.
 - **32 registros de uso general**: En el modo de 32-bits, los registros tienen 32-bits de ancho y en el modo 64-bits, 64-bits de ancho.
 - **Set de instrucciones MIPS III**: Un set de tipo RISC y sucesor del MIPS II. Incluye nuevos opcodes que calculan palabras de 64 bits llamadas 'doublewords' (palabras dobles). Finalmente, las instrucciones son siempre de **32 bits**, independientemente del modo.
-  - Vale la pena mencionar que desde el MIPS II, las [load delay slots'](playstation#delay-galore) han desaparecido para siempre, aunque las 'branch delay slots' todavía persisten.
+  - Vale la pena mencionar que desde el MIPS II, las [load delay slots](playstation#delay-galore) han desaparecido para siempre, aunque las 'branch delay slots' todavía persisten.
 - Un bus de datos interno de **64 bits** conectado a un **bus externo de 32 bits**: Aunque las *doublewords* no afectarán el rendimiento mientras sean operadas internamente, la CPU aún necesitará gastar ciclos adicionales para mover datos de 64 bits por todo el sistema. Esto es uno de los recortes de la variante R4300i (el R4000 tiene un bus de datos completo de 64 bits).
 - Bus de direcciones de **32 bits**: Hasta 4 GB de memoria física puede ser direccionada.
 - **Segmentación de 5 etapas**: Hasta cinco instrucciones pueden ser ejecutadas simultáneamente (una explicación detallada se puede encontrar en un [artículo previo](sega-saturn#cpu).
