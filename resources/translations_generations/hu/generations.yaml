@@ -1,0 +1,34 @@
+---
+- 
+  id: 3
+  ordinal: Harmadik
+  description: A "8 bites" konzolok néven ismert gépek kifinomultabb grafikát és gazdagabb hangzást biztosítottak, mint elődeik. Végül is, a piac épp most omlott össze, és újabb szabványokat kellett felállítani.
+  gpu: Görgethető csempetérképek és nagyobb színpaletták
+- 
+  id: 4
+  ordinal: Negyedik
+  description: DMA, vízszintes megszakítások, több üzemmód... Ez csak néhány példa az új koncepciókra, amelyekből az új "16 bites" generáció lett, és amelyek új játékműfajok előtt nyitották meg az ajtót.
+  cpu: Szorzó- és osztóműveletek, DMA és kettős feldolgozás
+  gpu: Affin transzformációk és vízszintes megszakítások
+- 
+  id: 5
+  ordinal: Ötödik
+  description: A 3D-s játékok szükségessé váltak, de a "hogyan" még nem volt egészen világos. A válasz? Minden vállalatnak más elképzelése volt, és bemutatták a saját megoldásaikat.
+  cpu: Futószalag állomások és az L1 gyorsítótár
+  gpu: Programozható vertex futószalagok, Z-pufferelés és perspektíva-korrekció
+- 
+  id: 6
+  ordinal: Hatodik
+  description: Az előző generáció grafikai korlátainak többsége megszűnt. A hordozható konzolok kezdenek hasonlítani az ismert rendszerekre.
+  cpu: Szuperskalár felépítése, SIMD utasítások és L2 gyorsítótár
+  gpu: Programozható pixel futószalagok és anisotropic szűrők
+- 
+  id: 7
+  ordinal: Hetedik
+  description: A jétékkonzolok szuperszámítógépekké és multimédia központokká fejlődtek. Ezek a gépek már nem csak játékokat tudnak futtani, sokkal többre képesek, ezért is annyira fontos szempont a biztonság.
+  cpu: Szál szintű párhuzamosítás és szimmetrukus több magos felépítések
+  gpu: Egyesített shader model és HDR renderelés
+- 
+  id: 8
+  ordinal: Nyolcadik
+  description: A szórakoztatóipari piacot mára meghódították az olcsó okostelefonok és táblagépek. A közösségi-média minden platform első számú prioritásává vált. Itt az ideje, hogy a hagyományos videójáték cégek megváltoztassák a kialakult viszonyokat, de mielőbb, mert nincs sok idejük.
