@@ -166,7 +166,7 @@ From a programmer's perspective, the ARMv6 ISA innovates with a new set of vecto
 All in all, this may not seem that thriving for a new chip series, but remember that ARM's CPUs speak many 'languages'. In the case of an ARM11-based core, you are provided with:
 
 - The main 32-bit ISA, called **ARMv6**.
-- A compressed alternative called **Thumb**. Its instructions fit in 16-bit words instead. If you'd like to know more, I go over it in the [Game Boy Advance article](game-boy-advance#whats-new), as it weighs significant importance in that console.
+- A compressed alternative called **Thumb**. Its instructions fit in 16-bit words instead. If you'd like to know more, I go over it in the [Game Boy Advance article](game-boy-advance#tab-2-3-squeezing-performance), as it weighs significant importance in that console.
 - **Jazelle**, a Java bytecode interpreter, mostly forgotten and left unused. I've mentioned a bit of it in the [Wii article](wii#the-hidden-co-processor).
 - Any extension bundled into the core. For instance, the MPCore includes a **Vector Floating-point Coprocessor** with additional instructions to control said coprocessor [@cpu-vfp].
 

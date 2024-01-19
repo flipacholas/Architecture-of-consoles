@@ -64,9 +64,10 @@ Back on topic, the 68k has the role of 'main' CPU and it will be used for game l
 Secondly, there's another CPU fitted in this console, a **Zilog Z80** running at **~3.5 MHz**. This is the same processor previously analyzed in the [Master System's article](master-system#cpu).
 
 The Z80 is mainly used for **sound control**. Thus, its **16-bit address bus** is composed of the following [@cpu-z80map]:
-  - 8 KB of RAM.
-  - Two sound chips.
-  - 68000's RAM (again, handled by the bus arbiter).
+
+- 8 KB of RAM.
+- Two sound chips.
+- 68000's RAM (again, handled by the bus arbiter).
 
 Finally, **both CPUs run in parallel**.
 
