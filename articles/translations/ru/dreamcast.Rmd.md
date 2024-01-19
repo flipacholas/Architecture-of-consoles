@@ -2,7 +2,7 @@
 short_title: Архитектура Dreamcast
 long_title: Архитектура Dreamcast
 name: Dreamcast
-date: 10.07.2019
+date: 2019-10-07
 release_date: 1998-11-27
 subtitle: Последняя попытка
 generation: 6
