@@ -33,9 +33,7 @@ aliases:
 
 A Sony sabia que o hardware 3D poderia se tornar muito complicado para ser desenvolvido. Assim, seu console estreante manteve seu projeto *simples* e *prático*... Embora isso tivesse um custo!
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## CPU
 
@@ -162,7 +160,7 @@ Consequentemente, as CPUs MIPS I apresentam o seguinte comportamento:
   - As CPUs modernas converteram esse fenômeno em vantagem: [predição de *branch*](gamecube#cpu). Adicionando circuitos extras para detectar o risco de controle, a CPU descarta os novos cálculos se a condição de *branch/jump* não for atendida. Mas se for, a CPU economiza algum tempo.
 - **As instruções de carga não interrompem o *pipeline* até que os dados recuperados estejam disponíveis**: o segundo estágio do *pipeline* (chamado de "RD" ou "*Read and Decode*" - Leia e Decodifique, em tradução livre) coleta os operadores, que serão usados para realizar o cálculo no terceiro estágio (ALU). O quarto estágio ("MEM", de "acesso à MEMória") procura por dados na memória (ou seja, na RAM principal, no leitor de CD, etc.). Agora, aqui está o problema: quando uma instrução de carga recuperou os dados de fora, a instrução seguinte já havia buscado os operadores. Isso significa que uma instrução dependente dos valores da instrução de `carga` anterior requer um preenchedor entre elas, para que os operadores corretos possam ser buscados a tempo.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Como podemos ver a partir do exemplo, alguns *slots* de atraso são preenchidos com instruções úteis, que realizam cálculos que não são afetados pelo risco de *pipeline*. Assim, os *slots* de atraso nem sempre implicam em desperdício de ciclos.
 
@@ -254,7 +252,7 @@ A unidade gráfica também inclui os seguintes efeitos disponíveis para uso:
 
 Vale ressaltar que o PS1 se destacou na realização desses efeitos!
 
-`r close_tabs()`
+#### Etapas restantes {.tabs-close}
 
 Uma vez finalizado, a GPU escreve os píxeis no *buffer* de imagem na VRAM, que, por sua vez, são capturados pelo codificador de vídeo e transmitidos para a tela.
 
@@ -282,7 +280,7 @@ Em essência, em vez de desperdiçar a valiosa VRAM usando resoluções "não ap
 
 O *page-flipping* consiste em alternar a localização do quadro para exibição entre os dois disponíveis sempre que o jogo quiser, permitindo que o jogo renderize uma cena enquanto exibe outra. Assim, escondendo qualquer efeito de cintilação e melhorando os tempos de carregamento (algo que certamente o jogador apreciará!).
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 No geral, o layout de Halkun consome apenas 600 KB de VRAM. O resto (424 KB) pode ser usado para armazenar tabelas de consulta de cores e texturas que, combinadas com **2 KB de cache de textura disponível**, resultam em uma configuração muito conveniente e eficiente.
 
@@ -389,7 +387,7 @@ Este subsistema é composto de:
 - Um **controlador de CD**: este é o intermediário entre o subsistema de CD e o resto do console, recebendo comandos da CPU principal (organizados em fila) e disparando interrupções após certos eventos. Como controlador, o chip conversa com a Sub-CPU e recebe, do DSP, os dados do CD. Além disso, o controlador contém uma unidade DMA e está conectada ao SPU, o que permite que ele transmita áudio diretamente.
 - **32 KB de SRAM** conectados ao controlador:: isso é presumivelmente usado como um *buffer* para dados lidos do disco.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 O subsistema se assemelha um pouco a um leitor de CD típico que todos tinham em casa, exceto pelos ajustes que a Sony implementou no programa da Sub-CPU para realizar verificações contra pirataria.
 
