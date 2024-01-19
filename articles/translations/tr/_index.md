@@ -21,7 +21,7 @@ aliases:
 
 {{< linked_img src="banner.png" alt="Konsol Mimarileri" no_link="true" no_lazyload="true" >}}
 
-Video oyun konsollarının gelişimine bakmak büyüleyici. Geleneksel Masaüstü Bilgisayarlar(PC) 'kademeli olarak' gelişme eğilimindeyken, yeni nesil konsollar tamamen yeni çalışma yöntemleri sunuyor. Burada gördüğünüz, teknolojideki en son trendlerin ardındaki mantığı ortaya çıkaracak bir dizi makaledir. Ayrıca her sistemin neden 'bit', megahertz, RAM miktarı vb. ile özetlenemeyeceğini anlayacaksınız.
+Video oyun konsollarının gelişimine bakmak büyüleyici. Geleneksel masaüstü bilgisayarlar(PC) 'kademeli olarak' gelişme eğilimindeyken, yeni nesil konsollar tamamen yeni çalışma yöntemleri sunuyor. Burada gördüğünüz, teknolojideki en son trendlerin ardındaki mantığı ortaya çıkaracak bir dizi makaledir. Ayrıca her sistemin neden 'bit', megahertz, RAM miktarı vb. ile özetlenemeyeceğini anlayacaksınız.
 
 Bu bir geliştirici kılavuzu değildir, yalnızca her bir sistemin dahili olarak nasıl çalıştığına ilişkin derinlemesine bir *giriş niteliğindedir*. Teknolojinin son zamanlarda gerçekten karmaşıklaştığını unutmayın, bu nedenle en son makalelerimi takip etmekte zorlanıyorsanız, önce ilk makaleleri okumayı deneyin. Sürekli olarak yeniden gözden geçirilen birçok kavram ve tanım sunarlar.
 
