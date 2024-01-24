@@ -240,9 +240,9 @@ Geliştiricilerin bunun yerine Dragon SDK'yı seçmesi durumunda, DirectX 6.0 ve
 
 Oyunlar GD-ROM'larda saklanır; bunlar, daha yüksek yoğunluğa sahip CD-ROM'lar olup (bir gigabayt kapasitesine ulaşır), sadece çukurların daha yoğun bir şekilde yerleştirilmiş olduğu CD-ROM'lardır. Hızı 12x'dir, bu da Satürn'ün 2x CD okuyucusuna kıyasla *oldukça iyidir*.
 
-### Çevrimiçi platform
+### Çevrim içi platform
 
-Dreamcast, oyunların çevrimiçi oyun için çevirmeli bir hizmeti 'aramak' için kullanabileceği bir **modem** modülü yüklü olarak gönderildi. Sega iki hizmet sağlıyordu: **SegaNet** (Amerika ve Japonya'da kullanılan) ve **Dreamarena** (Avrupa'daki muadili).
+Dreamcast, oyunların çevrim içi oyun için çevirmeli bir hizmeti 'aramak' için kullanabileceği bir **modem** modülü yüklü olarak gönderildi. Sega iki hizmet sağlıyordu: **SegaNet** (Amerika ve Japonya'da kullanılan) ve **Dreamarena** (Avrupa'daki muadili).
 
 Oyuncular, bazı oyunlarla birlikte verilen ekstra bir disk olan **DreamKey'i** kullanarak bir hizmete kaydoldular. DreamKey bir hesap açmak için bir web tarayıcısı sağlıyordu. Başlangıçta, DreamKey bölgeye bağlı olarak önceden yapılandırılmış bir hizmet olarak geldi, ancak daha sonraki revizyonlar kullanıcıların herhangi birine bağlanmak için ISS ayarlarını değiştirmelerine izin verdi.
 
