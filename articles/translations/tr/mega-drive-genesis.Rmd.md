@@ -67,9 +67,10 @@ Konuya dönersek, 68k 'ana' CPU rolüne sahiptir ve oyun mantığı, I/O ve graf
 İkinci olarak, bu konsolda **~3,5 MHz** hızında çalışan bir **Zilog Z80** CPU daha bulunmaktadır. Bu, daha önce [Master System'in makalesinde](master-system#cpu) analiz edilen işlemcinin aynısıdır.
 
 Z80 genel olarak **ses kontrol** için kullanıldı. Böylece, **16-bit adres veri yolu** aşağıdakilerden oluşur [@cpu-z80map]:
-  - 8KB RAM.
-  - İki ses çipi.
-  - 68000'in RAM'i (yine bus arbiter tarafından idare edilir).
+
+- 8KB RAM.
+- İki ses çipi.
+- 68000'in RAM'i (yine bus arbiter tarafından idare edilir).
 
 Son olarak, **her iki CPU da paralel olarak çalışır**.
 
@@ -341,7 +342,7 @@ Kartuşlar için sadece bir özel çip üretildi, **Sega Virtua Processor** \[@g
 
 ### İlk ağ girişimleri
 
-Çevrimiçi hizmetler yaygın olarak benimsenmeden (ve standartlaştırılmadan) önce Sega, oyunların kullanılması için çevirmeli bir hizmet olan **Sega Meganet** ile şansını denedi. Meganet, kullanıcıların _Sega Mega Modem_ adında ayrı bir aksesuar satın almalarını, ardından bunu konsolun arkasına (DE-9 konektörünün bulunduğu yere) takmalarını ve son olarak telefon hattına bağlamalarını gerektiriyordu. Oyunlar daha sonra modem ünitesini başka bir kontrolör olarak ele alacak ve onunla seri olarak iletişim kuracaktır \[@games-ioports\] (kontrolörler için kullanılan paralel kodlamanın aksine).
+Çevrim içi hizmetler yaygın olarak benimsenmeden (ve standartlaştırılmadan) önce Sega, oyunların kullanılması için çevirmeli bir hizmet olan **Sega Meganet** ile şansını denedi. Meganet, kullanıcıların _Sega Mega Modem_ adında ayrı bir aksesuar satın almalarını, ardından bunu konsolun arkasına (DE-9 konektörünün bulunduğu yere) takmalarını ve son olarak telefon hattına bağlamalarını gerektiriyordu. Oyunlar daha sonra modem ünitesini başka bir kontrolör olarak ele alacak ve onunla seri olarak iletişim kuracaktır \[@games-ioports\] (kontrolörler için kullanılan paralel kodlamanın aksine).
 
 Her ne olursa olsun, bu özellik Sega'nın gelecekteki revizyonlarda DE-9 konektörünü kaldırmasından ve hizmeti tamamen kapatmasından önce sadece birkaç yıl sürdü.
 
