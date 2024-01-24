@@ -414,11 +414,11 @@ Oyun kayıtları **Memory Card** adı verilen özel bir harici aksesuarda saklan
 
 Nintendo, **GameBoy Link Cable** olarak bilinen ve [**Game Boy Advance**](game-boy-advance)'ı GC kontrolör portuna takan bir aksesuar gönderdi, böylece oyunlar GBA'ya küçük programlar yükleyebilir ve onu özel bir kontrolör olarak ele alabilirdi. Bu ilginç özellik, bazı oyunlarda benzersiz etkileşimler ve içerikler sağladı.
 
-### Çevrimiçi Platform
+### Çevrim içi Platform
 
-[rekabetin](dreamcast) aksine, Nintendo kullanıcıların çevrimiçi içeriğe erişmek için ekstra aksesuar satın almalarını zorunlu kılmakla kalmadı, aynı zamanda yayıncıların güvenebileceği herhangi bir internet hizmeti de sunmadı [@games-online] ve geliştiricileri gerekli internet altyapısını sağlamaktan tek başına sorumlu kıldı.
+[rekabetin](dreamcast) aksine, Nintendo kullanıcıların çevrim içi içeriğe erişmek için ekstra aksesuar satın almalarını zorunlu kılmakla kalmadı, aynı zamanda yayıncıların güvenebileceği herhangi bir internet hizmeti de sunmadı [@games-online] ve geliştiricileri gerekli internet altyapısını sağlamaktan tek başına sorumlu kıldı.
 
-Sonuç olarak, çevrimiçi oyun oynamak mümkün bir özellik olsa da, yaygın olarak benimsenmedi ve yalnızca çok az sayıda oyun bundan yararlandı.
+Sonuç olarak, çevrim içi oyun oynamak mümkün bir özellik olsa da, yaygın olarak benimsenmedi ve yalnızca çok az sayıda oyun bundan yararlandı.
 
 ## Korsanla Mücadele ve Homebrew
 
@@ -450,9 +450,9 @@ Bu da yetmezmiş gibi, bilgisayar korsanları miniDVD okuyucuyu geleneksel DVD'l
 
 #### Mansiyon Ödülü {.tab}
 
-Bu iki mekanizma keşfedilmeden önce, aslında herhangi bir değişiklik yapmadan rastgele kod yüklemenin çok daha basit bir yolu vardı. Bu yöntem **çevrimiçi protokolün ele geçirilmesinden** oluşuyordu.
+Bu iki mekanizma keşfedilmeden önce, aslında herhangi bir değişiklik yapmadan rastgele kod yüklemenin çok daha basit bir yolu vardı. Bu yöntem **çevrim içi protokolün ele geçirilmesinden** oluşuyordu.
 
-*Phantasy Star Online* gibi bazı oyunlar, şirketin sunucularından güncellenmiş bir yürütülebilir dosya (DOL dosyası) indirilerek güncellenebilen kendi çevrimiçi işlevlerini uyguladı ve ikincisi protokolünde herhangi bir güvenlik uygulamadı. Gördüğünüz gibi bu, gerçekleşmeyi bekleyen bir ortadaki adam saldırısıydı...
+*Phantasy Star Online* gibi bazı oyunlar, şirketin sunucularından güncellenmiş bir yürütülebilir dosya (DOL dosyası) indirilerek güncellenebilen kendi çevrim içi işlevlerini uyguladı ve ikincisi protokolünde herhangi bir güvenlik uygulamadı. Gördüğünüz gibi bu, gerçekleşmeyi bekleyen bir ortadaki adam saldırısıydı...
 
 Uzun lafın kısası, sahte bir sunucuyu taklit ederek GameCube, sağlayabileceğiniz her türlü DOL'u indirir (ve çalıştırır). Bu da bilgisayar korsanlarının yalnızca orijinal oyuna ve geniş bant adaptörüne ihtiyaç duyduğu anlamına geliyor. Bu teknik **PSOload** [@anti_piracy-psoload] olarak bilinir.
 
