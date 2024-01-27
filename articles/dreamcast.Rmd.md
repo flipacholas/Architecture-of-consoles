@@ -260,6 +260,8 @@ To enhance the browsing experience, a Dreamcast-branded keyboard and mouse were 
   Sega announced a new business strategy in 2000 with the creation of a new company called Sega.com, Inc. The company was designed to function as an internet service provider (ISP) and launch an internet service called "SegaNet" later that year. Sega.com's website would be featuring chat, instant messaging, message boards, and other functionality. The company aimed to attract a user base similar to that of AOL. By signing up for two years of SegaNet service, users received a free Dreamcast system and keyboard.
   
   SegaNet was launched in September 7, 2000. SegaNet was not free, and players needed to pay a monthly subscription fee to use the service. The subscription cost $21.95 per month, and it provided unlimited access to the service. Including online access for the games. A puzzle game, Sega Swirl, that was given away for free to SegaNet subscribers. However, the subscription fee for SegaNet was seen as a major drawback by some players.
+
+  In July 2001 Sega made an agreement with ISP provider Earthlink. With this agreement EarthLink became SegaNet's preffered ISP. Existing SegaNet ISP subscribers were seamlessly transitioned to EarthLink accounts and were able to continue enjoying the online console gaming experience of SegaNet for only $19.95 per month.
   
   The service was not just for Dreamcast owners. PC owners could also sign up and use the service on their PCs instead of, or in conjunction with, their existing ISP. Subscribe to the service and receive a free Dreamcast, or if you already owned a Dreamcast, receive a cheque from Sega for $200, the price of your Dreamcast purchase.
   
