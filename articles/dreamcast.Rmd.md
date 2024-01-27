@@ -267,7 +267,7 @@ To enhance the browsing experience, a Dreamcast-branded keyboard and mouse were 
 
 - **Japan Online Service**
 
-  TODO
+  In Japan DreamKey came free with the Dreamcast.
 
 - **Australia and New Zeland Online Service**
 
