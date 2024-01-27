@@ -67,9 +67,10 @@ Wracając do tematu, 68k pełni rolę 'głównego' procesora i będzie używany 
 Po drugie, w tej konsoli jest zainstalowany inny procesor, **Zilog Z80** działający z częstotliwością **~3,5 MHz**. Jest to ten sam procesor wcześniej analizowany w artykule o [Master System](master-system#cpu).
 
 Z80 jest głównie używany do **sterowania dźwiękiem**. A zatem jego **16-bitowa magistrala adresu** składa się z następujących [@cpu-z80map]:
-  - 8 KB RAM.
-  - Dwa chipy dźwiękowe.
-  - RAM 68000 (ponownie, obsługiwany przez arbitra magistrali).
+
+- 8 KB RAM.
+- Dwa chipy dźwiękowe.
+- RAM 68000 (ponownie, obsługiwany przez arbitra magistrali).
 
 Wreszcie **oba procesory działają równolegle**.
 
