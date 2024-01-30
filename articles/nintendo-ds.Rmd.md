@@ -62,6 +62,8 @@ As expected, Acorn and Apple were so dazzled by the new chip that they immediate
 
 In the same year, ARM also released their promised ARM8-based CPU (called ARM810). The latter was comparably slower and offered no practical advantages over the StrongARM. So, too little and too late resulted in no commercial interest. Consequently, ARM moved on to improving the ARM7 line for the mobile market. However, the potential of StrongARM was so disruptive that ARM Holdings absorbed some of StrongARM's features to produce their next line of CPUs, the **ARM9** (which the Nintendo DS houses).
 
+Furthermore, StrongARM also helped ARM cement its position in the handheld market, eventually displacing [MIPS](nintendo-64#cpu) and [SuperH](dreamcast#cpu). Since then, ARM has become the most adopted architecture in mobile devices.
+
 Unfortunately for DEC, this CPU will be their last major achievement before being acquired by Compaq in 1998.
 
 ### Nintendo's debuting SoC
