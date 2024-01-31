@@ -56,7 +56,7 @@ All of these processors had something in common: They followed the **Reduced Ins
 
 #### MIPS and Sony {.tab}
 
-In the late 80s, MIPS CPUs became a topic of conversation after being adopted (and later acquired) by Silicon Graphics Incorporated (SGI) to power their equipment. SGI was an influential innovator in the computer graphics market, especially with the development of [hardware-accelerated vertex pipelines](nintendo-64#graphics), whose task was originally carried out by software (within the CPU).
+MIPS was one of the many American companies originating from academia, their founders were Stanford faculty members eiger to turn their research into physical processors. In the late 80s, MIPS CPUs became a topic of conversation after being adopted (and later acquired) by Silicon Graphics Incorporated (SGI) to power their equipment. SGI was an influential innovator in the computer graphics market, especially with the development of [hardware-accelerated vertex pipelines](nintendo-64#graphics), whose task was originally carried out by software (within the CPU). Now, SGI could cover the domain of CPUs and graphics.
 
 During the development of the PlayStation, MIPS was offering the **R3000A series** of processors. These were 32-bit machines and part of their low-end catalogue. Consequently, while the R3000A was not part of the flagship lineup (unlike the R4000, which [others](nintendo-64#cpu) would later choose), it was an attractive investment in terms of cost.
 
@@ -64,7 +64,7 @@ Sony designed their audio and graphics chips in-house, but they still needed the
 
 #### LSI and the commission {.tab}
 
-At the same time, **LSI Logic** (a semiconductor manufacturer) was providing a 'build-your-own' CPU program to businesses. This service was referred to as **CoreWare** and it enabled clients to build their own CPU packages by choosing a series of building blocks [@cpu-lsi]. Part of the CoreWare library included the 'CW33300' block, a CPU core derived from the LSI LR33300, an off-the-shelf CPU chip which LSI also commercialised.
+At the same time, **LSI Logic** (a semiconductor manufacturer) was providing a 'build-your-own' CPU program to businesses. This service was referred to as **CoreWare** and it enabled clients to build their own CPU packages by choosing a series of building blocks [@cpu-lsi]. Part of the CoreWare library included the 'CW33300' block, a CPU core derived from the LSI LR33300, an off-the-shelf CPU chip that LSI also commercialised.
 
 Now, where am I going with all this? It turns out LSI's LR33300 and CW33300 are a **binary-compatible version of the MIPS R3000A family**. Their architectures slightly differ in some areas but the programming interface (MIPS I ISA) remains the same.
 
