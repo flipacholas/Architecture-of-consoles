@@ -80,7 +80,7 @@ When it comes to building a circuit that can interpret x86 instructions, Intel h
 
 Now, the Xbox CPU, along with the rest of Pentium III processors, use the **P6 Microarchitecture** (also known as 'i686'). This is the 6th generation (counting from the 8086) which features:
 
-- A *massive* **14-stage pipeline**: Meaning up to 14 instructions can be processed in parallel. On the other side, individual instructions may take a lot more cycles to complete. See [a previous explanation](game-boy-advance#whats-new).
+- A *massive* **14-stage pipeline**: Meaning up to 14 instructions can be processed in parallel. On the other side, individual instructions may take a lot more cycles to complete. See [a previous explanation](game-boy-advance#tab-2-2-the-core).
 - **Out-of-order execution**: If possible, the CPU re-orders the sequence of instructions to increase efficiency and performance.
 - **Dynamic execution**: Since the P6 is an out-of-order and [superscalar](dreamcast#cpu) design. The traditional [branch predictor](gamecube#features) is now combined with other techniques ('speculative execution' and 'data-flow analysis') to take advantage of the new capabilities. In doing so, it reduces pipeline stalling even further.
 

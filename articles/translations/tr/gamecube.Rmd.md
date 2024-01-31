@@ -8,6 +8,7 @@ subtitle: Güçlü ve kompakt
 generation: 6
 javascript:
   - 'threejs'
+  - 'audioswitcher'
 cover: gamecube
 top_tabs:
   Model:
@@ -29,9 +30,7 @@ aliases:
 
 Bu mimarinin tasarımının, bu neslin en kompakt donanımlarından birini ortaya çıkardığını belirtmek gerekir. Bu durum, *slim* veya *lite* revizyonların olmamasıyla vurgulanmıştır.
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## İşlemci (CPU)
 
@@ -43,7 +42,7 @@ Umut verici bir aday IBM gibi görünüyor: Ana bilgisayarlar üzerindeki ünlü
 
 Hızlı bir şekilde ilerlediğimizde, Nintendo'nun güçlü ama ucuz bir şeye ihtiyacı vardı, bu yüzden IBM bu kırmızı çizgilere uymak için eski tasarımlarından biri olan *PowerPC 750CXe*'yi (*Early-Summer 2001* olarak bilinen son iMac G3'te bulunan) aldı ve oyun geliştiricilerini memnun edecek yeteneklerle güçlendirdi. Sonuç **PowerPC Gekko** oldu ve **486 MHz** hızında çalışıyor.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Özellikler
 
@@ -85,11 +84,11 @@ Bu geliştirmeler, oyun mantığını (fizik, çarpışmalar, vb.) ele almanın 
 
 ### İleriye doğru bir adım mı yoksa geriye doğru bir adım mı?
 
-> [Nintendo 64 makalenizde](nintendo-64), sistemin 64 bit CPU'ya sahip olduğunu, ancak Gamecube'ün 32 bit olduğunu açıkladık. Nintendo konsollarının güçünü mü düşürdü?
+> [Nintendo 64 makalenizde](nintendo-64), sistemin 64 bit CPU'ya sahip olduğunu, ancak GameCube'ün 32 bit olduğunu açıkladık. Nintendo konsollarının güçünü mü düşürdü?
 
 Gerçekten de Gekko 32-bit PowerPC spesifikasyonunu uygularken MIPS R4300i 32-bit ve 64-bit modları arasında geçiş yapabilmektedir. Bunun bir gelişme olup olmadığını yanıtlamak için kendinize sormanız gerekir: Neden '64-bitliğe' ihtiyacınız olsun ki?
 
-- 4 GB'den fazla belleği adreslemek için → Gamecube'de bu miktarda bellek konumu yoktur, bu nedenle bu bir gereklilik değildir.
+- 4 GB'den fazla belleği adreslemek için → GameCube'de bu miktarda bellek konumu yoktur, bu nedenle bu bir gereklilik değildir.
 - Daha az döngü ve bant genişliği kullanarak daha büyük veri parçalarını çalıştırmak → Bu, Gekko'nun yeni SIMD talimatları, 64 bit FPU ve veri yolu ve yazma-toplama borusu tarafından kapsanmaktadır.
 - Daha fazla reklam terimi bulmak için → Evet... Bunun artık insanları ikna ettiğini sanmıyorum.
 
@@ -99,7 +98,7 @@ Gördüğünüz gibi GameCube, '64-bit konsol' olarak adlandırılmadan 64-bit s
 
 Yeni nesil mimarinin tasarımı sırasında, Nintendo'nun mimarları [önceki tasarımlarının](nintendo-64) ölüm sonrası analizini gerçekleştirdiler ve bazı yüksek gecikmeli bileşenlerle (RDRAM) birlikte Birleşik Bellek mimarisinin kullanılmasının darboğazların en büyük nedenlerinden birine yol açtığını keşfettiler (CPU döngülerinin neredeyse %50'si boşta çalışırken boşa harcanıyordu) [@cpu-gdc]. Ayrıca, birden fazla bağımsız birimin dahil edilmesi, bellek veri yolu için ilgili bir rekabete katkıda bulunmuştur.
 
-Bu nedenle Gamecube mimarları, **ayrılmış bellek alanı** sağlayan ve **düşük gecikmeli yongalar** kullanan yeni bir bellek sistemi geliştirdiler. Yeni tasarımla birlikte GPU ve CPU artık aynı RAM için rekabet etmeyecek (doluluk oranı sorunlarına neden olacak) çünkü GPU artık kendi dahili ve *şaşırtıcı derecede* hızlı belleğine sahip olacak. Diğer taraftan, GPU hala G/Ç'ye erişim konusunda hakemlik yapmaktan sorumlu olacaktır.
+Bu nedenle GameCube mühendisleri, **ayrılmış bellek alanı** sağlayan ve **düşük gecikmeli yongalar** kullanan yeni bir bellek sistemi geliştirdiler. Yeni tasarımla birlikte GPU ve CPU artık aynı RAM için rekabet etmeyecek (doluluk oranı sorunlarına neden olacak) çünkü GPU artık kendi dahili ve *şaşırtıcı derecede* hızlı belleğine sahip olacak. Diğer taraftan, GPU hala G/Ç'ye erişim konusunda hakemlik yapmaktan sorumlu olacaktır.
 
 ![Bu sistemin bellek düzeni.](cpu/memory.png)
 
@@ -130,13 +129,13 @@ Bu işi yapmak için, Gekko (ve diğer PowerPC mimarileri) sanal adresleri fizik
 
 Peki bunun geliştiriciler için ne faydası var? Nintendo'nun **Aram** kullanarak ana RAM'i sayfalama yardımıyla genişleten bazı kütüphaneler yayınladığı ortaya çıktı. Özetlemek gerekirse, ARAM adreslenebilir değildir, ancak CPU buradan veri almak ve depolamak için DMA'yı çağırabilir. Böylece CPU, diğer kaynaklara yer açmak için sayfaları ana RAM'den taşıyabilir ve bunları geçici olarak ARAM'de depolayabilir. Daha sonra, bir sayfa hatası oluştuğunda, işletim sistemi ARAM'deki eksik sayfaları aramak ve bunları ana RAM'deki orijinal konumlarına geri yüklemek için rutinler içerir.
 
-Sonuç olarak, bazı akıllıca hilelerle, bu genel amaçlı yetenekler Gamecube oyunlarının teknik olarak izin verilenden daha fazla bellekten yararlanmasını ve böylece daha yüksek kalite seviyelerine ulaşmasını sağladı. Yine de, bu tür hilelerin bazı performans cezalarıyla birlikte gelebileceğini akılda tutmak önemlidir (özellikle de hafife alınırlarsa).
+Sonuç olarak, bazı akıllıca hilelerle, bu genel amaçlı yetenekler GameCube oyunlarının teknik olarak izin verilenden daha fazla bellekten yararlanmasını ve böylece daha yüksek kalite seviyelerine ulaşmasını sağladı. Yine de, bu tür hilelerin bazı performans cezalarıyla birlikte gelebileceğini akılda tutmak önemlidir (özellikle de hafife alınırlarsa).
 
 ## Grafikler
 
-Bu, bu konsolun en kritik bölümlerinden biridir, temelde Gamecube'ü bir *Gamecube* yapar.
+Bu, bu konsolun en kritik bölümlerinden biridir, temelde GameCube'ü bir *GameCube* yapar.
 
-Bu konsolun GPU'sunun geçmişi bazı ilginç bağlantılara sahiptir: N64'ün SoC'sinin ([the RCP](nintendo-64#graphics)) yöneticisi Wei Yen, daha sonra Artx'i kurdu ve yeni nesil çiplerini geliştirmek için Nintendo ile bir sözleşme imzaladı: **Flipper**.
+Bu konsolun GPU'sunun geçmişi bazı ilginç bağlantılara sahiptir: N64'ün SoC'sinin ([the RCP](nintendo-64#graphics)) yöneticisi Wei Yen, daha sonra ArtX'i kurdu ve yeni nesil çiplerini geliştirmek için Nintendo ile bir sözleşme imzaladı: **Flipper**.
 
 ![Super Mario Sunshine (2002).](sunshine.png) {.open-float}
 
@@ -144,7 +143,7 @@ Bir önceki iterasyona göre pek çok ilerleme kaydedildi, örneğin alt sistem 
 
 Geliştirme süreci sırasında ArtX, ATI tarafından satın alındı ve bu şirket de altı yıl sonra AMD'ye satıldı. Bu nedenle, kasanın ön tarafında damgalanmış bir ATI etiketi görürsünüz.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Mimari ve Tasarım
 
@@ -219,23 +218,21 @@ Tüm bunları bir perspektife oturtmanın zamanı geldi, programcıların bu kon
 
 [Önceki nesilde](nintendo-64) poligon sayısı nedeniyle küçültülmek zorunda kalan ünlü Mario modeli bu nesil için tamamen yeniden tasarlandı, modelin düz yüzlerden buruşuk kollara nasıl evrildiğine yakından bakın.
 
-![Super Smash Bros (1999) N64.<br>229 üçgen.](mario_smash_64){.toleft .nested model3d="true"}
+![Super Smash Bros (1999) N64.<br>320 üçgen.](mario_smash_64){.toleft .nested model3d="true"}
 
-![GC için Super Smash Bros. Melee (2001).<br>2,494 üçgen.](mario_melee_gc){.toright model3d="true"}
+![GC için Super Smash Bros. Melee (2001).<br>4,718 üçgen.](mario_melee_gc){.toright model3d="true"}
+
+Sadece iki yıl içinde ne kadar çok ayrıntı kazanıldığı gerçekten etkileyici, değil mi?
 
 #### Güncelleme {.tab}
 
-Bu durumda, Sonic Team zaten [kendi benzersiz konsolları](dreamcast) için bir Sonic modeli tasarlamıştı, ancak oyunlarını Gamecube'e taşıdıktan sonra modellerine daha fazla poligon ekleyebildiklerini ve daha iyi ayrıntılar elde ettiklerini gördüler.
+Bu durumda, Sonic Team zaten [kendi benzersiz konsolları](dreamcast) için bir Sonic modeli tasarlamıştı, ancak oyunlarını GameCube'e taşıdıktan sonra modellerine daha fazla poligon ekleyebildiklerini ve daha iyi ayrıntılar elde ettiklerini gördüler.
 
 ![DC için Sonic Adventure (1999).<br>1,001 üçgen.](sonic_adventure_dc){.toleft .nested model3d="true"}
 
 ![DC için Sonic DX (2003).<br>1,993 üçgen.](sonic_dx_gc){.toright model3d="true"}
 
-`r close_tabs()`
-
-Sadece iki yıl içinde ne kadar çok ayrıntı kazanıldığı gerçekten etkileyici, değil mi?
-
-### Yaratıcılık
+### Yaratıcılık {.tabs-close}
 
 Bu boru hattının iç işleyişinden de görebileceğiniz gibi, grafik teknolojisi, programcıların artık işleme sürecinin belirli işlevlerini kontrol edebilecekleri noktaya kadar gelişmektedir.
 
@@ -245,7 +242,7 @@ Aynı dönemde, PC grafik kartları sabit işlevli boru hatlarını **shader çe
 
 Sanırım bu yeni yeteneği kullanan oyunların en iyi örneklerinden biri, dokularının *karikatürümsü* görünmesini sağlamak için **Cel shading** olarak bilinen benzersiz bir renk/ışıklandırma tekniği uygulayan **The Legend of Zelda: Wind Waker**'dır.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Video çıkış sistemi
 
@@ -265,7 +262,7 @@ Konsolda bir değil, iki video çıkış konektörü bulunuyordu:
   - Nintendo bu sokete bağlanan bir komponent kablo seti çıkardı. Aynı fiş, dijital sinyali YPbPr'ye (optimum kalite) dönüştürmek için bir video DAC ve kodlayıcı içeriyordu.
   - Kablo ekstra bir aksesuar olarak satılıyordu ve şimdi bir tür kalıntı olarak kabul ediliyor!
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ## Ses
 
@@ -298,13 +295,33 @@ Size biri Nintendo 64 için diğeri de GameCube için piyasaya sürülen iki oyu
 
 *Duyabileceğiniz gibi*, DSP nihayet müzik bestecilerine her zaman istedikleri esnekliği ve zenginliği verdi.
 
+#### Ek malzeme
+
+Daha doğrudan bir yan yana karşılaştırma için, bestecilerin düzenlemelerini GameCube ve selefi için nasıl uyarladıklarını gösteren bu interaktif widget'ı hazırladım. Burada, bir Nintendo 64 oyunu ve bir GameCube oyunu için aynı neşeli müzik kullanılıyor ve ortaya çıkan karşılaştırma GameCube'ün DSP'sinin teknik avantajlarını (bir kez daha) göstermemi sağlıyor.
+
+![**Nintendo 64:** Kirby 64: The Crystal Shards (2000).<br>**GameCube:** Kirby Air Ride (2003).](){audio_switcher="true" src1="kirbycrystal_n64" src2="kirbyair_gc" label1="Nintendo 64" label2="GameCube" .centered-container}
+
+Şimdi, her bir parçanın arkasında neler olduğunu görselleştirmek için, işte iki ilgili spektrogram. Başlamadan önce, bu tür çizelgelere aşina değilseniz, önceki NES makalemi, özellikle de [ses bölümünü](nes#audio) (bunları tanıttığım yer) okumanızı tavsiye ederim.
+
+![Kirby 64: The Crystal Shards (2000) filmindeki PCM kanalının spektrogramı.](spectrograms/kirbycrystal_n64.png) {.toleft}
+
+![Kirby Air Ride'daki (2003) PCM kanalının spektrogramı](spectrograms/kirbyair_gc.png) {.toright}
+
+Dürüst olmak gerekirse, karışık parçaların spektrogramda ayrıştırılması zordur, ancak bundan bazı kalıplar çıkarmaya çalışabileceğime inanıyorum.
+
+Öncelikle, GameCube parçasında neredeyse tüm frekans spektrumu eşit olarak kullanılıyor, bu da eşlik için kullanılan ek enstrümanlara (harmonikler ekleyen ve bu nedenle grafikte daha fazla alanı dolduran) bağlanabilir.
+
+Son olarak, GameCube spektrogramındaki genlikler daha düzgün dağılmış görünüyor. Başka bir deyişle, her enstrümanın ses seviyesi farklı şekilde dengelenir ve reverb gibi efektler içerir. Sanırım bestecinin bu müziği üretirken asıl amaçladığı şey ikincisiydi ve bu tür kontroller GameCube'ün ses akışını desteklemesi sayesinde mümkün. Böylece besteciler, çalışma zamanında sıralama ve miks için konsola (ve sınırlamalarına) sıkı sıkıya bağlı olmak yerine, müziklerini sıralamak ve mikslemek için istedikleri herhangi bir aracı kullanabilirler.
+
+Nintendo 64'ün aynı sonucu üretmekten tamamen aciz olduğunu söyleyemem. Ancak kesin olan bir şey var ki, Nintendo 64 dünyasında her bir ses işlevi ekstra döngülere ve/veya belleğe mal oluyor ve bu da oyunun diğer alanlarını etkileyebiliyor. Bu nedenle kaynakların rasyonel kullanılması gerekmektedir. Öte yandan, GameCube'ün büyük örnekleme desteği sayesinde, üretilen tüm partisyonu bir arada izlemek de mümkündür.
+
 ## Giriş/Çıkış
 
-Görünüşe göre bu nesil genişletilebilirlik ve aksesuarlar üzerinde çok çalışıyor, Gamecube birkaç yeni ilginç bağlantı noktası içeriyordu, ancak bazıları kullanılmadı.
+Görünüşe göre bu nesil genişletilebilirlik ve aksesuarlar üzerinde çok çalışıyor, GameCube birkaç yeni ilginç bağlantı noktası içeriyordu, ancak bazıları kullanılmadı.
 
 ### Dahili G/Ç
 
-![Gamecube'ün mimarisinin ana şeması. Burada, I/O'nun çoğunu kontrol eden 'Kuzey Köprüsü'nü buluyoruz.](diagram.png)
+![GameCube'ün mimarisinin ana şeması. Burada, I/O'nun çoğunu kontrol eden 'Kuzey Köprüsü'nü buluyoruz.](diagram.png)
 
 Flipper, CPU'yu diğer bileşenlerle arayüzlemekten sorumludur, bu nedenle ses ve grafik devrelerini içermenin yanı sıra, [@cpu-tree] 'den oluşan **Northbridge** adlı bir donanım koleksiyonu da sağlar:
 
@@ -319,7 +336,7 @@ Her arayüz, bazı davranışlarını değiştirmek için bir dizi kaydedici sun
 
 ### Opsiyonel Giriş/Çıkış
 
-Gamecube'ün kasasının altında, bazı widget'ları bağlamak için iki harici soket bulacaksınız.
+GameCube'ün kasasının altında, bazı widget'ları bağlamak için iki harici soket bulacaksınız.
 
 ![Kasanın alt kısmında kapalı aksesuar yuvaları.](accessories_covered.jpg){.tabs-nested .active .open-float .tab-float title="Kapaklı"}
 
@@ -332,13 +349,13 @@ Her ikisi de teknik olarak aynıdır (32 MHz'de çalışan seri veri yolu), anca
 
 Bu portlar EXI yığını üzerinde çalıştırılır.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Olağandışı G/Ç
 
 Serial portların yanında bulunan başka bir soketten hala bahsetmediğimi fark edeceksiniz: **Parallel Port**. Bu bağlantı noktası çok daha hızlıdır (80 MHz'de 8 bit, 32 MHz'de 1 bit), bu da Nintendo'nun **Hi-Speed Port** adını vermesinin nedeni olabilir. Ancak en alışılmadık kısım, bu bağlantı noktasının EXI aracılığıyla değil, ARAM aracılığıyla arayüzlenmiş olmasıdır!
 
-Bugüne kadar bilinen tek resmi aksesuar, Gamecube'ün altına ekstra bir kat olarak takılan ünlü **Game Boy Player** olup, [**Game Boy**](game-boy) ve [**Game Boy Advance**](game-boy-advance) oyunlarını yerel olarak oynamak için gerekli donanımı içeriyordu. Oynatıcı tüm ağır işleri kendisi yaparak ve ardından sonuçları (kareler ve ses verileri) GameCube'ün görüntü/ses için ilgili bileşenlere ileteceği ARAM'a göndererek çalışır.
+Bugüne kadar bilinen tek resmi aksesuar, GameCube'ün altına ekstra bir kat olarak takılan ünlü **Game Boy Player** olup, [**Game Boy**](game-boy) ve [**Game Boy Advance**](game-boy-advance) oyunlarını yerel olarak oynamak için gerekli donanımı içeriyordu. Oynatıcı tüm ağır işleri kendisi yaparak ve ardından sonuçları (kareler ve ses verileri) GameCube'ün görüntü/ses için ilgili bileşenlere ileteceği ARAM'a göndererek çalışır.
 
 ### Tutarlı tasarım
 
@@ -360,7 +377,7 @@ Konsolu açtıktan sonra CPU, BIOS/IPL çipinde bulunan **Dolphin OS** adlı bir
 
 ![Ses ayarları.](ipl/sound.png){.tabs-nested-last title="Ayarlar"}
 
-Bu program ünlü açılış animasyonunu (Gamecube logosunu çizen küçük küp) görüntülemekten ve eğer varsa oyunu yüklemekten sorumludur. *Geçerli* bir oyun olmaması durumunda, aralarından seçim yapabileceğiniz çeşitli seçenekler içeren küp şeklinde basit bir menü sunacaktır:
+Bu program ünlü açılış animasyonunu (GameCube logosunu çizen küçük küp) görüntülemekten ve eğer varsa oyunu yüklemekten sorumludur. *Geçerli* bir oyun olmaması durumunda, aralarından seçim yapabileceğiniz çeşitli seçenekler içeren küp şeklinde basit bir menü sunacaktır:
 
 - Tarihi ve Saati Değiştirme.
 - Oyunu DVD okuyucudan yükleme.
@@ -383,9 +400,9 @@ Nintendo, konsolları için oyun geliştirilmesine yardımcı olmak (ve teşvik 
 
 Yazılımın yanı sıra şirket, konsolun halka açık olarak piyasaya sürülmesinden önce ve sonra farklı donanım kitleri (fiyatları değişiyor) tedarik etti.
 
-Muhtemelen bahsetmeye değer en popüler olanı **Dolphin Development Hardware** veya 'DDH' Gamecube'ün I/O'sunun bir kısmını ve birçok geliştirmeye yardımcı donanımı içeren PC benzeri bir kuleden oluşuyordu [@games-devstuff], oyun bir Windows PC'de geliştirilirken esas olarak bir hata ayıklama istasyonu olarak kullanılıyordu.
+Muhtemelen bahsetmeye değer en popüler olanı **Dolphin Development Hardware** veya 'DDH' GameCube'ün I/O'sunun bir kısmını ve birçok geliştirmeye yardımcı donanımı içeren PC benzeri bir kuleden oluşuyordu [@games-devstuff], oyun bir Windows PC'de geliştirilirken esas olarak bir hata ayıklama istasyonu olarak kullanılıyordu.
 
-### Medium
+### Medya Ortamı
 
 Oyunlar **miniDVD** adı verilen özel bir diskten yüklenir, bu disk geleneksel bir DVD diskin neredeyse yarısı boyutundadır ve 1,4 GB'a kadar veri tutabilir.
 
@@ -397,15 +414,15 @@ Oyun kayıtları **Memory Card** adı verilen özel bir harici aksesuarda saklan
 
 Nintendo, **GameBoy Link Cable** olarak bilinen ve [**Game Boy Advance**](game-boy-advance)'ı GC kontrolör portuna takan bir aksesuar gönderdi, böylece oyunlar GBA'ya küçük programlar yükleyebilir ve onu özel bir kontrolör olarak ele alabilirdi. Bu ilginç özellik, bazı oyunlarda benzersiz etkileşimler ve içerikler sağladı.
 
-### Çevrimiçi Platform
+### Çevrim içi Platform
 
-[rekabetin](dreamcast) aksine, Nintendo kullanıcıların çevrimiçi içeriğe erişmek için ekstra aksesuar satın almalarını zorunlu kılmakla kalmadı, aynı zamanda yayıncıların güvenebileceği herhangi bir internet hizmeti de sunmadı [@games-online] ve geliştiricileri gerekli internet altyapısını sağlamaktan tek başına sorumlu kıldı.
+[rekabetin](dreamcast) aksine, Nintendo kullanıcıların çevrim içi içeriğe erişmek için ekstra aksesuar satın almalarını zorunlu kılmakla kalmadı, aynı zamanda yayıncıların güvenebileceği herhangi bir internet hizmeti de sunmadı [@games-online] ve geliştiricileri gerekli internet altyapısını sağlamaktan tek başına sorumlu kıldı.
 
-Sonuç olarak, çevrimiçi oyun oynamak mümkün bir özellik olsa da, yaygın olarak benimsenmedi ve yalnızca çok az sayıda oyun bundan yararlandı.
+Sonuç olarak, çevrim içi oyun oynamak mümkün bir özellik olsa da, yaygın olarak benimsenmedi ve yalnızca çok az sayıda oyun bundan yararlandı.
 
 ## Korsanla Mücadele ve Homebrew
 
-Nintendo bir süredir bu oyunun içindeydi, bu nedenle yetkisiz yazılımların veya farklı bir bölgeden oyunların çalıştırılmasını önlemek için güvenlik mekanizmaları eklemeleri yeni bir haber değil. Ayrıca, Gamecube'ün sağladığı yeni I/O aralığı nedeniyle, saldırı yüzeyi önemli ölçüde genişledi.
+Nintendo bir süredir bu oyunun içindeydi, bu nedenle yetkisiz yazılımların veya farklı bir bölgeden oyunların çalıştırılmasını önlemek için güvenlik mekanizmaları eklemeleri yeni bir haber değil. Ayrıca, GameCube'ün sağladığı yeni I/O aralığı nedeniyle, saldırı yüzeyi önemli ölçüde genişledi.
 
 ### Güvenlik mekanizmaları
 
@@ -421,33 +438,33 @@ DVD okuyucuyu oluşturan donanım, yalnızca bir dizi komut kullanılarak erişi
 
 #### IPL ve EXI {.tab}
 
-Bir başka olası istismar yolu da Homebrew programlarını yüklemek için mevcut harici I/O'yu kullanmaktır. Yine de, önce DVD okuyucuyu kırmadan, mevcut diğer tek seçenek Gamecube'ün yüklediği ilk programın kontrolünü ele geçirmeye çalışmaktır ve bu da... IPL.
+Bir başka olası istismar yolu da Homebrew programlarını yüklemek için mevcut harici I/O'yu kullanmaktır. Yine de, önce DVD okuyucuyu kırmadan, mevcut diğer tek seçenek GameCube'ün yüklediği ilk programın kontrolünü ele geçirmeye çalışmaktır ve bu da... IPL.
 
 Bu, BIOS'u tersine mühendislikle değiştirerek ve çipi değiştirilmiş bir çiple değiştirerek, diyelim ki bir dosya okuyucuyu çalıştırabileceğiniz ve buradan aksesuar bağlantı noktalarından alınan programları çalıştırabileceğiniz anlamına gelir (ek donanımın takılı olduğu varsayılırsa).
 
 Her ne olursa olsun, IPL çipi XOR koşullular ve bir Şifre-metni [@anti_piracy-ipl] kullanılarak şifrelenmiştir, bu da tersine mühendisliği 'imkansız' hale getirmektedir.
 
-**Yenilgi**: Bilgisayar korsanları sonunda IPL'nin şifresini çözen donanımın, kullanılan Şifreli metni ele geçirmelerini sağlayan bir hata içerdiğini keşfetti [@anti_piracy-steil]. Bu sayede başka bir ROM oluşturulabilir ve aynı şifreleme ile şifrelenebilir, böylece Gamecube bunu kendi ROM'u gibi önyükleyebilir!
+**Yenilgi**: Bilgisayar korsanları sonunda IPL'nin şifresini çözen donanımın, kullanılan Şifreli metni ele geçirmelerini sağlayan bir hata içerdiğini keşfetti [@anti_piracy-steil]. Bu sayede başka bir ROM oluşturulabilir ve aynı şifreleme ile şifrelenebilir, böylece GameCube bunu kendi ROM'u gibi önyükleyebilir!
 
 Bu da yetmezmiş gibi, bilgisayar korsanları miniDVD okuyucuyu geleneksel DVD'leri yüklemesi için kandıracak yeni yöntemler de buldular.
 
 #### Mansiyon Ödülü {.tab}
 
-Bu iki mekanizma keşfedilmeden önce, aslında herhangi bir değişiklik yapmadan rastgele kod yüklemenin çok daha basit bir yolu vardı. Bu yöntem **çevrimiçi protokolün ele geçirilmesinden** oluşuyordu.
+Bu iki mekanizma keşfedilmeden önce, aslında herhangi bir değişiklik yapmadan rastgele kod yüklemenin çok daha basit bir yolu vardı. Bu yöntem **çevrim içi protokolün ele geçirilmesinden** oluşuyordu.
 
-*Phantasy Star Online* gibi bazı oyunlar, şirketin sunucularından güncellenmiş bir yürütülebilir dosya (DOL dosyası) indirilerek güncellenebilen kendi çevrimiçi işlevlerini uyguladı ve ikincisi protokolünde herhangi bir güvenlik uygulamadı. Gördüğünüz gibi bu, gerçekleşmeyi bekleyen bir ortadaki adam saldırısıydı...
+*Phantasy Star Online* gibi bazı oyunlar, şirketin sunucularından güncellenmiş bir yürütülebilir dosya (DOL dosyası) indirilerek güncellenebilen kendi çevrim içi işlevlerini uyguladı ve ikincisi protokolünde herhangi bir güvenlik uygulamadı. Gördüğünüz gibi bu, gerçekleşmeyi bekleyen bir ortadaki adam saldırısıydı...
 
-Uzun lafın kısası, sahte bir sunucuyu taklit ederek Gamecube, sağlayabileceğiniz her türlü DOL'u indirir (ve çalıştırır). Bu da bilgisayar korsanlarının yalnızca orijinal oyuna ve geniş bant adaptörüne ihtiyaç duyduğu anlamına geliyor. Bu teknik **PSOload** [@anti_piracy-psoload] olarak bilinir.
+Uzun lafın kısası, sahte bir sunucuyu taklit ederek GameCube, sağlayabileceğiniz her türlü DOL'u indirir (ve çalıştırır). Bu da bilgisayar korsanlarının yalnızca orijinal oyuna ve geniş bant adaptörüne ihtiyaç duyduğu anlamına geliyor. Bu teknik **PSOload** [@anti_piracy-psoload] olarak bilinir.
 
 ## Hepsi bu kadar {.tabs-close}
 
-![Yakın zamanda tavan arasından kurtardığım eski Gamecube'um. Wii için sadece kumandaya ihtiyacım vardı (o zamanlar hepsini ikinci el almak daha ucuzdu!).](my_gamecube.jpeg)
+![Yakın zamanda tavan arasından kurtardığım eski GameCube'um. Wii için sadece kumandaya ihtiyacım vardı (o zamanlar hepsini ikinci el almak daha ucuzdu!).](my_gamecube.jpeg)
 
 İşte bu, **onuncu makale**!
 
 Bu makalenin uzunluğuna kabaca bir sınır koymaya çalıştım ama anlamalısınız ki, teknoloji *o kadar karmaşık* hale geldi ki, yanlışlıkla önemli bir şeyi atlarsam, tüm konuyu takip etmek imkansız hale geliyor.
 
-Her neyse, Flipper'ın GPU'sunun karmaşık boru hattını anlamama yardımcı oldukları için #dolphin-dev IRC topluluğuna teşekkür etmek istiyorum, bu adamlar birkaç yıldır Gamecube emülatörünü geliştiriyorlar ve ne kadar çok şeye katlanmak zorunda kaldıkları gerçekten etkileyici.
+Her neyse, Flipper'ın GPU'sunun karmaşık boru hattını anlamama yardımcı oldukları için #dolphin-dev IRC topluluğuna teşekkür etmek istiyorum, bu adamlar birkaç yıldır GameCube emülatörünü geliştiriyorlar ve ne kadar çok şeye katlanmak zorunda kaldıkları gerçekten etkileyici.
 
 Ve son olarak, eğer bu yazıyı ilginç bulduysanız lütfen [katkıda bulunmayı](support) düşünün. Elimden geldiğince eksiksiz olması için çabalıyorum ve bu süreçte bana aniden ne kadar zamana mal olduğunu unutuyorum, yine de iyi bir yatırım olduğunu düşünüyorum.
 

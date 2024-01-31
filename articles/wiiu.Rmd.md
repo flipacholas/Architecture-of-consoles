@@ -67,7 +67,7 @@ The device bundles three main chips [@io-controller_overview] or, better yet, th
 
 Firstly, we've got **DRC-WUP** which is a System-on-Chip (SoC) hiding yet-another **ARM926EJ-S** (the same one from the [Wii](wii#the-hidden-co-processor), _how many of these do they have in stock?_) along with **4 MB of RAM** and a special **H.264 accelerator** for encoding and decoding H.264 streams. This is the main chip that controls the peripheral. It has access to the screen, audio and NFC functionality.
 
-Next to the SoC, you'll find the **Broadcom BCM4319**, another tiny computer that houses an **ARM Cortex-M3** and the radio-frequency infrastructure that provides **802.11 a/b/g/n** connectivity [@io-controller_bc]. It's worth emphasising that Broadcom's choice of CPU is a bit more 'contemporary' than Nintendo's, considering that the Cortex-M3 (with its second version of [Thumb](game-boy-advance#whats-new)) was designed for embedded systems of the 2010s decade. To be fair, it's known that Nintendo's choices are not always based on 'cutting-edginess' but on cost and supply. In any case, the BCM4319 will be providing Wi-Fi connectivity using the 5 GHz band.
+Next to the SoC, you'll find the **Broadcom BCM4319**, another tiny computer that houses an **ARM Cortex-M3** and the radio-frequency infrastructure that provides **802.11 a/b/g/n** connectivity [@io-controller_bc]. It's worth emphasising that Broadcom's choice of CPU is a bit more 'contemporary' than Nintendo's, considering that the Cortex-M3 (with its second version of [Thumb](game-boy-advance#tab-2-3-squeezing-performance)) was designed for embedded systems of the 2010s decade. To be fair, it's known that Nintendo's choices are not always based on 'cutting-edginess' but on cost and supply. In any case, the BCM4319 will be providing Wi-Fi connectivity using the 5 GHz band.
 
 Finally, **UIC-WUP** is another Nintendo-branded component where we can find an **STMicroelectronics STM8**, **2 KB and 28 KB of EEPROM**. The STM8 is one of those modern 8-bit microcontrollers used for small but repetitive tasks. That said, UIC-WUP is delegated with handling the remaining I/O.
 
@@ -722,7 +722,7 @@ This section is very much aligned with the 7th generation of consoles. In summar
 
 Retail stores sold **Wii U optical disc**, a proprietary disc medium designed by Panasonic in an attempt to replicate many capabilities of the [Blu-ray disc](playstation-3#tab-14-1-blu-ray-discs)... without using Blu-ray discs. These can hold ~24 GB of data but only **~20 GB is available for actual game data**, the rest is used for storing software update files, meta-data and other information Cafe OS needs to read.
 
-The same drive is also able to read [Wii optical](wii#medium) discs](wii#medium) which, in turn, are similar to the standard DVD format. However, the drive doesn't support either DVD or Blu-ray's playback capabilities.
+The same drive is also able to read [Wii optical discs](wii#medium) which, in turn, are similar to the standard DVD format. However, the drive doesn't support either DVD or Blu-ray's playback capabilities.
 
 {.close-float}
 

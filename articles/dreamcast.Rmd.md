@@ -6,7 +6,7 @@ date: 2019-10-07
 release_date: 1998-11-27
 subtitle: One last attempt
 generation: 6
-javascript: ['threejs']
+javascript: ['threejs', 'audioswitcher']
 cover: dreamcast
 top_tabs:
   Model:
@@ -23,53 +23,88 @@ aliases: [/projects/consoles/dreamcast/]
 
 ## Introduction
 
-The Sega Dreamcast introduced many new features over its predecessor (the [Saturn](sega-saturn)) to appeal to both game developers and console gamers. While this was Sega's last attempt to conquer the console market, some of the technologies which were pioneered in the Dreamcast carried on and into future mainstream devices.
+The Sega Dreamcast introduced many new features over its predecessor (the [Saturn](sega-saturn)) to appeal to both game developers and console gamers. While this was Sega's last attempt to conquer the console market, some of the technologies that were pioneered in the Dreamcast carried on and into future mainstream devices.
 
 ## {.supporting-imagery}
 
 ## CPU
 
-Unsurprisingly, Sega chose Hitachi again to develop their CPU. If you've been reading the [previous article about the Sega Saturn](sega-saturn) then, lo and behold, I present you the next generation of SH processor: the **SH-4** running at a whopping **200 MHz** [@cpu-spec]. So, what's interesting about this CPU?
+Things were progressing smoothly for Hitachi, their [iconic SuperH chips](sega-saturn#cpu) had found multiple clients and the company was now ready for a fourth installment of the series. Their new entry would combine embedded capabilities with functionality enjoyed by 3D games.
 
-- **5-stage pipeline**: Up to five instructions can be in flight simultaneously (a detailed explanation can be found in a [previous article](sega-saturn#cpu)).
-  - Instruction pipelining is now found everywhere in this generation of consoles and will be standard from now on.
-- **2-way superscalar**: A new type of parallelism where the CPU can process more than one instruction (two in this case) in each stage of the pipeline resulting in more instructions executed per second.
-- A dedicated **Floating-Point Unit** or 'FPU': Computes 32-bit decimal numbers (the *floats*) and 64-bit ones (the *doubles*).
-- 8 KB **instruction cache** and 16 KB **data cache**: This ratio is rather curious since consoles tend to include more instruction cache than data cache. However, the SH-4 allows the data cache to be split into two sections: 8 KB of *Scratchpad* (fast RAM) and 8 KB of data cache.
-- **32-bit internal architecture** while keeping a **16-bit instruction set** (the SuperH ISA): Just like the SH-2, this increases code density and decreases bus overheads while still enjoying the advantages of a 32-bit architecture.
-- **External 64-bit bus**: Critical for manipulating 64-bit values (e.g. doubles and longs) without wasting extra cycles.
+Sega, being one the early adopters of the SuperH, unsurprisingly chose Hitachi's emerging chip to power their new console. Hence, the Dreamcast carries an **SH-4 CPU** running at a whopping **200 MHz** [@cpu-spec]. Also, to [make things right](sega-saturn#the-final-product) this time, there's **only one fully equipped CPU**.
 
-### Extra work
+### The offering
 
-The common chores of a game console CPU include handling a game's logic, running the enemy AI and keeping the GPU fed with instructions. In the Dreamcast, the SH-4 is also involved in the majority of the graphics pipeline, processing geometry data such as computing perspective transformations. As a result, it includes a **128-bit SIMD** unit that can accelerate vector operations [@cpu-arch].
+That being said, what's interesting about this new processor?
 
-### Improving memory access
+Well, to start with, the SH-4 follows up as a superset of the previous models, meaning it inherits all the [existing features](sega-saturn#cpu) of the SuperH line, including a **32-bit RISC architecture**, a **5-stage pipeline** and a **16-bit instruction set**. Alas, it also heirs [control hazards](playstation#delay-galore).
 
-The CPU includes a dedicated **Memory Management Unit** or 'MMU' for virtual addressing, this is helpful since the physical memory address space of this CPU happens to be **29 bits wide**. So with the help of four TLBs, programmers can use 32-bit addresses without hitting performance penalties.
+![The SH-4 chip.](sh4.jpg)
 
-Since only 29 bits are needed for addressing, the extra three bits control memory protection, alternating the memory map and circumventing the cache, respectively [@cpu-marcus] [@cpu-akiba].
+On top of that, as the next-generation CPU, it debuts many improvements that go beyond the scope of embedded applications [@cpu-arch]:
 
-The programmer decides whether to use these features or not. Games for this system certainly don't necessarily _need_ memory protection and the MMU has to be manually enabled at boot.
+- A **2-way superscalar** pipeline: A new type of parallelism where the CPU can process more than one instruction (two in this case) in each stage of the pipeline. This results in more instructions executed per second.
+- **8 KB instruction cache** and **16 KB data cache**: This ratio is rather curious since consoles tend to include more instruction cache than data cache. However, the SH-4 allows the data cache to be split into two sections: **8 KB of Scratchpad** (fast RAM) and **8 KB of data cache**.
+
+#### Special work
+
+The common chores of a game console CPU include handling the game's logic, running the enemy AI and keeping the GPU fed with drawing tasks.
+
+With the Dreamcast, you will see that the GPU only covers the tasks of a [rasteriser](playstation#graphics). So, the CPU must get involved with the majority of the graphics pipeline. This means the CPU will be [processing](playstation#tab-2-2-geometry-transformation-engine) vast amounts of geometry data (such as computing perspective transformations). Now, to make sure the CPU can sustain this role, Sega and Hitachi collaborated to incorporate two crucial extras into the SH-4.
+
+The first addition is a dedicated **64-bit Floating-Point Unit** (FPU). This component computes 32-bit decimal numbers (the so-called 'single-precision' or 'floats') or 64-bit ones (the 'double-precision' or 'doubles' type) abiding by the **IEEE-754 standard**. Its register file is made of **thirty-two 32-bit registers**, but they can also be combined into a different group of **sixteen 64-bit registers**, this is what enables the unit to operate doubles.
+
+If that wasn't enough, Hitachi took a step forward with the FPU and implemented extra logic to form another register group, this time made of **eight 128-bit registers**. In it, each register now stores four 32-bit floats or, in other words, **128-bit vectors**. This format is optimal for graphics-related operations. 
+
+To make good use of the new vectors, the FPU includes specialised instructions for operating them, much like what the [Saturn Control Unit](sega-saturn#the-third-processor-and-counting) provided, except the industry is now a bit more standardised. The new instructions constitute what is often known as **Single Instruction Multiple Data** (SIMD) and may perform the following algebraic operations:
+
+- Dot product.
+- The sum of squares.
+- Matrix multiplication.
+
+The second addition is the SH-4's external bus, which is now **64-bit wide**, enabling the CPU to transfer pairs of 32-bit values at the same time. This is another improvement that adds up to the overall performance of this CPU.
+
+#### Memory & access
+
+The Dreamcasts houses **16 MB of SDRAM**, and it's directly connected to the CPU using a **100 MHz** bus (half the CPU speed).
+
+Conversely, the memory's data bus is only 32-bit wide [@cpu-spec]. Does this mean the CPU's shiny 64-bit bus is wasted? No, because the RAM is installed using **two 8 MB banks**. So, each chip is connected to half of the CPU's bus lines.
+
+![Memory diagram.](memory.png)
+
+To access this memory, the CPU includes a dedicated **Memory Management Unit** or 'MMU' for virtual addressing, this is helpful since the physical memory address space of this CPU happens to be **29 bits wide**. Additionally, thanks to the incorporation of four **Translation Lookaside Buffers** (TLBs), programmers can use 32-bit addresses without hitting performance penalties.
+
+Now, since only 29 bits are needed for addressing, the extra three bits control memory protection, alternating the memory map and circumventing the cache, respectively [@cpu-marcus] [@cpu-akiba].
+
+Ultimately, programmers decide whether to use these features or not. Games for this system certainly don't require memory protection and the MMU must be manually enabled at boot.
 
 ### No UMA but...
 
 While this system is not designed around the strict Unified Memory Architecture like a [well-known competitor](nintendo-64#simplified-memory-access), it does **delegate I/O access to the GPU**. That means that if the CPU has to fetch anything that's beyond its dedicated RAM or a serial interface (which is also connected), it will have to request the GPU and wait if necessary.
 
-### Special queries
+This CPU also features a unique functionality called **Parallel I/O** or 'PIO' that is used to manipulate multiple I/O locations at the same time. Sega wired up these pins so the CPU can manipulate the GPU's **video mode** (more details are explained in the 'Graphics' section).
 
-This CPU also features a unique functionality called **Parallel I/O** or 'PIO' that is used to manipulate multiple I/O locations at the same time. Sega wired up these pins so the CPU can manipulate the GPU's **video mode** (more details about this later).
+### End of the line
+
+Even after all the advantages described, I'm afraid the SuperH series didn't progress significantly after its last major user, the Dreamcast, left the stores. After the popularity of the SH-4, Hitachi (or Renesas Electronics, the current owners) haven't been able to replicate the same level of success, and considering the embedded/handheld market has since favoured [ARM](game-boy-advance#cpu) (thanks to [StrongARM](nintendo-ds#arms-new-territories)), I don't see Renesas continuing Hitachi's invention anytime soon.
+
+The good thing about computing, however, is that technological progress tends to spread beyond the boundaries of brands and companies. For instance, the SH's compressed instruction technique has carried on with ARM's [Thumb mode](game-boy-advance#tab-2-3-squeezing-performance) (a secondary 16-bit ISA) [@cpu-lwn]. Furthermore, in 2012, a volunteer-driven project was started to produce a modern SuperH-compatible CPU, called the 'J2' [@cpu-jcore].
 
 ## Graphics
 
-The GPU package is a custom-made chip called **Holly** running at **100 MHz**, it's designed by VideoLogic (now known as Imagination Technologies) and manufactured by NEC. Holly's 3D core happens to be VideoLogic's **PowerVR2** (also called 'PowerVR Series2' and 'CLX2').
+The GPU package is a custom-made chip called **Holly** running at **100 MHz**. Unlike previous in-house designs, Sega now partnered with VideoLogic (now known as Imagination Technologies) to provide them with a competitive 3D accelerator.
 
-![Sonic Adventure (1999).](sonic.png){.open-float}
+![The Holly chip (after removing the thermal pads) and the video encoder.](holly.jpg)
+
+Inside Holly, we can find VideoLogic's exclusive graphics circuit called **PowerVR2** (also referred to as 'PowerVR Series2' and 'CLX2'), it's based on their previous PowerVR GPUs but tailored for the Dreamcast.
+
+### Architecture
 
 VideoLogic chose an alternative approach for the construction of their 3D engine called **Tile-Based Deferred Rendering** (TBDR).
 
 Instead of rendering a whole frame at once (as traditional **Immediate Mode Renderers** or 'IMR' do [@graphics-arch]), TBDR divides the rendering area into multiple sections called 'tiles'. Then, it carries out the rendering process on each tile individually and the result is combined to form the final frame [@graphics-powervr].
 
-{.close-float}
+![Sonic Adventure (1999).](sonic.png)
 
 This innovative design brings interesting advantages:
 
@@ -78,7 +113,7 @@ This innovative design brings interesting advantages:
 
 It's no surprise that Imagination took this efficient technology forward to build the Series 4 PowerVR cores which powered an incredible number of devices, including the first generation of iPhone, the iPhone 3G, the Nokia N95 and the Dell Axim x51.
 
-### Architecture
+### Construction
 
 Let's take a look at the two main components of the Dreamcast's GPU [@graphics-marcus]:
 
@@ -101,7 +136,7 @@ These Display Lists are then interpreted by the 3D engine: The PowerVR2.
 
 ![Architecture of the PowerVR2 Core.](powervr2.png){.tab-float}
 
-Here is where the graphics are brought into life, the Display Lists received from the TA tell the core to render the geometry of a single tile using an **internal frame-buffer**. The process is as follows:
+Here is where the graphics are brought to life, the Display Lists received from the TA tell the core to render the geometry of a single tile using an **internal frame-buffer**. The process is as follows:
 
 1. The **Image Synthesis Processor** or 'ISP' fetches the primitives (either triangles or quads) and performs **Hidden-Surface Removal** to remove unseen polygons. Then, after calculating its Z-buffers and stencil buffers, the data goes through **Depth Testing** to avoid rendering polygons that would appear behind others and **Stencil Tests** to cull geometry that won't be visible if they are located behind a 2D polygon (also called **Mask**).
     - Notice how these tests are effectively carried out at the start of the pipeline. In contrast, previous consoles [using late z-buffering](nintendo-64#modern-visible-surface-determination) discard the geometry at the end of the pipeline. The ISP approach prevents processing the geometry that will eventually be discarded [@graphics-surface], thereby saving resources.
@@ -155,8 +190,8 @@ The Audio functionality is handled by a custom chip called **AICA** made by Yama
   - Additionally, it includes an **ADPCM decoder** to offload some work from the CPU.
   - Curiously enough, it also provides **two MIDI pins** to connect a MIDI instrument, although this is meant to be used during development.
 - **2 MB of SDRAM**: Stores sound data and programs. It's filled by the main CPU using DMA.
-- An **ARM7DI** running at ~2.82 MHz: Controls the Sound IC. This CPU is programmed by booting a small software (called [driver](super-nintendo#audio)) stored in SRAM which interprets the audio data and manipulates the Sound IC accordingly. 
-  - If you wonder, a similar CPU is also found in the [Game Boy Advance](game-boy-advance).
+- An **ARM7DI** running at **~2.82 MHz**: Controls the Sound IC. This CPU is programmed by booting a small software (called [driver](super-nintendo#audio)) stored in SRAM which interprets the audio data and manipulates the Sound IC accordingly. 
+  - If you wonder, a similar but beefier CPU is also found in the [Game Boy Advance](game-boy-advance).
 - **Memory Controller**: Interfaces the 2 MB of SDRAM.
 
 To help with development, the official SDK included multiple sound drivers for different needs (sequencing, decoding, etc).
@@ -165,13 +200,19 @@ To help with development, the official SDK included multiple sound drivers for d
 
 We've come so far since the days of the [Mega Drive/Genesis](mega-drive-genesis#audio), in order to show how much progress was made in sound synthesis, here's an example of two games, one for the Mega Drive and the other for the Dreamcast, that used the same composition:
 
-![Sonic 3D Blast (1996) for the Mega Drive.<br>The predecessor performs FM synthesis to generate audio signals on the fly.](megadrive){.toleft video="true"}
+![Sonic 3D Blast (1996) for the Mega Drive / Genesis.<br>The predecessor performs FM synthesis to generate audio signals on the fly.](megadrive){.toleft video="true"}
 
 ![Sonic Adventure (1999) for the Dreamcast.<br>The new audio subsystem processes PCM samples without any hassle.](dreamcast){.toright video="true"}
 
+You can also try this widget if you want to switch between the two while playing the score:
+
+![**MegaDrive / Genesis:** Sonic 3D Blast (1996).<br>**Dreamcast:** Sonic Adventure (1999).](){audio_switcher="true" src1="megadrive" src2="dreamcast" label1="MegaDrive / Genesis" label2="Dreamcast" .centered-container .video-file}
+
+#### Explanation
+
 Instead of programming an FM chip, the composers of Sonic Adventure produced their soundtrack in-house and then encoded it to 'ADX', a lossy format developed by CRI Middleware. Hence, it only uses two of the 64 PCM channels (stereo).
 
-ADX compression enables the game to decode and stream the data from the GD-ROM to the Sound IC without running out of memory or bandwidth. The driver can be implemented in many ways, as there are multiple multiple approaches to balance the workload of the main CPU and ARM7.
+ADX compression enables the game to decode and stream the data from the GD-ROM to the Sound IC without running out of memory or bandwidth. Furthermore, the respective driver could be implemented in many ways, as there were multiple approaches available to balance the workload of the main CPU and ARM7.
 
 ### Staying alive
 
@@ -179,42 +220,63 @@ Somehow, this chip is also responsible for providing a **Real Time Clock** (RTC)
 
 ## Operating System
 
-2 MB of 'System ROM' stores a **BIOS** that bootstraps the game or a small shell when the console is switched on.
+There are **2 MB of 'System ROM'** that stores a **BIOS**. This is the first location the CPU reads from when starting up. The ROM contains code that instructs the CPU to either bootstrap the game or show the shell.
 
-The BIOS also contains routines that games use to simplify I/O functions [@games-redream], like reading from the GD-ROM drive.
+Furthermore, the BIOS also contains routines that games may use to simplify I/O functions [@games-redream], like reading from the GD-ROM drive.
 
-### Shell
+### Interactive shell
 
-If there isn't a valid game disc inserted, the console proceeds to boot the graphic shell.
+Much like the [Sega Saturn](sega-saturn#interactive-shell), if there isn't a valid game disc inserted, the console will launch a visual shell.
 
-![Shell after booting without a disc.](shell.png){.open-float}
+![Shell after booting without a disc.](shell.png)
 
 The shell contains a simple graphical user interface to enable the user to perform basic but necessary tasks like:
 
 - Start the game, if it hasn't already.
-- Manipulate the save data stored in the VMU (more details about this device later!).
+- Manipulate the save data stored in the VMU (more details about this device are explained later).
 - Play music, if there's an Audio CD inserted.
-- Change some settings (Date, Time, Sound, etc).
-
-{.close-float}
+- Change certain settings like date, time, sound and so forth.
 
 ### Windows CE
 
-Ever since the Dreamcast's announcement, it was said that the console can run **Windows CE**: a stripped-down version of Windows designed for use on embedded devices. This is a bit misleading considering some users would expect to see a full Windows CE desktop environment running on their console.
+Ever since the Dreamcast's announcement, it was said that the console could run **Windows CE**. In fact, you only have to look at the console's front case to notice a stamp by Microsoft... What's going on here?
 
-![Windows CE logo stamped on the front of the case.](windows_ce.jpeg){.open-float}
+![The Windows CE seal on the front of the console. Coincidentally, you may find similar labels on other handheld equipment from the same era.](windows_ce.jpeg)
 
-In reality, the purpose of this 'OS' was very similar to what Nintendo did with [the Nintendo 64](nintendo-64#operating-system): to provide programmers with a fair layer of abstraction to simplify certain operations.
+First things first, what exactly is 'Windows CE'? Well, it's just one of the many projects Microsoft embarked on during the mid-90s to conquer territories beyond the conventional PC market. In the wake of [more efficient CPU architectures](playstation#tab-1-1-a-bit-of-history) than x86 and the [emergence of handheld computing](game-boy-advance#tab-1-2-a-new-cpu-venture), a new team at Microsoft was tasked with bringing the Windows ecosystem into those new devices [@operating_system-ce_one].
 
-Microsoft worked with Sega to bring Windows CE to the Dreamcast [@games-sdk]. The result was a subset of CE with the minimal components needed to provide graphics, audio and debugging. This included the use of Microsoft's star IDE, **Visual Studio**, for development.
+This led to the creation of Windows CE: a complete operating system, developed from the ground up, that provided a subset of the existing Windows APIs, development tools and services.
 
-{.close-float}
+![Windows CE 3.0 (2000), bundled with a desktop and a couple of business apps.](wince_desktop.png)
 
-Some developers found this option very attractive. Since the audio-graphics framework included with CE was none other than **DirectX 6**, thousands of PC games of that era could, in theory, be easily ported to the Dreamcast...
+Unlike Windows 95 or NT, the new system presented the following advantages:
 
-However, the architectural differences between the Dreamcast and the conventional PC were too great to ignore [@games-direct]. Also, embedding this system increased the game's loading time (after all, the 'OS' had to be loaded from a disc) and Windows CE happened to eat a substantial part of resources from the Dreamcast (*not surprisingly, PCs were already suffering from that*).
+- It ran on a wide range of CPU architectures [@operating_system-ce_archs], including the SuperH and even the [NEC/MIPS VR4300](nintendo-64#cpu) (used by the Nintendo 64).
+- It was designed with constrained hardware in mind, such as a limited power source (AA batteries), memory (2 MB RAM) and storage (4 MB ROM).
 
-In the end, 'Windows CE for Dreamcast' was just another SDK of choice for developers (it's commonly referred to as **Dragon SDK**). Nonetheless, a considerable number of Dreamcast games ended up choosing Windows APIs and DirectX.
+Moreover, Windows CE was sold as a set of **building blocks** for manufacturers, allowing them to cherry-pick which components to bundle. Manufacturers could then integrate it into a variety of hardware (such as handhelds, point-of-sale terminals or even automotive systems). Nevertheless, Windows CE gained significant notice as the OS powering Palmtops (the precursor of PDAs), effectively competing against the Apple Newton and Palm.
+
+As the cellphone industry surged throughout the late 90s, Microsoft made use of Windows CE's modularity to build **PocketPC**, another operating system (later known as 'Windows Mobile') entirely focused on PDAs and phones.
+
+::: {.subfigures .side-by-side max_subfigures=1}
+
+![Windows CE 2.11 'Palm-size PC Edition' 1.2 (1999)](windowsce_pocket.png){.toleft}
+
+![PocketPC (2000), based on Windows CE 3.](pocketpc2000.png){.toright}
+
+Microsoft's attempts to push Windows CE into the PDA market.
+
+:::
+
+Now, what does all of this have to do with the Dreamcast? At some point in time, Microsoft and Sega ventured the idea of producing a Windows CE package for the Dreamcast [@games-sdk]. After all, Windows CE was already running on top of Hitachi's CPUs. In the end, this didn't materialise in a full desktop interface or integration with Microsoft's online services. Instead, it served as an **optional layer of abstraction to simplify hardware operations**.
+
+Similar to what Nintendo provided with [the Nintendo 64](nintendo-64#operating-system), Microsoft shipped an SDK (commonly referred to as **Dragon SDK**), based on Windows CE, to program applications for the Sega Dreamcast. The libraries comprised a subset of CE with the minimal components needed to assist with graphics, audio and debugging. As part of 'joining the Microsoft club', developers could now make use of Microsoft's star IDE (**Visual Studio 6.0**) and **Visual C++ 6.0** for development.
+
+Some developers found this option very attractive. Since the audio/graphics framework included with CE was none other than **DirectX 6**, plenty of PC games could, in theory, be easily ported to the Dreamcast. However, the architectural differences between the Dreamcast and the conventional PC were too great to ignore. So, in the end, programmers had to go through great deals of optimisation to reach optimal performance [@games-direct]. Furthermore, since the Dreamcast's BIOS didn't bundle any of Microsoft's frameworks, the SDK had to be statically linked to the game. Thus, compared to Sega's closer-to-metal libraries, Dragon SDK increased the game's loading times (after all, a separate 'OS' had to be loaded from the game disc) and, throughout the game's execution, the Windows CE layer happened to eat a substantial amount of resources.
+
+In conclusion, 'Windows CE for Dreamcast' was just a secondary SDK of choice for developers. Nonetheless, a considerable number of Dreamcast games ended up making use of it.
+
+If you're curious about the fate of Windows CE and Windows Mobile, things didn't go particularly well for Microsoft in the handheld market. Windows CE was abandoned in 2013. The year before, the CE-based core of Windows Mobile was replaced with Windows NT (aligning with the desktop-based Windows 8). Nevertheless, Windows Mobile eventually accepted defeat against newer platforms (Android and iOS) and was discontinued in 2019.
 
 ## I/O
 
@@ -223,21 +285,21 @@ The GPU also includes another module for handling most of the I/O called **Syste
 - The **G1** interface: Where the **BIOS ROM** along with its saved configuration and the **GD-ROM** content can be accessed.
 - The **G2** interface: Provides access to the **Modem** and **Sound Controller**.
 - The **Maple** interface: Transfers chunks of data between the controllers (along with the accessories connected to them) and the CPU. It's a **serial bus** and provides a dedicated DMA.
-- The **SH-4** interface: Connects the main CPU for general purpose communications.
+- The **SH-4** interface: Connects the main CPU for general-purpose communications.
 - The **DDT** interface: Takes control of the CPU bus to access its main memory during DMA transfers.
 - The **PVR** interface: Connects the CPU with the Tile Accelerator using a dedicated DMA.
 
 ## Games
 
-Development was mainly done in **C** or **C++**. At first, C was the recommended choice since the available C++ compilers were initially very limited in functionality.
+Development was mainly done in **C** or **C++**. At first, C was the recommended choice since the available C++ compilers were initially very limited in functionality (and quality).
 
-Sega also provided development hardware in the form of a PC-like tower called the **Sega Katana Development Box**. This is Dreamcast hardware with enhanced I/O for development. It also came with a CD containing the official **Katana SDK** and tools to be installed on a Windows 98 PC.
+Sega also provided development hardware in the form of a PC-like tower called the **Sega Katana Development Box**. This houses Dreamcast hardware with enhanced I/O for development. It also shipped with a CD containing the official **Katana SDK** to be installed on a Windows 98 PC.
 
-In the case developers chose the Dragon SDK instead, DirectX 6.0 and Visual C++ 6.0 were also available to them.
+As mentioned before, developers also had the choice of adopting Microsoft's Dragon SDK on top of Sega's. In that case, DirectX 6.0 and Visual C++ 6.0 would be available.
 
 ### Medium
 
-Games are stored in GD-ROMs, which are just CD-ROMs with a higher density of pits (reaching a gigabyte of capacity). The speed is 12x, which is *not too shabby* compared to Saturn's 2x CD reader.
+Games are stored in GD-ROMs, which are just [CD-ROMs](sega-saturn#the-compact-disc-cd) with a higher density of pits (reaching a gigabyte of capacity). The speed is 12x, which is *not too shabby* compared to Saturn's 2x CD reader.
 
 ### Online platform
 
@@ -279,7 +341,7 @@ Despite the popularity, both SegaNet and Dreamarena faced criticism and legal is
 
 ### Interactive memory card
 
-Another innovative feature that the Dreamcast featured was the **Visual Memory Unit** or 'VMU'. It is attached to the controller and, aside from serving as a memory card, is a fully-fledged device that includes [@games-vmu]:
+Another innovative feature of the Dreamcast was the **Visual Memory Unit** or 'VMU'. It is attached to the controller and, aside from serving as a memory card, is a fully-fledged device that includes [@games-vmu]:
 
 ![VMU detached from the controller.](vmu.png){.tabs-nested .active .open-float .tab-float title="VMU"}
 
@@ -287,8 +349,8 @@ Another innovative feature that the Dreamcast featured was the **Visual Memory U
 
 ![Controller with VMU attached.](controller-vmu.png){.tabs-nested-last title="Attached"}
 
-- A **Sanyo LC86K87**: An 8-bit low power CPU.
-- A **32x48 Monochrome LCD** with four additional icons: Commanded using 196 B of XRAM (external RAM) as frame-buffer.
+- A **Sanyo LC86K87**: An 8-bit low-power CPU.
+- A **32x48 Monochrome LCD** with four additional icons: Commanded using 196 B of XRAM (eXternal RAM) as a frame buffer.
 - **Two serial connectors**: One for IN and the other for OUT.
 - **Six physical buttons**: Used when the VMU is detached from the controller.
 - A **16 KB Mask-ROM**: Stores the BIOS-IPL.
@@ -300,7 +362,7 @@ Another innovative feature that the Dreamcast featured was the **Visual Memory U
 The VMU has two modes of operation:
 
 - **Attached to the controller**: The official controller has two slots to connect VMUs and other accessories with the same shape, if the VMU is inserted on the first slot (visible from the front of the controller), it can display drawings during gameplay. Moreover, the Dreamcast can store saves and a program on the VMU.
-- **Detached from the controller**: The gadget becomes a Tamagotchi-like device with a clock, save manager and can also run whatever program the Dreamcast previously transferred. Two VMUs can be connected to share content as well.
+- **Detached from the controller**: The gadget becomes a Tamagotchi-like device with a clock and save manager, and can also run whatever program the Dreamcast previously transferred. Two VMUs can be connected to share content as well.
 
 ## Anti-Piracy & Homebrew
 
@@ -310,7 +372,7 @@ Using the proprietary GD-ROM format helped to inhibit the production of unauthor
 
 In practice, the anti-piracy measures were *utterly* useless due to Sega leaving a huge backdoor open: **MIL-CD**. Music Interactive Live-CD or 'MIL-CD' is a format created by Sega to extend an Audio-CD with interactive programs... and the Dreamcast is compatible with it [@anti_piracy-history].
 
-Eventually, unauthorised commercial discs (cheat loaders, movie players, etc) disguised as MIL-CDs to run on the console without Sega's approval. Later on, different hacking communities dissected this exploit and came up with a workaround to boot pirated games using CD-ROMs. This caused an unstoppable wave of ISOs to be released on the net.
+Eventually, unauthorised commercial discs (cheat loaders, movie players, etc) disguised as MIL-CDs ran on the console without Sega's approval. Later on, different hacking communities dissected this exploit and came up with a workaround to boot pirated games using CD-ROMs. This caused an unstoppable wave of ISOs to be released on the net.
 
 Some problems surfaced afterwards: Although GD-ROMs can store a gigabyte of data, CD-ROMs can only fit ~700 MB, so how could 'rippers' shrink the bigger games to fit on a CD? By re-compressing music and graphics until it fits. They may even try to split it into two discs. After all, game data is not a single blob anymore (like on an old cartridge), but is now organised hierarchically into files and directories.
 
@@ -318,7 +380,7 @@ Some problems surfaced afterwards: Although GD-ROMs can store a gigabyte of data
 
 ![A Dreamcast I had to get in order to write lots of stuff here.<br>Not too bad for its age!](folks.png)
 
-I hope you enjoyed reading the article. I finished writing it during the start of my final year at uni.
+I hope you enjoyed reading the article. I finished writing it at the start of my final year at uni.
 
 I'll probably be very busy from now on, but I do enjoy writing these articles so hopefully you'll get the next one in a few weeks!
 

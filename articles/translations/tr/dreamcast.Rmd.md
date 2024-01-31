@@ -14,7 +14,7 @@ top_tabs:
     file: international
     caption: "Dreamcast.<br>Japonya'da 29/11/1998, Amerika'da 09/09/1999 ve 14/10/1999'da Avrupa'da satışa sunuldu."
   Motherboard:
-    caption: "Revizyon 'VA1' olarak gösteriliyor.<br>Resmi dokümanlarda sistemin 128KB flash bellek içerdiği belirtilirken, bu anakart nedense bunun yerine 256KB EEPROM yongası içeriyor.<br>Pil ve denetleyici bağlantı noktaları 'Ön panel' adı verilen bir ek kartta bulunuyor."
+    caption: "Revizyon 'VA1' gösteriliyor.<br>Resmi dokümanlarda sistemin 128KB flash bellek içerdiği belirtilirken, bu anakart nedense 256KB EEPROM yongası içeriyor.<br>Pil ve denetleyici bağlantı noktaları 'Ön panel' adı verilen bir ek kartta bulunuyor."
   Diagram:
     caption: "Önemli veri yolları genişlikleri ve hızları ile etiketlenmiştir."
 #Historical
@@ -26,13 +26,11 @@ aliases:
 
 Sega Dreamcast, hem oyun geliştiricilerine hem de konsol oyuncularına hitap etmek için selefine ([Satürn](sega-saturn)) göre birçok yeni özellik sundu. Bu Sega'nın konsol pazarını fethetmek için son girişimi olsa da, Dreamcast'te öncülük edilen bazı teknolojiler devam etti ve gelecekteki ana akım cihazlara taşındı.
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## İşlemci (CPU)
 
-Şaşırtıcı olmayan bir şekilde, Sega CPU'larını geliştirmek için yine Hitachi'yi seçti. Eğer [Sega Saturn hakkındaki bir önceki makaleyi](sega-saturn) okuduysanız, işte size yeni nesil SH işlemcisini sunuyorum: **200 MHz** [@cpu-spec] hızında çalışan **SH-4**. Peki, bu işlemci hakkında ilginç olan ne?
+Şaşırtıcı olmayan bir şekilde, Sega CPU'larını geliştirmek için yine Hitachi'yi seçti. Eğer [önceki Sega Saturn hakkındaki makaleyi](sega-saturn) okuduysanız, işte size SH işlemcinin bir sonraki nesli: muazzam **200 MHz** hızında çalışan **SH-4** [@cpu-spec]. Peki, bu işlemci hakkında ilginç olan ne?
 
 - **5 aşamalı boru hattı**: Beş adede kadar talimat aynı anda uçuşta olabilir (ayrıntılı bir açıklama [önceki bir makalede bulunabilir](sega-saturn#cpu)).
   - Komut ardışık dizilimi artık bu nesil konsolların her yerinde bulunuyor ve bundan sonra standart olacak.
@@ -48,7 +46,7 @@ Bir oyun konsolu CPU'sunun ortak işleri arasında bir oyunun mantığını idar
 
 ### Bellek erişiminin iyileştirilmesi
 
-CPU, sanal adresleme için özel bir **Bellek Yönetim Birimi** veya 'MMU' içerir, bu CPU'nun fiziksel bellek adres alanı **29 bit genişliğinde** olduğu için bu yararlıdır. Böylece dört TLB'nin yardımıyla programcılar 32 bitlik adresleri performans kaybına uğramadan kullanabilirler.
+CPU, sanal adresleme için özel bir **Memory Management Unit (Bellek Yönetim Birimi)** veya 'MMU' içerir, bu CPU'nun fiziksel bellek adres alanı **29 bit genişliğinde** olduğu için bu yararlıdır. Böylece dört TLB'nin yardımıyla programcılar 32 bitlik adresleri performans kaybına uğramadan kullanabilirler.
 
 Adresleme için sadece 29 bit gerektiğinden, fazladan üç bit bellek korumasını kontrol eder, sırasıyla bellek haritasını değiştirir ve önbelleği atlatır \[@cpu-marcus\] \[@cpu-akiba\].
 
@@ -56,7 +54,7 @@ Bu özelliklerin kullanılıp kullanılmayacağına programcı karar verir. Bu s
 
 ### UMA yok ama...
 
-Bu sistem, [tanınmış bir rakibi](nintendo-64#simplified-memory-access) gibi katı Birleşik Bellek Mimarisi (Unified Memory Architecture veya UMA) etrafında tasarlanmamış olsa da, **I/O erişimini GPU'ya devretmektedir**. Bu da CPU'nun kendi özel RAM'i ya da seri arayüzü (ki bunlar da bağlı) dışında bir şey alması gerektiğinde GPU'dan talepte bulunması ve gerekirse beklemesi gerektiği anlamına geliyor.
+Bu sistem, [tanınmış bir rakibi](nintendo-64#simplified-memory-access) gibi katı Unified Memory Architecture (Birleşik Bellek Mimarisi) veya UMA etrafında tasarlanmamış olsa da, **G/Ç erişimini GPU'ya devretmektedir**. Bu da CPU'nun kendi özel RAM'i ya da seri arayüzü (ki bunlar da bağlı) dışında bir şey alması gerektiğinde GPU'dan talepte bulunması ve gerekirse beklemesi gerektiği anlamına geliyor.
 
 ### Özel sorgular
 
@@ -64,7 +62,7 @@ Bu CPU aynı zamanda **Paralel I/O** veya 'PIO' olarak adlandırılan ve aynı a
 
 ## Grafikler
 
-GPU paketi **100 MHz hızında** çalışan **Holly** adlı özel yapım bir çiptir, VideoLogic (şimdi Imagination Technologies olarak biliniyor) tarafından tasarlanmış ve NEC tarafından üretilmiştir. Holly'nin 3D çekirdeği Videologic'in **PowerVR2'si** ('PowerVR Series2' ve 'CLX2' olarak da adlandırılır).
+GPU paketi **100 MHz hızında** çalışan **Holly** adlı özel yapım bir çiptir, VideoLogic (şimdi Imagination Technologies olarak biliniyor) tarafından tasarlanmış ve NEC tarafından üretilmiştir. Holly'nin 3D çekirdeği VideoLogic'in **PowerVR2'si** ('PowerVR Series2' ve 'CLX2' olarak da adlandırılır).
 
 ![Sonic Adventure (1999).](sonic.png) {.open-float}
 
@@ -72,7 +70,7 @@ VideoLogic, 3D motorunun yapımı için **Karo Tabanlı Ertelenmiş Görüntü O
 
 TBDR, tüm kareyi bir kerede oluşturmak yerine (geleneksel **Anında Mod Oluşturucuların** veya 'IMR'nin yaptığı gibi [@graphics-arch]), oluşturma alanını 'karo' adı verilen birden çok bölüme ayırır. Ardından, her bir karo üzerinde ayrı ayrı render işlemini gerçekleştirir ve sonuç nihai kareyi oluşturmak için birleştirilir [@graphics-powervr].
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Bu yenilikçi tasarım ilginç avantajları da beraberinde getiriyor:
 
@@ -89,50 +87,50 @@ Dreamcast'in GPU'sunun iki ana bileşenine bir göz atalım [@graphics-marcus]:
 
 ![Karo Hızlandırıcının Mimarisi.](tile_accelerator.png) {.tab-float}
 
-Render işlemi başlamadan önce, **Döşeme Hızlandırıcı** olarak bilinen bir bileşen ön işleme gerçekleştirir. Geometrinin işleneceği birkaç 32x32 karo kutusunu tahsis ederek başlar.
+Render işlemi başlamadan önce, **Karo Hızlandırıcı** olarak bilinen bir bileşen ön işleme gerçekleştirir. İşlem, geometrinin render edileceği birkaç 32x32 karo kutusu tahsis ederek başlar.
 
 Ardından, Karo Hızlandırıcı:
 
-1. CPU tarafından yayınlanan geometri verilerini ve çizim komutlarını alın (DMA veya geleneksel aktarımları kullanarak).
+1. CPU tarafından verilen geometri verilerini ve çizim komutlarını alır (DMA veya geleneksel aktarımları kullanarak).
 2. Bu verileri *dahili* bir formata dönüştürür.
-3. Geometriyi koordinatlarına göre her bir bölmeye dağıtır. Kırpılmış geometri de atılacaktır.
+3. Geometriyi koordinatlarına göre her bir karo'ya dağıtın. Geriye kalan geometri ise atılacaktır.
 4. Ortaya çıkan Görüntüleme Listelerini oluşturur.
 
-Bu Ekran Listeleri daha sonra 3D motoru tarafından yorumlanır: PowerVR2.
+Bu Görüntüleme Listeleri daha sonra 3D motoru tarafından yorumlanır: PowerVR2.
 
-#### PowerVR2 Çekirdek {.tab}
+#### PowerVR2 Çekirdeği {.tab}
 
 ![PowerVR2 Çekirdeğinin Mimarisi.](powervr2.png) {.tab-float}
 
-Grafiklerin hayata geçirildiği yer burasıdır, TA'dan alınan Görüntü Listeleri çekirdeğe **dahili bir çerçeve arabelleği** kullanarak tek bir karenin geometrisini oluşturmasını söyler. Süreç aşağıdaki gibidir:
+Grafiklerin hayata geçirildiği yer burasıdır, Karo Hızlandırıcıdan alınan Görüntü Listeleri çekirdeğe **dahili bir çerçeve arabelleği** kullanarak tek bir karenin geometrisini oluşturmasını söyler. Süreç şöyledir:
 
-1. **Görüntü Sentez İşlemcisi** veya 'ISP' ilkelleri (üçgenler veya dörtlüler) alır ve görünmeyen çokgenleri kaldırmak için **Gizli Yüzey Kaldırma işlemini** gerçekleştirir. Ardından, Z tamponlarını ve şablon tamponlarını hesapladıktan sonra veriler, diğerlerinin arkasında görünecek çokgenlerin işlenmesini önlemek için **Derinlik Testinden** ve bir 2B çokgenin (**Maske olarak** da adlandırılır) arkasında yer almaları halinde görünmeyecek geometriyi ayıklamak için Şablon **Testlerinden geçer.**
+1. **Image Synthesis Processor (Görüntü Sentez İşlemcisi)** veya 'ISP' ilkelleri (üçgenler veya dörtlüler) alır ve görünmeyen çokgenleri kaldırmak için **Hidden-Surface Removal (Gizli Yüzey Kaldırma işlemi)** gerçekleştirir. Ardından, Z tamponlarını ve şablon tamponlarını hesapladıktan sonra veriler, diğerlerinin arkasında görünecek çokgenlerin işlenmesini önlemek için **Depth Testing (Derinlik Testi)** ve bir 2B çokgenin (**Mask (Maske)** olarak da adlandırılır) arkasında yer almaları halinde görünmeyecek geometriyi ayıklamak için **Stencil Tests (Şablon Testleri)** işemlerinden geçer.
     - Bu testlerin boru hattının başlangıcında nasıl etkin bir şekilde gerçekleştirildiğine dikkat edin. Bunun aksine, [geç z-tamponlama kullanan](nintendo-64#modern-visible-surface-determination) önceki konsollar geometriyi işlem hattının sonunda atmaktadır. ISP yaklaşımı, sonunda atılacak olan geometrinin işlenmesini önler [@graphics-surface] ve böylece kaynak tasarrufu sağlar.
-2. **Doku ve Gölgelendirme İşlemcisi** veya 'TSP' karo alanı üzerinde renklendirme, gölgelendirme ve çoklu efektler uygular.
+2. **Texture and Shading Processor (Doku ve Gölgelendirme İşlemcisi)** veya 'TSP' karo alanı üzerinde renklendirme, gölgelendirme ve çoklu efektler uygular.
     - Dokular karo dışa aktarılana kadar uygulanmaz, yani ortaya çıkan fazla çizim (varsa) dolgu oranını düşürmez.
 
 İşlem tamamlandıktan sonra, işlenen karo VRAM'deki ana çerçeve arabelleğine yazılır. Bu işlem tüm karolar bitene kadar tekrarlanır. İşlem tamamlandığında, ortaya çıkan çerçeve arabelleği **Video kodlayıcı** tarafından seçilir ve video sinyali aracılığıyla gönderilir.
 
 ### Büyük resim {.tabs-close}
 
-Açık mimari farkın yanı sıra, Doku ve Gölgelendirme İşlemcisi, bu konsolun eski [Saturn'den](sega-saturn) ne kadar uzak olduğu hakkında bir fikir veren birçok yetenekle birlikte geliyor. İşte bazı önemli örnekler:
+Mimari farklılıkların yanı sıra, Tekstür ve Gölgeleme İşlemcisi, bu konsolun eski [Saturn](sega-saturn)'dan ne kadar uzak olduğuna dair bir fikir veren birçok yeteneğe sahiptir. İşte bazı önemli örnekler:
 
-- **Alfa karıştırma**: Şeffaflık efektleri elde etmek için üst üste binen katmanların renklerini birleştirir.
-  - Bu sistemde saydamlık uygulamak için kullanılan işleme sıralamadan **bağımsız saydamlık** denir. Algoritma, renklerini karıştırmadan önce ilkelleri otomatik olarak sıralar ve bu işlem render işlemini yavaşlatsa da, tüm sıralamayı manuel olarak yapmak için oyunun kendisine güvenilmesini önler. Bu nedenle Dreamcast oyunları şeffaf nesneleri görüntülemede mükemmeldi.
+- **Alpha blending (Alfa karıştırma)**: Şeffaflık efektleri elde etmek için üst üste binen katmanların renklerini birleştirir.
+  - Bu sistemde saydamlık uygulamak için kullanılan işleme sıralamadan **order-independent transparency (bağımsız saydamlık)** denir. Algoritma, renklerini karıştırmadan önce ilkelleri otomatik olarak sıralar ve bu işlem render işlemini yavaşlatsa da, tüm sıralamayı manuel olarak yapmak için oyunun kendisine güvenilmesini önler. Bu nedenle Dreamcast oyunları şeffaf nesneleri görüntülemede mükemmeldi.
   - Karo tabanlı sistemle birlikte, siparişten bağımsız şeffaflık önceki [aksaklıkları](sega-saturn#the-transparency-issue) tamamen giderir.
 - **Mip-Mapping**: Gerekli ayrıntı düzeyine bağlı olarak dokunun küçültülmüş bir sürümünü otomatik olarak seçer. Bu, kameradan uzakta görülebilecek büyük dokuların işlenmesini önlemek için yapılır (bu işlem gücü kaybı olur ve örtüşme üretir).
-- **Ortam eşleme**: Dokular üzerinde yansımalar uygular.
-- **Bilinear, Trilinear ve anizotropik filtreleme**: Bunlar dokuları yumuşatmak ve pikselleşmeyi önlemek için kullanılan farklı algoritmalardır. Bunlar 'en kötü'den 'en iyi'ye doğru sıralanır ve her birinin sonuç kalitesi, gereken hesaplama miktarıyla doğru orantılıdır.
+- **Environment mapping**: Dokular üzerinde yansımalar uygular.
+- **Bilinear, Trilinear ve anizotropik filtreleme**: Bu, dokuları yumuşatmak ve pikselleşmeyi önlemek için kullanılan farklı algoritmaları ifade eder. Bunlar 'en kötü'den 'en iyi'ye doğru sıralanır ve her birinin sonuç kalitesi, gereken hesaplama miktarıyla doğru orantılıdır.
   - Bu Saturn'e göre büyük bir adım, çünkü önceki model herhangi bir doku filtresi sağlamıyordu!
-- **Bump mapping**: Fazladan poligon harcamadan yüzeylerdeki kusurları simüle eder.
+- **Bump mapping**: Fazladan poligon harcamadan yüzeylerdeki çıkıntıları simüle eder.
 
 ### Detay Kazanma
 
-Holly artık [selefine](sega-saturn) göre ~10 kat daha fazla poligon çizebiliyor, işte model tasarımlarının artık o kadar da sınırlı olmadığını gösteren bir *Önce & Sonra* örneği. Onlarla oynamaya çalışın!
+Holly artık [selefine](sega-saturn) göre ~10 kat daha fazla poligon çizebiliyor, işte model tasarımlarının artık o kadar da sınırlı olmadığını gösteren bir *Önce ve Sonra* örneği. Onları kurcalayın ve ne kadar fark olduğunu görün!
 
 ![Satürn için Sonic R (1997).<br>286 üçgen (veya 185 dörtgen).](sonic_r_saturn){.toleft model3d="true"}
 
-![DC için Sonic Adventure (1999).<br>1001 üçgen.](sonic_adventure_dc){.toright model3d="true"}
+![Dreamcast için Sonic Adventure (1999).<br>1001 üçgen.](sonic_adventure_dc){.toright model3d="true"}
 
 ### Video Modları
 
@@ -140,29 +138,29 @@ Video sistemi birden fazla ekran türünü ve formatı destekleyecek şekilde ta
 
 - **Kompozit**: Video görüntülemek için gereken üç sinyali (chroma, luma ve sync) tek bir sinyalde birleştirir ve yalnızca tek pimli bir kablo gerektirir.
   - Bu, RCA bağlantılı eski PAL ve NTSC TV'lerde kullanılır.
-- **S-Video**: Kromayı ayrı tutarken luma ve senkronizasyonu birleştirir (toplamda iki video hattı).
+- **S-Video**: Cromayı ayrı tutarken luma ve sync'i birleştirir (yani iki video hattı).
 - **RGB**: Ayrı Kırmızı-Yeşil-Mavi sinyalleri gönderir ve aralarından seçim yapabileceğiniz farklı senkronizasyon türleri sağlar (kompozit senkronizasyon veya kompozit veya S-Video videodan çıkarılmış).
   - Bir SCART kablosu bu tipi kullanacaktır.
 - **VGA**: RGB'yi iki senkronizasyon sinyali (yatay ve dikey) ile birleştirerek toplamda beş video hattı elde eder. Bu, aşamalı modda mümkün olan en yüksek çözünürlüğün (720x480) görüntülenmesini sağlar (bu nedenle, bu mod genellikle '480p' olarak adlandırılır). VGA aslında bir süredir bilgisayar monitörleri tarafından kullanılan standart format/ortam olmuştur.
   - Bu türü kullanmak için Sega ekstra bir aksesuar olarak bir VGA adaptörü sağlamıştır.
 
-Şimdi, Dreamcast bunların hepsini aynı anda kodlayamaz, bu nedenle GPU ve Ses işlemcisi, istenen sinyali oluşturmak için hangi video/ses veri yollarının etkinleştirileceğini koordine eden **Görüntü Modu** adlı bir kayıt içerir. CPU, takılan kablonun türünü algılar (video konektörünün hangi 'seçme bitlerinin' aktif olduğunu kontrol ederek) ve GPU'ya gerekli değerleri yazar. Son olarak, değerler Ses işlemcisine iletilir.
+Şimdi, Dreamcast bunların hepsini aynı anda kodlayamaz, bu nedenle GPU ve Ses işlemcisi, istenen sinyali oluşturmak için hangi video/ses veri yollarının etkinleştirileceğini koordine eden **Görüntü Modu** adlı bir register içerir. CPU, takılan kablonun türünü algılar (video konektörünün hangi 'seçme bitlerinin' aktif olduğunu kontrol ederek) ve GPU'ya gerekli değerleri yazar. Son olarak, değerler Ses işlemcisine iletilir.
 
-VGA kesinlikle aşamalı bir sinyal türü olduğundan (geleneksel *taramalı* sinyalin aksine), yalnızca taramalı video için tasarlanmış oyunlarda bazı uyumluluk sorunları ortaya çıkmıştır. Bunlar, kodlarında oyunun VGA'da görüntülenmeyeceğini açıkça belirtmektedir, bu nedenle CPU, kullanıcı VGA kablosunu başka bir türle değiştirene kadar oyunu engelleyecektir.
+VGA kesinlikle aşamalı bir sinyal türü olduğundan (geleneksel *interlaced* sinyalin aksine), yalnızca interlaced video için tasarlanmış oyunlarda bazı uyumluluk sorunları ortaya çıkmıştır. Bu oyunların kodlarında açıkça belirtilmiştir ki oyun, VGA üzerinde görüntülenmeyecek ve kullanıcı VGA kablosunu başka bir türle değiştirene kadar CPU oyunu engelleyecektir.
 
 ## Ses
 
-Ses işlevselliği, Yamaha tarafından üretilen **AICA** adlı özel bir çip tarafından gerçekleştiriliyor; bu çip [Saturn'de kullanılan SCSP'nin](sega-saturn#audio) geliştirilmiş bir versiyonu ve dört bileşenden oluşuyor:
+Ses işlevselliği, Yamaha tarafından üretilen özel bir çip olan **AICA** tarafından yönetilir. Bu, Satürn'de kullanılan [SCSP'nin](sega-saturn#audio) geliştirilmiş bir versiyonudur ve dört bileşenden oluşur:
 
-- **Ses Entegre Devresi** veya 'IC': Ses sinyalini üreten ve üzerinde efektler uygulayan bir dizi modül (sentezleyici, DSP ve karıştırıcı). **16 veya 8 bit** çözünürlüğe ve **44,1 kHz** örnekleme hızına sahip **64 adede kadar PCM kanalını** destekler. Genel olarak, bu ses çalmak için en uygun kalitedir.
-  - Ayrıca, CPU'dan bazı işleri boşaltmak için bir **ADPCM kod çözücü** içerir.
+- **Sound Integrated Circuit (Ses Entegre Devre)** veya 'IC': Ses sinyalini üreten ve üzerine efekt uygulayan bir dizi modülü (sentezleyici, DSP ve mixer) içeren bir devre. **64 PCM kanalına**, **16 veya 8 bit** çözünürlükle ve **44.1 kHz** örnekleme hızlarını destekler. Genel olarak, bu ses çalmak için en uygun kalitedir.
+  - Ayrıca, CPU'nun iş yükünü azaltmak için bir **ADPCM çözücüsü** içerir.
   - İlginçtir ki, bir MIDI enstrümanı bağlamak için **iki MIDI pini** de sağlar, ancak bu geliştirme sırasında kullanılmak üzere tasarlanmıştır.
 - **2 MB SDRAM**: Ses verilerini ve programları depolar. Ana CPU tarafından DMA kullanılarak doldurulur.
-- 2,82 MHz hızında çalışan bir **ARM7DI:** Ses IC'sini kontrol eder. Bu CPU, ses verilerini yorumlayan ve Ses IC'sini buna göre manipüle eden SRAM'de depolanan küçük bir yazılım ([sürücü](super-nintendo#audio) olarak adlandırılır) önyüklenerek programlanır.
+- 2,82 MHz hızında çalışan bir **ARM7DI:** Ses IC'sini kontrol eder. Bu CPU, depolanan SRAM'deki küçük bir yazılımı ([sürücü](super-nintendo#audio) denilen) başlatarak programlanır. Bu yazılım, ses verilerini yorumlar ve buna göre Ses IC'yi manipüle eder.
   - Eğer merak ediyorsanız, benzer bir CPU [Game Boy Advance](game-boy-advance)'de de bulunmaktadır.
 - **Bellek Denetleyicisi**: 2 MB SDRAM'in arayüzünü oluşturur.
 
-Geliştirmeye yardımcı olmak için, resmi SDK farklı ihtiyaçlar (sıralama, kod çözme, vb.) için birden fazla ses sürücüsü içeriyordu.
+Geliştirmeye yardımcı olmak için, resmi SDK farklı ihtiyaçlar (sequencing, decoding, vb.) için birden fazla ses sürücüsü içeriyordu.
 
 ### Evrim
 
@@ -174,7 +172,7 @@ Geliştirmeye yardımcı olmak için, resmi SDK farklı ihtiyaçlar (sıralama, 
 
 Sonic Adventure'ın bestecileri bir FM çipi programlamak yerine müziklerini kendi bünyelerinde üretmiş ve daha sonra CRI Middleware tarafından geliştirilen kayıplı bir format olan 'ADX'e kodlamışlardır. Dolayısıyla, 64 PCM kanalından yalnızca ikisini (stereo) kullanır.
 
-ADX sıkıştırması, oyunun bellek veya bant genişliği tükenmeden GD-ROM'dan Ses IC'sine veri çözmesini ve aktarmasını sağlar. Ana CPU ve ARM7'nin iş yükünü dengelemek için birden fazla yaklaşım olduğundan sürücü birçok şekilde uygulanabilir.
+ADX sıkıştırması, oyunun bellek veya bant genişliği sınırlaması olmadan GD-ROM'dan veriyi çözümlemesine ve akışa geçirmesine olanak tanır. Ana CPU ve ARM7'nin iş yükünü dengelemek için birden fazla yaklaşım olduğundan sürücü birçok şekilde uygulanabilir.
 
 ### Uyanık Kalma
 
@@ -184,22 +182,22 @@ Bir şekilde, bu çip aynı zamanda BIOS'a **Gerçek Zaman Saati** (RTC) sağlam
 
 2 MB'lık 'Sistem ROM'u, konsol açıldığında oyunu başlatan bir **BIOS** veya küçük bir kabuk depolar.
 
-BIOS ayrıca GD-ROM sürücüsünden okuma gibi I/O işlevlerini [@games-redream] basitleştirmek için oyunların kullandığı rutinler içerir.
+BIOS ayrıca GD-ROM sürücüsünden okuma gibi G/Ç işlevlerini [@games-redream] basitleştirmek için oyunların kullandığı rutinler içerir.
 
-### Shell
+### Kabuk
 
 Geçerli bir oyun diski takılı değilse, konsol grafik kabuğunu önyüklemeye devam eder.
 
 ![Disk olmadan önyükleme yaptıktan sonra shell.](shell.png) {.open-float}
 
-Shell, kullanıcının aşağıdaki gibi temel ancak gerekli görevleri yerine getirmesini sağlamak için basit bir grafik kullanıcı arayüzü içerir:
+Kabuk, kullanıcının aşağıdaki gibi temel ancak gerekli görevleri yerine getirmesini sağlamak için basit bir grafik kullanıcı arayüzü içerir:
 
 - Henüz başlamadıysa oyunu başlatır.
-- VMU'da depolanan kayıt verilerini değiştirin (bu cihaz hakkında daha sonra daha fazla ayrıntı!).
+- VMU'da depolanan kayıt verilerini değiştirir (bu cihaz hakkında daha sonra daha fazla ayrıntı!).
 - Takılı bir Ses CD'si varsa müzik çalar.
-- Bazı ayarları değiştirin (Tarih, Saat, Ses, vb.).
+- Bazı ayarları değiştirir (Tarih, Saat, Ses, vb.).
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Windows CE
 
@@ -211,7 +209,7 @@ Gerçekte, bu 'işletim sisteminin' amacı Nintendo'nun [Nintendo 64](nintendo-6
 
 Microsoft, Windows CE'yi Dreamcast'e getirmek için Sega ile birlikte çalıştı [@games-sdk]. Sonuç, grafik, ses ve hata ayıklama sağlamak için gereken minimum bileşenlere sahip bir CE alt kümesiydi. Bu, geliştirme için Microsoft'un yıldız IDE'si **Visual Studio'**nun kullanımını içeriyordu.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Bazı geliştiriciler bu seçeneği çok cazip buldu. CE ile birlikte gelen ses-grafik çerçevesi **DirectX 6'dan başkası olmadığından,** o dönemin binlerce PC oyunu teorik olarak Dreamcast'e kolayca taşınabilirdi...
 
@@ -221,7 +219,7 @@ Sonunda, 'Dreamcast için Windows CE' geliştiriciler için tercih edilen bir ba
 
 ## Giriş/Çıkış
 
-GPU ayrıca **Sistem Veriyolu** adı verilen I/O'nun çoğunu işlemek için başka bir modül içerir. Aşağıdaki arayüzleri sağlar:
+GPU ayrıca **Sistem Veriyolu** adı verilen G/Ç'nin çoğunu işlemek için başka bir modül içerir. Aşağıdaki arayüzleri sağlar:
 
 - **G1** arayüzü: **BIOS ROM'un** kayıtlı yapılandırması ve **GD-ROM** içeriği ile birlikte erişilebildiği yer.
 - **G2** arayüzü: **Modem** ve **Ses Denetleyicisine** erişim sağlar.
@@ -234,17 +232,17 @@ GPU ayrıca **Sistem Veriyolu** adı verilen I/O'nun çoğunu işlemek için ba�
 
 Geliştirme esas olarak **C** veya **C++ ile** yapılmıştır. Mevcut C++ derleyicileri başlangıçta işlevsellik açısından çok sınırlı olduğundan, ilk başta C önerilen seçimdi.
 
-Sega ayrıca **Sega Katana Geliştirme Kutusu** adı verilen PC benzeri bir kule şeklinde geliştirme donanımı da sağlamıştır. Bu, geliştirme için geliştirilmiş I/O'ya sahip Dreamcast donanımıdır. Ayrıca resmi **Katana SDK** ve Windows 98 PC'ye kurulacak araçları içeren bir CD ile birlikte geldi.
+Sega ayrıca **Sega Katana Geliştirme Kutusu** adı verilen PC benzeri bir kule şeklinde geliştirme donanımı da sağlamıştır. Bu, geliştirme için geliştirilmiş G/Ç'ye sahip Dreamcast donanımıdır. Ayrıca resmi **Katana SDK** ve Windows 98 PC'ye kurulacak araçları içeren bir CD ile birlikte geldi.
 
 Geliştiricilerin bunun yerine Dragon SDK'yı seçmesi durumunda, DirectX 6.0 ve Visual C++ 6.0 da onlar için kullanılabilirdi.
 
-### Medium
+### Medya Ortamı
 
-Oyunlar GD-ROM'larda saklanır, bunlar sadece daha yüksek yoğunlukta çukurlara sahip CD-ROM'lardır (bir gigabayt kapasiteye ulaşır). Hız 12x, Saturn'ün 2x CD okuyucusuna kıyasla *çok da kötü değil*.
+Oyunlar GD-ROM'larda saklanır; bunlar, daha yüksek yoğunluğa sahip CD-ROM'lar olup (bir gigabayt kapasitesine ulaşır), sadece çukurların daha yoğun bir şekilde yerleştirilmiş olduğu CD-ROM'lardır. Hızı 12x'dir, bu da Satürn'ün 2x CD okuyucusuna kıyasla *oldukça iyidir*.
 
-### Çevrimiçi platform
+### Çevrim içi platform
 
-Dreamcast, oyunların çevrimiçi oyun için çevirmeli bir hizmeti 'aramak' için kullanabileceği bir **modem** modülü yüklü olarak gönderildi. Sega iki hizmet sağlıyordu: **SegaNet** (Amerika ve Japonya'da kullanılan) ve **Dreamarena** (Avrupa'daki muadili).
+Dreamcast, oyunların çevrim içi oyun için çevirmeli bir hizmeti 'aramak' için kullanabileceği bir **modem** modülü yüklü olarak gönderildi. Sega iki hizmet sağlıyordu: **SegaNet** (Amerika ve Japonya'da kullanılan) ve **Dreamarena** (Avrupa'daki muadili).
 
 Oyuncular, bazı oyunlarla birlikte verilen ekstra bir disk olan **DreamKey'i** kullanarak bir hizmete kaydoldular. DreamKey bir hesap açmak için bir web tarayıcısı sağlıyordu. Başlangıçta, DreamKey bölgeye bağlı olarak önceden yapılandırılmış bir hizmet olarak geldi, ancak daha sonraki revizyonlar kullanıcıların herhangi birine bağlanmak için ISS ayarlarını değiştirmelerine izin verdi.
 
@@ -254,7 +252,7 @@ Ne yazık ki, SegaNet ve Dreamarena piyasaya sürüldükten iki yıl sonra durdu
 
 ### Etkileşimli hafıza kartı
 
-Dreamcast'in sahip olduğu bir diğer yenilikçi özellik de **Görsel Bellek Birimi** veya 'VMU' idi. Kontrol cihazına takılıdır ve bir bellek kartı olarak hizmet etmenin yanı sıra, [@games-vmu] içeren tam teşekküllü bir cihazdır:
+Dreamcast'in sahip olduğu bir diğer yenilikçi özellik de **Visual Memory Unit (Görsel Bellek Birimi)** veya 'VMU' idi. Kontrol cihazına takılıdır ve bir bellek kartı olarak hizmet etmenin yanı sıra, [@games-vmu] içeren tam teşekküllü bir cihazdır:
 
 ![VMU kontrolcüden ayrılmış.](vmu.png){.tabs-nested .active .open-float .tab-float title="VMU"}
 
@@ -270,7 +268,7 @@ Dreamcast'in sahip olduğu bir diğer yenilikçi özellik de **Görsel Bellek Bi
 - **64 KB Flash**: 32 KB tek bir programı saklamak için (konsoldan aktarılan) ve diğer 32 KB Dreamcast'in kayıtlarını tutmak için.
 - **512 B RAM**: 256 B sistem için ayrılmıştır ve program için yalnızca 256 B kullanılabilir.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 VMU'nun iki çalışma modu vardır:
 

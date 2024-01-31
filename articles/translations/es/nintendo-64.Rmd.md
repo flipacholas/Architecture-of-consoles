@@ -29,9 +29,7 @@ El resultado fue una bonita consola para toda la familia... y un manual de instr
 
 No te preocupes, te prometo que este artículo no va a ser tan largo como el manual... ¡Disfrútalo!
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## CPU
 
@@ -46,7 +44,7 @@ Al final, la CPU elegida de Nintendo fue la **NEC VR4300** corriendo a **93.75 M
   - **Modo de 64 bits**: Modo 'Nativo' donde todas las extensiones de 64 bits están disponibles. También es compatible con código binario de aplicaciones de 32 bits.
 - **32 registros de uso general**: En el modo de 32-bits, los registros tienen 32-bits de ancho y en el modo 64-bits, 64-bits de ancho.
 - **Set de instrucciones MIPS III**: Un set de tipo RISC y sucesor del MIPS II. Incluye nuevos opcodes que calculan palabras de 64 bits llamadas 'doublewords' (palabras dobles). Finalmente, las instrucciones son siempre de **32 bits**, independientemente del modo.
-  - Vale la pena mencionar que desde el MIPS II, las [load delay slots'](playstation#delay-galore) han desaparecido para siempre, aunque las 'branch delay slots' todavía persisten.
+  - Vale la pena mencionar que desde el MIPS II, las [load delay slots](playstation#delay-galore) han desaparecido para siempre, aunque las 'branch delay slots' todavía persisten.
 - Un bus de datos interno de **64 bits** conectado a un **bus externo de 32 bits**: Aunque las *doublewords* no afectarán el rendimiento mientras sean operadas internamente, la CPU aún necesitará gastar ciclos adicionales para mover datos de 64 bits por todo el sistema. Esto es uno de los recortes de la variante R4300i (el R4000 tiene un bus de datos completo de 64 bits).
 - Bus de direcciones de **32 bits**: Hasta 4 GB de memoria física puede ser direccionada.
 - **Segmentación de 5 etapas**: Hasta cinco instrucciones pueden ser ejecutadas simultáneamente (una explicación detallada se puede encontrar en un [artículo previo](sega-saturn#cpu).
@@ -141,7 +139,7 @@ La RDP proporciona cuatro modos de operación, cada uno combina estos bloques de
 
 Dado que este módulo requiere actualizar constantemente el frame-buffer, la RAM se maneja de forma diferente: ¿Te acuerdas del inusual 'byte' de 9 bits? El noveno bit se utiliza para los cálculos relacionados con el frame-buffer (z-buffering y el antialiasing) y sólo se puede acceder a él a través de la Memory interface.
 
-`r close_tabs()`
+#### Pasos restantes {.tabs-close}
 
 El frame que se obtiene debe ser enviado al **Video Encoder** para visualizarlo en pantalla (el **DMA** y el **Video Interface** son esenciales para llevar a cabo esto).
 
@@ -184,7 +182,7 @@ Una vez que el RDP termine de procesar los datos, escribirá el mapa de bits res
 
 He aquí algunos ejemplos de personajes previamente diseñados en dos dimensionas para la [Super Nintendo](super-nintendo), pero que han sido rediseñados para la nueva era de tres dimensiones. Los modelos son interactivos así que os animo a que les echéis un vistazo.
 
-![The Legend of Zelda: Ocarina of Time (1998).<br>785 triángulos.](link_ocarina_64){.toleft model3d="true"}
+![The Legend of Zelda: Ocarina of Time (1998).<br>704 triángulos.](link_ocarina_64){.toleft model3d="true"}
 
 ![Kirby 64: The Crystal Shards (2000).<br>516 triángulos.](kirby_cristals_64){.toright model3d="true"}
 
@@ -256,7 +254,7 @@ Debido a este diseño, las limitaciones de este sistema dependerán de la implem
 
 Por estas razones, los jugadores pueden llegar a notar que los ports de N64 contienen música de menor calidad o repetitiva. Un método para superar esta limitación consistía en implementar un secuenciador en software que pudiera 'construir' los samples mientras el juego se ejecutaba, esto requiere un banco de sonidos (similar a la música MIDI).
 
-## Sistema Operativo
+## Sistema operativo
 
 Al igual que la PS1 y Saturn, los juegos de N64 hablan directamente con el hardware. Sin embargo, no hay rutinas de la BIOS disponibles para simplificar algunas operaciones. Como sustituto, **los juegos incorporan un pequeño sistema operativo** que proporciona una buena cantidad de abstracción para manejar eficientemente la CPU, la GPU y el I/O.
 
@@ -286,7 +284,7 @@ Estas rutinas también se denominan **Initial Program Load** (IPL) y funcionan d
 
 Como IPL3 se encuentra en el cartucho del juego, no todos los juegos empaquetan el mismo código. Presumiblemente, las variantes de IPL3 están correlacionadas con la variante del chip CIC que se encuentra en el cartucho.
 
-## I/O
+## E/S
 
 Como ya sabéis, el I/O no está conectado directamente a la CPU, así que el tercer módulo del RCP (que no he mencionado hasta ahora) sirve como **interfaz I/O**. Básicamente, se comunica con la CPU, los controladores, el cartucho de juego y los DAC de Audio/Video.
 
@@ -331,13 +329,13 @@ El medio magnético es más lento que los cartuchos, con velocidades de transfer
 
 El lector no incluye un búfer de memoria, así que los bits leídos son almacenados en RDRAM para ejecución. Nintendo incluyó la unidad de expansión de RAM con la 64DD, por lo que compensa la necesidad de más RAM (además de estandarizar la disponibilidad de RAM extendida para todos los juegos de la 64DD).
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Además, partes del disco se pueden reescribir para permitir el almacenamiento de partidas, la cantidad de área disponible para escritura depende del tipo de disco usado (Nintendo proporcionó siete tipos). Del lado del software, los datos del juego son estructurados con un sistema de archivos llamado 'Multi File System' (MFS) que Nintendo proveyó en su SDK. Los juegos pueden acceder los datos del disco utilizando el sistema de archivo o a nivel de bloque, el último requiere otra librería llamada 'Leo' que proporciona funciones de bajo nivel.
 
 El Disk Drive también alberga una ROM interna (denominada "DDROM") que almacena el código que ejecuta la N64 para arrancar el disco y mostrar la animación de bienvenida. Esto funciona como una nueva etapa del IPL añadida encima del proceso de arranque tradicional. La ROM también almacena fuentes (Latín y Kanji) y algunos sonidos. Esta ROM solo se encuentra en la version 'retail' del 64DD, ya que las unidades de desarrollo usaban programas externos cargados a través del kit de desarrollo.
 
-## Anti-piratería / Region-lock
+## Anti-piratería / Region Lock
 
 El sistema antipiratería es una continuación del [CIC de la SNES](super-nintendo.md#anti-piracy--region-lock). Como sabéis, la detección de piratería y el 'region lock' son posibles gracias al chip CIC (que debe estar presente en cada cartucho de juego *autorizado*) [@anti_piracy-cic], la Nintendo 64 mejoró este sistema requiriendo que diferentes juegos tuvieran una variante específica del CIC. Esto es para asegurarse de que el cartucho no era una falsificación o contenía un clon del CIC. El PIF realiza comprobaciones por medio de checksums al inicio y durante la ejecución del juego para supervisar el CIC instalado en el cartucho.
 
@@ -361,7 +359,7 @@ Supongo que vale la pena mencionar el **Doctor v64**, este dispositivo tiene la 
 
 Esta expansión puede grabar el contenido del cartucho a un CD, y lo opuesto (leer la ROM desde un CD) también es posible.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Emulación
 

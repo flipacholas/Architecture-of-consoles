@@ -1,5 +1,5 @@
 ---
-short_title: Mega Drive/Genesis Mimarisi
+short_title: Mega Drive / Genesis Mimarisi
 title: Mega Drive/Genesis'in Mimarisi
 name: Mega Drive/Genesis
 subtitle: Yeni kompozisyon teknikleri
@@ -38,9 +38,7 @@ Sega (ve TV reklamları) bilmenizi istiyor: Konsol daha hızlı grafikler ve dah
 
 Yeni sistemleri, programlanmaya hazır çok sayıda *zaten tanıdık* bileşen içeriyor. Bu da teorik olarak geliştiricilerin sadece Sega'nın yeni GPU'su hakkında bilgi sahibi olmaları gerektiği anlamına geliyor... değil mi?
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## İşlemci (CPU)
 
@@ -66,16 +64,13 @@ Konuya dönersek, 68k 'ana' CPU rolüne sahiptir ve oyun mantığı, I/O ve graf
 
 (32 bitlik kelimeleri işleyebilen bir CPU ile 24 bitlik adresleri kullanmanın arkasındaki nedeni merak ediyorsanız, 80'lerde birçok kişinin 4 GB RAM'i yönetmek istediğinden ve kullanılmayan satırları eklemenin performans ve para açısından maliyetli olduğundan şüpheliyim).
 
-İkinci olarak, bu konsolda **~3,5 MHz** hızında çalışan bir **Zilog Z80** CPU daha bulunmaktadır. Bu, [Master System](master-system#cpu)'de bulunan işlemcinin aynısıdır ve esas olarak **ses kontrolü** için kullanılır. Bu [@cpu-z80manual] özellikleri:
+İkinci olarak, bu konsolda **~3,5 MHz** hızında çalışan bir **Zilog Z80** CPU daha bulunmaktadır. Bu, daha önce [Master System'in makalesinde](master-system#cpu) analiz edilen işlemcinin aynısıdır.
 
-- **Z80 ISA**: Intel 8080 ISA'nın bir uzantısıdır ve **8-bit** sözcükleri işler.
-- **8-bit yazmaçlar** ve **8-bit veri yolu**: _Burada sürpriz yok_.
-- **4-bit ALU**: Bu biraz şok edici olabilir, ancak 8-bit işlemleri sorunsuz bir şekilde halletmeyi başardı, sadece hesaplamak için iki kat daha fazla döngü gerekiyor.
-  - 6502'nin [bazı sistemlerde](nes#cpu) ~2 MHz'de çalışırken bunun neredeyse 4 MHz'e ulaştığına dikkat edin: Saat hızı Z80'i kendi başına daha hızlı yapmaz, ancak bazı alanlardaki transistör eksikliğini dengelemeye yardımcı olur.
-- **16 bit adres veri yolu** ile aşağıdaki adres haritası [@cpu-z80map]:
-  - 8KB RAM.
-  - İki ses çipi.
-  - 68000'in RAM'i (yine bus arbiter tarafından idare edilir).
+Z80 genel olarak **ses kontrol** için kullanıldı. Böylece, **16-bit adres veri yolu** aşağıdakilerden oluşur [@cpu-z80map]:
+
+- 8KB RAM.
+- İki ses çipi.
+- 68000'in RAM'i (yine bus arbiter tarafından idare edilir).
 
 Son olarak, **her iki CPU da paralel olarak çalışır**.
 
@@ -143,7 +138,7 @@ Aşağıdaki bölümde VDP'nin her bir kareyi nasıl çizdiği açıklanmaktadı
 
 #### Kareler {.tabs.active}
 
-::: {.subfigures .tabs-nested .tab-float .pixel}
+::: {.subfigures .tabs-nested .tab-float .pixel max_subfigures=1}
 
 ![Birden fazla karo birbirine sıkıştırılmış. Gösterim amacıyla varsayılan bir palet kullanılmaktadır.](vdp_sonic/tiles.png){.active title="Hepsi"}
 
@@ -251,7 +246,7 @@ Bununla birlikte, Mega Drive iki ses yongası barındırır: Bir **Yamaha YM2612
 
 #### Yamaha YM2612 {.tabs.active}
 
-::: {.subfigures .tabs-nested .tab-float}
+::: {.subfigures .tabs-nested .tab-float max_subfigures=1}
 
 ![FM kanalları.](fm_single){.active video="true" title="FM"}
 
@@ -299,7 +294,7 @@ Bazı müzik bestecileri daha gerçekçi sesler çalmak için PCM kanalına odak
 
 Bu nedenle, bu bölümü yukarıda bahsedilen kısıtlamanın üstesinden gelmeyi başaran birkaç oyun örneğine ayırmaya karar verdim. Sıradan davul kitlerine bağlı kalmak yerine, bazı oyunlar daha zengin örnekleri tek bir PCM kanalına aktarmanın inanılmaz yollarını buldu, bu örneklere göz atın:
 
-::: {.subfigures .tabs-nested .toleft}
+::: {.subfigures .tabs-nested .toleft max_subfigures=1}
 
 ![PCM kanalları.](good_sampling/sonic_pcm){.active video="true" title="PCM Örneği"}
 
@@ -347,7 +342,7 @@ Kartuşlar için sadece bir özel çip üretildi, **Sega Virtua Processor** \[@g
 
 ### İlk ağ girişimleri
 
-Çevrimiçi hizmetler yaygın olarak benimsenmeden (ve standartlaştırılmadan) önce Sega, oyunların kullanılması için çevirmeli bir hizmet olan **Sega Meganet** ile şansını denedi. Meganet, kullanıcıların _Sega Mega Modem_ adında ayrı bir aksesuar satın almalarını, ardından bunu konsolun arkasına (DE-9 konektörünün bulunduğu yere) takmalarını ve son olarak telefon hattına bağlamalarını gerektiriyordu. Oyunlar daha sonra modem ünitesini başka bir kontrolör olarak ele alacak ve onunla seri olarak iletişim kuracaktır \[@games-ioports\] (kontrolörler için kullanılan paralel kodlamanın aksine).
+Çevrim içi hizmetler yaygın olarak benimsenmeden (ve standartlaştırılmadan) önce Sega, oyunların kullanılması için çevirmeli bir hizmet olan **Sega Meganet** ile şansını denedi. Meganet, kullanıcıların _Sega Mega Modem_ adında ayrı bir aksesuar satın almalarını, ardından bunu konsolun arkasına (DE-9 konektörünün bulunduğu yere) takmalarını ve son olarak telefon hattına bağlamalarını gerektiriyordu. Oyunlar daha sonra modem ünitesini başka bir kontrolör olarak ele alacak ve onunla seri olarak iletişim kuracaktır \[@games-ioports\] (kontrolörler için kullanılan paralel kodlamanın aksine).
 
 Her ne olursa olsun, bu özellik Sega'nın gelecekteki revizyonlarda DE-9 konektörünü kaldırmasından ve hizmeti tamamen kapatmasından önce sadece birkaç yıl sürdü.
 

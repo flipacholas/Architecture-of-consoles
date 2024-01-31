@@ -35,11 +35,28 @@ Just in case developers want the extra dimension, Sega adapted some bits of the 
 
 ## CPU
 
-Just like its close competitors [drowned with options](playstation#a-bit-of-history) during the RISC fever, Sega had to go through all the conundrums of choosing a vendor that could bring up the next generation of games (including those with '3D' capabilities). In the end, the company chose a fresh CPU whose creator was desperately looking for an adopter, the **Hitachi SuperH** or 'SH'.
+Just like its close competitors [drowned with options](playstation#a-bit-of-history) during the RISC fever, Sega had to go through all the conundrums of choosing a new vendor that could bring up the next generation of games (including those with '3D' capabilities). In the end, the company chose a fresh CPU whose creator was desperately looking for an adopter, the **Hitachi SuperH** or 'SH'.
 
-Hitachi's new creation implemented modern arts such as a RISC instruction set and a pipelined data path, however, Sega wasn't satisfied by the final product, especially due to the small 16-bit multiplier. Thus, Hitachi synthesised a second revision with a larger multiplier unit and other requirements on Sega's checklist [@cpu-history], leading to a new CPU called **SH-2**.
+While initially focused on embedded applications, Hitachi's new creation debuted modern arts such as [@cpu-prog_manual]:
 
-Even so, Sega couldn't stand still after hearing what choice of CPU [its](playstation#cpu) [competitors](nintendo-64#cpu) went for. So, they asked Hitachi to step up the clock frequency of the SH-2 - an impossible task once the chip is already out for manufacturing. Luckily, Hitachi had another trick up in their sleeve, **multiprocessing**. During the research phase of the SH, the team added minimal circuitry to allow the SH to work with other SHs within the same system at the same time. Upon hearing that, Sega decided on a two-chip configuration for the Sega Saturn. And the rest is history. 
+- A [load-store architecture](xbox#tab-1-4-cisc-or-risc), meaning instructions don't mix memory and register operations, resulting in a cleaner and scalable CPU design. This is one of the pillars of RISC CPUs.
+- **32-bit data bus and ALU**, enabling to move and operate larger amounts of data (32-bit values) without consuming extra cycles.
+- **16 general-purpose 32-bit registers**, which is double the amount of previous CPUs like the [Motorolla 68000](mega-drive-genesis#cpu). This is another design decision derived from the RISC guidelines [@cpu_patterson].
+- **32-bit address bus**, allowing up to 4 GB of memory to be addressed (_farewell [mappers](nes#going-beyond-existing-capabilities)_).
+- A **pipelined data path** with **five stages**: The execution of instructions is now divided into five steps or *stages*. The CPU will queue up to five instructions and each one is allocated in one stage. This allows taking advantage of all the CPU's resources without idling while also incrementing the number of instructions executed per unit of time.
+- A **16-bit multiplication unit**: Performs multiplications with 16-bit integers.
+
+Furthermore, the SuperH features a new instruction set called **SuperH ISA** which, apart from adopting a RISC design, **all of its instructions are 16-bit wide**. This comes as a surprise since this CPU operates 32-bit words, so you would expect instructions to have the same length. Yet, Hitachi managed to fit its ISA using half the size. Not only does this format reduce the size of programs, but since the CPU fetches instructions in 32-bit batches, **two instructions can be retrieved in one cycle**. Overall, this technique of compressing the instruction set helped tackle a common concern of RISC-based architectures called 'code density', where the latter required more instructions (therefore, more memory) to perform the same tasks as non-RISC systems.
+
+Conversely, other drawbacks of RISC designs are still present in the SuperH, such as [control hazards](playstation#delay-galore). Consequently, programs are required to include **branch delay slots** to avoid calculation errors. To remediate things, the SuperH features **delayed branch instructions** which are branch instructions pre-fitted with a delay slot.
+
+### Sega is not satisfied
+
+Nevertheless, all of that didn't stop Sega from expressing dissatisfaction with the end product. This was mainly due to the small 16-bit multiplier, which was seen as a bottleneck when processing larger amounts of data (a new need for 3D games). Thus, Hitachi synthesised a second revision with an extended multiplier unit and other requirements on Sega's checklist [@cpu-history], leading to a new CPU called **SH-2**.
+
+![The two SH-2 chips found in the Sega Saturn](sh2s.jpg)
+
+Even so, Sega couldn't stand still after hearing what choice of CPU [its](playstation#cpu) [competitors](nintendo-64#cpu) went for. So, it asked Hitachi to step up the clock frequency of the SH-2 - an impossible task once the chip is already out for manufacturing. Luckily, Hitachi had another trick up in their sleeve: **multiprocessing**. During the research phase of the SH, the team added minimal circuitry to allow the SH to work with other SHs within the same system at the same time. Upon hearing that, Sega decided on a two-chip configuration for the Sega Saturn. And the rest is history. 
 
 ### The final product
 
@@ -47,32 +64,33 @@ Having explained the origins, let's take a look at the shipped product.
 
 This console has not one but **two Hitachi SH-2** CPUs running at **~28.63 MHz each** [@cpu-overview]. While both physically identical, they are placed in a **master-slave state**, where the first one may send commands to the second one. This can achieve some degree of parallelism, albeit both sharing the same external bus [@cpu-dualcpu] (which can lead to congestion).
 
-These processors are part of the Hitachi SH7600 brand, a series designed for embedded systems featuring [@cpu-brief]:
+Hitachi packaged different variants of the SH-2 and sold them as part of a series called 'SH7600'. All of them feature [@cpu-brief]:
 
-- **SuperH ISA**: A special 32-bit RISC instruction set where instructions are 16-bit long. Not only does this design reduce the size of the programs, but since the CPU fetches instructions in 32-bit batches, two instructions can be retrieved in one cycle.
-  - The speciality of compressing instructions to take out half the size was carried on by ARM with [Thumb](game-boy-advance#cpu).
-- **Five-stage pipeline**: Execution of instructions is divided into five steps or *stages*. The CPU will queue up to five instructions where each one is allocated in one stage. This allows taking advantage of all the CPU's resources without idling while also incrementing the number of instructions executed per unit of time.
-- **One multiplication unit**: Speeds up multiplication operations with 64-bit/32-bit integers.
-- **32-bit data bus**: The external bus is shared across the two CPUs.
-- **4 KB cache**: Stores a small number of instructions and data previously fetched from memory to speed up future reads.
+- The aforementioned **five-stage pipeline** and **SuperH ISA**. The latter has been extended with six additional instructions for specialised branching and arithmetic.
+- An upgraded **32-bit multiplication unit**, which now performs multiplication with 32-bit integers.
+- A **32-bit external data bus** that is shared across the two CPUs.
 
-The specific CPU model selected for this console, the 'SH7604' or just 'SH-2', contain the following additions:
+The specific chip selected for this console, the 'SH7604', contains the following additions [@cpu-prog_manual]:
 
-- **One division unit**: Speeds up division operations with 64-bit/32-bit integers.
-- **Internal DMA controller**: Transfers data from memory independently (without the intervention of the CPU).
+- **4 KB of cache**: Stores a small number of instructions and data previously fetched from memory to speed up future reads.
+- A **32-bit division unit**: Performs division with 32-bit integers.
+- **Internal DMA controller**: Transfers data from memory without the intervention of the CPU.
+- Support for **little endian**, enabling the CPU to understand values encoded in the opposite order. This is useful when external memory is shared with other processors.
 
-Please note that having two CPUs doesn't mean that games will work twice as fast! In practice, however, this requires very complex programming to efficiently manage CPUs that share the same bus. Cache also plays a critical part in this occasion.
+It's worth pointing out that **having two CPUs doesn't mean that games will work twice as fast!** In practice, however, this requires very complex programming to efficiently manage CPUs that share the same bus. Thus, efficient use of the cache also plays a critical role in this console.
 
 ### A divided choice of memory
 
-The Sega Saturn contains a total of **2 MB of RAM** for general purpose usage called **Work RAM** (WRAM). Now, these two megs are split between two very different blocks:
+The Sega Saturn contains a total of **2 MB of RAM** for general-purpose usage called **Work RAM** (WRAM). Now, these two megs are split between two very different blocks:
 
 - The first one provides **1 MB of SDRAM** and due to its fast access rates, this block is also called 'WRAM-H'.
 - The other block contains the other megabyte, but it's named 'WRAM-L' since it uses **DRAM** instead, resulting in lower rates.
 
-### Another processor
+### The third processor (and counting)
 
-If the two SH-2 CPUs weren't enough, the console contains an additional coprocessor, the **Saturn Control Unit** or 'SCU' which is composed of two modules [@cpu-scu]:
+Surprisingly, it seems that the two SH-2 CPUs weren't still enough for Sega. So, to accelerate vector processing (at the cost of more complexity), the console houses an additional coprocessor, the **Saturn Control Unit** or 'SCU'.
+
+This is a chip comprised of two modules [@cpu-scu]:
 
 - **A DMA controller**: Arbitrates access to WRAM across the three main buses without the intervention of the CPUs.
 - **A DSP**: Used as a fixed-point 'geometry unit'. Compared to the SH-2, it does matrix/vectors calculations such as 3D transformations and lighting faster. However, it runs at half-speed and its instruction set is more complex. Moreover, it relies on the SH-2's WRAM to fetch and store data (using the DMA).
@@ -83,12 +101,12 @@ On the bright side, the SCU comes with **32 KB of SRAM** for local use. On the b
 
 Since the Saturn is the first '3D console' reviewed for [this series](consoles), let us first go over the fundamental design changes that made way to the new generation of 3D graphics:
 
-- GPU now relies on a **frame-buffer**: Graphics are no longer required to be rendered on-the-fly. Instead, the GPU reserves a portion of VRAM to draw a bitmap with all the computed geometry requested by the CPU, and then a video encoder picks up that region and outputs it through the video signal.
+- The GPU now relies on a **frame-buffer**: Graphics are no longer required to be rendered on-the-fly. Instead, the GPU reserves a portion of VRAM to draw a bitmap with all the computed geometry requested by the CPU, and then a video encoder picks up that region and outputs it through the video signal.
   - Consequently, having this reserved 'working space' allows the GPU to continue manipulating the bitmap even after finishing rendering the scene, so the CPU may now offload some exhaustive tasks such as lighting and anti-aliasing to the GPU. Here is when the term **graphics pipeline** starts to gain momentum.
 - **More VRAM required**: The use of a frame buffer implies an increment of memory requirements (which is not a big issue anymore), the amount of RAM required for a frame buffer is proportional to the dimension of the screen and the number of colours used. As an example, with 600 KB of VRAM we can contain a frame buffer of 640x480 pixels wide with 32k colours per pixel (16 bpp).
   - Additionally, programmers are free to organise their VRAM usage: Not every single bit has to be allocated for the frame buffer, so why don't we also use it to cache textures, render other frame-buffers concurrently and add colour lookup tables to speed things up?
-- CPU incorporates **vector operations**: A GPU with 3D capabilities would be incomplete without a proper CPU capable of feeding the required geometry. For that reason, next-gen CPUs include a form of specialised instructions that accelerates vector calculations, these are known as **Single instruction multiple data** or 'SIMD' extension.
-  - In the case of the Saturn, vector operations are accelerated by the Saturn Control Unit (not by the CPUs).
+- The CPU incorporates **vector operations**: A GPU with 3D capabilities would be incomplete without a proper CPU capable of feeding the required geometry. For that reason, next-gen CPUs include a form of specialised instructions that accelerates vector calculations, these are known as **Single instruction multiple data** or 'SIMD' extension.
+  - In the case of the Saturn, vector operations are accelerated by the Saturn Control Unit (not by the SH-2 CPUs).
 
 ### Sega's offering
 

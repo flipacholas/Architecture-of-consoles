@@ -1,5 +1,5 @@
 dreamcast:
-  ru: AbsurdlySuspicious
+  ru: AbsurdlySuspicious и rndtrash
   pl: LunaDook & MoonbowPlushie
   tr: EuropaYou
 gameboy:
@@ -8,9 +8,10 @@ gameboy:
   tr: EuropaYou
 gamecube:
   tr: EuropaYou
-gba:
+gba:  
+  es: Jonathan Lojo Muñiz
   pl: LunaDook & MoonbowPlushie
-  ru: Pawel Ryndovskiy и L1Q
+  ru: Pawel Ryndovskiy, L1Q и rndtrash
 mastersystem:
   pl: LunaDook & MoonbowPlushie
 megadrive:
@@ -28,7 +29,8 @@ nintendo64:
   pl: michasrutek
 nintendods:
   zh-hans: Cerallin
-pcengine: null
+pcengine:
+  es: Carlos Díaz
 ps1:
   pt-br: Walper
 ps2:
@@ -42,9 +44,11 @@ snes:
   pt-br: Walper
 virtualboy: null
 wii:
+  es: Jonathan Lojo Muñiz
   it: Valerio Francesco Vallone
   pl: LunaDook & MoonbowPlushie
 xbox:
+  tr: EuropaYou
   it: Valerio Francesco Vallone
 wiiu:
   zh-hans: 晓晓的锋 和 总比没有强, 我在, 合二为一, BLACKFEATHER, 东风 以及其他群友

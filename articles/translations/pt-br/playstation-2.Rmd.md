@@ -29,9 +29,7 @@ O PlayStation 2 não foi um dos consoles mais potentes de sua geração, porém 
 
 Esta máquina não é nem perto de ser simples como o [primeiro PlayStation](playstation) foi, mas veremos o motivo dela não ter sofrido o mesmo destino de [consoles complexos passados](sega-saturn).
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## CPU
 
@@ -164,7 +162,7 @@ Esses foram, até agora, exemplos do ponto de vista teórico, porém para explic
 
 O antigo diretor da Travellers Tales explicou como seu time obteve um sistema de partículas totalmente encapsulado dentro da VPU1. Em poucas palavras, a VPU1 focou em ler uma base de dados previamente preenchida em sua memória VU, e a base de dados foi usada para calcular as coordenadas de partículas a todo instante sem depender de nenhum outro componente. O resultado da operação poderia ser transformado em Display Lists e enviado imediatamente.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Com essa abordagem, a CPU ficou significativamente descarregada, permitindo-lhe realizar outras tarefas como IA e física.
 
@@ -180,7 +178,7 @@ Existe um simples porém rápido chip especializado nisso: O **Sintetizador Grá
 
 O GS possui menos recursos que outros sistemas gráficos [analisados anteriormente](gamecube#graphics) neste site. No entanto, é muito rápido no que se propõe a fazer.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Arquitetura e design
 
@@ -282,7 +280,7 @@ Como dito anteriormente, o PCRTC envia o frame buffer pelo sinal de vídeo. A in
 
 Há muitos modos para escolher, porém, tudo se resume ao formato adotado durante o início dos anos 2000, o que diminui as opções para PAL e NTSC. Além disso, embora o padrão PAL tenha fornecido uma resolução maior que o NTSC, algumas versões europeias de jogos NTSC recorreram ao letterboxing para mascarar as linhas horizontais não utilizadas e diminuíram a taxa de atualização da imagem do jogo para encaixar no limite de 50 Hz (Eu os chamo de 'más adaptações'!).
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 A porta da saída de vídeo (**Multi A/V**) é muito conveniente. Ela carrega os sinais RGB, Componente, S-Video e Composto. Logo, todos os sinais importantes estão disponíveis sem a necessidade de adaptadores proprietários ou modificações internas.
 
@@ -309,7 +307,7 @@ O sinal de áudio é transmitido através de dois meios:
 - **Áudio Digital**: Denominada como a Interface Digital Sony/Philips ou 'S/PDIF' (Sony/Philips Digital Interface).
 - **Áudio Analógico**: Atravessa o conversor digital-analógico e termina na porta Multi A/V.
 
-## E/S (Entrada e Saída)
+## E/S
 
 A E/S do PS2 não é complicada, mas várias revisões deste console mudaram completamente várias interfaces internas e externas.
 
@@ -335,7 +333,7 @@ A adição mais popular: **duas portas USB 1.1**. Amplamente adotada por acessó
 
 E quanto às 'experimentais'? Para começar, havia inicialmente uma **porta i.Link** frontal (também conhecida como IEEE 1394, ou 'FireWire' no mundo da Apple). Essa porta foi utilizada para conectar dois PS2s para possibilitar partidas multijogador local, porém foi removida após a terceira revisão (presumivelmente foi trocada pela 'placa de rede Network Adaptor', mais detalhes abaixo).
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Na parte de trás do console também havia um slot para **placas de PC**, e você podia comprar uma 'placa Network Adaptor' da Sony que fornecia duas portas extras. Uma para conectar um cabo Ethernet, e outra para conectar uma 'Unidade de Disco Rígido' (Hard Disk Drive Unit) externa e proprietária, também vendida pela Sony. Ter um disco rígido permitiu que jogos guardassem dados temporários (ou instalá-los permanentemente) para obter tempos de carregamento mais rápidos. No entanto, apenas alguns poucos jogos usaram esse recurso.
 
@@ -349,7 +347,7 @@ Na parte de trás do console também havia um slot para **placas de PC**, e voc�
 
 Em revisões posteriores, a porta PCMCIA foi substituída por um **Compartimento de Expansão (Expansion Bay)** onde um disco rígido de 3,5 polegadas poderia ser instalado dentro do console. Você precisava comprar antes um **Network adaptor** que não apenas fornecia as portas de modem e/ou Ethernet (dependendo do modelo), mas também incluía as conexões necessárias para um disco rígido ATA-66. Revisões 'Slim' removeram completamente essa funcionalidade, mas deixaram uma porta Ethernet permanentemente instalada na parte de trás do console. Além disso, a nova revisão adicionou uma nova 'porta' frontal, o **sensor infravermelho**.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 O transceptor Ethernet fornecido suporta taxas de transferência de até 100 Mbps (12,5 MB/s). Porém, a **taxa observada é notoriamente menor** (diminui para até 2 MB/s em alguns casos). A explicação para isso é relativamente simples: para conseguir uma comunicação de rede utilizável, é necessário implementar todas as camadas do padrão 'Modelo OSI', e o transceptor é apenas uma peça do quebra-cabeça. O resto é geralmente delegado à IOP (logo, feito em software), mas o desempenho limitado da IOP [@io-bottleneck] resulta em gargalos.
 
@@ -365,11 +363,11 @@ Durante os dias do PlayStation original, múltiplas revisões do controle origin
 
 Comparado com o DualShock, a nova versão possui uma pequena mudança de design, incluía duas alavancas analógicas e dois motores de vibração para uma entrada e feedback com maior riqueza, respectivamente.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Próximo ao slot de controle está o **slot de Memory Card** que é compatível com os cartões do PS1 e do PS2. Os novos cartões de memória incorporaram circuitos extras para fins de segurança chamados **MagicGate**, que permite que os jogos bloqueiem transferências de dados entre diferentes Memory Cards.
 
-## Sistema Operacional (SO)
+## Sistema Operacional
 
 Há um chip **ROM de 4 MB** instalado na placa-mãe que armazena uma grande quantidade de código usado para carregar um menu de shell que os usuários podem interagir, mas ele também fornece chamadas de sistema para simplificar o acesso de E/S [@cpu-rockin], nos quais os jogos dependem.
 
@@ -409,7 +407,7 @@ O shell apresenta algumas seções práticas que permitem a realização de oper
 
 O que aconteceu aqui é realmente impressionante. O PS2 não possui uma arquitetura 'amigável para programadores' (da perspectiva de um programador de PC), porém com essa quantidade de jogos desenvolvidos, eu também me pergunto se havia mais fatores envolvidos (como 'facilidades de licenciamento', baixos custos de distribuição, formato compacto, etc.).
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Ecossistema de desenvolvimento
 
@@ -438,7 +436,7 @@ DVDs podem guardar até **4,7 GB** de dados no caso do DVD-5 (o 'subformato' mai
 
 Devido ao tipo de mídia usada, não apenas jogos poderiam ser rodados, mas filmes também. Agora, um decodificador é necessário para que o formato de um filme DVD possa ser lido, e para isso, o PS2 inicialmente incluiu as partes necessárias para tal instaladas no Memory Card (este é, afinal, um meio de armazenamento como qualquer outro), porém modelos posteriores do console vieram com o software de DVD pré-instalado na ROM da BIOS.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Em termos de velocidade, CD-ROMs são lidos em velocidade 24x (logo a 3,6 MB/s) e DVD-ROMs são lidos em velocidade 4x (5,28 MB/s) [@games-transfer].
 
@@ -464,7 +462,7 @@ Essa seção foi particularmente preocupante para os estúdios de jogos, visto q
 
 Quando o SO carrega um jogo, ele o faz enviando comandos específicos para o leitor de DVD. Os comandos especificamente usados para ler o conteúdo de um jogo comportavam-se de forma muito diferente dos comandos padrões de DVD (i.e. para ler um filme em DVD). Acontece que os jogos autorizados contêm um 'arquivo de mapeamento' fora de alcance na seção interna do disco que indexa o sistema de arquivos por nome, posição e tamanho. Quando o DVD é solicitado a ler um disco de jogo, ele sempre vai navegar pelo disco usando um arquivo de mapeamento, o que significa que uma cópia pirata de um jogo, que não poderia incluir o arquivo de mapeamento, será impossível de ser lida. Isso foi complementado por um sistema de bloqueio de região que impedia que jogos importados funcionassem em um console de região diferente.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Vulnerabilidades descobertas
 

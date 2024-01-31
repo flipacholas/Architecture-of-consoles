@@ -44,13 +44,13 @@ The main processor is one of those 'x designed by y, based on z and second-sourc
 
 The early nineties were marked by a change in the fates of many popular CPUs. The once-leading 8-bit CPUs, such as the [Z80](master-system#cpu) and [6502](nes#cpu), were already out of spotlight and Motorola’s famous [68000](mega-drive-genesis#cpu), along with other [16-bit designs](super-nintendo#cpu) that enjoyed success in the late 80s, had become candidates for replacement. Even at this time in the PC world, Tanenbaum, in his celebrated debate with Torvalds, gave Intel’s x86 architecture only *five more years* until its demise from the home market.
 
-At first, it may look as if technological development had hit a wall at this point. But in reality, there was a new wave of relatively-unknown CPUs making their way into mainstream devices. Many of these designs had originated in academia, and so existed to prove particular sets of design ideas. Examples of next-gen CPUs at this point included:
+At first, it may look as if technological development had hit a wall at this point. But in reality, there was a new wave of relatively unknown CPUs making their way into mainstream devices. Many of these designs had originated in academia, and so existed to prove particular sets of design ideas. Examples of novel CPUs of that era included:
 
 - **MIPS**: Adopted by Silicon Graphics Incorporated (targeting graphics workstations).
 - **PowerPC**: Adopted by Apple (targeting desktop publishing).
 - **SPARC**: Created by Sun Microsystems (targeting servers and business workstations).
 - **ARM**: Created by Acorn (targeting the consumer market and workstations).
-- ... and many more 'microcontroller' chips yet to be finalised or adopted by any industry. Such as **Hitachi's SH** or **NEC's V810**, which to their surprise were subsequently chosen for the [Sega Saturn](sega-saturn) and the [Nintendo Virtual Boy](virtual-boy).
+- ... and many more 'microcontroller' chips yet to be finalised or adopted by any industry, such as **Hitachi's SH** or **NEC's V810**. To their surprise, these were subsequently selected for the [Sega Saturn](sega-saturn) and the [Nintendo Virtual Boy](virtual-boy), respectively.
 
 All of these processors had something in common: They followed the **Reduced Instruction Set Computer** (RISC) discipline, which radically shifted how these chips had to be designed and programmed. One rule of RISC CPUs dictated that a single instruction can't mix memory with register operations, allowing hardware designers to simplify the circuitry that executes instructions... and then enhance it with parallelism techniques.
 
