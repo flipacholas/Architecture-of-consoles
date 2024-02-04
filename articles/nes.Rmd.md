@@ -62,7 +62,7 @@ Back in Japan, Nintendo needed something inexpensive but familiar to develop for
 
 *How* Ricoh managed to clone the 6502 isn't clear to this day. One would expect MOS to have licensed the chip design to Ricoh, but there are many contradictions to this:
 
-- Both Ricoh's and MOS's version feature the same layout, but Ricoh's one contain severed buses (disabling certain functions) [@cpu-differences]. I go into more details later.
+- Both Ricoh's and MOS's variants feature the same layout, but Ricoh's contains severed buses (disabling certain functions) [@cpu-differences]. I go into more details later.
 - A document explicitly stating that MOS licensed the 6502 to Ricoh is yet to be found.
 - An article published in 2008 by Nikkei Trendy states that Ricoh licensed from Rockwell, an authorised chip manufacturer [@cpu-trendi]. Although it's debatable whether a second source was able to provide IP to a third party, at least with MOS's approval.
 - It wouldn't be the first time Nintendo got away with circumventing IP rights, as *Ikegami Tsushinki v. Nintendo* ruled in Japan that Nintendo didn't own the code of the original Donkey Kong [@cpu-dk].
@@ -112,7 +112,7 @@ For example, Nintendo's 'Super Mario Bros' used a layout they call _NES-NROM-256
 
 #### Going beyond existing capabilities
 
-One of the big limitations of 16-bit address buses (affecting 3rd and 4th generation consoles) is their compact address space. Nowadays, 32-bit computers can address up to 4 GB of memory (and 64-bit machines lavishly enjoy up to 16 exabytes) so this is not a concern anymore, but back then the NES only had a 64 KB address space and a great part of it was consumed by the memory-mapped hardware (something [competitors avoided](master-system#accessing-the-rest-of-the-components)).
+One of the big limitations of 16-bit address buses (affecting 3rd and 4th-generation consoles) is their compact address space. Nowadays, 32-bit computers can address up to 4 GB of memory (and 64-bit machines lavishly enjoy up to 16 exabytes) so this is not a concern anymore, but back then the NES only had a 64 KB address space and a great part of it was consumed by the memory-mapped hardware (something [competitors avoided](master-system#accessing-the-rest-of-the-components)).
 
 So, did this mean game studios could only develop games that didn't exceed the 49.97 KB limit? Absolutely not! If history taught us something, is that there's always a clever solution to a challenging problem; and this issue was tackled with a **Mapper**.
 
@@ -124,9 +124,9 @@ A mapper is an extra chip included in the cartridge that sits between the memory
 
 ![PCB of Super Mario Bros 3 [@photography-tsrom]](tsrom.png){.tabs-nested .active title="Original"}
 
-![The same picture with important parts labelled. At first, I thought the extra WRAM was for storing saves, but then I realised there're no saves in this game (and there isn't a battery either). In reality, that RAM chip is used to store a decompressed level.](tsrom_marked.png){.tabs-nested-last title="Marked"}
+![The same picture with important parts labelled. At first, I thought the extra WRAM was for storing saves, but then I realised there are no saves in this game (and there isn't a battery either). In reality, that RAM chip is used to store a decompressed level.](tsrom_marked.png){.tabs-nested-last title="Marked"}
 
-Back to the NES, a famous example is 'Super Mario Bros 3' which shipped with the 'MMC3' mapper (made by Nintendo) in its cartridge. For comparison, MMC3 provided up to 512 KB of space for the Program ROM, up to 256 KB for Character memory and up to 8 KB for extra WRAM [@cpu-mmc3]. You can now see why 'Super Mario Bros 3' differs significantly in quality compared to the first instalment.
+Back to the NES, a famous example is 'Super Mario Bros 3' which shipped with the 'MMC3' mapper (made by Nintendo) in its cartridge. For comparison, MMC3 provided up to 512 KB of space for the Program ROM, up to 256 KB for Character memory and up to 8 KB for extra WRAM [@cpu-mmc3]. You can now see why 'Super Mario Bros 3' differs significantly in quality compared to the first installment.
 
 All in all, while this console may appear limited while examining its internal features, Nintendo made sure it could adapt as technology evolves. On the other side, while this technique helped to keep the costs down of the console, it shifted part of the burden to the game cartridge. So, game quality and cartridge costs were two concerns game studios had to balance.
 
@@ -140,7 +140,7 @@ That being said, the PPU renders 2D graphics called **sprites** and **background
 
 ![Memory architecture of the PPU](ppu_content.png)
 
-To render something on the screen, the PPU must know *what* graphics to draw, *where* in the screen to place them; and *how* to draw them (i.e. which palette to use).
+To render something on the screen, the PPU must know *what* graphics to draw, *where* on the screen to place them; and *how* to draw them (i.e. which palette to use).
 
 To answer these questions, the PPU came pre-programmed with a different memory map that looks for the following type of data:
 
@@ -149,15 +149,15 @@ To answer these questions, the PPU came pre-programmed with a different memory m
 - Meta-data telling the PPU 'where' and 'how' to draw graphics is found in other areas:
   - A separate **2 KB of SRAM** is fitted onto the motherboard, this time dedicated to graphics-related data. Nintendo calls this space **Video RAM** (VRAM) and it stores two data structures called **Nametables**.
   - The PPU embeds **256 B** of DRAM to store the **Object Attribute Memory** (OAM).
-  - Lastly, the PPU also house **4 B** of memory to define colour palettes.
+  - Lastly, the PPU also houses **4 B** of memory to define colour palettes.
 
 Don't worry about the new terminology, the meaning of these data structures is discussed step-by-step in the following paragraphs.
 
 ### Constructing the frame
 
-As with its contemporaries, this chip is designed for the behaviour of a CRT display. There is no frame buffer as such: the PPU will render in step with the CRT's beam, building the image on-the-fly.
+As with its contemporaries, this chip is designed for the behaviour of a CRT display. There is no frame buffer as such: the PPU will render in step with the CRT's beam, building the image on the fly.
 
-The PPU draws frames with a fixed dimension of **256x240 pixels** [@graphics-overscan]. Alas, due to the discrepancies of analogue video standards across the world, the image will differ in appearance depending on the region of the appliance (NTSC or PAL) from which is displayed. In a nutshell, NTSC televisions will crop the top and bottom edges to accommodate overscan (only ~224 scanlines are visible), so these edges are considered 'danger zones' by developers when deciding where to place elements on the game. On the other hand, PAL tellies won't crop the edges but will show extra black bars to fill the taller signal (PAL uses 288 scanlines).
+The PPU draws frames with a fixed dimension of **256x240 pixels** [@graphics-overscan]. Alas, due to the discrepancies in analogue video standards across the world, the image will differ in appearance depending on the region of the appliance (NTSC or PAL) from which is displayed. In a nutshell, NTSC televisions will crop the top and bottom edges to accommodate overscan (only ~224 scanlines are visible), so these edges are considered 'danger zones' by developers when deciding where to place elements on the game. On the other hand, PAL tellies won't crop the edges but will show extra black bars to fill the taller signal (PAL uses 288 scanlines).
 
 Behind the scenes, the frame that the PPU outputs is composed of two different layers. For demonstration purposes, let's use *Super Mario Bros.* to show how this works:
 
@@ -181,7 +181,7 @@ Inside a tile, each of its pixels is encoded using a 2-bit value, which referenc
 
 To start drawing something on the screen, games populate a set of tables with references to tiles in Character memory. Each table is responsible for one layer (sprite or background) of the frame. Then, the PPU reads from those tables and composes the scanlines that will be beamed by the CRT gun.
 
-I will now explain how each layer/table works and how do they differ in terms of functionality.
+I will now explain how each layer/table works and how they differ in terms of functionality.
 
 #### Background Layer {.tab}
 
@@ -199,7 +199,7 @@ The background layer is a 512x480 pixel map containing static tiles [@graphics-n
 
 To save memory, groups of four tiles are combined into 16x16 pixel maps called **blocks**, within which all tiles share a colour palette.
 
-**Nametables** (stored in VRAM) specify which tiles to display in the background layer. The PPU looks for four 1024-byte Nametables, each one corresponding to a quadrant of the layer. However, there's only 2 KB of VRAM available! As a consequence, only two Nametables can be stored without additional hardware from the cartridge. Though the remaining two still have to be addressed somewhere: most games just point the remaining two where the first two are (this is called **mirroring**).
+**Nametables** (stored in VRAM) specify which tiles to display in the background layer. The PPU looks for four 1024-byte Nametables, each one corresponding to a quadrant of the layer. However, there are only 2 KB of VRAM available! As a consequence, only two Nametables can be stored without additional hardware from the cartridge. Yet, the remaining two still have to be addressed somewhere: most games just point the remaining two where the first two are (this is called **mirroring**).
 
 While this architecture may seem flawed at first, it was designed to keep costs down while providing simple **expandability**: if games needed a wider background, extra VRAM could be included in the cartridge.
 
@@ -215,7 +215,7 @@ The **Object Attribute Memory** (OAM) table specifies which tiles will be used a
 
 The OAM table can be filled by the CPU. However, this can be pretty slow in practice (and risks corrupting the frame if not done at the right time), as a consequence, the PPU contains a small component called **Direct Memory Access** or 'DMA' which can be programmed (by altering the PPU's registers) to fetch the table from WRAM. With DMA, it's guaranteed that the table will be uploaded when the next frame is drawn, but bear in mind that the CPU will be halted during the transfer!
 
-The PPU is limited to eight sprites per scanline and up to 64 per frame. The scanline limit can be exceeded thanks to the PPU's multiplexing skills. In other words, the PPU will automatically alternate sprites between scans; however, they will appear to flicker on-screen.
+The PPU is limited to **eight sprites per scanline** and up to **64 sprites per frame**. The scanline limit can be exceeded thanks to a technique called 'OAM order rotation', where the game manually alters the order of entries in OAM. This makes the PPU render a different sprite set at each frame, and the speed of the CRT beam will trick the user into seeing more sprites than allowed. However, they will also appear to flicker on-screen.
 
 #### Background split {.tab}
 
@@ -223,7 +223,7 @@ The PPU is limited to eight sprites per scanline and up to 64 per frame. The sca
 
 Before we move on, there's something I haven't told you yet. If you play Super Mario Bros, you'll notice that when Mario moves, the scene scrolls without a hitch. However, you'll also observe that the top area (where the stats are) remains static **even though both portions are part of the same background layer!** So, what is happening here? Well, the game is altering the scrolling values mid-frame to show the overworld and the stats (residing in a fixed portion of the background) at the same time. The NES doesn't provide this feature natively, but the game deduces the timings by observing the state of the PPU (manifested through its status register [@graphics-ppustatus]).
 
-To accomplish this, games perform a technique called **Sprite 0 Hit**. Super Mario Bros instructs the PPU to render a dummy sprite behind the coin, this happens to be the first sprite drawn within the frame. After the PPU beams it, it updates its status register with a flag that denotes that the first sprite (a.k.a 'sprite 0') has been drawn. Meanwhile, the game is constantly checking mid-frame if the sprite 0 status has been flagged (a.k.a 'hit'), if that happened, the game proceeds to update the scrolling property of the background table to shift it to where Mario is.
+To accomplish this, games perform a technique called **Sprite 0 Hit**. Super Mario Bros instructs the PPU to render a dummy sprite behind the coin, this happens to be the first sprite drawn within the frame. After the PPU beams it, it updates its status register with a flag that denotes that the first sprite (a.k.a 'sprite 0') has been drawn. Meanwhile, the game is constantly checking mid-frame if the sprite 0 status has been flagged (a.k.a 'hit'), if that happens, the game proceeds to update the scrolling property of the background table to shift it to where Mario is.
 
 Overall, 'Sprite 0 Hit' is a very delicate procedure, as it's easy to mess up the timings (sprite 0's flag is not cleared after polling it, which leads to 'duplicated' positives [@graphics-chibiakumas]). Furthermore, since this routine repeats indefinitely, it can be quite expensive (in terms of CPU cycles) to execute. On the bright side, later mappers took over this function with the use of automatic interrupts that are triggered whenever an arbitrary scan-line is hit [@graphics-nesdoug] (a much more efficient technique), which significantly improved the visual capabilities of Super Mario Bros 3, for instance.
 
@@ -271,7 +271,7 @@ Hypothetical frames rendered using tiles available during specific scan lines.
 
 :::
 
-Another speciality of Super Mario Bros. 3 is the amount of graphics it could display.
+Another speciality of Super Mario Bros. 3 is the amount of graphics it can display.
 
 This game displays more background tiles than is strictly permitted. So how is it doing that? If we take two screen captures at different times while the display is generated, we can see that the final frame is actually composed of *two* different frames.
 
@@ -279,10 +279,10 @@ This is another wizardry of the MMC3 mapper, which was not only used to access e
 
 #### Curious behaviour {.tab}
 
-Throughout my research, I came across many interesting articles that explain unusual behaviour of the PPU, so I thought in mentioning some here:
+Throughout my research, I came across many interesting articles that explain unusual behaviour of the PPU, so I thought to mention some here:
 
 - Unlike the [Master System's VDP](master-system#graphics), which generates RGB colours that are later encoded into NTSC/PAL signals for broadcasting, the **NES' PPU does all at once** [@graphics-palettes]. Hence, there isn't a one-to-one connection between the colours of the PPU master palette and the standard RGB colourspace (widely adopted by present technology). This leaves some room for interpretation and, as a consequence, various emulators will display a different palette.
-  - The discrepancies between RGB palettes is most evident with Tim Worthington's DIY kit that adds RGB signal output to the NES, since it also implements a switch that chooses between three pre-defined palettes [@graphics-nesrgb].
+  - The discrepancies between RGB palettes are most evident with Tim Worthington's DIY kit that adds RGB signal output to the NES, since it also implements a switch that chooses between three pre-defined palettes [@graphics-nesrgb].
 - The master palette contains a **'cursed' colour** (`$0D`) which can mess up the NTSC TV signal [@graphics-cursed_colour]. Well, what happens is that the TV mistakes the signal to display that colour with the blanking signal, so flickering may occur.
 - The PPU relies on DRAM to store its Object Attribute Memory (OAM). Now, DRAM requires to be refreshed constantly to prevent loss of data (unlike SRAM), and it so happens that the PPU won't refresh DRAM when it's not rendering the frame [@graphics-oam]. This manifests during vertical blanking. For this reason, it is advised against updating OAM outside vertical blanking, since the non-refreshing period happening during V-blank will have corrupted part of the table.
   - The PPU variant for PAL systems is not affected by this, as it refreshes during V-Blank (which lasts longer on PAL systems).
@@ -353,7 +353,7 @@ Mother (1989).
 
 The concept of 'Noise' is attributed to a series of waveforms that don't follow any pattern or order. In turn, our ears interpret it as white static. Having said that, the APU allocates one channel that can play different kinds of noise.
 
-Behind the scenes, the noise generator relies on an envelope generator (similar to the Pulse channel) which gets randomly muted by an OR gate [@audio-apunoise]. The condition for muting depends on the value of a 15-bit shift register connected to a feedback loop. All in all, this makes the circuitry output a signal with _pseudo-unpredictable_ patterns, therefore noise.
+Behind the scenes, the noise generator relies on an envelope generator (similar to the Pulse channel) which gets randomly muted by an OR gate [@audio-apunoise]. The condition for muting depends on the value of a 15-bit shift register connected to a feedback loop. All in all, this makes the circuitry output a signal with _pseudo-unpredictable_ patterns, and therefore noise.
 
 In terms of control, 4 bits alter the period of the envelope generator and one bit alters the 'Mode' of the shift register. That leaves 32 noise presets available. Half (16) of these presets produce **clean static**, and the other half produce **robotic static**.
 
@@ -373,7 +373,7 @@ Mother (1989).
 
 Samples are recorded pieces of music that can be replayed. As you can see, samples are not limited to a single waveform, but they consume a lot more space.
 
-The APU has one channel dedicated to samples. In here, samples are limited to **7-bit resolution** (encoded with values from `0` to `127`) and a **~15.74 kHz sampling rate** [@audio-2a03ref]. To program this channel, games can either stream 7-bit values (which steals a lot of cycles and storage) or use **delta modulation** to only encode the variation between the next sample and the previous one.
+The APU has one channel dedicated to samples. Here, samples are limited to **7-bit resolution** (encoded with values from `0` to `127`) and a **~15.74 kHz sampling rate** [@audio-2a03ref]. To program this channel, games can either stream 7-bit values (which steals a lot of cycles and storage) or use **delta modulation** to only encode the variation between the next sample and the previous one.
 
 The delta modulation implementation in the APU only receives 1-bit values, this means games can only tell if the sample increments or decrements by `1` every time the counter kicks in. So, at the cost of fidelity, delta modulation can save games from having to stream continuous values to the APU.
 
@@ -391,7 +391,7 @@ While the APU was not comparable to the quality of vinyl, cassette or CD, progra
 
 Remember that the Famicom provided exclusive cartridge pins available for sound expansion? Well, games like *Castlevania 3* took advantage of this and bundled an extra chip called **Konami VRC6**, which added **two extra pulse waves and a sawtooth wave** to the mix.
 
-Take a look at the two examples that show the difference between the Japanese and the American version of the game (the latter runs on the NES variant, which didn't provide sound expansion capabilities).
+Take a look at the two examples that show the difference between the Japanese and the American versions of the game (the latter runs on the NES variant, which didn't provide sound expansion capabilities).
 
 #### Tremolo {.tab}
 
@@ -440,7 +440,7 @@ That being said, let's get on with the analysis.
 
 The theory says that a pulse tone only contains odd harmonics. In other words, the fundamental is combined with its third harmonic, fifth and so forth. Moreover, each harmonic decreases its amplitude as further away it is from the fundamental. The amplitude formula is `amplitude = 1 ÷ harmonic number` [@audio-pulse].
 
-Hence, notice how the brightness of each harmonic on the spectrogram dims the higher it is on the Y-axis. However, the APU's pulse waves also seem to exhibit the aforementioned vibrato effect which increases at each harmonic number. Moreover, areas of the spectrogram which should be empty of any sound contain hushed overtones (possibly the result of noise and other imperfections).
+Hence, notice how the brightness of each harmonic on the spectrogram dims the higher it is on the Y-axis. However, the APU's pulse waves also seem to exhibit the aforementioned vibrato effect which increases at each harmonic number. Moreover, areas of the spectrogram that should be empty of any sound contain hushed overtones (possibly the result of noise and other imperfections).
 
 ##### Triangle {.tab}
 
@@ -468,7 +468,7 @@ Unlike the previous channels, the sample channel only plays back whatever low-re
 
 ![Spectrogram of the VRC6's Sawtooth channel.](spectrograms/castlevania_saw_nes.png){.tab-float}
 
-As a bonus, let's also check out the Sawtooth channel from the VRC6 expansion. To begin with, a perfect Sawtooth wave is made of all the harmonics and each exhibit decreasing amplitudes (where `amplitude = 1 ÷ harmonic number` [@audio-sawtooth]).
+As a bonus, let's also check out the Sawtooth channel from the VRC6 expansion. To begin with, a perfect Sawtooth wave is made of all the harmonics and each exhibits decreasing amplitudes (where `amplitude = 1 ÷ harmonic number` [@audio-sawtooth]).
 
 This is quite a requirement for digital equipment and it's naturally unaffordable for a game cartridge (it may not even need such perfection!). So, similarly to the APU's triangle waves, the VRC6 sequences Sawtooth waves in 7 cycles (and thus produces similar step ladder effects).
 
@@ -476,7 +476,7 @@ Consequently, the respective spectrogram is very messy, the VRC6's approximation
 
 #### Conclusion {.tabs-close}
 
-Well, it seems that the NES' synthetic waveforms are nowhere near shaped like the theory dictates. Does this mean the APU is flawed? No! The way the APU was designed ended up granting this console unique and identifiable sounds - and these properties, whether intentional or not, made the spectrograms display unusual results.
+Well, it seems that the NES' synthetic waveforms are nowhere near shaped as the theory dictates. Does this mean the APU is flawed? No! The way the APU was designed ended up granting this console unique and identifiable sounds - and these properties, whether intentional or not, made the spectrograms display unusual results.
 
 As a side note, perfect geometry may be pleasant to look at with our eyes, but curiously enough, our ears are not particularly fond of waveforms with perfect edges! (you may start hearing popping noises).
 
