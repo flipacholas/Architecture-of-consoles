@@ -23,7 +23,7 @@ top_tabs:
   Motherboard:
     caption: "The mainboard.<br>Not to be confused with the 'Servo board' which the mainboard connects to.<br>Virtual Sound Unit IC, 128 KB of DRAM and 64 KB of PSRAM are fitted on the back."
   Diagram:
-    caption: "Notice how the two screenshots have its background scenery slightly shifted horizontally."
+    caption: "Notice how the two screenshots have their background scenery slightly shifted horizontally."
 ---
 
 ## A quick introduction
@@ -46,7 +46,7 @@ Internally, it's a whole different story (and a very complicated one too). For t
 
 Once you switch the Virtual Boy on, you will start seeing two **monochromatic red** pictures (one for each eye) through the eyepiece. So far so good? Well, here is the interesting part: **This console doesn't have a screen**, so what you see is more of an 'illusion' - Let's dive deeper to know what's going on.
 
-The topics involved in explaining this (optics, visual phenomenons, etc) may feel difficult at first, but I constructed some interactive animations to make this section little more immersive.
+The topics involved in explaining this (optics, visual phenomenons, etc) may feel difficult at first, but I constructed some interactive animations to make this section a little more immersive.
 
 #### Scanner {.tabs .active}
 
@@ -60,17 +60,17 @@ A Display unit is where all the 'magic' happens, it's made of the following comp
 
 - An **LED Unit**: Contains 224 red LEDs stacked vertically and the necessary circuitry to control each one of them.
 - A **Lens**: Refracts the light coming from the LEDs.
-  - At the top of the Virtual Boy's case, there is a **Focus slider** used to shift the lenses closer or further away from the LEDs. This allows the user to adapt the console to their focal length (preventing blurry images).
-- A **Mirror**: Reflects the light coming from the lens and directs them to the user's eyes. Furthermore, this component will be constantly oscillating thanks to a **Voice coil motor** connected to it. The motor is managed by the **Servo control**, a separate board which sends electrical pulses at 50 Hz.
-  - All in all, this is a very complex and fragile area of the console, so there's a photo interrupter (a type of photosensor) installed. This reports the oscillation observed from the mirror to the Servo control, which in turns monitors the oscillations and applies the necessary corrections.
+  - At the top of the Virtual Boy's case, there is a **Focus slider** used to shift the lenses closer or farther away from the LEDs. This allows the user to adapt the console to their focal length (preventing blurry images).
+- A **Mirror**: Reflects the light coming from the lens and directs it to the user's eyes. Furthermore, this component will be constantly oscillating thanks to a **Voice coil motor** connected to it. The motor is managed by the **Servo control**, a separate board that sends electrical pulses at 50 Hz.
+  - All in all, this is a very complex and fragile area of the console, so there's a photo interrupter (a type of photosensor) installed. This reports the oscillation observed from the mirror to the Servo control, which in turn monitors the oscillations and applies the necessary corrections.
 
-Next to the focus slider there is a **IPD dial** (knob-shaped switch), which adjust the distance between the two Display units. This is done to adapt the displays to the user's inter-pupil distance.
+Next to the focus slider, there is a **IPD dial** (knob-shaped switch), which adjusts the distance between the two Display units. This is done to adapt the displays to the user's inter-pupil distance.
 
 #### Mechanics {.tab}
 
-![Basic representation of the angle of the oscillating mirror over time (at a very slow motion).<br>The left and right LEDs are operating (active) during the red and blue period, respectively.<br>During the grey period, no LED is operating (idle).<br>For sake of simplicity, the angular velocity represented here is constant (but not in the real world).](scangraph){.tab-float animation="true"}
+![Basic representation of the angle of the oscillating mirror over time (at a very slow motion).<br>The left and right LEDs are operating (active) during the red and blue periods, respectively.<br>During the grey period, no LED is operating (idle).<br>For the sake of simplicity, the angular velocity represented here is constant (but not in the real world).](scangraph){.tab-float animation="true"}
 
-Now that we have each component identified, let's take a look how the Virtual Boy manages to show images to our eyes.
+Now that we have each component identified, let's take a look at how the Virtual Boy manages to show images to our eyes.
 
 If you haven't noticed before, there **isn't any dot-matrix display to be found**, so why are we seeing two-dimensional images from the eyepiece? Similarly to the functioning of a CRT monitor, Display units play with the way we perceive images:
 
@@ -82,7 +82,7 @@ In practice, there are some conditions for all these principles to work:
 
 - The LEDs must only operate when the angular velocity of the mirror is stable (in other words, not when the mirror is changing direction). This can be thought of as the [**Active State**](master-system#tab-2-4-result) of a CRT monitor.
 - In relation to the previous point, the angular velocity of the mirror can't stay constant (since the mirror can't change direction instantly, the periods considered 'stable' will be subject to forces that will disrupt its velocity). To remedy this, the Virtual Boy stores a list of values in memory called **Column Table** which instructs how much time to dedicate for each column interval, in an effort to balance out excessive & insufficient periods of 'LED column' exposure.
-- Let's not forget that this whole process has to be done twice since we got two display units (one per eye). Unfortunately, both units can't pull energy and data at the same time, so each one operates at different display periods (out-of-phase, 10ms apart). We don't notice this (another illusion!).
+- Let's not forget that this whole process has to be done twice since we've got two display units (one per eye). Unfortunately, both units can't pull energy and data at the same time, so each one operates at different display periods (out-of-phase, 10ms apart). We don't notice this (another illusion!).
 
 #### Display {.tab}
 
@@ -90,7 +90,7 @@ In practice, there are some conditions for all these principles to work:
 
 Contrary to previous video chips modelled after CRT displays (i.e. [PPU](nes#graphics) and [VGP](master-system#graphics)), graphics on the Virtual Boy are **not rendered on-the-fly**. The graphics chip on this console sends the processed frame to a frame-buffer in memory, each column of the frame is then sent to the LED array for display.
 
-Once the Servo board detects it's time for display, the graphics chip will start sending columns of pixels from the frame-buffer to those 224 vertically-stacked LEDs, one-by-one in a strategically synchronised matter so the LEDs will have shown 384 columns during the display period. Hence, the 'screen resolution' of this console is 384x224 pixels.
+Once the Servo board detects it's time for display, the graphics chip will start sending columns of pixels from the frame-buffer to those 224 vertically-stacked LEDs, one by one in a strategically synchronised matter so the LEDs will have shown 384 columns during the display period. Hence, the 'screen resolution' of this console is 384x224 pixels.
 
 Moreover, we need to store two frame-buffers since each one will go to a different display unit. The graphics subsystem also employs double-buffering and other quirks (mentioned later in the 'Graphics' section). So, for now, just remember how a digital frame is sent to the LEDs.
 
@@ -147,7 +147,7 @@ The V810 is part of the V800 CPU family that NEC designed for the embedded marke
 - **32 32-bit registers**: This is a complete 32-bit CPU and the registers are well aligned to that.
 - **V800 series ISA**: A RISC instruction set that mixes 16-bit and 32-bit instructions.
 - **32-bit address bus**: Enabling to access up to 4 GB of memory, an enormous amount of space back then.
-- **Five-stage pipeline**: [Here](game-boy-advance#cpu) is a previous explanation of instruction pipelining. Worth mentioning that while other system debuted with three pipeline stages, this one went straight for the five!
+- **Five-stage pipeline**: [Here](game-boy-advance#cpu) is a previous explanation of instruction pipelining. Worth mentioning that while other systems debuted with three pipeline stages, this one went straight for the five!
 - **1 KB L1 Cache** for instructions.
   - You won't see any more 'cached' portable consoles from Nintendo until the [Nintendo DS](nintendo-ds) arrives ~10 years later!
 
@@ -155,17 +155,17 @@ This is very impressive for a portable console in 1995. But if it wasn't enough,
 
 - **I/O interfaces**: These delegate the task of communicating with proprietary accessories.
 - **16-bit external bus**: The V810 can be configured either with a 16-bit or a 32-bit bus. Well, Nintendo's engineers chose the former.
-  - This will introduce some penalty (wait states) with 32-bit memory transfers, but you'll soon see why programs won't be *that* demanding.
+  - This will introduce some penalties (wait states) with 32-bit memory transfers, but you'll soon see why programs won't be *that* demanding.
 - A **Timer**: This is just a 16-bit counter.
 - A **wait control**: Stalls the CPU depending on the external bus accessed. This is because the V810 thinks everything comes from the same memory block, but in practice, accessing the Game ROM is slower than, let's say, internal RAM. So this component corrects the timings.
 
-All of this seems fine and dandy but it does have a big cost: **Six AA batteries**. This may explain why companies tend to hold on old tech for portable devices, at least in the 90s.
+All of this seems fine and dandy but it does have a big cost: **Six AA batteries**. This may explain why companies tend to hold on to old tech for portable devices, at least in the 90s.
 
 ### Memory access
 
 32-bit addresses look very tempting on paper, but if the system won't use anywhere near 4 GB of memory locations, then it's a huge waste of resources. For instance, even though the upper address lines never change, they will still be decoded for every memory read.
 
-So, with good reasons, Nintendo cut down to **27-bit addresses**. This means that up to **128 MB of memory** can be accessed instead. 32-bit words are still used as pointers but the upper 5 bits are discarded. As a result, some parts of the memory map will be mirrored.
+So, for good reasons, Nintendo cut down to **27-bit addresses**. This means that up to **128 MB of memory** can be accessed instead. 32-bit words are still used as pointers but the upper 5 bits are discarded. As a result, some parts of the memory map will be mirrored.
 
 That being said, the memory map layout allows the CPU to access the majority of the components that make up this system. This includes [@cpu-guy]:
 
@@ -190,7 +190,7 @@ Good news is that all of this is accelerated by the **Video Image Processor** or
 
 ### Architecture
 
-The VIP may seem like another tile engine at first, but it's much more advanced than that. For starters, it not only process graphics data but it also controls the Scanner.
+The VIP may seem like another tile engine at first, but it's much more advanced than that. For starters, it not only processes graphics data but also controls the Scanner.
 
 Moreover, while classic tile engines rendered graphics per scan-line, the VIP relies on a **frame-buffer architecture**, where the final frame is stored in memory as a bitmap and then sent for display. This is closer to the modus operandi of modern [3D renderers](sega-saturn#graphics). In fact, the Virtual Boy took a step further by using some sort of [**page flipping**](game-boy-advance#beyond-tiles), where two frame-buffers are stored per Display unit and the scanner picks up one while the VIP is writing over the other. All of this helps to prevent image tearing.
 
@@ -220,9 +220,9 @@ From the developer side, there are two blocks of memory used by the XP and DP:
 - **128 KB of VRAM** for storing the frame-buffers that the DP will look for.
   - Because we have two Display Units, we need a total of four frame-buffers. Each bitmap generated is 24 KB wide, so we'll need to allocate 96 KB of memory. The remaining 32 KB is used by the XP for storing **tiles**.
 
-Notice that this VRAM is 'real' dual-ported DRAM [@cpu-toshiba], not just a block of RAM reserved for graphics (which Nintendo [also calls 'VRAM'](game-boy#organising-the-content). Dual-ported DRAM enables two devices to read from it at the same time, which explains why the XP can write over VRAM while the Scanner is reading from it concurrently.
+Notice that this VRAM is 'real' dual-ported DRAM [@cpu-toshiba], not just a block of RAM reserved for graphics (which Nintendo [also calls 'VRAM'](game-boy#organising-the-content)). Dual-ported DRAM enables two devices to read from it at the same time, which explains why the XP can write over VRAM while the Scanner is reading from it concurrently.
 
-Additionally, Nintendo uses a VRAM chip nowhere to be found in the off-the-shelf catalogue. There isn't a lot of documentation about it, but from the information described in the patent application, SAM may be stored in a separate area inside this chip. This area is presumably made of SRAM instead and contains extra circuitry to allow the Scanner to pull 16-bits at a time [@cpu-sharp].
+Additionally, Nintendo uses a VRAM chip nowhere to be found in the off-the-shelf catalogue. There isn't a lot of documentation about it, but from the information described in the patent application, SAM may be stored in a separate area inside this chip. This area is presumably made of SRAM instead and contains extra circuitry to allow the Scanner to pull 16 bits at a time [@cpu-sharp].
 
 ### Constructing a frame
 
@@ -258,15 +258,15 @@ The background layer is very simple, pick tiles to form a 512x512 map (64x64 til
 
 Each individual background layer is called a **Segment**. A single Segment fits in 8 KB of memory, where each tile reference contains **H/V flip** attributes and **palette index**. Each tile reference occupies 2 bytes of memory.
 
-The Pixel Processor also allows to combine different segments to generate a bigger layer, but only a set of combinations are available. The largest mix combines eight segments.
+The Pixel Processor also allows to combine different segments to generate a bigger layer, but only a set of combinations is available. The largest mix combines eight segments.
 
 #### Sprites {.tab}
 
-Sprites (or 'Objects', as Nintendo call them) are single tiles with independent coordinates, but occupy more memory.
+Sprites (or 'Objects', as Nintendo calls them) are single tiles with independent coordinates but occupy more memory.
 
 There is a place in DRAM called **OAM** with 8 KB of memory allocated, here is where sprites are defined. Each sprite definition occupies 8 bytes, so up to 1024 sprites can be declared.
 
-Each sprite have the following properties available:
+Each sprite has the following properties available:
 
 - X and Y coordinates.
 - A flag that decides whether to display it on the left screen, the right one, or both.
@@ -290,7 +290,7 @@ You'll also notice there are no screenshots shown for this explanation, the next
 
 ![World 4.<br>This is the 'sprite layer' I owe you from before.](wario/window_4.jpg){title="World 4"}
 
-Examples of Windows.<br>Some are meant to be rendered on both displays (using shifting effects), others are exclusive to one.
+Examples of Windows.<br>Some are meant to be rendered on both displays (using shifting effects), while others are exclusive to one.
 
 :::
 
@@ -298,7 +298,7 @@ The layering system may seem simple at first, after all, the VIP provides 'Backg
 
 The fact is, to display any of the previous layers mentioned, we have to place them in a 'bucket' called **Window** (also named 'World'). A Window is the actual plane that will be rendered to the screen, it is filled with layers previously constructed. There are 32 Windows available which will overlap to form the final frame, each Window declaration occupies 32 bytes.
 
-Windows provide different **rendering modes**. You can grab a Background or Sprite layer and display it as it is. For that, the Window has to be set to **Normal mode** and **Object mode**, depending which type of layer you are using. However, you can also take advantage of additional modes which apply extra effects on background layers:
+Windows provide different **rendering modes**. You can grab a Background or Sprite layer and display it as it is. For that, the Window has to be set to **Normal mode** and **Object mode**, depending on which type of layer you are using. However, you can also take advantage of additional modes which apply extra effects on background layers:
 
 - **Line Shift Mode**: Individual rows of pixels can be shifted horizontally. This resembles the good ol' effects applied during [horizontal interrupts](game-boy#tab-5-1-wobble-effect).
 - **Affine Mode**: As the name indicates, you get to apply [affine transformations](super-nintendo#unique-features)! (scaling and rotation or combined to form perspective projection [@graphics-tucker]).
@@ -311,7 +311,7 @@ After setting everything up, the Pixel Processor will start rendering the 32 Win
 
 Since the system **employs a double-buffered design**, the Display Processor will always fetch the frame-buffer that the Pixel processor is not manipulating, which greatly avoids tearing. On the next active period, the Pixel Processor will overwrite the frame that the DP previously displayed, and so on.
 
-If there isn't much to render (i.e few Windows are used), there will be long gaps between writing over the frame-buffer and the DP picking it up. This allows the **CPU to make extra changes over the frame** if it wants. The VIP is also prepared for this: The CPU can set up interrupts to check various states of the VIP, including this case.
+If there isn't much to render (i.e. few Windows are used), there will be long gaps between writing over the frame-buffer and the DP picking it up. This allows the **CPU to make extra changes over the frame** if it wants. The VIP is also prepared for this: The CPU can set up interrupts to check various states of the VIP, including this case.
 
 On the other side, if there are too many affine Windows to render (for instance) the XP may **'miss the deadline'** which will cause frame drops. Luckily, there are interrupts available to detect that too. In any case, the official docs provide timings each type of layer can take.
 
@@ -347,11 +347,11 @@ Another interesting feature was that by allowing the CPU to alter the frame-buff
 
 ![Waterworld (1995).](waterworld.jpg){.toright}
 
-Both games do minimal drawing from the VIP to let the CPU draw main graphics.
+Both games do minimal drawing from the VIP to let the CPU draw the main graphics.
 
 :::
 
-Unfortunately, fundamental issues like [visible surface determination](sega-saturn#an-introduction-to-the-visibility-problem) weren't always addressed properly, I'm not sure if that was due to the limitations of the CPU. In any case, this resulted in a scene turned into a messy mesh instead, which made difficult for the player to distinguish which objects were behind others.
+Unfortunately, fundamental issues like [visible surface determination](sega-saturn#an-introduction-to-the-visibility-problem) weren't always addressed properly, I'm not sure if that was due to the limitations of the CPU. In any case, this resulted in a scene turned into a messy mesh instead, which made it difficult for the player to distinguish which objects were behind others.
 
 ## Audio
 
@@ -359,9 +359,9 @@ Imagine you grab the Game Boy's [Wave channel](game-boy#tab-7-3-wave), multiply 
 
 ![Mario's Tennis (1995).](tennis){.open-float video="true"}
 
-In the motherboard there's another chip called **Virtual Sound Unit** or 'VSU' that provides the sound capabilities. The PSG relies on internal RAM to store **five wave tables** and a register file to configure each of the **six channels available**. Registers are 8-bit wide while the internal RAM is connected to a 6-bit data bus (the CPU will still treat 6-bit words as a single byte, but the upper two bits are discarded).
+In the motherboard there's another chip called **Virtual Sound Unit** or 'VSU' that provides the sound capabilities. The PSG relies on internal RAM to store **five wavetables** and a register file to configure each of the **six channels available**. Registers are 8-bit wide while the internal RAM is connected to a 6-bit data bus (the CPU will still treat 6-bit words as a single byte, but the upper two bits are discarded).
 
-Each wave is made of 32 PCM samples (encoded in 6-bit values). Channels have a panning control setting (with a volume level from 0 to 15 for each left and right) and a 11-bit frequency control.
+Each wave is made of 32 PCM samples (encoded in 6-bit values). Channels have a panning control setting (with a volume level from 0 to 15 for each left and right) and an 11-bit frequency control.
 
 {.close-float}
 
@@ -402,25 +402,25 @@ The controller of the Virtual Boy is very peculiar compared to the rest of the c
 
 ![You can buy a separate cartridge that does AC to DC conversion instead [@photography-amos], designed to connect the SNES power brick.](io/acpack.png){.tabs-nested-last title="AC Pack"}
 
-Also, because the controller is also supposed to supply power, it comes with a removable battery magazine on the back. The cartridge is called **Tap** and fits six AA batteries. If users got fed up with looking for batteries after any of the six wears out, they could also to buy a different tap which connects to an external power supply.
+Also, because the controller is also supposed to supply power, it comes with a removable battery magazine on the back. The cartridge is called **Tap** and fits six AA batteries. If users got fed up with looking for batteries after any of the six wears out, they could also buy a different tap that connects to an external power supply.
 
-In the case of using the latter accessory, playing with everything interconnected with cables may feel like a house of cards (specially if you can't look at during gameplay) but I guess that's the price to pay if you don't want to worry about batteries 🙂.
+In the case of using the latter accessory, playing with everything interconnected with cables may feel like a house of cards (especially if you can't look at it during gameplay) but I guess that's the price to pay if you don't want to worry about batteries 🙂.
 
 {.close-float}
 
 ## Operating System
 
-The V810's starts execution at address `0xFFFFFFF0H`. That means that when the Virtual Boy is switched on, it will look for instructions from that address. That being said, that location is found on the cartridge ROM. This means that the game has the upper hand for the initialisation of the hardware.
+The V810 starts execution at address `0xFFFFFFF0H`. That means that when the Virtual Boy is switched on, it will look for instructions from that address. That being said, that location is found on the cartridge ROM. This means that the game has the upper hand in the initialisation of the hardware.
 
 Also, there isn't any BIOS chip to be found on the motherboard, so there won't be any operating system or any abstraction layer to help simplify operations.
 
 ### House chores
 
-For this reason, Nintendo instructed developers to perform a number of chores to ensure the proper functioning of this console, these include:
+For this reason, Nintendo instructed developers to perform several chores to ensure the proper functioning of this console, these include:
 
 - WRAM is usable only after 200 microseconds (0.0002 seconds) since the console's startup, so the docs contain a list of steps that games must follow to wait for this.
-- The game must fill the Column table. To recall previous explanations, the 'active display' period has a variable angular velocity. To prevent some columns of the frame being narrower than others, games fill up a table in DRAM that provides corrections. To make things easier, Nintendo provided a default Column table in their SDK that games could use.
-  - The table can be also be amended any time during gameplay, and because it consequently controls the amount of LED emission, the table also serves as a mechanism for adjusting the amount of brightness per column.
+- The game must fill the Column table. To recall previous explanations, the 'active display' period has a variable angular velocity. To prevent some columns of the frame from being narrower than others, games fill up a table in DRAM that provides corrections. To make things easier, Nintendo provided a default Column table in their SDK that games could use.
+  - The table can also be amended at any time during gameplay, and because it consequently controls the amount of LED emission, the table also serves as a mechanism for adjusting the amount of brightness per column.
 
 ## Games
 
@@ -430,17 +430,17 @@ One may think that game development would just inherit the same facilities of th
 
 Game studios had the option to purchase a **development kit** from Nintendo which included a fully-equipped debugging station, a toolchain and plenty of documentation.
 
-The hardware kit was called **VUE Development System** ('VUE' was the codename of this console), it was a PC-like tower that contained the Virtual Boy's internals plus 4 MB of RAM (expandable to 8 MB!). It connected to a headset (with the same shape of the retail Virtual Boy) and a retail controller. To run and debug programs, the dev kit contained an interface board that talked to an IBM PC using SCSI. To use the equipment, you needed an IBM PC/AT (or clone) with an Intel 80386, 2 MB of Memory and MS-DOS installed.
+The hardware kit was called **VUE Development System** ('VUE' was the codename of this console), it was a PC-like tower that contained the Virtual Boy's internals plus 4 MB of RAM (expandable to 8 MB!). It is connected to a headset (with the same shape as the retail Virtual Boy) and a retail controller. To run and debug programs, the dev kit contained an interface board that talked to an IBM PC using SCSI. To use the equipment, you needed an IBM PC/AT (or clone) with an Intel 80386, 2 MB of Memory and MS-DOS installed.
 
-The software kit consisted in a linker, assembler and debugger. At request, Nintendo also offered a **C compiler**. That means it was no longer needed to write programs directly in assembly! All in all, this setup took 1.5 MB of your precious -and noisy- hard disk.
+The software kit consisted of a linker, assembler and debugger. At request, Nintendo also offered a **C compiler**. That means it was no longer needed to write programs directly in assembly! All in all, this setup took 1.5 MB of your precious -and noisy- hard disk.
 
 It's too bad that this model of development was eventually reverted with the release of the Game Boy Colour. I'm guessing that this was because the [Game Boy's CPU](game-boy#cpu) can't handle 'unoptimised' code from a compiler.
 
 ### Medium
 
-Game cartridges are called **Game Paks**. They have the same name of the Game Boy medium but they are completely different in terms of shape and functionality.
+Game cartridges are called **Game Paks**. They have the same name as the Game Boy medium but they are completely different in terms of shape and functionality.
 
-![Example of retail game.](wario.jpg){.open-float}
+![Example of a retail game.](wario.jpg){.open-float}
 
 Due to the memory address space, the ROM can be up to **16 MB without a mapper**. This applies to external RAM too (up to 16 MB). Just like the Game Boy, they can have battery-packed SRAM. The cartridge is accessed using a **16-bit data bus**.
 
@@ -456,7 +456,7 @@ Games have to include a 'read the instructions' warning, an alignment guide and 
 
 ![First screen.](rules/instructions.jpg){.tabs-nested .active .open-float .tab-float .pixel title="Instructions"}
 
-![Second screen (only showing left one).](rules/align.jpg){.tab-nested title="Align"}
+![Second screen (only showing the left one).](rules/align.jpg){.tab-nested title="Align"}
 
 ![Third screen, this one is interactive.](rules/pause.jpg){.tabs-nested-last title="Automatic Pause"}
 
@@ -464,19 +464,19 @@ These screens will appear after the console is switched on. The first one 'order
 
 The second one was some sort of a 'test card' that was used to properly adjust the IPD dial and the focus slider.
 
-The third one asked the user if they would like to be remained to take a break every thirty minutes.
+The third one asked the user if they would like to be reminded to take a break every thirty minutes.
 
 {.close-float}
 
-The first and third screen were often customised to fit the game's theme.
+The first and third screens were often customised to fit the game's theme.
 
 I don't think Nintendo dictated rules like this anymore until the release of the [Wii](wii#return-to-home).
 
 ## Anti-Piracy and Homebrew
 
-The fact that Nintendo created yet-another variation of the Game Pak allowed them to retain control of distribution. Although, since this console never took off, bootleggers probably didn't even bother.
+The fact that Nintendo created yet another variation of the Game Pak allowed them to retain control of distribution. Although, since this console never took off, bootleggers probably didn't even bother.
 
-Apart from that, there are no copy protection or region-locking mechanism implemented in this console. Games imported from America and Japan will work on either console. Also, assuming someone would be willing to manufacture their own Game Paks, Homebrew is also possible.
+Apart from that, there are no copy protection or region-locking mechanisms implemented in this console. Games imported from America and Japan will work on either console. Also, assuming someone would be willing to manufacture their own Game Paks, Homebrew is also possible.
 
 The last time I checked, [Flash carts](game-boy-advance#flashcarts) were theoretically possible but only two reached commercialisation, the 'FlashBoy Plus' and the 'Hyperflash32' (I'm not on commission! but I thought it's worth the mention).
 
@@ -484,11 +484,11 @@ The last time I checked, [Flash carts](game-boy-advance#flashcarts) were theoret
 
 ![My brother fiddling with the Virtual Boy.<br>The only remaining member of the user research team 😉.](brother.jpg)
 
-Throughout this series, we've seen all kinds of systems, some with limited CPU but impressive synergies, others with questionable hardware but beautifully packaged. This case however, was an interesting proposal: The CPU wasn't certainly limited and the graphics were up to the task. The sound wasn't exceptional, yet remained similar to the rest of the portable consoles in the market.
+Throughout this series, we've seen all kinds of systems, some with limited CPU but impressive synergies, others with questionable hardware but beautifully packaged. This case, however, was an interesting proposal: The CPU wasn't certainly limited and the graphics were up to the task. The sound wasn't exceptional, yet remained similar to the rest of the portable consoles in the market.
 
 So, why didn't many children play with it? I'm afraid a marketing study goes beyond the scope of this article. But from the technical side, I think the message just didn't get through: At the end of the day, nobody cares for affine transformations or a pipelined CPU if you can only see red dots.
 
-I guess that was my main motivation for writing this article, to prove somehow that innovative technology can be everywhere, even where we least expect.
+I guess that was my main motivation for writing this article, to prove somehow that innovative technology can be everywhere, even where we least expect it.
 
 I'd also like to thank the Planet Virtual Boy community for helping me with the study. They are currently working on many projects that give new life to the Virtual Boy, so I recommend checking out their forum for more info.
 
