@@ -43,7 +43,8 @@ Well, to start with, the SH-4 follows up as a superset of the previous models, m
 
 On top of that, as the next-generation CPU, it debuts many improvements that go beyond the scope of embedded applications [@cpu-arch]:
 
-- A **2-way superscalar** pipeline: A new type of parallelism where the CPU can process more than one instruction (two in this case) in each stage of the pipeline. This results in more instructions executed per second.
+- A **2-way superscalar** pipeline: A novel parallelism technique where the CPU can process more than one instruction (two in this case) in each stage of the pipeline. This results in more instructions executed per second.
+  - Behind the scenes, the CPU is distributing the two instructions to two different (and available) execution units. Hence - with the exception of a very small group - all instructions have to be of different types (i.e. branching, arithmetic, etc) to be parallelised [@cpu-soft_doc]. Otherwise, they can only be executed sequentially. Be as it may, the SH-4 also exhibits a subset of instructions that can never be parallelised, as they contain too many dependencies to make it feasible.
 - **8 KB instruction cache** and **16 KB data cache**: This ratio is rather curious since consoles tend to include more instruction cache than data cache. However, the SH-4 allows the data cache to be split into two sections: **8 KB of Scratchpad** (fast RAM) and **8 KB of data cache**.
 
 #### Special work
