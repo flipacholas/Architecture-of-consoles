@@ -169,7 +169,7 @@ GPU, FIFO'dan komutları almakla görevli bir **komut işlemcisi** içerir.
 
 ![Dolaylı mod kullanılarak Vertex aşama diyagramı.](flipper_pipeline/vertex.jpg) {.tab-float}
 
-Burada ilkeller istenen manzaraya göre şekle dönüştürülür ve rasterleştirme için hazırlanır. Motor bunu gerçekleştirmek için özel bir **Vertex ünitesi** veya 'VU' kullanır.
+Burada ilkeller istenen manzaraya göre şekle dönüştürülür ve pikselleştirme (rasterisation) için hazırlanır. Motor bunu gerçekleştirmek için özel bir **Vertex ünitesi** veya 'VU' kullanır.
 
 FIFO aracılığıyla verilen ilkelleri işlemek için iki **vertex modu** mevcuttur:
 
