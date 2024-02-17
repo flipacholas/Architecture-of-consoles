@@ -704,7 +704,7 @@ Furthermore, before Pandora was published, so-called **Custom Firmware** or 'CFW
 
 A CFW can be installed on top of the current firmware with the help of any kernel-level exploit (this was the earliest method). However, it can only be automatically booted with exploits previously used by Pandora to bypass signature checks. Otherwise, users need to rely on cat-and-mouse exploits to reboot to a CFW. That's why the latest PSP models weren't able to kickstart a CFW using the *good-old* methods.
 
-In the end, the last straw was when the security system of the PlayStation 3 was hacked, as it contained the **private keys used to decrypt PSP executables** (the PS3's OS includes a PSP emulator). This allowed anyone to sign user-land software and embed a kernel exploit to produce CFW installers and/or CFW loaders, for instance.
+In the end, the last straw was when the [security system](playstation-3#os-security-hierarchy) of the [PlayStation 3](playstation-3) was [hacked](playstation-3#tab-17-4-the-fall-of-encryption), as it contained the **private keys used to decrypt PSP executables** (the PS3's OS includes a PSP emulator). This allowed anyone to sign user-land software and embed a kernel exploit to produce CFW installers and/or CFW loaders, for instance.
 
 In recent developments, it was discovered that the latest firmware contains a kernel exploit during the boot process, which could be used to kickstart a CFW of choice. This was packaged in an solution called **Infinity 2** [@anti_piracy-davee].
 

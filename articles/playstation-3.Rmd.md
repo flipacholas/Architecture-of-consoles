@@ -835,7 +835,7 @@ At the same time of the console's release, Sony launched its proprietary distrib
 
 Within their digital store, Sony also took the opportunity to sell digitalised versions of PS1, PS2 and PSP games called **PlayStation Classics**. These are also downloaded and installed in the same way, but use the bundled emulators to work. In fact, PS2 classics invoke the same unaccelerated software emulator independently whether the PS3 models contain the PS2 chipset [@io-ps2emu]! I guess this is the closing chapter for hardware-based emulation in the PS3.
 
-Behind the scenes, the PS Store is just a website only accessible through the PS Store app in XMB. Through its lifecycle, its user interface has been revamped a few times to reflect what I suppose was _a global demand for more fancy user interfaces_.
+Behind the scenes, the PS Store is just a website only accessible through the PS Store app in XMB. Throughout its lifecycle, its user interface has been revamped a few times to reflect what I suppose was _a global demand for more fancy user interfaces_.
 
 ### Network service {.tabs-close}
 

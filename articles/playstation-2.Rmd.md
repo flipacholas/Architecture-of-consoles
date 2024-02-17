@@ -13,7 +13,7 @@ top_tabs:
     file: international
     caption: "The original PlayStation 2.<br>Released on 04/03/2000 in Japan, 26/10/2000 in America and 24/11/2000 in Europe"
   Motherboard:
-    caption: "Showing revision 'GH-001' from model SCPH-10000 only released in Japan.<br>Thanks to the donations received, I was able to purchase this model and take a proper photo to allow me identify most of the chips.<br>I presume the chip at the bottom right corner is the 4 MB BIOS ROM"
+    caption: "Showing revision 'GH-001' from model SCPH-10000 only released in Japan.<br>Thanks to the donations received, I was able to purchase this model and take a proper photo to allow me to identify most of the chips.<br>I presume the chip at the bottom right corner is the 4 MB BIOS ROM"
     bib_source: copetti
   Diagram:
     caption: "The original design (Implemented on revision 'SCPH-10000').<br>Each data bus is labelled with its width and speed.<br>This architecture went through many revisions, more details below"
@@ -26,40 +26,94 @@ aliases: [/projects/consoles/playstation-2/]
 
 The PlayStation 2 was not one of the most powerful consoles of its generation, yet it managed to achieve a level of popularity unthinkable for other companies.
 
-This machine is nowhere near as simple as the [original PlayStation](playstation) was, but we will see why it didn't share the same fate of [previous complicated consoles](sega-saturn).
+This machine is nowhere near as simple as the [original PlayStation](playstation) was, but we will see why it didn't share the same fate as [previous complicated consoles](sega-saturn).
 
 ## {.supporting-imagery}
 
 ## CPU
 
-At the heart of this console we find a powerful package called **Emotion Engine** or 'EE' designed by Sony and running at **~294.91 MHz** [@cpu-rockin]. This chipset contains multiple components, one of them being the main CPU. The rest are at the CPU disposal to speed up certain tasks.
+At the heart of this console, we find a powerful package called **Emotion Engine** or 'EE', a joint project by Toshiba and Sony [@cpu-cataldo] running at **~294.91 MHz** [@cpu-rockin].
+
+![The Emotion Engine, as seen on the first motherboard revision of this console.](ee_chip.jpg)
+
+This chipset contains numerous components, one of them being the main CPU. The rest are at the CPU's disposal to speed up certain tasks. For this analysis, we'll divide the EE into three sections:
+
+- The **leader**: The main component that controls the entire chip.
+- The **memory available**, a crucial ingredient so the processors can do meaningful operations.
+- The **co-processors**: These accelerate particular computations.
 
 ### The leader
 
-The main core is a **MIPS R5900-compatible** CPU with lots of enhancements. This is the first chip that starts executing instructions after the console is turned on. The processor provides the following features:
+In a nutshell, the main CPU is a **MIPS R5900**, an exclusive MIPS core designed for this console. You may recall when Sony started [venturing with MIPS silicon](playstation#tab-1-2-mips-and-sony) with the very first [PlayStation](playstation) (where we can find a [MIPS R3000A](playstation#the-offering) second sourced from LSI). For the next generation, we've got a MIPS 'R5900'... but what does that name mean for us?
 
-- **MIPS III ISA**: A 64-bit RISC instruction set. *Wait, is it me or this is the same ISA found on a [competitor's console](nintendo-64#cpu)?*. Not quite, Sony enhanced the ISA by adding some instructions from **MIPS IV** (prefetch and conditional move) along with their own SIMD extension called **multimedia instructions**. 
-- **32 128-bit extra registers**: Another enhancement. They are better managed using multimedia instructions and are very useful for vector processing.
-  - These registers are accessed through a 128-bit bus, while the rest of the CPU uses an internal 64-bit bus.
-- **2-way superscalar**: Up to two instructions are executed in parallel.
-- **24 KB L1 cache**: Divided into 16 KB for instructions and 8 KB for data.
-  - It also implements a **prefetch function** to cache instructions and data before they are requested. This is done by including extra circuitry that can identify which places in memory are more often requested.
-- **16 KB of Scratchpad RAM**: Also known as 'Fast RAM'.
+To understand what's hidden behind the new numbers, let's take a look at some history surrounding that era.
+
+#### Outperforming success {.tabs .active}
+
+The [MIPS R4000](nintendo-64#cpu) was a popular CPU series adopted by a wide range of systems, including a [close competitor](nintendo-64). Thanks to its success, MIPS brought a once-unaffordable range of advancements (64-bit computing, 8-stage pipelines and so forth) to the masses.
+
+Fast forward, the next big leap arrived in 1995, with the release of the **R10000**. Now under the funding of [SGI](playstation#tab-1-2-mips-and-sony), MIPS produced a new processor that took the R4000's parallelism capabilities miles further, debuting techniques like [@cpu-yeager]:
+
+- **Speculative execution**: The CPU predicts the result of conditional branches before they are computed. The predictions are based on previous results stored in an internal 512-entry table. Once the condition is computed, if the prediction turns out to be correct, the CPU has saved valuable time. Otherwise, the extra computations are discarded.
+  - Thanks to this, MIPS has finally turned a recurrent problem ([control hazards](playstation#delay-galore)) into an advantage.
+  - In other CPUs, you may find similar functionality referred to as [dynamic branch prediction](gamecube#features).
+- **4-issue superscalar** pipeline: On top of the [pipelined design](sega-saturn#cpu), the CPU will now fetch up to four instructions at the start of the pipeline, and distribute them across separate units, allowing the CPU to execute these instructions at the same time. In doing so, the CPU achieves a greater degree of parallelism. 
+- **Out-of-order execution**: The CPU will also re-arrange the sequence of instructions to try to fill up its units as much as possible (as long as no hazards are added).
+- **L2 cache with a 128-bit bus**, enabling to pull more data into the CPU at a time, which becomes a requirement based on the previous enhancements.
+
+Such innovation came at the cost of a complex design, however, and the final product was everything but cheap. SGI only bundled it in high-end equipment, and any attempt to bring it into a home console was out of the question.
+
+#### High-end for the masses {.tab}
+
+Already aware of the commercial limitations of the R10000, SGI/MIPS hired **Quantum Effect Devices** (QED) to develop an affordable version of the R10000 for the mid-to-low-end market. As a company founded by former MIPS employees, QED was in the business of designing variants of MIPS cores for the budget sector.
+
+In the end, QED came back with a new core called the **R5000**, this was an R10000 that underwent significant cutbacks [@cpu-halfhill]:
+
+- Out-of-order execution is reverted to in-order.
+- Speculative execution is removed.
+- Superscalability is limited to two instructions (2-issue) and doesn't parallelise integer instructions anymore. However, floating point instructions can still be paired with others.
+- Due to the previous reductions, L2 is scaled down to a 64-bit bus instead.
+
+Consequently, this became an ideal CPU to power economical equipment, such as SGI's low-end workstations. In any case, notice that the cut-down pipeline still performed concurrent floating-point operations, as if QED planned to keep it an attractive product for **vector/3D applications**. You'll soon see that another company quickly took note of that as well.
+
+As a side note, it's curious to observe that on the other side of the pond, there were similar advancements but in the opposite direction: [ARM joined forces with DEC](nintendo-ds#arms-new-territories) in the pursuit of lifting ARM chips into the high-end market.
+
+#### A special order for Sony {.tabs-close}
+
+Toshiba had been a MIPS licensee for some time [@cpu-toshiba] and was no stranger to manufacturing MIPS variations and packages. At one point, Sony and Toshiba joined forces to produce a CPU exclusively tailored for Sony's upcoming console. This was a tremendous benefit for Toshiba: very often CPUs are required to fulfill a wide range of requirements coming from different stakeholders, and in doing so it constraints opportunities for specialisation. Now, there was only a single purpose: **3D gaming**. Thus, granting enough room for all kinds of **innovation**.
+
+That being said, Toshiba ended up grabbing the affordable R5000 design and tweaked it to accelerate vector operations. The new core is called **R5900** and debuts the following '3D' enhancements [@cpu-stokes]:
+
+- A variation of the **MIPS III ISA**. This includes the original 64-bit ISA previously seen on the [Nintendo 64](nintendo-64#cpu), but extended with interesting opcodes. Sony added some instructions from **MIPS IV** (prefetch and conditional move) along with their own SIMD extension called **multimedia instructions** to accelerate vector calculations (similar to the [SH-4](dreamcast#special-work), but integer only).
+  - The multimedia instructions are still 32-bit wide but can operate up to three 128-bit vectors at a time. They offer operations such as vector arithmetic, min/max and many kinds of scalar combinations to form new vectors. 
+- **32 128-bit general-purpose registers**: Another significant Toshiba-branded enhancement. Forget about the typical [32-bit storage](playstation#the-offering), we've stepped into the 128-bit realm now. Nevertheless, the majority of operations will hardly use all the available space (MIPS words are [still 64-bit long](nintendo-64#cpu)). This is when the aforementioned multimedia extension comes into the equation, as its set will make full utilisation of the extended register file.
+  - When using the new instructions, each register can store vectors made of many types of scalars (from two 64-bit integers to sixteen 8-bit ones).
+  - To prevent performance penalties, these registers are accessed through a **128-bit bus**, while the rest of the CPU uses an internal **64-bit data bus**.
+- Two **64-bit ALUs**. Each can operate 64-bit integers independently, but also combine to become a **128-bit ALU**. The latter is the brain behind those shiny multimedia opcodes.
+
+Aside from these, we also find other improvements that developers may welcome as well:
+
+- **6-stage pipeline**: That's one additional stage compared to [the predecessors](playstation#the-offering).
+- **2-way superscalar** execution: Thanks to the two ALUs, up to two 64-bit integer operations are now executed in parallel.
+  - This restores another lost advantage of the MIPS R10000.
+- **24 KB L1 cache**: Divided into **16 KB for instructions** and **8 KB for data**.
+  - The circuitry also implements a **prefetch function** to cache instructions and data before they are requested. This is done by including extra logic that can identify which places in memory are more often requested.
+- **16 KB of Scratchpad RAM**, also known as 'Fast RAM'.
 - **Memory management unit**: Interfaces memory access with the rest of the system.
 
-The core is complemented with a **dedicated floating point unit** (identified as 'COP1') that accelerates operations with 32-bit floating-point numbers (also known as `floats` in C). This is a peculiar block as it doesn't follow the IEEE 754 standard, most evident with its absence of `infinity` (computed as `0` instead) [@cpu-krysto].
+Moreover, the core is complemented with a **dedicated floating point unit** (identified as 'COP1') that accelerates operations with 32-bit floating-point numbers (also known as `floats` in C). This is a peculiar block as it **doesn't follow the IEEE 754 standard**, most evident with its absence of `infinity` (computed as `0` instead) [@cpu-krysto]. Apart from that, it features 32 32-bit registers.
 
 ### A recognisable memory choice
 
-Next to the Emotion Engine are two blocks of 16 MB of RAM, giving a total of **32 MB** of main memory. The type of memory used is **RDRAM** ([*déjà vu!*](nintendo-64#memory-design)) which is accessed through a 16-bit bus.
+Next to the Emotion Engine are two blocks of 16 MB of RAM, giving a total of **32 MB** of main memory. The type of memory used is **RDRAM** ([*déjà vu!*](nintendo-64#memory-design)) which is accessed through a **16-bit bus**.
 
 ![Memory design of the Emotion Engine. You can guess where the congestion will emerge.](MemoryArch.png)
 
-At first, this can be a little disappointing to hear, considering the internal bus of the Emotion engine is as wide as 128 bits. However, the RAM chips are strategically placed by following the **dual-channel architecture**, which consists in connecting both chips using two independent 16-bit buses (one bus per chip) to improve data throughput. The resulting setup provides a theoretical 3.2 GB/sec, so rest assured that memory latency is not an issue in this console!
+At first, this can be a little disappointing to hear, considering the internal bus of the Emotion engine is as wide as 128 bits. However, the RAM chips are strategically placed by following the **dual-channel architecture**, which consists of connecting both chips using two independent 16-bit buses (one bus per chip) to improve data throughput. The resulting setup provides a theoretical 3.2 GB/sec, so rest assured that memory latency is not an issue in this console!
 
 At one corner of the Emotion engine there is a powerful **DMA Controller** or 'DMAC' that transfers data between main memory and Scratchpad; or between main memory and any component inside the EE.
 
-Data transfers are done in batches of 128-bits, but here is the interesting part: Every eight batches, the main bus is temporarily unlocked. This leaves a small window to perform other DMA transfers in parallel (up to ten) or let the CPU use the main bus. This *modus operandi* is called **slice mode** and is one of the many modes available on this DMA unit. Bear in mind that while slice mode reduces stalls on the main bus, it does so at the cost of slowing down the overall DMA transfer.
+Data transfers are done in batches of 128 bits, but here is the interesting part: Every eight batches, the main bus is temporarily unlocked. This leaves a small window to perform other DMA transfers in parallel (up to ten) or let the CPU use the main bus. This *modus operandi* is called **slice mode** and is one of the many modes available on this DMA unit. Bear in mind that while slice mode reduces stalls on the main bus, it does so at the cost of slowing down the overall DMA transfer.
 
 ### Preventing past mishaps
 
@@ -67,15 +121,15 @@ Whether we want it or not, with the amount of traffic happening inside the Emoti
 
 - Wrapping their processors with **lots of cache**. Thus, only requiring access to main memory if it's absolutely necessary.
     - 99% of cache/scratchpad mentions in this article will be for this reason.
-- Adding a 128-byte **Write Back Buffer**: Very similar to the [Write Gather Pipe](gamecube#ibms-enhancements), but instead of waiting until it's 25% full, it will check the state of the bus (i.e congested or free) first.
+- Adding a 128-byte **Write Back Buffer**: Very similar to the [Write Gather Pipe](gamecube#ibms-enhancements), but instead of waiting until it's 25% full, it will check the state of the bus (i.e. congested or free) first.
 
 This sounds very convenient for applications that can benefit from cache, but what about those tasks, such as manipulating Display Lists, which shouldn't use cache at all? Luckily, the CPU provides a different memory access mode called **UnCached**, which **only** uses the Write Back Buffer. Thus, it will not waste cycles correcting the cache (product of *cache misses*).
 
-Furthermore, the **UnCached accelerated mode** is also available. This one adds a buffer for speeding up the read of continuous addresses in memory.
+Furthermore, the **UnCached accelerated mode** is also available. This one adds a buffer for speeding up the reading of continuous addresses in memory.
 
 ### Other interesting bits
 
-Inside the same Emotion Engine package, there is yet-another processor called **Image Processing Unit** or 'IPU', this time designed for **image decompression**. As the successor of the [MDEC](playstation#tab-2-3-motion-decoder), the IPU can be useful when a game needs to decode an MPEG2 movie without jamming the main CPU.
+Inside the same Emotion Engine package, there is yet another processor called **Image Processing Unit** or 'IPU', this time designed for **image decompression**. As the successor of the [MDEC](playstation#tab-2-3-motion-decoder), the IPU can be useful when a game needs to decode an MPEG2 movie without jamming the main CPU.
 
 Long story short, the game sends compressed image streams to the IPU (hopefully using DMA) which are then decoded in a format that the GPU can display. The PS2's operating system also relies on the IPU to provide DVD playback.
 
@@ -136,8 +190,8 @@ A useful approach that can be exploited with these units is **procedural generat
 Compared to using explicit data, procedural content is ideal for parallelised tasks, it frees up bandwidth, requires very little storage and it's dynamic (programmers can set parameters to achieve different results) [@cpu-green]. Many areas can highly benefit from this technique:
 
 - **Complex surfaces** (e.g. spheres and wheels).
-- **World rendering** (e.g terrains, particles, trees).
-- **Bézier curves** (a very popular equation in computer graphics which is used to draw curves), these are turned into a **Bézier patch** (explicit geometry) and support different degrees of precision based on the level of detail required.
+- **World rendering** (e.g. terrains, particles, trees).
+- **Bézier curves**, a very popular equation in computer graphics used to draw curves. These are turned into a **Bézier patch** (explicit geometry) and support different degrees of precision based on the level of detail required.
 
 On the other side, procedural content may struggle with animations and, if the algorithm is too complex, the VPU might not generate the geometry at the required time.
 
@@ -303,88 +357,107 @@ Finally, the chip can mix all channels to provide **stereo output**. Now, here i
 
 The audio signal is outputted through two mediums:
 
-- **Digital Audio**: Referred as the Sony/Philips Digital Interface or 'S/PDIF'.
+- **Digital Audio**: Referred to as the Sony/Philips Digital Interface or 'S/PDIF'.
 - **Analog Audio**: Goes through the digital-to-analogue converter and ends at the Multi A/V port.
 
 ## I/O
 
-The I/O of the PS2 is not complicated, yet multiple revisions of this console completely changed various internal and external interfaces.
+Initially, the I/O of the PS2 wasn't particularly complicated. Yet, subsequent revisions of this console completely disrupted both the internal and external designs. So, overall, this console exhibits many forms of I/O distributed across different revisions.
 
-To start with, there's a dedicated processor that arbitrates the communication between different components, this CPU is no other than the **original MIPS R3000-based core** found in the [PlayStation 1](playstation#cpu). This time, it's called **IOP** and runs at 37.5 MHz using a 32-bit bus [@io-buses].
+### The special CPU
 
-The IOP communicates with the Emotion Engine using a specialised I/O interface called **System Interface** or 'SIF', both endpoints use their DMA units to transfer data between each other. The IOP also contains its own memory used as a buffer.
+To start with, there's a dedicated processor that arbitrates the communication between different components, this CPU is no other than the **original MIPS R3000-based core** found in the [PlayStation 1](playstation#cpu). This time, it's called **I/O Processor** (IOP) and runs at **37.5 MHz** attached to a **32-bit bus** [@io-buses].
 
-The IOP gives access to the front ports, DVD controller, SPU2, the BIOS ROM and the PC card slot.
+![Main diagram of the PlayStation 2's architecture. Notice the I/O Processor exhibiting exclusive access to most of the I/O.](diagram.png)
 
-### Inherited compatibility
+The IOP communicates with the Emotion Engine using a specialised I/O interface called **System Interface** or 'SIF', both endpoints use their DMA units to transfer data between each other. The IOP also comes with dedicated memory - **2 MB of [EDO RAM](playstation#the-offering)** (just like the PS1) - used as a buffer.
 
-By including the original CPU, we can suspect PS1 compatibility would eventually happen somehow. Conveniently enough, the IOP happens to include the rest of the components that formed the CPU subsystem of the PS1. Moreover, the core can be under-clocked to run at PS1 speed. Unfortunately, the SPU2 has changed too much for the PS1, but for that, the Emotion Engine is 'repurposed' to emulate the old SPU.
+All in all, this processor gives access to the front ports, DVD controller, SPU2, the BIOS ROM and the PC card slot.
 
-In later revisions of this console, the IOP was replaced with a **PowerPC 401 'Deckard'** and **4 MB of SDRAM** (2 MB more than before), backwards compatibility persisted but through software instead.
+Be as it may, one year after the 'Slim' revision arrived (2005), the IOP was replaced with an SoC that instead houses a **PowerPC 401 'Deckard'** (a cutdown PowerPC 601 for microcontrollers), **4 MB of SDRAM** (2 MB more than before) and an Ethernet transceiver (previously found in an external accessory).
+
+#### Inherited compatibility
+
+For those models bundling the predecessor's CPU, one can suspect PS1 compatibility would be part of the package. Conveniently enough, Sony did bundle a PS1 emulator (called `PS1DRV`) that loads whenever a PS1 disc is inserted. When this happens, the IOP is under-clocked to run at PS1 speed, the EE is 'repurposed' to emulate the [old GPU](playstation#graphics) and the SPU2 is remapped to behave like the [original SPU](playstation#audio).
+
+With PowerPC-based models, backwards compatibility persisted but through a complete software implementation instead.
 
 ### Available interfaces
 
-This console kept the previous front ports that were included in the original PlayStation, it also featured a couple of 'experimental' interfaces that looked very promising at first.
+This console kept the [previous front ports](playstation#front-ports) that were included in the original PlayStation, it also features a couple of 'experimental' interfaces that appeared very promising at first.
 
-![Front of the PS2 showing common ports including Controllers and MemoryCards, plus the new USBs and i.Link [@photography-amos].](photos/ps2_front.png){.open-float}
+![Front of the PS2 showing common ports including Controllers and Memory Cards. Plus, the new USBs and i.Link ports [@photography-amos].](photos/ps2_front.png)
 
-The most popular addition: **Two USB 1.1 ports**. Widely adopted by third-party accessories, these persisted in all future revisions.
+The most popular additions are the **two USB 1.1 ports**. Its theoretical speed is 12 Mbps but that's highly dependent on the IOP's bandwidth (which tends to be considerably slower). Nevertheless, it was widely adopted by third-party accessories.
 
-What about the 'experimental' ones? To start with, there was initially a front **i.Link port** (also known as IEEE 1394, or 'FireWire' in the Apple world). This port was used to connect two PS2 to enable local multiplayer, but it was removed after the third revision (presumably replaced by the 'Network card', more details below).
+There were also some 'experiments' that didn't last very long. For instance, the front **i.Link port** (also known as IEEE 1394 - or 'FireWire' in the Apple world). This port was used to connect two PS2s for local multiplayer, but it was removed after the third revision (presumably replaced by the 'Network card', more details below).
 
-{.close-float}
+#### The unusual Ethernet + HDD combo
 
-On the back of the console we also had a slot for **PC cards**, you could buy the 'Network Adaptor card' from Sony that provided two extra ports. One for connecting an Ethernet cable, and another one for plugging in a proprietary and external 'Hard Disk Drive Unit', also sold by Sony. Having a drive allowed games to store temporary data (or permanently install themselves there) for faster load times. Just a few games used this feature, though.
+On the back of the console we also had a slot for **PC cards**. For this, you could buy the 'Network Adaptor card' from Sony that provides two extra interfaces:
 
-![Back of PS2 showing hard drive bay (cover removed) [@photography-amos].](photos/back_bay.png){.tabs-nested .open-float .tab-float .active title="Bay"}
+- An **Ethernet** port, for online multiplayer.
+- A proprietary and external **Hard Disk Drive Unit** port: This was sold by Sony and packaged a typical 3.5" ATA hard drive with 40 GB of space. It enabled games to store temporary data (or permanently install themselves there) for faster load times. Just a few games used this feature, though.
 
-![Network adaptor as seen from the front [@photography-amos]. This particular model provided modem and Ethernet ports.](photos/harddrive_adaptor_front.png){.tab-nested title="Front"}
+In later revisions, the PCMCIA port was replaced by an **Expansion Bay** where the 3.5" HDD could now be fitted inside the console. You had to buy first a **Network adaptor** which not only provided Modem and/or Ethernet ports (depending on the model) but also included the sockets to plug an ATA-66 hard disk.
 
-![Network adaptor as seen from the back [@photography-amos], with a hard drive fitted.](photos/harddrive_adaptor_back.png){.tab-nested title="Back"}
+![Back of PS2 showing the Expansion Bay (with the cover removed) [@photography-amos].](photos/back_bay.png)
 
-![Back of the slim model showing a fixed Ethernet port.](photos/ps2_slim_back.jpg){.tabs-nested-last title="Slim"}
+Behind the scenes, the data in the HDD is structured using a file system called 'PFS' [@io-fs]. Strangely, the layout doesn't contain a partition table, just a very primitive catalogue called 'Aligned Partition Allocation' (APA). This may be because Sony only shipped 40 GB drives. Hence, scalability wasn't on their list of priorities.
 
-In later revisions, the PCMCIA port was replaced by an **Expansion Bay** where a 3.5" Hard drive could be fitted inside the console. You had to buy first a **Network adaptor** which not only provided Modem and/or Ethernet ports (depending on the model), but also included the required connections for an ATA-66 hard disk. 'Slim' revisions completely removed this feature, but left an Ethernet port permanently installed on the back. In addition to that, the new revision added a new front 'port', the **infrared sensor**.
+![Network adaptor as seen from the front [@photography-amos]. This particular model provided modem and Ethernet ports.](photos/harddrive_adaptor_front.png){.toleft .no-borders}
 
-{.close-float}
+![Network adaptor as seen from the back [@photography-amos], with a hard drive fitted.](photos/harddrive_adaptor_back.png){.toright .no-borders}
 
-The Ethernet transceiver supplied supports transfer rates of up to 100 Mbps (12.5 MB/s). However, the **observed rate is notoriously lower** (down to 2 MB/s in some cases). The explanation for that is relatively simple: To achieve usable network communication, one is required to implement all the layers of the standard 'OSI Model'; and the transceiver is just one piece of the puzzle. The rest is often delegated to the IOP (thus, done in software) but due to the IOP's limited performance [@io-bottleneck], this results in bottlenecks.
+The Ethernet transceiver within the adaptor supports transfer rates of up to 100 Mbps (12.5 MB/s). However, the **observed rate is notoriously lower** (down to 2 MB/s in some cases). The explanation for that is relatively simple: To achieve usable network communication, one is required to implement all the layers of the standard 'OSI Model'; and the transceiver is just one piece of the puzzle. The rest is often delegated to the IOP (thus, done in software) but due to the IOP's limited performance [@io-bottleneck], this results in bottlenecks.
+
+#### Slimming down
+
+The Slim revision revised the whole Ethernet + HDD model: there's no more Expansion Bay, but an Ethernet port is permanently installed on the back (particular models also included a Modem).
+
+![Back of the slim model, showing a fixed Ethernet port.](photos/ps2_slim_back.jpg)
+
+In addition to that, the new revision added a new **infrared sensor**, to be used with a Sony-branded remote controller (sold separately).
 
 ### Interactive accessories
 
 The new version of their controller, the **DualShock 2**, is a slightly improved version of DualShock.
 
-![DualShock 2 controller [@photography-amos].](photos/dualshock2.png){.tabs-nested .open-float .tab-float .active title="DualShock 2"}
+![The DualShock 2 controller [@photography-amos].](photos/dualshock2.png){.toleft .no-borders}
 
-![Official Memory Card (8 MB model) [@photography-amos].](photos/memorycard.png){.tabs-nested-last title="Memory Card"}
+![An official Memory Card (8 MB model) [@photography-amos].](photos/memorycard.png){.toright .no-borders}
 
 During the days of the original PlayStation, multiple revisions of the original controller were released featuring different features (and also bringing fragmentation to the market). Now, for the benefit of developers, there was a single controller that unified all the previous properties.
 
-Compared to the DualShock, the new version featured a slight redesign, it included two analogue sticks and two vibration motors for richer input and feedback, respectively.
+Compared to the original DualShock, the new version features a slight redesign, it includes two analogue sticks and two vibration motors for richer input and feedback, respectively.
 
-{.close-float}
+Next to the controller slot is the **Memory Card** one, now compatible with PS1 and PS2 cards. The latter cards embed extra circuitry for security purposes referred to as **MagicGate**, which enables games to restrict data transfers between different memory cards. The IOP takes care of encrypting and decrypting the content, and it does so with the help of the MagicGate chipset (found inside the Memory Card) and the DVD drive, the latter bundles the encryption keys.
 
-Next to the controller slot is the **Memory Card slot** which is compatible with PS1 and PS2 cards. The new cards embed extra circuitry for security purposes referred to as **MagicGate**, which enables games to block data transfers between different memory cards.
+Some third-party Memory Cards didn't support MagicGate, however.
 
 ## Operating System
 
-There's a **4 MB ROM** chip fitted on the motherboard that stores a great amount of code used to load a shell menu that the users can interact with, but it also provides system calls to simplify I/O access [@cpu-rockin], which games rely on.
+There's a **4 MB ROM** chip fitted on the motherboard, this stores a great amount of code used to load a shell menu (that the users can interact with) but it also provides system calls to simplify I/O access [@cpu-rockin] (which games rely on).
 
 ![Splash animation after turning on the console.](bios/animated.jpg){.tabs-nested .active title="Boot animation"}
 
 ![PS2 logo showing after a valid PS2 game is inserted.](bios/game_splash.jpg){.tabs-nested-last title="Valid disc"}
 
-Upon boot, the CPU will execute instructions in ROM which in turn will:
+Upon receiving power, both the MIPS R5900 and the IOP will start at address `0xBFC00000` (that's the signature reset vector for all MIPS CPUs). To handle the expected conflicts, however, the respective code stored in that address (pointing to the BIOS ROM) will make each CPU branch at a different location based on its identifier.
+
+In the case of the R5900, the CPU will follow these steps [@cpu-rockin]:
 
 1. Initialise the hardware.
-2. Load a **Kernel** into RAM, this will handle system calls and also provide multi-threading support (cooperative and priority-based).
-3. Start the IOP processor and send it **modules**, these will enable the IOP to handle the hardware of this console. In the end, the IOP will be put in a 'waiting for command' state.
-    - The use of modules allows Sony to release new hardware revisions of the PS2 without changing the IOP, lowering production costs.
-3. Load 'OSDSYS', the program that displays the splash animation and the shell menu.
+2. Load the **Kernel** from ROM into RAM. Once loaded, the Kernel will provide a layer of abstraction to applications (mostly games) to interact with the hardware. Additionally, it also exposes a multi-threading API (cooperative and priority-based).
+3. The Kernel loads `EELOAD`, a kernel module which, in turn, bootstraps `OSDSYS`. The latter is the program that displays the splash animation and the shell menu.
+
+On the other side, the IOP will be initialising part of its hardware and then load multiple **modules**, these enable the IOP to access the hardware of this console. Once finished, the IOP will be put in a 'waiting for command' state.
+
+It's worth pointing out that the use of modules allows Sony to release new hardware revisions of the PS2 without changing the IOP (until they did), thereby lowering some production costs in the process.
 
 ### Interactive shell
 
-The functionality of the PS2 shell is pretty much in pace with the other 6th generation consoles.
+The functionality of the PS2 shell is pretty much in pace with the other 6th-generation consoles.
 
 ![Initial menu. Appears when there's no disc inserted.](bios/menu.jpg){.tabs-nested .active title="Menu"}
 
@@ -396,15 +469,27 @@ The functionality of the PS2 shell is pretty much in pace with the other 6th gen
 
 ![System Configuration.](bios/options.jpg){.tabs-nested-last title="Options"}
 
-The shell features some practical sections which allow performing day-to-day operations, like manipulating the saves of the memory card. It also provides some exceptional options, like changing the current video mode.
+The shell is composed of multiple user interfaces for managing typical operations, like manipulating the save data stored in the memory card or altering the clock. It also provides some advanced options, like changing the current video mode.
 
+### Updatability
+
+The BIOS is indeed stored within read-only memory, but that didn't stop Sony from amending it after leaving the factory. You see, behind the scenes, the BIOS left two doors open for future alterations:
+
+- Applications (games and `OSDSYS`) can **monkey patch the kernel routines at runtime** [@operating_system-kpatch]. Both the official SDK and the unofficial 'ps2sdk' made extensive use of this, as Sony's engineers subsequently discovered their Kernel to be riddled with bugs (_pun intended_).
+- **`EELOAD` will look for an updated `OSDSYS` binary stored in the Memory Card and/or the HDD** [@operating_system-israelson]. Sony relied on this to add a DVD movie player and HDD support, as none of these drivers were bundled in the earlier revisions of this console.
+  - These updates were distributed in installation discs that came with the console or the HDD kit (part of the Final Fantasy XI box set).
+  - Unlike the Kernel, which has to be backwards compatible with old SDKs, follow-up revisions of the console shipped previous updates in the BIOS ROM.
+  - To control distribution, binaries must be signed with **Data Encryption Standard** (DES) [@operating_system-kelftool], a symmetric encryption system, using keys only known by Sony (in theory). Additionally, the binaries must be stored in a storage device with MagicGate support.
+
+In any case, Sony eventually removed the second method in late PS2 models (with a BIOS version `2.30`). I presume they realised it added up to the attack surface.
+  
 ## Games
 
 It is unprecedented the level of popularity this system achieved during the noughties, at the end of its lifespan (2013, after 13 years!) the game library was filled with 1850 titles [@games-antista].
 
 ![Mr Moskeeto (2001). Whenever someone argues about the abundance of PS2 games, I remember this one.](mr_moskeeto.jpg){.open-float}
 
-What happened here is really impressive. The PS2 doesn't have a 'programmer-friendly' architecture, (as seen from the perspective of a PC programmer) yet with such an amount of games developed, I too wonder if there were more factors involved (such as 'licensing reliefs', low distribution costs, cost of development, small form factor and so on).
+What happened here is really impressive. The PS2 doesn't have a 'programmer-friendly' architecture, (as seen from the perspective of a PC programmer) yet with such an amount of games developed, I too wonder if there were more factors involved (such as 'licensing reliefs', low distribution costs, cost of development, small form factor and what not).
 
 {.close-float}
 
@@ -421,7 +506,7 @@ On the software side, there was the **PlayStation 2 SDK** which included [@games
 - 'Analysis' tools to profile performance usage.
 - Additional tools to connect with the official development hardware.
 
-On the hardware side, Sony provided studios with dedicated hardware to run and debug games in-house. The initial devkits were bare boards stacked together to replicate the un-released hardware of the PS2. Later kits (named **Development Tool**), had a more presentable appearance, enhanced I/O and combined workstation hardware (running RedHat 5.2) with PS2 hardware to build and deploy the game in the same case [@games-devkit].
+On the hardware side, Sony provided studios with dedicated hardware to run and debug games in-house. The initial devkits were bare boards stacked together to replicate the unreleased hardware of the PS2. Later kits (named **Development Tool**), had a more presentable appearance, enhanced I/O and combined workstation hardware (running RedHat 5.2) with PS2 hardware to build and deploy the game in the same case [@games-devkit].
 
 The combination of the Devkit, the official SDK and CodeWarrior (a famous IDE) was one of the most popular setups.
 
@@ -431,7 +516,7 @@ The disc drive can read both DVDs and CDs, so games could be distributed using e
 
 ![Kingdom Hearts II (2005). Typical retail game box and disc.](kh2_box.jpeg){.open-float}
 
-DVDs can hold up **4.7 GB** of data in the case of DVD-5 (the most common 'sub-format') or 8.5. GB in the case of DVD-9 (dual-layer version, less common) [@games-dvd]. There's actually a third format, DVD-10, which is double-sided but no games used it.
+DVDs can hold up **4.7 GB** of data in the case of **DVD-5** (the most common 'sub-format') or **8.5 GB** in the case of **DVD-9** (dual-layer version, less common) [@games-dvd]. There's actually a third format, **DVD-10**, which is double-sided but no commercial games ever made use of it.
 
 Due to the type of medium used, not only games could be played, but also movies. Now, this requires a decoder to be able to read the DVD movie format, and for that, the PS2 initially included the required bits installed in the memory card (after all, the card is just a storage medium) but later models came with the DVD software pre-installed in the BIOS ROM.
 
@@ -445,65 +530,99 @@ As you have seen, the networking features of these consoles weren't standardised
 
 ### An unusual kind of game
 
-Apart from all these games with their *fancy graphics*, Sony released a Linux distribution based on 'Kondara' (which is in turn based on Red Hat 6) available in two DVDs (first disc called 'Runtime Environment' and the second one called 'Software Packages') along with a VGA adapter, USB Keyboard and Mouse; plus some developer manuals. The pack was known as **Linux Kit** and you could run the OS by booting the first DVD and then proceed like any *old school* Linux environment. You obviously needed a Hard drive fitted in the console to install the Linux distro. Once installed, the first DVD was always required to boot this OS.
+Apart from all these games with their *fancy graphics*, Sony released a Linux distribution based on 'Kondara' (which is in turn based on Red Hat 6) available in two DVDs (the first disc is called 'Runtime Environment' and the second one is called 'Software Packages') along with a VGA adapter, USB Keyboard and Mouse; plus some developer manuals. The pack was known as **Linux Kit** and you could run the OS by booting the first DVD and then proceed like any *old-school* Linux environment. You obviously needed a Hard drive fitted in the console to install the Linux distro. Once installed, the first DVD was always required to boot this OS.
 
 Linux Kit included compilers targeting the EE (gcc 2.95.2 with glibc 2.2.2) and assemblers targeting the vector units, along with a window system (XFree86 3.3.6) 'accelerated' in the Graphics Synthesizer [@games-linux]. Overall, this sounds like an interesting environment. In fact, one of the research papers I read to write this article was carried out using this setup.
 
 ## Anti-Piracy and Homebrew
 
-There's quite a lot to talk about here, so let's start with the DVD reader, shall we.
+There's quite a lot to talk about here, so let's start with the DVD reader, shall we?
 
-### Copy protection
+### DVD copy protection
 
-This section was particularly concerning for game studios, since this console used a very affordable format disc to store games and was at extreme risk of being pirated.
+This area was particularly concerning for game studios, since this console used a very affordable disc format to distribute games. Thus, the risk of piracy was high.
 
-![This error screen could appear if the drive is faulty... or a pirated copy was inserted.](bios/rsod.jpg){.open-float}
+![This error screen could appear if the drive is faulty... or a pirated copy was inserted.](bios/rsod.jpg)
 
-When the OS loads a game, it does so by sending specific commands to the DVD reader. The commands specifically used to read the content of a game behave very differently from standard DVD commands (i.e. to read a DVD movie). It turns out authorised games contain an out-of-reach 'map file' in the inner section of the disc that indexes the filesystem by name, position and size. When the DVD is asked to read a game disc, it will always navigate through the disc using the map file, meaning that a pirated copy of a game, which could not include the map file, will be impossible to read. This was complemented by a region lock system that prevented imported games from working in a console from a different region.
+When the OS loads a game, it does so by sending specific commands to the DVD reader. The commands specifically used to read the content of a game behave very differently from standard DVD commands (i.e. to read a DVD movie). It turns out authorised games contain an out-of-reach 'map file' in the inner section of the disc that indexes the filesystem by name, position and size. When the DVD is asked to read a game disc, it will always navigate through the disc using the map file, meaning that a pirated copy of a game, which could not include the map file, will be impossible to read.
 
-{.close-float}
+This was complemented by a region lock system that prevented imported games from working in a console from a different region.
 
-### Exploits discovered
+### Circumventing protections
 
-Having explained the most critical part of this console, let's take a look at multiple methods discovered that could bypass the protection mechanisms.
+Having explained the most critical parts of this console, let's take a look at multiple methods discovered (and commercialised) that defeated the protection mechanisms.
 
-#### Modchips {.tabs .active}
+#### Attacking the DVD drive
 
-As any other console of its generation (and previous ones) using disc-based systems, it was a matter of time before third-party companies reversed-engineered the DVD subsystem. The goal here was to find a usable exploit which could force the driver to navigate through the file system without needing an out-of-reach map file.
+As soon as the PS2 reached the stores, multiple third-party products appeared with the promise to 'unlock' the DVD drive. With no sign to support Homebrew (outside the Linux solution), piracy was the biggest beneficiary.
 
-This eventually happened in the form of **modchips**, which lifted the region locking restrictions as well.
+##### Modchips {.tabs .active}
 
-#### Cheats {.tab}
+As with any other console of its generation (and previous ones) using disc-based systems, it was a matter of time before third-party companies reversed-engineered the DVD subsystem. The goal here was to find a usable exploit that could force the driver to navigate through the file system without needing an out-of-reach map file.
 
-Along with the modchips, which required soldering skills to install, unauthorised but 'genuine' discs appeared in the market. These enabled to defeat the region protection and use in-game cheats by patching the OS. Moreover, 'cheat discs' had the advantage of not requiring to modify the console. I guess the best example to mention is *CodeBreaker*.
+This eventually materialised in the form of **modchips**, which lifted the copy protection checks and region-locking restrictions as well.
+
+##### Cheats {.tab}
+
+Along with the modchips, which required soldering skills to install them, unauthorised but 'genuine' discs appeared in the market. These patched the Kernel to remove the region protection and use in-game cheats.
+
+Most importantly, 'cheat discs' had the advantage of not requiring any modification on the console. I guess the best example to mention is *CodeBreaker*.
 
 #### Disc swapping {.tab}
 
-In the middle of the latest advancements, yet another trick appeared. This time, exploiting the reader's handling of faulty sectors. **Swap Magic** looks like another 'genuine' disc, but its 'game' tells the DVD to read a non-existent executable found on a deliberate faulty sector, halting the driver altogether [@anti_piracy-hacking]. This window of opportunity allowed users to swap the disc for a non-genuine one. Then Swap Magic, still loaded in memory, bootstrapped the main executable of the new disc, loading a real game at the end. All of this is carried out while the driver is still thinking a genuine disc is inserted.
+In the middle of the latest advancements, yet another trick appeared. This time, exploiting the reader's handling of faulty sectors. **Swap Magic** looked like another 'genuine' disc, but its 'game' tells the DVD to read a non-existent executable found on a deliberately faulty sector, halting the driver altogether [@anti_piracy-hacking]. This window of opportunity allowed users to swap the disc for a non-genuine one. Then Swap Magic, still loaded in memory, bootstrapped the main executable of the new disc, loading a real game at the end. All of this is carried out while the driver is still thinking a genuine disc is inserted.
 
-This doesn't necessarily require altering the console. However, depending on the model, the external case of the PS2 will have to be tampered with to block the eject sensors of the drive. In some cases, placing cotton in certain places will do the trick.
+This doesn't necessarily require altering the console. However, depending on the model, the external case of the PS2 will have to be tampered with to block the eject sensors of the drive. In some models, placing pieces of cotton in certain places was part of the walkthrough.
 
-#### PS1 overflow {.tab}
+#### Departing from modchips {.tabs-close}
 
-The PS2 stores a database file called `TITLE.DB` in MemoryCard which contains information used to optimise the emulation of PS1 games [@anti_piracy-grand]. When a PS1 game is inserted, the OS fetches the database file and loads the whole file in memory at a fixed address (*strike one*). The information parser is implemented using **`strncpy()`**, a function in C that copies strings (chain of characters) from one place to another.
+As time passed, more research was gathered and shared about this console. Consequently, new and more sophisticated discoveries led to a new wave of development that didn't rely on external hardware anymore, at least primarily. Furthermore, piracy wasn't the main focus anymore. Instead, the ability to run third-party programs without the approval of Sony (called **Homebrew**) quickly topped the goals chart.
+
+#### Independence overflow {.tabs .active}
+
+The PS2 stores a database file called `TITLE.DB` in MemoryCard which contains information used to optimise the emulation of PS1 games [@anti_piracy-grand]. When a PS1 game is inserted, the OS fetches the database file and loads the whole file in memory at a fixed address (*strike one*). The information parser is implemented using **`strncpy()`**, a function in C that copies strings (chains of characters) from one place to another.
 
 For people familiar with C, you probably guessed where I'm going. The thing is that `strncpy()` doesn't know how long is a string, so unless it's terminated (by placing `\0` at the end of the chain) the copy goes on 'forever' (with unpredictable results!). Luckily, this function contains an optional parameter that specifies the maximum number of bytes to be copied, protecting the copy from buffer overflows. As ludicrous as it may seem, **Sony didn't use this parameter**, even though each database entry has a fixed size of 256 bytes (*strike two*).
 
-Upon closer inspection in RAM, TITLE.DB happens to be copied **next to a saved register**, `$ra`, which states the address to return after the current function being executed finishes (*strike three*) leading up to **The independence exploit**: Craft a Title.db with a large string, embed an executable in it and design that string so `$ra` will be overridden to point to the executable. If you manage to upload that file to your MemoryCard (through another exploit or a PC USB adapter) you got yourself a simple Homebrew launcher.
+Upon closer inspection in RAM, `TITLE.DB` happens to be copied **next to a saved register**, `$ra`, which states the address to return after the current function being executed finishes (*strike three*), leading up to **The independence exploit** [@anti_piracy-independence]: Craft a `TITLE.DB` with a large string, embed an executable in it and design that string so `$ra` will be overridden to point to the executable. If you manage to upload that file to your Memory Card (through another exploit or a PC USB adapter) you got yourself a simple **Homebrew launcher**.
 
-After the slim revision was released, the exploit got patched (*I wonder how*). Curiously enough, it wasn't the last [blunder](wii#the-fall-of-encryption) that exposed clumsy code.
+The discovery was published in 2003. Consequently, with the slim revision, Sony shipped a new BIOS ROM revision that patched this exploit. Curiously enough, it wasn't the last [blunder](wii#the-fall-of-encryption) that exposed clumsy code.
 
-### A semi-permanent software unlock {.tabs-close}
+#### The signature exploit {.tab}
 
-Some time ago, it was discovered that the BIOS of this console could be upgraded using the Memory Card, this function was never used in practice, but neither was removed (at least during most of the console's lifespan). With this, hackers realised that if they find a way to install particular software into the MemoryCard, then the BIOS would always load it at boot. This discovery led to **Free MCBoot**, a program presented as 'upgrade data' which replaces the original shell with one that can execute **Homebrew**.
+In November 2007, a hacking group started selling **Memor32** [@anti_piracy-fmcb], just another typical third-party Memory Card, except that for some reason it housed an **FPGA** and a **USB port**. It wasn't until a firmware called **Memento** appeared on internet forums that the real nature of Memor32 became clear: To run unauthorised executables from the memory card, just like the Independence exploit.
 
-Bear in mind these changes are not permanent, a Memory Card with 'Free MCBoot' installed must be inserted prior to the console's startup. Additionally, this software needs to be installed somehow, so another exploit (e.g. disc swapping) is required to bootstrap the installer.
+The implementation of Memento relied on a flaw in the way the signature of the DVD player is checked. It was discovered that, while binaries have to be signed using Sony's keys, **the integrity of the binary is not checked**. So, anyone could replace the executable code with something else (that still fits in the same space) and the operating system will happily run it. The Memento firmware used this exploit to disguise its payload within the DVD player, and bundles a couple of utilities that would allow users to load games (either from the disc drive or the HDD).
 
-### More disc tricks
+However, the popularity of Memor32 and Memento was soon displaced once a free (and initially open-source) alternative arrived: **FreeMCBoot**.
 
-The same year after the release of Free MCBoot, another trick was discovered: Disguising games as DVD movies, effectively allowing unauthorised game copies to be read without requiring a modchip.
+#### The universal solution {.tab}
 
-This only required patching the game image by adding dummy metadata and partitions only used by DVD movies. Then, when the burned copy is inserted into the console, the drive won't reject it, but it won't execute the game either. However, with the help of a Homebrew program called **ESR**, the game could be kickstarted.
+Once Memento got reverse-engineered, an alternative that didn't require Memor32 appeared on the internet. **FreeMCBoot** exploited the same vulnerability except it could be **installed on any MagicGate Memory Card**. The only drawback is that another exploit (e.g. disc swapping) was still required to bootstrap the installer.
+
+Interestingly enough, FreeMCBoot's user interface borrows assets from `OSDSYS`, thereby providing a familiar menu to launch other Homebrew. It also patches the Kernel to add APIs to access mass storage devices in the USB 1.1 ports, something many homebrew apps relied on to locate additional files.
+
+Additionally, the installer provides two options: to install only the files needed for the current console, or install a global setup for all PS2 variants. Curiously enough, the latter option was challenging to accomplish [@anti_piracy-fmcb]. Initially, the installer would fiddle with the partition table of the Memory Card to avoid running out of space, something that wasn't particularly safe.
+
+As luck would have it, in 2011, the [security system](playstation-3#os-security-hierarchy) of the [PlayStation 3](playstation-3) had just been [compromised](playstation-3#tab-17-4-the-fall-of-encryption), exposing many secrets hidden within. Among others, a collection of MagicGate keys globaly used for [PS2 backwards compatibility](playstation-3#backwards-compatibility). From then on, it was no longer needed to resort to the limited DVD binary signature trick to craft PS2 executables. And so, since version `1.8b`, FreeMCBoot has maintained its position as the safest and most popular method for running any type of Homebrew on a PlayStation 2.
+
+### Follow-up developments {.tabs-close}
+
+Once the avenue for running Homebrew became more accessible, progress continued in the form of polishing previous exploits and developing Homebrew applications. Some of the latter ultimately facilitated piracy-related functionality, but they also expanded the limited capabilities of the operating system (i.e. by providing patches on games), I guess it ultimately depended on the intentions of its users.
+
+To name a few notable examples of homebrew-related developments:
+
+- **FreeHDBoot**: A variant of FreeMCBoot that instead installs on the HDD, where the system will also try to boot from.
+- **ps2sdk** by the ps2dev group [@anti_piracy-ps2sdk]: The defacto unofficial SDK for writing PS2 Homebrew without risk of copyright infringement. The project dates back to 2000, when it was only found in the form of loose libraries for accessing particular components [@anti_piracy-ps2sdk_history] and over time unified into a single package for the benefit of Homebrew developers.
+- **LaunchELF** by multiple authors [@anti_piracy-launchelf]: A file manager with extra utilities. It was then continued as 'uLaunchELF' and, finally, 'wLaunchELF'.
+- **Open USB Loader** (OPL) by multiple authors [@anti_piracy-opl]: Enables to boot disc images from multiple sources (HDD, USB, i.Link and even SMB and NMB over Ethernet) with patching capabilities.
+- **ESR** by ffgriever [@anti_piracy-esr]: Originally called 'Vast CDVDV', this is an application that tricks the whole system (including the DVD drive) into running a burned copy of a game without hardware modification. The original game content must be patched to disguise itself as a DVD movie (so the DVD drive doesn't reject it), while ESR takes control of the Emotion Engine and IOP to redirect execution to the actual game.
+
+Later years will also see new exploits uncovered:
+
+- **Fortuna** by krat0s [@anti_piracy-fortuna]: An alternative Homebrew launcher published in 2019 that relies on a completely different exploit. This time, it's a buffer overflow in the icon parser of the saves manager (part of `OSDSYS`) [@anti_piracy-opentuna]. Its main advantage is compatibility with late PS2 models that removed support for external `OSDSYS` updates (thus, incompatible with FreeMCBoot).
+- **OpenTuna** by alexparrado [@anti_piracy-opentuna]: An open-source alternative to Fortuna originated from reverse-engineering the latter.
+- **FreeDVDBoot** by cturt [@anti_piracy-freedvdboot]: A new vulnerability published in 2020. It consists of a new buffer overflow in the DVD player that can be exploited to perform arbitrary code execution. Users only need to burn a DVD with FreeDVDBoot to execute any binary they want, including the FreeMCBoot installer or even ESR (Sony was very lucky that this wasn't discovered many years earlier! [as others weren't](dreamcast#defeating-it)).
 
 ## That's all folks
 
