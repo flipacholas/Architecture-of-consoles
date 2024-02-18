@@ -227,7 +227,7 @@ Considering all the work done by the Emotion Engine, is there something left? Th
 
 ![Final Fantasy X (2001).](ffx.jpg){.open-float}
 
-There's a simple but speedy chip specialised in that: The **Graphics Synthesizer** or 'GS' running at **~147.46 MHz**. It contains **4 MB of DDRAM** embedded inside to do all processing in-house. Thus, removing the need to access the main memory. The embedded RAM is connected using different buses depending on the type of data needed. 
+There's a simple but speedy chip specialised in that: The **Graphics Synthesizer** or 'GS' running at **~147.46 MHz**. It contains **4 MB of DRAM** embedded inside to do all processing in-house. Thus, removing the need to access the main memory. The embedded RAM (eDRAM) is connected using different buses depending on the type of data needed. 
 
 The GS has fewer features than other graphics systems [previously reviewed](gamecube#graphics) on this site. Nonetheless, it's very fast at what it does.
 
@@ -481,8 +481,8 @@ The BIOS is indeed stored within read-only memory, but that didn't stop Sony fro
   - Unlike the Kernel, which has to be backwards compatible with old SDKs, follow-up revisions of the console shipped previous updates in the BIOS ROM.
   - To control distribution, binaries must be signed with **Data Encryption Standard** (DES) [@operating_system-kelftool], a symmetric encryption system, using keys only known by Sony (in theory). Additionally, the binaries must be stored in a storage device with MagicGate support.
 
-In any case, Sony eventually removed the second method in late PS2 models (with a BIOS version `2.30`). I presume they realised it added up to the attack surface.
-  
+In any case, Sony eventually removed the second method in late PS2 models (with a BIOS version `2.30`). I presume Sony wasn't planning any more updates and this just added up to the attack surface.
+
 ## Games
 
 It is unprecedented the level of popularity this system achieved during the noughties, at the end of its lifespan (2013, after 13 years!) the game library was filled with 1850 titles [@games-antista].
