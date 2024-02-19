@@ -194,7 +194,7 @@ other = "Değişikliklerin kaydını tutmak her zaman güzeldir."
 other = "Destekleyici görüntüler"
 
 [consoles_written_by]
-other = "Tarafından pratik bir analiz {{ . }}"
+other = "{{ . }} tarafından hazırlanan pratik bir analiz"
 
 [translated_by]
 other = "{{ . }} tarafından çevrildi"
