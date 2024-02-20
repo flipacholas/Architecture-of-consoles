@@ -153,7 +153,7 @@ As we've seen before, the CW33300 is a pipelined processor, meaning that it queu
 
 The MIPS I architecture is susceptible to **control hazards** and **data hazards** [@cpu-chen], which means that instructions may get executed when they shouldn't be; and that instructions may operate with outdated data before it's been updated.
 
-![Instructions from 'Spyro The Dragon' visualised on the NO$PSX debugger. Notice how `LW` (load word from memory), `JAL` (jump and link) and `BAL` (branch on not equal) are followed by a delay slot to prevent hazards. Marked in red are fillers (useless instructions). Marked in blue perform meaningful operations.](delay_slots.jpg){.open-float}
+![Instructions from 'Spyro The Dragon' visualised on the NO$PSX debugger. Notice how `LW` (load word from memory), `JAL` (jump and link) and `BNE` (branch on not equal) are followed by a delay slot to prevent hazards. Marked in red are fillers (useless instructions). Marked in blue perform meaningful operations.](delay_slots.jpg){.open-float}
 
 Consequently, MIPS I CPUs exhibit the following behaviour:
 
