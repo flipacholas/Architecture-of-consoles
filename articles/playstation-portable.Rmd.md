@@ -36,9 +36,7 @@ aliases: [/writings/consoles/psp-private/]
 
 Released just one month after the [Nintendo DS](nintendo-ds), Sony's PSP proved that 'horizontal innovation' is not the only way to succeed in the portable console market.
 
-This article is dedicated to anyone that wants to understand, straight to the point, how the PSP operates. It's not a short write-up, but I hope that at the end of the article you will be able to grasp the building blocks of this console (its design rationale, choice of CPUs, GPU pipeline, security system and so forth).
-
-P.S. If you ever feel fed up with information, don't forget to take a look at the diagrams that I made for each section.
+This article is dedicated to anyone who wants to understand, straight to the point, how the PSP operates. It's not a short write-up, but I hope that at the end of the article, you will be able to grasp the building blocks of this console (its design rationale, choice of CPUs, GPU pipeline, security system and so forth).
 
 ## {.supporting-imagery}
 
@@ -46,15 +44,37 @@ P.S. If you ever feel fed up with information, don't forget to take a look at th
 
 Similarly to Nintendo, Sony built an *extremely packed* System-on-Chip (SoC) that houses most of the components we are going to discuss throughout this article. This includes the **main CPU** in charge of executing games and other programs (unlike the other CPUs, which we'll talk about in due time). The SoC is called **Tachyon**, a name chosen by Sony themselves (after watching some *Star Trek*?).
 
-Moving on, the main CPU is also an in-house design by Sony. In the official documents, they refer to it as a 'MIPS core' which borrows some IP from the MIPS R4000 (you may remember Nintendo doing something [alike](nintendo-64#cpu)). This new design is called **Allegrex** and runs at a variable speed, from **33 MHz to 333 MHz**.
+![The Tachyon chip on the original PSP model.](tachyon.jpg)
+
+The main CPU is also an in-house design by Sony that [keeps up with the tradition](playstation-2#cpu) of using **MIPS** technology. Be as it may, it's been four years since the release of the PlayStation 2, I wonder what's the state of MIPS since then?
+
+### MIPS after the turn of the century
+
+I'm afraid the golden years of MIPS have been kept in the 90s and there aren't any indicators that these will repeat anytime soon. Its parent company, SGI, lost dominance against affordable x86 workstations and was running out of cash. So, in 1999 it sold its majority stake in MIPS [@cpu-foremski]. With this, MIPS became an independent company once again, however, the competition was more fierce than it was in the early days.
+
+Their first decision was to acknowledge that MIPS couldn't compute in the high-performance arena anymore. So, it shifted its focus to **low-power computing**, running head-to-head against [ARM](game-boy-advance#the-cambridge-miracle) and its [unprecedented popularity](nintendo-ds#arms-new-territories).
+
+Consequently, MIPS revisited its fragmented CPU line and consolidated it with **three instruction sets** [@cpu-modern_mips]:
+
+- **MIPS32**: An update of [MIPS II](playstation#the-offering) (the last 32-bit-only ISA) bringing functionality gathered from later architectures while keeping the 32-bit boundary.
+- **MIPS64**: The continuation of MIPS V, a [64-bit ISA](nintendo-64#cpu) and the last one before the revamp. The MIPS V has been a superset of all previous ISAs, just like its predecessors.
+- **microMIPS**: Available as 'microMIPS32' and 'microMIPS64', these are supersets of the MIPS32 and MIPS64, respectively, with an additional group of 16-bit instructions (à la [Thumb](game-boy-advance#tab-2-3-squeezing-performance)). microMIPS is not binary compatible with the other ISAs, however. Thus, it would require re-compilation of legacy codebases to run on microMIPS.
+
+The big difference was that these would now be developed in conjunction, as opposed to MIPS dropping the previous architecture as soon as the next one arrived. New revisions would be denoted with the 'Release x' suffix, such as 'MIPS32 Release 6' or 'MIPS32R6' (coincidentally, the last revision to date).
+
+Along with the ISAs, MIPS also started selling a new line of IP cores. For instance, the **MIPS32 4k** design implemented the **MIPS32 R2 ISA**, it came in different variants and offered plenty of customisations.
+
+Back on topic, Sony presumably acquired a license of the MIPS32 4k and customised it by extending the ISA and bundling particular co-processors [@cpu-gcc_patch]. The result is called **Allegrex** and runs at a variable speed, from **33 MHz to 333 MHz**.
+
+### The new portable CPU
 
 Allegrex is a complete 32-bit core offering [@cpu-hitmen] [@cpu-naked]:
 
-- A **custom MIPS ISA**: mixes instructions from different MIPS revisions. To be precise, it implements all MIPS I instructions for general purposes while adding branch instructions from MIPS II. Furthermore, Sony added exclusive instructions for **arithmetic operations** (multiplication, subtraction, min/max, bit-shifts) and **interrupt control**. These are called 'Allegrex Extended instructions'. All of this, while still retaining the 'RISC' badge.
+- A **custom MIPS ISA**: mixes MIPS32R2 instructions with exclusive ones for **arithmetic operations** (multiplication, subtraction, min/max, bit-shifts) and **interrupt control**. These are called 'Allegrex Extended Instructions'.
 - A **32-bit address bus**: this means that up to 4 GB of memory can be seen by this CPU.
-- **32 general-purpose registers**: all of them store 32-bit numbers, and two (the zero register and link register) are reserved for special uses. This should come as no surprise.
-- **7-stage pipeline**: same as the [GameCube](gamecube#cpu). [Here](game-boy-advance#cpu) is a previous explanation of CPU pipelining if you don't remember.
-- A **Memory Protection Unit** or 'MPU' (not to be confused with an 'MMU'): this is a dedicated unit that maps the physical hardware onto the CPU's memory space with some special quirks in-between. We'll see more about it in a bit.
+- **32 general-purpose registers**: all of them store 32-bit numbers; and two (the zero register and link register) are reserved for special uses. By now, this should come as no surprise.
+- A **7-stage pipeline** (one more than its [home sibling](playstation-2#a-special-order-for-sony)). [Here](game-boy-advance#tab-2-2-the-core) is a previous explanation of CPU pipelining if you'd like to know more.
+- A **Memory Protection Unit** or 'MPU' (not to be confused with an 'MMU'): this is a dedicated unit that maps the physical hardware onto the CPU's memory space with some special quirks in between. We'll see more about it in a bit.
 - **32 KB of L1 Cache**: of which 16 KB is for instructions and 16 KB for data.
 - A **cache write-back buffer**: the CPU can write over cache believing it has updated physical memory as well. Then, the cache takes care of updating memory when the buffer is full.
   - This design speeds up memory stores, but doesn't work right away with multi-processor systems like the PSP. So, developers will have to take care of evicting the buffer when other components require those new values in memory.
@@ -63,12 +83,11 @@ In conclusion: Allegrex is incredibly fast. However, we still don't know what ca
 
 ### Coprocessors
 
-As with any MIPS R4000, Allegrex has three coprocessor slots. Sony added two:
+As with any MIPS CPU, Allegrex has three coprocessor slots. Sony added two:
 
-- A **Floating Point Unit** (FPU) as 'CP1': accelerates arithmetic operations with 32-bit decimal numbers. It has an independent 8-stage pipeline which adds more parallelism to the main CPU.
-- A **Vector Floating Point Unit** (VFPU) as 'CP2': a coprocessor designed for vector operations, similar to a traditional SIMD processor. It has 128 registers that store 32-bit floats (using the IEEE 754 standard) and a special instruction set with variable pipeline stages.
+- A **Floating Point Unit** (FPU) as 'CP1': accelerates arithmetic operations with 32-bit decimal numbers (following the IEEE 754 standard). It has **thirty-two 32-bit** registers and an independent **8-stage pipeline**, thereby adding more parallelism to the main CPU.
+- A **Vector Floating Point Unit** (VFPU) as 'CP2': a coprocessor designed for **vector operations**, similar to a traditional SIMD processor. Compared to the FPU, it instead provides **128 registers** and a special instruction set with variable pipeline stages.
   - Its usefulness comes from its 128-bit data bus connected to the rest of the system, offloading the main CPU's transit.
-  - If you read the [PS2 article](playstation-2), the PSP's VFPU is equivalent to the PS2's [VPU0](playstation-2#tab-1-1-vector-processing-unit-0) operating in **permanent Macromode!**
 
 ### Focused memory management
 
@@ -78,7 +97,7 @@ Let me talk for a moment about the memory unit included in this system. Its *mod
 
 A traditional Memory Management Unit or 'MMU' takes care of the CPU's access to the components surrounding it. This implies that all the address lines of the CPU will be connected to the MMU; only the latter is connected to the rest of the system.
 
-This is particularly advantageous for features like 'virtual memory' and 'memory protection'. Well, to achieve virtual memory, an MMU must contain a component called Translation Look-aside Buffer (TLB) to prevent performance degradation. Now, **Allegrex's MMU lacks a TLB**, so it focuses on memory protection. This is why Allegrex's MMU is instead called an MPU (Memory Protection Unit). An MPU is a cut-down version of an MMU without virtual memory. In any case, **memory protection gives the system the power to decide which memory locations a program can access**.
+This is particularly advantageous for features like 'virtual memory' and 'memory protection'. Well, to achieve virtual memory, an MMU must contain a component called 'Translation Look-aside Buffer' (TLB) to prevent performance degradation. Now, **Allegrex's MMU lacks a TLB**, so it focuses on memory protection. This is why Allegrex's MMU is instead called an MPU (Memory Protection Unit). An MPU is a cut-down version of an MMU without virtual memory. In any case, **memory protection gives the system the power to decide which memory locations a program can access**.
 
 Thanks to this, Allegrex won't have to deal with user-land programs (i.e. games) accessing restricted locations (i.e. encryption keys). To accomplish the restriction itself, memory addresses are grouped into five segments with different privilege levels. Furthermore, Allegrex's MPU contains three modes of operation: **User mode**, **Supervisor mode** and **Kernel mode**.
 
@@ -110,7 +129,7 @@ Using the principles above, the following buses were constructed for the PSP:
 
 - The **System Bus**: connects the CPU, scratchpad and GPU. It's 128 bits wide.
 - The **Media Engine bus**: connects another group of components (explained in the next section). It has the same properties as the System Bus.
-- The **Peripheral Bus**: connects I/O, storage-related components. It's 32 bits wide.
+- The **Peripheral Bus**: connects I/O, storage-related components. It's 32-bits wide.
 
 All three buses connect to the DDR controller, which is where the main RAM is found.
 
@@ -119,6 +138,22 @@ All three buses connect to the DDR controller, which is where the main RAM is fo
 Inside each bus, there will be multiple components working independently. They will store processed data in a shared space (such as the main RAM). Now, we don't want the CPU to intervene whenever a module needs to read or write from memory. Traditionally, a DMA unit was placed in the bus to provide this facility, but a single DMA can only do so much. The PSP contains a significant number of components, and this will eventually lead to bottlenecks.
 
 The solution is very simple: **bus mastering**. In a nutshell, each component will get its own DMA controller. This gives them the ability to become the 'bus master' and take control of the bus to access whatever location they want. To avoid contention (multiple 'bus masters' at the same time), the neighbouring components will acknowledge this event and wait until the operation completes.
+
+### The end of the line
+
+The RISC revolution spawned countless CPUs throughout the 80s-90s but only a handful lasted after the turn of the century. Just like I [concluded my analysis of the SuperH](dreamcast#end-of-the-line) in the [Dreamcast article](dreamcast), it's time to say farewell to a historic leader in parallel computing: the MIPS CPU.
+
+After many turnarounds, what's left of MIPS is now a company designing **RISC-V** CPUs. In all fairness, this is an interesting strategy that provides the company with greater leverage to compete against ARM. In any case, the PlayStation Portable will be my last article of this series carrying a MIPS CPU.
+
+Looking back at my analyses, however, it's hard to comprehend how such a talented company could've lost its market share. Admittedly, in the workstation market, it became clear that Intel's x86, no matter the amount of criticism, won by making equipment affordable (thanks to its Pentium line, along with the 'clones') and attractive due to its (Windows-only) compatible software. Finally, the [P6 architecture](xbox#tab-1-4-cisc-or-risc) provided Intel with the scalability initially only enjoyed by RISC designs.
+
+In the case of low-power computing, it was more difficult for me to understand the retreat, as MIPS and ARM shared similar business models (IP licensing). Luckily, a previous interview from the Computer History Museum in 2011 also brought up the same question, resulting in this answer:
+
+> We made a mistake, we didn't realise how important the cellphone market was. Early there was no money to be made (...) but ARM got it by [investing in it](game-boy-advance#tab-1-2-a-new-cpu-venture). It was a very smart move and it turned out to be incredible leverage point. We just looked at the gross margin and said 'that's not a great return! we'd be better off putting our attention elsewhere' but of course, it turned out cell phones became smartphones [and then] became a gigantic. [@cpu-chm_mips]
+>
+> -- <cite>John Hennessy, co-founder of MIPS Computer Systems</cite>
+
+Nevertheless, when it comes to this topic, I believe that, while we won't see a new MIPS CPU, we'll see the result of its former engineers transmitting its distinctive technology into new projects.
 
 ## Multimedia CPU
 
@@ -146,7 +181,7 @@ To begin with, let's go over the physical screen of this console, which is where
 
 The PSP carries a **4.3" TFT LCD screen**. It has a resolution of **480x272 pixels** (for reference, that's ~2.6 times the pixels of one screen of the Nintendo DS) and can display up to 16,777,216 colours. Thus, it's got a 24-bit colour depth (the so-called 'true color' scale).
 
-The aspect ratio is *almost* 16:9, a format which during that time was increasingly becoming standard on home TVs. Notice that a wider range of view is also an opportunity for game designers to improve game experience (especially in the first-person shooting genre).
+The aspect ratio is *almost* 16:9, a format which during that time was increasingly becoming standard on home TVs. Notice that a wider range of view is also an opportunity for game designers to improve the experience (especially in the first-person shooting genre).
 
 ### Introducing the Graphics Engine
 
@@ -193,9 +228,9 @@ What about how the CPU and GE communicate with each other? As I said before, bot
 
 {.close-float}
 
-In a nutshell, there are two **bus matrix** blocks that re-wire the connection between the local bus and the System Bus. Whenever there's a component that wants to access an 'alien' bus, the bus matrices configure the communication so that one unit becomes master of the two buses and no other overlaps, this persists until the designated unit finishes transferring memory.
+In a nutshell, two **bus matrix** blocks re-wire the connection between the local bus and the System Bus. Whenever there's a component that wants to access an 'alien' bus, the bus matrices configure the communication so that one unit becomes master of the two buses and no other overlaps, this persists until the designated unit finishes transferring memory.
 
-This behaviour reminds me of the commonly known technique called **bus mastering**, where the leading component is the 'bus master' and has complete control of the bus, and the rest are 'slaves' awaiting for commands. However, I'm not sure which protocol/standard Sony's engineers were trying to replicate. Based on my understanding, I think it may be somewhat similar to I²C, a protocol used for serial communications (particularly useful with embedded systems) which also performs bus mastering.
+This behaviour reminds me of the commonly known technique called **bus mastering**, where the leading component is the 'bus master' and has complete control of the bus, and the rest are 'slaves' waiting for commands. However, I'm not sure which protocol/standard Sony's engineers were trying to replicate. Based on my understanding, I think it may be somewhat similar to I²C, a protocol used for serial communications (particularly useful with embedded systems) that also performs bus mastering.
 
 ### Organising the content
 
@@ -216,7 +251,7 @@ Like its [home sibling](playstation-2#graphics), the PSP's graphics system focus
 
 The graphics pipeline is very similar to that of the PS2, with the addition of the vector processing stage. The graphics core is divided into two areas: the **surface engine**, which deals with vector processing, and the **rendering engine** which, as its name indicates, performs rasterisation and effects.
 
-Although its features are documented by Sony [@cpu-programming], the details of the graphics pipeline itself are not. Programmers don't depend on that information to build their games. Thus, I've deduced a model myself, for the sake of this analysis.
+Although its features have been explained in the past [@cpu-programming], the details of the graphics pipeline itself have not. The truth is, programmers don't depend on that information to build their games. However, for the sake of this analysis, I've deduced a model myself.
 
 On another note, I've decided to make it a bit more technical than previous articles. I thought this would be a good opportunity to learn new concepts and have a wider vision of computing graphics. Having said that, I strongly recommend reading about the [PS1](playstation#graphics) and [PS2](playstation-2#graphics) graphics systems before continuing.
 
@@ -431,7 +466,7 @@ Over the years, the program in charge of controlling a given console before a ga
 
 First and foremost, the PSP contains a hidden, undocumented **4 KB ROM** inside Tachyon where the boot-loader is. In other words, upon powering on, the CPU will start by looking for instructions in there. That ROM has many names, including 'Bootrom', 'Pre-IPL' and 'Lib-PSP iplloader'. The latter is the internal codename used by Sony.
 
-The rest of the system is installed on **32 MB of NAND Flash memory**  found in the motherboard. Here is where the majority of the PSP's Operating System (OS) resides.
+The rest of the system is installed on **32 MB of NAND Flash memory** found in the motherboard. Here is where the majority of the PSP's Operating System (OS) resides.
 
 The OS is composed of the following components:
 
@@ -722,7 +757,7 @@ PSPSDK also includes a toolkit to handle the compilation and packaging process, 
 
 There you go, you've just finished reading about the last portable console before smartphones and tablets took over! I think this gives us an idea of what services/features users were expecting from portable handhelds in the early noughties – and how this evolved during the next decade.
 
-Nevertheless, I want to thank the PSP Homebrew Community discord for not only taking the time to proofread this *endless* article, but also to enlighten me with even more information. Various members of that group have dedicated great effort to develop free tools and Homebrew applications to expand the capabilities of this console. My acknowledgement is also directed to all the authors that produced the documents listed in the sources. It took me ~3 months to write this article, but it was possible thanks to the combined years of work that other people dedicated to reverse-engineer this console.
+Nevertheless, I want to thank the PSP Homebrew Community discord for not only taking the time to proofread this *endless* article, but also to enlighten me with even more information. Various members of that group have dedicated great effort to develop free tools and Homebrew applications to expand the capabilities of this console. My acknowledgement is also directed to all the authors who produced the documents listed in the sources. It took me ~3 months to write this article, but it was possible thanks to the combined years of work that other people dedicated to reverse-engineer this console.
 
 As for the next article, I'll need to first take one month or two to focus on all the issues and requests submitted on the [GitHub repo](https://github.com/flipacholas/Architecture-of-consoles) and do some maintenance work on the site, but rest assured I'm striving to make the next writing as complete as this one!
 
