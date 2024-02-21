@@ -114,11 +114,11 @@ To sum it up, IBM signed an agreement with Sony and Toshiba to develop Cell in 2
 ### Cell's half-sibling
 <!-- TODO: Explain Power mac g5 prototype?? -->
 
-Now that we've positioned Microsoft and IBM in the map, let's talk about the new CPU. This is how Xenon materialised at the end of the Xbox 360 project:
+Now that we've positioned Microsoft and IBM on the map, let's talk about the new CPU. This is how Xenon materialised at the end of the Xbox 360 project:
 
-![Simplified view of Xenon.](cpu/xenon.png){.tabs-nested .active title="Xenon"}
+![Simplified view of Xenon.](cpu/xenon.png){.toleft}
 
-![A diagram of Cell for comparison purposes. Cell also includes 32 KB of ROM not shown here.](images/consoles/ps3/cpu/cell.png){.tabs-nested-last title="Cell"}
+![For comparison purposes, here's the equivalent view of Cell. Cell also includes 32 KB of ROM not shown here.](images/consoles/ps3/cpu/cell.png){.toright}
 
 Don't worry, all of these components will be explained throughout this article, starting with the 'PPE' blocks shown at the top left corner.
 
@@ -162,9 +162,9 @@ The original chip (Cell) was required to house **twelve** independent nodes acti
 
 XBAR relies on a **mesh topology** that doesn't direct traffic in a token-style manner. Instead, each node is provided with a dedicated lane to move its data through [@cpu-brown]. This may appear more optimal than the token topology of the EIB, but that's because the XBAR only needs to serve a small number of nodes. Furthermore, the XBAR operates at full speed (**3.2 GHz**).
 
-![Simplified diagram of the XBAR/Crossbar combined with the L2 component.](cpu/crossbar.png){.tabs-nested .active title="Xbox 360's Crossbar"}
+![Simplified diagram of the XBAR/Crossbar combined with the L2 component.](cpu/crossbar.png){.toleft}
 
-![The architecture of Cell's EIB (found in the PS3) for comparison purposes.](images/consoles/ps3/cpu/eib.png){.tabs-nested-last title="PS3's EIB"}
+![For comparison purposes, this is the architecture of Cell's EIB (found in the PS3).](images/consoles/ps3/cpu/eib.png){.toright}
 
 To be fair, until now I only talked about the particular interface that interconnects the PPEs. Well, the XBAR is just one piece of the sizeable chunk IBM designed for Xenon. It turns out the leftover space gave them room to incorporate another very important block that speeds up the transactions between the PPEs and the rest of the system: **L2 Cache**.
 
@@ -174,7 +174,7 @@ Once the PPEs pass through the XBAR, they get access to **1 MB worth of L2 cache
 
 Coincidentally, Cell also houses [512 KB of L2 cache](playstation-3#composition-of-the-ppe) for its single PPE. I only described it in one sentence in my previous article. Now, however, we find ourselves with a larger space that's also shared between three cores, so I find it necessary to dive into the properties of the L2 block so we can understand how it will condition the performance of the PPEs.
 
-First things first, every time the cache fetches data from memory (in the event of a 'cache miss'), it does so by pulling a large slice called 'cache line', this is **128 Bytes wide** in the case of Cell and Xenon. Then, L2 records the cache line on an internal list for locating it in the future. Moreover, in Xenon/Cell, L2 is **8-way associative**, which means that cache sets may store up to eight different cache lines. Don't worry if you don't know what this means, the theory behind CPU cache can be hard to follow, especially if you only want to learn about game consoles. In layman's terms, the greater the number of associations, the fewer probabilities of cache misses, but the slower it becomes to iterate through the internal list.
+First things first, every time the cache fetches data from memory (in the event of a 'cache miss'), it does so by pulling a large slice called 'cache line', which is **128 Bytes wide** in the case of Cell and Xenon. Then, L2 records the cache line on an internal list for locating it in the future. Moreover, in Xenon/Cell, L2 is **8-way associative**, which means that cache sets may store up to eight different cache lines. Don't worry if you don't know what this means, the theory behind CPU cache can be hard to follow, especially if you only want to learn about game consoles. In layman's terms, the greater the number of associations, the fewer probabilities of cache misses, but the slower it becomes to iterate through the internal list.
 
 ![Layout of cache in Xenon](cpu/caches.png)
 
@@ -188,9 +188,9 @@ This is as far as we go with our description of the XBAR and L2 cache, let's now
 
 To start with, Xenon's PPEs don't feature a [PowerPC Processor Storage Subsystem](playstation-3#composition-of-the-ppe) (PPSS) anymore, presumably since the interfacing part is handled by the XBAR and the L2 cache is now shared across the three units.
 
-![Simplified diagram of Xenon's PowerPC Processing Element (PPE).](cpu/ppe.png){.tabs-nested .active title="Xenon's PPE"}
+![Simplified diagram of Xenon's PowerPC Processing Element (PPE).](cpu/ppe.png){.toleft}
 
-![For comparison purposes, this is Cell's PPE.](images/consoles/ps3/cpu/ppe.png){.tabs-nested-last title="Cell's PPE"}
+![For comparison purposes, this is Cell's PPE.](images/consoles/ps3/cpu/ppe.png){.toright}
 
 To be honest, I'm not sure why technical manuals keep calling Xenon's PPEs a 'PPE' as they better resemble a [PPU](playstation-3#the-powerpc-processing-unit).
 
@@ -838,7 +838,7 @@ Nevertheless, this is the GUI that gave this console an identity, and it's obvio
 
 ![The storage menu and its similar palette update. In this example, a custom background has been set by the user.](screenshots/nxe/storage.jpg){title="Storage"}
 
-![2D avatars are still available, though users are now encouraged to define their own 3D avatar too. This will be used by games (ala [Nintendo's Mii](wii#personalised-game)).](screenshots/nxe/avatar.jpg){title="Avatar"}
+![2D avatars are still available, though users are now encouraged to define their own 3D avatar too. This will be used by games (à la [Nintendo's Mii](wii#personalised-game)).](screenshots/nxe/avatar.jpg){title="Avatar"}
 
 ![As a nice tribute, the new guide menu resembles the old Blades design, which also helps provide more and better-organised shortcuts.](screenshots/nxe/guide.jpg){title="Guide"}
 
@@ -1111,7 +1111,7 @@ Finally, add to the fact the hypervisor only launches executables signed with Mi
 
 In practice, the entity responsible for implementing Microsoft's copy protection protocols is not Microsoft but the DVD drive manufacturer. In most cases, manufacturers just altered the firmware of their off-the-shelf hardware to abide by Microsoft's requirements. In any case, the Hypervisor blindly trusts the drive on detecting which disc is genuine and which is not.
 
-As the copy protection subsystem is subsequently delegated to a third-party, multiple concerns arise. For instance, drives still communicate using standard ATA commands [@anti_piracy-hacking_2], so they must find ways to obfuscate sensitive exchanges of data. Furthermore, drives must be prepared to overwrite their firmware in case Microsoft revise a new copy protection mechanism. All of this, while preventing unauthorised parties from accessing this functionality.
+As the copy protection subsystem is subsequently delegated to a third-party, multiple concerns arise. For instance, drives still communicate using standard ATA commands [@anti_piracy-hacking_2], so they must find ways to obfuscate sensitive exchanges of data. Furthermore, drives must be prepared to overwrite their firmware in case Microsoft revises a new copy protection mechanism. All of this, while preventing unauthorised parties from accessing this functionality.
 
 While going through each security measure of each manufacturer is beyond the scope of this article, it's important to denote that during the cat-and-mouse games that ultimately emerged, Microsoft had little control over how they were protected and subsequently patched [@cpu-steil], and this evident gap costed the company an early wave of piracy distribution.
 
@@ -1310,13 +1310,13 @@ And with this, the homebrew community was gifted with an unfixable exploit to lo
 
 #### Microsoft's retaliation {.tab}
 
-![While the new 'Trinity' motherboard brought many long-awaited improvements, such as unifying the CPU and GPU into one package to reduce heat, it also complicated hacker's endeavours.](photos/xcgpu.jpg){.tab-float}
+![While the new 'Trinity' motherboard brought many long-awaited improvements, such as unifying the CPU and GPU into one package to reduce heat. It also complicated hacker's endeavours.](photos/xcgpu.jpg){.tab-float}
 
-While the RGH hack attacks the fundamental construction of the CPU at an early stage (thereby making it impossible to tackle it with a software update), Microsoft never displayed any sign of weakness and released further updates of CB (the second stage bootloader) and new motherboard revisions in an attempt to garble the glitching process.
+While the RGH hack attacks the fundamental construction of the CPU at an early stage (thereby making it impossible to tackle it with a software update), Microsoft never displayed any sign of weakness and released further updates of CB (the second-stage bootloader) and new motherboard revisions in an attempt to garble the glitching process.
 
 For instance, the new Slim edition of the console released in 2010 (ironically, a year before the publication of RGH) codenamed **Trinity** moved the `CPU_PLL_BYPASS` point to a location hackers couldn't find (yet). Meanwhile, the RGH team found out they can fiddle with the PLL signal of the video encoder chip via I²C, and this will condition the speed of the CPU. Unfortunately, the video encoder can only slow it so much (just ~3 times [@anti_piracy-hacking_3]) so the precision and success rate is reduced. Nonetheless, it's still a huge accomplishment.
 
-Additionally, Slim consoles split the CB stage into CB_A and CB_B, where CB_B is further encrypted with the RC4 algorithm and relies on the CPU key. To add more to the despair, the zero pairing backdoor got completely removed. Finally, all of these changes would soon be extended to older models as Microsoft publishes more software updates. Be as it may, hackers never gave up and found out they could modify CB_B in its encrypted form. Thanks to a mathematical flaw in RC4, encrypted information can be altered just by applying `XOR` with an unencrypted delta patch [@anti_piracy-hacking_3], thereby allowing to disable encryption routines on CB_B without knowing the CPU Key!
+Additionally, Slim consoles split the CB stage into CB_A and CB_B, where CB_B is further encrypted with the RC4 algorithm and relies on the CPU key. To add more to the despair, the zero-pairing backdoor got completely removed. Finally, all of these changes would soon be extended to older models as Microsoft publishes more software updates. Be as it may, hackers never gave up and found out they could modify CB_B in its encrypted form. Thanks to a mathematical flaw in RC4, encrypted information can be altered just by applying `XOR` with an unencrypted delta patch [@anti_piracy-hacking_3], thereby allowing to disable encryption routines on CB_B without knowing the CPU Key!
 
 #### Selling RGH {.tab}
 
