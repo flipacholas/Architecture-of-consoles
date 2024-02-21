@@ -151,21 +151,24 @@ By the way, sometimes I mix up 'fixed-point', 'floating-point', 'decimal' and 'i
 
 As we've seen before, the CW33300 is a pipelined processor, meaning that it queues up multiple instructions and executes them in parallel at different stages. This hugely improves instruction throughput, but if it's not controlled properly, it can lead to **pipeline hazards**, resulting in computational errors. 
 
-The MIPS I architecture is susceptible to **control hazards** and **data hazards** [@cpu-chen], which means that instructions may get executed when they shouldn't be; and that instructions may operate with outdated data before it's been updated.
+The MIPS I architecture is susceptible to [@cpu-chen]:
+
+- **Control hazards**: Instructions may get executed when they shouldn't be
+- **Data hazards**: Instructions may operate with outdated data before it's been updated.
 
 ![Instructions from 'Spyro The Dragon' visualised on the NO$PSX debugger. Notice how `LW` (load word from memory), `JAL` (jump and link) and `BNE` (branch on not equal) are followed by a delay slot to prevent hazards. Marked in red are fillers (useless instructions). Marked in blue perform meaningful operations.](delay_slots.jpg){.open-float}
 
 Consequently, MIPS I CPUs exhibit the following behaviour:
 
 - **Any instruction following a 'branch' or 'jump' type opcode is executed unconditionally**: Thus, developers have to manually fill the pipeline with modest instructions (such as `calculate 0 plus 0`) after the branch or jump to mitigate the hazard. These fillers are called **branch delay slots**.
-  - Modern CPUs converted this phenomenon into an advantage: [Branch prediction](gamecube#cpu). By adding extra circuitry to detect the hazard, the CPU discards the new computations if the branch/jump condition didn't meet. But if it did, then the CPU has saved some time.
-- **'Load' instructions don't stall the pipeline until the retrieved data is made available**: The second stage of the pipeline (called 'RD' or 'Read and Decode') gathers the operators [@cpu-manual], which will be used to perform a computation at the third stage (ALU). The fourth stage ('MEM', from 'access MEMory') looks for data in memory (i.e. main RAM, CD reader, etc). Now, here's the problem: by the time a `load` instruction gathered the data from outside, the following instruction had already fetched the operators. This means that an instruction depending on the values of the previous `load` instruction requires a filler in-between, so the correct operators can be fetched on time.
+  - Modern CPUs converted this phenomenon into an advantage: [Branch prediction](gamecube#cpu). By adding extra circuitry to detect the hazard, the CPU discards the new computations if the branch/jump condition isn't met. But if it did, then the CPU has saved some time.
+- **'Load' instructions don't stall the pipeline until the retrieved data is made available**: The second stage of the pipeline (called `RD` or 'Read and Decode') gathers the operators [@cpu-manual], which will be used to perform a computation at the third stage (`ALU`). The fourth stage (`MEM`, from 'access MEMory') looks for data in memory (i.e. main RAM, CD reader, etc). Now, here's the problem: by the time a `load` instruction gathered the data from outside, the following instruction had already fetched the operators. This means that an instruction depending on the values of the previous `load` instruction requires a filler in-between, so the correct operators can be fetched on time.
 
 {.close-float}
 
 As we can see from the example, some delay slots are filled with meaningful instructions, which perform computations that are not affected by the hazard. Hence, delay slots don't always imply a waste of cycles.
 
-In most cases, the compiler or assembler will automatically re-arrange instructions to fill in slots, or add useless fillers as a last measure. So, all in all, this phenomenon is a bit of a mixed bag.
+Having explained this, you may be wondering why a processor with these kinds of flaws could ever be commercialised. Well, one philosophy about RISC is that the burden of CPU programming is shifted from the developer to the compiler. MIPS, in particular, prioritised the production of good quality compilers (including assemblers) to accompany their new CPUs [@cpu-chm_mips]. Hence, developers could use a higher-level language (for instance, C) while the compiler dealt with the hazards (by re-arranging instructions to fill in slots; or adding useless fillers as a last measure). So, all in all, while I don't find it pleasant to see a CPU being filled with bubbles, I think MIPS tackled this in a very clever way.
 
 ## Graphics
 
