@@ -52,7 +52,7 @@ The main CPU is also an in-house design by Sony that [keeps up with the traditio
 
 I'm afraid the golden years of MIPS have been kept in the 90s and there aren't any indicators that these will repeat anytime soon. Its parent company, SGI, lost dominance against affordable x86 workstations and was running out of cash. So, in 1999 it sold its majority stake in MIPS [@cpu-foremski]. With this, MIPS became an independent company once again, however, the competition was more fierce than it was in the early days.
 
-Their first decision was to acknowledge that MIPS couldn't compute in the high-performance arena anymore. So, it shifted its focus to **low-power computing**, running head-to-head against [ARM](game-boy-advance#the-cambridge-miracle) and its [unprecedented popularity](nintendo-ds#arms-new-territories).
+The company's first decision was to acknowledge that MIPS CPUs couldn't compute in the high-performance arena anymore. So, they shifted their focus to **low-power computing**, running head-to-head against [ARM](game-boy-advance#the-cambridge-miracle) and its [unprecedented popularity](nintendo-ds#arms-new-territories).
 
 Consequently, MIPS revisited its fragmented CPU line and consolidated it with **three instruction sets** [@cpu-modern_mips]:
 
