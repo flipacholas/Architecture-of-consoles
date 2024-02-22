@@ -65,18 +65,18 @@ To dive further and not get lost in the way, I have catalogued the information i
 
 Indeed, after I mentioned 'Intel' it was a matter of time before I introduce the famous **x86**, its instruction set.
 
-The first form of x86 debuted with the release of the **Intel 8086** in 1978, a 16-bit CPU. Afterwards, the ISA has been constantly expanded with more instructions as more Intel CPUs were released (80186, 80286 and so on) [@cpu-thompson]. Consequently, x86 started to fragment as more ground-breaking features were added (i.e. 'protected mode' and 'long mode'). To tackle this, modern x86 applications commonly target the 80386 ISA (also called **IA-32** or **i386**) as a baseline, which among other things, operates in a 32-bit environment.
+The first form of x86 debuted with the release of the **Intel 8086** in 1978, a 16-bit CPU. Afterwards, the ISA was constantly expanded with more instructions as more Intel CPUs were released (80186, 80286 and so on) [@cpu-thompson]. Consequently, x86 started to fragment as more ground-breaking features were added (i.e. 'protected mode' and 'long mode'). To tackle this, modern x86 applications commonly target the 80386 ISA (also called **IA-32** or **i386**) as a baseline, which among other things, operates in a 32-bit environment.
 
 Subsequently, Intel enhanced the IA-32 with the use of **extensions**, meaning the new functions may or may not be included in an IA-32 CPU. Programs query the CPU to check if a specific enhancement is present. The Xbox's CPU includes two extensions:
 
 - **MMX** (Multimedia Extension): Adds 57 SIMD instructions and 8 64-bit registers (integers only) that can speed up vector operations.
-- **SSE** (Streaming SIMD extension): Another SIMD-type extension that addresses the criticism of MMX (lack of floating-point support and unable to use floating-point unit in parallel). It adds 56 new instructions and eight 128-bit registers (called 'XMM') that hold four 32-bit `floats`.
+- **SSE** (Streaming SIMD extension): Another SIMD-type extension that addresses the criticism of MMX (lack of floating-point support and unable to use the floating-point unit in parallel). It adds 56 new instructions and eight 128-bit registers (called 'XMM') that hold four 32-bit `floats`.
 
 The good news is that, since the console will always have the same CPU, programmers can optimise their code to exploit these extensions as they will always be present.
 
 #### The Microarchitecture {.tab}
 
-When it comes to building a circuit that can interpret x86 instructions, Intel has come up with so many different designs for their CPUs. Some designs were featured with the release of a new Pentium Series (i.e. Pentium 4) while others are featured when Intel releases an 'enhanced' version of a Pentium (such as the 'Pentium Pro'). Nevertheless, since the release of the first Pentium, the CPU model and microarchitecture no longer carry the same name. For example, the 80486 uses the 80486 microarchitecture (and no other), however, the original Pentium has the 'P5' microarchitecture.
+When it comes to building a circuit that can interpret x86 instructions, Intel has come up with so many different designs for their CPUs. Some designs were featured with the release of a new Pentium Series (i.e. Pentium 4) while others were featured when Intel released an 'enhanced' version of a Pentium (such as the 'Pentium Pro'). Nevertheless, since the release of the first Pentium, the CPU model and microarchitecture no longer carry the same name. For example, the 80486 uses the 80486 microarchitecture (and no other), however, the original Pentium has the 'P5' microarchitecture.
 
 Now, the Xbox CPU, along with the rest of Pentium III processors, use the **P6 Microarchitecture** (also known as 'i686'). This is the 6th generation (counting from the 8086) which features:
 
@@ -164,7 +164,7 @@ In the following section, we'll examine the inner workings of this chip. Now, I'
 
 ### Architecture and design
 
-The GPU core found on the NV2A is based on the popular 'GeForce3' series of GPUs [@graphics-mslusarz] [@graphics-g3arch], it's also referred as **NV20** in Nvidia's technical documents.
+The GPU core found on the NV2A is based on the popular 'GeForce3' series of GPUs [@graphics-mslusarz] [@graphics-g3arch], it's also referred to as **NV20** in Nvidia's technical documents.
 
 ![Pipeline design of the NV2A.](NV2A_Pipeline.png){.open-float}
 
@@ -190,7 +190,7 @@ The next explanations happen in PGRAPH.
 
 ![Vertex stage.](pipeline/vertex.png){.tab-float}
 
-This is an interesting section for this GPU in particular. At this stage, the GPU provides the ability to apply vertex transformations on our geometry. We've already seen this feature with Flipper, but unlike that GPU, this one uses a **programmable engine**. Meaning that developers may specify which vertex operations are performed and how, as opposed to relying on a pre-defined program. Although, the NV2A can also operate in 'fixed' mode, if required.
+This is an interesting section for this GPU in particular. At this stage, the GPU provides the ability to apply vertex transformations to our geometry. We've already seen this feature with Flipper, but unlike that GPU, this one uses a **programmable engine**. This means that developers may specify which vertex operations are performed and how, as opposed to relying on a pre-defined program. Although, the NV2A can also operate in 'fixed' mode, if required.
 
 This stage is handled by a **Vertex Unit** and the NV2A features **two of them**. Each can load a program containing up to 136 instructions (also called **microcode**). This program is referred to as **vertex program** and it's loaded at runtime. A vertex program can perform the following operations [@graphics-koppelman]:
 
@@ -198,7 +198,7 @@ This stage is handled by a **Vertex Unit** and the NV2A features **two of them**
   - This includes 'helper functions' to assist graphics-related tasks, such as dot product.
 - **Vertex Swizzling** (Rearrangement and/or duplication).
 
-In a nutshell, the vertex unit processes vertices by manipulating them in its registers. In other words, once the program is loaded, 16 read-only registers (called 'input registers') are initialised with the attributes of a vertex (each vector contains four components). Afterwards, the unit performs the set of operations (instructed by the program) using the input registers. Furthermore, 12 writable registers and up to 196 constants are provided to assists the computation. Finally, the resulting vertex is stored in another block of 11 writable registers (each one limited to a specific purpose), which are passed on to the next stage. This process is repeated for every vertex received.
+In a nutshell, the vertex unit processes vertices by manipulating them in its registers. In other words, once the program is loaded, 16 read-only registers (called 'input registers') are initialised with the attributes of a vertex (each vector contains four components). Afterwards, the unit performs the set of operations (instructed by the program) using the input registers. Furthermore, 12 writable registers and up to 196 constants are provided to assist the computation. Finally, the resulting vertex is stored in another block of 11 writable registers (each one limited to a specific purpose), which are passed on to the next stage. This process is repeated for every vertex received.
 
 #### Pixel {.tab}
 
@@ -292,11 +292,11 @@ The MCPX also provides the following interfaces and protocols used to interconne
   - A **256 B EEPROM**: A re-writable ROM that stores unique identifiers (serial number, region, Ethernet MAC address, etc).
   - **Video Encoder**: The encoder is primarily connected to the GPU but controlled through the SMBus.
 - **IDE Controller**: This is a standard protocol widely used on PCs to communicate with Hard drives, optical readers and so forth. A single wide ribbon cable is used to connect the motherboard with the DVD drive and the HDD.
-- **Low Pin Count** or 'LPC' bus: This is another interface borrowed from the PC, but instead of connecting the *good old* PC BIOS, it communicates with a Flash ROM, which in turn stores the equivalent of a BIOS. The Flash is 1 MiB large.
+- **Low Pin Count** or 'LPC' bus: This is another interface borrowed from the PC, but instead of connecting the *good old* PC BIOS, it communicates with a **Flash ROM**, which in turn stores the equivalent of a BIOS. The Flash is **1 MiB** large.
 
 ### The controller
 
-The Xbox came with a bulky controller called **The Duke**, its set of inputs aren't any different from what the other competitors had... except the usage of analogue circuitry (8-bit wide) on the face buttons, allowing games to detect 'half-presses' from most of the button set. On the other side, the Duke was so widely criticised that Microsoft replaced it with a new revision called **Controller S** months after the release of the console.
+The Xbox came with a bulky controller called **The Duke**, its set of inputs isn't any different from what the other competitors had... except for the usage of analogue circuitry (8-bit wide) on the face buttons, allowing games to detect 'half-presses' from most of the button set. On the other side, the Duke was so widely criticised that Microsoft replaced it with a new revision called **Controller S** months after the release of the console.
 
 ::: {.subfigures .toleft .tabs-nested}
 
@@ -318,7 +318,7 @@ Controller S (2002) [@photography-amos].
 
 :::
 
-On closer inspection, both controllers did include something special: Two **Memory Unit** slots to plug in a proprietary memory card, enabling to share saves between consoles. I assumed this feature was inherited from a [previous competitor](dreamcast#interactive-memory-card). Days after publishing this article, I sent it to Seamus Blackley, the co-creator of this console, who quickly replied to me with very interesting comments. Regarding the Dreamcast similarities, he told me:
+On closer inspection, both controllers did include something special: Two **Memory Unit** slots to plug in a proprietary memory card, enabling to share saves between consoles. Upon realising this, I instantly assumed this feature was inherited from a [previous competitor](dreamcast#interactive-memory-card). However, days after publishing this article, I sent it to Seamus Blackley, the co-creator of this console, who quickly replied with very interesting comments. Regarding the Dreamcast similarities, he told me:
 
 > The relationship to Dreamcast is just historical bias. That was accidental.
 >
@@ -340,13 +340,19 @@ All right, let's start by addressing the elephant in the room.
 
 I'm afraid this is a *yes and no* answer: There is a 'Windows' present in this console, but not in the form conventional PC users would expect.
 
+First things first, the Xbox's operating system is composed of a **Kernel** and **user-land applications** (i.e. the Dashboard). These are stored in the 1 MiB Flash ROM and the HDD, respectively.
+
+The Kernel borrows significant codebase from **Windows 2000's kernel** [@operating_system-os] (which, in turn, is based on the modern **Windows NT** architecture). The result is a strip-down Windows 2000 kernel that only embeds the necessary components for the Xbox hardware. These are finally compressed and packaged in a single executable [@operating_system-kernel] for optimal memory efficiency. All in all, you can think of it as a highly-optimised Windows machine exclusively designed for gaming.
+
+It's worth pointing out that the Xbox project was headed by the **DirectX team** [@operating_system-renegades]. Thus, its origin is unrelated to the Windows CE team [that brought its APIs to the Dreamcast](dreamcast#windows-ce).
+
 ### Boot Process
 
-As with Pentium machines, upon booting up the system, the CPU will start executing instructions found at the **reset vector** (address `0xFFFF.FFF0`). For the Xbox, this address points to a hidden ROM found in the MCPX (more details later). The MCPX contains routines to initialise the security system and continue booting from the Flash ROM instead. Inside the Flash ROM, the Xbox will initialise its hardware, boot a small kernel (based on Windows NT's kernel) and show the splash animation.
+As with Pentium machines, upon booting up the system, the CPU will start executing instructions found at the **reset vector** (address `0xFFFF.FFF0`). For the Xbox, this address points to a hidden ROM found in the MCPX (more details are explained in the 'Anti-Piracy and Homebrew' section). The MCPX contains routines to set up the security system and continue booting from the Flash ROM instead. Inside the Flash ROM, the Xbox will initialise its hardware, boot the Kernel and show the splash animation.
 
-During security initialisation, the CPU turns into **protected mode**. This is critical since x86 CPUs always start-up in **real mode** to maintain compatibility with the first processor (the Intel 8086), however, if programmers need to access the modern features of the CPU (such as being able to access more than 1 MiB of memory), they have to manually enable them by switching to protected mode. 
+During security initialisation, the CPU turns into **protected mode**. This is critical since x86 CPUs always start up in **real mode** to maintain compatibility with the first processor (the Intel 8086), however, if programmers need to access the modern features of the CPU (such as being able to access more than 1 MiB of memory), they have to manually enable them by switching to protected mode. 
 
-When the kernel loads, it injects microcode into the CPU (not to program it, but rather to *update it*). Finally, the kernel looks for the presence of a valid DVD disc. If there is one, it runs it. Otherwise, it will load a user-interactive shell stored in the Hard Drive.
+When the Kernel loads, it injects microcode into the CPU (not to program it, but rather to *update it*). Finally, the Kernel looks for the presence of a valid DVD disc. If there is one, it runs it. Otherwise, it will load a user-interactive shell stored in the Hard Drive.
 
 ### The green screen
 
@@ -366,11 +372,11 @@ The Dashboard offers multiple services.
 
 The dashboard is not very different in terms of functionality compared to the [PlayStation menu](playstation-2#interactive-shell), or the [GameCube's IPL](gamecube#splash-and-shell). It essentially includes all the functions typical users would expect, like being able to tweak some settings, moving saves around, playing DVD movies or CD audio; and so forth.
 
-One thing worth mentioning is that the Dashboard also allowed to rip music from an audio CD and store it in the HDD. This music could be subsequently fetched from any game to 'personalise' its soundtrack. *Fun stuff!*
+One thing worth mentioning is that the Dashboard also allows to rip music from an audio CD and store it in the HDD. This music can be subsequently fetched from any game to 'personalise' its soundtrack. *Fun stuff!*
 
 #### Updatability {.tab}
 
-Well yes, this is the first console of its generation to be *officially* updatable, but only the contents of the HDD are writable. The kernel part (in the Flash ROM) can't be re-written, but the system can patch it after it's loaded in memory. Kernel patches are therefore stored in the HDD.
+Well yes, this is the first console of its generation to be *officially* updatable, but only the contents of the HDD are writable. The Kernel part (in the Flash ROM) can't be re-written, but the system can patch it after it's loaded in memory. Kernel patches are therefore stored in the HDD.
 
 Updates are distributed through retail games and/or downloaded by the system after connecting to the Xbox Live network service (more about it later on).
 
@@ -446,7 +452,7 @@ The real online experience happens in the **Title Server**, which is the type of
 
 After analysing Microsoft's implementation of Xbox Live and looking at the impact it had in the industry. It now sounds pretty obvious, right? As if the recipe for 'proper online gaming' (a.k.a Ethernet + Infrastructure) was always there, but not every company wanted to invest in it.
 
-It turns it's not that simple: Microsoft also had to convince users they 'needed' this functionality, that online multiplayer wasn't just an optional addition, but a fundamental part of some games. Otherwise, Microsoft's efforts would just account as another 'online attempt'. 
+It turns out it's not that simple: Microsoft also had to convince users they 'needed' this functionality, that online multiplayer wasn't just an optional addition, but a fundamental part of some games. Otherwise, Microsoft's efforts would just account as another 'online attempt'. 
 
 > Try imagining a world where no console gamer wanted online games, and where nobody believed a PC architecture could be a console. That was really how it was. Now it seems obvious BUT IT WASN'T.
 >
@@ -474,7 +480,7 @@ Let us go over the rest of the security measures that this system originally imp
 
 #### Introduction {.tabs .active}
 
-The Flash ROM and EEPROM containing the 'BIOS' and sensible data, respectively, are encrypted using a **RC-4 key**. After the kernel is booted from the BIOS, it will only launch executables signed by Microsoft using **RSA encryption**. 
+The Flash ROM and EEPROM containing the 'BIOS' and sensible data, respectively, are encrypted using a **RC-4 key**. After the Kernel is booted from the BIOS, it will only launch executables signed by Microsoft using **RSA encryption**. 
 
 The HDD, on the other side, is formatted with a completely proprietary and undocumented filesystem called **FATX**.
 
@@ -486,11 +492,11 @@ Since it's officially documented by Intel that their processors will start execu
 
 To make a long story short, `0xFFFF.FFF0` was **hidden in the MCPX chip**: It contained a hidden 512 B ROM that would be executed once and hidden afterwards. This ROM was not easy to extract, so bunnie resorted to tapping the HyperTransport bus to catch the RC-4 key once it was transmitted.
 
-And so it happened, bunnie published the key as part of his research and Microsoft was not happy about this. Thus, the hacking community found a way to gain control of the first security layer of this console, which included the kernel.
+And so it happened, bunnie published the key as part of his research and Microsoft was not happy about this. Thus, the hacking community found a way to gain control of the first security layer of this console, which included the Kernel.
 
 #### Permanent unlock {.tab}
 
-Cracking the RSA layer was never meant to be easy, but since hackers gained access to the kernel, it would now be possible to reverse engineer it and develop patches that could nullify RSA altogether. Lo and behold, this eventually happened and opened the door to the Homebrew community. Anyone could now develop programs that could be executed on a modified Xbox without the approval of Microsoft. Some groups developed replacements for the original Dashboard which could do more functions, such as executing Linux!
+Cracking the RSA layer was never meant to be easy, but since hackers gained access to the Kernel, it would now be possible to reverse engineer it and develop patches that could nullify RSA altogether. Lo and behold, this eventually happened and opened the door to the Homebrew community. Anyone could now develop programs that could be executed on a modified Xbox without the approval of Microsoft. Some groups developed replacements for the original Dashboard which could do more functions, such as executing Linux!
 
 This, however, required users to modify their BIOS using specialised hardware, which not everyone could do. In later years, new exploits were discovered that could easily bootstrap the main hack, one of them consisted in inserting a forged save-game of '007: Agent Under Fire' or 'Splinter Cell' that would generate a buffer overflow to kickstart a homebrew tool that could install a permanent exploit in the hard disk. The 'permanent exploit' was possible because the original Dashboard was subject to yet-another buffer overflow using a forged font file [@anti_piracy-pheonix] (note that fonts didn't need to be signed).
 
