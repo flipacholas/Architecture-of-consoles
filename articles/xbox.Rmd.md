@@ -342,7 +342,7 @@ I'm afraid this is a *yes and no* answer: There is a 'Windows' present in this c
 
 First things first, the Xbox's operating system is composed of a **Kernel** and **user-land applications** (i.e. the Dashboard). These are stored in the 1 MiB Flash ROM and the HDD, respectively.
 
-The Kernel borrows significant codebase from **Windows 2000's kernel** [@operating_system-os] (which, in turn, is based on the modern **Windows NT** architecture). The result is a strip-down Windows 2000 kernel that only embeds the necessary components for the Xbox hardware. These are finally compressed and packaged in a single executable [@operating_system-kernel] for optimal memory efficiency. All in all, you can think of it as a highly-optimised Windows machine exclusively designed for gaming.
+The Kernel borrows significant codebase from **Windows 2000's kernel** [@operating_system-os] (which, in turn, is based on the modern **Windows NT** architecture). The result is a stripped-down Windows 2000 kernel that only embeds the necessary components for the Xbox hardware. These are finally compressed and packaged in a single executable [@operating_system-kernel] for optimal memory efficiency. All in all, you can think of it as a highly-optimised Windows machine exclusively designed for gaming.
 
 It's worth pointing out that the Xbox project was headed by the **DirectX team** [@operating_system-renegades]. Thus, its origin is unrelated to the Windows CE team [that brought its APIs to the Dreamcast](dreamcast#windows-ce).
 

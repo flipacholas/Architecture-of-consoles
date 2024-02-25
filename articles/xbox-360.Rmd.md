@@ -1214,7 +1214,7 @@ Before we continue with this story, there's one more hack that needs to be expla
 
 #### The timing attack {.tab}
 
-![For manufacturing reasons, the motherboard exposes many groups of headers that perform (undocumented) functions, some of which were reverse engineered to work in the hacker's favour.](photos/headers.jpg){.tab-float}
+![For manufacturing reasons, the motherboard exposes many groups of headers that perform (undocumented) functions, some of which were reverse-engineered to work in the hacker's favour.](photos/headers.jpg){.tab-float}
 
 In August 2007, XboxHacker user 'Arnezami' published the **timing attack** method for downgrading any console to a King Kong-vulnerable firmware version [@anti_piracy-timing].
 
