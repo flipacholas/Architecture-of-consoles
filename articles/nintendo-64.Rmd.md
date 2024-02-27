@@ -272,9 +272,9 @@ The kernel is automatically embedded by using Nintendo's libraries. Additionally
 
 ### Boot process
 
-Unlike previous cartridge-based systems, the Nintendo 64 follows a sophisticated boot process to prepare all of its hardware before the actual game runs. This is executed as soon as the user turns on the console and it's very similar to its CD-based contemporaries bundling a [BIOS](playstation#operating-system) or [IPL](sega-saturn#operating-system) [@operating_system-ipl].
+Unlike previous cartridge-based systems, the Nintendo 64 follows a sophisticated boot process to prepare all of its hardware before the actual game runs. This is executed as soon as the user turns on the console and it's very similar to its CD-based contemporaries bundling a [BIOS](playstation#operating-system) or [IPL](sega-saturn#operating-system).
 
-These routines are also referred to as **Initial Program Load** (IPL) and work as follows [@operating_system-boot]:
+These routines are also referred to as **Initial Program Load** (IPL) and work as follows [@operating_system-ipl]:
 
 1. The user turns on the console.
 2. The **PIF-NUS** (a separate chip in the motherboard) subdues the main CPU into an infinite reset until PIF-NUS validates the CIC chip found in the game cartridge.
