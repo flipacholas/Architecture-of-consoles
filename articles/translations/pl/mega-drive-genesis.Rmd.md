@@ -44,12 +44,16 @@ Ich nowy system zawiera wiele *już znanych* komponentów gotowych do zaprogramo
 
 Ta konsola ma dwa procesory ogólnego przeznaczenia.
 
-Po pierwsze, mamy **Motorolę 68000** działającą z częstotliwością **~7,6 MHz**, popularny procesor, który byl już obecny w wielu komputerach z tamtych czasów, takich jak Amiga, oryginalny Macintosh, Atari ST... Co ciekawe, każdy z tych komputerów zastąpił swojego 'poprzednika 6502' i podczas gdy [Master System](master-system) (prekursor Mega Drive) nie używa procesora 6502, robił to [NES](nes) (i w pewnym sensie celem Segi było przekonanie konsumentów Nintendo). Podsumowując, widać pewną korelację między ewolucją komputerów a technologią konsoli do gier.
+### Przodownik
 
-Wracając do tematu, 68k pełni rolę 'głównego' procesora i będzie używany do logiki gry, obsługi WE/WY i obliczeń graficznych. Posiada następujące możliwości [@cpu-user]:
+Po pierwsze, mamy **Motorolę 68000** działającą z częstotliwością **~7,6 MHz**, popularny procesor, który byl już obecny w wielu komputerach z tamtych czasów, takich jak Amiga, oryginalny Macintosh, Atari ST... Co ciekawe, każdy z tych komputerów zastąpił swojego 'poprzednika 6502' i podczas gdy [Master System](master-system) (prekursor Mega Drive) nie zawiera procesora 6502, robił to [NES](nes) (i w pewnym sensie celem Segi było przekonanie konsumentów Nintendo). Podsumowując, widać pewną korelację między ewolucją komputerów a technologią konsoli do gier.
+
+![Chip Motorola 68000 w Mega Drive, ten został wtórnie wytworzony przez Hitachi.](m68000.jpg)
+
+Wracając do tematu, 68k pełni rolę 'głównego' procesora i będzie przetwarzał logikę gry, obsługiwał WE/WY i obliczenia graficzne. Posiada następujące możliwości [@cpu-user]:
 
 - **ISA 68000**: Nowy zestaw instrukcji z wieloma funkcjami, w tym zestawem kodów operacji mnożenia i dzielenia. Niektóre instrukcje mają długość 8 bitów (nazywane 'bajtem'), inne mają długość 16-bitową (nazywane 'słowem'), a pozostałe są 32-bitowe (nazywane 'długim-słowem').
-- **Rejestry 32-bitowe**: To duży krok, biorąc pod uwagę, że 6502 i Z80 mają rejestry tylko 8-bitowe.
+- **Osiem 32-bitowych rejestrów ogólnego przeznaczenia**: To duży krok, biorąc pod uwagę, że 6502 i Z80 mają rejestry tylko 8-bitowe.
 - **ALU 16-bitowe**: Oznacza to, że potrzebuje dodatkowych cykli do obliczenia operacji arytmetycznych na liczbach 32-bitowych, ale radzi sobie z liczbami 16-bitowymi/8-bitowymi.
 - Zewnętrzna **magistrala danych 16-bitowa**: Jak widać, chociaż ten procesor ma pewne 'możliwości 32-bitowe', nie został zaprojektowany jako kompletna maszyna 32-bitowa. Szerokość tej magistrali oznacza lepszą wydajność podczas przenoszenia danych 16-bitowych.
   - Co ciekawe, Motorola zadebiutowała z kompletnym 32-bitowym procesorem, **68020**, cztery lata przed premierą tej konsoli. Ale wyobrażam sobie, że koszty wzrosłyby, gdyby Sega wybrała ten drugi układ.
@@ -62,9 +66,17 @@ Wracając do tematu, 68k pełni rolę 'głównego' procesora i będzie używany 
   - Portów rozszerzeń (używanych do 'przyszłych' akcesoriów).
   - RAM drugiego procesora, pośredniczony przez *arbitra magistrali*.
 
-(Jeśli zastanawiasz się nad powodem używania adresów 24-bitowych z procesorem, który obsługuje 32-bitowe słowa, wątpię, aby w latach 80. wielu prosiło o zarządzanie 4 GB RAM, a dodawanie nieużywanych linii jest kosztowne pod względem wydajności i pieniędzy).
+Jeśli zastanawiasz się, dlaczego używa się 24-bitowych adresów w procesorze, który może obsłużyć 32-bitowe słowa, jest to ponieważ niewielka ilość sprzętu z tamtej epoki wymagała zarządzania 4 GB pamięci. Biorąc pod uwagę fakt, że wdrożenie niewykorzystanych linii jest kosztowne pod względem wydajności i pieniędzy, Motorola osiągnęła rozsądny kompromis (24 linie adresowe), który przygotowałby również programistów na pojawienie się w pełni 32-bitowego procesora (68020).
 
-Po drugie, w tej konsoli jest zainstalowany inny procesor, **Zilog Z80** działający z częstotliwością **~3,5 MHz**. Jest to ten sam procesor wcześniej analizowany w artykule o [Master System](master-system#cpu).
+#### Specjalny zestaw instrukcji
+
+Przed [rewolucją RISC](playstation#tab-1-1-a-bit-of-history) w latach 80. istniał ruch mający na celu skonsolidowanie sposobu projektowania zestawów instrukcji. Zasadniczo procesory konsumenckie z lat 70. (takie jak 6502 czy 8080) dostarczają instrukcje, które już wcześniej zdefiniowały sposób dostępu do pamięci (nazywa się to 'trybem adresowania'). W modelu 68000 Motorola oddzieliła funkcję instrukcji (kod operacji) od trybu adresowania, czyniąc ten ostatni jedynie kolejnym parametrem (operandem). Robiąc to, programiści mogli teraz używać tych samych kodów operacji z najbardziej optymalnym trybem adresowania (w oparciu o ich potrzeby).
+
+Zasada ta nazywana jest **ortogonalnością zestawu instrukcji** i miała ogromny wpływ na nową generację procesorów pod koniec lat 70., ale szybko została rozproszona, gdy władzę przejęły [projekty RISC](game-boy-advance#tab-1-1-the-rise-of-acorn-computers), skutecznie przenosząc ciężar na procesor kompilatory. W każdym razie seria Motorola 68k cieszyła się dużą popularnością w latach 80. i dopiero na początku lat 90. firmy zaczęły przestawiać się na innego dostawcę.
+
+### Towarzysz
+
+W tej konsoli jest zainstalowany inny procesor, **Zilog Z80** działający z częstotliwością **~3,5 MHz**. Jest to ten sam procesor wcześniej analizowany w artykule o [Master System](master-system#cpu).
 
 Z80 jest głównie używany do **sterowania dźwiękiem**. A zatem jego **16-bitowa magistrala adresu** składa się z następujących [@cpu-z80map]:
 
@@ -72,7 +84,7 @@ Z80 jest głównie używany do **sterowania dźwiękiem**. A zatem jego **16-bit
 - Dwa chipy dźwiękowe.
 - RAM 68000 (ponownie, obsługiwany przez arbitra magistrali).
 
-Wreszcie **oba procesory działają równolegle**.
+Na koniec należy zauważyć, że **oba procesory działają równolegle**.
 
 ### Dostępna pamięć
 
