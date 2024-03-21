@@ -207,7 +207,7 @@ The first one is a traditional **Fixed-Point Integer Unit** (FXU). It carries ou
 
 If you look at the diagram, you'll see that the FXU, LSU and MMU are grouped into a single unit called **Execution Unit** (XU), this is because they share the same register file.
 
-The second unit is way more interesting, the **Vector/Scalar Unit** (VSU) performs operations with floating-point numbers and vectors. It's made up of a **64-bit FPU** (follows the IEEE 754 standard) and a **Vector/SIMD Multimedia Extension unit** (VXU), which executes a set of SIMD instructions called _VMX_. These are 128-bit long encode vectors made of two or three 8/16/32-bit values. You may have heard about this extension before, as 'VMX' is IBM's name to Motorola's 'AltiVec' or Apple's 'Velocity Engine' (_long live trademarks_). Conversely, Cell's competitive SIMD capabilities are found in another processor, so don't relax just yet!
+The second unit is way more interesting, the **Vector/Scalar Unit** (VSU) performs operations with floating-point numbers and vectors. It's made up of a **64-bit FPU** (follows the IEEE 754 standard) and a **Vector/SIMD Multimedia Extension unit** (VXU), which executes a set of SIMD instructions called _VMX_. The latter operates 128-bit vectors made from sixteen 8-bit values to four 32-bit ones [@cpu-arevalo]. You may have heard about this extension before, as 'VMX' is IBM's name to Motorola's 'AltiVec' or Apple's 'Velocity Engine' (_long live trademarks_). Conversely, Cell's competitive SIMD capabilities are found in another processor, so don't relax just yet!
 
 #### Wrapping the PPE up {.tabs-close}
 
