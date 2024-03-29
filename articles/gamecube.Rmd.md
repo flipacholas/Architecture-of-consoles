@@ -107,7 +107,7 @@ The result was a system organised with two main buses:
 
 Additionally, this design contains an additional (yet unusual) bus where more memory can be found:
 
-- The **Eastbridge**: It connects the GPU with another memory chip called **Audio RAM** or 'ARAM' [@cpu-hitmen]. It provides **12 MB of SRAM** available for general purpose, which is pretty big for *spare* memory. However, the bus is not accessible through normal means (memory addresses). Instead, it's connected to an 8-bit serial endpoint (clocked two times slower than the GPU and four times slower than the CPU), which is only accessible through DMA.
+- The **Eastbridge**: It connects the GPU with another memory chip called **Audio RAM** or 'ARAM' [@cpu-hitmen]. It provides **16 MB of SRAM** available for general purpose, which is pretty big for *spare* memory. However, the bus is not accessible through normal means (memory addresses). Instead, it's connected to an 8-bit serial endpoint (clocked two times slower than the GPU and four times slower than the CPU), which is only accessible through DMA.
 
 Overall, this means that while ARAM provides a considerable amount of RAM, it will be limited to less critical tasks, like acting as an audio buffer or being used by certain accessories (explained in the I/O section).
 

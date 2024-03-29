@@ -41,9 +41,13 @@ Their new system includes lots of *already familiar* components ready to be prog
 
 This console has two general-purpose processors.
 
-Firstly, we've got a **Motorola 68000** running at **~7.6MHz**, a popular processor already present in many computers at that time, such as the Amiga, the (original) Macintosh, the Atari ST... Curiously enough, each one of these computers succeeded its '6502 predecessor', and while the [Master System](master-system) (Mega Drive's precursor) doesn't use a 6502 CPU, the [NES](nes) did (and in some way, Sega's goal was to win Nintendo consumers over). All in all, you can see a bit of correlation between the evolution of computers and game console technology.
+### The leader
 
-Back on topic, the 68k has the role of 'main' CPU and it will be used for game logic, handling I/O and graphics calculations. It has the following capabilities [@cpu-user]:
+Firstly, we've got a **Motorola 68000** running at **~7.6MHz**, a popular processor already present in many computers at that time, such as the Amiga, the (original) Macintosh, the Atari ST... Curiously enough, each one of these computers succeeded its '6502 predecessor', and while the [Master System](master-system) (Mega Drive's precursor) didn't incorporate a 6502 CPU, the [NES](nes) did (and in some way, Sega's goal was to win Nintendo consumers over). All in all, you can see a bit of correlation between the evolution of computers and game console technology.
+
+![The Motorola 68000 chip on the Mega Drive, this one is second-sourced from Hitachi.](m68000.jpg)
+
+Back on topic, the 68k has the role of 'main' CPU and it will be tasked with the game logic, handling I/O and graphics calculations. It has the following capabilities [@cpu-user]:
 
 - **68000 ISA**: A new instruction set with plenty of features, including a set of multiplication and division opcodes. Some instructions are 8-bit long (called 'byte'), others are 16-bit long (called 'word') and the rest are 32-bit long (called 'long-word').
 - **Eight general-purpose 32-bit registers**: This is a big step, considering the 6502 and Z80 only have 8-bit registers.
@@ -59,9 +63,17 @@ Back on topic, the 68k has the role of 'main' CPU and it will be used for game l
   - Expansion ports (used for 'future' accessories).
   - The second CPU's RAM, intermediated by the *bus arbiter*.
 
-(If you wonder the reason behind using 24-bit addresses with a CPU that can handle 32-bit words, I doubt that in the 80s many were asking to manage 4 GB of RAM and adding unused lines is costly in terms of performance and money).
+If you wonder the reason behind using 24-bit addresses in a CPU that can handle 32-bit words, is because not enough equipment of that era was asking to manage 4 GB of memory. Combined with the fact implementing unused lines is costly in terms of performance and money, Motorola reached a sensible compromise (24 address lines) which would also prepare developers for when the full 32-bit CPU (the 68020) arrives. 
 
-Secondly, there's another CPU fitted in this console, a **Zilog Z80** running at **~3.5 MHz**. This is the same processor previously analyzed in the [Master System's article](master-system#cpu).
+#### A peculiar instruction set
+
+Before the [RISC revolution](playstation#tab-1-1-a-bit-of-history) of the 80s, there was a prior wave that attempted to consolidate how instruction sets were designed. In essence, consumer CPUs of the 70s (like the 6502 or the 8080) provide instructions that have already pre-defined how memory will be accessed (this is called the 'addressing mode'). With the 68000, Motorola detached the instruction function (opcode) from the addressing mode, making the latter just another parameter (operand). In doing so, developers could now use the same opcodes with the most optimal addressing mode (based on their needs). 
+
+This principle is called **instruction set orthogonality** and it greatly influenced the new generation of CPUs in the late 70s, but quickly dissipated as [RISC designs](game-boy-advance#tab-1-1-the-rise-of-acorn-computers) took over, effectively shifting the burden to the compilers. In any case, the Motorola 68k series enjoyed great popularity during the 80s decade, and it wasn't until the early '90s that companies started the switch to another vendor.
+
+### The second banana
+
+There's another CPU fitted in this console, a **Zilog Z80** running at **~3.5 MHz**. This is the same processor previously analyzed in the [Master System's article](master-system#cpu).
 
 The Z80 is mainly used for **sound control**. Thus, its **16-bit address bus** is composed of the following [@cpu-z80map]:
 
@@ -69,7 +81,7 @@ The Z80 is mainly used for **sound control**. Thus, its **16-bit address bus** i
 - Two sound chips.
 - 68000's RAM (again, handled by the bus arbiter).
 
-Finally, **both CPUs run in parallel**.
+Finally, it's important to note that **both CPUs run in parallel**.
 
 ### Memory available
 

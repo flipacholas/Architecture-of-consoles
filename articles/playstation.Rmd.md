@@ -49,28 +49,32 @@ At first, it may look as if technological development had hit a wall at this poi
 - **MIPS**: Adopted by Silicon Graphics Incorporated (targeting graphics workstations).
 - **PowerPC**: Adopted by Apple (targeting desktop publishing).
 - **SPARC**: Created by Sun Microsystems (targeting servers and business workstations).
-- **ARM**: Created by Acorn (targeting the consumer market and workstations).
+- **ARM**: [Created by Acorn](game-boy-advance#the-cambridge-miracle) (initially targeting the consumer market and then, PDAs and cell phones).
 - ... and many more 'microcontroller' chips yet to be finalised or adopted by any industry, such as **Hitachi's SH** or **NEC's V810**. To their surprise, these were subsequently selected for the [Sega Saturn](sega-saturn) and the [Nintendo Virtual Boy](virtual-boy), respectively.
 
 All of these processors had something in common: They followed the **Reduced Instruction Set Computer** (RISC) discipline, which radically shifted how these chips had to be designed and programmed. One rule of RISC CPUs dictated that a single instruction can't mix memory with register operations, allowing hardware designers to simplify the circuitry that executes instructions... and then enhance it with parallelism techniques.
 
 #### MIPS and Sony {.tab}
 
-In the late 80s, MIPS CPUs became a topic of conversation after being adopted (and later acquired) by Silicon Graphics Incorporated (SGI) to power their equipment. SGI was an influential innovator in the computer graphics market, especially with the development of [hardware-accelerated vertex pipelines](nintendo-64#graphics), whose task was originally carried out by software (within the CPU).
+**MIPS Computer Systems** originated from the eagerness of its founders (Stanford faculty) to turn their research into physical processors, something that Silicon Valley-based venture capitalists in the 80s were also anxious to invest in [@cpu-chm_mips]. Their debuting CPU, the 'MIPS R2000', is considered the first commercial CPU to incorporate a RISC design; and it found a space in many UNIX workstations.
 
-During the development of the PlayStation, MIPS was offering the **R3000A series** of processors. These were 32-bit machines and part of their low-end catalogue. Consequently, while the R3000A was not part of the flagship lineup (unlike the R4000, which [others](nintendo-64#cpu) would later choose), it was an attractive investment in terms of cost.
+However, it wasn't until 1987 that MIPS' chips became a topic of conversation, all due to being adopted (and later acquired) by **Silicon Graphics Incorporated** (SGI) to power their equipment. SGI was an influential innovator in the computer graphics market, especially with the development of [hardware-accelerated vertex pipelines](nintendo-64#graphics), whose task was originally carried out by software (within the CPU). After the acquisition, SGI had a leading position in both CPU and graphics sectors.
+
+Before the development of the PlayStation, MIPS switched to a business model based on **IP licensing**, where their CPU designs would be sold in the form of licenses, and licensees were then free to customise and manufacture it. Part of their offerings included the **R3000A CPU**, albeit within their low-end catalogue. Consequently, while the R3000A wasn't associated with the flagship lineup (unlike the R4000, which [others](nintendo-64#cpu) would later choose), it was an attractive investment in terms of cost.
 
 Sony designed their audio and graphics chips in-house, but they still needed the leading chip that could drive those two. The selected CPU had to be powerful enough to show off the *impressive* capabilities of Sony's chips, but also affordable to keep the console at a competitive price.
 
 #### LSI and the commission {.tab}
 
-At the same time, **LSI Logic** (a semiconductor manufacturer) was providing a 'build-your-own' CPU program to businesses. This service was referred to as **CoreWare** and it enabled clients to build their own CPU packages by choosing a series of building blocks [@cpu-lsi]. Part of the CoreWare library included the 'CW33300' block, a CPU core derived from the LSI LR33300, an off-the-shelf CPU chip which LSI also commercialised.
+At the same time, **LSI Logic** (a semiconductor manufacturer) was a MIPS licensee that provided a 'build-your-own' CPU program for businesses. This service was referred to as **CoreWare** and it enabled clients to build their own CPU packages by choosing a series of building blocks [@cpu-lsi]. Part of the CoreWare library included the 'CW33300' block, a CPU core derived from the LSI LR33300, an off-the-shelf CPU chip that LSI also commercialised.
 
 Now, where am I going with all this? It turns out LSI's LR33300 and CW33300 are a **binary-compatible version of the MIPS R3000A family**. Their architectures slightly differ in some areas but the programming interface (MIPS I ISA) remains the same.
 
 In the end, Sony commissioned LSI to build their CPU package. They chose the CW33000, changed some bits and combined it with other blocks to form the chip you find on the PlayStation's motherboard.
 
 ### The offering {.tabs-close}
+
+![The SoC chip on the PlayStation's motherboard, where the MIPS R3000A-based core resides.](cpu_chip.jpg)
 
 The resulting CPU core runs at **33.87 MHz** and features:
 
@@ -147,21 +151,24 @@ By the way, sometimes I mix up 'fixed-point', 'floating-point', 'decimal' and 'i
 
 As we've seen before, the CW33300 is a pipelined processor, meaning that it queues up multiple instructions and executes them in parallel at different stages. This hugely improves instruction throughput, but if it's not controlled properly, it can lead to **pipeline hazards**, resulting in computational errors. 
 
-The MIPS I architecture is susceptible to **control hazards** and **data hazards** [@cpu-chen], which means that instructions may get executed when they shouldn't be; and that instructions may operate with outdated data before it's been updated.
+The MIPS I architecture is susceptible to [@cpu-chen]:
 
-![Instructions from 'Spyro The Dragon' visualised on the NO$PSX debugger. Notice how `LW` (load word from memory), `JAL` (jump and link) and `BAL` (branch on not equal) are followed by a delay slot to prevent hazards. Marked in red are fillers (useless instructions). Marked in blue perform meaningful operations.](delay_slots.jpg){.open-float}
+- **Control hazards**: Instructions may get executed when they shouldn't be
+- **Data hazards**: Instructions may operate with outdated data before it's been updated.
+
+![Instructions from 'Spyro The Dragon' visualised on the NO$PSX debugger. Notice how `LW` (load word from memory), `JAL` (jump and link) and `BNE` (branch on not equal) are followed by a delay slot to prevent hazards. Marked in red are fillers (useless instructions). Marked in blue perform meaningful operations.](delay_slots.jpg){.open-float}
 
 Consequently, MIPS I CPUs exhibit the following behaviour:
 
 - **Any instruction following a 'branch' or 'jump' type opcode is executed unconditionally**: Thus, developers have to manually fill the pipeline with modest instructions (such as `calculate 0 plus 0`) after the branch or jump to mitigate the hazard. These fillers are called **branch delay slots**.
-  - Modern CPUs converted this phenomenon into an advantage: [Branch prediction](gamecube#cpu). By adding extra circuitry to detect the hazard, the CPU discards the new computations if the branch/jump condition didn't meet. But if it did, then the CPU has saved some time.
-- **'Load' instructions don't stall the pipeline until the retrieved data is made available**: The second stage of the pipeline (called 'RD' or 'Read and Decode') gathers the operators [@cpu-manual], which will be used to perform a computation at the third stage (ALU). The fourth stage ('MEM', from 'access MEMory') looks for data in memory (i.e. main RAM, CD reader, etc). Now, here's the problem: by the time a `load` instruction gathered the data from outside, the following instruction had already fetched the operators. This means that an instruction depending on the values of the previous `load` instruction requires a filler in-between, so the correct operators can be fetched on time.
+  - Modern CPUs converted this phenomenon into an advantage: [Branch prediction](gamecube#cpu). By adding extra circuitry to detect the hazard, the CPU discards the new computations if the branch/jump condition isn't met. But if it did, then the CPU has saved some time.
+- **'Load' instructions don't stall the pipeline until the retrieved data is made available**: The second stage of the pipeline (called `RD` or 'Read and Decode') gathers the operators [@cpu-manual], which will be used to perform a computation at the third stage (`ALU`). The fourth stage (`MEM`, from 'access MEMory') looks for data in memory (i.e. main RAM, CD reader, etc). Now, here's the problem: by the time a `load` instruction gathered the data from outside, the following instruction had already fetched the operators. This means that an instruction depending on the values of the previous `load` instruction requires a filler in-between, so the correct operators can be fetched on time.
 
 {.close-float}
 
 As we can see from the example, some delay slots are filled with meaningful instructions, which perform computations that are not affected by the hazard. Hence, delay slots don't always imply a waste of cycles.
 
-In most cases, the compiler or assembler will automatically re-arrange instructions to fill in slots, or add useless fillers as a last measure. So, all in all, this phenomenon is a bit of a mixed bag.
+Having explained this, you may be wondering why a processor with these kinds of flaws could ever be commercialised. Well, one philosophy about RISC is that the burden of CPU programming is shifted from the developer to the compiler. MIPS, in particular, prioritised the production of good quality compilers (including assemblers) to accompany their new CPUs [@cpu-chm_mips]. Hence, developers could use a higher-level language (for instance, C) while the compiler dealt with the hazards (by re-arranging instructions to fill in slots; or adding useless fillers as a last measure). So, all in all, while I don't find it pleasant to see a CPU being filled with bubbles, I think MIPS tackled this in a very clever way.
 
 ## Graphics
 

@@ -41,7 +41,7 @@ While initially focused on embedded applications, Hitachi's new creation debuted
 
 - A [load-store architecture](xbox#tab-1-4-cisc-or-risc), meaning instructions don't mix memory and register operations, resulting in a cleaner and scalable CPU design. This is one of the pillars of RISC CPUs.
 - **32-bit data bus and ALU**, enabling to move and operate larger amounts of data (32-bit values) without consuming extra cycles.
-- **16 general-purpose 32-bit registers**, which is double the amount of previous CPUs like the [Motorolla 68000](mega-drive-genesis#cpu). This is another design decision derived from the RISC guidelines [@cpu_patterson].
+- **16 general-purpose 32-bit registers**, which is double the amount of previous CPUs like the [Motorola 68000](mega-drive-genesis#cpu). This is another design decision derived from the RISC guidelines [@cpu-patterson].
 - **32-bit address bus**, allowing up to 4 GB of memory to be addressed (_farewell [mappers](nes#going-beyond-existing-capabilities)_).
 - A **pipelined data path** with **five stages**: The execution of instructions is now divided into five steps or *stages*. The CPU will queue up to five instructions and each one is allocated in one stage. This allows taking advantage of all the CPU's resources without idling while also incrementing the number of instructions executed per unit of time.
 - A **16-bit multiplication unit**: Performs multiplications with 16-bit integers.

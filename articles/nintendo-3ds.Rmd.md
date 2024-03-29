@@ -344,7 +344,7 @@ This seemed enough for Nintendo, who happily negotiated a license for DMP's late
 
 If I had to summarise it in one sentence, the PICA200 is a budget low-power 3D processor that combines a pre-[unified architecture](xbox-360#a-new-foundation-on-the-way) with a modernised API. The underlying architecture of the PICA200 is called **Maestro 2G** [@graphics-siggraph] and its design is compliant with **OpenGL ES 1.1**, but extended with elements from **OpenGL ES 2.0** [@graphics-nintendo_gl]. However, the PICA200's APIs are not limited to either standard.
 
-You see, even though the pipeline is segregated and the pixel stage is fixed-function (ala [PlayStation 2](playstation-2#graphics)), DMP expanded the limited circuitry with a set of **Maestro functions** that provide capabilities beyond the expectations of the embedded market [@graphics-ocp]. This includes fragment lighting, multiple shadowing algorithms, polygon subdivision, bump mapping, procedural textures and many fog effects.
+You see, even though the pipeline is segregated and the pixel stage is fixed-function (à la [PlayStation 2](playstation-2#graphics)), DMP expanded the limited circuitry with a set of **Maestro functions** that provide capabilities beyond the expectations of the embedded market [@graphics-ocp]. This includes fragment lighting, multiple shadowing algorithms, polygon subdivision, bump mapping, procedural textures and many fog effects.
 
 Additionally and in contrast to the [Nintendo DS](nintendo-ds#tab-5-3-result), the PICA200 **only works with framebuffers**. That's it. The [sprite engine](nes#graphics), a popular workaround to tackle unaffordable memory requirements, is now a thing of the past. This also includes [scan-line tricks](nes#secrets-and-limitations), as contemporary GPUs work way faster than the refresh rate of a CRT.
 
@@ -467,6 +467,12 @@ Now that you've seen how the PICA200 draws its triangles on the screen, it's tim
 ![Super Smash Bros. for 3DS (2014).<br>3,080 triangles.](mario_ssb_3ds){.toright model3d="true"}
 
 It's worth reminding again that, in practice, the PICA200 will be rendering three screens at the same time, something that the [Wii's GPU](wii#graphics) wasn't subjected to.
+
+### Hidden additions
+
+The 'New' 3DS variant also appears to bundle an uncommon DSP called **MVD**. It performs **H.264 & MJPEG decompression** and **YUV-to-RGB colour conversion** [@graphics-mvd]. The CPU programs it by writing to its registers. In turn, the MVD houses a dedicated DMA unit to process the data in FCRAM independently.
+
+Overall, there isn't extensive documentation about this component and I can only presume it resides somewhere in the SoC. The Web Browser found on the New 3DS seems to be its only consumer (for accelerated video playback).
 
 ### Nostalgic rendering
 

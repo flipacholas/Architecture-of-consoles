@@ -50,7 +50,7 @@ Meanwhile, Nintendo was enjoying a good relationship with Ricoh and their set of
 
 ### The new CPU
 
-As you've seen before, the main processor of this console is the **Ricoh 5A22**, a super set of the 65C816.
+As you've seen before, the main processor of this console is the **Ricoh 5A22**, a superset of the 65C816.
 
 Unlike the Apple IIGS, which enjoyed backward compatibility with Apple II software, the Super Nintendo is **not compatible with NES games**. To be fair, by looking at the choice of processor, there's a slight possibility that the SNES was originally planned to be compatible with NES games, who knows.
 

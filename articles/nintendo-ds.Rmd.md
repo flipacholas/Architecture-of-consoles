@@ -537,10 +537,10 @@ KEY1 and KEY2 are used, at different stages, by the Slot-1 interface to protect 
 
 As we've seen before, the BIOS includes some routines that validate the NDS card upon startup. This works as follows:
 
-1. The ARM7 BIOS retrieves the chip ID of the cartridge, saves it on RAM and then proceeds to enable KEY1 encryption.
-2. The first 2 KB of the 'Secure area' are copied to RAM as well. The first 8 B of this chunk stores a string called **Secure Area ID**, the next values contain some checksums (CRC16 type) and other metadata. All of it comes encrypted with KEY1, and the Secure Area ID is encrypted twice with KEY1 using different parameters.
-3. The ARM7 BIOS decrypts the Secure Area ID and checks that the decrypted value matches `encryObj`. If it does, it means card validation **passed the first test**. After this, the string is destroyed to prevent revealing the algorithm. If the validation fails, the 2 KB of Secure Area are filled with garbage, preventing the rest of the card from being read.
-4. At this point, the cartridge interface is setup with KEY2. The second test consists of retrieving the chip ID again at random times (the seed depends on the internal clock). If the value of chip ID matches the first chip ID stored, the **second test passes**.
+1. The ARM7 BIOS retrieves the chip ID of the cartridge, saves it on RAM and then proceeds to enable KEY1 and KEY2 encryption.
+2. The first 2 KB of the 'Secure area' are copied to RAM in random order. The first 8 B of this chunk stores a string called **Secure Area ID**, the next values contain some checksums (CRC16 type) and other metadata. All of it comes encrypted with KEY1, and the Secure Area ID is encrypted twice with KEY1 using different parameters.
+3. The ARM7 BIOS decrypts the Secure Area ID and checks that the decrypted value matches `encryObj`. If it does, it means card validation has **passed the first test**. After this, the string is destroyed to prevent revealing the algorithm. If the validation fails, the 2 KB of Secure Area are filled with garbage, preventing the rest of the card from being read.
+4. The second test consists of retrieving the chip ID again at random times (the seed depends on the internal clock). If the value of chip ID matches the first chip ID stored, the **second test has passed**.
 5. Finally, the rest of the Secure area is fetched in random order and re-constructed in RAM. After this, the firmware is executed.
 
 If everything goes well, the firmware will find the required executable of the card in RAM, allowing the user to boot up the game. Otherwise, the game selector will be shown greyed out.
