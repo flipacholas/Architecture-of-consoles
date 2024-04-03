@@ -3,7 +3,7 @@ short_title: PlayStation Architecture
 long_title: Architecture of the PlayStation
 long_name: PlayStation
 name: PS1
-subtitle: A promising newcomer
+subtitle: A confident newcomer
 date: 2019-08-08
 release_date: 1994-12-03
 generation: 5

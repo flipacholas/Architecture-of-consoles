@@ -4,7 +4,7 @@ long_title: Architecture of the GameCube
 name: GameCube
 release_date: 2001-09-14
 date: 2019-11-19
-subtitle: Powerful and compact
+subtitle: Eloquent engineering
 generation: 6
 javascript: ['threejs', 'audioswitcher']
 cover: gamecube

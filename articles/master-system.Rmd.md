@@ -2,7 +2,7 @@
 short_title: Sega Master System Architecture
 long_title: Architecture of the Sega Master System
 name: Sega Master System
-subtitle: Powerful as it is
+subtitle: Competent out of the box
 date: 2020-10-12
 release_date: 1985-10-20
 generation: 3

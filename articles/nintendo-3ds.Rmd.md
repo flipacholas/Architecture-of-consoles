@@ -2,7 +2,7 @@
 long_title: Architecture of the Nintendo 3DS
 short_title: Nintendo 3DS Architecture
 name: Nintendo 3DS
-subtitle: New tech, old marketing
+subtitle: Abundant tech, confusing marketing
 date: 2023-09-16
 release_date: 2011-02-26
 generation: 8
@@ -63,7 +63,7 @@ Well, here are the answers!
 
 ### Principles
 
-Liked or not, the fundamentals are not so different from the [Virtual Boy](virtual-boy), which I've happened to analyse two years before. To recall, the Virtual Boy displays two images, one to each eye, and shows objects individually shifted from the centre. By looking at the two pictures at the same time, they are perceived as some objects are behind others (sense of depth). This is the basis of **Stereoscopic Parallax**.
+Liked it or not, the fundamentals are not so different from the [Virtual Boy](virtual-boy), which I've happened to analyse two years before. To recall, the Virtual Boy displays two images, one to each eye, and shows objects individually shifted from the centre. By looking at the two pictures at the same time, they are perceived as some objects are behind others (sense of depth). This is the basis of **Stereoscopic Parallax**.
 
 ::: {.subfigures .tabs-nested .pixel}
 
@@ -535,7 +535,7 @@ This section tends to be very rich in technologies considering Nintendo's consol
 
 The Nintendo DS had tons of modules built-in and the Nintendo DSi added more on top of it (after removing the GBA Slot). Now we find ourselves with a new console combining interfaces from two decades (the 2000s and 2010s).
 
-![Main diagram of the console's architecture. You can sense that the I/O area on the left side was a strong selling point of this console.](diagram.png)
+![Main diagram of the console's architecture. You can sense that the I/O area on the left side was a strong selling point of this console.](diagram.png){.no-borders}
 
 To be fair, we still don't have a standard like USB, but that may be expendable considering the Nintendo 3DS bundles the following:
 

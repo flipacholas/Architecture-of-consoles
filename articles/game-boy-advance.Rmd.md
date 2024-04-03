@@ -39,7 +39,7 @@ Most of the components are combined into a single package called **CPU AGB**. Th
 
 Note that both CPUs will **never run at the same time** or do any fancy co-processing. The **only** reason for including the *very* old Sharp is for **backwards compatibility**.
 
-That being said, before we describe the ARM chip, I find it handy to start with the history behind this brand of CPUs.
+That being said, before I describe the ARM chip, I find it handy to start with the history behind this brand of CPUs.
 
 ### The Cambridge miracle
 
