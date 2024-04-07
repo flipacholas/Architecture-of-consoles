@@ -56,7 +56,7 @@ StrongARM was a new ARM-based CPU that featured [@cpu-furber]:
 - A **new cache system** implementing a **Harvard architecture**, where **16 KB** are allocated for instructions and another **16 KB** for data.
   - This design helped alleviate memory bottlenecks (something the von Neumann/Princeton model suffered from).
 
-It's worth mentioning that this chip still managed to work with a **3.3 V** supply, like previous ARM chips. In fact, the StrongARM only needs 2 Volts [@cpu-furber].
+It's worth mentioning that this chip still managed to work with a **3.3 V** supply, like previous ARM chips. In fact, the StrongARM only needs 2 Volts and only dissipates 1 W [@cpu-furber]. By contrast, Intel's 200 MHz Pentium chip pulls 3.5 V has a power dissipation of up to 15.5 W [@cpu-pentium]. 
 
 As expected, Acorn and Apple were so dazzled by the new chip that they immediately shipped CPU upgrades and further Newton models, respectively, using DEC's invention.
 

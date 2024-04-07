@@ -53,7 +53,7 @@ Having said that, let us take a look:
 
 #### Branding {.tabs .active}
 
-![How is this study organised.](cpu/branding.png){.tab-float}
+![How this study is organised.](cpu/branding.png){.tab-float}
 
 First things first, the Xbox's CPU is identified as a **Pentium III**. So what does this mean? Back then (early noughties), the Pentium series represented the next generation of CPUs. They were the 'new high-end' that grouped all the fancy technology that made computers super-fast, plus it helped buyers decide which CPU they had to buy if they wanted *the best of the best*.
 
@@ -107,15 +107,17 @@ There were numerous chips shipped that implement the P6 microarchitecture. Speci
 - 133 MHz **Front-side bus**: This is the bus that connects the L2 cache with the memory controller, we'll see more about it later on.
   - Intel names it 'Front-side bus' to distinguish it from another bus that connects L2 (external cache) with L1 (internal cache). The latter bus is called 'Back-side bus'... and it's an unfortunate name to use in the UK.
 
-Coppermine also adds two 'enhancements' over their original implementation of L2 cache, these are the **Advanced Transfer Cache** and the **Advanced System Buffering**. To sum them up, L2 cache is on-chip and their buses are wider, which help to reduce possible bottlenecks in the Front-side bus.
+Coppermine also adds two 'enhancements' over their original implementation of L2 cache, these are the **Advanced Transfer Cache** and the **Advanced System Buffering**. To sum them up, L2 cache is on-chip and their buses are wider, which helps to reduce possible bottlenecks in the Front-side bus.
 
 Finally, the chip uses the 'Micro-PGA2' socket fit on the motherboard, but like any other console, the Xbox has it soldered with a Ball Grid Array or 'BGA'.
 
 ### P6 and the end of Pentium numbers {.tabs-close}
 
-Here's a bit more history. After the years of the P6, Intel planned to succeed it with the 'NetBurst' microarchitecture (featured in the Pentium IV). However, the line of succession also ended there. Even though NetBurst implemented many contemporary techniques [@cpu-netburst], it also suffered from excessive power consumption, heat emission and scalability issues that impeded the design from being continued any further.
+Here's a bit more history. After the years of the P6, Intel planned to succeed it with the 'NetBurst' microarchitecture (featured in the Pentium IV). However, the line of succession also ended there. Even though NetBurst implemented many contemporary techniques [@cpu-netburst], it also suffered from excessive power consumption, heat emission (an average of 85 W [@cpu-pentium4]) and scalability issues - all of which impeded the design from being continued any further.
 
-Consequently, this prompted an Intel team in Israel to revisit their low-powered P6 CPU called 'Pentium M' and develop a more powerful successor. The first result was **Yonah**, a slight improvement of the P6 design branded as **Core Solo** or **Core Duo**. Months later, the new **Core** microarchitecture became the flagship successor of P6 (and NetBurst) with the arrival of the **Core 2** CPU line. Over the years, subsequent microarchitectures improved on many aspects, but they also managed to re-incorporate forgotten elements from NetBurst without repeating the same mistakes.
+Consequently, this prompted an Intel team in Israel to revisit their low-powered P6 CPU - the 'Pentium M' - and develop a more powerful successor. The first result was the **Yonah** core, a slight improvement of the P6 design branded as **Core Solo** or **Core Duo**. With it, power dissipation dropped to reasonable numbers (between 27 W [@cpu-coresolo] and 31 W [@cpu-coreduo], depending on the variant). Months later, the follow-up **Core** microarchitecture became the flagship successor of P6 (and NetBurst) and, confusingly enough, reached the shelves in the form of the **Core 2** CPU line. Over the years, subsequent microarchitectures improved on many aspects, but they also managed to re-incorporate forgotten elements from NetBurst without repeating the same mistakes.
+
+On a curious note, I wonder if the naming of the Yonah core is meant as a metaphor for the Book of Jonah, particularly connecting the event where the prophet, in the end, managed to correct his path to save the city of Nineveh. Though it's also possible I'm overthinking this.
 
 ### Motherboard architecture
 
@@ -154,7 +156,7 @@ This company has been in the graphics business for a long time, their *GeForce* 
 
 It all seems reasonable, but was it *really* a certain decision to make back then? It's easy to rely on present history to find out why Microsoft chose Nvidia over other popular brands from the time (3dfx, PowerVR, S3, etc), but if we read more about the competition back then, the panorama of options made it much more complex.
 
-For instance, 3dfx's popular 'Voodoo 2' series had ~70% of market share in the PC market by the end of the 90s [@graphics-ign], while Nvidia was struggling to promote adoption of the new 'GeForce 256' (the first of the GeForce series). After this, Microsoft's choice now sounds more like a risk than a safe bet, but as we know by now, this risk eventually paid off.
+For instance, 3dfx's popular 'Voodoo 2' series had ~70% of the market share in the PC market by the end of the 90s [@graphics-ign], while Nvidia was struggling to promote adoption of the new 'GeForce 256' (the first of the GeForce series). After this, Microsoft's choice now sounds more like a risk than a safe bet, but as we know by now, this risk eventually paid off.
 
 > Nvidia was NOT the #1 player they are now, in 1999. They were in trouble. The new GeForce architecture was still young and lots of people didn’t like it. Now it seems forgone. But you’d need to research that history to know that, and why I had to fight to use it. I was right but I didn’t know I was right; I was very worried.
 >
