@@ -5,7 +5,7 @@ name: Game Boy Advance
 date: 2019-08-18
 release_date: 2001-03-21
 generation: 6
-subtitle: One chip to rule them all
+subtitle: New partnerships powered by two AA batteries
 cover: gba
 top_tabs:
   Model:
