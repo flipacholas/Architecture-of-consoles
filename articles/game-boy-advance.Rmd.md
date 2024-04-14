@@ -73,9 +73,9 @@ Back in Japan, and thanks to the [Game Boy analysis](game-boy), we learnt that N
 
 ![CPU AGB, housing the ARM7TDMI CPU (among many other components).](cpu_agb.png)
 
-Fortunately, ARM's licensing model fitted just right for those needs. Additionally, a good reputation in the mobile sector spread the good word for ARM, especially during their mobile-focused offering called the **ARM7TDMI**, a CPU that received input from Nokia to maximise performance under power and storage constraints. Well, as luck would have it, Nintendo and ARM eventually became partners, and the Game Boy Advance's CPU pick was the ARM7TDMI.
+Fortunately, ARM's licensing model fitted just right for those needs. Both companies held talks since 1994 (a year before the [Virtual Boy](virtual-boy)'s launch) despite nothing materialising until many years later [@cpu-jaggar]. The reason was simple: the Japanese found unfeasible ARM's code density and the need for 32 buses (something the [Virtual Boy's CPU](virtual-boy#cpu) already managed to escape). Nevertheless, ARM's new CPU designer - Dave Jaggar - quickly answered with the **ARM7TDMI**, a new CPU that focused on maximising performance under power and storage constraints. **This was a turning point for ARM**, as this new product not only pleased Nintendo, but also got the attention of **Texas Instruments**, **Nokia** and the rest of the competitors in the cellphone arena.
 
-Let's now dive into what this chip offers to developers.
+Unsurprisingly, when Nintendo started working on the successor of the [Game Boy Color](game-boy#cpu), their CPU pick became the ARM7TDMI. Let's now dive into what this chip offers to developers.
 
 #### The instruction set {.tabs .active}
 
@@ -101,7 +101,7 @@ Finally, all of this can operate with a **3 Volt** power supply [@cpu-furber]. T
 
 #### Squeezing performance {.tab}
 
-One of the drawbacks of a load-store architecture led to ARM's code being very sparse. Competitors like x86 could perform the same tasks using smaller amounts of code, requiring less storage. Consequently, when ARM started selling to telecommunication companies, Nokia was not happy with this [@cpu-arm_history]. The size of ARM's instructions meant that Nokia's hardware comprised of 16-bit buses and limited memory and storage - all to save cost and energy - would make the CPU inefficient and bottlenecked. Thus, ARM came up with a solution: The **Thumb instruction set**.
+One of the drawbacks of a load-store architecture led to ARM's code being very **sparse**. Competitors like x86 could perform the same tasks using smaller amounts of code, requiring less storage. Consequently, when Nintendo took a look at ARM's latest design, the ARM7, they weren't pleased with it. The size of ARM's instructions meant that hypothetical gadgets comprised of 16-bit buses with limited memory and storage - all to save cost and energy - would make the CPU inefficient and bottlenecked. Luckily, Dave Jaggar had just finished designing the ARM7 and wouldn't give up yet. During his commute after meeting Nintendo, he came up with a solution: The **Thumb instruction set** [@cpu-jaggar].
 
 Thumb is a subset of the ARM instruction set whose instructions are encoded into **16-bit words** (as opposed to 32-bit) [@cpu-thomas]. Being 16-bit, Thumb instructions require **half the bus width** and occupy **half the memory**.
  
