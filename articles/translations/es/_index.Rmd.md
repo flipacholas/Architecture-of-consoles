@@ -29,4 +29,4 @@ Es preferible tener conocimientos básicos de informática; sin embargo, me he e
 
 Si bien intento ser los más preciso posible, si encuentra algún error no dude en [hacérmelo saber](https://github.com/flipacholas/Architecture-of-consoles). Por último, si prefiere leer con un lector de eBooks, échele un vistazo a la [edición eBook](ebook).
 
-Sin más preámbulos, ¡aquí están!
+Sin más preámbulos, ¡comenzemos!
