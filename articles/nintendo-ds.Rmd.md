@@ -50,9 +50,9 @@ In the end, DEC grabbed the datapath design of their **Alpha** processor and, wi
 
 StrongARM was a new ARM-based CPU that featured [@cpu-furber]:
 
-- The **ARMv4 instruction set**. If you want to know more about it, I've [previously analysed it](game-boy-advance#tab-2-1-the-instruction-set) in the Game Boy Advance article.
+- The **ARMv4 instruction set**. If you want to know more about it, I've [previously analysed it](game-boy-advance#commanding-the-cpu) in the Game Boy Advance article.
 - Up to **233 MHz** of clock speed, roughly 583% faster than the beefiest ARM7 chip.
-- **5-stage pipeline**, an increment from the original [3-stage design](game-boy-advance#tab-2-2-the-core).
+- **5-stage pipeline**, an increment from the original [3-stage design](game-boy-advance#the-core).
 - A **new cache system** implementing a **Harvard architecture**, where **16 KB** are allocated for instructions and another **16 KB** for data.
   - This design helped alleviate memory bottlenecks (something the von Neumann/Princeton model suffered from).
 
@@ -90,7 +90,7 @@ Now for the changes: Because Nintendo's engineers placed the ARM7 next to most o
 
 Here is the 'main' CPU of the Nintendo DS, the **ARM946E-S**. It runs at **~67 MHz**, so not exactly 'StrongARM speed'. Yet, being part of the **ARM9 series**, this core in particular not only inherits all the features of the **ARM7TDMI** and **StrongARM**, but also includes some additional bits you may find interesting [@cpu-arm9reference]:
 
-- The **ARMv5TE ISA**, consisting of the [previous ARMv4 ISA](game-boy-advance#tab-2-1-the-instruction-set) and [Thumb](game-boy-advance#tab-2-3-squeezing-performance), along with more instructions and a faster multiplier.
+- The **ARMv5TE ISA**, consisting of the [previous ARMv4 ISA](game-boy-advance#commanding-the-cpu) and [Thumb](game-boy-advance#tab-2-3-squeezing-performance), along with more instructions and a faster multiplier.
   - If you take a look at the core name, the letter 'E' means **Enhanced DSP** which implies that lots of these new instructions have to do with applications for signal processing.
 - **5-stage Pipeline**, like the StrongARM and ARM8 line.
 - **12 KB of L1 Cache**: The core now features cache (originally lacking in the ARM7TDMI) and, similar to the Hardvard-based StrongARM, **8 KB** are allocated for instructions and **4 KB** for data.
