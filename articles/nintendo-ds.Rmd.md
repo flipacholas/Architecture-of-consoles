@@ -62,7 +62,7 @@ As expected, Acorn and Apple were so dazzled by the new chip that they immediate
 
 In the same year, ARM also released their promised ARM8-based CPU (called ARM810). The latter was comparably slower and offered no practical advantages over the StrongARM. So, too little and too late resulted in no commercial interest. Consequently, ARM moved on to improving the ARM7 line for the mobile market. However, the potential of StrongARM was so disruptive that ARM Holdings absorbed some of StrongARM's features to produce their next line of CPUs, the **ARM9** (which the Nintendo DS houses).
 
-Furthermore, StrongARM also helped ARM cement its position in the handheld market, eventually displacing [MIPS](nintendo-64#cpu) and [SuperH](dreamcast#cpu). Since then, ARM has become the most adopted architecture in mobile devices.
+Thanks to the StrongARM, ARM cemented its position in the handheld market, completely displacing [MIPS](nintendo-64#cpu) and [SuperH](dreamcast#cpu) as viable alternatives. From then on, ARM was on route to become the most adopted architecture in mobile devices [@cpu_android_abi].
 
 Unfortunately for DEC, this CPU will be their last major achievement before being acquired by Compaq in 1998.
 
@@ -90,10 +90,11 @@ Now for the changes: Because Nintendo's engineers placed the ARM7 next to most o
 
 Here is the 'main' CPU of the Nintendo DS, the **ARM946E-S**. It runs at **~67 MHz**, so not exactly 'StrongARM speed'. Yet, being part of the **ARM9 series**, this core in particular not only inherits all the features of the **ARM7TDMI** and **StrongARM**, but also includes some additional bits you may find interesting [@cpu-arm9reference]:
 
-- The **ARMv5TE ISA**, consisting of the [previous ARMv4 ISA](game-boy-advance#commanding-the-cpu) and [Thumb](game-boy-advance#tab-2-3-squeezing-performance), along with more instructions and a faster multiplier.
+- The **ARMv5TE ISA**, an extension of the [previous ARMv4 ISA](game-boy-advance#commanding-the-cpu) and [Thumb](game-boy-advance#tab-2-3-squeezing-performance), including more instructions and a faster multiplier.
   - If you take a look at the core name, the letter 'E' means **Enhanced DSP** which implies that lots of these new instructions have to do with applications for signal processing.
+  - The extended Thumb is sometimes called **Thumb v2**. It adds `BLX` and `BKPT`, which assists the switching between ARM and Thumb mode; and facilitates debugging, respectively.
 - **5-stage Pipeline**, like the StrongARM and ARM8 line.
-- **12 KB of L1 Cache**: The core now features cache (originally lacking in the ARM7TDMI) and, similar to the Hardvard-based StrongARM, **8 KB** are allocated for instructions and **4 KB** for data.
+- **12 KB of L1 Cache**: The core now features cache (originally lacking in the ARM7TDMI) and, akin to the Hardvard-based StrongARM, **8 KB** are allocated for instructions and **4 KB** for data.
   - The cache employs a **write buffer** mechanism where RAM is updated asynchronously, so the CPU can work on other tasks.
 - **48 KB of Tightly-Coupled Memory** or 'TCM': Similar to [Scratchpad memory](playstation#cpu). Although, this one discriminates between instructions (32 KB) and data (16 KB).
 - An integrated **CP15 co-processor**. It acts as a **Memory Protection Unit (MPU)**, stipulating which memory ranges can be accessed, cached and/or written to.
