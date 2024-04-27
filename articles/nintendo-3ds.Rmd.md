@@ -149,11 +149,11 @@ Using ARM's designs, Nintendo crafted an ARM11 MPCore cluster housing **two** AR
 
 ### An iconic industry
 
-The ARM11 series originates from 2002, and in the coming years it became a flagship in the mobile CPU sector, displacing the popular [ARM9](nintendo-ds#arms-new-territories), the short-lived ARM10 and Intel's XScale (the continuation of [StrongARM](nintendo-ds#arms-new-territories), which Intel later abandoned in favour of 'mobile' [x86 CPUs](xbox#p6-and-the-end-of-pentium-numbers)... oh well!).
+The ARM11 series originated in 2002. In the coming years, it became a flagship in the mobile CPU sector, displacing the popular [ARM9](nintendo-ds#arms-new-territories), the short-lived ARM10 and Intel's XScale (the continuation of [StrongARM](nintendo-ds#arms-new-territories), which Intel later liquidated to focus on 'mobile' [x86 CPUs](xbox#p6-and-the-end-of-pentium-numbers)... if only they knew!).
 
 ![A Nokia 5230 (2009), a red 3DS (2011) and a Raspberry Pi Model B (2012), all carrying an ARM11.](cpu/devices.webp)
 
-In case you haven't heard about them before, ARM11s are best known for powering the 2006-2009 generation of smartphones (back when many of them featured a keypad or a clamshell design). If you owned a Nokia N95, 5230 or the first iPhone, you've used an ARM11. This also applied to many high-end cameras, GPS or similar peripherals. Curiously enough, other manufacturers like RIM and Samsung held onto the Intel XScale until 2009. Last but not least, the ARM11 was the choice of CPU for the first Raspberry Pi model.
+In case you haven't heard about them before, ARM11s are best known for powering the 2006-2009 generation of smartphones (back when many of them featured a keypad or a clamshell design). If you owned a Nokia N95, 5230 or the first iPhone, you've used an ARM11. This also applied to many high-end cameras, GPS or similar peripherals. Curiously enough, other manufacturers like RIM and Samsung held onto the Intel XScale until 2009. Last but not least, the ARM11 was also the choice of CPU for the first Raspberry Pi.
 
 Now, by the time Nintendo adopted the ARM11, its creator had already succeeded it with the Cortex-A series. This is nothing but expected, as Nintendo's model [favours cost-effectiveness](game-boy#cpu) over avant-garde CPUs. Look at it from another way, saving in CPU costs allows them to focus their budget on other aspects of the console, you'll soon see.
 
@@ -178,7 +178,7 @@ The adoption of extensions and alternative instruction sets eventually made thin
 
 Debian, one of the most popular distributions, tried to tackle the disparities by developing two ports in parallel:
 
-- `armel`: Widely compatible (ARMv4T, onwards).
+- `armel`: Widely compatible ([ARMv4T](game-boy-advance#the-arm7tdmi) and onwards).
 - `armhf`: Accelerated with VFP, but only compatible with ARMv7 onwards.
 
 Yet, with the arrival of the Raspberry Pi (powered by ARMv6 and accelerated with VFP), neither of them was deemed acceptable. Thus, an unofficial port called 'Raspbian' was developed to provide a VFP-accelerated version for ARMv6 CPUs [@cpu-armhf]. Even so, the trend continued: years later, with the arrival of ARMv8 and AArch64, Debian spawned yet-another port, `arm64`, optimised for the new 64-bits ISA.
@@ -202,13 +202,13 @@ Let's start with the cores now and then we'll check the AXI bus.
 
 The first ARM11 MPCore variant, which debuted with the original 3DS, includes two cores. Each is called **MP11** and runs at **268 MHz** [@cpu-lioncash].
 
-Apart from implementing the ARMv6k instruction set, the CPU features an **8-stage pipeline** [@cpu-arm_reference]. Furthermore, the core provides **two levels of branch prediction**, 'dynamic' (based on previous executions) and 'static' (based on the current instruction alone). Overall, both enhancements will be quickly noticed, considering the 5-stage ARM9 couldn't predict a thing!
+Apart from implementing the ARMv6k instruction set, the MP11 features an **8-stage pipeline** [@cpu-arm_reference] and it's complemented with **two levels of branch prediction**: 'dynamic' (based on previous executions) and 'static' (based on the current instruction alone). Overall, I sense these new additions are part of a new design philosophy that will eventually obsolete the iconic [conditional execution](game-boy-advance#commanding-the-cpu), although we won't notice this until the next generation.
 
 Additionally, since the [ARM946E-S CPU](nintendo-ds#tab-1-2-arm946e-s), ARM has been fitting a **System Control Coprocessor** called **CP15**. This time, it provides **Memory-Management** (MMU functions) and registers that output information about the MPCore cluster.
 
-Now, there's no more **Tightly-Coupled Memory** (TCM). There are however **16 KB of instruction cache** and **16 KB of data cache**, this change of model resembles other systems of the same generation. If you are curious, this L1 cache is 4-way set associative.
+Now, there's **no more Tightly-Coupled Memory** (TCM). There are however **16 KB of instruction cache** and **16 KB of data cache**, this change of model resembles other systems of the same generation. If you are curious, this L1 cache is 4-way set associative.
 
-Finally, each core houses a co-processor called **Vector Floating-point Coprocessor** (also known as 'VFP11'). This accelerates arithmetic operations with floating-point numbers, both 32-bit single-precision (a.k.a. `float`) and 64-bit double-precision (a.k.a. `double`) ones [@cpu-vfp]. It's not a big coprocessor though, as its register file is composed of 32 32-bit registers, so doubles will consume two registers. In any case, this processor implements the **VFPv2 instruction set** and follows the **IEEE 754** standard. The latter is a welcomed decision, considering the architecture of [previous generations](playstation-2#the-leader).
+Finally, each core houses a co-processor called **Vector Floating-point Coprocessor** (also known as 'VFP11'). This accelerates arithmetic operations with floating-point numbers, both 32-bit single-precision (a.k.a. `float`) and 64-bit double-precision (a.k.a. `double`) ones [@cpu-vfp]. It's not a big coprocessor though, as its register file is composed of thirty-two 32-bit registers, so doubles will consume two registers. In any case, this processor implements the **VFPv2 instruction set** and follows the **IEEE 754** standard. The latter is a welcomed decision, considering the [difficulties of previous generations](playstation-2#the-leader).
 
 #### The 'New' MPCore {.tab}
 
