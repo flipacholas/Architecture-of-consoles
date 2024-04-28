@@ -1,0 +1,275 @@
+[author_footer_first]
+other = 'آمل أن تكون قد استمتعت بهذا المقال! إذا كنت ترغب في معرفة المزيد عن المؤلف <a href="{{ . }}">انقر هنا</a>'
+
+[author_footer_second]
+other = 'وإذا كنت ترغب في دعمه <a href="{{ . }}">اضغط هنا</a> بدلا من ذلك'
+
+[languages_available]
+other = "اللغات المتاحة: "
+
+[help_translations]
+other = "ساعد في الترجمة"
+
+[add_translation]
+other = "اضافة ترجمة"
+
+[report_mistakes]
+other = "الإبلاغ عن الأخطاء أو اقتراح تغييرات"
+
+[supporting_readings]
+other = "تحقق من القراءات الداعمة"
+
+[tablet_mode_button]
+other = "إخفاء الألسنة / وضع الجهاز اللوحي"
+
+[desktop_mode_button]
+other = "عرض الألسنة / وضع سطح المكتب"
+
+[next]
+other = "التالي"
+
+[previous]
+other = "السابق"
+
+[table-of-contents]
+other = "جدول المحتويات"
+
+[show]
+other = "إظهار"
+
+[hide]
+other = "إخفاء"
+
+[translations]
+other = "ترجمات"
+
+[related]
+other = "المزيد في '{{ . }}' &raquo;"
+
+[ebook_edition_title]
+other = "احصل على نسخ الكتاب الإلكتروني"
+
+[ebook_edition_content]
+other = 'يمكنك الآن قراءة سلسلة <a href="{{ .consoles }}">Architecture of Consoles</a> أيضًا على قارئ الكتب الإلكترونية. <a href="{{ .ebooks }}">تحقق منها هنا</a>.'
+
+[home]
+other = "الرئيسية"
+
+[nav_writings]
+other = "الكتابات"
+
+[nav_console]
+other = "وحدة التحكم"
+
+[nav_blog]
+other = "المدونة"
+
+[about]
+other = "حول"
+
+[about_website_long]
+other = "حول الموقع ومحتواه"
+
+[support]
+other = "الدعم الفني"
+
+[about_author]
+other = "نبذة عن المؤلف"
+
+[about_website]
+other = "حول الموقع"
+
+[switch_modern]
+other = "التبديل إلى الإصدار الحديث"
+
+[switch_classic]
+other = "التبديل إلى النسخة الكلاسيكية"
+
+[ebook_edition]
+other = "نسخة الكتاب الإلكتروني"
+
+[about_edition]
+other = "حول هذه النسخة"
+
+[last_updated]
+other = "آخر تحديث: {{ . }}"
+
+[classic_edition]
+other = "النسخة الكلاسيكية"
+
+[classic_intro]
+other = "النسخة 'الكلاسيكية' هي نسخة بديلة لـ <a href=\"{{ .modern }}\">النظير 'الحديث'</a>. لا تتطلب جافا سكريبت أو CSS حديث أو HTML معقد للعمل، مما يجعلها مثالية للقراء الذين يستخدمون أدوات الوصول أو المتصفحات القديمة. من ناحية أخرى، يمكن لمستخدمي الكتب الإلكترونية الآن التحقق من <a href=\"{{ .ebook }}\">نسخة الكتاب الإلكتروني</a>."
+
+[classic_description]
+other = "هذه الطبعة متطابقة في المحتوى. ومع ذلك، تم تبسيط الأدوات التفاعلية للعمل مع HTML الخالصة، على الرغم من أن هذه ستوفر رابط إلى المقالة الأصلية في حالة ما إذا كان القارئ يريد تجربة الإصدار الكامل."
+
+[general_description]
+other = 'كما هو الحال دائما، هذه المقالة متاحة على <a href="{{ .github }}">Github</a> لتمكين القراء من الإبلاغ عن الأخطاء أو اقتراح التغييرات. هناك أيضا <a href="{{ .readings }}">قائمة قراءة داعمة</a> متوفرة للمساعدة في فهم السلسلة. كما يقبل المؤلف <a href="{{ .donations }}">تبرعات</a> للمساعدة في تحسين نوعية المقالات الحالية والمقبلة.'
+
+[subscribe_title]
+other = "البقاء محدث"
+
+[subscribe_content]
+other = 'أنا أقوم بنشر التحديثات على <a href="{{ . }}">ملفي الشخصي على تويتر</a>، ولكن يمكنك أيضًا الحصول على بريد إلكتروني عند نشر مقال جديد. يمكنك إلغاء الاشتراك في أي وقت، أستخدم Mailchimp للتعامل مع هذا.'
+
+[generation_title]
+other = "توليد {{ .ordinal }}"
+
+[untranslated_article_title]
+other = "{{.}} (بالإنجليزية)"
+
+[cpu_subtitle]
+other = "التقدم الملحوظ في المعالجات:"
+
+[gpu_subtitle]
+other = "ميزات كرت الشاشه المتميزة:"
+
+[roadmap_title]
+other = "خارطة الطريق"
+
+[roadmap_content]
+other = "هناك العديد من وحدات التحكم التي يمكنني الكتابة عنها... إذا كنت تتساءل ما هو التالي في قائمتي هنا:"
+
+[contribution_content]
+other = "إذا وجدت مقالاتي مثيرة للاهتمام، فيرجى النظر في التبرع. وستستخدم مساهمتكم في تمويل شراء الأدوات والموارد التي ستساعدني على تحسين نوعية المقالات الموجودة والمقالات المقبلة. وأقدم أيضا قائمة بالمواد المثيرة للاهتمام التي ستحصل عليها في نهاية كل مادة."
+
+[contribution_footer]
+other = "كعربون شكر، سيتم تضمين اسمك في قسم الاعتمادات من المقالة التالية أو المقالة التي تم ترشيحها، ما لم يتم الإعلان خلاف ذلك."
+
+[contribution_footer_ebook]
+other = 'يمكنك أيضًا شراء <a href="{{ . }}">نسخة الكتاب الإلكتروني</a> باللغة الإنجليزية. أعتبر الأرباح كتبرعات.'
+
+[contribution_suggestions]
+other = 'بدلاً من ذلك، يمكنك المساعدة من خلال <a href="{{ . }}">اقتراح تغييرات</a> و/أو <a href="{{ . }}">إضافة ترجمات</a>.'
+
+[print]
+other = "طباعة المقالة (أو حفظ إلى PDF)"
+
+[architecture_consoles]
+other = "معمارية مشغلات الألعاب"
+
+[top_model]
+other = "الطراز"
+
+[top_models]
+other = "نماذج"
+
+[motherboard_title]
+other = "اللوحة الأم"
+
+[motherboard_note]
+other = "لوحة الأم مع أجزاء مهمة معلمة"
+
+[diagram_title]
+other = "الرسوم البيانية"
+
+[diagram_note]
+other = "الرسم البياني المعماري الرئيسي"
+
+[original]
+other = "الأصل"
+
+[marked]
+other = "معلم"
+
+[contributing_title]
+other = "المساهمة"
+
+[contributing_content]
+other = 'هذه المقالة هي جزء من <a href="{{ . }}">معماري Consoles</a> السلسلة. إذا وجدتها مثيرة للاهتمام، فيرجى النظر في التبرع. وستستخدم مساهمتكم في تمويل شراء الأدوات والموارد التي ستساعدني على تحسين نوعية المقالات الموجودة والمقالات المقبلة.'
+
+[contributing_tools]
+other = "وتتبع هنا قائمة بالأدوات المستصوبة وآخر عمليات الاقتناء لهذه المادة:"
+
+[contributing_thanks]
+other = "شكر جزيل الشكر للأشخاص التالية أسماؤهم على تبرعهم:"
+
+[changelog_title]
+other = "سِجل التغييرات"
+
+[changelog_content]
+other = 'دائماً يكون من الجيد الاحتفاظ بسجل للتغييرات. للحصول على تقرير كامل، يمكنك التحقق من <a href="{{ . }}">سجل الالتزام</a>. بديلاً، هنا قائمة مبسطة:'
+
+[supporting_imagery]
+other = "الصور الداعمة"
+
+[consoles_written_by]
+other = "تحليل عملي من قبل {{ . }}"
+
+[translated_by]
+other = "الترجمة بواسطة {{ . }}"
+
+[interactive_model_origin]
+other = 'النموذج التفاعلي متوفر في <a href="{{ . }}">الطبعة الحديثة</a>'
+
+[interactive_player_origin]
+other = 'النموذج التفاعلي متوفر في <a href="{{ . }}">الطبعة الحديثة</a>'
+
+[goto_classic]
+other = "إذا كنت تستخدم أدوات الوصول أو المتصفحات القديمة، <a href=\"{{ .classic }}\">قم بالتبديل إلى النسخة 'الكلاسيكية'</a>."
+
+[audio_samples]
+other = "عينات صوتية"
+
+[wireframe]
+other = "السلكي"
+
+[surface]
+other = "خروج للسطح"
+
+[textured]
+other = "البنيات"
+
+[tap_enable_interaction]
+other = "اضغط لتفعيل الإشعارات"
+
+[buffering]
+other = "التخزين المؤقت..."
+
+[ready_drag_zoom]
+other = "مستعد للسحب والتكبير!"
+
+[sources]
+other = "المصادر / الاستمرار في القراءة"
+
+[archived]
+other = "الأرشيف"
+
+[general]
+other = "عام"
+
+[cpu]
+other = "المعالج"
+
+[graphics]
+other = "الجرافيك"
+
+[audio]
+other = "صوت"
+
+[audio_video]
+other = "صوت / ڤديو"
+
+[io]
+other = "I/O"
+
+[operating_system]
+other = "نظام التشغيل"
+
+[games]
+other = "الألعاب"
+
+[anti_piracy]
+other = "مكافحة القرصنة"
+
+[copy_protection]
+other = "حماية النسخ"
+
+[photography]
+other = "الفوتوغرافي"
+
+[other_media]
+other = "الوسائط الأخرى"
+
+[bonus]
+other = "إضافي"
