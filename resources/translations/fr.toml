@@ -46,6 +46,12 @@ other = "Traductions"
 [related]
 other = "Plus sur « {{ . }} » &raquo;"
 
+[ebook_edition_title]
+other = "Obtenez les éditions eBook"
+
+[ebook_edition_content]
+other = 'Vous pouvez aussi lire la série <a href="{{ .consoles }}">Architecture des consoles de jeux</a> sur vos lecteurs eBook.<a href="{{ .ebooks }}"> À lire ici</a>.'
+
 [home]
 other = "Accueil"
 
@@ -79,6 +85,9 @@ other = "Basculer vers l'édition moderne"
 [switch_classic]
 other = "Basculer vers l'édition classique"
 
+[ebook_edition]
+other = "Édition eBook"
+
 [about_edition]
 other = "À propos de cette édition"
 
@@ -89,7 +98,7 @@ other = "Dernière mise à jour : {{ . }}"
 other = "Édition classique"
 
 [classic_intro]
-other = "L'édition « classique » est une alternative à la <a href=\"{{ . }}\">version « moderne »</a>. Elle ne nécessite pas JavaScript, de CSS de pointe ni de HTML sophistiqué pour fonctionner, ce qui la rend idéale pour les utilisateurs de liseuses, d'anciens navigateurs web ou pour les lecteurs qui utilisent des outils d'accessibilité."
+other = "L'édition 'classique' est une version alternative à la <a href=\"{{ .modern }}\">contrepartie 'moderne'</a>. Elle ne nécessite pas Javascript, CSS de pointe ou HTML compliqué pour fonctionner, ce qui la rend idéale pour les lecteurs qui utilisent des outils d'accessibilité ou des navigateurs Internet obsolètes. D'autre part, les utilisateurs de livres électroniques peuvent maintenant consulter l'<a href=\"{{ .ebook }}\">édition eBook</a>."
 
 [classic_description]
 other = "Cette édition est identique du point de vue du contenu. Toutefois, les widgets interactifs ont été simplifiés pour fonctionner avec du HTML pur, bien qu'ils offrent un lien vers l'article original au cas où le lecteur voudrait essayer la « version complète »."
@@ -105,6 +114,9 @@ other = "Je publie des mises à jour sur mon <a href=\"{{ . }}\">profil Twitter<
 
 [generation_title]
 other = "Génération {{ .ordinal }}"
+
+[untranslated_article_title]
+other = "{{.}} (en anglais)"
 
 [cpu_subtitle]
 other = "Avancées notables du processeur :"
@@ -124,8 +136,8 @@ other = "Si vous trouvez mes articles intéressants, pensez à faire un don. Vot
 [contribution_footer]
 other = "En guise de remerciement, votre nom sera inclus dans la section des contributions du prochain article ou de celui que vous aurez choisi, sauf indication contraire."
 
-[contribution_footer_funding]
-other = "J'ai également mis en place un Ko-fi afin de collecter des fonds pour apporter des améliorations spécifiques au site :"
+[contribution_footer_ebook]
+other = "Vous pouvez aussi acheter l'<a href=\"{{ . }}\">édition eBook</a> en anglais. Je traite les profits comme des dons."
 
 [contribution_suggestions]
 other = 'Sinon, vous pouvez aider en <a href="{{ . }}">suggérant des changements</a> et/ou <a href="{{ . }}">en ajoutant des traductions</a>.'
@@ -176,7 +188,7 @@ other = "Un grand merci à ces personnes pour leurs dons :"
 other = "Historique des changements"
 
 [changelog_content]
-other = "C'est toujours bon de garder une trace des changements."
+other = 'Il est toujours agréable de conserver un enregistrement des modifications. Pour un rapport complet, vous pouvez consulter le <a href="{{ . }}">journal des commits</a>. Alternativement, voici une liste simplifiée :'
 
 [supporting_imagery]
 other = "Images de référence"
