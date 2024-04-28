@@ -1,0 +1,275 @@
+[author_footer_first]
+other = 'Ich hoffe, Ihnen hat dieser Artikel gefallen! Wenn Sie mehr über den Autor erfahren möchten <a href="{{ . }}">klicken Sie hier</a>'
+
+[author_footer_second]
+other = 'und wenn Sie ihn unterstützen möchten, <a href="{{ . }}">klicken Sie hier</a>'
+
+[languages_available]
+other = "Verfügbare Sprachen: "
+
+[help_translations]
+other = "Bei der Übersetzung helfen"
+
+[add_translation]
+other = "Übersetzung hinzufügen"
+
+[report_mistakes]
+other = "Fehler melden oder Änderungen vorschlagen"
+
+[supporting_readings]
+other = "Unterstützende Lesungen überprüfen"
+
+[tablet_mode_button]
+other = "Tabs verbergen / Tablet-Modus"
+
+[desktop_mode_button]
+other = "Tabs anzeigen / Desktop-Modus"
+
+[next]
+other = "Weiter"
+
+[previous]
+other = "Zurück"
+
+[table-of-contents]
+other = "Inhaltsverzeichnis"
+
+[show]
+other = "Zeigen"
+
+[hide]
+other = "Ausblenden"
+
+[translations]
+other = "Übersetzungen"
+
+[related]
+other = "Mehr auf '{{ . }}' &raquo;"
+
+[ebook_edition_title]
+other = "Holen Sie sich die eBook-Ausgaben"
+
+[ebook_edition_content]
+other = 'Sie können die Serie <a href="{{ .consoles }}">Architektur der Konsolen</a> jetzt auch auf eBook-Lesegeräten lesen. <a href="{{ .ebooks }}">Schauen Sie es sich hier an</a>.'
+
+[home]
+other = "Start"
+
+[nav_writings]
+other = "Arbeiten"
+
+[nav_console]
+other = "Konsolen"
+
+[nav_blog]
+other = "Blog"
+
+[about]
+other = "Über"
+
+[about_website_long]
+other = "Über die Website und ihren Inhalt"
+
+[support]
+other = "Support"
+
+[about_author]
+other = "Über den Autor"
+
+[about_website]
+other = "Über die Webseite"
+
+[switch_modern]
+other = "Wechseln zur modernen Ausgabe"
+
+[switch_classic]
+other = "Wechseln zur klassischen Ausgabe"
+
+[ebook_edition]
+other = "eBook Edition"
+
+[about_edition]
+other = "Über diese Ausgabe"
+
+[last_updated]
+other = "Zuletzt aktualisiert: {{ . }}"
+
+[classic_edition]
+other = "Klassische Ausgabe"
+
+[classic_intro]
+other = "Die 'klassische' Ausgabe ist eine alternative Version zur <a href=\"{{ .modern }}\">'modernen' Ausgabe</a>. Sie benötigt kein Javascript, modernes CSS oder kompliziertes HTML, was sie ideal für Leser macht, die Zugangshilfen oder veraltete Internetbrowser verwenden. Andererseits können eBook-Nutzer nun die <a href=\"{{ .ebook }}\">eBook-Ausgabe</a> überprüfen."
+
+[classic_description]
+other = "Diese Ausgabe ist inhaltlich identisch. Allerdings wurden interaktive Widgets vereinfacht, um mit reinem HTML zu funktionieren, obwohl diese einen Link zum Originalartikel anbieten, falls der Leser die 'Vollversion' ausprobieren möchte."
+
+[general_description]
+other = 'Wie immer ist dieser Artikel auf <a href="{{ .github }}">Github</a> verfügbar, um den Lesern die Meldung von Fehlern oder das Vorschlagen von Änderungen zu ermöglichen. Es gibt auch eine <a href="{{ .readings }}">unterstützende Leseliste</a>, die beim Verständnis der Serie hilft. Der Autor akzeptiert auch <a href="{{ .donations }}">Spenden</a>, um die Qualität der aktuellen Artikel und der kommenden zu verbessern.'
+
+[subscribe_title]
+other = "Bleiben Sie auf dem Laufenden"
+
+[subscribe_content]
+other = 'Ich poste Updates auf meinem <a href="{{ . }}">Twitter-Profil</a>, aber Sie können auch eine E-Mail erhalten, wenn ein neuer Artikel veröffentlicht wird. Sie können sich jederzeit abmelden, ich verwende Mailchimp für diese Aufgabe.'
+
+[generation_title]
+other = "{{ .ordinal }} Generation"
+
+[untranslated_article_title]
+other = "{{.}} (in Englisch)"
+
+[cpu_subtitle]
+other = "Bemerkenswerte CPU-Fortschritte:"
+
+[gpu_subtitle]
+other = "Hervorragende GPU-Funktionen:"
+
+[roadmap_title]
+other = "Fahrplan"
+
+[roadmap_content]
+other = "Es gibt viele Konsolen, über die ich schreiben könnte... Wenn Sie sich fragen, was als nächstes auf meiner Liste steht, hier ist es:"
+
+[contribution_content]
+other = "Wenn Sie meine Artikel interessant finden, dann erwägen Sie bitte eine Spende. Ihre Beitrag wird verwendet, um den Kauf von Werkzeugen und Ressourcen zu finanzieren, die mir helfen, die Qualität der bestehenden Artikel und der kommenden zu verbessern. Ich stelle auch eine Liste von interessanten Materialien zur Verfügung, die am Ende jedes Artikels erworben werden können."
+
+[contribution_footer]
+other = "Als Zeichen der Dankbarkeit wird Ihr Name im Abschnitt Credits des nächsten Artikels oder Ihres nominierten Artikels aufgeführt, sofern nicht anders angegeben."
+
+[contribution_footer_ebook]
+other = 'Sie können auch die <a href="{{ . }}">eBook-Ausgabe</a> auf Englisch kaufen. Ich betrachte Gewinne als Spenden.'
+
+[contribution_suggestions]
+other = 'Alternativ können Sie helfen, indem Sie <a href="{{ . }}">Änderungen vorschlagen</a> und/oder <a href="{{ . }}">Übersetzungen hinzufügen</a>.'
+
+[print]
+other = "Artikel drucken (oder als PDF speichern)"
+
+[architecture_consoles]
+other = "Architektur von Konsolen"
+
+[top_model]
+other = "Modell"
+
+[top_models]
+other = "Modelle"
+
+[motherboard_title]
+other = "Hauptplatine"
+
+[motherboard_note]
+other = "Motherboard mit wichtigen Teilen beschriftet"
+
+[diagram_title]
+other = "Diagramm"
+
+[diagram_note]
+other = "Hauptarchitekturdiagramm"
+
+[original]
+other = "Original"
+
+[marked]
+other = "Beschriftet"
+
+[contributing_title]
+other = "Mitwirken"
+
+[contributing_content]
+other = 'Dieser Artikel ist Teil der Serie <a href="{{ . }}">Architektur der Konsolen</a>. Wenn Sie ihn interessant fanden, dann erwägen Sie bitte eine Spende. Ihr Beitrag wird verwendet, um den Kauf von Werkzeugen und Ressourcen zu finanzieren, die mir helfen, die Qualität der bestehenden Artikel und der kommenden zu verbessern.'
+
+[contributing_tools]
+other = "Eine Liste der wünschenswerten Werkzeuge und neuesten Errungenschaften für diesen Artikel finden Sie hier:"
+
+[contributing_thanks]
+other = "Vielen Dank an die folgenden Personen für ihre Spende:"
+
+[changelog_title]
+other = "Änderungsprotokoll"
+
+[changelog_content]
+other = 'Es ist immer gut, eine Aufzeichnung von Änderungen zu haben. Für einen vollständigen Bericht können Sie das <a href="{{ . }}">Commit-Log</a> überprüfen. Alternativ finden Sie hier eine vereinfachte Liste:'
+
+[supporting_imagery]
+other = "Unterstützende Bilder"
+
+[consoles_written_by]
+other = "Eine praktische Analyse von {{ . }}"
+
+[translated_by]
+other = "Übersetzt von {{ . }}"
+
+[interactive_model_origin]
+other = 'Interaktives Modell verfügbar in der <a href="{{ . }}">modernen Ausgabe</a>'
+
+[interactive_player_origin]
+other = 'Interaktiver Player verfügbar in der <a href="{{ . }}">modernen Ausgabe</a>'
+
+[goto_classic]
+other = "Wenn Sie Zugangshilfen oder alte Browser verwenden, <a href=\"{{ .classic }}\">wechseln Sie zur 'klassischen' Ausgabe</a>."
+
+[audio_samples]
+other = "Audio-Proben"
+
+[wireframe]
+other = "Wireframe"
+
+[surface]
+other = "Oberfläche"
+
+[textured]
+other = "Texturiert"
+
+[tap_enable_interaction]
+other = "Tippen Sie, um die Interaktion zu aktivieren"
+
+[buffering]
+other = "Puffern..."
+
+[ready_drag_zoom]
+other = "Bereit zum Ziehen und Zoomen!"
+
+[sources]
+other = "Quellen / Weiterlesen"
+
+[archived]
+other = "Archiviert"
+
+[general]
+other = "Allgemein"
+
+[cpu]
+other = "CPU"
+
+[graphics]
+other = "Grafik"
+
+[audio]
+other = "Audio"
+
+[audio_video]
+other = "Audio / Video"
+
+[io]
+other = "E/A"
+
+[operating_system]
+other = "Betriebssystem"
+
+[games]
+other = "Spiele"
+
+[anti_piracy]
+other = "Kopierschutz"
+
+[copy_protection]
+other = "Kopierschutz"
+
+[photography]
+other = "Fotografie"
+
+[other_media]
+other = "Andere Medien"
+
+[bonus]
+other = "Bonus"
