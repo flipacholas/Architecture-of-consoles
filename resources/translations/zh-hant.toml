@@ -1,0 +1,275 @@
+[author_footer_first]
+other = "希望您喜歡這篇文章！如果您想瞭解更多關於作者的資訊，<a href=“{{ . }}”>點擊這裡</a>"
+
+[author_footer_second]
+other = "也可以<a href=“{{ . }}”>點擊這裡</a>以支援他"
+
+[languages_available]
+other = "可用語言： "
+
+[help_translations]
+other = "協助翻譯"
+
+[add_translation]
+other = "新增翻譯"
+
+[report_mistakes]
+other = "報告錯誤或建議修改"
+
+[supporting_readings]
+other = "查看支持閱讀"
+
+[tablet_mode_button]
+other = "隱藏標籤/平板模式"
+
+[desktop_mode_button]
+other = "顯示標籤/桌面模式"
+
+[next]
+other = "下一頁"
+
+[previous]
+other = "上一頁"
+
+[table-of-contents]
+other = "目錄"
+
+[show]
+other = "顯示"
+
+[hide]
+other = "隱藏"
+
+[translations]
+other = "翻譯"
+
+[related]
+other = "在 '{{ . }}' 看更多 »"
+
+[ebook_edition_title]
+other = "獲取電子書版本"
+
+[ebook_edition_content]
+other = '您現在也可以在電子書讀者上閱讀<a href="{{ .consoles }}">遊戲機的架構</a>系列。在<a href="{{ .ebooks }}">這裡查看</a>。'
+
+[home]
+other = "主頁"
+
+[nav_writings]
+other = "著作"
+
+[nav_console]
+other = "遊戲機"
+
+[nav_blog]
+other = "博客"
+
+[about]
+other = "關於"
+
+[about_website_long]
+other = "關於網站和其內容"
+
+[support]
+other = "支援"
+
+[about_author]
+other = "關於作者"
+
+[about_website]
+other = "關於網站"
+
+[switch_modern]
+other = "切換至現代版"
+
+[switch_classic]
+other = "切換至經典版"
+
+[ebook_edition]
+other = "電子書版本"
+
+[about_edition]
+other = "關於此版本"
+
+[last_updated]
+other = "最後更新: {{ . }}"
+
+[classic_edition]
+other = "經典版"
+
+[classic_intro]
+other = '‘經典’版本是<a href="{{ .modern }}">‘現代’版本</a>的替代版本。 它不需要Javascript、最新的CSS或複雜的HTML才能運作，這使得它對使用輔助工具或遺產互聯網瀏覽器的讀者來說是理想的選擇。 另一方面，電子書用戶現在可以查看<a href="{{ .ebook }}">電子書版本</a>。'
+
+[classic_description]
+other = "此版本在內容上與原版相同。然而，互動小工具已被簡化為純HTML，儘管這些將提供一個鏈接到原始文章，以防讀者想嘗試“完整版本”。"
+
+[general_description]
+other = '一如既往，本文在<a href="{{ .github }}">Github</a>上提供，以便讀者報告錯誤或建議更改。 作者還提供了一個<a href="{{ .readings }}">支持閱讀列表</a>以幫助理解該系列。 作者也接受<a href="{{ .donations }}">捐款</a>以幫助提高現有文章和即將發布的文章的質量。'
+
+[subscribe_title]
+other = "保持更新"
+
+[subscribe_content]
+other = '我會在我的<a href="{{ . }}">Twitter個人資料</a>上發布更新，但是當有新文章出現時，您也可以通過電子郵件獲得通知。您可以隨時取消訂閱，我使用Mailchimp來處理這件事。'
+
+[generation_title]
+other = "{{ .ordinal }} 代"
+
+[untranslated_article_title]
+other = "{{.}} (英文版)"
+
+[cpu_subtitle]
+other = "顯著的CPU進步："
+
+[gpu_subtitle]
+other = "優秀的GPU特性："
+
+[roadmap_title]
+other = "路線圖"
+
+[roadmap_content]
+other = "有很多遊戲機我可以寫關於... 如果你想知道我的下一個列表是什麼，這就是："
+
+[contribution_content]
+other = "如果你發現我的文章有趣，那麼請考慮捐款。你的貢獻將被用來購買工具和資源，這將幫助我提高現有文章和即將發表的文章的質量。我也在每篇文章的末尾提供一個有趣的材料獲取清單。"
+
+[contribution_footer]
+other = "作為感謝的象徵，您的名字將被包含在下一篇文章或您提名的文章的致謝部分，除非另有說明。"
+
+[contribution_footer_ebook]
+other = '您也可以購買<a href="{{ . }}">英文的電子書版本</a>。我將利潤視為捐款。'
+
+[contribution_suggestions]
+other = '或者，您可以通過<a href="{{ . }}">提出改變建議</a>和/或<a href="{{ . }}">添加翻譯</a>來提供幫助。'
+
+[print]
+other = "列印文章（或保存為PDF）"
+
+[architecture_consoles]
+other = "遊戲主機架構"
+
+[top_model]
+other = "型號"
+
+[top_models]
+other = "模型"
+
+[motherboard_title]
+other = "主機板"
+
+[motherboard_note]
+other = "標有重要部件的主機板"
+
+[diagram_title]
+other = "圖表"
+
+[diagram_note]
+other = "主架構圖"
+
+[original]
+other = "原創"
+
+[marked]
+other = "標記"
+
+[contributing_title]
+other = "貢獻"
+
+[contributing_content]
+other = '這篇文章是<a href="{{ . }}">遊戲機的架構</a>系列的一部分。如果你覺得有趣，請考慮捐款。你的貢獻將被用來購買工具和資源，這將幫助我提高現有文章和即將發表的文章的質量。'
+
+[contributing_tools]
+other = "這篇文章中追蹤的一些理想工具和最新獲取物品的列表："
+
+[contributing_thanks]
+other = "非常感謝以下人士的捐款："
+
+[changelog_title]
+other = "變更日誌"
+
+[changelog_content]
+other = '保持變更記錄總是好的。 您可以查看<a href="{{ . }}">提交日誌</a>以獲得完整報告。 或者，這裡有一個簡化的列表：'
+
+[supporting_imagery]
+other = "支援圖像"
+
+[consoles_written_by]
+other = "由 {{ . }} 進行的實際分析"
+
+[translated_by]
+other = "由 {{ . }} 翻譯"
+
+[interactive_model_origin]
+other = '互動模型可在<a href="{{ . }}">現代版</a>中找到'
+
+[interactive_player_origin]
+other = '互動播放器可在<a href="{{ . }}">現代版</a>中找到'
+
+[goto_classic]
+other = '如果您使用輔助工具或舊版瀏覽器，<a href="{{ .classic }}">切換到‘經典’版本</a>。'
+
+[audio_samples]
+other = "音頻樣本"
+
+[wireframe]
+other = "線框"
+
+[surface]
+other = "表面"
+
+[textured]
+other = "有紋理的"
+
+[tap_enable_interaction]
+other = "點擊以啟用互動"
+
+[buffering]
+other = "正在緩衝..."
+
+[ready_drag_zoom]
+other = "準備拖放和縮放！"
+
+[sources]
+other = "來源 / 繼續閱讀"
+
+[archived]
+other = "已存檔"
+
+[general]
+other = "一般"
+
+[cpu]
+other = "CPU"
+
+[graphics]
+other = "圖形"
+
+[audio]
+other = "音訊"
+
+[audio_video]
+other = "音頻 / 視頻"
+
+[io]
+other = "輸入/輸出"
+
+[operating_system]
+other = "作業系統"
+
+[games]
+other = "遊戲"
+
+[anti_piracy]
+other = "反盜版"
+
+[copy_protection]
+other = "複製保護"
+
+[photography]
+other = "攝影"
+
+[other_media]
+other = "其他媒體"
+
+[bonus]
+other = "獎金"
