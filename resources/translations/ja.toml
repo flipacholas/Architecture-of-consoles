@@ -1,0 +1,275 @@
+[author_footer_first]
+other = 'この記事を楽しんでいただけたら嬉しいです！著者についてもっと知りたい場合は<a href="{{ . }}">こちらをタップしてください</a>'
+
+[author_footer_second]
+other = 'そして、彼をサポートしたい場合は、<a href="{{ . }}">こちらをタップ</a>してください'
+
+[languages_available]
+other = "利用可能な言語: "
+
+[help_translations]
+other = "翻訳の助け"
+
+[add_translation]
+other = "翻訳を追加する"
+
+[report_mistakes]
+other = "間違いを報告するか、変更を提案する"
+
+[supporting_readings]
+other = "支援読み物を確認する"
+
+[tablet_mode_button]
+other = "タブを非表示 / タブレットモード"
+
+[desktop_mode_button]
+other = "タブを表示 / デスクトップモード"
+
+[next]
+other = "次へ"
+
+[previous]
+other = "前へ"
+
+[table-of-contents]
+other = "目次"
+
+[show]
+other = "表示"
+
+[hide]
+other = "隠す"
+
+[translations]
+other = "翻訳"
+
+[related]
+other = "詳細は '{{ . }}' »"
+
+[ebook_edition_title]
+other = "eBookエディションを入手してください"
+
+[ebook_edition_content]
+other = 'あなたは今、電子書籍リーダーでも<a href="{{ .consoles }}">コンソールのアーキテクチャ</a>シリーズを読むことができます。<a href="{{ .ebooks }}">ここでチェックしてください</a>。'
+
+[home]
+other = "ホーム"
+
+[nav_writings]
+other = "文章"
+
+[nav_console]
+other = "コンソール"
+
+[nav_blog]
+other = "ブログ"
+
+[about]
+other = "約"
+
+[about_website_long]
+other = "ウェブサイトとその内容について"
+
+[support]
+other = "サポート"
+
+[about_author]
+other = "著者について"
+
+[about_website]
+other = "ウェブサイトについて"
+
+[switch_modern]
+other = "モダン版に切り替え"
+
+[switch_classic]
+other = "クラシックエディションに切り替える"
+
+[ebook_edition]
+other = "電子書籍版"
+
+[about_edition]
+other = "この版について"
+
+[last_updated]
+other = "最終更新：{{ . }}"
+
+[classic_edition]
+other = "クラシック版"
+
+[classic_intro]
+other = '「クラシック」版は、<a href="{{ .modern }}">「モダン」版</a>とは異なるバージョンです。Javascript、最先端のCSS、複雑なHTMLを必要とせず、アクセシビリティツールを使用する読者や旧式のインターネットブラウザを使用する読者にとって理想的です。一方、電子書籍のユーザーは現在、<a href="{{ .ebook }}">電子書籍版</a>をチェックできます。'
+
+[classic_description]
+other = "この版は内容的には同一です。ただし、インタラクティブなウィジェットは純粋なHTMLで動作するように簡略化されていますが、読者が「フルバージョン」を試したい場合は、元の記事へのリンクが提供されます。"
+
+[general_description]
+other = 'いつものように、この記事は<a href="{{ .github }}">Github</a>で利用可能で、読者が誤りを報告したり、変更を提案したりできます。また、シリーズを理解するための<a href="{{ .readings }}">サポートリーディングリスト</a>もあります。著者は、現在の記事と今後の記事の質を向上させるために<a href="{{ .donations }}">寄付</a>を受け付けています。'
+
+[subscribe_title]
+other = "更新情報を保つ"
+
+[subscribe_content]
+other = '私は<a href="{{ . }}">Twitterプロフィール</a>で更新情報を投稿していますが、新しい記事が出たときにメールでお知らせすることもできます。いつでも登録を解除できます。これはMailchimpを使用して処理しています。'
+
+[generation_title]
+other = "{{ .ordinal }} 世代"
+
+[untranslated_article_title]
+other = "{{.}}（英語で）"
+
+[cpu_subtitle]
+other = "注目すべきCPUの進歩:"
+
+[gpu_subtitle]
+other = "優れたGPUの特徴:"
+
+[roadmap_title]
+other = "ロードマップ"
+
+[roadmap_content]
+other = "私が書くことができるコンソールはたくさんあります... 次に私のリストに何があるか疑問に思っているなら、それはここです:"
+
+[contribution_content]
+other = "もし私の記事が興味深いと思ったら、ぜひ寄付をご検討ください。あなたの寄付は、既存の記事とこれからの記事の質を向上させるためのツールと資源の購入に使われます。私はまた、各記事の最後に取得するべき興味深い資料のリストも提供しています。"
+
+[contribution_footer]
+other = "感謝の印として、あなたの名前は次の記事または指名された記事のクレジットセクションに含まれます。特に指定がない限り。"
+
+[contribution_footer_ebook]
+other = '<a href="{{ . }}">電子書籍版</a>も英語で購入することができます。利益は寄付として扱います。'
+
+[contribution_suggestions]
+other = 'あるいは、<a href="{{ . }}">変更を提案する</a> または <a href="{{ . }}">翻訳を追加する</a>ことで協力していただくこともできます。'
+
+[print]
+other = "記事を印刷する（またはPDFに保存する）"
+
+[architecture_consoles]
+other = "ゲーム機のアーキテクチャ"
+
+[top_model]
+other = "モデル"
+
+[top_models]
+other = "モデル"
+
+[motherboard_title]
+other = "マザーボード"
+
+[motherboard_note]
+other = "重要な部分がラベル付けされたマザーボード"
+
+[diagram_title]
+other = "図解"
+
+[diagram_note]
+other = "主要なアーキテクチャ図"
+
+[original]
+other = "初期型"
+
+[marked]
+other = "マークされた"
+
+[contributing_title]
+other = "貢献"
+
+[contributing_content]
+other = 'この記事は<a href="{{ . }}">コンソールのアーキテクチャ</a>シリーズの一部です。興味深いと思ったら、ぜひ寄付をご検討ください。あなたの寄付は、既存の記事とこれからの記事の質を向上させるためのツールと資源の購入に使われます。'
+
+[contributing_tools]
+other = "この記事に必要なツールや最新の取得物のリストはここで追跡されています:"
+
+[contributing_thanks]
+other = "以下の人々に寄付に対する大きな感謝を表します:"
+
+[changelog_title]
+other = "変更履歴"
+
+[changelog_content]
+other = '変更の記録を残しておくのはいつも良いことです。完全なレポートについては、<a href="{{ . }}">コミットログ</a>を確認できます。あるいは、ここに簡略化されたリストがあります:'
+
+[supporting_imagery]
+other = "補足画像"
+
+[consoles_written_by]
+other = "{{ . }}による実践的な分析"
+
+[translated_by]
+other = "{{ . }}による翻訳"
+
+[interactive_model_origin]
+other = 'インタラクティブモデルは<a href="{{ . }}">モダン版</a>で利用可能'
+
+[interactive_player_origin]
+other = 'インタラクティブプレイヤーは<a href="{{ . }}">モダン版</a>で利用可能'
+
+[goto_classic]
+other = 'アクセシビリティツールや古いブラウザを使用している場合は、<a href="{{ .classic }}">「クラシック」エディションに切り替えてください</a>。'
+
+[audio_samples]
+other = "オーディオサンプル"
+
+[wireframe]
+other = "ワイヤーフレーム"
+
+[surface]
+other = "サーフェス"
+
+[textured]
+other = "テクスチャ化"
+
+[tap_enable_interaction]
+other = "タップしてインタラクションを有効にする"
+
+[buffering]
+other = "バッファリング中..."
+
+[ready_drag_zoom]
+other = "ドラッグとズームの準備ができました！"
+
+[sources]
+other = "ソース / 続きを読む"
+
+[archived]
+other = "アーカイブ済み"
+
+[general]
+other = "一般"
+
+[cpu]
+other = "CPU"
+
+[graphics]
+other = "グラフィックス"
+
+[audio]
+other = "オーディオ"
+
+[audio_video]
+other = "オーディオ / ビデオ"
+
+[io]
+other = "I/O"
+
+[operating_system]
+other = "オペレーティング システム"
+
+[games]
+other = "ゲーム"
+
+[anti_piracy]
+other = "アンチパイラシー"
+
+[copy_protection]
+other = "コピープロテクション"
+
+[photography]
+other = "写真"
+
+[other_media]
+other = "その他のメディア"
+
+[bonus]
+other = "ボーナス"
