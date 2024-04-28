@@ -1,0 +1,275 @@
+[author_footer_first]
+other = 'Jeg håber du har nydt denne artikel! Hvis du vil vide mere om forfatteren <a href="{{ . }}">tryk her</a>'
+
+[author_footer_second]
+other = 'og hvis du gerne vil støtte ham <a href="{{ . }}">tryk her</a> i stedet'
+
+[languages_available]
+other = "Tilgængelige sprog: "
+
+[help_translations]
+other = "Hjælp med oversættelser"
+
+[add_translation]
+other = "Tilføj oversættelse"
+
+[report_mistakes]
+other = "Rapporter fejl eller foreslå ændringer"
+
+[supporting_readings]
+other = "Tjek støttende læsninger"
+
+[tablet_mode_button]
+other = "Skjul faner / Tablet-tilstand"
+
+[desktop_mode_button]
+other = "Vis faner / Skrivebordstilstand"
+
+[next]
+other = "Næste"
+
+[previous]
+other = "Forrige"
+
+[table-of-contents]
+other = "Indholdsfortegnelse"
+
+[show]
+other = "Vis"
+
+[hide]
+other = "Skjul"
+
+[translations]
+other = "Oversættelser"
+
+[related]
+other = "Mere på '{{ . }}' »"
+
+[ebook_edition_title]
+other = "Få eBook-udgaverne"
+
+[ebook_edition_content]
+other = 'Du kan nu læse <a href="{{ .consoles }}">Arkitektur af Konsoller</a> serien på eBook-læsere også. <a href="{{ .ebooks }}">Tjek det ud her</a>.'
+
+[home]
+other = "Hjem"
+
+[nav_writings]
+other = "Skrifter"
+
+[nav_console]
+other = "Konsoller"
+
+[nav_blog]
+other = "Blog"
+
+[about]
+other = "Om"
+
+[about_website_long]
+other = "Om websitet og dets indhold"
+
+[support]
+other = "Support"
+
+[about_author]
+other = "Om forfatteren"
+
+[about_website]
+other = "Om websitet"
+
+[switch_modern]
+other = "Skift til moderne udgave"
+
+[switch_classic]
+other = "Skift til klassisk udgave"
+
+[ebook_edition]
+other = "eBook-udgave"
+
+[about_edition]
+other = "Om denne udgave"
+
+[last_updated]
+other = "Sidst opdateret: {{ . }}"
+
+[classic_edition]
+other = "Klassisk udgave"
+
+[classic_intro]
+other = '‘Klassisk’ udgave er en alternativ version til <a href="{{ .modern }}">‘moderne’ modpart</a>. Det kræver ikke Javascript, state-of-the-art CSS eller indviklet HTML for at fungere, hvilket gør det ideelt for læsere, der bruger tilgængelighedsværktøjer eller legacy internetbrowsere. På den anden side kan eBook-brugere nu tjekke <a href="{{ .ebook }}">eBook-udgaven</a>.'
+
+[classic_description]
+other = "Denne udgave er identisk indholdsmæssigt. Dog er interaktive widgets blevet forenklet til at arbejde med ren HTML, selvom disse vil tilbyde et link til den originale artikel, i tilfælde af at læseren ønsker at prøve 'fuld version'."
+
+[general_description]
+other = 'Som altid er denne artikel tilgængelig på <a href="{{ .github }}">Github</a> for at gøre det muligt for læsere at rapportere fejl eller foreslå ændringer. Der er også en <a href="{{ .readings }}">støttende læseliste</a> tilgængelig for at hjælpe med at forstå serien. Forfatteren accepterer også <a href="{{ .donations }}">donationer</a> for at hjælpe med at forbedre kvaliteten af nuværende artikler og kommende.'
+
+[subscribe_title]
+other = "Hold dig opdateret"
+
+[subscribe_content]
+other = 'Jeg poster opdateringer på min <a href="{{ . }}">Twitter profil</a>, men du kan også få en email når en ny artikel er ude. Du kan afmelde dig når som helst, jeg bruger Mailchimp til at håndtere dette.'
+
+[generation_title]
+other = "{{ .ordinal }} generation"
+
+[untranslated_article_title]
+other = "{{.}} (på engelsk)"
+
+[cpu_subtitle]
+other = "Bemærkelsesværdige CPU fremskridt:"
+
+[gpu_subtitle]
+other = "Fremragende GPU funktioner:"
+
+[roadmap_title]
+other = "Roadmap"
+
+[roadmap_content]
+other = "Der er mange konsoller, jeg kunne skrive om... Hvis du undrer dig over, hvad der er næste på min liste, er det her:"
+
+[contribution_content]
+other = "Hvis du finder mine artikler interessante, overvej da at donere. Din donation vil blive brugt til at finansiere køb af værktøjer og ressourcer, der vil hjælpe mig med at forbedre kvaliteten af eksisterende artikler og kommende. Jeg giver også en liste over interessante materialer til erhvervelse ved slutningen af hver artikel."
+
+[contribution_footer]
+other = "Som en token af taknemmelighed vil dit navn blive inkluderet i kreditafsnittet af den næste artikel eller din nominerede en, medmindre andet er angivet."
+
+[contribution_footer_ebook]
+other = 'Du kan også købe <a href="{{ . }}">eBook-udgaven</a> på engelsk. Jeg behandler overskud som donationer.'
+
+[contribution_suggestions]
+other = 'Alternativt kan du hjælpe ved at <a href="{{ . }}">foreslå ændringer</a> og/eller <a href="{{ . }}">tilføje oversættelser</a>.'
+
+[print]
+other = "Udskriv artikel (eller gem til PDF)"
+
+[architecture_consoles]
+other = "Arkitektur af Konsoller"
+
+[top_model]
+other = "Model"
+
+[top_models]
+other = "Modeller"
+
+[motherboard_title]
+other = "Motherboard"
+
+[motherboard_note]
+other = "Motherboard med vigtige dele mærket"
+
+[diagram_title]
+other = "Diagram"
+
+[diagram_note]
+other = "Hovedarkitekturdiagram"
+
+[original]
+other = "Original"
+
+[marked]
+other = "Markeret"
+
+[contributing_title]
+other = "Bidrag"
+
+[contributing_content]
+other = 'Denne artikel er en del af <a href="{{ . }}">Arkitektur af Konsoller</a> serien. Hvis du fandt det interessant, overvej da at donere. Din donation vil blive brugt til at finansiere køb af værktøjer og ressourcer, der vil hjælpe mig med at forbedre kvaliteten af eksisterende artikler og kommende.'
+
+[contributing_tools]
+other = "En liste over ønskelige værktøjer og seneste erhvervelser til denne artikel er sporet her:"
+
+[contributing_thanks]
+other = "Stor tak til følgende personer for deres donation:"
+
+[changelog_title]
+other = "Ændringslog"
+
+[changelog_content]
+other = 'Det er altid rart at holde en registrering af ændringer. For en komplet rapport kan du tjekke <a href="{{ . }}">commit log</a>. Alternativt, her er en forenklet liste:'
+
+[supporting_imagery]
+other = "Understøttende billedmateriale"
+
+[consoles_written_by]
+other = "En praktisk analyse af {{ . }}"
+
+[translated_by]
+other = "Oversat af {{ . }}"
+
+[interactive_model_origin]
+other = 'Interaktiv model tilgængelig i <a href="{{ . }}">moderne udgave</a>'
+
+[interactive_player_origin]
+other = 'Interaktiv afspiller tilgængelig i <a href="{{ . }}">moderne udgave</a>'
+
+[goto_classic]
+other = 'Hvis du bruger tilgængelighedsværktøjer eller gamle browsere, <a href="{{ .classic }}">skift til ‘klassisk’ udgave</a>.'
+
+[audio_samples]
+other = "Lydeksempler"
+
+[wireframe]
+other = "Trådramme"
+
+[surface]
+other = "Overflade"
+
+[textured]
+other = "Tekstureret"
+
+[tap_enable_interaction]
+other = "Tryk for at aktivere interaktion"
+
+[buffering]
+other = "Buffering..."
+
+[ready_drag_zoom]
+other = "Klar til at trække og zoome!"
+
+[sources]
+other = "Kilder / Fortsæt læsning"
+
+[archived]
+other = "Arkiveret"
+
+[general]
+other = "Generelt"
+
+[cpu]
+other = "CPU"
+
+[graphics]
+other = "Grafik"
+
+[audio]
+other = "Lyd"
+
+[audio_video]
+other = "Lyd / Video"
+
+[io]
+other = "I/O"
+
+[operating_system]
+other = "Operativsystem"
+
+[games]
+other = "Spil"
+
+[anti_piracy]
+other = "Anti-Piratkopiering"
+
+[copy_protection]
+other = "Kopibeskyttelse"
+
+[photography]
+other = "Fotografi"
+
+[other_media]
+other = "Andre Medier"
+
+[bonus]
+other = "Bonus"
