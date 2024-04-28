@@ -83,7 +83,7 @@ Now, the way the Virtual Boy executed this was a bit cumbersome: it required use
 
 ![Top screen, right eye.](stereoscopy/top_right.png){title="Right"}
 
-An example of two frames the Nintendo 3DS shows on its top screen at the same time. Looks like the fish is going to hit you. The same principle applies 15 years later.<br>Luigi's Mansion (2018).
+An example of two frames the Nintendo 3DS shows on its top screen at the same time. Looks like the fish is going to hit you. The same principle applies 15 years later.<br>Super Mario 3D Land (2011).
 
 :::
 
@@ -111,7 +111,7 @@ The technology is not perfect, however, as there are a few caveats:
 
 - The parallax barrier requires extra brightness, thereby impacting the battery life.
 - The user must not hold the screen in a tilted position (compared to the user's eyes). Otherwise, the user will end up seeing a confusing mix of the two parallax frames, which can be a disorienting experience. Not to mention the eyes won't enjoy the extra fatigue.
-- Combining the fact that the user must maintain a fixed posture while playing, and that stereoscopic parallax can tire the eyes quicker. The 3D feature, as a whole, can be an unnecessary hassle for most.
+- Combining the fact that the user must maintain a fixed posture while playing, and that stereoscopic parallax can tire the eyes quicker. The 3D feature, as a whole, can easily become an unnecessary hassle for most.
 
 ![My attempt to capture the tilt effect of the original 3DS. The 3D depth slider (at the right side of the screen) is all the way up, and by looking at the screen from one side, a ghosting effect appears on the top screen. This is quite eye-straining to look at in reality!](stereoscopy/tilt.webp){.open-float .no-borders}
 
@@ -145,11 +145,11 @@ CPU CTR follows the design methods of previous portable consoles from Nintendo. 
 
 In terms of the actual CPU, Nintendo partnered again with their [old friend](game-boy-advance#the-nintendo-partnership), **ARM**, to produce their next-generation core. ARM's [traditional licensing model](game-boy-advance#tab-1-2-a-new-cpu-venture) (based on offering synthesisable designs) allows Nintendo to mould a CPU to their needs (including fitting it into a big and opaque SoC). In the end, ARM gave them a relatively antiquated product with substantial upgrades. Their choice was the **ARM11** core, a successor of the ARM9 (featured with the [Nintendo DS](nintendo-ds#cpu)). More specifically, the **MPCore** variant, ARM's first **homogenous multi-core** solution.
 
-Using ARM's designs, Nintendo crafted an ARM11 MPCore cluster housing **two** ARM11 cores [@cpu-lioncash]. Three years later, with the arrival of the 'New' 3DS, the SoC was expanded to contain **four** ARM11 cores. The effects of this will be explained in due time so, before anything else, let's analyse what the new CPU cores offer to this console.
+Using ARM's designs, Nintendo crafted an ARM11 MPCore cluster housing **two** ARM11 cores [@cpu-lioncash]. Three years later, with the arrival of the 'New' 3DS, the SoC was expanded to contain **four** ARM11 cores. The effects of this will be explained in due time. So, before anything else, let's analyse what the new CPU cores offer to this console.
 
 ### An iconic industry
 
-The ARM11 series originated in 2002. In the coming years, it became a flagship in the mobile CPU sector, displacing the popular [ARM9](nintendo-ds#arms-new-territories), the short-lived ARM10 and Intel's XScale (the continuation of [StrongARM](nintendo-ds#arms-new-territories), which Intel later liquidated to focus on 'mobile' [x86 CPUs](xbox#p6-and-the-end-of-pentium-numbers)... if only they knew!).
+The ARM11 series originated in 2002. In the coming years, it became a flagship in the mobile CPU sector, displacing the popular [ARM9](nintendo-ds#arms-new-territories), the short-lived ARM10 and Intel's XScale (the continuation of [StrongARM](nintendo-ds#arms-new-territories), which Intel later liquidated to focus on ['mobile' x86 CPUs](xbox#p6-and-the-end-of-pentium-numbers)... if only they knew!).
 
 ![A Nokia 5230 (2009), a red 3DS (2011) and a Raspberry Pi Model B (2012), all carrying an ARM11.](cpu/devices.webp)
 
