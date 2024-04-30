@@ -48,7 +48,11 @@ While initially focused on embedded applications, Hitachi's new creation debuted
 
 Furthermore, the SuperH features a new instruction set called **SuperH ISA** which, apart from adopting a RISC design, **all of its instructions are 16-bit wide**. This comes as a surprise since this CPU operates 32-bit words, so you would expect instructions to have the same length. Yet, Hitachi managed to fit its ISA using half the size. Not only does this format reduce the size of programs, but since the CPU fetches instructions in 32-bit batches, **two instructions can be retrieved in one cycle**. Overall, this technique of compressing the instruction set helped tackle a common concern of RISC-based architectures called 'code density', where the latter required more instructions (therefore, more memory) to perform the same tasks as non-RISC systems.
 
-Conversely, other drawbacks of RISC designs are still present in the SuperH, such as [control hazards](playstation#delay-galore). Consequently, programs are required to include **branch delay slots** to avoid calculation errors. To remediate things, the SuperH features **delayed branch instructions** which are branch instructions pre-fitted with a delay slot.
+### The ramifications
+
+Conversely, other drawbacks of RISC designs are still present in the SuperH, such as [control hazards](playstation#delay-galore). Consequently, programs are required to include **branch delay slots** to avoid calculation errors. To remediate things, the SuperH features **delayed branch instructions** which are branch instructions pre-fitted with a delay slot [@cpu-prog_manual].
+
+**Data hazards** are also present but not tackled by the programmer or compiler, the CPU will automatically stall the pipeline whenever it's needed.
 
 ### Sega is not satisfied
 

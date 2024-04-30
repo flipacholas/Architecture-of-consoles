@@ -5,7 +5,7 @@ name: Game Boy Advance
 date: 2019-08-18
 release_date: 2001-03-21
 generation: 6
-subtitle: One chip to rule them all
+subtitle: New partnerships powered by two AA batteries
 cover: gba
 top_tabs:
   Model:
@@ -39,7 +39,7 @@ Most of the components are combined into a single package called **CPU AGB**. Th
 
 Note that both CPUs will **never run at the same time** or do any fancy co-processing. The **only** reason for including the *very* old Sharp is for **backwards compatibility**.
 
-That being said, before we describe the ARM chip, I find it handy to start with the history behind this brand of CPUs.
+That being said, before I describe the ARM chip, I find it handy to start with the history behind this brand of CPUs.
 
 ### The Cambridge miracle
 
@@ -73,35 +73,49 @@ Back in Japan, and thanks to the [Game Boy analysis](game-boy), we learnt that N
 
 ![CPU AGB, housing the ARM7TDMI CPU (among many other components).](cpu_agb.png)
 
-Fortunately, ARM's licensing model fitted just right for those needs. Additionally, a good reputation in the mobile sector spread the good word for ARM, especially during their mobile-focused offering called the **ARM7TDMI**, a CPU that received input from Nokia to maximise performance under power and storage constraints. Well, as luck would have it, Nintendo and ARM eventually became partners, and the Game Boy Advance's CPU pick was the ARM7TDMI.
+Fortunately, ARM's licensing model fitted just right for those needs. Both companies held talks since 1994 (a year before the [Virtual Boy](virtual-boy)'s launch) despite nothing materialising until many years later [@cpu-jaggar]. The reason was simple: the Japanese found unfeasible ARM's code density and the need for 32 data wires (something the [Virtual Boy's CPU](virtual-boy#cpu) already managed to escape). Nevertheless, ARM's new CPU designer - Dave Jaggar - quickly answered with the **ARM7TDMI**, a new CPU that focused on maximising performance under power and storage constraints. **This was a turning point for ARM**, as this new product not only pleased Nintendo, but also got the attention of **Texas Instruments**, **Nokia** and the rest of the competitors in the cellphone arena.
 
-Let's now dive into what this chip offers to developers.
+Unsurprisingly, when Nintendo started working on the successor of the [Game Boy Color](game-boy#cpu), their CPU pick became the ARM7TDMI.
 
-#### The instruction set {.tabs .active}
+### The ARM7TDMI
+
+Let's now dive into what this chip offers.
+
+#### Commanding the CPU
 
 To begin with, the ARM7TDMI implements the **ARMv4** instruction set, the successor of the ARMv3. This implies:
 
 - A **RISC-based design**: As explained before, ARM CPUs have been influenced by a paper from the University of California, Berkeley called 'The Case for the Reduced Instruction Set Computer' [@cpu-patterson]. Its research outlines a series of guidelines for scalable processor design and defends the use of a [load-store architecture](xbox#tab-1-4-cisc-or-risc), a fixed instruction size and a large register file. Many of these were absent in the populated CPU market (i.e. [Intel 8086](xbox#cpu), [MOS 6502](nes#cpu), [Zilog Z80](master-system#cpu) and the [Motorola 68000](mega-drive-genesis#cpu)), but would influence the design of new CPU lines throughout the 80s and 90s.
-- **Conditional execution**: A peculiar feature of the ARM ISA. Essentially, almost every instruction embeds a condition that decides whether they should be executed. Typically, other CPUs follow the 'compare and jump' process (also called 'branching') whenever the CPU reaches a crossroad. By contrast, ARM's instructions are conditioned by the result of a previous comparison. This is possible due to the first four bits of ARM's opcodes are reserved for a condition (i.e. equal, not equal, etc). All in all, this reduces the complexity of ARM code, as conditional execution provides a cleaner design for routines, unlike branching and subroutine splitting.
+- **Conditional execution**: A peculiar feature of the ARM ISA. Essentially, almost every instruction embeds a condition that states whether it should be executed. Typically, other CPUs follow the 'compare and jump' process (also called 'branching') to control which instructions must the CPU execute. By contrast, ARM programmers may insert the condition in the instruction itself. This is possible due to the first four bits of ARM's opcodes are reserved for a condition (i.e. `equal`, `not equal`, etc). All in all, this reduces the complexity of ARM code, as conditional execution provides a cleaner design for routines, unlike branching and subroutine splitting. Additionally, this also serves as a workaround for [control hazards](playstation#delay-galore) (explained in more detail later).
 - **32-bit** and **64-bit multiplication** instructions: An addition of the ARM v4. Furthermore, 64-bit operations output the result in two registers.
 
-#### The core {.tab}
+#### The package
 
-Now it's time to check the silicon. The ARM7TDMI is a cut-down version of the ARM710 with interesting additions. The core includes [@cpu-arm] [@cpu-furber]:
+Now that we know how developers talk to this chip, let's check what's inside the silicon.
+
+##### The core {.tabs .active}
+
+In terms of circuitry, the ARM7TDMI is a cut-down version of the ARM710 with interesting additions. The core includes [@cpu-arm] [@cpu-furber]:
 
 - **16 general-purpose 32-bit registers**: While it's a big step compared to the seven [8-bit registers of the SM83/Game Boy](game-boy#the-cpu-core), this is a compromise of the RISC guidelines, which required thirty-two 32-bit registers instead. This is because ARM favoured maintaining a small silicon size [@cpu-furber].
-- **32-bit data bus and ALU**: Can move and operate 32-bit values without consuming extra cycles.
+- **32-bit data bus and ALU**: Meaning it can move and operate 32-bit values without consuming extra cycles.
 - **Clean 32-bit addressing**: This is part of Apple's input. The first three ARM CPUs used 26-bit memory addresses to optimise performance (the combined Program Counter and Status Register could fit in a single 32-bit word) in exchange for memory addressability (up to 64 MB of memory could be accessed). The follow-up ARM6 series (with its ARMv3 ISA) implemented 32-bit addressing logic, but kept a backwards-compatible mode for old code. Now, the ARM7TDMI (being mobile-focused) scraped the 26-bit mode and only houses logic for 32-bit addresses (reducing the amount of silicon needed).
-- **Three-stage pipeline**: The execution of instructions is divided into three steps or *stages*. The CPU will fetch, decode and execute up to three instructions concurrently. This enables maximum use of the CPU's resources (which reduces idle silicon) while also increasing the number of instructions executed per unit of time.
-  - Due to this design, conditional execution is more efficient than branching.
 - **No [Memory Management Unit (MMU)](nintendo-64#memory-management)**: Ever since the ARM1, ARM provided an MMU solution. First as the 'MEMC' co-processor, and then integrated with the ARM610. Now, the ARM7TDMI seems to be the only one in its series to provide none, potentially due to the lack of interest (early mobile devices didn't require sophisticated virtual memory).
 - **No cache**: Another cost-reduction of this chip, as previous ARM chips bundled some cache.
 
 Finally, all of this can operate with a **3 Volt** power supply [@cpu-furber]. This is an evident step towards mobile computing, as earlier cores required a 5 V supply.
 
-#### Squeezing performance {.tab}
+##### The pipeline {.tab}
 
-One of the drawbacks of a load-store architecture led to ARM's code being very sparse. Competitors like x86 could perform the same tasks using smaller amounts of code, requiring less storage. Consequently, when ARM started selling to telecommunication companies, Nokia was not happy with this [@cpu-arm_history]. The size of ARM's instructions meant that Nokia's hardware comprised of 16-bit buses and limited memory and storage - all to save cost and energy - would make the CPU inefficient and bottlenecked. Thus, ARM came up with a solution: The **Thumb instruction set**.
+Since its first iteration, ARM has implemented a **three-stage pipeline** to run code. In other words, the execution of instructions is divided into three steps or *stages*. The CPU will fetch, decode and execute up to three instructions concurrently. This enables maximum use of the CPU's resources (which reduces idle silicon) while also increasing the number of instructions executed per unit of time.
+
+Like two very [similar](playstation#delay-galore) [contemporaries](sega-saturn#the-ramifications), ARM CPUs are susceptible to **data hazards**. Nevertheless, neither the programmer nor compiler will notice it as, in this case, the CPU will automatically stall the pipeline whenever it's needed.
+
+**Control hazards** are also present, but ARM tackled them with an efficient approach called **conditional annulment**: Whenever a branch instruction is at the second stage (`Decode`), the CPU will calculate the condition of the branch [@cpu-mcmillan]. Based on the result, if the branch must be executed, the CPU will automatically nullify the follow-up instruction (turning it into a filler). Now, this may look inefficient when compared to [MIPS' approach](playstation#delay-galore) (as a MIPS compiler can insert useful instructions, not just fillers). Hence, apart from branching, ARM provides **conditional execution**. The latter turns this pipeline design into an advantage, since ARM can decode an instruction and calculate its embedded condition at the same stage. Thus, in this case, no fillers will be added. That's why conditional execution is preferred over branching when programming for ARM CPUs [@cpu-armasm].
+
+##### Squeezing performance {.tab}
+
+One of the drawbacks of a load-store architecture led to ARM's code being very **sparse**. Competitors like x86 could perform the same tasks using smaller amounts of code, requiring less storage. Consequently, when Nintendo took a look at ARM's latest design, the ARM7, they weren't pleased with it. The size of ARM's instructions meant that hypothetical gadgets comprised of 16-bit buses with limited memory and storage - all to save cost and energy - would make the CPU inefficient and bottlenecked. Luckily, Dave Jaggar had just finished designing the ARM7 and wouldn't give up yet. During his commute after meeting Nintendo, he came up with a solution: The **Thumb instruction set** [@cpu-jaggar].
 
 Thumb is a subset of the ARM instruction set whose instructions are encoded into **16-bit words** (as opposed to 32-bit) [@cpu-thomas]. Being 16-bit, Thumb instructions require **half the bus width** and occupy **half the memory**.
  
@@ -109,7 +123,7 @@ The main compromise is that **Thumb doesn't offer conditional execution**, relyi
 
 In practice, Thumb uses 70% of the space of ARM code. For 16-bit wide memory, Thumb runs *faster* than ARM. If required, ARM and Thumb instructions can be mixed in the same program (called *interworking*) so developers can choose when and where to use each mode.
 
-#### The extensions {.tab}
+##### The extensions {.tab}
 
 The ARM7TDMI is, at its essence, an ARMv3-compliant core with extras. The latter is referenced in its name (*TDMI*), meaning:
 

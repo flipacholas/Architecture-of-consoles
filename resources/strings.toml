@@ -104,13 +104,13 @@ other = "Last updated: {{ . }}"
 other = "Classic edition"
 
 [classic_intro]
-other = 'The ‘classic’ edition is an alternative version to the <a href="{{ .modern }}">‘modern’ counterpart</a>. It doesn‘t require Javascript, state-of-the-art CSS or convoluted HTML to work, which makes it ideal for readers who use accessibility tools or legacy internet browsers. On the other hand, eBook users can now check the <a href="{{ .ebook }}">eBook edition</a>.'
+other = 'The ‘classic’ edition is an alternative version to the <a href="{{ .modern }}">‘modern’ counterpart</a>. It doesn’t require Javascript, state-of-the-art CSS or convoluted HTML to work, which makes it ideal for readers who use accessibility tools or legacy internet browsers. On the other hand, eBook users can now check the <a href="{{ .ebook }}">eBook edition</a>.'
 
 [classic_description]
 other = "This edition is identical content-wise. However, interactive widgets have been simplified to work with pure HTML, though these will offer an link to the original article in case the reader wants to try the ‘full version’."
 
 [general_description]
-other = 'As always, this article is available on <a href="{{ .github }}">Github</a> to enable readers to report mistakes or propose changes. There‘s also a <a href="{{ .readings }}">supporting reading list</a> available to help understand the series. The author also accepts <a href="{{ .donations }}">donations</a> to help improve the quality of current articles and upcoming ones.'
+other = 'As always, this article is available on <a href="{{ .github }}">Github</a> to enable readers to report mistakes or propose changes. There’s also a <a href="{{ .readings }}">supporting reading list</a> available to help understand the series. The author also accepts <a href="{{ .donations }}">donations</a> to help improve the quality of current articles and upcoming ones.'
 
 # Subscribe form
 
@@ -200,7 +200,7 @@ other = 'Big thanks to the following people for their donation:'
 other = "Changelog"
 
 [changelog_content]
-other = "It's always nice to keep a record of changes."
+other = 'It’s always nice to keep a record of changes. For a complete report, you can check the <a href="{{ . }}">commit log</a>. Alternatively, here’s a simplified list:'
 
 [supporting_imagery]
 other = "Supporting imagery"

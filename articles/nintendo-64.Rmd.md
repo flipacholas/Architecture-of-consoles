@@ -5,7 +5,7 @@ name: Nintendo 64
 release_date: 1996-06-23
 date: 2019-09-12
 generation: 5
-subtitle: Powerful and complicated!
+subtitle: A constrained performant
 cover: nintendo64
 javascript: ['threejs']
 top_tabs:

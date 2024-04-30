@@ -73,7 +73,7 @@ Allegrex is a complete 32-bit core offering [@cpu-hitmen] [@cpu-naked]:
 - A **custom MIPS ISA**: mixes MIPS32R2 instructions with exclusive ones for **arithmetic operations** (multiplication, subtraction, min/max, bit-shifts) and **interrupt control**. These are called 'Allegrex Extended Instructions'.
 - A **32-bit address bus**: this means that up to 4 GB of memory can be seen by this CPU.
 - **32 general-purpose registers**: all of them store 32-bit numbers; and two (the zero register and link register) are reserved for special uses. By now, this should come as no surprise.
-- A **7-stage pipeline** (one more than its [home sibling](playstation-2#a-special-order-for-sony)). [Here](game-boy-advance#tab-2-2-the-core) is a previous explanation of CPU pipelining if you'd like to know more.
+- A **7-stage pipeline** (one more than its [home sibling](playstation-2#a-special-order-for-sony)). [Here](game-boy-advance#the-core) is a previous explanation of CPU pipelining if you'd like to know more.
 - A **Memory Protection Unit** or 'MPU' (not to be confused with an 'MMU'): this is a dedicated unit that maps the physical hardware onto the CPU's memory space with some special quirks in between. We'll see more about it in a bit.
 - **32 KB of L1 Cache**: of which 16 KB is for instructions and 16 KB for data.
 - A **cache write-back buffer**: the CPU can write over cache believing it has updated physical memory as well. Then, the cache takes care of updating memory when the buffer is full.

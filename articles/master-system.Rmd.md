@@ -2,7 +2,7 @@
 short_title: Sega Master System Architecture
 long_title: Architecture of the Sega Master System
 name: Sega Master System
-subtitle: Powerful as it is
+subtitle: Competent out of the box
 date: 2020-10-12
 release_date: 1985-10-20
 generation: 3
@@ -41,12 +41,12 @@ From now on I'll use the term 'Master System' or 'SMS' to refer to all of these,
 
 Sega decided on a fully-fledged **Zilog Z80** CPU running at **~3.58 MHz**. A popular choice by other machines like the ZX Spectrum and the Amstrad CPC.
 
-The Z80 CPU has an interesting background, as it was authored by no other than the creators of the Intel 8080, who then became disenchanted with Intel's direction and decided to start their own silicon company, Zilog, in 1974. Their debuting product can be thought of as the unofficial successor of the Intel 8080, now featuring:
+The Z80 CPU has an interesting background, as it was authored by no other than the creators of the Intel 8080 (Federico Faggi and Masatoshi Shima), who then became disenchanted with Intel's direction and decided to start their own silicon company - Zilog - in 1974. Their debuting product can be thought of as the unofficial successor of the Intel 8080, now featuring:
 
 - The **Z80 ISA**: An instruction set compatible with the Intel 8080 but expanded with lots more instructions. It handles **8-bit** words.
 - **8-bit data bus**, ideal for moving 8-bit data around. Larger values will consume extra CPU cycles.
-- **14 8-bit general-purpose registers** [@cpu-registers]: This is quite a lot, considering the [6502 CPU](nes#cpu) only features three (`X`, `Y` and `A`). However, the Z80's register file exhibits some caveats (or advantages, depending on how you see it):
-  - Only **seven registers** are accessible at a time, the other seven are called 'Alternative Registers' and must be swapped with the first set to be able to access them. This correlates with the principle of [bank switching](nes#going-beyond-existing-capabilities). Also, the Z80 provides specialised instructions like `EX` and `EXX` to transfer the contents between each set.
+- **14 8-bit general-purpose registers** [@cpu-registers]: This is quite a lot, considering the Intel 8080 features half and the [MOS 6502](nes#cpu) only three (`X`, `Y` and `A`). However, the Z80's register file exhibits some caveats (or advantages, depending on how you see it):
+  - Only **seven registers are accessible at a time**, the other seven are called 'Alternative Registers' and must be swapped with the first set to be able to access them. This correlates with the principle of [bank switching](nes#going-beyond-existing-capabilities). Also, the Z80 provides specialised instructions like `EX` and `EXX` to transfer the contents between each set.
   - Within each set, six 8-bit registers may also be paired together to provide up to **three 16-bit registers**, allowing the manipulation of larger values.
 - **16-bit address bus**, the consequences are explained in the next section.
 - **4-bit ALU**: This may be a bit shocking, but it just means that operations done to 8-bit values take twice the cycles to compute.

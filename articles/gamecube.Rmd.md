@@ -4,7 +4,7 @@ long_title: Architecture of the GameCube
 name: GameCube
 release_date: 2001-09-14
 date: 2019-11-19
-subtitle: Powerful and compact
+subtitle: Eloquent engineering
 generation: 6
 javascript: ['threejs', 'audioswitcher']
 cover: gamecube
@@ -186,7 +186,7 @@ Now it's time to apply textures and effects to our models, and for that the GPU 
 - **One Texture mapping unit** at the end of each Pixel unit (giving **four in total**): Together they process up to eight textures for our primitives (now mere pixels) at each cycle.
   - It can also loop itself to merge multiple texture layers over the same primitive, this feature is called **Multi-Texturing** and can be used to achieve **detailed textures**, **environment mapping** (reflections) and **bump mapping** [@graphics-staff], for instance.
   - Finally, the unit also provides an **early [z-buffer](nintendo-64#modern-visible-surface-determination)**, **mipmapping** (processing a downsized texture instead, based on the level of detail) and **anisotropic filtering** (a welcoming improvement over the [previous filters](nintendo-64#tab-1-2-reality-display-processor) that provides greater detail with sloped textures). 
-- **Texture Environment unit** or 'TEV': A very powerful programmable 16-stage colour blender. It basically combines multiple [texels](playstation#tab-4-5-textures) (lighting, textures and constants) to achieve an immense amount of texture effects that will be applied over our polygons.
+- **Texture Environment unit** or 'TEV': A very powerful and programmable 16-stage colour blender. It basically combines multiple [texels](playstation#tab-4-5-textures) (lighting, textures and constants) to achieve an immense amount of texture effects that will be applied over our polygons.
   - The unit works by receiving four texels which are then processed based on the operation requested. Afterwards, it can feed itself the resulting texels as new input, so at the next stage/cycle, the unit can perform a different type of operation over the previous result. This 'loop' can last up to 15 iterations.
   - Each stage has 2^4 operations to choose from [@graphics-dolphin_uber] and, considering the result can be re-processed at the next stage, there are ~5.64 × 10^511 possible permutations!
   - Programmers set up the TEV at runtime (meaning it can change any time) and this is crucial since it opens the door to lots of original materials and effects.

@@ -3,7 +3,7 @@ short_title: PlayStation 2 Architecture
 long_title: Architecture of the PlayStation 2
 long_name: PlayStation 2
 name: PS2
-subtitle: Overshadowing the rest
+subtitle: Overshadowing superiors
 date: 2020-04-08
 release_date: 2000-03-04
 javascript: ['threejs']

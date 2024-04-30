@@ -2,7 +2,7 @@
 long_title: Architecture of the Nintendo 3DS
 short_title: Nintendo 3DS Architecture
 name: Nintendo 3DS
-subtitle: New tech, old marketing
+subtitle: Abundant tech, confusing marketing
 date: 2023-09-16
 release_date: 2011-02-26
 generation: 8
@@ -63,7 +63,7 @@ Well, here are the answers!
 
 ### Principles
 
-Liked or not, the fundamentals are not so different from the [Virtual Boy](virtual-boy), which I've happened to analyse two years before. To recall, the Virtual Boy displays two images, one to each eye, and shows objects individually shifted from the centre. By looking at the two pictures at the same time, they are perceived as some objects are behind others (sense of depth). This is the basis of **Stereoscopic Parallax**.
+Liked it or not, the fundamentals are not so different from the [Virtual Boy](virtual-boy), which I've happened to analyse two years before. To recall, the Virtual Boy displays two images, one to each eye, and shows objects individually shifted from the centre. By looking at the two pictures at the same time, they are perceived as some objects are behind others (sense of depth). This is the basis of **Stereoscopic Parallax**.
 
 ::: {.subfigures .tabs-nested .pixel}
 
@@ -83,7 +83,7 @@ Now, the way the Virtual Boy executed this was a bit cumbersome: it required use
 
 ![Top screen, right eye.](stereoscopy/top_right.png){title="Right"}
 
-An example of two frames the Nintendo 3DS shows on its top screen at the same time. Looks like the fish is going to hit you. The same principle applies 15 years later.<br>Luigi's Mansion (2018).
+An example of two frames the Nintendo 3DS shows on its top screen at the same time. Looks like the fish is going to hit you. The same principle applies 15 years later.<br>Super Mario 3D Land (2011).
 
 :::
 
@@ -111,7 +111,7 @@ The technology is not perfect, however, as there are a few caveats:
 
 - The parallax barrier requires extra brightness, thereby impacting the battery life.
 - The user must not hold the screen in a tilted position (compared to the user's eyes). Otherwise, the user will end up seeing a confusing mix of the two parallax frames, which can be a disorienting experience. Not to mention the eyes won't enjoy the extra fatigue.
-- Combining the fact that the user must maintain a fixed posture while playing, and that stereoscopic parallax can tire the eyes quicker. The 3D feature, as a whole, can be an unnecessary hassle for most.
+- Combining the fact that the user must maintain a fixed posture while playing, and that stereoscopic parallax can tire the eyes quicker. The 3D feature, as a whole, can easily become an unnecessary hassle for most.
 
 ![My attempt to capture the tilt effect of the original 3DS. The 3D depth slider (at the right side of the screen) is all the way up, and by looking at the screen from one side, a ghosting effect appears on the top screen. This is quite eye-straining to look at in reality!](stereoscopy/tilt.webp){.open-float .no-borders}
 
@@ -145,15 +145,15 @@ CPU CTR follows the design methods of previous portable consoles from Nintendo. 
 
 In terms of the actual CPU, Nintendo partnered again with their [old friend](game-boy-advance#the-nintendo-partnership), **ARM**, to produce their next-generation core. ARM's [traditional licensing model](game-boy-advance#tab-1-2-a-new-cpu-venture) (based on offering synthesisable designs) allows Nintendo to mould a CPU to their needs (including fitting it into a big and opaque SoC). In the end, ARM gave them a relatively antiquated product with substantial upgrades. Their choice was the **ARM11** core, a successor of the ARM9 (featured with the [Nintendo DS](nintendo-ds#cpu)). More specifically, the **MPCore** variant, ARM's first **homogenous multi-core** solution.
 
-Using ARM's designs, Nintendo crafted an ARM11 MPCore cluster housing **two** ARM11 cores [@cpu-lioncash]. Three years later, with the arrival of the 'New' 3DS, the SoC was expanded to contain **four** ARM11 cores. The effects of this will be explained in due time so, before anything else, let's analyse what the new CPU cores offer to this console.
+Using ARM's designs, Nintendo crafted an ARM11 MPCore cluster housing **two** ARM11 cores [@cpu-lioncash]. Three years later, with the arrival of the 'New' 3DS, the SoC was expanded to contain **four** ARM11 cores. The effects of this will be explained in due time. So, before anything else, let's analyse what the new CPU cores offer to this console.
 
 ### An iconic industry
 
-The ARM11 series originates from 2002, and in the coming years it became a flagship in the mobile CPU sector, displacing the popular [ARM9](nintendo-ds#arms-new-territories), the short-lived ARM10 and Intel's XScale (the continuation of [StrongARM](nintendo-ds#arms-new-territories), which Intel later abandoned in favour of 'mobile' [x86 CPUs](xbox#p6-and-the-end-of-pentium-numbers)... oh well!).
+The ARM11 series originated in 2002. In the coming years, it became a flagship in the mobile CPU sector, displacing the popular [ARM9](nintendo-ds#arms-new-territories), the short-lived ARM10 and Intel's XScale (the continuation of [StrongARM](nintendo-ds#arms-new-territories), which Intel later liquidated to focus on ['mobile' x86 CPUs](xbox#p6-and-the-end-of-pentium-numbers)... if only they knew!).
 
 ![A Nokia 5230 (2009), a red 3DS (2011) and a Raspberry Pi Model B (2012), all carrying an ARM11.](cpu/devices.webp)
 
-In case you haven't heard about them before, ARM11s are best known for powering the 2006-2009 generation of smartphones (back when many of them featured a keypad or a clamshell design). If you owned a Nokia N95, 5230 or the first iPhone, you've used an ARM11. This also applied to many high-end cameras, GPS or similar peripherals. Curiously enough, other manufacturers like RIM and Samsung held onto the Intel XScale until 2009. Last but not least, the ARM11 was the choice of CPU for the first Raspberry Pi model.
+In case you haven't heard about them before, ARM11s are best known for powering the 2006-2009 generation of smartphones (back when many of them featured a keypad or a clamshell design). If you owned a Nokia N95, 5230 or the first iPhone, you've used an ARM11. This also applied to many high-end cameras, GPS or similar peripherals. Curiously enough, other manufacturers like RIM and Samsung held onto the Intel XScale until 2009. Last but not least, the ARM11 was also the choice of CPU for the first Raspberry Pi.
 
 Now, by the time Nintendo adopted the ARM11, its creator had already succeeded it with the Cortex-A series. This is nothing but expected, as Nintendo's model [favours cost-effectiveness](game-boy#cpu) over avant-garde CPUs. Look at it from another way, saving in CPU costs allows them to focus their budget on other aspects of the console, you'll soon see.
 
@@ -178,7 +178,7 @@ The adoption of extensions and alternative instruction sets eventually made thin
 
 Debian, one of the most popular distributions, tried to tackle the disparities by developing two ports in parallel:
 
-- `armel`: Widely compatible (ARMv4T, onwards).
+- `armel`: Widely compatible ([ARMv4T](game-boy-advance#the-arm7tdmi) and onwards).
 - `armhf`: Accelerated with VFP, but only compatible with ARMv7 onwards.
 
 Yet, with the arrival of the Raspberry Pi (powered by ARMv6 and accelerated with VFP), neither of them was deemed acceptable. Thus, an unofficial port called 'Raspbian' was developed to provide a VFP-accelerated version for ARMv6 CPUs [@cpu-armhf]. Even so, the trend continued: years later, with the arrival of ARMv8 and AArch64, Debian spawned yet-another port, `arm64`, optimised for the new 64-bits ISA.
@@ -202,13 +202,13 @@ Let's start with the cores now and then we'll check the AXI bus.
 
 The first ARM11 MPCore variant, which debuted with the original 3DS, includes two cores. Each is called **MP11** and runs at **268 MHz** [@cpu-lioncash].
 
-Apart from implementing the ARMv6k instruction set, the CPU features an **8-stage pipeline** [@cpu-arm_reference]. Furthermore, the core provides **two levels of branch prediction**, 'dynamic' (based on previous executions) and 'static' (based on the current instruction alone). Overall, both enhancements will be quickly noticed, considering the 5-stage ARM9 couldn't predict a thing!
+Apart from implementing the ARMv6k instruction set, the MP11 features an **8-stage pipeline** [@cpu-arm_reference] and it's complemented with **two levels of branch prediction**: 'dynamic' (based on previous executions) and 'static' (based on the current instruction alone). Overall, I sense these new additions are part of a new design philosophy that will eventually obsolete the iconic [conditional execution](game-boy-advance#commanding-the-cpu), although we won't notice this until the next generation.
 
 Additionally, since the [ARM946E-S CPU](nintendo-ds#tab-1-2-arm946e-s), ARM has been fitting a **System Control Coprocessor** called **CP15**. This time, it provides **Memory-Management** (MMU functions) and registers that output information about the MPCore cluster.
 
-Now, there's no more **Tightly-Coupled Memory** (TCM). There are however **16 KB of instruction cache** and **16 KB of data cache**, this change of model resembles other systems of the same generation. If you are curious, this L1 cache is 4-way set associative.
+Now, there's **no more Tightly-Coupled Memory** (TCM). There are however **16 KB of instruction cache** and **16 KB of data cache**, this change of model resembles other systems of the same generation. If you are curious, this L1 cache is 4-way set associative.
 
-Finally, each core houses a co-processor called **Vector Floating-point Coprocessor** (also known as 'VFP11'). This accelerates arithmetic operations with floating-point numbers, both 32-bit single-precision (a.k.a. `float`) and 64-bit double-precision (a.k.a. `double`) ones [@cpu-vfp]. It's not a big coprocessor though, as its register file is composed of 32 32-bit registers, so doubles will consume two registers. In any case, this processor implements the **VFPv2 instruction set** and follows the **IEEE 754** standard. The latter is a welcomed decision, considering the architecture of [previous generations](playstation-2#the-leader).
+Finally, each core houses a co-processor called **Vector Floating-point Coprocessor** (also known as 'VFP11'). This accelerates arithmetic operations with floating-point numbers, both 32-bit single-precision (a.k.a. `float`) and 64-bit double-precision (a.k.a. `double`) ones [@cpu-vfp]. It's not a big coprocessor though, as its register file is composed of thirty-two 32-bit registers, so doubles will consume two registers. In any case, this processor implements the **VFPv2 instruction set** and follows the **IEEE 754** standard. The latter is a welcomed decision, considering the [difficulties of previous generations](playstation-2#the-leader).
 
 #### The 'New' MPCore {.tab}
 
@@ -535,7 +535,7 @@ This section tends to be very rich in technologies considering Nintendo's consol
 
 The Nintendo DS had tons of modules built-in and the Nintendo DSi added more on top of it (after removing the GBA Slot). Now we find ourselves with a new console combining interfaces from two decades (the 2000s and 2010s).
 
-![Main diagram of the console's architecture. You can sense that the I/O area on the left side was a strong selling point of this console.](diagram.png)
+![Main diagram of the console's architecture. You can sense that the I/O area on the left side was a strong selling point of this console.](diagram.png){.no-borders}
 
 To be fair, we still don't have a standard like USB, but that may be expendable considering the Nintendo 3DS bundles the following:
 

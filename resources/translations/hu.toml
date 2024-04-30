@@ -1,0 +1,275 @@
+[author_footer_first]
+other = 'Remélem tetszett ez a cikk! Ha többet szeretne megtudni a szerzőről <a href="{{ . }}">kattintson ide</a>'
+
+[author_footer_second]
+other = 'és ha szeretné támogatni őt, <a href="{{ . }}">kattintson ide</a>'
+
+[languages_available]
+other = "Elérhető nyelvek: "
+
+[help_translations]
+other = "Segíthetsz a fordításban"
+
+[add_translation]
+other = "Új fordítás"
+
+[report_mistakes]
+other = "Hibák bejelentése vagy változtatási javaslatok"
+
+[supporting_readings]
+other = "Ellenőrizze a támogató olvasmányokat"
+
+[tablet_mode_button]
+other = "Fülek elrejtése / Tablet mód"
+
+[desktop_mode_button]
+other = "Fülek mutatása / Számítógép mód"
+
+[next]
+other = "Következő"
+
+[previous]
+other = "Előző"
+
+[table-of-contents]
+other = "Tartalomjegyzék"
+
+[show]
+other = "Mutat"
+
+[hide]
+other = "Elrejt"
+
+[translations]
+other = "Fordítások"
+
+[related]
+other = "Tovább a '{{ . }}' »"
+
+[ebook_edition_title]
+other = "Szerezze meg az eBook kiadásokat"
+
+[ebook_edition_content]
+other = 'Most már az <a href="{{ .consoles }}">Architecture of Consoles</a> sorozatot is olvashatja eBook olvasókon. <a href="{{ .ebooks }}">Itt ellenőrizheti</a>.'
+
+[home]
+other = "Kezdőlap"
+
+[nav_writings]
+other = "Cikkek"
+
+[nav_console]
+other = "Játékkonzolok"
+
+[nav_blog]
+other = "Blog"
+
+[about]
+other = "Névjegy"
+
+[about_website_long]
+other = "A weboldalról és annak tartalmáról"
+
+[support]
+other = "Támogatás"
+
+[about_author]
+other = "A szerzőről"
+
+[about_website]
+other = "A weboldalról"
+
+[switch_modern]
+other = "Váltás a modern kiadásra"
+
+[switch_classic]
+other = "Váltás a klasszikus kiadásra"
+
+[ebook_edition]
+other = "eBook kiadás"
+
+[about_edition]
+other = "Erről a kiadásról"
+
+[last_updated]
+other = "Utolsó frissítés: {{ . }}"
+
+[classic_edition]
+other = "Klasszikus kiadás"
+
+[classic_intro]
+other = 'A ‘klasszikus’ kiadás egy alternatív változat a <a href="{{ .modern }}">‘modern’ párjához</a>. Nem igényel Javascriptet, legújabb CSS-t vagy bonyolult HTML-t a működéshez, ami ideálissá teszi azok számára, akik akadálymentesítő eszközöket vagy régi internetböngészőket használnak. Másrészt, az eBook felhasználók most ellenőrizhetik az <a href="{{ .ebook }}">eBook kiadást</a>.'
+
+[classic_description]
+other = "Ez a kiadás tartalmilag azonos. Azonban az interaktív widgeteket leegyszerűsítettük, hogy működjenek tiszta HTML-lel, bár ezek linket kínálnak az eredeti cikkhez, ha az olvasó ki akarja próbálni a ‘teljes verziót’."
+
+[general_description]
+other = 'Mint mindig, ez a cikk elérhető a <a href="{{ .github }}">Githubon</a>, hogy az olvasók hibákat jelenthessenek be vagy javaslatokat tegyenek. Ezenkívül elérhető egy <a href="{{ .readings }}">támogató olvasólista</a> is, amely segít megérteni a sorozatot. A szerző elfogad <a href="{{ .donations }}">adományokat</a> is, hogy javítsa a jelenlegi cikkek és az elkövetkezők minőségét.'
+
+[subscribe_title]
+other = "Légy naprakész!"
+
+[subscribe_content]
+other = 'Frissítéseket teszek közzé a <a href="{{ . }}">Twitter profilomon</a>, de e-mailben is értesülhet, amikor új cikk jelenik meg. Bármikor leiratkozhat, a Mailchimp kezeli ezt.'
+
+[generation_title]
+other = "{{ .ordinal }} generáció"
+
+[untranslated_article_title]
+other = "{{.}} (angolul)"
+
+[cpu_subtitle]
+other = "Jelentős CPU fejlesztések:"
+
+[gpu_subtitle]
+other = "Kiemelkedő GPU funkciók:"
+
+[roadmap_title]
+other = "Útiterv"
+
+[roadmap_content]
+other = "Sok konzolról írhatnék... Ha azt szeretné tudni, mi következik a listámon, itt van:"
+
+[contribution_content]
+other = "Ha érdekesnek találja a cikkeimet, kérjük, fontolja meg a támogatást. A hozzájárulását eszközök és erőforrások beszerzésére fordítjuk, amelyek segítenek javítani a meglévő cikkek minőségét és az elkövetkezőket. A cikk végén érdekes anyagokat is talál a beszerzéshez."
+
+[contribution_footer]
+other = "Hálámból a neved szerepelni fog a következő cikk hitelesítési szakaszában, vagy a jelölt cikkben, hacsak másképp nem jelezted."
+
+[contribution_footer_ebook]
+other = 'Megvásárolhatja az <a href="{{ . }}">eBook kiadást</a> is angolul. A profitot adományként kezelem.'
+
+[contribution_suggestions]
+other = 'Alternatívaként segíthet a <a href="{{ . }}">javaslatok megfogalmazásával</a> és/vagy <a href="{{ . }}">fordítások hozzáadásával</a>.'
+
+[print]
+other = "Cikk nyomtatása (vagy mentés PDF-ként)"
+
+[architecture_consoles]
+other = "A játékkonzolok felépítése"
+
+[top_model]
+other = "Modell"
+
+[top_models]
+other = "Típusok"
+
+[motherboard_title]
+other = "Alaplap"
+
+[motherboard_note]
+other = "Az alaplap - a fontosabb alkatrészek feliratozva"
+
+[diagram_title]
+other = "Diagram"
+
+[diagram_note]
+other = "Fő architektúra diagram"
+
+[original]
+other = "Eredeti"
+
+[marked]
+other = "Feliratozott"
+
+[contributing_title]
+other = "Hozzájárulás"
+
+[contributing_content]
+other = 'Ez a cikk a <a href="{{ . }}">Konzolok Architektúrája</a> sorozat része. Ha érdekesnek találta, kérjük, fontolja meg a támogatást. A hozzájárulását eszközök és erőforrások beszerzésére fordítjuk, amelyek segítenek javítani a meglévő cikkek minőségét és az elkövetkezőket.'
+
+[contributing_tools]
+other = "Ebben a cikkben követjük a kívánatos eszközöket és a legújabb beszerzéseket:"
+
+[contributing_thanks]
+other = "Nagy köszönet a következő embereknek az adományukért:"
+
+[changelog_title]
+other = "Változáslista"
+
+[changelog_content]
+other = 'Mindig jó nyomon követni a változásokat. A teljes jelentésért ellenőrizheti a <a href="{{ . }}">commit logot</a>. Vagy itt egy egyszerűsített lista:'
+
+[supporting_imagery]
+other = "Támogató képek"
+
+[consoles_written_by]
+other = "{{ . }} által készített gyakorlati elemzés"
+
+[translated_by]
+other = "Fordította {{ . }}"
+
+[interactive_model_origin]
+other = 'Interaktív modell elérhető a <a href="{{ . }}">modern kiadásban</a>'
+
+[interactive_player_origin]
+other = 'Interaktív lejátszó elérhető a <a href="{{ . }}">modern kiadásban</a>'
+
+[goto_classic]
+other = 'Ha akadálymentesítő eszközöket vagy régi böngészőket használ, <a href="{{ .classic }}">váltson a ‘klasszikus’ kiadásra</a>.'
+
+[audio_samples]
+other = "Audió minták"
+
+[wireframe]
+other = "Drótváz"
+
+[surface]
+other = "Felület"
+
+[textured]
+other = "Texturált"
+
+[tap_enable_interaction]
+other = "Koppintson az interakció engedélyezéséhez"
+
+[buffering]
+other = "Pufferelés..."
+
+[ready_drag_zoom]
+other = "Készen áll a húzásra és a nagyításra!"
+
+[sources]
+other = "Források / További olvasás"
+
+[archived]
+other = "Archivált"
+
+[general]
+other = "Általános"
+
+[cpu]
+other = "CPU"
+
+[graphics]
+other = "Grafika"
+
+[audio]
+other = "Hang"
+
+[audio_video]
+other = "Audio / Video"
+
+[io]
+other = "I/O"
+
+[operating_system]
+other = "Operációs rendszerek"
+
+[games]
+other = "Játékok"
+
+[anti_piracy]
+other = "Anti-Piracy"
+
+[copy_protection]
+other = "Másolásvédelem"
+
+[photography]
+other = "Fotográfia"
+
+[other_media]
+other = "Egyéb média"
+
+[bonus]
+other = "Bónusz"

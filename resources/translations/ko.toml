@@ -1,0 +1,275 @@
+[author_footer_first]
+other = '이 글을 재미있게 보셨길 바랍니다! 필자에 대해 더 알고 싶다면 <a href="{{ . }}">여기</a>를 누르세요.'
+
+[author_footer_second]
+other = '그를 지원하려면 <a href="{{ . }}">여기를 클릭</a>하세요'
+
+[languages_available]
+other = "언어 지원: "
+
+[help_translations]
+other = "번역에 도움주기"
+
+[add_translation]
+other = "번역 추가하기"
+
+[report_mistakes]
+other = "오탈자 제보 또는 수정 제안하기"
+
+[supporting_readings]
+other = "지원 독서 확인"
+
+[tablet_mode_button]
+other = "탭 숨기기 / 태블릿 모드"
+
+[desktop_mode_button]
+other = "탭 보이기 / 데스크탑 모드"
+
+[next]
+other = "다음"
+
+[previous]
+other = "이전"
+
+[table-of-contents]
+other = "목차"
+
+[show]
+other = "보기"
+
+[hide]
+other = "숨기기"
+
+[translations]
+other = "번역"
+
+[related]
+other = "'{{ . }}'에서 더 보기 »"
+
+[ebook_edition_title]
+other = "전자책 에디션 받기"
+
+[ebook_edition_content]
+other = '이제 <a href="{{ .consoles }}">콘솔의 아키텍처</a> 시리즈를 전자책 리더에서도 읽을 수 있습니다. <a href="{{ .ebooks }}">여기에서 확인하세요</a>.'
+
+[home]
+other = "홈"
+
+[nav_writings]
+other = "글"
+
+[nav_console]
+other = "콘솔"
+
+[nav_blog]
+other = "블로그"
+
+[about]
+other = "소개"
+
+[about_website_long]
+other = "이 웹 사이트와 컨텐츠에 대하여"
+
+[support]
+other = "후원"
+
+[about_author]
+other = "작성자에 대해"
+
+[about_website]
+other = "웹사이트에 대해"
+
+[switch_modern]
+other = "모던 에디션으로 전환"
+
+[switch_classic]
+other = "클래식 에디션으로 전환"
+
+[ebook_edition]
+other = "전자책 에디션"
+
+[about_edition]
+other = "이 에디션에 대해"
+
+[last_updated]
+other = "마지막 수정: {{ . }}"
+
+[classic_edition]
+other = "클래식 에디션"
+
+[classic_intro]
+other = "'클래식' 에디션은 <a href=\"{{ .modern }}\">'모던' 에디션</a>과 비슷하지만, 자바 스크립트나 복잡한 CSS 또는 HTML이 적용되어 있지 않아 레거시 브라우저 또는 접근성 도구를 사용하는 독자에게 적합합니다. 다른 한편으로는, 전자책 독자 분들을 위한 <a href=\"{{ .ebook }}\">전자책 에디션</a>도 있습니다."
+
+[classic_description]
+other = "이 판은 내용 면에서 동일하지만, 순수 HTML로 작동하는 간단한 인터랙티브 위젯으로 변경되었습니다. 그러나 이들은 독자가 '전체 버전'을 시도하고 싶은 경우 원래 기사로의 링크를 제공할 것입니다."
+
+[general_description]
+other = '항상 그렇듯이, 이 기사는 독자들이 실수를 보고하거나 변경을 제안할 수 있도록 <a href="{{ .github }}">Github</a>에서 사용할 수 있습니다. 또한 이 시리즈를 이해하는 데 도움이 될 <a href="{{ .readings }}">지원 독서 목록</a>도 있습니다. 저자는 또한 현재 기사와 다가올 기사의 품질을 향상시키는 데 도움이 될 <a href="{{ .donations }}">기부</a>를 받습니다.'
+
+[subscribe_title]
+other = "업데이트 상태 유지"
+
+[subscribe_content]
+other = '저는 <a href="{{ . }}">트위터 프로필</a>에 업데이트를 게시하지만, 새 기사가 나올 때 이메일을 받을 수도 있습니다. 언제든지 구독을 취소할 수 있으며, 이를 처리하기 위해 Mailchimp를 사용합니다.'
+
+[generation_title]
+other = "{{ .ordinal }} 세대"
+
+[untranslated_article_title]
+other = "{{.}} (영어로)"
+
+[cpu_subtitle]
+other = "CPU 주요 개선 사항:"
+
+[gpu_subtitle]
+other = "뛰어난 GPU 특성:"
+
+[roadmap_title]
+other = "로드맵"
+
+[roadmap_content]
+other = "저는 많은 콘솔에 대해 쓸 수 있습니다... 다음에 제 목록에 무엇이 있는지 궁금하시다면 여기 있습니다:"
+
+[contribution_content]
+other = "제 기사가 흥미롭다면 기부를 고려해 주세요. 기부금은 기존 기사와 다가올 기사의 품질을 향상시키는 데 도움이 될 도구와 자원 구매에 사용됩니다. 또한, 각 기사의 끝에서 흥미로운 자료를 얻을 수 있는 목록도 제공합니다."
+
+[contribution_footer]
+other = "감사의 표시로, 당신의 이름은 다음 기사나 지명된 기사의 크레딧 섹션에 포함될 것입니다, 달리 명시되지 않는 한."
+
+[contribution_footer_ebook]
+other = '영어로 <a href="{{ . }}">전자책 에디션</a>을 구매할 수도 있습니다. 수익은 기부로 취급합니다.'
+
+[contribution_suggestions]
+other = '또는, <a href="{{ . }}">변경 제안</a> 혹은 <a href="{{ . }}">번역 추가</a>를 통해 도움을 줄 수 있습니다.'
+
+[print]
+other = "인쇄하기 (또는 PDF로 저장)"
+
+[architecture_consoles]
+other = "콘솔 아키텍처"
+
+[top_model]
+other = "모델"
+
+[top_models]
+other = "모델"
+
+[motherboard_title]
+other = "마더보드"
+
+[motherboard_note]
+other = "중요한 부품들이 표시된 마더보드"
+
+[diagram_title]
+other = "다이어그램"
+
+[diagram_note]
+other = "메인 아키텍처 다이어그램"
+
+[original]
+other = "원본"
+
+[marked]
+other = "표시"
+
+[contributing_title]
+other = "기여"
+
+[contributing_content]
+other = '이 기사는 <a href="{{ . }}">콘솔의 아키텍처</a> 시리즈의 일부입니다. 흥미롭다면 기부를 고려해 주세요. 기부금은 기존 기사와 다가올 기사의 품질을 향상시키는 데 도움이 될 도구와 자원 구매에 사용됩니다.'
+
+[contributing_tools]
+other = "이 글을 위한 바람직한 도구와 최근 획득한 항목들은 여기에 기록되어 있습니다:"
+
+[contributing_thanks]
+other = "후원을 해주신 다음 분들께 감사드립니다:"
+
+[changelog_title]
+other = "변경 내역"
+
+[changelog_content]
+other = '변경 사항을 기록하는 것은 항상 좋습니다. 완전한 보고서를 보려면 <a href="{{ . }}">커밋 로그</a>를 확인할 수 있습니다. 또는, 여기에 간단한 목록을 제공합니다:'
+
+[supporting_imagery]
+other = "지원 이미지"
+
+[consoles_written_by]
+other = "{{ . }}에 의한 실용적인 분석"
+
+[translated_by]
+other = "{{ . }}님에 의해 번역됨"
+
+[interactive_model_origin]
+other = '상호작용 가능한 모델은 <a href="{{ . }}">모던 에디션</a>에서 사용할 수 있습니다.'
+
+[interactive_player_origin]
+other = '상호작용 가능한 플레이어는 <a href="{{ . }}">모던 에디션</a>에서 사용할 수 있습니다.'
+
+[goto_classic]
+other = "만약 구버전의 브라우저를 사용중이거나 접근성 도구를 사용 중이신 경우, <a href=\"{{ .classic }}\">'클래식' 에디션으로 전환</a> 해주세요."
+
+[audio_samples]
+other = "오디오 샘플"
+
+[wireframe]
+other = "와이어프레임"
+
+[surface]
+other = "표면"
+
+[textured]
+other = "텍스처"
+
+[tap_enable_interaction]
+other = "탭하여 상호작용 활성화"
+
+[buffering]
+other = "버퍼링 중..."
+
+[ready_drag_zoom]
+other = "드래그와 줌을 사용할 준비가 되었습니다!"
+
+[sources]
+other = "출처 / 계속 읽기"
+
+[archived]
+other = "아카이브됨"
+
+[general]
+other = "일반"
+
+[cpu]
+other = "CPU"
+
+[graphics]
+other = "그래픽"
+
+[audio]
+other = "오디오"
+
+[audio_video]
+other = "오디오 / 비디오"
+
+[io]
+other = "I/O"
+
+[operating_system]
+other = "운영 체제"
+
+[games]
+other = "게임"
+
+[anti_piracy]
+other = "불법 복제 방지 기술 (Anti-Piracy)"
+
+[copy_protection]
+other = "복사 방지"
+
+[photography]
+other = "사진"
+
+[other_media]
+other = "기타 미디어"
+
+[bonus]
+other = "보너스"

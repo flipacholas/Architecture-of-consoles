@@ -44,12 +44,16 @@ Yeni sistemleri, programlanmaya hazır çok sayıda *zaten tanıdık* bileşen i
 
 Bu konsolun iki genel amaçlı işlemcisi vardır.
 
+### Çipteki Lider
+
 İlk olarak, elimizde **~7.6MHz** hızında çalışan bir **Motorola 68000** var, o zamanlar Amiga, (orijinal) Macintosh, Atari ST gibi birçok bilgisayarda bulunan popüler bir işlemci... İlginçtir ki, bu bilgisayarların her biri '6502 selefi'nin yerini almıştır ve [Master System](master-system) (Mega Drive'ın öncüsü) 6502 CPU kullanmazken, [NES](nes) kullanmıştır (ve bir şekilde Sega'nın amacı Nintendo tüketicilerini kazanmaktı). Sonuç olarak, bilgisayarların evrimi ile oyun konsolu teknolojisi arasında bir miktar korelasyon görebilirsiniz.
 
-Konuya dönersek, 68k 'ana' CPU rolüne sahiptir ve oyun mantığı, I/O ve grafik hesaplamaları için kullanılacaktır. Aşağıdaki yeteneklere sahiptir [@cpu-user]:
+![Mega Drive'daki Motorola 68000 çipi, bu çip Hitachi'den ikinci kaynaktan alınmıştır.](m68000.jpg)
+
+Konuya dönersek, 68k 'ana' CPU rolüne sahiptir ve oyun mantığı, I/O ve grafik hesaplamaları için görevlendirilecektir. Aşağıdaki yeteneklere sahiptir [@cpu-user]:
 
 - **68000 ISA**: Bir dizi çarpma ve bölme işlem kodu da dahil olmak üzere birçok özelliğe sahip yeni bir komut seti. Bazı talimatlar 8 bit uzunluğunda ('byte' olarak adlandırılır), diğerleri 16 bit uzunluğunda ('word' olarak adlandırılır) ve geri kalanı 32 bit uzunluğundadır ('long-word' olarak adlandırılır).
-- **32-bit register**: 6502 ve Z80'in sadece 8-bit register'ları olduğu düşünülürse bu büyük bir adımdır.
+- **Sekiz genel amaçlı 32-bit register**: 6502 ve Z80'in sadece 8-bit register'ları olduğu düşünülürse bu büyük bir adımdır.
 - **16-bit ALU**: Yani 32 bitlik sayılarda aritmetik işlemleri hesaplamak için fazladan döngüye ihtiyaç duyar, ancak 16 bit/8 bitlik sayılarda sorun yaşamaz.
 - Harici **16-bit veri yolu**: Gördüğünüz gibi, bu CPU bazı '32-bit yeteneklere' sahip olsa da, tam bir 32-bit makine olarak tasarlanmamıştır. Bu veri yolunun genişliği, 16 bitlik verileri taşırken daha iyi performans anlamına gelir.
   - İlginçtir ki Motorola, bu konsolun piyasaya sürülmesinden dört yıl önce tam bir 32-bit CPU olan **68020**'yi piyasaya sürmüştür. Ancak Sega ikinci çipi seçseydi maliyetlerin fırlayacağını tahmin ediyorum.
@@ -62,9 +66,17 @@ Konuya dönersek, 68k 'ana' CPU rolüne sahiptir ve oyun mantığı, I/O ve graf
   - Genişleme portları ('gelecekteki' aksesuarlar için kullanılır).
   - İkinci CPU'nun RAM'i, *bus arbiter* tarafından aracılık edilir.
 
-(32 bitlik kelimeleri işleyebilen bir CPU ile 24 bitlik adresleri kullanmanın arkasındaki nedeni merak ediyorsanız, 80'lerde birçok kişinin 4 GB RAM'i yönetmek istediğinden ve kullanılmayan satırları eklemenin performans ve para açısından maliyetli olduğundan şüpheliyim).
+Eğer 32 bitlik sözcükleri işleyebilen bir CPU'da 24 bitlik adreslerin kullanılmasının ardındaki nedeni merak ediyorsanız, bunun nedeni o dönemde 4 GB belleği yönetmek için yeterli ekipmanın bulunmamasıdır. Performans ve para açısından kullanılmayan hatların uygulanması maliyetli olduğu gerçeğiyle birleştirildiğinde, Motorola makul bir uzlaşmaya vardı (24 adres hattı) ki bu da geliştiricileri tam 32 bitlik CPU'nun (68020) geldiği zaman için hazırlar.
 
-İkinci olarak, bu konsolda **~3,5 MHz** hızında çalışan bir **Zilog Z80** CPU daha bulunmaktadır. Bu, daha önce [Master System'in makalesinde](master-system#cpu) analiz edilen işlemcinin aynısıdır.
+#### Tuhaf bir talimat seti
+
+80'lerin [RISC devrimi](playstation#tab-1-1-a-bit-of-history) öncesinde, talimat setlerinin nasıl tasarlandığını birleştirmeye çalışan önceki bir dalgaydı. Özünde, 70'lerin tüketici CPU'ları (6502 veya 8080 gibi) belleğin nasıl erişileceğini önceden tanımlamış talimatlar sağlar (buna 'adresleme modu' denir). Motorola, 68000 ile talimat işlevini (opcode) adresleme modundan ayırdı ve bu sonuncuyu sadece başka bir parametre (operand) haline getirdi. Bunu yaparak, geliştiriciler artık (ihtiyaçlarına göre) en optimal adresleme moduyla aynı opcodları kullanabilir.
+
+Bu ilkeye **instruction set orthogonality** adı verilir ve 70'lerin sonlarında yeni nesil CPU'ları büyük ölçüde etkilemiştir, ancak [RISC tasarımlarının](game-boy-advance#tab-1-1-the-rise-of-acorn-computers) devreye girmesiyle hızla dağılmış ve yükü etkili bir şekilde derleyicilere kaydırmıştır. Her durumda, Motorola 68k serisi 80'ler boyunca büyük popülariteye sahip oldu ve şirketlerin başka bir satıcıya geçiş yapmaya başlaması 90'ların başlarına kadar sürmedi.
+
+### İkinci muz
+
+Bu konsolda **~3,5 MHz** hızında çalışan bir **Zilog Z80** CPU daha bulunmaktadır. Bu, daha önce [Master System'in makalesinde](master-system#cpu) analiz edilen işlemcinin aynısıdır.
 
 Z80 genel olarak **ses kontrol** için kullanıldı. Böylece, **16-bit adres veri yolu** aşağıdakilerden oluşur [@cpu-z80map]:
 
@@ -72,7 +84,7 @@ Z80 genel olarak **ses kontrol** için kullanıldı. Böylece, **16-bit adres ve
 - İki ses çipi.
 - 68000'in RAM'i (yine bus arbiter tarafından idare edilir).
 
-Son olarak, **her iki CPU da paralel olarak çalışır**.
+Son olarak, **her iki CPU'nun da paralel** çalıştığına dikkat etmek önemlidir.
 
 ### Kullanılabilir hafıza
 

@@ -4,7 +4,7 @@ long_title: GameCube Mimarisi
 name: GameCube
 release_date: 2001-09-14
 date: 2019-11-19
-subtitle: Güçlü ve kompakt
+subtitle: Etkileyici mühendislik
 generation: 6
 javascript:
   - 'threejs'
@@ -109,7 +109,7 @@ Sonuç olarak iki ana otobüsle organize edilen bir sistem ortaya çıktı:
 
 Ayrıca, bu tasarım daha fazla belleğin bulunabileceği ek (ancak alışılmadık) bir veri yolu içerir:
 
-- **Doğu Köprüsü**: GPU'yu **Audio RAM** veya 'ARAM' [@cpu-hitmen] adı verilen başka bir bellek yongasına bağlar. Genel amaçlı kullanım için **12 MB SRAM** sağlar, bu da *yedek* bellek için oldukça büyüktür. Ancak, veri yoluna normal yollardan (bellek adresleri) erişilemez. Bunun yerine, yalnızca DMA aracılığıyla erişilebilen 8 bitlik bir seri uç noktaya (GPU'dan iki kat ve CPU'dan dört kat daha yavaştır) bağlanır.
+- **Doğu Köprüsü**: GPU'yu **Audio RAM** veya 'ARAM' [@cpu-hitmen] adı verilen başka bir bellek yongasına bağlar. Genel amaçlı kullanım için **16 MB SRAM** sağlar, bu da *yedek* bellek için oldukça büyüktür. Ancak, veri yoluna normal yollardan (bellek adresleri) erişilemez. Bunun yerine, yalnızca DMA aracılığıyla erişilebilen 8 bitlik bir seri uç noktaya (GPU'dan iki kat ve CPU'dan dört kat daha yavaştır) bağlanır.
 
 Genel olarak bu, ARAM'ın önemli miktarda RAM sağlarken, ses tamponu olarak hareket etmek veya belirli aksesuarlar tarafından kullanılmak gibi daha az kritik görevlerle sınırlı olacağı anlamına gelir (G/Ç bölümünde açıklanmıştır).
 
@@ -188,7 +188,7 @@ FIFO aracılığıyla verilen ilkelleri işlemek için iki **vertex modu** mevcu
 - **Her Piksel biriminin sonunda bir Doku eşleme birimi** (toplamda **dört tane**): Bunlar birlikte her döngüde ilkellerimiz (artık yalnızca pikseller) için sekiz adede kadar doku işler.
   - Ayrıca, kendini aynı önceliğin üzerine birden fazla doku katmanını birleştirmek için döndürebilir, bu özellik **Çoklu-Doku** olarak adlandırılır ve **detaylı dokular**, **environment mapping** (yansımalar) ve **düğüm haritalama** [@graphics-staff] gibi durumlarda kullanılabilir.
   - Son olarak, birim ayrıca bir **erken [z-tamponu](nintendo-64#modern-görünür-yüzey-belirleme)**, **mipmapping** (bunun yerine küçültülmüş bir doku işleme) sağlar, detay seviyesine göre) ve **anizotropik filtreleme** (eğimli dokularla daha fazla detay sağlayan [önceki filtrelere](nintendo-64#tab-1-2-reality-display-processor) göre memnuniyet verici bir gelişme).
-- **Texture Environment unit** veya 'TEV': Çok güçlü bir programlanabilir 16 aşamalı renk karıştırıcı. Temel olarak çoklu [texelleri](playstation#tab-4-5-textures) (aydınlatma, dokular ve sabitler) birleştirerek çokgenlerimiz üzerinde uygulanacak muazzam miktarda doku efekti elde eder.
+- **Texture Environment unit** veya 'TEV': Çok güçlü ve programlanabilir 16 aşamalı renk karıştırıcı. Temel olarak çoklu [texelleri](playstation#tab-4-5-textures) (aydınlatma, dokular ve sabitler) birleştirerek çokgenlerimiz üzerinde uygulanacak muazzam miktarda doku efekti elde eder.
   - Ünite dört texel alarak çalışır ve bunlar daha sonra talep edilen işleme göre işlenir. Daha sonra, elde edilen texelleri yeni girdi olarak besleyebilir, böylece bir sonraki aşamada/döngüde ünite önceki sonuç üzerinde farklı bir işlem gerçekleştirebilir. Bu 'döngü' 15 iterasyona kadar sürebilir.
   - Her aşamada seçilebilecek 2^4 işlem vardır [@graphics-dolphin_uber] ve sonucun bir sonraki aşamada yeniden işlenebileceği düşünüldüğünde, ~5.64 × 10^511 olası permütasyon vardır!
   - Programcılar TEV'i çalışma zamanında kurarlar (yani her an değişebilir) ve bu çok önemlidir çünkü birçok orijinal malzeme ve efekte kapı açar.

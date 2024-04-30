@@ -43,6 +43,8 @@ Now, if you're really interested in understanding this system but find this arti
 
 The processor included in this console is a slightly customised version of the famous **Intel Pentium III** (an off-the-shelf CPU for computers) running at **733 MHz**. With this, one can assume this console is just a PC behind the scenes... I won't tell you the answer, but I promise that at the end of the article you will be able to reach your own conclusion.
 
+![The Intel Pentium III package on the Xbox's motherboard.](cpu.jpg)
+
 Anyhow, Pentiums, along with other lines of CPUs designed and manufactured by Intel, were incredibly popular in the computer market. Such was Intel's market share that they became the de-facto reference point for quality: As a typical user, if you wanted a good computer and had the budget, you only had to look for *something* carrying an Intel CPU. We all know by now that there are more factors involved, but that's what the marketing guys at Intel managed to project.
 
 ### Technical information
@@ -53,7 +55,7 @@ Having said that, let us take a look:
 
 #### Branding {.tabs .active}
 
-![How is this study organised.](cpu/branding.png){.tab-float}
+![How this study is organised.](cpu/branding.png){.tab-float}
 
 First things first, the Xbox's CPU is identified as a **Pentium III**. So what does this mean? Back then (early noughties), the Pentium series represented the next generation of CPUs. They were the 'new high-end' that grouped all the fancy technology that made computers super-fast, plus it helped buyers decide which CPU they had to buy if they wanted *the best of the best*.
 
@@ -63,7 +65,7 @@ To dive further and not get lost in the way, I have catalogued the information i
 
 #### The ISA {.tab}
 
-Indeed, after I mentioned 'Intel' it was a matter of time before I introduce the famous **x86**, its instruction set.
+Indeed, once I mention 'Intel' it's a matter of time before I introduce the famous **x86**, its instruction set.
 
 The first form of x86 debuted with the release of the **Intel 8086** in 1978, a 16-bit CPU. Afterwards, the ISA was constantly expanded with more instructions as more Intel CPUs were released (80186, 80286 and so on) [@cpu-thompson]. Consequently, x86 started to fragment as more ground-breaking features were added (i.e. 'protected mode' and 'long mode'). To tackle this, modern x86 applications commonly target the 80386 ISA (also called **IA-32** or **i386**) as a baseline, which among other things, operates in a 32-bit environment.
 
@@ -80,7 +82,7 @@ When it comes to building a circuit that can interpret x86 instructions, Intel h
 
 Now, the Xbox CPU, along with the rest of Pentium III processors, use the **P6 Microarchitecture** (also known as 'i686'). This is the 6th generation (counting from the 8086) which features:
 
-- A *massive* **14-stage pipeline**: Meaning up to 14 instructions can be processed in parallel. On the other side, individual instructions may take a lot more cycles to complete. See [a previous explanation](game-boy-advance#tab-2-2-the-core).
+- A *massive* **14-stage pipeline**: Meaning up to 14 instructions can be processed in parallel. On the other side, individual instructions may take a lot more cycles to complete. See [a previous explanation](game-boy-advance#the-core).
 - **Out-of-order execution**: If possible, the CPU re-orders the sequence of instructions to increase efficiency and performance.
 - **Dynamic execution**: Since the P6 is an out-of-order and [superscalar](dreamcast#cpu) design. The traditional [branch predictor](gamecube#features) is now combined with other techniques ('speculative execution' and 'data-flow analysis') to take advantage of the new capabilities. In doing so, it reduces pipeline stalling even further.
 
@@ -88,34 +90,36 @@ Having said that, take a closer look at these features. It so happens they are v
 
 #### CISC or RISC {.tab}
 
-All of the competitor's consoles of the same generation contain a **RISC** CPU whereas Intel's x86 ones are **CISC**. RISC CPUs are known for having a simplified instruction set compared to CISC CPUs. This includes, for instance, not providing instructions that operate values directly from memory (as opposed to only operating values from registers). The simplified model is called **load–store architecture**.
+The competition happens to feature CPUs designed around the [**RISC guidelines**](playstation#tab-1-1-a-bit-of-history), whereas Intel's x86 is not, thereby being placed in the **CISC** group. RISC CPUs are known for having an intentionally simplified design compared to CISC CPUs. This includes, for instance, implementing a **load–store architecture**, which only provides instructions that operate values from registers (as opposed to operating directly from memory).
 
-One of the advantages of RISC processors is that their simplistic approach enables its CPUs to be designed with a modular sense, which in turn can be exploited to improve performance with parallelism techniques. This is why we have seen CPUs like MIPS and PowerPC debuting pipeline stages, superscalar designs, out-of-order execution, branch prediction, etc. On the other side, 'CISC' processors were designed many years before RISC processors appeared and the former aimed to solve different needs. Consequently, their designs are not as flexible as RISC ones.
+One of the advantages of RISC processors is that their simplistic approach enables its CPUs to be designed with a modular sense, which in turn can be exploited to improve performance with parallelism techniques. This is why we have seen CPUs like MIPS and PowerPC debuting pipeline stages, superscalar designs, out-of-order execution, branch prediction, etc. On the other side, CISC processors predate RISC ones and the former aimed to solve different needs. Consequently, their designs are not as flexible as RISC CPUs.
 
-Back to the original question, the P6 is an interesting design, because while this CPU only understands a CISC instruction set (x86), a subset of its opcodes is interpreted using **microcode**. Furthermore, the unit that executes microcode is built around the load-store model [@cpu-gwennap]. All in all, this allows Intel to gain similar advantages to RISC processors without breaking compatibility with the historic x86 ISA.
+Back to the original question, the P6 is an interesting design, because while this CPU only understands a CISC instruction set (x86), a subset of its opcodes is interpreted using **microcode**. Most importantly, the unit that executes microcode **is built around the load-store model** [@cpu-gwennap]. This is because the P6 architecture was authored by the former engineers of the **Intel i960** (a once-promising RISC CPU by Intel). All in all, this has enabled Intel to gain similar advantages to RISC processors without breaking compatibility with the historic x86 ISA. It's fair to say that as time passed by, terms like 'CISC' and 'RISC' have become too ambiguous to categorise any modern CPU.
 
-Moreover, microcode is already embedded in the silicon but it can be patched, allowing Intel to fix its CPUs after production whenever a bug or a security vulnerability is discovered. If you have read previous articles (i.e. [N64](nintendo-64) or [PS2](playstation-2)), bear in mind that Intel's microcode is **not publicly accessible** (let alone documented) and Intel is its sole 'maintainer'.
+As a side note, microcode is already embedded in the silicon but it can be patched, allowing Intel to fix its CPUs after production whenever a bug or a security vulnerability is discovered. If you have read previous articles (i.e. [N64](nintendo-64) or [PS2](playstation-2)), bear in mind that Intel's microcode is **not publicly accessible** (let alone documented) and Intel is its sole 'maintainer'.
 
 #### The Core {.tab}
 
 ![The Coppermine design.](cpu/core.png){.tab-float}
 
-There were numerous chips shipped that implement the P6 microarchitecture. Specifically, the Xbox includes one model called **Coppermine**. This was also released as the second revision of the Pentium III (replacing the 'Katmai' core) and features the following components:
+Intel shipped numerous chips that implemented the P6 microarchitecture. The Xbox includes one model called **Coppermine**. It was branded as the second revision of the Pentium III (replacing the 'Katmai' core) and features the following components:
 
 - **32 KiB L1** cache: Divided between 16 KiB for instructions and 16 KiB for data.
 - Integrated **128 KiB L2** cache: This is *odd* since the off-the-shelf Coppermine has 256 KiB of L2 [@cpu-anand]. In fact, the Coppermine128 (found in the Intel 'Celeron' brand, the low-end Pentium alternative) has the same amount of L2 [@cpu-shvets]. Hence, this was probably done to reduce manufacturing costs and keep this console at a competitive price.
 - 133 MHz **Front-side bus**: This is the bus that connects the L2 cache with the memory controller, we'll see more about it later on.
   - Intel names it 'Front-side bus' to distinguish it from another bus that connects L2 (external cache) with L1 (internal cache). The latter bus is called 'Back-side bus'... and it's an unfortunate name to use in the UK.
 
-Coppermine also adds two 'enhancements' over their original implementation of L2 cache, these are the **Advanced Transfer Cache** and the **Advanced System Buffering**. To sum them up, L2 cache is on-chip and their buses are wider, which help to reduce possible bottlenecks in the Front-side bus.
+Coppermine also adds two 'enhancements' over their original implementation of L2 cache, these are the **Advanced Transfer Cache** and the **Advanced System Buffering**. To sum them up, L2 cache is on-chip and their buses are wider, which helps to reduce possible bottlenecks in the Front-side bus.
 
 Finally, the chip uses the 'Micro-PGA2' socket fit on the motherboard, but like any other console, the Xbox has it soldered with a Ball Grid Array or 'BGA'.
 
 ### P6 and the end of Pentium numbers {.tabs-close}
 
-Here's a bit more history. After the years of the P6, Intel planned to succeed it with the 'NetBurst' microarchitecture (featured in the Pentium IV). However, the line of succession also ended there. Even though NetBurst implemented many contemporary techniques [@cpu-netburst], it also suffered from excessive power consumption, heat emission and scalability issues that impeded the design from being continued any further.
+Here's a bit more history. After the years of the P6, Intel planned to succeed it with the 'NetBurst' microarchitecture (featured in the Pentium IV). However, the line of succession also ended there. Even though NetBurst implemented many contemporary techniques [@cpu-netburst], it also suffered from excessive power consumption, heat emission (an average of 85 W [@cpu-pentium4]) and scalability issues - all of which impeded the design from being continued any further.
 
-Consequently, this prompted an Intel team in Israel to revisit their low-powered P6 CPU called 'Pentium M' and develop a more powerful successor. The first result was **Yonah**, a slight improvement of the P6 design branded as **Core Solo** or **Core Duo**. Months later, the new **Core** microarchitecture became the flagship successor of P6 (and NetBurst) with the arrival of the **Core 2** CPU line. Over the years, subsequent microarchitectures improved on many aspects, but they also managed to re-incorporate forgotten elements from NetBurst without repeating the same mistakes.
+Consequently, this prompted an Intel team in Israel to revisit their low-powered P6 CPU - the 'Pentium M' - and develop a more powerful successor. The first result was the **Yonah** core, a slight improvement of the P6 design branded as **Core Solo** or **Core Duo**. With it, power dissipation dropped to reasonable numbers (between 27 W [@cpu-coresolo] and 31 W [@cpu-coreduo], depending on the variant). Months later, the follow-up **Core** microarchitecture became the flagship successor of P6 (and NetBurst) and, confusingly enough, reached the shelves in the form of the **Core 2** CPU line. Over the years, subsequent microarchitectures improved on many aspects, but they also managed to re-incorporate forgotten elements from NetBurst without repeating the same mistakes.
+
+On a curious note, I wonder if the naming of the Yonah core is meant as a metaphor for the Book of Jonah, particularly connecting the event where the prophet, in the end, managed to correct his path to save the city of Nineveh. Though it's also possible I'm overthinking this.
 
 ### Motherboard architecture
 
@@ -146,15 +150,17 @@ Furthermore, the console features an internal hard disk, and it *so happens* to 
 
 ## Graphics
 
-As we've seen before, the graphics processor resides in the NV2A chip and just like MCPX, it is manufactured by Nvidia.
+As we've seen before, the graphics processor resides in the NV2A chip and, just like MCPX, it is manufactured by Nvidia.
 
-![Halo (2001) in 720p mode.](halo.png)
+![The Nvidia NV2A package on the Xbox's motherboard.](gpu.jpg)
 
 This company has been in the graphics business for a long time, their *GeForce* series are one of the most popular GPU brands in the computer market, directly competing against the Radeon series from ArtX/ATI. Overall, this provides good leverage on the quality of graphics found in the Xbox, considering it's Microsoft's first attempt in the console market.
 
 It all seems reasonable, but was it *really* a certain decision to make back then? It's easy to rely on present history to find out why Microsoft chose Nvidia over other popular brands from the time (3dfx, PowerVR, S3, etc), but if we read more about the competition back then, the panorama of options made it much more complex.
 
-For instance, 3dfx's popular 'Voodoo 2' series had ~70% of market share in the PC market by the end of the 90s [@graphics-ign], while Nvidia was struggling to promote adoption of the new 'GeForce 256' (the first of the GeForce series). After this, Microsoft's choice now sounds more like a risk than a safe bet, but as we know by now, this risk eventually paid off.
+![Halo (2001) running on the Xbox in 720p mode.](halo.png)
+
+For instance, 3dfx's popular 'Voodoo 2' series had ~70% of the market share in the PC market by the end of the 90s [@graphics-ign], while Nvidia was struggling to promote adoption of the new 'GeForce 256' (the first of the GeForce series). After this, Microsoft's choice now sounds more like a risk than a safe bet, but as we know by now, this risk eventually paid off.
 
 > Nvidia was NOT the #1 player they are now, in 1999. They were in trouble. The new GeForce architecture was still young and lots of people didn’t like it. Now it seems forgone. But you’d need to research that history to know that, and why I had to fight to use it. I was right but I didn’t know I was right; I was very worried.
 >
@@ -216,15 +222,15 @@ Register combiners are programmable in a similar nature to the [Texture Environm
 
 ![Post-processing stage.](pipeline/postprocessing.png){.tab-float}
 
-Before the pixels are written to the frame-buffer, the NV2A contains four dedicated engines called **Raster Output Unit** or 'ROP' which perform necessary tests (alpha, depth and stencil) using allocated blocks in main memory. Finally, batches of pixels (four per cycle) are written back only if they passed these tests. 
+Before the pixels are written to the frame-buffer, the NV2A contains four dedicated engines called **Raster Output Unit** or 'ROP' which perform necessary tests (alpha, depth and stencil) using allocated blocks in main memory. Finally, batches of pixels (four per cycle) are written back only if they pass these tests. 
 
-Moreover, the frame-buffer can be anti-aliased using a technique called **multisampling** [@graphics-geforce3]. Essentially, this technique samples edges of polygons multiple times with different offsets added in the process. Afterwards, all samples are averaged and to form the anti-aliased image. This approach replaced the previous (and more resource-hungry) anti-aliasing function called 'supersampling', used by previous Nvidia GPUs.
+Moreover, the frame-buffer can be anti-aliased using a technique called **multisampling** [@graphics-geforce3]. Essentially, this technique samples the edges of polygons multiple times with different offsets added in the process. Afterwards, all samples are averaged to form the anti-aliased image. This approach replaced the previous (and more resource-hungry) anti-aliasing function called 'supersampling', used by previous Nvidia GPUs.
 
-### Importance of programmability {.tabs-close}
+### The importance of programmability {.tabs-close}
 
-I find it important to emphasise the significance of the new programmability model that Nvidia provided to developers. Years ago, most of the graphics pipeline was computed by the CPU, leaving the GPU to accelerate rasterising operations. With the introduction of 'shaders' (referring to both pixel shaders and vertex programs), programmers can take advantage of the resources of the GPU to accelerate many computations in the pipeline, offloading a great amount of work from the CPU.
+I find it pivotal to emphasise the significance of the new programmability model that Nvidia provided to developers. Years ago, most of the graphics pipeline was computed by the CPU, leaving the GPU to accelerate rasterising operations. With the introduction of 'shaders' (referring to both pixel shaders and vertex programs), programmers can take advantage of the resources of the GPU to accelerate many computations in the pipeline, offloading a great amount of work from the CPU.
 
-The concept of 'shaders' was introduced by **Pixar** in 1989 as a method to extend **Renderman** [@graphics-pixar], their pioneering software used for 3D rendering. This was back in the time when 3D graphics were mainly handled by industrial equipment. Later on, we have seen how certain consoles incorporated [similar principles](nintendo-64#tab-1-1-reality-signal-processor), but it wasn't until Nvidia released their GeForce3 line, that shaders became a standard in the consumer market.
+The concept of 'shaders' was introduced by **Pixar** in 1989 as a method to extend **Renderman** [@graphics-pixar], their pioneering software used for 3D rendering. This was back in the time when 3D graphics were mainly handled by industrial equipment. Later on, we saw how certain consoles incorporated [similar principles](nintendo-64#tab-1-1-reality-signal-processor), but it wasn't until Nvidia released their GeForce3 line, that shaders became a standard in the consumer market.
 
 ::: {.subfigures .open-float .tab-float .tabs-nested}
 
@@ -236,7 +242,7 @@ ChameleonMark (2002), a demo developed by Nvidia to showcase GeForce3's shaders.
 
 :::
 
-Thanks to vertex programs, the GPU can now accelerate model transformations, lighting calculations and texture coordinate generation. The latter one is essential for composing [Higher Order surfaces](playstation-2#infinite-worlds). With this, the CPU can concentrate on providing better physics, AI and scene management.
+Thanks to vertex programs, the GPU can now accelerate model transformations, lighting calculations and texture coordinate generation. The latter is essential for composing [Higher Order surfaces](playstation-2#infinite-worlds). With this, the CPU can concentrate on providing better physics, AI and scene management.
 
 In the case of pixel shaders, programmers can manipulate and blend textures in multiple ways to achieve different effects such as multi-texturing, specular mapping, bump mapping, environment mapping and so on.
 
@@ -244,7 +250,7 @@ A new programming concept that emerges thanks to this approach is the **General 
 
 {.close-float}
 
-I have a feeling that shaders will be regularly revisited in future articles. Please remember that in this article, however, they may be considered a bit 'primitive' and some people may argue that the pixel shaders are not even 'shaders' (compared to what GPUs offers nowadays).
+I have a feeling that shaders will be regularly revisited in future articles. Please remember that in this article, however, they may be considered a bit 'primitive' and some people may argue that the pixel shaders are not even 'shaders' (compared to what GPUs offer nowadays).
 
 ### The Xbox's frame
 
@@ -252,13 +258,13 @@ The standard resolution of games is **640x480**, this is pretty much the standar
 
 The video encoder, on the other hand, will try to broadcast whatever there is on the frame-buffer in a format your TV will understand. That means that widescreen images will become [anamorphic](wii#tab-2-1-standardised-widescreen) unless the game outputs in HD (i.e. 720p or 1080i, which only a few games do).
 
-That being said, what kind of signals does this console broadcast? Quite a lot. Apart from the typical PAL/NTSC composite, the Xbox offers **YPbPr** (requiring an extra accessory to get the 'component' connectors) and RGB (both for SCART and VGA compliant). All in all, very convenient without requiring expensive adapters and whatnot.
+That being said, what kind of signals does this console broadcast? Quite a lot. Apart from the typical PAL/NTSC composite, the Xbox offers **YPbPr** (requiring an extra accessory to get the 'component' connectors) and RGB (both SCART and VGA compliant). All in all, very convenient without requiring expensive adapters and whatnot.
 
 ## Audio
 
 The audio subsystem of this console was heavily influenced by the technology of professional audio equipment and ATX motherboards, although it does contain some peculiar parts. The MCPX includes two audio components, the **Audio Processing Unit** and the **Audio Controller Interface'**.
 
-The Audio Processing Unit or 'APU' is the dedicated audio processor and composed of three sub-components:
+The Audio Processing Unit or 'APU' is the dedicated audio processor and is composed of three sub-components:
 
 - The **Voice Processor** or 'VP': A specialised circuit that can synthesise 256 voices at a sampling rate of 48 kHz. It also includes two DAHDSR envelope controls and various filters. Furthermore, 64 voices can be 3D (as opposed to Stereo or Mono). At the end, the processor mixes and outputs the voices through 32 channels, where groups of 8 channels have their own volume control.
 - The **Global Processor** or 'GP': A programmable DSP used to process the audio data from the VP and apply various effects on it.
@@ -270,9 +276,11 @@ The APU only processes audio data but can't output it. The latter is the job of 
 
 ## I/O
 
-As I mentioned before, we have a 'Southbridge' subsystem which concentrates all I/O access. 
+As I mentioned before, we have a 'Southbridge' subsystem which concentrates all I/O access. This Southbridge is implemented by the MCPX chip.
 
-The MCPX derives from its PC counterpart called **nVidia nForce Multimedia and Communications Processor** or 'MCP'. This is found on motherboards using the nForce 220/415/420 chipset [@io-reactos].
+![Main diagram of the console's architecture. Notice how the MCPX controls most of the I/O.](diagram.png)
+
+Incidentally, the MCPX derives from its PC counterpart called **nVidia nForce Multimedia and Communications Processor** or 'MCP'. This is found on motherboards using the nForce 220/415/420 chipset [@io-reactos].
 
 ### External interfaces
 
@@ -342,7 +350,7 @@ I'm afraid this is a *yes and no* answer: There is a 'Windows' present in this c
 
 First things first, the Xbox's operating system is composed of a **Kernel** and **user-land applications** (i.e. the Dashboard). These are stored in the 1 MiB Flash ROM and the HDD, respectively.
 
-The Kernel borrows significant codebase from **Windows 2000's kernel** [@operating_system-os] (which, in turn, is based on the modern **Windows NT** architecture). The result is a stripped-down Windows 2000 kernel that only embeds the necessary components for the Xbox hardware. These are finally compressed and packaged in a single executable [@operating_system-kernel] for optimal memory efficiency. All in all, you can think of it as a highly-optimised Windows machine exclusively designed for gaming.
+The Kernel borrows a significant codebase from **Windows 2000's kernel** [@operating_system-os] (which, in turn, is based on the modern **Windows NT** architecture). The result is a stripped-down Windows 2000 kernel that only embeds the necessary components for the Xbox hardware. These are finally compressed and packaged in a single executable [@operating_system-kernel] for optimal memory efficiency. All in all, you can think of it as a highly-optimised Windows machine exclusively designed for gaming.
 
 It's worth pointing out that the Xbox project was headed by the **DirectX team** [@operating_system-renegades]. Thus, its origin is unrelated to the Windows CE team [that brought its APIs to the Dreamcast](dreamcast#windows-ce).
 
@@ -372,7 +380,7 @@ The Dashboard offers multiple services.
 
 The dashboard is not very different in terms of functionality compared to the [PlayStation menu](playstation-2#interactive-shell), or the [GameCube's IPL](gamecube#splash-and-shell). It essentially includes all the functions typical users would expect, like being able to tweak some settings, moving saves around, playing DVD movies or CD audio; and so forth.
 
-One thing worth mentioning is that the Dashboard also allows to rip music from an audio CD and store it in the HDD. This music can be subsequently fetched from any game to 'personalise' its soundtrack. *Fun stuff!*
+One thing worth mentioning is that the Dashboard also allows to rip music from an audio CD and store it in the HDD. This music can be subsequently fetched from any game to 'personalise' its soundtrack. *Far out!*
 
 #### Updatability {.tab}
 
@@ -428,7 +436,7 @@ The rest of the APIs available handle other services (audio, networking, etc). A
 
 ### Medium {.tabs-close}
 
-Games are distributed on dual-layer DVD discs (with up to 8.5 GB!), they are subsequently read by a customised DVD drive that includes anti-piracy protections (despite using a standard interface, ATA). It's worth mentioning that the XDK included some tools to customise the layout of data in the disc, enabling programmers to improve read speeds!
+Games are distributed on dual-layer DVD discs (with up to 8.5 GB!), and they are subsequently read by a customised DVD drive that includes anti-piracy protections (despite using a standard interface, ATA). It's worth mentioning that the XDK included some tools to customise the layout of data in the disc, enabling programmers to improve read speeds!
 
 Now, the console also includes an internal 8 GB HDD, games use it to store saves or cache temporary content. The system, on the other hand, stores the dashboard, Xbox Live settings and network settings.
 
@@ -440,19 +448,19 @@ Forget about [modems](dreamcast#online-platform) or [experimental services](play
 
 Furthermore, not only Xbox Live enabled online multiplayer but it also included other features like audio streaming for real-time voice chat.
 
-But what exactly is Xbox Live? Well, it's just a collection of interconnected online services which companies can use to build their online platform. For instance, one of the services provide user profiles, so studios can use it as an authentication method when accessing the online functionalities of a game. In the official SDK, Microsoft includes some APIs to talk with the Xbox Live servers.
+But what exactly is Xbox Live? Well, it's just a collection of interconnected online services that companies can use to build their online platform. For instance, one of the services provides user profiles, so studios can use it as an authentication method when accessing the online functionalities of a game. In the official SDK, Microsoft includes some APIs to talk with the Xbox Live servers.
 
 {.close-float}
 
-It's important to point out that Microsoft controls whom to grant Xbox Live access to, so developers will have to register to Microsoft to obtain the authentication keys that will be used by their games.
+It's important to point out that Microsoft controls whom to grant Xbox Live access to, so developers will have to register with Microsoft to obtain the authentication keys that will be used by their games.
 
 The real online experience happens in the **Title Server**, which is the type of server that answers to clients (Xbox consoles) around the world and handles real-time communication. Microsoft included in their SDK some samples to show how to build these servers, although they relied on Windows systems and were meant to be deployed in data centres running Windows Server.
 
 ### The start of a new trend
 
-After analysing Microsoft's implementation of Xbox Live and looking at the impact it had in the industry. It now sounds pretty obvious, right? As if the recipe for 'proper online gaming' (a.k.a Ethernet + Infrastructure) was always there, but not every company wanted to invest in it.
+After analysing Microsoft's implementation of Xbox Live and looking at the impact it had on the industry. It now sounds pretty obvious, right? As if the recipe for 'proper online gaming' (a.k.a Ethernet + Infrastructure) was always there, but not every company wanted to invest in it.
 
-It turns out it's not that simple: Microsoft also had to convince users they 'needed' this functionality, that online multiplayer wasn't just an optional addition, but a fundamental part of some games. Otherwise, Microsoft's efforts would just account as another 'online attempt'. 
+It turns out it's not that simple: Microsoft also had to convince users they 'needed' this functionality, that online multiplayer wasn't just an optional addition, but a fundamental part of some games. Otherwise, Microsoft's efforts would just account for another 'online attempt'. 
 
 > Try imagining a world where no console gamer wanted online games, and where nobody believed a PC architecture could be a console. That was really how it was. Now it seems obvious BUT IT WASN'T.
 >
@@ -470,9 +478,9 @@ That being said, let's take a look.
 
 Game discs are protected both logically and physically to prevent unauthorised duplication (this shouldn't be a surprise by now).
 
-On the logical side, game discs include a couple of 'traps' to trick conventional DVD readers so they can't find the actual game content. For instance, the first area of the disc is formatted like a conventional DVD, and inside that section, there's a warning message that plays if it's inserted in a non-Xbox system. In reality, game data is found on a second partition, but the metadata required to find that partition is not encoded in a format conventional DVD readers expect, so only a specialised reader (hence the Xbox's one) will find the game.
+On the logical side, game discs include a couple of 'traps' to trick conventional DVD readers so they can't find the actual game content. For instance, the first area of the disc is formatted like a conventional DVD, and inside that section, there's a warning message that plays if it's inserted in a non-Xbox system. In reality, game data is found on a second partition, but the metadata required to find that partition is not encoded in a format conventional DVD readers expect, so only a specialised reader (hence the Xbox's) will find the game.
 
-On the physical side, I'm afraid that at this time, it's not publicly known yet what data does the driver and the disc exchange to perform validation. The disc contains an inaccessible inner ring (by conventional readers) that stores unique identifiers, but it's not known how this data is used.
+On the physical side, I'm afraid that at this time, it's not publicly known yet what data the driver and the disc exchange to perform validation. The disc contains an inaccessible inner ring (by conventional readers) that stores unique identifiers, but it's not known how this data is used.
 
 ### System protection
 
@@ -484,7 +492,7 @@ The Flash ROM and EEPROM containing the 'BIOS' and sensible data, respectively, 
 
 The HDD, on the other side, is formatted with a completely proprietary and undocumented filesystem called **FATX**.
 
-This was a brief introduction to the chain of trust that Microsoft implemented. Seems pretty simple right? Well, **something's odd**: The execution is controlled by the CPU, but this is an off-the-shelf chip, so how does it understand data encrypted with RC-4? The answer is that **it doesn't**, so somewhere in this console is an unencrypted piece of code that sets up the first stage of encryption. This code, in particular, was the target for most hackers that strived to crack this console after it launched.
+This was a brief introduction to the chain of trust that Microsoft implemented. Seems pretty simple right? Well, **something's odd**: The execution is controlled by the CPU, but this is an off-the-shelf chip, so how does it understand data encrypted with RC-4? The answer is that **it doesn't**, so somewhere in this console is an unencrypted piece of code that sets up the first stage of encryption. This code, in particular, was the target for most hackers who strived to crack this console after it launched.
 
 #### Bootstrap search {.tab}
 
@@ -498,7 +506,7 @@ And so it happened, bunnie published the key as part of his research and Microso
 
 Cracking the RSA layer was never meant to be easy, but since hackers gained access to the Kernel, it would now be possible to reverse engineer it and develop patches that could nullify RSA altogether. Lo and behold, this eventually happened and opened the door to the Homebrew community. Anyone could now develop programs that could be executed on a modified Xbox without the approval of Microsoft. Some groups developed replacements for the original Dashboard which could do more functions, such as executing Linux!
 
-This, however, required users to modify their BIOS using specialised hardware, which not everyone could do. In later years, new exploits were discovered that could easily bootstrap the main hack, one of them consisted in inserting a forged save-game of '007: Agent Under Fire' or 'Splinter Cell' that would generate a buffer overflow to kickstart a homebrew tool that could install a permanent exploit in the hard disk. The 'permanent exploit' was possible because the original Dashboard was subject to yet-another buffer overflow using a forged font file [@anti_piracy-pheonix] (note that fonts didn't need to be signed).
+This, however, required users to modify their BIOS using specialised hardware, which not everyone could do. In later years, new exploits were discovered that could easily bootstrap the main hack, one of them consisted of inserting a forged save-game of '007: Agent Under Fire' or 'Splinter Cell' that would generate a buffer overflow to kickstart a homebrew tool that could install a permanent exploit in the hard disk. The 'permanent exploit' was possible because the original Dashboard was subject to yet another buffer overflow using a forged font file [@anti_piracy-pheonix] (note that fonts didn't need to be signed).
 
 #### Modchips {.tab}
 
@@ -510,7 +518,7 @@ The substitute BIOS contained patched routines that could enable reading any typ
 
 Microsoft released many hardware revisions reducing the amount of exposure in their electronics and saving up costs. Meanwhile, software updates were released that updated both the Kernel and the Dashboard in an effort to reduce the number of vulnerabilities. However, some game exploits still managed to persist and what remained was another 'cat-and-mouse' game.
 
-Another point to mention is that Xbox live was itself an effective prevention mechanism against piracy. Microsoft was able to block Xbox Live to those consoles with unauthorised modifications, which was a trade-off that typical users had to consider before hacking their consoles with the only goal of playing pirated copies.
+Another point to mention is that Xbox Live was itself an effective prevention mechanism against piracy. Microsoft was able to block Xbox Live to those consoles with unauthorised modifications, which was a trade-off that typical users had to consider before hacking their consoles with the only goal of playing pirated copies.
 
 ## That's all folks {.tabs-close}
 
