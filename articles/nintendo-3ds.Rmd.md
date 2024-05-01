@@ -1267,7 +1267,7 @@ In summary, they discovered that system versions before `1.0.0` shared similar f
 
 Now that they could craft an alternative firmware that Boot9 would accept, they needed to find a way to redirect Boot9 to their payload. The challenge was to redirect execution before Boot9 hides its Boot ROM. To tackle this, the duo found a route through the ARM9's exception handlers. The ARM9 can't override these, but the NDMA can - and the CPU can command the NDMA to do so.
 
-All in all, the team were able to use the NDMA to fill the exception handlers with a jump to arbitrary code, and then instruct the ARM9 to copy to `NULL`, resulting in an exception that would execute the payload with unrestricted access. In the end, this was packaged in a solution called **boot9strap** and served as an alternative bootloader that could either load a payload from the SD card or continue to boot normally. Consequently, Godmode9 was extended to backup OTP and the Boot ROMs, if needed.
+All in all, the team were able to use the NDMA to fill the exception handlers with a jump to arbitrary code, and then instruct the ARM9 to copy to `NULL`, resulting in an exception that would execute the payload with unrestricted access. In the end, this was packaged in a solution called **boot9strap** and served as an alternative bootloader that could either load a payload from the SD card or continue to boot normally. Consequently, Godmode9 added new options to backup OTP and the Boot ROMs.
 
 And so, boot9strap quickly displaced arm9loaderhax as the de facto solution for loading arbitrary code with maximum privileges.
 
