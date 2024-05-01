@@ -3,7 +3,11 @@ dreamcast:
   pl: LunaDook & MoonbowPlushie
   tr: EuropaYou
 gameboy:
-  fr: SuperDelphi
+  fr:
+    authors:
+      - name: SuperDelphi
+        year: 2022
+    includes_ai: true
   pl: LunaDook & MoonbowPlushie
   tr: EuropaYou
 gamecube:
