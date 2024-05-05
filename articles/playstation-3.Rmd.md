@@ -229,7 +229,7 @@ Rambus, like any other company, improves upon their inventions. Their third revi
 
 {.close-float}
 
-The first revision of the PlayStation 3's motherboard contains four 64 MB chips, handled in pairs. XDR is connected to Cell using two 32-bit buses, one on each pair. So, whenever the PPU writes a word (64-bit data), it's split between two XDR chips. The latter are clocked at at 400 MHz [@cpu-ram].
+The first revision of the PlayStation 3's motherboard contains four 64 MB chips, handled in pairs. XDR is connected to Cell using two 32-bit buses, one on each pair. So, whenever the PPU writes a word (64-bit data), it's split between two XDR chips. The latter are clocked at 400 MHz [@cpu-ram].
 
 ![Cell's memory architecture diagram.](cpu/memory.jpg)
 
