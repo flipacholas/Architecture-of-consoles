@@ -98,7 +98,7 @@ other = "最后更新于：{{ . }}"
 other = "经典版"
 
 [classic_intro]
-other = "'“经典版”是 <a href=\"{{ .modern }}\">“现代版”</a> 的替代版本。 它不需要 Javascript、最新的 CSS 或复杂的 HTML 支持就能工作。 它更适合电子书用户、过时的浏览器或使用无障碍工具的读者阅读。另外，电子书用户现在可以从这里查看 <a href=\"{{ .ebook }}\">电子书版</a>。"
+other = '“经典版”是 <a href="{{ .modern }}">“现代版”</a> 的替代版本。 它不需要 Javascript、最新的 CSS 或复杂的 HTML 支持就能工作。 它更适合电子书用户、过时的浏览器或使用无障碍工具的读者阅读。另外，电子书用户现在可以从这里查看 <a href="{{ .ebook }}">电子书版</a>。'
 
 [classic_description]
 other = "两个版本内容完全相同， 只是交互式部件被简化为纯 HTML。 如果读者想尝试“完整版”，可以使用切换回原始文章的链接。"
@@ -188,7 +188,7 @@ other = "特别感谢下列人员的捐助："
 other = "变更日志"
 
 [changelog_content]
-other = "保存变更记录总是好的。"
+other = '记录变化总是好的。想要查看完整报告，你可以查看<a href="{{ . }}">提交日志</a>。或者，这里有一个简化的列表：'
 
 [supporting_imagery]
 other = "相关影像"
@@ -198,6 +198,9 @@ other = "{{ . }} 的实用分析"
 
 [translated_by]
 other = "译者：{{ . }}"
+
+[translated_by_many]
+other = '译者：<a href="{{ . }}">多位作者</a>'
 
 [interactive_model_origin]
 other = '<a href="{{ . }}">“现代版本”</a>中可用的互动模型'
