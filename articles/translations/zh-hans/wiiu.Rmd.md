@@ -35,9 +35,7 @@ top_tabs:
 
 此外，与Wii的向后兼容性是本文的一个反复出现的话题. 和 Xbox 360 上的软件模拟与 PlayStation 3 上的临时 PS2 硬件相比，Wii U将其提升到一个更高的境界. 不过，这确实是有代价的，你最终也会看到. 即便如此，本文的主要目标是分析Wii U. 所以，与Wii有关的功能将与主要功能分开讨论.
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## 新一代的手柄
 
@@ -71,7 +69,7 @@ Wii U 附带一个无线的 '手柄' (之前从来没有过的). 它差不多有
 
 首先, 我们有 **DRC-WUP** 它是一个系统级芯片 (SoC) 藏着另一个协处理器 **ARM926EJ-S** (与 [Wii](wii#the-hidden-co-processor) 上的一样, _它到底还有多少库存?_) 搭配有 **4 MB 内存** 以及一个特殊的 **H.264 加速芯片** 用于 H.264 串流的解码与编码. 这是也是控制外围设备的主要芯片. 它可以访问屏幕、音频和 NFC 功能.
 
-继续来看 SoC, 你会找到 **Broadcom BCM4319**, 另一个迷你电脑搭载 **ARM Cortex-M3** 架构并且提供 **802.11 a/b/g/n** 连接能力的射频基础硬件 [@io-controller_bc]. 值得强调的是，考虑到使用 Cortex-M3，博通对 CPU 的选择的确比任天堂更“现代” (与它的第二代 [Thumb](game-boy-advance#whats-new)) 是为2010年代的嵌入式系统设计的. 公平地说，众所周知，任天堂的选择并不总是基于“削减成本”，而是基于成本和供应. 在任何情况下，BCM4319 都将使用 5GHz 频段提供 Wi-Fi 连接.
+继续来看 SoC, 你会找到 **Broadcom BCM4319**, 另一个迷你电脑搭载 **ARM Cortex-M3** 架构并且提供 **802.11 a/b/g/n** 连接能力的射频基础硬件 [@io-controller_bc]. 值得强调的是，考虑到使用 Cortex-M3，博通对 CPU 的选择的确比任天堂更“现代” (与它的第二代 [Thumb](game-boy-advance#tab-2-3-squeezing-performance)) 是为2010年代的嵌入式系统设计的. 公平地说，众所周知，任天堂的选择并不总是基于“削减成本”，而是基于成本和供应. 在任何情况下，BCM4319 都将使用 5GHz 频段提供 Wi-Fi 连接.
 
 最后, **UIC-WUP** 是另一个任天堂标志的组件，我们可以在其中找到 **意法半导体 STM8**, **2 KB 和 28 KB 的 EEPROM**. STM8 是一种用于小量但重复性高的任务的现代8位微控制器. 也就是说，UIC-WUP 被用于处理剩余的I/O工作.
 
@@ -115,7 +113,7 @@ DRH 运行实时操作系统 (RTOS)，遵循 µITRON 4.0 规范. 它非常复杂
 
 自从 Wii U 发布以来 (以 **Project Cafe** 被熟知), 关于新的中央处理器将由什么组成，有很多猜测. 在某个时候，大家都猜测任天堂将采用IBM的 **POWER** 系列 [@cpu-erly_cpu] 的现代版本. 我想玩家都期待着一款突破性的 CPU，就像六年前 Cell 和 Xenon 所展示的那样. 此外，随着 PowerPC 的衰落 (最明显的是苹果在2006年改用[英特尔核心](xbox#p6-and-the-end-of-pentium-numbers))，认为IBM的任何新 CPU 都将作为 POWER 架构的升级版的想法并不太牵强.
 
-诚然，之前的逻辑有一个错误，那就是**任天堂不喜欢新兴技术**. 相反，他们的方案侧重于抓住现有技术，寻找创新和巧妙的用途. 这不一定是一个坏特性，因为任天堂的工程师们非常聪明地展示了技术被认为“过时”的最先进的应用程序. 看看 Game Boy 的 [Z80 hybrid](game-boy#cpu)，或者任天堂ds上的[降频ARM9](nintendo-ds#tab-2-2-a-question-about-the-hardware-choice)，甚至是名为 “Wii” 的[部分升级](wii#cpu)的游戏机. 如果说所有这些都有共同点的话，那就是它们都打破了销售记录. 现在，Wii U 会加入这个队伍吗？ 答案我想我们都应该知道了.
+诚然，之前的逻辑有一个错误，那就是**任天堂不喜欢新兴技术**. 相反，他们的方案侧重于抓住现有技术，寻找创新和巧妙的用途. 这不一定是一个坏特性，因为任天堂的工程师们非常聪明地展示了技术被认为“过时”的最先进的应用程序. 看看 Game Boy 的 [Z80 hybrid](game-boy#cpu)，或者任天堂ds上的[降频ARM9](nintendo-ds#tab-1-2-arm946e-s)，甚至是名为 “Wii” 的[部分升级](wii#cpu)的游戏机. 如果说所有这些都有共同点的话，那就是它们都打破了销售记录. 现在，Wii U 会加入这个队伍吗？ 答案我想我们都应该知道了.
 
 ### 第8代架构
 
@@ -466,7 +464,7 @@ DSP会帮助完成混音和排序任务，其余的(即过滤、效果等)由软
 
 当用户拿到 Wii U 的时候，他们很快注意到 GamePad 有一个 **近场通信** (NFC) 读取器. 起初，任天堂并没有分享这些功能会用在哪里，一些媒体甚至猜测它最终会启用NFC支付 [@io-NFC_note]. 到2014年，任天堂才最终公布了他们对NFC技术的意图：手办，他们称之为 **amiibos**. 它们嵌入了一个独特的NFC标签[@io-NFC_e3]，支持它们的游戏允许用户 “扫描” 他们的 amiibo (将它们放在 GamePad 的 NFC 读取区域顶部). 然后，游戏将检测放置了哪种类型的手办，并做出相应的反应 (即解锁额外内容、获得特殊皮肤等). 标签内置了可以用来存储用户数据的小型存储 (只有512字节 [@io-gamepad_brew]).
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 总的来说，这些手办不仅为任天堂打开了另一个市场，而且很快就变成了罕见的收藏品 (供黄牛们获利). 尽管这些雕像的市场并不完全是“新兴的”，因为动视和迪士尼等其他公司已经在将这类产品商业化.
 
@@ -724,11 +722,11 @@ vWii 模式不一定需要电视。 如果用户选择激活 GamePad 显示，Ga
 
 ![一款零售游戏的例子。](photos/retail_game.jpg) {.open-float}
 
-零售店出售的**Wii U光盘**，是松下公司设计的专有光盘介质，试图复制[Blu-ray光盘](playstation-3#tab-14-1-blu-ray-discs)的许多功能...... 而不使用蓝光光盘。 它可以容纳约 24 GB 的数据，但只有 **~20 GB 可用于实际游戏数据**，其余用于存储软件更新文件、元数据和其他Cafe OS需要的信息。
+零售店出售的**Wii U光盘**，是松下公司设计的专有光盘介质，试图复制[Blu-Ray光盘](playstation-3#tab-14-1-blu-ray-discs)的许多功能...... 而不使用蓝光光盘。 它可以容纳约 24 GB 的数据，但只有 **~20 GB 可用于实际游戏数据**，其余用于存储软件更新文件、元数据和其他Cafe OS需要的信息。
 
 光驱还能够读取[Wii光盘](wii#medium)，而Wii光盘又与标准DVD格式类似。 然而，光驱不支持DVD或蓝光的播放功能。
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 除了光盘，用户还可以选择使用**eShop**渠道购买Wii U游戏和游戏扩展(又称DLC)。 该渠道还包括[VC虚拟主机](wii#broadways-os)游戏。
 
@@ -774,7 +772,7 @@ vWii 模式不一定需要电视。 如果用户选择激活 GamePad 显示，Ga
 
 首先是：光盘驱动器。
 
-…… 嗯，到目前为止，**光驱还没有被破解**。
+…… 嗯，到目前为止，**光驱还没有被公开破解**。 有报道称，已经开发出名为'WiiKeyU'[@anti_piracy-wiiukey]的驱动器模拟器，该模拟器可以加载光盘镜像，但是没有任何产品进入市场。
 
 考虑到蓝光驱动器在整个Wii U的生命周期中的低采用率，我推测没有足够的热情来破解驱动器 和/或 深入研究其新的保护方法。 对于好奇的人来说，Wii U的主板现在以类似于[Xbox 360驱动器](xbox-360#tab-19-1-first-party-security)的方式与驱动器进行身份验证，并且从那里开始，所有的通信都是加密的。
 
@@ -792,7 +790,7 @@ vWii 模式不一定需要电视。 如果用户选择激活 GamePad 显示，Ga
 
 接下来，Starbucks 在其硬件上嵌入了**SHA-1**和**AES-128**运算器，能够在不影响性能的情况下对数据进行散列、加密和解密。
 
-让我们继续，虽然Starbuck在技术上是一个过时的[ARM9 CPU](nintendo-ds#tab-2-2-a-question-about-the-hardware-choice)，但任天堂用一个定制的**eXecute Never**(XN) 控制器对它进行了增强，该控制器限制了Starbuck 可以在哪些内存位置执行代码[@anti_piracy-xn]。 XN单元履行了[NX bit](xbox-360#the-hypervisors-duties)的作用。
+让我们继续，虽然Starbuck在技术上是一个过时的[ARM9 CPU](nintendo-ds#tab-1-2-arm946e-s)，但任天堂用一个定制的**eXecute Never**(XN) 控制器对它进行了增强，该控制器限制了Starbuck 可以在哪些内存位置执行代码[@anti_piracy-xn]。 XN单元履行了[NX bit](xbox-360#the-hypervisors-duties)的作用。
 
 最后，加密密钥和证书存储在 Latte 内部的**OTP 内存** 中，Espresso 和 Starbuck 都可以在完成每个条目后立即密封访问。
 
