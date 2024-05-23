@@ -42,7 +42,7 @@ Now, before we check out the new CPUs, let's look at how ARM evolved during the 
 
 During the mid-90s, ARM was experiencing an influx of businesses from the mobile market (before cellphones became 'smart'). Yet, it struggled to please a particular sector: **high-performance computing**. The ARM7 was enjoyed by many mobile devices, but it didn't quite satisfy Apple (with its 'Newton' PDA line) and Acorn (with its RiscPC line), both of whom shipped software that could benefit from a faster CPU. Aside from the lack of a 64-bit solution (something [MIPS was already commercialising](nintendo-64#cpu)), ARM was also unable to produce a CPU that operated faster than 40 MHz. Altogether, the bottlenecks were starting to pile up.
 
-Nevertheless, during the commercialisation of the ARM7 line, ARM had already started work on a successor called **ARM8**, in an attempt to please the high-performance market. In the meantime, **Digital Equipment Corporation (DEC)**, the American company historically famous for their line of PDPs (the so-called 'minicomputers'), was experiencing an opposite problem: They struggled to deliver a low-power CPU based on their high-performance solutions. Well, it so happened that [ARM's licensing model](game-boy-advance#tab-1-2-a-new-cpu-venture) turned into an opportunity for DEC, who chose to develop a new CPU by borrowing materials from ARM (its instruction set and microarchitecture).
+Nevertheless, during the commercialisation of the ARM7 line, ARM had already started work on a successor called **ARM8**, the first attempt into the high-performance market. In the meantime, **Digital Equipment Corporation (DEC)**, the American company historically famous for their line of PDPs (the so-called 'minicomputers'), was experiencing an opposite problem: They struggled to deliver a low-power CPU based on their high-performance solutions. Well, it so happened that [ARM's licensing model](game-boy-advance#tab-1-2-a-new-cpu-venture) turned into an opportunity for DEC, who chose to develop a new CPU by borrowing materials from ARM (its instruction set and microarchitecture).
 
 In the end, DEC grabbed the datapath design of their **Alpha** processor and, with the help of ARM, mixed it with ARM's microarchitecture [@cpu-jaggar]. This collaboration led to the **StrongARM** CPU, which was released in 1996 and targeted the performance sector.
 
@@ -56,25 +56,25 @@ StrongARM was a new ARM-based CPU that featured [@cpu-furber]:
 - A **new cache system** implementing a **Harvard architecture**, where **16 KB** are allocated for instructions and another **16 KB** for data.
   - This design helped alleviate memory bottlenecks (something the von Neumann/Princeton model suffered from).
 
-It's worth mentioning that this chip still managed to work with a **3.3 V** supply, like previous ARM chips. In fact, the StrongARM only needs 2 Volts and only dissipates 1 W [@cpu-furber]. By contrast, Intel's 200 MHz Pentium chip pulls 3.5 V has a power dissipation of up to 15.5 W [@cpu-pentium]. 
+It's worth mentioning that this chip still managed to work with a **3.3 V** supply, like previous ARM chips. In fact, the StrongARM only needs 2 Volts and only dissipates 1 W [@cpu-furber]. By contrast, Intel's 200 MHz Pentium chip pulls 3.5 V and has a power dissipation of up to 15.5 W [@cpu-pentium]. 
 
 As expected, Acorn and Apple were so dazzled by the new chip that they immediately shipped CPU upgrades and further Newton models, respectively, using DEC's invention.
 
-In the same year, ARM also released their promised ARM8-based CPU (called ARM810). The latter was comparably slower and offered no practical advantages over the StrongARM. So, too little and too late resulted in no commercial interest. Consequently, ARM moved on to improving the ARM7 line for the mobile market. However, the potential of StrongARM was so disruptive that ARM Holdings absorbed some of StrongARM's features to produce their next line of CPUs, the **ARM9** (which the Nintendo DS houses).
+In the same year, ARM also released their promised ARM8-based CPU, the ARM810. It was comparably slower and offered no practical advantages over the StrongARM. So, too little and too late resulted in no commercial interest. Consequently, ARM moved on to improving the ARM7 line for the mobile market. However, the potential of StrongARM was so disruptive that ARM Holdings absorbed some of StrongARM's features to produce their next line of CPUs, the **ARM9** (which the Nintendo DS houses).
 
-Thanks to the StrongARM, ARM cemented its position in the handheld market, completely displacing [MIPS](nintendo-64#cpu) and [SuperH](dreamcast#cpu) as viable alternatives. From then on, ARM was on route to become the most adopted architecture in mobile devices [@cpu_android_abi].
+Thanks to the StrongARM, ARM also cemented its position in the handheld market, completely displacing [MIPS](nintendo-64#cpu) and [SuperH](dreamcast#cpu) as viable alternatives. From then on, ARM was on route to become the most adopted architecture for mobile devices [@cpu_android_abi].
 
 Unfortunately for DEC, this CPU will be their last major achievement before being acquired by Compaq in 1998.
 
 ### Nintendo's debuting SoC
 
-Aside from the aforementioned advancements, CPU NTR also bundles an interesting multi-processor architecture using two different ARM CPUs, the **ARM7TDMI** and the **ARM946E-S**. This design was done before ARM Holdings officially released [multi-processor solutions](nintendo-3ds#cpu). So, their functioning may be considered a bit unorthodox (taking into account the present technology available).
+Aside from the aforementioned advancements, CPU NTR also bundles an interesting **multi-processor architecture** using two different ARM CPUs, the **ARM7TDMI** and the **ARM946E-S**. This design was done before ARM Holdings officially released [multi-processor solutions](nintendo-3ds#cpu). So, their functioning may be considered a bit unorthodox (taking into account the present technology available).
 
 ![The CPU NTR chip.](cpu_ntr.jpg)
 
-While this is not the first parallel system analysed for [this series](consoles), its design is very different from the rest. For instance, we are not talking about the 'experimental' master-slave configuration that the [Saturn](sega-saturn) debuted or the 'co-processor' approach found on the [PS1](playstation) or [N64](nintendo-64). The Nintendo DS includes two very independent computers that will perform exclusive operations, each one having a dedicated bus. This design methodology is called **Asymmetric multiprocessing** and the resulting CPUs' co-dependency will condition the overall performance of this console.
+While this is not the first parallel system analysed for [this series](consoles), its design is very different from the rest. For instance, we are not talking about the 'experimental' master-slave configuration that the [Saturn](sega-saturn) debuted or the 'co-processor' approach found on the [PS1](playstation) or [N64](nintendo-64). The Nintendo DS includes two very independent computers that will perform exclusive operations, each one having a dedicated bus. This design methodology is called **asymmetric multiprocessing** and the resulting CPUs' co-dependency will condition the overall performance of this console.
 
-Let's now take a look at the two CPUs:
+Let's now take a look at the two CPUs.
 
 #### ARM7TDMI {.tabs .active}
 

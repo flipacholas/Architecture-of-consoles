@@ -145,7 +145,7 @@ So far, we got a 'CP0' and a 'CP2', but **where's the 'CP1'?** Well, that's rese
 
 Game logic (involving physics, collision detection, etc) still can get around with fixed-point arithmetic. Fixed-point encoding stores decimal numbers with an immutable number of decimal places. This implies a loss in precision after certain operations, but remember, this is a video-game console, not a professional flight simulator. Hence, the precision-performance trade-off is somewhat feasible.
 
-By the way, sometimes I mix up 'fixed-point', 'floating-point', 'decimal' and 'integer' number types (hopefully not anymore!). If you feel the same, I recommend taking a look at Gabriel Ivancescu's quick summary [@cpu-gabriel] to quickly refresh those concepts.
+By the way, if you'd like to refresh concepts like 'fixed-point', 'floating-point', 'decimal' and 'integer', I recommend taking a look at Gabriel Ivancescu's post for a quick summary [@cpu-gabriel].
 
 ### Delay galore
 
@@ -258,7 +258,7 @@ It's worth mentioning that the PS1 happened to excel at those effects!
 
 #### Remaining steps {.tabs-close}
 
-Once finished, the GPU writes the pixels into the frame buffer area in VRAM, which is in turn picked up by the video encoder and broadcast to the screen.
+Once finished, the GPU writes the pixels into the frame buffer area in VRAM, which is in turn picked up by the video encoder and broadcasted to the screen.
 
 ### Designs
 
@@ -315,7 +315,7 @@ Finally, as you know, affine transformations have **no sense of depth**, which m
 
 #### Contradicting claims {.tab}
 
-If you check other technical channels or forums, you'll find alternative explanations about the PS1's wobbling/warping/distorted effects. While some of them will coincide with what I explained before, others will argue differently. So, I'd like to give my opinion on why the following statements are **not** accurate:
+If you check other technical channels or forums, you'll find alternative explanations about the PS1's wobbling/warping/distorted effects. While some of them will coincide with what I explained before, others will argue differently. So, I'd like to give my opinion on why the following statements are **not accurate**:
 
 > Models/textures wobble due to lack of FPU
 
@@ -481,7 +481,7 @@ The use of emulators was seen as a threat for publishers as well. As a result, s
 
 One of the checks I was told consisted of deliberately reinitialising the drive and then making it read specific sectors that would not pass the wobble groove check. If this managed to unlock the drive anyway, the game (still residing in RAM) would *happily* reveal its anti-piracy material. Notice that this approach can also affect modded consoles using genuine games.
 
-Later on, Sony provided a library called **Lybcrypt** which fortified copy protection with the use of two approaches [@copy_protection-libcrypt]:
+Later on, Sony provided a library called **Libcrypt** which fortified copy protection with the use of two approaches [@copy_protection-libcrypt]:
 
 - From the hardware side, checksums of sectors are stored in sub-channels of the disc.
   - CD-ROM sub-channels traditionally store metadata, mostly to guide the drive. These aren't user-accessible and conventional readers rarely allow to manually write over them.
