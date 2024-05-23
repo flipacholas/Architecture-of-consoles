@@ -29,7 +29,7 @@ aliases: ["/projects/consoles/game-boy/", "game-boy-color"]
 
 ## A quick introduction
 
-The Game Boy can be imagined as a portable version of the NES with limited power, but you'll see that it included very interesting new functionality.
+The Game Boy series can be imagined as a portable version of the NES with limited power, but you'll see that it included very interesting new functionality.
 
 ### The rainbow analysis
 
