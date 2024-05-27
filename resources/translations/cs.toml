@@ -1,0 +1,278 @@
+[author_footer_first]
+other = 'Doufám, že se vám tento článek líbil! Pokud se o autorovi chcete dozvědět více, <a href="{{ . }}">klikněte sem</a>'
+
+[author_footer_second]
+other = 'a jestli ho chcete spíše podpořit, <a href="{{ . }}">klikněte sem</a>'
+
+[languages_available]
+other = "Dostupné jazyky: "
+
+[help_translations]
+other = "Pomoc s překladem"
+
+[add_translation]
+other = "Přidat překlad"
+
+[report_mistakes]
+other = "Nahlásit chyby nebo navrhnout změny"
+
+[supporting_readings]
+other = "Prohlédněte si doplňující materiály"
+
+[tablet_mode_button]
+other = "Skrýt záložky / Režim tabletu"
+
+[desktop_mode_button]
+other = "Zobrazit záložky / Režim desktopu"
+
+[next]
+other = "Další"
+
+[previous]
+other = "Předchozí"
+
+[table-of-contents]
+other = "Obsah"
+
+[show]
+other = "Ukázat"
+
+[hide]
+other = "Skrýt"
+
+[translations]
+other = "Překlady"
+
+[related]
+other = "Více: {{ . }} &raquo;"
+
+[ebook_edition_title]
+other = "Získejte eBook verzi"
+
+[ebook_edition_content]
+other = 'Nyní si články v sérii <a href="{{ .consoles }}">Architektura herních konzolí</a> můžete přečíst i na své čtečce e-knih. <a href="{{ .ebooks }}">Podívejte se sem</a>.'
+
+[home]
+other = "Domů"
+
+[nav_writings]
+other = "Články"
+
+[nav_console]
+other = "Konzole"
+
+[nav_blog]
+other = "Blog"
+
+[about]
+other = "O autorovi"
+
+[about_website_long]
+other = "O webu a jeho obsahu"
+
+[support]
+other = "Podpora"
+
+[about_author]
+other = "O autorovi"
+
+[about_website]
+other = "O webu"
+
+[switch_modern]
+other = "Přepnout na moderní verzi"
+
+[switch_classic]
+other = "Přepnout na starší verzi"
+
+[ebook_edition]
+other = "E-book verze"
+
+[about_edition]
+other = "O této edici"
+
+[last_updated]
+other = "Naposledy aktualizováno: {{ . }}"
+
+[classic_edition]
+other = "Klasické vydání"
+
+[classic_intro]
+other = '„Klasická“ verze je alternativa k <a href="{{ .modern }}">„moderní“ verzi</a>. Nevyžaduje Javascript, neobsahuje nejmodernější CSS a složitý HTML kód, což je ideální pro čtenáře, kteří používají nástroje pro usnadnění přístupu nebo starší internetové prohlížeče. Uživatelé čteček e-knih si nyní mohou přečíst <a href="{{ .ebook }}">e-book verzi</a>.'
+
+[classic_description]
+other = "Tato verze je obsahově identická. Nicméně interaktivní widgety byly zjednodušeny pro práci s prostým HTML a budou i nadále nabízet odkaz na původní článek v případě, že čtenář chce vyzkoušet „plnou verzi“."
+
+[general_description]
+other = 'Jako vždy je tento článek k dispozici i na <a href="{{ .github }}">Githubu</a>, aby mohli čtenáři nahlásit případné chyby nebo navrhnout změny. K dispozici jsou také <a href="{{ .readings }}">Doplňující materiály</a> , které pomůžou články pochopit. Autor také přijímá <a href="{{ .donations }}">dary</a>, aby mohl zlepšit kvalitu současných i nadcházejících článků.'
+
+[subscribe_title]
+other = "Zůstaňte v obraze"
+
+[subscribe_content]
+other = 'Postuji aktualizace na svém <a href="{{ . }}">Twitter profilu</a>, ale můžete se také přihlásit k odběru e-mailového newsletteru, když vyjde nový článek. Můžete se odhlásit kdykoliv, používám k tomu službu Mailchimp.'
+
+[generation_title]
+other = "{{ .ordinal }} generace"
+
+[untranslated_article_title]
+other = "{{.}} (v angličtině)"
+
+[cpu_subtitle]
+other = "Významná vylepšení procesoru:"
+
+[gpu_subtitle]
+other = "Unikátní vlastnosti GPU:"
+
+[roadmap_title]
+other = "Plán"
+
+[roadmap_content]
+other = "Je spousta konzolí, o kterých bych mohl napsat článek... Pokud vás zajímá, o čem mám v plánu psát, koukněte:"
+
+[contribution_content]
+other = "Pokud se vám mé články líbí, zvažte prosím finanční příspěvek. Váš příspěvek bude použit na financování nákupu nástrojů a prostředků, které mi pomohou zlepšit kvalitu stávajících i budoucích článků. Na konci každého článku také poskytuji seznam zajímavých materiálů."
+
+[contribution_footer]
+other = "Na důkaz vděčnosti vás uvedu jako přispěvatele u příštího článku, nebo dokonce u vámi vybraného článku, pokud není uvedeno jinak."
+
+[contribution_footer_ebook]
+other = 'Můžete si také koupit <a href="{{ . }}">e-book</a> verzi v angličtině. Zisky z prodejů považuji za dar.'
+
+[contribution_suggestions]
+other = 'Případně můžete pomoci <a href="{{ . }}">navrhnutím změn</a> a/nebo <a href="{{ . }}">přeložením článků</a>.'
+
+[print]
+other = "Vytisknout článek (nebo uložit jako PDF)"
+
+[architecture_consoles]
+other = "Architektura konzolí"
+
+[top_model]
+other = "Model"
+
+[top_models]
+other = "Modely"
+
+[motherboard_title]
+other = "Základová deska"
+
+[motherboard_note]
+other = "Základní deska s vyznačenými důležitými součástkami"
+
+[diagram_title]
+other = "Diagram"
+
+[diagram_note]
+other = "Schéma hlavní architektury"
+
+[original]
+other = "Původní"
+
+[marked]
+other = "Označený"
+
+[contributing_title]
+other = "Přispívání"
+
+[contributing_content]
+other = 'Tento článek je součástí série <a href="{{ . }}">Architektura herních konzolí</a>. Pokud se vám mé články líbí, zvažte prosím finanční příspěvek. Váš příspěvek bude použit na financování nákupu nástrojů a prostředků, které mi pomohou zlepšit kvalitu stávajících i budoucích článků.'
+
+[contributing_tools]
+other = "Seznam potřebných nástrojů a posledních přírůstků do tohoto článku je uveden zde:"
+
+[contributing_thanks]
+other = "Velké díky těmto čtenářům za jejich příspěvek:"
+
+[changelog_title]
+other = "Seznam změn"
+
+[changelog_content]
+other = 'Vždy je fajn uchovávat záznamy změn. Kompletní seznam si můžete prohlédnout <a href="{{ . }}">commit log</a>. Zde je uveden zjednodušený seznam:'
+
+[supporting_imagery]
+other = "Ilustrační obrázky"
+
+[consoles_written_by]
+other = "Praktickou analýzu vypracoval {{ . }}"
+
+[translated_by]
+other = "Překlad {{ . }}"
+
+[translated_by_many]
+other = 'Překlad od <a href="{{ . }}">více autorů</a>'
+
+[interactive_model_origin]
+other = 'Interaktivní model k dispozici v <a href="{{ . }}">moderní verzi</a>'
+
+[interactive_player_origin]
+other = 'Interaktivní přehrávač k dispozici v <a href="{{ . }}">moderní verzi</a>'
+
+[goto_classic]
+other = 'Pokud používáte nástroje pro usnadnění přístupu nebo staré prohlížeče, <a href="{{ .classic }}">přepněte na klasickou verzi</a>.'
+
+[audio_samples]
+other = "Audio vzorky"
+
+[wireframe]
+other = "Drátěný model"
+
+[surface]
+other = "Povrch"
+
+[textured]
+other = "S texturou"
+
+[tap_enable_interaction]
+other = "Klepnutím povolte interakci"
+
+[buffering]
+other = "Načítání..."
+
+[ready_drag_zoom]
+other = "Připraveno k posouvání a přiblížení!"
+
+[sources]
+other = "Zdroje / Pokračovat ve čtení"
+
+[archived]
+other = "Archivováno"
+
+[general]
+other = "Obecné"
+
+[cpu]
+other = "Procesor"
+
+[graphics]
+other = "Grafika"
+
+[audio]
+other = "Zvuk"
+
+[audio_video]
+other = "Zvuk / Video"
+
+[io]
+other = "I/O"
+
+[operating_system]
+other = "Operační systém"
+
+[games]
+other = "Hry"
+
+[anti_piracy]
+other = "Ochrana proti pirátství"
+
+[copy_protection]
+other = "Ochrana proti kopírování"
+
+[photography]
+other = "Fotografie"
+
+[other_media]
+other = "Ostatní média"
+
+[bonus]
+other = "Bonus"
