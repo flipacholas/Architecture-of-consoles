@@ -188,7 +188,7 @@ other = "Aşağıdaki kişilere bağışları için teşekkürler ediyorum:"
 other = "Değişiklik Notları"
 
 [changelog_content]
-other = "Değişikliklerin kaydını tutmak her zaman güzeldir."
+other = 'Değişikliklerin kaydını tutmak her zaman güzeldir. Tam bir rapor için <a href="{{ . }}">commit günlüğüne</a> bakabilirsiniz. Alternatif olarak, aşağıda basitleştirilmiş bir liste bulunmaktadır:'
 
 [supporting_imagery]
 other = "Destekleyici görüntüler"
@@ -198,6 +198,9 @@ other = "{{ . }} tarafından hazırlanan pratik bir analiz"
 
 [translated_by]
 other = "{{ . }} tarafından çevrildi"
+
+[translated_by_many]
+other = '<a href="{{ . }}">birden fazla yazar</a> tarafından çevrilmiştir'
 
 [interactive_model_origin]
 other = 'Etkileşimli model <a href="{{ . }}">modern sürümde</a> kullanılabilir'
