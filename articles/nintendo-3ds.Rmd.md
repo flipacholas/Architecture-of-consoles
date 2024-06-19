@@ -3,7 +3,7 @@ long_title: Architecture of the Nintendo 3DS
 short_title: Nintendo 3DS Architecture
 name: Nintendo 3DS
 subtitle: Abundant tech, confusing marketing
-date: 2023-09-16
+date: 2023-09-20
 release_date: 2011-02-26
 generation: 8
 cover: nintendo3ds
