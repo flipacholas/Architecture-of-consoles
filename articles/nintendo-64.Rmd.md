@@ -274,17 +274,17 @@ The kernel is automatically embedded by using Nintendo's libraries. Additionally
 
 Unlike previous cartridge-based systems, the Nintendo 64 follows a sophisticated boot process to prepare all of its hardware before the actual game runs. This is executed as soon as the user turns on the console and it's very similar to its CD-based contemporaries bundling a [BIOS](playstation#operating-system) or [IPL](sega-saturn#operating-system).
 
-These routines are also referred to as **Initial Program Load** (IPL) and work as follows [@operating_system-ipl]:
+These routines are also referred to as **Initial Program Load** (IPL) and work as follows [@operating_system-ipl] [@operating_system-ipl_decomp]:
 
 1. The user turns on the console.
 2. The **PIF-NUS** (a separate chip in the motherboard) subdues the main CPU into an infinite reset until PIF-NUS validates the CIC chip found in the game cartridge.
     - The PIF-NUS and the CIC chip are further explained in the I/O and Anti-piracy sections, respectively.
 2. If the verification process has finished successfully, the CPU starts execution at `0xBFC00000`. This address points to an **internal ROM** within PIF-NUS, particularly, the first boot stage called **IPL1**.
 3. IPL1 initialises part of the hardware (CPU registers, the parallel interface and the RCP) and copies the next stage (**IPL2**) from the internal ROM to the RSP's memory for faster execution. Then, it redirects execution there.
-4. IPL2 initialises RDRAM and CPU cache. Afterwards, it copies the first megabyte of the game ROM into RDRAM. This block contains the next boot stage called **IPL3**.
-5. IPL3 starts the operating system (i.e. virtual memory and exception vectors), sets up the program state (i.e. stack pointer) and finally proceeds to call the starting routine of the game.
+4. IPL2 copies the first megabyte of the game ROM into RSP memory, verifies it (using PIF) and executes it. This block contains the next boot stage called **IPL3**.
+5. IPL3 initialises RDRAM and CPU cache. Afterwards, it starts the operating system (i.e. virtual memory and exception vectors), sets up the program state (i.e. stack pointer) and finally proceeds to call the starting routine of the game.
 
-As IPL3 is found within the game cartridge, not every game bundles the same code. Presumably, the variants are correlated to a different CIC chip found in the cartridge.
+As IPL3 is found within the game cartridge, not every game bundles the same code. Presumably, the variants are correlated to the CIC chip variant bundled in the cartridge.
 
 ## I/O
 
