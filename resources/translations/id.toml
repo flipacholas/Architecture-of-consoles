@@ -1,0 +1,278 @@
+[author_footer_first]
+other = 'Semoga artikel ini membantu! Jika ingin tahu lebih tentang penulisnya <a href="{{ . }}">ketuk sini</a>'
+
+[author_footer_second]
+other = 'dan jika ingin mendukung abang ini, <a href="{{ . }}">ketuk sini</a>'
+
+[languages_available]
+other = "Bahasa yang tersedia: "
+
+[help_translations]
+other = "Bantu terjemahkan"
+
+[add_translation]
+other = "Tambahkan terjemahan"
+
+[report_mistakes]
+other = "Laporkan kesalahan / ajukan ubahan"
+
+[supporting_readings]
+other = "Lihat rujukan bacaan"
+
+[tablet_mode_button]
+other = "S'bunyikan tab / mode Tablet"
+
+[desktop_mode_button]
+other = "T'pilkan tab / mode Desktop"
+
+[next]
+other = "Brktnya"
+
+[previous]
+other = "Sblmnya"
+
+[table-of-contents]
+other = "Daftar Isi"
+
+[show]
+other = "Tampilkan"
+
+[hide]
+other = "S'bunyikan"
+
+[translations]
+other = "Terjemahan"
+
+[related]
+other = "Ada lagi di '{{ . }}' &raquo;"
+
+[ebook_edition_title]
+other = "Dapatkan edisi eBook"
+
+[ebook_edition_content]
+other = 'Sekarang serial <a href="{{ .consoles }}">Arsitektur Konsol</a> juga sudah bisa dibaca di eBook. <a href="{{ .ebooks }}">Lihat di sini</a>.'
+
+[home]
+other = "Beranda"
+
+[nav_writings]
+other = "Karya Tulis"
+
+[nav_console]
+other = "Konsol"
+
+[nav_blog]
+other = "Blog"
+
+[about]
+other = "Tentang"
+
+[about_website_long]
+other = "Tentang situs ini dan isinya"
+
+[support]
+other = "Dukung"
+
+[about_author]
+other = "Tentang penulis"
+
+[about_website]
+other = "Tentang situs"
+
+[switch_modern]
+other = "Beralih ke edisi modern"
+
+[switch_classic]
+other = "Beralih ke edisi klasik"
+
+[ebook_edition]
+other = "Edisi eBook"
+
+[about_edition]
+other = "Tentang edisi ini"
+
+[last_updated]
+other = "Terakhir diperbarui: {{ . }}"
+
+[classic_edition]
+other = "Edisi klasik"
+
+[classic_intro]
+other = 'Edisi ‘klasik’ ini versi bentuk lain dari <a href="{{ .modern }}">versi ‘modern’</a>. Jadi tidak perlu Javascript, CSS mutakhir, atau HTML berbelit agar berfungsi sehingga cocok untuk pembaca yang menggunakan alat aksesibilitas atau peramban web peninggalan. Di sisi lain, pengguna eBook bisa menggunakan <a href="{{ .ebook }}">edisi eBook</a>.'
+
+[classic_description]
+other = "Edisi ini identik secara isi. Namun, gawit interaktif sudah disederhanakan agar berfungsi di kode HTML murni sehingga ada juga tautan ke artikel asli jika pembaca ingin membaca ‘versi lengkap’."
+
+[general_description]
+other = 'Seperti biasa, artikel ini tersedia di <a href="{{ .github }}">Github</a> agar pembaca bisa melapor kesalahan atau mengajukan ubahan. Ada juga <a href="{{ .readings }}">daftar rujukan bacaan</a> agar lebih mudah memahami serial ini. Penulis juga menerima <a href="{{ .donations }}">sumbangan</a> agar bisa menambah mutu artikel saat ini dan yang mendatang.'
+
+[subscribe_title]
+other = "Tetap mutakhir"
+
+[subscribe_content]
+other = 'Saya memosting perbaruan di <a href="{{ . }}">profil Twitter</a> saya. Jika ingin dikabari artikel baru, bisa langganan surel dan boleh lepas langganan kapan saja. Ini ditangani Mailchimp.'
+
+[generation_title]
+other = "Generasi {{ .ordinal }}"
+
+[untranslated_article_title]
+other = "{{.}} (berbahasa Inggris)"
+
+[cpu_subtitle]
+other = "Pemajuan CPU terkemuka:"
+
+[gpu_subtitle]
+other = "Fitur GPU menonjol:"
+
+[roadmap_title]
+other = "Rencana kerja"
+
+[roadmap_content]
+other = "Ada banyak konsol yang bisa saya tulis... Jika ingin tahu rencana saya selanjutnya, ini dia:"
+
+[contribution_content]
+other = "Jika artikel ini menarik minat Anda, kami menerima sumbangan. Sumbangsih Anda akan digunakan untuk membiayai pembelian alat dan sumber daya yang membantu menambah mutu artikel yang ada dan mendatang. Saya urutkan juga bahan menarik yang diperlukan di tiap ujung artikel."
+
+[contribution_footer]
+other = "Sebagai tanda terima kasih, nama Anda akan dicakup di bagian nominasi atau daftar nama artikel berikutnya, kecuali dinyatakan lain."
+
+[contribution_footer_ebook]
+other = '<a href="{{ . }}">Edisi eBook</a> berbahasa Inggris juga bisa dibeli. Laba ini saya anggap sumbangan.'
+
+[contribution_suggestions]
+other = 'Cara lainnya, boleh membantu dengan <a href="{{ . }}">menyarankan ubahan</a> dan/atau <a href="{{ . }}">menambah terjemahan</a>.'
+
+[print]
+other = "Cetak artikel (atau simpan PDF)"
+
+[architecture_consoles]
+other = "Arsitektur Konsol"
+
+[top_model]
+other = "Model"
+
+[top_models]
+other = "Model"
+
+[motherboard_title]
+other = "Papan induk"
+
+[motherboard_note]
+other = "Papan induk, bagian penting dilabeli"
+
+[diagram_title]
+other = "Diagram"
+
+[diagram_note]
+other = "Diagram arsitektur utama"
+
+[original]
+other = "Orisinal"
+
+[marked]
+other = "Ditandai"
+
+[contributing_title]
+other = "Bersumbangsih"
+
+[contributing_content]
+other = 'Artikel ini bagian dari serial <a href="{{ . }}">Arsitektur Konsol</a>. Jika ini menarik minat Anda, kami menerima sumbangan. Sumbangsih Anda akan digunakan untuk membiayai pembelian alat dan sumber daya yang membantu menambah mutu artikel yang ada dan mendatang.'
+
+[contributing_tools]
+other = "Daftar perolehan terkini dan alat yang perlu untuk artikel ini bisa dilacak di sini:"
+
+[contributing_thanks]
+other = "Terima kasih khusus kepada penyumbang berikut:"
+
+[changelog_title]
+other = "Cttn perubahan"
+
+[changelog_content]
+other = 'Mencatat apa yang diubah itu bagus. Jadi untuk laporan lengkap, lihat di <a href="{{ . }}">commit log</a>. Cara lainnya, lihat saja daftar ini:'
+
+[supporting_imagery]
+other = "Rujukan gambar"
+
+[consoles_written_by]
+other = "Analisis praktis oleh {{ . }}"
+
+[translated_by]
+other = "Diterjemahkan {{ . }}"
+
+[translated_by_many]
+other = 'Diterjemahkan <a href="{{ . }}">banyak penulis</a>'
+
+[interactive_model_origin]
+other = 'Tersedia model interaktif di <a href="{{ . }}">edisi modern</a>'
+
+[interactive_player_origin]
+other = 'Tersedia pemutar interaktif di <a href="{{ . }}">edisi modern</a>'
+
+[goto_classic]
+other = 'Jika menggunakan alat aksesibilitas atau peramban lawas, <a href="{{ .classic }}">beralih ke ‘klasik’ saja</a>.'
+
+[audio_samples]
+other = "Percontoh audio"
+
+[wireframe]
+other = "Gambar rangka"
+
+[surface]
+other = "Permukaan"
+
+[textured]
+other = "Bertekstur"
+
+[tap_enable_interaction]
+other = "Ketuk untuk berinteraksi"
+
+[buffering]
+other = "Menyangga..."
+
+[ready_drag_zoom]
+other = "Bisa diseret dan keker!"
+
+[sources]
+other = "Sumber / Bacaan Lanjut"
+
+[archived]
+other = "Diarsipkan"
+
+[general]
+other = "Umum"
+
+[cpu]
+other = "CPU"
+
+[graphics]
+other = "Grafik"
+
+[audio]
+other = "Audio"
+
+[audio_video]
+other = "Audio / Video"
+
+[io]
+other = "I/O"
+
+[operating_system]
+other = "Sistem Operasi"
+
+[games]
+other = "Permainan"
+
+[anti_piracy]
+other = "Anti-Pembajakan"
+
+[copy_protection]
+other = "Perlindungan salin"
+
+[photography]
+other = "Fotografi"
+
+[other_media]
+other = "Media Lain"
+
+[bonus]
+other = "Tambahan"
