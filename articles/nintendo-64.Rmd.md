@@ -8,6 +8,7 @@ generation: 5
 subtitle: A constrained performant
 cover: nintendo64
 javascript: ['threejs']
+seo_image_pos: "Top"
 top_tabs:
   Model:
     caption: "The Nintendo 64.<br>Released on 23/06/1996 in Japan, 29/09/1996 in America and 01/03/1997 in Europe"

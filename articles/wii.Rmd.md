@@ -9,6 +9,7 @@ generation: 7
 published: true
 cover: wii
 javascript: ['threejs']
+seo_image_pos: "Top"
 top_tabs:
   Model:
     file: international

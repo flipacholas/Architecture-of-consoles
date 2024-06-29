@@ -7,6 +7,7 @@ subtitle: A supercomputer for the rest of us
 generation: 7
 release_date: 2005-11-22
 aliases: [/writings/consoles/xbox-360-private]
+seo_image_pos: "Bottom"
 top_tabs:
   Motherboard:
     caption: "Showing the 'Xenon' revision (the first one), taken from my model from 2005. Xenon motherboards are also famous for being defective by design (they get too hot to play games with!). Remaining GDDR3 chips are found on the back."

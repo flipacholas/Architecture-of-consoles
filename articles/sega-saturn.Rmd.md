@@ -9,6 +9,7 @@ generation: 5
 cover: saturn
 javascript: ['threejs']
 published: true
+seo_image_pos: "Top"
 top_tabs:
   Models:
     - title: "Japanese"
