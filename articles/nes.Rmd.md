@@ -122,11 +122,11 @@ So, did this mean game studios could only develop games that didn't exceed the 4
 
 A mapper is an extra chip included in the cartridge that sits between the memory chips and the console's address lines. Its main job is to extend the address space so developers may fit more chips. This is done by **bank switching**: Memory addresses are grouped into banks, and the mapper provides switches (controlled through memory addresses) to alternate between banks. Now, the CPU still sees the same amount of memory, so it's the game that's been programmed with a mapper present in charge of operating it. Due to their cost-effectiveness, mappers were the order of the day in 80s-to-early 90s technology.
 
-![PCB of Super Mario Bros 3 [@photography-tsrom]](tsrom.png){.tabs-nested .active title="Original"}
+![PCB of Super Mario Bros 2 [@photography-tsrom]. Super Mario Bros 3 also uses this layout but bundles a 256 KB Program ROM instead.](tsrom.png){.tabs-nested .active title="Original"}
 
 ![The same picture with important parts labelled. At first, I thought the extra WRAM was for storing saves, but then I realised there are no saves in this game (and there isn't a battery either). In reality, that RAM chip is used to store a decompressed level.](tsrom_marked.png){.tabs-nested-last title="Marked"}
 
-Back to the NES, a famous example is 'Super Mario Bros 3' which shipped with the 'MMC3' mapper (made by Nintendo) in its cartridge. For comparison, MMC3 provided up to 512 KB of space for the Program ROM, up to 256 KB for Character memory and up to 8 KB for extra WRAM [@cpu-mmc3]. You can now see why 'Super Mario Bros 3' differs significantly in quality compared to the first installment.
+Back to the NES, games like 'Super Mario Bros 2' and 'Super Mario Bros 3' shipped with the 'MMC3' mapper (made by Nintendo) in their cartridges. For comparison, MMC3 provided up to 512 KB of space for the Program ROM, up to 256 KB for Character memory and up to 8 KB for extra WRAM [@cpu-mmc3]. You can now see why 'Super Mario Bros 3' differs significantly in quality compared to the first installment.
 
 All in all, while this console may appear limited while examining its internal features, Nintendo made sure it could adapt as technology evolves. On the other side, while this technique helped to keep the costs down of the console, it shifted part of the burden to the game cartridge. So, game quality and cartridge costs were two concerns game studios had to balance.
 
