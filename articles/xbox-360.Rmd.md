@@ -17,17 +17,14 @@ top_tabs:
     title: Original
     file: original
     img_class: reduced-width
-    landscape: false
   - caption: "The 'new' Xbox 360 (a.k.a. 'Slim' or 'S').<br>Released on 18/06/2010 in America, 24/06/2010 in Japan and 16/07/2010 in Europe"
     title: The 'S'
     file: the-s
     img_class: reduced-width
-    landscape: false
   - caption: "Another 'new' Xbox 360 (a.k.a. 'E').<br>Released on 10/06/2013 in America, 20/06/2013 in Europe and similar in Japan"
     title: The 'E'
     file: the-e
     img_class: reduced-width
-    landscape: false
 ---
 
 ## A quick introduction
@@ -232,7 +229,7 @@ Look at it this way, why was OoO invented in the first place? To prevent the CPU
 
 What if instead of sorting out which instructions should be executed first, we duplicate the resources into two (or more) groups called 'threads' and let the program switch between the different groups of resources (multi-threading) as it sees more fit. This is what IBM's engineers went for, hence the reason the PPE is [dual-issued](playstation-3#tab-3-1-instructions). The new technique, called **Thread level parallelism** (TLP), differentiates itself from **Instruction level parallelism** (ILP) by letting the program, as opposed to the CPU, to come up with its own solution. With Xenon and Cell, it's now left to the compiler and the program's multi-threading implementation to produce an efficient sequence of instructions.
 
-The interesting thing is that neither approach is better or worse, out-of-order processors are still found in the market (Intel/AMD still supports OoO along with an obscene amount of other techniques, while ARM adopted OoO with the Cortex-A8 in 2005). On top of that, those CPUs have multi-threaded cores and even bundle multiple cores within the same chip, so you get a mix of both techniques (TLP and ILP).
+The interesting thing is that neither approach is better or worse, out-of-order processors are still found in the market (Intel/AMD still supports OoO along with an obscene amount of other techniques, while ARM adopted OoO with the Cortex-A9 in 2007). On top of that, those CPUs have multi-threaded cores and even bundle multiple cores within the same chip, so you get a mix of both techniques (TLP and ILP).
 
 ### Inside Xenon: Main Memory
 

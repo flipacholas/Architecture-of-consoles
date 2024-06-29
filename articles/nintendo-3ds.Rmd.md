@@ -166,7 +166,7 @@ From a programmer's perspective, the ARMv6 ISA innovates with a new set of vecto
 All in all, this may not seem that thriving for a new chip series, but remember that ARM's CPUs speak many 'languages'. In the case of an ARM11-based core, you are provided with:
 
 - The main 32-bit ISA, called **ARMv6**.
-- A compressed alternative called **Thumb**. Its instructions fit in 16-bit words instead. If you'd like to know more, I go over it in the [Game Boy Advance article](game-boy-advance#tab-2-3-squeezing-performance), as it weighs significant importance in that console.
+- A compressed alternative called **Thumb**. Its instructions fit in 16-bit words instead. If you'd like to know more, I go over it in the [Game Boy Advance](game-boy-advance#tab-2-3-squeezing-performance) and [Nintendo DS](nintendo-ds#tab-1-2-arm946e-s) articles, as it weighs significant importance in those consoles.
 - **Jazelle**, a Java bytecode interpreter, mostly forgotten and left unused. I've mentioned a bit of it in the [Wii article](wii#the-hidden-co-processor).
 - Any extension bundled into the core. For instance, the MPCore includes a **Vector Floating-point Coprocessor** with additional instructions to control said coprocessor [@cpu-vfp].
 
@@ -647,7 +647,7 @@ The Nintendo 3DS, as a whole, comes with four firmware [@operating_system-firm]:
   - This firmware is often referred to as 'Horizon' as well.
 - **TWL_FIRM**: It commands the Nintendo 3DS to behave like a Nintendo DSi. It does come at the expense of disabling all the exclusive features, but considering how the CPU, GPU, sound and I/O are intertwined; TWL_FIRM is truly a work of art. Consequently, the ARM9 and ARM7 are placed in the foreground (they execute the main program) [@operating_system-gbatek_firm].
   - The name 'TWL' comes from the codename of the Nintendo DSi.
-- **AGB_FIRM**: Similarly to TWL_FIRM but the 3DS now becomes a Game Boy Advance. Here, the ARM7 executes the main program.
+- **AGB_FIRM**: Similar to TWL_FIRM, the 3DS now becomes a Game Boy Advance. Here, the ARM7 executes the main program.
 - **SAFE_FIRM**: Used solely for maintenance-related tasks, such as system updates. This firmware is basically an early revision of NATIVE_FIRM (doesn't go beyond version `3.0` on the old 3DS and version `8.1` on the New 3DS [@operating_system-safehax]).
 
 All of these firmware come with separate binaries for the ARM11, ARM9 and ARM7 CPUs. The only exception is that the ARM7 won't be active under NATIVE_FIRM and SAFE_FIRM.
@@ -963,7 +963,7 @@ Now, here's another peculiarity of Virtual console games: this console can also 
 
 ![GBA game running without emulation on the Nintendo 3DS (there's no screenshot functionality on AGB_FIRM).](photos/3ds_kirby_gba.webp){.toright}
 
-Even more puzzling, GBA titles don't run on the ARM11 using an emulator (albeit there's one installed, but never been used!). Instead, they kickstart the third firmware, AGB_FIRM, to run natively on top of the ARM7. What makes it puzzling, is that these GBA games, only offered through the Ambassador Program, remained the only purpose of AGB_FIRM, as if Nintendo planned for something bigger in the future, but never materialised. This is another example of how the Nintendo 3DS possessed more hardware than the software ever took advantage of.
+Even more puzzling, GBA titles don't run on the ARM11 using an emulator (albeit there's one installed, but never been used!). Instead, they kickstart the third firmware, AGB_FIRM, to run natively on top of the ARM7. In the end, these exclusive GBA games remained the only use for AGB_FIRM, as if Nintendo planned for something bigger in the future, but never materialised. This is another example of how the Nintendo 3DS possessed more hardware than the software ever took advantage of.
 
 If you're curious, GBA titles make use of the bundled ARM7 core instead. Thus, they don't allow for the extra features that emulators (running on ARM11 cores) provide. Although, this happens at the exchange of running at full speed and precision. Be as it may, since the 3DS doesn't contain a GBA cartridge slot, the GBA game is instead copied into FCRAM before the system reboots into AGB_FIRM, and then lets the ARM7 take control (while the ARM11 and ARM9 provide basic support tasks) [@io-misc].
 
