@@ -7,6 +7,7 @@ date: 2020-06-26
 release_date: 2001-11-15
 cover: "xbox"
 generation: 6
+seo_image_pos: "Bottom"
 top_tabs:
   Model:
     file: international

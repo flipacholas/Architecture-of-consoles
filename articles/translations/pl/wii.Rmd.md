@@ -10,6 +10,7 @@ published: true
 cover: wii
 javascript:
   - 'threejs'
+seo_image_pos: "Top"
 top_tabs:
   Model:
     file: international
@@ -136,7 +137,7 @@ Dodatkowa szybkość Broadwaya i Hollywood w połączeniu z awangardowymi projek
 
 Co zaskakujące, ta konsola nie używa już starego portu [Multi Out](super-nintendo.md#a-convenient-video-out), ale jego odmianę o nazwie **AV Multi Out** (to tyle jeśli chodzi o nazwę) o nieco innym kształcie. Ten przenosi wszystkie poprzednie sygnały plus **YPbPr** (znany jako 'komponent') [@graphics-video]. Zawiera również niektóre linie danych, których system używa do identyfikacji typu podłączonego kabla.
 
-Niestety, to medium dziedziczy te same [ograniczenia](gamecube.md#connections) co GameCube. Oznacza to brak S-Video w systemach PAL i brak RGB w systemach NTSC. Ponadto RGB może nadawać tylko sygnały z przeplotem (bez progresywnego). Z drugiej strony Nintendo w końcu dostarczyło kabel SCART (jako dodatkowe akcesorium), który w końcu wykorzystuje linie RGB (pamiętaj, że zostały one zignorowane od czasów [SNES](super-nintendo#a-convenient-video-out)).
+Niestety, to medium dziedziczy te same [ograniczenia](gamecube.md#connections) co GameCube. Oznacza to brak S-Video w systemach PAL i brak RGB w systemach NTSC. Ponadto RGB może nadawać tylko sygnały z przeplotem (bez progresywnego).
 
 ## Dźwięk
 

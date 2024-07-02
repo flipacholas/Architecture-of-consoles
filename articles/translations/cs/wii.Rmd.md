@@ -10,6 +10,7 @@ published: true
 cover: wii
 javascript:
   - 'threejs'
+seo_image_pos: "Top"
 top_tabs:
   Model:
     file: international
@@ -136,7 +137,7 @@ Dodatečné megahertzy Broadwaye a Hollywoodu spolu s průkopnickým designem p�
 
 Je překvapivé, že tato konzole již nepoužívá starý [Multi Out](super-nintendo.md#a-convenient-video-out) port ale jeho variaci s názvem **AV Multi Out** (tolik k jménu) s mírně odlišným tvarem. Ten přenáší všechny signály jako předchůdce plus **YPbPr** (známý jako „component“) [@graphics-video]. Obsahuje také pár kontaktů, které systém používá k identifikaci typu připojeného kabelu.
 
-Bohužel, tento způsob připojení zdědil stejná [omezení](gamecube.md#connections), která měl i GameCube. Tedy žádné S-Video na PAL systémech a žádné RGB na NTSC systémech. Kromě toho RGB přenášelo pouze prokládaný (interlaced) obraz. Na druhou stranu Nintendo aspoň dodávalo SCART kabel (jako příslušenství), který konečně používá RGB signál (ten byl ignorován od dob [SNES](super-nintendo#a-convenient-video-out)u).
+Bohužel, tento způsob připojení zdědil stejná [omezení](gamecube.md#connections), která měl i GameCube. Tedy žádné S-Video na PAL systémech a žádné RGB na NTSC systémech. Kromě toho RGB přenášelo pouze prokládaný (interlaced) obraz.
 
 ## Zvuk
 

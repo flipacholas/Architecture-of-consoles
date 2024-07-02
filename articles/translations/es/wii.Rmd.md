@@ -10,6 +10,7 @@ published: true
 cover: wii
 javascript:
   - 'threejs'
+seo_image_pos: "Top"
 top_tabs:
   Model:
     file: internacional
@@ -136,7 +137,7 @@ Los megahercios adicionales del Broadway y del Hollywood, combinados con diseño
 
 Sorprendentemente, esta consola ya no utiliza el antiguo puerto [Multi Salida](super-nintendo.md#a-convenient-video-out), sino una variación del mismo llamada **AV Multi Salida** (vaya nombre) con una forma ligeramente diferente. Este lleva todas las señales anteriores más **YPbPr** (conocida como " vídeo por componentes") [@graphics-video]. También incluye algunas líneas de datos que el sistema utiliza para identificar el tipo de cable conectado.
 
-Por desgracia, este medio hereda las mismas [limitaciones](gamecube.md#connections) de la GameCube. Es decir, no hay S-Video en los sistemas PAL ni RGB en los NTSC. Además, RGB sólo puede emitir señales entrelazadas (no progresivas). Por otro lado, Nintendo por fin sacó un cable SCART (como accesorio extra) que por fin hace uso de las líneas RGB (recordemos que eran ignoradas desde los tiempos de la [SNES](super-nintendo#a-convenient-video-out)).
+Por desgracia, este medio hereda las mismas [limitaciones](gamecube.md#connections) de la GameCube. Es decir, no hay S-Video en los sistemas PAL ni RGB en los NTSC. Además, RGB sólo puede emitir señales entrelazadas (no progresivas).
 
 ## Audio
 

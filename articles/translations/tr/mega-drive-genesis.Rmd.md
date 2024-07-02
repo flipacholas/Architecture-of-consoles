@@ -7,6 +7,7 @@ date: 2019-05-18
 release_date: 1988-10-29
 generation: 4
 cover: megadrive
+seo_image_pos: "Bottom"
 top_tabs:
   Models:
     - 
