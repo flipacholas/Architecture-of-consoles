@@ -7,6 +7,7 @@ date: 2020-12-18
 release_date: 1987-10-30
 cover: "pcengine"
 generation: 4
+seo_image_pos: "Bottom"
 top_tabs:
   Models:
     - 
