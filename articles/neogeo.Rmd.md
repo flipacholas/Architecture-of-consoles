@@ -251,7 +251,7 @@ Remember the Z80 CPU I mentioned at the start of the article? It's still the typ
 
 The YM2610 is another [FM synthesiser](mega-drive-genesis#tab-8-1-yamaha-ym2612) from the popular Japanese manufacturer. It's closely similar to the [YM2612](mega-drive-genesis#tab-8-1-yamaha-ym2612) featured in the [Mega Drive](mega-drive-genesis#audio), but don't let its name fool you because the Neo Geo one is a bit more premium (albeit with some compromises).
 
-Both the YM2610 and YM2612 are part of the high-end 'OPL' series, meaning Yamaha enables four operators per FM channel. Now, the Neo Geo's chip features **four FM channels** which, to be fair, is two less than the YM2612. That's as far as the weaknesses go.
+Both the YM2610 and YM2612 are part of the high-end 'OPN' series, meaning Yamaha enables four operators per FM channel. Now, the Neo Geo's chip features **four FM channels** which, to be fair, is two less than the YM2612. That's as far as the weaknesses go.
 
 The FM channels are provided with a **Low-frequency Oscillator** (LFO) to modulate either the amplitude or frequency of the operators. The LFO contains a pre-defined set of frequencies ranging from 3.98 Hz to 72.2 Hz [@audio-fm].
 
@@ -259,7 +259,7 @@ The FM channels are provided with a **Low-frequency Oscillator** (LFO) to modula
 
 Now, even though the YM2610 is known for its FM synthesis, it houses additional functions that won't go unnoticed by music composers [@audio-app_manual2]:
 
-- A **Software-controlled Sound Generator** (SSG): This is Yamaha's name for a [Programmable Sound Generator](nes#audio) (PSG). In essence, the chip bundles a legacy Yamaha YM2149 inside, this can generate **three square waves** with optional **noise**. It also comes with a 16-bit envelope control.
+- A **Software-controlled Sound Generator** (SSG): This is Yamaha's name for a [Programmable Sound Generator](nes#audio) (PSG). In essence, the chip bundles a legacy Yamaha YM2149 inside, this can generate **three square waves** with optional **noise**. It also comes with an envelope control.
   - The original YM2149 came with an interface called 'I/O ports' to transfer data between the CPU and another component [@audio-ym2149]. Since this is now irrelevant, the embedded variant in the YM2610 doesn't include it.
 - Seven **ADPCM channels**: Enables to play **samples** using the 4-bit ADPCM format. These channels are split into two groups:
   - ADPCM-A: Made of six channels, they provide a sample resolution of **12-bits** and a sampling frequency of **~18.5 kHz**
@@ -269,17 +269,15 @@ Now, even though the YM2610 is known for its FM synthesis, it houses additional 
 
 The YM2610 is connected to two memory chips in the cartridge called **V ROMs**. These store the ADPCM samples and there's one V ROM per ADPCM group.
 
-All in all, the audio subsystem is a combination of the 3rd, 4th and (then unreleased) 5th generation of consoles. However, unlike the [CD medium](sega-saturn#the-compact-disc-cd), Neo Geo cartridges can only store so much, so the ADPCM channels are mainly bottlenecked by storage limitations. Consequently, adoption was disparate, some games found clever uses for ADPCM-B while others limited it to effects, voices and percussion [@audio-dissection].
+All in all, the audio subsystem is a combination of the 3rd, 4th and (then unreleased) 5th generation of consoles. However, unlike the [CD medium](sega-saturn#the-compact-disc-cd), Neo Geo cartridges can only store so much, so the ADPCM channels are mainly bottlenecked by **storage limitations**. In any case, some games found clever arrangements for ADPCM while leaving FM as a secondary constituent [@audio-dissection].
 
 Finally, the YM2610 is paired with another chip to work, the **Yamaha YM3016**. The latter is a dedicated 16-bit **Digital-to-Analogue Converter** (DAC), which takes the digital signal output from the YM2610 and converts it to analogue audio (that speakers understand).
 
 ### The conductor
 
-For the audio chip to do anything meaningful, the Z80 must command it properly. So, the Z80 runs a program stored in yet-another distinct chip called **M1 ROM**. This is found inside the game cartridge, particularly, within the CHA Board. The program for the Z80 is often referred to as **sound driver**.
+For the audio chip to do anything meaningful, the Z80 must command it properly. So, the Z80 runs a program stored in yet-another distinct chip called **M1 ROM**. This is found inside the game cartridge, particularly, within the CHA Board. The program for the Z80 is often referred to as **sound driver** and there were many implementations [@audio-drivers].
 
 ![The Zilog Z80, NEO-D0 and surroundings.](audio/z80.jpg)
-
-There were many sound drivers found in the market, some focused on programming all audio channels, while others even ventured into mixing audio samples to overcome the seven-channel limitation [@audio-drivers]. Curiously enough, this is something that some Mega Drive games also [experimented with](mega-drive-genesis#cracking-sampling).
 
 On a similar note, the Z80 is paired with a proprietary controller called **NEO-D0**, the latter acts as a memory bank and I/O controller.
 
@@ -340,7 +338,7 @@ As you may know, Neo Geo cartridges are made of **two boards**. The first one is
 By contrast, the second board is the aforementioned **CHA Board** and embeds the following:
 
 - The **C ROMs** and **S ROM**. These store sprite tiles and Fix tiles, respectively.
-- An **M1 ROM**: Stores the Z80 program. As you may know, the addressing capabilities of the Z80 are [very limited](master-system#memory-available), so M1 ROM access is interfaced by a dedicated controller called **NEO-ZMC** (another chip on the cartridge) which provides [memory banking](nes#going-beyond-existing-capabilities), enabling up to **64 KB** to be addressed (though it may be expanded by adding another mapper into the CHA Board).
+- An **M1 ROM**: Stores the Z80 program. As you may know, the addressing capabilities of the Z80 are [very limited](master-system#memory-available), so M1 ROM access is interfaced by a dedicated [mapper](nes#going-beyond-existing-capabilities) called **NEO-ZMC** (found in the cartridge) which enables up to **64 KB** of memory to be addressed. This may be expanded by adding extra mappers into the CHA Board, or adopting the NEO-ZMC2 (which enables up to 4 MB).
 
 ### Keeping progress
 
@@ -376,9 +374,9 @@ Starting with the common techniques, the System ROM contains a portion of data c
 
 Additionally, games like _Fatal Fury 2_ also fiddle with its companion 'PRO-CT0' chip (a multiplexer for the CHA Board) to make sure the program is residing in an official cartridge [@anti_piracy-fatal_fury]. Otherwise, it assumes it's been cloned, triggering many anti-piracy **unpleasantries** (such as making the opponent invincible).
 
-Later on, newer entries also stored **encrypted data** in C ROM, designed to be seamlessly decrypted by the 'NEO-CMC' (found on the CHA Board) [@anti_piracy-neo_cmc]. This chip contained a set of unusual XOR functions to deobfuscate the graphics data before it reached the VDC [@anti_piracy-mame_cmc].
+Later on, newer entries also stored **encrypted data** in C ROM, designed to be seamlessly decrypted by the 'NEO-CMC' (found on the CHA Board) [@anti_piracy-neo_cmc]. This chip contained a set of unusual XOR functions to deobfuscate the graphics data before it reached the VDC [@anti_piracy-mame_cmc]. The NEO-CMC also works as a multiplexer for tile data inside the C ROMs, allowing manufacturers to omit the inclusion of S ROM chips altogether.
 
-For extreme measures, games like 'Metal Slug X' bundled specialised ICs in their PROG board that complicated things further [@anti_piracy-progeop]. They behaved similarly to the [Nintendo's CIC system](nes#anti-piracy-and-region-lock), requiring constant game-chip communication.
+For extreme measures, games like 'Metal Slug X' bundled specialised ICs in their PROG board that complicated things further [@anti_piracy-progeop]. This reminds me of [Nintendo's CIC system](nes#anti-piracy-and-region-lock), which required constant game-chip communication (albeit significantly distinct in terms of goals and architecture).
 
 All in all, this tells you that the anti-piracy battle was just another cat-and-mouse game. However, in this case, SNK was trying to get both home and arcade owners away from cheaper knock-offs.
 
