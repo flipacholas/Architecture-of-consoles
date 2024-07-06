@@ -1097,7 +1097,7 @@ Truth is, there's a lot of hidden functionality within this product. Let's analy
 
 ##### Inside the Gateway3DS {.tab}
 
-![The DS Message editor found on the 3DS settings app. The character limit rule depends solely on the graphical interface.](shell/settings_ds_profile.png){.tab-float}
+![The DS Message editor found on the 3DS settings app. The character limit is solely enforced by the graphical interface.](shell/settings_ds_profile.png){.tab-float}
 
 Sometime in 2012, hacker 'ichfly' discovered interesting behaviour in the Nintendo DS' old profile editor, found on both `NATIVE_FIRM` and `TWL_FIRM`. In one of its text fields, you can enter a 'Message' value, which will then be displayed as a greeting on PictoChat rooms [@anti_piracy-profile]. The 3DS' settings app won't allow you to enter more characters than allowed. Yet, nothing prevents a Nintendo DS game from doing so. When that happens, opening the 3DS' System Settings app (called **MSET**) will crash, and what makes it interesting is that this is caused by **stack overflow** [@anti_piracy-waffle]. Does this remind you of [a certain horse name](wii#the-dawn-of-homebrew)?
 
