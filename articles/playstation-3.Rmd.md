@@ -367,9 +367,13 @@ Example of PS3 games. All rendered at their maximum resolution (1280x720 pixels)
 
 :::
 
-It appears that even with a supercomputer chip, Sony still had to fetch a GPU to finalise the PlayStation 3. This makes you wonder if IBM/Sony/Toshiba hit a wall while trying to scale Cell further, so Sony had no option but to get help from a graphics company. This is purely speculation however, I'm not sure if I'll ever know the answer.
+It appears that even with a supercomputer chip, Sony still had to fetch a GPU to finalise the PlayStation 3. This makes you wonder if IBM/Sony/Toshiba hit a wall while trying to scale Cell further, so Sony had no option but to get help from a graphics company.
 
-What I do know is that the PS3 contains a GPU chip manufactured by **Nvidia** meant to offload part of the graphics pipeline. The chip is called **Reality Synthesizer** or 'RSX' and runs at **500 MHz** [@graphics-rsx_dev]. Its clock speed looks concerning when compared to Cell's (3.2 GHz), though you'll soon see that the GPU is better equipped for computing huge amounts of operations in parallel. So it's a matter of finding a balance between Cell and RSX when it comes to building the graphics pipeline (though I must confess this sounds simpler on paper than it is in practice).
+> We had started this ICE [Initiative For A Common Engine] team with the intent of developing some core technology that could be shared amongst all the first parties (...) For a while, [PS3 had] no GPU, it was going to run everything with SPUs. The ICE team proved to Japan that it was just impossible. It would be ridiculous. Performance-wise, it would be a disaster. That’s why they finally added the GPU, closer to the end [@graphics-ign_naughtydog].
+>
+> -- <cite>Unnamed sources from Naughty Dog</cite>
+
+What I am sure is that the PS3 contains a GPU chip manufactured by **Nvidia** meant to offload part of the graphics pipeline. The chip is called **Reality Synthesizer** or 'RSX' and runs at **500 MHz** [@graphics-rsx_dev]. Its clock speed looks concerning when compared to Cell's (3.2 GHz), though you'll soon see that the GPU is better equipped for computing huge amounts of operations in parallel. So it's a matter of finding a balance between Cell and RSX when it comes to building the graphics pipeline (though I must confess this sounds simpler on paper than it is in practice).
 
 I will now perform the same level of analysis previously done with Cell, this time focusing on RSX and its graphics capabilities.
 
