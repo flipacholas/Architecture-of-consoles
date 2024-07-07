@@ -293,7 +293,9 @@ There's a **128 KB 'System' ROM** found on the motherboard [@operating_system-bi
 
 After powering on the console, the user will notice a splash screen known as the **Eyecatcher** [@operating_system-eyecatcher]. Its code is stored in the System ROM, but the graphic assets (the Neo Geo logo and other labels) are fetched from the cartridge's C ROM and S ROM.
 
-![The Eyecatcher. It relies on tiles supplied by the cartridge. This is why you also see an additional 'Max 330 Mega', here the game is trying to show off the storage capacity of the cartridge.](system/eyecatcher.jpg){.toleft .pixel}
+Alternatively, the P ROM header may contain a flag instructing the System ROM to delegate the splash routine to the cartridge [@operating_system-prom_header]. This only works on the AES variant [@graphics-beginners] yet later games adopted this to display different text.
+
+![The Eyecatcher implemented by the System ROM. It still relies on tiles supplied by the cartridge. The official implementation displays the characteristic 'Max 330 Mega' subtitle, as a way to show off the theoretical storage capacity of Neo Geo cartridges. Later games, through the use of the flag, render 'Giga Power' instead.](system/eyecatcher.jpg){.toleft .pixel}
 
 ![The Test Menu, showing many maintenance functions required to set up the arcade cabinet.](system/testmenu.jpg){.toright .pixel}
 
@@ -309,6 +311,7 @@ Apart from the visual aspects, the System ROM provides software routines to oper
 
 Interestingly enough, system routines may, in turn, call game routines to continue some operations. This means games are also tasked with implementing certain calls [@operating_system-user_routine] [@operating_system-system_io]. For instance, the System ROM may request the following from games:
 
+- Show the custom Eyecatcher animation (if the required flag is set).
 - Show the game's boot animation.
 - Start the game demo. This is what you see before inserting a coin.
 - Play the 'coin inserted' sound.
@@ -338,7 +341,7 @@ As you may know, Neo Geo cartridges are made of **two boards**. The first one is
 By contrast, the second board is the aforementioned **CHA Board** and embeds the following:
 
 - The **C ROMs** and **S ROM**. These store sprite tiles and Fix tiles, respectively.
-- An **M1 ROM**: Stores the Z80 program. As you may know, the addressing capabilities of the Z80 are [very limited](master-system#memory-available), so M1 ROM access is interfaced by a dedicated [mapper](nes#going-beyond-existing-capabilities) called **NEO-ZMC** (found in the cartridge) which enables up to **64 KB** of memory to be addressed. This may be expanded by adding extra mappers into the CHA Board, or adopting the NEO-ZMC2 (which enables up to 4 MB).
+- An **M1 ROM**: Stores the Z80 program. As you may know, the addressing capabilities of the Z80 are [very limited](master-system#memory-available) (in this case, the ceiling is **62 KB**). So, M1 ROM access is interfaced by a dedicated [mapper](nes#going-beyond-existing-capabilities) called **NEO-ZMC** (found in the cartridge) which enables up to **512 KB** of memory to be addressed. This may be expanded by adding extra mappers into the CHA Board, or adopting the NEO-ZMC2 (which enables up to 4 MB).
 
 ### Keeping progress
 
