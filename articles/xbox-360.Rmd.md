@@ -105,7 +105,7 @@ In a turn of events, IBM agreed to share its IP and to design a new multi-core p
 >
 > -- <cite>David Shippy, chief architect of the [Power Processing Unit](playstation-3#the-powerpc-processing-unit) (PPU)</cite>
 
-Ironically, as of 2022, IBM's PowerPC chips have vanished from both desktop computers and video consoles, maybe this set a bad precedent and greatly affected IBM's trust in future businesses? I'm afraid I don't know the answer to that.
+Ironically, as of 2022, IBM's PowerPC chips have vanished from both desktop computers and video consoles, maybe this set a bad precedent and greatly affected IBM's trust in future businesses? I go over this effect later on.
 
 To sum it up, IBM signed an agreement with Sony and Toshiba to develop Cell in 2001. Two years later, in 2003, IBM agreed to supply Microsoft with a new low-powered multi-core CPU. Microsoft's CPU will be called **Xenon** and will inherit part of Cell's technology, with extra input from Microsoft (focusing on multi-core homogeneous computing and bespoke security). Also, while IBM would brand Cell with its 'BladeCenter' line of servers, Xenon could only be fitted on an Xbox 360 motherboard.
 
@@ -231,6 +231,12 @@ Look at it this way, why was OoO invented in the first place? To prevent the CPU
 What if instead of sorting out which instructions should be executed first, we duplicate the resources into two (or more) groups called 'threads' and let the program switch between the different groups of resources (multi-threading) as it sees more fit. This is what IBM's engineers went for, hence the reason the PPE is [dual-issued](playstation-3#tab-3-1-instructions). The new technique, called **Thread level parallelism** (TLP), differentiates itself from **Instruction level parallelism** (ILP) by letting the program, as opposed to the CPU, to come up with its own solution. With Xenon and Cell, it's now left to the compiler and the program's multi-threading implementation to produce an efficient sequence of instructions.
 
 The interesting thing is that neither approach is better or worse, out-of-order processors are still found in the market (Intel/AMD still supports OoO along with an obscene amount of other techniques, while ARM adopted OoO with the Cortex-A9 in 2007). On top of that, those CPUs have multi-threaded cores and even bundle multiple cores within the same chip, so you get a mix of both techniques (TLP and ILP).
+
+##### Eroded relationships
+
+Whilst the omission of out-of-order may look justified from a technical standpoint, this would ultimately wither trust in IBM's long-term abilities. Apple, sensing that future PowerPC chips would no longer stand against Intel [@cpu-race_takahashi], was the first to abandon its partnership and switch to Intel in 2005 (just in time for [Yonah](xbox#p6-and-the-end-of-pentium-numbers)). Nonetheless, this didn't worry IBM, who preferred to focus on its server and gaming sector.
+
+The long-term outcome of PowerPC, however, became extinction. The aforementioned technical constraints, combined with questionable business ethics (the fact IBM secretly designed for two close rivals at once), resulted in the loss of the entire console market: Sony and Microsoft selected AMD CPUs for their next-generation console. A decade later, Nintendo's [Wii U](wiiu#the-last-venture-of-powerpc) would become the last console to bundle a PowerPC chip.
 
 ### Inside Xenon: Main Memory
 
