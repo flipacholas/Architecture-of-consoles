@@ -60,9 +60,9 @@ All of these processors had something in common: They followed the **Reduced Ins
 
 However, it wasn't until 1987 that MIPS' chips became a topic of conversation, all due to being adopted (and later acquired) by **Silicon Graphics Incorporated** (SGI) to power their equipment. SGI was an influential innovator in the computer graphics market, especially with the development of [hardware-accelerated vertex pipelines](nintendo-64#graphics), whose task was originally carried out by software (within the CPU). After the acquisition, SGI had a leading position in both CPU and graphics sectors.
 
-Before the development of the PlayStation, MIPS switched to a business model based on **IP licensing**, where their CPU designs would be sold in the form of licenses, and licensees were then free to customise and manufacture it. Part of their offerings included the **R3000A CPU**, albeit within their low-end catalogue. Consequently, while the R3000A wasn't associated with the flagship lineup (unlike the R4000, which [others](nintendo-64#cpu) would later choose), it was an attractive investment in terms of cost.
+Before the development of the PlayStation, MIPS switched to a business model based on **IP licensing**, where their CPU designs would be sold in the form of licenses, and licensees were then free to customise and manufacture the designs. Part of their offerings included the **R3000A CPU**, found in their low-end catalogue. Consequently, the R3000A wasn't associated with the flagship line-up (unlike the R4000, which [others](nintendo-64#cpu) would later choose), but it was an attractive investment in terms of cost.
 
-Sony designed their audio and graphics chips in-house, but they still needed the leading chip that could drive those two. The selected CPU had to be powerful enough to show off the *impressive* capabilities of Sony's chips, but also affordable to keep the console at a competitive price.
+Back to the main topic, Sony designed their audio and graphics chips in-house, but they still needed the leading chip that could drive those two. The selected CPU had to be powerful enough to show off the *impressive* capabilities of Sony's chips, but also affordable to keep the console at a competitive price.
 
 #### LSI and the commission {.tab}
 
@@ -168,7 +168,7 @@ Consequently, MIPS I CPUs exhibit the following behaviour:
 
 As we can see from the example, some delay slots are filled with meaningful instructions, which perform computations that are not affected by the hazard. Hence, delay slots don't always imply a waste of cycles.
 
-Having explained this, you may be wondering why a processor with these kinds of flaws could ever be commercialised. Well, one philosophy about RISC is that the burden of CPU programming is shifted from the developer to the compiler. MIPS, in particular, prioritised the production of good quality compilers (including assemblers) to accompany their new CPUs [@cpu-chm_mips]. Hence, developers could use a higher-level language (for instance, C) while the compiler dealt with the hazards (by re-arranging instructions to fill in slots; or adding useless fillers as a last measure). So, all in all, while I don't find it pleasant to see a CPU being filled with bubbles, I think MIPS tackled this in a very clever way.
+Having explained this, you may be wondering why a processor with these kinds of flaws could ever be commercialised. Well, one philosophy about RISC is that the burden of CPU programming is shifted from the developer to the **compiler**. MIPS, in particular, **prioritised the production of good quality compilers** (including assemblers) to accompany their new CPUs [@cpu-chm_mips]. Hence, developers could use a higher-level language (for instance, C) while the toolchain dealt with the hazards (by re-arranging instructions to fill in slots; or adding useless fillers as a last measure). So, all in all, while I don't find it pleasant to see a CPU being filled with bubbles, I think MIPS tackled this in a very clever way.
 
 ## Graphics
 
