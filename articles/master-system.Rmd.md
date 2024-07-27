@@ -41,7 +41,7 @@ From now on I'll use the term 'Master System' or 'SMS' to refer to all of these,
 
 Sega decided on a fully-fledged **Zilog Z80** CPU running at **~3.58 MHz**. A popular choice by other machines like the ZX Spectrum and the Amstrad CPC.
 
-The Z80 CPU has an interesting background, as it was authored by no other than the creators of the Intel 8080 (Federico Faggi and Masatoshi Shima), who then became disenchanted with Intel's direction and decided to start their own silicon company - Zilog - in 1974. Their debuting product can be thought of as the unofficial successor of the Intel 8080, now featuring:
+The Z80 CPU has an interesting background, as it was authored by no other than the creators of the Intel 8080 (Federico Faggin and Masatoshi Shima), who then became disenchanted with Intel's direction and decided to start their own silicon company - Zilog - in 1974. Their debuting product can be thought of as the unofficial successor of the Intel 8080, now featuring:
 
 - The **Z80 ISA**: An instruction set compatible with the Intel 8080 but expanded with lots more instructions. It handles **8-bit** words.
 - **8-bit data bus**, ideal for moving 8-bit data around. Larger values will consume extra CPU cycles.
