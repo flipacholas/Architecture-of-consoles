@@ -21,7 +21,7 @@ aliases:
 
 ![](banner.png){linked_img=true .no_lazyload .no_link}
 
-Menilik evolusi konsol permainan video itu menakjubkan. Di saat PC awam cenderung berevolusi 'bertahap', tiap konsol generasi baru memperkenalkan cara baru lagi. Bacaan di sini adalah serangkaian artikel yang diharapkan bisa mengungkap alasan dari tren terkini pada teknologi. Akan diperagakan juga kenapa tiap sistem tidak bisa diuraikan hanya dari 'bit', megahertz, jumlah RAM, dan semacamnya.
+Menilik evolusi konsol permainan video itu menakjubkan. Di saat PC awam cenderung berevolusi 'bertahap', generasi baru tiap konsol menghadirkan cara baru lagi. Bacaan serangkaian artikel di sini diharapkan bisa mengungkap alasan di balik tren teknologi terkini. Akan diperagakan juga kenapa tiap sistem tidak bisa diuraikan hanya dari 'bit', megahertz, jumlah RAM, dan semacamnya.
 
 Ini bukan panduan pengembang, tapi pendahuluan *mendalam* cara kerja tiap sistem dari dalam. Perlu diingat akhir-akhir ini teknologi semakin rumit, jadi jika susah mengikuti artikel terkini saya, coba baca artikel lama dulu. Biasanya konsep dan definisi lama banyak yang ditinjau lagi.
 
