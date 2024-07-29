@@ -109,7 +109,7 @@ VDP 以**最高 256x192 像素**的分辨率渲染帧，后续修订版增加了
 
 ::: {.subfigures .tabs-nested .tab-float .pixel max_subfigures=1}
 
-![所有图块。](sonic/tiles.png){.activity title="全部"}
+![所有图块。](sonic/tiles.png){.active title="全部"}
 
 ![一个图块。](sonic/tile.png){title="单个"}
 
@@ -129,7 +129,7 @@ VDP 以**最高 256x192 像素**的分辨率渲染帧，后续修订版增加了
 
 ::: {.subfigures .tabs-nested .tab-float .pixel}
 
-![已分配的屏幕地图。](sonic/tilemap.png){.activity title="全部"}
+![已分配的屏幕地图。](sonic/tilemap.png){.active title="全部"}
 
 ![已分配的屏幕地图，带有选定区域标记。](sonic/tilemap_marked.png){title="选定的"}
 
