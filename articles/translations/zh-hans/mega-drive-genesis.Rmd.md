@@ -153,7 +153,7 @@ VDP以约**13 MHz**运行，并根据区域支持多种分辨率模式：在NTSC
 
 ::: {.subfigures .tabs-nested .tab-float .pixel max_subfigures=1}
 
-![多个图块挤在一起。 出于演示目的，正在使用默认调色板。](vdp_sonic/tiles.png){.activity title="全部"}
+![多个图块挤在一起。 出于演示目的，正在使用默认调色板。](vdp_sonic/tiles.png){.active title="全部"}
 
 ![单个8x8像素图库。](vdp_sonic/tiles_single.png){title="单个"}
 
@@ -185,7 +185,7 @@ VDP以约**13 MHz**运行，并根据区域支持多种分辨率模式：在NTSC
 
 ::: {.subfigures .tabs-nested .tab-float .pixel}
 
-![分配的前景平面。](vdp_sonic/layer1.png){.activity title="全部"}
+![分配的前景平面。](vdp_sonic/layer1.png){.active title="全部"}
 
 ![已分配前景平面，选定区域已标记。](vdp_sonic/layer1_selected.png){title="选定的"}
 
