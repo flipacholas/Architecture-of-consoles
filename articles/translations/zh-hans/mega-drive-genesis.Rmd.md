@@ -1,7 +1,7 @@
 ---
 short_title: MD 架构
-title: MD（Mega Drive / Genesis Architecture） 架构
-name: MD
+title: MD（Mega Drive / Genesis） 架构
+name: MD（Mega Drive / Genesis）
 subtitle: 新技术的结晶
 date: 2019-05-18
 release_date: 1988-10-29
