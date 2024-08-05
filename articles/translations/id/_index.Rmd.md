@@ -27,6 +27,6 @@ Ini bukan panduan pengembang, tapi pendahuluan *mendalam* cara kerja tiap sistem
 
 Pengetahuan dasar komputasi memang perlu, namun, saya tetap berusaha menyadur konten saya untuk khalayak luas, jadi jangan sungkan membaca! Jika masih kurang, mungkin lihat juga [rujukan bacaan](readings).
 
-Saya selalu berusaha seakurat mungkin; tapi jika ada kesalahan, [beri tahu saya](https://github.com/flipacholas/Architecture-of-consoles). Terakhir, jika lebih pilih membaca dengan pembaca eBook, lihat juga [edisi eBook](ebook).
+Saya selalu berusaha seakurat mungkin; tapi jika ada kesalahan, [beri tahu saya](https://github.com/flipacholas/Architecture-of-consoles). Terakhir, jika lebih pilih membaca dengan eBook, lihat juga [edisi eBook](ebook).
 
 Tanpa basa-basi lagi, ini dia!
