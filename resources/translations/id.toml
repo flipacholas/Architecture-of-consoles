@@ -119,22 +119,22 @@ other = "Generasi {{ .ordinal }}"
 other = "{{.}} (berbahasa Inggris)"
 
 [cpu_subtitle]
-other = "Pemajuan CPU terkemuka:"
+other = "Pemajuan CPU kentara:"
 
 [gpu_subtitle]
 other = "Fitur GPU menonjol:"
 
 [roadmap_title]
-other = "Rencana kerja"
+other = "Peta rencana"
 
 [roadmap_content]
-other = "Ada banyak konsol yang bisa saya tulis... Jika ingin tahu rencana saya selanjutnya, ini dia:"
+other = "Ada banyak konsol yang mampu saya tulis... Jika ingin tahu rencana saya selanjutnya, ini dia:"
 
 [contribution_content]
 other = "Jika artikel ini menarik minat Anda, kami menerima sumbangan. Sumbangsih Anda akan digunakan untuk membiayai pembelian alat dan sumber daya yang membantu menambah mutu artikel yang ada dan mendatang. Saya urutkan juga bahan menarik yang diperlukan di tiap ujung artikel."
 
 [contribution_footer]
-other = "Sebagai tanda terima kasih, nama Anda akan dicakup di bagian nominasi atau daftar nama artikel berikutnya, kecuali dinyatakan lain."
+other = "Sebagai terima kasih, nama Anda akan disertakan di bagian nominasi atau daftar nama artikel berikutnya, kecuali dinyatakan lain."
 
 [contribution_footer_ebook]
 other = '<a href="{{ . }}">Edisi eBook</a> berbahasa Inggris juga bisa dibeli. Laba ini saya anggap sumbangan.'
