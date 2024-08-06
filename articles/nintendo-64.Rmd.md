@@ -316,7 +316,9 @@ Libraries in the official SDK contain several layers of abstractions to command 
 
 In terms of microcode development, Nintendo already provided a set of microcode programs to choose from. However, if developers wanted to customise it, that would indeed be a challenging task: The Scalar Unit instruction set wasn't initially documented, but later on, Nintendo changed its position and SGI finally released some documentation for microcode programming.
 
-Hardware used for development included workstations supplied by SGI [@games-devkit], like the **Indy** machine which came with an extra daughterboard called **U64** that contains the hardware and I/O of the retail console. Tools were supplied for Windows computers as well [@games-u64].
+![An SGI Indy I found at The Centre for Computing History (Cambridge, UK) when I visited in August 2024. By comparison, this computer houses a MIPS R4400 CPU, an improved successor of the R4000 (all in all, miles ahead of the VR4300).](sgi_indy.webp)
+
+Hardware used for development included workstations supplied by SGI [@games-devkit], such as the **Indy** machine bundling an extra daughterboard called **U64** that contains the hardware and I/O of the retail console. Tools were supplied for Windows computers as well [@games-u64].
 
 Other third-party tools consisted of custom cartridges featuring a long ribbon cable that connected to the workstation. This cartridge fitted in a retail Nintendo 64 but included internal circuitry to redirect 'read' requests from the console to the workstation's RAM. The deployment/debugging process was carried out by transferring a copy of the game to RAM and then when the console was switched on, it would start reading from there.
 
