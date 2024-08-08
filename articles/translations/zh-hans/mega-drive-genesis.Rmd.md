@@ -217,7 +217,7 @@ VDP以约**13 MHz**运行，并根据区域支持多种分辨率模式：在NTSC
 
 ::: {.subfigures .tabs-nested .tab-float .pixel}
 
-![结果帧。](vdp_sonic/result.png){.activity title="帧"}
+![结果帧。](vdp_sonic/result.png){.active title="帧"}
 
 ![帧广播到电视（NTSC格式），VDP自动覆盖大多数CRT电视将隐藏的过扫描区域的帧。](vdp_sonic/overscan.png){title="过扫描"}
 
