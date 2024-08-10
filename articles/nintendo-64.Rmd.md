@@ -69,17 +69,27 @@ Due to the unified memory architecture, the CPU no longer has direct access to R
 
 Apart from the UMA, the structure of RAM is a little bit complicated, so I'll try to keep it simple. Here it goes...
 
-The system physically contains **4.5 MB of RAM**, however, it's connected using a **9-bit** data bus where the 9th bit is reserved for the GPU (more details in the 'Graphics' section). As a consequence, every component except the GPU will only find **up to 4 MB**.
+The system physically contains **4.5 MB of RAM**, however, it's connected using a **9-bit** data bus where the 9th bit is reserved for the GPU (I explain more in the 'Graphics' section). As a consequence, every component except the GPU will only find **up to 4 MB**.
 
 ![Memory layout of this system. I presume the CPU-RCP bus speed is either the RCP's clock speed or the CPU one, but I haven't been able to confirm that, yet.](memory.png)
 
 The type of RAM fitted in the board is called **Rambus DRAM** (RDRAM) [@cpu-memory], this was just another design that competed against SDRAM to become the next standard. RDRAM is connected in **serial** (where transfers are done one bit at a time) while SDRAM uses a **parallel connection** (transfers multiple bits at a time).
 
-RDRAM latency is directly proportional to the number of banks installed [@cpu-rdram] so in this case, with the amount of RAM this system has, the resulting latency is significant (a post on beyond3d's forum states it's around **640 ns** [@cpu-beyondrsp]). Though this is compensated with a high clock speed of **250 MHz** (~2.6 times faster than the CPU) applied on the memory banks. Nintendo claims RDRAM can provide high-speed data transfer of 500 MB/sec to read or write consecutive data.
+#### Latency and speed
 
-Furthermore, there's another discussion on beyond3d's forums that claim that Nintendo chose NEC's uPD488170L memory banks for their motherboard [@cpu-beyondrdram]. These chips implement a technology called 'Rambus Signaling Logic', which doubles the transfer rate [@cpu-data]. This may explain why some sources state the 'effective' rate is 500 MHz.
+RDRAM latency is directly proportional to the number of banks installed [@cpu-rdram] so in this case, with the amount of RAM this system has, the resulting latency is significant (it's been reported to lie around the **640 ns** [@cpu-beyondrsp]). This is compensated with a high clock speed of **250 MHz** (~2.6 times faster than the CPU) applied on the memory banks. Nintendo claimed RDRAM can provide high-speed data transfer of 500 MB/sec to read or write consecutive data.
 
-Finally, the amount of available RAM on this console **can be expanded** by installing the *Expansion Pak* accessory: A fancy-looking small box that includes 4.5 MB. Curiously enough, the RAM bus must be terminated, so the console always shipped with a terminator (called *Jumper Pak*) fitted in the place of the Expansion Pak. Now, you may ask, what would happen if you switch on the console without any *Pak* installed? **Literally nothing**, you get a blank screen!
+Furthermore, Nintendo chose NEC's uPD488170L memory banks for their motherboard [@cpu-beyondrdram]. These chips implement a technology called 'Rambus Signaling Logic', which doubles the transfer rate [@cpu-data]. This may explain why some sources state the 'effective' rate of memory is 500 MHz.
+
+#### Leaving room for improvement
+
+Interestingly, the amount of available RAM on this console **can be expanded** by installing the **Expansion Pak** accessory: A fancy-looking small box that adds another **4.5 MB**. While this accessory remained optional for some games (and the majority didn't make use of it), certain titles like Donkey Kong 64 or The Legend of Zelda: Majora's Mask were designed with the expansion as a requirement, and would display an error screen without it.
+
+![The Expansion Pak [@photography-amos], an optional accessory sold separately (sometimes included with the game that requires it).](expansion_pak.png){.tabs-nested .active title="Expansion"}
+
+![The Jumper Pak [@photography-amos]. In the absence of the Expansion Pak, this must be present to terminate the RDRAM bus.](jumper_pak.png){.tabs-nested-last title="Placeholder"}
+
+Curiously enough, the RAM bus must be terminated, so the console always shipped with a terminator (called **Jumper Pak**) fitted in the place of the Expansion Pak. Now, you may ask, what would happen if you switched on the console without any *Pak* installed? **Literally nothing**, you get a blank screen!
 
 ### Memory management
 
@@ -332,7 +342,7 @@ Additionally, the PBUS branches out to another connector at the bottom of the N6
 
 The magnetic medium is slower than cartridges, with transfer speeds of up to 1 MB/sec, but still faster than 4X CD-ROM readers. Disks are double-sided and operate at 'Constant Angular Velocity' (like the later [miniDVD](gamecube#medium)). The smallest readable area is called a 'block' and it's half of a concentric circle.
 
-There's no buffer memory included in this reader, so the bits read are stored in RDRAM for execution. Nintendo bundled the RAM expansion unit with the 64DD to compensate for the sudden need for more RAM (apart from standardising the extended RAM for all 64DD games).
+There's **no buffer memory** included in this reader, so the bits read are stored in RDRAM for execution. To tackle the increased memory requirement, Nintendo included the RAM Expansion Pak with the 64DD as well. In doing so, it also standardised the extended RAM space so all 64DD games could take advantage of it.
 
 {.close-float}
 
