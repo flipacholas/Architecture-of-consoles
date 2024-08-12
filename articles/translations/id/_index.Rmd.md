@@ -21,11 +21,11 @@ aliases:
 
 ![](banner.png){linked_img=true .no_lazyload .no_link}
 
-Menilik evolusi konsol permainan video itu menakjubkan. Di saat PC awam cenderung berevolusi 'bertahap', generasi baru tiap konsol menghadirkan cara baru lagi. Bacaan serangkaian artikel di sini diharapkan bisa mengungkap alasan di balik tren teknologi terkini. Akan diperagakan juga kenapa tiap sistem tidak bisa diuraikan hanya dari 'bit', megahertz, jumlah RAM, dan semacamnya.
+Menilik evolusi konsol permainan video itu menakjubkan. Di saat PC awam cenderung berevolusi 'bertahap', generasi baru tiap konsol menghadirkan cara baru lagi. Bacaan serangkaian artikel di sini diharapkan bisa mengungkap alasan di balik tren teknologi terkini. Artikel juga memperagakan pentingnya mengenal tiap sistem tak hanya dari ringkasan 'bit', megahertz, jumlah RAM, dsb.
 
 Ini bukan panduan pengembang, tapi pendahuluan *mendalam* cara kerja tiap sistem dari dalam. Perlu diingat akhir-akhir ini teknologi semakin rumit, jadi jika susah mengikuti artikel terkini saya, coba baca artikel lama dulu. Biasanya konsep dan definisi lama banyak yang ditinjau lagi.
 
-Pengetahuan dasar komputasi memang perlu, namun, saya tetap berusaha menyadur konten saya untuk khalayak luas, jadi jangan sungkan membaca! Jika masih kurang, mungkin lihat juga [rujukan bacaan](readings).
+Memang sebaiknya tahu ilmu dasar komputasi, namun, konten tetap saya sadur semampu saya untuk khalayak luas, jadi jangan sungkan membaca! Jika masih bingung, mungkin lihat juga [rujukan bacaan](readings).
 
 Saya selalu berusaha seakurat mungkin; tapi jika ada kesalahan, [beri tahu saya](https://github.com/flipacholas/Architecture-of-consoles). Terakhir, jika lebih pilih membaca dengan eBook, lihat juga [edisi eBook](ebook).
 
