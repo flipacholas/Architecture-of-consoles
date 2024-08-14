@@ -248,7 +248,7 @@ VDP可以绘制这个新的（投影的）3D空间并标记纹理和效果。 �
 
 不过，与学术/专业设备不同，消费硬件非常有限，因此算法的选择范围缩小到只有几个…或者什么都没有。
 
-![Project Z-Treme（2019，Homebrew）[@ graphics-ztreme]。<br>该引擎放弃了Z-sor，转而采用二进制空间分区（BSP）方法，修复了故障。](projectz.jpg) {.open-float}
+![Project Z-Treme（2019，Homebrew）[@graphics-ztreme]。<br>该引擎放弃了Z-sor，转而采用二进制空间分区（BSP）方法，修复了故障。](projectz.jpg) {.open-float}
 
 我认为世嘉土星的方法是一个“半解决”的案例。 VDP1没有实现任何VSD功能：你必须按照正确的顺序输入几何数据，否则就会得到一团乱麻的结果。 然而，世嘉提供了一个名为“SGL”的图形库，该库实现了一个名为**Z轴排序**或**画家算法**[@graphics-sgl] 的解决方案，该解决方案通过软件执行**多边形排序**。
 
