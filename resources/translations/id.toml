@@ -104,7 +104,7 @@ other = 'Edisi ‘klasik’ ini versi bentuk lain dari <a href="{{ .modern }}">v
 other = "Edisi ini identik secara isi. Namun, gawit interaktif sudah disederhanakan agar berfungsi di kode HTML murni sehingga ada juga tautan ke artikel asli jika pembaca ingin membaca ‘versi lengkap’."
 
 [general_description]
-other = 'Seperti biasa, artikel ini tersedia di <a href="{{ .github }}">Github</a> agar pembaca bisa melapor kesalahan atau mengajukan ubahan. Ada juga <a href="{{ .readings }}">daftar rujukan bacaan</a> agar lebih mudah memahami serial ini. Penulis juga menerima <a href="{{ .donations }}">sumbangan</a> agar bisa menambah mutu artikel saat ini dan yang mendatang.'
+other = 'Seperti biasa, artikel ini tersedia di <a href="{{ .github }}">Github</a> agar pembaca bisa melapor kesalahan atau mengajukan ubahan. Ada juga <a href="{{ .readings }}">daftar rujukan bacaan</a> agar lebih mudah memahami serial. Penulis juga menerima <a href="{{ .donations }}">sumbangan</a> agar bisa meningkatkan mutu artikel saat ini dan yang mendatang.'
 
 [subscribe_title]
 other = "Tetap mutakhir"
