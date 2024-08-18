@@ -42,6 +42,8 @@ The main processor is one of those 'x designed by y, based on z and second-sourc
 
 #### A bit of history {.tabs .active}
 
+![A Macintosh Quadra 700 next to a PowerPC upgrade card. As it happened to many adopters of the Motorola 68k, the 90s dictated a necessary move to RISC-based CPUs (PowerPC in the case of Apple).](quadra.webp){.tab-float}
+
 The early nineties were marked by a change in the fates of many popular CPUs. The once-leading 8-bit CPUs, such as the [Z80](master-system#cpu) and [6502](nes#cpu), were already out of spotlight and Motorola’s famous [68000](mega-drive-genesis#cpu), along with other [16-bit designs](super-nintendo#cpu) that enjoyed success in the late 80s, had become candidates for replacement. Even at this time in the PC world, Tanenbaum, in his celebrated debate with Torvalds, gave Intel’s x86 architecture only *five more years* until its demise from the home market.
 
 At first, it may look as if technological development had hit a wall at this point. But in reality, there was a new wave of relatively unknown CPUs making their way into mainstream devices. Many of these designs had originated in academia, and so existed to prove particular sets of design ideas. Examples of novel CPUs of that era included:
@@ -55,6 +57,8 @@ At first, it may look as if technological development had hit a wall at this poi
 All of these processors had something in common: They followed the **Reduced Instruction Set Computer** (RISC) discipline, which radically shifted how these chips had to be designed and programmed. One rule of RISC CPUs dictated that a single instruction can't mix memory with register operations, allowing hardware designers to simplify the circuitry that executes instructions... and then enhance it with parallelism techniques.
 
 #### MIPS and Sony {.tab}
+
+![The SGI Iris 4D/80, a beefy graphics workstation with a twin-tower design. The 4D series inaugurated the MIPS CPU in SGI computers and this particular model bundles the R2000 [@cpu-iris]. I took this photo at the Computer History Museum (San Jose, California), during my visit in June 2019.](irix.webp){.tab-float}
 
 **MIPS Computer Systems** originated from the eagerness of its founders (Stanford faculty) to turn their research into physical processors, something that Silicon Valley-based venture capitalists in the 80s were also anxious to invest in [@cpu-chm_mips]. Their debuting CPU, the 'MIPS R2000', is considered the first commercial CPU to incorporate a RISC design; and it found a space in many UNIX workstations.
 
