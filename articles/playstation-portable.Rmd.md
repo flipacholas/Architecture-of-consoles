@@ -150,7 +150,7 @@ After many turnarounds, what's left of MIPS is now a company designing **RISC-V*
 
 Looking back at my analyses, however, it's hard to comprehend how such a talented company could've lost its market share. Admittedly, in the workstation market, it became clear that Intel's x86, no matter the amount of criticism, won by making equipment affordable (thanks to its Pentium line, along with the 'clones') and attractive due to its (Windows-only) compatible software. Finally, the [P6 architecture](xbox#tab-1-4-cisc-or-risc) provided Intel with the scalability initially only enjoyed by RISC designs.
 
-![In 2011, the Computer History Museum (San Jose, California) conducted an interesting interview with MIPS co-founders and former executives [@cpu-chm_mips], where they talked about MIPS' beginnings, its impact on the industry and eventual reorganization.](mips_interview.jpeg)
+![In 2011, the Computer History Museum (San Jose, California) conducted an interesting interview with MIPS co-founders and former executives [@cpu-chm_mips], where they talked about MIPS' beginnings, its impact on the industry and eventual reorganisation.](mips_interview.jpeg)
 
 In the case of low-power computing, it was more difficult for me to understand the retreat, as MIPS and ARM shared similar business models (IP licensing). Luckily, a previous interview from the Computer History Museum in 2011 also brought up the same question, resulting in this answer:
 
