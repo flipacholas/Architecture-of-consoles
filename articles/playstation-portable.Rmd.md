@@ -74,24 +74,27 @@ Allegrex is a complete 32-bit core offering [@cpu-hitmen] [@cpu-naked]:
 - A **32-bit address bus**: this means that up to 4 GB of memory can be seen by this CPU.
 - **32 general-purpose registers**: all of them store 32-bit numbers; and two (the zero register and link register) are reserved for special uses. By now, this should come as no surprise.
 - A **7-stage pipeline** (one more than its [home sibling](playstation-2#a-special-order-for-sony)). [Here](game-boy-advance#the-core) is a previous explanation of CPU pipelining if you'd like to know more.
-- A **Memory Protection Unit** or 'MPU' (not to be confused with an 'MMU'): this is a dedicated unit that maps the physical hardware onto the CPU's memory space with some special quirks in between. We'll see more about it in a bit.
 - **32 KB of L1 Cache**: of which 16 KB is for instructions and 16 KB for data.
 - A **cache write-back buffer**: the CPU can write over cache believing it has updated physical memory as well. Then, the cache takes care of updating memory when the buffer is full.
   - This design speeds up memory stores, but doesn't work right away with multi-processor systems like the PSP. So, developers will have to take care of evicting the buffer when other components require those new values in memory.
 
-In conclusion: Allegrex is incredibly fast. However, we still don't know what can you do with it. After all, you can imagine this CPU as the conductor of an orchestra, and we haven't checked out the performers... yet.
+This looks way more competitive than the [ARM9-based alternative](nintendo-ds#cpu), but it's not over yet, as we still need to check the co-processors _cooperating_ next to the core.
 
 ### Coprocessors
 
-As with any MIPS CPU, Allegrex has three coprocessor slots. Sony added two:
+As with any MIPS CPU, Allegrex has three coprocessor slots. Sony added three:
 
-- A **Floating Point Unit** (FPU) as 'CP1': accelerates arithmetic operations with 32-bit decimal numbers (following the IEEE 754 standard). It has **thirty-two 32-bit** registers and an independent **8-stage pipeline**, thereby adding more parallelism to the main CPU.
-- A **Vector Floating Point Unit** (VFPU) as 'CP2': a coprocessor designed for **vector operations**, similar to a traditional SIMD processor. Compared to the FPU, it instead provides **128 registers** and a special instruction set with variable pipeline stages.
-  - Its usefulness comes from its 128-bit data bus connected to the rest of the system, offloading the main CPU's transit.
+- The **System Control Coprocessor** as 'CP0': a [necessary building block](playstation#tab-2-1-system-control-coprocessor) of any MIPS CPU. This particular component is what enables memory protection, cache coherency and interrupt control in the core itself [@cpu-mips_4k].
+- A **Floating Point Unit** (FPU) as 'CP1': accelerates arithmetic operations with 32-bit decimal numbers (following the IEEE 754 standard). It has **thirty-two 32-bit registers** and an **independent 8-stage pipeline**, thereby adding more parallelism to the main CPU.
+- A **Vector Floating Point Unit** (VFPU) as 'CP2': a coprocessor designed for **vector operations**, similar to a traditional SIMD processor. Compared to the FPU, it instead provides **128 32-bit registers**, relies on a proprietary instruction set and implements a variable-length pipeline. The VFPU operates up to 32-bit floating-point values, which can be grouped into a 4-component vector or **even a 4x4 matrix** (useful for different kinds of geometric operations without requiring to re-arrange the data).
+  - Its efficiency comes from its 128-bit data bus connected to the rest of the system, offloading the main CPU's transit.
+  - Unlike the FPU, some behaviour of the VFPU deviates from the IEEE-754 standard.
 
-### Focused memory management
+In conclusion: Allegrex is incredibly fast. However, we still don't know what can you do with it. After all, you can imagine this CPU as the conductor of an orchestra, and we haven't checked out the performers yet.
 
-Let me talk for a moment about the memory unit included in this system. Its *modus operandi* can be seen as a bit primitive at first, but we'll see why it's optimal for the needs of this console.
+#### Focused memory management
+
+Let me talk for a moment about the memory system implemented in this system. Among other things, the System Control Coprocessor provides the functionality of a **Memory Protection Unit** or 'MPU' (not to be confused with an 'MMU'), this maps the physical hardware onto the CPU's memory space with some special quirks in between. Even though its *modus operandi* can be seen as a bit primitive at first, we'll see why it's optimal for the needs of this console.
 
 ![Memory addressing with the MPU.](cpu/mmu.png)
 
@@ -129,7 +132,7 @@ Using the principles above, the following buses were constructed for the PSP:
 
 - The **System Bus**: connects the CPU, scratchpad and GPU. It's 128 bits wide.
 - The **Media Engine bus**: connects another group of components (explained in the next section). It has the same properties as the System Bus.
-- The **Peripheral Bus**: connects I/O, storage-related components. It's 32-bits wide.
+- The **Peripheral Bus**: connects I/O and storage-related components. It's 32-bits wide.
 
 All three buses connect to the DDR controller, which is where the main RAM is found.
 
@@ -141,19 +144,23 @@ The solution is very simple: **bus mastering**. In a nutshell, each component wi
 
 ### The end of the line
 
-The RISC revolution spawned countless CPUs throughout the 80s-90s but only a handful lasted after the turn of the century. Just like I [concluded my analysis of the SuperH](dreamcast#end-of-the-line) in the [Dreamcast article](dreamcast), it's time to say farewell to a historic leader in parallel computing: the MIPS CPU.
+The RISC revolution spawned countless CPUs throughout the 80s-90s but only a handful lasted after the turn of the century. Just like I [concluded my analysis of the SuperH](dreamcast#end-of-the-line) in the [Dreamcast article](dreamcast), **the PlayStation Portable will be my last article of this series carrying a MIPS CPU**.
 
-After many turnarounds, what's left of MIPS is now a company designing **RISC-V** CPUs. In all fairness, this is an interesting strategy that provides the company with greater leverage to compete against ARM. In any case, the PlayStation Portable will be my last article of this series carrying a MIPS CPU.
+After many turnarounds, what's left of MIPS is now a company designing **RISC-V** CPUs. In all fairness, this is an interesting strategy that provides the company with greater leverage to compete against ARM.
 
 Looking back at my analyses, however, it's hard to comprehend how such a talented company could've lost its market share. Admittedly, in the workstation market, it became clear that Intel's x86, no matter the amount of criticism, won by making equipment affordable (thanks to its Pentium line, along with the 'clones') and attractive due to its (Windows-only) compatible software. Finally, the [P6 architecture](xbox#tab-1-4-cisc-or-risc) provided Intel with the scalability initially only enjoyed by RISC designs.
 
+![In 2011, the Computer History Museum (San Jose, California) conducted an interesting interview with MIPS co-founders and former executives [@cpu-chm_mips], where they talked about MIPS' beginnings, its impact on the industry and eventual reorganization.](mips_interview.jpeg)
+
 In the case of low-power computing, it was more difficult for me to understand the retreat, as MIPS and ARM shared similar business models (IP licensing). Luckily, a previous interview from the Computer History Museum in 2011 also brought up the same question, resulting in this answer:
 
-> We made a mistake, we didn't realise how important the cellphone market was. Early there was no money to be made (...) but ARM got it by [investing in it](game-boy-advance#tab-1-2-a-new-cpu-venture). It was a very smart move and it turned out to be incredible leverage point. We just looked at the gross margin and said 'that's not a great return! we'd be better off putting our attention elsewhere' but of course, it turned out cell phones became smartphones [and then] became a gigantic. [@cpu-chm_mips]
+> We made a mistake, we didn't realise how important the cellphone market was. Early there was no money to be made (...) but ARM got it by [investing in it](game-boy-advance#tab-1-2-a-new-cpu-venture). It was a very smart move and it turned out to be incredible leverage point. We just looked at the gross margin and said "that's not a great return! we'd be better off putting our attention elsewhere" but of course, it turned out cell phones became smartphones [and then] became a gigantic. [@cpu-chm_mips]
 >
 > -- <cite>John Hennessy, co-founder of MIPS Computer Systems</cite>
 
 Nevertheless, when it comes to this topic, I believe that, while we won't see a new MIPS CPU, we'll see the result of its former engineers transmitting its distinctive technology into new projects.
+
+That being said, let's take a look at the rest of the PSP components.
 
 ## Multimedia CPU
 
