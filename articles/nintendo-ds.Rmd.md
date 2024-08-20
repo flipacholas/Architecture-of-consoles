@@ -56,15 +56,17 @@ StrongARM was a new ARM-based CPU that featured [@cpu-furber]:
 - A **new cache system** implementing a **Harvard architecture**, where **16 KB** are allocated for instructions and another **16 KB** for data.
   - This design helped alleviate memory bottlenecks (something the von Neumann/Princeton model suffered from).
 
-It's worth mentioning that this chip still managed to work with a **3.3 V** supply, like previous ARM chips. In fact, the StrongARM only needs 2 Volts and only dissipates 1 W [@cpu-furber]. By contrast, Intel's 200 MHz Pentium chip pulls 3.5 V and has a power dissipation of up to 15.5 W [@cpu-pentium]. 
+It's worth mentioning that this chip still managed to work with a **3.3 V** supply, like previous ARM chips. In fact, the StrongARM needs 2 Volts and only dissipates 1 W [@cpu-furber]. By contrast, Intel's 200 MHz Pentium chip pulls 3.5 V and has a power dissipation of up to 15.5 W [@cpu-pentium]. 
 
 As expected, Acorn and Apple were so dazzled by the new chip that they immediately shipped CPU upgrades and further Newton models, respectively, using DEC's invention.
 
-In the same year, ARM also released their promised ARM8-based CPU, the ARM810. It was comparably slower and offered no practical advantages over the StrongARM. So, too little and too late resulted in no commercial interest. Consequently, ARM moved on to improving the ARM7 line for the mobile market. However, the potential of StrongARM was so disruptive that ARM Holdings absorbed some of StrongARM's features to produce their next line of CPUs, the **ARM9** (which the Nintendo DS houses).
+In the same year, ARM also released their promised ARM8-based CPU, the ARM810. It was comparably slower and offered no practical advantages over the StrongARM. So, too little and too late resulted in no commercial interest. Consequently, ARM moved on to improving the ARM7 line for the mobile market. However, the potential of DEC's CPU was so disruptive that ARM Holdings absorbed StrongARM's design [@cpu-jaggar] to produce their next line of CPUs, the **ARM9** (which the Nintendo DS houses).
 
-Thanks to the StrongARM, ARM also cemented its position in the handheld market, completely displacing [MIPS](nintendo-64#cpu) and [SuperH](dreamcast#cpu) as viable alternatives. From then on, ARM was on route to become the most adopted architecture for mobile devices [@cpu_android_abi].
+#### Turning points
 
-Unfortunately for DEC, this CPU will be their last major achievement before being acquired by Compaq in 1998.
+Thanks to the StrongARM, ARM also cemented its position in the handheld market, completely displacing [MIPS](nintendo-64#cpu) and [SuperH](dreamcast#cpu) as viable alternatives. From then on, ARM was en route to become the most adopted architecture for mobile devices [@cpu_android_abi].
+
+Unfortunately for DEC, this CPU will be their last major achievement before being acquired by Compaq in 1998. The fate of StrongARM would then be in the hands of Intel, who continued development under the new 'Intel XScale' line... until they liquidated the division to focus on ['low-power' x86 CPUs](xbox#p6-and-the-end-of-pentium-numbers) (i.e. the Intel Atom) [@cpu-xscale]. 15 years later, not only Intel has lost its chance in the mobile market, but now they furiously find themselves running head-to-head against ARM in the desktop arena.
 
 ### Nintendo's debuting SoC
 
