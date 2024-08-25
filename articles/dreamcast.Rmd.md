@@ -306,7 +306,9 @@ Games are stored in GD-ROMs, which are just [CD-ROMs](sega-saturn#the-compact-di
 
 ### Online platform
 
-The Dreamcast shipped with a **modem** module that allowed games to be 'dial-up' connected to Sega's online gaming platform. The platform was known as SegaNet in America and Japan and as Dreamarena in Europe. Players could register for the service using **DreamKey**, a disc that also provided NetFront web browser, some countries had different browsers, for account registration. At first, DreamKey was pre-configured for a specific region, but later versions allowed users to change the ISP settings to connect to any of the services.
+The Dreamcast shipped with a **modem** module that allowed games to be 'dial-up' connected to Sega's online gaming platform. The platform was known as SegaNet in America and Japan and as Dreamarena in Europe. Players could register for the service using **DreamKey**, a disc that also provided NetFront 2.0 web browser, some countries had different browsers, for account registration. NetFront offered browsing the internet (HTML/3.2 and some features of HTML/4), emailing, TCP/IP and PPP. It also supported SSL for internet security.
+
+At first, DreamKey was pre-configured for a specific region, but later versions allowed users to change the ISP settings to connect to any of the services.
 
 Sega worked with GTE Internetworking on the technology backbone for SegaNet, which provided high-performance connectivity for national and local access. The KAGE API was the main component of Sega's attempt to make the Dreamcast successful as an online platform. KAGE was Sega's own API specifically for accessing the gaming features of SegaNet, and developers could make use of it to ensure games featured the lowest latency on the internet. Sega aimed to get the latency below 200 milliseconds, which is lower than typical internet connections at that moment. Development support was provided by SOA and Sega.com to help developers work with online games. KAGE was made available later that month.
 
