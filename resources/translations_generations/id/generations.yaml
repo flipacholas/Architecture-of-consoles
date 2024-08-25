@@ -1,0 +1,34 @@
+---
+- 
+  id: 3
+  ordinal: Ke-3
+  description: Dikenal sebagai konsol '8-bit', mesin-mesin ini menghadirkan grafik lebih canggih dan kaya suara daripada pendahulunya. Soalnya, pasar konsol baru saja ambruk dan diperlukan ketetapan baru.
+  gpu: Peta petak tergulirkan dan palet warna lebih besar
+- 
+  id: 4
+  ordinal: Ke-4
+  description: DMA, penyelaan mendatar, mode jamak, dll... Ini beberapa contoh konsep baru yang muncul di generasi '16-bit', membuka pintu ke permainan genre baru.
+  cpu: Instruksi perkalian dan pembagian, DMA, dan pengolahan-ganda
+  gpu: Alihragam afin dan penyelaan mendatar
+- 
+  id: 5
+  ordinal: Ke-5
+  description: Permainan 3D sudah menjadi keharusan tapi 'caranya' belum jelas. Hasilnya? Setiap perusahaan unjuk gigi cara mereka sendiri.
+  cpu: Tahap saluran pipa & tembolok L1
+  gpu: Saluran pipa verteks terprogramkan, dapar Z, dan pembetulan perspektif
+- 
+  id: 6
+  ordinal: Ke-6
+  description: Hampir semua batasan grafik generasi sebelumnya sudah tidak ada lagi. Konsol portabel mulai menyerupai sistem yang kita kenal.
+  cpu: Arsitektur superskalar, instruksi SIMD, dan tembolok L2
+  gpu: Saluran pipa piksel terprogramkan dan saring anisotropik
+- 
+  id: 7
+  ordinal: Ke-7
+  description: Konsol sudah berevolusi menjadi komputer super dan pangkal multimedia. Mesin-mesin ini kini bukan hanya untuk permainan, maka dari itu keamanan menjadi faktor kritis.
+  cpu: Kesejajaran tingkat utas dan arsitektur inti jamak setangkup
+  gpu: Model pencorak berpadu dan reka citra HDR
+- 
+  id: 8
+  ordinal: Ke-8
+  description: Pasar hiburan kini telah dikuasai ponsel pintar dan tablet murah. Kemampuan ke sosial media pun menjadi keutamaan setiap periferal. Sudah saatnya perusahaan adati permainan video merombak status quo mereka, dan mereka harus cepat.

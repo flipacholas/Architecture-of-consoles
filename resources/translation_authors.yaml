@@ -1,9 +1,13 @@
 dreamcast:
-  ru: AbsurdlySuspicious и rndtrash
+  ru: AbsurdlySuspicious и Иван "rndtrash" Кузьменко
   pl: LunaDook & MoonbowPlushie
   tr: EuropaYou
 gameboy:
-  fr: SuperDelphi
+  fr:
+    authors:
+      - name: SuperDelphi
+        year: 2022
+    includes_ai: true
   pl: LunaDook & MoonbowPlushie
   tr: EuropaYou
 gamecube:
@@ -11,7 +15,7 @@ gamecube:
 gba:  
   es: Jonathan Lojo Muñiz
   pl: LunaDook & MoonbowPlushie
-  ru: Pawel Ryndovskiy, L1Q и rndtrash
+  ru: Pawel Ryndovskiy, L1Q и Иван "rndtrash" Кузьменко
 mastersystem:
   pl: LunaDook & MoonbowPlushie
 megadrive:
@@ -33,6 +37,7 @@ pcengine:
   es: Carlos Díaz
 ps1:
   pt-br: Walper
+  ru: Zerocker и Иван "rndtrash" Кузьменко
 ps2:
   pt-br: Lucas Akira Morishita
 ps3:
@@ -40,7 +45,8 @@ ps3:
   pt-br: Walper
 psp: 
   zh-hans: Jepe
-saturn: null
+saturn:
+  pt-br: Eugênio Lloyd
 snes:
   pt-br: Walper
 virtualboy: null
@@ -48,6 +54,7 @@ wii:
   es: Jonathan Lojo Muñiz
   it: Valerio Francesco Vallone
   pl: LunaDook & MoonbowPlushie
+  cs: CoriTelma
 xbox:
   tr: EuropaYou
   it: Valerio Francesco Vallone

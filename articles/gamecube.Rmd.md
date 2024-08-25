@@ -44,18 +44,18 @@ Fast forward, Nintendo required something powerful but cheap, so to comply with 
 
 ### Features
 
-Let's find out what makes Gekko so special, and to do that we need to first have to look at the offerings of the 750CXe:
+Let's find out what makes Gekko so special, and to do that we need to first look at the offerings of the 750CXe [@cpu-750cxe]:
 
 - **PowerPC ISA**: Without going into much detail, it's *another* 32-bit RISC instruction set. The 750CXe implements the v1.10 specification.
 - External **64-bit data bus**: While the ISA can fit in a 32-bit bus, we still need to move wider chunks of data (explained in the next section) without hitting performance penalties.
-- **Super-scalar**: More than one instruction can now be executed in each stage of the pipeline.
+- **Dual-issue superscalar**: If the required units are available, the CPU may process up to two instructions at the same stage of the pipeline. In the case the queue includes a branching instruction, the number of possible concurrent instructions is raised to **three**.
 - **Out-of-order execution**: The CPU can re-order the sequence of instructions to keep all of its units working, thus increasing efficiency and performance.
-- **Two Integer Units**: Combined with super-scalar and out-of-order, it basically increments the number of integer operations done per unit of time.
+- **Two Integer Units**: Combined with the superscalar and out-of-order model, it increments the number of integer operations done per unit of time.
 - **Integrated FPU** with 32-bit and 64-bit registers: Accelerates operations with floats and doubles.
-- **Four-stage pipeline (with bonus)**: [Here](game-boy-advance#cpu) is a previous introduction to instruction pipelining. In the 750CXe, FPU operations are divided into three more stages (7 stages in total) while load-store operations are divided into two (5 stages in total). 
+- **Four-stage pipeline (with bonus)**: [Here](game-boy-advance#cpu) is a previous introduction to instruction pipelining. In the 750CXe, FPU operations are divided into three more stages (7 stages in total) while load-store operations are divided into two (5 stages in total).
   - All in all, this increments the instruction throughput without [getting out of hand](xbox#tab-1-3-the-microarchitecture).
 
-Additionally and due to its RISC nature, this CPU also includes dedicated units to speed up specific computations [@cpu-stokes]:
+Additionally, this CPU also includes dedicated units to speed up specific computations [@cpu-stokes]:
 
 - **Branch Prediction Unit**: Whenever there is a condition that needs to be evaluated (which would decide if the CPU should follow path 'A' or path 'B'), the CPU will instead follow one of the paths based on previous executions and then evaluate the condition. If the prediction happens to be right then the CPU will have saved some time, if not, it will reverse and follow the correct path.
 - **Dedicated load-store unit**: Separates the units that manipulate registers and the ones handling main memory.
@@ -84,7 +84,7 @@ Apart from handling the game logic (physics, collisions, etc), these enhancement
 
 > On your [Nintendo 64 article](nintendo-64), you explained that the system has a 64-bit CPU, but the GameCube one is 32-bit. Did Nintendo downgrade their console?
 
-Indeed Gekko implements a 32-bit PowerPC specification, while the MIPS R4300i can switch between 32-bit and 64-bit mode. To answer whether this is an improvement or not, you have to ask yourself: Why would you need '64-bitness'?
+Indeed Gekko implements a 32-bit PowerPC specification, while the MIPS R4300i can switch between 32-bit and 64-bit modes. To answer whether this is an improvement or not, you have to ask yourself: Why would you need '64-bitness'?
 
 - To address more than 4 GB of memory → The GameCube doesn't have near that amount of memory locations, so this is not a requirement.
 - To operate larger chunks of data using fewer cycles and bandwidth → That's covered by Gekko's new SIMD instructions, the 64-bit FPU and data bus; and the write-gather pipe.
@@ -103,11 +103,11 @@ For that reason the GameCube's architects came up with a new memory system stric
 The result was a system organised with two main buses:
 
 - The **Northbridge**: It's 64-bit wide and connects the CPU with the GPU. It runs 3 times slower than the CPU clock, so tasks will have to be optimised to not rely so much on the GPU. Other components like the DMA and cache may come in handy.
-- The **Southbridge**: It's also 64-bit wide and connects the GPU with **24 MB of 1T-SRAM** called 'Splash'. This type of RAM is made of DRAM (which is the most popular type but also cheaper and slow) however it's enhanced with extra circuitry to **behave like SRAM** (faster and expensive, mostly used for cache). The bus is **twice as fast as the GPU**, possibly to enable the GPU to provide a steady bandwidth between the CPU and main memory.
+- The **Southbridge**: It's also 64-bit wide and connects the GPU with **24 MB of 1T-SRAM** called 'Splash'. This type of RAM is made of DRAM (which is the most popular type but also cheaper and slower) however it's enhanced with extra circuitry to **behave like SRAM** (faster and expensive, mostly used for cache). The bus is **twice as fast as the GPU**, possibly to enable the GPU to provide a steady bandwidth between the CPU and main memory.
 
 Additionally, this design contains an additional (yet unusual) bus where more memory can be found:
 
-- The **Eastbridge**: It connects the GPU with another memory chip called **Audio RAM** or 'ARAM' [@cpu-hitmen]. It provides **16 MB of SRAM** available for general purpose, which is pretty big for *spare* memory. However, the bus is not accessible through normal means (memory addresses). Instead, it's connected to an 8-bit serial endpoint (clocked two times slower than the GPU and four times slower than the CPU), which is only accessible through DMA.
+- The **Eastbridge**: It connects the GPU with another memory chip called **Audio RAM** or 'ARAM' [@cpu-hitmen]. It provides **16 MB of SRAM** available for general purposes, which is pretty big for *spare* memory. However, the bus is not accessible through normal means (memory addresses). Instead, it's connected to an 8-bit serial endpoint (clocked two times slower than the GPU and four times slower than the CPU), which is only accessible through DMA.
 
 Overall, this means that while ARAM provides a considerable amount of RAM, it will be limited to less critical tasks, like acting as an audio buffer or being used by certain accessories (explained in the I/O section).
 
@@ -125,9 +125,9 @@ To make this work, Gekko (and other PowerPC architectures) translate virtual add
     - Other architectures such as x86 or MIPS provide paging as well, though not all of them will offer a TLB.
 3. Finally, if the requested virtual address can't still be translated, then the MMU triggers a 'page fault' exception in the CPU and lets the operating system decide what to do next.
 
-So what use does this have for developers? Well, it turns out Nintendo released some libraries that **extend main RAM using ARAM** with the help of paging. To recap, ARAM is not addressable, but the CPU may call DMA to fetch and store data from there. Thus, the CPU can move pages out of main RAM to make room for other resources and temporary store them in ARAM. Afterwards, whenever a page fault occurs, the OS contains routines to look for the missing pages in ARAM and restore them to their original location in main RAM.
+So what use does this have for developers? Well, it turns out Nintendo released some libraries that **extend main RAM using ARAM** with the help of paging. To recap, ARAM is not addressable, but the CPU may call DMA to fetch and store data from there. Thus, the CPU can move pages out of main RAM to make room for other resources and temporarily store them in ARAM. Afterwards, whenever a page fault occurs, the OS contains routines to look for the missing pages in ARAM and restore them to their original location in main RAM.
 
-In conclusion, with some clever tricks, these general-purpose capabilities enabled GameCube games to enjoy more memory than technically allowed, thereby reaching higher levels of quality. Though it's important to bear in mind that such tricks may come with some performance penalties (especially if they're taken for granted).
+In conclusion, with some clever tricks, these general-purpose capabilities enabled GameCube games to enjoy more memory than technically allowed, thereby reaching higher levels of quality. However, it's important to bear in mind that such tricks may come with some performance penalties (especially if they're taken for granted).
 
 ## Graphics
 

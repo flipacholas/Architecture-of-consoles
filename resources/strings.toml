@@ -211,6 +211,9 @@ other = 'A practical analysis by {{ . }}'
 [translated_by]
 other = 'Translated by {{ . }}'
 
+[translated_by_many]
+other = 'Translated by <a href="{{ . }}">multiple authors</a>'
+
 [interactive_model_origin]
 other = 'Interactive model available in the <a href="{{ . }}">modern edition</a>'
 

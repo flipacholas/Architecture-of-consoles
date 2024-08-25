@@ -42,6 +42,8 @@ The main processor is one of those 'x designed by y, based on z and second-sourc
 
 #### A bit of history {.tabs .active}
 
+![A Macintosh Quadra 700 next to a PowerPC upgrade card. As it happened to many adopters of the Motorola 68k, the 90s dictated a necessary move to RISC-based CPUs (PowerPC in the case of Apple).](quadra.webp){.tab-float}
+
 The early nineties were marked by a change in the fates of many popular CPUs. The once-leading 8-bit CPUs, such as the [Z80](master-system#cpu) and [6502](nes#cpu), were already out of spotlight and Motorola’s famous [68000](mega-drive-genesis#cpu), along with other [16-bit designs](super-nintendo#cpu) that enjoyed success in the late 80s, had become candidates for replacement. Even at this time in the PC world, Tanenbaum, in his celebrated debate with Torvalds, gave Intel’s x86 architecture only *five more years* until its demise from the home market.
 
 At first, it may look as if technological development had hit a wall at this point. But in reality, there was a new wave of relatively unknown CPUs making their way into mainstream devices. Many of these designs had originated in academia, and so existed to prove particular sets of design ideas. Examples of novel CPUs of that era included:
@@ -56,13 +58,15 @@ All of these processors had something in common: They followed the **Reduced Ins
 
 #### MIPS and Sony {.tab}
 
+![The SGI Iris 4D/80, a beefy graphics workstation with a twin-tower design. The 4D series inaugurated the MIPS CPU in SGI computers and this particular model bundles the R2000 [@cpu-iris]. I took this photo at the Computer History Museum (San Jose, California), during my visit in June 2019.](irix.webp){.tab-float}
+
 **MIPS Computer Systems** originated from the eagerness of its founders (Stanford faculty) to turn their research into physical processors, something that Silicon Valley-based venture capitalists in the 80s were also anxious to invest in [@cpu-chm_mips]. Their debuting CPU, the 'MIPS R2000', is considered the first commercial CPU to incorporate a RISC design; and it found a space in many UNIX workstations.
 
 However, it wasn't until 1987 that MIPS' chips became a topic of conversation, all due to being adopted (and later acquired) by **Silicon Graphics Incorporated** (SGI) to power their equipment. SGI was an influential innovator in the computer graphics market, especially with the development of [hardware-accelerated vertex pipelines](nintendo-64#graphics), whose task was originally carried out by software (within the CPU). After the acquisition, SGI had a leading position in both CPU and graphics sectors.
 
-Before the development of the PlayStation, MIPS switched to a business model based on **IP licensing**, where their CPU designs would be sold in the form of licenses, and licensees were then free to customise and manufacture it. Part of their offerings included the **R3000A CPU**, albeit within their low-end catalogue. Consequently, while the R3000A wasn't associated with the flagship lineup (unlike the R4000, which [others](nintendo-64#cpu) would later choose), it was an attractive investment in terms of cost.
+Before the development of the PlayStation, MIPS switched to a business model based on **IP licensing**, where their CPU designs would be sold in the form of licenses, and licensees were then free to customise and manufacture the designs. Part of their offerings included the **R3000A CPU**, found in their low-end catalogue. Consequently, the R3000A wasn't associated with the flagship line-up (unlike the R4000, which [others](nintendo-64#cpu) would later choose), but it was an attractive investment in terms of cost.
 
-Sony designed their audio and graphics chips in-house, but they still needed the leading chip that could drive those two. The selected CPU had to be powerful enough to show off the *impressive* capabilities of Sony's chips, but also affordable to keep the console at a competitive price.
+Back to the main topic, Sony designed their audio and graphics chips in-house, but they still needed the leading chip that could drive those two. The selected CPU had to be powerful enough to show off the *impressive* capabilities of Sony's chips, but also affordable to keep the console at a competitive price.
 
 #### LSI and the commission {.tab}
 
@@ -145,7 +149,7 @@ So far, we got a 'CP0' and a 'CP2', but **where's the 'CP1'?** Well, that's rese
 
 Game logic (involving physics, collision detection, etc) still can get around with fixed-point arithmetic. Fixed-point encoding stores decimal numbers with an immutable number of decimal places. This implies a loss in precision after certain operations, but remember, this is a video-game console, not a professional flight simulator. Hence, the precision-performance trade-off is somewhat feasible.
 
-By the way, sometimes I mix up 'fixed-point', 'floating-point', 'decimal' and 'integer' number types (hopefully not anymore!). If you feel the same, I recommend taking a look at Gabriel Ivancescu's quick summary [@cpu-gabriel] to quickly refresh those concepts.
+By the way, if you'd like to refresh concepts like 'fixed-point', 'floating-point', 'decimal' and 'integer', I recommend taking a look at Gabriel Ivancescu's post for a quick summary [@cpu-gabriel].
 
 ### Delay galore
 
@@ -168,7 +172,7 @@ Consequently, MIPS I CPUs exhibit the following behaviour:
 
 As we can see from the example, some delay slots are filled with meaningful instructions, which perform computations that are not affected by the hazard. Hence, delay slots don't always imply a waste of cycles.
 
-Having explained this, you may be wondering why a processor with these kinds of flaws could ever be commercialised. Well, one philosophy about RISC is that the burden of CPU programming is shifted from the developer to the compiler. MIPS, in particular, prioritised the production of good quality compilers (including assemblers) to accompany their new CPUs [@cpu-chm_mips]. Hence, developers could use a higher-level language (for instance, C) while the compiler dealt with the hazards (by re-arranging instructions to fill in slots; or adding useless fillers as a last measure). So, all in all, while I don't find it pleasant to see a CPU being filled with bubbles, I think MIPS tackled this in a very clever way.
+Having explained this, you may be wondering why a processor with these kinds of flaws could ever be commercialised. Well, one philosophy about RISC is that the burden of CPU programming is shifted from the developer to the **compiler**. MIPS, in particular, **prioritised the production of good quality compilers** (including assemblers) to accompany their new CPUs [@cpu-chm_mips]. Hence, developers could use a higher-level language (for instance, C) while the toolchain dealt with the hazards (by re-arranging instructions to fill in slots; or adding useless fillers as a last measure). So, all in all, while I don't find it pleasant to see a CPU being filled with bubbles, I think MIPS tackled this in a very clever way.
 
 ## Graphics
 
@@ -258,7 +262,7 @@ It's worth mentioning that the PS1 happened to excel at those effects!
 
 #### Remaining steps {.tabs-close}
 
-Once finished, the GPU writes the pixels into the frame buffer area in VRAM, which is in turn picked up by the video encoder and broadcast to the screen.
+Once finished, the GPU writes the pixels into the frame buffer area in VRAM, which is in turn picked up by the video encoder and broadcasted to the screen.
 
 ### Designs
 
@@ -315,7 +319,7 @@ Finally, as you know, affine transformations have **no sense of depth**, which m
 
 #### Contradicting claims {.tab}
 
-If you check other technical channels or forums, you'll find alternative explanations about the PS1's wobbling/warping/distorted effects. While some of them will coincide with what I explained before, others will argue differently. So, I'd like to give my opinion on why the following statements are **not** accurate:
+If you check other technical channels or forums, you'll find alternative explanations about the PS1's wobbling/warping/distorted effects. While some of them will coincide with what I explained before, others will argue differently. So, I'd like to give my opinion on why the following statements are **not accurate**:
 
 > Models/textures wobble due to lack of FPU
 
@@ -481,7 +485,7 @@ The use of emulators was seen as a threat for publishers as well. As a result, s
 
 One of the checks I was told consisted of deliberately reinitialising the drive and then making it read specific sectors that would not pass the wobble groove check. If this managed to unlock the drive anyway, the game (still residing in RAM) would *happily* reveal its anti-piracy material. Notice that this approach can also affect modded consoles using genuine games.
 
-Later on, Sony provided a library called **Lybcrypt** which fortified copy protection with the use of two approaches [@copy_protection-libcrypt]:
+Later on, Sony provided a library called **Libcrypt** which fortified copy protection with the use of two approaches [@copy_protection-libcrypt]:
 
 - From the hardware side, checksums of sectors are stored in sub-channels of the disc.
   - CD-ROM sub-channels traditionally store metadata, mostly to guide the drive. These aren't user-accessible and conventional readers rarely allow to manually write over them.

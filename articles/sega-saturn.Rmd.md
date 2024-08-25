@@ -9,6 +9,7 @@ generation: 5
 cover: saturn
 javascript: ['threejs']
 published: true
+seo_image_pos: "Top"
 top_tabs:
   Models:
     - title: "Japanese"
@@ -81,7 +82,7 @@ The specific chip selected for this console, the 'SH7604', contains the followin
 - **Internal DMA controller**: Transfers data from memory without the intervention of the CPU.
 - Support for **little endian**, enabling the CPU to understand values encoded in the opposite order. This is useful when external memory is shared with other processors.
 
-It's worth pointing out that **having two CPUs doesn't mean that games will work twice as fast!** In practice, however, this requires very complex programming to efficiently manage CPUs that share the same bus. Thus, efficient use of the cache also plays a critical role in this console.
+It's worth pointing out that **having two CPUs doesn't mean that games will work twice as fast!** In practice, however, this requires very complex programming to efficiently manage CPUs that share the same bus. Thus, orderly use of the cache also plays a critical role in this console.
 
 ### A divided choice of memory
 

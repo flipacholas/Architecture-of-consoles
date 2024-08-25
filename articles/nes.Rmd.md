@@ -35,10 +35,12 @@ And while this is *technically* true, let me show you why the CPU is not the *ce
 
 ## Models and variants
 
+![A typical Betamax recorder. This and similar appliances influenced the international design of the NES. I spotted this particular one at The Centre for Computing History (Cambridge, UK) when I visited in August 2024.](betacord.webp)
+
 Nintendo ended up shipping lots of different variants of the same console across the world [@general-variants] and even though they all share the same architecture, many look dramatically different and some may include built-in accessories. So, to keep it simple for this article, I'll focus on the two most popular revisions:
 
 - The **Family Computer** (known as _Famicom_) was the first incarnation, but was only released in Japan. This toy-looking design features two non-removable controllers (from which the second controller bundles an internal microphone), a front socket for the light gun (called _Zapper_), RF video out (using NTSC-J signal) and extra pins in the cartridge slot to expand the audio capabilities.
-- The **Nintendo Entertainment System** (known as _NES_) was the redesigned edition for western audiences living in North America, Europe and Oceania; with a look that matches the typical set-top box. On the technical side, the controllers are now detachable (and microphone-lacking) and the video out has been improved with extra NTSC/PAL composite RCA connectors, although the audio expansion has been replaced with an anti-piracy subsystem. To top it off, the bottom of the case seals an 'expansion port' that was left unused, along with extra cartridge pins that communicate to that port [@general-cartridge].
+- The **Nintendo Entertainment System** (known as _NES_) was the redesigned edition for western audiences living in North America, Europe and Oceania; with a look and mechanism that matches the common VHS/Betamax player. On the technical side, the controllers are now detachable (and microphone-lacking) and the video out has been improved with extra NTSC/PAL composite RCA connectors, although the audio expansion has been replaced with an anti-piracy subsystem. To top it off, the bottom of the case seals an 'expansion port' that was left unused, along with extra cartridge pins that communicate to that port [@general-cartridge].
 
 Because the author grew up with the 'NES' name, I'll default to using that term to refer to the console in general, but I will switch to the 'Famicom' name when referring to unique capabilities only found in the Japanese variant.
 
@@ -48,13 +50,25 @@ The NES's CPU is a **Ricoh 2A03** [@cpu-cpu], which is based on the popular 8-bi
 
 ### A bit of context
 
-The CPU market in the late 70s and early 80s was quite diverse. If a company wanted to build an affordable microcomputer, the following options were available:
+The CPU market in the late 70s and early 80s was quite diverse. 
+
+::: {.subfigures .side-by-side}
+
+![A Commodore PET, carrying a 6502 CPU.](pet.webp){.toleft}
+
+![A Tandy TRS-80, carrying a Z80 CPU.](tandy.webp){.toright}
+
+The panorama of late-70s computers, also provided by The Centre for Computing History (Cambridge, UK).
+
+:::
+
+If a company wanted to build an affordable microcomputer, the following options were available:
 
 - The **Intel 8080**: a popular CPU featured in the *Altair*, the first 'personal' computer. It has an 8-bit data bus and a 16-bit address bus.
 - The **Zilog Z80**: an 'unofficial' version of the 8080 enhanced with more instructions, registers and internal components. It was sold at a cheaper price and could still execute 8080 programs [@cpu-re_1977, p. 86]. Amstrad and Sinclair (among others) chose this CPU. 
 - The **Motorola 6800**: another 8-bit CPU designed by Motorola, it contains a completely different instruction set. Many do-it-yourself computer kits, synthesisers and all-in-one computers included the 6800.
 
-As if these options weren't enough, another company named **MOS** appeared on the market and offered a redesigned version of the 6800: the **6502**. While incompatible with the rest, the new chip was much *much* less expensive to produce [@cpu-summary_costs] [@cpu-re_1981, p. 76] and it was only a matter of time before the most famous computer makers (Commodore, Apple, Atari, Acorn and so forth) chose the 6502 to power their machines.
+As if these options weren't enough, another company named **MOS** appeared on the market and offered a redesigned version of the 6800: the **6502**. While incompatible with the rest, the new chip was much *much* less expensive to produce [@cpu-summary_costs] [@cpu-re_1981, p. 76] and it was only a matter of time before iconic computer makers (Commodore, Tandy, Apple, Atari, Acorn and so forth) chose the 6502 to power their machines.
 
 Back in Japan, Nintendo needed something inexpensive but familiar to develop for, so they selected the 6502. **Ricoh**, their CPU supplier, successfully produced a 6502-compatible CPU.
 
@@ -122,11 +136,11 @@ So, did this mean game studios could only develop games that didn't exceed the 4
 
 A mapper is an extra chip included in the cartridge that sits between the memory chips and the console's address lines. Its main job is to extend the address space so developers may fit more chips. This is done by **bank switching**: Memory addresses are grouped into banks, and the mapper provides switches (controlled through memory addresses) to alternate between banks. Now, the CPU still sees the same amount of memory, so it's the game that's been programmed with a mapper present in charge of operating it. Due to their cost-effectiveness, mappers were the order of the day in 80s-to-early 90s technology.
 
-![PCB of Super Mario Bros 3 [@photography-tsrom]](tsrom.png){.tabs-nested .active title="Original"}
+![PCB of Super Mario Bros 2 [@photography-tsrom]. Super Mario Bros 3 also uses this layout but bundles a 256 KB Program ROM instead.](tsrom.png){.tabs-nested .active title="Original"}
 
 ![The same picture with important parts labelled. At first, I thought the extra WRAM was for storing saves, but then I realised there are no saves in this game (and there isn't a battery either). In reality, that RAM chip is used to store a decompressed level.](tsrom_marked.png){.tabs-nested-last title="Marked"}
 
-Back to the NES, a famous example is 'Super Mario Bros 3' which shipped with the 'MMC3' mapper (made by Nintendo) in its cartridge. For comparison, MMC3 provided up to 512 KB of space for the Program ROM, up to 256 KB for Character memory and up to 8 KB for extra WRAM [@cpu-mmc3]. You can now see why 'Super Mario Bros 3' differs significantly in quality compared to the first installment.
+Back to the NES, games like 'Super Mario Bros 2' and 'Super Mario Bros 3' shipped with the 'MMC3' mapper (made by Nintendo) in their cartridges. For comparison, MMC3 provided up to 512 KB of space for the Program ROM, up to 256 KB for Character memory and up to 8 KB for extra WRAM [@cpu-mmc3]. You can now see why 'Super Mario Bros 3' differs significantly in quality compared to the first installment.
 
 All in all, while this console may appear limited while examining its internal features, Nintendo made sure it could adapt as technology evolves. On the other side, while this technique helped to keep the costs down of the console, it shifted part of the burden to the game cartridge. So, game quality and cartridge costs were two concerns game studios had to balance.
 

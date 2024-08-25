@@ -31,7 +31,7 @@ The Sega Dreamcast introduced many new features over its predecessor (the [Satur
 
 Things were progressing smoothly for Hitachi, their [iconic SuperH chips](sega-saturn#cpu) had found multiple clients and the company was now ready for a fourth installment of the series. Their new entry would combine embedded capabilities with functionality enjoyed by 3D games.
 
-Sega, being one the early adopters of the SuperH, unsurprisingly chose Hitachi's emerging chip to power their new console. Hence, the Dreamcast carries an **SH-4 CPU** running at a whopping **200 MHz** [@cpu-spec]. Also, to [make things right](sega-saturn#the-final-product) this time, there's **only one fully equipped CPU**.
+Sega, being one the early adopters of the SuperH, unsurprisingly selected Hitachi's latest shipment to power their new console. Hence, the Dreamcast carries an **SH-4 CPU** running at a whopping **200 MHz** [@cpu-spec]. Also, to [make things right](sega-saturn#the-final-product) this time, there's **only one fully equipped CPU**.
 
 ### The offering
 
@@ -254,6 +254,8 @@ Unlike Windows 95 or NT, the new system presented the following advantages:
 
 - It ran on a wide range of CPU architectures [@operating_system-ce_archs], including the SuperH and even the [NEC/MIPS VR4300](nintendo-64#cpu) (used by the Nintendo 64).
 - It was designed with constrained hardware in mind, such as a limited power source (AA batteries), memory (2 MB RAM) and storage (4 MB ROM).
+
+![An HP Palmtop PC 360LX (1997) running Windows CE 2.0. I found it lying at The Centre for Computing History (Cambridge, UK) when I visited in August 2024. Coincidentally, this Palmtop houses an SH-3 CPU!](palmtop.webp)
 
 Moreover, Windows CE was sold as a set of **building blocks** for manufacturers, allowing them to cherry-pick which components to bundle. Manufacturers could then integrate it into a variety of hardware (such as handhelds, point-of-sale terminals or even automotive systems). Nevertheless, Windows CE gained significant notice as the OS powering Palmtops (the precursor of PDAs), effectively competing against the Apple Newton and Palm.
 

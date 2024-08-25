@@ -212,7 +212,7 @@ Only four charblocks can be used for backgrounds and two can be used for sprites
 
 #### Backgrounds {.tab}
 
-::: {.subfigures .tabs-nested .tab-float}
+::: {.subfigures .tabs-nested .tab-float max_subfigures=1}
 
 ![Background Layer 0 (BG0).](sonic/bg0.png){.active title="Layer 0"}
 

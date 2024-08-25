@@ -7,6 +7,7 @@ subtitle: A supercomputer for the rest of us
 generation: 7
 release_date: 2005-11-22
 aliases: [/writings/consoles/xbox-360-private]
+seo_image_pos: "Bottom"
 top_tabs:
   Motherboard:
     caption: "Showing the 'Xenon' revision (the first one), taken from my model from 2005. Xenon motherboards are also famous for being defective by design (they get too hot to play games with!). Remaining GDDR3 chips are found on the back."
@@ -17,17 +18,14 @@ top_tabs:
     title: Original
     file: original
     img_class: reduced-width
-    landscape: false
   - caption: "The 'new' Xbox 360 (a.k.a. 'Slim' or 'S').<br>Released on 18/06/2010 in America, 24/06/2010 in Japan and 16/07/2010 in Europe"
     title: The 'S'
     file: the-s
     img_class: reduced-width
-    landscape: false
   - caption: "Another 'new' Xbox 360 (a.k.a. 'E').<br>Released on 10/06/2013 in America, 20/06/2013 in Europe and similar in Japan"
     title: The 'E'
     file: the-e
     img_class: reduced-width
-    landscape: false
 ---
 
 ## A quick introduction
@@ -107,7 +105,7 @@ In a turn of events, IBM agreed to share its IP and to design a new multi-core p
 >
 > -- <cite>David Shippy, chief architect of the [Power Processing Unit](playstation-3#the-powerpc-processing-unit) (PPU)</cite>
 
-Ironically, as of 2022, IBM's PowerPC chips have vanished from both desktop computers and video consoles, maybe this set a bad precedent and greatly affected IBM's trust in future businesses? I'm afraid I don't know the answer to that.
+Ironically, as of 2022, IBM's PowerPC chips have vanished from both desktop computers and video consoles, maybe this set a bad precedent and greatly affected IBM's trust in future businesses? I go over this effect later on.
 
 To sum it up, IBM signed an agreement with Sony and Toshiba to develop Cell in 2001. Two years later, in 2003, IBM agreed to supply Microsoft with a new low-powered multi-core CPU. Microsoft's CPU will be called **Xenon** and will inherit part of Cell's technology, with extra input from Microsoft (focusing on multi-core homogeneous computing and bespoke security). Also, while IBM would brand Cell with its 'BladeCenter' line of servers, Xenon could only be fitted on an Xbox 360 motherboard.
 
@@ -232,7 +230,13 @@ Look at it this way, why was OoO invented in the first place? To prevent the CPU
 
 What if instead of sorting out which instructions should be executed first, we duplicate the resources into two (or more) groups called 'threads' and let the program switch between the different groups of resources (multi-threading) as it sees more fit. This is what IBM's engineers went for, hence the reason the PPE is [dual-issued](playstation-3#tab-3-1-instructions). The new technique, called **Thread level parallelism** (TLP), differentiates itself from **Instruction level parallelism** (ILP) by letting the program, as opposed to the CPU, to come up with its own solution. With Xenon and Cell, it's now left to the compiler and the program's multi-threading implementation to produce an efficient sequence of instructions.
 
-The interesting thing is that neither approach is better or worse, out-of-order processors are still found in the market (Intel/AMD still supports OoO along with an obscene amount of other techniques, while ARM adopted OoO with the Cortex-A8 in 2005). On top of that, those CPUs have multi-threaded cores and even bundle multiple cores within the same chip, so you get a mix of both techniques (TLP and ILP).
+The interesting thing is that neither approach is better or worse, out-of-order processors are still found in the market (Intel/AMD still supports OoO along with an obscene amount of other techniques, while ARM adopted OoO with the Cortex-A9 in 2007). On top of that, those CPUs have multi-threaded cores and even bundle multiple cores within the same chip, so you get a mix of both techniques (TLP and ILP).
+
+##### Eroded relationships
+
+Whilst the omission of out-of-order may look justified from a technical standpoint, this would ultimately wither trust in IBM's long-term abilities. Apple, sensing that future PowerPC chips would no longer stand against Intel [@cpu-race_takahashi], was the first to abandon its partnership and switch to Intel in 2005 (just in time for [Yonah](xbox#p6-and-the-end-of-pentium-numbers)). Nonetheless, this didn't worry IBM, who preferred to focus on its server and gaming sector.
+
+The long-term outcome of PowerPC, however, became extinction. The aforementioned technical constraints, combined with questionable business ethics (the fact IBM secretly designed for two close rivals at once), resulted in the loss of the entire console market: Sony and Microsoft selected AMD CPUs for their next-generation console. A decade later, Nintendo's [Wii U](wiiu#the-last-venture-of-powerpc) would become the last console to bundle a PowerPC chip.
 
 ### Inside Xenon: Main Memory
 
@@ -1271,7 +1275,7 @@ With this, a permanent and automatic homebrew launcher was obtained! (as long as
 
 Even though the aforementioned discoveries were outraced by Microsoft's updates, the homebrew community kept gaining momentum and new applications emerged to become a 'must have' for any modding enthusiast:
 
-- **XeLL** (from Xenon Linux Loader), later forked as **XeLL-Reloaded**, is the de-facto payload used with the Hypervisor exploit [@anti_piracy-xell]. It sits as a second-stage bootloader with an amount of functionality analogous to a Victorinox for Scouts. XeLL enables to boot up Linux or a XEX executable written with **libxenon**, an alternative SDK designed for homebrew development. Furthermore, upon loading, its text interface automatically displays the eFuses data and other low-level information on-screen so the user can write it down if needed. If that's not enough, its self-hosted HTTP site provides extra controls to dump the contents of the eFuses and NAND on-the-fly.
+- **XeLL** (from Xenon Linux Loader), later forked as **XeLL-Reloaded**, is the de-facto payload used with the Hypervisor exploit [@anti_piracy-xell]. It sits as a second-stage bootloader with an amount of functionality analogous to a Victorinox for Scouts. XeLL enables to boot up Linux or an ELF executable written with **libxenon**, an alternative SDK designed for homebrew development. Furthermore, upon loading, its text interface automatically displays the eFuses data and other low-level information on-screen so the user can write it down if needed. If that's not enough, its self-hosted HTTP site provides extra controls to dump the contents of the eFuses and NAND on-the-fly.
 - **freeBOOT** is a modification of the official operating system that disables the signature verification of the Hypervisor and removes hardcoded caps set by Microsoft (i.e. the Security sector checks preventing to use of third-party hard drives), among other things [@anti_piracy-freeboot]. freeBOOT is loaded from XeLL and proceeds to boot the official system as any other unmodified console, except that non-signed executables can be launched from the Dashboard from now on. At the time of this writing, applying Freeboot remains the main goal for most homebrew users.
   - To produce a 'freeBOOTed' image (eventually flashed into the NAND), the CPU key of the console is needed. This means the console needs to first load XeLL (using a previous exploit) so the key can be extracted. Then, a new NAND image with Freeboot's patches applied can be generated.
 - **FreeStyle Dashboard** and **Aurora** are two replacements for the original Dashboard that provide enhanced controls for executing homebrew apps, loading up game dumps and tweaking low-level settings (i.e. fan speed). While they are meant to overtake the official Dashboard, they are still loaded as any other XEX executable.

@@ -3,7 +3,7 @@ long_title: Architecture of the Nintendo 3DS
 short_title: Nintendo 3DS Architecture
 name: Nintendo 3DS
 subtitle: Abundant tech, confusing marketing
-date: 2023-09-16
+date: 2023-09-20
 release_date: 2011-02-26
 generation: 8
 cover: nintendo3ds
@@ -143,17 +143,17 @@ Now that we know how the display works, let's look at the internals of this cons
 
 CPU CTR follows the design methods of previous portable consoles from Nintendo. That is, squash all your engineering into a single block. In doing so, it will reduce the production of counterfeits, protect sensible components and improve heat dissipation.
 
-In terms of the actual CPU, Nintendo partnered again with their [old friend](game-boy-advance#the-nintendo-partnership), **ARM**, to produce their next-generation core. ARM's [traditional licensing model](game-boy-advance#tab-1-2-a-new-cpu-venture) (based on offering synthesisable designs) allows Nintendo to mould a CPU to their needs (including fitting it into a big and opaque SoC). In the end, ARM gave them a relatively antiquated product with substantial upgrades. Their choice was the **ARM11** core, a successor of the ARM9 (featured with the [Nintendo DS](nintendo-ds#cpu)). More specifically, the **MPCore** variant, ARM's first **homogenous multi-core** solution.
+In terms of the actual CPU, Nintendo partnered again with their [old friend](game-boy-advance#the-nintendo-partnership), **ARM**, to produce their next-generation core. ARM's [traditional licensing model](game-boy-advance#tab-1-2-a-new-cpu-venture) (based on offering synthesisable designs) allows Nintendo to mould a CPU to their needs, including fitting it into a big and opaque SoC. In the end, ARM gave them a relatively antiquated product with substantial upgrades. Their choice was the **ARM11**, a successor of the ARM9 (featured in the [Nintendo DS](nintendo-ds#cpu)). More specifically, the **MPCore** variant, ARM's first **homogenous multi-core** solution.
 
 Using ARM's designs, Nintendo crafted an ARM11 MPCore cluster housing **two** ARM11 cores [@cpu-lioncash]. Three years later, with the arrival of the 'New' 3DS, the SoC was expanded to contain **four** ARM11 cores. The effects of this will be explained in due time. So, before anything else, let's analyse what the new CPU cores offer to this console.
 
 ### An iconic industry
 
-The ARM11 series originated in 2002. In the coming years, it became a flagship in the mobile CPU sector, displacing the popular [ARM9](nintendo-ds#arms-new-territories), the short-lived ARM10 and Intel's XScale (the continuation of [StrongARM](nintendo-ds#arms-new-territories), which Intel later liquidated to focus on ['mobile' x86 CPUs](xbox#p6-and-the-end-of-pentium-numbers)... if only they knew!).
+The ARM11 series originated in 2002. By then, cellphones ran Java ME applications and bragged about ringtones with _actual melodies_. In the coming years, the ARM11 became a flagship in the mobile CPU sector, displacing the popular [ARM9](nintendo-ds#arms-new-territories), the short-lived ARM10 and Intel's XScale. The latter was the continuation of [StrongARM](nintendo-ds#arms-new-territories), which Intel later sold off to focus on ['low-power' x86 CPUs](xbox#p6-and-the-end-of-pentium-numbers)... if only they knew that the mobile market would skyrocket!
 
 ![A Nokia 5230 (2009), a red 3DS (2011) and a Raspberry Pi Model B (2012), all carrying an ARM11.](cpu/devices.webp)
 
-In case you haven't heard about them before, ARM11s are best known for powering the 2006-2009 generation of smartphones (back when many of them featured a keypad or a clamshell design). If you owned a Nokia N95, 5230 or the first iPhone, you've used an ARM11. This also applied to many high-end cameras, GPS or similar peripherals. Curiously enough, other manufacturers like RIM and Samsung held onto the Intel XScale until 2009. Last but not least, the ARM11 was also the choice of CPU for the first Raspberry Pi.
+In the end, ARM11s became known for powering the 2006-2009 generation of smartphones. This generation featured a mix of keypad, clamshell and full touchscreen designs. If you owned a Nokia N95, 5230 or the first iPhone, you've used an ARM11. This also applied to many high-end cameras, GPS or similar peripherals. Curiously enough, other manufacturers like RIM and Samsung held onto the Intel XScale until 2009. On a side note, the ARM11 was also the choice of CPU for the first Raspberry Pi.
 
 Now, by the time Nintendo adopted the ARM11, its creator had already succeeded it with the Cortex-A series. This is nothing but expected, as Nintendo's model [favours cost-effectiveness](game-boy#cpu) over avant-garde CPUs. Look at it from another way, saving in CPU costs allows them to focus their budget on other aspects of the console, you'll soon see.
 
@@ -161,33 +161,33 @@ Now, by the time Nintendo adopted the ARM11, its creator had already succeeded i
 
 Along with the new shiny CPUs, a new instruction set arrived, the **ARMv6**.
 
-From a programmer's perspective, the ARMv6 ISA innovates with a new set of vector instructions and multi-core support [@cpu-thomas]. The new vector set provides SIMD instructions that operate groups of **four 8-bit values** or **two 16-bit values** at the same time (using the existing 32-bit registers) [@cpu-armcc]. The new multi-core instructions consist of 'store' and 'load' opcodes with special care for synchronisation (crucial for an environment of multiple CPUs using the same memory locations) [@cpu-sync].
+From a programmer's perspective, the ARMv6 ISA innovates with a new set of **vector instructions** and **multi-core support** [@cpu-thomas]. The new vector set is made of SIMD instructions that operate groups of **four 8-bit values** or **two 16-bit values** at a time (using the existing 32-bit registers) [@cpu-armcc]. These instructions can only operate integers (no floating point), however. Moving on, the new multi-core instructions consist of 'store' and 'load' opcodes with special care for synchronisation (this is crucial when multiple CPUs use the same memory locations) [@cpu-sync].
 
 All in all, this may not seem that thriving for a new chip series, but remember that ARM's CPUs speak many 'languages'. In the case of an ARM11-based core, you are provided with:
 
 - The main 32-bit ISA, called **ARMv6**.
-- A compressed alternative called **Thumb**. Its instructions fit in 16-bit words instead. If you'd like to know more, I go over it in the [Game Boy Advance article](game-boy-advance#tab-2-3-squeezing-performance), as it weighs significant importance in that console.
-- **Jazelle**, a Java bytecode interpreter, mostly forgotten and left unused. I've mentioned a bit of it in the [Wii article](wii#the-hidden-co-processor).
-- Any extension bundled into the core. For instance, the MPCore includes a **Vector Floating-point Coprocessor** with additional instructions to control said coprocessor [@cpu-vfp].
+- A compressed alternative called **Thumb**. Its instructions fit in 16-bit words instead. If you'd like to know more, I go over it in the [Game Boy Advance](game-boy-advance#tab-2-3-squeezing-performance) and [Nintendo DS](nintendo-ds#tab-1-2-arm946e-s) articles, as it weighs significant importance in those consoles.
+- **Jazelle**, a Java bytecode interpreter, though mostly forgotten and left unused. I've mentioned a bit of it in the [Wii article](wii#the-hidden-co-processor).
+- Any extension bundled into the core. For instance, the MPCore includes a **Vector Floating-point Coprocessor** (VFP) with additional instructions to control said coprocessor [@cpu-vfp]. I talk more about this later.
 
-To make matters less confusing, ARM tends to package all of these with a single nomenclature. For instance, in the case of the ARM11 MPCore opcodes, ARM refers to them as the **ARMv6k** instruction set.
+To make matters less confusing, ARM tends to package all of these with a single nomenclature. For instance, in the case of the ARM11 MPCore opcodes, ARM refers to this variant as the **ARMv6k** instruction set.
 
 #### ... and a fragmented distribution
 
-The adoption of extensions and alternative instruction sets eventually made things very convoluted for developers targeting generic ARM hardware, you only have to look at the uncountable ARM ports devised for Linux distributions.
+Be as it may, the adoption of extensions and alternative instruction sets eventually made things very convoluted for developers targeting generic ARM hardware, you only have to look at the uncountable ARM ports devised for Linux distributions.
 
 Debian, one of the most popular distributions, tried to tackle the disparities by developing two ports in parallel:
 
-- `armel`: Widely compatible ([ARMv4T](game-boy-advance#the-arm7tdmi) and onwards).
-- `armhf`: Accelerated with VFP, but only compatible with ARMv7 onwards.
+- `armel`: For wide compatibility ([ARMv4T](game-boy-advance#the-arm7tdmi) and onwards).
+- `armhf`: Accelerated with the VFP extension, but only compatible with ARMv7 onwards.
 
-Yet, with the arrival of the Raspberry Pi (powered by ARMv6 and accelerated with VFP), neither of them was deemed acceptable. Thus, an unofficial port called 'Raspbian' was developed to provide a VFP-accelerated version for ARMv6 CPUs [@cpu-armhf]. Even so, the trend continued: years later, with the arrival of ARMv8 and AArch64, Debian spawned yet-another port, `arm64`, optimised for the new 64-bits ISA.
+Yet, with the arrival of the Raspberry Pi (powered by ARMv6 and accelerated with the VFP), neither of them was deemed acceptable. Thus, an unofficial port called 'Raspbian' was developed to provide a VFP-accelerated version for ARMv6 CPUs [@cpu-armhf]. Even so, the trend continued: years later, with the arrival of ARMv8 and AArch64, Debian spawned yet-another port, `arm64`, optimised for the new 64-bits ISA.
 
 I don't remember seeing this labyrinth with x86 (even though the adoption of x86 SIMD extensions hasn't been consistent, to say the least), but at least things are now getting more orderly. AArch64 has unified many extensions and dropped alternative modes (_farewell, Thumb and Jazelle_).
 
 ### Core functionality
 
-Let's go back to analysing what's in the 3DS CPU.
+... That was a quick detour, let's go back to analysing what's in the 3DS CPU!
 
 For this study, we can divide the ARM11 MPCore into two areas:
 
@@ -204,11 +204,11 @@ The first ARM11 MPCore variant, which debuted with the original 3DS, includes tw
 
 Apart from implementing the ARMv6k instruction set, the MP11 features an **8-stage pipeline** [@cpu-arm_reference] and it's complemented with **two levels of branch prediction**: 'dynamic' (based on previous executions) and 'static' (based on the current instruction alone). Overall, I sense these new additions are part of a new design philosophy that will eventually obsolete the iconic [conditional execution](game-boy-advance#commanding-the-cpu), although we won't notice this until the next generation.
 
-Additionally, since the [ARM946E-S CPU](nintendo-ds#tab-1-2-arm946e-s), ARM has been fitting a **System Control Coprocessor** called **CP15**. This time, it provides **Memory-Management** (MMU functions) and registers that output information about the MPCore cluster.
+Additionally, since the [ARM946E-S CPU](nintendo-ds#tab-1-2-arm946e-s), ARM has been fitting a **System Control Coprocessor** called **CP15**. This time, it provides **Memory-Management** (MMU functions) and register memory that output information about the MPCore cluster.
 
 Now, there's **no more Tightly-Coupled Memory** (TCM). There are however **16 KB of instruction cache** and **16 KB of data cache**, this change of model resembles other systems of the same generation. If you are curious, this L1 cache is 4-way set associative.
 
-Finally, each core houses a co-processor called **Vector Floating-point Coprocessor** (also known as 'VFP11'). This accelerates arithmetic operations with floating-point numbers, both 32-bit single-precision (a.k.a. `float`) and 64-bit double-precision (a.k.a. `double`) ones [@cpu-vfp]. It's not a big coprocessor though, as its register file is composed of thirty-two 32-bit registers, so doubles will consume two registers. In any case, this processor implements the **VFPv2 instruction set** and follows the **IEEE 754** standard. The latter is a welcomed decision, considering the [difficulties of previous generations](playstation-2#the-leader).
+Finally, each core houses a co-processor called **Vector Floating-point Coprocessor** (also known as 'VFP', or 'VFP11' in the case of the ARM11). This accelerates arithmetic operations with floating-point numbers, both 32-bit single-precision (a.k.a. `float`) and 64-bit double-precision (a.k.a. `double`) ones [@cpu-vfp]. It's not a big coprocessor though, as its register file is composed of thirty-two 32-bit registers, so doubles will consume two registers. In any case, this processor implements the **VFPv2 instruction set** and follows the **IEEE 754** standard. The latter is a welcomed decision, considering the [difficulties of previous generations](playstation-2#the-leader).
 
 #### The 'New' MPCore {.tab}
 
@@ -240,11 +240,11 @@ In the case of the 3DS, the AXI interconnect is housed in a bigger block called 
 
 Up to this moment, I've been talking about the MPCore as if it were the only CPU in this system, the reason being mixing up distinct CPUs for this analysis can turn it into an incomprehensible essay. That is, until now.
 
-The truth is, Nintendo had extra requirements for this console. They wanted a proper security system, but also the possibility to turn the console into a **Nintendo DSi or a GBA** on-the-fly. So, for all of that, they ended up bundling **three distinct CPU packages** - one being the mentioned ARM11. The other two are well hidden, in the sense that games are completely unaware of them. In fact, 3DS emulators like Citra don't care about them either [@cpu-citra_cpu].
+The truth is, Nintendo had extra requirements for this console. They wanted a proper security system, but also the possibility to turn the console into a **Nintendo DSi or a GBA** on-the-fly. So, for all of that, they ended up bundling **three distinct CPU packages** - one being the mentioned ARM11. The other two are well hidden, in the sense that games are completely unaware of them. In fact, 3DS emulators like Citra don't care about them at all [@cpu-citra_cpu].
 
 ![The Nintendo 3DS next to a predecessor (a Nintendo DS Lite), the latter has become a common denominator.](photos/side_ds.webp)
 
-But we do! Here's the complete list of CPUs this system houses:
+But we do! So here's the complete list of the CPUs this system houses:
 
 - The **ARM11 MPCore** we've just seen.
 - An **ARM946E-S** from the [Nintendo DS days](nintendo-ds#cpu). It's treated as a secret co-processor and it's only managed by the operating system. Alternatively, it becomes the main processor whenever a DS or DSi game is executed.
@@ -284,7 +284,7 @@ To make a long story short, we've got the following blocks:
 
 #### A new type of memory spotted
 
-It's all jolly that the Nintendo 3DS includes 32 times the general-purpose memory of its predecessor, but what about that 'FCRAM'? Is it any different from the other standards?
+It's all jolly that the Nintendo 3DS includes 32 times the general-purpose memory of its predecessor, but what's that 'FCRAM'? Is it any different from the other standards?
 
 Well, **Fast Cycle DRAM** (FCRAM) is yet another RAM invention, this time authored in 2002 by Fujitsu and Toshiba. Presented as an alternative to DRAM-based technology (i.e. [SDRAM](xbox#memory-layout), [EDO DRAM](playstation#the-offering), [RDRAM](nintendo-64#memory-design), etc.), FCRAM excels on non-continuous reads, where it exhibits a lower latency than DRAM [@cpu-fcram1]. This was done to replicate the performance offered by the more expensive SRAM.
 
@@ -316,7 +316,7 @@ You may be wondering what happens with the rest of the exclusive hardware the Ne
 
 ## Graphics
 
-Next to a new CPU is always a modern GPU. So, what kind of [Picture Processing Unit](nintendo-ds#graphics) did Nintendo build this time? To tell the truth, none. For the first time in their portable line, **they resorted to a GPU supplier**.
+Next to a new CPU is always a modern GPU. So, what kind of [Picture Processing Unit](nintendo-ds#graphics) did Nintendo build this time? To tell the truth, none. For the first time in their portable line, **they resorted to a GPU vendor**.
 
 Nevertheless, the requirements of Nintendo haven't shifted. The company still wanted a chip with acceptable performance... and the **intellectual property core**. This will allow them to embed the GPU into their SoC, in the same way they did with the ARM CPUs.
 
@@ -338,7 +338,7 @@ Example of Nintendo 3DS games. All render two frames of 400 x 240 pixels and one
 
 Meanwhile, a potential candidate just finished unveiling their new invention at SIGGRAPH 2006 [@graphics-dmp_insight]. For some time, **Digital Media Professionals Inc.** (also known as 'DMP') have been building affordable GPUs for the embedded market and, while their chips are nothing out of the ordinary, they guarantee decent OpenGL ES support. Furthermore, their licensing framework offers **synthesisable GPUs**.
 
-This seemed enough for Nintendo, who happily negotiated a license for DMP's latest core, the **PICA200** and subsequently bundled it on CTR CPU (the Nintendo 3DS' SoC). The GPU runs at **268 MHz**.
+This seemed enough for Nintendo, who happily negotiated a license for DMP's latest core, the **PICA200** and subsequently bundled it inside CPU CTR (the Nintendo 3DS' SoC). The GPU runs at **268 MHz**.
 
 ### Architecture of the PICA200
 
@@ -647,7 +647,7 @@ The Nintendo 3DS, as a whole, comes with four firmware [@operating_system-firm]:
   - This firmware is often referred to as 'Horizon' as well.
 - **TWL_FIRM**: It commands the Nintendo 3DS to behave like a Nintendo DSi. It does come at the expense of disabling all the exclusive features, but considering how the CPU, GPU, sound and I/O are intertwined; TWL_FIRM is truly a work of art. Consequently, the ARM9 and ARM7 are placed in the foreground (they execute the main program) [@operating_system-gbatek_firm].
   - The name 'TWL' comes from the codename of the Nintendo DSi.
-- **AGB_FIRM**: Similarly to TWL_FIRM but the 3DS now becomes a Game Boy Advance. Here, the ARM7 executes the main program.
+- **AGB_FIRM**: Similar to TWL_FIRM, the 3DS now becomes a Game Boy Advance. Here, the ARM7 executes the main program.
 - **SAFE_FIRM**: Used solely for maintenance-related tasks, such as system updates. This firmware is basically an early revision of NATIVE_FIRM (doesn't go beyond version `3.0` on the old 3DS and version `8.1` on the New 3DS [@operating_system-safehax]).
 
 All of these firmware come with separate binaries for the ARM11, ARM9 and ARM7 CPUs. The only exception is that the ARM7 won't be active under NATIVE_FIRM and SAFE_FIRM.
@@ -963,7 +963,7 @@ Now, here's another peculiarity of Virtual console games: this console can also 
 
 ![GBA game running without emulation on the Nintendo 3DS (there's no screenshot functionality on AGB_FIRM).](photos/3ds_kirby_gba.webp){.toright}
 
-Even more puzzling, GBA titles don't run on the ARM11 using an emulator (albeit there's one installed, but never been used!). Instead, they kickstart the third firmware, AGB_FIRM, to run natively on top of the ARM7. What makes it puzzling, is that these GBA games, only offered through the Ambassador Program, remained the only purpose of AGB_FIRM, as if Nintendo planned for something bigger in the future, but never materialised. This is another example of how the Nintendo 3DS possessed more hardware than the software ever took advantage of.
+Even more puzzling, GBA titles don't run on the ARM11 using an emulator (albeit there's one installed, but never been used!). Instead, they kickstart the third firmware, AGB_FIRM, to run natively on top of the ARM7. In the end, these exclusive GBA games remained the only use for AGB_FIRM, as if Nintendo planned for something bigger in the future, but never materialised. This is another example of how the Nintendo 3DS possessed more hardware than the software ever took advantage of.
 
 If you're curious, GBA titles make use of the bundled ARM7 core instead. Thus, they don't allow for the extra features that emulators (running on ARM11 cores) provide. Although, this happens at the exchange of running at full speed and precision. Be as it may, since the 3DS doesn't contain a GBA cartridge slot, the GBA game is instead copied into FCRAM before the system reboots into AGB_FIRM, and then lets the ARM7 take control (while the ARM11 and ARM9 provide basic support tasks) [@io-misc].
 
@@ -1097,7 +1097,7 @@ Truth is, there's a lot of hidden functionality within this product. Let's analy
 
 ##### Inside the Gateway3DS {.tab}
 
-![The DS Message editor found on the 3DS settings app. The character limit rule depends solely on the graphical interface.](shell/settings_ds_profile.png){.tab-float}
+![The DS Message editor found on the 3DS settings app. The character limit is solely enforced by the graphical interface.](shell/settings_ds_profile.png){.tab-float}
 
 Sometime in 2012, hacker 'ichfly' discovered interesting behaviour in the Nintendo DS' old profile editor, found on both `NATIVE_FIRM` and `TWL_FIRM`. In one of its text fields, you can enter a 'Message' value, which will then be displayed as a greeting on PictoChat rooms [@anti_piracy-profile]. The 3DS' settings app won't allow you to enter more characters than allowed. Yet, nothing prevents a Nintendo DS game from doing so. When that happens, opening the 3DS' System Settings app (called **MSET**) will crash, and what makes it interesting is that this is caused by **stack overflow** [@anti_piracy-waffle]. Does this remind you of [a certain horse name](wii#the-dawn-of-homebrew)?
 
@@ -1267,7 +1267,7 @@ In summary, they discovered that system versions before `1.0.0` shared similar f
 
 Now that they could craft an alternative firmware that Boot9 would accept, they needed to find a way to redirect Boot9 to their payload. The challenge was to redirect execution before Boot9 hides its Boot ROM. To tackle this, the duo found a route through the ARM9's exception handlers. The ARM9 can't override these, but the NDMA can - and the CPU can command the NDMA to do so.
 
-All in all, the team were able to use the NDMA to fill the exception handlers with a jump to arbitrary code, and then instruct the ARM9 to copy to `NULL`, resulting in an exception that would execute the payload with unrestricted access. In the end, this was packaged in a solution called **boot9strap** and served as an alternative bootloader that could either load a payload from the SD card or continue to boot normally. Consequently, Godmode9 was extended to backup OTP and the Boot ROMs, if needed.
+All in all, the team were able to use the NDMA to fill the exception handlers with a jump to arbitrary code, and then instruct the ARM9 to copy to `NULL`, resulting in an exception that would execute the payload with unrestricted access. In the end, this was packaged in a solution called **boot9strap** and served as an alternative bootloader that could either load a payload from the SD card or continue to boot normally. Consequently, Godmode9 added new options to backup OTP and the Boot ROMs.
 
 And so, boot9strap quickly displaced arm9loaderhax as the de facto solution for loading arbitrary code with maximum privileges.
 

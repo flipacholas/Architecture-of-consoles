@@ -181,7 +181,7 @@ The first block is called **Instruction unit** (IU) and as its name suggests, it
 
 Instruction issuing is carried out with a **12-stage pipeline**, though in practice the total number of stages will greatly vary depending on the type of instruction. For instance, the **branch prediction** block may bypass great parts. If we combine the IU with the neighbour units, the final number of stages is often **close to 24** (yes, it's a big number, but remember Cell runs at 3.2 GHz).
 
-Now for the interesting parts, The IU is **dual-issued**: in some cases, the IU will dispatch up to two instructions at the same time, consequently improving throughput greatly. In practice, however, there are many conditions for this to work, so programmers/compilers are responsible for optimising their routines so their sequence of instructions can take advantage of this function. By the way, dual-issuing has been implemented by other CPUs as well, and the term varies between vendors, so here I used IBM's definition.
+Now for the interesting parts, The IU is **dual-issued**: in some cases, the IU will dispatch up to two instructions at the same time, consequently improving throughput greatly. In practice, however, there are many conditions for this to work, so programmers/compilers are responsible for optimising their routines so their sequence of instructions can take advantage of this function. By the way, dual-issuing has been implemented by [previous CPUs](gamecube#features) as well, and the term varies between vendors, so here I used IBM's definition.
 
 Furthermore, to top it off, the IU is also **multi-threaded**, where the unit can execute two different sequences of instructions (called 'threads') at the same time. Behind the scenes, the IU is just alternating between the two threads at each cycle, giving the appearance of multi-threading. This technique is historically known as **simultaneous multi-threading** (SMT) or _hyper-threading_, as Intel later coined. Nevertheless, IBM's multi-threading mitigates unwanted effects like [pipeline stalls](nintendo-64#tab-3-1-pipeline-stalls), since the CPU will no longer be blocked if one instruction jams up the flow. To accomplish multi-threading, IBM engineers duplicated the internal resources of the IU, which includes general-purpose registers (previously I said there are 32 registers available, that's per thread. In reality, there are 64 in total!), however, resources that don't belong to the PowerPC specification (such as L1 and L2 cache; and the interfaces) are still shared. Thus, the latter group is single-threaded.
 
@@ -229,7 +229,7 @@ Rambus, like any other company, improves upon their inventions. Their third revi
 
 {.close-float}
 
-The first revision of the PlayStation 3's motherboard contains four 64 MB chips, handled in pairs. XDR is connected to Cell using two 32-bit buses, one on each pair. So, whenever the PPU writes a word (64-bit data), it's split between two XDR chips. The latter are clocked at at 400 MHz [@cpu-ram].
+The first revision of the PlayStation 3's motherboard contains four 64 MB chips, handled in pairs. XDR is connected to Cell using two 32-bit buses, one on each pair. So, whenever the PPU writes a word (64-bit data), it's split between two XDR chips. The latter are clocked at 400 MHz [@cpu-ram].
 
 ![Cell's memory architecture diagram.](cpu/memory.jpg)
 
@@ -367,9 +367,13 @@ Example of PS3 games. All rendered at their maximum resolution (1280x720 pixels)
 
 :::
 
-It appears that even with a supercomputer chip, Sony still had to fetch a GPU to finalise the PlayStation 3. This makes you wonder if IBM/Sony/Toshiba hit a wall while trying to scale Cell further, so Sony had no option but to get help from a graphics company. This is purely speculation however, I'm not sure if I'll ever know the answer.
+It appears that even with a supercomputer chip, Sony still had to fetch a GPU to finalise the PlayStation 3. This makes you wonder if IBM/Sony/Toshiba hit a wall while trying to scale Cell further, so Sony had no option but to get help from a graphics company.
 
-What I do know is that the PS3 contains a GPU chip manufactured by **Nvidia** meant to offload part of the graphics pipeline. The chip is called **Reality Synthesizer** or 'RSX' and runs at **500 MHz** [@graphics-rsx_dev]. Its clock speed looks concerning when compared to Cell's (3.2 GHz), though you'll soon see that the GPU is better equipped for computing huge amounts of operations in parallel. So it's a matter of finding a balance between Cell and RSX when it comes to building the graphics pipeline (though I must confess this sounds simpler on paper than it is in practice).
+> We had started this ICE [Initiative For A Common Engine] team with the intent of developing some core technology that could be shared amongst all the first parties (...) For a while, [PS3 had] no GPU, it was going to run everything with SPUs. The ICE team proved to Japan that it was just impossible. It would be ridiculous. Performance-wise, it would be a disaster. That’s why they finally added the GPU, closer to the end [@graphics-ign_naughtydog].
+>
+> -- <cite>Unnamed sources from Naughty Dog</cite>
+
+What I am sure is that the PS3 contains a GPU chip manufactured by **Nvidia** meant to offload part of the graphics pipeline. The chip is called **Reality Synthesizer** or 'RSX' and runs at **500 MHz** [@graphics-rsx_dev]. Its clock speed looks concerning when compared to Cell's (3.2 GHz), though you'll soon see that the GPU is better equipped for computing huge amounts of operations in parallel. So it's a matter of finding a balance between Cell and RSX when it comes to building the graphics pipeline (though I must confess this sounds simpler on paper than it is in practice).
 
 I will now perform the same level of analysis previously done with Cell, this time focusing on RSX and its graphics capabilities.
 

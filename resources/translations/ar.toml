@@ -199,6 +199,9 @@ other = "تحليل عملي من قبل {{ . }}"
 [translated_by]
 other = "الترجمة بواسطة {{ . }}"
 
+[translated_by_many]
+other = 'تم الترجمة بواسطة <a href="{{ . }}">عدة مؤلفين</a>'
+
 [interactive_model_origin]
 other = 'النموذج التفاعلي متوفر في <a href="{{ . }}">الطبعة الحديثة</a>'
 
