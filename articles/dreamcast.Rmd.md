@@ -306,9 +306,7 @@ Games are stored in GD-ROMs, which are just [CD-ROMs](sega-saturn#the-compact-di
 
 ### Online platform
 
-The Dreamcast shipped with a **modem** module that allowed games to be 'dial-up' connected to Sega's online gaming platform. The platform was known as SegaNet in America and Japan and as Dreamarena in Europe. Players could register for the service using **DreamKey**, a disc that also provided NetFront 2.0 web browser, some countries had different browsers, for account registration. NetFront offered browsing the internet (HTML/3.2 and some features of HTML/4), emailing, TCP/IP and PPP. It also supported SSL for internet security.
-
-At first, DreamKey was pre-configured for a specific region, but later versions allowed users to change the ISP settings to connect to any of the services.
+The Dreamcast shipped with a **modem** module that allowed games to be 'dial-up' connected to Sega's online gaming platform. The platform was known as SegaNet in America and Japan and as Dreamarena in Europe. A disc that also provided NetFront 2.0 web browser, some countries had different browsers, for account registration. NetFront offered browsing the internet (HTML/3.2 and some features of HTML/4), emailing, TCP/IP and PPP. It also supported SSL for internet security.
 
 Sega worked with GTE Internetworking on the technology backbone for SegaNet, which provided high-performance connectivity for national and local access. The KAGE API was the main component of Sega's attempt to make the Dreamcast successful as an online platform. KAGE was Sega's own API specifically for accessing the gaming features of SegaNet, and developers could make use of it to ensure games featured the lowest latency on the internet. Sega aimed to get the latency below 200 milliseconds, which is lower than typical internet connections at that moment. Development support was provided by SOA and Sega.com to help developers work with online games. KAGE was made available later that month.
 
@@ -321,6 +319,12 @@ To enhance the browsing experience, a Dreamcast-branded keyboard and mouse were 
 - **European Online Service**
 
   The European online service, Dreamarena, was created through a partnership between ICL, BT, and various ISPs. Although the service was free in the UK, other European countries had different access requirements and prices, which made the service expensive for some users. By September 2000, Dreamarena had reached 300,000 registrations, with over half of these users being "active or very active."
+
+  To sign up for the service, users had to plug their Dreamkey that came with their Dreamcast into the console. With the Dreamkey, you could create an online account, make settings and browse the internet. Without the Dreamkey, you couldn't access the internet and the first version of the Dreamkey didn't allow you to choose your own ISP.
+
+  Dreamkey 2.0 was released in 2001. Send messages with the Dreamcast Mouse, DreamNote and up to 10 seconds of audio with the Dreamcast Microphone. Streamlined registration process. This version also has a "URL Locator", which can display any other (European) Dreamcast users currently looking on the same website. Users could then engage in conversation, providing the Dreamnote feature was turned on.
+
+  Dreamkey 3.0 was released in 2002 and was included with Phantasy Star Online Ver. 2.
 
 - **America Online Service**
 
@@ -342,7 +346,9 @@ To enhance the browsing experience, a Dreamcast-branded keyboard and mouse were 
 
 - **Australia and New Zeland Online Service**
 
-  In Australia and New Zeland, Sega partnered with Telstra to develop an online service for the Dreamcast, but it was unavailable at launch due to delays in development and testing. Users had to use Telstra's Big Pond service and the Internet access disc came with 150 hours of free Internet access. The browser went to the Comma web portal powered by LookSmart's search engine.
+  In Australia and New Zeland, Sega partnered with Telstra to develop an online service for the Dreamcast and publish Dreamkey, but it was unavailable at launch due to delays in development and testing. Users had to use Telstra's Big Pond service and the Internet access disc came with 150 hours of free Internet access. The browser went to the Comma web portal powered by LookSmart's search engine.
+
+  Similar to Dreamarena users had to register through Dreamkey and go through same process as Europeans.
 
 - **Taiwan**
 
