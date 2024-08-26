@@ -323,6 +323,8 @@ To enhance the browsing experience, a Dreamcast-branded keyboard and mouse were 
   The European online service, Dreamarena, was created through a partnership between ICL, BT, and various ISPs. Although the service was free in the UK, other European countries had different access requirements and prices, which made the service expensive for some users. By September 2000, Dreamarena had reached 300,000 registrations, with over half of these users being "active or very active."
 
 - **America Online Service**
+
+  In August 1999, Sega made a deal with AT&T, and consumers who chose AT&T as their ISP had three options: $9.95/hour for 10 hours of access per month, $19.95/month for 150 hours of access per month, or an unlimited access plan for $21.95/month. It became available with Dreamcast's launch. 
   
   Sega announced a new business strategy in 2000 with the creation of a new company called Sega.com, Inc. The company was designed to function as an internet service provider (ISP) and launch an internet service called "SegaNet" later that year. Sega.com's website would be featuring chat, instant messaging, message boards, and other functionality. The company aimed to attract a user base similar to that of AOL. By signing up for two years of SegaNet service, users received a free Dreamcast system and keyboard.
   
