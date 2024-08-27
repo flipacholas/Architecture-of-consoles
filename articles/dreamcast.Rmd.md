@@ -358,10 +358,6 @@ To enhance the browsing experience, a Dreamcast-branded keyboard and mouse were 
   
   SegaNet reached 100,000 subscribers a month after its launch
 
-- **Japan Online Service**
-
-  In Japan DreamKey came free with the Dreamcast.
-
 - **Australia and New Zeland Online Service**
 
   In Australia and New Zeland, Sega partnered with Telstra to develop an online service for the Dreamcast and publish Dreamkey, but it was unavailable at launch due to delays in development and testing. Users had to use Telstra's Big Pond service and the Internet access disc came with 150 hours of free Internet access. The browser went to the Comma web portal powered by LookSmart's search engine.
