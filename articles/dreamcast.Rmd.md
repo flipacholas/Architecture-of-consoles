@@ -316,6 +316,16 @@ You can replace the modem adapter with a broadband adapter to get faster connect
 
 To enhance the browsing experience, a Dreamcast-branded keyboard and mouse were also available for purchase, in case users preferred a PC-style browsing experience. The mouse also had one more button called 'programmable button', 'side button' or 'thumb button'. But it is not clear how to program this programmable button. At the same time, some developers integrated the Mouse and Keyboard into their games. Games like Quake 3, Unreal Tournament, and Outtrigger are some of them.
 
+- **Japan Online Service**
+
+  The Japanese online service: TODO
+
+  - **Dreamcast Direct**
+
+    Dreamcast Direct was an electronic commerce service released in April 27 1999 and operated by SEGA for Japanese.
+  
+    Service allowed Japanese users to purchase Dreamcast accessories, pre-order games and included exclusive games.
+
 - **European Online Service**
 
   The European online service, Dreamarena, was created through a partnership between ICL, BT, and various ISPs. Although the service was free in the UK, other European countries had different access requirements and prices, which made the service expensive for some users. By September 2000, Dreamarena had reached 300,000 registrations, with over half of these users being "active or very active."
