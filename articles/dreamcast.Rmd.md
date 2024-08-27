@@ -336,13 +336,24 @@ To enhance the browsing experience, a Dreamcast-branded keyboard and mouse were 
 
 - **European Online Service**
 
-  The European online service, Dreamarena, was created through a partnership between ICL, BT, and various ISPs. Although the service was free in the UK, other European countries had different access requirements and prices, which made the service expensive for some users. By September 2000, Dreamarena had reached 300,000 registrations, with over half of these users being "active or very active."
+  The European online service Dreamarena, launched in October 14 1999, was created through a partnership between ICL, BT, and various ISPs. Although the service was free in the UK, other European countries had different access requirements and prices, which made the service expensive for some users.
 
-  To sign up for the service, users had to plug their Dreamkey that came with their Dreamcast into the console. With the Dreamkey, you could create an online account, make settings and browse the internet. Without the Dreamkey, you couldn't access the internet and the first version of the Dreamkey didn't allow you to choose your own ISP.
+  In the UK, November 1999, gave an order to remove all references to online gaming from Dreamcast advertisements. That's because online gaming services had not yet been launched because compatible games were not available. As a result, complaints of misleading advertising were filed.
+
+    
+  By September 2000, Dreamarena had reached 300,000 registrations, with over half of these users being "active or very active."
+
+  To promote Dreamarena, Sega Europe decided to launch an advertising campaign and link it to the Euro 2000 that was being played. However, the advertising campaign was unsurprisingly banned due to "condoning and possible incitement of violence".
+
+  To sign up for the service, users had to plug their Dreamkey that came with their Dreamcast into the console. With the Dreamkey, you could create an online account, make settings and browse the internet. Without the Dreamkey, you couldn't access the internet and the first version of the Dreamkey didn't allow you to choose your own ISP. If users registered users would recieve free copy of Chu Chu Rocket.
 
   Dreamkey 2.0 was released in 2001. Send messages with the Dreamcast Mouse, DreamNote and up to 10 seconds of audio with the Dreamcast Microphone. Streamlined registration process. This version also has a "URL Locator", which can display any other (European) Dreamcast users currently looking on the same website. Users could then engage in conversation, providing the Dreamnote feature was turned on.
 
   Dreamkey 3.0 was released in 2002 and was included with Phantasy Star Online Ver. 2.
+
+  In 2001 some European copies of the games such as Daytona USA 2001, Outtrigger and Unreal Tourament didn't released with online playability but this functionality existed in non-European copies of the game.
+
+  When Dreamarena closed in March 2002, the Dreamcast's internet function was made available with the Dreamkey 3.0, allowing users to use the internet by choosing their own ISP even after Dreamarena closed.
 
 - **America Online Service**
 
