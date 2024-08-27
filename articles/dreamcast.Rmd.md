@@ -318,7 +318,13 @@ To enhance the browsing experience, a Dreamcast-branded keyboard and mouse were 
 
 - **Japan Online Service**
 
-  The Japanese online service: TODO
+  The Japanese online service, launched in 1998. TODO
+
+  To sign up for the service users had to insert the ***Dream Passport*** that came with their Dreamcast console. Without Dream Passport users can't access the internet. First version of the Dream Passport gave users ability to browse the web and check email but lacked compatibility and had issues.
+  
+  About one year later Dream Passport 2 released and improved the previous version by new featurs and adding web standars that were missing in predecessor. Users had given time to exchange their old Dream Passport with Dream Passport 2 after that date users had to use Dreamcast Direct (Mentioned later).
+
+  After six months later Dream Passport 2, Dream Passport 3 was released. This version included 43 Sega Mega Drive ROMs that remain unused.
 
   - **Dreamcast Direct**
 
