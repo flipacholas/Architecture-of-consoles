@@ -46,18 +46,18 @@ Hızlı bir şekilde ilerlediğimizde, Nintendo'nun güçlü ama ucuz bir şeye 
 
 ### Özellikler
 
-Gekko'yu bu kadar özel yapan şeyin ne olduğunu bulalım ve bunu yapmak için önce 750CXe'nin sunduklarına bakmamız gerekiyor:
+Gekko'yu bu kadar özel yapan şeyin ne olduğunu bulalım ve bunu yapmak için önce 750CXe'nin sunduklarına bakmamız gerekiyor [@cpu-750cxe]:
 
 - **PowerPC ISA**: Fazla ayrıntıya girmeden, *başka* bir 32 bit RISC komut setidir. 750CXe v1.10 spesifikasyonunu uygular.
 - Harici **64-bit veri yolu**: ISA 32 bitlik bir veri yoluna sığabilse de, daha geniş veri parçalarını (bir sonraki bölümde açıklanmıştır) performans cezalarına çarpmadan taşımamız gerekir.
-- **Süper skaler**: Artık pipeline'nın her aşamasında birden fazla komut yürütülebilir.
+- <strong x-id=“1”>Dual-issue superscalar</strong>: Gerekli birimler mevcutsa, CPU boru hattının aynı aşamasında en fazla iki talimatı işleyebilir. Sıranın bir dallanma talimatı içermesi durumunda, olası eşzamanlı talimatların sayısı **üç**'e yükseltilir.
 - **Sıra dışı yürütme**: CPU, tüm birimlerinin çalışmasını sağlamak için talimat sırasını yeniden düzenleyebilir, böylece verimliliği ve performansı artırır.
-- **İki Tamsayı Birimi**: Süper skaler ve sıra dışı ile birleştiğinde, temel olarak birim zamanda yapılan tamsayı işlemlerinin sayısını artırır.
+- **İki Tamsayı Birimi**: Superscalar ve out-of-order modeli ile birlikte, birim zamanda yapılan tamsayı işlemlerinin sayısını artırır.
 - 32-bit ve 64-bit kayıtlara sahip **entegre FPU**: Kayan ve çift sayılarla yapılan işlemleri hızlandırır.
 - **Dört aşamalı pipeline (bonus ile)**: [İşte](game-boy-advance#cpu) komut ardışık düzenine önceki bir giriş. 750CXe'de FPU işlemleri üç aşamaya daha bölünürken (toplamda 7 aşama), load-store işlemleri ikiye bölünmüştür (toplamda 5 aşama).
   - Sonuç olarak bu, komut verimini [kontrolden çıkmadan artırır](xbox#tab-1-3-the-microarchitecture).
 
-Ek olarak ve RISC yapısı nedeniyle, bu CPU ayrıca belirli hesaplamaları hızlandırmak için özel birimler içerir [@cpu-stokes]:
+Ayrıca, CPU belirli hesaplamaları hızlandırmak için özel birimler de içerir [@cpu-stokes]:
 
 - **Branch Prediction Unit**: Değerlendirilmesi gereken bir koşul olduğunda (CPU'nun 'A' yolunu mu yoksa 'B' yolunu mu izlemesi gerektiğine karar verecek olan), CPU bunun yerine önceki yürütmelere dayalı yollardan birini izleyecek ve ardından koşulu değerlendirecektir. Eğer tahmin doğru çıkarsa, CPU zaman kazanmış olacak, doğru çıkmazsa tersine dönecek ve doğru yolu izleyecektir.
 - **Dedicated load-store unit**: Kayıtları işleyen birimler ile ana belleği işleyen birimleri birbirinden ayırır.
@@ -129,7 +129,7 @@ Bu işi yapmak için, Gekko (ve diğer PowerPC mimarileri) sanal adresleri fizik
 
 Peki bunun geliştiriciler için ne faydası var? Nintendo'nun **Aram** kullanarak ana RAM'i sayfalama yardımıyla genişleten bazı kütüphaneler yayınladığı ortaya çıktı. Özetlemek gerekirse, ARAM adreslenebilir değildir, ancak CPU buradan veri almak ve depolamak için DMA'yı çağırabilir. Böylece CPU, diğer kaynaklara yer açmak için sayfaları ana RAM'den taşıyabilir ve bunları geçici olarak ARAM'de depolayabilir. Daha sonra, bir sayfa hatası oluştuğunda, işletim sistemi ARAM'deki eksik sayfaları aramak ve bunları ana RAM'deki orijinal konumlarına geri yüklemek için rutinler içerir.
 
-Sonuç olarak, bazı akıllıca hilelerle, bu genel amaçlı yetenekler GameCube oyunlarının teknik olarak izin verilenden daha fazla bellekten yararlanmasını ve böylece daha yüksek kalite seviyelerine ulaşmasını sağladı. Yine de, bu tür hilelerin bazı performans cezalarıyla birlikte gelebileceğini akılda tutmak önemlidir (özellikle de hafife alınırlarsa).
+Sonuç olarak, bazı akıllıca hilelerle, bu genel amaçlı yetenekler GameCube oyunlarının teknik olarak izin verilenden daha fazla bellekten yararlanmasını ve böylece daha yüksek kalite seviyelerine ulaşmasını sağladı. Ancak, bu tür hilelerin bazı performans cezalarıyla birlikte gelebileceğini akılda tutmak önemlidir (özellikle de hafife alınırlarsa).
 
 ## Grafikler
 
