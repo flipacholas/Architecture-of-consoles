@@ -1,12 +1,13 @@
 ---
-short_title: Xbox Mimarisi
-long_title: Xbox Mimarisi
+short_title: Xbox'ın Mimarisi
+long_title: Xbox'ın Mimarisi
 name: Xbox
 subtitle: Korkulan bir rakip
 date: 2020-06-26
 release_date: 2001-11-15
 cover: "xbox"
 generation: 6
+seo_image_pos: "Bottom"
 top_tabs:
   Model:
     file: international
@@ -33,7 +34,7 @@ Lütfen bu makalenin diğer kaynaklarla tutarlılık sağlamak amacıyla depolam
 
 ### Okuma İpuçları
 
-Bu yazıyı yazdıktan birkaç ay sonra fark ettim ki bu, yaptığım en yoğun yazılardan biri. Xbox'un içinde gerçekten çok şey oluyor ve ben çoğunu anlatmaya çalıştım.
+Bu yazıyı yazdıktan birkaç ay sonra fark ettim ki bu, yaptığım en yoğun yazılardan biri. Xbox'ın içinde gerçekten çok şey oluyor ve ben çoğunu anlatmaya çalıştım.
 
 Şimdi, eğer gerçekten bu sistemi anlamakla ilgileniyorsanız ve bu makaleyi takip etmekte zorlanıyorsanız, size verdiğim tavsiye şu: **Rahat olun**, makale başka bir yere gitmiyor. Kendinize ilginç gelen konulara odaklanın, kendi hızınızda okuyun, destek için 'Kaynaklar' bölümündeki bağlantılara göz atın ve sonunda kendinize baskı yapmayın, burada bir sınav yok!
 
@@ -41,7 +42,9 @@ Bu yazıyı yazdıktan birkaç ay sonra fark ettim ki bu, yaptığım en yoğun 
 
 ## İşlemci (CPU)
 
-Bu konsolda bulunan işlemci, ünlü **Intel Pentium III**ün (bilgisayarlar için hazır bir CPU) hafif özelleştirilmiş bir versiyonudur ve **733 MHz** hızında çalışır. Bu sayede bu konsolun sahne arkasında sadece bir PC olduğunu varsayabiliriz... Size cevabı söylemeyeceğim, ancak makalenin sonunda kendi sonucunuza ulaşabileceğinizi vaat ediyorum.
+Bu konsolda bulunan işlemci, ünlü **Intel Pentium III**'ün (bilgisayarlar için hazır bir CPU) hafif özelleştirilmiş bir versiyonudur ve **733 MHz** hızında çalışır. Bu sayede bu konsolun sahne arkasında sadece bir PC olduğunu varsayabiliriz... Size cevabı söylemeyeceğim, ancak makalenin sonunda kendi sonucunuza ulaşabileceğinizi vaat ediyorum.
+
+![Xbox'ın anakartındaki Intel Pentium III paketi.](cpu.jpg)
 
 Neyse, Pentium'lar, Intel tarafından tasarlanan ve üretilen diğer CPU hatlarıyla birlikte bilgisayar pazarında son derece popülerdi. Intel'in pazar payı o kadar büyüktü ki, kalite açısından bir referans noktası haline geldiler: Tipik bir kullanıcı olarak, iyi bir bilgisayar istiyorsanız ve bütçeniz varsa, sadece bir Intel CPU taşıyan bir şey *aramanız* yeterliydi. Şimdiye kadar daha fazla faktör olduğunu biliyoruz, ancak bu, Intel'in pazarlama ekibinin başardığı şeydi.
 
@@ -55,19 +58,19 @@ Bununla birlikte, şöyle bir göz atalım:
 
 ![Bu çalışma nasıl düzenlenmiştir.](cpu/branding.png) {.tab-float}
 
-İlk olarak, Xbox'un CPU'su **Pentium III** olarak tanımlanır. Peki, bu ne anlama geliyor? O dönemde (erken 2000'ler), Pentium serisi, bilgisayarları süper hızlı yapan tüm şık teknolojiyi bir araya getiren 'yeni yüksek kalite'yi temsil ediyordu ve alıcıların *en iyisi*ni istiyorsa hangi CPU'yu satın alması gerektiğine karar vermelerine yardımcı oluyordu.
+İlk olarak, Xbox'ın CPU'su **Pentium III** olarak tanımlanır. Peki, bu ne anlama geliyor? O dönemde (erken 2000'ler), Pentium serisi, bilgisayarları süper hızlı yapan tüm şık teknolojiyi bir araya getiren 'yeni yüksek kalite'yi temsil ediyordu ve alıcıların *en iyisi*ni istiyorsa hangi CPU'yu satın alması gerektiğine karar vermelerine yardımcı oluyordu.
 
-Pentium III, Pentium II'nin yerine geçti, ki bu da orijinal Pentium'un yerine geçti. Dahası, ilk Pentium çıktığında, 80486'nın yerine geçti, ki bu da 80386'nın yerine geçti... Demek istediğimi anlamışsınızdır. Önemli olan 'Pentium'ın esasen bir marka adı olduğu, iç işleyişle doğrudan ilişkilendirilmediğidir. Bu nedenle, daha da derinlere inmeliyiz!
+Pentium III, Pentium II'nin yerine geçti, ki bu da orijinal Pentium'un yerine geçti. Dahası, ilk Pentium çıktığında, 80486'nın yerine geçti, ki bu da 80386'nın yerine geçti... Demek istediğimi anlamışsınızdır. Önemli olan 'Pentium'un esasen bir marka adı olduğu, iç işleyişle doğrudan ilişkilendirilmediğidir. Bu nedenle, daha da derinlere inmeliyiz!
 
 Daha fazla kaybolmamak ve derinleşmek için, bilgiyi üç bölüme kataloglamış bulunmaktayım: **Instruction Set Architecture (ISA)** veya 'ISA' (CPU'ya komut vermek için kullanılan talimatlar grubu), **Mikro mimari** (ISA'nın silikonda nasıl uygulandığı) ve **Core** (belirli CPU modelini oluşturmak için mikro mimariyi paketlemek için kullanılan bileşen seti).
 
 #### ISA {.tab}
 
-Gerçekten de 'Intel'ı bahsettiğimden sonra, ünlü **x86**'yı, yani talimat kümesini tanıtmadan önce sıra geldi.
+Gerçekten de 'Intel'den bir kez bahsettiğimde, ünlü <strong x-id=“1”>x86</strong> komut setini tanıtmam an meselesidir.
 
-x86'nın ilk biçimi, 1978'de piyasaya sürülen 16-bit bir CPU olan **Intel 8086** ile ortaya çıktı. Sonrasında, ISA, daha fazla Intel CPU'su piyasaya sürüldükçe (80186, 80286 ve benzerleri) daha fazla talimatla sürekli olarak genişletildi [@cpu-thompson]. Bu nedenle, x86, daha fazla çığır açan özellik eklenirken (örneğin 'koruma modu' ve 'uzun mod'), parçalanmaya başladı. Bu sorunu çözmek için modern x86 uygulamaları genellikle 80386 ISA'sına (ayrıca **IA-32** veya **i386** olarak adlandırılır) temel olarak, 32-bit bir ortamda çalışan bir başlangıç noktası olarak hedefler.
+x86'nın ilk biçimi, 1978'de piyasaya sürülen 16-bit bir CPU olan **Intel 8086** ile ortaya çıktı. Sonrasında, ISA daha fazla Intel CPU'su piyasaya sürüldükçe sürekli olarak daha fazla talimatla genişletildi (80186, 80286 ve benzerleri) [@cpu-thompson]. Bu nedenle, x86, daha fazla çığır açan özellik eklenirken (örneğin 'koruma modu' ve 'uzun mod'), parçalanmaya başladı. Bu sorunu çözmek için modern x86 uygulamaları genellikle 80386 ISA'sına (ayrıca **IA-32** veya **i386** olarak adlandırılır) temel olarak, 32-bit bir ortamda çalışan bir başlangıç noktası olarak hedefler.
 
-Sonuç olarak, Intel, IA-32'yi **uzantılar** kullanarak geliştirdi, bu da yeni işlevlerin bir IA-32 CPU'sunda olup olmadığına bağlı olarak değişebileceği anlamına geliyor. Programlar, belirli bir geliştirmenin mevcut olup olmadığını kontrol etmek için CPU'yu sorgular. Xbox'un CPU'su, iki uzantı içerir:
+Sonuç olarak, Intel, IA-32'yi **uzantılar** kullanarak geliştirdi, bu da yeni işlevlerin bir IA-32 CPU'sunda olup olmadığına bağlı olarak değişebileceği anlamına geliyor. Programlar, belirli bir geliştirmenin mevcut olup olmadığını kontrol etmek için CPU'yu sorgular. Xbox'ın CPU'su, iki uzantı içerir:
 
 - **MMX** (Multimedya Uzantısı): Vektör işlemlerini hızlandırabilen 57 SIMD talimatı ve yalnızca tamsayıları içeren 8 adet 64-bit kayıt ekler.
 - **SSE** (Akışkan SIMD uzantısı): MMX'in eleştirilerine (ondalık noktalı destek eksikliği ve ondalık noktalı birimi paralel olarak kullanamama) yanıt olarak eklenen başka bir SIMD türü uzantısıdır. 56 yeni talimat ekler ve dört 32-bit `float` değerini içeren sekiz 128-bit kayıta ('XMM' olarak adlandırılır) sahiptir.
@@ -76,11 +79,11 @@ Sonuç olarak, Intel, IA-32'yi **uzantılar** kullanarak geliştirdi, bu da yeni
 
 #### Mikromimari {.tab}
 
-x86 talimatlarını yorumlayabilen bir devre inşa etme konusunda, Intel CPU'ları için çok sayıda farklı tasarım geliştirmiştir. Bazı tasarımlar, yeni bir Pentium Serisi'nin piyasaya sürülmesiyle (örneğin Pentium 4) öne çıkarken, diğerleri Intel bir Pentium'un 'gelişmiş' bir versiyonunu piyasaya sürdüğünde (örneğin 'Pentium Pro') ortaya çıkar. Bununla birlikte, ilk Pentium'un piyasaya sürülmesinden bu yana, CPU modeli ve mikromimari artık aynı adı taşımamaktadır. Örneğin, 80486, yalnızca 80486 mikromimarisini kullanır (ve başka bir şey değil), ancak orijinal Pentium'un 'P5' mikromimarisine sahiptir.
+x86 talimatlarını yorumlayabilen bir devre inşa etme konusunda, Intel CPU'ları için çok sayıda farklı tasarım geliştirmiştir. Bazı tasarımlar, yeni bir Pentium Serisi'nin piyasaya sürülmesiyle (örneğin, Pentium 4) öne çıkarken, diğerleri Intel bir Pentium'un 'gelişmiş' bir versiyonunu piyasaya sürdüğünde (örneğin 'Pentium Pro') ortaya çıkar. Bununla birlikte, ilk Pentium'un piyasaya sürülmesinden bu yana, CPU modeli ve mikromimari artık aynı adı taşımamaktadır. Örneğin, 80486, yalnızca 80486 mikromimarisini kullanır (ve başka bir şey değil), ancak orijinal Pentium'un 'P5' mikromimarisine sahiptir.
 
 Şimdi, Xbox CPU'su, geri kalan Pentium III işlemcileri ile birlikte **P6 Mikromimari**'yi (aynı zamanda 'i686' olarak da bilinir) kullanır. Bu, 8086'dan saymaya başladığımızda 6. nesildir ve şunları içerir:
 
-- *Devasa***14 Aşamalı Pipeline**: Bu, paralel olarak 14 talimatın işlenebileceği anlamına gelir. Öte yandan, bireysel talimatlar tamamlanmak için çok daha fazla döngü alabilir. [Daha önceki bir açıklamaya](game-boy-advance#tab-2-2-the-core) bakın.
+- *Devasa* **14 Aşamalı Pipeline**: Bu, paralel olarak 14 talimatın işlenebileceği anlamına gelir. Öte yandan, bireysel talimatlar tamamlanmak için çok daha fazla döngü alabilir. [Daha önceki bir açıklamaya](game-boy-advance#the-core) bakın.
 - **Sıradışı Yürütme**: Mümkünse, CPU talimatların sırasını artırmak için yeniden düzenler ve verimliliği artırır.
 - **Dinamik Yürütme**: P6, sıradışı ve [üst ölçekli](dreamcast#cpu) bir tasarım olduğundan. Geleneksel [dal tahmincisi](gamecube#features) şimdi diğer tekniklerle birleştirilmiştir ('spekülatif yürütme' ve 'veri akış analizi'), yeni yeteneklerden faydalanmak için. Böylece, Pipeline durmaları daha da azaltır.
 
@@ -88,34 +91,36 @@ Bu özelliklere biraz daha yakından bakalım. Bu özellikler, [önceki konsolla
 
 #### CISC veya RISC {.tab}
 
-Aynı neslin diğer rakip konsollarının tamamı **RISC** CPU içerirken, Intel'in x86'ları **CISC**'tir. RISC CPU'ları, CISC CPU'larına kıyasla basitleştirilmiş bir talimat kümesine sahip olmalarıyla bilinir. Bu, örneğin, değerleri doğrudan bellekten çalıştırmama (yalnızca kayıtlardan değerleri çalıştırma) gibi talimatları sağlamamayı içerir. Bu basitleştirilmiş model, **load–store architecture (yükle-depolama mimarisi)** olarak adlandırılır.
+İlginç bir şekilde, rekabette yer alan işlemciler [**RISC yönergeleri**](playstation#tab-1-1-a-bit-of-history) etrafında tasarlanmışken, Intel'in x86 işlemcileri bu şekilde tasarlanmamıştır ve bu nedenle **CISC** grubuna dâhil edilmektedir. RISC işlemcileri, CISC işlemcilerine kıyasla sadeleştirilmiş bir tasarıma sahip oldukları bilinmektedir. Bu, örneğin, (bellekten doğrudan işlem yapmanın aksine) yalnızca register'lardaki değerler üzerinde işlem yapan komutlar sağlayan bir **load-store mimarisinin** uygulanmasını içerir.
 
-RISC işlemcilerinin avantajlarından biri, basit yaklaşımlarının CPU'larını modüler bir şekilde tasarlanmasına olanak tanımasıdır, bu da sıralı paralellik teknikleri ile performansı artırmak için kullanılabilir. Bu nedenle, MIPS ve PowerPC gibi CPU'lar, boru hattı aşamalarını, üst ölçekli tasarımları, sıradışı yürütme, dal tahminlemesi vb. gibi görmüştük. Öte yandan, 'CISC' işlemcileri, RISC işlemcileri göründüklerinden çok önce tasarlandı ve eski ihtiyaçları çözmeyi amaçladı. Bu nedenle tasarımları, RISC olanlar kadar esnek değildir.
+RISC işlemcilerinin avantajlarından biri, basit yaklaşımlarının CPU'larını modüler bir şekilde tasarlanmasına olanak tanımasıdır, bu da sıralı paralellik teknikleri ile performansı artırmak için kullanılabilir. Bu nedenle, MIPS ve PowerPC gibi CPU'lar, boru hattı aşamalarını, üst ölçekli tasarımları, sıradışı yürütme, dal tahminlemesi vb. gibi görmüştük. Öte yandan, CISC işlemcileri RISC işlemcilerinden daha eski ve daha farklı ihtiyaçları çözmeyi amaçlıyordu. Bu nedenle tasarımları, RISC İşlemciler kadar esnek değildir.
 
-Orijinal soruya dönersek, P6 ilginç bir tasarımdır, çünkü bu CPU yalnızca CISC talimat kümesini (x86) anlar, ancak opcodes'ın bir alt kümesi **mikro kod** kullanılarak yorumlanır. Dahası, mikro kodu yürüten ünite, 'yükle-depolama' modeli etrafında inşa edilmiştir [@cpu-gwennap]. Sonuç olarak, Intel'in tarihi x86 ISA ile uyumluluğu bozmadan RISC işlemcilerle benzer avantajlar elde etmesine izin verir.
+Orijinal soruya dönersek, P6 ilginç bir tasarımdır, çünkü bu CPU yalnızca CISC talimat kümesini (x86) anlar, ancak opcodes'ın bir alt kümesi **mikro kod** kullanılarak yorumlanır. En önemlisi, mikro kodu çalıştıran birim <strong x-id=“1”>yükle-depolama modeli</strong> [@cpu-gwennap] etrafında oluşturulmuştur. Bunun nedeni, P6 mimarisinin <strong x-id=“1”>Intel i960</strong>'ın (Intel'in bir zamanlar umut vaat eden RISC CPU'su) eski mühendisleri tarafından yazılmış olmasıdır. Sonuç olarak, Intel'in tarihi x86 ISA ile uyumluluğu bozmadan RISC işlemcilerle benzer avantajlar elde etmesine izin verdi. Zaman geçtikçe, 'CISC' ve 'RISC' gibi terimlerin herhangi bir modern CPU'yu kategorize etmek için çok belirsiz hale geldiğini söylemek doğru olacaktır.
 
-Ayrıca, mikro kod zaten silikon içine gömülüdür, ancak bir hata veya güvenlik açığı keşfedildiğinde Intel'in CPU'larını üretimden sonra düzeltmesine izin vermek için yamalanabilir. Önceki makaleleri okuduysanız (örneğin [N64](nintendo-64) veya [PS2](playstation-2)), Intel'in mikro kodu **genel olarak erişilebilir değildir** (daha da belgelenmiş değil) ve Intel, tek 'bakıcı' dır.
+Bir yan not olarak, mikrokod zaten silikona gömülüdür, ancak Intel'in bir hata veya güvenlik açığı keşfedildiğinde CPU'larını üretimden sonra düzeltmesine izin vererek güncellenebilir. Önceki makaleleri okuduysanız (örneğin [N64](nintendo-64) veya [PS2](playstation-2)), Intel'in mikro kodu **genel olarak erişilebilir değildir** (daha da belgelenmiş değil) ve Intel, tek 'bakıcı' dır.
 
 #### Çekirdek {.tab}
 
 ![Coppermine dizaynı.](cpu/core.png) {.tab-float}
 
-P6 mikromimarisini uygulayan birçok çip sevk edildi. Özellikle, Xbox, **Coppermine** adlı bir model içerir. Bu aynı zamanda Pentium III'ün ikinci revizyonu olarak piyasaya sürüldü ('Katmai' çekirdeğinin yerini alır) ve şu bileşenlere sahiptir:
+Intel, P6 mikromimarisini uygulayan birçok çip sevk etti. Xbox, **Coppermine** adlı bir model içerir. Bu aynı zamanda Pentium III'ün ikinci revizyonu olarak markalanmıştır ('Katmai' çekirdeğinin yerini alır) ve şu bileşenlere sahiptir:
 
 - **32 KiB L1** önbellek: Talimatlar için 16 KiB, veriler için 16 KiB arasında bölünmüştür.
 - Entegre **128 KiB L2** önbelleği: Bu biraz *garip*, çünkü hazır Coppermine'nin 256 KiB L2 önbelleği bulunmaktadır [@cpu-anand]. Aslında, Coppermine128 (Intel 'Celeron' markasında bulunan, düşük seviyeli Pentium alternatifi) aynı miktarda L2'ye sahiptir [@cpu-shvets]. Bu nedenle, bu muhtemelen üretim maliyetlerini düşürmek ve bu konsolu rekabetçi bir fiyatta tutmak için yapılmış olabilir.
 - 133 MHz **Front-side bus (Ön taraf veriyolu)**: Bu, L2 önbelleği ile bellek denetleyicisini bağlayan otobüstür, bununla ilgili daha fazla bilgiye daha sonra göz atacağız.
-  - Intel buna 'Ön yüz veriyolu' adını verir, bu, L2 (harici önbellek) ile L1 (iç önbellek) arasında bağlantı kuran başka bir otobüsten ayırt etmek içindir. İkinci otobüs 'Arka yüz veriyolu' olarak adlandırılır.
+  - Intel buna 'Front-side bus' adını verir, bu, L2 (harici önbellek) ile L1 (iç önbellek) arasında bağlantı kuran başka bir otobüsten ayırt etmek içindir. İkinci otobüs 'Back-side bus' olarak adlandırılır.
 
-Coppermine ayrıca L2 önbelleğin orijinal uygulamasına iki 'geliştirme' ekler, bunlar **Advanced Transfer Cache (Gelişmiş Transfer Önbellek)** ve **Advanced System Buffering (Gelişmiş Sistem Tamponlama)**'dır. Bunları özetlemek gerekirse, L2 önbellek çipte yer alır ve veriyolları daha geniştir, bu da Ön yüz veriyolunda olası darboğazları azaltmaya yardımcı olur.
+Coppermine ayrıca L2 önbelleğin orijinal uygulamasına iki 'geliştirme' ekler, bunlar **Advanced Transfer Cache (Gelişmiş Transfer Önbellek)** ve **Advanced System Buffering (Gelişmiş Sistem Tamponlama)**'dır. Özetlemek gerekirse, L2 önbellek çipte yer alır ve veriyolları daha geniştir, bu da Ön yüz veriyolunda olası darboğazları azaltmaya yardımcı olur.
 
 Son olarak, çip, anakart üzerine takılan 'Micro-PGA2' soketini kullanır, ancak diğer tüm konsollar gibi, Xbox'un üzerine 'Ball Grid Array' veya 'BGA' ile lehimlenmiştir.
 
 ### P6 ve Pentium numaralarının sonu {.tabs-close}
 
-İşte biraz daha tarih. P6 yıllarının ardından Intel, 'NetBurst' mikromimarisini (Pentium IV'de kullanılan) başarılı bir şekilde takip etmeyi planladı. Ancak, ardıllık çizgisi de burada sona erdi. NetBurst, birçok çağdaş teknikleri uygulasa da [@cpu-netburst], aynı zamanda aşırı güç tüketimi, ısı yayılması ve ölçeklenebilirlik sorunlarından muzdarip oldu ve tasarımın daha fazla devam etmesini engelledi.
+İşte biraz daha tarih. P6 yıllarının ardından Intel, 'NetBurst' mikromimarisini (Pentium IV'de kullanılan) başarılı bir şekilde takip etmeyi planladı. Ancak, ardıllık çizgisi de burada sona erdi. NetBurst birçok modern tekniği uygulamasına rağmen [@cpu-netburst], aşırı güç tüketimi, ısı emisyonu (ortalama 85 W [@cpu-pentium4]) ve ölçeklendirilebilirlik sorunlarından dolayı sıkıntılar yaşamıştır - tüm bunlar tasarımın daha fazla devam etmesini engellemiştir.
 
-Sonuç olarak, bu, düşük güçlü P6 CPU'larını tekrar ziyaret etmek ve daha güçlü bir halefi geliştirmek isteyen bir Intel ekibini teşvik etti. İlk sonuç **Yonah** idi, P6 tasarımının hafif bir gelişimi, **Core Solo** veya **Core Duo** olarak markalandı. Birkaç ay sonra, yeni **Core** mikromimarisi, P6'nın (ve NetBurst'ün) bayrak gemisi halefi olarak **Core 2** CPU serisi ile geldi. Yıllar içinde, ardışık mikromimari gelişmeleri birçok yönü iyileştirdi, ancak aynı hataları tekrarlamadan NetBurst'ten unutulan unsurları yeniden dahil etmeyi başardı.
+Sonuç olarak, bu durum İsrail'deki Intel ekibini düşük güçlü P6 CPU'larını - 'Pentium M' - yeniden gözden geçirmeye ve daha güçlü bir ardıl geliştirmeye sevk etti. İlk sonuç **Yonah** çekirdeği idi, P6 tasarımının hafif bir gelişimi, **Core Solo** veya **Core Duo** olarak markalandı. Bununla birlikte, güç tüketimi makul rakamlara düştü (varyanta bağlı olarak 27 W [@cpu-coresolo] ile 31 W [@cpu-coreduo] arasında değişmektedir). Aylar sonra, <strong x-id=“1”>Core</strong> mikromimarisi P6'nın (ve NetBurst'ün) amiral gemisi ardılı oldu ve yeterince kafa karıştırıcı bir biçimde raflara <strong x-id=“1”>Core 2</strong> işlemci serisi olarak ulaştı. Yıllar içinde, ardışık mikromimari gelişmeleri birçok yönü iyileştirdi, ancak aynı hataları tekrarlamadan NetBurst'ten unutulan unsurları yeniden dahil etmeyi başardı.
+
+İlginç bir not olarak, Yonah çekirdeğinin isimlendirilmesinin Yunus Kitabı için bir metafor olup olmadığını merak ediyorum, özellikle de peygamberin sonunda Ninova şehrini kurtarmak için yolunu düzeltmeyi başardığı olayla bağlantılı olarak. Gerçi bunu fazla düşünüyor da olabilirim.
 
 ### Anakart Mimarisi
 
@@ -148,11 +153,13 @@ Ayrıca, konsol dahili bir sabit disk içerir ve *tesadüfen* geçici depolama i
 
 Daha önce gördüğümüz gibi, grafik işlemcisi NV2A çipinde bulunur ve MCPX gibi, Nvidia tarafından üretilmiştir.
 
-![Halo (2001) 720p modunda.](halo.png)
+![Xbox'ın anakartındaki Nvidia NV2A paketi.](gpu.jpg)
 
 Bu şirket uzun süredir grafik işinde bulunmaktadır; *GeForce* serileri bilgisayar pazarında en popüler GPU markalarından biridir ve doğrudan ArtX/ATI'nin Radeon serisi ile rekabet eder. Genel olarak, bu, Microsoft'un konsol pazarındaki ilk denemesine rağmen Xbox'taki grafik kalitesi üzerinde iyi bir etki sağlar.
 
 Her şey mantıklı görünüyor, ancak o zaman *gerçekten* bu kararı vermek kesin bir karar mıydı? Microsoft'un o dönemde Nvidia'yı diğer popüler markalardan (3dfx, PowerVR, S3, vb.) neden seçtiğini öğrenmek için şu anki tarihe güvenmek kolaydır, ancak o zamanlar rekabeti daha karmaşık hale getiren birçok seçenek vardı.
+
+![Halo (2001) Xbox'ın 720p modunda çalışırken.](halo.png)
 
 Örneğin, 3dfx'in popüler 'Voodoo 2' serisi, 90'ların sonuna kadar PC pazarının ~%70'ini elinde bulunduruyordu [@graphics-ign], Nvidia ise yeni 'GeForce 256'yi (GeForce serisinin ilk modeli) benimsetmekte zorlanıyordu. Bu durumda, Microsoft'un seçimi şimdi daha çok bir risk gibi görünüyor, ancak şu anda bildiğimiz gibi, bu risk sonunda karşılığını verdi.
 
@@ -168,13 +175,13 @@ NV2A üzerinde bulunan GPU çekirdeği, popüler 'GeForce3' serisine dayanmaktad
 
 ![NV2A'nın pipeline tasarımı.](NV2A_Pipeline.png) {.open-float}
 
-Lütfen unutmayın ki, Xbox'ın GPU'sunun boru hattı NV20 mimarisine dayanmasına rağmen, NV2A'nın geri kalan NV20 serisi ile uyumlu olmayan bazı modifikasyonlara sahiptir (en önemlisi, bir UMA ortamında çalışacak şekilde adapte edilmiştir).
+Lütfen unutmayın ki, Xbox'ın GPU'sunun pipeline NV20 mimarisine dayanmasına rağmen, NV2A'nın geri kalan NV20 serisi ile uyumlu olmayan bazı modifikasyonlara sahiptir (en önemlisi, bir UMA ortamında çalışacak şekilde adapte edilmiştir).
 
 Analiz edilen üniteler, bu makalenin kapsamını aşan birçok özelliğe sahiptir, bu nedenle bu bölüm ilginizi çekiyorsa kaynakları/bağlantıları kontrol etmenizi öneririm. Ayrıca, grafiklerle ilgili terimler sürekli evrildiği için (bu da bazı karışıklıklara yol açabilir), Xbox'ın yayınlandığı yıllarda Microsoft/Nvidia tarafından kullanılan terimlere güvenmeye karar verdim, bu nedenle diğer kaynaklardan daha fazla grafiklerle ilgili makaleler okumayı planlıyorsanız bunu hatırlayın.
 
 {.close-float}
 
-Bunu söylendikten sonra, Xbox'ta karelerin nasıl çizildiğine bir göz atalım. Bazı açıklamalar GameCube'un [Flipper](gamecube#graphics) ile çok benzer olduğu için, bu makaleyi takip etmekte zorlanıyorsanız, bu makaleyi de okumanız size yardımcı olabilir.
+Bunu söylendikten sonra, Xbox'da karelerin nasıl çizildiğine bir göz atalım. Bazı açıklamalar GameCube'un [Flipper](gamecube#graphics) ile çok benzer olduğu için, bu makaleyi takip etmekte zorlanıyorsanız, bu makaleyi de okumanız size yardımcı olabilir.
 
 #### Komutlar {.tabs.active}
 
@@ -208,7 +215,7 @@ Bu aşamada, vertex'ler piksellere dönüştürülür. İşlem, her üçgeni çi
 
 Sonuçta elde edilen pikseller, bir **ortak kayıt kümesine** depolanır ve ardından her biri bunlara aritmetik işlemler uygulayan **8 register birleştirici**den geçirilir. Bu işlem, GPU tarafından yürütülen bir başka tür program olan **piksel shader**'larının kullanımıyla **programlanabilir** bir nitelik taşır [@graphics-wasson]. Her döngüde, her bir birleştirici, kayıt kümesinden RGBA değerlerini (RGB + Alpha) alır [@graphics-spitzer]. Ardından, shader tarafından belirlenen işleme dayanarak değerleri işler ve sonucu geri yazar. Son olarak, daha büyük bir miktar değer, yalnızca speküler renkleri karıştırabilir ve/veya sis ekleyebilen **son birleştiriciye** gönderilir.
 
-Register birleştiricileri, [Doku Ortam Birimi](gamecube#tab-1-3-texture) ile benzer bir şekilde programlanabilir. Yani belirli bir kombinasyonu ayarlarıyla register'ları değiştirerek. Xbox'ın durumunda, PFIFO, PGRAPH'ı kurmak için pushbuffer'ları okur, bu da register birleştiricilerini ve doku shader'larını içerir.
+Register birleştiricileri, [Texture Environment Unit](gamecube#tab-1-3-texture) ile benzer bir şekilde programlanabilir. Yani belirli bir kombinasyonu ayarlarıyla register'ları değiştirerek. Xbox'ın durumunda, PFIFO, PGRAPH'ı kurmak için pushbuffer'ları okur, bu da register birleştiricilerini ve doku shader'larını içerir.
 
 #### Post-processing (İşlem Sonrası) {.tab}
 
@@ -216,11 +223,11 @@ Register birleştiricileri, [Doku Ortam Birimi](gamecube#tab-1-3-texture) ile be
 
 Piksellerin çerçeve belleğine yazılmadan önce, NV2A, ana bellekte ayrılmış blokları kullanarak gerekli testleri (alfa, derinlik ve damga) gerçekleştiren dört adanmış motor içeren **Raster Output Unit** veya 'ROP' içerir. Son olarak, piksel toplulukları (her biri dört piksel) yalnızca bu testleri geçerse geri yazılır.
 
-Ayrıca, çerçeve belleği **multisampling (çok örnekleme)** bir teknik olan çok örneklemeli kullanılarak anti-aliasing uygulanabilir [@graphics-geforce3]. Temelde, bu teknik çok sayıda örnek ile poligon kenarlarını örnekler ve bu süreçte farklı ofsetler ekler. Ardından, tüm örnekler ortalama alınır ve anti-aliased görüntüyü oluşturmak için kullanılır. Bu yaklaşım, önceki (ve daha fazla kaynak tüketen) anti-aliasing işlevini olan 'çok örneklemeli'yi, önceki Nvidia GPU'ları tarafından kullanılanı, değiştirdi.
+Ayrıca, çerçeve belleği **multisampling (çok örnekleme)** bir teknik olan çok örneklemeli kullanılarak anti-aliasing uygulanabilir [@graphics-geforce3]. Aslında bu teknik, çokgenlerin kenarlarını, sürece eklenen farklı ofsetlerle birden çok kez örneklemektedir. Ardından, tüm örnekler ortalama alınır ve anti-aliased görüntüyü oluşturmak için kullanılır. Bu yaklaşım, önceki (ve daha fazla kaynak tüketen) anti-aliasing işlevini olan 'çok örneklemeli'yi, önceki Nvidia GPU'ları tarafından kullanılanı, değiştirdi.
 
 ### Programlanabilirliğin Önemi {.tabs-close}
 
-Nvidia'nın geliştirdiği yeni programlama modelinin önemini vurgulamanın önemli olduğunu düşünüyorum. Yıllar önce, grafik boru hattının büyük bir kısmı CPU tarafından hesaplanırken, GPU'ya pikselleştirme (rasterisation) işlemlerini hızlandırma görevi bırakılmıştı. 'Shader'lar (piksel shader'lar ve vertex programları için referans) tanıtıldığında, programcılar GPU'nun kaynaklarından faydalanarak boru hattındaki birçok hesaplamayı hızlandırabilir, CPU üzerindeki büyük bir iş yükünü hafifletebilir.
+Nvidia'nın geliştiricilere sunduğu yeni programlanabilirlik modelinin önemini vurgulamayı çok önemli buluyorum. Yıllar önce, grafik boru hattının büyük bir kısmı CPU tarafından hesaplanırken, GPU'ya pikselleştirme (rasterisation) işlemlerini hızlandırma görevi bırakılmıştı. 'Shader'lar (piksel shader'lar ve vertex programları için referans) tanıtıldığında, programcılar GPU'nun kaynaklarından faydalanarak boru hattındaki birçok hesaplamayı hızlandırabilir, CPU üzerindeki büyük bir iş yükünü hafifletebilir.
 
 'Shader' kavramı, **Pixar'ın** 1989'da **Renderman**'ı genişletmek için geliştirdiği bir yöntem olarak tanıtıldı [@graphics-pixar], bu, 3D renderlama için kullanılan öncü yazılımlarından biriydi. Bu, 3D grafiklerin çoğunlukla endüstriyel ekipmanlar tarafından işlendiği zamanlara denk geliyor. Daha sonra, belirli konsolların [benzer prensipleri](nintendo-64#tab-1-1-reality-signal-processor) dahil ettiğini gördük, ancak Nvidia GeForce3 serisini piyasaya sürdüğünde, shader'lar tüketici pazarında bir standart haline geldi.
 
@@ -234,7 +241,7 @@ ChameleonMark (2002), GeForce3'ün shader'larını sergilemek için Nvidia taraf
 
 :::
 
-Vertex programları sayesinde GPU, model dönüşümlerini, aydınlatma hesaplamalarını ve doku koordinatı oluşturmayı hızlandırabilir. Bu sonuncusu, [Yüksek Dereceli Yüzeyler](playstation-2#infinite-worlds) oluşturmak için esastır. Bu sayede CPU, daha iyi fizik, yapay zeka ve sahne yönetimi sağlamaya odaklanabilir.
+Vertex programları sayesinde GPU, model dönüşümlerini, aydınlatma hesaplamalarını ve doku koordinatı oluşturmayı hızlandırabilir. Sonuncusu, [Higher Order surfaces](playstation-2#infinite-worlds) oluşturmak için esastır. Bu sayede CPU, daha iyi fizik, yapay zeka ve sahne yönetimi sağlamaya odaklanabilir.
 
 Piksel shader'ların durumunda, programcılar farklı efektler elde etmek için tekstürleri çoklu yollarla manipüle edip karıştırabilir, çoklu doku, speküler haritalama, çıkıntı haritalama, çevre haritalama vb.
 
@@ -250,7 +257,7 @@ Oyunların standart çözünürlüğü **640x480**'dir, bu altıncı neslin stan
 
 Öte yandan, video kodlayıcı, çerçeve belleğinde ne varsa TV'niz tarafından anlaşılabilir bir formatta yayınlamaya çalışacaktır. Bu, oyunlar HD çıkış yapmadıkça (örneğin 720p veya 1080i, ki bunu sadece birkaç oyun yapar), geniş ekran görüntülerin [anamorfik](wii#tab-2-1-standardised-widescreen) hale geleceği anlamına gelir.
 
-Bu söylendiğine göre, bu konsol hangi sinyalleri yayınlar? Oldukça fazla. Tipik PAL/NTSC bileşeni dışında, Xbox, **YPbPr**'yi ('bileşen' bağlayıcıları almak için ek bir aksesuara ihtiyaç duyar) ve RGB'yi (hem SCART hem de VGA uyumlu) sunar. Sonuç olarak, pahalı adaptörlere ve benzeri şeylere ihtiyaç duymadan oldukça kullanışlıdır.
+Bu söylendiğine göre, bu konsol hangi sinyalleri yayınlar? Oldukça fazla. Xbox, tipik PAL/NTSC kompozitin yanı sıra <strong x-id=“1”>YPbPr</strong> ('component' konektörlerini almak için ekstra bir aksesuar gerekir) ve RGB (hem SCART hem de VGA uyumlu) sunar. Sonuç olarak, pahalı adaptörlere ve benzeri şeylere ihtiyaç duymadan oldukça kullanışlıdır.
 
 ## Ses
 
@@ -268,9 +275,11 @@ APU yalnızca ses verilerini işler ancak çıkış yapamaz. Çıkış işlemi A
 
 ## Giriş/Çıkış
 
-Daha önce belirttiğim gibi, tüm I/O erişimini bir araya getiren bir 'Southbridge' alt sistemimiz var.
+Daha önce belirttiğim gibi, tüm I/O erişimini bir araya getiren bir 'Southbridge' alt sistemimiz var. Bu Southbridge MCPX yongası aracılığıyla gerçekleştirilir.
 
-MCPX, PC muadili olan **nVidia nForce Multimedia and Communications Processor** veya 'MCP' den türetilmiştir. Bu, nForce 220/415/420 yonga setini kullanan anakartlarda bulunur [@io-reactos].
+![Konsol mimarisinin ana şeması. MCPX'in I/O'nun çoğunu nasıl kontrol ettiğine dikkat edin.](diagram.png)
+
+Bu arada MCPX, PC muadili olan **nVidia nForce Multimedia and Communications Processor** veya 'MCP' den türetilmiştir. Bu, nForce 220/415/420 yonga setini kullanan anakartlarda bulunur [@io-reactos].
 
 ### Harici arabirimler
 
@@ -288,9 +297,9 @@ MCPX ayrıca farklı alt sistemleri birbirine bağlamak için kullanılan aşağ
   - **System Management Controller** veya 'SMC': Güç, sıcaklık ve fan kontrolü gibi çeşitli hizmetleri yönetir. Aslında bir PIC16LC mikrodenetleyici.
   - **System Temperature Monitor** veya 'STM': SMC tarafından aşırı ısınmayı tespit etmek için kullanılan bir dijital termometre (ADM1032).
   - Bir **256 B EEPROM**: Seri numarası, bölge, Ethernet MAC adresi vb. gibi benzersiz tanımlayıcıları depolayan yeniden yazılabilir bir ROM.
-  - **Video Encoder**: Encoder başta GPU'ya bağlıdır, ancak SMBus üzerinden kontrol edilir.
+  - **Video Encoder**: Encoder GPU'ya bağlıdır, ancak SMBus üzerinden kontrol edilir.
 - **IDE Controller**: Bu, Hard diskler, optik okuyucular vb. ile iletişim kurmak için PC'lerde geniş bir şekilde kullanılan standart bir protokoldür. Anakartı DVD sürücüsü ve HDD ile bağlamak için tek bir geniş şerit kablosu kullanılır.
-- **Low Pin Count** veya 'LPC' veri yolu: Bu, PC'den alınan başka bir arayüz, ancak iyi *eski* PC BIOS'unu değil, bir BIOS karşılığını depolayan bir Flash ROM ile iletişim kurar. Flash, 1 MiB boyutundadır.
+- **Low Pin Count** veya 'LPC' veri yolu: Bu, PC'den alınan başka bir arayüz, ancak iyi *eski* PC BIOS'unu değil, bir BIOS karşılığını depolayan bir **Flash ROM** ile iletişim kurar. Flash, **1 MiB** boyutundadır.
 
 ### Kontrolcü
 
@@ -316,7 +325,7 @@ Controller S (2002) [@photography-amos].
 
 :::
 
-Daha yakından bakıldığında, her iki denetleyici de özel bir bellek kartını takmak için iki **Memory Unit** yuvası içeriyordu, bu da kayıtların konsollar arasında paylaşılmasını sağlıyordu. Bu özelliğin [bir önceki rakipten](dreamcast#interactive-memory-card) miras alındığını varsaydım. Bu makaleyi yayınladıktan günler sonra, bu konsolun ortak yaratıcısı olan Seamus Blackley'a gönderdim ve o da bana oldukça ilginç yorumlarla hızlı bir şekilde yanıt verdi. Dreamcast benzerlikleriyle ilgili olarak, bana şunları söyledi:
+Daha yakından bakıldığında, her iki denetleyici de özel bir bellek kartını takmak için iki **Memory Unit** yuvası içeriyordu, bu da kayıtların konsollar arasında paylaşılmasını sağlıyordu. Bunu fark ettikten hemen sonra, bu özelliğin bir [önceki rakipten](dreamcast#interactive-memory-card) miras alındığını varsaydım. Bu makaleyi yayınladıktan günler sonra, bu konsolun ortak yaratıcısı olan Seamus Blackley'a gönderdim ve o da bana oldukça ilginç yorumlarla hızlı bir şekilde yanıt verdi. Dreamcast benzerlikleriyle ilgili olarak, bana şunları söyledi:
 
 > Dreamcast ile ilişkisi sadece tarihsel bir önyargıdır. Bu kazara oldu.
 > 
@@ -324,7 +333,7 @@ Daha yakından bakıldığında, her iki denetleyici de özel bir bellek kartın
 
 ### Gerekli bir adaptör
 
-Bu denetleyicilerle ilgili başka ilginç bir gerçek de bunların sadece bir **kırılabilir dongle** olarak adlandırılan bir şekil adaptörü kullanılarak bağlanabilmesidir; bu, biri takıldığında kazaları önlemek için tasarlanmıştı.
+Bu denetleyicilerle ilgili başka ilginç bir gerçek de bunların sadece bir **breakaway dongle** olarak adlandırılan bir şekil adaptörü kullanılarak bağlanabilmesidir; bu, biri takıldığında kazaları önlemek için tasarlanmıştı.
 
 > Sanırım aynı zamanda bir Xbox yüksek bir raftaysa ve birisi denetleyiciyi çekerse, bu ağır konsolu bir çocuğun başının üzerine çekecek şekilde plan yapmışlardı.
 > 
@@ -338,13 +347,19 @@ Tamam, hadi odadaki fili ele alarak başlayalım.
 
 Korkarım ki bu bir *evet ve hayır* cevabı: Bu konsolda bir 'Windows' var, ancak PC kullanıcılarının beklediği biçimde değil.
 
+İlk olarak, Xbox'un işletim sistemi bir **Çekirdek** ve **kullanıcı arayüzü uygulamaları** (örneğin, Dashboard) oluşur. Bu, sırasıyla 1 MiB Flash ROM ve HDD'de saklanır.
+
+Çekirdek, **Windows 2000'nin çekirdeğinden** önemli bir kod tabanını ödünç alır \[@operating_system-os\] (ki bu da modern **Windows NT** mimarisine dayanmaktadır). Sonuç olarak, Xbox donanımı için gerekli bileşenleri içeren kırpılmış bir Windows 2000 çekirdeği elde edilir. Bu nihayetinde optimal bellek verimliliği için tek bir yürütülebilir dosyada sıkıştırılır ve paketlenir. Sonuç olarak, oyun için özel olarak tasarlanmış, yüksek optimize edilmiş bir Windows makinesi olarak düşünebilirsiniz.
+
+Xbox projesinin başında **DirectX ekibi** bulunuyordu [@operating_system-renegades]. Bu nedenle, kökeni [Dreamcast'e API'lerini getiren](dreamcast#windows-ce) Windows CE ekibiyle ilgili değildir.
+
 ### Önyükleme İşlemi
 
-Pentium tabanlı sistemlerde olduğu gibi, sistem açıldığında CPU, **reset vektörü** (adres `0xFFFF.FFF0`) adresinde bulunan komutları çalıştırmaya başlar. Xbox için bu adres, MCPX'te bulunan gizli bir ROM'a işaret eder (daha fazla ayrıntı daha sonra). MCPX, güvenlik sistemini başlatmak için rutinler içerir ve ardından Flash ROM'dan önyüklemeye devam eder. Flash ROM içinde, Xbox donanımını başlatır, küçük bir çekirdek (Windows NT çekirdeğine dayalı) önyükler ve karşılık gelen ekran animasyonunu gösterir.
+Pentium tabanlı sistemlerde olduğu gibi, sistem açıldığında CPU, **reset vektörü** (adres `0xFFFF.FFF0`) adresinde bulunan komutları çalıştırmaya başlar. Xbox için bu adres MCPX'te bulunan gizli bir ROM'a işaret eder (daha fazla ayrıntı 'Korsanla Mücadele ve Homebrew' bölümünde açıklanmıştır). MCPX, güvenlik sistemini başlatmak için rutinler içerir ve ardından Flash ROM'dan önyüklemeye devam eder. Flash ROM içinde, Xbox donanımını başlatır, küçük bir çekirdek önyükler ve karşılık gelen ekran animasyonunu gösterir.
 
 Güvenli başlatma sırasında CPU, **korumalı moda** geçer. Bu kritiktir çünkü x86 CPU'lar ilk işlemciyle (Intel 8086) uyumluluğu korumak için her zaman **gerçek modda** başlar, ancak programcıların CPU'nun modern özelliklerine (1 MiB'den fazla belleğe erişebilmek gibi) erişmeleri gerekiyorsa, korumalı moda geçerek bunları manuel olarak etkinleştirmeleri gerekir.
 
-Çekirdek yüklendiğinde, mikro kodu CPU'ya enjekte eder (onu programlamak değil, *güncellemek* için). Son olarak, çekirdek geçerli bir DVD diski olup olmadığını kontrol eder. Eğer geçerli bir disk vardsa, çalıştırır. Aksi takdirde, Hard Drive'da depolanan bir kullanıcı etkileşimli kabuk yükler.
+Çekirdek yüklendiğinde, CPU'ya mikro kod enjekte eder (programlamak için değil, daha ziyade <em x-id=“3”>güncellemek</em> için). Son olarak, çekirdek geçerli bir DVD diski olup olmadığını kontrol eder. Eğer geçerli bir disk vardsa, çalıştırır. Aksi takdirde, Hard Drive'da depolanan bir kullanıcı etkileşimli kabuk yükler.
 
 ### Yeşil ekran
 
@@ -364,7 +379,7 @@ Dashboard birden çok hizmet sunar.
 
 Dashboard, [PlayStation menüsü](playstation-2#interactive-shell) veya [GameCube'un IPL'si](gamecube#splash-and-shell) ile karşılaştırıldığında işlevsellik açısından çok farklı değildir. Temelde, kullanıcıların bekleyebileceği tüm işlevleri içerir: Bazı ayarları düzenleme, kayıtları taşıma, DVD filmleri veya CD sesi oynatma; ve benzeri.
 
-Bahsedilmeye değer bir şey, Dashboard'un ayrıca müziği bir ses CD'sinden kopyalayıp HDD'ye saklama yeteneği sunmasıdır. Bu müzik daha sonra herhangi bir oyundan alınabilir ve müzikleri 'kişiselleştirmek' için kullanılabilir. *Eğlenceli!*
+Bahsedilmeye değer bir şey, Dashboard'un ayrıca müziği bir ses CD'sinden kopyalayıp HDD'ye saklama yeteneği sunmasıdır. Bu müzik daha sonra herhangi bir oyundan alınabilir ve müzikleri 'kişiselleştirmek' için kullanılabilir. *İlginç!*
 
 #### Güncellenebilirlik {.tab}
 
@@ -420,7 +435,7 @@ Kullanılabilecek diğer API'lar, diğer hizmetleri yönetir (ses, ağ vb.). Son
 
 ### Medya Ortamı {.tabs-close}
 
-Oyunlar çift katmanlı DVD diskler üzerine dağıtılır (8.5 GB'a kadar!), bunlar daha sonra özel bir DVD sürücüsü tarafından okunur ve bu sürücü, standart bir arabirim olan ATA'ya rağmen korsanlığa karşı korumalar içerir. XDK, verilerin diskin düzenini özelleştirmek için bazı araçlar içerdiğini belirtmekte fayda var, bu da programcıların okuma hızlarını iyileştirmelerine olanak tanır!
+Oyunlar çift katmanlı DVD diskler üzerine dağıtılır (8.5 GB'a kadar!), ve bunlar daha sonra özel bir DVD sürücüsü tarafından okunur ve bu sürücü, standart bir arabirim olan ATA'ya rağmen korsanlığa karşı korumalar içerir. XDK, verilerin diskin düzenini özelleştirmek için bazı araçlar içerdiğini belirtmekte fayda var, bu da programcıların okuma hızlarını iyileştirmelerine olanak tanır!
 
 Şimdi, konsol aynı zamanda dahili 8 GB HDD içerir, oyunlar bunu kayıtları saklamak veya geçici içerik önbelleğini kullanmak için kullanır. Öte yandan sistem, dashboard, Xbox Live ayarları ve ağ ayarlarını saklar.
 
@@ -436,15 +451,15 @@ Ancak Xbox Live tam olarak nedir? Şirketlerin çevrim içi platformlarını olu
 
 {.close-float}
 
-Microsoft'ın Xbox Live erişimini kimlere tanıyacağını kontrol ettiğini belirtmek önemlidir, bu nedenle geliştiriciler, oyunlarında kullanılacak kimlik doğrulama anahtarlarını elde etmek için Microsoft'a kaydolmak zorundadır.
+Microsoft'un Xbox Live erişimini kime vereceğini kontrol ettiğini belirtmek önemlidir, bu nedenle geliştiricilerin oyunları tarafından kullanılacak kimlik doğrulama anahtarlarını almak için Microsoft'a kaydolmaları gerekecektir.
 
 Gerçek çevrim içi deneyim, **Title Server (Başlık Sunucusu)**'da gerçekleşir, bu da dünya genelinde istemcilere (Xbox konsolları) cevap veren ve gerçek zamanlı iletişimi yöneten bir sunucu türüdür. Microsoft, SDK'larında bu tür sunucuları nasıl oluşturacaklarını göstermek için bazı örnekler sağlamıştır, ancak bunlar Windows sistemlere dayanıyor ve Windows Server çalıştıran veri merkezlerine dağıtılmak üzere tasarlanmıştır.
 
 ### Yeni bir trendin başlangıcı
 
-Microsoft'ın Xbox Live uygulamasını analiz ettikten ve endüstri üzerindeki etkisine baktıktan sonra, şimdi oldukça açık görünüyor, değil mi? 'Doğru çevrim içi oyun' tarifi (yani Ethernet + Altyapı) her zaman oradaydı, ancak her şirket buna yatırım yapmak istemiyordu gibi görünüyor.
+Microsoft'un Xbox Live uygulamasını analiz ettikten sonra bunun sektör üzerindeki etkisini inceledik. şimdi oldukça açık görünüyor, değil mi? 'Doğru çevrim içi oyun' tarifi (yani Ethernet + Altyapı) her zaman oradaydı, ancak her şirket buna yatırım yapmak istemiyordu gibi görünüyor.
 
-Aslında durum bu kadar basit değil: Microsoft, kullanıcılara bu işlevselliğe 'ihtiyaçları' olduğunu, çevrim içi çok oyunculu oyunun sadece isteğe bağlı bir ekleme olmadığını, ancak bazı oyunların temel bir parçası olduğunu 'ikna etmek zorundaydı. Aksi takdirde, Microsoft'ın çabaları sadece başka bir 'çevrim içi girişimi' olarak sayılırdı.
+Aslında durum bu kadar basit değil: Microsoft, kullanıcılara bu işlevselliğe 'ihtiyaçları' olduğunu, çevrim içi çok oyunculu oyunun sadece isteğe bağlı bir ekleme olmadığını, ancak bazı oyunların temel bir parçası olduğunu 'ikna etmek zorundaydı. Aksi takdirde, Microsoft'un çabaları sadece bir başka 'çevrim içi girişim' anlamına gelecektir.
 
 > Konsol oyuncularının çevrim içi oyun istemediği ve kimsenin bir PC mimarisinin bir konsol olabileceğine inanmadığı bir dünya hayal edin. İşte gerçekten öyleydi. Şimdi açık gibi görünüyor ama ÖYLE DEĞİLDİ.
 > 
@@ -476,7 +491,7 @@ BIOS'u içeren Flash ROM ve duyarlı verileri içeren EEPROM, bir **RC-4 anahtar
 
 Öte yandan, HDD tamamen özel ve belgelenmemiş bir dosya sistemi olan **FATX** ile biçimlendirilmiştir.
 
-Bu, Microsoft'un uyguladığı güvenlik zincirine kısa bir girişti. Oldukça basit görünüyor, değil mi? Peki, **bir şey garip**: Yürütme, CPU tarafından kontrol edilir, ancak bu, hazır bir çiptir, bu nedenle RC-4 ile şifrelenmiş verileri nasıl anladı? Cevap şudur ki, **anlamaz**, bu nedenle bu konsolu piyasaya sürdükten sonra çatlamak için uğraşan hackerların hedefi olan şifrelemenin ilk aşamasını ayarlayan şifrelenmemiş bir kod bir yerde bulunmaktadır.
+Bu, Microsoft'un uyguladığı güvenlik zincirine kısa bir girişti. Oldukça basit görünüyor, değil mi? Peki, **bir şey garip**: Yürütme, CPU tarafından kontrol edilir, ancak bu, hazır bir çiptir, bu nedenle RC-4 ile şifrelenmiş verileri nasıl anladı? Cevap şudur ki, **anlamaz**, bu nedenle bu konsolu piyasaya sürdükten sonra çatlamak için uğraşan hackerların hedefi olan şifrelemenin ilk aşamasını ayarlayan şifrelenmemiş bir kod bir yerde bulunmaktadır. Özellikle bu kod, piyasaya sürüldükten sonra bu konsolu kırmaya çalışan çoğu bilgisayar korsanının hedefiydi.
 
 #### Bootstrap araması {.tab}
 
