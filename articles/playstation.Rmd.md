@@ -200,7 +200,9 @@ Now, to show how a scene is drawn, I'll mainly use Insomniac's *Spyro: Year of t
 
 ![Basic GPU command pipeline.](commands.png){.tab-float}
 
-To start with, the CPU sends geometry data (vertices) to the GPU by filling its internal 64-byte FIFO buffer with **commands** (up to three). Essentially, a command states how and where to draw one primitive. 
+To start with, the CPU sends geometry data (vertices) to the GPU by filling its internal 64-byte FIFO buffer with **commands** (up to three). These commands may request to GPU to render something, change a setting or manipulate VRAM.
+
+Essentially, a render command states how and where to draw a primitive. The GPU can individually draw **lines**, **rectangles** and **triangles** - the latter is the fundamental ingredient for composing rich 3D models.
 
 Once the geometry is received, **clipping** is applied to skip operations over unseen polygons (residing outside the camera's viewport).
 
@@ -222,12 +224,16 @@ Multiple DMA functions are also provided to assist both CPU and GPU with the cre
 
 Once the commands are decoded by the GPU, it's time to convert the geometry received (vertices) into pixels. This will enable the system to apply texture mapping, effects and ultimately display it on a two-dimensional panel (your TV or monitor). To do this, the GPU allocates a pixel matrix that is used as a working area, this is called a **frame buffer**. Compared to the more complex [Sega Saturn](sega-saturn), the GPU only needs a single frame buffer.
 
-The GPU uses **triangles as primitives** to form 3D models. Being the only available primitive means that backgrounds and foregrounds make no difference in terms of composition (both are made of triangles). 2D games inherit the same nature: They are just two triangles joined to form a quadrangle (though the GPU provides routines for constructing sprites automatically).
+The rasteriser is the unit in charge of converting vectors into lines, triangles or rectangles; and then into pixels. Now, the process differs drastically depending on the primitive requested [@graphics-spx]:
 
-The rasteriser is the unit in charge of converting vectors into triangles; and then into pixels. This is done by:
+- **Triangles** are the most complex (and versatile) type, which can be textured and shaded.
+- **Lines** are quicker to draw but naturally unfeasible for textured surfaces. They can still be shaded.
+- **Rectangles** are also faster but can only fit a [sprite](nes#tab-5-3-sprite-layer) of up to 256 x 256 pixels (a larger rectangle will duplicate the sprite's graphic). Even so, they offer no [affine transformation](super-nintendo#that-feature) (except X/Y flip), shading or effects. I suspect this was implemented to assist the implementation of 2D games.
 
-1. Grabbing each three-point vertex and calculating the edges. This forms a triangle.
-2. Analysing the area of the triangle to identify which pixels of the frame buffer they occupy. Any section of the triangle covering the **sampling point** is turned into a pixel.
+In the case of the triangle, being the only textured polygon, the rasteriser will:
+
+1. Grab each three-point vertex and calculate the edges. This forms a triangle.
+2. Analyse the area of the triangle to identify which pixels of the frame buffer they occupy. Only the section of the polygon covering the **sampling points** get turned into pixels.
 
 The generated pixels are not written into the frame buffer right away. Instead, they are sent to the next stages of the pipeline for further processing, which we'll see in the following paragraphs.
 
@@ -235,11 +241,11 @@ The generated pixels are not written into the frame buffer right away. Instead, 
 
 ![Gouraud shading in action.](spyro/shaders.png){.tab-float}
 
-In order to apply lighting effects over these polygons, the GPU provides two algorithms:
+In order to apply lighting effects over triangles or lines, the GPU provides two algorithms:
 
 - **Flat shading**: Each primitive has a constant light level.
 - **Gouraud shading**: Each primitive's vertex embeds its own light level. Then, the brightness between each point is automatically interpolated.
-  - As you can imagine, the results are more realistic. On the other hand, this algorithm is not available for sprites.
+  - As you can imagine, this type offers more realistic results than flat shading.
 
 The reason for having this choice comes down to the fact that flat shading fills ~2.5 times more polygons per second than Gouraud, so it's important to optimise which polygons need a more realistic shading than others.
 
@@ -247,13 +253,13 @@ The reason for having this choice comes down to the fact that flat shading fills
 
 ![Textures applied (_Tada!_).](spyro/result.png){.tab-float}
 
-Finally, shaded surfaces are blended with textures (2D bitmaps) to produce the final result.
+Triangle surfaces may also be blended with textures (2D bitmaps) to produce the final result.
 
-The GPU performs **inverse texture mapping**, where the GPU traverses each rasterised pixel and looks for its corresponding pixel in the texture map (called **texel**). Texels are calculated by linearly interpolating the texture map (found in VRAM) to conform to the shape of the polygon. The routine used for interpolation is called **Affine Texture Mapping**, this technique only operates using 2D coordinates (X/Y values) while discarding the third coordinate (Z/depth) used for perspective.
+The GPU performs **inverse texture mapping**, where the GPU traverses each rasterised pixel and looks for its corresponding pixel in the texture map (called **texel**). Texels are calculated by linearly interpolating the texture map (found in VRAM) to conform to the shape of the polygon. The routine used for interpolation is called **Affine Texture Mapping**, this technique only operates using 2D coordinates (X-Y values) while discarding the third coordinate (Z or 'depth') used for perspective.
 
-Because texture maps rarely have the exact dimension of the rasterised polygon, **aliasing** (incorrect results) may appear. This is manifested with unwanted distortions, such as missing or enlarged texels. To remedy this, sophisticated GPUs employ **texture filtering** to smooth out (interpolate) sudden colour changes. Now, The PS1's GPU doesn't implement any filter, so it resorts to an algorithm named **nearest neighbour** to correct scales without smoothing out the results. This is very fast (and cheap) but it also explains why textured models may look 'blocky'. 
+Because texture maps rarely have the exact dimension of the rasterised polygon, **aliasing** (incorrect results) may appear. This is manifested with unwanted distortions, such as missing or enlarged texels. To remedy this, sophisticated GPUs employ **texture filtering** to smooth out (interpolate) sudden colour changes. Now, The PS1's GPU doesn't implement any filter, so it resorts to an algorithm named **nearest neighbour** to correct scales without smoothing out the results. This is very fast (and cheap) but it also explains why textured models may look 'blocky'.
 
-The unit also includes the following effects available to use:
+The GPU also includes the following effects available to use (on triangles):
 
 - **Semi-Transparency**: Simulates light passing through multiple textures.
 - **Dithering**: Soften sudden changes in colour while adhering to the same colour palette.
