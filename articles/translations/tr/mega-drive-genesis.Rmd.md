@@ -1,6 +1,6 @@
 ---
-short_title: Mega Drive / Genesis Mimarisi
-title: Mega Drive/Genesis'in Mimarisi
+short_title: Mega Drive'ın / Genesis'in Mimarisi
+title: Mega Drive'ın / Genesis'in Mimarisi
 name: Mega Drive/Genesis
 subtitle: Yeni kompozisyon teknikleri
 date: 2019-05-18
@@ -15,7 +15,7 @@ top_tabs:
       caption: "Mega Drive.<br>29/10/1988 tarihinde Japonya'da piyasaya sürüldü."
       file: japanese
     - 
-      title: "Amerikan"
+      title: "Amerika"
       caption: "Genesis.<br>14/08/1989 tarihinde Amerika'da yayınlandı."
       file: american
     - 
@@ -45,7 +45,7 @@ Yeni sistemleri, programlanmaya hazır çok sayıda *zaten tanıdık* bileşen i
 
 Bu konsolun iki genel amaçlı işlemcisi vardır.
 
-### Çipteki Lider
+### Lider
 
 İlk olarak, elimizde **~7.6MHz** hızında çalışan bir **Motorola 68000** var, o zamanlar Amiga, (orijinal) Macintosh, Atari ST gibi birçok bilgisayarda bulunan popüler bir işlemci... İlginçtir ki, bu bilgisayarların her biri '6502 selefi'nin yerini almıştır ve [Master System](master-system) (Mega Drive'ın öncüsü) 6502 CPU kullanmazken, [NES](nes) kullanmıştır (ve bir şekilde Sega'nın amacı Nintendo tüketicilerini kazanmaktı). Sonuç olarak, bilgisayarların evrimi ile oyun konsolu teknolojisi arasında bir miktar korelasyon görebilirsiniz.
 
@@ -169,11 +169,11 @@ Karolar toplam **dört düzlem** oluşturmak için kullanılır ve bunlar bir ar
 
 #### Arka Plan {.tab}
 
-![Ayrılan arka plan haritası.](vdp_sonic/layer2.png){.tabs-nested .active .tab-float .pixel title="Full"}
+![Ayrılan arka plan haritası.](vdp_sonic/layer2.png){.tabs-nested .active .tab-float .pixel title="Tamamı"}
 
 ![Seçilen alanın işaretlendiği Tahsis Edilmiş Arka Plan haritası.](vdp_sonic/layer2_selected.png){.tabs-nested-last .pixel title="Seçildi"}
 
-**Plane B** olarak da bilinen Arka Plan düzlemi, **statik döşemeler** [@graphics-macdonald] içeren kaydırılabilir bir döşeme haritasıdır (döşeme kümesi).
+**Plane B** olarak da bilinen Arka Plan düzlemi, **statik tiles** [@graphics-macdonald] içeren kaydırılabilir bir döşeme haritasıdır (döşeme kümesi).
 
 Bu düzlem altı farklı boyuta sahip olabilir: 256x256, 256x512, 256x1024, 512x256, 512x512, 1024x256. Programcılar, gerekli olacak kaydırma türüne daha iyi uyan boyutu seçebilirler.
 
@@ -185,9 +185,9 @@ Gösterilen örnekte, görüntülenmek üzere seçilen alanın bir kare olmadı�
 
 ::: {.subfigures .tabs-nested .tab-float .pixel}
 
-![Ayrılan ön plan haritası.](vdp_sonic/layer1.png){.active title="Full"}
+![Ayrılan ön plan haritası.](vdp_sonic/layer1.png){.active title="Tamamı"}
 
-![Seçili alan işaretli Tahsis Edilmiş Ön Plan düzlemi.](vdp_sonic/layer1_selected.png){title="Seçildi"}
+![Seçili alan işaretli Tahsis Edilmiş Ön Plan düzlemi.](vdp_sonic/layer1_selected.png){title="Seçili"}
 
 Ön Plan düzlemi örneği, Pencere Düzlemi kullanılmaz.
 
@@ -195,15 +195,15 @@ Gösterilen örnekte, görüntülenmek üzere seçilen alanın bir kare olmadı�
 
 **Plane A** [@graphics-macdonald] olarak da bilinen Ön Plan düzlemi, bu düzlemin **daha yüksek önceliğe** sahip olması dışında Arka Plan Düzlemi ile aynı özelliklere sahiptir, bu nedenle burada işlenen karolar doğal olarak Arka Plan Düzleminin üstünde olacaktır.
 
-Ayrıca, bu düzlem yeni bir *alt düzlem* oluşturmak için kendini bölmeye izin verir: **Pencere Düzlemi**. Tek fark, ikincisinin kaydırma yapmamasıdır.
+Ayrıca, bu düzlem yeni bir *sub-plane* oluşturmak için kendini bölmeye izin verir: **Window Plane**. Tek fark, ikincisinin kaydırma yapmamasıdır.
 
 Sonuç olarak, yeni öncelik değerlerinin ve ayrı uçakların oyun tasarımcılarına yeni manzara türleri sunma imkanı verdiğini görebilirsiniz. Ayrıca, her düzlemde farklı kaydırma hızları kullanılarak bir **paralaks etkisi** elde edilebilir.
 
 #### Spritelar {.tab}
 
-![Ayrılmış Sprite katmanı.](vdp_sonic/sprite.png){.tabs-nested .active .tab-float .pixel title="Full"}
+![Ayrılmış Sprite katmanı.](vdp_sonic/sprite.png){.tabs-nested .active .tab-float .pixel title="Tamamı"}
 
-![Seçili alan işaretli olarak ayrılmış Sprite katmanı.](vdp_sonic/sprite_selected.png){.tabs-nested-last .pixel title="Seçildi"}
+![Seçili alan işaretli olarak ayrılmış Sprite katmanı.](vdp_sonic/sprite_selected.png){.tabs-nested-last .pixel title="Seçili"}
 
 Bu düzlemde karolar **sprites** olarak değerlendirilir. Bunlar bir **512x512 piksel** haritaya yerleştirilir ve sadece bir kısmı (VDP'nin çıkış çözünürlüğü) görüntülenmek üzere seçilir. Bu, istenmeyen sprite'ları gizlemek veya gelecekte gösterilecek diğerlerini hazırlamak için kullanışlıdır. VDP ayrıca eski bir [çarpışma algılama](master-system#tab-4-1-collision-detection) işlevi sağlar.
 
@@ -211,7 +211,7 @@ Sprite'lar 4x4'e kadar karo (32x32 piksel haritası) birleştirilerek ve 16 reng
 
 Tarama çizgisi başına en fazla 20 ve ekran başına 80 sprite olabilir (bunun aşılması tüm katmanı bozacaktır).
 
-VRAM'de Sprite'ların tanımlandığı bölge **Sprite Öznitelik Tablosu** [@graphics-macdonald] olarak adlandırılır ve her giriş karo indeksi, katman koordinatları (x ve y), `link` değeri (hangi sprite'ların önce çizileceğini yönetir), öncelik (en yüksek önceliğe sahip sprite, çakışmalar sırasında görüntülenecek olandır), renk paleti indeksi ve dikey ve yatay çevirme içerir.
+VRAM'de Sprite'ların tanımlandığı bölge **Sprite Attribute Table** [@graphics-macdonald] olarak adlandırılır ve her giriş karo indeksi, katman koordinatları (x ve y), `link` değeri (hangi sprite'ların önce çizileceğini yönetir), öncelik (en yüksek önceliğe sahip sprite, çakışmalar sırasında görüntülenecek olandır), renk paleti indeksi ve dikey ve yatay çevirme içerir.
 
 #### Sonuç {.tab}
 
@@ -273,7 +273,7 @@ Sonic The Hedgehog (1991).
 
 Frekans modülasyonu veya 'FM' sentezi, ses sentezlemek için kullanılan birçok profesyonel teknikten biridir, 80'lerde popülaritesi önemli ölçüde artmış ve tamamen yeni seslere yol açmıştır (birçoğunu o dönemin pop hitlerini dinleyerek bulabilirsiniz).
 
-*inanılmaz derecede basitleştirilmiş* bir özetle, FM algoritması tek bir dalga formu (**taşıyıcı**) alır ve başka bir dalga formu (**modülatör**) kullanarak frekansını değiştirir. Sonuç, farklı bir sese sahip yeni bir dalga biçimidir. Taşıyıcı-modülatör kombinasyonuna **operatör** adı verilir ve nihai dalga formunu oluşturmak için birden fazla operatör birbirine zincirlenebilir. Farklı kombinasyonlar farklı sonuçlara ulaşır. Bu çip kanal başına 4 operatöre izin verir.
+*İnanılmaz derecede basitleştirilmiş* bir özetle, FM algoritması tek bir dalga formu (**taşıyıcı**) alır ve başka bir dalga formu (**modülatör**) kullanarak frekansını değiştirir. Sonuç, farklı bir sese sahip yeni bir dalga biçimidir. Taşıyıcı-modülatör kombinasyonuna **operatör** adı verilir ve nihai dalga formunu oluşturmak için birden fazla operatör birbirine zincirlenebilir. Farklı kombinasyonlar farklı sonuçlara ulaşır. Bu çip kanal başına 4 operatöre izin verir.
 
 Geleneksel PSG sentezleyicilerle karşılaştırıldığında, bu ciddi bir gelişmeydi: Artık *önceden tanımlanmış* dalga formlarına takılıp kalmıyordunuz.
 
@@ -287,7 +287,7 @@ Bu aslında orijinal Master System'in [ses yongası](master-system#audio) ve VDP
 
 'Pulse 3' kanalının kullanılmadığına dikkat edin. Bunun nedeni, oyunun gürültü kanalı için üçüncü darbe kanalını modülasyon [@audio-sonic] için ayıran bir mod kullanmasıdır; bu, Master System'de de bulunan bir işlevdir.
 
-#### Karışık {.tab}
+#### Birleştirilmiş {.tab}
 
 ![Tüm ses kanalları.<br>Sonic The Hedgehog (1991).](complete){.tab-float video="true"}
 
@@ -311,7 +311,7 @@ Bu nedenle, bu bölümü yukarıda bahsedilen kısıtlamanın üstesinden gelmey
 
 ![PCM kanalları.](good_sampling/sonic_pcm){.active video="true" title="PCM Örneği"}
 
-![Tüm ses kanalları.](good_sampling/sonic_complete){video="true" title="Tamamlandı"}
+![Tüm ses kanalları.](good_sampling/sonic_complete){video="true" title="Tamamı"}
 
 Sonic The Hedgehog 3 (1994).<br>Bu, Michael Jackson tarafından ortaklaşa yazıldığı söylenen parçalardan biridir. Her halükarda, genel müziğin öncekilere kıyasla farklı bir ritmi vardı.
 
