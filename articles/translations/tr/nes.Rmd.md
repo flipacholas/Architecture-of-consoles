@@ -80,7 +80,7 @@ Ricoh'un 6502'yi *nasıl* klonlamayı başardığı bugün bile net değil. MOS'
 
 - Hem Ricoh'un hem de MOS'un varyantları aynı düzene sahiptir, ancak Ricoh'unki kesintili veri yolları içerir (belirli işlevleri devre dışı bırakır) [@cpu-differences]. Daha sonra daha fazla ayrıntıya gireceğim.
 - MOS'un 6502'yi Ricoh'a lisansladığını açıkça belirten bir belge henüz bulunamamıştır.
-- Nikkei Trendy tarafından 2008 yılında yayınlanan bir makalede Ricoh'un yetkili bir çip üreticisi olan Rockwell'den lisans aldığı belirtilmektedir [@cpu-trendi]. İkinci bir kaynağın, en azından MOS'un onayıyla, üçüncü bir tarafa IP sağlayıp sağlayamadığı tartışmalı olsa da.
+- Nikkei Trendy tarafından 2008 yılında yayınlanan bir makalede Ricoh'un yetkili bir çip üreticisi olan Rockwell'den lisans aldığı belirtilmektedir [@cpu-trendi]. Ancak, MOS'un onayı bir yana, ikinci bir kaynağın üçüncü bir tarafa IP sağlayıp sağlayamayacağı tartışmalıdır.
 - Bu, Nintendo'nun fikri mülkiyet haklarını çiğneyerek paçayı kurtardığı ilk olay olmayacaktı, zira *Ikegami Tsushinki v. Nintendo* Japonya'da Nintendo'nun orijinal Donkey Kong'un [@cpu-dk] koduna sahip olmadığına karar verdi.
 
 #### Hurdaya çıkarılan fonksiyonlar
@@ -335,7 +335,7 @@ Mother (1989).
 
 Çoğu oyun bir pulse kanalını melodi için, diğerini ise eşlik için kullanır. Bir oyunun bir ses efekti çalması gerektiğinde, eşlik kanalının efekti çalmak için değiştirildiğini ve ardından eşlik etmeye geri döndüğünü sık sık göreceksiniz. Bu, oyun sırasında melodinin kesintiye uğramasını önler.
 
-Darbe dalgalarının bu nesil konsolların simgelerinden biri olduğunu söylemek doğru olur. Bunun benimsenmesinin tamamen maliyet etkin nedenlerle yapıldığını varsayıyorum: (sınırlı) CPU bir seferde yalnızca çok fazla veri işleyebilir ve nabız dalgaları basit melodileri çalmak için çok fazla parametre gerektirmedikleri için idealdir (bu da CPU döngülerini diğer işlemler için serbest bırakır).
+Darbe dalgalarının bu nesil konsolların simgelerinden biri olduğunu söylemek doğru olur. Bunun benimsenmesinin tamamen maliyet etkin nedenlerle yapıldığını varsayıyorum: (sınırlı) CPU bir seferde yalnızca çok fazla veri işleyebilir ve pulse dalgaları basit melodileri çalmak için çok fazla parametre gerektirmedikleri için idealdir (bu da CPU döngülerini diğer işlemler için serbest bırakır).
 
 #### Triangle {.tab}
 
@@ -381,7 +381,7 @@ Genel olarak, oyunlar ses kanalını perküsyon veya ortam efektleri için kulla
 
 ![Örnek kanalın osiloskop görünümü.](sample_single){.active video="true" title="Örnek"}
 
-![Tüm ses kanallarının osiloskop görünümü.](sample_full){video="true" title="Tamamlandı"}
+![Tüm ses kanallarının osiloskop görünümü.](sample_full){video="true" title="Son Hali"}
 
 Mother (1989).
 
@@ -425,7 +425,7 @@ Her şeyden önce, ses teorisine hızlı bir girişle başlayalım.
 
 **Fourier Analizi** ilkeleri sayesinde, duyduğumuz her bir sesi farklı frekans ve genliklere sahip **sinüs dalgalarının bir toplamına** ayrıştırabiliriz [@audio-complexwaveforms]. En bas sinüs dalgasına (en düşük frekansta) **fundamental** ve diğerlerine **overtonlar** denir. Temel dalgayı ve üst tonlarını eklerseniz, orijinal sesi geri alırsınız. Bununla birlikte, tanınabilir bir perdeye sahip seslerde, çoğu (hepsi olmasa da) üst tonun temel frekansın katları olan frekanslara sahip olduğunu göreceksiniz. Bu nedenle, bu üst tonlara **harmonikler** [@audio-harmonics] adı verilir.
 
-Darbeler, üçgenler ve testere dişleri gibi dalga biçimleri, içerdikleri harmonikleri belirleyen bir formülü takip ettiğinden, harmonikler bu bölümde tekrar eden bir konu haline gelecektir. Aksi takdirde, bu dalga biçimleri 'mükemmel' şekillerinden sapabilir.
+Pusle, triangle ve testere dişleri gibi dalga biçimleri, içerdikleri harmonikleri belirleyen bir formülü takip ettiğinden, harmonikler bu bölümde tekrar eden bir konu haline gelecektir. Aksi takdirde, bu dalga biçimleri 'mükemmel' şekillerinden sapabilir.
 
 #### Spektrogramlara giriş
 
