@@ -78,7 +78,7 @@ Back in Japan, Nintendo needed something inexpensive but familiar to develop for
 
 - Both Ricoh's and MOS's variants feature the same layout, but Ricoh's contains severed buses (disabling certain functions) [@cpu-differences]. I go into more details later.
 - A document explicitly stating that MOS licensed the 6502 to Ricoh is yet to be found.
-- An article published in 2008 by Nikkei Trendy states that Ricoh licensed from Rockwell, an authorised chip manufacturer [@cpu-trendi]. Although it's debatable whether a second source was able to provide IP to a third party, at least with MOS's approval.
+- An article published in 2008 by Nikkei Trendy states that Ricoh licensed from Rockwell, an authorised chip manufacturer [@cpu-trendi]. However, it's debatable whether a second source was able to provide IP to a third party, much less with MOS's approval.
 - It wouldn't be the first time Nintendo got away with circumventing IP rights, as *Ikegami Tsushinki v. Nintendo* ruled in Japan that Nintendo didn't own the code of the original Donkey Kong [@cpu-dk].
 
 #### Scrapped functions
