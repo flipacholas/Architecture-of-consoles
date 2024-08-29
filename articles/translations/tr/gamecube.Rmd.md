@@ -1,6 +1,6 @@
 ---
-short_title: GameCube Mimarisi
-long_title: GameCube Mimarisi
+short_title: GameCube'un Mimarisi
+long_title: GameCube'un Mimarisi
 name: GameCube
 release_date: 2001-09-14
 date: 2019-11-19
@@ -75,7 +75,7 @@ Ve elbette, bellek bant genişliğini hızlandırmak için bir miktar önbellek 
 
 - **50 yeni SIMD komutu** ile geliştirilmiş komut seti: Bunlar iki 32 bit kayan noktalı sayıyı veya bir 64 bit kayan noktalı sayıyı yalnızca bir döngü kullanarak işler. Sonuç olarak, yeni SIMD talimatları vektör hesaplamalarını hızlandıracak ve özellikle geometri dönüşümleri sırasında faydalı olacaktır.
   - Motorola'nın üst düzey G4 Mac'lerde bulunan SIMD uzantısı (AltiVec) ile karıştırılmamalıdır.
-- **32 kayan nokta kaydı**: Bunlar yeni SIMD talimatlarıyla birlikte gelir.
+- **32 floating-point kaydı**: Bunlar yeni SIMD talimatlarıyla birlikte gelir.
 - **Write Gather pipe**: Kullanılabilen özel bir bellek yazma mekanizması. Etkinleştirilirse, *tek vuruşlu* aktarımlar gerçekleştirmek yerine, tüm bellek yazma isteklerini %25 dolana kadar 128 baytlık bir arabellekte tutar, ardından istenen yazmaları 32 baytlık veri bloklarını bir kerede taşıyabilen *burst transaction* adlı bir teknik kullanarak gerçekleştirir.
   - Tahmin edebileceğiniz gibi bu, mevcut veri yollarının tam olarak kullanılmasını sağlayarak çok fazla bant genişliği tasarrufu sağlar.
 - **Locked L1 cache**: Programlar 16 KB'lık L1 veri önbelleğini 'scratchpad' (inanılmaz hızlı bellek) olarak kullanmak üzere alabilirler.
@@ -122,7 +122,7 @@ Genel olarak bu, ARAM'ın önemli miktarda RAM sağlarken, ses tamponu olarak ha
 Bu işi yapmak için, Gekko (ve diğer PowerPC mimarileri) sanal adresleri fiziksel adreslere aşağıdaki işlemle çevirir:
 
 1. **Block Address Translation** (BAT) gerçekleştirin: Her bir çiftin bir sanal adres aralığını sürekli bir fiziksel adres aralığına eşlediği sekiz çift programlanabilir kayıt vardır (dördü veri ve dördü talimatlar için). MMU, bu aralıklar içinde bulunursa fiziksel adresi bulmaya çalışır.
-2. BAT işe yaramadıysa, **Page Table**'ı okuyun: MMU ayrıca sayfaların fiziksel konumunu (sanal adres blokları) kataloglayan bir tablo da saklar.
+2. BAT işe yaramadıysa, **Page Table**'ı okur: MMU ayrıca sayfaların fiziksel konumunu (sanal adres blokları) kataloglayan bir tablo da saklar.
     - MMU'nun bir sayfa tablosunu okuması zaman alabilir, bu nedenle son okumaları önbelleğe almak için bir **Translation look-aside buffer** (TLB) eklenmiştir.
     - X86 veya MIPS gibi diğer mimariler de sayfalama sağlar, ancak hepsi bir TLB sunmayacaktır.
 3. Son olarak, istenen sanal adres hala çevrilemiyorsa, MMU CPU'da bir 'sayfa hatası' istisnası tetikler ve işletim sisteminin bundan sonra ne yapacağına karar vermesini sağlar.
