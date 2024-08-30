@@ -57,7 +57,7 @@ Başlamadan önce, MOS 6502'nin bazı parçalarını <a href=“nes#cpu”>NES m
 
 65C02 hakkında çok daha fazla konuşabiliriz, ancak Hudson tarafından eklenen (65C02'yi tamamlayan) özelliklere odaklanmanın daha iyi olacağını düşünüyorum çünkü bunlar bu konsolu verimli bir şekilde çalıştırmak için kritik öneme sahip. 65C02 ile karşılaştırıldığında, HuC6280 [@cpu-hardware]:
 
-- Bazıları CPU'yu çevreleyen bileşenleri hedef alan daha fazla <strong x-id=“1”>işlem kodu</strong>.
+- Bazıları CPU'yu çevreleyen bileşenleri hedef alan daha fazla <strong x-id=“1”>opcode</strong>.
 - Harici bileşenleri arayüzlemek için kullanılan bir <strong x-id=“1”>8-bit I/O portu</strong>.
 - Diğer cihazlardan gelen kesintileri almak için bir <strong x-id=“1”>interrupt controller</strong>.
 - **Zamanlayıcı**. Belirli bir değerden geriye doğru sayarak çalışır ve bittiğinde CPU'ya bir interrupt gönderir.
@@ -254,7 +254,7 @@ NEC/Hudson, herkesin sevdiği o <em x-id=“3”>hantal ve sıkıcı</em> kartu�
 
 Bu genişleme portu o kadar çok sayıda aksesuar ve genişleme birimine kapı açtı ki, sonunda basit bir PC Engine'i tamamen farklı bir şeye dönüştürdüler. Bu da yetmezmiş gibi, HuCard yuvası genişleme olanaklarını tamamlıyordu. Demek istediğim, bu makale için kayda değer yükseltmelere (bazıları konsolun gelecekteki revizyonlarına dahil edildi) odaklanmam gerekecek.
 
-![CD-ROM² Okuyucu (TurboGrafx-16 sürümü) [@photography-amos]. O zamanlar Discman işinde miydiler?](cd/reader.png){.tabs-nested .active .open-float .tab-float title="Okuyucu"}
+![CD-ROM² Okuyucu (TurboGrafx-16 sürümü) [@photography-amos]. O zamanlar Discman işinde miydiler?](cd/reader.png){.tabs-nested .active .open-float .tab-float title="CD Okuyucu"}
 
 ![Konsolu okuyucuya bağlamak için gerekli taban [@photography-amos]. Ayrıca güç ve kompozit video çıkışı da sağlar.](cd/compartment.png){.tab-nested title="Taban"}
 
