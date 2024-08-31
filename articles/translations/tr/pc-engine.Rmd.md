@@ -1,5 +1,5 @@
 ---
-name: PC Engine'in / TurboGrafx-16'nın
+name: PC Engine / TurboGrafx-16
 short_title: PC Engine'in / TurboGrafx-16'nın Mimarisi
 long_title: PC Engine'in / TurboGrafx-16'nin mimarisi
 subtitle: Küçük ama hızlı bir sıçrama
