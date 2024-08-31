@@ -25,11 +25,19 @@ aliases: [/projects/consoles/dreamcast/]
 
 The Sega Dreamcast introduced many new features over its predecessor (the [Saturn](sega-saturn)) to appeal to both game developers and console gamers. While this was Sega's last attempt to conquer the console market, some of the technologies that were pioneered in the Dreamcast carried on and into future mainstream devices.
 
-The Dreamcast console was originally scheduled for release in Australia and New Zealand on October 25, 1999, but was delayed just three days before the launch to November 30 without any explanation. Ozisoft, the distributor, warned retailers that selling the console before the new date would result in fines. The delay was partly due to the console still awaiting approval from Telecom NZ, as announced by Ozisoft New Zealand. When the console finally launched, it lacked both an Internet access disk and a demo disk, and there was a severe shortage of units and peripherals. The console was also significantly more expensive in Australia, priced at AUD 500 (USD 350) compared to USD 199 in the United States. 
+The Dreamcast console was originally scheduled for release in Australia and New Zealand on October 25, 1999, but was delayed just three days before the launch to November 30 without any explanation. Ozisoft, the distributor, warned retailers that selling the console before the new date would result in fines. The delay was partly due to the console still awaiting approval from Telecom NZ, as announced by Ozisoft New Zealand.
 
-Two days after the launch, Ozisoft announced that the Internet access disk would not be available until 2000. Despite earlier assurances that shipments of the console and games would arrive on time, many retailers were left without stock. When one retailer contacted Ozisoft for answers, they were told, "We don't know where the shipment is." It was later discovered that the shipment had been sent to the wrong state due to Ozisoft's strategy of only shipping consoles when there was space available on cargo planes, likely to save on shipping costs.
+When the Dreamcast finally launched, it faced several significant issues:
 
-In addition to these logistical issues, the Australian Dreamcast had a significant drawback: it could only connect to the Internet through one ISP, Telstra Big Pond. This service was known for being both expensive and underpowered, which limited the online capabilities of the console. At the time of the launch, there were also no first- or third-party Visual Memory Units (VMUs), controllers, keyboards, or first-party software available, further frustrating early adopters.
+  - **Lack of Essential Disks**: The console was released without an Internet access disc or a demo disk, which were critical for showcasing its capabilities. Just two days after the release, Ozisoft announced that the Internet access disk would not be available until March 2000.
+
+    - Even after Internet access disc came the console could only connect through one ISP, Telstra Big Pond. This ISP was known for being both expensive and underpowered, which severely restricted the online capabilities of the console.
+
+  - **Severe Shortages**: Despite earlier assurances that shipments of the console and games would arrive on time, many retailers were left without stock. There were no Visual Memory Units (VMUs), controllers, keyboards, or first-party software available even third party ones, leaving early adopters frustrated and disappointed.
+  
+    - When one retailer reached out to Ozisoft, they were told: "We don't know where the shipment is." It was later discovered that the shipment had been sent to the wrong state due to Ozisoft's strategy of only shipping consoles when there was space available on cargo planes, likely to save on shipping costs.
+
+  - **High Price Point**: The Dreamcast was priced at AUD 500 (approximately USD 350) in Australia, significantly higher than its USD 199 price tag in the United States. This price was later reduced to AUD 299 (around USD 175) a year after launch.
 
 Many immediately cancelled their pre-orders of these issues.
 
