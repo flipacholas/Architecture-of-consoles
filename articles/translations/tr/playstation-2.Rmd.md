@@ -1,9 +1,9 @@
 ---
-short_title: PlayStation 2 Mimarisi
-long_title: PlayStation 2 Mimarisi
+short_title: PlayStation 2'nin Mimarisi
+long_title: PlayStation 2'nin Mimarisi
 long_name: PlayStation 2
 name: PS2
-subtitle: Kalanları gölgede bırakıyor
+subtitle: Üstlerini gölgede bırakıyor
 date: 2020-04-08
 release_date: 2000-03-04
 javascript:
@@ -33,26 +33,80 @@ Bu makine, [Orijinal PlayStation](playstation)'ın basitliğine yakın bile değ
 
 ## İşlemci (CPU)
 
-Bu konsolun tam kalbinde, **Emotion Engine** ya da 'EE' denilen, Sony tarafından dizayn edilen, **~294.91** MHz'de çalışan güçlü bir paket (çipler bütünü) görüyoruz [@cpu-rockin]. Çipset, birden fazla bileşeni içinde bulunduruyor ve bunlardan biri de Ana İşlemci (CPU). Geri kalan kısımları ise belirli görevleri hızlandırmak için CPU'nun kullanımındadır.
+Bu konsolun özünde, **Emotion Engine** ya da 'EE' denilen, Toshiba ve Sony tarafından [@cpu-cataldo] ortaklaşa dizayn edilen, **~294.91 MHz**'de çalışan güçlü bir paket (çipler bütünü) görüyoruz [@cpu-rockin].
+
+![Emotion Engine, bu konsolun ilk anakart revizyonunda.](ee_chip.jpg)
+
+Çipset, sayısız bileşen içeriyor ve bunlardan biri de Ana İşlemci (CPU). Geri kalan kısımları ise belirli görevleri hızlandırmak için CPU'nun kullanımındadır. Bu analiz için EE'yi üç kısma ayıracağız:
+
+- **Lider:** Bütün yongayı kontrol eden asıl bileşendir.
+- <strong x-id=“1”>Kullanılabilir bellek</strong>, işlemcilerin anlamlı işlemler yapabilmesi için çok önemli bir bileşen.
+- **Co-processors**: Bunlar, belirli hesaplamaları hızlandırır.
 
 ### Çipteki Lider
 
-Ana işlemci çekirdeği, **MIPS R5900 uyumlu** bir işlemci fakat birçok gelişmiş özellikle beraber geliyor. Bu, konsol açıldığı andan itibaren talimat (CPU Instruction) yürütmeye başlayan ilk çiptir. İşlemci, aşağıda sıralanan özelliklere sahiptir:
+Kısaca açıklarsak, Ana İşlemci, bu konsol için özel tasarlanmış bir MIPS işlemci çekirdeği olan **MIPS R5900**. Belki hatırlarsınız ki Sony, daha ilk [PlayStation](playstation)'dan (ikincil kaynak olan LSI'den alınan [MIPS R3000A](playstation#the-offering)'yı görüyoruz) [MIPS silikon çipiyle risk almıştı](playstation#tab-1-2-mips-and-sony). Sonraki nesilde ise MIPS 'R5900'le karşılaşıyoruz... ancak bu isim bizim için ne ifade ediyor?
 
-- **MIPS III ISA**: 64-bit RISC talimat seti (Instruction Set). *Bir saniye, bana mı öyle geliyor, yoksa bu [rakip konsol](nintendo-64#cpu)da bulunanla aynı ISA mı?* Pek de öyle değil. Sony, **MIPS IV**'ten bazı talimatları (Prefetch/Önbelleğe alma ve Conditional Move/Koşullu Taşıma) ve beraberinde **multimedya talimatları** dedikleri kendi SIMD Uzantılarını ekleyerek ISA'yı (Instruction Set Architecture / Talimat Seti Mimarisi'ni) geliştirdi.
-- **32 ekstra 128-bit CPU Kaydı (Register)**: Bir diğer geliştirme. Bunlar, multimedya talimatlarını işlemeyi daha iyi başardılar ve vektör işleme için de çok kullanışlılardır.
-  - Bu işlemci kayıtlarına (register) 128-bit'lik bir veri yolu vasıtasıyla erişim sağlanırken, CPU'nun geri kalanı dâhilî 64-bit'lik veri yolunu kullanır.
-- **2 yollu süperskaler**: İki talimata kadar paralel yürütme yapar.
-- **24 KB L1 önbelleği**: Talimatlar için 16 KB ve veriler için 8 KB'a bölünmüştür.
+Yeni sayıların ardında yatan şeyi anlamak için o dönemi kuşatan bir tarihî anlatıya bakalım.
+
+#### Diğerlerini aşan başarı {.tabs.active}
+
+<a href=“nintendo-64#cpu”>MIPS R4000</a>, <a href=“nintendo-64”>yakın rakibi</a> de dahil olmak üzere çok çeşitli sistemler tarafından benimsenen popüler bir işlemci serisiydi. Başarısı sayesinde MIPS, halka tek seferde pahası karşılanamayacak düzeyde gelişmeler (64-bit bilgi işleme, 8 aşamalı pipeline ve dahasını) getirdi.
+
+İleri sararsak, sonraki büyük sıçrama 1995'te, **R10000**'in piyasaya sürülmesiyle gerçekleşti. Bu tarihte MIPS, [SGI](playstation#tab-1-2-mips-and-sony)'ın maddî yatırımıyla, R4000'in paralellik kâbiliyetini çok ileri taşıdı ve ilk kez şunun gibi teknikler ortaya çıktı [@cpu-yeager]:
+
+- <strong x-id=“1”>Speculative execution</strong>: CPU, hesaplanmadan önce conditional branch sonucunu tahmin eder. Bu öngörüler, dâhilî 512 girdilik bir tabloda saklanan önceki işlemlerin sonuçlarına göre gerçekleştirilir. Koşul hesaplandığında, eğer öngörü doğru ise, İşlemci önemli zaman kazanmış olacak. Yok değilse, ekstra hesaplamalar yok edilir.
+  - Bu sayede MIPS, sonunda sürekli tekrar eden bir sorunu ([control hazards](playstation#delay-galore)<!--Türkçesi için önce PS1 makalesi çevirilmeli-->) bir avantaja çevirdi.
+  - Diğer işlemcilerde ise [dynamic branch prediction](gamecube#features) olarak anılan benzer bir işleyiş biçimi görebilirsiniz.
+- **4-çıkışlı süperskaler** pipeline: [Pipeline tasarımına](sega-saturn#cpu) ek olarak, CPU artık pipeline'ın başlangıcında dört adede kadar talimat getirecek ve bunları ayrı birimlere dağıtarak CPU'nun bu talimatları aynı anda yürütmesini sağlayacaktır. Bunu yapmak suretiyle, İşlemci, daha üst derecede bir paralelliğe erişir.
+- **Out-of-order execution**: Ayrıca İşlemci, birimlerini olabildiğince doldurmak için talimatların sırasını da yeniden düzenleyecek (hazard eklenmediği sürece).
+- **128-bit'lik veri yoluna sahip L2 önbelleği**, aynı anda İşlemciye daha fazla veri çekmeyi mümkün kılar, bu da önceki geliştirmeler göz önüne alındığında bir gerekiliktir.
+
+Böylesi bir yenilik, karmaşık bir dizayna mâl olur ancak sonuçta ortaya çıkan ürün, her şekilde ucuz değildi. SGI, bunu sadece üst düzey ekipmanlarla bir bütün hâlinde satıyordu ve bunu bir ev konsoluna taşımaya çalışmak söz konusu bile olamazdı.
+
+#### Halk'a sunulan Üst düzey {.tab}
+
+R10000'in ticârî kısıtlamalarının çoktan farkına varmış olan SGI/MIPS, **Quantum Effect Devices**'ı (QED), R10000'in orta ve düşük seviye pazar için makul fiyatlı bir versiyonunu geliştirmesi için işe aldı. Eski MIPS çalışanları tarafından kurulmuş bir şirket olan QED, MIPS çekirdeklerinin bütçeye uygun sektör için varyantlarını dizayn ediyordu.
+
+Nihayet, QED, **R5000** adlı yeni bir işlemci çekirdeği ile döndü; bu, R10000'in kayda değer kesintilere uğramış hâliydi [@cpu-halfhill]:
+
+- Sırasız yürütme özelliği, sıralı yürütmeye geri döndürülmüştü.
+- Speculative execution kaldırıldı.
+- Süperskalerlik iki tâlimatla (2-çıkışlı) kısıtlandı ve artık tam sayı tâlimatları paralelize edilmiyordu. Yine de kayan noktalı (floating point) tâlimatları diğerleriyle eşlenebiliyordu.
+- Önceki eksiltmeler sebebiyle, L2, 64-bit veriyoluna indirildi.
+
+Sonuç olarak bu, SGI'ın düşük bütçeli iş istasyonları gibi enerji (güç) tasarruflu donanım için ideal bir İşlemci hâline geldi. Her halükarda, QED'in <strong x-id=“1”>vektör/3D uygulamaları</strong> için cazip bir ürün olarak tutmayı planladığı gibi, küçültülmüş pipeline'ın hala eşzamanlı kayan nokta işlemleri gerçekleştirdiğini unutmayın. Yakında başka bir şirketin de bunu hızla not ettiğini göreceksiniz.
+
+İlave not olarak, ilginçtir ki okyanusun öbür ucunda da benzer geliştirmeler vardır fakat aksi yönde: ARM çiplerini üst düzey pazara taşımak uğruna [ARM, DEC ile güçlerini birleştirdi](nintendo-ds#arms-new-territories).
+
+#### Sony'e özel bir sipariş {.tabs-close}
+
+Toshiba bir süredir MIPS lisansı sahibiydi [@cpu-toshiba] ve MIPS varyasyonları ve paketleri üretmeye yabancı değildi. Bir noktada Sony ve Toshiba, Sony'nin yakında çıkacak konsolu için özel olarak tasarlanmış bir CPU üretmek üzere güçlerini birleştirdi. Bu Toshiba için muazzam bir avantajdı: CPU'ların çoğu zaman farklı paydaşlardan gelen çok sayıda gereksinimi karşılaması gerekir ve bunu yaparken uzmanlaşmaya yönelik fırsatları kısıtlar. Artık sadece tek bir amaç vardı: **3D oyun**. Böylece her türlü <strong x-id=“1”>yenilik</strong> için yeterli alan sağlanmış olur.
+
+Bununla birlikte Toshiba, uygun fiyatlı R5000 tasarımını aldı ve vektör işlemlerini hızlandırmak için ince ayar yaptı. Yeni çekirdek <strong x-id=“1”>R5900</strong> olarak adlandırılıyor ve aşağıdaki '3D' geliştirmeleri sunuyor [@cpu-stokes]:
+
+- <strong x-id=“1”>MIPS III ISA</strong>'nın bir varyasyonu. Bu, daha önce <a href=“nintendo-64#cpu”>Nintendo 64</a>'te görülen orijinal 64 bit ISA'yı içerir, ancak ilginç işlem kodlarıyla genişletilmiştir. Sony, vektör hesaplamalarını hızlandırmak için ([SH-4](dreamcast#special-work)'e benzer, ancak yalnızca tamsayı) **multimedia instructions** adlı kendi SIMD uzantısının yanı sıra **MIPS IV**'ten bazı talimatlar (prefetch ve conditional move) ekledi.
+  - Multimedya talimatları hala 32 bit genişliğindedir ancak bir seferde üç adede kadar 128 bit vektörü çalıştırabilir. Vektör aritmetiği, min/maks ve yeni vektörler oluşturmak için birçok skaler kombinasyon gibi işlemler sunarlar.
+- <strong x-id=“1”>32 adet 128 bit genel amaçlı register</strong>: Toshiba markalı bir başka önemli geliştirme. Tipik <a href=“playstation#the-offering”>32-bit depolama</a> alanını unutun, şimdi 128-bit alanına adım attık. Bununla birlikte, işlemlerin çoğu mevcut alanın tamamını kullanmayacaktır (MIPS kelimeleri <a href=“nintendo-64#cpu”>hala 64 bit uzunluğundadır</a>). İşte bu noktada, yukarıda bahsedilen multimedya uzantısı denkleme dahil olur, çünkü seti genişletilmiş kayıt dosyasını tam olarak kullanacaktır.
+  - Yeni talimatlar kullanıldığında, her bir register birçok skaler türünden oluşan vektörleri saklayabilir (iki 64 bitlik tamsayıdan on altı 8 bitlik olana kadar).
+  - Performans kayıplarını önlemek için bu kayıtlara bir <strong x-id=“1”>128-bit veri yolu</strong> üzerinden erişilirken, CPU'nun geri kalanı dahili bir <strong x-id=“1”>64-bit veri yolu</strong> kullanır.
+- İki **64-bit ALU**. Her biri 64 bit tamsayıları bağımsız olarak çalıştırabilir, ancak aynı zamanda bir <strong x-id=“1”>128 bit ALU</strong> olmak için birleşebilir. İkincisi, bu parlak multimedya işlem kodlarının arkasındaki beyindir.
+
+Bunların yanı sıra, geliştiricilerin hoşuna gidebilecek başka iyileştirmeler de buluyoruz:
+
+- <strong x-id=“1”>6 aşamalı pipeline</strong>: Bu, <a href=“playstation#the-offering”>öncekilere</a> kıyasla bir ek aşamadır.
+- <strong x-id=“1”>2 yönlü superscalar</strong> yürütme: İki ALU sayesinde, iki adede kadar 64 bit tamsayı işlemi artık paralel olarak yürütülür.
+  - Bu, MIPS R10000'ün kaybedilen bir başka avantajını geri kazandırır.
+- **24 KB L1 önbelleği**: **Talimatlar için 16 KB** ve veriler için **8 KB'a bölünmüştür**.
   - Ayrıca bir **ön belleğe alma fonksiyonu** uygulayarak talimat ve verileri çağırılmadan önce önbelleğe alır. Bu işlem, hafızadaki hangi konumların daha sık ulaşıldığını belirleyen bir ilave devre sayesinde gerçekleşir.
-- **16 KB Karalama Belleği (Scratchpad RAM)**: 'Hızlı RAM' olarak da bilinir.
+- **16 KB Scratchpad RAM**: 'Hızlı RAM' olarak da bilinir.
 - **Hafıza yönetim birimi**: Bellek erişimini sistemin geri kalanıyla koordine eder.
 
-Çekirdek, 32-bit kayan noktalı sayılarla (C'de `float` olarak da bilinir) olan işlemleri hızlandıran bir **ayrılmış kayan nokta işleme birimi** ('COP1' olarak adlandırılır) ile tamamlanmıştır. Bu alışılmadık bir parçadır çünkü IEEE 754 standardını takip etmez ve bunun en bariz olanı `infinity` (sonsuzluk) değerinin olmayışıdır (bunun yerine `0` hesaplanır) [@cpu-krysto].
+Çekirdek, 32-bit kayan noktalı sayılarla (C'de `float` olarak da bilinir) olan işlemleri hızlandıran bir **ayrılmış kayan nokta işleme birimi** ('COP1' olarak adlandırılır) ile tamamlanmıştır. Bu alışılmadık bir parçadır çünkü **IEEE 754 standardını takip etmez** ve bunun en bariz olanı **infinity** değerinin olmayışıdır (bunun yerine `0` hesaplanır) [@cpu-krysto]. Bunun dışında 32 adet 32 bitlik register'a sahiptir.
 
 ### Tanıdık bir hafıza seçimi
 
-Emotion Engine'in yanında iki adet 16 MB RAM bloğu olmak üzere toplam **32 MB** ana hafızası vardır. Kullanılan hafızaya 16-bit veri yolu ile ulaşılıyor, türü ise  **RDRAM**. ([*dejavu!*](nintendo-64#memory-design))
+Emotion Engine'in yanında iki adet 16 MB RAM bloğu olmak üzere toplam **32 MB** ana hafızası vardır. Kullanılan hafızaya **16-bit veri yolu** ile ulaşılıyor, türü ise **RDRAM**. ([*dejavu!*](nintendo-64#memory-design)).
 
 ![Emotion Engine'in bellek dizaynı. Tıkanıklığın nerede ortaya çıkacağını tahmin edebilirsiniz.](MemoryArch.png)
 
@@ -68,7 +122,7 @@ Veri aktarımı 128-bit'lik öbekler halinde yapılır fakat işin ilginç kısm
 
 - İşlemciyi **çok sayıda önbellekle** donattı. Böylece, sadece zorunlu gereklilik durumlarında ana hafızaya erişilmesi gerekir.
     - Bu makalede bahsedilen önbellek/karalama belleklerinin %99'u bu sebepten mevcuttur.
-- 128-Byte'lık **Geri Yazma Arabelleği (Write Back Buffer)** eklendi: [Yazma Biriktirme Borusu'na (Write Gather Pipe)](gamecube#ibms-enhancements) çok benzerdir ancak, %25'i dolana kadar beklemek yerine, ilk olarak veriyolunun durumunu (tıkanık mı açık mı) kontrol eder.
+- 128-Byte'lık **Write Back Buffer** eklendi: [Write Gather Pipe'a](gamecube#ibms-enhancements) çok benzerdir ancak, %25'i dolana kadar beklemek yerine, ilk olarak veriyolunun durumunu (tıkanık mı açık mı) kontrol eder.
 
 Bu, önbellekten yararlanabilecek uygulamalar için çok elverişli görünebilir ancak ya Görüntü Listeleri'ni (Display Lists) manipüle etme gibi önbelleği kullanmaması gereken işlemler ne olacak? Neyse ki İşlemci, **sadece ve sadece** Geri Yazma Arabelleğini kullanan **Önbelleksiz (UnCached) Mod** adlı bir diğer hafıza erişim moduna sahiptir. Böylelikle Önbelleği (*Önbellek kayıplarını*) düzeltmek için İşlemci döngüsü heba edilmez.
 
@@ -76,15 +130,15 @@ Dahası, **Önbelleksiz hızlandırılmış mod** da mevcut. Bu mod, hafızadaki
 
 ### Diğer ilginç parçalar
 
-Aynı Emotion Engine paketi içinde **Görüntü İşlem Birimi (Image Processing Unit)** ya da 'IPU' denilen, **görüntü çözmeye (decompression)** yarayan bir diğer işlemci var. [MDEC](playstation#tab-2-3-motion-decoder)'nin halefi olan IPU, bir oyunun MPEG2 görüntülerini (movie) Ana İşlemciyi (CPU) meşgul etmeden çözmesi gerektiğinde kullanışlı olabilir.
+Aynı Emotion Engine paketinin içinde, <strong x-id=“1”>Image Processing Unit</strong> veya 'IPU' adı verilen ve bu kez <strong x-id=“1”>image decompression</strong> için tasarlanmış bir işlemci daha bulunuyor. [MDEC](playstation#tab-2-3-motion-decoder)'nin halefi olan IPU, bir oyunun MPEG2 görüntülerini (movie) Ana İşlemciyi (CPU) meşgul etmeden çözmesi gerektiğinde kullanışlı olabilir.
 
 Uzun lafın kısası, oyun, sıkıştırılmış görüntü akışını IPU'ya (umarız DMA kullanarak) gönderir ve bu GPU'nun (Grafik İşlemci) ekranda gösterebileceği bir formata çevrilir. Ayrıca PS2'nin İşletim Sistemi de DVD oynatma için IPU'dan istifade eder.
 
-Son olarak, IPU ayrıca sıkıştırılmış **Yüksek çözünürlüklü dokuları (Hi-res textures)** da işler. Bu da İşlemci (CPU) kullanımını ve büyük transferleri azaltır.
+Son olarak, IPU ayrıca sıkıştırılmış **Yüksek çözünürlüklü dokuları** da işler. Bu da işlemci kullanımını ve büyük transferleri azaltır.
 
 ## Yardımcı İşlemciler (Co CPU'lar)
 
-Rakipleri [son ürünlerini](dreamcast) piyasaya süreli iki yıl olmuştu. Önceki makalemizi okuduktan sonra bu makaleyi okumaya okumaya başladıysanız, tahminimce PS2'yi o zamanlarki gücüne kavuşturan 'o şeyi' görmeyi *hâlâ* bekliyorsunuz. Öyleyse, müsaadenizle, Sony'nin Emotion Engine'e sığdırdığı, *çok* önemli bir bileşen setini sizlere duyurayım: o güçlü **Vektör İşlem Birimleri (Vector Processing Units)** nâm-ı diğer 'VPU'.
+Rakipleri [son ürünlerini](dreamcast) piyasaya süreli iki yıl olmuştu. Önceki makalemizi okuduktan sonra bu makaleyi okumaya okumaya başladıysanız, tahminimce PS2'yi o zamanlarki gücüne kavuşturan 'o şeyi' görmeyi *hâlâ* bekliyorsunuz. Öyleyse, müsaadenizle, Sony'nin Emotion Engine'e sığdırdığı, *çok* önemli bir bileşen setini sizlere duyurayım: o güçlü **Vector Processing Units** veya 'VPU'.
 
 ### Mimari
 
@@ -92,18 +146,18 @@ Vektör İşlem Birimi, vektörleri ve bilhassa dört kayan noktalı (`float`) s
 
 VPU'lar aşağıdaki bileşenlerden oluşur:
 
-- Birkaç **Vektör Birimi Hafızası (Vector Unit Memory)** ya da 'VU Hafızası': Vektör Birimi için çalışma alanı olarak kullanılır. Burada işlenmesi gereken değerler ya da önceki işlemlerin sonuçları depolanır.
-- Bir **Vektör Birimi (Vector Unit)**: İşlemcinin çekirdeğidir. 'VU Hafızası'nda bulunan verilerin nasıl işlenmesi gerektiğini bildiren (**Mikroprogram** denen) bir yazılımı saklamak için biraz hafıza içerir (**Mikro Hafıza/Micro Memory** adı verilir).
+- Birkaç **Vector Unit Memory** ya da 'VU Hafızası': Vektör Birimi için çalışma alanı olarak kullanılır. Burada işlenmesi gereken değerler ya da önceki işlemlerin sonuçları depolanır.
+- Bir **Vector Unit**: İşlemcinin çekirdeğidir. 'VU Hafızası'nda bulunan verilerin nasıl işlenmesi gerektiğini bildiren (**Mikroprogram** denen) bir yazılımı saklamak için biraz hafıza içerir (**Mikro Hafıza/Micro Memory** adı verilir).
   - Bir **64-bit ISA** uygular ve çalıştırma birimi ise **iki paralel alt birime ayrılmıştır**. Bunlardan biri, kayan noktalı sayılarla (float) çarpma ya da toplama, diğeri ise kayan noktalılarda bölme ya da tam sayılarda (integer) işlem yapar. Bu, kayan noktalı sayılar ve tam sayılarla **eş zamanlı olarak** işlem yapabilmeyi mümkün kılar.
-- Bir **Vektör Arayüzü**: Ana hafızadan, Vektör Birimi'nin anlayabileceği bir formatta gelen vertex verilerinin (vertex data) otomatik olarak sıkıştırmasını açar (decompress eder). Ayrıca, bu birim mikroprogramları Mikro Hafıza'ya transfer edebilir.
+- Bir **Vektör Arayüzü**: Ana hafızadan, Vektör Birimi'nin anlayabileceği bir formatta gelen vertex verilerinin (vertex data) otomatik olarak sıkıştırmasını açar (decompress eder). Ayrıca, bu birim mikroprogramları Micro Memory'e transfer edebilir.
 
 ### İşlevsellik
 
-Vektör biriminin çalışması için 'başlatılması' gerekir. Ana İşlemci (CPU), bu iş için olan mikrokodu sağlamaktan sorumludur.
+Vektör biriminin çalışması için 'başlatılması' gerekir. Ana İşlemci, bu iş için olan mikrokodu sağlamaktan sorumludur.
 
 Emotion Engine'in içine konmuş **iki VPU** vardır ancak bunlar farklı şekilde ayarlanmış olup, farklı kullanım ve optimizasyonlara elverişlidirler.
 
-#### Vektör İşlem Birimi 0 {.tabs.active}
+#### Vector Processing Unit 0 {.tabs.active}
 
 ![VPU0 Mimarisi.](VU0.png) {.tab-float}
 
@@ -116,13 +170,13 @@ VPU0, iki adet işlem moduna sahiptir:
   - Makro talimatlar, micro talimatlarla aynı işlevselliğe sahiptir ancak farklı opcode'lar (assembly kodları) kullanır. Buna rağmen, VPU yürütme birimi artık ayrık değildir (yani aynı zamanda sadece 1 talimat yürütebilir).
   - Bu mod VPU0'ın tüm bileşenlerinden tamamen yararlanamasa da CPU'nun vektör işlemlerini hızlandırmaya devam eder. Üstelik, basitlik açısından, bir yardımcı işlemciyi programlamak, bağımsız bir birimi programlamaktan daha kolaydır (bilgisayar programlayıcıları bunu kullanışlı bulacaktır).
 
-VPU0'ın hafıza haritası (memory map'i), ek olarak diğer VPU'nun bazı işlemci kayıtlarına (register) ve bayraklarına (flag) da erişebilir ki bu muhtemelen diğer VPU'nun durumunu kontrol etmek ya da gerçekleştirdiği işlemlerin sonuçlarını hızlıca okuyabilmek içindir.
+VPU0'ın memory map'i, muhtemelen durumunu kontrol etmek veya diğer VPU tarafından yapılan bazı işlemlerin sonuçlarını hızlı bir şekilde okumak için diğer VPU'nun bazı register'larına ve flag'lere da erişebilir.
 
-#### Vektör İşlem Birimi 1 {.tab}
+#### Vector Processing Unit 1 {.tab}
 
 ![VPU1 Mimarisi.](VUP1.png) {.tab-float}
 
-Mevcut ikinci VPU, yani **VPU1** ise VPU0'ın dört katı mikro hafıza ve VU Hafızasıyla yükseltilmiş bir versiyonudur. Dahası, bu birim **Temel İşlev Birimi (Elementary Function Unit)** ya da 'EFU' adı verilen; üstel ve trigonometrik fonksiyonların yürütülmesini hızlandıran ilâve bir bileşen içerir.
+Mevcut ikinci VPU, yani **VPU1** ise VPU0'ın dört katı mikro hafıza ve VU Hafızasıyla yükseltilmiş bir versiyonudur. Dahası, bu birim **Elementary Function Unit** ya da 'EFU' adı verilen; üstel ve trigonometrik fonksiyonların yürütülmesini hızlandıran ilâve bir bileşen içerir.
 
 VPU1 konum olarak, VPU0 ve (GPU'ya çıkan kapı olan) Grafik Arayüzü'nün arasında bulunur, bu sebeple, ana veri yolunu kullanmadan ve olabildiğince hızlı şekilde GPU'yu geometriyle beslemek için ekstra veri yolları içerir.
 
@@ -137,8 +191,8 @@ Bu birimlerden kullanışlı bir şekilde istifâde etme yöntemi de **prosedür
 Kesin bir biçimde yazılmış verileri kullanmakla kıyaslandığında prosedürel içerik, paralelize edilmiş görevler için idealdir, çok az depolama gerektirir ve değişkendir (programlayıcılar parametrelerle oynayarak farklı sonuçlar elde edebilir) [@cpu-green]. Pek çok alan bu teknikten son derece yarar sağlayabilir:
 
 - **Karmaşık yüzeyler** (örn. küre ve tekerlek).
-- **Dünya işleme (render)** (örn. doğal yer şekilleri, partiküller, ağaçlar).
-- **Bézier eğrileri** (bilgisayar grafiklerinde çok bilinen bir denklem olarak eğri çizmede kullanılırlar), bu eğriler bir **Bézier yüzeyine** (kesin bir geometridir) dönüştürülür ve gereken detay seviyesine (level of detail) göre farklı keskinlik derecelerini destekler.
+- **World rendering** (örn. arazi, partiküller, ağaçlar).
+- **Bézier eğrileri**, bilgisayar grafiklerinde eğri çizmek için kullanılan yaygın bir denklem. Bunlar bir <strong x-id=“1”>Bézier yamasına</strong> (açık geometri) dönüştürülür ve gereken ayrıntı düzeyine bağlı olarak farklı hassasiyet derecelerini destekler.
 
 Öte yandan prosedürel içerik, animasyonlarda sıkıntı oluşturabilir ve hattâ algoritma çok karmaşıksa VPU geometriyi (üç boyutlu şekli) gereken zamanda oluşturamayabilir.
 
@@ -164,7 +218,7 @@ Traveller's Tales'in eski yönetmeni, takımının nasıl tamamen VPU1'in içeri
 
 {.close-float}
 
-Bu yaklaşımla, CPU büyük ölçüde yükten kurtuldu ve AI (yapay zeka) ve fizik işleme gibi diğer işlemleri halledebildi.
+Bu yaklaşımla, CPU büyük ölçüde yükten kurtuldu ve yapay zeka ve fizik işleme gibi diğer işlemleri halledebildi.
 
 Başka bir çok örnek anlatılabilir ancak işin özü: Şu halde en uygun düzeni oluşturmak programlayıcıya bağlı ve bu da iyi bir şey.
 
@@ -174,7 +228,7 @@ Emotion Engine tarafından yapılan tüm bu işler göz önüne alındığında,
 
 ![Final Fantasy X (2001).](ffx.jpg) {.open-float}
 
-Tam da bu iş için özelleştirilmiş, basit fakat hızlı bir çip mevcuttur: **Grafik Sentezleyici (Graphics Synthesizer)** ya da 'GS' ve bu **~147.46 MHz**'de çalışıyor. Görüntü işlemenin tümünü kendi içinde halledebilmek için **4 MB DDRAM**'i gömülü olarak içerir. Böylece, ana hafızaya erişim ihtiyacı ortadan kalkar. Gömülü RAM, ihtiyaç duyulan veri türüne göre farklı veri yollarıyla bağlanmıştır.
+Tam da bu iş için özelleştirilmiş, basit fakat hızlı bir çip mevcuttur: **Grafik Sentezleyici (Graphics Synthesizer)** ya da 'GS' ve bu **~147.46 MHz**'de çalışıyor. Görüntü işlemenin tümünü kendi içinde halledebilmek için **4 MB DRAM**'i gömülü olarak içerir. Böylece, ana hafızaya erişim ihtiyacı ortadan kalkar. Gömülü RAM (eDRAM), ihtiyaç duyulan veri türüne göre farklı veri yollarıyla bağlanmıştır.
 
 GS, bu sitede [daha önce ele anınan](gamecube#graphics) diğer grafik sistemlerinden daha az özelliğe sahiptir. Buna rağmen, yaptığı işte oldukça hızlıdır.
 
@@ -313,90 +367,107 @@ Sonunda, çip, **stereo çıkış** hazırlamak için bütün kanalları karış
 
 Ses sinyali çıkışı, iki ortam aracılığıyla sağlanır:
 
-- **Dijital Ses**: Sony/Philips Dijital Arayüzü (Interface) ya da 'S/PDIF' olarak bilinir.
+- **Digital Audio**: Sony/Philips Interface ya da 'S/PDIF' olarak bilinir.
 - **Analog Ses**: Dijital'den analog'a çeviriciden geçip Multi A/V çıkışında sona erer.
 
 ## Giriş/Çıkış
 
-PS2'nin Giriş/Çıkışı karmaşık değildir, buna rağmen konsolun çok sayıda revizyonuyla, çeşitli dahilî ve haricî arayüzler değişikliğe uğramıştır.
+Başlangıçta, PS2'nin I/O'su özellikle karmaşık değildi. Ancak, bu konsolun sonraki revizyonları hem iç hem de dış tasarımları tamamen bozdu. Dolayısıyla, genel olarak, bu konsol farklı revizyonlara dağıtılmış birçok G/Ç biçimi sergilemektedir.
 
-Başlangıç olarak, farklı birimler arsındaki iletişimi sağlayan ayrılmış bir işlemci bulunur ve bu işlemci, **PlayStation 1**'de bulunan [orijinal MIPS R3000 tabanlı çekirdekten](playstation#cpu) başkası değildir. Bu seferki adıysa **IOP** ve 37.5 MHz'de çalışıyor ve bir 32-bit veri yolu kullanıyor [@io-buses].
+### Özel İşlemci
 
-IOP, **Sistem Arayüzü (System Interface)** ya da 'SIF' denilen özelleştirilmiş bir Giriş/Çıkış arayüzü kullanarak Emotion Engine'le iletişim kuruyor ve iki uç da birbirine veri transferi yapmak için kendi DMA birimlerini kullanıyor. Ayrıca IOP, bir arabellek olarak kullanılmak üzere kendi hafızasını içeriyor.
+Başlangıç olarak, farklı birimler arsındaki iletişimi sağlayan ayrılmış bir işlemci bulunur ve bu işlemci, **PlayStation 1**'de bulunan [orijinal MIPS R3000 tabanlı çekirdekten](playstation#cpu) başkası değildir. Bu kez **I/O Processor** (IOP) olarak adlandırılıyor ve <strong x-id=“1”>37,5 MHz</strong> hızında <strong x-id=“1”>32-bit veri yoluna</strong> bağlı olarak çalışıyor [@io-buses].
 
-IOP, ön dıştaki yuvalara, DVD kontrolcüsüne, SPU2'ye, BIOS ROM'a ve PC card yuvasına erişim sağlıyor.
+![Playstation 2'nin mimarisinin ana şeması. I/O İşlemcisinin I/O'nun çoğuna özel erişim gösterdiğine dikkat edin.](diagram.png)
 
-<!-- The IOP gives access to the front ports, CD-ROM controller, SPU2, the BIOS ROM and the PC card slot. -->
+IOP, **Sistem Arayüzü (System Interface)** ya da 'SIF' denilen özelleştirilmiş bir Giriş/Çıkış arayüzü kullanarak Emotion Engine'le iletişim kuruyor ve iki uç da birbirine veri transferi yapmak için kendi DMA birimlerini kullanıyor. IOP ayrıca tampon olarak kullanılan <strong x-id=“1”>2 MB <a href=“playstation#the-offering”>EDO RAM</a></strong> (tıpkı PS1'de olduğu gibi) özel belleğe sahiptir.
 
-### Miras alınan uyumluluk
+Sonuç olarak, bu işlemci ön bağlantı noktalarına, DVD denetleyicisine, SPU2'ye, BIOS ROM'a ve PC kartı yuvasına erişim sağlar.
 
-Orijinal CPU'yu dâhil etmek suretiyle bir şekilde PS1 uyumluluğu sağlanabileceğini düşünebiliriz. Buna uygun şekilde IOP, PS1 CPU'sunun yardımcı sistemini oluşturan diğer bileşenleri de içeriyor. Dahası çekirdeğe, PS1 hızında çalışacak şekilde hız düşürme yapılabiliyor. Maalesef SPU2, PS1'e karşın çok fazla değişikliğe uğradı fakat bunun için de Emotion Engine, eski SPU'yu taklit (emüle) etmek amacıyla 'yeniden işlevlendiriliyor'.
+Her ne olursa olsun, 'Slim' revizyonunun gelmesinden bir yıl sonra (2005), IOP yerine <strong x-id=“1”>PowerPC 401 'Deckard'</strong> (mikrodenetleyiciler için kesilmiş bir PowerPC 601), <strong x-id=“1”>4 MB SDRAM</strong> (öncekinden 2 MB daha fazla) ve bir Ethernet alıcı-vericisi (daha önce harici bir aksesuarda bulunan) içeren bir SoC yerleştirildi.
 
-Konsolun sonraki revizyonlarında IOP, bir **Power PC 401 'Deckard'** ve **4 MB SDRAM** ile (öncekinden 2 MB daha fazla) değiştirildi, geriye dönük uyumluluk devam etti ancak bu sefer yazılım yoluyladır.
+#### Geriye uyumluluk
+
+Önceki modelin CPU'sunu içeren modeller için PS1 uyumluluğunun da paketin bir parçası olacağı düşünülebilir. Sony, uygun bir şekilde, bir PS1 diski takıldığında yüklenen bir PS1 emülatörü (`PS1DRV` olarak adlandırılır) ile paketlemiştir. Bu gerçekleştiğinde, IOP PS1 hızında çalışmak için düşük hızda çalıştırılır, EE <a href=“playstation#graphics”>eski GPU</a>'yu taklit etmek için 'yeniden kullanılır' ve SPU2 <a href=“playstation#audio”>orijinal SPU</a> gibi davranmak için yeniden eşlenir.
+
+PowerPC tabanlı modellerde geriye dönük uyumluluk devam etti, ancak bunun yerine tam bir yazılım uygulaması yapıldı.
 
 ### Mevcut arayüzler
 
-Konsol, orijinal PlayStation'da bulunan eski ön dış bağlantı noktalarını barındırdı ve ayrıca ilk bakışta ümit verici görünen birtakım 'deneysel' arayüzler de sundu.
+Konsol, orijinal PlayStation'da bulunan [eski ön dış bağlantı noktalarını](playstation#front-ports) barındırdı ve ayrıca ilk bakışta ümit verici görünen birtakım 'deneysel' arayüzler de sundu.
 
-![PS2'nin önü, Kontrolcü ve Hafıza Kartı (MemoryCard) dâhil yaygın yuvalar gösteriliyor, ayrıca yeni USB'ler ve i.Link de [@photography-amos].](photos/ps2_front.png) {.open-float}
+![Kontrolörler ve Hafıza Kartları dahil olmak üzere ortak bağlantı noktalarını gösteren PS2'nin ön yüzü. Ayrıca, yeni USB'ler ve i.Link bağlantı noktaları [@photography-amos].](photos/ps2_front.png)
 
-En meşhur ilave ise: **İki adet USB 1.1 yuvası**. Büyük ölçüde üçüncü parti eklentiler tarafından benimsenildi ve bunlar, gelecekteki tüm revizyonlarda da bulunmaya devam etti.
+En meşhur ilave ise: **İki adet USB 1.1 yuvası**. Teorik hızı 12 Mbps'dir, ancak bu büyük ölçüde IOP'nin bant genişliğine bağlıdır (ki bu oldukça yavaş olma eğilimindedir). Bununla birlikte, üçüncü taraf aksesuarlar tarafından yaygın olarak benimsenmiştir.
 
-Peki ya 'deneysel' olanlar? İlk olarak, başlangıçta bir dış **i.Link portu** yuvası bulunuyordu (ayrıca IEEE 1394 ya da Apple camiasında 'FireWire' olarak da bilinir). Bu yuva, yerel çok oyunculuyu mümkün kılmak için iki PS2'yi bağlamada kullanıldı ancak üçüncü revizyonla kaldırılı (muhtemelen yerini 'Network card'a bıraktı, aşağıda daha fazla detay var).
+Çok uzun sürmeyen bazı 'deneyler' de oldu. İlk olarak, başlangıçta bir dış **i.Link portu** yuvası bulunuyordu (ayrıca IEEE 1394 ya da Apple camiasında 'FireWire' olarak da bilinir). Bu yuva, yerel çok oyunculuyu mümkün kılmak için iki PS2'yi bağlamada kullanıldı ancak üçüncü revizyonla kaldırılı (muhtemelen yerini 'Network card'a bıraktı, aşağıda daha fazla detay var).
 
-{.close-float}
+#### Alışılmadık Ethernet + HDD kombinasyonu
 
-Konolsun arkasında, **PC card**'lar için de bir yuva var, Sony'den iki ekstra yuva getiren 'Network Adaptor card' alabiliyordunuz. Biri Ethernet kablosu bağmak için, diğeri de bir özel ürün bağlamak ve yine Sony tarafından satılan bir harici 'Hard Disk Sürücüsü Birimi' (HDD) takmak içindir. Bir sürücüye sahip olmak, daha hızlı yükleme süreleri için oyunların geçici verileri depolamasına (ya da kalıcı olarak burada kurulmalarına) imkan tanır. Gerçi bu özelliği sadece birkaç oyun kullanmıştır.
+Konsolun arkasında ayrıca <strong x-id=“1”>PC kartları</strong> için bir yuva vardı. Bunun için Sony'den iki ekstra arayüz sağlayan 'Ağ Adaptörü kartı' satın alabilirsiniz:
 
-![PS2'nin arkasındaki Sabit disk bölmesi (kapağı çıkarılmış olarak) gösteriliyor [@photography-amos].](photos/back_bay.png){.tabs-nested .open-float .tab-float .active title="Giriş Bölmesi"}
+- Çevrimiçi çok oyunculu oyun için bir <strong x-id=“1”>Ethernet</strong> bağlantı noktası.
+- Tescilli ve harici bir <strong x-id=“1”>Hard Disk Drive Unit</strong> bağlantı noktası: Bu Sony tarafından satılıyordu ve 40 GB alana sahip tipik bir 3,5” ATA sabit disk sürücüsü içeriyordu. Bir sürücüye sahip olmak, daha hızlı yükleme süreleri için oyunların geçici verileri depolamasına (ya da kalıcı olarak burada kurulmalarına) imkan tanır. Gerçi bu özelliği sadece birkaç oyun kullanmıştır.
 
-![Ağ adaptörünün (Network adaptor) önden görünümü [@photography-amos]. Bu özel model, modem ve Ethernet girişleri barındırdı.](photos/harddrive_adaptor_front.png){.tab-nested title="Ön Yüz"}
+Sonraki revizyonlarda PCMCIA yuvası, konsola 3.5 inçlik bir Hard disk sürücüsü sığdırılabilecek bir **Expansion Bay** ile değiştirildi. Öncelikle, sadece Modem ve/veya Ethernet girişlerini (modele göre değişir) bulundurmakla kalmayıp aynı zamanda bir ATA-66 hard disk için gerekli bağlantıları da bulunduran bir **Network adaptor** almanız gerekliydi.
 
-![Ağ adaptörü (Network adaptor) arkadan görünüşü [@photography-amos], bir sabit disk takılmış hâlde.](photos/harddrive_adaptor_back.png){.tab-nested title="Arka"}
+![PS2'nin arkasındaki Sabit disk bölmesi (kapağı çıkarılmış olarak) gösteriliyor [@photography-amos].](photos/back_bay.png)
 
-![Slim modelinin arkasındaki sabit Ethernet yuvası gösteriliyor.](photos/ps2_slim_back.jpg){.tabs-nested-last title="İnce Yüz"}
+Perde arkasında, HDD'deki veriler 'PFS' [@io-fs] adı verilen bir dosya sistemi kullanılarak yapılandırılır. Garip bir şekilde, düzen bir bölümleme tablosu içermez, sadece 'Aligned Partition Allocation' (APA) adı verilen çok ilkel bir katalog içerir. Bunun nedeni Sony'nin yalnızca 40 GB sürücüler göndermesi olabilir. Dolayısıyla, ölçeklenebilirlik öncelikler listesinde yer almıyordu.
 
-Sonraki revizyonlarda PCMCIA yuvası, konsola 3.5" (inçlik) bir Hard disk sürücüsü sığdırılabilecek bir **Expansion Bay (Genişletme Bölmesi)** ile değiştirildi. Öncelikle, sadece Modem ve/veya Ethernet girişlerini (modele göre değişir) bulundurmakla kalmayıp aynı zamanda bir ATA-66 hard disk için gerekli bağlantıları da bulunduran bir **Network adaptor** almanız gerekliydi. 'Slim' revizyonlarıyla bu özellik tamamen kaldırıldı ancak arkada kalıcı olarak bulunacak bir Ethernet yuvası bırakıldı. Buna ek olarak, yeni revizyonla yeni bir ön yuva olan **kızılötesi sensör** eklendi.
+![Ağ adaptörünün (Network adaptor) önden görünümü [@photography-amos]. Bu özel model, modem ve Ethernet girişleri barındırdı.](photos/harddrive_adaptor_front.png) {.toleft.no-borders}
 
-{.close-float}
+![Ağ adaptörü (Network adaptor) arkadan görünüşü [@photography-amos], bir sabit disk takılmış hâlde.](photos/harddrive_adaptor_back.png) {.toright.no-borders}
 
-Donatılmış olan Ethernet alıcı/vericisi, 100 Mbps'ye (12.5 MB/s) kadar transfer hızlarını destekler. Ancak **gözlemlenen hız düşüklüğü kötü şöhretle bilinir** (bazı durumlarda 2 MB/s'ye kadar düşer). Bunun açıklaması ise görece basittir: Kullanılabilir iletişim ağına (network) erişmek için standart 'OSI Modeli'nin tüm katmanları uygulanmalıdır, alıcı/verici ise bütünün sadece bir parçası. İşin geri kalanı genel olarak IOP'nin emrindedir (ki yazılımla yapılır) fakat IOP'nin sınırlı performansı yüzünden [@io-bottleneck], darboğaz meydana gelir.
+Ethernet alıcı/vericisi, 100 Mbps'ye (12.5 MB/s) kadar transfer hızlarını destekler. Ancak **gözlemlenen hız düşüklüğü kötü şöhretle bilinir** (bazı durumlarda 2 MB/s'ye kadar düşer). Bunun açıklaması ise görece basittir: Kullanılabilir iletişim ağına (network) erişmek için standart 'OSI Modeli'nin tüm katmanları uygulanmalıdır, alıcı/verici ise bütünün sadece bir parçası. İşin geri kalanı genel olarak IOP'nin emrindedir (ki yazılımla yapılır) fakat IOP'nin sınırlı performansı yüzünden [@io-bottleneck], darboğaz meydana gelir.
+
+#### İnceltme
+
+Slim revizyonu tüm Ethernet + HDD modelini revize etti: artık Expansion Bay yok, ancak arkaya kalıcı olarak bir ethernet bağlantı noktası takıldı (belirli modellerde bir Modem de vardı).
+
+![Slim modelinin arkasındaki sabit Ethernet yuvası gösteriliyor.](photos/ps2_slim_back.jpg)
+
+Buna ek olarak yeni revizyon, Sony markalı bir uzaktan kumanda (ayrı satılır) ile kullanılmak üzere yeni bir <strong x-id=“1”>infrared sensor</strong> ekledi.
 
 ### Etkileşimli eklentiler
 
 Kontrolcülerinin (oyun kolu) yeni versiyonu olan **DualShock 2**, DualShock'un biraz geliştirilmiş versiyonudur.
 
-![DualShock 2 kontrolcüsü [@photography-amos].](photos/dualshock2.png){.tabs-nested .open-float .tab-float .active title="DualShock 2"}
+![DualShock 2 kontrolcüsü [@photography-amos].](photos/dualshock2.png) {.toleft.no-borders}
 
-![Orijinal Hafıza Kartı (Memory Card) (8 MB modeli) [@photography-amos].](photos/memorycard.png){.tabs-nested-last title="Hafıza Kartı"}
+![Orijinal Hafıza Kartı (8 MB modeli) [@photography-amos].](photos/memorycard.png) {.toright.no-borders}
 
 Orijinal PlayStation zamanlarında, orijinal kontrolcünün farklı özellikler barındıran birçok revizyonu piyasaya sürüldü (aynı zamanda pazara ayrışma getirdi). Artık geliştiriciler lehine, öncesinde gelen bütün özellikleri kendinde toplayan tek bir kontrolcü vardır.
 
-DualShock'la kıyaslandığında yeni versiyon ince bir yeniden dizayn geçirdi, iki analog çubuğu ve iki titreşim motorunu sırasıyla daha zengin girdi alma ve etkili geri bildirim verme adına ekledi.
+Orijinal DualShock ile karşılaştırıldığında, yeni versiyon hafif bir yeniden tasarıma sahiptir, sırasıyla daha zengin giriş ve geri bildirim için iki analog çubuk ve iki titreşim motoru içerir.
 
-{.close-float}
+Kontrolcü giriş yuvasının yanındaysa PS1 ve PS2 kartlarıyla uyumlu **Hafıza kartı yuvası** bulunuyor. Yeni kartlara, **MagicGate** olarak anılan güvenlik sebepleriyle ekstra devre gömüldü, bu da oyunların, farklı hafıza kartlarına veri transferini engelleyebilmesine imkan tanıdı. IOP, içeriğin şifrelenmesi ve şifresinin çözülmesiyle ilgilenir ve bunu MagicGate yonga seti (Hafıza Kartının içinde bulunur) ve DVD sürücüsünün yardımıyla yapar, ikincisi şifreleme anahtarlarını paketler.
 
-Kontrolcü giriş yuvasının yanındaysa PS1 ve PS2 kartlarıyla uyumlu **Hafıza kartı yuvası** bulunuyor. Yeni kartlara, **MagicGate** olarak anılan güvenlik sebepleriyle ekstra devre gömüldü, bu da oyunların, farklı hafıza kartlarına veri transferini engelleyebilmesine imkan tanıdı.
+Ancak bazı üçüncü taraf Memory Card'ları MagicGate'i desteklemiyordu.
 
 ## İşletim Sistemi
 
-Anakartın üstüne yerleşmiş, kullanıcıların etkileşime geçebileceği bir shell (sistem kullanıcı arayüzü) menüsü açmak için muazzam miktarda kodu depolayan bir **4 MB ROM** çipi bulunur, ancak buna ek olarak Giriş/Çıkış erişimini kolaylaştırmak için oyunların dayandığı sistem çağrılarını (system call) da gerçekleştirir.
+Anakarta takılı bir <strong x-id=“1”>4 MB ROM</strong> yongası var, bu bir kabuk menüsü (kullanıcıların etkileşime girebileceği) yüklemek için kullanılan büyük miktarda kodu depolar, ancak aynı zamanda I / O erişimini basitleştirmek için sistem çağrıları sağlar \[@cpu-rockin\] (oyunların dayandığı).
 
 ![Konsol başlatıldıktan sonra görünen açılış animasyonu.](bios/animated.jpg){.tabs-nested .active title="Önyükleme animasyonu"}
 
 ![Geçerli bir PS2 oyunu takıldıktan sonra PS2 logosu gösteriliyor.](bios/game_splash.jpg){.tabs-nested-last title="Geçerli disk"}
 
-Önyükleme ardından CPU, ROM'daki talimatları ve üzerine şunları çalıştırır:
+Güç verildiğinde, hem MIPS R5900 hem de IOP `0xBFC00000` adresinden başlayacaktır (bu, tüm MIPS CPU'ları için imza sıfırlama vektörüdür). Bununla birlikte, beklenen çakışmaları ele almak için, bu adreste saklanan ilgili kod (BIOS ROM'a işaret eder), her CPU'nun tanımlayıcısına göre farklı bir konumda dallanmasını sağlayacaktır.
+
+R5900 söz konusu olduğunda, CPU aşağıdaki adımları izleyecektir [@cpu-rockin]:
 
 1. Donanımı ilk kullanıma hazırlar.
-2. RAM'e bir **Kernel (sistem çekirdeği)** açar, bu ise sistem çağrılarıyla ilgilenir ve de çoklu iş parçacığı (multi-threading) desteği sağlar (iş birlikçi ve öncelik tabanlıdır).
-3. IOP işlemcisini başlatıp, ona **modüller** gönderir; bu, IOP'nin konsolun donanımını yönetmesine izin verir. Son olarak, IOP bir 'komut bekleme' hâline geçirilir.
-    - Modüllerin kullanılması, Sony'nin IOP'yi değiştirmeden yeni PS2 donanım revizyonları yayınlamasına imkân sağladı, bu da üretim mâliyetlerini düşürdü.
-3. Açılış animasyonu ve shell menüsünü gösteren program olan 'OSDSYS'i açar.
+2. <strong x-id=“1”>Kernel</strong>'i ROM'dan RAM'e yükler. Çekirdek yüklendikten sonra, uygulamaların (çoğunlukla oyunların) donanımla etkileşime girmesi için bir soyutlama katmanı sağlayacaktır. Ayrıca, bir çoklu iş parçacığı API'si (işbirlikçi ve öncelik tabanlı) de sunar.
+3. Çekirdek, bir çekirdek modülü olan `EELOAD`'u yükler ve bu da `OSDSYS`'i önyükler. `OSDSYS`, açılış animasyonunu ve shell menüsünü görüntüleyen programdır.
+
+Öte yandan, IOP donanımının bir kısmını başlatacak ve ardından birden fazla <strong x-id=“1”>modül</strong> yükleyecektir, bunlar IOP'nin bu konsolun donanımına erişmesini sağlar. Son olarak, IOP bir 'komut bekleme' hâline geçirilir.
+
+Modül kullanımının Sony'nin PS2'nin yeni donanım revizyonlarını IOP'yi değiştirmeden (değiştirene kadar) piyasaya sürmesine olanak sağladığını ve böylece bu süreçte bazı üretim maliyetlerini düşürdüğünü belirtmek gerekir.
 
 ### Etkileşimli kabuk (Interactive shell)
 
-PS2 kabuğunun (PS2 shell) işlevselliği, diğer 6. nesil konsollarla hemen hemen aynı düzeydedir.
+PS2 shell işlevselliği, diğer 6. nesil konsollarla hemen hemen aynı düzeydedir.
 
 ![İlk gösterilen menü. Herhangi bir disk yerleştirilmediğinde ortaya çıkar.](bios/menu.jpg){.tabs-nested .active title="Menü"}
 
@@ -408,7 +479,19 @@ PS2 kabuğunun (PS2 shell) işlevselliği, diğer 6. nesil konsollarla hemen hem
 
 ![Sistem Yapılandırma.](bios/options.jpg){.tabs-nested-last title="Seçenekler"}
 
-Kabuk, gündelik işlemleri gerçekleştirmeyi sağlayan kullanışlı kısımlar sunar, örneğin hafıza kartındaki kayıtların düzenlenmesi gibi. Bununla birlikte, bazı fevkalade seçenekler de sunar, meselâ geçerli video modunu değiştirmek gibi.
+Shell, hafıza kartında saklanan kaydetme verilerini değiştirmek veya saati değiştirmek gibi tipik işlemleri yönetmek için birden fazla kullanıcı arayüzünden oluşur. Bununla birlikte, bazı fevkalade seçenekler de sunar, meselâ geçerli video modunu değiştirmek gibi.
+
+### Güncellenebilirlik
+
+BIOS gerçekten de salt okunur bellekte saklanır, ancak bu Sony'nin fabrikadan çıktıktan sonra BIOS'u değiştirmesini engellememiştir. BIOS, perde arkasında gelecekte yapılacak değişiklikler için iki açık kapı bırakmıştır:
+
+- Uygulamalar (oyunlar ve `OSDSYS`) <strong x-id=“1”>çekirdek rutinlerini çalışma zamanında</strong> yamalayabilir [@operating_system-kpatch]. Hem resmi SDK hem de resmi olmayan 'ps2sdk' bundan geniş ölçüde yararlandı, çünkü Sony mühendisleri daha sonra çekirdeklerinin hatalarla dolu olduğunu keşfettiler (<em x-id=“4”>kasıtlı olarak</em>).
+- **`EELOAD`, Bellek Kartında ve/veya HDD'de [@operating_system-israelson] saklanan güncellenmiş bir `OSDSYS` ikili dosyasını arayacaktır**. Sony, DVD film oynatıcı ve HDD desteği eklemek için buna güveniyordu, çünkü bu sürücülerin hiçbiri bu konsolun önceki revizyonlarında paketlenmemişti.
+  - Bu güncellemeler konsolla veya HDD kitiyle (Final Fantasy XI kutu setinin bir parçası) birlikte gelen yükleme disklerinde dağıtıldı.
+  - Eski SDK'larla geriye dönük olarak uyumlu olması gereken çekirdeğin aksine, konsolun sonraki revizyonları BIOS ROM'unda önceki güncellemeleri gönderdi.
+  - Dağıtımı kontrol etmek için ikili dosyalar, yalnızca Sony tarafından bilinen anahtarlar kullanılarak (teoride) simetrik bir şifreleme sistemi olan <strong x-id=“1”>Data Encryption Standard</strong> (DES) [@operating_system-kelftool] ile imzalanmalıdır. Ayrıca, ikili dosyalar MagicGate desteği olan bir depolama aygıtında saklanmalıdır.
+
+Her halükarda, Sony sonunda geç PS2 modellerinde (BIOS sürümü `2.30` ile) ikinci yöntemi kaldırdı. Sanırım Sony daha fazla güncelleme planlamıyordu ve bu sadece saldırı yüzeyini artırdı.
 
 ## Oyunlar
 
@@ -433,7 +516,7 @@ Yazılım tarafında, aşağıdakileri içeren **PlayStation 2 SDK** (PS2 Yazıl
 - Kullanım performansını gösteren 'Analiz' (Analysis) araçları.
 - Resmî geliştirme donanımıyla bağlantıyı sağlayan ilâve araçlar.
 
-Donanım tarafında Sony, oyunları kurum içi çalıştırma ve hata ayıklama için stüdyolara mahsus donanım sağladı. İlk geliştirme kitleri (devkits), PS2'nin pisayasa sürülmemiş donanımını replika etmek için birarada yığılmış çıplak (kasasız) kartlardı. Sonraki kitler (**Development Tool** yani Geliştirme Araçları adını alanlar), daha tatmin edici bir görünüşe, gelişmiş Giriş/Çıkışa (I/O) ve oyunları aynı şartlarda geliştirip dağıtma için PS2 donanımıyla çalışan bileşik iş yeri donanımına (RedHat 5.2 çalıştırır) sahipti.
+Donanım tarafında Sony, oyunları kurum içi çalıştırma ve hata ayıklama için stüdyolara mahsus donanım sağladı. İlk geliştirme kitleri, PS2'nin pisayasa sürülmemiş donanımını replika etmek için birarada yığılmış kasasız kartlardı. Sonraki kitler (**Development Tool** yani Geliştirme Araçları adını alanlar), daha tatmin edici bir görünüşe, gelişmiş Giriş/Çıkışa (I/O) ve oyunları aynı şartlarda geliştirip dağıtma için PS2 donanımıyla çalışan bileşik iş yeri donanımına (RedHat 5.2 çalıştırır) sahipti.
 
 Geliştirme kiti (DevKit), resmî SDK ve CodeWarrior (meşhur bir IDE yani bütünleşik geliştirme ortamıdır) birleşimi, kullanılan en popüler düzeneklerdendi.
 
@@ -443,7 +526,7 @@ Disk sürücü, hem DVD hem de CD okuyabilir yani oyunlar her iki fiziksel forma
 
 ![Kingdom Hearts II (2005). Tipik perâkende oyun kutusu ve diski.](kh2_box.jpeg) {.open-float}
 
-DVD'ler, (en yaygın DVD 'alt türü' olan) DVD-5 biçiminde **4.7 GB**'a kadar ya da DVD-9 için (çift katmanlı versiyonu, daha az yaygındır) 8.5 GB'a kadar veri tutabilir [@games-dvd]. Aslında üçüncü bir format olan çift taraflı DVD-10 da vardır ancak hiçbir oyun bunu kullanmadı.
+DVD'ler, **DVD-5** (en yaygın 'alt format') durumunda **4,7 GB** veya **DVD-9** (çift katmanlı versiyon, daha az yaygın) durumunda **8,5 GB** veri tutabilir [@games-dvd]. Aslında üçüncü bir format olan çift taraflı **DVD-10** da vardır ancak hiçbir oyun bunu kullanmadı.
 
 Kullanılan medya türü sayesinde, sadece oyunlar değil, filmler de oynatılabiliyordu. Yine de, film formatında bir DVD'yi okuyabilmek için ilgili kod çözücü gerekiyordu ve bunun için, PS2 ilk zamanlarda gerekli dijital aracı bir hafıza kartına (PS2 Memory Card) dahil etmişti (sonuçta hafıza kartı da bir depolama medyası/ortamıdır) fakat sonraki modeller ise BIOS ROM'a halihazırda kurulmuş bir DVD yazılımı ile çıktı.
 
@@ -457,7 +540,7 @@ Görmüş olduğunuz üzere, konsolun genel ağ özellikleri, ilk piyasaya sür�
 
 ### Alışılmadık bir oyun türü
 
-Sony, *güzel grafikli* tüm bu oyunların yanı sıra, 'Kondara' tabanlı (ki bu da Red Hat 6 tabanlıdır) bir Linux dağıtımını iki CD halinde (ilk disk 'Runtime Environment' yani program çalıştırma ortamı ve ikincisi 'Software Packages' yani yazılım paketleridir), VGA adaptörü, USB Klavye ve Fare ve ek olarak bazı geliştirici kılavuzları ile birlikte piyasaya sürdü. Paket, **Linux Kit** olarak bilinirdi ve ilk DVD'yi başlatarak OS'i (işletim sistemini) çalıştırabilir ve herhangi bir *old school (eski usul)* Linux ortamı gibi devam edebilirdiniz. Tabii ki Linux dağıtımını kurmak için konsola bir sabit disk (Hard drive) takmanız gerekirdi. Kurulduktan sonra, bu işletim sistemini başlatmak için her zaman ilk DVD'ye ihtiyaç vardı.
+Sony, *güzel grafikli* tüm bu oyunların yanı sıra, 'Kondara' tabanlı (ki bu da Red Hat 6 tabanlıdır) bir Linux dağıtımını iki CD halinde (ilk disk 'Runtime Environment' yani program çalıştırma ortamı ve ikincisi 'Software Packages' yani yazılım paketleridir), VGA adaptörü, USB Klavye ve Fare ve ek olarak bazı geliştirici kılavuzları ile birlikte piyasaya sürdü. Paket, **Linux Kit** olarak bilinirdi ve ilk DVD'yi başlatarak işletim sistemini çalıştırabilir ve herhangi bir *old school* Linux ortamı gibi devam edebilirdiniz. Tabii ki Linux dağıtımını kurmak için konsola bir sabit disk (Hard drive) takmanız gerekirdi. Kurulduktan sonra, bu işletim sistemini başlatmak için her zaman ilk DVD'ye ihtiyaç vardı.
 
 Linux Kit'e, EE'ye yönelik (glibc 2.2.2 ile gcc 2.95.2) derleyiciler (compilers), vektör birimlerine yönelik talimat derleyiciler (assemblers) ve beraberinde Grafik Sentezleyici'de hızlandırılmış bir pencere sistemi (XFree86 3.3.6) [@games-linux]. Genel anlamda bu, kulağa ilginç bir ortam gibi geliyor. Aslında, okuduğum araştırma makalelerinin biri bu kurulumla oluşturulmuştu.
 
@@ -465,57 +548,91 @@ Linux Kit'e, EE'ye yönelik (glibc 2.2.2 ile gcc 2.95.2) derleyiciler (compilers
 
 Bu alanda konuşulacak çok şey var, hadi DVD okuyucuyla başlayalım, olur mu?
 
-### Kopya Koruma
+### DVD kopya koruması
 
-Bu kısım bilhassa oyun stüdyolarını endişeye düşürüyordu zira bu konsol, oyunları depolamak için pek uygun fiyatlı bir disk biçimi kullandı ve bu da hayli yüksek bir korsana düşme riski getirdi.
+Bu alan özellikle oyun stüdyoları için endişe vericiydi, çünkü bu konsol oyunları dağıtmak için çok uygun fiyatlı bir disk formatı kullanıyordu. Dolayısıyla korsanlık riski yüksekti.
 
-![Bu ekran, sürücü arızalıysa görülebilir... ya da korsan bir kopya takıldıysa.](bios/rsod.jpg) {.open-float}
+![Bu ekran, sürücü arızalıysa görülebilir... ya da korsan bir kopya takıldıysa.](bios/rsod.jpg)
 
-İşletim sistemi, bir oyunu açma işini DVD okuyucuya özel komutlar göndererek yapar. Özel olarak oyun içeriğini okumak için kullanılan komutlar, standart DVD komutlarından (yani DVD filmi okunmasından) çok farklı davranır. Tescilli oyunların, diskin daha içeri kısımlarında, dosya sisteminin (filesystem) adını, konumunu ve boyutunu işaretleyen ve erişim alanının dışında kalan bir 'yerleştirme dosyası' (map file) bulundurduğu ortaya çıktı. DVD'den bir oyun diskini okuması istendiğinde, diskte her zaman yerleştirme dosyası (map file) yardımıyla yön bulur; bu da demektir ki yerleştirme dosyasını bulundurmayan bir korsan kopyanın okunması imkânsızdır. Bu, başka bir bölgenin konsolunda çalışan ithal oyunların çalıştırılmasını engelleyen bir bölge kilidi sistemiyle bütünleşmiştir.
+İşletim sistemi, bir oyunu açma işini DVD okuyucuya özel komutlar göndererek yapar. Özel olarak oyun içeriğini okumak için kullanılan komutlar, standart DVD komutlarından (yani DVD filmi okunmasından) çok farklı davranır. Tescilli oyunların, diskin daha içeri kısımlarında, dosya sisteminin (filesystem) adını, konumunu ve boyutunu işaretleyen ve erişim alanının dışında kalan bir 'yerleştirme dosyası' (map file) bulundurduğu ortaya çıktı. DVD'den bir oyun diskini okuması istendiğinde, diskte her zaman yerleştirme dosyası (map file) yardımıyla yön bulur; bu da demektir ki yerleştirme dosyasını bulundurmayan bir korsan kopyanın okunması imkânsızdır.
 
-{.close-float}
+Bu, başka bir bölgenin konsolunda çalışan ithal oyunların çalıştırılmasını engelleyen bir bölge kilidi sistemiyle bütünleşmiştir.
 
-### Keşfedilen açıklar
+### Korumaları atlatmak
 
 Bu konsola dair en önemli bölümü açıkladık, şimdi de koruma mekanizmalarını atlatmayı başaran keşfedilmiş birkaç yönteme göz atalım.
 
-#### Modifikasyon Çipleri (Modchips) {.tabs.active}
+#### DVD sürücüsüne saldırma
 
-Kendi neslinde (ve öncekilerde) disk tabanlı sistemler kullanan diğer konsollardaki gibi, DVD yardımcı sisteminin üçüncü taraf şirketlerce tersine mühendisliğe uğraması an meselesiydi. Buradaki hedef, sürücüyü, erişim alanı dışındaki yerleştirme dosyasını (map file) kullanmayı gerektirmeden dosya sisteminde gezinmeye zorlayacak kullanışlı bir açık yakalamaktı.
+PS2 mağazalara ulaşır ulaşmaz, DVD sürücüsünün 'kilidini açma' vaadiyle çok sayıda üçüncü parti ürün ortaya çıktı. Homebrew'u destekleyecek hiçbir işaret olmadığından (Linux çözümü dışında), korsanlık en büyük faydalanıcı oldu.
+
+##### Modifikasyon Çipleri (Modchips) {.tabs.active}
+
+Kendi neslinde (ve öncekilerde) disk tabanlı sistemler kullanan diğer konsollardaki gibi, DVD yardımcı sisteminin üçüncü taraf şirketlerce tersine mühendisliğe uğraması an meselesiydi. Buradaki hedef, sürücüyü, erişim alanı dışındaki yerleştirme dosyasını kullanmayı gerektirmeden dosya sisteminde gezinmeye zorlayacak kullanışlı bir açık yakalamaktı.
 
 Sonunda bu, aynı zamanda bölge kilidi kısıtlamalarını da askıya alan **modchipler** şeklinde gerçekleşti.
 
-#### Hileler {.tab}
+##### Hileler {.tab}
 
-Takılması için lehim kabiliyeti gerektiren modchiplerin yanı sıra, gayriresmî fakat 'orijinal' diskler pazarda yerini aldı. Bunlar, bölge kilidini aşmayı ve işletim sistemine yama yaparak oyun içi hileleri kullanmayı mümkün kıldı. Dahası, 'hile diskleri' (cheat discs), konsolun modifiye edilmesini gerektirmeme avantajına da sahipti. Düşünceme göre bu bahse en iyi örnek *CodeBreaker*'dır.
+Takılması için lehim kabiliyeti gerektiren modchiplerin yanı sıra, gayriresmî fakat 'orijinal' diskler pazarda yerini aldı. Bunlar, bölge korumasını kaldırmak ve oyun içi hileleri kullanmak için Çekirdeği yamaladı.
+
+Dahası, 'hile diskleri', konsolun modifiye edilmesini gerektirmeme avantajına da sahipti. Düşünceme göre bu bahse en iyi örnek *CodeBreaker*'dır.
 
 #### Disk değiştirme {.tab}
 
-Son gelişmeler arasında bir hileli teknik daha ortaya çıktı. Bu sefer, okuyucunun hatalı sektörlere müdahale davranışından faydalanılıyor. **Swap Magic** bir diğer 'orijinal' disk gibi görünüyor ancak içindeki 'oyun' DVD'ye kasten yapılmış bir hatalı sektördeki, aslında var olmayan bir çalıştırılabilir (executable) dosyayı okumasını söylüyor, böylece sürücüyü büsbütün donduruyor [@anti_piracy-hacking]. Kullanıclar için mevcut diski 'orijinal' olmayan bir diskle değiştirebilecekleri bir fırsat penceresi aralanıyor. Sonrasında, hâlen hafızada bulunan Swap Magic, yeni diskin ana çalıştırılabilir dosyasını önyüklüyor ve sonunda gerçek bir oyun açılıyor. Tüm bunlar, sürücü hâlâ orijinal bir diskin takılı olduğunu zannederken gerçekleşiyor.
+Son gelişmeler arasında bir hileli teknik daha ortaya çıktı. Bu sefer, okuyucunun hatalı sektörlere müdahale davranışından faydalanılıyor. **Swap Magic** bir diğer 'orijinal' disk gibi görünüyor ancak içindeki 'oyun' DVD'ye kasten yapılmış bir hatalı sektördeki, aslında var olmayan bir çalıştırılabilir dosyayı okumasını söylüyor, böylece sürücüyü büsbütün donduruyor [@anti_piracy-hacking]. Kullanıclar için mevcut diski 'orijinal' olmayan bir diskle değiştirebilecekleri bir fırsat penceresi aralanıyor. Sonrasında, hâlen hafızada bulunan Swap Magic, yeni diskin ana çalıştırılabilir dosyasını önyüklüyor ve sonunda gerçek bir oyun açılıyor. Tüm bunlar, sürücü hâlâ orijinal bir diskin takılı olduğunu zannederken gerçekleşiyor.
 
-Bu işlem, illâki konsolda bir değişiklik yapılmasını gerektirmez. Fakat modele bağlı olarak, sürücünün disk çıkarma sensörünü bloke edecek şekilde, PS2'nin dış kasasının kurcalanması gerekebilir. Bazı durumlarda, belli yerlere pamuk yerleştirmek iş görecektir.
+Bu işlem, illâki konsolda bir değişiklik yapılmasını gerektirmez. Fakat modele bağlı olarak, sürücünün disk çıkarma sensörünü bloke edecek şekilde, PS2'nin dış kasasının kurcalanması gerekebilir. Bazı modellerde, pamuk parçalarının belirli yerlere yerleştirilmesi de adım adım ilerlemenin bir parçasıydı.
 
-#### PS1 taşması (overflow) {.tab}
+#### Modçiplerden ayrılma {.tabs-close}
+
+Zaman geçtikçe, bu konsol hakkında daha fazla araştırma toplandı ve paylaşıldı. Sonuç olarak, yeni ve daha sofistike keşifler, en azından temel olarak artık harici donanıma dayanmayan yeni bir geliştirme dalgasına yol açtı. Dahası, korsanlık artık ana odak noktası değildi. Bunun yerine, Sony'nin onayı olmadan üçüncü taraf programları çalıştırma yeteneği (<strong x-id=“1”>Homebrew</strong> olarak adlandırılır) hızla hedefler listesinin zirvesine yerleşti.
+
+#### Independence overflow {.tabs.active}
 
 PS2, PS1 oyunlarının emülasyonunu optimize ederken kullanılacak bilgileri içeren, `TITLE.DB` adı verilen bir veri tabanı dosyasını Hafıza Kartında (MemoryCard) saklar [@anti_piracy-grand]. İşletim sistemi, bir PS1 oyunu yerleştirildiğinde veri tabanı dosyasını getirir ve bütün dosyayı hafızadaki sabit bir adrese açar (*ihmâl bir*). Bilgi derleyici, C'de dizileri (harf ve diğer karakterler zinciri) bir yerden ötekine kopyalamaya yarayan **`strncpy()`** fonksiyonu kullanılarak uygulandı.
 
 C'ye aşina olanlarınız, muhtemelen nereye varacağımı tahmin ettiniz. Olay şu ki `strncpy()`, bir dizi ne kadar uzun bilmiyor, yani (zincirin sonuna `\0` yazmak suretiyle) bitirilmediği sürece kopyalama 'sonsuza dek' devam edecek (ve öngörülemeyen sonuçları olacak!). Şanslarına bu fonksiyon, tercihen kullanılabilen, kopyalanacak maksimum byte sayısını belirleyen bir parametre içeriyor ve böylece kopyayı arabellek taşmalarından koruyor. Fakat şu gülünç gelebilir ve öyledir ki **Sony, bu parametreyi kullanmadı**, hem de her veri tabanı girdisinin 256 byte'lık sabit bir boyuta sahip olmasına rağmen (*ihmal iki*).
 
-RAM daha yakından incelendiğinde, TITLE.DB'nin, yürütülmekte olan mevcut fonksiyon bittikten sonra dönülecek adresi belirtmek üzere **kayıtlanmış bir işlemci kaydının,** `$ra`**'nın yanına** kopyalandığı görülür (*ihmal üç*) ve bu da <0>Bağımsızlık Açığına (The Independence Exploit)</0> yol açar: Büyük bir dizi içeren bir Title.db oluşturun, içine bir çalıştırılabilir dosya yerleştirin ve bu dizeyi öyle bir hazırlayın ki `$ra`'nın içeriği, bu çalıştırılabilir dosyayı işaretleyecek şekle dönüşerek hükümsüz kalsız. Eğer bu dosyayı (başka bir alet ya da PC USB adaptörü yardımıyla) kendi Hafıza Kartınıza (MemoryCard) aktarmayı başarırsanız, kendinize basit bir ev yapımı başlatıcısı (Homebrew launcher) hazırlamış olursunuz.
+RAM'de daha yakından incelendiğinde, `TITLE.DB`, yürütülmekte olan mevcut işlev bittikten sonra geri dönülecek adresi belirten **kayıtlı bir register** olan `$ra`'nın yanına kopyalanır (*üçüncü vuruş*), bu da **The Independence Exploit**'e [@anti_piracy-independence] yol açar: Büyük bir string içeren bir `TITLE.DB` oluşturun, içine bir çalıştırılabilir dosya yerleştirin ve bu stringi `$ra`'nın çalıştırılabilir dosyayı gösterecek şekilde geçersiz kılınacağı şekilde tasarlayın. Bu dosyayı Hafıza Kartınıza yüklemeyi başarırsanız (başka bir istismar veya PC USB adaptörü aracılığıyla) kendinize basit bir <strong x-id=“1”>Homebrew launcher</strong> elde etmiş olursunuz.
 
-Slim revizyonu yayınlandıktan sonra, bu açık giderildi (*Nasıl oldu merak ediyoum*). İlginçtir ki bu, acemice kod meydana getiren son [falso](wii#the-fall-of-encryption) değildi.
+Bu keşif 2003 yılında yayımlanmıştır. Sonuç olarak, ince revizyonla birlikte Sony, bu açığı yamalayan yeni bir BIOS ROM revizyonu gönderdi. İlginçtir ki bu, acemice kod meydana getiren son [falso](wii#the-fall-of-encryption) değildi.
 
-### Yarı kalıcı bir yazılımsal kilit kaldırma {.tabs-close}
+#### The signature exploit {.tab}
 
-Bir süre önce, bu konsolun BIOS'unun Hafıza Kartı kullanılarak güncelleştirilebildiği keşfedildi, bu özellik uygulamada hiçbir zaman kullanılmadı ancak konsoldan da kaldırılmadı (en azından konsolun ömrünün büyük kısmı boyunca). Bundan yola çıkan hackerlar, eğer Hafıza Kartına özel bir yazılım kurmanın bir yolunu bulurlarsa, BIOS'un önyüklemede her zaman bunu çalıştıracağının farkına vardılar. Bu keşif **Free MCBoot**'a zemin hazırladı, bu program kendini 'güncelleme verisi' olarak takdim edip orijinal shell'i, **Homebrew (ev yapımı)** çalıştırabilen bir shell'le değiştirdi.
+Kasım 2007'de bir bilgisayar korsanlığı grubu **Memor32** [@anti_piracy-fmcb] adında tipik bir üçüncü taraf Hafıza Kartı satmaya başladı, ancak bu kartta nedense bir <strong x-id=“1”>FPGA</strong> ve bir <strong x-id=“1”>USB portu</strong> bulunuyordu. İnternet forumlarında <strong x-id=“1”>Memento</strong> adlı bir aygıt yazılımı ortaya çıkana kadar Memor32'nin gerçek doğası netleşmedi: Independence istismarında olduğu gibi hafıza kartından yetkisiz çalıştırılabilir dosyalar çalıştırmak.
 
-Aklınızda bulunsun ki bu değişiklik kalıcı değildir, 'Free MCBoot' kurulu bir Hafıza Kartı, konsol başlatılmadan önce takılmalıdır. Ek olarak, bu yazılım sonuçta bir şekilde kurulmalı, yani kurucuyu başlatmak bir diğer açıktan (örneğin disk değiştirme) faydalanılmalıdır.
+Memento'nun uygulanması DVD oynatıcının imzasının kontrol edilme şeklindeki bir kusura dayanıyordu. İkililerin Sony'nin anahtarları kullanılarak imzalanması gerekirken <strong x-id=“1”>ikilinin bütünlüğünün kontrol edilmediği</strong> keşfedildi. Dolayısıyla, herhangi biri çalıştırılabilir kodu başka bir şeyle (hala aynı alana sığan) değiştirebilir ve işletim sistemi memnuniyetle çalıştıracaktır. Memento aygıt yazılımı bu istismarı kullanarak yükünü DVD oynatıcı içinde gizlemiş ve kullanıcıların oyunları (disk sürücüsünden ya da HDD'den) yüklemelerine olanak tanıyan birkaç yardımcı program eklemiştir.
 
-### Daha fazla disk hilesi
+Ancak Memor32 ve Memento'nun popülerliği, ücretsiz (ve başlangıçta açık kaynaklı olan) bir alternatifin ortaya çıkmasıyla kısa sürede yer değiştirdi: **FreeMCBoot**.
 
-Free MCBoot'un yayınlanmasının ardından hemen aynı sene bir diğer tatkik keşfedildi: Oyunları DVD filmleri olarak göstermek, modchip'e gerek kalmadan tescillenmemiş oyun kopyalarının okumasını mümkün kıldı.
+#### Evrensel çözüm {.tab}
 
-Bu, yalnızca oyun kopyasına sahte metadata (dosya format ön bilgisi) ve sadece DVD filmlerinde kullanılan bölümlendirmeler eklemek suretiyle yama yapmayı gerektirdi. Sonrasında ise aktarılmış (disk burn) kopya, konsola takıldığında sürücü bunu geri atmaz ancak oyunu da çalıştırmaz. Buna rağmen **ESR** adı verilen bir Homebrew programı yardımıyla oyun başlatılabilir.
+Memento'nun ters mühendisliği yapıldıktan sonra, Memor32 gerektirmeyen bir alternatif internette ortaya çıktı. <strong x-id=“1”>FreeMCBoot</strong>, <strong x-id=“1”>herhangi bir MagicGate Hafıza Kartına</strong> yüklenebilmesi dışında aynı güvenlik açığından yararlanmıştır. Tek dezavantajı, yükleyiciyi başlatmak için hala başka bir açık (örneğin disk değiştirme) gerekmesiydi.
+
+İlginçtir ki, FreeMCBoot'un kullanıcı arayüzü `OSDSYS`'den varlıkları ödünç alır, böylece diğer Homebrew'u başlatmak için tanıdık bir menü sağlar. Ayrıca, USB 1.1 bağlantı noktalarındaki yığın depolama aygıtlarına erişmek için API'ler eklemek üzere çekirdeğe yama yapar; bu, birçok homebrew uygulamasının ek dosyaları bulmak için güvendiği bir şeydir.
+
+Ek olarak, yükleyici iki seçenek sunar: yalnızca mevcut konsol için gereken dosyaları yüklemek veya tüm PS2 varyantları için genel bir kurulum yüklemek. İlginçtir ki, ikinci seçeneği gerçekleştirmek oldukça zordu [@anti_piracy-fmcb]. Başlangıçta, yükleyici, alanın tükenmesini önlemek için Hafıza Kartının bölümleme tablosuyla oynayacaktı, bu özellikle güvenli olmayan bir şeydi.
+
+Şans eseri 2011 yılında <a href=“playstation-3#os-security-hierarchy”>PlayStation 3'ün</a> <a href=“playstation-3”>güvenlik sistemi</a> [ele geçirildi](playstation-3#tab-17-4-the-fall-of-encryption) ve içinde saklı birçok sır açığa çıktı. Diğerlerinin yanı sıra, <a href=“playstation-3#backwards-compatibility”>PS2 geri uyumluluğu</a> için global olarak kullanılan MagicGate anahtarları koleksiyonu bulunmaktadır. O andan itibaren, PS2 çalıştırılabilir dosyaları oluşturmak için sınırlı DVD ikili imza hilesine başvurmak artık gerekli değildi. Ve böylece, `1.8b` sürümünden bu yana FreeMCBoot, PlayStation 2'de her türlü Homebrew'u çalıştırmak için en güvenli ve en popüler yöntem olarak konumunu korumuştur.
+
+### Takip eden gelişmeler {.tabs-close}
+
+Homebrew'u çalıştırma yolu daha erişilebilir hale geldiğinde, ilerleme önceki açıkların parlatılması ve Homebrew uygulamalarının geliştirilmesi şeklinde devam etti. Sonunculardan bazıları nihayetinde korsanlıkla ilgili işlevselliği kolaylaştırdı, ancak aynı zamanda işletim sisteminin sınırlı yeteneklerini de genişlettiler (örneğin, oyunlara yamalar sağlayarak), sanırım sonuçta kullanıcılarının niyetlerine bağlıydı.
+
+Homebrew ile ilgili gelişmelerden birkaç önemli örnek vermek gerekirse:
+
+- <strong x-id=“1”>FreeHDBoot</strong>: FreeMCBoot'un bunun yerine sistemin de önyükleme yapmaya çalışacağı HDD'ye yüklenen bir çeşidi.
+- <strong x-id=“1”>ps2sdk</strong> ps2dev grubu tarafından [@anti_piracy-ps2sdk]: Telif hakkı ihlali riski olmadan PS2 Homebrew yazmak için resmi olmayan SDK. Proje, yalnızca belirli bileşenlere [@anti_piracy-ps2sdk_history] erişmek için gevşek kütüphaneler biçiminde bulunduğu ve zamanla Homebrew geliştiricilerinin yararına tek bir pakette birleştirildiği 2000 yılına dayanmaktadır.
+- <strong x-id=“1”>LaunchELF</strong> birden fazla yazar tarafından [@anti_piracy-launchelf]: Ekstra yardımcı programlara sahip bir dosya yöneticisi. Daha sonra 'uLaunchELF' ve son olarak 'wLaunchELF' olarak devam etti.
+- <strong x-id=“1”>Open USB Loader</strong> (OPL) birden fazla yazar tarafından [@anti_piracy-opl]: Disk görüntülerini birden fazla kaynaktan (HDD, USB, i.Link ve hatta Ethernet üzerinden SMB ve NMB) yama yetenekleriyle önyüklemeyi sağlar.
+- Ffgriever [@anti_piracy-esr] tarafından **ESR**: Orijinal adı 'Vast CDVDV' olan bu uygulama, tüm sistemi (DVD sürücüsü de dahil olmak üzere) donanım değişikliği yapmadan bir oyunun yakılmış bir kopyasını çalıştırması için kandıran bir uygulamadır. ESR, yürütmeyi gerçek oyuna yönlendirmek için Emotion Engine ve IOP'nin kontrolünü ele geçirirken, orijinal oyun içeriği kendisini DVD filmi olarak gizlemek için yamalanmalıdır (böylece DVD sürücüsü bunu reddetmez).
+
+İlerleyen yıllarda yeni açıklar da ortaya çıkacaktır:
+
+- Krat0s [@anti_piracy-fortuna] tarafından <strong x-id=“1”>Fortuna</strong>: 2019'da yayınlanan ve tamamen farklı bir istismara dayanan alternatif bir Homebrew başlatıcısı. Bu kez, kaydetme yöneticisinin simge ayrıştırıcısında (`OSDSYS`'nin bir parçası) bir buffer overflow var [@anti_piracy-opentuna]. Ana avantajı, harici `OSDSYS` güncellemeleri için desteği kaldıran (dolayısıyla FreeMCBoot ile uyumsuz) son PS2 modelleriyle uyumluluktur.
+- alexparrado tarafından <strong x-id=“1”>OpenTuna</strong> [@anti_piracy-opentuna]: Fortuna'ya açık kaynaklı bir alternatif, tersine mühendislikten kaynaklandı.
+- cturt tarafından <strong x-id=“1”>FreeDVDBoot</strong> [@anti_piracy-freedvdboot]: 2020'de yayınlanan yeni bir güvenlik açığı. DVD oynatıcıda rastgele kod yürütme gerçekleştirmek için kullanılabilecek yeni bir buffer overflow'dan oluşur. Kullanıcıların FreeMCBoot yükleyicisi ve hatta ESR dahil olmak üzere istedikleri herhangi bir ikili dosyayı çalıştırmak için FreeDVDBoot ile bir DVD yazmaları yeterlidir (Sony bunun yıllar önce keşfedilmediği için çok şanslıydı! [diğerleri gibi değildi](dreamcast#defeating-it)).
 
 ## Hepsi bu kadar
 
