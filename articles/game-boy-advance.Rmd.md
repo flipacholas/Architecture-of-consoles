@@ -362,18 +362,25 @@ Also, remember that all of this will only run on the ARM7. In other words, there
 
 ## Games
 
-Programming for the GBA shared some methodologies with the [Super Nintendo](super-nintendo) but also inherited all the advancements of the early 2000s: Standardised high-level languages, reliable compilers, debuggable RISC CPUs, non-proprietary workstations for development, comparatively better documentation and... Internet access!
+Games are distributed in a new proprietary cartridge format, it's still called **Game Pak** but features a smaller design.
+
+![The new Game Pak design for GBA games [@photography-amos].](gba_gamepak.png){.no-borders}
 
 GBA programs are mostly written in **C** with performance-critical sections in **assembly** (ARM and Thumb) to save cycles. Nintendo supplied an SDK with libraries and compilers.
 
-Games are distributed in a new proprietary cartridge format, it's still called **Game Pak** but features a smaller design.
+Programming for the GBA shared some methodologies with the [Super Nintendo](super-nintendo) but also inherited all the advancements of the early 2000s: Standardised high-level languages, reliable compilers, debuggable RISC CPUs, non-proprietary workstations for development, comparatively better documentation and... Internet access!
 
 ### Accessing cartridge data
 
-While the ARM7 has a 32-bit address bus, there are only 24 address lines connected to the cartridge.
-This means, in theory, that up to 16 MB can be accessed on the cartridge without needing a mapper. However, the memory map shows that **32 MB of cartridge data are accessible**. So, what's happening here? The truth is, the Gamepak uses **25-bit addresses** (which explains that 32 MB block) but its bottommost bit is fixed at zero. Thus, the only 24 remaining bits are set. This is how Game Pak addressing works.
+While the ARM7 has a 32-bit address bus, there are **only 24 address lines connected to the cartridge**.
 
-Now, does this mean that data located at odd addresses (with its least significant bit at '1') will be inaccessible? No, because the data bus is 16-bit: For every transfer, the CPU/DMA will fetch the located byte plus the next one, enabling it to read both even and odd addresses. As you can see, this is just another work of engineering that makes full use of hardware capabilities while reducing costs.
+This means, in theory, that up to 16 MB can be accessed on the cartridge without needing a mapper. However, the memory map shows that **32 MB of cartridge ROM are accessible**. So, what's happening here? The truth is, the Gamepak uses **25-bit addresses** (which explains that 32 MB block) but its bottommost bit is fixed at zero. Thus, the only 24 remaining bits are set. That's how Game Pak addressing works.
+
+![Representation of the Game Pak addressing model. Notice how the last bit of the 25-bit address (named 'A0') is always zero. I must also point out that in reality, the address and data pins are also shared/multiplexed.](cart_addressing.png)
+
+Now, does this mean that data located at odd addresses (with its least significant bit at `1`) will be inaccessible? No, because the data bus is 16-bit: For every transfer, the CPU/DMA will fetch the located byte plus the next one, enabling it to read both even and odd addresses. As you can see, this is just another work of engineering that makes full use of hardware capabilities while reducing costs.
+
+Curiously enough, 26-bit ARM CPUs also resorted to the same technique. These housed a 24-bit Program Counter, as the bits had to be multiples of eight (a.k.a. word aligned) so the two last bits of the 26-bit address were always zero. However, since these CPUs fetch 32 bits (the first byte plus the next three), the whole 26-bit address space can be accessed.
 
 ### Cartridge RAM space
 
@@ -385,9 +392,11 @@ To hold saves, Game Paks could either include [@games-ziegler]:
 
 ### Accessories
 
-The same [Game Boy Link socket](game-boy#external-communications) is included to provide multi-playing capabilities. Though there's no IR sensor anymore, for some reason (maybe too unreliable for large transfers).
+The previous [Game Boy Link socket](game-boy#external-communications) is included to provide multi-player capabilities or extra content. Though there's no IR sensor anymore, for some reason (maybe too unreliable for large transfers).
 
-Additionally, the GBA's BIOS implemented a special feature internally known as **Multi-boot**: Another console (either GBA or GameCube) can send a functional game to the receiver's EWRAM and then, the latter would boot from there (instead of fetching from the Game Pak).
+![The GameCube-Game Boy Advance link cable [@photography-amos], this one connects to the GameCube's controller port (handled by the [Serial interface](gamecube#internal-io)) for data transfers.](link_cable.png){.no-borders}
+
+Additionally, the GBA's BIOS implemented a special feature internally known as **Multi-boot**: Another console (either GBA or GameCube) can send a functional game to the receiver's EWRAM and then, the latter would boot from there (instead of the Game Pak).
 
 ## Anti-Piracy & Homebrew
 
