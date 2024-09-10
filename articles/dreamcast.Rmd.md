@@ -33,6 +33,8 @@ When the Dreamcast finally launched, it faced several significant issues:
 
     - Even after Internet access disc came the console could only connect through one ISP, Telstra Big Pond. This ISP was known for being both expensive and underpowered, which severely restricted the online capabilities of the console.
 
+    - All of the Dreamcast software was seized by customs officials due to the absence of a 'country of origin' marking on the packaging.
+
   - **Severe Shortages**: Despite earlier assurances that shipments of the console and games would arrive on time, many retailers were left without stock. There were no Visual Memory Units (VMUs), controllers, keyboards, or first-party software available even third party ones, leaving early adopters frustrated and disappointed.
   
     - When one retailer reached out to Ozisoft, they were told: "We don't know where the shipment is." It was later discovered that the shipment had been sent to the wrong state due to Ozisoft's strategy of only shipping consoles when there was space available on cargo planes, likely to save on shipping costs.
