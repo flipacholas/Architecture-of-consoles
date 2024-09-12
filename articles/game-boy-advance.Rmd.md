@@ -247,7 +247,7 @@ If that wasn't enough, the PPU can now apply **affine transformations** to sprit
 Sprite entries are 32-bit wide and their values can be divided into two groups:
 
 - **Attributes**: Contains x/y position, h/v flipping, size, shape (square or rectangle), sprite type (affine or regular) and location of the first tile.
-- **Affine data**: Only used if the sprite is affine, specify scaling and rotation.
+- **Affine data**: Only used if the sprite is affine. They specify scaling and rotation.
 
 #### Result {.tab}
 
@@ -343,9 +343,19 @@ In this game (*Mother 3*), the player can enter two different rooms, one *relati
 
 ## Operating System
 
-ARM7's reset vector is at `0x00000000`, which points to a **16 KB BIOS ROM**. That means the Game Boy Advance first boots from the BIOS, which in turn shows the iconic splash screen and then decides whether to load the game or not.
+ARM7's reset vector is at `0x00000000`, which points to a **16 KB BIOS ROM**. That means the Game Boy Advance first boots from the BIOS, which in turn displays the iconic splash screen and then decides whether to load the game or not.
 
-That ROM also stores software routines that games may call to simplify certain operations and reduce cartridge size [@operating_system-vijn]. These include:
+::: {.subfigures .side-by-side}
+
+![Splash animation halfway through.](splash/start.png){.toleft .pixel}
+
+![Splash animation at the end.](splash/finish.png){.toright .pixel}
+
+The GBA features a new splash animation where it now shows off its extended colour palette and sprite scaling capabilities.
+
+:::
+
+The BIOS ROM also stores software routines that games may call to simplify certain operations and reduce cartridge size [@operating_system-vijn]. These include:
 
 - **Arithmetic functions**: Routines to carry out Division, Square Root and Arc Tangent.
 - **Affine matrix calculation**: Given a 'zoom' value and angle, it calculates the affine matrix that will be input to the PPU in order to scale/rotate a background or sprite.
