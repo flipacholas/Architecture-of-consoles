@@ -39,7 +39,17 @@ From now on I'll use the term 'Master System' or 'SMS' to refer to all of these,
 
 ## CPU
 
-Sega decided on a fully-fledged **Zilog Z80** CPU running at **~3.58 MHz**. A popular choice by other machines like the ZX Spectrum and the Amstrad CPC.
+Sega decided on a fully-fledged **Zilog Z80** CPU running at **~3.58 MHz**. A popular choice by computer manufacturers like the Spectrum, Amstrad or Tandy.
+
+::: {.subfigures .side-by-side}
+
+![The American Tandy TRS-80 (1977) I found in the Computer History Museum (San Jose, California) during my visit in June 2019.](trs80.webp){.toleft}
+
+![The British Sinclair ZX80 (1980). It's way smaller than it looks! Part of Christopher Rivett's collection [@photography-crivett].](zx80.webp){.toright}
+
+Popular computers across the world carrying a Z80 CPU.
+
+:::
 
 The Z80 CPU has an interesting background, as it was authored by no other than the creators of the Intel 8080 (Federico Faggin and Masatoshi Shima), who then became disenchanted with Intel's direction and decided to start their own silicon company - Zilog - in 1974. Their debuting product can be thought of as the unofficial successor of the Intel 8080, now featuring:
 
