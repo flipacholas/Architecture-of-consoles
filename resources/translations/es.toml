@@ -188,7 +188,7 @@ other = "Un enorme agradecimiento a las siguientes personas por su donación:"
 other = "Registro de cambios"
 
 [changelog_content]
-other = "Siempre es bueno mantener un registro de cambios."
+other = 'Siempre es bueno mantener un registro de los cambios. Para un informe completo, puedes consultar el <a href="{{ . }}">registro de commits</a>. Alternativamente, aquí tienes una lista simplificada:'
 
 [supporting_imagery]
 other = "Imágenes de apoyo"
@@ -198,6 +198,9 @@ other = "Un análisis práctico por {{ . }}"
 
 [translated_by]
 other = "Traducido por {{ . }}"
+
+[translated_by_many]
+other = 'Traducido por <a href="{{ . }}">varios autores</a>'
 
 [interactive_model_origin]
 other = 'Modelo interactivo disponible en la <a href="{{ . }}">edición moderna</a>'
