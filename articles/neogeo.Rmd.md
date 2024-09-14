@@ -262,7 +262,7 @@ Now, even though the YM2610 is known for its FM synthesis, it houses additional 
 - A **Software-controlled Sound Generator** (SSG): This is Yamaha's name for a [Programmable Sound Generator](nes#audio) (PSG). In essence, the chip bundles a legacy Yamaha YM2149 inside, this can generate **three square waves** with optional **noise**. It also comes with an envelope control.
   - The original YM2149 came with an interface called 'I/O ports' to transfer data between the CPU and another component [@audio-ym2149]. Since this is now irrelevant, the embedded variant in the YM2610 doesn't include it.
 - Seven **ADPCM channels**: Enables to play **samples** using the 4-bit ADPCM format. These channels are split into two groups:
-  - ADPCM-A: Made of six channels, they provide a sample resolution of **12-bits** and a sampling frequency of **~18.5 kHz**
+  - ADPCM-A: Made of six channels, they provide a sample resolution of **12-bits** and a sampling frequency of **~18.5 kHz**.
   - ADPCM-B: This is the remainder channel with a **16-bit** resolution and a sampling frequency of up to **~55.56 kHz** (better than CD quality).
 
 {.close-float}
