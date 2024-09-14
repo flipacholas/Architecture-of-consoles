@@ -209,10 +209,10 @@ other = "Supporting imagery"
 other = 'A practical analysis by {{ . }}'
 
 [translated_by]
-other = 'Translated by {{ . }}'
+other = '<a href="{{ .crowdin_url }}">Translated</a> by {{ .author }}'
 
 [translated_by_many]
-other = 'Translated by <a href="{{ . }}">multiple authors</a>'
+other = '<a href="{{ .crowdin_url }}">Translated</a> by <a href="{{ .authors }}">multiple authors</a>'
 
 [interactive_model_origin]
 other = 'Interactive model available in the <a href="{{ . }}">modern edition</a>'
