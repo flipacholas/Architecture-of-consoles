@@ -197,10 +197,10 @@ other = "相关影像"
 other = "{{ . }} 的实用分析"
 
 [translated_by]
-other = "译者：{{ . }}"
+other = '<a href="{{ .crowdin_url }}">译者</a>：{{ .author }}'
 
 [translated_by_many]
-other = '译者：<a href="{{ . }}">多位作者</a>'
+other = '<a href="{{ .crowdin_url }}">译者</a>：<a href="{{ .authors }}">多位作者</a>'
 
 [interactive_model_origin]
 other = '<a href="{{ . }}">“现代版本”</a>中可用的互动模型'
