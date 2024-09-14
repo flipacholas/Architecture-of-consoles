@@ -98,13 +98,13 @@ other = "Ostatnio zaktualizowany: {{ . }}"
 other = "Edycja klasyczna"
 
 [classic_intro]
-other = "Edycja 'klasyczna' jest wersją alternatywną dla <a href=\"{{ .modern }}\">‘nowoczesnego’ odpowiednika</a>. Do działania nie wymaga JavaScript, najnowocześniejszego CSS ani zawiłego HTML, co czyni go idealnym dla czytelników korzystających z narzędzi ułatwień dostępu lub starszych przeglądarek internetowych. Z drugiej strony użytkownicy e-booków mogą teraz sprawdzić <a href=\"{{ .ebook }}\">edycję e-bookow</a>."
+other = 'Edycja „klasyczna” jest wersją alternatywną dla <a href="{{ .modern }}">‘nowoczesnego’ odpowiednika</a>. Do działania nie wymaga JavaScript, najnowocześniejszego CSS ani zawiłego HTML, co czyni ją idealną dla czytelników korzystających z narzędzi ułatwień dostępu lub starszych przeglądarek internetowych. Z drugiej strony użytkownicy e-booków mogą teraz sprawdzić <a href="{{ .ebook }}">edycję e-booków</a>.'
 
 [classic_description]
 other = "Ta edycja jest identyczna merytorycznie. Interaktywne widżety zostały uproszczone do pracy z czystym HTML, chociaż będą oferować link do oryginalnego artykułu na wypadek, gdyby czytelnik chciał wypróbować 'pełną wersję'."
 
 [general_description]
-other = 'Jak zawsze ten artykuł jest dostępny na <a href="{{ .github }}">Github</a>, aby umożliwić czytelnikom zgłaszanie błędów lub proponowanie zmian. Dostępne są również <a href="{{ .readings }}">pomocnicze materiały do czytania</a> które pomogą Ci zrozumieć serię. Autor przyjmuje również <a href="{{ .donations }}">darowizny</a>, aby poprawić jakość bieżących i nadchodzących artykułów.'
+other = 'Jak zawsze, ten artykuł jest dostępny na <a href="{{ .github }}">Github</a>, aby umożliwić czytelnikom zgłaszanie błędów lub proponowanie zmian. Dostępna jest również <a href="{{ .readings }}">lista zalecanych lektur</a>, która pomoże zrozumieć serię. Autor akceptuje także <a href="{{ .donations }}">darowizny</a>, aby poprawić jakość bieżących artykułów oraz nadchodzących.'
 
 [subscribe_title]
 other = "Pozostań na bieżąco"
@@ -188,7 +188,7 @@ other = "Wielkie podziękowania dla następujących osób za ich darowiznę:"
 other = "Dziennik zmian"
 
 [changelog_content]
-other = "Zawsze fajnie jest prowadzić rejestr zmian."
+other = 'Zawsze warto prowadzić rejestr zmian. Pełny raport można znaleźć w <a href="{{ . }}">logu zgłoszeń</a>. Alternatywnie, oto uproszczona lista:'
 
 [supporting_imagery]
 other = "Zdjęcia pomocnicze"
@@ -197,7 +197,10 @@ other = "Zdjęcia pomocnicze"
 other = "Praktyczna analiza autorstwa {{ . }}"
 
 [translated_by]
-other = "Przetłumaczone przez {{ . }}"
+other = '<a href="{{ .crowdin_url }}">Przetłumaczone</a> przez {{ .author }}'
+
+[translated_by_many]
+other = '<a href="{{ .crowdin_url }}">Przetłumaczone</a> przez <a href="{{ .authors }}">wielu autorów</a>'
 
 [interactive_model_origin]
 other = 'Model interaktywny dostępny w <a href="{{ . }}">nowoczesnej edycji</a>'
