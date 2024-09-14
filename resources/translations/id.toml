@@ -197,10 +197,10 @@ other = "Rujukan gambar"
 other = "Analisis praktis oleh {{ . }}"
 
 [translated_by]
-other = "Terjemahan oleh {{ . }}"
+other = '<a href="{{ .crowdin_url }}">Diterjemahkan</a> oleh {{ .author }}'
 
 [translated_by_many]
-other = 'Terjemahan oleh <a href="{{ . }}">para penulis</a>'
+other = '<a href="{{ .crowdin_url }}">Diterjemahkan</a> oleh <a href="{{ .authors }}">beberapa penulis</a>'
 
 [interactive_model_origin]
 other = 'Tersedia model interaktif di <a href="{{ . }}">edisi modern</a>'
