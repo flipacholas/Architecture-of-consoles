@@ -34,7 +34,7 @@ aliases:
 
 La Game Boy puede ser entendida como una versión portátil de la NES con potencia limitada, pero pronto se verá que incluye nueva funcionalidad muy interesante.
 
-### El análisis del arcoíris
+### El análisis variado
 
 La inmensa popularidad de esta consola resultó en una variedad de revisiones (es decir, la Game Boy Pocket, Light, e incluso en forma de cartuchos para la [Super Nintendo](super-nintendo)). De hecho, la marca Game Boy cubre dos generaciones. Dentro de la cuarta generación encontramos la Game Boy monocroma y sus revisiones, y en la siguiente generación reside la Game Boy Color (lanzada después de la desaparición de la [Virtual Boy](virtual-boy)). La buena noticia es que este artículo cubre ambos extremos. Entonces, al final, tendrás una buena comprensión de cómo funciona la Game Boy y cómo su tecnología evolucionó para convertirse en la Game Boy Color.
 
