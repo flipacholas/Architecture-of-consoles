@@ -197,7 +197,10 @@ other = "Támogató képek"
 other = "{{ . }} által készített gyakorlati elemzés"
 
 [translated_by]
-other = "Fordította {{ . }}"
+other = '<a href="{{ .crowdin_url }}">Fordította</a> {{ .author }}'
+
+[translated_by_many]
+other = '<a href="{{ .crowdin_url }}">Fordította</a> <a href="{{ .authors }}">több szerző</a>'
 
 [interactive_model_origin]
 other = 'Interaktív modell elérhető a <a href="{{ . }}">modern kiadásban</a>'
