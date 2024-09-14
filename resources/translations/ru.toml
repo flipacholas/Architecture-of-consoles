@@ -197,10 +197,10 @@ other = "Опорные изображения"
 other = "Практический анализ от {{ . }}"
 
 [translated_by]
-other = "Автор перевода: {{ . }}"
+other = '<a href="{{ .crowdin_url }}">Переведено</a> {{ .author }}'
 
 [translated_by_many]
-other = 'Переведено <a href="{{ . }}">несколькими авторами</a>'
+other = '<a href="{{ .crowdin_url }}">Переведено</a> <a href="{{ .authors }}">несколькими авторами</a>'
 
 [interactive_model_origin]
 other = 'Интерактивная модель доступна в <a href="{{ . }}">современной версии</a>'
