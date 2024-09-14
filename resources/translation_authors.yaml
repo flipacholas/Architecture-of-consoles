@@ -8,12 +8,19 @@ gameboy:
       - name: SuperDelphi
         year: 2022
     includes_ai: true
+  es:
+    authors: null
+    includes_ai: true
   pl: LunaDook & MoonbowPlushie
   tr: EuropaYou
 gamecube:
   tr: EuropaYou
 gba:  
-  es: Jonathan Lojo Muñiz
+  es:
+    authors:
+      - name: Jonathan Lojo Muñiz
+        year: 2023
+    includes_ai: true
   pl: LunaDook & MoonbowPlushie
   ru: Pawel Ryndovskiy, L1Q и Иван "rndtrash" Кузьменко
 mastersystem:
@@ -51,6 +58,9 @@ saturn:
   pt-br: Eugênio Lloyd
 snes:
   pt-br: Walper
+  es:
+    authors: null
+    includes_ai: true
 virtualboy: null
 wii:
   es: Jonathan Lojo Muñiz
