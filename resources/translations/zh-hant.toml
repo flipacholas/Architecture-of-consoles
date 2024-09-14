@@ -197,7 +197,10 @@ other = "支援圖像"
 other = "由 {{ . }} 進行的實際分析"
 
 [translated_by]
-other = "由 {{ . }} 翻譯"
+other = '<a href="{{ .crowdin_url }}">翻譯</a> 由 {{ .author }} 翻譯'
+
+[translated_by_many]
+other = '<a href="{{ .crowdin_url }}">翻譯</a> 由 <a href="{{ .authors }}">多位作者</a> 翻譯'
 
 [interactive_model_origin]
 other = '互動模型可在<a href="{{ . }}">現代版</a>中找到'
