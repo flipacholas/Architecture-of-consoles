@@ -98,13 +98,13 @@ other = "Última actualización: {{ . }}"
 other = "Edición clásica"
 
 [classic_intro]
-other = 'A edición "clásica" é unha versión alternativa á <a href="{{ .modern }}">homóloga "moderna"</a>. Non require Javascript, CSS de última xeración ou complexo HTML para funcionar, o que o fai ideal para lectores que usan ferramentas de accesibilidade ou navegadores de Internet herdados. Por outra banda, os usuarios de libros electrónicos agora poden consultar a <a href="{{ .ebook }}">Edición eBook</a>.'
+other = 'A edición “clásica” é unha versión alternativa á <a href="{{ .modern }}">“moderna” homóloga</a>. Non require Javascript, CSS de última xeración nin HTML complexo para funcionar, o que a fai ideal para lectores que usan ferramentas de accesibilidade ou navegadores de internet antigos. Por outra banda, os usuarios de libros electrónicos agora poden consultar a <a href="{{ .ebook }}">edición eBook</a>.'
 
 [classic_description]
 other = 'Esta edición é idéntica en canto ao contido. Non obstante, simplificáronse os widgets interactivos para que funcionen con HTML puro, aínda que ofrecerán unha ligazón ao artigo orixinal no caso de que o lector queira probar a "versión completa".'
 
 [general_description]
-other = 'Como sempre, este artigo está dispoñible en <a href="{{ .github }}">Github</a> para que os lectores poidan informar de erros ou propoñer cambios. Tamén hai unha <a href="{{ .readings }}">lista de lecturas complementarias</a> dispoñible para axudar a comprender a serie. O autor tamén acepta <a href="{{ .donations }}">doazóns</a> para axudar a mellorar a calidade dos artigos actuais e dos próximos.'
+other = 'Como sempre, este artigo está dispoñible en <a href="{{ .github }}">Github</a> para permitir aos lectores informar de erros ou propoñer cambios. Tamén hai unha <a href="{{ .readings }}">lista de lectura de apoio</a> dispoñible para axudar a entender a serie. O autor tamén acepta <a href="{{ .donations }}">doazóns</a> para mellorar a calidade dos artigos actuais e dos próximos.'
 
 [subscribe_title]
 other = "Manterse actualizado"
@@ -188,7 +188,7 @@ other = "Moitas grazas ás seguintes persoas pola súa doazón:"
 other = "Rexistro de cambios"
 
 [changelog_content]
-other = "Sempre é bo manter un rexistro de cambios."
+other = 'Sempre é bo manter un rexistro dos cambios. Para un informe completo, podes consultar o <a href="{{ . }}">rexistro de commits</a>. Alternativamente, aquí tes unha lista simplificada:'
 
 [supporting_imagery]
 other = "Imaxes de apoio"
@@ -197,7 +197,10 @@ other = "Imaxes de apoio"
 other = "Unha análise práctica realizada por {{ . }}"
 
 [translated_by]
-other = "Traducido por {{ . }}"
+other = '<a href="{{ .crowdin_url }}">Traducido</a> por {{ .author }}'
+
+[translated_by_many]
+other = '<a href="{{ .crowdin_url }}">Traducido</a> por <a href="{{ .authors }}">varios autores</a>'
 
 [interactive_model_origin]
 other = 'Modelo interactivo dispoñible na <a href="{{ . }}">edición moderna</a>'
