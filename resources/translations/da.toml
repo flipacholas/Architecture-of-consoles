@@ -197,7 +197,10 @@ other = "Understøttende billedmateriale"
 other = "En praktisk analyse af {{ . }}"
 
 [translated_by]
-other = "Oversat af {{ . }}"
+other = '<a href="{{ .crowdin_url }}">Oversat</a> af {{ .author }}'
+
+[translated_by_many]
+other = '<a href="{{ .crowdin_url }}">Oversat</a> af <a href="{{ .authors }}">flere forfattere</a>'
 
 [interactive_model_origin]
 other = 'Interaktiv model tilgængelig i <a href="{{ . }}">moderne udgave</a>'
