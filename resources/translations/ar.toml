@@ -197,10 +197,10 @@ other = "الصور الداعمة"
 other = "تحليل عملي من قبل {{ . }}"
 
 [translated_by]
-other = "الترجمة بواسطة {{ . }}"
+other = '<a href="{{ .crowdin_url }}">مترجم</a> بواسطة {{ .author }}'
 
 [translated_by_many]
-other = 'تم الترجمة بواسطة <a href="{{ . }}">عدة مؤلفين</a>'
+other = '<a href="{{ .crowdin_url }}">مترجم</a> بواسطة <a href="{{ .authors }}">عدة مؤلفين</a>'
 
 [interactive_model_origin]
 other = 'النموذج التفاعلي متوفر في <a href="{{ . }}">الطبعة الحديثة</a>'
