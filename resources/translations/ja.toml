@@ -197,7 +197,10 @@ other = "補足画像"
 other = "{{ . }}による実践的な分析"
 
 [translated_by]
-other = "{{ . }}による翻訳"
+other = '<a href="{{ .crowdin_url }}">翻訳</a>：{{ .author }}'
+
+[translated_by_many]
+other = '<a href="{{ .crowdin_url }}">翻訳</a>：<a href="{{ .authors }}">複数の著者</a>'
 
 [interactive_model_origin]
 other = 'インタラクティブモデルは<a href="{{ . }}">モダン版</a>で利用可能'
