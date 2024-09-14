@@ -5,10 +5,11 @@ name: Nintendo 64
 release_date: 1996-06-23
 date: 2019-09-12
 generation: 5
-subtitle: '¡Potente y compleja!'
+subtitle: Potente pero limitado
 cover: nintendo64
 javascript:
   - 'threejs'
+seo_image_pos: "Top"
 top_tabs:
   Model:
     caption: "La Nintendo 64.<br>Lanzada el 23/06/1996 en Japón, el 29/09/1996 en América y el 01/03/1997 en Europa"
@@ -33,11 +34,13 @@ No te preocupes, te prometo que este artículo no va a ser tan largo como el man
 
 ## CPU
 
-Los orígenes del procesador de la Nintendo 64 comienzan con el **MIPS R4000**, la nueva CPU de vanguardia de Silicon Graphics. Lanzado en 1991, la novedad más aparente del R4000 fue la inclusión de **capacidades de 64 bits**, resultante en la ampliación del tamaño de los buses, registros y unidades de cálculo para manipular los valores de 64 bits con eficiencia. Los desarrolladores, por otra parte, accedieron estas capacidades a través del nuevo set de instrucciones **MIPS III**. En general, el R4000 ha permitido que nuevas aplicaciones puedan manejar porciones de datos más grandes sin consumir ciclos adicionales.
+Los orígenes del procesador principal de la Nintendo 64 comienzan con el **MIPS R4000**, la nueva CPU de vanguardia de [MIPS](playstation#tab-1-2-mips-and-sony). Lanzada en 1991, la novedad más aparente del R4000 fue la inclusión de **capacidades de 64 bits**, resultado de ampliar el tamaño de los buses, registros y unidades de cálculo para manipular los valores de 64 bits con eficiencia. Los desarrolladores, por otra parte, accedieron estas capacidades a través del nuevo set de instrucciones **MIPS III**. En general, el R4000 ha permitido que nuevas aplicaciones puedan manejar porciones de datos más grandes sin consumir ciclos adicionales.
 
-Sea como fuere, el R4000 era un producto costoso (alrededor de $400 [@cpu-r4000demo]), lo que lo hacía inviable para una consola de videojuegos. Sin embargo, Nintendo no quería abandonar sus funcionalidades más avanzadas, así que se decidieron por una variante de gama baja llamada **R4300i**, de la cual NEC fue capaz de proveerla como segunda fuente.
+Para su consola de próxima generación, Nintendo investigó la posibilidad de llevar hardware industrial a las consolas domésticas. A diferencia de [Sony](playstation#cpu), que poseía una gran cantidad de componentes internos y solo necesitaba un proveedor de MIPS CPUs, Nintendo se asoció directamente con los propietarios de MIPS (y muchas estaciones de trabajo gráficas) para diseñar todo su ecosistema. Esa compañía era **Silicon Graphics** (SGI).
 
-Al final, la CPU elegida de Nintendo fue la **NEC VR4300** corriendo a **93.75 MHz** [@cpu-anatomy]. Esta es una versión compatible con el código binario del MIPS R4300i de Silicon Graphics que incluye [@cpu-nec]:
+Dentro de la sede de SGI, el R4000 era un producto costoso (alrededor de $400 [@cpu-r4000demo]), lo que lo hacía inviable para una consola de videojuegos. Sin embargo, Nintendo no quería abandonar sus funcionalidades más avanzadas, así que se decidieron por una variante de gama baja llamada **R4300i**, de la cual NEC fue capaz de proveerla como segunda fuente.
+
+Al final, la CPU elegida de Nintendo y SGI fue la **NEC VR4300** corriendo a **93.75 MHz** [@cpu-anatomy]. Esta es una versión compatible con el código binario del MIPS R4300i que incluye [@cpu-nec]:
 
 - **Dos modos de operación**:
   - **Modo de 32 bits**: Modo tradicional donde la CPU se comporta como un procesador compatible con MIPS II. No hay nada especial en este modo excepto que todas las nuevas funciones están bloqueadas.
@@ -45,9 +48,10 @@ Al final, la CPU elegida de Nintendo fue la **NEC VR4300** corriendo a **93.75 M
 - **32 registros de uso general**: En el modo de 32-bits, los registros tienen 32-bits de ancho y en el modo 64-bits, 64-bits de ancho.
 - **Set de instrucciones MIPS III**: Un set de tipo RISC y sucesor del MIPS II. Incluye nuevos opcodes que calculan palabras de 64 bits llamadas 'doublewords' (palabras dobles). Finalmente, las instrucciones son siempre de **32 bits**, independientemente del modo.
   - Vale la pena mencionar que desde el MIPS II, las [load delay slots](playstation#delay-galore) han desaparecido para siempre, aunque las 'branch delay slots' todavía persisten.
-- Un bus de datos interno de **64 bits** conectado a un **bus externo de 32 bits**: Aunque las *doublewords* no afectarán el rendimiento mientras sean operadas internamente, la CPU aún necesitará gastar ciclos adicionales para mover datos de 64 bits por todo el sistema. Esto es uno de los recortes de la variante R4300i (el R4000 tiene un bus de datos completo de 64 bits).
+- Un bus de datos interno de **64 bits** conectado a un **bus externo de 32 bits**: Aunque las *doublewords* no afectarán el rendimiento mientras sean operadas internamente, la CPU aún necesitará gastar ciclos adicionales para mover datos de 64 bits por todo el sistema.
+  - Esto es uno de los recortes de la variante R4300i (el R4000 tiene un bus de datos completo de 64 bits).
 - Bus de direcciones de **32 bits**: Hasta 4 GB de memoria física puede ser direccionada.
-- **Segmentación de 5 etapas**: Hasta cinco instrucciones pueden ser ejecutadas simultáneamente (una explicación detallada se puede encontrar en un [artículo previo](sega-saturn#cpu).
+- **Segmentación de 5 etapas**: Hasta cinco instrucciones pueden ser ejecutadas simultáneamente (una explicación detallada se puede encontrar en un [artículo previo](sega-saturn#cpu)).
 - **24 KB de L1 cache**: Dividido en 16 KB para instrucciones y 8 KB para datos.
 
 También se incluye en este paquete una **Floating-point unit o 'FPU'** (unidad de coma flotante) de 64 bits. La VR4300 la identifica como un co-procesador (CP1) aunque la unidad está instalada junto a la ALU (unidad aritmética) y solo se accede a ella a través de esa unidad, con lo que no hay co-procesamiento de por si. De todas maneras, la FPU contiene un banco de registros dedicado y acelerará las operaciones con números de coma flotante de 64 y 32 bits. Por último, esta unidad sigue el estándar IEEE754.
@@ -66,17 +70,27 @@ Debido a la arquitectura de memoria unificada, la CPU ya no tiene acceso directo
 
 Aparte de la UMA, la estructura de la RAM es un poco complicada, así que trataré de explicarlo en términos simples. Aquí va...
 
-El sistema contiene físicamente **4,5 MB de RAM**, sin embargo, está conectada a un bus de datos de **9 bits** donde el 9º bit está reservado para la GPU (se explica más en la sección 'Gráficos'). Como consecuencia, cada componente excepto la GPU sólo encontrará **hasta 4 MB**.
+El sistema contiene físicamente **4,5 MB de RAM**, sin embargo, está conectado usando un bus de datos de **9 bits** donde el 9º bit está reservado para la GPU (explico más en la sección 'Gráficos'). Como consecuencia, cada componente excepto la GPU sólo encontrará **hasta 4 MB**.
 
 ![Organización de la memoria en este sistema. Asumo que la velocidad del CPU-RCP bus es la velocidad de reloj del RCP o la de la CPU, pero aún no he conseguido confirmarlo.](memory.png)
 
 El tipo de memoria RAM instalada en la placa se llama **Rambus DRAM** (RDRAM) [@cpu-memory], este fue otro diseño que compitió con SDRAM para convertirse en el siguiente estándar. RDRAM está conectada en **serie** (donde las transferencias se hacen de un bit a la vez) mientras que SDRAM utiliza una **conexión paralela** (transfiere múltiples bits a la vez).
 
-La latencia de la RDRAM es directamente proporcional al número de bancos instalados [@cpu-rdram], por lo que en este caso, con la cantidad de RAM que tiene este sistema, la latencia resultante es importante (un post en el foro beyond3d menciona que es alrededor de **640 ns** [@cpu-beyondrsp]). Aunque esto es compensado con una alta velocidad de reloj de **250 MHz** (~2.6 veces más rápida que la CPU) aplicada a los bancos de memoria. Nintendo afirma que RDRAM puede proveer una transferencia de datos de alta velocidad a 500 MB por segundo para leer o escribir datos consecutivos.
+#### Latencia y velocidad
 
-Además, hay otro debate en los foros de beyond3d que afirma que Nintendo escogió los bancos de memoria uPD488170L de NEC por su placa base [@cpu-beyondrdram]. Estos chips utilizan una tecnología denominada 'Rambus Signaling Logic' que duplica la tasa de transferencia [@cpu-data]. Esto puede explicar por qué algunas fuentes declaran que la tasa 'efectiva' es 500 MHz.
+La latencia de la RDRAM es directamente proporcional al número de bancos instalados [@cpu-rdram], por lo que en este caso, con la cantidad de RAM que tiene este sistema, la latencia resultante es importante (se ha informado que está alrededor de los **640 ns** [@cpu-beyondrsp]). Esto se compensa con una alta velocidad de reloj de **250 MHz** (~2.6 veces más rápida que la CPU) aplicada en los bancos de memoria. Nintendo afirmó que la RDRAM puede proporcionar una transferencia de datos de alta velocidad de 500 MB/s para leer o escribir datos consecutivos.
 
-Finalmente, la cantidad de RAM disponible en esta consola **se puede ampliar** instalando el accesorio *Expansion Pak*: Un diminuto bloque bastante peculiar que incluye 4,5 MB. Curiosamente, el bus de RAM debe ser terminado, por lo que la consola siempre se vende con un terminador (llamado *Jumper Pak*) instalado en el lugar del Expansion Pak. Ahora, uno podría preguntarse, ¿qué pasaría si encendemos la consola sin ningún *Pak* instalado? **Literalmente nada**, ¡te quedas con una pantalla en blanco!
+Además, Nintendo eligió los bancos de memoria uPD488170L de NEC para su placa base [@cpu-beyondrdram]. Estos chips utilizan una tecnología denominada 'Rambus Signaling Logic' que duplica la tasa de transferencia [@cpu-data]. Esto puede explicar por qué algunas fuentes afirman que la tasa 'efectiva' de memoria es de 500 MHz.
+
+#### Dejando espacio para mejoras
+
+Curiosamente, la cantidad de RAM disponible en esta consola **se puede ampliar** instalando el accesorio **Expansion Pak**: Una caja pequeña de aspecto elegante que agrega otros **4,5 MB**. Mientras que este accesorio permaneció opcional para algunos juegos (y la mayoría no hicieron uso de él), ciertos títulos como Donkey Kong 64 o The Legend of Zelda: Majora's Mask fueron diseñados con la expansión como un requisito, y mostrarían una pantalla de error sin él.
+
+![El Expansion Pak [@photography-amos], un accesorio opcional vendido por separado (a veces incluido con el juego que lo requiere).](expansion_pak.png){.tabs-nested .active title="Expansión"}
+
+![El Jumper Pak [@photography-amos]. En ausencia del Expansion Pak, este debe estar presente para terminar el bus RDRAM.](jumper_pak.png){.tabs-nested-last title="Relleno"}
+
+Curiosamente, el bus de RAM debe ser terminado, por lo que la consola siempre se vende con un terminador (llamado **Jumper Pak**) instalado en el lugar del Expansion Pak. Ahora, podría preguntarse, ¿qué pasaría si encendemos la consola sin ningún *Pak* instalado? **Literalmente nada**, ¡te quedas con una pantalla en blanco!
 
 ### Gestión de memoria
 
@@ -130,8 +144,8 @@ Este puede procesar **triángulos** o **rectángulos** como primitivos, el últi
     - Un filtro 'completo' requiere cuatro puntos para aplicar la interpolación, sin embargo, esta consola sólo utiliza tres (**interpolación triangular**) lo que produce algunas anomalías. Por lo tanto, ciertas texturas tendrán que ser 'adaptadas' de antemano.
   - **Mip-Mapping**: Selecciona automáticamente una versión reducida de la textura dependiendo de su **nivel de detalle**. Esto evita computar grandes texturas que se verían lejos de la cámara y con ello prevenir el 'aliasing' (causado por submuestreo).
     - Si se activa, la N64 mapea las texturas usando **trilinear filtering** en su lugar. Este nuevo algoritmo también interpolará entre mipmaps para suavizar los cambios repentinos en el nivel de detalle.
-  - **Perspective correction**: Algoritmo escogido para mapear texturas en triángulos. A diferencia de [otros algoritmos](playstation#graphics), este tiene en cuenta el valor de profundidad de cada primitiva, logrando mejores resultados.
-- Un **Colour Combiner**: Mezcla e interpola múltiples capas de colores (por ejemplo, para aplicar luces).
+  - **Perspective correction**: Algoritmo escogido para mapear texturas en triángulos. A diferencia de [otros algoritmos de mapeo inverso](playstation#graphics), este tiene en cuenta el valor de profundidad de cada primitiva, logrando mejores resultados.
+- Un **Color Combiner**: Mezcla e interpola múltiples capas de colores (por ejemplo, para aplicar shaders).
 - Un **Blender**: Mezcla píxeles sobre el actual frame-buffer para aplicar translucidez, anti-aliasing, niebla o dithering. También realiza z-buffering (más sobre esto en adelante).
 - Una **Memory interface**: Utilizada por los bloques anteriores para leer y enviar el frame-buffer procesado a la RAM y/o llenar el TMEM.
 
@@ -188,7 +202,7 @@ He aquí algunos ejemplos de personajes previamente diseñados en dos dimensiona
 
 ### Una solución moderna al problema de superficies visibles
 
-Si has leído sobre las consolas anteriores, probablemente estás al tanto del interminable problema sobre la [visibilidad de superficies](sega-saturn#an-introduction-to-the-visibility-problem) y tal vez pienses que la única solución disponible es el 'ordenamiento de polígonos'. Bueno, por primera vez en esta serie, el RDP presenta una solución basada en hardware llamada **Z-buffering**. En pocas palabras, el RDP asigna un nuevo buffer llamado **Z-Buffer** en la memoria. Este tiene las mismas dimensiones que un frame-buffer, pero en lugar de almacenar los valores RGB (rojo, verde y azul), cada elemento contiene la profundidad del píxel más cercano con respecto a la cámara (llamado 'z-value').
+Si has leído sobre las consolas anteriores, probablemente estás al tanto del interminable problema sobre la [visibilidad de superficies](sega-saturn#an-introduction-to-the-visibility-problem) y tal vez pienses que la única solución disponible es el 'ordenamiento de polígonos'. Bueno, por primera vez en esta serie, el RDP presenta una solución basada en hardware llamada **Z-buffering**. En pocas palabras, el RDP asigna un nuevo buffer llamado **Z-Buffer** en la memoria. Este tiene las mismas dimensiones que un frame-buffer, pero en lugar de almacenar los valores RGB (rojo, verde y azul), cada entrada contiene la profundidad del píxel más cercano con respecto a la cámara (llamado 'z-value').
 
 Una vez que el RDP rasteriza los vectores, el z-value del nuevo píxel se compara con el valor respectivo en el Z-buffer. Si el nuevo píxel contiene un z-value más pequeño, esto significa que el nuevo píxel se posiciona delante del anterior, por lo que el nuevo valor se escribirá el frame-buffer y z-buffer. De lo contrario, el píxel se descarta.
 
@@ -248,7 +262,7 @@ Es hora de echar un vistazo a las bandas sonoras hechas para la N64. La verdad e
 
 Debido a este diseño, las limitaciones de este sistema dependerán de la implementación:
 
-- La frecuencia de los samples puede ser de hasta 44,1Hz, pero usar la frecuencia máxima requiere demasiados ciclos de CPU.
+- La frecuencia de los samples puede ser de hasta **44.1 kHz**, pero usar la frecuencia máxima requiere demasiados ciclos de CPU.
 - No hay un límite estricto en el número de canales, todo depende de cuántos canales sea capaz de mezclar el RSP (a menudo alrededor de 16-24 canales si se procesa ADPCM o ~100 si PCM).
 - La memoria es otro asunto a tener en cuenta. Mientras que la competencia proveía medios más grandes (por ejemplo, CD-ROM) y memoria de audio dedicada, los cartuchos de Nintendo 64 contienen mucha menos capacidad (por no hablar de espacio reservado para música) y deben compartir la RAM principal con otros componentes.
 
@@ -260,7 +274,7 @@ Al igual que la PS1 y Saturn, los juegos de N64 hablan directamente con el hardw
 
 Este no es el *Sistema Operativo de escritorio* convencional que podemos imaginar al principio, es sólo un micro-kernel con el menor tamaño posible que proporciona la siguiente funcionalidad:
 
-- Multi-Threading mediante 'message passing' (aunque tened en cuenta que la CPU es de un solo núcleo).
+- Multi-Threading mediante 'message passing' (aunque hay que tener en cuenta que la CPU es de un solo núcleo).
 - Scheduling (planificador) y Preemption (Multitarea apropiativa).
 - Simplificado acceso a registros y I/O.
 
@@ -270,19 +284,19 @@ El kernel se inserta automáticamente al utilizar librerías de Nintendo. Ademá
 
 ### Proceso de arranque
 
-A diferencia de los anteriores sistemas basados en cartuchos, la Nintendo 64 sigue un sofisticado proceso de arranque para preparar todo su hardware antes de que se ejecute el juego. Este se ejecuta cuando el usuario enciende la consola y es muy similar a sus contemporáneos con lectora de CD que contienen una [BIOS](playstation#operating-system) o una [IPL](sega-saturn#operating-system) [@operating_system-ipl].
+A diferencia de los anteriores sistemas basados en cartuchos, la Nintendo 64 sigue un sofisticado proceso de arranque para preparar todo su hardware antes de que se ejecute el juego. Esto se ejecuta tan pronto como el usuario enciende la consola y es muy similar a sus contemporáneos basados en CD que incluyen una [BIOS](playstation#operating-system) o una [IPL](sega-saturn#operating-system).
 
-Estas rutinas también se denominan **Initial Program Load** (IPL) y funcionan de la siguiente manera: [@operating_system-boot]:
+Estas rutinas también se denominan **Initial Program Load** (IPL) y funcionan de la siguiente manera \[@operating_system-ipl\] \[@operating_system-ipl_decomp\]:
 
 1. El usuario enciende la consola.
 2. El **PIF-NUS** (un chip separado en la placa madre) somete la CPU principal a un reinicio infinito hasta que el PIF-NUS valide el chip CIC encontrado en el cartucho del juego.
     - El PIF-NUS y el chip del CIC se explican en más detalle en la sección de I/O y Antipiratería, respectivamente.
 2. Si el proceso de verificación terminó con éxito, la CPU inicia la ejecución en `0xBFC00000`. Esta dirección apunta a una **ROM interna** dentro del PIF-NUS, en particular, la primera etapa de arranque llamada **IPL1**.
 3. IPL1 inicializa parte del hardware (registros de la CPU, la interfaz paralela y el RCP) y copia la siguiente etapa (**IPL2**) de la ROM interna a la memoria del RSP para una ejecución más rápida. Luego, redirige allí la ejecución.
-4. IPL2 inicializa la RDRAM y el caché de la CPU. Después, copia el primer megabyte de la ROM del juego a la RDRAM. Este bloque contiene la siguiente etapa del arranque denominada **IPL3**.
-5. IPL3 inicia el sistema operativo (es decir, la memoria virtual y los vectores de excepción), configura el estado del programa (es decir, el puntero de pila o 'stack pointer') y finalmente invoca la rutina inicial del juego.
+4. IPL2 copia el primer megabyte de la ROM del juego en la memoria RSP, lo verifica (usando PIF) y lo ejecuta. Este bloque contiene la siguiente etapa del arranque denominada **IPL3**.
+5. IPL3 inicializa la RDRAM y el caché de la CPU. Después, inicia el sistema operativo (es decir, la memoria virtual y los vectores de excepción), configura el estado del programa (es decir, el puntero de pila o 'stack pointer') y finalmente invoca la rutina inicial del juego.
 
-Como IPL3 se encuentra en el cartucho del juego, no todos los juegos empaquetan el mismo código. Presumiblemente, las variantes de IPL3 están correlacionadas con la variante del chip CIC que se encuentra en el cartucho.
+Como IPL3 se encuentra en el cartucho del juego, no todos los juegos empaquetan el mismo código. Presumiblemente, las variantes están correlacionadas con la variante del chip CIC incluido en el cartucho.
 
 ## E/S
 
@@ -309,11 +323,13 @@ Los cartuchos se comunican al RCP utilizando un bus dedicado de 16 bits llamado 
 
 En general, el desarrollo se realizó principalmente en **C** y **ensamblador**, este último a menudo era necesario para lograr un mejor rendimiento. Mientras que hemos visto que este sistema ofrece operaciones de 64 bits, las nuevas instrucciones rara vez fueron usadas ya que, en la práctica, las instrucciones de 32 bits fueron más rápidas de ejecutar (dado que la R4300i/VR4300 viene con un bus de datos de 32 bits).
 
-Por otra parte, las librerías en SDK oficial contenían varias capas de abstracciones para comandar el RCP. Por ejemplo, la **Graphics Binary Interface** o ‘GBI’ era una estructura diseñadas para ensamblar las Display Lists más fácilmente, lo mismo se aplicaba a las funciones de audio (su estructura se llamó **Audio Binary Interface** o 'ABI').
+Por otra parte, las librerías en SDK oficial contenían varias capas de abstracciones para comandar el RCP. Por ejemplo, las estructuras en C como la **Graphics Binary Interface** o 'GBI' se diseñaron para ensamblar las listas de visualización necesarias más fácilmente. Lo mismo se aplica a las funciones de audio (su estructura se llamaba **Audio Binary Interface** o 'ABI').
 
 En cuanto al uso de microcode, Nintendo proporcionó varias opciones de microcode fijo para elegir. Sin embargo, en el caso que los desarrolladores quieran modificarlo, se verían con una ardua tarea: Las instrucciones de la Scalar Unit no estaban inicialmente documentadas, aunque luego, Nintendo cambió de posición y SGI finalmente publicó cierta documentación para habilitar el desarrollo de nuevo microcode.
 
-El hardware utilizado para el desarrollo de videojuegos incluía estaciones de trabajo suministradas por SGI [@games-devkit], como la máquina **Indy** que venía con una placa extra llamada **U64** que contiene el hardware y I/O de la consola. También se suministraron herramientas para ordenadores con Windows instalado [@games-u64].
+![Una SGI Indy que encontré en el Centre for Computing History (Cambridge, Reino Unido) cuando visité en agosto de 2024. En comparación, este ordenador alberga una CPU MIPS R4400, la sucesor del R4000 (en resumidas cuentas, años luz por delante del VR4300).](sgi_indy.webp)
+
+El hardware utilizado para el desarrollo incluía estaciones de trabajo suministradas por SGI [@games-devkit], como la máquina **Indy** que venía con una placa extra llamada **U64** que contiene el hardware y I/O de la consola. También se suministraron herramientas para ordenadores con Windows instalado [@games-u64].
 
 Otras herramientas proporcionadas por terceros consistían en cartuchos con un largo cable que se conectaba a la estación de trabajo. Este cartucho se insertaba en una Nintendo 64 común, pero incluía un circuito interno para redirigir los comandos de lectura de la consola a la RAM de la estación de trabajo. El proceso de depuración (o 'debugging') se llevó a cabo transfiriendo una copia del juego a la RAM y una vez que la consola fuera encendida, comenzaría a leer desde ahí.
 
@@ -325,9 +341,9 @@ Adicionalmente, el PBUS se ramifica a otro conector en la parte inferior de la p
 
 ![La 64DD conectado a la consola [@photography-amos].](64dd/attached.png){.tabs-nested-last title="Conectado"}
 
-El medio magnético es más lento que los cartuchos, con velocidades de transferencia de hasta 1 MB/seg, aunque más rápidos que los lectores de 4X CD-ROM. Los discos son de doble-cara y operan a una 'Velocidad Angular Constante' (como el posterior [miniDVD](gamecube#medium)). El área lejible más pequeño se llama 'block' y es la mitad de un círculo concéntrico.
+El medio magnético es más lento que los cartuchos, con velocidades de transferencia de hasta 1 MB/seg, aunque más rápidos que los lectores de 4X CD-ROM. Los discos son de doble-cara y operan a una 'Velocidad Angular Constante' (como el posterior [miniDVD](gamecube#medium)). El área legible más pequeña se llama 'bloque' y es la mitad de un círculo concéntrico.
 
-El lector no incluye un búfer de memoria, así que los bits leídos son almacenados en RDRAM para ejecución. Nintendo incluyó la unidad de expansión de RAM con la 64DD, por lo que compensa la necesidad de más RAM (además de estandarizar la disponibilidad de RAM extendida para todos los juegos de la 64DD).
+El lector **no incluye un búfer de memoria**, así que los bits leídos son almacenados en RDRAM para ejecución. Para abordar el aumento de la necesidad de memoria, Nintendo incluyó el RAM Expansion Pak con el 64DD también. Al hacerlo, también estandarizó el espacio de RAM extendido para que todos los juegos de 64DD pudieran aprovecharlo.
 
 {.close-float}
 
@@ -341,19 +357,19 @@ El sistema antipiratería es una continuación del [CIC de la SNES](super-ninten
 
 Si por alguna razón el PIF considera que el cartucho insertado no es válido, este congela la ejecución del juego.
 
-El region-lock se realiza alterando ligeramente la forma externa del cartucho entre las diferentes regiones para que el usuario no pueda insertar físicamente el juego en una N64 de diferente región.
+El region-lock se realizaba alterando ligeramente la forma del cartucho entre las diferentes regiones para que el usuario no pudiera insertar físicamente el juego en una N64 de una región diferente.
 
 En general, no hubo demasiada preocupación por la piratería gracias al uso del cartucho como medio, aunque los precios de los juegos eran tres veces más altos que aquellos basados en CD.
 
 ### Puertos sin utilizar
 
-Por muy tonto que parezca, Nintendo dejó una 'puerta' abierta: El puerto del Disk Drive.
+Por muy tonto que parezca, Nintendo dejó una 'puerta' abierta: El **puerto del Disk Drive**.
 
 ![El Doctor V64 conectado a la consola [@photography-amos].](v64/attached.png){.open-float .tabs-nested .tab-float .active title="Conectado"}
 
 ![El V64 visto desde atrás, mostrando conectores especiales para A/V.](v64/back.png){.tabs-nested-last title="Detrás"}
 
-Algunas compañías, mediante ingeniería inversa, desarrollaron hardware propietario. Y algunos de estos resultados llegaron a preocupar a Nintendo debido a sus capacidades para ejecutar juegos piratas.
+Algunas compañías, mediante ingeniería inversa, estudiaron la interfaz para desarrollar hardware propietario; algunos de estos productos llegaron a preocupar a Nintendo debido a sus capacidades para ejecutar juegos piratas.
 
 Supongo que vale la pena mencionar el **Doctor v64**, este dispositivo tiene la misma forma que el Disk Drive pero incluye una unidad de CD-ROM.
 
@@ -363,7 +379,7 @@ Esta expansión puede grabar el contenido del cartucho a un CD, y lo opuesto (le
 
 ### Emulación
 
-Cuando yo era niño solía jugar a algunos juegos de Nintendo 64 en un ordenador con un Pentium II usando un emulador, no funcionaba *tan* mal, pero años más tarde me pregunté *cómo narices* era capaz de emular una máquina de 64 bits tan tranquilamente si, entre muchas cosas, mi ordenador apenas tenía la suficiente RAM para mantener la tarjeta gráfica integrada con vida.
+Cuando yo era niño solía jugar a algunos juegos de Nintendo 64 en una máquina Pentium II usando un emulador, no funcionaba *tan mal*, pero años más tarde me pregunté *cómo narices* era capaz de emular una máquina de 64 bits tan tranquilamente si, entre muchas cosas, mi PC apenas tenía la suficiente RAM para mantener la tarjeta gráfica integrada con vida.
 
 La verdad es que, mientras que reproducir la arquitectura de esta consola puede ser un tarea bastante difícil, cosas como el microcode dan una pista de lo que la consola está intentando hacer, y cómo los emuladores *no tienen que ser precisos*, pueden aplicar suficientes optimizaciones para proporcionar más rendimiento a cambio de una emulación idéntica.
 
