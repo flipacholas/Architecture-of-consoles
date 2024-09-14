@@ -197,10 +197,10 @@ other = "Destekleyici görüntüler"
 other = "{{ . }} tarafından hazırlanan pratik bir analiz"
 
 [translated_by]
-other = "{{ . }} tarafından çevrildi"
+other = '<a href="{{ .crowdin_url }}">Çeviren</a>: {{ .author }}'
 
 [translated_by_many]
-other = '<a href="{{ . }}">birden fazla yazar</a> tarafından çevrilmiştir'
+other = '<a href="{{ .crowdin_url }}">Çeviren</a>: <a href="{{ .authors }}">birçok yazar</a>'
 
 [interactive_model_origin]
 other = 'Etkileşimli model <a href="{{ . }}">modern sürümde</a> kullanılabilir'
