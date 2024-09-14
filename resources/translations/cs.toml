@@ -197,10 +197,10 @@ other = "Ilustrační obrázky"
 other = "Praktickou analýzu vypracoval {{ . }}"
 
 [translated_by]
-other = "Překlad {{ . }}"
+other = '<a href="{{ .crowdin_url }}">Přeloženo</a> {{ .author }}'
 
 [translated_by_many]
-other = 'Překlad od <a href="{{ . }}">více autorů</a>'
+other = '<a href="{{ .crowdin_url }}">Přeloženo</a> <a href="{{ .authors }}">více autory</a>'
 
 [interactive_model_origin]
 other = 'Interaktivní model k dispozici v <a href="{{ . }}">moderní verzi</a>'
