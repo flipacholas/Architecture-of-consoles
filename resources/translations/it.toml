@@ -46,6 +46,12 @@ other = "Traduzioni"
 [related]
 other = "Altro nella sezione '{{ . }}' &raquo;"
 
+[ebook_edition_title]
+other = "Ottieni le edizioni eBook"
+
+[ebook_edition_content]
+other = 'Ora puoi leggere la serie <a href="{{ .consoles }}">Architettura delle Console</a> anche su lettori di eBook. <a href="{{ .ebooks }}">Scoprilo qui</a>.'
+
 [home]
 other = "Inizio"
 
@@ -79,6 +85,9 @@ other = "Passa alla versione moderna"
 [switch_classic]
 other = "Passa alla versione classica"
 
+[ebook_edition]
+other = "Edizione eBook"
+
 [about_edition]
 other = "Informazioni su questa versione"
 
@@ -89,13 +98,13 @@ other = "Ultimo aggiornamento: {{ . }}"
 other = "Versione classica"
 
 [classic_intro]
-other = "La versione classica è una versione alternativa a quella <a href=\"{{ .modern }}\">moderna</a>. Il suo funzionamento non richiede Javascript, CSS all'avanguardia o HTML particolarmente complesso, pertanto è ideale per i lettori che utilizzano strumenti di accessibilità o browser internet legacy. Chi usa lettori di ebook può consultare la <a href=\"{{ .ebook }}\">versione ebook</a>."
+other = "L’edizione ‘classica’ è una versione alternativa alla <a href=\"{{ .modern }}\">controparte ‘moderna’</a>. Non richiede Javascript, CSS all’avanguardia o HTML complesso per funzionare, il che la rende ideale per i lettori che utilizzano strumenti di accessibilità o browser Internet legacy. D'altra parte, gli utenti di eBook possono ora controllare l'<a href=\"{{ .ebook }}\">edizione eBook</a>."
 
 [classic_description]
 other = "I contenuti sono identici. Tuttavia, i widget interattivi sono stati semplificati per poter funzionare anche in HTML puro e includono un collegamento all'articolo originale, nel caso in cui il lettore volesse provare la versione completa."
 
 [general_description]
-other = "Come sempre, questo articolo è disponibile su <a href=\"{{ .github }}\">Github</a> per consentire ai lettori di segnalare errori e proporre modifiche. È inoltre presente un <a href=\"{{ .readings }}\">elenco di letture di approfondimento,</a> per aiutare nella comprensione dei contenuti di questa serie di articoli. L'autore accetta <a href=\"{{ .donations }}\">donazioni</a> per migliorare la qualità degli articoli già pubblicati e di quelli futuri."
+other = "Come sempre, questo articolo è disponibile su <a href=\"{{ .github }}\">Github</a> per consentire ai lettori di segnalare errori o proporre modifiche. C’è anche una <a href=\"{{ .readings }}\">lista di letture di supporto</a> disponibile per aiutare a capire la serie. L'autore accetta anche <a href=\"{{ .donations }}\">donazioni</a> per migliorare la qualità degli articoli attuali e futuri."
 
 [subscribe_title]
 other = "Rimanete aggiornati"
@@ -105,6 +114,9 @@ other = "Anche se informo sugli aggiornamenti tramite il mio <a href=\"{{ . }}\"
 
 [generation_title]
 other = "{{ .ordinal }} generazione"
+
+[untranslated_article_title]
+other = "{{.}} (in Inglese)"
 
 [cpu_subtitle]
 other = "Progressi principali della CPU:"
@@ -176,7 +188,7 @@ other = "Grazie infinite a queste persone per la loro donazione:"
 other = "Registro delle modifiche"
 
 [changelog_content]
-other = "Tenere un registro delle modifiche può sempre tornare utile."
+other = 'È sempre bello tenere traccia delle modifiche. Per un resoconto completo, puoi controllare il <a href="{{ . }}">log delle commit</a>. In alternativa, ecco un elenco semplificato:'
 
 [supporting_imagery]
 other = "Immagini di supporto"
@@ -185,7 +197,10 @@ other = "Immagini di supporto"
 other = "Un'analisi pratica di {{ . }}"
 
 [translated_by]
-other = "Tradotto da {{ . }}"
+other = '<a href="{{ .crowdin_url }}">Tradotto</a> da {{ .author }}'
+
+[translated_by_many]
+other = '<a href="{{ .crowdin_url }}">Tradotto</a> da <a href="{{ .authors }}">molti autori</a>'
 
 [interactive_model_origin]
 other = 'Il modello interattivo è disponibile nella <a href="{{ . }}">versione moderna</a>'
