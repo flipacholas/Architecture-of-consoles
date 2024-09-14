@@ -12,7 +12,7 @@ top_tabs:
   Models:
     - 
       title: "Internacional"
-      file: internacional
+      file: international
       caption: "La Super Nintendo (en Europa) o Super Famicom (en Japón).<br>Lanzada el 21/11/1990 en Japón y el 11/04/1992 en Europa."
       active: true
     - 
