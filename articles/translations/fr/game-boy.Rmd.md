@@ -32,7 +32,7 @@ aliases:
 
 ## Une brève introduction
 
-La Game Boy peut être vue comme une version portable de la NES avec une puissance limitée, mais vous verrez qu'elle intégrait de nouvelles fonctionnalités très intéressantes.
+La série Game Boy peut être imaginée comme une version portable de la NES avec une puissance limitée, mais vous verrez qu'elle intégrait de nouvelles fonctionnalités très intéressantes.
 
 ### L'analyse arc-en-ciel
 
