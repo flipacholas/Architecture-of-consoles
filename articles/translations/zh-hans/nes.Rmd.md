@@ -181,7 +181,7 @@ PPU 绘制尺寸固定为 **256x240 像素**的帧[@graphics-overscan]。 哎呀
 
 ::: {.subfigures .tabs-nested .tab-float .pixel .desktop-margined max_subfigures=1}
 
-![两个由很多图块组成的 pattern table 上下拼接在一起。](ppu_mario/chr_map.png){.activity title="全部"}
+![两个由很多图块组成的 pattern table 上下拼接在一起。](ppu_mario/chr_map.png){.active title="全部"}
 
 ![一个图块。](ppu_mario/single.png){title="单个"}
 
