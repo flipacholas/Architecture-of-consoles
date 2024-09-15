@@ -197,7 +197,10 @@ other = "지원 이미지"
 other = "{{ . }}에 의한 실용적인 분석"
 
 [translated_by]
-other = "{{ . }}님에 의해 번역됨"
+other = '<a href="{{ .crowdin_url }}">번역됨</a> {{ .author }}님에 의해'
+
+[translated_by_many]
+other = '<a href="{{ .crowdin_url }}">번역됨</a> <a href="{{ .authors }}">여러 저자</a>에 의해'
 
 [interactive_model_origin]
 other = '상호작용 가능한 모델은 <a href="{{ . }}">모던 에디션</a>에서 사용할 수 있습니다.'
