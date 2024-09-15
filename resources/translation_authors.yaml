@@ -31,6 +31,9 @@ megadrive:
   pt-br: Walper e Estrelaura
   ru: Pawel Ryndovskiy
 nes:
+  ar:
+    authors: null
+    includes_ai: true
   tr: EuropaYou
   es:
     authors: null
