@@ -325,7 +325,7 @@ Pero la diversión no termina ahí, ya que los juegos también podían usar esto
 
 {.close-float}
 
-## Anti-Piratería y Homebrew
+## Antipiratería y Homebrew
 
 Creo que la cantidad de características que ofrecía esta consola la hacía muy atractiva para la piratería, ya que descifrar el sistema de seguridad permitiría a los desarrolladores caseros tener en sus manos las capacidades de la consola sin tener que pasar por las verificaciones de Nintendo. Sea como fuere, la Wii acabó teniendo una fantástica biblioteca Homebrew.
 
