@@ -47,6 +47,9 @@ nintendo64:
   pl: michasrutek
 nintendods:
   zh-hans: Cerallin
+  ja:
+    authors: null
+    includes_ai: true
 pcengine:
   es: Carlos Díaz
   tr: EuropaYou
