@@ -15,6 +15,9 @@ gameboy:
   tr: EuropaYou
 gamecube:
   tr: EuropaYou
+  es:
+    authors: null
+    includes_ai: true
 gba:  
   es:
     authors:
@@ -36,6 +39,9 @@ nes:
     includes_ai: true
   tr: EuropaYou
   es:
+    authors: null
+    includes_ai: true
+  ko:
     authors: null
     includes_ai: true
   zh-hans:
