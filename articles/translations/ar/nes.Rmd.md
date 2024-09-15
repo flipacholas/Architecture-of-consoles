@@ -321,7 +321,7 @@ aliases:
 
 ::: {.subfigures .tabs-nested .tab-float}
 
-![عرض الأوسليسكوب لقناة النبض 1.](pulse_single_1){الفيديو="true" title="نبض 1"}
+![عرض الأوسليسكوب لقناة النبض 1.](pulse_single_1){video="true" title="نبض 1"}
 
 ![عرض الأوسليسكوب لقناة النبض 2.](pulse_single_2){.active video="true" title="نبض 2"}
 
