@@ -39,8 +39,8 @@ And while this is *technically* true, let me show you why the CPU is not the *ce
 
 Nintendo ended up shipping lots of different variants of the same console across the world [@general-variants] and even though they all share the same architecture, many look dramatically different and some may include built-in accessories. So, to keep it simple for this article, I'll focus on the two most popular revisions:
 
-- The **Family Computer** (known as _Famicom_) was the first incarnation, but was only released in Japan. This toy-looking design features two non-removable controllers (from which the second controller bundles an internal microphone), a front socket for the light gun (called _Zapper_), RF video out (using NTSC-J signal) and extra pins in the cartridge slot to expand the audio capabilities.
-- The **Nintendo Entertainment System** (known as _NES_) was the redesigned edition for western audiences living in North America, Europe and Oceania; with a look and mechanism that matches the common VHS/Betamax player. On the technical side, the controllers are now detachable (and microphone-lacking) and the video out has been improved with extra NTSC/PAL composite RCA connectors, although the audio expansion has been replaced with an anti-piracy subsystem. To top it off, the bottom of the case seals an 'expansion port' that was left unused, along with extra cartridge pins that communicate to that port [@general-cartridge].
+- The **Family Computer** (known as *Famicom*) was the first incarnation, but was only released in Japan. This toy-looking design features two non-removable controllers (from which the second controller bundles an internal microphone), a front socket for the light gun (called *Zapper*), RF video out (using NTSC-J signal) and extra pins in the cartridge slot to expand the audio capabilities.
+- The **Nintendo Entertainment System** (known as *NES*) was the redesigned edition for western audiences living in North America, Europe and Oceania; with a look and mechanism that matches the common VHS/Betamax player. On the technical side, the controllers are now detachable (and microphone-lacking) and the video out has been improved with extra NTSC/PAL composite RCA connectors, although the audio expansion has been replaced with an anti-piracy subsystem. To top it off, the bottom of the case seals an 'expansion port' that was left unused, along with extra cartridge pins that communicate to that port [@general-cartridge].
 
 Because the author grew up with the 'NES' name, I'll default to using that term to refer to the console in general, but I will switch to the 'Famicom' name when referring to unique capabilities only found in the Japanese variant.
 
@@ -122,7 +122,7 @@ The fact there are different combinations comes down to the fact the CPU doesn't
 
 ![The same PCB with important parts labelled. The meaning of the 'Lockout' chip is explained in the 'Anti-piracy' section.](nrom_marked.png){.tabs-nested-last title="Marked"}
 
-For example, Nintendo's 'Super Mario Bros' used a layout they call _NES-NROM-256_ and consists of 32 KB of program ROM and 8 KB of 'Character ROM' for graphics (we'll see more about it in the 'Graphics' section) [@cpu-nrom]. _NES-NROM-256_ was also prepared to house up to 3 KB of extra WRAM, though the game doesn't make use of it.
+For example, Nintendo's 'Super Mario Bros' used a layout they call *NES-NROM-256* and consists of 32 KB of program ROM and 8 KB of 'Character ROM' for graphics (we'll see more about it in the 'Graphics' section) [@cpu-nrom]. *NES-NROM-256* was also prepared to house up to 3 KB of extra WRAM, though the game doesn't make use of it.
 
 #### Going beyond existing capabilities
 
@@ -307,7 +307,7 @@ A dedicated component called **Audio Processing Unit** (APU) provides this servi
 
 ### Functionality
 
-This audio circuitry is commonly referred to as a **Programmable Sound Generator** (PSG), which vaguely implies that it can only produce a pre-defined set of waveforms, that's _mostly_ true in this case. The APU sequences audio data over **five channels** of audio – each one reserved for a specific waveform or signal. Each channel contains different properties that alter the waveform's pitch, sound, volume and/or duration. They are continuously mixed and sent through the output audio signal.
+This audio circuitry is commonly referred to as a **Programmable Sound Generator** (PSG), which vaguely implies that it can only produce a pre-defined set of waveforms, that's *mostly* true in this case. The APU sequences audio data over **five channels** of audio – each one reserved for a specific waveform or signal. Each channel contains different properties that alter the waveform's pitch, sound, volume and/or duration. They are continuously mixed and sent through the output audio signal.
 
 The APU's functionality is exposed through memory addresses, the CPU reads the music-related data found in the Program ROM and programs the APU accordingly.
 
@@ -367,7 +367,7 @@ Mother (1989).
 
 The concept of 'Noise' is attributed to a series of waveforms that don't follow any pattern or order. In turn, our ears interpret it as white static. Having said that, the APU allocates one channel that can play different kinds of noise.
 
-Behind the scenes, the noise generator relies on an envelope generator (similar to the Pulse channel) which gets randomly muted by an OR gate [@audio-apunoise]. The condition for muting depends on the value of a 15-bit shift register connected to a feedback loop. All in all, this makes the circuitry output a signal with _pseudo-unpredictable_ patterns, and therefore noise.
+Behind the scenes, the noise generator relies on an envelope generator (similar to the Pulse channel) which gets randomly muted by an OR gate [@audio-apunoise]. The condition for muting depends on the value of a 15-bit shift register connected to a feedback loop. All in all, this makes the circuitry output a signal with *pseudo-unpredictable* patterns, and therefore noise.
 
 In terms of control, 4 bits alter the period of the envelope generator and one bit alters the 'Mode' of the shift register. That leaves 32 noise presets available. Half (16) of these presets produce **clean static**, and the other half produce **robotic static**.
 
@@ -494,7 +494,7 @@ Well, it seems that the NES' synthetic waveforms are nowhere near shaped as the 
 
 As a side note, perfect geometry may be pleasant to look at with our eyes, but curiously enough, our ears are not particularly fond of waveforms with perfect edges! (you may start hearing popping noises).
 
-Looking forward, sound analysis using spectrograms will come in handy in other articles, whether it's for a simple analysis or for making comparisons with other systems. Please note that these graphs are not _the mother lode_ tool by all means, especially with sound samples that have been mixed up with too many channels/instruments (greatly difficulting its decomposition). But I think they will provide a solid start for any kind of objective study.
+Looking forward, sound analysis using spectrograms will come in handy in other articles, whether it's for a simple analysis or for making comparisons with other systems. Please note that these graphs are not *the mother lode* tool by all means, especially with sound samples that have been mixed up with too many channels/instruments (greatly difficulting its decomposition). But I think they will provide a solid start for any kind of objective study.
 
 ## Games
 
