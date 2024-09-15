@@ -32,7 +32,14 @@ megadrive:
   ru: Pawel Ryndovskiy
 nes:
   tr: EuropaYou
-  zh-hans: 猫咪啊呀呀
+  es:
+    authors: null
+    includes_ai: true
+  zh-hans:
+    authors:
+      - name: 猫咪啊呀呀
+        year: 2022
+    includes_ai: true
   pt-br: Walper, Estrelaura e Pedro Bertella
 nintendo64:
   es: Rodrigo Copetti
