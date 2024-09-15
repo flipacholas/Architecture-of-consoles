@@ -41,8 +41,8 @@ Bu *teknik* olarak doğru olsa da, CPU'nun neden bu sistemin *merkezi* parçası
 
 Nintendo, dünya çapında aynı konsolun çok sayıda farklı varyantını gönderdi [@general-variants] ve hepsi aynı mimariyi paylaşsa da, çoğu önemli ölçüde farklı görünüyor ve bazıları yerleşik aksesuarlar içerebiliyor. Bu nedenle, bu makaleyi basit tutmak için en popüler iki revizyona odaklanacağım:
 
-- **Family Computer** (_Famicom_ olarak bilinir) ilk enkarnasyondu, ancak sadece Japonya'da piyasaya sürüldü. Bu oyuncak görünümlü tasarımda iki adet çıkarılamayan kontrolör (ikinci kontrolörde dahili bir mikrofon bulunur), ışık tabancası için bir ön soket (_Zapper_ olarak adlandırılır), RF video çıkışı (NTSC-J sinyalini kullanır) ve ses özelliklerini genişletmek için kartuş yuvasında ekstra pinler bulunur.
-- **Nintendo Entertainment System** (_NES_ olarak bilinir), Kuzey Amerika, Avrupa ve Okyanusya'da yaşayan batılı kitleler için yeniden tasarlanmış bir versiyondu; normal bir VHS/Betamax oynatıcı ile aynı görünüm ve mekanizmaya sahiptir. Teknik açıdan, kontrolörler artık sökülebilir (ve mikrofonsuz) ve video çıkışı ekstra NTSC/PAL kompozit RCA konektörleriyle geliştirildi, ancak ses genişletmesi korsan karşıtı bir alt sistemle değiştirildi. Üstüne üstlük, kasanın alt kısmında kullanılmayan bir 'genişleme portu' ve bu portla iletişim kuran ekstra kartuş pinleri [@general-cartridge] bulunmaktadır.
+- **Family Computer** (*Famicom* olarak bilinir) ilk enkarnasyondu, ancak sadece Japonya'da piyasaya sürüldü. Bu oyuncak görünümlü tasarımda iki adet çıkarılamayan kontrolör (ikinci kontrolörün iç mikrofonu içerir), ışık tabancası (adı *Zapper*) için ön soket, RF video çıkışı (NTSC-J sinyali kullanarak) ve ses yeteneklerini genişletmek için kartuş yuvasında ekstra pinler bulunur.
+- **Nintendo Entertainment System** (*NES* olarak bilinir), Kuzey Amerika, Avrupa ve Okyanusya'da yaşayan batılı kitleler için yeniden tasarlanmış bir versiyondu; normal bir VHS/Betamax oynatıcı ile aynı görünüm ve mekanizmaya sahiptir. Teknik açıdan, kontrolörler artık sökülebilir (ve mikrofonsuz) ve video çıkışı ekstra NTSC/PAL kompozit RCA konektörleriyle geliştirildi, ancak ses genişletmesi korsan karşıtı bir alt sistemle değiştirildi. Üstüne üstlük, kasanın alt kısmında kullanılmayan bir 'genişleme portu' ve bu portla iletişim kuran ekstra kartuş pinleri [@general-cartridge] bulunmaktadır.
 
 Yazar 'NES' adıyla büyüdüğü için, genel olarak konsola atıfta bulunmak için bu terimi kullanacağım, ancak yalnızca Japon varyantında bulunan benzersiz özelliklere atıfta bulunurken 'Famicom' adına geçeceğim.
 
@@ -124,7 +124,7 @@ Farklı kombinasyonların olması, CPU'nun ne tür bir bileşenden okuma yapıld
 
 ![Önemli parçaları etiketlenmiş aynı PCB. 'Kilitleme' çipinin anlamı 'Korsanla Mücadele' bölümünde açıklanmıştır.](nrom_marked.png){.tabs-nested-last title="İşaretli"}
 
-Örneğin, Nintendo'nun 'Super Mario Bros' oyunu _NES-NROM-256_ adını verdikleri bir düzen kullanmıştır ve 32 KB program ROM'u ve grafikler için 8 KB 'Karakter ROM'undan oluşmaktadır ('Grafikler' bölümünde daha fazlasını göreceğiz) [@cpu-nrom]. _NES-NROM-256_ ayrıca 3 KB'a kadar ekstra WRAM barındıracak şekilde hazırlanmıştır, ancak oyun bunu kullanmamaktadır.
+Örneğin, Nintendo'nun 'Super Mario Bros' oyunu *NES-NROM-256* adını verdikleri bir düzen kullanmıştır ve 32 KB program ROM'u ve grafikler için 8 KB 'Karakter ROM'undan oluşmaktadır ('Grafikler' bölümünde daha fazlasını göreceğiz) [@cpu-nrom]. *NES-NROM-256* ayrıca 3 KB'a kadar ekstra WRAM barındıracak şekilde hazırlanmıştır, ancak oyun bunu kullanmamaktadır.
 
 #### Mevcut yeteneklerin ötesine geçmek
 
@@ -309,7 +309,7 @@ Araştırmam boyunca, PPU'nun olağandışı davranışlarını açıklayan bir�
 
 ### Fonksiyonellik
 
-Bu ses devresi genellikle **Programlanabilir Ses Üreteci** (PSG) olarak adlandırılır, bu da belirsiz bir şekilde yalnızca önceden tanımlanmış bir dizi dalga formu üretebileceğini ima eder, bu durumda _çoğunlukla_ doğrudur. APU, ses verilerini **beş ses kanalı** üzerinden sıralar - her biri belirli bir dalga formu veya sinyal için ayrılmıştır. Her kanal, dalga biçiminin perdesini, sesini, ses seviyesini ve/veya süresini değiştiren farklı özellikler içerir. Bunlar sürekli olarak karıştırılır ve çıkış ses sinyali aracılığıyla gönderilir.
+Bu ses devresi genellikle **Programlanabilir Ses Üreteci** (PSG) olarak adlandırılır, bu da belirsiz bir şekilde yalnızca önceden tanımlanmış bir dizi dalga formu üretebileceğini ima eder, bu durumda *çoğunlukla* doğrudur. APU, ses verilerini **beş ses kanalı** üzerinden sıralar - her biri belirli bir dalga formu veya sinyal için ayrılmıştır. Her kanal, dalga biçiminin perdesini, sesini, ses seviyesini ve/veya süresini değiştiren farklı özellikler içerir. Bunlar sürekli olarak karıştırılır ve çıkış ses sinyali aracılığıyla gönderilir.
 
 APU'nun işlevselliği bellek adresleri aracılığıyla ortaya çıkar, CPU Program ROM'da bulunan müzikle ilgili verileri okur ve APU'yu buna göre programlar.
 
@@ -369,7 +369,7 @@ Mother (1989).
 
 'Ses' kavramı, herhangi bir desen veya düzeni takip etmeyen bir dizi dalga formuna atfedilir. Buna karşılık, kulaklarımız bunu beyaz statik olarak yorumlar. Bunu söyledikten sonra, APU farklı ses türlerini çalabilen bir kanal tahsis eder.
 
-Sahne arkasında, ses üreteci bir OR kapısı [@audio-apunoise] tarafından rastgele susturulan bir zarf üretecine (Pulse kanalına benzer) dayanır. Susturma koşulu, bir geri besleme döngüsüne bağlı 15 bitlik bir kaydırma yazmacının değerine bağlıdır. Sonuç olarak bu, devrenin _sözde öngörülemeyen_ desenlere, ve dolayısıyla sese sahip bir sinyal vermesine neden olur.
+Sahne arkasında, ses üreteci bir OR kapısı [@audio-apunoise] tarafından rastgele susturulan bir zarf üretecine (Pulse kanalına benzer) dayanır. Susturma koşulu, bir geri besleme döngüsüne bağlı 15 bitlik bir kaydırma yazmacının değerine bağlıdır. Sonuç olarak bu, devrenin *sözde öngörülemeyen* desenlere, ve dolayısıyla sese sahip bir sinyal vermesine neden olur.
 
 Kontrol açısından, 4 bit zarf üretecinin periyodunu değiştirir ve bir bit kaydırma kaydedicisinin 'Modunu' değiştirir. Geriye 32 ses ön ayarı kalıyor. Bu ön ayarların yarısı (16) **temiz statik**, diğer yarısı ise **robotik statik** üretir.
 
@@ -496,7 +496,7 @@ Görünüşe göre NES'in sentetik dalga formları teoride belirtildiği gibi ş
 
 Bir ek not olarak, mükemmel geometriye gözlerimizle bakmak hoş olabilir, ancak ilginç bir şekilde kulaklarımız mükemmel kenarlara sahip dalga formlarından pek hoşlanmaz! (patlama sesleri duymaya başlayabilirsiniz).
 
-İleriye dönük olarak, spektrogramları kullanarak ses analizi yapmak, ister basit bir analiz için ister diğer sistemlerle karşılaştırmalar yapmak için olsun, diğer makalelerde kullanışlı olacaktır. Lütfen bu grafiklerin _the mother lode_ aracı olmadığını, özellikle de çok fazla kanal/enstrümanla karıştırılmış (ayrıştırılmasını büyük ölçüde zorlaştıran) ses örneklerinde kullanılabileceğini unutmayın. Ancak her türlü objektif çalışma için sağlam bir başlangıç sağlayacaklarını düşünüyorum.
+İleriye dönük olarak, spektrogramları kullanarak ses analizi yapmak, ister basit bir analiz için ister diğer sistemlerle karşılaştırmalar yapmak için olsun, diğer makalelerde kullanışlı olacaktır. Lütfen bu grafiklerin *the mother lode* aracı olmadığını, özellikle de çok fazla kanal/enstrümanla karıştırılmış (ayrıştırılmasını büyük ölçüde zorlaştıran) ses örneklerinde kullanılabileceğini unutmayın. Ancak her türlü objektif çalışma için sağlam bir başlangıç sağlayacaklarını düşünüyorum.
 
 ## Oyunlar
 
