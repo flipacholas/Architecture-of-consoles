@@ -104,7 +104,7 @@ other = '“经典版”是 <a href="{{ .modern }}">“现代版”</a> 的替�
 other = "两个版本内容完全相同， 只是交互式部件被简化为纯 HTML。 如果读者想尝试“完整版”，可以使用切换回原始文章的链接。"
 
 [general_description]
-other = '和其他文章一样，这篇文章可在 <a href="{{ .github }}">Github</a> 上查看，这样读者可以报告错误或提出修改。 这里还有一个 <a href="{{ .readings }}">前置阅读材料</a> 可用来帮助理解该系列文章。作者还接受 <a href="{{ .donations }}">捐助</a> 以帮助提高现有文章和即将发表的文章的质量。'
+other = '和其他文章一样，这篇文章可在 <a href="{{ .github }}">Github</a> 上查看，这样读者可以报告错误或提出修改。这里还有一个 <a href="{{ .readings }}">前置阅读材料</a> 可用来帮助理解该系列文章。作者还接受 <a href="{{ .donations }}">捐助</a> 和 <a href="{{ .translations }}">翻译</a> 以帮助提高现有文章和即将发表的文章的质量。'
 
 [subscribe_title]
 other = "接收更新"
@@ -197,10 +197,13 @@ other = "相关影像"
 other = "{{ . }} 的实用分析"
 
 [translated_by]
-other = '<a href="{{ .crowdin_url }}">译者</a>：{{ .author }}'
+other = "译者：{{ .author }}"
 
 [translated_by_many]
-other = '<a href="{{ .crowdin_url }}">译者</a>：<a href="{{ .authors }}">多位作者</a>'
+other = '译者：<a href="{{ .authors }}">多位作者</a>'
+
+[translation_help]
+other = '这是<a href="{{ .original_url }}">原文</a>的志愿翻译。如果您发现任何错误，请<a href="{{ .crowdin_url }}">帮助改进</a>。谢谢！'
 
 [interactive_model_origin]
 other = '<a href="{{ . }}">“现代版本”</a>中可用的互动模型'
