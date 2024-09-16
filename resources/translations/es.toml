@@ -203,7 +203,7 @@ other = "Traducido por {{ .author }}"
 other = 'Traducido por <a href="{{ .authors }}">varios autores</a>'
 
 [translation_help]
-other = 'Esto es una traducción voluntaria del artículo <a href="{{ .original_url }}">original</a>. Si encuentra algún error, <a href="{{ .crowdin_url }}">por favor ayude a mejorarla</a>. Gracias!'
+other = 'Esto es una traducción voluntaria del <a href="{{ .original_url }}">artículo original</a>. Si encuentra algún error, <a href="{{ .crowdin_url }}">por favor ayude a mejorarla</a>. ¡Gracias!'
 
 [interactive_model_origin]
 other = 'Modelo interactivo disponible en la <a href="{{ . }}">edición moderna</a>'
