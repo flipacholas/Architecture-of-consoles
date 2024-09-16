@@ -104,7 +104,7 @@ other = "L'édition 'classique' est une version alternative à la <a href=\"{{ .
 other = "Cette édition est identique du point de vue du contenu. Toutefois, les widgets interactifs ont été simplifiés pour fonctionner avec du HTML pur, bien qu'ils offrent un lien vers l'article original au cas où le lecteur voudrait essayer la « version complète »."
 
 [general_description]
-other = "Comme à chaque fois, cet article est disponible sur <a href=\"{{ .github }}\">GitHub</a> pour permettre aux lecteurs de signaler des erreurs ou de proposer des modifications. Une <a href=\"{{ .readings }}\">liste de lectures complémentaires</a> est aussi disponible pour aider à comprendre la série. L'auteur accepte également les <a href=\"{{ .donations }}\">dons</a> pour aider à améliorer la qualité des articles existants et à venir."
+other = "Comme à chaque fois, cet article est disponible sur <a href=\"{{ .github }}\">GitHub</a> pour permettre aux lecteurs de signaler des erreurs ou de proposer des modifications. Une <a href=\"{{ .readings }}\">liste de lectures complémentaires</a> est aussi disponible pour aider à comprendre la série. L'auteur accepte également les <a href=\"{{ .donations }}\">dons</a> et les <a href=\"{{ .translations }}\">traductions</a> pour aider à améliorer la qualité des articles actuels et futurs."
 
 [subscribe_title]
 other = "Recevez notre lettre d'information"
@@ -197,10 +197,13 @@ other = "Images de référence"
 other = "Une analyse pratique par {{ . }}"
 
 [translated_by]
-other = '<a href="{{ .crowdin_url }}">Traduit</a> par {{ .author }}'
+other = "Traduit par {{ .author }}"
 
 [translated_by_many]
-other = '<a href="{{ .crowdin_url }}">Traduit</a> par <a href="{{ .authors }}">plusieurs auteurs</a>'
+other = 'Traduit par <a href="{{ .authors }}">plusieurs auteurs</a>'
+
+[translation_help]
+other = "Ceci est une traduction volontaire de l'<a href=\"{{ .original_url }}\">article original</a>. Si vous trouvez des erreurs, <a href=\"{{ .crowdin_url }}\">veuillez aider à l'améliorer</a>. Merci!"
 
 [interactive_model_origin]
 other = "Modèle interactif disponible dans l'<a href=\"{{ . }}\">édition moderne</a>"
