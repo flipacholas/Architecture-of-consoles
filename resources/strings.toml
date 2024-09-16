@@ -110,7 +110,7 @@ other = 'The ‘classic’ edition is an alternative version to the <a href="{{ 
 other = "This edition is identical content-wise. However, interactive widgets have been simplified to work with pure HTML, though these will offer an link to the original article in case the reader wants to try the ‘full version’."
 
 [general_description]
-other = 'As always, this article is available on <a href="{{ .github }}">Github</a> to enable readers to report mistakes or propose changes. There’s also a <a href="{{ .readings }}">supporting reading list</a> available to help understand the series. The author also accepts <a href="{{ .donations }}">donations</a> and <a href="{{ .donations }}">translations</a> to help improve the quality of current articles and upcoming ones.'
+other = 'As always, this article is available on <a href="{{ .github }}">Github</a> to enable readers to report mistakes or propose changes. There’s also a <a href="{{ .readings }}">supporting reading list</a> available to help understand the series. The author also accepts <a href="{{ .donations }}">donations</a> and <a href="{{ .translations }}">translations</a> to help improve the quality of current articles and upcoming ones.'
 
 # Subscribe form
 
