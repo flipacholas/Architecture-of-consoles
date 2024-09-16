@@ -97,7 +97,7 @@ Esta consola también presenta una 'anomalía' especial llamada **Open Bus**: Si
 
 Para comparación, el 68000 usa una tabla de vectores para manejar excepciones, por lo que la ejecución se redirigirá siempre que se detecte una falla.
 
-### (Muchos) más memoria
+### Mucha más memoria
 
 Es fascinante darse cuenta de la cantidad de contenido que el NES logró mostrar con solo [2 KB de RAM](nes#memory). Pues bien, la Super Nintendo ahora cuenta con **128 KB de SRAM** (aún llamada 'Work RAM' o WRAM). Eso es 6400% más memoria de propósito general que su predecesora.
 
