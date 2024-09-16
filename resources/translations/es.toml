@@ -104,7 +104,7 @@ other = "La edición 'clásico' es una versión alternativa a la <a href=\"{{ .m
 other = 'Esta edición es idéntica en cuanto al contenido. Sin embargo, los widgets interactivos han sido simplificado para trabajar con HTML puro. De cualquier manera, esto ofrecerá un enlace al artículo original en caso de que el lector quiera comprobar la "versión completa".'
 
 [general_description]
-other = 'Como siempre, este artículo está disponible en <a href="{{ .github }}">Github</a> para permitir a los lectores reportar errores o proponer cambios. También hay una <a href="{{ .readings }}">lista de lectura de apoyo</a> disponible para ayudar a entender la serie. El autor también acepta <a href="{{ .donations }}">donaciones</a> para ayudar a mejorar la calidad de los artículos actuales y próximos.'
+other = 'Como siempre, este artículo está disponible en <a href="{{ .github }}">Github</a> para permitir a los lectores reportar errores o proponer cambios. También hay una <a href="{{ .readings }}">lista de lectura de apoyo</a> disponible para ayudar a entender la serie. El autor también acepta <a href="{{ .donations }}">donaciones</a> y <a href="{{ .translations }}">traducciones</a> para ayudar a mejorar la calidad de los artículos actuales y próximos.'
 
 [subscribe_title]
 other = "Mantente al tanto"
@@ -197,10 +197,13 @@ other = "Imágenes de apoyo"
 other = "Un análisis práctico por {{ . }}"
 
 [translated_by]
-other = '<a href="{{ .crowdin_url }}">Traducido</a> por {{ .author }}'
+other = "Traducido por {{ .author }}"
 
 [translated_by_many]
-other = '<a href="{{ .crowdin_url }}">Traducido</a> por <a href="{{ .authors }}">varios autores</a>'
+other = 'Traducido por <a href="{{ .authors }}">varios autores</a>'
+
+[translation_help]
+other = 'Esto es una traducción voluntaria del artículo <a href="{{ .original_url }}">original</a>. Si encuentra algún error, <a href="{{ .crowdin_url }}">por favor ayude a mejorarla</a>. Gracias!'
 
 [interactive_model_origin]
 other = 'Modelo interactivo disponible en la <a href="{{ . }}">edición moderna</a>'
