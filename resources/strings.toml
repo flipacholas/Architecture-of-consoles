@@ -110,7 +110,7 @@ other = 'The ‘classic’ edition is an alternative version to the <a href="{{ 
 other = "This edition is identical content-wise. However, interactive widgets have been simplified to work with pure HTML, though these will offer an link to the original article in case the reader wants to try the ‘full version’."
 
 [general_description]
-other = 'As always, this article is available on <a href="{{ .github }}">Github</a> to enable readers to report mistakes or propose changes. There’s also a <a href="{{ .readings }}">supporting reading list</a> available to help understand the series. The author also accepts <a href="{{ .donations }}">donations</a> to help improve the quality of current articles and upcoming ones.'
+other = 'As always, this article is available on <a href="{{ .github }}">Github</a> to enable readers to report mistakes or propose changes. There’s also a <a href="{{ .readings }}">supporting reading list</a> available to help understand the series. The author also accepts <a href="{{ .donations }}">donations</a> and <a href="{{ .donations }}">translations</a> to help improve the quality of current articles and upcoming ones.'
 
 # Subscribe form
 
@@ -209,10 +209,13 @@ other = "Supporting imagery"
 other = 'A practical analysis by {{ . }}'
 
 [translated_by]
-other = '<a href="{{ .crowdin_url }}">Translated</a> by {{ .author }}'
+other = 'Translated by {{ .author }}'
 
 [translated_by_many]
-other = '<a href="{{ .crowdin_url }}">Translated</a> by <a href="{{ .authors }}">multiple authors</a>'
+other = 'Translated by <a href="{{ .authors }}">multiple authors</a>'
+
+[translation_help]
+other = 'This is a volunteer translation of the <a href="{{ .original_url }}">original article</a>. If you find any mistakes, <a href="{{ .crowdin_url }}">please help improve it</a>. Thanks!'
 
 [interactive_model_origin]
 other = 'Interactive model available in the <a href="{{ . }}">modern edition</a>'

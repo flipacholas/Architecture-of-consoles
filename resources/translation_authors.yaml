@@ -7,23 +7,23 @@ gameboy:
     authors:
       - name: SuperDelphi
         year: 2022
-    includes_ai: true
+    pretranslated_with_ai: true
   es:
     authors: null
-    includes_ai: true
+    pretranslated_with_ai: true
   pl: LunaDook & MoonbowPlushie
   tr: EuropaYou
 gamecube:
   tr: EuropaYou
   es:
     authors: null
-    includes_ai: true
+    pretranslated_with_ai: true
 gba:  
   es:
     authors:
       - name: Jonathan Lojo Muñiz
         year: 2023
-    includes_ai: true
+    pretranslated_with_ai: true
   pl: LunaDook & MoonbowPlushie
   ru: Pawel Ryndovskiy, L1Q и Иван "rndtrash" Кузьменко
 mastersystem:
@@ -36,19 +36,19 @@ megadrive:
 nes:
   ar:
     authors: null
-    includes_ai: true
+    pretranslated_with_ai: true
   tr: EuropaYou
   es:
     authors: null
-    includes_ai: true
+    pretranslated_with_ai: true
   ko:
     authors: null
-    includes_ai: true
+    pretranslated_with_ai: true
   zh-hans:
     authors:
       - name: 猫咪啊呀呀
         year: 2022
-    includes_ai: true
+    pretranslated_with_ai: true
   pt-br: Walper, Estrelaura e Pedro Bertella
 nintendo64:
   es: Rodrigo Copetti
@@ -58,7 +58,7 @@ nintendods:
   zh-hans: Cerallin
   ja:
     authors: null
-    includes_ai: true
+    pretranslated_with_ai: true
 pcengine:
   es: Carlos Díaz
   tr: EuropaYou
@@ -79,7 +79,7 @@ snes:
   pt-br: Walper
   es:
     authors: null
-    includes_ai: true
+    pretranslated_with_ai: true
 virtualboy: null
 wii:
   es: Jonathan Lojo Muñiz
