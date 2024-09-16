@@ -104,7 +104,7 @@ other = "'클래식' 에디션은 <a href=\"{{ .modern }}\">'모던' 에디션</
 other = "이 판은 내용 면에서 동일하지만, 순수 HTML로 작동하는 간단한 인터랙티브 위젯으로 변경되었습니다. 그러나 이들은 독자가 '전체 버전'을 시도하고 싶은 경우 원래 기사로의 링크를 제공할 것입니다."
 
 [general_description]
-other = '항상 그렇듯이, 이 기사는 독자들이 실수를 보고하거나 변경을 제안할 수 있도록 <a href="{{ .github }}">Github</a>에서 사용할 수 있습니다. 또한 이 시리즈를 이해하는 데 도움이 될 <a href="{{ .readings }}">지원 독서 목록</a>도 있습니다. 저자는 또한 현재 기사와 다가올 기사의 품질을 향상시키는 데 도움이 될 <a href="{{ .donations }}">기부</a>를 받습니다.'
+other = '항상 그렇듯이, 이 기사는 독자들이 실수를 보고하거나 변경을 제안할 수 있도록 <a href="{{ .github }}">Github</a>에서 사용할 수 있습니다. 또한 이 시리즈를 이해하는 데 도움이 될 <a href="{{ .readings }}">지원 독서 목록</a>도 있습니다. 저자는 또한 현재 기사와 다가올 기사의 품질을 향상시키는 데 도움이 될 <a href="{{ .donations }}">기부</a>와 <a href="{{ .translations }}">번역</a>을 받습니다.'
 
 [subscribe_title]
 other = "업데이트 상태 유지"
@@ -197,10 +197,13 @@ other = "지원 이미지"
 other = "{{ . }}에 의한 실용적인 분석"
 
 [translated_by]
-other = '<a href="{{ .crowdin_url }}">번역됨</a> {{ .author }}님에 의해'
+other = "{{ .author }}에 의해 번역되었습니다"
 
 [translated_by_many]
-other = '<a href="{{ .crowdin_url }}">번역됨</a> <a href="{{ .authors }}">여러 저자</a>에 의해'
+other = '<a href="{{ .authors }}">여러 저자</a>에 의해 번역되었습니다'
+
+[translation_help]
+other = '이것은 <a href="{{ .original_url }}">원문 기사</a>의 자원 봉사 번역입니다. 실수를 발견하시면, <a href="{{ .crowdin_url }}">개선하는 데 도움을 주십시오</a>. 감사합니다!'
 
 [interactive_model_origin]
 other = '상호작용 가능한 모델은 <a href="{{ . }}">모던 에디션</a>에서 사용할 수 있습니다.'
