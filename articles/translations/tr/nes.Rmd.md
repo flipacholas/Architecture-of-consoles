@@ -16,7 +16,7 @@ top_tabs:
       caption: "NES.<br>18/10/1985 tarihinde Amerika'da ve 01/09/1986 tarihinde Avrupa'da piyasaya sürüldü."
       active: true
     - 
-      title: "Japonca"
+      title: "Japonya"
       file: japanese
       caption: "Famicom.<br>15/07/1983 tarihinde Japonya'da piyasaya sürüldü."
   Motherboard:
@@ -41,7 +41,7 @@ Bu *teknik* olarak doğru olsa da, CPU'nun neden bu sistemin *merkezi* parçası
 
 Nintendo, dünya çapında aynı konsolun çok sayıda farklı varyantını gönderdi [@general-variants] ve hepsi aynı mimariyi paylaşsa da, çoğu önemli ölçüde farklı görünüyor ve bazıları yerleşik aksesuarlar içerebiliyor. Bu nedenle, bu makaleyi basit tutmak için en popüler iki revizyona odaklanacağım:
 
-- **Family Computer** (*Famicom* olarak bilinir) ilk enkarnasyondu, ancak sadece Japonya'da piyasaya sürüldü. Bu oyuncak görünümlü tasarımda iki adet çıkarılamayan kontrolör (ikinci kontrolörün iç mikrofonu içerir), ışık tabancası (adı *Zapper*) için ön soket, RF video çıkışı (NTSC-J sinyali kullanarak) ve ses yeteneklerini genişletmek için kartuş yuvasında ekstra pinler bulunur.
+- **Family Computer** (*Famicom* olarak bilinir) ilk enkarnasyondu, ancak sadece Japonya'da piyasaya sürüldü. Bu oyuncak görünümlü tasarımda iki adet çıkarılamayan kontrolör (ikinci kontrolörün iç mikrofonu içerir), ışık tabancası (*Zapper* adlı) için ön soket, RF video çıkışı (NTSC-J sinyali kullanarak) ve ses yeteneklerini genişletmek için kartuş yuvasında ekstra pinler bulunur.
 - **Nintendo Entertainment System** (*NES* olarak bilinir), Kuzey Amerika, Avrupa ve Okyanusya'da yaşayan batılı kitleler için yeniden tasarlanmış bir versiyondu; normal bir VHS/Betamax oynatıcı ile aynı görünüm ve mekanizmaya sahiptir. Teknik açıdan, kontrolörler artık sökülebilir (ve mikrofonsuz) ve video çıkışı ekstra NTSC/PAL kompozit RCA konektörleriyle geliştirildi, ancak ses genişletmesi korsan karşıtı bir alt sistemle değiştirildi. Üstüne üstlük, kasanın alt kısmında kullanılmayan bir 'genişleme portu' ve bu portla iletişim kuran ekstra kartuş pinleri [@general-cartridge] bulunmaktadır.
 
 Yazar 'NES' adıyla büyüdüğü için, genel olarak konsola atıfta bulunmak için bu terimi kullanacağım, ancak yalnızca Japon varyantında bulunan benzersiz özelliklere atıfta bulunurken 'Famicom' adına geçeceğim.
@@ -81,7 +81,7 @@ Ricoh'un 6502'yi *nasıl* klonlamayı başardığı bugün bile net değil. MOS'
 - Hem Ricoh'un hem de MOS'un varyantları aynı düzene sahiptir, ancak Ricoh'unki kesintili veri yolları içerir (belirli işlevleri devre dışı bırakır) [@cpu-differences]. Daha sonra daha fazla ayrıntıya gireceğim.
 - MOS'un 6502'yi Ricoh'a lisansladığını açıkça belirten bir belge henüz bulunamamıştır.
 - Nikkei Trendy tarafından 2008 yılında yayınlanan bir makalede Ricoh'un yetkili bir çip üreticisi olan Rockwell'den lisans aldığı belirtilmektedir [@cpu-trendi]. Ancak, MOS'un onayı bir yana, ikinci bir kaynağın üçüncü bir tarafa IP sağlayıp sağlayamayacağı tartışmalıdır.
-- Bu, Nintendo'nun fikri mülkiyet haklarını çiğneyerek paçayı kurtardığı ilk olay olmayacaktı, zira *Ikegami Tsushinki v. Nintendo* Japonya'da Nintendo'nun orijinal Donkey Kong'un [@cpu-dk] koduna sahip olmadığına karar verdi.
+- Nintendo'nun fikri mülkiyet haklarını aşması ilk kez değil, çünkü Japonya'da *Ikegami Tsushinki v. Nintendo* davasında, Nintendo'nun orijinal Donkey Kong koduna sahip olmadığına karar verildi [@cpu-dk].
 
 #### Hurdaya çıkarılan fonksiyonlar
 
