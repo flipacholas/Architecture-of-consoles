@@ -104,7 +104,7 @@ other = "'Klasik' sürüm, <a href=\"{{ .modern }}\">'modern'</a> muadiline alte
 other = "Bu basım içerik açısından aynıdır. Bununla birlikte, etkileşimli widget'lar saf HTML ile çalışacak şekilde basitleştirilmiştir, ancak bunlar okuyucunun \"tam sürümü\" denemek istemesi durumunda orijinal makaleye bir bağlantı sunacaktır."
 
 [general_description]
-other = "Her zaman olduğu gibi, bu makale okuyucuların hataları bildirmesine veya değişiklik önermesine olanak sağlamak için <a href=\"{{ .github }}\">Github'da</a> mevcuttur. Ayrıca seriyi anlamaya yardımcı olacak destekleyici bir <a href=\"{{ .readings }}\">okuma listesi de mevcuttur</a>. Yazar ayrıca mevcut ve gelecek makalelerin kalitesini artırmaya yardımcı olmak için <a href=\"{{ .donations }}\">bağışları</a> da kabul etmektedir."
+other = "Her zaman olduğu gibi, bu makale okuyucuların hataları bildirmesine veya değişiklik önermesine olanak sağlamak için <a href=\"{{ .github }}\">Github'da</a> mevcuttur. Ayrıca seriyi anlamaya yardımcı olacak destekleyici bir <a href=\"{{ .readings }}\">okuma listesi de mevcuttur</a>. Yazar ayrıca mevcut ve gelecek makalelerin kalitesini artırmaya yardımcı olmak için <a href=\"{{ .donations }}\">bağışları</a> ve <a href=\"{{ .translations }}\">çevirileri</a> de kabul etmektedir."
 
 [subscribe_title]
 other = "Güncel kal"
@@ -197,10 +197,13 @@ other = "Destekleyici görüntüler"
 other = "{{ . }} tarafından hazırlanan pratik bir analiz"
 
 [translated_by]
-other = '<a href="{{ .crowdin_url }}">Çeviren</a>: {{ .author }}'
+other = "{{ .author }} tarafından çevrildi"
 
 [translated_by_many]
-other = '<a href="{{ .crowdin_url }}">Çeviren</a>: <a href="{{ .authors }}">birçok yazar</a>'
+other = '<a href="{{ .authors }}">Birden fazla yazar</a> tarafından çevrilmiştir'
+
+[translation_help]
+other = '<a href="{{ .original_url }}">Orijinal makalenin</a> tamamen gönüllülük esasına dayalı bir çevirisidir. Herhangi bir hata bulursanız, <a href="{{ .crowdin_url }}">lütfen düzeltilmesine katkıda bulunun</a>. Teşekkürler!'
 
 [interactive_model_origin]
 other = 'Etkileşimli model <a href="{{ . }}">modern sürümde</a> kullanılabilir'
