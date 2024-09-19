@@ -31,21 +31,21 @@ Sega Dreamcast, hem oyun geliştiricilerine hem de konsol oyuncularına hitap et
 
 ## İşlemci (CPU)
 
-Hitachi için işler sorunsuz ilerliyordu, <a href=“sega-saturn#cpu”>ikonik SuperH çipleri</a> birden fazla müşteri bulmuştu ve şirket artık serinin dördüncü sürümü için hazırdı. Yeni girişleri, gömülü yetenekleri 3D oyunların sahip olduğu işlevsellikle birleştirecek.
+Hitachi için işler sorunsuz ilerliyordu, [konik SuperH çipleri](sega-saturn#cpu) birden fazla müşteri bulmuştu ve şirket artık serinin dördüncü sürümü için hazırdı. Yeni girişleri, gömülü yetenekleri 3D oyunların sahip olduğu işlevsellikle birleştirecek.
 
-SuperH'yi ilk benimseyenlerden biri olan Sega, yeni konsollarına güç sağlamak için şaşırtıcı olmayan bir şekilde Hitachi'nin son sevkiyatını seçti. Bu nedenle Dreamcast'te <strong x-id=“1”>SH-4 CPU</strong> bulunmaktadır ve bu işlemci <strong x-id=“1”>200 MHz</strong> [@cpu-spec] hızında çalışmaktadır. Ayrıca, <a href=“sega-saturn#the-final-product”>bu sefer işleri yoluna koymak</a> için, <strong x-id=“1”>sadece bir tam donanımlı CPU</strong> var.
+SuperH'yi ilk benimseyenlerden biri olan Sega, yeni konsollarına güç sağlamak için şaşırtıcı olmayan bir şekilde Hitachi'nin son sevkiyatını seçti. Bu nedenle Dreamcast'te **SH-4 CPU** bulunmaktadır ve bu işlemci **200 MHz** [@cpu-spec] hızında çalışmaktadır. Ayrıca, [bu sefer işleri yoluna koymak](sega-saturn#the-final-product) için, **sadece bir tam donanımlı CPU** var.
 
 ### Teklif
 
 Bununla birlikte, bu yeni işlemci hakkında ilginç olan nedir?
 
-Bununla birlikte, bu yeni işlemci hakkında ilginç olan nedir? Öncelikle, SH-4 önceki modellerin bir süper seti olarak devam ediyor, yani **32-bit RISC mimari**, **5 aşamalı pipeline** ve **16-bit instruction set** dahil olmak üzere SuperH serisinin mevcut [tüm özelliklerini](sega-saturn#cpu) miras alıyor. Ne yazık ki, aynı zamanda <a href=“playstation#delay-galore”>control hazards</a>'ın da mirasçısıdır.
+Bununla birlikte, bu yeni işlemci hakkında ilginç olan nedir? Öncelikle, SH-4 önceki modellerin bir süper seti olarak devam ediyor, yani **32-bit RISC mimari**, **5 aşamalı pipeline** ve **16-bit instruction set** dahil olmak üzere SuperH serisinin mevcut [tüm özelliklerini](sega-saturn#cpu) miras alıyor. Ne yazık ki, aynı zamanda [control hazards](playstation#delay-galore)'ın da mirasçısıdır.
 
 ![SH-4 çipi.](sh4.jpg)
 
 Bunun da ötesinde, yeni nesil CPU olarak, gömülü uygulamaların kapsamının ötesine geçen birçok iyileştirme sunuyor [@cpu-arch]:
 
-- Bir <strong x-id=“1”>2-way superscalar</strong> pipeline: CPU'nun boru hattının her aşamasında birden fazla komutu (bu durumda iki) işleyebildiği yeni bir paralellik tekniği. Bu da saniyede daha fazla talimatın yürütülmesine neden olur.
+- Bir **2-way superscalar** pipeline: CPU'nun boru hattının her aşamasında birden fazla komutu (bu durumda iki) işleyebildiği yeni bir paralellik tekniği. Bu da saniyede daha fazla talimatın yürütülmesine neden olur.
   - Perde arkasında, CPU iki talimatı iki farklı (kullanılabilir) yürütme birimine dağıtıyor. Bu nedenle - çok küçük bir grup hariç - tüm komutların paralelleştirilmesi için farklı türlerde (yani branching, aritmetik, vb.) olması gerekir [@cpu-soft_doc]. Aksi takdirde, yalnızca sıralı olarak yürütülebilirler. Her ne olursa olsun, SH-4 aynı zamanda asla paralelleştirilemeyecek bir talimat alt kümesi de sergiler, çünkü bunu mümkün kılmak için çok fazla bağımlılık içerirler.
 - **8 KB instruction cache** ve **16 KB data cache**: Konsollar veri önbelleğinden daha fazla komut önbelleği içerme eğiliminde olduğundan bu oran oldukça ilginçtir. Ancak SH-4, veri önbelleğinin iki bölüme ayrılmasına izin verir: **8 KB Scratchpad** (hızlı RAM) ve **8 KB veri önbelleği**.
 
@@ -53,13 +53,13 @@ Bunun da ötesinde, yeni nesil CPU olarak, gömülü uygulamaların kapsamının
 
 Bir oyun konsolu CPU'sunun ortak işleri arasında bir oyunun mantığını idare etmek, düşman yapay zekasını çalıştırmak ve GPU'yu instruction'la beslemek yer alır.
 
-Dreamcast ile GPU'nun yalnızca <a href=“playstation#graphics”>rasteriser</a> görevlerini yerine getirdiğini göreceksiniz. Dolayısıyla, CPU'nun grafik işlem hattının büyük bir kısmına dahil olması gerekir. Bu, CPU'nun büyük miktarda geometri verisini <a href=“playstation#tab-2-2-geometry-transformation-engine”>işleyeceği</a> anlamına gelir (perspektif dönüşümlerini hesaplamak gibi). Şimdi, CPU'nun bu rolü sürdürebilmesini sağlamak için Sega ve Hitachi işbirliği yaparak SH-4'e iki önemli eklenti eklediler.
+Dreamcast ile GPU'nun yalnızca [rasteriser](playstation#graphics) görevlerini yerine getirdiğini göreceksiniz. Dolayısıyla, CPU'nun grafik işlem hattının büyük bir kısmına dahil olması gerekir. Bu, CPU'nun büyük miktarda geometri verisini [işleyeceği](playstation#tab-2-2-geometry-transformation-engine) anlamına gelir (perspektif dönüşümlerini hesaplamak gibi). Şimdi, CPU'nun bu rolü sürdürebilmesini sağlamak için Sega ve Hitachi işbirliği yaparak SH-4'e iki önemli eklenti eklediler.
 
-İlk eklenti özel bir <strong x-id=“1”>64-bit Kayan Nokta Birimi</strong> (FPU). Bu bileşen, <strong x-id=“1”>IEEE-754 standardına</strong> uyarak 32 bit ondalık sayıları ('tek hassasiyetli' veya 'float' olarak adlandırılır) veya 64 bit olanları ('çift hassasiyetli' veya 'double' türü) hesaplar. Register dosyası <strong x-id=“1”>otuz iki 32 bitlik register'dan</strong> oluşur, ancak bunlar aynı zamanda <strong x-id=“1”>on altı 64 bitlik register'dan</strong> oluşan farklı bir grupta birleştirilebilir, bu da birimin double işlem yapabilmesini sağlar.
+İlk eklenti özel bir **64-bit Kayan Nokta Birimi** (FPU). Bu bileşen, **IEEE-754 standardına** uyarak 32 bit ondalık sayıları ('tek hassasiyetli' veya 'float' olarak adlandırılır) veya 64 bit olanları ('çift hassasiyetli' veya 'double' türü) hesaplar. Register dosyası **otuz iki 32 bitlik register'dan** oluşur, ancak bunlar aynı zamanda **on altı 64 bitlik register'dan** oluşan farklı bir grupta birleştirilebilir, bu da birimin double işlem yapabilmesini sağlar.
 
-Bu yeterli gelmediyse, Hitachi FPU ile bir adım daha ileri gitti ve bu kez <strong x-id=“1”>sekiz 128 bitlik register</strong>'dan oluşan başka bir register grubu oluşturmak için ekstra logic uyguladı. İçinde her bir register artık dört adet 32 bit float ya da başka bir deyişle <strong x-id=“1”>128 bit vektör</strong> olarak saklamaktadır. Bu format grafikle ilgili işlemler için idealdir.
+Bu yeterli gelmediyse, Hitachi FPU ile bir adım daha ileri gitti ve bu kez **sekiz 128 bitlik register**'dan oluşan başka bir register grubu oluşturmak için ekstra logic uyguladı. İçinde her bir register artık dört adet 32 bit float ya da başka bir deyişle **128 bit vektör** olarak saklamaktadır. Bu format grafikle ilgili işlemler için idealdir.
 
-Yeni vektörleri iyi bir şekilde kullanmak için FPU, <a href=“sega-saturn#the-third-processor-and-counting”>Saturn Control Unit</a>'in sağladığı gibi bunları çalıştırmak için özel instruction'lar içerir, ancak sektör artık daha standart hale gelmiştir. Yeni talimatlar genellikle <strong x-id=“1”>Single Instruction Multiple Data</strong> (SIMD) olarak bilinen bir yapıya sahiptir ve aşağıdaki cebirsel işlemleri gerçekleştirebilir:
+Yeni vektörleri iyi bir şekilde kullanmak için FPU, [Saturn Control Unit](sega-saturn#the-third-processor-and-counting)'in sağladığı gibi bunları çalıştırmak için özel instruction'lar içerir, ancak sektör artık daha standart hale gelmiştir. Yeni talimatlar genellikle **Single Instruction Multiple Data** (SIMD) olarak bilinen bir yapıya sahiptir ve aşağıdaki cebirsel işlemleri gerçekleştirebilir:
 
 - Nokta çarpım.
 - Karelerin toplamı.
@@ -69,7 +69,7 @@ Yeni vektörleri iyi bir şekilde kullanmak için FPU, <a href=“sega-saturn#th
 
 #### Bellek & erişim
 
-Dreamcast'lerde <strong x-id=“1”>16 MB SDRAM</strong> bulunur ve <strong x-id=“1”>100 MHz</strong> bus (CPU hızının yarısı) kullanılarak doğrudan CPU'ya bağlanır.
+Dreamcast'lerde **16 MB SDRAM** bulunur ve **100 MHz** bus (CPU hızının yarısı) kullanılarak doğrudan CPU'ya bağlanır.
 
 Buna karşılık, belleğin data bus'ı sadece 32 bit genişliğindedir [@cpu-spec]. Bu, CPU'nun 64-bit data bus'ının boşa gitti anlamına mı geliyor? Hayır, çünkü RAM <strong x-id=“1”>iki adet 8 MB bank</strong> kullanılarak takılmıştır. Yani, her bir çip CPU'nun data bus hatlarının yarısına bağlıdır.
 
@@ -89,9 +89,9 @@ Bu CPU aynı zamanda **Paralel I/O** veya 'PIO' olarak adlandırılan ve aynı a
 
 ### Yolun sonu
 
-Bahsedilen tüm avantajlara rağmen, korkarım ki SuperH serisi son büyük kullanıcısı Dreamcast'in mağazaları terk etmesinden sonra önemli bir ilerleme kaydedemedi. SH-4'ün popülerliğinden sonra Hitachi (ya da şu anki sahipleri olan Renesas Electronics) aynı başarı seviyesini tekrarlayamadı ve gömülü/el tipi pazarın o zamandan beri <a href=“game-boy-advance#cpu”>ARM</a>'ı tercih ettiğini düşünürsek (<a href=“nintendo-ds#arms-new-territories”>StrongARM</a> sayesinde), Renesas'ın Hitachi'nin buluşunu yakın zamanda sürdüreceğini düşünmüyorum.
+Bahsedilen tüm avantajlara rağmen, korkarım ki SuperH serisi son büyük kullanıcısı Dreamcast'in mağazaları terk etmesinden sonra önemli bir ilerleme kaydedemedi. SH-4'ün popülerliğinden sonra Hitachi (ya da şu anki sahipleri olan Renesas Electronics) aynı başarı seviyesini tekrarlayamadı ve gömülü/el tipi pazarın o zamandan beri [ARM](game-boy-advance#cpu)'ı tercih ettiğini düşünürsek ([StrongARM](nintendo-ds#arms-new-territories) sayesinde), Renesas'ın Hitachi'nin buluşunu yakın zamanda sürdüreceğini düşünmüyorum.
 
-Ancak bilgisayarla ilgili iyi olan bir şey varsa o da teknolojik ilerlemenin markaların ve şirketlerin sınırlarının ötesine yayılma eğiliminde olmasıdır. Örneğin, SH'nin sıkıştırılmış komut tekniği ARM'nin <a href=“game-boy-advance#tab-2-3-squeezing-performance”>Thumb modu</a> (ikincil bir 16-bit ISA) ile devam etmiştir [@cpu-lwn]. Ayrıca, 2012 yılında, 'J2' [@cpu-jcore] adı verilen modern bir SuperH uyumlu CPU üretmek için gönüllülük esasına dayalı bir proje başlatılmıştır.
+Ancak bilgisayarla ilgili iyi olan bir şey varsa o da teknolojik ilerlemenin markaların ve şirketlerin sınırlarının ötesine yayılma eğiliminde olmasıdır. Örneğin, SH'nin sıkıştırılmış komut tekniği ARM'nin [Thumb modu](game-boy-advance#tab-2-3-squeezing-performance) (ikincil bir 16-bit ISA) ile devam etmiştir [@cpu-lwn]. Ayrıca, 2012 yılında, 'J2' [@cpu-jcore] adı verilen modern bir SuperH uyumlu CPU üretmek için gönüllülük esasına dayalı bir proje başlatılmıştır.
 
 ## Grafikler
 
@@ -150,7 +150,7 @@ Grafiklerin hayata geçirildiği yer burasıdır, Tile Accelerator'dan alınan D
 
 ### Büyük resim {.tabs-close}
 
-Açık mimari farkın yanı sıra, Texture and Shading Processor, bu konsolun eski <a href=“sega-saturn”>Saturn</a>'den ne kadar uzak olduğu hakkında bir fikir veren birçok yetenekle birlikte gelir. İşte bazı önemli örnekler:
+Açık mimari farkın yanı sıra, Texture and Shading Processor, bu konsolun eski [Saturn](sega-saturn)'den ne kadar uzak olduğu hakkında bir fikir veren birçok yetenekle birlikte gelir. İşte bazı önemli örnekler:
 
 - **Alpha blending (Alfa karıştırma)**: Şeffaflık efektleri elde etmek için üst üste binen katmanların renklerini birleştirir.
   - Bu sistemde saydamlık uygulamak için kullanılan işleme sıralamadan **order-independent transparency (bağımsız saydamlık)** denir. Algoritma, renklerini karıştırmadan önce ilkelleri otomatik olarak sıralar ve bu işlem render işlemini yavaşlatsa da, tüm sıralamayı manuel olarak yapmak için oyunun kendisine güvenilmesini önler. Bu nedenle Dreamcast oyunları şeffaf nesneleri görüntülemede mükemmeldi.
