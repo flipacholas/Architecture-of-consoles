@@ -1160,7 +1160,7 @@ Thankfully, people were working on this. During the second half of 2014, a new m
 
 1. A crafted **QR code** to be scanned by 'Cubic Ninja', a game that allows to share user-designed levels using QR codes. This served as a new entry point exploit.
 2. **GSPWN**: A userland vulnerability where the GPU's DMA is used to write over the HOME Menu's heap. Furthermore, the combination with ROP leads to privilege escalation. This resulted in the ability to create & kill processes, SD card access, decrypt & dump titles and override executable data.
-    - [Other GPUs](xbox-360#graphics) were also known for [intruding](xbox-360#tab-20-3-king-kong-exploit) into the system's RAM.
+    - [Other GPUs](xbox-360#graphics) were also known for [intruding](xbox-360#tab-17-3-king-kong-exploit) into the system's RAM.
 3. **Homebrew launcher**: A new service running under the HOME Menu process thanks to GSPWN. It provides a graphical user interface to load unsigned Homebrew apps (using a new portable .3dsx format) and take over processes. The launcher loads homebrew by opening an official application with enough privileges and then hijacks it with GSPWN, replaces the code with Homebrew code and finally executes it.
     - With its ability to alter user data, the Homebrew launcher can also be used to install alternative entry points as they're discovered (i.e. OotHax, Ironhax and so forth). Thus, reducing its dependency on Cubic Ninja. A notable aftermarket exploit was **MenuHax**, which exploited a vulnerability in the HOME Menu theme engine and was triggered at boot, **making it a permanent solution to launch a payload**.
     - If you are curious, the Wii U also experienced [similar methodologies](wiiu#fooling-iosu) as early attempts to run Homebrew.
