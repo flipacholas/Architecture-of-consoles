@@ -40,7 +40,7 @@ Bu konsolun özünde, **Emotion Engine** ya da 'EE' denilen, Toshiba ve Sony tar
 Çipset, sayısız bileşen içeriyor ve bunlardan biri de Ana İşlemci (CPU). Geri kalan kısımları ise belirli görevleri hızlandırmak için CPU'nun kullanımındadır. Bu analiz için EE'yi üç kısma ayıracağız:
 
 - **Lider:** Bütün yongayı kontrol eden asıl bileşendir.
-- <strong x-id=“1”>Kullanılabilir bellek</strong>, işlemcilerin anlamlı işlemler yapabilmesi için çok önemli bir bileşen.
+- **Kullanılabilir bellek**, işlemcilerin anlamlı işlemler yapabilmesi için çok önemli bir bileşen.
 - **Co-processors**: Bunlar, belirli hesaplamaları hızlandırır.
 
 ### Çipteki Lider
@@ -51,11 +51,11 @@ Yeni sayıların ardında yatan şeyi anlamak için o dönemi kuşatan bir tarih
 
 #### Diğerlerini aşan başarı {.tabs.active}
 
-<a href=“nintendo-64#cpu”>MIPS R4000</a>, <a href=“nintendo-64”>yakın rakibi</a> de dahil olmak üzere çok çeşitli sistemler tarafından benimsenen popüler bir işlemci serisiydi. Başarısı sayesinde MIPS, halka tek seferde pahası karşılanamayacak düzeyde gelişmeler (64-bit bilgi işleme, 8 aşamalı pipeline ve dahasını) getirdi.
+[MIPS R4000](nintendo-64#cpu), [yakın rakibi](nintendo-64) de dahil olmak üzere çok çeşitli sistemler tarafından benimsenen popüler bir işlemci serisiydi. Başarısı sayesinde MIPS, halka tek seferde pahası karşılanamayacak düzeyde gelişmeler (64-bit bilgi işleme, 8 aşamalı pipeline ve dahasını) getirdi.
 
 İleri sararsak, sonraki büyük sıçrama 1995'te, **R10000**'in piyasaya sürülmesiyle gerçekleşti. Bu tarihte MIPS, [SGI](playstation#tab-1-2-mips-and-sony)'ın maddî yatırımıyla, R4000'in paralellik kâbiliyetini çok ileri taşıdı ve ilk kez şunun gibi teknikler ortaya çıktı [@cpu-yeager]:
 
-- <strong x-id=“1”>Speculative execution</strong>: CPU, hesaplanmadan önce conditional branch sonucunu tahmin eder. Bu öngörüler, dâhilî 512 girdilik bir tabloda saklanan önceki işlemlerin sonuçlarına göre gerçekleştirilir. Koşul hesaplandığında, eğer öngörü doğru ise, İşlemci önemli zaman kazanmış olacak. Yok değilse, ekstra hesaplamalar yok edilir.
+- **Speculative execution**: CPU, hesaplanmadan önce conditional branch sonucunu tahmin eder. Bu öngörüler, dâhilî 512 girdilik bir tabloda saklanan önceki işlemlerin sonuçlarına göre gerçekleştirilir. Koşul hesaplandığında, eğer öngörü doğru ise, İşlemci önemli zaman kazanmış olacak. Yok değilse, ekstra hesaplamalar yok edilir.
   - Bu sayede MIPS, sonunda sürekli tekrar eden bir sorunu ([control hazards](playstation#delay-galore)<!--Türkçesi için önce PS1 makalesi çevirilmeli-->) bir avantaja çevirdi.
   - Diğer işlemcilerde ise [dynamic branch prediction](gamecube#features) olarak anılan benzer bir işleyiş biçimi görebilirsiniz.
 - **4-çıkışlı süperskaler** pipeline: [Pipeline tasarımına](sega-saturn#cpu) ek olarak, CPU artık pipeline'ın başlangıcında dört adede kadar talimat getirecek ve bunları ayrı birimlere dağıtarak CPU'nun bu talimatları aynı anda yürütmesini sağlayacaktır. Bunu yapmak suretiyle, İşlemci, daha üst derecede bir paralelliğe erişir.
@@ -75,27 +75,27 @@ Nihayet, QED, **R5000** adlı yeni bir işlemci çekirdeği ile döndü; bu, R10
 - Süperskalerlik iki tâlimatla (2-çıkışlı) kısıtlandı ve artık tam sayı tâlimatları paralelize edilmiyordu. Yine de kayan noktalı (floating point) tâlimatları diğerleriyle eşlenebiliyordu.
 - Önceki eksiltmeler sebebiyle, L2, 64-bit veriyoluna indirildi.
 
-Sonuç olarak bu, SGI'ın düşük bütçeli iş istasyonları gibi enerji (güç) tasarruflu donanım için ideal bir İşlemci hâline geldi. Her halükarda, QED'in <strong x-id=“1”>vektör/3D uygulamaları</strong> için cazip bir ürün olarak tutmayı planladığı gibi, küçültülmüş pipeline'ın hala eşzamanlı kayan nokta işlemleri gerçekleştirdiğini unutmayın. Yakında başka bir şirketin de bunu hızla not ettiğini göreceksiniz.
+Sonuç olarak bu, SGI'ın düşük bütçeli iş istasyonları gibi enerji (güç) tasarruflu donanım için ideal bir İşlemci hâline geldi. Her halükarda, QED'in **vektör/3D uygulamaları** için cazip bir ürün olarak tutmayı planladığı gibi, küçültülmüş pipeline'ın hala eşzamanlı kayan nokta işlemleri gerçekleştirdiğini unutmayın. Yakında başka bir şirketin de bunu hızla not ettiğini göreceksiniz.
 
 İlave not olarak, ilginçtir ki okyanusun öbür ucunda da benzer geliştirmeler vardır fakat aksi yönde: ARM çiplerini üst düzey pazara taşımak uğruna [ARM, DEC ile güçlerini birleştirdi](nintendo-ds#arms-new-territories).
 
 #### Sony'e özel bir sipariş {.tabs-close}
 
-Toshiba bir süredir MIPS lisansı sahibiydi [@cpu-toshiba] ve MIPS varyasyonları ve paketleri üretmeye yabancı değildi. Bir noktada Sony ve Toshiba, Sony'nin yakında çıkacak konsolu için özel olarak tasarlanmış bir CPU üretmek üzere güçlerini birleştirdi. Bu Toshiba için muazzam bir avantajdı: CPU'ların çoğu zaman farklı paydaşlardan gelen çok sayıda gereksinimi karşılaması gerekir ve bunu yaparken uzmanlaşmaya yönelik fırsatları kısıtlar. Artık sadece tek bir amaç vardı: **3D oyun**. Böylece her türlü <strong x-id=“1”>yenilik</strong> için yeterli alan sağlanmış olur.
+Toshiba bir süredir MIPS lisansı sahibiydi [@cpu-toshiba] ve MIPS varyasyonları ve paketleri üretmeye yabancı değildi. Bir noktada Sony ve Toshiba, Sony'nin yakında çıkacak konsolu için özel olarak tasarlanmış bir CPU üretmek üzere güçlerini birleştirdi. Bu Toshiba için muazzam bir avantajdı: CPU'ların çoğu zaman farklı paydaşlardan gelen çok sayıda gereksinimi karşılaması gerekir ve bunu yaparken uzmanlaşmaya yönelik fırsatları kısıtlar. Artık sadece tek bir amaç vardı: **3D oyun**. Böylece her türlü **yenilik** için yeterli alan sağlanmış olur.
 
-Bununla birlikte Toshiba, uygun fiyatlı R5000 tasarımını aldı ve vektör işlemlerini hızlandırmak için ince ayar yaptı. Yeni çekirdek <strong x-id=“1”>R5900</strong> olarak adlandırılıyor ve aşağıdaki '3D' geliştirmeleri sunuyor [@cpu-stokes]:
+Bununla birlikte Toshiba, uygun fiyatlı R5000 tasarımını aldı ve vektör işlemlerini hızlandırmak için ince ayar yaptı. Yeni çekirdek **R5900** olarak adlandırılıyor ve aşağıdaki '3D' geliştirmeleri sunuyor [@cpu-stokes]:
 
-- <strong x-id=“1”>MIPS III ISA</strong>'nın bir varyasyonu. Bu, daha önce <a href=“nintendo-64#cpu”>Nintendo 64</a>'te görülen orijinal 64 bit ISA'yı içerir, ancak ilginç işlem kodlarıyla genişletilmiştir. Sony, vektör hesaplamalarını hızlandırmak için ([SH-4](dreamcast#special-work)'e benzer, ancak yalnızca tamsayı) **multimedia instructions** adlı kendi SIMD uzantısının yanı sıra **MIPS IV**'ten bazı talimatlar (prefetch ve conditional move) ekledi.
+- **MIPS III ISA**'nın bir varyasyonu. Bu, daha önce [Nintendo 64](nintendo-64#cpu)'te görülen orijinal 64 bit ISA'yı içerir, ancak ilginç işlem kodlarıyla genişletilmiştir. Sony, vektör hesaplamalarını hızlandırmak için ([SH-4](dreamcast#special-work)'e benzer, ancak yalnızca tamsayı) **multimedia instructions** adlı kendi SIMD uzantısının yanı sıra **MIPS IV**'ten bazı talimatlar (prefetch ve conditional move) ekledi.
   - Multimedya talimatları hala 32 bit genişliğindedir ancak bir seferde üç adede kadar 128 bit vektörü çalıştırabilir. Vektör aritmetiği, min/maks ve yeni vektörler oluşturmak için birçok skaler kombinasyon gibi işlemler sunarlar.
-- <strong x-id=“1”>32 adet 128 bit genel amaçlı register</strong>: Toshiba markalı bir başka önemli geliştirme. Tipik <a href=“playstation#the-offering”>32-bit depolama</a> alanını unutun, şimdi 128-bit alanına adım attık. Bununla birlikte, işlemlerin çoğu mevcut alanın tamamını kullanmayacaktır (MIPS kelimeleri <a href=“nintendo-64#cpu”>hala 64 bit uzunluğundadır</a>). İşte bu noktada, yukarıda bahsedilen multimedya uzantısı denkleme dahil olur, çünkü seti genişletilmiş kayıt dosyasını tam olarak kullanacaktır.
+- **32 adet 128 bit genel amaçlı register**: Toshiba markalı bir başka önemli geliştirme. Tipik [32-bit depolama](playstation#the-offering) alanını unutun, şimdi 128-bit alanına adım attık. Bununla birlikte, işlemlerin çoğu mevcut alanın tamamını kullanmayacaktır (MIPS kelimeleri [hala 64 bit uzunluğundadır](nintendo-64#cpu)). İşte bu noktada, yukarıda bahsedilen multimedya uzantısı denkleme dahil olur, çünkü seti genişletilmiş kayıt dosyasını tam olarak kullanacaktır.
   - Yeni talimatlar kullanıldığında, her bir register birçok skaler türünden oluşan vektörleri saklayabilir (iki 64 bitlik tamsayıdan on altı 8 bitlik olana kadar).
-  - Performans kayıplarını önlemek için bu kayıtlara bir <strong x-id=“1”>128-bit veri yolu</strong> üzerinden erişilirken, CPU'nun geri kalanı dahili bir <strong x-id=“1”>64-bit veri yolu</strong> kullanır.
-- İki **64-bit ALU**. Her biri 64 bit tamsayıları bağımsız olarak çalıştırabilir, ancak aynı zamanda bir <strong x-id=“1”>128 bit ALU</strong> olmak için birleşebilir. İkincisi, bu parlak multimedya işlem kodlarının arkasındaki beyindir.
+  - Performans kayıplarını önlemek için bu kayıtlara bir **128-bit veri yolu** üzerinden erişilirken, CPU'nun geri kalanı dahili bir **64-bit veri yolu** kullanır.
+- İki **64-bit ALU**. Her biri 64 bit tamsayıları bağımsız olarak çalıştırabilir, ancak aynı zamanda bir **128 bit ALU** olmak için birleşebilir. İkincisi, bu parlak multimedya işlem kodlarının arkasındaki beyindir.
 
 Bunların yanı sıra, geliştiricilerin hoşuna gidebilecek başka iyileştirmeler de buluyoruz:
 
-- <strong x-id=“1”>6 aşamalı pipeline</strong>: Bu, <a href=“playstation#the-offering”>öncekilere</a> kıyasla bir ek aşamadır.
-- <strong x-id=“1”>2 yönlü superscalar</strong> yürütme: İki ALU sayesinde, iki adede kadar 64 bit tamsayı işlemi artık paralel olarak yürütülür.
+- **6 aşamalı pipeline**: Bu, [öncekilere](playstation#the-offering) kıyasla bir ek aşamadır.
+- **2 yönlü superscalar** yürütme: İki ALU sayesinde, iki adede kadar 64 bit tamsayı işlemi artık paralel olarak yürütülür.
   - Bu, MIPS R10000'ün kaybedilen bir başka avantajını geri kazandırır.
 - **24 KB L1 önbelleği**: **Talimatlar için 16 KB** ve veriler için **8 KB'a bölünmüştür**.
   - Ayrıca bir **ön belleğe alma fonksiyonu** uygulayarak talimat ve verileri çağırılmadan önce önbelleğe alır. Bu işlem, hafızadaki hangi konumların daha sık ulaşıldığını belirleyen bir ilave devre sayesinde gerçekleşir.
@@ -130,7 +130,7 @@ Dahası, **Önbelleksiz hızlandırılmış mod** da mevcut. Bu mod, hafızadaki
 
 ### Diğer ilginç parçalar
 
-Aynı Emotion Engine paketinin içinde, <strong x-id=“1”>Image Processing Unit</strong> veya 'IPU' adı verilen ve bu kez <strong x-id=“1”>image decompression</strong> için tasarlanmış bir işlemci daha bulunuyor. [MDEC](playstation#tab-2-3-motion-decoder)'nin halefi olan IPU, bir oyunun MPEG2 görüntülerini (movie) Ana İşlemciyi (CPU) meşgul etmeden çözmesi gerektiğinde kullanışlı olabilir.
+Aynı Emotion Engine paketinin içinde, **Image Processing Unit** veya 'IPU' adı verilen ve bu kez **image decompression** için tasarlanmış bir işlemci daha bulunuyor. [MDEC](playstation#tab-2-3-motion-decoder)'nin halefi olan IPU, bir oyunun MPEG2 görüntülerini (movie) Ana İşlemciyi (CPU) meşgul etmeden çözmesi gerektiğinde kullanışlı olabilir.
 
 Uzun lafın kısası, oyun, sıkıştırılmış görüntü akışını IPU'ya (umarız DMA kullanarak) gönderir ve bu GPU'nun (Grafik İşlemci) ekranda gösterebileceği bir formata çevrilir. Ayrıca PS2'nin İşletim Sistemi de DVD oynatma için IPU'dan istifade eder.
 
@@ -192,7 +192,7 @@ Kesin bir biçimde yazılmış verileri kullanmakla kıyaslandığında prosedü
 
 - **Karmaşık yüzeyler** (örn. küre ve tekerlek).
 - **World rendering** (örn. arazi, partiküller, ağaçlar).
-- **Bézier eğrileri**, bilgisayar grafiklerinde eğri çizmek için kullanılan yaygın bir denklem. Bunlar bir <strong x-id=“1”>Bézier yamasına</strong> (açık geometri) dönüştürülür ve gereken ayrıntı düzeyine bağlı olarak farklı hassasiyet derecelerini destekler.
+- **Bézier eğrileri**, bilgisayar grafiklerinde eğri çizmek için kullanılan yaygın bir denklem. Bunlar bir **Bézier yamasına** (açık geometri) dönüştürülür ve gereken ayrıntı düzeyine bağlı olarak farklı hassasiyet derecelerini destekler.
 
 Öte yandan prosedürel içerik, animasyonlarda sıkıntı oluşturabilir ve hattâ algoritma çok karmaşıksa VPU geometriyi (üç boyutlu şekli) gereken zamanda oluşturamayabilir.
 
@@ -376,19 +376,19 @@ Başlangıçta, PS2'nin I/O'su özellikle karmaşık değildi. Ancak, bu konsolu
 
 ### Özel İşlemci
 
-Başlangıç olarak, farklı birimler arsındaki iletişimi sağlayan ayrılmış bir işlemci bulunur ve bu işlemci, **PlayStation 1**'de bulunan [orijinal MIPS R3000 tabanlı çekirdekten](playstation#cpu) başkası değildir. Bu kez **I/O Processor** (IOP) olarak adlandırılıyor ve <strong x-id=“1”>37,5 MHz</strong> hızında <strong x-id=“1”>32-bit veri yoluna</strong> bağlı olarak çalışıyor [@io-buses].
+Başlangıç olarak, farklı birimler arsındaki iletişimi sağlayan ayrılmış bir işlemci bulunur ve bu işlemci, **PlayStation 1**'de bulunan [orijinal MIPS R3000 tabanlı çekirdekten](playstation#cpu) başkası değildir. Bu kez **I/O Processor** (IOP) olarak adlandırılıyor ve **37,5 MHz** hızında **32-bit veri yoluna** bağlı olarak çalışıyor [@io-buses].
 
 ![Playstation 2'nin mimarisinin ana şeması. I/O İşlemcisinin I/O'nun çoğuna özel erişim gösterdiğine dikkat edin.](diagram.png)
 
-IOP, **Sistem Arayüzü (System Interface)** ya da 'SIF' denilen özelleştirilmiş bir Giriş/Çıkış arayüzü kullanarak Emotion Engine'le iletişim kuruyor ve iki uç da birbirine veri transferi yapmak için kendi DMA birimlerini kullanıyor. IOP ayrıca tampon olarak kullanılan <strong x-id=“1”>2 MB <a href=“playstation#the-offering”>EDO RAM</a></strong> (tıpkı PS1'de olduğu gibi) özel belleğe sahiptir.
+IOP, **Sistem Arayüzü (System Interface)** ya da 'SIF' denilen özelleştirilmiş bir Giriş/Çıkış arayüzü kullanarak Emotion Engine'le iletişim kuruyor ve iki uç da birbirine veri transferi yapmak için kendi DMA birimlerini kullanıyor. IOP ayrıca tampon olarak kullanılan **2 MB [EDO RAM](playstation#the-offering)** (tıpkı PS1'de olduğu gibi) özel belleğe sahiptir.
 
 Sonuç olarak, bu işlemci ön bağlantı noktalarına, DVD denetleyicisine, SPU2'ye, BIOS ROM'a ve PC kartı yuvasına erişim sağlar.
 
-Her ne olursa olsun, 'Slim' revizyonunun gelmesinden bir yıl sonra (2005), IOP yerine <strong x-id=“1”>PowerPC 401 'Deckard'</strong> (mikrodenetleyiciler için kesilmiş bir PowerPC 601), <strong x-id=“1”>4 MB SDRAM</strong> (öncekinden 2 MB daha fazla) ve bir Ethernet alıcı-vericisi (daha önce harici bir aksesuarda bulunan) içeren bir SoC yerleştirildi.
+Her ne olursa olsun, 'Slim' revizyonunun gelmesinden bir yıl sonra (2005), IOP yerine **PowerPC 401 'Deckard'** (mikrodenetleyiciler için kesilmiş bir PowerPC 601), **4 MB SDRAM** (öncekinden 2 MB daha fazla) ve bir Ethernet alıcı-vericisi (daha önce harici bir aksesuarda bulunan) içeren bir SoC yerleştirildi.
 
 #### Geriye uyumluluk
 
-Önceki modelin CPU'sunu içeren modeller için PS1 uyumluluğunun da paketin bir parçası olacağı düşünülebilir. Sony, uygun bir şekilde, bir PS1 diski takıldığında yüklenen bir PS1 emülatörü (`PS1DRV` olarak adlandırılır) ile paketlemiştir. Bu gerçekleştiğinde, IOP PS1 hızında çalışmak için düşük hızda çalıştırılır, EE <a href=“playstation#graphics”>eski GPU</a>'yu taklit etmek için 'yeniden kullanılır' ve SPU2 <a href=“playstation#audio”>orijinal SPU</a> gibi davranmak için yeniden eşlenir.
+Önceki modelin CPU'sunu içeren modeller için PS1 uyumluluğunun da paketin bir parçası olacağı düşünülebilir. Sony, uygun bir şekilde, bir PS1 diski takıldığında yüklenen bir PS1 emülatörü (`PS1DRV` olarak adlandırılır) ile paketlemiştir. Bu gerçekleştiğinde, IOP PS1 hızında çalışmak için düşük hızda çalıştırılır, EE [eski GPU](playstation#graphics)'yu taklit etmek için 'yeniden kullanılır' ve SPU2 [orijinal SPU](playstation#audio) gibi davranmak için yeniden eşlenir.
 
 PowerPC tabanlı modellerde geriye dönük uyumluluk devam etti, ancak bunun yerine tam bir yazılım uygulaması yapıldı.
 
@@ -404,10 +404,10 @@ En meşhur ilave ise: **İki adet USB 1.1 yuvası**. Teorik hızı 12 Mbps'dir, 
 
 #### Alışılmadık Ethernet + HDD kombinasyonu
 
-Konsolun arkasında ayrıca <strong x-id=“1”>PC kartları</strong> için bir yuva vardı. Bunun için Sony'den iki ekstra arayüz sağlayan 'Ağ Adaptörü kartı' satın alabilirsiniz:
+Konsolun arkasında ayrıca **PC kartları** için bir yuva vardı. Bunun için Sony'den iki ekstra arayüz sağlayan 'Ağ Adaptörü kartı' satın alabilirsiniz:
 
-- Çevrimiçi çok oyunculu oyun için bir <strong x-id=“1”>Ethernet</strong> bağlantı noktası.
-- Tescilli ve harici bir <strong x-id=“1”>Hard Disk Drive Unit</strong> bağlantı noktası: Bu Sony tarafından satılıyordu ve 40 GB alana sahip tipik bir 3,5” ATA sabit disk sürücüsü içeriyordu. Bir sürücüye sahip olmak, daha hızlı yükleme süreleri için oyunların geçici verileri depolamasına (ya da kalıcı olarak burada kurulmalarına) imkan tanır. Gerçi bu özelliği sadece birkaç oyun kullanmıştır.
+- Çevrimiçi çok oyunculu oyun için bir **Ethernet** bağlantı noktası.
+- Tescilli ve harici bir **Hard Disk Drive Unit** bağlantı noktası: Bu Sony tarafından satılıyordu ve 40 GB alana sahip tipik bir 3,5” ATA sabit disk sürücüsü içeriyordu. Bir sürücüye sahip olmak, daha hızlı yükleme süreleri için oyunların geçici verileri depolamasına (ya da kalıcı olarak burada kurulmalarına) imkan tanır. Gerçi bu özelliği sadece birkaç oyun kullanmıştır.
 
 Sonraki revizyonlarda PCMCIA yuvası, konsola 3.5 inçlik bir Hard disk sürücüsü sığdırılabilecek bir **Expansion Bay** ile değiştirildi. Öncelikle, sadece Modem ve/veya Ethernet girişlerini (modele göre değişir) bulundurmakla kalmayıp aynı zamanda bir ATA-66 hard disk için gerekli bağlantıları da bulunduran bir **Network adaptor** almanız gerekliydi.
 
@@ -427,7 +427,7 @@ Slim revizyonu tüm Ethernet + HDD modelini revize etti: artık Expansion Bay yo
 
 ![Slim modelinin arkasındaki sabit Ethernet yuvası gösteriliyor.](photos/ps2_slim_back.jpg)
 
-Buna ek olarak yeni revizyon, Sony markalı bir uzaktan kumanda (ayrı satılır) ile kullanılmak üzere yeni bir <strong x-id=“1”>infrared sensor</strong> ekledi.
+Buna ek olarak yeni revizyon, Sony markalı bir uzaktan kumanda (ayrı satılır) ile kullanılmak üzere yeni bir **infrared sensor** ekledi.
 
 ### Etkileşimli eklentiler
 
@@ -631,8 +631,8 @@ Homebrew ile ilgili gelişmelerden birkaç önemli örnek vermek gerekirse:
 İlerleyen yıllarda yeni açıklar da ortaya çıkacaktır:
 
 - Krat0s [@anti_piracy-fortuna] tarafından <strong x-id=“1”>Fortuna</strong>: 2019'da yayınlanan ve tamamen farklı bir istismara dayanan alternatif bir Homebrew başlatıcısı. Bu kez, kaydetme yöneticisinin simge ayrıştırıcısında (`OSDSYS`'nin bir parçası) bir buffer overflow var [@anti_piracy-opentuna]. Ana avantajı, harici `OSDSYS` güncellemeleri için desteği kaldıran (dolayısıyla FreeMCBoot ile uyumsuz) son PS2 modelleriyle uyumluluktur.
-- alexparrado tarafından <strong x-id=“1”>OpenTuna</strong> [@anti_piracy-opentuna]: Fortuna'ya açık kaynaklı bir alternatif, tersine mühendislikten kaynaklandı.
-- cturt tarafından <strong x-id=“1”>FreeDVDBoot</strong> [@anti_piracy-freedvdboot]: 2020'de yayınlanan yeni bir güvenlik açığı. DVD oynatıcıda rastgele kod yürütme gerçekleştirmek için kullanılabilecek yeni bir buffer overflow'dan oluşur. Kullanıcıların FreeMCBoot yükleyicisi ve hatta ESR dahil olmak üzere istedikleri herhangi bir ikili dosyayı çalıştırmak için FreeDVDBoot ile bir DVD yazmaları yeterlidir (Sony bunun yıllar önce keşfedilmediği için çok şanslıydı! [diğerleri gibi değildi](dreamcast#defeating-it)).
+- alexparrado tarafından **OpenTuna** [@anti_piracy-opentuna]: Fortuna'ya açık kaynaklı bir alternatif, tersine mühendislikten kaynaklandı.
+- cturt tarafından **FreeDVDBoot** [@anti_piracy-freedvdboot]: 2020'de yayınlanan yeni bir güvenlik açığı. DVD oynatıcıda rastgele kod yürütme gerçekleştirmek için kullanılabilecek yeni bir buffer overflow'dan oluşur. Kullanıcıların FreeMCBoot yükleyicisi ve hatta ESR dahil olmak üzere istedikleri herhangi bir ikili dosyayı çalıştırmak için FreeDVDBoot ile bir DVD yazmaları yeterlidir (Sony bunun yıllar önce keşfedilmediği için çok şanslıydı! [diğerleri gibi değildi](dreamcast#defeating-it)).
 
 ## Hepsi bu kadar
 
