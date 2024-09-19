@@ -31,7 +31,7 @@ Sega Dreamcast, hem oyun geliştiricilerine hem de konsol oyuncularına hitap et
 
 ## İşlemci (CPU)
 
-Hitachi için işler sorunsuz ilerliyordu, <a href=“sega-saturn#cpu”>ikonik SuperH çipleri</a> birden fazla müşteri bulmuştu ve şirket artık serinin dördüncü sürümü için hazırdı. Yeni girişleri, gömülü yetenekleri 3D oyunların sahip olduğu işlevsellikle birleştirecek.
+Hitachi için işler sorunsuz ilerliyordu, [konik SuperH çipleri](sega-saturn#cpu) birden fazla müşteri bulmuştu ve şirket artık serinin dördüncü sürümü için hazırdı. Yeni girişleri, gömülü yetenekleri 3D oyunların sahip olduğu işlevsellikle birleştirecek.
 
 SuperH'yi ilk benimseyenlerden biri olan Sega, yeni konsollarına güç sağlamak için şaşırtıcı olmayan bir şekilde Hitachi'nin son sevkiyatını seçti. Bu nedenle Dreamcast'te **SH-4 CPU** bulunmaktadır ve bu işlemci **200 MHz** [@cpu-spec] hızında çalışmaktadır. Ayrıca, [bu sefer işleri yoluna koymak](sega-saturn#the-final-product) için, **sadece bir tam donanımlı CPU** var.
 
