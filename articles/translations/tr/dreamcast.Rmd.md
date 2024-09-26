@@ -152,8 +152,8 @@ Grafiklerin hayata geçirildiği yer burasıdır, Tile Accelerator'dan alınan D
 
 Açık mimari farkın yanı sıra, Texture and Shading Processor, bu konsolun eski [Saturn](sega-saturn)'den ne kadar uzak olduğu hakkında bir fikir veren birçok yetenekle birlikte gelir. İşte bazı önemli örnekler:
 
-- **Alpha blending (Alfa karıştırma)**: Şeffaflık efektleri elde etmek için üst üste binen katmanların renklerini birleştirir.
-  - Bu sistemde saydamlık uygulamak için kullanılan işleme sıralamadan **order-independent transparency (bağımsız saydamlık)** denir. Algoritma, renklerini karıştırmadan önce ilkelleri otomatik olarak sıralar ve bu işlem render işlemini yavaşlatsa da, tüm sıralamayı manuel olarak yapmak için oyunun kendisine güvenilmesini önler. Bu nedenle Dreamcast oyunları şeffaf nesneleri görüntülemede mükemmeldi.
+- **Alpha blending**: Şeffaflık efektleri elde etmek için üst üste binen katmanların renklerini birleştirir.
+  - Bu sistemde saydamlık uygulamak için kullanılan işleme sıralamadan **order-independent transparency** denir. Algoritma, renklerini karıştırmadan önce ilkelleri otomatik olarak sıralar ve bu işlem render işlemini yavaşlatsa da, tüm sıralamayı manuel olarak yapmak için oyunun kendisine güvenilmesini önler. Bu nedenle Dreamcast oyunları şeffaf nesneleri görüntülemede mükemmeldi.
   - Karo tabanlı sistemle birlikte, siparişten bağımsız şeffaflık önceki [aksaklıkları](sega-saturn#the-transparency-issue) tamamen giderir.
 - **Mip-Mapping**: Gerekli ayrıntı düzeyine bağlı olarak dokunun küçültülmüş bir sürümünü otomatik olarak seçer. Bu, kameradan uzakta görülebilecek büyük dokuların işlenmesini önlemek için yapılır (bu işlem gücü kaybı olur ve örtüşme üretir).
 - **Environment mapping**: Dokular üzerinde yansımalar uygular.
