@@ -219,7 +219,7 @@ ADX sıkıştırması, oyunun bellek veya bant genişliği sınırlaması olmada
 
 ### Uyanık Kalma
 
-Bir şekilde, bu çip aynı zamanda BIOS'a **Gerçek Zaman Saati** (RTC) sağlamaktan da sorumludur, ayrıca AC gücü olmadan çalışmaya devam etmek için bir saat piline bağlıdır.
+Bir şekilde, bu çip aynı zamanda BIOS'a **Real Time Clock (Gerçek Zaman Saati)** (RTC) sağlamaktan da sorumludur, ayrıca AC gücü olmadan çalışmaya devam etmek için bir saat piline bağlıdır.
 
 ## İşletim Sistemi
 
@@ -273,7 +273,7 @@ Microsoft'un Windows CE'yi PDA pazarına sokma girişimleri.
 
 :::
 
-Şimdi, tüm bunların Dreamcast ile ne ilgisi var? Zamanın bir noktasında Microsoft ve Sega, Dreamcast [@games-sdk] için bir Windows CE paketi üretme fikrini ortaya attı. Sonuçta, Windows CE zaten Hitachi'nin CPU'larının üzerinde çalışıyordu. Sonunda bu, eksiksiz bir masaüstü arayüzü veya Microsoft'un çevrimiçi hizmetleriyle entegrasyon olarak hayata geçmedi. Bunun yerine, donanım işlemlerini basitleştirmek için <strong x-id=“1”>isteğe bağlı bir soyutlama katmanı</strong> olarak görev yaptı.
+Şimdi, tüm bunların Dreamcast ile ne ilgisi var? Zamanın bir noktasında Microsoft ve Sega, Dreamcast [@games-sdk] için bir Windows CE paketi üretme fikrini ortaya attı. Sonuçta, Windows CE zaten Hitachi'nin CPU'larının üzerinde çalışıyordu. Sonunda bu, eksiksiz bir masaüstü arayüzü veya Microsoft'un çevrim içi hizmetleriyle entegrasyon olarak hayata geçmedi. Bunun yerine, donanım işlemlerini basitleştirmek için <strong x-id=“1”>isteğe bağlı bir soyutlama katmanı</strong> olarak görev yaptı.
 
 Nintendo'nun <a href=“nintendo-64#operating-system”>Nintendo 64</a> ile sağladığına benzer şekilde Microsoft, Sega Dreamcast için uygulama programlamak üzere Windows CE tabanlı bir SDK (genellikle <strong x-id=“1”>Dragon SDK</strong> olarak adlandırılır) gönderdi. Kütüphaneler, grafik, ses ve hata ayıklamaya yardımcı olmak için gereken minimum bileşenlerle CE'nin bir alt kümesini içeriyordu. 'Microsoft kulübüne katılmanın' bir parçası olarak, geliştiriciler artık geliştirme için Microsoft'un yıldız IDE'sini (<strong x-id=“1”>Visual Studio 6.0</strong>) ve <strong x-id=“1”>Visual C++ 6.0</strong>'ı kullanabileceklerdi.
 
@@ -298,7 +298,7 @@ GPU ayrıca **Sistem Veriyolu** adı verilen G/Ç'nin çoğunu işlemek için ba
 
 Geliştirme esas olarak **C** veya **C++ ile** yapılmıştır. Mevcut C++ derleyicileri başlangıçta işlevsellik (ve kalite) açısından çok sınırlı olduğundan, ilk başta C önerilen seçimdi.
 
-Sega ayrıca **Sega Katana Geliştirme Kutusu** adı verilen PC benzeri bir kule şeklinde geliştirme donanımı da sağlamıştır. Bu, geliştirme için geliştirilmiş G/Ç'ye sahip Dreamcast donanımıdır. Ayrıca resmi **Katana SDK** ve Windows 98 PC'ye kurulacak araçları içeren bir CD ile birlikte geldi.
+Sega ayrıca **Sega Katana Development Box** adı verilen PC benzeri bir kule şeklinde geliştirme donanımı da sağlamıştır. Bu, geliştirme için geliştirilmiş G/Ç'ye sahip Dreamcast donanımıdır. Ayrıca resmi **Katana SDK** ve Windows 98 PC'ye kurulacak araçları içeren bir CD ile birlikte geldi.
 
 Daha önce de belirtildiği gibi, geliştiriciler Sega'nınkine ek olarak Microsoft'un Dragon SDK'sını benimseme seçeneğine de sahipti. Bu durumda, DirectX 6.0 ve Visual C++ 6.0 kullanılabilir olacaktır.
 
