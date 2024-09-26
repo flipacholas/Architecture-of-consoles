@@ -406,7 +406,7 @@ En meşhur ilave ise: **İki adet USB 1.1 yuvası**. Teorik hızı 12 Mbps'dir, 
 
 Konsolun arkasında ayrıca **PC kartları** için bir yuva vardı. Bunun için Sony'den iki ekstra arayüz sağlayan 'Ağ Adaptörü kartı' satın alabilirsiniz:
 
-- Çevrimiçi çok oyunculu oyun için bir **Ethernet** bağlantı noktası.
+- Çevrim içi çok oyunculu oyun için bir **Ethernet** bağlantı noktası.
 - Tescilli ve harici bir **Hard Disk Drive Unit** bağlantı noktası: Bu Sony tarafından satılıyordu ve 40 GB alana sahip tipik bir 3,5” ATA sabit disk sürücüsü içeriyordu. Bir sürücüye sahip olmak, daha hızlı yükleme süreleri için oyunların geçici verileri depolamasına (ya da kalıcı olarak burada kurulmalarına) imkan tanır. Gerçi bu özelliği sadece birkaç oyun kullanmıştır.
 
 Sonraki revizyonlarda PCMCIA yuvası, konsola 3.5 inçlik bir Hard disk sürücüsü sığdırılabilecek bir **Expansion Bay** ile değiştirildi. Öncelikle, sadece Modem ve/veya Ethernet girişlerini (modele göre değişir) bulundurmakla kalmayıp aynı zamanda bir ATA-66 hard disk için gerekli bağlantıları da bulunduran bir **Network adaptor** almanız gerekliydi.
