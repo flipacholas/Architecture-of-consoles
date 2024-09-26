@@ -272,7 +272,7 @@ Super CD-ROM² ile birlikte NEC/Hudson, konsol, okuyucu ve BIOS kartını tek bi
 
 ### Diğer genişletmeler
 
-Yayınlanan diğer genişletmeleri merak ediyorsanız, çevrimiçi kataloğa [@games-accessories] göz atın.
+Yayınlanan diğer genişletmeleri merak ediyorsanız, çevrim içi kataloğa [@games-accessories] göz atın.
 
 ## Korsanla Mücadele ve Homebrew
 
