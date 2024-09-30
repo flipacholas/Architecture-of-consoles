@@ -42,9 +42,15 @@ Now, before we check out the new CPUs, let's look at how ARM evolved during the 
 
 During the mid-90s, ARM was experiencing an influx of businesses from the mobile market (before cellphones became 'smart'). Yet, it struggled to please a particular sector: **high-performance computing**. The ARM7 was enjoyed by many mobile devices, but it didn't quite satisfy Apple (with its 'Newton' PDA line) and Acorn (with its RiscPC line), both of whom shipped software that could benefit from a faster CPU. Aside from the lack of a 64-bit solution (something [MIPS was already commercialising](nintendo-64#cpu)), ARM was also unable to produce a CPU that operated faster than 40 MHz. Altogether, the bottlenecks were starting to pile up.
 
-Nevertheless, during the commercialisation of the ARM7 line, ARM had already started work on a successor called **ARM8**, the first attempt into the high-performance market. In the meantime, **Digital Equipment Corporation (DEC)**, the American company historically famous for their line of PDPs (the so-called 'minicomputers'), was experiencing an opposite problem: They struggled to deliver a low-power CPU based on their high-performance solutions. Well, it so happened that [ARM's licensing model](game-boy-advance#tab-1-2-a-new-cpu-venture) turned into an opportunity for DEC, who chose to develop a new CPU by borrowing materials from ARM (its instruction set and microarchitecture).
+![DEC's 'Digital Personal Workstation' model 433au (1997), carrying an Alpha 21164A CPU.](dec_work.webp){.open-float}
 
-In the end, DEC grabbed the datapath design of their **Alpha** processor and, with the help of ARM, mixed it with ARM's microarchitecture [@cpu-jaggar]. This collaboration led to the **StrongARM** CPU, which was released in 1996 and targeted the performance sector.
+Nevertheless, during the commercialisation of the ARM7 line, ARM had already started work on a successor called **ARM8**, the first attempt into the high-performance market. Coincidentally, **Digital Equipment Corporation (DEC)**, the American company historically famous for their line of PDP and VAX machines (the so-called 'minicomputers') along with the sophisticated VMS operating system, was experiencing an opposite problem: They struggled to deliver a low-power CPU based on their high-performance solutions.
+
+Well, it so happened that [ARM's licensing model](game-boy-advance#tab-1-2-a-new-cpu-venture) turned into an opportunity for DEC, who chose to develop a new CPU by borrowing materials from ARM (its instruction set and microarchitecture).
+
+{.close-float}
+
+In the end, DEC grabbed the datapath design of their RISC-based **Alpha** processor and, with the help of ARM, mixed it with ARM's microarchitecture [@cpu-jaggar]. This collaboration led to the **StrongARM** CPU, which was released in 1996 and targeted the performance sector.
 
 ![A 233 MHz StrongARM CPU, part of the CPU upgrade card offered for the Acorn RiscPC.](strongarm.jpg)
 

@@ -44,13 +44,19 @@ The Super Nintendo's choice of processor is a peculiar one. Unlike [its competit
 
 The 65C816 CPU originates at Western Design Center, particularly from Bill Mensch, a former member of the 6502 team (at MOS) and the 6800 team (at Motorola). In 1978, one year after leaving MOS, Mensch founded Western Design Center (WDC), a semiconductor company that ships clones of the MOS 6502 with attractive enhancements (i.e CMOS design, extra opcodes, circuitry fixes, new addressing modes, etc).
 
+![The WDC 65C816 chip found on the Apple IIGS.](photos/65816.webp)
+
 One day, WDC was approached by Apple to design a backwards-compatible variant of the 6502 that could process larger amounts of data. This resulted in the WDC 65C816 CPU, released in 1983. Curiously enough, Apple went through many setbacks during the development of a computer that would use the new CPU, until three years later, with the release of the Apple IIGS.
+
+![In the end, the Apple IIGS and the Super Nintendo became the only major adopters of the 65C816 CPU.](photos/wdcstack.webp)
 
 Meanwhile, Nintendo was enjoying a good relationship with Ricoh and their set of bespoken chips for the NES. I haven't found the exact document outlining what connected Ricoh with WDC, but what I can confirm is that at some point in time, WDC agreed to license their 65C816 designs to Ricoh [@cpu-interview]. Consequently, the latter tailored it to the new requirements of the Super Nintendo and became the **Ricoh 5A22**, exclusively supplied to Nintendo.
 
 ### The new CPU
 
 As you've seen before, the main processor of this console is the **Ricoh 5A22**, a superset of the 65C816.
+
+![The Ricoh 5A22 chip, labelled 'S-CPU' by Nintendo.](photos/s-cpu.webp)
 
 Unlike the Apple IIGS, which enjoyed backward compatibility with Apple II software, the Super Nintendo is **not compatible with NES games**. To be fair, by looking at the choice of processor, there's a slight possibility that the SNES was originally planned to be compatible with NES games, who knows.
 
@@ -114,7 +120,11 @@ As with any other console of its generation, the Super Nintendo draws graphics u
 
 #### The chipset
 
-The Super Nintendo houses two different PPU chips that constitute the graphics subsystem, which combined are known as **Super PPU** or 'S-PPU'. Both PPU packages are designed to serve different functionality [@cpu-manual]:
+The Super Nintendo houses two different PPU chips that constitute the graphics subsystem, which combined are known as **Super PPU** or 'S-PPU'.
+
+![The two PPU chips.](photos/s-ppus.webp)
+
+Both PPU packages are designed to serve different functionality [@cpu-manual]:
 
 - **PPU 1**: Renders graphics (tiles) and applies transformations on them (rotation and scaling).
 - **PPU 2**: Provides effects such as *window*, *mosaic* and *fades* over the rendered graphics.
