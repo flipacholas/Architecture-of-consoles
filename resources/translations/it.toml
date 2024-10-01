@@ -104,7 +104,7 @@ other = "L’edizione ‘classica’ è una versione alternativa alla <a href=\"
 other = "I contenuti sono identici. Tuttavia, i widget interattivi sono stati semplificati per poter funzionare anche in HTML puro e includono un collegamento all'articolo originale, nel caso in cui il lettore volesse provare la versione completa."
 
 [general_description]
-other = "Come sempre, questo articolo è disponibile su <a href=\"{{ .github }}\">Github</a> per consentire ai lettori di segnalare errori o proporre modifiche. C’è anche una <a href=\"{{ .readings }}\">lista di letture di supporto</a> disponibile per aiutare a capire la serie. L'autore accetta anche <a href=\"{{ .donations }}\">donazioni</a> per migliorare la qualità degli articoli attuali e futuri."
+other = "Come sempre, questo articolo è disponibile su <a href=\"{{ .github }}\">Github</a> per consentire ai lettori di segnalare errori o proporre modifiche. C'è anche una <a href=\"{{ .readings }}\">lista di letture di supporto</a> disponibile per aiutare a capire la serie. L'autore accetta anche <a href=\"{{ .donations }}\">donazioni</a> e <a href=\"{{ .translations }}\">traduzioni</a> per migliorare la qualità degli articoli attuali e futuri."
 
 [subscribe_title]
 other = "Rimanete aggiornati"
@@ -197,10 +197,13 @@ other = "Immagini di supporto"
 other = "Un'analisi pratica di {{ . }}"
 
 [translated_by]
-other = '<a href="{{ .crowdin_url }}">Tradotto</a> da {{ .author }}'
+other = "Tradotto da {{ .author }}"
 
 [translated_by_many]
-other = '<a href="{{ .crowdin_url }}">Tradotto</a> da <a href="{{ .authors }}">molti autori</a>'
+other = 'Tradotto da <a href="{{ .authors }}">molti autori</a>'
+
+[translation_help]
+other = "Questa è una traduzione volontaria dell'<a href=\"{{ .original_url }}\">articolo originale</a>. Se trovi degli errori, <a href=\"{{ .crowdin_url }}\">per favore aiutaci a migliorarlo</a>. Grazie!"
 
 [interactive_model_origin]
 other = 'Il modello interattivo è disponibile nella <a href="{{ . }}">versione moderna</a>'
