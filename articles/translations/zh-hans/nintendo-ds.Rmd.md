@@ -34,27 +34,65 @@ aliases:
 
 这款游戏机回应了掌机生态中无法满足的许多需求， 有一些创新也有一些妥协，不过这种组合可能会为新颖而独创的内容铺平道路。
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
-## CPU
+## 中央处理器 (CPU)
 
-和任天堂的[上一代掌机](game-boy-advance)一样，NDS的系统围绕一个名为**CPU NTR**的大芯片展开。 其中“NTR”是“Nitro”的缩写，是最初的NDS的代号。
+和任天堂的[上一代掌机](game-boy-advance)一样，NDS的系统围绕一个名为**CPU NTR**的大芯片展开。 其中“NTR”是“**Nitro**”的缩写，是最初的NDS的代号。 该SoC也是一个成功的[任天堂-ARM合作伙伴关系](game-boy-advance#the-nintendo-partnership)的延续，该合作始于Game Boy Advance。
 
-CPU NTR使用两个不同的ARM CPU实现了一个有趣的多处理器架构。在ARM Holdings正式发布多处理器解决方案之前这个设计就完成了。 因此，考虑到当前的技术实现，可能有人认为NDS的多处理器架构不是很正统。
+现在，在我们查看新CPU之前，让我们看看ARM在90年代后期的发展，因为这影响了最终在任天堂DS中找到的技术。
 
-### 设计
+### ARM的新领域
+
+在90年代中期，ARM公司从移动市场中获得了大量业务（在手机变得“智能”之前）。 然而，它在满足某个特定行业方面遇到了困难：**高性能计算**。 ARM7被许多移动设备广泛采用，但它未能完全满足苹果公司（其“Newton”PDA系列）和Acorn公司（其RiscPC系列）的需求，这些公司都发布了可以从更快的CPU中受益的软件。 除了缺乏64位解决方案（MIPS已经在商业化外），ARM还无法生产出速度超过40 MHz的CPU。 总体来说，瓶颈开始累积。
+
+![DEC 的 'Digital Personal Workstation' 型号 433au（1997 年），配备 Alpha 21164A CPU。](dec_work.webp) {.open-float}
+
+然而，在ARM7线的商业化过程中，ARM已经开始开发一个称为**ARM8**的继任者，这是进入高性能市场的第一次尝试。 巧合的是，**Digital Equipment Corporation (DEC)**，这家以其 PDP 和 VAX 系列机器（所谓的'小型计算机'）及复杂的 VMS 操作系统而闻名的美国公司，正面临一个相反的问题：他们难以基于其高性能解决方案交付低功耗 CPU。
+
+好吧，事情是这样的，[ARM 的授权模式](game-boy-advance#tab-1-2-a-new-cpu-venture) 为 DEC 提供了一个机会，它选择通过借用 ARM 的材料（其指令集和微架构）开发新的 CPU。
+
+{.close-float}
+
+最终，DEC借助ARM的帮助，采用其基于RISC的**Alpha**处理器的数据路径设计，并与ARM的微架构相结合 [@cpu-jaggar]。 这种合作产生了**StrongARM** CPU，于1996年发布，针对高性能市场。
+
+![这是用于Acorn RiscPC CPU升级卡的233 MHz StrongARM CPU。](strongarm.jpg)
+
+StrongARM是一种基于ARM的新型CPU，其特点包括[@cpu-furber]：
+
+- **ARMv4指令集**。 如果你想了解更多，我之前在Game Boy Advance的文章中[分析过](game-boy-advance#commanding-the-cpu)。
+- 高达**233 MHz**的时钟速度，比最强的ARM7芯片快约583%。
+- **5级流水线**，与原来的[3级设计](game-boy-advance#the-core)相比又做了提升。
+- 一个**新的缓存系统**，实现了**Harvard架构**，其中**16 KB**用于指令，另**16 KB**用于数据。
+  - 这种设计有助于缓解内存瓶颈（这是冯·诺依曼/普林斯顿模型所遭受的问题）。
+
+值得一提的是，这个芯片仍然能够以**3.3 V**的电源工作，就像以前的ARM芯片一样。 事实上，StrongARM需要2伏电压，仅消耗1瓦功率 [@cpu-furber]。 相比之下，英特尔的200 MHz奔腾芯片运行在3.5 V，功耗高达15.5 W [@cpu-pentium]。
+
+正如预期的那样，Acorn和Apple都被这个新芯片所迷住，它们分别立即使用DEC的发明来出货CPU升级和新的Newton模型。
+
+同年，ARM还发布了他们承诺的基于ARM8的CPU，ARM810。 它相对较慢，并且在实际应用中没有提供任何优势。 因此，投入不足和时间过晚导致了没有商业兴趣。 因此，ARM继续改进ARM7系列以适应移动市场。 然而，DEC 的 CPU 潜力是如此具有破坏性，以至于 ARM Holdings 吸收了 StrongARM 的设计 [@cpu-jaggar]，以生产其下一代 CPU，即 **ARM9**（这也是任天堂 DS 所采用的）。
+
+#### 转折点
+
+借助StrongARM，ARM还巩固了其在掌上市场的地位，完全取代了作为可行替代品的[MIPS](nintendo-64#cpu)和[SuperH](dreamcast#cpu)。 从那时起，ARM走上了成为最广泛采用的移动设备架构的道路[@cpu_android_abi]。
+
+不幸的是，对于DEC来说，这个CPU将是他们在1998年被Compaq收购之前的最后一个重大成就。 然后，StrongARM 的命运将掌握在英特尔手中，他们在新的 'Intel XScale' 系列下继续开发... 直到他们清算该部门以专注于 ['低功耗' 的 x86 CPU](xbox#p6-and-the-end-of-pentium-numbers)（即英特尔 Atom）[@cpu-xscale]。 15年后，不仅英特尔错失了移动市场的机会，现在他们还发现自己在桌面领域与ARM展开激烈竞争。
+
+### 任天堂首次亮相的SoC
+
+除了上述改进外，CPU NTR还捆绑了一个有趣的**多处理器架构**，使用了两种不同的ARM CPU，**ARM7TDMI**和**ARM946E-S**。 这种设计是在ARM Holdings正式发布[多处理器解决方案](nintendo-3ds#cpu)之前完成的。 因此，考虑到当前的技术实现，可能有人认为NDS的多处理器架构不是很正统。
+
+![CPU NTR芯片。](cpu_ntr.jpg)
 
 虽然这不是[本系列](consoles)第一次分析游戏机的并行系统，但是NDS的设计确与其他游戏机有很大不同。 例如，NDS的设计有别于[世嘉土星](sega-saturn)“实验性质”的主从配置，也不同于[PS1](playstation)或者[N64](nintendo-64)的“协处理器”方案。 NDS包括两台非常独立的计算机，可以分别独立执行操作。每台计算机都有一条专用的总线。 这种设计方法被称为**非对称多处理（Asymmetric multiprocessing）**。CPU因此而相互依赖，并将左右这款游戏机的整体性能。
 
-话是这么说，现在我们来看看这两个CPU：
+现在让我们看看这两颗CPU。
 
 #### ARM7TDMI {.tabs.active}
 
 ![ARM7的结构与组成部分。](cpu/arm7_core.png) {.tab-float}
 
-首先说说我们较为熟悉的CPU。 **ARM7TDMI** 与 [GBA](game-boy-advance#cpu) 的 CPU相同，但现在运行速度提高到**约34 MHz**（原速度的两倍）。 它仍然包含所有原有功能（特别是[Thumb](game-boy-advance#whats-new)）。
+首先说说我们较为熟悉的CPU。 **ARM7TDMI** 与 [GBA](game-boy-advance#cpu) 的 CPU相同，但现在运行速度提高到**约34 MHz**（原速度的两倍）。 它仍然包含所有原有功能（特别是[Thumb](game-boy-advance#tab-2-3-squeezing-performance)）。
 
 然后讲讲新变化：由于任天堂的工程师将ARM7放置在大多数I/O端口旁边，这个CPU将负责调节和协助I/O操作。 事实上，另一个处理器不能直接连接I/O。 如你所见，ARM7不是负责整个系统的“主”处理器。它负责在多个组件之间传递数据，是用来分担一部分主CPU负载的“子处理器”。
 
@@ -62,31 +100,32 @@ CPU NTR使用两个不同的ARM CPU实现了一个有趣的多处理器架构。
 
 ![ARM9的结构与组成部分。](cpu/arm9_core.png) {.tab-float}
 
-这是运行频率**约67 MHz**的“主”CPU。 如果忽略掉时运不济的ARM8系列，可以认为ARM946E-S是ARM7的“下一代”处理器。 作为**ARM9系列**的一部分，它不仅继承了**ARM7TDMI**的所有特性，还包括一些额外的部分[@cpu-arm9reference]：
+这是任天堂DS的“主”CPU，**ARM946E-S**。 它的运行速度为**约67 MHz**，所以并不是“StrongARM速度”。 然而，作为**ARM9系列**的一部分，该核心不仅继承了**ARM7TDMI**和**StrongARM**的所有特性，还包括一些额外的部分，你可能会感兴趣[@cpu-arm9reference]：
 
-- **ARMv5TEISA**：与以前的4代相比，支持了一些新的指令，乘法器也更快。
+- **ARMv5TE ISA**，是[之前的ARMv4 ISA](game-boy-advance#commanding-the-cpu)和[Thumb](game-boy-advance#tab-2-3-squeezing-performance)的延伸，包含更多指令和更快的乘法器。
   - 如果仔细观察核心的名称，字母“E”表示**增强型（Enhanced）DSP**。这意味着这些新指令大多与信号处理有关。
-- **5级流水线**：与之前的3级流水线相比，这是另一个提升。
-- **12 KB L1 高速缓存**：该核心新增有高速缓存，其中8 KB用于指令，4 KB用于数据。
-- **48 KB紧耦合存储器（Tightly-Coupled Memory, TCM）**：类似于[Scratchpad内存](playstation#cpu)，但该内存分别存储指令（32 KB）和数据（16 KB）。
+  - 扩展手指有时被称为**手指v2**。 它增加了`BLX`和`BKPT`，分别协助在ARM和Thumb模式之间的切换；并促进调试。
+- **5级流水线**，类似于StrongARM和ARM8系列。
+- **12 KB L1缓存**：核心现在具有缓存（原本在ARM7TDMI中缺少），与基于哈佛结构的StrongARM类似，**8 KB**用于指令，**4 KB**用于数据。
+  - 缓存采用**写缓冲**机制，其中RAM异步更新，因此CPU可以处理其他任务。
+- **48 KB的紧耦合内存**或“TCM”：类似于[Scratchpad内存](playstation#cpu)。 不过，这个系统区分了指令（32 KB）和数据（16 KB）。
+- 一个集成的**CP15协处理器**。 它充当**内存保护单元 (MPU)**，规定了哪些内存范围可以被访问、缓存和/或写入。
 
 任天堂在ARM9周围还添加了以下组件：
 
-- 一个**除法器和平方根单元**，以加速这些类型的操作（ARM9本身不能执行这种类型的数学计算）。
+- 一个**除法器和平方根单元**，以加速这些类型的操作，因为ARM9本身不能执行这种类型的算术。
 - 一个**直接内存访问控制器（Direct Memory Access Controller, DMAC）**：独立于CPU加速内存传输。 结合使用高速缓存，CPU和DMA有并发运行的潜力。
-  - 缓存和DMA可以提供很多性能，但也会造成新的问题，如数据可靠性。 开发者需要手动维护内存一致性，例如，先刷新[write-buffer](playstation-2#preventing-past-mishaps)然后再触发DMA。
-
-`r close_tabs()`
+  - 缓存和DMA可以提供很多性能，但也会造成新的问题，如**数据完整性和一致性**。 因此，开发者需要通过[刷新写缓冲区](playstation-2#preventing-past-mishaps)来手动维护内存一致性，然后再触发DMA操作。
 
 就NDS这硬件，也许不难发现孩子们喜欢这款游戏机的*真正*原因？
 
-### 互连
+### 互连 {.tabs-close}
 
-到目前为止，我已经介绍了这两个CPU如何单独工作。 但是作为一个整体运行，它们需要不断合作。 为了实现这一点，两个CPU直接使用专用的**FIFO单元**[@cpu-double]进行“对话”，该数据块包含两个64字节队列（最多16个元素），用于**双向通信**。
+到目前为止，我已经介绍了这两个CPU如何单独工作。 但是，作为一个整体运行，它们需要不断地合作。 为了实现这一点，两个CPU直接使用专用的**FIFO单元**[@cpu-double]进行“对话”，该数据块包含两个64字节队列（最多16个元素），用于**双向通信**。
 
 ![FIFO单元示意图。](cpu/fifo.png)
 
-具体工作方式如下：发送方CPU（发送消息的CPU）将一个32位数据块放入队列中，接收方CPU可以从队列中拉取该块并对其执行所需的操作。
+具体工作方式如下：发送方 CPU（发送消息的 CPU）将一个 32 位数据块放入队列中，接收方 CPU 可以从队列中拉取该块并对其执行所需的操作。
 
 每当队列上写入一个值，它可以被任一CPU主动获取（**轮询**），但这需要不间断地检查新消息（开销会很大）。 或者，也可以激活一个**中断单元**，以便在队列中有新消息时通知接收方。
 
@@ -102,7 +141,7 @@ CPU NTR使用两个不同的ARM CPU实现了一个有趣的多处理器架构。
 - **16位**总线的**4 MB PSRAM**：速度较慢，可以由任一CPU访问，由内存接口单元控制。
   - 伪静态随机存取存储器（Pseudo SRAM, PSRAM）是DRAM的一种变种，与DRAM相比，PSRAM芯片自己就能执行刷新操作。 因此，它的行为类似于SRAM（DRAM的一种替代品，更快但更昂贵）。 这种设计让我想起了[1T-SRAM](gamecube#clever-memory-system)。
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### 向后兼容性
 
@@ -112,33 +151,19 @@ CPU NTR使用两个不同的ARM CPU实现了一个有趣的多处理器架构。
 
 一旦进入GBA模式，就**没有退路**了，必须重置游戏机才能重新激活其余硬件。
 
-### 秘密和限制
+### 性能阉割
 
 单个廉价芯片中安装了这么多复杂组件，强制他们协作导致出了一些问题，这并不是什么神秘的事情。
 
-#### 性能阉割 {.tabs.active}
-
-有时候我真想知道任天堂计划如何使用这两个CPU，以及他们是否清楚这种设计会损失一些性能。
-
-让我们从ARM9开始。该CPU的运行速度是ARM7的两倍，但大部分（甚至是全部）的I/O都依赖于ARM7。因此等待ARM7的响应可能导致ARM9频繁阻塞。 不仅如此，**ARM9的外部总线速度只有一半**，因此存在一些瓶颈问题。
+让我们从 ARM9 开始。该 CPU 的运行速度是 ARM7 的两倍，但大部分（甚至是全部）的 I/O 都依赖于 ARM7。 因此，ARM9容易出现过多的停滞，直到ARM7回复。 不仅如此，**ARM9的外部总线速度只有一半**，因此存在一些瓶颈问题。
 
 此外，主存储器总线只有**16位**。 无论哪个CPU需要从存储器中提取一个字（32位宽），接口都会**阻塞CPU**，然后占用高达3个“等待”周期，直到拼成一个完整的字。 内存访问不连续时影响最严重，每次内存访问都会阻塞。 这个问题在指令获取时也会出现。不幸的是，当时的ARM不支持顺序操作码获取（sequential opcode fetching），这也影响到了Thumb指令（因为每次获取16位数据都要以32位的块为单位进行）。 另一方面，这个一些资料所谓的“penalty”，可以充分利用缓存和TCM来缓解。
 
-总的来说，这意味着在最坏的情况下，这款ARM9“猛烈”的66 MHz的处理能力实际上会被降低到只有约8 MHz， 如果程序的缓存/TCM的利用率极低的话。
+总的来说，这意味着在最坏的情况下，这款ARM9“猛烈”的66 MHz的处理能力实际上会被降低到只有约8 MHz， 如果程序的缓存和TCM的利用率极低的话。
 
 如果需要详细报告，我建议查看Martin Korth的文档[@cpu-korth]，尤其是“DS Memory Timings”一节。
 
-#### 关于硬件选择的问题 {.tab}
-
-当初研究GBA的CPU时，我对ARM7的潜力感到非常惊讶：该CPU不仅可以完成设计之内的任务，还可以协助完成其他任务，例如提供音频序列或伪3D图形。
-
-与此相关的是，在商业化ARM7的过程中，ARM Holdings与DEC合作设计了ARM芯片的高端版本。 为此，DEC采用了他们的**Alpha**处理器的数据通路设计，并结合了ARM的设计[@cpu-jaggar]。 研发出的一系列名为**StrongARM**的新CPU，速度*快*得令人惊讶。 以去除某些功能（如Thumb指令集和调试功能）为代价，DEC成功地跨越了兆赫门槛，触及高达233 MHz的运行速度。 作为一名普通用户，如果你准备购买新的ARM电脑（例如*RiscPC*），摆在你面前的是两个选择：一台搭载40 MHz ARM710老旧处理器的电脑，或者一台运行速度快约582%的StrongARM电脑。 StrongARM的影响如此巨大，以至于ARM Holdings吸收了一些StrongARM的特性，用于生产他们的下一代CPU，也就是ARM9及之后的系列。 其余就是些老黄历了。
-
-但这里就是我的问题所在：明明见到了ARM世日新月异的发展，为什么任天堂最终选择了一个速度极慢的ARM9处理器，再加上一个速度更慢的ARM7，而不是选择一个更快的ARM9（甚至是一个StrongARM）呢？ 抛砖引玉，其他公司（例如苹果）就在新出的Newton PDA系列中采用了StrongARM处理器。
-
-我不是要批评任天堂的决策，但我认为新兴技术数量多到很难让人视而不见。 我猜可能是为了保全电池寿命（译注：从充满电到用到没电的使用时长）并且控制生产成本（通过使用与GBA相同的CPU）。
-
-## 图形 {.tabs-close}
+## 图形
 
 这一部分有些不太寻常，因为这款游戏机不仅有多个屏幕需要绘制，而且把传统的图块（tile）引擎与现代渲染器结合在了一起。
 
@@ -179,13 +204,14 @@ CPU NTR使用两个不同的ARM CPU实现了一个有趣的多处理器架构。
 - **字符类型（Character type）组**：这些背景类型遵循传统的图块系统，通过填充图块来渲染帧。
     - **静态（Static）**或者说“文本”（text）背景： 普通背景， 最大支持512x512像素，256色和16个调色板。 包括了所有典型的[特效（effects）](super-nintendo#tab-1-2-background)（H/V翻转、H/V滚动、马赛克、alpha混合），外加一个额外的“褪色”效果。 最多可使用1024个图块。
     - **仿射（Affine）** 背景：一个带有[仿射变换（affine transformations）](super-nintendo#unique-features)的背景， 不支持水平/垂直翻转，并且只能获取256个图块(最大值的四分之一)。 图层大小为1024x1024像素。
-    - **仿射扩展（Affine Extended）**背景：与affine背景相同，但是可使用1024个图块，并且支持水平/垂直翻转。
-- **位图（Bitmap）类型组**：引擎不再处理图块，直接把VRAM用作frame buffer。 所有的位图类型都继承了character affine背景的所有效果。
-    - **256色扩展（256 colours Extended）**：使用512x512 px的帧缓冲区。
-    - **直接颜色扩展（Direct colour Extended）**：与256色扩展类似，但frame buffer支持的颜色提高到32768种（15位）。
+    - **仿射扩展 - Character**：与仿射背景相同，但是可使用1024个图块，并且支持水平/垂直翻转。
+- **位图（Bitmap）类型组**：引擎不再处理图块，直接把VRAM用作frame buffer。
+    - **仿射扩展 - 256色**：继承“仿射扩展 - character”中所有可用的特效。 区别在于本模式将它们应用于单个512x512 px位图。
+    - **仿射扩展 - 真彩色**：与256色扩展类似，但本模式下frame buffer支持的颜色可达32768种（15比特）。
     - **大屏幕（Large screen）**：利用所有四块128 KB大的VRAM块来渲染一个1024x512 px大的frame-buffer。
+- **3D背景**：将3D引擎的渲染结果显示为背景图层，这是展示3D引擎处理结果所必需的。 虽然它没有提供很多2D效果，但它有一些有趣的特性，比如水平滚动和alpha混合（与其他背景层）。 此外，它是唯一支持多达262,144种颜色（18位）的类型。
 
-开发者不能任意选择背景类型。但是游戏机提供了一系列**背景模式**，为各类型设置了不同的组合。
+开发者不能任意选择背景类型。但是游戏机提供了一系列**背景模式**，为各类型设置了不同的组合。 尽管如此，你可以在这里看到Affine扩展模式有三种不同的风格（“字符”，“256色”和“直接颜色”）。 因此，在下一节中，当你看到X背景模式支持“仿射扩展”类型时，开发者可以选择他们想要的变体。
 
 #### 背景模式 {.tab}
 
@@ -201,17 +227,19 @@ CPU NTR使用两个不同的ARM CPU实现了一个有趣的多处理器架构。
 
 :::
 
-背景类型实战演示。 主引擎和辅助引擎都提供了六种操作模式，所有模式都能生成四个背景图层，但每个图层的能力有所不同：
+背景类型实战演示。 “主”与“副”提供多种操作模式。 所有这些模式生成**四个背景图层**，然而，每个图层的功能取决于所激活的模式：
 
-- **模式0**：4个static图层。
-- **模式1**：3个static图层+1个affine图层。
-- **模式2**：2个static图层+2个affine图层。
-- **模式3**：3个static图层+1个extended affine图层。
-- **模式4**：2个static图层+1个affine图层+1个extendine affine图层。
-- **模式5**：2个static图层+2个extended affine图层。
+- **模式0**：4个静态图层。
+- **模式1**：3个静态图层+1个仿射图层。
+- **模式2**：2个静态图层+2个仿射图层。
+- **模式3**：3个静态图层+1个仿射扩展图层。
+- **模式4**：2个静态图层+1个仿射图层+1个仿射扩展图层。
+- **模式5**：2个静态图层+2个仿射扩展图层。
     - 这是最常用的模式，因为极其灵活。
-- **模式6**：3D引擎渲染的1个static图层+1个large screen。
+- **模式6**：1个3D背景图层+1个大屏幕。
     - 由于VRAM bank的空间只够一个frame buffer，因此只有主引擎能使用该模式。
+
+此外，在模式0到5中，'主'引擎可以将第一个静态图层用作3D背景。 3D功能将在稍后讨论。
 
 #### Sprites {.tab}
 
@@ -241,7 +269,7 @@ Sprites或者说“objects”继承了GBA PPU的功能，但新增两个重要�
 
 ![几何引擎的架构。](gpu/geometry.png) {.tab-float}
 
-如果读过第四代或第五代游戏机的文章，你可能会想知道…… [SIMD 处理器](sega-saturn#graphics)哪去了？ 这是个好问题，因为ARM9并不擅长矢量运算，而且我不认为专用除法器很够用。 这就是为什么任天堂嵌入了一个叫做**几何引擎**的组件，它负责**顶点变换**、**投影**、**光线**、**裁剪**、**剔除**和**多边形排序**，后者对于正确使用透明特性是必不可少的。
+如果读过第五代或第六代游戏机的文章，你可能会想知道…… [SIMD 处理器](sega-saturn#graphics)哪去了？ 这是个好问题，因为ARM9并不擅长矢量运算，而且我不认为专用除法器很够用。 这就是为什么任天堂嵌入了一个称为**几何引擎**的组件，负责处理**顶点转换**、**投影**、**光照**、**裁剪**、**剔除**和**多边形排序**，最后一项对正确使用透明特性至关重要。
 
 这个引擎有一些严格的限制，特别是它能够处理的多边形数量：有额外的248 KB RAM可用于存储处理过的几何体，数量可以达到2048个三角形或1706个四边形。使用多边形条带的话（而不是单个多边形）还可以存储更多。 为了对这个数字有一些概念，我建议查看之前文章中的“交互模型”部分，你会发现这个限制令人担忧，但不要忘记掌机的屏幕分辨率也要小得多……所以算是抵消了一点。
 
@@ -283,9 +311,7 @@ Sprites或者说“objects”继承了GBA PPU的功能，但新增两个重要�
 
 ![马力欧卡丁车64（1996）。<br>以320×240像素渲染。](comparison/kart_n64.png) {.toleft.pixel}
 
-![马力欧卡丁车DS（2005）。<br>以256x192像素渲染。](comparison/kart_nds.png) {.toright.pixel}
-
-`r close_tabs(FALSE)`
+![马力欧卡丁车DS（2005）。<br>以256x192像素渲染。](comparison/kart_nds.png) {.toright.pixel.tabs-close}
 
 所以，为了解释这里发生了什么，我将根据一些论坛用户的说法，整理出几条不同的解释：
 
@@ -300,9 +326,9 @@ Sprites或者说“objects”继承了GBA PPU的功能，但新增两个重要�
 
 我更新了wee model查看器，添加了“最近邻插值”功能。这样你就可以使用你自己的GPU来查看NDS模型了。
 
-![新马力欧兄弟（2004）。<br>636个三角形。](mario_ds){.toleft model3d="true"}
+![任天狗狗（2005）。<br>750个三角形。](dalmatian_ds){.toleft model3d="true"}
 
-![任天狗狗（2005）。<br>750个三角形。](dalmatian_ds){.toright model3d="true"}
+![新马力欧兄弟（2006）。<br>636个三角形。](mario_ds){.toright model3d="true"}
 
 尽管我们讨论了图形子系统的诸多限制，但很多游戏确实充分利用了它的功能。
 
@@ -314,7 +340,7 @@ Sprites或者说“objects”继承了GBA PPU的功能，但新增两个重要�
 
 因此，新的音频系统总共有**16个PCM声道（channels）**，可以将混音任务转移到硬件上。 PCM采样可以是**8比特**（*GBA风格*）、**16比特**（最高解析度）或ACPCM（压缩形式）。 无论如何，混音器都会产生一个立体声信号，可以通过扬声器（现在是立体声）或耳机播放。 它还可以将生成的立体声数据写入WRAM，让子处理器（ARM7）能够应用一些效果，例如混响。
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 尽管以上内容已经介绍了不少，但这是否意味着NDS终于可以播放编码音乐（例如 MP3）？ 这是可行的（实际上，许多自制程序都实现了某种形式的音频解码），但音频解码需要大量的带宽和处理能力[@cpu-homebrew]。 所以，音频序列仍然是可行最高的选项。
 
@@ -328,20 +354,15 @@ NDS可以运行GBA游戏，因此它应该具有类似于前代PSG的功能（�
 
 ### 交互式比较 {.interactive-only}
 
-我构建了这个交互式小部件，让你可以自己来回比较，从而理解新的音频系统如何影响新一代游戏的配乐。 每个小部件都可以播放相同的曲子，但允许你在旧版和新版之间切换（建议戴上耳机以更好地体验差异）。 试一试！
+我构建了这个交互式小部件，让你可以自己比较新的音频系统如何影响新一代游戏的配乐。 每个小部件都可以播放相同的曲子，但允许你在旧版和新版之间切换（建议戴上耳机以更好地体验差异）。 试一试！
 
-(ref:gbatitle) GBA
+::: {.subfigures .side-by-side figure="false"}
 
-(ref:ndstitle) NDS
+![**GBA：**逆转裁判（2001，仅日本发售）。<br>**NDS：**逆转裁判 复苏的逆转（2005）。](){audio_switcher="true" src1="trial_gba" src2="trial_nds" label1="GB Advance" label2="Nintendo DS" .toleft}
 
-(ref:audioattourneycaption) **GBA:** 逆转裁判（2001，仅日本发售）。<br>**NDS:** 逆转裁判 复苏的逆转（2005）。
+![**GBA：**马力欧赛车Advance（2001）。<br>**NDS：**马力欧卡丁车DS（2005）。](){audio_switcher="true" src1="yoshi_gba" src2="yoshi_nds" label1="GB Advance" label2="Nintendo DS" .toright}
 
-(ref:audiokartcaption) **GBA:** 马力欧赛车Advance（2001）。<br>**NDS:** 马力欧卡丁车DS（2005）。
-
-```{r side_by_side=TRUE}
-audio_switcher("(ref:audioattourneycaption)", class="toleft", src1="trial_gba", label1="(ref:gbatitle)", src2="trial_nds", label2="(ref:ndstitle)")
-audio_switcher("(ref:audiokartcaption)", class="toleft", src1="yoshi_gba", label1="(ref:gbatitle)", src2="yoshi_nds", label2="(ref:ndstitle)")
-```
+:::
 
 （如果您在收听时遇到问题，请[联系我](code>r ref(about_url, root=TRUE)</code)，并提供您所使用的浏览器和设备信息。）
 
@@ -351,18 +372,13 @@ audio_switcher("(ref:audiokartcaption)", class="toleft", src1="yoshi_gba", label
 
 现在请让我展示一些棘手的情况。移植游戏的原平台有一些独特的音频功能，在NDS上重现这些功能可不简单。现在请你来当评委：
 
-(ref:snestitle) SNES
+::: {.subfigures .side-by-side figure="false"}
 
-(ref:megadrivetitle) Mega Drive
+![**SNES：**超级马里奥赛车（1992）。<br>**NDS：**马里奥赛车DS（2005）。](){audio_switcher="true" src1="mario_snes" src2="mario_nds" label1="SNES" label2="Nintendo DS" .toleft}
 
-(ref:audiosnescaption) **SNES:** 超级马里奥赛车（1992）。<br>**NDS:** 马里奥赛车DS（2005）。
+![**Mega Drive：**索尼克3D大爆炸（1996）。<br>**NDS：**索尼克编年史（2008）。](){audio_switcher="true" src1="sonic_megadrive" src2="sonic_nds" label1="Mega Drive" label2="Nintendo DS" .toright}
 
-(ref:audiosoniccaption) **Mega Drive:** 索尼克3D大爆炸（1996）。<br>**NDS:** 索尼克编年史（2008）。
-
-```{r side_by_side=TRUE}
-audio_switcher("(ref:audiosnescaption)", class="toleft", src1="mario_snes", label1="(ref:snestitle)", src2="mario_nds", label2="(ref:ndstitle)")
-audio_switcher("(ref:audiosoniccaption)", class="toleft", src1="sonic_megadrive", label1="(ref:megadrivetitle)", src2="sonic_nds", label2="(ref:ndstitle)")
-```
+:::
 
 正如你从第一个示例中听到的（特别是在最后10秒钟内），要与SNES的S-SMP所提供的功能相竞争有些困难。
 
@@ -382,7 +398,7 @@ audio_switcher("(ref:audiosoniccaption)", class="toleft", src1="sonic_megadrive"
 
 用于保存备份的芯片（如 EEPROM、FLASH和FRAM）可以通过SPI总线（串行）访问。该总线使用自己的一套命令集，并连接到一个24位地址总线。
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 使用本来的引脚排布的话，Slot-2卡槽是内存映射的。但在DS模式下，为了适配提供扩展功能的硬件（额外的RAM、震动等），地址会被移位。 就像GBA一样，ROM总线为16位宽，RAM总线则有8位宽。
 
@@ -398,7 +414,7 @@ ARM7也连接到另一个SPI节点，即**触摸屏控制器**的接口。该接
 
 许多人指出，《愿望之屋 天使的记忆》依靠这个特性来解决其中一个谜题，需要用户同时使用两个手指。 然而，情况并非如此。 在使用no$gba debugger实验之后，可以发现这个谜题并没有用到压力数据， 而是检查X/Y值是否交替剧烈变化。 游戏将这种效果解释为用户用两个手指按压屏幕的结果。
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 最后，同一堆东西里还有**实时时钟** (real-time clock, RTC)。
 
@@ -451,7 +467,7 @@ ARM7也连接到另一个SPI节点，即**触摸屏控制器**的接口。该接
 
 值得强调的是，只读数据和可写数据都驻留在同一个可重写的芯片中，因此理论上固件可以被覆盖！ 幸运的是（或者出于显而易见的原因），任天堂在主板上的一个点（称为`SL1`）上放置了跳线来保护芯片的上四分之一（64 KB）不被写入，拆卸电池仓后可以看到这个点。 然而，仍然可以覆盖闪存的其余部分，虽然结果也是灾难性的[@operating_system-bricker]！
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### 可更新性
 
@@ -472,7 +488,7 @@ ARM7也连接到另一个SPI节点，即**触摸屏控制器**的接口。该接
 - **Download Play或“无线多重启动（Wireless MultiBoot）”**：原[多重启动（MultiBoot）](game-boy-advance#accessories)功能的升级版，使另一个带有NDS游戏的掌机能够使用无线通信上传程序。 下载的内容存储在WRAM中，传输完成后启动。 由于WRAM是易失性存储器，数据在关机时将丢失。
   - 获得授权的零售商可以使用此功能部署**下载站**，邀请用户在到店参观时下载演示版游戏。
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### 程序的结构
 
@@ -506,7 +522,7 @@ ARM7也连接到另一个SPI节点，即**触摸屏控制器**的接口。该接
 
 在电子消费品中，一款把触摸屏、麦克风、Wi-Fi和一个实时时钟封装到一起的掌机第一次出现。 一些游戏甚至提出了新的互动形式，比如指示用户侧握掌机。
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### 网络服务
 
@@ -528,15 +544,17 @@ NDS主要使用对称加密系统对内存接口和Slot-1卡之间的通信进�
 
 之后，KEY1与内部时钟和卡带Header的一些其他值混合，生成一个新的密钥，称为**KEY2**。 KEY2与KEY1的根本区别在于，前者使用随机值所以无法被预测。 KEY2加密使用多个异或与移位操作来混淆数据。
 
+KEY1和KEY2在不同阶段被Slot-1接口用来保护其与卡片的通信。 ARM7 BIOS还使用KEY1对NDS卡进行验证并初始化卡片接口。
+
 #### DS卡的校验 {.tab}
 
-正如我们上面看到的那样，BIOS包括一些例程，在启动时校验NDS游戏卡。 工作原理如下：
+正如我们上面看到的那样，BIOS包括一些例程，在启动时校验NDS游戏卡。 它做了以下工作：
 
-1. 掌机检索卡带的芯片ID，将其保存在RAM上，然后启用KEY1加密。
-2. “安全区”的前2KB也被复制到RAM上。 该块的前8B存储了一个名为**Secure Area ID**的字符串，后面的数据包含校验和（CRC16类型）与一些其他元数据。
-4. 虽然“Secure Area ID”已经用KEY1加密过了，但是还要用KEY2再次加密，之后用到时再解密。如果解密后的值与字符串`encryObj`相匹配，说明卡片**通过了校验第一次关**。 此后，该字符串被销毁，防止算法泄露。 如果验证失败，Secure Area的2KB就会被无意义数据填满，阻止读取卡片的其他部分。
-5. 第二个测试流程为再次检索芯片ID，然后用KEY2随机加密若干次（使用内部时钟做种）。 如果芯片ID的值与存储的第一个芯片ID相匹配，则**第二次测试通过**。
-6. 最后，Secure area的其余部分以随机顺序被取走并在RAM中重新构建。 之后就该执行固件了。
+1. ARM7 BIOS检索卡带的芯片ID，将其保存在RAM上，然后启用KEY1和KEY2加密。
+2. 安全区的前2KB以随机顺序复制到RAM中。 该块的前8B存储了一个名为**Secure Area ID**的字符串，后面的数据包含校验和（CRC16类型）与一些其他元数据。 所有这些都使用KEY1加密，并且Secure Area ID使用了不同参数通过KEY1加密了两次。
+3. ARM7 BIOS解密了Secure Area ID，并检查解密后的值是否与`encryObj`匹配。 如果匹配，则意味着卡片验证**通过了第一次测试**。 此后，该字符串被销毁，防止算法泄露。 如果验证失败，Secure Area的2KB就会被无意义数据填满，阻止读取卡片的其他部分。
+4. 第二个测试流程为再次随机检索芯片ID（使用内部时钟做种）。 如果芯片ID的值与存储的第一个芯片ID相匹配，则**第二次测试通过**。
+5. 最后，Secure area的其余部分以随机顺序被取走并在RAM中重新构建。 之后就该执行固件了。
 
 如果一切顺利，固件将在RAM中找到该卡所需的可执行文件，从而成功启动游戏。 否则，游戏选择框将显示为灰色。
 
@@ -576,7 +594,7 @@ NDS主要使用对称加密系统对内存接口和Slot-1卡之间的通信进�
 
 由于加密系统无法更改除法对现有的所有零售游戏造成影响，任天堂最终输掉了这场战斗。 现在，他们唯一剩下的选择就是走法律途径，就像为前代游戏机所做的一样。
 
-`r close_tabs()`
+#### 观察 {.tabs-close}
 
 在我看来，与以前的游戏机的自制方法相比，烧录卡确实简单得引人注目。 在之前的文章中我曾经描述过，用户必须深入迷宫般繁琐的步骤才能运行自制或盗版游戏。
 
