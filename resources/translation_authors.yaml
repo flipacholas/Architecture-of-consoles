@@ -72,10 +72,17 @@ pcengine:
   tr: EuropaYou
 ps1:
   pt-br: Walper
-  ru: Zerocker и Иван "rndtrash" Кузьменко
+  ru:
+    authors:
+      - name: Zerocker и Иван "rndtrash" Кузьменко
+        year: 2021
+    pretranslated_with_ai: true
 ps2:
   pt-br: Lucas Akira Morishita
   tr: Annayo ve EuropaYou
+  ru:
+    authors: null
+    pretranslated_with_ai: true
 ps3:
   ru: Vladimir Kovalev
   pt-br: Walper
