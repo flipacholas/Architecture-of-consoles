@@ -83,6 +83,9 @@ ps2:
   ru:
     authors: null
     pretranslated_with_ai: true
+  fr:
+    authors: null
+    pretranslated_with_ai: true
 ps3:
   ru: Vladimir Kovalev
   pt-br: Walper
