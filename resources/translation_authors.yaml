@@ -101,7 +101,11 @@ snes:
 virtualboy: null
 wii:
   es: Jonathan Lojo Muñiz
-  it: Valerio Francesco Vallone
+  it: 
+    authors: 
+      - name: Valerio Francesco Vallone
+        year: 2022
+    pretranslated_with_ai: true
   pl: LunaDook & MoonbowPlushie
   cs: CoriTelma
 xbox:
