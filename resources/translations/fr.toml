@@ -212,7 +212,7 @@ other = "Modèle interactif disponible dans l'<a href=\"{{ . }}\">édition moder
 other = "Lecteur interactif disponible dans l'<a href=\"{{ . }}\">édition moderne</a>"
 
 [goto_classic]
-other = "Si vous utilisez des outils d'accessibilité, une liseuse ou un ancien navigateur, <a href=\"{{ .classic }}\">basculez vers l'édition \"classique\"</a>."
+other = "Si vous utilisez des outils d'accessibilité ou un ancien navigateur, <a href=\"{{ .classic }}\">basculez vers l'édition \"classique\"</a>."
 
 [audio_samples]
 other = "Échantillons audio"
