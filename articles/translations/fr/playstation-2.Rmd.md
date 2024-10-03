@@ -462,7 +462,7 @@ Les fonctionnalités de l'interface système PS2 sont globalement les mêmes que
 
 ![Menu initial. Apparait quand aucun disque n'est inséré.](bios/menu.jpg){.tabs-nested .active title="Menu"}
 
-![Menu des cartes mémoires.](bios/mem_list.jpg){.tab-nested .active title="Navigateur"}
+![Menu des cartes mémoires.](bios/mem_list.jpg){.tab-nested title="Navigateur"}
 
 ![Menu des sauvegardes. S'affiche après avoir sélectionné une carte mémoire.](bios/save_list.jpg){.tab-nested title="Sauvegardes"}
 
