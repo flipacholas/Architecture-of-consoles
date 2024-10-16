@@ -400,6 +400,7 @@ If you wonder, there's no 'Wii GPU and GPU7' co-processing available for Wii U g
 At first, I had assumed the Wii U implemented its audio functions through software (like its competitors [started doing](playstation-3#audio)). But then, other questions arose: How is the [complex DSP](wii#audio) of the Wii emulated? Is Espresso powerful enough?
 
 Well, that's not all. Unlike the Wii, the audio pipeline of the Wii U must service three endpoints:
+
 - The **Television**, expecting up to 6 channels (typically only 2/stereo).
 - The **GamePad** with up to 4 channels (a.k.a surround audio).
 - Up to four **Wii Remotes** (with one [low-quality](wii#next-gen-controllers) channel each).
