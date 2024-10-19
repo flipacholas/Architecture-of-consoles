@@ -33,13 +33,13 @@ Sega Dreamcast, hem oyun geliştiricilerine hem de konsol oyuncularına hitap et
 
 Hitachi için işler sorunsuz ilerliyordu, [ikonik SuperH çipleri](sega-saturn#cpu) birden fazla müşteri bulmuştu ve şirket artık serinin dördüncü sürümü için hazırdı. Yeni girişleri, gömülü yetenekleri 3D oyunların sahip olduğu işlevsellikle birleştirecek.
 
-SuperH'yi ilk benimseyenlerden biri olan Sega, yeni konsollarına güç sağlamak için şaşırtıcı olmayan bir şekilde Hitachi'nin son sevkiyatını seçti. Bu nedenle Dreamcast'te **SH-4 CPU** bulunmaktadır ve bu işlemci **200 MHz** [@cpu-spec] hızında çalışmaktadır. Ayrıca, [bu sefer işleri yoluna koymak](sega-saturn#the-final-product) için, **sadece bir tam donanımlı CPU** var.
+SuperH’yi ilk benimseyenlerden biri olan Sega, yeni konsollarına güç sağlamak için şaşırtıcı olmayan bir şekilde Hitachi’nin son sevkiyatını seçti. Bu nedenle Dreamcast’te **SH-4 CPU** bulunmaktadır ve bu işlemci **200 MHz** [@cpu-spec] hızında çalışmaktadır. Ayrıca, [bu sefer işleri yoluna koymak](sega-saturn#the-final-product) için, **sadece bir tam donanımlı CPU** var.
 
 ### Teklif
 
 Bununla birlikte, bu yeni işlemci hakkında ilginç olan nedir?
 
-Bununla birlikte, bu yeni işlemci hakkında ilginç olan nedir? Öncelikle, SH-4 önceki modellerin bir süper seti olarak devam ediyor, yani **32-bit RISC mimari**, **5 aşamalı pipeline** ve **16-bit instruction set** dahil olmak üzere SuperH serisinin mevcut [tüm özelliklerini](sega-saturn#cpu) miras alıyor. Ne yazık ki, aynı zamanda [control hazards](playstation#delay-galore)'ın da mirasçısıdır.
+Bununla birlikte, bu yeni işlemci hakkında ilginç olan nedir? Öncelikle, SH-4 önceki modellerin bir süper seti olarak devam ediyor, yani **32-bit RISC mimari**, **5 aşamalı pipeline** ve **16-bit instruction set** dahil olmak üzere SuperH serisinin mevcut [tüm özelliklerini](sega-saturn#cpu) miras alıyor. Ne yazık ki, aynı zamanda [control hazards](playstation#delay-galore)’ın da mirasçısıdır.
 
 ![SH-4 çipi.](sh4.jpg)
 
@@ -51,61 +51,61 @@ Bunun da ötesinde, yeni nesil CPU olarak, gömülü uygulamaların kapsamının
 
 #### Özel bir çalışma
 
-Bir oyun konsolu CPU'sunun ortak işleri arasında bir oyunun mantığını idare etmek, düşman yapay zekasını çalıştırmak ve GPU'yu instruction'la beslemek yer alır.
+Bir oyun konsolu CPU’sunun ortak işleri arasında bir oyunun mantığını idare etmek, düşman yapay zekasını çalıştırmak ve GPU’yu instruction'la beslemek yer alır.
 
-Dreamcast ile GPU'nun yalnızca [rasteriser](playstation#graphics) görevlerini yerine getirdiğini göreceksiniz. Dolayısıyla, CPU'nun grafik işlem hattının büyük bir kısmına dahil olması gerekir. Bu, CPU'nun büyük miktarda geometri verisini [işleyeceği](playstation#tab-2-2-geometry-transformation-engine) anlamına gelir (perspektif dönüşümlerini hesaplamak gibi). Şimdi, CPU'nun bu rolü sürdürebilmesini sağlamak için Sega ve Hitachi işbirliği yaparak SH-4'e iki önemli eklenti eklediler.
+Dreamcast ile GPU’nun yalnızca [rasteriser](playstation#graphics) görevlerini yerine getirdiğini göreceksiniz. Dolayısıyla, CPU’nun grafik işlem hattının büyük bir kısmına dahil olması gerekir. Bu, CPU’nun büyük miktarda geometri verisini [işleyeceği](playstation#tab-2-2-geometry-transformation-engine) anlamına gelir (perspektif dönüşümlerini hesaplamak gibi). Şimdi, CPU’nun bu rolü sürdürebilmesini sağlamak için Sega ve Hitachi işbirliği yaparak SH-4’e iki önemli eklenti eklediler.
 
-İlk eklenti özel bir **64-bit Kayan Nokta Birimi** (FPU). Bu bileşen, **IEEE-754 standardına** uyarak 32 bit ondalık sayıları ('tek hassasiyetli' veya 'float' olarak adlandırılır) veya 64 bit olanları ('çift hassasiyetli' veya 'double' türü) hesaplar. Register dosyası **otuz iki 32 bitlik register'dan** oluşur, ancak bunlar aynı zamanda **on altı 64 bitlik register'dan** oluşan farklı bir grupta birleştirilebilir, bu da birimin double işlem yapabilmesini sağlar.
+İlk eklenti özel bir **64-bit Kayan Nokta Birimi** (FPU). Bu bileşen, **IEEE-754 standardına** uyarak 32 bit ondalık sayıları (‘tek hassasiyetli’ veya ‘float’ olarak adlandırılır) veya 64 bit olanları (‘çift hassasiyetli’ veya ‘double’ türü) hesaplar. Register dosyası **otuz iki 32 bitlik register'dan** oluşur, ancak bunlar aynı zamanda **on altı 64 bitlik register’dan** oluşan farklı bir grupta birleştirilebilir, bu da birimin double işlem yapabilmesini sağlar.
 
-Bu yeterli gelmediyse, Hitachi FPU ile bir adım daha ileri gitti ve bu kez **sekiz 128 bitlik register**'dan oluşan başka bir register grubu oluşturmak için ekstra logic uyguladı. İçinde her bir register artık dört adet 32 bit float ya da başka bir deyişle **128 bit vektör** olarak saklamaktadır. Bu format grafikle ilgili işlemler için idealdir.
+Bu yeterli gelmediyse, Hitachi FPU ile bir adım daha ileri gitti ve bu kez **sekiz 128 bitlik register**’dan oluşan başka bir register grubu oluşturmak için ekstra logic uyguladı. İçinde her bir register artık dört adet 32 bit float ya da başka bir deyişle **128 bit vektör** olarak saklamaktadır. Bu format grafikle ilgili işlemler için idealdir.
 
-Yeni vektörleri iyi bir şekilde kullanmak için FPU, [Saturn Control Unit](sega-saturn#the-third-processor-and-counting)'in sağladığı gibi bunları çalıştırmak için özel instruction'lar içerir, ancak sektör artık daha standart hale gelmiştir. Yeni talimatlar genellikle **Single Instruction Multiple Data** (SIMD) olarak bilinen bir yapıya sahiptir ve aşağıdaki cebirsel işlemleri gerçekleştirebilir:
+Yeni vektörleri iyi bir şekilde kullanmak için FPU, [Saturn Control Unit](sega-saturn#the-third-processor-and-counting)’in sağladığı gibi bunları çalıştırmak için özel instruction'lar içerir, ancak sektör artık daha standart hale gelmiştir. Yeni talimatlar genellikle **Single Instruction Multiple Data** (SIMD) olarak bilinen bir yapıya sahiptir ve aşağıdaki cebirsel işlemleri gerçekleştirebilir:
 
 - Nokta çarpım.
 - Karelerin toplamı.
 - Matris çarpımı.
 
-İkinci eklenti ise SH-4'ün artık <strong x-id=“1”>64 bit genişliğinde</strong> olan ve CPU'nun 32 bitlik değer çiftlerini aynı anda aktarabilmesini sağlayan harici bus'ıdır. Bu, bu CPU'nun genel performansına katkıda bulunan bir başka gelişmedir.
+İkinci eklenti ise SH-4'ün artık **64 bit genişliğinde** olan ve CPU'nun 32 bitlik değer çiftlerini aynı anda aktarabilmesini sağlayan harici bus’ıdır. Bu, bu CPU’nun genel performansına katkıda bulunan bir başka gelişmedir.
 
 #### Bellek & erişim
 
-Dreamcast'lerde **16 MB SDRAM** bulunur ve **100 MHz** bus (CPU hızının yarısı) kullanılarak doğrudan CPU'ya bağlanır.
+Dreamcast'lerde **16 MB SDRAM** bulunur ve **100 MHz** bus (CPU hızının yarısı) kullanılarak doğrudan CPU’ya bağlanır.
 
-Buna karşılık, belleğin data bus'ı sadece 32 bit genişliğindedir [@cpu-spec]. Bu, CPU'nun 64-bit data bus'ının boşa gitti anlamına mı geliyor? Hayır, çünkü RAM <strong x-id=“1”>iki adet 8 MB bank</strong> kullanılarak takılmıştır. Yani, her bir çip CPU'nun data bus hatlarının yarısına bağlıdır.
+Buna karşılık, belleğin data bus’ı sadece 32 bit genişliğindedir [@cpu-spec]. Bu, CPU’nun 64-bit data bus’ının boşa gitti anlamına mı geliyor? Hayır, çünkü RAM <strong x-id=“1”>iki adet 8 MB bank</strong> kullanılarak takılmıştır. Yani, her bir çip CPU’nun data bus hatlarının yarısına bağlıdır.
 
 ![Bellek şeması.](memory.png)
 
-Bu belleğe erişmek için CPU, sanal adresleme için özel bir <strong x-id=“1”>Memory Management Unit</strong> veya 'MMU' içerir, bu CPU'nun fiziksel bellek adres alanı <strong x-id=“1”>29 bit genişliğinde</strong> olduğu için bu yararlıdır. Ayrıca, dört <strong x-id=“1”>Translation Lookaside Buffers</strong> (TLB'ler) sayesinde programcılar 32 bit adresleri performans kaybı yaşamadan kullanabilirler.
+Bu belleğe erişmek için CPU, sanal adresleme için özel bir **Memory Management Unit** veya 'MMU' içerir, bu CPU'nun fiziksel bellek adres alanı **29 bit genişliğinde** olduğu için bu yararlıdır. Ayrıca, dört **Translation Lookaside Buffers** (TLB’ler) sayesinde programcılar 32 bit adresleri performans kaybı yaşamadan kullanabilirler.
 
 Şimdi, adresleme için sadece 29 bit gerektiğinden, fazladan üç bit bellek korumasını kontrol eder, sırasıyla bellek haritasını değiştirir ve önbelleği atlatır \[@cpu-marcus\] \[@cpu-akiba\].
 
-Nihayetinde, bu özelliklerin kullanılıp kullanılmayacağına programcı karar verir. Bu sistem için oyunlar kesinlikle bellek korumasına ihtiyaç duymaz ve MMU'nun açılışta manuel olarak etkinleştirilmesi gerekir.
+Nihayetinde, bu özelliklerin kullanılıp kullanılmayacağına programcı karar verir. Bu sistem için oyunlar kesinlikle bellek korumasına ihtiyaç duymaz ve MMU’nun açılışta manuel olarak etkinleştirilmesi gerekir.
 
 ### UMA yok ama...
 
-Bu sistem, [tanınmış bir rakibi](nintendo-64#simplified-memory-access) gibi katı Unified Memory Architecture veya UMA etrafında tasarlanmamış olsa da, **G/Ç erişimini GPU'ya devretmektedir**. Bu da CPU'nun kendi özel RAM'i ya da seri arayüzü (ki bunlar da bağlı) dışında bir şey alması gerektiğinde GPU'dan talepte bulunması ve gerekirse beklemesi gerektiği anlamına geliyor.
+Bu sistem, [tanınmış bir rakibi](nintendo-64#simplified-memory-access) gibi katı Unified Memory Architecture veya UMA etrafında tasarlanmamış olsa da, **G/Ç erişimini GPU'ya devretmektedir**. Bu da CPU’nun kendi özel RAM’i ya da seri arayüzü (ki bunlar da bağlı) dışında bir şey alması gerektiğinde GPU'dan talepte bulunması ve gerekirse beklemesi gerektiği anlamına geliyor.
 
-Bu CPU aynı zamanda **Paralel I/O** veya 'PIO' olarak adlandırılan ve aynı anda birden fazla I/O konumunu manipüle etmek için kullanılan benzersiz bir işleve sahiptir. Sega bu pinleri CPU'nun GPU'nun <strong x-id=“1”>video modunu</strong> manipüle edebilmesi için bağladı (daha fazla ayrıntı 'Grafikler' bölümünde açıklanmıştır).
+Bu CPU aynı zamanda **Paralel I/O** veya ‘PIO’ olarak adlandırılan ve aynı anda birden fazla I/O konumunu manipüle etmek için kullanılan benzersiz bir işleve sahiptir. Sega bu pinleri CPU’nun GPU'nun **video modunu** manipüle edebilmesi için bağladı (daha fazla ayrıntı ‘Grafikler’ bölümünde açıklanmıştır).
 
 ### Yolun sonu
 
-Bahsedilen tüm avantajlara rağmen, korkarım ki SuperH serisi son büyük kullanıcısı Dreamcast'in mağazaları terk etmesinden sonra önemli bir ilerleme kaydedemedi. SH-4'ün popülerliğinden sonra Hitachi (ya da şu anki sahipleri olan Renesas Electronics) aynı başarı seviyesini tekrarlayamadı ve gömülü/el tipi pazarın o zamandan beri [ARM](game-boy-advance#cpu)'ı tercih ettiğini düşünürsek ([StrongARM](nintendo-ds#arms-new-territories) sayesinde), Renesas'ın Hitachi'nin buluşunu yakın zamanda sürdüreceğini düşünmüyorum.
+Bahsedilen tüm avantajlara rağmen, korkarım ki SuperH serisi son büyük kullanıcısı Dreamcast’in mağazaları terk etmesinden sonra önemli bir ilerleme kaydedemedi. SH-4’ün popülerliğinden sonra Hitachi (ya da şu anki sahipleri olan Renesas Electronics) aynı başarı seviyesini tekrarlayamadı ve gömülü/el tipi pazarın o zamandan beri [ARM](game-boy-advance#cpu)’ı tercih ettiğini düşünürsek ([StrongARM](nintendo-ds#arms-new-territories) sayesinde), Renesas’ın Hitachi'nin buluşunu yakın zamanda sürdüreceğini düşünmüyorum.
 
-Ancak bilgisayarla ilgili iyi olan bir şey varsa o da teknolojik ilerlemenin markaların ve şirketlerin sınırlarının ötesine yayılma eğiliminde olmasıdır. Örneğin, SH'nin sıkıştırılmış komut tekniği ARM'nin [Thumb modu](game-boy-advance#tab-2-3-squeezing-performance) (ikincil bir 16-bit ISA) ile devam etmiştir [@cpu-lwn]. Ayrıca, 2012 yılında, 'J2' [@cpu-jcore] adı verilen modern bir SuperH uyumlu CPU üretmek için gönüllülük esasına dayalı bir proje başlatılmıştır.
+Ancak bilgisayarla ilgili iyi olan bir şey varsa o da teknolojik ilerlemenin markaların ve şirketlerin sınırlarının ötesine yayılma eğiliminde olmasıdır. Örneğin, SH’nin sıkıştırılmış komut tekniği ARM’nin [Thumb modu](game-boy-advance#tab-2-3-squeezing-performance) (ikincil bir 16-bit ISA) ile devam etmiştir [@cpu-lwn]. Ayrıca, 2012 yılında, ‘J2’ [@cpu-jcore] adı verilen modern bir SuperH uyumlu CPU üretmek için gönüllülük esasına dayalı bir proje başlatılmıştır.
 
 ## Grafikler
 
-GPU paketi, <strong x-id=“1”>100 MHz</strong> hızında çalışan <strong x-id=“1”>Holly</strong> adlı özel yapım bir çiptir. Önceki şirket içi tasarımların aksine Sega, rekabetçi bir 3D hızlandırıcı sağlamak için VideoLogic (şimdi Imagination Technologies olarak biliniyor) ile ortaklık kurdu.
+GPU paketi, **100 MHz** hızında çalışan **Holly** adlı özel yapım bir çiptir. Önceki şirket içi tasarımların aksine Sega, rekabetçi bir 3D hızlandırıcı sağlamak için VideoLogic (şimdi Imagination Technologies olarak biliniyor) ile ortaklık kurdu.
 
 ![Holly chip (termal pedleri çıkardıktan sonra) ve video kodlayıcı.](holly.jpg)
 
-Holly'nin içinde VideoLogic'in <strong x-id=“1”>PowerVR2</strong> ('PowerVR Series2' ve 'CLX2' olarak da anılır) adlı özel grafik devresini bulabiliriz, önceki PowerVR GPU'larını temel alır ancak Dreamcast için uyarlanmıştır.
+Holly’nin içinde VideoLogic’in **PowerVR2** (‘PowerVR Series2’ ve ‘CLX2’ olarak da anılır) adlı özel grafik devresini bulabiliriz, önceki PowerVR GPU’larını temel alır ancak Dreamcast için uyarlanmıştır.
 
 ### Mimari
 
 VideoLogic, 3D motorunun yapımı için **Tile-Based Deferred Rendering** (TBDR) adı verilen alternatif bir yaklaşım seçti.
 
-TBDR, tüm kareyi bir kerede oluşturmak yerine (geleneksel **Immediate Mode Renderers** veya 'IMR'nin yaptığı gibi [@graphics-arch]), oluşturma alanını 'karo' adı verilen birden çok bölüme ayırır. Ardından, her bir karo üzerinde ayrı ayrı render işlemini gerçekleştirir ve sonuç nihai kareyi oluşturmak için birleştirilir [@graphics-powervr].
+TBDR, tüm kareyi bir kerede oluşturmak yerine (geleneksel **Immediate Mode Renderers** veya ‘IMR’nin yaptığı gibi [@graphics-arch]), oluşturma alanını ‘tile’ adı verilen birden çok bölüme ayırır. Ardından, her bir karo üzerinde ayrı ayrı render işlemini gerçekleştirir ve sonuç nihai kareyi oluşturmak için birleştirilir [@graphics-powervr].
 
 ![Sonic Adventure (1999).](sonic.png)
 
