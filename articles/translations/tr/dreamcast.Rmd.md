@@ -13,9 +13,9 @@ cover: dreamcast
 top_tabs:
   Model:
     file: international
-    caption: "Dreamcast.<br>Japonya'da 29/11/1998, Amerika'da 09/09/1999 ve 14/10/1999'da Avrupa'da satışa sunuldu."
+    caption: "Dreamcast.<br>Japonya’da 29/11/1998, Amerika’da 09/09/1999 ve 14/10/1999’da Avrupa’da satışa sunuldu."
   Motherboard:
-    caption: "Revizyon 'VA1' gösteriliyor.<br>Resmi dokümanlarda sistemin 128KB flash bellek içerdiği belirtilirken, bu anakart nedense 256KB EEPROM yongası içeriyor.<br>Pil ve denetleyici bağlantı noktaları 'Ön panel' adı verilen bir ek kartta bulunuyor."
+    caption: "Revizyon ‘VA1’ gösteriliyor.<br>Resmi dokümanlarda sistemin 128KB flash bellek içerdiği belirtilirken, bu anakart nedense 256KB EEPROM yongası içeriyor.<br>Pil ve denetleyici bağlantı noktaları ‘Ön panel’ adı verilen bir ek kartta bulunuyor."
   Diagram:
     caption: "Önemli veri yolları genişlikleri ve hızları ile etiketlenmiştir."
 #Historical
@@ -25,7 +25,7 @@ aliases:
 
 ## Giriş
 
-Sega Dreamcast, hem oyun geliştiricilerine hem de konsol oyuncularına hitap etmek için selefine ([Satürn](sega-saturn)) göre birçok yeni özellik sundu. Bu Sega'nın konsol pazarını fethetmek için son girişimi olsa da, Dreamcast'te öncülük edilen bazı teknolojiler devam etti ve gelecekteki ana akım cihazlara taşındı.
+Sega Dreamcast, hem oyun geliştiricilerine hem de konsol oyuncularına hitap etmek için selefine ([Satürn](sega-saturn)) göre birçok yeni özellik sundu. Bu Sega'nın konsol pazarını fethetmek için son girişimi olsa da, Dreamcast’te öncülük edilen bazı teknolojiler devam etti ve gelecekteki ana akım cihazlara taşındı.
 
 ## {.supporting-imagery}
 
@@ -39,13 +39,13 @@ SuperH’yi ilk benimseyenlerden biri olan Sega, yeni konsollarına güç sağla
 
 Bununla birlikte, bu yeni işlemci hakkında ilginç olan nedir?
 
-Bununla birlikte, bu yeni işlemci hakkında ilginç olan nedir? Öncelikle, SH-4 önceki modellerin bir süper seti olarak devam ediyor, yani **32-bit RISC mimari**, **5 aşamalı pipeline** ve **16-bit instruction set** dahil olmak üzere SuperH serisinin mevcut [tüm özelliklerini](sega-saturn#cpu) miras alıyor. Ne yazık ki, aynı zamanda [control hazards](playstation#delay-galore)’ın da mirasçısıdır.
+Öncelikle, SH-4 önceki modellerin bir süper seti olarak devam ediyor, yani **32-bit RISC mimari**, **5 aşamalı pipeline** ve **16-bit instruction set** dahil olmak üzere SuperH serisinin mevcut [tüm özelliklerini](sega-saturn#cpu) miras alıyor. Ne yazık ki, aynı zamanda [control hazards](playstation#delay-galore)’ın da mirasçısıdır.
 
 ![SH-4 çipi.](sh4.jpg)
 
 Bunun da ötesinde, yeni nesil CPU olarak, gömülü uygulamaların kapsamının ötesine geçen birçok iyileştirme sunuyor [@cpu-arch]:
 
-- Bir **2-way superscalar** pipeline: CPU'nun boru hattının her aşamasında birden fazla komutu (bu durumda iki) işleyebildiği yeni bir paralellik tekniği. Bu da saniyede daha fazla talimatın yürütülmesine neden olur.
+- Bir **2-way superscalar** pipeline: CPU’nun boru hattının her aşamasında birden fazla komutu (bu durumda iki) işleyebildiği yeni bir paralellik tekniği. Bu da saniyede daha fazla talimatın yürütülmesine neden olur.
   - Perde arkasında, CPU iki talimatı iki farklı (kullanılabilir) yürütme birimine dağıtıyor. Bu nedenle - çok küçük bir grup hariç - tüm komutların paralelleştirilmesi için farklı türlerde (yani branching, aritmetik, vb.) olması gerekir [@cpu-soft_doc]. Aksi takdirde, yalnızca sıralı olarak yürütülebilirler. Her ne olursa olsun, SH-4 aynı zamanda asla paralelleştirilemeyecek bir talimat alt kümesi de sergiler, çünkü bunu mümkün kılmak için çok fazla bağımlılık içerirler.
 - **8 KB instruction cache** ve **16 KB data cache**: Konsollar veri önbelleğinden daha fazla komut önbelleği içerme eğiliminde olduğundan bu oran oldukça ilginçtir. Ancak SH-4, veri önbelleğinin iki bölüme ayrılmasına izin verir: **8 KB Scratchpad** (hızlı RAM) ve **8 KB veri önbelleği**.
 
