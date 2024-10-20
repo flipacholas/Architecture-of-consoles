@@ -1,6 +1,6 @@
 ---
-short_title: Dreamcast Mimarisi
-long_title: Dreamcast Mimarisi
+short_title: Dreamcast’ın Mimarisi
+long_title: Dreamcast’ın Mimarisi
 name: Dreamcast
 date: 2019-10-07
 release_date: 1998-11-27
