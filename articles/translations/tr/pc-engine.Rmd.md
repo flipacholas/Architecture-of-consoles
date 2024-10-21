@@ -70,7 +70,7 @@ Son olarak, genel amaç için <strong x-id=“1”>8 KB RAM</strong> bulunmaktad
 
 Bu MMU günümüz MMU’larından çok farklıdır, ilkinin bir <a href=“nes#going-beyond-existing-capabilities”>mapper</a>’a daha yakın olduğunu söyleyebilirim. Bununla birlikte, PC Engine’de bulunan MMU, 21 bitlik bir adres veri yolu oluşturmak için CPU'nun 16 adres hattıyla birleştirilen <strong x-id=“1”>eight 8-bit register</strong>’dan (<strong x-id=“1”>Mapping Register</strong> veya ‘MPR’ olarak adlandırılır) oluşur.
 
-![MMU'nun adresleme yaklaşımı.](mmu.png)
+![MMU’nun adresleme yaklaşımı.](mmu.png)
 
 Bu şu şekilde çalışır:
 
@@ -90,7 +90,7 @@ Grafikler, <strong x-id=“1”>Hudson Soft HuC6270</strong> tarafından halledi
 
 Öncelikle, VDC bir <strong x-id=“1”>tile engine</strong> (5. nesil ortaya çıkana kadar hemen hemen standart) ancak PC Engine’in rakiplerine kıyasla önemli bir miktar olan <strong x-id=“1”>64 KB VRAM</strong> içerdiğine dikkat edin. Bu, daha sonra kontrol edeceğimiz yeni bir içerik türüne yol açabilir.
 
-![VDP'nin bellek mimarisi.](graphics/vdc.png)
+![VDP’nin bellek mimarisi.](graphics/vdc.png)
 
 Grafik verilerinin düzenlenme şekli biraz kafa karıştırıcıdır: Hem CPU hem de VDC 16 bit adresler kullanır, ancak CPU yalnızca 8 bit kelimeleri işleyebilirken, HuC6270 16 bit kelimeleri VRAM'de saklar [@graphics-chibi]. Bu, RAM’deki tek bir adresin bir bayt içerdiği, VRAM’deki bir adresin ise iki bayt depoladığı anlamına gelir, bu nedenle geliştiricilerin VRAM’e veri aktarırken bu tutarsızlığa dikkat etmeleri gerekir.
 
@@ -106,9 +106,9 @@ Sistem birden fazla çözünürlük kullanabilir, bunun nedeni oyunun ekran zama
 
 #### Karolar {.tabs.active}
 
-![VRAM'de bulunan arka plan karoları.](graphics/tiles_background.png){.tabs-nested .active .tab-float .pixel .desktop-margined title="Arka plan"}
+![VRAM’de bulunan arka plan tile’ları.](graphics/tiles_background.png){.tabs-nested .active .tab-float .pixel .desktop-margined title="Arka plan"}
 
-![VRAM'de bulunan Sprite karoları.](graphics/tiles_sprites.png){.tabs-nested-last .pixel title="Sprite'lar"}
+![VRAM’de bulunan Sprite karoları.](graphics/tiles_sprites.png){.tabs-nested-last .pixel title="Sprite'lar"}
 
 Hızlı bir hatırlatma olarak, kutucuklar sadece <strong x-id=“1”>8x8 piksel bitmap</strong>lerdir ve renderer ekranın bazı bölümlerini çizmek için alır. VDC ile çerçeve iki düzlemden oluşur: Arka plan katmanı ve sprite katmanı.
 
@@ -120,7 +120,7 @@ Video kodlayıcı, <strong x-id=“1”>32 renk paleti</strong> (arka plan için
 
 #### Karoların saklanması {.tab}
 
-![Arka plandaki tek bir karonun yapılandırılması.](graphics/storagetiles.png){.tabs-nested .active .tab-float title="Arka plan"}
+![Arka plandaki tek bir tile’ın yapılandırılması.](graphics/storagetiles.png){.tabs-nested .active .tab-float title="Arka plan"}
 
 ![Tek bir sprite karosu yapılandırılması.](graphics/storagetiles_sprites.png){.tabs-nested-last title="Sprite'lar"}
 
@@ -168,7 +168,7 @@ Video kodlayıcı RGB (Sync ile birlikte) ve YPbPr çıkışı verir, bu sıras�
 
 ![PC Engine'in sağ tarafındaki RF bağlantı noktası.](rfport.jpg){.tabs-nested .active .open-float .tab-float title="RF"}
 
-![TurboGrafx-16 [@photography-amos] için 'Turbo Booster', video kompozit ve güç sağlamak için Genişleme portuna bağlanır.](turbo_booster.png){.tabs-nested-last title="Aksesuar"}
+![TurboGrafx-16 [@photography-amos] için ‘Turbo Booster’, video kompozit ve güç sağlamak için Genişleme portuna bağlanır.](turbo_booster.png){.tabs-nested-last title="Aksesuar"}
 
 ... Ne yazık ki Hudson, kutudan video çıkarmanın tek yolu olarak bir RF modülatörü takmaya karar verdi, bu yüzden o kadar da harika değil. Ancak yine de, PC Engine 80’lerde tasarlandı, bu nedenle bu yaklaşım her türlü TV ile uyumluluğu garanti etti (konsolun aynı bölgesinden olduklarını varsayarak).
 
@@ -207,7 +207,7 @@ PSG her şeyi karıştıracak ve bir stereo sinyal çıkışı sağlayacaktır. 
 
 Bu konsol, bazıları konsolu dahili olarak (örneğin daha fazla RAM sağlayarak) ve harici olarak (daha fazla bağlantı noktası ve/veya diğer depolama ortamlarını okuma imkanı ekleyerek) tamamen geliştiren çok sayıda aksesuara sahipti.
 
-![PC Engine'in arkasındaki genişleme portu.](expansion.jpg) {.open-float}
+![PC Engine’in arkasındaki genişleme portu.](expansion.jpg) {.open-float}
 
 Bu da konsolun arkasında bulunan ve aşağıdaki bileşenlere erişimi mümkün kılan <strong x-id=“1”>Expansion Port</strong>'na bağlanmaktadır [@io-exp]:
 
@@ -239,20 +239,20 @@ Programlar 6502 assembly ile yazılır, ekstra 65C02 opcode’ları ve Hudson ta
 
 ### Standart Ortam
 
-NEC/Hudson, herkesin sevdiği o <em x-id=“3”>hantal ve sıkıcı</em> kartuşlara güvenmek yerine, bu kez kredi kartı boyutunda <strong x-id=“1”>HuCard</strong> adında başka bir araç tasarladı. Bazı MSX oyunları tarafından kullanılan 'Bee Card' adlı eski bir ortamdan türemişlerdir.
+NEC/Hudson, herkesin sevdiği o <em x-id=“3”>hantal ve sıkıcı</em> kartuşlara güvenmek yerine, bu kez kredi kartı boyutunda <strong x-id=“1”>HuCard</strong> adında başka bir araç tasarladı. Bazı MSX oyunları tarafından kullanılan ‘Bee Card’ adlı eski bir ortamdan türemişlerdir.
 
 ![Tipik bir perakende oyunu.](hucard.jpg) {.open-float.pico}
 
-İlginçtir ki, <a href=“master-system#medium”>Sega Card</a>'a çok benzerler ancak 35 yerine 38 pin içerirler [@games-pinout]. Dahili olarak, farklılıklar daha önemlidir:
+İlginçtir ki, <a href=“master-system#medium”>Sega Card</a>’a çok benzerler ancak 35 yerine 38 pin içerirler [@games-pinout]. Dahili olarak, farklılıklar daha önemlidir:
 
-- CPU bellek haritası, eşleyici olmadan <strong x-id=“1”>1 MB HuCard belleğe kadar erişebilir</strong>, bu nedenle oyunların çoğu 1 MB ROM'lara bağlı kalmıştır. Bu arada, 'Street Fighter II' gibi oyunlar 2,5 MB'lık bir ROM'da yer alıyordu! [@games-secrets]
+- CPU bellek haritası, eşleyici olmadan <strong x-id=“1”>1 MB HuCard belleğe kadar erişebilir</strong>, bu nedenle oyunların çoğu 1 MB ROM'lara bağlı kalmıştır. Bu arada, ‘Street Fighter II’ gibi oyunlar 2,5 MB'lık bir ROM'da yer alıyordu! [@games-secrets]
 - Kartın konsolu ekstra bir ses kanalıyla beslemesini sağlayan bir <strong x-id=“1”>Audio In</strong> pini var.
 
 {.close-float}
 
 ### CD-ROM Eklentisi
 
-Bu genişleme portu o kadar çok sayıda aksesuar ve genişleme birimine kapı açtı ki, sonunda basit bir PC Engine'i tamamen farklı bir şeye dönüştürdüler. Bu da yetmezmiş gibi, HuCard yuvası genişleme olanaklarını tamamlıyordu. Demek istediğim, bu makale için kayda değer yükseltmelere (bazıları konsolun gelecekteki revizyonlarına dahil edildi) odaklanmam gerekecek.
+Bu genişleme portu o kadar çok sayıda aksesuar ve genişleme birimine kapı açtı ki, sonunda basit bir PC Engine’i tamamen farklı bir şeye dönüştürdüler. Bu da yetmezmiş gibi, HuCard yuvası genişleme olanaklarını tamamlıyordu. Demek istediğim, bu makale için kayda değer yükseltmelere (bazıları konsolun gelecekteki revizyonlarına dahil edildi) odaklanmam gerekecek.
 
 ![CD-ROM² Okuyucu (TurboGrafx-16 sürümü) [@photography-amos]. O zamanlar Discman işinde miydiler?](cd/reader.png){.tabs-nested .active .open-float .tab-float title="CD Okuyucu"}
 
@@ -264,9 +264,9 @@ Bir CD-ROM okuyucu ve **Sistem Kartı** adı verilen özel bir HuCard'dan oluşa
 
 {.close-float}
 
-Yıllar sonra NEC, <strong x-id=“1”>Super CD-ROM²</strong> adında başka bir CD modülü çıkardı ve okuyucunun donanımı çoğunlukla aynı kalırken, genel amaçlı RAM'i 256 KB'a yükseltildi. Halihazırda bir CD-ROM² ünitesine sahip olan müşteriler, ekstra RAM (ve bir I/O rutini daha!) içeren <strong x-id=“1”>Super System Card</strong> satın alarak üniteyi 'güncelleyebiliyorlardı'. Tüm bunların ötesinde, NEC daha sonra <strong x-id=“1”>Arcade Card</strong> adı verilen ve bu durumda <strong x-id=“1”>2 MB RAM</strong> içeren yeni BIOS güncellemeleri gönderdi.
+Yıllar sonra NEC, <strong x-id=“1”>Super CD-ROM²</strong> adında başka bir CD modülü çıkardı ve okuyucunun donanımı çoğunlukla aynı kalırken, genel amaçlı RAM’i 256 KB’a yükseltildi. Halihazırda bir CD-ROM² ünitesine sahip olan müşteriler, ekstra RAM (ve bir I/O rutini daha!) içeren <strong x-id=“1”>Super System Card</strong> satın alarak üniteyi ‘güncelleyebiliyorlardı’. Tüm bunların ötesinde, NEC daha sonra <strong x-id=“1”>Arcade Card</strong> adı verilen ve bu durumda <strong x-id=“1”>2 MB RAM</strong> içeren yeni BIOS güncellemeleri gönderdi.
 
-CD tabanlı oyunlar kesinlikle geliştirildikleri BIOS kartına bağlıydı, ancak yeni kartlar geriye dönük olarak uyumluydu (bazı istisnalar dışında). Bu nedenle Arcade Card, <em x-id=“3”>neredeyse</em> tüm CD-ROM tabanlı oyunları oynamak isteyen kullanıcılar için tercih edilebilir bir seçimdir. 'Neredeyse' dedim çünkü üçüncü parti şirketler de kendi BIOS kartlarını (yani 'Games Express CD Card') çıkardılar ve bunlar özellikle o stüdyonun oyunlarını oynamak için gerekliydi.
+CD tabanlı oyunlar kesinlikle geliştirildikleri BIOS kartına bağlıydı, ancak yeni kartlar geriye dönük olarak uyumluydu (bazı istisnalar dışında). Bu nedenle Arcade Card, <em x-id=“3”>neredeyse</em> tüm CD-ROM tabanlı oyunları oynamak isteyen kullanıcılar için tercih edilebilir bir seçimdir. ‘Neredeyse’ dedim çünkü üçüncü parti şirketler de kendi BIOS kartlarını (yani ‘Games Express CD Card’) çıkardılar ve bunlar özellikle o stüdyonun oyunlarını oynamak için gerekliydi.
 
 Super CD-ROM² ile birlikte NEC/Hudson, konsol, okuyucu ve BIOS kartını tek bir pakette toplayan <strong x-id=“1”>Turbo Duo</strong> adlı yeni bir PC-Engine/TurboGrafx-16 çeşidini de piyasaya sürdü.
 
@@ -276,19 +276,19 @@ Yayınlanan diğer genişletmeleri merak ediyorsanız, çevrim içi kataloğa [@
 
 ## Korsanla Mücadele ve Homebrew
 
-HuCard'lar bölge kilitlidir, yani bir PC-Engine oyunu TurboGrafx-16'da (veya tam tersi) kutudan çıktığı gibi çalışmayacaktır. Bunun nedeni, veri hatlarının sırasının Amerikan versiyonunda tersine çevrilmiş olmasıdır. Tahmin edebileceğiniz gibi, bu ucuz bir adaptörün üstesinden gelemeyeceği bir şey değil. Ancak, oyunlar sistemın bölgesini kontrol etmek için rutinler içerebilir.
+HuCard’lar bölge kilitlidir, yani bir PC-Engine oyunu TurboGrafx-16’da (veya tam tersi) kutudan çıktığı gibi çalışmayacaktır. Bunun nedeni, veri hatlarının sırasının Amerikan versiyonunda tersine çevrilmiş olmasıdır. Tahmin edebileceğiniz gibi, bu ucuz bir adaptörün üstesinden gelemeyeceği bir şey değil. Ancak, oyunlar sistemın bölgesini kontrol etmek için rutinler içerebilir.
 
 Diğer taraftan, CD-ROM oyunları ne bölge kilitlidir ne de kopya korumalıdır, ancak önyükleme için hala bir Sistem Kartına ihtiyaç duyduklarını unutmayın (bu da bölge kilitlidir).
 
 ## Hepsi bu kadar
 
-![PC Engine'imin RF kablosu üzerinden görüntüleniyor (_nostaljik amaçlar... Sanırım_). Matt'e bağış için çok teşekkür ederiz!](mypc.jpg)
+![PC Engine’imin RF kablosu üzerinden görüntüleniyor (_nostaljik amaçlar için... sanırım_). Matt’e bağış için çok teşekkür ederiz!](mypc.jpg)
 
 İşte bu! Yılın son makalesini şimdi okudunuz.
 
-2020, web sitesi için 'ilginç' bir yıl oldu (hepimizi etkileyen tüm olumsuz olayları bir kenara bırakalım). Yıl, [Wii makalesi](wii) ile başladı ve ardından [PS2](playstation-2), [Xbox](xbox), [Nintendo DS](nintendo-ds), [Master System](master-system) ve nihayetinde bu makale ile devam etti.
+2020, web sitesi için ‘ilginç’ bir yıl oldu (hepimizi etkileyen tüm olumsuz olayları bir kenara bırakalım). Yıl, [Wii makalesi](wii) ile başladı ve ardından [PS2](playstation-2), [Xbox](xbox), [Nintendo DS](nintendo-ds), [Master System](master-system) ve nihayetinde bu makale ile devam etti.
 
-Ziyaretçi sayısında da birçok değişiklik oldu. İlk başta yavaş bir başlangıcı oldu, ancak sonra yaz aylarında şaşırtıcı derecede yüksek bir ziyaret sayısına ulaştı. Hacker News kullanıcılarına, OSNews'e, Reddit'e, Gigazine'e, YouTuber'lara, Twitter kullanıcılarına ve birçok diğer forum ve kişiye makaleleri paylaştıkları için teşekkür etmek istiyorum. Ve elbette, sitenin ayakta kalmasına yardımcı olan cömert bağışçılara büyük bir teşekkür ediyorum!
+Ziyaretçi sayısında da birçok değişiklik oldu. İlk başta yavaş bir başlangıcı oldu, ancak sonra yaz aylarında şaşırtıcı derecede yüksek bir ziyaret sayısına ulaştı. Hacker News kullanıcılarına, OSNews’e, Reddit’e, Gigazine’e, YouTuber’lara, Twitter kullanıcılarına ve birçok diğer forum ve kişiye makaleleri paylaştıkları için teşekkür etmek istiyorum. Ve elbette, sitenin ayakta kalmasına yardımcı olan cömert bağışçılara büyük bir teşekkür ediyorum!
 
 İyi bir Noel ve mutlu bir 2021 yılı geçirmenizi dilerim! Hoşça kalın!  
 Rodrigo
