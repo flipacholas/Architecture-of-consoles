@@ -2,18 +2,18 @@
 - 
   id: 3
   ordinal: Üçüncü
-  description: '''8 bit'' konsollar olarak bilinen bu makineler, daha gelişmiş grafikler ve daha zengin sesler getirdi. Sonuçta, büyük bir pazar çöküşü meydana gelmişti ve daha yeni standartların belirlenmesi gerekiyordu.'
+  description: '‘8 bit’ konsollar olarak bilinen bu makineler, daha gelişmiş grafikler ve daha zengin sesler getirdi. Sonuçta, büyük bir pazar çöküşü meydana gelmişti ve daha yeni standartların belirlenmesi gerekiyordu.'
   gpu: Kaydırılabilir tile map ve daha büyük renk paletleri
 - 
   id: 4
   ordinal: Dördüncü
-  description: DMA, yatay kesmeler, çoklu modlar... Bunlar, yeni '16-bit' neslini getiren ve yeni oyun türlerine kapı açan yeni kavramların bazı örnekleridir.
+  description: DMA, yatay kesmeler, çoklu modlar... Bunlar, yeni ‘16-bit’ neslini getiren ve yeni oyun türlerine kapı açan yeni kavramların bazı örnekleridir.
   cpu: Çarpma ve bölme talimatları, DMA ve çift işlem
   gpu: Afin dönüşümler ve yatay kesintiler
 - 
   id: 5
   ordinal: Beşinci
-  description: 3D oyun bir ihtiyaç haline geldi ancak 'nasıl' olacağı henüz net değil. Yanıt ne oldu? Her şirket kendi farklı vizyonunu sundu.
+  description: 3D oyun bir ihtiyaç haline geldi ancak ‘nasıl’ olacağı henüz net değil. Yanıt ne oldu? Her şirket kendi farklı vizyonunu sundu.
   cpu: Veri hattı aşamaları ve L1 önbelleği
   gpu: Programlanabilir veri hatları, Z-arabelleğe alma ve perspektif düzeltmeleri
 - 
