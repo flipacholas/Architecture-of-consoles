@@ -402,6 +402,7 @@ TeraScale架构是Xenos/Crayola移植到PC 市场的具体化……而GPU7则是
 起初，我以为Wii U通过软件实现其音频功能(就像其竞争对手[开始做的那样](playstation-3#audio)).。 但随之而来的是其他问题：Wii [复杂的 DSP](wii#audio) 是如何模拟的？ Espresso足够强大吗？
 
 嗯，这还不是全部。 与Wii不同，Wii U的音频管道必须服务于三个终端：
+
 - **电视**，预计最多6个声道(通常只有2/立体声).
 - **GamePad** 最多有 4 个声道(也称为环绕声).
 - 最多四个 **Wii 遥控器**(每个都有一个[低质量](wii#next-gen-controllers)声道).
