@@ -62,7 +62,7 @@ Unlike the Apple IIGS, which enjoyed backward compatibility with Apple II softwa
 
 Moving on, the CPU employs a **variable clock speed** that will reach up to **3.58 MHz** during register operations and down to **1.79 MHz** when accessing the slowest buses (i.e. the serial/controller port).
 
-In summary, the 5A22 features:
+Now, to properly understand the functionality of the 5A22, we must first look at what the 65C816 provides:
 
 - The **65816 ISA**: The debuting 16-bit instruction of the 65C816. It's based on the 6502 ISA but doesn't implement undocumented instructions some NES games resorted to [@cpu-unoffopcodes].
   - The size of instructions can vary between 1 byte (8 bits) and 4 bytes (32 bits) depending on how memory addresses are referenced (a.k.a the 'addressing mode' used) [@cpu-isaref].
@@ -71,18 +71,23 @@ In summary, the 5A22 features:
   - Unlike later [MIPS CPUs](nintendo-64#cpu), there isn't a mixed instruction set with dedicated opcodes for 8-bit and 16-bit words. Instead, the same instruction set will be interpreted differently based on the mode activated.
   - For compatibility reasons, the CPU always starts in 'emulation' mode (pure 6502) and it's up to the program to switch to a particular 'native' mode to enable 16-bit functionality. On a side note, it's amusing how Intel's x86 still applies the [same _modus operandi_](xbox#boot-process) on their modern CPUs.
 - **Three 16-bit general-purpose registers**. This set matches the 6502's (`X`, `Y` and `A`). However, due to the different modes of operation, these registers can now switch between 16-bit and 8-bit.
+  - Compare this number to the [sixteen 32-bit registers](mega-drive-genesis#the-leader) the competition offered, quite a distinction!
 - **16-bit internal data bus** and an **8-bit external data bus**: Meaning that there are performance penalties for moving values larger than 8 bits across memory (the CPU spends additional cycles), especially considering most instructions are 16-bit long. However, the overall cost is relative since Ricoh's variant includes DMA units (explained later on) and the CPU clock will vary depending on the operation.
 - **24-bit address space**: Allowing the CPU to access **up to 16 MB worth of memory**. Just like the [Motorola 68000](mega-drive-genesis#cpu), except that the 65C816 gets its 24-bit addresses by combining extra 8-bit registers (`DBR` and `PBR`) with the original 16-bit addressing lines of the 6502 [@cpu-chibi]. Overall, this methodology is similar to using an [internal mapper](pc-engine#memory-access).
 
+Looking at this, I have to confess the 65C816 feels excessively cumbersome for little gain. Compared to other offerings such as the [Motorola 68000](mega-drive-genesis#the-leader), it's not difficult to conclude why the Apple IIGS ended up being the only personal computer to adopt the 65C816. Nonetheless, throughout the article you'll see how Nintendo and Ricoh managed to turn the limitations of this CPU into opportunities to revamp its game library.
+
 ### Ricoh's additions
 
-The 65C816 was an acceptable general-purpose CPU for its decade (the 80s). Yet, Nintendo planned its console to last throughout the 90s. So, Ricoh had to step up its game, if you pardon the pun. 
+The 65C816 is a general-purpose CPU conceived in 1983 as a follow-up of its 1975 ancestor, with all the requirements and constraints that this implies. Yet, Nintendo planned its console to last throughout the 90s. Thus, Ricoh had to step up its game (if you pardon the pun).
 
-As a consequence, the first apparent upgrade was the addition of **16-bit multiplication** and **division units**, which provide the CPU with the ability to carry out these types of operations by hardware (the 65C816 doesn't include any dedicated instructions for this type of arithmetic).
+First on the list was to tackle its arithmetic limitations, the 65C816 doesn't include any dedicated instructions for multiplication or division. As a consequence, Ricoh added **16-bit multiplication** and **division units**, enabling the CPU to carry out these types of operations by hardware (instead of software).
+
+Now, 'why is this relevant' you may be wondering, and the answer will come up when we discuss certain novelties of the Super Nintendo's graphics chips (in the 'Graphics' section).
 
 #### Speedy memory access
 
-The second group of additions was the **two** exclusive DMAs** (Direct Memory Access) that enable to move data around without the intervention of the CPU (resulting in faster speeds). For this design to work, regions of memory are referenced using two different address buses [@cpu-manual]:
+The second challenge was to increment its data bandwidth. Hence, **two exclusive DMAs** (Direct Memory Access) were added to move data around without the intervention of the CPU (resulting in faster speeds). For this design to work, regions of memory are referenced using two different address buses [@cpu-manual]:
 
 - 24-bit **'A Bus'** controlled by the CPU: Connects the cartridge, CPU and WRAM.
 - 8-bit **'B Bus'** controlled by the S-PPU: Connects the cartridge, CPU, WRAM, S-PPU and the Audio CPU.

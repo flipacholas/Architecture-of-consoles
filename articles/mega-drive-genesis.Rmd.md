@@ -51,11 +51,12 @@ Firstly, we've got a **Motorola 68000** running at **~7.6MHz**, a popular proces
 Back on topic, the 68k has the role of 'main' CPU and it will be tasked with the game logic, handling I/O and graphics calculations. It has the following capabilities [@cpu-user]:
 
 - **68000 ISA**: A new instruction set with plenty of features, including a set of multiplication and division opcodes. Some instructions are 8-bit long (called 'byte'), others are 16-bit long (called 'word') and the rest are 32-bit long (called 'long-word').
-- **Eight general-purpose 32-bit registers**: This is a big step, considering the 6502 and Z80 only have 8-bit registers.
+- **Sixteen general-purpose 32-bit registers**. Bear in mind, this CPU splits the set into eight 'data registers' (where arithmetic computations may be performed) and eight 'address registers' (exclusively used for storing memory addresses).
+  - Nevertheless, this is a big step, considering the 6502 and Z80 only provide 8-bit registers.
 - **16-bit ALU**: Meaning it needs extra cycles to compute arithmetic operations on 32-bit numbers, but it's fine on 16-bit/8-bit ones.
 - External **16-bit data bus**: As you can see, while this CPU has some '32-bit capabilities', it hasn't been designed to be a complete 32-bit machine. The width of this bus implies better performance when moving 16-bit data around.
   - Interestingly enough, Motorola debuted a complete 32-bit CPU, the **68020**, four years before this console's release. But I imagine costs would've skyrocketed had Sega chosen the latter chip.
-- **24‑bit address bus**: This means that **up to 16 MB of memory can be accessed**. Memory addresses are still encoded with 32-bit values inside the CPU (the upper byte is just discarded). Having said that, the bus is physically connected to [@cpu-memorymap]:
+- **24‑bit address bus**: This means that **up to 16 MB of memory can be accessed**. Memory addresses are still encoded with 32-bit values inside the CPU (the upper byte is just discarded). Having said that, with the Mega Drive, the bus is physically connected to [@cpu-memorymap]:
   - 64 KB of general-purpose RAM.
   - Cartridge ROM (up to 4 MB).
   - Two Controllers.
@@ -64,7 +65,7 @@ Back on topic, the 68k has the role of 'main' CPU and it will be tasked with the
   - Expansion ports (used for 'future' accessories).
   - The second CPU's RAM, intermediated by the *bus arbiter*.
 
-If you wonder the reason behind using 24-bit addresses in a CPU that can handle 32-bit words, is because not enough equipment of that era was asking to manage 4 GB of memory. Combined with the fact implementing unused lines is costly in terms of performance and money, Motorola reached a sensible compromise (24 address lines) which would also prepare developers for when the full 32-bit CPU (the 68020) arrives. 
+If you wonder the reason behind using 24-bit addresses in a CPU that can handle 32-bit words: the equipment of that era was hardly asking to manage 4 GB of memory. Given that implementing unused lines is costly in terms of performance and money, Motorola reached a sensible compromise with 32-bit registers and 24 address lines, preparing developers for the arrival of the full 32-bit CPU (the 68020) five years later. 
 
 #### A peculiar instruction set
 
