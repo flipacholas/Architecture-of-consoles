@@ -250,7 +250,9 @@ The type of memory chips (GDDR3) is the same one found in the [Wii](wii#what-abo
 
 #### Memory Controller
 
-With all being said, how can Xenon access this memory? Well, the CPU communicates with the GPU through an interface called **Front-side Bus** that uses two unidirectional buses, the 'CPU→GPU' lane is **64 bits wide and runs at 1.35 GHz**, while the 'GPU→CPU' one is **128-bits wide and runs at 675 MHz** [@cpu-brown]. If we do the math, both lanes provide a bandwidth of 10.8 GB/s.
+With all being said, how can Xenon access this memory? Well, the CPU communicates with the GPU through an interface called **Front-side Bus**, this combines serial and parallel communication models to keep costs down and reduce latency as much as possible [@cpu-brown].
+
+On the outside, there are two unidirectional lanes named 'PHY', each is made of **16 buses** that operate at the exceptional speed of **5.4 GHz** [@cpu-siljenberg]. In there, information is transmitted in serial form. Internally, however, the CPU and GPU only understand whole words. Thus, both endpoints are tasked with serialising the data before sending it through PHY and/or deserialising it after receiving it. The CPU's inner interface is **64 bits wide and runs at 1.35 GHz**, while the GPU's is **128-bits wide and runs at 675 MHz** [@cpu-brown]. If we do the math, both lanes provide a bandwidth of 10.8 GB/s.
 
 The Front-side bus route only takes you to the GPU. So, between the GPU and the GDDR3 chips, **two memory controllers** inside the GPU manage this connection using **one 1024-bit bus each**. To reduce latency, the memory controllers use [address tiling](playstation-3#tab-8-5-pixel-operations) for GPU-related operations and path-finding to reduce CPU congestion. In general terms, Microsoft states that there's a bandwidth of **22.4 GB/s** between GPU and memory.
 
