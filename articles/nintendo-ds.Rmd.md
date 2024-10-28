@@ -572,6 +572,8 @@ As always, flash cartridges also enabled to run pirated ROMs, but since Nintendo
 
 #### Enhanced Slot-2 {.tab}
 
+![Example of Slot-2 flashcart that can launch DS games. This requires a Slot-1 pass-through card to bootstrap it.](supercard.webp){.tab-float}
+
 After more clandestine research was conducted on the DS BIOS and firmware, it was ultimately discovered that the execution of an NDS card could be redirected to the GBA slot. The NDS card wasn't cracked yet, but this method allowed to provisionally bypass the security system of Slot-1 cards and execute **Slot-2 programs in DS mode**.
 
 Thus, a new generation of Slot-2 flashcarts appeared on the market. They embed ARM9 code that is executed once bootstrapped from Slot-1. The bootstrap itself was accomplished using one of these methods discovered (called 'pass-through methods'):
@@ -584,6 +586,8 @@ As expected, Nintendo produced DS revisions that included an updated firmware th
 
 #### Native Slot-1 {.tab}
 
+![The 'R4 DS' was one of the first Slot-1 flashcards to appear on the market. Right afterwards, a swamp of replicas flooded it.](r4.webp){.tab-float}
+
 Martin Korth, the developer of the famous Nintendo DS emulator called 'NO$GBA', later managed to extract the BIOS and reverse engineer the Slot-1 security. With this, newer tools and documentation revealed the true mechanisms of Nintendo DS security. As you have seen in this article, the encryption system worked as long as nobody reversed it (this is a limitation of symmetric encryption systems, unlike asymmetric encryption systems, such as RSA where the private key is never stored).
 
 Anyway, these led to a massive influx of **plug-and-play Slot-1 flashcards** which worked on any type of console and ran Nintendo DS programs **natively**. The pass-through method was also improved with the debut of 'NoPass' cards which allowed to load Slot-2 flashcarts without requiring a genuine game.
@@ -592,11 +596,13 @@ Since the encryption system couldn't be altered without making breaking changes 
 
 #### Observations {.tabs-close}
 
-This is my personal opinion, but it's really striking how simple are flashcards compared to other homebrew methods from previous consoles. In older articles, I've described that if users ultimately wanted to run homebrew programs or pirated games, they would have to get down in the rabbit hole and follow some sort of complicated method.
+This is my personal opinion, but I was astonished at how simple it was to acquire and use flashcards compared to other homebrew methods from previous consoles. In older articles, I've described that if users ultimately wanted to run homebrew programs or pirated games, they would have to get down the rabbit hole and follow some cumbersome method.
 
-In the case of the DS, flashcards were literally sold just like retail games, and I bet it was truly concerning for game studios to see how painless was to resort to piracy.
+In the case of the DS, however, flashcards were literally sold just like retail games (albeit with a different 'style' of marketing) and I bet it was truly concerning for game studios to see how painless was to resort to piracy.
 
-Another thing, it's also surprising the amount of branded flashcards (aside from all knock-offs) that appeared on the market. If you look at it from a technical perspective, flashcards are just SD adapters [@anti_piracy-acekard]. The only thing that differentiates one card from another is the boot code and SD reader. Some manufacturers also took more effort to design a better file browser (referred to as kernel/firmware) and include some additional hardware.
+![Slot-1 flashcards were a very active industry at one point, these were just a handful of the many offerings.](slot1_flashcards.webp)
+
+Another thing, it's surprising to see the amount of branded flashcards (aside from all knock-offs) that appeared on the market. If you look at it from a technical perspective, flashcards are just SD adapters [@anti_piracy-acekard]. But as this industry progressed, some manufacturers took extra steps to design a better software package (referred to as 'kernel' or 'firmware') or even house rather unusual hardware. For instance, the 'N-Card' offered embedded storage; and the 'SuperCard DSTwo' bundled an Ingenic Jz4740 CPU ([MIPS](playstation#cpu)-compatible) running at 360 MHz! [@anti_piracy-dstwo] I haven't seen this passion since [expansion cartridges](super-nintendo#beyond-convention).
 
 ## That's all folks
 
