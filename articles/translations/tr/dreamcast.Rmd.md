@@ -1,7 +1,7 @@
 ---
-short_title: Dreamcast’ın Mimarisi
-long_title: Dreamcast’ın Mimarisi
-name: Dreamcast
+short_title: Dreamcast'ın Mimarisi
+long_title: Dreamcast'ın Mimarisi
+name: Dreamcast'ın
 date: 2019-10-07
 release_date: 1998-11-27
 subtitle: Son bir deneme
@@ -13,9 +13,9 @@ cover: dreamcast
 top_tabs:
   Model:
     file: international
-    caption: "Dreamcast.<br>Japonya’da 29/11/1998, Amerika’da 09/09/1999 ve 14/10/1999’da Avrupa’da satışa sunuldu."
+    caption: "Dreamcast.<br>Japonya'da 29/11/1998, Amerika'da 09/09/1999 ve 14/10/1999'da Avrupa'da satışa sunuldu."
   Motherboard:
-    caption: "Revizyon ‘VA1’ gösteriliyor.<br>Resmi dokümanlarda sistemin 128KB flash bellek içerdiği belirtilirken, bu anakart nedense 256KB EEPROM yongası içeriyor.<br>Pil ve denetleyici bağlantı noktaları ‘Ön panel’ adı verilen bir ek kartta bulunuyor."
+    caption: "Revizyon 'VA1' gösteriliyor.<br>Resmi dokümanlarda sistemin 128KB flash bellek içerdiği belirtilirken, bu anakart nedense 256KB EEPROM yongası içeriyor.<br>Pil ve denetleyici bağlantı noktaları 'Ön panel' adı verilen bir ek kartta bulunuyor."
   Diagram:
     caption: "Önemli veri yolları genişlikleri ve hızları ile etiketlenmiştir."
 #Historical
@@ -25,7 +25,7 @@ aliases:
 
 ## Giriş
 
-Sega Dreamcast, hem oyun geliştiricilerine hem de konsol oyuncularına hitap etmek için selefine ([Satürn](sega-saturn)) göre birçok yeni özellik sundu. Bu Sega’nın konsol pazarını fethetmek için son girişimi olsa da Dreamcast’te öncülük edilen bazı teknolojiler devam etti ve gelecekteki ana akım cihazlara taşındı.
+Sega Dreamcast, hem oyun geliştiricilerine hem de konsol oyuncularına hitap etmek için selefine ([Satürn](sega-saturn)) göre birçok yeni özellik sundu. Bu Sega'nın konsol pazarını fethetmek için son girişimi olsa da, Dreamcast'te öncülük edilen bazı teknolojiler devam etti ve gelecekteki ana akım cihazlara taşındı.
 
 ## {.supporting-imagery}
 
@@ -33,27 +33,27 @@ Sega Dreamcast, hem oyun geliştiricilerine hem de konsol oyuncularına hitap et
 
 Hitachi için işler sorunsuz ilerliyordu, [ikonik SuperH çipleri](sega-saturn#cpu) birden fazla müşteri bulmuştu ve şirket artık serinin dördüncü sürümü için hazırdı. Yeni girişleri, gömülü yetenekleri 3D oyunların sahip olduğu işlevsellikle birleştirecek.
 
-SuperH’yi ilk benimseyenlerden biri olan Sega, yeni konsollarına güç sağlamak için şaşırtıcı olmayan bir şekilde Hitachi’nin son sevkiyatını seçti. Bu nedenle Dreamcast’te **SH-4 CPU** bulunmaktadır ve bu işlemci **200 MHz** [@cpu-spec] hızında çalışmaktadır. Ayrıca, [bu sefer işleri yoluna koymak](sega-saturn#the-final-product) için, **sadece bir tam donanımlı CPU** var.
+SuperH'yi ilk benimseyenlerden biri olan Sega, yeni konsollarına güç sağlamak için şaşırtıcı olmayan bir şekilde Hitachi'nin son sevkiyatını seçti. Bu nedenle Dreamcast'te **SH-4 CPU** bulunmaktadır ve bu işlemci **200 MHz** [@cpu-spec] hızında çalışmaktadır. Ayrıca, [bu sefer işleri yoluna koymak](sega-saturn#the-final-product) için, **sadece bir tam donanımlı CPU** var.
 
 ### Teklif
 
 Bununla birlikte, bu yeni işlemci hakkında ilginç olan nedir?
 
-Öncelikle, SH-4 önceki modellerin bir süper seti olarak devam ediyor, yani **32-bit RISC mimari**, **5 aşamalı pipeline** ve **16-bit instruction set** dahil olmak üzere SuperH serisinin mevcut [tüm özelliklerini](sega-saturn#cpu) miras alıyor. Ne yazık ki, aynı zamanda [control hazards](playstation#delay-galore)’ın da mirasçısıdır.
+Öncelikle, SH-4 önceki modellerin bir süper seti olarak devam ediyor, yani **32-bit RISC mimari**, **5 aşamalı pipeline** ve **16-bit instruction set** dahil olmak üzere SuperH serisinin mevcut [tüm özelliklerini](sega-saturn#cpu) miras alıyor. Ne yazık ki, aynı zamanda [control hazards](playstation#delay-galore)'ın da mirasçısıdır.
 
 ![SH-4 çipi.](sh4.jpg)
 
 Bunun da ötesinde, yeni nesil CPU olarak, gömülü uygulamaların kapsamının ötesine geçen birçok iyileştirme sunuyor [@cpu-arch]:
 
-- Bir **2-way superscalar** pipeline: CPU’nun boru hattının her aşamasında birden fazla komutu (bu durumda iki) işleyebildiği yeni bir paralellik tekniği. Bu da saniyede daha fazla talimatın yürütülmesine neden olur.
+- Bir **2-way superscalar** pipeline: CPU'nun boru hattının her aşamasında birden fazla komutu (bu durumda iki) işleyebildiği yeni bir paralellik tekniği. Bu da saniyede daha fazla talimatın yürütülmesine neden olur.
   - Perde arkasında, CPU iki talimatı iki farklı (kullanılabilir) yürütme birimine dağıtıyor. Bu nedenle - çok küçük bir grup hariç - tüm komutların paralelleştirilmesi için farklı türlerde (yani branching, aritmetik, vb.) olması gerekir [@cpu-soft_doc]. Aksi takdirde, yalnızca sıralı olarak yürütülebilirler. Her ne olursa olsun, SH-4 aynı zamanda asla paralelleştirilemeyecek bir talimat alt kümesi de sergiler, çünkü bunu mümkün kılmak için çok fazla bağımlılık içerirler.
 - **8 KB instruction cache** ve **16 KB data cache**: Konsollar veri önbelleğinden daha fazla komut önbelleği içerme eğiliminde olduğundan bu oran oldukça ilginçtir. Ancak SH-4, veri önbelleğinin iki bölüme ayrılmasına izin verir: **8 KB Scratchpad** (hızlı RAM) ve **8 KB veri önbelleği**.
 
 #### Özel bir çalışma
 
-Bir oyun konsolu CPU’sunun ortak işleri arasında bir oyunun mantığını idare etmek, düşman yapay zekasını çalıştırmak ve GPU’yu instructionla beslemek yer alır.
+Bir oyun konsolu CPU'sunun ortak işleri arasında bir oyunun mantığını idare etmek, düşman yapay zekasını çalıştırmak ve GPU'yu instruction'la beslemek yer alır.
 
-Dreamcast ile GPU’nun yalnızca [rasteriser](playstation#graphics) görevlerini yerine getirdiğini göreceksiniz. Dolayısıyla, CPU’nun grafik işlem hattının büyük bir kısmına dahil olması gerekir. Bu, CPU’nun büyük miktarda geometri verisini [işleyeceği](playstation#tab-2-2-geometry-transformation-engine) anlamına gelir (perspektif dönüşümlerini hesaplamak gibi). Şimdi, CPU’nun bu rolü sürdürebilmesini sağlamak için Sega ve Hitachi işbirliği yaparak SH-4’e iki önemli eklenti eklediler.
+Dreamcast ile GPU'nun yalnızca [rasteriser](playstation#graphics) görevlerini yerine getirdiğini göreceksiniz. Dolayısıyla, CPU'nun grafik işlem hattının büyük bir kısmına dahil olması gerekir. Bu, CPU'nun büyük miktarda geometri verisini [işleyeceği](playstation#tab-2-2-geometry-transformation-engine) anlamına gelir (perspektif dönüşümlerini hesaplamak gibi). Şimdi, CPU'nun bu rolü sürdürebilmesini sağlamak için Sega ve Hitachi işbirliği yaparak SH-4'e iki önemli eklenti eklediler.
 
 İlk eklenti özel bir **64-bit Kayan Nokta Birimi** (FPU). Bu bileşen, **IEEE-754 standardına** uyarak 32 bit ondalık sayıları (‘tek hassasiyetli’ veya ‘float’ olarak adlandırılır) veya 64 bit olanları (‘çift hassasiyetli’ veya ‘double’ türü) hesaplar. Register dosyası **otuz iki 32 bitlik register’dan** oluşur, ancak bunlar aynı zamanda **on altı 64 bitlik register’dan** oluşan farklı bir grupta birleştirilebilir, bu da birimin double işlem yapabilmesini sağlar.
 
