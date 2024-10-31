@@ -55,21 +55,21 @@ Bir oyun konsolu CPU'sunun ortak işleri arasında bir oyunun mantığını idar
 
 Dreamcast ile GPU'nun yalnızca [rasteriser](playstation#graphics) görevlerini yerine getirdiğini göreceksiniz. Dolayısıyla, CPU'nun grafik işlem hattının büyük bir kısmına dahil olması gerekir. Bu, CPU'nun büyük miktarda geometri verisini [işleyeceği](playstation#tab-2-2-geometry-transformation-engine) anlamına gelir (perspektif dönüşümlerini hesaplamak gibi). Şimdi, CPU'nun bu rolü sürdürebilmesini sağlamak için Sega ve Hitachi işbirliği yaparak SH-4'e iki önemli eklenti eklediler.
 
-İlk eklenti özel bir **64-bit Kayan Nokta Birimi** (FPU). Bu bileşen, **IEEE-754 standardına** uyarak 32 bit ondalık sayıları (‘tek hassasiyetli’ veya ‘float’ olarak adlandırılır) veya 64 bit olanları (‘çift hassasiyetli’ veya ‘double’ türü) hesaplar. Register dosyası **otuz iki 32 bitlik register’dan** oluşur, ancak bunlar aynı zamanda **on altı 64 bitlik register’dan** oluşan farklı bir grupta birleştirilebilir, bu da birimin double işlem yapabilmesini sağlar.
+İlk eklenti özel bir **64-bit Kayan Nokta Birimi** (FPU). Bu bileşen, **IEEE-754 standardına** uyarak 32 bit ondalık sayıları ('tek hassasiyetli' veya 'float' olarak adlandırılır) veya 64 bit olanları ('çift hassasiyetli' veya 'double' türü) hesaplar. Register dosyası **otuz iki 32 bitlik register'dan** oluşur, ancak bunlar aynı zamanda **on altı 64 bitlik register'dan** oluşan farklı bir grupta birleştirilebilir, bu da birimin double işlem yapabilmesini sağlar.
 
-Bu yeterli gelmediyse, Hitachi FPU ile bir adım daha ileri gitti ve bu kez **sekiz 128 bitlik register**’dan oluşan başka bir register grubu oluşturmak için ekstra logic uyguladı. İçinde her bir register artık dört adet 32 bit float ya da başka bir deyişle **128 bit vektör** olarak saklamaktadır. Bu format grafikle ilgili işlemler için idealdir.
+Bu yeterli gelmediyse, Hitachi FPU ile bir adım daha ileri gitti ve bu kez **sekiz 128 bitlik register**'dan oluşan başka bir register grubu oluşturmak için ekstra logic uyguladı. İçinde her bir register artık dört adet 32 bit float ya da başka bir deyişle **128 bit vektör** olarak saklamaktadır. Bu format grafikle ilgili işlemler için idealdir.
 
-Yeni vektörleri iyi bir şekilde kullanmak için FPU, [Saturn Control Unit](sega-saturn#the-third-processor-and-counting)’in sağladığı gibi bunları çalıştırmak için özel instructionlar içerir, ancak sektör artık daha standart hale gelmiştir. Yeni talimatlar genellikle **Single Instruction Multiple Data** (SIMD) olarak bilinen bir yapıya sahiptir ve aşağıdaki cebirsel işlemleri gerçekleştirebilir:
+Yeni vektörleri iyi bir şekilde kullanmak için FPU, [Saturn Control Unit](sega-saturn#the-third-processor-and-counting)'in sağladığı gibi bunları çalıştırmak için özel instruction'lar içerir, ancak sektör artık daha standart hale gelmiştir. Yeni talimatlar genellikle **Single Instruction Multiple Data** (SIMD) olarak bilinen bir yapıya sahiptir ve aşağıdaki cebirsel işlemleri gerçekleştirebilir:
 
 - Nokta çarpım.
 - Karelerin toplamı.
 - Matris çarpımı.
 
-İkinci eklenti ise SH-4’ün artık **64 bit genişliğinde** olan ve CPU’nun 32 bitlik değer çiftlerini aynı anda aktarabilmesini sağlayan harici bus’ıdır. Bu, bu CPU’nun genel performansına katkıda bulunan bir başka gelişmedir.
+İkinci eklenti ise SH-4'ün artık <strong x-id=“1”>64 bit genişliğinde</strong> olan ve CPU'nun 32 bitlik değer çiftlerini aynı anda aktarabilmesini sağlayan harici bus'ıdır. Bu, bu CPU'nun genel performansına katkıda bulunan bir başka gelişmedir.
 
 #### Bellek & erişim
 
-Dreamcast’lerde **16 MB SDRAM** bulunur ve **100 MHz** bus (CPU hızının yarısı) kullanılarak doğrudan CPU’ya bağlanır.
+Dreamcast'lerde **16 MB SDRAM** bulunur ve **100 MHz** bus (CPU hızının yarısı) kullanılarak doğrudan CPU'ya bağlanır.
 
 Buna karşılık, belleğin data bus’ı sadece 32 bit genişliğindedir [@cpu-spec]. Bu, CPU’nun 64-bit data bus’ının boşa gitti anlamına mı geliyor? Hayır, çünkü RAM <strong x-id=“1”>iki adet 8 MB bank</strong> kullanılarak takılmıştır. Yani, her bir çip CPU’nun data bus hatlarının yarısına bağlıdır.
 
