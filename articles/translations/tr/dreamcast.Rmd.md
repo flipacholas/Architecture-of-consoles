@@ -71,11 +71,11 @@ Yeni vektörleri iyi bir şekilde kullanmak için FPU, [Saturn Control Unit](seg
 
 Dreamcast'lerde **16 MB SDRAM** bulunur ve **100 MHz** bus (CPU hızının yarısı) kullanılarak doğrudan CPU'ya bağlanır.
 
-Buna karşılık, belleğin data bus’ı sadece 32 bit genişliğindedir [@cpu-spec]. Bu, CPU’nun 64-bit data bus’ının boşa gitti anlamına mı geliyor? Hayır, çünkü RAM <strong x-id=“1”>iki adet 8 MB bank</strong> kullanılarak takılmıştır. Yani, her bir çip CPU’nun data bus hatlarının yarısına bağlıdır.
+Buna karşılık, belleğin data bus'ı sadece 32 bit genişliğindedir [@cpu-spec]. Bu, CPU'nun 64-bit data bus'ının boşa gitti anlamına mı geliyor? Hayır, çünkü RAM <strong x-id=“1”>iki adet 8 MB bank</strong> kullanılarak takılmıştır. Yani, her bir çip CPU'nun data bus hatlarının yarısına bağlıdır.
 
 ![Bellek şeması.](memory.png)
 
-Bu belleğe erişmek için CPU, sanal adresleme için özel bir **Memory Management Unit** veya ‘MMU’ içerir, bu CPU’nun fiziksel bellek adres alanı **29 bit genişliğinde** olduğu için bu yararlıdır. Ayrıca, dört **Translation Lookaside Buffers** (TLB’ler) sayesinde programcılar 32 bit adresleri performans kaybı yaşamadan kullanabilirler.
+Bu belleğe erişmek için CPU, sanal adresleme için özel bir <strong x-id=“1”>Memory Management Unit</strong> veya 'MMU' içerir, bu CPU'nun fiziksel bellek adres alanı <strong x-id=“1”>29 bit genişliğinde</strong> olduğu için bu yararlıdır. Ayrıca, dört <strong x-id=“1”>Translation Lookaside Buffers</strong> (TLB'ler) sayesinde programcılar 32 bit adresleri performans kaybı yaşamadan kullanabilirler.
 
 Şimdi, adresleme için sadece 29 bit gerektiğinden, fazladan üç bit bellek korumasını kontrol eder, sırasıyla bellek haritasını değiştirir ve önbelleği atlatır \[@cpu-marcus\] \[@cpu-akiba\].
 
