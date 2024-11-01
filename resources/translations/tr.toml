@@ -44,7 +44,7 @@ other = "Gizle"
 other = "Çeviriler"
 
 [related]
-other = "Daha fazlası için ‘{{ . }}’ &raquo;"
+other = "Daha fazlası için '{{ . }}' &raquo;"
 
 [ebook_edition_title]
 other = "E-Kitap sürümlerini edinin"
@@ -98,13 +98,13 @@ other = "Son güncelleme: {{ . }}"
 other = "Klasik"
 
 [classic_intro]
-other = "‘Klasik’ sürüm, <a href=\"{{ .modern }}\">'modern'</a> muadiline alternatif bir sürümdür. Çalışması için Javascript, son teknoloji CSS veya karmaşık HTML gerektirmez, bu da onu erişilebilirlik araçları veya eski internet tarayıcıları kullanan okuyucular için ideal hale getirir. Öte yandan, e-Kitap kullanıcıları artık <a href=\"{{ .ebook }}\">e-Kitap sürümünü</a> kontrol edebilirler."
+other = "'Klasik' sürüm, <a href=\"{{ .modern }}\">'modern'</a> muadiline alternatif bir sürümdür. Çalışması için Javascript, son teknoloji CSS veya karmaşık HTML gerektirmez, bu da onu erişilebilirlik araçları veya eski internet tarayıcıları kullanan okuyucular için ideal hale getirir. Öte yandan, e-Kitap kullanıcıları artık <a href=\"{{ .ebook }}\">e-Kitap sürümünü</a> kontrol edebilirler."
 
 [classic_description]
-other = "Bu basım içerik açısından aynıdır. Bununla birlikte, etkileşimli widget’lar saf HTML ile çalışacak şekilde basitleştirilmiştir, ancak bunlar okuyucunun “tam sürümü” denemek istemesi durumunda orijinal makaleye bir bağlantı sunacaktır."
+other = "Bu basım içerik açısından aynıdır. Bununla birlikte, etkileşimli widget'lar saf HTML ile çalışacak şekilde basitleştirilmiştir, ancak bunlar okuyucunun \"tam sürümü\" denemek istemesi durumunda orijinal makaleye bir bağlantı sunacaktır."
 
 [general_description]
-other = 'Her zaman olduğu gibi, bu makale okuyucuların hataları bildirmesine veya değişiklik önermesine olanak sağlamak için <a href="{{ .github }}">Github’da</a> mevcuttur. Ayrıca seriyi anlamaya yardımcı olacak destekleyici bir <a href="{{ .readings }}">okuma listesi de mevcuttur</a>. Yazar ayrıca mevcut ve gelecek makalelerin kalitesini artırmaya yardımcı olmak için <a href="{{ .donations }}">bağışları</a> ve <a href="{{ .translations }}">çevirileri</a> de kabul etmektedir.'
+other = "Her zaman olduğu gibi, bu makale okuyucuların hataları bildirmesine veya değişiklik önermesine olanak sağlamak için <a href=\"{{ .github }}\">Github'da</a> mevcuttur. Ayrıca seriyi anlamaya yardımcı olacak destekleyici bir <a href=\"{{ .readings }}\">okuma listesi de mevcuttur</a>. Yazar ayrıca mevcut ve gelecek makalelerin kalitesini artırmaya yardımcı olmak için <a href=\"{{ .donations }}\">bağışları</a> ve <a href=\"{{ .translations }}\">çevirileri</a> de kabul etmektedir."
 
 [subscribe_title]
 other = "Güncel kal"
@@ -212,7 +212,7 @@ other = 'Etkileşimli model <a href="{{ . }}">modern sürümde</a> kullanılabil
 other = 'Etkileşimli oynatıcı <a href="{{ . }}">modern sürümde</a> kullanılabilir'
 
 [goto_classic]
-other = 'Erişilebilirlik araçları veya eski tarayıcılar kullanıyorsanız, <a href="{{ .classic }}">‘klasik’ sürüme geçin</a>.'
+other = "Erişilebilirlik araçları veya eski tarayıcılar kullanıyorsanız, <a href=\"{{ .classic }}\">'klasik' sürüme geçin</a>."
 
 [audio_samples]
 other = "Ses örnekleri"
