@@ -207,52 +207,52 @@ Geliştirmeye yardımcı olmak için, resmi SDK farklı ihtiyaçlar (sequencing,
 
 ![Dreamcast için Sonic Adventure (1999).<br> Yeni ses alt sistemi PCM örneklerini sorunsuz bir şekilde işler.](dreamcast){.toright video="true"}
 
-Şarkı çalarken iki konsol arasında geçiş yapmak istiyorsanız bu widget’ı deneyebilirsiniz:
+Şarkı çalarken iki konsol arasında geçiş yapmak istiyorsanız bu widget'ı deneyebilirsiniz:
 
 ![**MegaDrive / Genesis:** Sonic 3D Blast (1996).<br>**Dreamcast:** Sonic Adventure (1999).](){audio_switcher="true" src1="megadrive" src2="dreamcast" label1="MegaDrive / Genesis" label2="Dreamcast" .centered-container .video-file}
 
 #### Açıklama
 
-Sonic Adventure’ın bestecileri bir FM çipi programlamak yerine müziklerini kendi bünyelerinde üretmiş ve daha sonra CRI Middleware tarafından geliştirilen kayıplı bir format olan ‘ADX’e kodlamışlardır. Dolayısıyla, 64 PCM kanalından yalnızca ikisini (stereo) kullanır.
+Sonic Adventure'ın bestecileri bir FM çipi programlamak yerine müziklerini kendi bünyelerinde üretmiş ve daha sonra CRI Middleware tarafından geliştirilen kayıplı bir format olan 'ADX'e kodlamışlardır. Dolayısıyla, 64 PCM kanalından yalnızca ikisini (stereo) kullanır.
 
-ADX sıkıştırması, oyunun bellek veya bant genişliği sınırlaması olmadan GD-ROM’dan veriyi çözümlemesine ve akışa geçirmesine olanak tanır. Ayrıca, ana CPU ve ARM7’nin iş yükünü dengelemek için birden fazla yaklaşım mevcut olduğundan, ilgili sürücü birçok şekilde uygulanabilir.
+ADX sıkıştırması, oyunun bellek veya bant genişliği sınırlaması olmadan GD-ROM'dan veriyi çözümlemesine ve akışa geçirmesine olanak tanır. Ayrıca, ana CPU ve ARM7'nin iş yükünü dengelemek için birden fazla yaklaşım mevcut olduğundan, ilgili sürücü birçok şekilde uygulanabilir.
 
 ### Uyanık Kalma
 
-Bir şekilde, bu çip aynı zamanda BIOS’a **Real Time Clock (Gerçek Zaman Saati)** (RTC) sağlamaktan da sorumludur, ayrıca AC gücü olmadan çalışmaya devam etmek için bir saat piline bağlıdır.
+Bir şekilde, bu çip aynı zamanda BIOS'a **Real Time Clock (Gerçek Zaman Saati)** (RTC) sağlamaktan da sorumludur, ayrıca AC gücü olmadan çalışmaya devam etmek için bir saat piline bağlıdır.
 
 ## İşletim Sistemi
 
-Bir <strong x-id=“1”>BIOS</strong> depolayan <strong x-id=“1”>2 MB ‘System ROM’</strong>u vardır. Bu, CPU’nun başlatılırken okuduğu ilk konumdur. ROM, CPU’ya oyunu başlatma ya da shell’i gösterme talimatı veren kodu içerir.
+Bir <strong x-id=“1”>BIOS</strong> depolayan <strong x-id=“1”>2 MB 'System ROM'</strong>u vardır. Bu, CPU'nun başlatılırken okuduğu ilk konumdur. ROM, CPU'ya oyunu başlatma ya da shell'i gösterme talimatı veren kodu içerir.
 
 Dahası BIOS, GD-ROM sürücüsünden okuma gibi I/O işlevlerini [@games-redream] basitleştirmek için oyunların kullanabileceği rutinler de içerir.
 
 ### Etkileşimli shell
 
-<a href=“sega-saturn#interactive-shell”>Sega Saturn</a>’de olduğu gibi, geçerli bir oyun diski takılı değilse, konsol görsel bir kabuk başlatacaktır.
+<a href=“sega-saturn#interactive-shell”>Sega Saturn</a>'de olduğu gibi, geçerli bir oyun diski takılı değilse, konsol görsel bir shell başlatacaktır.
 
 ![Disk olmadan önyükleme yaptıktan sonra shell.](shell.png)
 
-Kabuk, kullanıcının aşağıdaki gibi temel ancak gerekli görevleri yerine getirmesini sağlamak için basit bir grafik kullanıcı arayüzü içerir:
+Shell, kullanıcının aşağıdaki gibi temel ancak gerekli görevleri yerine getirmesini sağlamak için basit bir grafik kullanıcı arayüzü içerir:
 
 - Henüz başlamadıysa oyunu başlatır.
-- VMU’da depolanan kayıt verilerini değiştirmek (bu cihaz hakkında daha fazla ayrıntı daha sonra açıklanmaktadır).
-- Takılı bir Ses CD’si varsa müzik çalar.
+- VMU'da depolanan kayıt verilerini değiştirmek (bu cihaz hakkında daha fazla ayrıntı daha sonra açıklanmaktadır).
+- Takılı bir Ses CD'si varsa müzik çalar.
 - Tarih, saat, ses ve benzeri gibi belirli ayarları değiştirmek.
 
 ### Windows CE
 
-Dreamcast’in duyurulmasından bu yana, konsolun <strong x-id=“1”>Windows CE</strong>’yi çalıştırabileceği söyleniyordu. Hatta sadece konsolun ön kasasına baktığınızda bile Microsoft’un damgasını görebilirsiniz... Burada ne oluyor?
+Dreamcast'in duyurulmasından bu yana, konsolun <strong x-id=“1”>Windows CE</strong>'yi çalıştırabileceği söyleniyordu. Hatta sadece konsolun ön kasasına baktığınızda bile Microsoft'un damgasını görebilirsiniz... Burada ne oluyor?
 
 ![Konsolun ön tarafındaki Windows CE etiketi. Tesadüfen, aynı döneme ait diğer el cihazlarında da benzer etiketler bulabilirsiniz.](windows_ce.jpeg)
 
-Her şeyden önce, ‘Windows CE’ tam olarak nedir? Bu, Microsoft’un 90’lı yılların ortalarında geleneksel PC pazarının ötesindeki bölgeleri fethetmek için giriştiği pek çok projeden sadece biri. [x86’dan daha verimli CPU mimarileri](playstation#tab-1-1-a-bit-of-history) ve [el bilgisayarlarının ortaya çıkışının](game-boy-advance#tab-1-2-a-new-cpu-venture) ardından, Microsoft’ta yeni bir ekip Windows ekosistemini bu yeni cihazlara taşımakla görevlendirildi [@operating_system-ce_one].
+Her şeyden önce, 'Windows CE' tam olarak nedir? Bu, Microsoft'un 90'lı yılların ortalarında geleneksel PC pazarının ötesindeki bölgeleri fethetmek için giriştiği pek çok projeden sadece biri. <a href=“playstation#tab-1-1-a-bit-of-history”>x86'dan daha verimli CPU mimarileri</a> ve <a href=“game-boy-advance#tab-1-2-a-new-cpu-venture”>el bilgisayarlarının ortaya çıkışının</a> ardından, Microsoft'ta yeni bir ekip Windows ekosistemini bu yeni cihazlara taşımakla görevlendirildi [@operating_system-ce_one].
 
-Bu, Windows CE’nin ortaya çıkmasına yol açtı: mevcut Windows API’lerinin, geliştirme araçlarının ve hizmetlerinin bir alt kümesini sağlayan, sıfırdan geliştirilmiş eksiksiz bir işletim sistemi.
+Bu, Windows CE'nin ortaya çıkmasına yol açtı: mevcut Windows API'lerinin, geliştirme araçlarının ve hizmetlerinin bir alt kümesini sağlayan, sıfırdan geliştirilmiş eksiksiz bir işletim sistemi.
 
 ![Windows CE 3.0 (2000), bir masaüstü ve birkaç iş uygulaması ile birlikte gelmektedir.](wince_desktop.png)
 
-Windows 95 ya da NT’nin aksine, yeni sistem aşağıdaki avantajları sunuyordu:
+Windows 95 ya da NT'nin aksine, yeni sistem aşağıdaki avantajları sunuyordu:
 
 - SuperH ve hatta <a href=“nintendo-64#cpu”>NEC/MIPS VR4300</a> (Nintendo 64 tarafından kullanılan) dahil olmak üzere çok çeşitli CPU mimarilerinde [@operating_system-ce_archs] çalıştı.
 - Sınırlı bir güç kaynağı (AA piller), bellek (2 MB RAM) ve depolama (4 MB ROM) gibi kısıtlı donanım göz önünde bulundurularak tasarlanmıştır.
