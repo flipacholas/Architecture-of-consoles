@@ -79,33 +79,33 @@ Bu belleğe erişmek için CPU, sanal adresleme için özel bir <strong x-id=“
 
 Şimdi, adresleme için sadece 29 bit gerektiğinden, fazladan üç bit bellek korumasını kontrol eder, sırasıyla bellek haritasını değiştirir ve önbelleği atlatır \[@cpu-marcus\] \[@cpu-akiba\].
 
-Nihayetinde, bu özelliklerin kullanılıp kullanılmayacağına programcı karar verir. Bu sistem için oyunlar kesinlikle bellek korumasına ihtiyaç duymaz ve MMU’nun açılışta manuel olarak etkinleştirilmesi gerekir.
+Nihayetinde, bu özelliklerin kullanılıp kullanılmayacağına programcı karar verir. Bu sistem için oyunlar kesinlikle bellek korumasına ihtiyaç duymaz ve MMU'nun açılışta manuel olarak etkinleştirilmesi gerekir.
 
 ### UMA yok ama...
 
-Bu sistem, [tanınmış bir rakibi](nintendo-64#simplified-memory-access) gibi katı Unified Memory Architecture veya UMA etrafında tasarlanmamış olsa da, **G/Ç erişimini GPU’ya devretmektedir**. Bu da CPU’nun kendi özel RAM’i ya da seri arayüzü (ki bunlar da bağlı) dışında bir şey alması gerektiğinde GPU’dan talepte bulunması ve gerekirse beklemesi gerektiği anlamına geliyor.
+Bu sistem, [tanınmış bir rakibi](nintendo-64#simplified-memory-access) gibi katı Unified Memory Architecture veya UMA etrafında tasarlanmamış olsa da, **G/Ç erişimini GPU'ya devretmektedir**. Bu da CPU'nun kendi özel RAM'i ya da seri arayüzü (ki bunlar da bağlı) dışında bir şey alması gerektiğinde GPU'dan talepte bulunması ve gerekirse beklemesi gerektiği anlamına geliyor.
 
-Bu CPU aynı zamanda **Paralel I/O** veya ‘PIO’ olarak adlandırılan ve aynı anda birden fazla I/O konumunu manipüle etmek için kullanılan benzersiz bir işleve sahiptir. Sega bu pinleri CPU’nun GPU’nun **video modunu** manipüle edebilmesi için bağladı (daha fazla ayrıntı ‘Grafikler’ bölümünde açıklanmıştır).
+Bu CPU aynı zamanda **Paralel I/O** veya 'PIO' olarak adlandırılan ve aynı anda birden fazla I/O konumunu manipüle etmek için kullanılan benzersiz bir işleve sahiptir. Sega bu pinleri CPU'nun GPU'nun <strong x-id=“1”>video modunu</strong> manipüle edebilmesi için bağladı (daha fazla ayrıntı 'Grafikler' bölümünde açıklanmıştır).
 
 ### Yolun sonu
 
-Bahsedilen tüm avantajlara rağmen, korkarım ki SuperH serisi son büyük kullanıcısı Dreamcast’in mağazaları terk etmesinden sonra önemli bir ilerleme kaydedemedi. SH-4’ün popülerliğinden sonra Hitachi (ya da şu anki sahipleri olan Renesas Electronics) aynı başarı seviyesini tekrarlayamadı ve gömülü/el tipi pazarın o zamandan beri [ARM](game-boy-advance#cpu)’ı tercih ettiğini düşünürsek ([StrongARM](nintendo-ds#arms-new-territories) sayesinde), Renesas’ın Hitachi’nin buluşunu yakın zamanda sürdüreceğini düşünmüyorum.
+Bahsedilen tüm avantajlara rağmen, korkarım ki SuperH serisi son büyük kullanıcısı Dreamcast'in mağazaları terk etmesinden sonra önemli bir ilerleme kaydedemedi. SH-4'ün popülerliğinden sonra Hitachi (ya da şu anki sahipleri olan Renesas Electronics) aynı başarı seviyesini tekrarlayamadı ve gömülü/el tipi pazarın o zamandan beri [ARM](game-boy-advance#cpu)'ı tercih ettiğini düşünürsek ([StrongARM](nintendo-ds#arms-new-territories) sayesinde), Renesas'ın Hitachi'nin buluşunu yakın zamanda sürdüreceğini düşünmüyorum.
 
-Ancak bilgisayarla ilgili iyi olan bir şey varsa o da teknolojik ilerlemenin markaların ve şirketlerin sınırlarının ötesine yayılma eğiliminde olmasıdır. Örneğin, SH’nin sıkıştırılmış komut tekniği ARM’nin [Thumb modu](game-boy-advance#tab-2-3-squeezing-performance) (ikincil bir 16-bit ISA) ile devam etmiştir [@cpu-lwn]. Ayrıca, 2012 yılında, ‘J2’ [@cpu-jcore] adı verilen modern bir SuperH uyumlu CPU üretmek için gönüllülük esasına dayalı bir proje başlatılmıştır.
+Ancak bilgisayarla ilgili iyi olan bir şey varsa o da teknolojik ilerlemenin markaların ve şirketlerin sınırlarının ötesine yayılma eğiliminde olmasıdır. Örneğin, SH'nin sıkıştırılmış komut tekniği ARM'nin [Thumb modu](game-boy-advance#tab-2-3-squeezing-performance) (ikincil bir 16-bit ISA) ile devam etmiştir [@cpu-lwn]. Ayrıca, 2012 yılında, 'J2' [@cpu-jcore] adı verilen modern bir SuperH uyumlu CPU üretmek için gönüllülük esasına dayalı bir proje başlatılmıştır.
 
 ## Grafikler
 
-GPU paketi, **100 MHz** hızında çalışan **Holly** adlı özel yapım bir çiptir. Önceki şirket içi tasarımların aksine Sega, rekabetçi bir 3D hızlandırıcı sağlamak için VideoLogic (şimdi Imagination Technologies olarak biliniyor) ile ortaklık kurdu.
+GPU paketi, <strong x-id=“1”>100 MHz</strong> hızında çalışan <strong x-id=“1”>Holly</strong> adlı özel yapım bir çiptir. Önceki şirket içi tasarımların aksine Sega, rekabetçi bir 3D hızlandırıcı sağlamak için VideoLogic (şimdi Imagination Technologies olarak biliniyor) ile ortaklık kurdu.
 
 ![Holly chip (termal pedleri çıkardıktan sonra) ve video kodlayıcı.](holly.jpg)
 
-Holly’nin içinde VideoLogic’in **PowerVR2** (‘PowerVR Series2’ ve ‘CLX2’ olarak da anılır) adlı özel grafik devresini bulabiliriz, önceki PowerVR GPU’larını temel alır ancak Dreamcast için uyarlanmıştır.
+Holly'nin içinde VideoLogic'in <strong x-id=“1”>PowerVR2</strong> ('PowerVR Series2' ve 'CLX2' olarak da anılır) adlı özel grafik devresini bulabiliriz, önceki PowerVR GPU'larını temel alır ancak Dreamcast için uyarlanmıştır.
 
 ### Mimari
 
 VideoLogic, 3D motorunun yapımı için **Tile-Based Deferred Rendering** (TBDR) adı verilen alternatif bir yaklaşım seçti.
 
-TBDR, tüm kareyi bir kerede oluşturmak yerine (geleneksel **Immediate Mode Renderers** veya ‘IMR’nin yaptığı gibi [@graphics-arch]), oluşturma alanını ‘tile’ adı verilen birden çok bölüme ayırır. Ardından, her bir karo üzerinde ayrı ayrı render işlemini gerçekleştirir ve sonuç nihai kareyi oluşturmak için birleştirilir [@graphics-powervr].
+TBDR, tüm kareyi bir kerede oluşturmak yerine (geleneksel **Immediate Mode Renderers** veya 'IMR'nin yaptığı gibi [@graphics-arch]), oluşturma alanını 'karo' adı verilen birden çok bölüme ayırır. Ardından, her bir karo üzerinde ayrı ayrı render işlemini gerçekleştirir ve sonuç nihai kareyi oluşturmak için birleştirilir [@graphics-powervr].
 
 ![Sonic Adventure (1999).](sonic.png)
 
@@ -114,11 +114,11 @@ Bu yenilikçi tasarım ilginç avantajları da beraberinde getiriyor:
 - Büyük ölçüde **paralelleştirilebilir**, bu da bant genişliğini ve güç kullanımını önemli ölçüde azaltır.
 - Çokgenleri otomatik olarak **önden arkaya doğru** sıralayarak ve ardından boru hattının ilk aşamalarında [z-testleri](nintendo-64#modern-visible-surface-determination) gerçekleştirerek [**görünürlük sorununa**](sega-saturn#an-introduction-to-the-visibility-problem) akıllıca bir çözüm uygular. Bu görevlerin kombinasyonu yalnızca orijinal sorunu çözmekle kalmaz, aynı zamanda kaynakları boşa harcayan ve performansı düşüren **aşırı çizimi (gizli çokgenlerin pikselleştirmesi) de önler.**.
 
-Imagination’ın bu verimli teknolojiyi ileriye taşıyarak ilk nesil iPhone, iPhone 3G, Nokia N95 ve Dell Axim x51 gibi inanılmaz sayıda cihaza güç veren Seri 4 PowerVR çekirdeklerini üretmesi hiç de şaşırtıcı değil.
+Imagination'ın bu verimli teknolojiyi ileriye taşıyarak ilk nesil iPhone, iPhone 3G, Nokia N95 ve Dell Axim x51 gibi inanılmaz sayıda cihaza güç veren Seri 4 PowerVR çekirdeklerini üretmesi hiç de şaşırtıcı değil.
 
 ### Mimarisi
 
-Dreamcast’in GPU’sunun iki ana bileşenine bir göz atalım [@graphics-marcus]:
+Dreamcast'in GPU'sunun iki ana bileşenine bir göz atalım [@graphics-marcus]:
 
 #### Tile Accelerator {.tabs.active}
 
@@ -133,32 +133,32 @@ Ardından, Tile Accelerator:
 3. Geometriyi koordinatlarına göre her birini dağıtır. Geriye kalan geometri ise atılacaktır.
 4. Ortaya çıkan Display List’lerini oluşturur.
 
-Bu Display List’ler daha sonra 3D motoru tarafından işlenir: PowerVR2.
+Bu Display List'ler daha sonra 3D motoru tarafından işlenir: PowerVR2.
 
 #### PowerVR2 Çekirdeği {.tab}
 
 ![PowerVR2 Çekirdeğinin Mimarisi.](powervr2.png) {.tab-float}
 
-Grafiklerin hayata geçirildiği yer burasıdır, Tile Accelerator’dan alınan Display Lists çekirdeğe **dahili bir çerçeve arabelleği** kullanarak tek bir karenin geometrisini oluşturmasını söyler. Süreç şöyledir:
+Grafiklerin hayata geçirildiği yer burasıdır, Tile Accelerator'dan alınan Display Lists çekirdeğe **dahili bir çerçeve arabelleği** kullanarak tek bir karenin geometrisini oluşturmasını söyler. Süreç şöyledir:
 
-1. **Image Synthesis Processor (Görüntü Sentez İşlemcisi)** veya ‘ISP’ ilkelleri (üçgenler veya dörtlüler) alır ve görünmeyen çokgenleri kaldırmak için **Hidden-Surface Removal (Gizli Yüzey Kaldırma işlemi)** gerçekleştirir. Ardından, Z tamponlarını ve şablon tamponlarını hesapladıktan sonra veriler, diğerlerinin arkasında görünecek çokgenlerin işlenmesini önlemek için **Depth Testing (Derinlik Testi)** ve bir 2B çokgenin (**Mask (Maske)** olarak da adlandırılır) arkasında yer almaları halinde görünmeyecek geometriyi ayıklamak için **Stencil Tests (Şablon Testleri)** işemlerinden geçer.
-    - Bu testlerin boru hattının başlangıcında nasıl etkin bir şekilde gerçekleştirildiğine dikkat edin. Bunun aksine, [late z-buffering kullanan](nintendo-64#modern-visible-surface-determination) önceki konsollar geometriyi pipeline’ın sonunda atmaktadır. ISP yaklaşımı, sonunda çöpe gidecek geometrinin işlenmesini önler [@graphics-surface] ve böylece kaynak tasarrufu sağlar.
-2. **Texture and Shading Processor (Doku ve Gölgelendirme İşlemcisi)** veya ‘TSP’ karo alanı üzerinde renklendirme, gölgelendirme ve çoklu efektler uygular.
+1. **Image Synthesis Processor (Görüntü Sentez İşlemcisi)** veya 'ISP' ilkelleri (üçgenler veya dörtlüler) alır ve görünmeyen çokgenleri kaldırmak için **Hidden-Surface Removal (Gizli Yüzey Kaldırma işlemi)** gerçekleştirir. Ardından, Z tamponlarını ve şablon tamponlarını hesapladıktan sonra veriler, diğerlerinin arkasında görünecek çokgenlerin işlenmesini önlemek için **Depth Testing (Derinlik Testi)** ve bir 2B çokgenin (**Mask (Maske)** olarak da adlandırılır) arkasında yer almaları halinde görünmeyecek geometriyi ayıklamak için **Stencil Tests (Şablon Testleri)** işemlerinden geçer.
+    - Bu testlerin boru hattının başlangıcında nasıl etkin bir şekilde gerçekleştirildiğine dikkat edin. Bunun aksine, [late z-buffering kullanan](nintendo-64#modern-visible-surface-determination) önceki konsollar geometriyi pipeline'ın sonunda atmaktadır. ISP yaklaşımı, sonunda çöpe gidecek geometrinin işlenmesini önler [@graphics-surface] ve böylece kaynak tasarrufu sağlar.
+2. **Texture and Shading Processor (Doku ve Gölgelendirme İşlemcisi)** veya 'TSP' karo alanı üzerinde renklendirme, gölgelendirme ve çoklu efektler uygular.
     - Dokular karo dışa aktarılana kadar uygulanmaz, yani ortaya çıkan fazla çizim (varsa) dolgu oranını düşürmez.
 
-İşlem tamamlandıktan sonra, işlenen karo VRAM’deki ana çerçeve arabelleğine yazılır. Bu işlem tüm karolar bitene kadar tekrarlanır. İşlem tamamlandığında, ortaya çıkan çerçeve arabelleği **Video kodlayıcı** tarafından seçilir ve video sinyali aracılığıyla gönderilir.
+İşlem tamamlandıktan sonra, işlenen karo VRAM'deki ana çerçeve arabelleğine yazılır. Bu işlem tüm karolar bitene kadar tekrarlanır. İşlem tamamlandığında, ortaya çıkan çerçeve arabelleği **Video kodlayıcı** tarafından seçilir ve video sinyali aracılığıyla gönderilir.
 
 ### Büyük resim {.tabs-close}
 
-Açık mimari farkın yanı sıra, Texture and Shading Processor, bu konsolun eski [Saturn](sega-saturn)’den ne kadar uzak olduğu hakkında bir fikir veren birçok yetenekle birlikte gelir. İşte bazı önemli örnekler:
+Açık mimari farkın yanı sıra, Texture and Shading Processor, bu konsolun eski [Saturn](sega-saturn)'den ne kadar uzak olduğu hakkında bir fikir veren birçok yetenekle birlikte gelir. İşte bazı önemli örnekler:
 
 - **Alpha blending**: Şeffaflık efektleri elde etmek için üst üste binen katmanların renklerini birleştirir.
   - Bu sistemde saydamlık uygulamak için kullanılan işleme sıralamadan **order-independent transparency** denir. Algoritma, renklerini karıştırmadan önce ilkelleri otomatik olarak sıralar ve bu işlem render işlemini yavaşlatsa da, tüm sıralamayı manuel olarak yapmak için oyunun kendisine güvenilmesini önler. Bu nedenle Dreamcast oyunları şeffaf nesneleri görüntülemede mükemmeldi.
   - Karo tabanlı sistemle birlikte, siparişten bağımsız şeffaflık önceki [aksaklıkları](sega-saturn#the-transparency-issue) tamamen giderir.
 - **Mip-Mapping**: Gerekli ayrıntı düzeyine bağlı olarak dokunun küçültülmüş bir sürümünü otomatik olarak seçer. Bu, kameradan uzakta görülebilecek büyük dokuların işlenmesini önlemek için yapılır (bu işlem gücü kaybı olur ve örtüşme üretir).
 - **Environment mapping**: Dokular üzerinde yansımalar uygular.
-- **Bilinear, Trilinear ve anizotropik filtreleme**: Bu, dokuları yumuşatmak ve pikselleşmeyi önlemek için kullanılan farklı algoritmaları ifade eder. Bunlar ‘en kötü’den ‘en iyi’ye doğru sıralanır ve her birinin sonuç kalitesi, gereken hesaplama miktarıyla doğru orantılıdır.
-  - Bu Saturn’e göre büyük bir adım, çünkü önceki model herhangi bir doku filtresi sağlamıyordu!
+- **Bilinear, Trilinear ve anizotropik filtreleme**: Bu, dokuları yumuşatmak ve pikselleşmeyi önlemek için kullanılan farklı algoritmaları ifade eder. Bunlar ‘en kötü'den ‘en iyi'ye doğru sıralanır ve her birinin sonuç kalitesi, gereken hesaplama miktarıyla doğru orantılıdır.
+  - Bu Saturn'e göre büyük bir adım, çünkü önceki model herhangi bir doku filtresi sağlamıyordu!
 - **Bump mapping**: Fazladan poligon harcamadan yüzeylerdeki çıkıntıları simüle eder.
 
 ### Detay Kazanma
@@ -174,28 +174,28 @@ Holly artık [selefine](sega-saturn) göre ~10 kat daha fazla poligon çizebiliy
 Video sistemi birden fazla ekran türünü ve formatı destekleyecek şekilde tasarlanmıştır, bu nedenle video kodlayıcı aşağıdaki sinyal türlerini destekleyen tek şekilli bir sokete çıkış verir:
 
 - **Kompozit**: Video görüntülemek için gereken üç sinyali (chroma, luma ve sync) tek bir sinyalde birleştirir ve yalnızca tek pimli bir kablo gerektirir.
-  - Bu, RCA bağlantılı eski PAL ve NTSC TV’lerde kullanılır.
-- **S-Video**: Cromayı ayrı tutarken luma ve sync’i birleştirir (yani iki video hattı).
+  - Bu, RCA bağlantılı eski PAL ve NTSC TV'lerde kullanılır.
+- **S-Video**: Cromayı ayrı tutarken luma ve sync'i birleştirir (yani iki video hattı).
 - **RGB**: Ayrı Kırmızı-Yeşil-Mavi sinyalleri gönderir ve aralarından seçim yapabileceğiniz farklı senkronizasyon türleri sağlar (kompozit senkronizasyon veya kompozit veya S-Video videodan çıkarılmış).
   - Bir SCART kablosu bu tipi kullanacaktır.
-- **VGA**: RGB’yi iki senkronizasyon sinyali (yatay ve dikey) ile birleştirerek toplamda beş video hattı elde eder. Bu, aşamalı modda mümkün olan en yüksek çözünürlüğün (720x480) görüntülenmesini sağlar (bu nedenle, bu mod genellikle ‘480p’ olarak adlandırılır). VGA aslında bir süredir bilgisayar monitörleri tarafından kullanılan standart format/ortam olmuştur.
+- **VGA**: RGB'yi iki senkronizasyon sinyali (yatay ve dikey) ile birleştirerek toplamda beş video hattı elde eder. Bu, aşamalı modda mümkün olan en yüksek çözünürlüğün (720x480) görüntülenmesini sağlar (bu nedenle, bu mod genellikle '480p' olarak adlandırılır). VGA aslında bir süredir bilgisayar monitörleri tarafından kullanılan standart format/ortam olmuştur.
   - Bu türü kullanmak için Sega ekstra bir aksesuar olarak bir VGA adaptörü sağlamıştır.
 
-Şimdi, Dreamcast bunların hepsini aynı anda kodlayamaz, bu nedenle GPU ve Ses işlemcisi, istenen sinyali oluşturmak için hangi video/ses veri yollarının etkinleştirileceğini koordine eden **Görüntü Modu** adlı bir register içerir. CPU, takılan kablonun türünü algılar (video konektörünün hangi ‘seçme bitlerinin’ aktif olduğunu kontrol ederek) ve GPU’ya gerekli değerleri yazar. Son olarak, değerler Ses işlemcisine iletilir.
+Şimdi, Dreamcast bunların hepsini aynı anda kodlayamaz, bu nedenle GPU ve Ses işlemcisi, istenen sinyali oluşturmak için hangi video/ses veri yollarının etkinleştirileceğini koordine eden **Görüntü Modu** adlı bir register içerir. CPU, takılan kablonun türünü algılar (video konektörünün hangi 'seçme bitlerinin' aktif olduğunu kontrol ederek) ve GPU'ya gerekli değerleri yazar. Son olarak, değerler Ses işlemcisine iletilir.
 
 VGA kesinlikle aşamalı bir sinyal türü olduğundan (geleneksel *interlaced* sinyalin aksine), yalnızca interlaced video için tasarlanmış oyunlarda bazı uyumluluk sorunları ortaya çıkmıştır. Bu oyunların kodlarında açıkça belirtilmiştir ki oyun, VGA üzerinde görüntülenmeyecek ve kullanıcı VGA kablosunu başka bir türle değiştirene kadar CPU oyunu engelleyecektir.
 
 ## Ses
 
-Ses işlevselliği, Yamaha tarafından üretilen özel bir çip olan **AICA** tarafından yönetilir. Bu, Satürn’de kullanılan [SCSP’nin](sega-saturn#audio) geliştirilmiş bir versiyonudur ve dört bileşenden oluşur:
+Ses işlevselliği, Yamaha tarafından üretilen özel bir çip olan **AICA** tarafından yönetilir. Bu, Satürn'de kullanılan [SCSP'nin](sega-saturn#audio) geliştirilmiş bir versiyonudur ve dört bileşenden oluşur:
 
-- **Sound Integrated Circuit (Ses Entegre Devre)** veya ‘IC’: Ses sinyalini üreten ve üzerine efekt uygulayan bir dizi modülü (sentezleyici, DSP ve mixer) içeren bir devre. **64 PCM kanalına**, **16 veya 8 bit** çözünürlükle ve **44.1 kHz** örnekleme hızlarını destekler. Genel olarak, bu ses çalmak için en uygun kalitedir.
-  - Ayrıca, CPU‘nun iş yükünü azaltmak için bir **ADPCM çözücüsü** içerir.
+- **Sound Integrated Circuit (Ses Entegre Devre)** veya 'IC': Ses sinyalini üreten ve üzerine efekt uygulayan bir dizi modülü (sentezleyici, DSP ve mixer) içeren bir devre. **64 PCM kanalına**, **16 veya 8 bit** çözünürlükle ve **44.1 kHz** örnekleme hızlarını destekler. Genel olarak, bu ses çalmak için en uygun kalitedir.
+  - Ayrıca, CPU'nun iş yükünü azaltmak için bir **ADPCM çözücüsü** içerir.
   - İlginçtir ki, bir MIDI enstrümanı bağlamak için **iki MIDI pini** de sağlar, ancak bu geliştirme sırasında kullanılmak üzere tasarlanmıştır.
 - **2 MB SDRAM**: Ses verilerini ve programları depolar. Ana CPU tarafından DMA kullanılarak doldurulur.
-- Bir <strong x-id=“1”>ARM7DI</strong> <strong x-id=“1”>yaklaşık 2,82 MHz</strong> hızında çalışır: Ses IC‘sini kontrol eder. Bu CPU, depolanan SRAM’deki küçük bir yazılımı ([sürücü](super-nintendo#audio) denilen) başlatarak programlanır. Bu yazılım, ses verilerini yorumlar ve buna göre Ses IC’yi manipüle eder.
-  - Eğer merak ediyorsanız, benzer bir CPU [Game Boy Advance](game-boy-advance)’de de bulunmaktadır.
-- **Bellek Denetleyicisi**: 2 MB SDRAM’in arayüzünü oluşturur.
+- Bir <strong x-id=“1”>ARM7DI</strong> <strong x-id=“1”>yaklaşık 2,82 MHz</strong> hızında çalışır: Ses IC'sini kontrol eder. Bu CPU, depolanan SRAM'deki küçük bir yazılımı ([sürücü](super-nintendo#audio) denilen) başlatarak programlanır. Bu yazılım, ses verilerini yorumlar ve buna göre Ses IC'yi manipüle eder.
+  - Eğer merak ediyorsanız, benzer bir CPU [Game Boy Advance](game-boy-advance)'de de bulunmaktadır.
+- **Bellek Denetleyicisi**: 2 MB SDRAM'in arayüzünü oluşturur.
 
 Geliştirmeye yardımcı olmak için, resmi SDK farklı ihtiyaçlar (sequencing, decoding, vb.) için birden fazla ses sürücüsü içeriyordu.
 
