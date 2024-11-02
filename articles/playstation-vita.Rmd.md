@@ -31,7 +31,15 @@ The PSVita is a noteworthy intersection between the video-game establishment and
 
 The new analysis of [this series](consoles) dives into the contemporary technology behind Sony's new delivery. Do expect to find recognisable circuitry - perhaps too familiar. Even so, Sony made clear efforts to steer away from any resemblance to the smartphone market.
 
-### Models and variants
+### A new publishing model
+
+Until now, my delivery model involved finishing the whole analysis and then publishing a complete article at once. However, as I continue studying the 8th generation, my articles have considerably grown in complexity. They tend to take almost a year to finish, and the review process has become too cumbersome. Thus, for a change, I'd like to try a new phased approach where I publish by sections instead. This will also make the reviewing stage more efficient.
+
+Having said that, let's start with the first section.
+
+## {.supporting-imagery}
+
+## Models and variants
 
 As the console sat on store shelves, Sony revisited its product strategy multiple times, leading to three variants of the PSVita being shipped throughout its lifecycle:
 
@@ -40,14 +48,6 @@ As the console sat on store shelves, Sony revisited its product strategy multipl
 - The **PlayStation TV** is just a Slim motherboard adapted for the non-portable setting.
 
 As you can see, the information in this article will easily apply to all three models, although I will dedicate extra paragraphs to talk about the puzzling eMMC changes of the last two variants.
-
-## {.supporting-imagery}
-
-### A new publishing model
-
-Until now, my delivery model involved finishing the whole analysis and then publishing a complete article at once. However, as I continue studying the 8th generation, my articles have considerably grown in complexity. They tend to take almost a year to finish, and the review process has become too cumbersome. Thus, for a change, I'd like to try a new phased approach where I publish by sections instead, starting with the CPU. This will also make the reviewing stage more efficient.
-
-Having said that, let's start with the first section.
 
 ## CPU
 
