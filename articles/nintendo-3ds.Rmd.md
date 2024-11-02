@@ -22,7 +22,7 @@ top_tabs:
 
 ## A quick introduction
 
-As smartphones surge in adoption, the videogame market is experiencing an unusual growth led by discount App Stores and affordable development licenses. With this, one can only wonder when kids will prefer an iPhone 4 over a Nintendo DSi.
+As smartphones surge in adoption, the videogame market is experiencing an unusual growth led by discount App Stores and affordable development licences. With this, one can only wonder when kids will prefer an iPhone 4 over a Nintendo DSi.
 
 In the midst of finding out the answer, Nintendo conceives a thrilling successor to its triumphant portable system. In it, users will find old, present and unfamiliar technology - many of which can't be replicated by smartphones.
 
@@ -356,14 +356,18 @@ Nintendo only provided **6 MB of VRAM** exclusively for the GPU. Ideally, progra
 
 ![Example of how data is organised across the memory available.](gpu/content.png)
 
-During rendering, programmers allocate dedicated render buffers (i.e. frame, stencil, depth, etc.) for many operations. That's always been the case. With the 3DS, alongside these buffers, programmers are also expected to reserve extra space for **Display buffers**, these are bound to the physical screens. The 3DS is required to allocate **three Display buffers** (two for the stereoscopic upper screen and one for the bottom one). To give you an idea, the display process works as follows:
+During rendering, programmers allocate dedicated render buffers (i.e. frame, stencil, depth, etc.) for many operations. That's always been the case. With the 3DS, however, the LCD controllers don't understand the data that the PICA200 renders in the frame-buffer. Thus, programmers are also expected to reserve extra space for **LCD frame-buffers** [@graphics-gpu_reg]. Each is bound to a physical screen and encodes the frame in the required format for the LCD controller.
 
-1. The LCD continuously displays the content of the front (active) Display buffer, as instructed by the value of the buffer index.
-2. Meanwhile, the GPU finishes rendering geometry in a framebuffer.
-3. The framebuffer is exported to the back (inactive) Display buffer.
-4. The GPU swaps the index of the front Display buffer.
-    - For practical reasons, the index swap should happen at the end of [Vertical Sync](nes#tab-5-5-result) to avoid tearing down the picture [@graphics-opengl_swap]. The official APIs provide synchronisation functions to keep all operations at the correct pace.
-5. The LCD will now be scanning the recently updated Display buffer from now on.
+This means that the 3DS is required to allocate at least **three LCD frame-buffers** (two for the stereoscopic upper screen and one for the bottom one). However, to avoid showing artefacts, a duplicate set may be allocated to perform [page flipping](game-boy-advance#beyond-tiles).
+
+Based on this, the display process works as follows:
+
+1. The LCD continuously displays the content of the active LCD frame-buffer, as instructed by an index register.
+2. Meanwhile, the GPU finishes rendering new geometry in a separate frame-buffer.
+3. The frame-buffer is exported to the inactive LCD frame-buffer.
+4. The GPU swaps the index of the active LCD frame-buffer.
+    - For practical reasons, the index swap happens at the end of [Vertical Sync](nes#tab-5-5-result) to avoid tearing down the picture [@graphics-opengl_swap].
+5. The LCD will now be scanning the recently updated LCD frame-buffer from now on.
 
 #### Adopting open standards
 
@@ -420,7 +424,9 @@ The geometry stage is a signature feature of 8th-generation consoles, allowing d
 
 In this case, the PICA200's geometry stage is implemented by **stealing one of the four Vertex Processors**. Then, the 'geometry' vertex core is loaded with a different vertex shader. Finally, it receives the vertex data from the three other processors.
 
-Even though the geometry shader is programmable, in practice, **Nintendo doesn't allow this**. Thus, game developers can only choose from a pre-programmed set of geometry shader programs. Examples of available geometry shaders include square and line generation (using point primitives), geometry subdivision, silhouette edge rendering; and random particle generation.
+Examples of uses for the geometry shader include square or line generation (using point primitives), geometry subdivision, silhouette edge rendering; and random particle generation.
+
+<!-- TODO: Was the geometry shader constrained in terms of programmability? Need to find more sources. -->
 
 #### Rasteriser {.tab}
 
@@ -456,7 +462,7 @@ That being said, the frame goes through **alpha**, **stencil** and **depth** tes
 
 For additional smoothing of the edges, the PICA200 can render the framebuffer at twice the selected dimensions, and then average it with antialiasing 2x2. This is an [old technique](xbox#tab-2-4-post-processing) known as **supersampling**.
 
-Once the framebuffer is ready to be displayed, it must be copied into another block in memory called **Display Buffer** (whose format is better aligned to the scan-line procedure of the LCD screen) and then transferred to the LCD in the form of scan-lines.
+Once the framebuffer is ready to be displayed, it must be copied into another block in memory called **LCD frame-buffer** (whose format is better aligned to the scan-line procedure of the LCD screen) and then transferred to the LCD in the form of scan-lines.
 
 ### Interactive comparison {.tabs-close}
 
