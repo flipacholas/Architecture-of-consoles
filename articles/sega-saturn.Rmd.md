@@ -36,7 +36,7 @@ Just in case developers want the extra dimension, Sega adapted some bits of the 
 
 ## CPU
 
-Just like its close competitors [drowned with options](playstation#a-bit-of-history) during the RISC fever, Sega had to go through all the conundrums of choosing a new vendor that could bring up the next generation of games (including those with '3D' capabilities). In the end, the company chose a fresh CPU whose creator was desperately looking for an adopter, the **Hitachi SuperH** or 'SH'.
+Just like its close competitors [drowned with options](playstation#tab-1-1-a-bit-of-history) during the RISC fever, Sega had to go through all the conundrums of choosing a new vendor that could bring up the next generation of games (including those with '3D' capabilities). In the end, the company chose a fresh CPU whose creator was desperately looking for an adopter, the **Hitachi SuperH** or 'SH'.
 
 While initially focused on embedded applications, Hitachi's new creation debuted modern arts such as [@cpu-prog_manual]:
 
