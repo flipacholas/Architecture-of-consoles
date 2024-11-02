@@ -140,7 +140,7 @@ Arka plan katmanı, <strong x-id=“1”>Background Attribute Table</strong> VRA
 
 Bu katmanın maksimum boyutu <strong x-id=“1”>1024 x 512 pikseldir</strong> (128 x 64 karo), ancak programcılar minimum olarak 256 x 256 piksel (32 x 32 karo) katman ayarlayabilirler.
 
-Her zaman olduğu gibi, bu katman VDC’deki bazı kayıtların değeri değiştirilerek kaydırılabilir.
+Her zaman olduğu gibi, bu katman VDC'deki bazı kayıtların değeri değiştirilerek kaydırılabilir.
 
 #### Sprite Katmanı {.tab}
 
