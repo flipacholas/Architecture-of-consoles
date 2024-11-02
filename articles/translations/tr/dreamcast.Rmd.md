@@ -131,7 +131,7 @@ Ardından, Tile Accelerator:
 1. CPU tarafından verilen geometri verilerini ve çizim komutlarını alır (DMA veya geleneksel aktarımları kullanarak).
 2. Bu verileri *dahili* bir formata dönüştürür.
 3. Geometriyi koordinatlarına göre her birini dağıtır. Geriye kalan geometri ise atılacaktır.
-4. Ortaya çıkan Display List’lerini oluşturur.
+4. Ortaya çıkan Display List'lerini oluşturur.
 
 Bu Display List'ler daha sonra 3D motoru tarafından işlenir: PowerVR2.
 
@@ -157,7 +157,7 @@ Açık mimari farkın yanı sıra, Texture and Shading Processor, bu konsolun es
   - Karo tabanlı sistemle birlikte, siparişten bağımsız şeffaflık önceki [aksaklıkları](sega-saturn#the-transparency-issue) tamamen giderir.
 - **Mip-Mapping**: Gerekli ayrıntı düzeyine bağlı olarak dokunun küçültülmüş bir sürümünü otomatik olarak seçer. Bu, kameradan uzakta görülebilecek büyük dokuların işlenmesini önlemek için yapılır (bu işlem gücü kaybı olur ve örtüşme üretir).
 - **Environment mapping**: Dokular üzerinde yansımalar uygular.
-- **Bilinear, Trilinear ve anizotropik filtreleme**: Bu, dokuları yumuşatmak ve pikselleşmeyi önlemek için kullanılan farklı algoritmaları ifade eder. Bunlar ‘en kötü'den ‘en iyi'ye doğru sıralanır ve her birinin sonuç kalitesi, gereken hesaplama miktarıyla doğru orantılıdır.
+- **Bilinear, Trilinear ve anizotropik filtreleme**: Bu, dokuları yumuşatmak ve pikselleşmeyi önlemek için kullanılan farklı algoritmaları ifade eder. Bunlar 'en kötü'den 'en iyi'ye doğru sıralanır ve her birinin sonuç kalitesi, gereken hesaplama miktarıyla doğru orantılıdır.
   - Bu Saturn'e göre büyük bir adım, çünkü önceki model herhangi bir doku filtresi sağlamıyordu!
 - **Bump mapping**: Fazladan poligon harcamadan yüzeylerdeki çıkıntıları simüle eder.
 
