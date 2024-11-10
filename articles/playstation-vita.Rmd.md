@@ -45,7 +45,7 @@ As the console sat on store shelves, Sony revisited its product strategy multipl
 
 - The **original** PSVita (sometimes called the 'Fat' model) is the series debut.
 - The **Slim** revision retains the same architecture, but exchanges the OLED screen for an LCD to reduce costs. Furthermore, it doesn't offer a 3G-capable variant anymore. It does, however, feature a bigger eMMC chip... only 52 MB larger! For some strange reason, that was enough to provide an internal 1 GB memory card. In any case, I'll explain more in the 'Games' section.
-- The **PlayStation TV** is just a Slim motherboard adapted for the non-portable setting.
+- The **PlayStation TV** is just a Fat motherboard adapted for the non-portable setting. It also exposes a different set of I/O.
 
 As you can see, the information in this article will easily apply to all three models, although I will dedicate extra paragraphs to talk about the puzzling eMMC changes of the last two variants.
 
@@ -63,7 +63,7 @@ In any case, SCS fabrication enabled Sony and Toshiba to fit cutting-edge techno
 
 - The **main CPU**, a quad-core ARM Cortex-A9 MPCore.
 - The **main GPU**, a PowerVR SGX543MP4+ by Imagination Technologies.
-- Many **accelerators** (some proprietary, others off the shelf), including an 'AVC Decoder', [DMA Controllers](playstation#taking-over-the-cpu), a large DSP and security blocks (which includes hidden ROM space).
+- Many **accelerators** (some proprietary, others off the shelf), including a large DSP, [DMA Controllers](playstation#taking-over-the-cpu) and security blocks (housing hidden ROM space).
 - **Around 640 MB of RAM** (split into multiple types).
 - Last but not least, **legacy PlayStation Portable circuitry** (the [MIPS CPU](playstation-portable#cpu) and the [Graphics Engine](playstation-portable#graphics)).
 
@@ -128,13 +128,14 @@ Speaking of which, the new cores share many characteristics with their predecess
  
 - The next-generation instruction set called **ARMv7-A**, I explain more details further on.
 - **64 KB of L1 cache** which inherently follows the [Harvard architecture](nintendo-ds#arms-new-territories). Consequently, it's divided into **32 KB for data** and **32 KB for instructions**.
-  - Cache coherency among the cores is automatically handled by the [Snoop Control Unit](nintendo-3ds#tab-3-3-the-axi-bus), previously featured in the ARM11MpCore.
+  - Data cache coherency among the cores is automatically handled by the [Snoop Control Unit](nintendo-3ds#tab-3-3-the-axi-bus), previously featured in the ARM11MpCore.
 - **2-issue superscalar**: For the first time, ARM has brought [instruction-level parallelism](xbox-360#an-alternative-solution). This means that, as long as there are no [hazards](playstation#delay-galore), the CPU will try to execute two instructions using two separate pipelines. This increases the amount of instructions executed per clock cycle. [MIPS](playstation-2#tab-1-1-outperforming-success) and [SuperH](dreamcast#the-offering) brought this a decade before, but the two suffered a quick demise, so it's now ARM's turn to carry it forward.
 - **Dynamic branch prediction**: The CPU now predicts the execution path by relying on two dedicated buffers while fetching instructions. The first anticipates whether an upcoming instruction will be a branch, and the next buffer maps the previous flow of the program. Finally, the latter is used to predict whether upcoming branches will be taken or not [@cpu-cortexa8_imp].
   - It's worth mentioning that this unit **only predicts branching instructions**, omitting other optimisation techniques such as [conditionals](game-boy-advance#commanding-the-cpu) or the `IT` instruction... Maybe that's a hint about the future of the ARM ISA.
 - A [Memory Management Unit](nintendo-64#memory-management) (MMU) with a Translation Lookaside Buffer (TLB). This is already typical on most CPUs.
-  - By the way, in the case of the Cortex brand, only the 'Cortex-A' profile includes this package (the 'Cortex-R' bundles an [MPU](playstation-vita#focused-memory-management) instead and the 'Cortex-M' includes neither).
+  - By the way, in the case of the Cortex brand, only the 'Cortex-A' profile includes this package. The 'Cortex-R' series only bundles an [MPU](playstation-vita#focused-memory-management) (and it's even optional on some 'Cortex-M' models [@cpu-cortexm3]).
 - **TrustZone**: A new security subsystem that adds a dimension to the [privilege levels](playstation-vita#focused-memory-management) of the MMU. It's implemented on both the hardware level (by segregating buses between non-secure and secure peripherals) and the software level (by executing a secondary and isolated operating system that handles confidential data). The special OS is called **Trusted Execution Environment**.
+  - The PSVita deviates a bit from the official hardware implementation of TrustZone. Instead of using dedicated buses, its model relies on a single bus and 'tagged' transactions to indicate whether they are secure or not [@cpu-dmac].
   - The OS model of TrustZone reminds me of the [isolated SPU of Cell](playstation-3#cells-privileged-security).
 - **NEON Media Processing Engine** (MPE), a new co-processor that carries out vector and floating-point operations. We'll dive more into it in the next sections.
 
@@ -158,7 +159,7 @@ ARMv7 is a superset of the ARMv6 ISA. Its additions can be grouped into four are
 
 Moreover, the alternative [Thumb ISA](game-boy-advance#tab-2-3-squeezing-performance) (previously enhanced with [Thumb v2](nintendo-ds#tab-1-2-arm946e-s)) has undergone a major revision called **Thumb-2**. Truth to be told, it already debuted on embedded ARMv6 CPUs (implementing the ARMv6T2 variant), but it has now become a standard on the Cortex-A line.
 
-On the other side, it's worth mentioning that **Thumb-2EE**, the successor of the deprecated [Jazelle](wii#the-hidden-co-processor), has been left unused or even excluded from many Cortex-A CPUs. I don't think the Vita's SoC even bothers implementing this. If you want an idea of its adoption back in the day, let me tell you that Dalvik (Android's Java interpreter, to put it simply) didn't even bother using Jazelle/Thumb-2EE at all. That tells you the general attitude towards ARM's Java efforts.
+On the other side, it's worth mentioning that **ThumbEE**, the successor of the deprecated [Jazelle](wii#the-hidden-co-processor), has been left unused or even excluded from many Cortex-A CPUs. Surpirsingly enough, Kermit's Cortex-A9 CPU happens to implement ThumbEE and Jazelle [@cpu-main_processor], but I don't think any application takes advantage of these. If you want an idea of its adoption back in the day, let me tell you that Dalvik (Android's Java interpreter, to put it simply) didn't even bother using Jazelle/Thumb-2EE at all. That tells you the general attitude towards ARM's Java efforts.
 
 ##### Overshadowing features {.tab}
 
@@ -184,9 +185,11 @@ NEON and VFPv3 share the same register file, but they're still considered separa
 
 All in all, this means the compiler will need to work harder optimising the code, but it still makes you wonder why ARM's engineers ended up complicating things to absurd levels. In my opinion, I believe NEON was rushed to rapidly counter **Wireless MMX** (Intel's proprietary SIMD extension for the XScale, released a year before) as ARM didn't enjoy seeing Intel bundling exclusive instructions only available on the XScale [@cpu-mmx]. This is also complemented by the fact the official documentation on Cortex's timings was hurried as well [@cpu-timings].
 
-### The master bus
+### The master bus (or buses)
 
-Another popular product from ARM, the [AMBA protocol](wii#the-hidden-co-processor) designed for interconnecting components, carries forward with the Cortex-A9. Still in its [third revision](nintendo-3ds#tab-3-3-the-axi-bus), the AXI subset was selected for interfacing the cores and external components outside the MPCore cluster. Curiously enough, it's the [same choice](nintendo-3ds#tab-3-3-the-axi-bus) found in the ARM11 and its well-known adopter, the Nintendo 3DS.
+Another popular product from ARM, the [AMBA specification](wii#the-hidden-co-processor) designed for interconnecting components, carries forward with the Cortex-A9. Within its [third revision](nintendo-3ds#tab-3-3-the-axi-bus), the AXI protocol was selected for interfacing the cores within the MPCore cluster. Curiously enough, it's the [same choice](nintendo-3ds#tab-3-3-the-axi-bus) found in the ARM11 and its well-known adopter, the Nintendo 3DS.
+
+Speaking of which, remember Nintendo's adoption of the **Open Core Protocol** (OCP) for [communicating with its PICA GPU](nintendo-3ds#adopting-open-standards)? Well, that's also another protocol found in the PSVita, now used for all communications outside the MPCore [@cpu-memory_system].
 
 ### Envisioning the future
 
@@ -194,15 +197,15 @@ After the Cortex-A9, the line of succession became increasingly confusing. The C
 
 The next big milestone for ARM will debut in 2011, with the arrival of ARMv8. I'll talk more about this in a future article about the Nintendo Switch.
 
-### Media coprocessors
+### The new media coprocessor
 
-Next to the ARM cluster, Sony bundled a couple of accelerators that support gaming-related tasks. Just like the previous [Media Engine group](playstation-portable#multimedia-cpu), they are completely proprietary and act as a black box. Programmers are not meant to fiddle with them directly but through the official SDK.
+Next to the ARM cluster, Sony bundled a large accelerator meant to support gaming-related tasks. Just like the previous [Media Engine group](playstation-portable#multimedia-cpu), it is completely proprietary and acts as a black box. Programmers are not meant to fiddle with it directly but through the official SDK.
 
-#### Venezia {.tabs .active}
+Having said that, this accelerator is called **Venezia**. This is a complete and separate CPU package designed by Sony's close partner, Toshiba, for image and sound processing [@cpu-toshiba_press]. With functionality closer to a Digital Signal Processor (DSP), Venezia was also sold as a [synthesisable chip](game-boy-advance#tab-1-2-a-new-cpu-venture) for multimedia appliances (i.e. DVD players) [@cpu-mep]. Consequently, Sony selected it to accelerate multimedia tasks, so you could say it's the spiritual successor of the [Media Engine](playstation-portable#multimedia-cpu).
+
+#### Architecture of Venezia {.tabs .active}
 
 ![Overview of Venezia.](cpu/venezia.png){.tab-float}
-
-To start with, we've got **Venezia**. This is a complete and separate CPU package designed by Sony's close partner, Toshiba, for image and sound processing [@cpu-toshiba_press]. With functionality closer to a Digital Signal Processor (DSP), Venezia was also sold as a [synthesisable chip](game-boy-advance#tab-1-2-a-new-cpu-venture) for multimedia appliances (i.e. DVD players) [@cpu-mep]. Consequently, Sony selected it to accelerate multimedia tasks, so you could say it's the spiritual successor of the [Media Engine](playstation-portable#multimedia-cpu).
 
 Similarly to the MPCore, Venezia is a cluster, this time made of **eight 'Media Processing Engine' (MPE) cores** operating at **266.7 MHz**. Notice that its naming confusingly overlaps with ARM's vector accelerators, but they are different silicon. That being said, each of Toshiba's MPEs houses [@cpu-venezia]:
 
@@ -210,19 +213,16 @@ Similarly to the MPCore, Venezia is a cluster, this time made of **eight 'Media 
 - **32 KB L1 cache**, split into 16 KB for instructions and 16 KB for data.
 - **64 KB** of general-purpose memory. This is where the MeP CPU executes its main program.
 - A **DMA controller** for transferring between internal and external memory.
-- An **'Image Processing' co-processor** that executes 64-bit SIMD instructions. It can operate different packs of data, from eight 8-bit integers to two 32-bit ones.
+- An **'Image Processing' co-processor** named 'IVC2' that executes 64-bit SIMD instructions. It can operate different packs of data, from eight 8-bit integers to two 32-bit ones.
+  - The IVC2 provides two 256-bit accumulator registers, which combined with other capabilities, it allows to compute two operations at the same time.
 
 The cluster also features **256 KB of L2 cache**, but its main selling point is found in its instruction set, which is based on the **Very Long Instruction Word (VLIW) model**. Essentially, a single line can encode multiple instructions at once. In the case of Venezia, three instructions (two for the image coprocessor and one for the CPU) [@cpu-berkeley_dsp]. This requires a very clever compiler capable of packing instructions efficiently, however.
 
+#### A curious rendition {.tab}
+
 Interestingly enough, CPU designers once experimented with VLIW implementations back in the 90s when it was thought to be the future of mainstream CPUs. This led to Broadcom's Firepath, the Transmeta Crusoe and, of course, the Intel Itanium - to name a few. However, the concept didn't gain traction outside particular uses, as the resulting benchmarks proved disappointing. Thus, interests soon shifted to other parallelism techniques, such as [out-of-order execution](playstation-2#tab-1-1-outperforming-success), which transferred the burden back to the CPU.
 
-Be as it may, Venezia is only accessible through an abstract API called 'Codec Engine' [@cpu-venezia], which implements different kinds of image and audio encoding/decoding tasks.
-
-#### AVC Decoder {.tab}
-
-Next, we've got the **AVC Decoder**. This is a relatively simpler DSP that, as the name indicates, only does one job: decompress video data encoded with 'Advanced Video Coding' (AVC) [@cpu-onscripter].
-
-The decoder then outputs an uncompressed stream the GPU understands.
+Be as it may, Venezia is only accessible through an abstract API called 'Codec Engine' [@cpu-venezia], which implements different kinds of image and audio encoding/decoding tasks. For instance, there's an **AVC decoding** command that decompresses video data encoded with 'Advanced Video Coding' (AVC) [@cpu-onscripter] and outputs an uncompressed stream the GPU understands.
 
 ### Memory available {.tabs-close}
 
