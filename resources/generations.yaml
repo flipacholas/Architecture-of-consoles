@@ -12,7 +12,7 @@
 - id: 5
   ordinal: 5th
   description: 3D gaming has become a need but 'how' is not clear yet. The response? Every company presented their own different vision.
-  cpu: Pipeline stages and L1 cache
+  cpu: Pipelined datapaths and L1 cache
   gpu: Programmable vertex pipelines, Z-buffering and perspective corrections
 
 - id: 6
