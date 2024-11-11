@@ -112,7 +112,7 @@ Notice that these devices also coincide with a certain time when users considera
 
 Along the Cortex-A8 came the **ARMv7** instruction set. This is the continuation of the [ARMv6 ISA](nintendo-3ds#new-dialects) by expanding its multi-processing and SIMD capabilities [@cpu-thomas_v7].
 
-ARMv7 is the longest-living 32-bit ISA from ARM, but also the last one. Its wide-spread adoption would still be highly [fragmented](nintendo-3ds#and-a-fragmented-distribution), mainly due to the split of Cortex into the aforementioned profiles (spawning different subsets of the ISA), existing adoption of the ARMv6 (i.e. the first Raspberry Pi and Nokia's Symbian platform only supported ARMv6) and the enlargement of Thumb. To avoid making this topic too dense, I've dedicated different sections further down to discuss these.
+ARMv7 is the longest-living 32-bit ISA from ARM, but also the last one. Its widespread adoption would still be highly [fragmented](nintendo-3ds#and-a-fragmented-distribution), mainly due to the split of Cortex into the aforementioned profiles (spawning different subsets of the ISA), existing adoption of the ARMv6 (i.e. the first Raspberry Pi and Nokia's Symbian platform only supported ARMv6) and the enlargement of Thumb. To avoid making this topic too dense, I've dedicated different sections further down to discuss these.
 
 #### The core
 
@@ -134,8 +134,7 @@ Speaking of which, the new cores share many characteristics with their predecess
   - It's worth mentioning that this unit **only predicts branching instructions**, omitting other optimisation techniques such as [conditionals](game-boy-advance#commanding-the-cpu) or the `IT` instruction... Maybe that's a hint about the future of the ARM ISA.
 - A [Memory Management Unit](nintendo-64#memory-management) (MMU) with a Translation Lookaside Buffer (TLB). This is already typical on most CPUs.
   - By the way, in the case of the Cortex brand, only the 'Cortex-A' profile includes this package. The 'Cortex-R' series only bundles an [MPU](playstation-vita#focused-memory-management) (and it's even optional on some 'Cortex-M' models [@cpu-cortexm3]).
-- **TrustZone**: A new security subsystem that adds a dimension to the [privilege levels](playstation-vita#focused-memory-management) of the MMU. It's implemented on both the hardware level (by segregating buses between non-secure and secure peripherals) and the software level (by executing a secondary and isolated operating system that handles confidential data). The special OS is called **Trusted Execution Environment**.
-  - The PSVita deviates a bit from the official hardware implementation of TrustZone. Instead of using dedicated buses, its model relies on a single bus and 'tagged' transactions to indicate whether they are secure or not [@cpu-dmac].
+- **TrustZone**: A new security subsystem that adds a dimension to the [privilege levels](playstation-vita#focused-memory-management) of the MMU. It's implemented on both the hardware level (by segregating components between non-secure and secure groups) and the software level (by executing a secondary and isolated operating system that handles confidential data). The special OS is called **Trusted Execution Environment**. Furthermore, data transfers carry an extra tag to indicate whether they are secure or insecure transactions [@cpu-cortexa_prog].
   - The OS model of TrustZone reminds me of the [isolated SPU of Cell](playstation-3#cells-privileged-security).
 - **NEON Media Processing Engine** (MPE), a new co-processor that carries out vector and floating-point operations. We'll dive more into it in the next sections.
 
@@ -246,9 +245,17 @@ There's a lot of terminology to unpack here, let's start by breaking down the 'L
 
 #### Other memory
 
-There's another large block of **128 MB of Cached DRAM (CDRAM)** predominantly connected to the GPU. CDRAM is yet-another type of RAM that combines the traditional (and cheap/slower) DRAM with a bit of SRAM [@cpu-mitsu_cdram]. The latter acts as cache to speed up frequent memory access.
+There's another large block of **128 MB of Custom DRAM (CDRAM)** predominantly connected to the GPU. 'CDRAM' is just an internal name to denote traditional DDR2 SDRAM. Although, being a dedicated space close to the GPU makes it ideal for intensive graphics operations, which may explain why this block is apparently connected using **two 512-bit buses** [@cpu-chip_james].
 
-Last but not least, the SoC also fits **16 KB of SRAM**, but it's reserved for system functions [@cpu-memory]. You may want to know that it's the exact amount of SRAM also found in the [PlayStation Portable](playstation-portable#memory-available), you'll soon see why.
+Apart from that, the SoC also fits an extra **~2.18 MB of SRAM** split into different blocks [@cpu-memory]:
+
+- 2 MB named 'Camera SRAM'.
+- 32 KB named 'SPAD32K'.
+- 128 KB named 'SPAD128K'.
+- 4 KB named 'SceCompatSharedSram'.
+- 16 KB named 'Scratchpad'.
+
+On the other hand, they are all reserved for the operating system, but we'll discuss them in a later section. By the way, you may want to know that those 16 KB of 'Scratchpad' coincide with amount of SRAM also found in the [PlayStation Portable](playstation-portable#memory-available), you'll soon see why.
 
 ### One last CPU
 
@@ -258,9 +265,9 @@ Last but not least, there's an additional CPU inside Kermit: The old **[MIPS32 4
 
 Speaking of backwards compatibility, Kermit doesn't include the [Media Engine](playstation-portable#multimedia-cpu) [@cpu-robots], although being a black box means that the software doesn't care about what's behind the scenes. Thus, the functions of that co-CPU are replicated through Venezia instead.
 
-For the remaining I/O, MIPS is not physically connected to the rest of the hardware, only the Cortex-A9 is. Thus, the PSP emulation software (running on the MIPS CPU) requests services to the ARM CPU by following a protocol called 'Remote Procedure Call' (RPC) [@cpu-trinity] [@cpu-davee_kermit].
+For the remaining I/O, MIPS is not physically connected to the rest of the hardware, only the Cortex-A9 is. Thus, the PSP emulation software (running on the MIPS CPU) requests services to the ARM CPU by following the 'Remote Procedure Call' (RPC) model [@cpu-trinity] [@cpu-davee_kermit].
 
-Finally, 64 MB of CDRAM are also reserved for this service. Those 16 KB of SRAM are also allocated to the PSP emulator [@cpu-memory], as original PSP games [would expect to find](playstation-portable#memory-available).
+Finally, 64 MB of CDRAM are also reserved for this service. Those 16 KB of 'Scratchpad' I mentioned before are actually housed within the MIPS CPU [@cpu-gh_feedback], and are subsequently allocated to the PSP emulator [@cpu-memory], as original PSP games [would expect to find](playstation-portable#memory-available).
 
 ## Next: Graphics
 
