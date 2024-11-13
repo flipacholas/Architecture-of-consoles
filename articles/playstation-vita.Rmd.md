@@ -245,7 +245,7 @@ There's a lot of terminology to unpack here, let's start by breaking down the 'L
 
 #### Other memory
 
-There's another large block of **128 MB of Custom DRAM (CDRAM)** predominantly connected to the GPU. 'CDRAM' is just an internal name to denote traditional DDR2 SDRAM. Although, being a dedicated space close to the GPU makes it ideal for intensive graphics operations, which may explain why this block is apparently connected using **two 512-bit buses** [@cpu-chip_james].
+There's another large block of **128 MB of Custom DRAM (CDRAM)** predominantly connected to the GPU. 'CDRAM' is just an internal name to denote traditional SDR SDRAM which, unlike Double Data Rate (DDR) memory, this one is Single Data Rate. Although, being a dedicated space close to the GPU makes it ideal for intensive graphics operations, which may explain why this block is apparently connected using **two 512-bit buses** [@cpu-chip_james].
 
 Apart from that, the SoC also fits an extra **~2.18 MB of SRAM** split into different blocks [@cpu-memory]:
 
