@@ -138,7 +138,7 @@ Speaking of which, the new cores share many characteristics with their predecess
   - The OS model of TrustZone reminds me of the [isolated SPU of Cell](playstation-3#cells-privileged-security).
 - **NEON Media Processing Engine** (MPE), a new co-processor that carries out vector and floating-point operations. We'll dive more into it in the next sections.
 
-Now, the Cortex-A9 (found in the PSVita) improves the original design by applying significant enhancements [@cpu-cortexa9_mpcore]:
+Now, the Cortex-A9 series (found in the PSVita) improves the original design by applying significant enhancements [@cpu-cortexa9_mpcore]:
 
 - **Multi-core support**. This is most evident by looking at Sony's choice of a quad-core package.
   - As a side note, this also explains why portable devices like the iPad 2 and iPhone 4s (both carrying an A9) managed to debut a dual-core CPU.
