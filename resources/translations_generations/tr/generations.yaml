@@ -14,7 +14,7 @@
   id: 5
   ordinal: Beşinci
   description: 3D oyun bir ihtiyaç haline geldi ancak 'nasıl' olacağı henüz net değil. Yanıt ne oldu? Her şirket kendi farklı vizyonunu sundu.
-  cpu: Veri hattı aşamaları ve L1 önbelleği
+  cpu: Pipelined veri yolları ve L1 önbellek
   gpu: Programlanabilir veri hatları, Z-arabelleğe alma ve perspektif düzeltmeleri
 - 
   id: 6
