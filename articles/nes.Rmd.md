@@ -273,7 +273,7 @@ As an interesting *fix*: the PPU allowed developers to apply a vertical mask on 
 
 #### Tile-Swapping {.tab}
 
-::: {.subfigures .tabs-nested .tab-float max_subfigures=1}
+::: {.subfigures .tabs-nested .tab-float max_subfigures=1 .pixel}
 
 ![Early scan lines.](secrets/multiplexing_1.png){.pixel .active title="Early"}
 
