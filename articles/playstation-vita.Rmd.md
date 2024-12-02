@@ -227,7 +227,7 @@ Be as it may, Venezia is only accessible through an abstract API called 'Codec E
 
 Enough about CPU talk! Let's now take a look at the memory bundled within the PSVita.
 
-As it's customary with portable consoles, there are multiple memory types in this system.
+As is customary with portable consoles, there are multiple memory types in this system.
 
 #### Main memory
 
