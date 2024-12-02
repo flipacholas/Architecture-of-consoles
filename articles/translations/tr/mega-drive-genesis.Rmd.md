@@ -54,11 +54,12 @@ Bu konsolun iki genel amaçlı işlemcisi vardır.
 Konuya dönersek, 68k 'ana' CPU rolüne sahiptir ve oyun mantığı, I/O ve grafik hesaplamaları için görevlendirilecektir. Aşağıdaki yeteneklere sahiptir [@cpu-user]:
 
 - **68000 ISA**: Bir dizi çarpma ve bölme işlem kodu da dahil olmak üzere birçok özelliğe sahip yeni bir komut seti. Bazı talimatlar 8 bit uzunluğunda ('byte' olarak adlandırılır), diğerleri 16 bit uzunluğunda ('word' olarak adlandırılır) ve geri kalanı 32 bit uzunluğundadır ('long-word' olarak adlandırılır).
-- **Sekiz genel amaçlı 32-bit register**: 6502 ve Z80'in sadece 8-bit register'ları olduğu düşünülürse bu büyük bir adımdır.
+- <strong x-id=“1”>On altı genel amaçlı 32 bit register</strong>. Bu CPU'nun seti sekiz 'data register' (aritmetik hesaplamaların yapılabildiği) ve sekiz 'address register' (yalnızca bellek adreslerini saklamak için kullanılır) olarak ikiye ayırdığını unutmayın.
+  - Yine de, 6502 ve Z80'in yalnızca 8 bitlik register sağladığı düşünüldüğünde bu büyük bir adımdır.
 - **16-bit ALU**: Yani 32 bitlik sayılarda aritmetik işlemleri hesaplamak için fazladan döngüye ihtiyaç duyar, ancak 16 bit/8 bitlik sayılarda sorun yaşamaz.
 - Harici **16-bit veri yolu**: Gördüğünüz gibi, bu CPU bazı '32-bit yeteneklere' sahip olsa da, tam bir 32-bit makine olarak tasarlanmamıştır. Bu veri yolunun genişliği, 16 bitlik verileri taşırken daha iyi performans anlamına gelir.
   - İlginçtir ki Motorola, bu konsolun piyasaya sürülmesinden dört yıl önce tam bir 32-bit CPU olan **68020**'yi piyasaya sürmüştür. Ancak Sega ikinci çipi seçseydi maliyetlerin fırlayacağını tahmin ediyorum.
-- **24 bit adres veriyolu**: Bu, **16 MB'a kadar belleğe erişilebileceği** anlamına gelir. Bellek adresleri CPU içinde hala 32 bitlik değerlerle kodlanır (sadece üst bayt atılır). Bunu söyledikten sonra, veri yolu fiziksel olarak [@cpu-memorymap]'e bağlıdır:
+- **24 bit adres veriyolu**: Bu, **16 MB'a kadar belleğe erişilebileceği** anlamına gelir. Bellek adresleri CPU içinde hala 32 bitlik değerlerle kodlanır (sadece üst bayt atılır). Bunu söyledikten sonra, Mega Drive ile veri yolu fiziksel olarak [@cpu-memorymap]'e bağlanır:
   - 64 KB genel amaçlı RAM.
   - Kartuş ROM (4 MB'a kadar).
   - İki Kontrolör.
@@ -67,7 +68,7 @@ Konuya dönersek, 68k 'ana' CPU rolüne sahiptir ve oyun mantığı, I/O ve graf
   - Genişleme portları ('gelecekteki' aksesuarlar için kullanılır).
   - İkinci CPU'nun RAM'i, *bus arbiter* tarafından aracılık edilir.
 
-Eğer 32 bitlik sözcükleri işleyebilen bir CPU'da 24 bitlik adreslerin kullanılmasının ardındaki nedeni merak ediyorsanız, bunun nedeni o dönemde 4 GB belleği yönetmek için yeterli ekipmanın bulunmamasıdır. Performans ve para açısından kullanılmayan hatların uygulanması maliyetli olduğu gerçeğiyle birleştirildiğinde, Motorola makul bir uzlaşmaya vardı (24 adres hattı) ki bu da geliştiricileri tam 32 bitlik CPU'nun (68020) geldiği zaman için hazırlar.
+Eğer 32 bitlik registerları işleyebilen bir CPU'da 24 bitlik adreslerin kullanılmasının ardındaki nedeni merak ediyorsanız: o dönemin ekipmanları 4 GB belleği yönetmek için pek de uygun değildi. Kullanılmayan hatların uygulanmasının performans ve para açısından maliyetli olduğu göz önüne alındığında, Motorola 32 bit kayıtlar ve 24 adres hattı ile mantıklı bir uzlaşmaya vararak geliştiricileri beş yıl sonra tam 32 bit CPU'nun (68020) gelişine hazırladı.
 
 #### Tuhaf bir talimat seti
 
