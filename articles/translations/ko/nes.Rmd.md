@@ -275,7 +275,7 @@ V-Blank 윈도우 외부에서 갱신할 수 있는 PPU 레지스터는 소수�
 
 #### 타일 스와핑 {.tab}
 
-::: {.subfigures .tabs-nested .tab-float max_subfigures=1}
+::: {.subfigures .tabs-nested .tab-float max_subfigures=1 .pixel}
 
 ![초기 스캔 라인.](secrets/multiplexing_1.png){.pixel .active title="초기"}
 
