@@ -275,7 +275,7 @@ Bu yüzden *Super Mario Bros. 3* gibi bazı oyunlar Mario hareket ederken ekran�
 
 #### Karo Değiştirme {.tab}
 
-::: {.subfigures .tabs-nested .tab-float max_subfigures=1}
+::: {.subfigures .tabs-nested .tab-float max_subfigures=1 .pixel}
 
 ![Erken tarama çizgisi.](secrets/multiplexing_1.png){.pixel .active title="Erken"}
 
@@ -359,7 +359,7 @@ Diğer tarafta, ilgili devre ses seviyesi kontrolü sağlamaz. Her halükarda, b
 
 ::: {.subfigures .tabs-nested .tab-float}
 
-![Gürültü kanalının osiloskop görünümü.](noise_single){.active video="true" title="Ses"}
+![Noise kanalının osiloskop görünümü.](noise_single){.active video="true" title="Ses"}
 
 ![Tüm ses kanallarının osiloskop görünümü.](noise_full){video="true" title="Tamamı"}
 
