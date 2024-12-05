@@ -275,7 +275,7 @@ aliases:
 
 #### تبادل البلاط {.tab}
 
-::: {.subfigures .tabs-nested .tab-float max_subfigures=1}
+::: {.subfigures .tabs-nested .tab-float max_subfigures=1 .pixel}
 
 ![خطوط المسح المبكرة.](secrets/multiplexing_1.png){.pixel .active title="مبكر"}
 
