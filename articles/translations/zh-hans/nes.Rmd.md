@@ -275,7 +275,7 @@ PPU 被限制为每条扫描线 **八个精灵图**，每帧最多 **64 个精�
 
 #### 图块转换 {.tab}
 
-::: {.subfigures .tabs-nested .tab-float max_subfigures=1}
+::: {.subfigures .tabs-nested .tab-float max_subfigures=1 .pixel}
 
 ![初始扫描线。](secrets/multiplexing_1.png){.pixel .active title="初期"}
 
