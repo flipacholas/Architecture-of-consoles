@@ -495,7 +495,7 @@ Naturally, this arrangement will add some delay (a.k.a. lag), albeit negligible 
 Overall, the SoC houses **two audio blocks**:
 
 - A proprietary **DSP** exclusively programmed for sound operations. This is used by 3DS games.
-- A variant of the [Nintendo DS audio block]() named **CSND**. 3DS, DS and GBA games use it.
+- A variant of the [Nintendo DS audio block](nintendo-ds#audio) named **CSND**. 3DS, DS and GBA games use it.
 
 ### The 3DS-only hardware
 
