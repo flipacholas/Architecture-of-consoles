@@ -136,15 +136,9 @@ Colour RAM stores **two palettes of 16 colours each**. Each entry is 6-bit wide 
 
 #### Background Layer {.tab}
 
-::: {.subfigures .tabs-nested .tab-float .pixel}
+![Allocated Screen map.](sonic/tilemap.png){.tabs-nested .active .tab-float .pixel title="Overall"}
 
-![Allocated Screen map.](sonic/tilemap.png){.active title="Overall"}
-
-![Allocated Screen map with selected area marked.](sonic/tilemap_marked.png){title="Selected"}
-
-Allocated Screen map with selected area marked.
-
-:::
+![Allocated Screen map with selected area marked.](sonic/tilemap_marked.png){.tabs-nested-last .pixel title="Selected"}
 
 A background layer is a large plane where static tiles are drawn. To place something here, there's another area on VRAM called **Screen map** that takes 1.75 KB. 
 
