@@ -54,7 +54,7 @@ Bu konsolun iki genel amaçlı işlemcisi vardır.
 Konuya dönersek, 68k 'ana' CPU rolüne sahiptir ve oyun mantığı, I/O ve grafik hesaplamaları için görevlendirilecektir. Aşağıdaki yeteneklere sahiptir [@cpu-user]:
 
 - **68000 ISA**: Bir dizi çarpma ve bölme işlem kodu da dahil olmak üzere birçok özelliğe sahip yeni bir komut seti. Bazı talimatlar 8 bit uzunluğunda ('byte' olarak adlandırılır), diğerleri 16 bit uzunluğunda ('word' olarak adlandırılır) ve geri kalanı 32 bit uzunluğundadır ('long-word' olarak adlandırılır).
-- <strong x-id=“1”>On altı genel amaçlı 32 bit register</strong>. Bu CPU'nun seti sekiz 'data register' (aritmetik hesaplamaların yapılabildiği) ve sekiz 'address register' (yalnızca bellek adreslerini saklamak için kullanılır) olarak ikiye ayırdığını unutmayın.
+- **On altı genel amaçlı 32 bit register**. Bu CPU'nun seti sekiz 'data register' (aritmetik hesaplamaların yapılabildiği) ve sekiz 'address register' (yalnızca bellek adreslerini saklamak için kullanılır) olarak ikiye ayırdığını unutmayın.
   - Yine de, 6502 ve Z80'in yalnızca 8 bitlik register sağladığı düşünüldüğünde bu büyük bir adımdır.
 - **16-bit ALU**: Yani 32 bitlik sayılarda aritmetik işlemleri hesaplamak için fazladan döngüye ihtiyaç duyar, ancak 16 bit/8 bitlik sayılarda sorun yaşamaz.
 - Harici **16-bit veri yolu**: Gördüğünüz gibi, bu CPU bazı '32-bit yeteneklere' sahip olsa da, tam bir 32-bit makine olarak tasarlanmamıştır. Bu veri yolunun genişliği, 16 bitlik verileri taşırken daha iyi performans anlamına gelir.
