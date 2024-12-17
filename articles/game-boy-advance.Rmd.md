@@ -168,7 +168,7 @@ From the software side, there is a special 16-bit register called `REG_DISPCNT` 
 
 ## Graphics
 
-Before we begin, you'll find the system a mix between the [SNES](super-nintendo.md#graphics) and the [Game Boy](game-boy#graphics), the graphics core is still the well-known 2D engine called **PPU**. I recommend reading those articles before continuing since I'll be revisiting lots of previously-explained concepts.
+Before we begin, you'll find the system a mix between the [SNES](super-nintendo.md#graphics) and the [Game Boy](game-boy#graphics). In fact, the graphics core is still called **PPU**. Thus, I recommend reading those articles first as I'll be revisiting lots of previously-explained concepts.
 
 Compared to previous [Game Boys](game-boy), we now have an LCD screen that can display up to **32,768 colours** (15-bit). It has a resolution of **240 x 160 pixels** and a refresh rate of **~60 Hz**.
 
@@ -179,12 +179,12 @@ Compared to previous [Game Boys](game-boy), we now have an LCD screen that can d
 Graphics are distributed across these regions of memory:
 
 - 96 KB 16-bit **VRAM** (Video RAM): Where 64 KB store backgrounds and 32 KB store sprites.
-- 1 KB 32-bit **OAM** (Object Attribute Memory): Stores up to 128 sprite entries (not the graphics, just the indices and attributes). Its bus is optimised for fast rendering.
-- 1 KB 16-bit **PAL RAM** (Palette RAM): Stores two palettes, one for backgrounds and the other for sprites. Each palette contains 256 entries of 15-bit colours each, colour `0` being *transparent*.
+- 1 KB 32-bit **OAM** (Object Attribute Memory): Stores up to 128 sprite entries (not the graphics, just the indices and attributes). As noted by its large width, the OAM's bus is exclusively optimised for fast access.
+- 1 KB 16-bit **PAL RAM** (Palette RAM): Stores two palettes, one for backgrounds and the other for sprites. Each palette contains 256 entries of 15-bit colours each, where colour `0` means *transparent*.
 
 ### Constructing the frame
 
-If you've read the previous articles you'll find the GBA familiar, although there is additional functionality that may surprise you, and don't forget that this console runs on two AA batteries.
+If you've read the previous articles you'll find the GBA familiar, although there is additional functionality that may surprise you. Regardless, the fact the new system runs only on two AA batteries makes this study even more enthralling.
 
 I'm going to borrow the graphics of Sega's *Sonic Advance 3* to show how a frame is composed.
 
@@ -204,11 +204,11 @@ Pairs of charblocks found in VRAM.
 
 GBA's tiles are strictly **8x8 pixel bitmaps**, they can use 16 colours (4 bpp) or 256 colours (8 bpp). 4 bpp tiles consume 32 bytes, while 8 bpp ones take 64 bytes.
 
-Tiles can be stored anywhere in VRAM, however, the PPU wants them grouped into **charblocks**: A region of **16 KB**. Each block is reserved for a specific type of layer (background and sprites) and programmers decide where each charblock starts. This can result in some overlapping which, as a consequence, enables two charblocks to share the same tiles.
+Tiles can be stored anywhere in VRAM. However, the PPU wants them grouped into **charblocks**: A continuous region of **16 KB**. Each charblock is reserved for a specific type of layer (either background or sprites) and programmers decide where each charblock starts. This can result in some overlapping which, as a consequence, enables two charblocks to share the same tiles.
 
-Due to the size of a charblock, up to 256 8 bpp tiles or 512 4 bpp tiles can be stored per block. Up to six charblocks are allowed, which combined require 96 KB of memory: The exact amount of VRAM this console has.
+Due to the size of a charblock, up to 256 8 bpp tiles or 512 4 bpp tiles can be stored per block. Overall, **up to six charblocks can be allocated**, which combined require 96 KB of memory: The exact amount of VRAM this console has.
 
-Only four charblocks can be used for backgrounds and two can be used for sprites.
+Only four charblocks can be used for backgrounds and two may be used for sprites.
 
 #### Backgrounds {.tab}
 
@@ -234,19 +234,19 @@ The PPU can draw up to four background layers. The capabilities of each one will
 
 Each layer has a dimension of up to 512x512 pixels. If it's an affine one then it will be up to 1024x1024 pixels.
 
-The piece of data that defines the background layer is called **Tile Map**. To implement this in a way that the PPU understands it, programmers use **screenblocks**, a structure that defines portions of the background layer (32x32 tiles). A screenblock occupies just 2 KB, but more than one will be needed to construct the whole layer. Programmers may place them anywhere inside the background charblocks, this means that not all tiles entries will contain graphics!
+The piece of data that defines the background layer is called **Tile Map**. Now, this information is encoded in the form of **screenblocks**: a structure that defines portions of the background layer (32x32 tiles). A screenblock occupies just 2 KB, but more than one will be needed to construct the whole layer. Programmers may place screenblocks anywhere in VRAM, which may overlap background charblocks. This means that not all tiles entries will contain graphics!
 
 #### Sprites {.tab}
 
 ![Rendered Sprite layer](sonic/sprites.png){.tab-float .pixel}
 
-The size of a sprite can be up to 64x64 pixels wide, yet for having such a small screen they will end up occupying a big part of it.
+The size of a sprite can be up to 64x64 pixels wide. Yet, for having such a small screen, sprites will end up occupying a big part of it.
 
 If that wasn't enough, the PPU can now apply **affine transformations** to sprites!
 
 Sprite entries are 32-bit wide and their values can be divided into two groups:
 
-- **Attributes**: Contains x/y position, h/v flipping, size, shape (square or rectangle), sprite type (affine or regular) and location of the first tile.
+- **Attributes**: Contains x/y position, horizontal/vertical flipping, size, shape (square or rectangle), sprite type (affine or regular) and location of the first tile.
 - **Affine data**: Only used if the sprite is affine. They specify scaling and rotation.
 
 #### Result {.tab}
@@ -256,17 +256,17 @@ Sprite entries are 32-bit wide and their values can be divided into two groups:
 As always, the PPU will combine all layers automatically, but it's not over yet! The system has a couple of effects available to apply over these layers:
 
 - **Mosaic**: Makes tiles look more *blocky*.
-- **Alpha blending**: Combines colours of two overlapping layers resulting in transparency effects.
+- **Alpha blending**: Combines colours of two overlapping layers, resulting in transparency effects.
 - **Windowing**: Divides the screen into two different *windows* where each one can have its own separate graphics and effects, the outer zone of both windows can also be rendered with tiles.
 
-On the other side, to update the frame there are multiple options available:
+On the other side, to update the frame, there are multiple options available:
 
 - Command the **CPU**: The processor now has full access to VRAM whenever it wants. However, it can produce unwanted artefacts if it alters some data mid-frame, so waiting for VBlank/HBlank (*traditional way*) remains the safest option in most cases.
-- Use the **DMA Controller**: DMA provides transfer rates ~10x faster and can be scheduled during VBlank and HBlank. This console provides 4 DMA channels (two reserved for sound, one for critical operations and the other for general purpose). Bear in mind that the controller will halt the CPU during the operation (although it may hardly notice it!).
+- Use the **DMA Controller**: DMA provides transfer rates ~10x faster and can be scheduled during VBlank and HBlank. This console provides four DMA channels (two reserved for sound, one for critical operations and the other for general purpose). Bear in mind that the controller will halt the CPU during the operation (although it may hardly notice it!).
 
 ### Beyond Tiles {.tabs-close}
 
-Sometimes we may want to compose a background from which the tile engine won't be able to draw all required graphics. Now, modern consoles addressed this by implementing a **frame-buffer** architecture but this is not possible when there's very little RAM... Well, the GBA happens to have 96 KB of VRAM which is enough to allocate a **bitmap** with the dimensions of our LCD screen.
+Sometimes we may want to compose a background from which the tile engine won't be able to draw all required graphics. Now, modern consoles addressed this by implementing a **frame-buffer** architecture, enabling programmers to arbitrary alter each pixel individually. However, this is not possible when there's very little RAM... Well, the GBA happens to have 96 KB of VRAM. This is enough to allocate a **bitmap** with the dimensions of our LCD screen.
 
 The good news is that the PPU actually implemented this functionality by including three extra modes, these are called **bitmap modes** [@graphics-bitmap]:
 
@@ -290,11 +290,11 @@ Examples of programs using bitmap modes.
 
 Overall it sounds like a cutting-the-edge feature, however, most games held on to the tile engine. Why? Because in practice it **costs a lot of CPU resources**.
 
-You see, while using a tile engine the CPU can delegate most of the computations to the graphics chip. By contrast, the frame-buffer system that the PPU provides is limited to only displaying that segment of memory as a **single background layer**, which means no more individual affine transformations, layering or effects unless the CPU computes them. Also, the frame-buffer occupies 80 KB of memory, so only 16 KB (half) are available to store sprite tiles.
+You see, the tile engine enables the CPU to delegate most of the computations to the graphics chip. By contrast, the frame-buffer system that the PPU provides is limited to only displaying that segment of memory as a **single background layer**, which means no more individual affine transformations, layering or effects unless the CPU computes them. Also, the frame-buffer occupies 80 KB of memory, so only 16 KB (half) are available to store sprite tiles.
 
 {.close-float}
 
-For this reason, these modes are used exceptionally, such as for playing motion video (**Game Boy Advance Video** completely relied on this) or rendering **3D geometry** with the CPU. In any case, the results were impressive, to say the least.
+For this reason, these new modes were predominantly useful for exceptional use cases, such as for playing motion video (the **Game Boy Advance Video** series completely relied on this) or for displaying **3D geometry** (rendered by the CPU). In any case, the results were impressive, to say the least.
 
 ## Audio
 
