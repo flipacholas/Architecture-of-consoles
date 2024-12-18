@@ -13,6 +13,7 @@ gameboy:
     pretranslated_with_ai: true
   pl: LunaDook & MoonbowPlushie
   tr: EuropaYou
+  zh-hans: Carryspider
 gamecube:
   tr: EuropaYou
   es:
@@ -70,9 +71,11 @@ nintendods:
 pcengine:
   es: Carlos Díaz
   tr: EuropaYou
+  zh-hans: Carryspider
 ps1:
   pt-br: Walper
   ru: Zerocker и Иван "rndtrash" Кузьменко
+  zh-hans: Carryspider
 ps2:
   pt-br: Lucas Akira Morishita
   tr: Annayo ve EuropaYou
@@ -98,7 +101,9 @@ snes:
   es:
     authors: null
     pretranslated_with_ai: true
-virtualboy: null
+  zh-hans: Carryspider
+virtualboy: 
+  zh-hans: Carryspider
 wii:
   es: Jonathan Lojo Muñiz
   it: 
