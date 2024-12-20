@@ -910,7 +910,7 @@ The year 2010 saw the debut of **Windows Phone 7** and a new type of interface c
 
 ![Promotional screens of Windows Phone 7 (2010), showing the new Home screen, the contacts app (featuring the new 'Panorama' layout) and the lock screen.](screenshots/windows/phone7_promotional.png)
 
-The most significant changes lie in the home screen, which has reverted its two-dimensional navigation style for a new multi-row distribution called 'Panorama'. The latter borrows similar navigation patterns to the old Blades dashboard, except the new layout does not repeat the same mistakes. Icons now take prevalence over labels, and their uniform shapes lead to a more apathetic composition. But hey, at least the layout is now consistent across all home screen views (although I must confess I miss the creativity of previous eras).
+The most significant changes lie in the home screen, which has reverted its two-dimensional navigation style for a new multi-row distribution called 'Panorama'. The latter borrows similar navigation patterns to the old Blades dashboard, except the new layout does not repeat the same mistakes. Icons now take prevalence over labels, and their uniform shapes lead to a more apathetic composition. But hey, at least the layout is now consistent across all home screen views (although I must confess I miss the unpredictability of previous eras).
 
 ## Games
 
@@ -991,7 +991,7 @@ At the heart of this low-priced console was its highly-promoted online capabilit
 
 As Xbox Live enjoyed successful adoption with the original Xbox, the successor would be no stranger in following the footsteps and even offer more commodities to get users to join online gaming. I presume the low-price point of this console and continuous marketing efforts - including all the accessories that Microsoft shipped (webcams, headsets, etc) - meant that Microsoft's main source of profit relied on paid subscriptions and marketplace purchases. With the advent of 3D avatars, the company also found ways to capitalise on avatar customisation [@games-leggett].
 
-![Curiously enough, the console calculated a score for the user's Xbox Live profile which was based on the number and type of achievements unlocked. Want to reach the top ranks? Play more. Ran out of games? Buy More!](screenshots/metro/achievements.jpg)
+![Curiously enough, the console calculated a score for the user's Xbox Live profile which was based on the number and type of achievements unlocked. Want to reach the top ranks? Play more. Ran out of games? Buy more!](screenshots/metro/achievements.jpg)
 
 From the developer's point of view, Xbox Live servers provided the infrastructure required for multi-playing, voice chat, profile management and so on. Xbox 360 games used a **REST API** (documented on the SDK) to talk with each endpoint. To authenticate with those servers, developers received a custom 'Xbox Secure Token Service' to be embedded with their REST requests.
 
