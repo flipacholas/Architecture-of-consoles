@@ -18,7 +18,7 @@ top_tabs:
       title: "国际版（International）"
       caption: "TurboGrafx-16.<br>1989年8月29日于美国，1989年11月22日于法国，1990年于英国和西班牙发布。"
       active: true
-      file: 国际版（International）
+      file: international
   Motherboard:
     caption: "TurboGrafx的主板展示。<br>PC Engine的主板要更小，是堆叠结构的。"
   Diagram:
