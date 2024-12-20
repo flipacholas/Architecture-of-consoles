@@ -1,15 +1,13 @@
 commit_message: 'Crowdin: (%language%) Updated %original_file_name% translations'
-append_commit_message: false
+append_commit_message: 
 files:
   - source: /articles/*.md
     translation: /articles/translations/%two_letters_code%/%file_name%.md
-    export_only_approved: true
   - source: /articles/*.Rmd.md
+    ignore:
+      - /articles/playstation-vita.Rmd.md
     translation: /articles/translations/%two_letters_code%/%file_name%.Rmd.md
-    export_only_approved: true
   - source: /resources/strings.toml
     translation: /resources/translations/%two_letters_code%.toml
-    export_only_approved: true
   - source: /resources/generations.yaml
     translation: /resources/translations_generations/%two_letters_code%/generations.yaml
-    export_only_approved: true
