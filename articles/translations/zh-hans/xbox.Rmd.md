@@ -112,7 +112,7 @@ RISC处理器的优势之一在于其简单的设计方法使其CPU的设计具�
 
 铜矿还在原有的L2基础上增加了两个“增强功能”，即**高级传输缓存（Advanced Transfer Cache）**和**高级系统缓冲（Advanced System Buffering）**。 总而言之，L2在芯片上，总线更宽，这有助于减少前端总线可能出现的瓶颈。
 
-最后，芯片使用的是适合主板的“Micro-PGA2”插座，但与其他游戏机一样，Xbox焊上了个是球栅阵列封装（Ball Grid Array，“BGA”）版的。
+最后，芯片使用的是适合PC主板的“Micro-PGA2”插座，但与其他游戏机一样，Xbox焊上了个球栅阵列封装（Ball Grid Array，“BGA”）版的。
 
 ### P6和奔腾数字的终结  {.tabs-close}
 
@@ -194,7 +194,7 @@ NV2A的GPU内核基于流行的“GeForce3”系列GPU\[@graphics-mslusarz\] \[@
 
 接下来的解释将在PGRAPH中进行。
 
-#### Vertex {.tab}
+#### 顶点 {.tab}
 
 ![顶点阶段](pipeline/vertex.png) {.tab-float}
 
