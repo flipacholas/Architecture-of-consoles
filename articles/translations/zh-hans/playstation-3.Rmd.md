@@ -756,7 +756,7 @@ HDMI接口由19个针脚[@graphics-hdmi_wiki]组成，全部安装在一个插�
 
 Folding&#64;home是一个安装在每台PlayStation 3上的应用程序，用户打开后即可连接到中央服务器并运行蛋白质模拟。 此外，该应用程序还可以在非高峰时段在后台运行。
 
-![Folding@Home显示用户启动应用后完成的工作[@operating_system-folding_app]。](xmb/folding.jpg)
+![Folding&#64;Home显示用户启动应用后完成的工作[@operating_system-folding_app]。](xmb/folding.jpg)
 
 在其整个生命周期中，全球1500万PS3用户的联合计算能力协助Folding&#64;home开展了治疗阿尔茨海默病的研究[@operating_system-protein_retirement]。 最后，Folding&#64;home和索尼于2012年退役了该应用，而前者则在其他平台上继续使用。
 
@@ -774,7 +774,7 @@ IBM在从软件层面描述Cell时提到，由于Cell有很多执行核心，因
 
 {.close-float}
 
-与Folding@home的命运相同，OtherOS最终在后续更新中被移除，但原因不同（主要与安全有关）。 不久之后，由于软件漏洞和逆向工程的努力，OtherOS被_非官方地_恢复了。 目前，如果用户安装了_定制固件_，就可以使用OtherOS。 我将在“反盗版和自制软件”部分对此作进一步解释。
+与Folding&#64;home的命运相同，OtherOS最终在后续更新中被移除，但原因不同（主要与安全有关）。 不久之后，由于软件漏洞和逆向工程的努力，OtherOS被_非官方地_恢复了。 目前，如果用户安装了_定制固件_，就可以使用OtherOS。 我将在“反盗版和自制软件”部分对此作进一步解释。
 
 在撰写本文时，开发人员René Rebe正在实施适当的xf86驱动程序，以利用RSX及其256 MB内存提供的加速功能[@operating_system-rsxx11]。 他的工作与其他开发工作相结合，消除了管理程序施加的限制（最初得益于软件漏洞的发现，后来使用了_定制固件_，后者在“反盗版和自制软件”部分有进一步解释）。 Rebe先生在他的Youtube频道上发布他的研究进展，并依靠自愿捐款继续他的工作[@operating_system-rsxfund]。
 
