@@ -372,7 +372,7 @@ Xbox配备了一款名为**“公爵”（The Duke）**的笨重控制器，其�
 
 ![主界面。](shell/home.png){.active title="主页"}
 
-![设置界面。](shell/settings.png){title="设置}
+![设置界面。](shell/settings.png){title="设置"}
 
 Dashboard提供多种服务
 
