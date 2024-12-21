@@ -125,7 +125,7 @@ PPU 与一个 8 KB 的 **VRAM** 相连。 这样一来，PPU 就需要通过仲�
 
 ::: {.subfigures .tabs-nested .tab-float .pixel max_subfigures=1}
 
-![多个图块](ppu_mario/tiles.png){.activity title="全部"}
+![多个图块](ppu_mario/tiles.png){.active title="全部"}
 
 ![被网格分隔的图块](ppu_mario/tiles_grid.png){title="网格"}
 
