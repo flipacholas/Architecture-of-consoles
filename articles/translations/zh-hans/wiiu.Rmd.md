@@ -325,7 +325,7 @@ TeraScale架构是Xenos/Crayola移植到PC 市场的具体化……而GPU7则是
 
 我认为这种新设计使制造商能够设计不同性能范围的显卡，通过 昂贵的设备包括更多的SIMD单元（如此只需要更少的时钟周期就能完成计算）。 作为一个不靠使用高端硬件而出名的游戏主机（他们通过能效来弥补），wiiu完成Wavefront的计算需要四个时钟周期
 
-#### Geometry {.tab}
+#### 几何 {.tab}
 
 ![几何 (geometry) 阶段概述.](gpu/pipeline_geometry.png) {.tab-float}
 
