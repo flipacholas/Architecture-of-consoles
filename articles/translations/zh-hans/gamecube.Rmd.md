@@ -165,7 +165,7 @@ CPU和GPU通过主RAM中固定长度的**FIFO缓冲区**相互通信，这是CPU
 
 GPU包含一个**命令处理器**，负责从FIFO中获取命令。
 
-#### Geometry {.tab}
+#### 几何 {.tab}
 
 ![使用间接模式的顶点阶段示意图。](flipper_pipeline/vertex.jpg) {.tab-float}
 
