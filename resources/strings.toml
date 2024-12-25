@@ -295,3 +295,22 @@ other = "Other Media"
 
 [bonus]
 other = "Bonus"
+
+# Virtual Boy animations
+
+[paused]
+other = "Paused"
+
+[slower]
+other = "Slower"
+
+[faster]
+other = "Faster"
+
+[animating_at]
+other = 'Animating at {{ . }}x speed'
+
+# Audio Switcher
+
+[ready_to_play]
+other = 'Ready to play & alternate'
