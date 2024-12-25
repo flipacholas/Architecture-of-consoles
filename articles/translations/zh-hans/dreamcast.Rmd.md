@@ -326,11 +326,11 @@ Dreamcast的另一个创新功能是**视觉记忆单元**或称之为“VMU”�
 
 ![已经插上VMU的手柄](controller-vmu.png){.tabs-nested-last title="安装好"}
 
-- A**Sanyo LC86K87**：8位低功耗CPU。
+- **Sanyo LC86K87**：8位低功耗CPU。
 - 具有四个附加图标的32x48单色LCD：使用196 BXRAM（外部RAM）作为帧缓冲区命令。
 - **两个串行连接器**：一个用于输入，另一个用于输出。
 - **六个物理按钮**：当VMU与控制器分离时使用。
-- A**16 KB Mask-ROM**：存储BIOS-IPL。
+- **16 KB Mask-ROM**：存储BIOS-IPL。
 - **64 KB的Flash**：32 KB用于存储单个程序（从游戏机传输），另32 KB用于保存Dreamcast的游戏存档。
 - **RAM的512 B**：为系统保留256 B，只留下256 B可用于程序。
 
