@@ -217,11 +217,11 @@ StrongARM是一种基于ARM的新型CPU，其特点包括[@cpu-furber]：
 
 ::: {.subfigures .tabs-nested .tab-float .pixel}
 
-![背景图层0 (BG0)。 这个特定的图层将在某些扫描线上水平位移以模拟云的移动。](mario/bg1.png){.active title="Layer 0"}
+![背景图层0 (BG0)。 这个特定的图层将在某些扫描线上水平位移以模拟云的移动。](mario/bg1.png){.active title="图层0"}
 
-![背景图层2 (BG2)。](mario/bg2.png){title="Layer 2"}
+![背景图层2 (BG2)。](mario/bg2.png){title="图层2"}
 
-![背景图层3 (BG3)。](mario/bg3.png){title="Layer 3"}
+![背景图层3 (BG3)。](mario/bg3.png){title="图层3"}
 
 使用的Static背景图层。
 
@@ -406,9 +406,9 @@ NDS可以运行GBA游戏，因此它应该具有类似于前代PSG的功能（�
 
 ARM7也连接到另一个SPI节点，即**触摸屏控制器**的接口。该接口可以操作底部屏幕（电阻式，需要使用触控笔）和闪存存储器（*固件*就存储在这里，稍后再做详细介绍）。
 
-![愿望之屋 天使的记忆（2007）前面提到的总机难题。 为了营救小姑娘，玩家必须同时用两根手指滑动屏幕才能开灯。](puzzle.png){.tabs-nested .active .open-float .tab-float title="Puzzle"}
+![愿望之屋 天使的记忆（2007）前面提到的总机难题。 为了营救小姑娘，玩家必须同时用两根手指滑动屏幕才能开灯。](puzzle.png){.tabs-nested .active .open-float .tab-float title="益智游戏"}
 
-![但如果你做错了……](puzzle_fail.png){.tabs-nested-last title="Fail"}
+![但如果你做错了……](puzzle_fail.png){.tabs-nested-last title="失败"}
 
 这个触摸屏的一个有趣的特点，除了检测X/Y位置的功能，它还可以返回**对角线位置**（用于计算“压力值”，表示施加压力的区域）。 不幸的是，这个特性从未在官方SDK中公开。据我所知，没有游戏最终使用了这个未记录的特性，除了自制游戏。
 
@@ -455,11 +455,11 @@ ARM7也连接到另一个SPI节点，即**触摸屏控制器**的接口。该接
 
 无论是否插卡，系统都将加载交互界面完成引导。 这只是一个驻留在外部**256 KB闪存**存储器上的程序[@operating_system-firmware]。
 
-![主界面。](shell/home.png){.tabs-nested .active .open-float .tab-float .desktop-margined title="Home"}
+![主界面。](shell/home.png){.tabs-nested .active .open-float .tab-float .desktop-margined title="首页"}
 
-![每次NDS开机时都会看到此界面。 在有效插入一张卡时“Nintendo” logo会显示出来。](shell/welcome.png){.tab-nested title="Splash"}
+![每次NDS开机时都会看到此界面。 在有效插入一张卡时“Nintendo” logo会显示出来。](shell/welcome.png){.tab-nested title="启动画面"}
 
-![设置界面。](shell/settings.png){.tabs-nested-last title="Settings"}
+![设置界面。](shell/settings.png){.tabs-nested-last title="设置"}
 
 存储界面的芯片还存储着固件、一些用户设置（语言、昵称、生日、闹钟和欢迎消息）以及一些系统设置（触摸屏校准、首次启动标志、固件版本和Wi-Fi设置）。
 
@@ -576,6 +576,8 @@ KEY1和KEY2在不同阶段被Slot-1接口用来保护其与卡片的通信。 AR
 
 #### Enhanced Slot-2 {.tab}
 
+![可以运行DS游戏的Slot-2闪存卡示例。 这需要一个Slot-1直通卡来引导。](supercard.webp) {.tab-float}
+
 秘密地深入研究DS BIOS和固件后，最终发现可以把NDS卡的执行重定向到GBA插槽。 尽管NDS卡还没有被破解，但这种方法允许暂时绕过Slot-1卡的安全系统，并在**DS模式下执行Slot-2程序**。
 
 因此，市面上出现了一种新一代的Slot-2烧录卡。 它们内嵌了ARM9代码，一旦从Slot-1启动就会执行。 引导本身是使用发现的上述方法之一（被称为“passthrough方法”）实现的：
@@ -588,6 +590,8 @@ KEY1和KEY2在不同阶段被Slot-1接口用来保护其与卡片的通信。 AR
 
 #### Native Slot-1 {.tab}
 
+!["R4 DS" 是市场上最早出现的 Slot-1 闪卡之一。 紧接着，大量的仿制品泛滥成灾。](r4.webp) {.tab-float}
+
 著名NDS模拟器“NO$GBA”的开发者Martin Korth随后成功提取了BIOS并逆向工程了Slot-1的安全机制。 这样一来，就可以用更新的工具和文档揭示NDS真实的安全机制。 正如你在本文中看到的那样，加密系统只要没有被破解就可以运行。这是对称加密系统的一个局限，非对称加密系统（例如RSA，永远不会存储私钥）就不会。
 
 无论如何，这导致市场涌入了大量的**即插即用Slot-1烧录卡**。这些卡可以在任何类型的掌机上**原生**运行NDS程序。 随着“NoPass”卡的推出，passthrough方法也得到了改进。这些烧录卡可以在没有真正的游戏的情况下加载Slot-2烧录卡。
@@ -596,11 +600,13 @@ KEY1和KEY2在不同阶段被Slot-1接口用来保护其与卡片的通信。 AR
 
 #### 观察 {.tabs-close}
 
-在我看来，与以前的游戏机的自制方法相比，烧录卡确实简单得引人注目。 在之前的文章中我曾经描述过，用户必须深入迷宫般繁琐的步骤才能运行自制或盗版游戏。
+在我看来，与以前的游戏机的自制方法相比，获取和使用烧录卡简单得让我感到惊讶。 在之前的文章中我曾经描述过，用户必须深入迷宫般繁琐的步骤才能运行自制程序或盗版游戏。
 
-就NDS而言，烧录卡就像零售游戏一样销售。我觉得游戏工作室看到用户轻松就能诉诸盗版，情况确实堪忧。
+就NDS而言，烧录卡就像零售游戏一样销售（尽管它们的营销“风格”有所不同），我想游戏工作室看到用户轻松就能诉诸盗版，情况确实堪忧。
 
-另一件事是，市场上出现的闪存卡品牌的数量也令人惊讶（不计所有仿冒品）。 从技术角度看，烧录卡只不过是SD卡适配器[@anti_piracy-acekard]。 每张卡与其他卡的唯一区别是引导代码和SD读卡器。 一些制造商还投入更多的精力设计更好的文件浏览器（称为内核/固件），还加入了一些额外的硬件。
+![Slot-1闪存卡在某一时段是一个非常活跃的行业，这只是众多产品中的一小部分。](slot1_flashcards.webp)
+
+另一件事是，市场上出现的闪存卡品牌的数量也令人惊讶（不计所有仿冒品）。 从技术角度看，烧录卡只不过是SD卡适配器[@anti_piracy-acekard]。 然而，随着这个行业的发展，一些制造商采取了额外的步骤来设计更好的软件包（称为**“内核”**或“固件”），甚至设计了相当不寻常的硬件。 例如，“N-Card”提供嵌入式存储；而“SuperCard DSTwo”则捆绑了一颗 Ingenic Jz4740 CPU（[MIPS](playstation#cpu)-兼容）以360 MHz运行！ [@anti_piracy-dstwo] 自从[扩展卡带](super-nintendo#beyond-convention)之后，我再也没有见过这种热情。
 
 ## 到这就结束了！
 
