@@ -215,11 +215,11 @@ GBA 的图块是严格的**8x8像素位图**，可以使用16种颜色（4bpp）
 
 ::: {.subfigures .tabs-nested .tab-float max_subfigures=1}
 
-![背景图层0 (BG0)。](sonic/bg0.png){.active title="Layer 0"}
+![背景图层0 (BG0)。](sonic/bg0.png){.active title="图层0"}
 
-![背景图层 2 (BG2)。](sonic/bg2.png){title="Layer 2"}
+![背景图层 2 (BG2)。](sonic/bg2.png){title="图层2"}
 
-![背景层3（BG3）<br>该图层将在某些扫描线上水平移动，以模拟水的效果](sonic/bg3.png){title="Layer 3"}
+![背景层3（BG3）<br>该图层将在某些扫描线上水平移动，以模拟水的效果](sonic/bg3.png){title="图层3"}
 
 使用中的静态背景层
 
