@@ -279,3 +279,18 @@ other = "其他媒体"
 
 [bonus]
 other = "奖励"
+
+[paused]
+other = "暂停"
+
+[slower]
+other = "较慢"
+
+[faster]
+other = "更快"
+
+[animating_at]
+other = "以 {{ . }} 倍速度动画"
+
+[ready_to_play]
+other = "准备好游玩和切换"
