@@ -606,7 +606,7 @@ KEY1和KEY2在不同阶段被Slot-1接口用来保护其与卡片的通信。 AR
 
 ![Slot-1闪存卡在某一时段是一个非常活跃的行业，这只是众多产品中的一小部分。](slot1_flashcards.webp)
 
-另一件事是，市场上出现的闪存卡品牌的数量也令人惊讶（不计所有仿冒品）。 从技术角度看，烧录卡只不过是SD卡适配器[@anti_piracy-acekard]。 然而，随着这个行业的发展，一些制造商采取了额外的步骤来设计更好的软件包（称为**“内核”**或“固件”），甚至设计了相当不寻常的硬件。 例如，“N-Card”提供嵌入式存储；而“SuperCard DSTwo”则捆绑了一颗 Ingenic Jz4740 CPU（[MIPS](playstation#cpu)-兼容）以360 MHz运行！ [@anti_piracy-dstwo] 自从[扩展卡带](super-nintendo#beyond-convention)之后，我再也没有见过这种热情。
+另一件事是，市场上出现的闪存卡品牌的数量也令人惊讶（不计所有仿冒品）。 从技术角度看，烧录卡只不过是SD卡适配器[@anti_piracy-acekard]。 然而，随着这个行业的发展，一些制造商采取了额外的步骤来设计更好的软件包（称为“内核”或者“固件”），甚至设计了相当不寻常的硬件。 例如，“N-Card”提供嵌入式存储；而“SuperCard DSTwo”则捆绑了一颗 Ingenic Jz4740 CPU（[MIPS](playstation#cpu)-兼容）以360 MHz运行！ [@anti_piracy-dstwo] 自从[扩展卡带](super-nintendo#beyond-convention)之后，我再也没有见过这种热情。
 
 ## 到这就结束了！
 
