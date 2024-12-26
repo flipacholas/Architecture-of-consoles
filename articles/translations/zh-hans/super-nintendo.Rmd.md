@@ -183,11 +183,11 @@ NES 的内存只有[2 KB](nes#memory)，但却能显示大量内容，这实在�
 
 ::: {.subfigures .tabs-nested .tab-float .pixel}
 
-![背景图层 1 (BG1)。](sppu_mario/background1_map.png){.active title="Layer 1"}
+![背景图层 1 (BG1)。](sppu_mario/background1_map.png){.active title="图层1"}
 
-![背景图层 2 (BG2)。](sppu_mario/background2_map.png){title="Layer 2"}
+![背景图层 2 (BG2)。](sppu_mario/background2_map.png){title="图层2"}
 
-![背景图层3 (BG3)。](sppu_mario/background3_map.png){title="Layer 3"}
+![背景图层3 (BG3)。](sppu_mario/background3_map.png){title="图层3"}
 
 VRAM中的背景映射
 
@@ -195,11 +195,11 @@ VRAM中的背景映射
 
 ::: {.subfigures .tabs-nested .tab-float .pixel}
 
-![渲染背景图层 1 (BG1)。](sppu_mario/background1.png){.active title="Layer 1"}
+![渲染背景图层 1 (BG1)。](sppu_mario/background1.png){.active title="图层1"}
 
-![渲染背景图层 2 (BG2)。](sppu_mario/background2.png){title="Layer 2"}
+![渲染背景图层 2 (BG2)。](sppu_mario/background2.png){title="图层2"}
 
-![渲染背景图层 3 (BG3)。](sppu_mario/background3.png){title="Layer 3"}
+![渲染背景图层 3 (BG3)。](sppu_mario/background3.png){title="图层3"}
 
 ![渲染背景图层的组合。](sppu_mario/background_complete.png){title="混合"}
 
