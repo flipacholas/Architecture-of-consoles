@@ -279,3 +279,18 @@ other = "Diğer"
 
 [bonus]
 other = "Bonus"
+
+[paused]
+other = "Duraklatıldı"
+
+[slower]
+other = "Daha yavaş"
+
+[faster]
+other = "Daha hızlı"
+
+[animating_at]
+other = "{{ . }}x hızında"
+
+[ready_to_play]
+other = "Oynatılmaya ve değiştirilmeye hazır"
