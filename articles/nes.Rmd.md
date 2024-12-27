@@ -508,9 +508,9 @@ Even though it was only released in Japan, I thought this would be a good opport
 
 ::: {.subfigures .side-by-side}
 
-![The drive, where floppies are inserted (the photo shows a cardboard floppy inserted for protection). It either runs on six C batteries (1.5 V each) or a 3.6 W AC adapter.](fds/drive.png){.toleft .no-borders}
+![The drive [@photography-amos], where floppies are inserted (the photo shows a cardboard floppy inserted for protection). It either runs on six C batteries (1.5 V each) or a 3.6 W AC adapter.](fds/drive.png){.toleft .no-borders}
 
-![The RAM adapter, fitted on the cartridge slot of the Famicom and connected to the drive though a cable.](fds/ram.png){.toright .no-borders}
+![The RAM adapter [@photography-amos], fitted on the cartridge slot of the Famicom and connected to the drive though a cable.](fds/ram.png){.toright .no-borders}
 
 The two components that make up the Famicom Disk System (FDS).
 
@@ -521,7 +521,7 @@ The Famicom Disk System added the following services to the Famicom:
 - A new medium of distribution for games called **Famicom Disk** [@games-fds]. Based on the 'Quick Disk' by Mitsumi, it provides **~64 KB of data** per side and it's re-writable.
 - An **extra audio channel** that uses [wavetable synthesis](game-boy#tab-7-3-wave) [@games-fds_audio].
 
-![FDS equipment mounted onto the Famicom.](fds/mounted.png){.open-float .no-borders}
+![FDS equipment mounted onto the Famicom [@photography-amos].](fds/mounted.png){.open-float .no-borders}
 
 Since the floppy is a single medium (as opposed to the multi-chip cartridges), all game data needs to be squashed inside, though it's kept organised with the use of a proprietary **file system**.
 
