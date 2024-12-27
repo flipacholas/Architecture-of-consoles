@@ -13,7 +13,7 @@ javascript:
 seo_image_pos: "Top"
 top_tabs:
   Model:
-    file: 国际版（International）
+    file: international
     caption: "Le Wii。2006年11月19日于美国，2006 年12月2日于日本，2006年12月8日于欧洲发售。"
   Motherboard:
     caption: "展示修订版本为“RVL-CPU-40”，早期版本的制造工艺大幅提高，后期版本则取消了Gamecube的大部分I/O接口。<br>背面装有NAND闪存。"
@@ -231,9 +231,9 @@ IOS的更新系统**有点麻烦**：更新的IOS版本不会安装在旧版本�
 
 这个菜单通常被称为**系统菜单**，在主PowerPC CPU（**Broadway**）上有效运行。
 
-![安装了大量频道的系统菜单](system/home.png){.tabs-nested .active title="Home"}
+![安装了大量频道的系统菜单](system/home.png){.tabs-nested .active title="首页"}
 
-![用于更改设置的设置菜单](system/settings.png){.tab-nested title="Settings"}
+![用于更改设置的设置菜单](system/settings.png){.tab-nested title="设置"}
 
 ![留言板存储按日期分组的信](system/mail.png){.tabs-nested-last title="留言板"}
 
