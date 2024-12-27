@@ -510,9 +510,9 @@ NES 游戏主要用 6502 汇编编写，并保存在**程序 ROM**中，而游�
 
 ::: {.subfigures .side-by-side}
 
-![插入软盘的驱动器（图片中插入的是保护驱动器用的软盘形状的硬纸板）。 它可以使用 6 节 C 型电池（即 2 号电池，每节 1.5 V）或 3.6 W 的交流适配器运行。](fds/drive.png) {.toleft.no-borders}
+![插入软盘的驱动器（图片中插入的是保护驱动器用的软盘形状的硬纸板）[@photography-amos]。 它可以使用 6 节 C 型电池（即 2 号电池，每节 1.5 V）或 3.6 W 的交流适配器运行。](fds/drive.png) {.toleft.no-borders}
 
-![RAM 适配器，安装在 Famicom 卡带插槽上，通过电缆连接到驱动器。](fds/ram.png) {.toright.no-borders}
+![RAM 适配器 [@photography-amos]，安装在 Famicom 卡带插槽上，通过电缆连接到驱动器。](fds/ram.png) {.toright.no-borders}
 
 组成 Famicom Disk System（FDS）的两个组件。
 
@@ -523,7 +523,7 @@ Famicom Disk System 为 Famicom 增加了以下服务：
 - 一种名为 **Famicom Disk** 的新游戏分发介质[@games-fds]。 基于三美（Mitsumi）公司的“Quick Disk”，它提供了每一面**约 64 KB** 的可读写数据存储功能。
 - 一个**额外音频通道**，使用了[波表合成（wavetable synthesis）](game-boy#tab-7-3-wave)技术 [@games-fds_audio]。
 
-![安装在 Famicom 上的 FDS。](fds/mounted.png) {.open-float.no-borders}
+![安装在 Famicom 上的 FDS [@photography-amos]。](fds/mounted.png) {.open-float.no-borders}
 
 因为软盘是单一介质（相对于多芯片卡带），所有游戏数据需要被压缩进软盘。FDS 使用专有**文件系统**组织文件。
 
