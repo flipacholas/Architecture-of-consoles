@@ -279,3 +279,18 @@ other = "その他のメディア"
 
 [bonus]
 other = "ボーナス"
+
+[paused]
+other = "一時停止"
+
+[slower]
+other = "遅く"
+
+[faster]
+other = "より速く"
+
+[animating_at]
+other = "{{ . }}倍速でアニメーション"
+
+[ready_to_play]
+other = "再生と切り替えの準備ができています"
