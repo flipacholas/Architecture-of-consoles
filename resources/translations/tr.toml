@@ -197,7 +197,7 @@ other = "Destekleyici görüntüler"
 other = "{{ . }} tarafından hazırlanan pratik bir analiz"
 
 [translated_by]
-other = "{{ .author }} tarafından çevrildi"
+other = "{{ .author }} tarafından Türkçeye çevrildi"
 
 [translated_by_many]
 other = '<a href="{{ .authors }}">Birden fazla yazar</a> tarafından çevrilmiştir'
