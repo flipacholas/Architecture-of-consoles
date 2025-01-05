@@ -8,7 +8,7 @@ other = 've eğer desteklemek isterseniz <a href="{{ . }}">buraya tıklayın</a>
 other = "Mevcut olan diller: "
 
 [help_translations]
-other = "Çevirmeye yardım et"
+other = "Türkçeye çevirmeye yardım et"
 
 [add_translation]
 other = "Çeviri ekleyin"
@@ -50,7 +50,7 @@ other = "Daha fazlası için '{{ . }}' &raquo;"
 other = "E-Kitap sürümlerini edinin"
 
 [ebook_edition_content]
-other = '<a href="{{ .consoles }}">Konsolların Mimarileri</a> serisini artık e-Kitap okuyucularda da okuyabilirsiniz. <a href="{{ .ebooks }}">Buradan göz atabilirsiniz</a>.'
+other = '<a href="{{ .consoles }}">Konsolların Mimarileri</a> serisini artık e-Kitap uygulamalarında da okuyabilirsiniz. <a href="{{ .ebooks }}">Buradan göz atabilirsiniz</a>.'
 
 [home]
 other = "Ana sayfa"
@@ -86,7 +86,7 @@ other = "Modern baskıya geçin"
 other = "Klasik basıma geç"
 
 [ebook_edition]
-other = "eBook"
+other = "e-kitap"
 
 [about_edition]
 other = "Bu baskı hakkında"
@@ -200,7 +200,7 @@ other = "{{ . }} tarafından hazırlanan pratik bir analiz"
 other = "{{ .author }} tarafından Türkçeye çevrildi"
 
 [translated_by_many]
-other = '<a href="{{ .authors }}">Birden fazla yazar</a> tarafından çevrilmiştir'
+other = '<a href="{{ .authors }}">Birden fazla yazar</a> tarafından Türkçeye çevrilmiştir'
 
 [translation_help]
 other = '<a href="{{ .original_url }}">Orijinal makalenin</a> tamamen gönüllülük esasına dayalı bir çevirisidir. Herhangi bir hata bulursanız, <a href="{{ .crowdin_url }}">lütfen düzeltilmesine katkıda bulunun</a>. Teşekkürler!'
