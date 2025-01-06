@@ -116,7 +116,7 @@ ARMv7 is the longest-living 32-bit ISA from ARM, but also the last one. Its wide
 
 #### The core
 
-So far I've talked about the Cortex-A8, that's the first Cortex CPU. But the PSVita actually bundles the succeeding CPU, the **Cortex-A9** (released two years later, in 2007). It's curious to see that this console was just a few months apart from the [Nintendo 3DS](nintendo-3ds), a console designed with horizontal innovation in mind.
+So far I've talked about the Cortex-A8, that's the first Cortex CPU. But the PSVita actually bundles the succeeding CPU, the **Cortex-A9** (unveiled two years later, in 2007). It's curious to see that this console was just a few months apart from the [Nintendo 3DS](nintendo-3ds), a console designed with horizontal innovation in mind.
 
 Moving on, the full name of the PSVita's CPU is **ARM Cortex-A9 MPCore**. Overall, this means the CPU is a cluster made of **multiple Cortex-A9 cores**, **four** in this case. It runs at a clock speed of **up to 500 MHz** [@cpu-psdev_cpu], an underwhelming number considering contemporary adopters of the quad-core A9, such as the Samsung Galaxy S III, reached speeds of 1.4 GHz [@cpu-galaxy]. It's possible that battery life was the main priority here. Nevertheless, clock speed is not the only decisive measurement, the inner workings of the CPU are as important.
 
