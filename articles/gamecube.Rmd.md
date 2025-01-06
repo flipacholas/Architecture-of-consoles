@@ -32,23 +32,105 @@ It's worth pointing out that the design of this architecture led to one of the m
 
 ## CPU
 
-After the loss of SGI's dominance in the graphics market, Nintendo needed new players to partner up with.
+After the loss of [SGI's dominance](nintendo-64#cpu) in the graphics market, Nintendo needed new players to partner up with.
 
-![Construction of Gekko.](cpu/cpu_features.png){.open-float .no-borders}
+A promising candidate seems to be **IBM**: Apart from their famous work on mainframes, they recently joined forces with Motorola and Apple to create a CPU powerful enough to compete with Intel's ruling in the PC market. The resulting product is a series of processors carrying the name **PowerPC**, which were selected to *power* 99% of Apple's Macintoshes, IBM's workstations and some embedded systems.
 
-A promising candidate seems to be IBM: Apart from their famous work on mainframes, they recently allied with Motorola and Apple to create a CPU powerful enough to compete with Intel's ruling in the PC market. The resulting product is a series of processors carrying the name **PowerPC**, which were selected to *power* 99% of Apple's Macintoshes and some embedded systems.
+![The PowerPC Gekko chip. This is what the GameCube houses.](cpu.webp)
 
-Fast forward, Nintendo required something powerful but cheap, so to comply with those red lines, IBM grabbed one of its past designs, the *PowerPC 750CXe* (found on the late iMac G3, known as the *Early-Summer 2001*), and beefed it up with capabilities that would please game developers. The result was the **PowerPC Gekko** and runs at **486 MHz**. 
+To understand what this means for the GameCube, let's first take a look at the chain of innovation that culminated in the PowerPC CPU.
 
-{.close-float}
+### The origins of PowerPC
 
-### Features
+IBM was one of the three early forces pushing for the emerging [RISC CPU design](playstation#tab-1-1-a-bit-of-history) into the mainstream market. During the 80s, while Berkeley was busy developing the 'RISC CPU' and Stanford academics [just founded MIPS](playstation#tab-1-2-mips-and-sony), IBM had already produced the **801** and **ROMP** CPUs. These were ground-breaking yet commercially-unsuccessful silicon implementing a set of guidelines later known as the 'RISC model' [@cpu-diefendorff_601].
 
-Let's find out what makes Gekko so special, and to do that we need to first look at the offerings of the 750CXe [@cpu-750cxe]:
+#### The commercial milestone {.tabs .active}
 
-- **PowerPC ISA**: Without going into much detail, it's *another* 32-bit RISC instruction set. The 750CXe implements the v1.10 specification.
-- External **64-bit data bus**: While the ISA can fit in a 32-bit bus, we still need to move wider chunks of data (explained in the next section) without hitting performance penalties.
-- **Dual-issue superscalar**: If the required units are available, the CPU may process up to two instructions at the same stage of the pipeline. In the case the queue includes a branching instruction, the number of possible concurrent instructions is raised to **three**.
+Entering the 90s, IBM tried again with a new series of UNIX workstations called 'IBM RS/6000', and within it, a new in-house RISC CPU: **POWER1**. With a focus on [instruction-level parallelism](xbox-360#revisiting-old-paradigms), the latter featured attractive advancements such as [@cpu-power1]:
+
+- A complete 32-bit instruction set called **POWER**.
+- A **64-bit floating-point unit**.
+- A **Harvard cache** architecture, this segregates data and instruction space to increase bandwidth.
+- The ability to execute two instructions at the same time by distributing them across its three separate units (branch, fixed-point and floating-point). Hence, POWER1 is recognised as being **two-way superscalar**.
+- **Static branch prediction**, which turns [control hazards](playstation#delay-galore) into opportunities for accelerating execution.
+- **Out-of-order execution** of floating-point operations, through [register renaming](xbox-360#revisiting-old-paradigms) [@cpu-rs6000]. All in all, this greatly increments the amount of instructions the CPU executes per time (and takes care of [data hazards](playstation#delay-galore)).
+  - The core design originates from IBM's mainframe era, when it was published as **Tomasulo's algorithm** and subsequently implemented on the IBM System/360 (1966). With POWER1, IBM managed to bring part of it to workstation equipment.
+
+Nevertheless, the POWER1 CPU was a large and expensive package comprised of multiple chips. So, for their follow-up venture, IBM shrank down its design to fit in a single chip. While still POWER-compliant, this came at the cost of housing a 32-bit FPU, a von Neumann cache architecture and reverting to in-order execution. The new chip was called **RISC Single Chip** (or 'RSC') and shipped with the low-end line of their RS/6000 workstations.
+
+#### Reaching the average user {.tab}
+
+In the midsts of these developments, IBM also agreed to join forces with Apple and Motorola to tackle the Intel-Microsoft monopoly in the desktop market, forming the **AIM alliance**. Thus, a new project was conceived for a competitive CPU in the low-end arena. This would be made of intellectual property from the three companies, including:
+
+- IBM's RSC processor design.
+- Motorola's bus architecture (found in their in-house RISC processor, the Motorola 88110).
+- Apple and Motorola's knowledge of the end-user's needs.
+
+Keith Diefendorff, a member of the Motorola 88110 team, was recruited as the lead architect and, in 1993, the project culminated in the following:
+
+- The **PowerPC instruction set**: A subset of POWER, with additional instructions for multiplication, support for a symmetric multiprocessor setup and an optional 64-bit mode.
+  - From then on, IBM's POWER CPU line would implement the PowerPC ISA instead. This was first apparent with the release of POWER3 in 1998, a high-performance CPU implementing the 64-bit specification of PowerPC.
+  - We won't see a symmetric multiprocessor setup in this article series until the [Xbox 360](xbox-360) and [Wii U](wiiu) arrive.
+- The **PowerPC CPU**, a new line of desktop CPUs implementing the PowerPC ISA, starting with the **PowerPC 601**. This was a cost-effective version of the RSC microarchitecture.
+  - Motorola also dropped the development of the 88000 CPU altogether to focus on this new series.
+
+#### Popularising the PowerPC {.tab}
+
+To make sure the new line would be both technically competitive and commercially viable, the PowerPC 601 attempted to bring certain advancements of instruction parallelism to the masses, to name a few [@cpu-diefendorff_601]:
+
+- The implementation of **both POWER and PowerPC ISAs**, to assist POWER developers in transitioning to PowerPC.
+- **Three-way superscalar execution** using three separate execution units (FPU, branch and ALU) [@cpu-601_report]. An improvement from previous designs.
+- Based on Motorola's model, a new bus design called **Bus Interface Unit**, providing:
+  - A **64-bit data bus** and a **32-bit address bus**, the former is critical for taking advantage of the superscalar capabilities.
+  - **Burst transactions**, enabling to transfer 32 Bytes of memory (the size of L1 cache) with a single instruction [@cpu-601].
+- **Memory Management Unit** (MMU), offering [virtual memory](nintendo-64#memory-management) in the same package.
+
+For the end user, this new CPU would now be found in IBM's low-end RS/6000 series and in Apple's new line of Macintosh computers called 'Power Macintosh'.
+
+### Contemporary work {.tabs-close}
+
+The PowerPC 601 was meant to kickstart momentum for the PowerPC line, but the following years saw turbulent changes in the microarchitecture.
+
+#### Individual developments {.tabs .active}
+
+Once the 601 shipped, Motorola and IBM decided to separately work on the follow-up generation. This would be a pure PowerPC implementation (removing traces of the POWER ISA) materialising as two separate products [@cpu-paradox]:
+
+- The low-end **PowerPC 603**, headed by Motorola, was designed for the portable market. In doing so, it delivered a smaller L1 cache (now based on the Harvard architecture), two additional execution units and no multiprocessor support. The design decisions resulted in an overall consumption rate of 1.8-2.0 Watts [@cpu-603].
+- The high-end **PowerPC 604** headed by IBM. In exchange for a premium price and high power consumption (14.5-18.5 Watts), it provided advanced parallelism capabilities ([à la MIPS](playstation-2#tab-9-1-outperforming-success)), such as 4-issue execution, the return of out-of-order execution, dynamic branch prediction and multiprocessor support [@cpu-604].
+
+Even though the 603 should've shined for its power efficiently, existing business applications ended up eclipsing its capabilities. For instance, Apple's software architecture was still relying on emulating [68000 instructions](mega-drive-genesis#the-leader), which bottlenecked the 603's small cache size.
+
+#### Joining forces again {.tab}
+
+Ultimately, the second generation of PowerPC chips was deemed either too expensive or downright uncompetitive against Intel. Thus, Apple got IBM and Motorola to collaborate again in a new unified generation that brought out the best of both worlds. The energy-efficient 603 was chosen as the foundation for the new design. To improve upon this basis, certain decisions were taken:
+
+- **Addressing its limitations** by providing larger cache and higher memory bandwidth.
+- **Incorporating design ideas of the 604**, such as dynamic branch prediction and out-of-order execution (limited to memory operations, for now).
+- **Implementing new enhancements**, such as an extra ALU for greater parallelism.
+
+This became the **750 line**, popularised by Apple as the **PowerPC G3**. From then on, IBM and Motorola continued working on variants and enhancements of the 750. These focused on greater clock speeds, larger cache and smaller fabrication process.
+
+Interestingly, it's always the most energy-efficient CPUs that manage to weather development turmoil, as others ([MIPS](playstation-portable#mips-after-the-turn-of-the-century), [Intel](xbox#p6-and-the-end-of-pentium-numbers) and [ARM](nintendo-ds#arms-new-territories)) will later corroborate.
+
+#### The band splits for good {.tab}
+
+As time passed, the three companies became increasingly distant. Two years after the PowerPC G3 was unveiled, Motorola delivered by itself a new line called the **7400** (which Apple named the **G4**). This featured a 64-bit FPU, a faster bus architecture called 'MPX' and a set of SIMD instructions called 'Altivec'. Despite its popularity in the desktop market (thanks to Apple), IBM only devoted attention to its exclusive POWER CPU line.
+
+Years later, in 2003, Motorola finally gave up on the CPU business and divested its semiconductor division, leading to the incorporation of 'Freescale'. The latter wasn't interested in working on PowerPC chips either, and so the **AIM alliance came to an end**. Be as it may, Apple still needed new CPUs, so IBM continued the line of succession by grabbing its POWER4 design and scaling it down, leading to the PowerPC 970 CPU (also called the 'G5').
+
+And this is where the history section ends. Thus, it's time to take a look at the GameCube's unique CPU (which sits between the 750/G3 and the 7400/G4). Now, I'll be focusing on the GameCube hardware from now on, but if this detour got your attention, you may want to read the [PlayStation 3](playstation-3), [Xbox 360](xbox-360) and [Wii U](wiiu) studies next.
+
+### The PowerPC Gekko {.tabs-close}
+
+Back to the year 2001, Nintendo required something powerful but cheap. So, to comply with those red lines, IBM grabbed one of its past designs, an enhanced G3 called the **PowerPC 750CXe** (found on the late iMac G3, known as the *Early-Summer 2001*), and beefed it up with capabilities that would please game developers. The result was the **PowerPC Gekko** and runs at **486 MHz**.
+
+![Construction of Gekko.](cpu/cpu_features.png){.no-borders}
+
+Let's find out what makes Gekko so special, and to do that we need to first look at the offerings of the 750CXe. Now, having gone through the history of PowerPC, you may find that a lot this information overlaps with previous designs (*that's the point of these studies!*). That being said, the 750CXe offers [@cpu-750cxe]:
+
+- The **PowerPC ISA**: This comes as no surprise. The only additional information is that the 750CXe implements the v1.10 specification.
+- External **64-bit data bus**: As you've seen before, while the ISA can fit in a 32-bit bus, we still need to move wider chunks of data without hitting performance penalties.
+- **Triple-issue superscalar**: If the required units are available, the CPU may process up to two instructions at the same stage of the pipeline. In the case the queue includes a branching instruction, the number of possible concurrent instructions is raised to three.
 - **Out-of-order execution**: The CPU can re-order the sequence of instructions to keep all of its units working, thus increasing efficiency and performance.
 - **Two Integer Units**: Combined with the superscalar and out-of-order model, it increments the number of integer operations done per unit of time.
 - **Integrated FPU** with 32-bit and 64-bit registers: Accelerates operations with floats and doubles.
@@ -72,7 +154,7 @@ And, of course, some cache is also included to speed up memory bandwidth:
 While the previous lists of features are very appreciated (compared to previous generations), this CPU still falls behind others on gaming performance (let's not forget that this is still a general-purpose CPU, good at spreadsheets but *average* at physics). To compensate, IBM added the following tweaks that will constitute Gekko [@cpu-ibm]:
 
 - Enhanced instruction set with **50 new SIMD instructions**: These operate two 32-bit floating-point numbers or one 64-bit floating-point number using only one cycle. Consequently, the new SIMD instructions will speed up vector calculations, particularly useful during geometry transformations.
-  - Not to be confused with Motorola's SIMD extension (AltiVec) which shipped on high-end G4 Macs.
+  - Not to be confused with Motorola's SIMD extension (AltiVec) which shipped on the PowerPC 7400/G4. They are not compatible with each other. Curiously enough, IBM did eventually implement Altivec in its POWER4 CPU and, by extension, into the 970/G5 series, [Cell](playstation-3#cpu) and [Xenon](xbox-360#cpu).
 - **32 floating-point registers**: These come with the new SIMD instructions.
 - **Write Gather pipe**: A special memory writing mechanism available to use. If enabled, instead of performing *single-beat* transfers, it holds all memory write requests in a 128-byte buffer until it's 25% full, then performs the requested writes using a technique called *burst transaction* which can move blocks of 32 bytes of data at once.
   - As you can imagine, this saves a lot of bandwidth by making full utilisation of the available buses.
@@ -111,7 +193,7 @@ Additionally, this design contains an additional (yet unusual) bus where more me
 
 Overall, this means that while ARAM provides a considerable amount of RAM, it will be limited to less critical tasks, like acting as an audio buffer or being used by certain accessories (explained in the I/O section).
 
-### Organising memory and sorting out ARAM
+### Making the most of ARAM
 
 So far, we've seen that, on paper, the memory capabilities are undoubtedly superior to its predecessor, but there's still room for improvement. For instance, Nintendo could've fitted more hardware to incorporate ARAM into the CPU's memory map.
 
