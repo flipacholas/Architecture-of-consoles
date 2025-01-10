@@ -25,6 +25,24 @@ aliases: [/projects/consoles/dreamcast/]
 
 The Sega Dreamcast introduced many new features over its predecessor (the [Saturn](sega-saturn)) to appeal to both game developers and console gamers. While this was Sega's last attempt to conquer the console market, some of the technologies that were pioneered in the Dreamcast carried on and into future mainstream devices.
 
+The Dreamcast console was originally scheduled for release in Australia and New Zealand on October 25, 1999, but was delayed just three days before the launch to November 30 without any explanation. Ozisoft, the distributor, warned retailers that selling the console before the new date would result in fines. The delay was partly due to the console still awaiting approval from Telecom NZ, as announced by Ozisoft New Zealand.
+
+When the Dreamcast finally launched, it faced several significant issues:
+
+  - **Lack of Essential Disks**: The console was released without an Internet access disc or a demo disk, which were critical for showcasing its capabilities. Just two days after the release, Ozisoft announced that the Internet access disk would not be available until early 2000. While it was released in Australia in March 2000, it was not released in New Zealand and was canceled in October.
+
+    - Even after Internet access disc came the console could only connect through one ISP, Telstra Big Pond. This ISP was known for being both expensive and underpowered, which severely restricted the online capabilities of the console.
+
+    - All of the Dreamcast software was seized by customs officials due to the absence of a 'country of origin' marking on the packaging.
+
+  - **Severe Shortages**: Despite earlier assurances that shipments of the console and games would arrive on time, many retailers were left without stock. There were no Visual Memory Units (VMUs), controllers, keyboards, or first-party software available even third party ones, leaving early adopters frustrated and disappointed.
+  
+    - When one retailer reached out to Ozisoft, they were told: "We don't know where the shipment is." It was later discovered that the shipment had been sent to the wrong state due to Ozisoft's strategy of only shipping consoles when there was space available on cargo planes, likely to save on shipping costs.
+
+  - **High Price Point**: The Dreamcast was priced at AUD 500 (approximately USD 350) in Australia, significantly higher than its USD 199 price tag in the United States. This price was later reduced to AUD 299 (around USD 175) a year after launch.
+
+Many immediately cancelled their pre-orders of these issues.
+
 ## {.supporting-imagery}
 
 ## CPU
