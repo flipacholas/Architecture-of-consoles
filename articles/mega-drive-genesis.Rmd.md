@@ -295,7 +295,7 @@ Finally, the resulting analogue signal is sent through the audio output.
 
 ### The conductor {.tabs-close}
 
-In theory, the Z80's memory map suggests the Z80 is the **only CPU** capable of commanding those two chips (which may a relief for the 68000 since the latter is already fed up with other tasks). In practice, however, the Z80 can be shut down so the 68000 has access to the YM2612 (but not the SN76489) [@audio-68kym]. So, for simplicity purposes, in this article, we are going to assume audio tasks are designated to the Z80.
+In theory, the Z80's memory map suggests the Z80 is the **only CPU** capable of commanding those two chips (which may be a relief for the 68000 since the latter is already fed up with other tasks). In practice, however, the Z80 can be shut down so the 68000 has access to the YM2612 (but not the SN76489) [@audio-68kym]. So, for simplicity purposes, in this article, we are going to assume audio tasks are designated to the Z80.
 
 Moving on, the Z80 is an independent processor by itself, so it needs its own program (stored in the 8 KB of RAM available) to be able to interpret the music data received from the 68000 and effectively manipulate the two sound chips accordingly. This program is called **sequencer** or **driver**.
 
