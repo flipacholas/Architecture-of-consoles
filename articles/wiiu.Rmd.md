@@ -801,7 +801,7 @@ From Espresso's side, the master core always starts in a blank state, but as soo
 
 Starbuck, on the other hand, uses the Ancast image format for their bootloader stages after the Boot ROM. After IOSU is loaded up and running, one of its kernel modules called **IOS-MCP** is responsible for verifying and decrypting the AES key. Afterwards, the encrypted Ancast image and AES key are uploaded to MEM2 for Espresso to finish decrypting it and finally execute the payload.
 
-Applications in Wii mode **share the same nature**, Espresso is provided with a separate key for decrypting the `Wii System Menu` or `NAND Boot Program` [@anti_piracy-keys], thereby enabling Espresso to Wii execute applications without downgrading its security model. Starbuck is also provided with two extra keys in OTP to decrypt `cafe2wii` (in Ancast format) and Wii system updates (installed as part of a larger bulk of Wii U updates), respectively.
+Applications in Wii mode **share the same nature**, Espresso is provided with a separate key for decrypting the `Wii System Menu` or `NAND Boot Program` [@anti_piracy-keys], thereby enabling Espresso to execute Wii applications without downgrading its security model. Starbuck is also provided with two extra keys in OTP to decrypt `cafe2wii` (in Ancast format) and Wii system updates (installed as part of a larger bulk of Wii U updates), respectively.
 
 #### Operating System protection {.tab}
 
