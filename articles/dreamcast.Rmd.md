@@ -39,7 +39,9 @@ When the Dreamcast finally launched, it faced several significant issues:
   
     - When one retailer reached out to Ozisoft, they were told: "We don't know where the shipment is." It was later discovered that the shipment had been sent to the wrong state due to Ozisoft's strategy of only shipping consoles when there was space available on cargo planes, likely to save on shipping costs.
 
-  - **High Price Point**: The Dreamcast was priced at AUD 500 (approximately USD 350) in Australia, significantly higher than its USD 199 price tag in the United States. This price was later reduced to AUD 299 (around USD 175) a year after launch.
+- **No Advertising**: Unless you follow the console market, you won't know that the Dreamcast was released in Australia, because it was not advertised.
+
+- **High Price Point**: Even if you followed the console market, it was priced at $500 AUD (about $350 USD), much higher than the $199 USD price tag in the US. This price was reduced to $299 AUD (about $175 USD) about a year after launch.
 
 Many immediately cancelled their pre-orders of these issues.
 
