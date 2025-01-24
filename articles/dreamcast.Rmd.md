@@ -29,7 +29,7 @@ The Dreamcast console was originally scheduled for release in Australia and New 
 
 When the Dreamcast finally launched, it faced several significant issues:
 
-  - **Lack of Essential Disks**: The console was released without an Internet access disc or a demo disk, which were critical for showcasing its capabilities. Just two days after the release, Ozisoft announced that the Internet access disk would not be available until early 2000. While it was released in Australia in March 2000, it was not released in New Zealand and was canceled in October.
+  - **Lack of Essential Disks**: The console was released without an Internet access disc or a demo disk, which were critical for showcasing its capabilities. Just two days after the release, Ozisoft announced that the Internet access disk would not be available until early 2000 reason being different phone sockets and telepermit check. While it was released in Australia in March 2000, it was not released in New Zealand and was canceled in October.
 
     - Even after Internet access disc came the console could only connect through one ISP, Telstra Big Pond. This ISP was known for being both expensive and underpowered, which severely restricted the online capabilities of the console.
 
