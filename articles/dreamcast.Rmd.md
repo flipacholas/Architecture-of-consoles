@@ -45,7 +45,7 @@ When the Dreamcast finally launched, it faced several significant issues:
 
 - **High Price Point**: Even if you followed the console market, it was priced at $500 AUD (about $350 USD), much higher than the $199 USD price tag in the US. This price was reduced to $299 AUD (about $175 USD) about a year after launch.
 
-Many immediately cancelled their pre-orders of these issues.
+Sales estimates were 200.000 units in year one. Although there is no exact information on how many Dreamcasts have been sold in Australia, I don't think they sold that much because of the problems I mentioned.
 
 ## {.supporting-imagery}
 
