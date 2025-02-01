@@ -31,13 +31,15 @@ When the Dreamcast finally launched, it faced several significant issues:
 
   - **Lack of Essential Disks**: The console was released without an Internet access disc or a demo disk, which were critical for showcasing its capabilities. Just two days after the release, Ozisoft announced that the Internet access disk would not be available until early 2000 reason being different phone sockets and telepermit check. While it was released in Australia in March 2000, it was not released in New Zealand and was canceled in October.
 
-    - Even after Internet access disc came the console could only connect through one ISP, Telstra Big Pond. This ISP was known for being both expensive and underpowered, which severely restricted the online capabilities of the console.
+    - Even after Internet access disc arrived, the console could only connect to internet through one ISP, Telstra Big Pond. This ISP was known for being both expensive and underpowered, which severely restricted the online capabilities of the console.
 
-    - All of the Dreamcast software was seized by customs officials due to the absence of a 'country of origin' marking on the packaging.
+    - Another thing to note is that the Australian Dreamcast did not have a 56Kbps modem, instead it had a 33.6Kbps modem.
 
   - **Severe Shortages**: Despite earlier assurances that shipments of the console and games would arrive on time, many retailers were left without stock. There were no Visual Memory Units (VMUs), controllers, keyboards, or first-party software available even third party ones, leaving early adopters frustrated and disappointed.
   
     - When one retailer reached out to Ozisoft, they were told: "We don't know where the shipment is." It was later discovered that the shipment had been sent to the wrong state due to Ozisoft's strategy of only shipping consoles when there was space available on cargo planes, likely to save on shipping costs.
+   
+    - All of the Dreamcast software was seized by customs officials due to the absence of a 'country of origin' marking on the packaging. When Ozisoft got their hands on them. All the games were disorganized, shrink wrapped and missing classification.
 
 - **No Advertising**: Unless you follow the console market, you won't know that the Dreamcast was released in Australia, because it was not advertised.
 
