@@ -83,11 +83,11 @@ When it comes to building a circuit that can interpret x86 instructions, Intel h
 
 Now, the Xbox CPU, along with the rest of Pentium III processors, use the **P6 Microarchitecture** (also known as 'i686'). This is the 6th generation (counting from the 8086) which features:
 
-- A *massive* **14-stage pipeline**: Meaning up to 14 instructions can be processed in parallel. On the other side, individual instructions may take a lot more cycles to complete. See [a previous explanation](game-boy-advance#the-core).
+- A *massive* **14-stage pipeline**: Meaning up to 14 instructions can be processed in parallel. On the other side, individual instructions may take a lot more cycles to complete. See [a previous explanation](game-boy-advance#tab-2-1-the-core).
 - **Out-of-order execution**: If possible, the CPU re-orders the sequence of instructions to increase efficiency and performance.
-- **Dynamic execution**: Since the P6 is an out-of-order and [superscalar](dreamcast#cpu) design. The traditional [branch predictor](gamecube#features) is now combined with other techniques ('speculative execution' and 'data-flow analysis') to take advantage of the new capabilities. In doing so, it reduces pipeline stalling even further.
+- **Dynamic execution**: Since the P6 is an out-of-order and [superscalar](dreamcast#cpu) design. The traditional [branch predictor](gamecube#the-powerpc-gekko) is now combined with other techniques ('speculative execution' and 'data-flow analysis') to take advantage of the new capabilities. In doing so, it reduces pipeline stalling even further.
 
-Having said that, take a closer look at these features. It so happens they are very similar to [previous consoles](gamecube#features), however, the other CPUs are very different in terms of design compared to Intel ones. Historically, one could argue that the design of the x86 would've never allowed Intel to produce, let's say, a pipelined CPU. Yet they managed to do so, so let us see why...
+Having said that, take a closer look at these features. It so happens they are very similar to [previous consoles](gamecube#the-powerpc-gekko), however, the other CPUs are very different in terms of design compared to Intel ones. Historically, one could argue that the design of the x86 would've never allowed Intel to produce, let's say, a pipelined CPU. Yet they managed to do so, so let us see why...
 
 #### CISC or RISC {.tab}
 
@@ -217,7 +217,7 @@ Afterwards, **4 texture shaders** are used to fetch textures from memory [@graph
 
 The resulting pixels are stored in a **set of shared registers** and then cycled through **8 register combiners**, where each one applies arithmetic operations on them. This process is **programmable** with the use of **pixel shaders** (another type of program executed by the GPU) [@graphics-wasson]. At each cycle, each combiner receives RGBA values (RGB + Alpha) from the register set [@graphics-spitzer]. Then, based on the operation set by the shader, it will operate the values and write back the result. Finally, a larger amount of values are sent to the **final combiner** which can exclusively blend specular colours and/or fog.
 
-Register combiners are programmable in a similar nature to the [Texture Environment Unit](gamecube#tab-1-3-texture). That is, by altering its registers with a specific combination of settings. In the case of the Xbox, the PFIFO reads pushbuffers to set up PGRAPH, which includes the register combiners and texture shaders.
+Register combiners are programmable in a similar nature to the [Texture Environment Unit](gamecube#tab-3-3-texture). That is, by altering its registers with a specific combination of settings. In the case of the Xbox, the PFIFO reads pushbuffers to set up PGRAPH, which includes the register combiners and texture shaders.
 
 #### Post-processing {.tab}
 
@@ -255,9 +255,9 @@ I have a feeling that shaders will be regularly revisited in future articles. Pl
 
 ### The Xbox's frame
 
-The standard resolution of games is **640x480**, this is pretty much the standard in the sixth generation. Although, this constraint is just a number: The GPU can draw frame-buffers with up to 4096x4096, yet it doesn't mean the hardware would provide acceptable performance. On the other side, the console allows configuring its screen setting globally, which may help to promote pioneering features (i.e. widescreen and 'high resolution') instead of waiting for developers to discover them (as it happened with the [Gamecube/Wii](wii#tab-2-1-standardised-widescreen)).
+The standard resolution of games is **640x480**, this is pretty much the standard in the sixth generation. Although, this constraint is just a number: The GPU can draw frame-buffers with up to 4096x4096, yet it doesn't mean the hardware would provide acceptable performance. On the other side, the console allows configuring its screen setting globally, which may help to promote pioneering features (i.e. widescreen and 'high resolution') instead of waiting for developers to discover them (as it happened with the [Gamecube/Wii](wii#tab-1-1-standardised-widescreen)).
 
-The video encoder, on the other hand, will try to broadcast whatever there is on the frame-buffer in a format your TV will understand. That means that widescreen images will become [anamorphic](wii#tab-2-1-standardised-widescreen) unless the game outputs in HD (i.e. 720p or 1080i, which only a few games do).
+The video encoder, on the other hand, will try to broadcast whatever there is on the frame-buffer in a format your TV will understand. That means that widescreen images will become [anamorphic](wii#tab-1-1-standardised-widescreen) unless the game outputs in HD (i.e. 720p or 1080i, which only a few games do).
 
 That being said, what kind of signals does this console broadcast? Quite a lot. Apart from the typical PAL/NTSC composite, the Xbox offers **YPbPr** (requiring an extra accessory to get the 'component' connectors) and RGB (both SCART and VGA compliant). All in all, very convenient without requiring expensive adapters and whatnot.
 
@@ -471,7 +471,7 @@ It turns out it's not that simple: Microsoft also had to convince users they 'ne
 
 Independently whether this console contains off-the-shelf components or not, there's a fair amount of security measures implemented.
 
-Please note that RSA encryption is a recurring topic here, I previously introduced it in the [Wii article](wii#tab-7-2-chain-of-trust), so if you are not familiar with RSA or any other symmetric/asymmetric encryption systems please take a look at that article first.
+Please note that RSA encryption is a recurring topic here, I previously introduced it in the [Wii article](wii#tab-2-2-chain-of-trust), so if you are not familiar with RSA or any other symmetric/asymmetric encryption systems please take a look at that article first.
 
 That being said, let's take a look.
 

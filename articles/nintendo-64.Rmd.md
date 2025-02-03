@@ -205,7 +205,7 @@ If you've read about the previous consoles, you came across the never-ending pro
 
 After the RDP rasterises the vectors, the z-value of the new pixel is compared against the respective value in Z-buffer. If the new pixel contains a smaller z-value, it means the new pixel is positioned in front of the previous one, so it's applied onto the frame buffer and the z-buffer is also updated. Otherwise, the pixel is discarded.
 
-Overall, this is a huge welcomed addition: Programmers do not need to worry anymore about implementing [software-based](playstation#tab-4-2-visibility-approach) polygon sorting methods which drain a lot of CPU resources. However, Z-buffer does not save you from feeding unnecessary geometry (discarded or overdrawn, both consuming resources). For this, game engines may choose to include an **occlusion culling** algorithm to discard unseen geometry as early as possible.
+Overall, this is a huge welcomed addition: Programmers do not need to worry anymore about implementing [software-based](playstation#tab-3-2-visibility-approach) polygon sorting methods which drain a lot of CPU resources. However, Z-buffer does not save you from feeding unnecessary geometry (discarded or overdrawn, both consuming resources). For this, game engines may choose to include an **occlusion culling** algorithm to discard unseen geometry as early as possible.
 
 ### Secrets and limitations
 

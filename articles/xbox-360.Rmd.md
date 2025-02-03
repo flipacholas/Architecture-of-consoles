@@ -64,7 +64,7 @@ After enjoying the surprising success of the [original Xbox](xbox), it was time 
 
 To put things in context, back when the original Xbox project was still at an early stage, neither Intel nor Nvidia were willing to share their intellectual property with Microsoft. This decision limited Microsoft's capacity to mould Nvidia's or Intel's chips for the specific needs of the Xbox. 
 
-For instance, the security subsystem that protected the console against the execution of unauthorised code was implemented outside these two critical chips. This made it vulnerable to [snooping attacks](xbox#tab-9-2-bootstrap-search) that eventually paved way for the execution of Homebrew and piracy. Moreover, Microsoft did not control the manufacturing stage either, so the production of Xbox consoles was at the mercy of Intel's and Nvidia's supply.
+For instance, the security subsystem that protected the console against the execution of unauthorised code was implemented outside these two critical chips. This made it vulnerable to [snooping attacks](xbox#tab-5-2-bootstrap-search) that eventually paved way for the execution of Homebrew and piracy. Moreover, Microsoft did not control the manufacturing stage either, so the production of Xbox consoles was at the mercy of Intel's and Nvidia's supply.
 
 Well, now that Microsoft has gained more leverage in the console market, they aren't willing to give away those rights anymore.
 
@@ -210,13 +210,13 @@ As we reach the end of this section, there's still one question left unanswered:
 
 With the advent of a larger cache system, Microsoft and IBM extended the PowerPC instruction set to accommodate some instructions that operate these blocks from the program side, in case programmers wish to make manual interventions (such as caching data ahead of time or saving L2 space). In any case, the standard PowerPC specification already provides the `dcbt` ('Data Cache Block Touch') instruction to fetch data from memory into the L1 cache (individual for each core) [@cpu-ppcvema]. Nonetheless, Microsoft took a step forward and added `xdcbt` ('Extended Data Cache Block Touch') to fill the L1 cache without even going through L2 (shared across all cores) [@cpu-lanterman]. This makes sense as the shared L2 is a new addition of Xenon. However, bypassing L2 is a risky operation as two cores may end up seeing different data (cache incoherency), so it will require correct handling from the program side to keep cache incoherency and race conditions out of the way.
 
-As luck would have it, `xdcbt` worked fine until Microsoft started receiving error reports from game studios [@cpu-dawson]. Initially, Microsoft relied on this instruction for common routines available through their API (such as `memcpy()`) but they didn't account for the consequent lack of cache coherence. Thus, uses of `xdcbt` were subsequently removed from their APIs. Yet, studios found a bigger problem: branching instructions followed up by `xdcbt` always execute the latter. It turns out the branch predictor will attempt to execute `xdcbt` (as any other instruction that may be [undone](gamecube#features) later on, if the prediction turns out to be incorrect) with the exception that once the cache blocks are mangled, there's no way to undo it (becoming a [hazard](playstation#delay-galore)). Thus, the program will not synchronise the caches as it assumes `xdcbt` hasn't been triggered, leaving the PPEs in a disarrayed state.
+As luck would have it, `xdcbt` worked fine until Microsoft started receiving error reports from game studios [@cpu-dawson]. Initially, Microsoft relied on this instruction for common routines available through their API (such as `memcpy()`) but they didn't account for the consequent lack of cache coherence. Thus, uses of `xdcbt` were subsequently removed from their APIs. Yet, studios found a bigger problem: branching instructions followed up by `xdcbt` always execute the latter. It turns out the branch predictor will attempt to execute `xdcbt` (as any other instruction that may be [undone](gamecube#the-powerpc-gekko) later on, if the prediction turns out to be incorrect) with the exception that once the cache blocks are mangled, there's no way to undo it (becoming a [hazard](playstation#delay-galore)). Thus, the program will not synchronise the caches as it assumes `xdcbt` hasn't been triggered, leaving the PPEs in a disarrayed state.
 
 In the end, Microsoft purged `xdcbt` from the compiler due to its non-deterministic (thus unpredictable) behaviour, and what's left of it is just an anecdote.
 
 #### Revisiting old paradigms
 
-There's a recurring subject found in noteworthy writings from 2005 like 'Inside the Xbox 360' by Jon Stokes [@cpu-stokes] or 'Understanding the Cell Microprocessor' by Anand Lal Shimpi [@cpu-shimpi], and that is the **lack of out-of-order execution** that once debuted in early PowerPC chips like Gekko, but for some reason is completely absent in Cell & Xenon. If you recall from the [GameCube article](gamecube#features) (which I wrote two years ago), Gekko is an out-of-order CPU, meaning it's able to analyse the instruction stream as instructions come in, and subsequently re-order them to better distribute the load of Gekko's internal units.
+There's a recurring subject found in noteworthy writings from 2005 like 'Inside the Xbox 360' by Jon Stokes [@cpu-stokes] or 'Understanding the Cell Microprocessor' by Anand Lal Shimpi [@cpu-shimpi], and that is the **lack of out-of-order execution** that once debuted in early PowerPC chips like Gekko, but for some reason is completely absent in Cell & Xenon. If you recall from the [GameCube article](gamecube#the-powerpc-gekko) (which I wrote two years ago), Gekko is an out-of-order CPU, meaning it's able to analyse the instruction stream as instructions come in, and subsequently re-order them to better distribute the load of Gekko's internal units.
 
 By then, CPU cores employing out-of-order execution were in the order of the day (_pun intended_). IBM's PowerPC 604 (1994) brought it to high-end Macintosh computers, Intel's P6 (1995) introduced it to the x86 line and MIPS implemented it with the R10000 (1996) CPU, a successor of the R4000 (found on the [Nintendo 64](nintendo-64#cpu)). Afterwards, all of a sudden, Cell and Xenon arrive with an in-order execution style... _care to explain_?
 
@@ -254,7 +254,7 @@ With all being said, how can Xenon access this memory? Well, the CPU communicate
 
 On the outside, there are two unidirectional lanes named 'PHY', each is made of **16 buses** that operate at the exceptional speed of **5.4 GHz** [@cpu-siljenberg]. In there, information is transmitted in serial form. Internally, however, the CPU and GPU only understand whole words. Thus, both endpoints are tasked with serialising the data before sending it through PHY and/or deserialising it after receiving it. The CPU's inner interface is **64 bits wide and runs at 1.35 GHz**, while the GPU's is **128-bits wide and runs at 675 MHz** [@cpu-brown]. If we do the math, both lanes provide a bandwidth of 10.8 GB/s.
 
-The Front-side bus route only takes you to the GPU. So, between the GPU and the GDDR3 chips, **two memory controllers** inside the GPU manage this connection using **one 1024-bit bus each**. To reduce latency, the memory controllers use [address tiling](playstation-3#tab-8-5-pixel-operations) for GPU-related operations and path-finding to reduce CPU congestion. In general terms, Microsoft states that there's a bandwidth of **22.4 GB/s** between GPU and memory.
+The Front-side bus route only takes you to the GPU. So, between the GPU and the GDDR3 chips, **two memory controllers** inside the GPU manage this connection using **one 1024-bit bus each**. To reduce latency, the memory controllers use [address tiling](playstation-3#tab-6-5-pixel-operations) for GPU-related operations and path-finding to reduce CPU congestion. In general terms, Microsoft states that there's a bandwidth of **22.4 GB/s** between GPU and memory.
 
 It's all jolly on paper, but let's not forget that the CPU still has to walk a long road to get to memory. To give you an idea, if you grab PIX (the CPU profiler included with the SDK) and run the sample tests that come with the utility, you'll see that for every cache miss, the CPU spends **~600 cycles** to get to memory! This is one of the _features_ of UMA-based systems you don't see marketed very often :), but also helps you understand why cache is so critical.
 
@@ -304,7 +304,7 @@ Since the early naughties, Nvidia and ATI have been trying to outmatch one anoth
 
 ![The Xenos + EDRAM package next to GDDR3 chips.](photos/xenos.jpg){.open-float}
 
-Nvidia enjoyed considerable leverage after the introduction of [programmable pixel pipeline](xbox#importance-of-programmability) which later became part of the OpenGL and Direct3D specification. Thus, ATI had no other choice but to follow suit. However, in 2003, ATI recovered its user base after Nvidia's anticipated 'GeForce 5' line disappointed Direct3D 9 users, who were expecting better performance and functionality from Nvidia's flagship card [@graphics-shimpi_5800]. As a result, attention shifted towards ATI's Radeon 9000 series.
+Nvidia enjoyed considerable leverage after the introduction of [programmable pixel pipeline](xbox#the-importance-of-programmability) which later became part of the OpenGL and Direct3D specification. Thus, ATI had no other choice but to follow suit. However, in 2003, ATI recovered its user base after Nvidia's anticipated 'GeForce 5' line disappointed Direct3D 9 users, who were expecting better performance and functionality from Nvidia's flagship card [@graphics-shimpi_5800]. As a result, attention shifted towards ATI's Radeon 9000 series.
 
 These events allowed ATI to keep the crown for a while longer, but unbeknownst to Nvidia, ATI had been working on a new disrupting ingredient that could hold Nvidia for another decade. This project eventually materialised in the form of **Unified Shaders** and debuted in no other than the Xbox 360, with the new graphics chip called **Xenos**.
 
@@ -348,7 +348,7 @@ Those 512 MB store most - if not all - the materials Xenos needs to render a fra
 
 ![Example of how data is organised across the memory available.](gpu/content.png)
 
-As if this wasn't enough, there's a third source that can feed the GPU, and that is a **direct line to the CPU**! Unlike anything seen before, the CPU can stream commands and geometry without going through the traditional steps of storing [command buffers](playstation#tab-4-1-commands) in external memory, thereby saving once again traffic from main RAM. This is what Microsoft advertised as **Xbox Procedural Synthesis** (XPS) and made possible by two changes [@cpu-andrews]:
+As if this wasn't enough, there's a third source that can feed the GPU, and that is a **direct line to the CPU**! Unlike anything seen before, the CPU can stream commands and geometry without going through the traditional steps of storing [command buffers](playstation#tab-3-1-commands) in external memory, thereby saving once again traffic from main RAM. This is what Microsoft advertised as **Xbox Procedural Synthesis** (XPS) and made possible by two changes [@cpu-andrews]:
 
 - Firstly, the CPU's front-side bus was adapted so the GPU can directly fetch data from the CPU's L2 cache (where the CPU may [procedurally generate](playstation-2#infinite-worlds) the geometry) in blocks of **128 Bytes** (the size of a cache line).
 - Secondly, a separate cached location was added into Xenon so the GPU can notify its current state to the CPU as fast as possible. Microsoft calls it the **Tail pointer write-back** and keeps both components in sync while the CPU updates the L2 cache and the GPU pulls from it. According to Microsoft, this routine provides a theoretical bandwidth of 18 GB/sec [@cpu-andrews].
@@ -371,7 +371,7 @@ Now it's time to make a full dive and see how this pipeline works, just like we 
 
 ![Overview of the command stage.](gpu/pipeline_commands.png){.tab-float}
 
-Welcome to the tour of the _12th polygon factory_ of this series. As always, the starting point is the **command stage**. Commands tell the GPU what, where and how to draw something on the screen. This time, however, commands may be **stored in Main Memory** (within a [buffer](gamecube#tab-1-1-database)) or **directly streamed** by the CPU. Both are subsequently fetched by the **Command Processor** [@graphics-ati_review], which parses it and forwards it to the respective unit that performs the required operations (as commands may encode different types of instructions, such as 'draw a triangle' or 'set X register').
+Welcome to the tour of the _12th polygon factory_ of this series. As always, the starting point is the **command stage**. Commands tell the GPU what, where and how to draw something on the screen. This time, however, commands may be **stored in Main Memory** (within a [buffer](gamecube#tab-3-1-database)) or **directly streamed** by the CPU. Both are subsequently fetched by the **Command Processor** [@graphics-ati_review], which parses it and forwards it to the respective unit that performs the required operations (as commands may encode different types of instructions, such as 'draw a triangle' or 'set X register').
 
 It's worth mentioning that by this generation, the traditional practice of using [Display Lists](nintendo-64#tab-1-1-reality-signal-processor) for composing commands has been long superseded by a new structure called **Command Buffer** (as OpenGL and Direct3D call it). While both terms sound similar, the new entity makes room for new operations that weren't originally envisioned when Display Lists were conceived (primarily related to vertex, pixels and GPU control). As the APIs evolve, Command Buffers are adapted to reflect modern needs, while Display Lists have been deprecated since 2008 (OpenGL removed them with OpenGL 3.2) [@graphics-opengl_history].
 
@@ -385,7 +385,7 @@ Finally, this GPU can also conditionally execute commands depending on arbitrary
 
 Since the times of [Flipper](gamecube#graphics) (or even the [RCP](nintendo-64#graphics), as it shared its core team members), ATI maintained the initiative of providing a geometry block to accelerate vertex operations. With Xenos, it is now fully programmable using Direct3D's **High-Level Shader Language** (HLSL), which is similar to C but used for implementing vertex shaders without needing assembly, although the latter is still possible.
 
-Both Xenos and [RSX](playstation-3#tab-8-2-vertex-shader) implement the Vertex Shader Model 3.0 (`vs_3_0`) specification, which outlines a common set of capabilities and limitations. This includes providing **512 or more slots** for instructions, **branching opcodes** and support for **texture fetching**, among others. The difference, however, is that PlayStation 3 programmers must use Nvidia's CG compiler (once a collaborative work with Microsoft's HLSL) while Xenos developers rely on Microsoft's toolkit instead, and thus use Direct3D's HLSL compiler.
+Both Xenos and [RSX](playstation-3#tab-6-2-vertex-shader) implement the Vertex Shader Model 3.0 (`vs_3_0`) specification, which outlines a common set of capabilities and limitations. This includes providing **512 or more slots** for instructions, **branching opcodes** and support for **texture fetching**, among others. The difference, however, is that PlayStation 3 programmers must use Nvidia's CG compiler (once a collaborative work with Microsoft's HLSL) while Xenos developers rely on Microsoft's toolkit instead, and thus use Direct3D's HLSL compiler.
 
 Furthermore, let's not forget that the hardware carrying out those operations relies on a new formula. The new unified design means vertices are processed through a shared but bigger pipeline, which works as follows:
 
@@ -403,7 +403,7 @@ Once the primitives have been transformed or subdivided as requested, the raster
 
 Firstly, the **Primitive Assembler** receives vertex data from the Tessellator and/or Shader Export and begins building triangles out of vertices. This operation takes one cycle, except when vertices require clipping and culling applied (to discard unseen triangles outside the bounding area).
 
-Secondly, the **Scan converter** receives triangles and packs them into 8x8 pixel blocks called **tiles** (yes, the [same word](nes#tab-5-1-tiles) appropriated by 2D consoles...). The converter generates one tile per cycle and sends them to a dedicated unit that performs **early Z and Stencil test**. So far so good? Well, here's the interesting part: the latter unit implements a new and efficient rejection technique called **Hierarchical Z** (Hi-Z).
+Secondly, the **Scan converter** receives triangles and packs them into 8x8 pixel blocks called **tiles** (yes, the [same word](nes#tab-1-1-tiles) appropriated by 2D consoles...). The converter generates one tile per cycle and sends them to a dedicated unit that performs **early Z and Stencil test**. So far so good? Well, here's the interesting part: the latter unit implements a new and efficient rejection technique called **Hierarchical Z** (Hi-Z).
 
 Instead of testing each pixel of the triangle, Hi-Z evaluates groups of pixels (**2x2 pixels** in this case) by calculating the maximum and minimum Z-value among the four pixels. Then, if the maximum z-value of the quadrant is less than the respective value stored in memory, the whole portion is assumed to be occluded and the quadrant is discarded [@graphics-baumann].
 
@@ -415,7 +415,7 @@ Finally, the scan converter gets back groups of 2x2 blocks (so 16x16 pixels in t
 
 ![Overview of the pixel shader stage.](gpu/pipeline_pixel.png){.tab-float}
 
-To execute the pixel shader, Xenos re-uses the same components of the vertex pipeline with slight detours. Similarly, HLSL's Pixel Shader Model 3.0 (`ps_3_0`) specification states what developers can accomplish at this stage, which is not significantly different from [Sony's counterpart](playstation-3#tab-8-4-pixel-shader). Nevertheless, since the underlying foundation has been simplified (well, unified), resources have been homogenised, improving the balance of performance across all stages.
+To execute the pixel shader, Xenos re-uses the same components of the vertex pipeline with slight detours. Similarly, HLSL's Pixel Shader Model 3.0 (`ps_3_0`) specification states what developers can accomplish at this stage, which is not significantly different from [Sony's counterpart](playstation-3#tab-6-4-pixel-shader). Nevertheless, since the underlying foundation has been simplified (well, unified), resources have been homogenised, improving the balance of performance across all stages.
 
 That being said, the pixel stage works as follows:
 
@@ -444,7 +444,7 @@ On a related note, Xenos also introduced new encoding methods for storing HDR pi
 
 ![Froggy (2006), Nvidia's latest demo that showcased the capabilities of the unified shaders (incorporated with the GeForce 8 line). For demonstration purposes, the demo also allows to, ehem, slap and stretch the _poor ugly_ frog.](screenshots/windows/froggy.jpg){.open-float}
 
-Similarly, over the next years since the console's release, the concepts of Xenos' shader exports would be embraced by many new APIs, namely Apple & Khronos' **OpenCL**, Nvidia's **CUDA**, Direct3D 10's **DirectCompute** and OpenGL 4.3's **Compute shaders**. All of which provide a platform to access the power of GPUs without necessarily having to render anything, just perform computation using the fast shader pipes. Overall, this was another great leap for [General-purpose GPU](xbox#importance-of-programmability) programming.
+Similarly, over the next years since the console's release, the concepts of Xenos' shader exports would be embraced by many new APIs, namely Apple & Khronos' **OpenCL**, Nvidia's **CUDA**, Direct3D 10's **DirectCompute** and OpenGL 4.3's **Compute shaders**. All of which provide a platform to access the power of GPUs without necessarily having to render anything, just perform computation using the fast shader pipes. Overall, this was another great leap for [General-purpose GPU](xbox#the-importance-of-programmability) programming.
 
 {.close-float}
 
@@ -775,7 +775,7 @@ Without further ado, here is how the boot chain works. It all begins with the bo
     - This process involves a combination of many cyphers, such as HMAC, SHA-1 and ROT.
 2. **2BL** or **CB**: The CPU, now executing from the internal SRAM, queries the eFuses to check that the version of CB running matches the one written on the eFuses. Then, it initialises most of the hardware. Finally, the CPU proceeds to fetch another block from NAND called 'CD' onto main RAM and repeats similar decryption and verification tasks 1BL did, this time using another key derived from the 'CPU key' (stored in the eFuses). If everything goes well, the next stage proceeds.
     - In later software updates, this process was split into two bootloaders (named CB_A and CB_B) to mitigate faults that were exploited to execute homebrew (more details in the 'Anti-piracy' section).
-3. **4BL** or **CD**: This is another decryption stage, albeit closer to the actual payload. This time, the CPU fetches yet-another block called **CE**, which goes through familiar verification processes (involving RSA checks) and it's subsequently decompressed in main RAM. Once unpacked, the CPU finds itself in front of the **Kernel** and the **Hypervisor**. But it's not over yet, I'm afraid, as the CPU must now fetch system updates to apply to these two programs, a process known as **CF**. Before continuing, however, CD orders to compare the number of updates installed against a designated counter in the eFuses block. This is done to prevent [downgrades](playstation-portable#tab-8-2-downgrading).
+3. **4BL** or **CD**: This is another decryption stage, albeit closer to the actual payload. This time, the CPU fetches yet-another block called **CE**, which goes through familiar verification processes (involving RSA checks) and it's subsequently decompressed in main RAM. Once unpacked, the CPU finds itself in front of the **Kernel** and the **Hypervisor**. But it's not over yet, I'm afraid, as the CPU must now fetch system updates to apply to these two programs, a process known as **CF**. Before continuing, however, CD orders to compare the number of updates installed against a designated counter in the eFuses block. This is done to prevent [downgrades](playstation-portable#tab-6-2-downgrading).
     - The decompression algorithm used is called 'LZX Delta' and it's authored by Microsoft.
 4. **CF**: This stage takes care of fetching update blocks stored on NAND, these are decrypted and decompressed with LZX as well. Once they are ready, they are applied to the kernel and the hypervisor residing on main RAM. Once all updates are done, CF returns to CD.
 5. **CD (upon return)**: Now that everything is set, the CPU is redirected to the **Hypervisor** in main RAM.
@@ -844,7 +844,7 @@ Nevertheless, this is the GUI that gave this console an identity, and it's obvio
 
 ![The storage menu and its similar palette update. In this example, a custom background has been set by the user.](screenshots/nxe/storage.jpg){title="Storage"}
 
-![2D avatars are still available, though users are now encouraged to define their own 3D avatar too. This will be used by games (à la [Nintendo's Mii](wii#personalised-game)).](screenshots/nxe/avatar.jpg){title="Avatar"}
+![2D avatars are still available, though users are now encouraged to define their own 3D avatar too. This will be used by games (à la [Nintendo's Mii](wii#personalised-titles)).](screenshots/nxe/avatar.jpg){title="Avatar"}
 
 ![As a nice tribute, the new guide menu resembles the old Blades design, which also helps provide more and better-organised shortcuts.](screenshots/nxe/guide.jpg){title="Guide"}
 
@@ -929,7 +929,7 @@ To provide more resources, Microsoft deployed the **Game Developer Network** (GD
 
 #### Available tools and kits
 
-Those using the expensive XDK will see it follows the footsteps of its [predecessor](xbox#tab-8-2-microsoft-xdk). The APIs provided are largely based on DirectX's routines to ease the learning curve for PC developers already familiar with DirectX on the Windows platform. XDK implements DirectX version 9.0c (identified as '9_3') extended with Xbox-unique features.
+Those using the expensive XDK will see it follows the footsteps of its [predecessor](xbox#tab-4-2-microsoft-xdk). The APIs provided are largely based on DirectX's routines to ease the learning curve for PC developers already familiar with DirectX on the Windows platform. XDK implements DirectX version 9.0c (identified as '9_3') extended with Xbox-unique features.
 
 All in all, the suite includes a variety of libraries and tools, for instance:
 
@@ -957,7 +957,7 @@ Let's now see how the distribution of content worked.
 
 It may sound hard to believe, but for Microsoft, the same **dual-layer DVD** disc used for the original Xbox worked fine for their new console. I presume it was another cost-effective strategy, as the DVD disc got cheaper to produce and its readers could be outsourced to the most inexpensive and convenient manufacturer. Throughout the console's lifespan, Microsoft had relied on Hitachi, LG, Toshiba, Samsung, Philips, BenQ and Lite-ON - including teams of two - to produce their DVD drives.
 
-As a reminder, dual-layer DVDs (also called **DVD-9**) have a theoretical capacity of **8.5 GB**. A big advantage compared to the new [_blue-lasered_ discs](playstation-3#tab-14-1-blu-ray-discs) of the PlayStation 3, is that the Xbox 360 enjoys greater read speeds thanks to its **12x drive**, another reason to expel the hard drive from the requirements.
+As a reminder, dual-layer DVDs (also called **DVD-9**) have a theoretical capacity of **8.5 GB**. A big advantage compared to the new [_blue-lasered_ discs](playstation-3#tab-8-1-blu-ray-discs) of the PlayStation 3, is that the Xbox 360 enjoys greater read speeds thanks to its **12x drive**, another reason to expel the hard drive from the requirements.
 
 On the other side, games were greatly constrained by the usable capacity, those 8.5 GB were further limited by a secure filesystem called **Xbox Game Disc 2** or 'XGD2'. This was Microsoft's successor of the [original format](xbox#medium) employed to prevent unauthorised copies. The actual available size for games was down to **6.8 GB** (80% of the total capacity) [@games-leadbetter]. In 2011, after many third-party tools managed to crack the protection, **Xbox Game Disc 3** or 'XGD3' was made available to developers. In it, Microsoft managed to revamp the security tricks and reduce the space reserved for anti-piracy mechanisms, leaving a total of **7.9 GB** for games.
 
@@ -981,7 +981,7 @@ Not so much related to games, but the film industry had an unusual influence on 
 
 Thus, Microsoft's goal lead to a separate accessory called **Xbox 360 HD DVD Player**, an external reader placed next to the console and requires its own power supply (so expect all the annoyances that come with it). Anyway, the reader connected through USB and shipped with an 'HD DVD installation disc' that installed an additional media player on the console. Although, its behaviour differs depending on the Dashboard version: on the Blades Dashboard, the HD-DVD player integrated itself with the UI [@games-hddvd_install_old]. On newer dashboards, it showed up as a separate app [@games-hddvd_install_new].
 
-Internally, HD DVD stores pits and lands at a higher density than conventional DVDs, allowing it to store up to **15 GB** of data if single-layered or **30 GB** if dual-layered. While both Blu-Ray and HD-DVD rely on [blue-light diodes](playstation-3#tab-14-1-blu-ray-discs), the latter exhibits a sparser distribution of pits; and the focal point of its laser is larger than the Blu-ray's [@games-hwu]. Consequently, HD-DVDs can't reach the competitor's 25 GB/50 GB milestone.
+Internally, HD DVD stores pits and lands at a higher density than conventional DVDs, allowing it to store up to **15 GB** of data if single-layered or **30 GB** if dual-layered. While both Blu-Ray and HD-DVD rely on [blue-light diodes](playstation-3#tab-8-1-blu-ray-discs), the latter exhibits a sparser distribution of pits; and the focal point of its laser is larger than the Blu-ray's [@games-hwu]. Consequently, HD-DVDs can't reach the competitor's 25 GB/50 GB milestone.
 
 After only two years sitting on shelves, both HD-DVDs and the player were phased out in 2008 [@games-chen]. If you ask me, this duality between HD-DVD and Blu-Ray was just a battle of royalties, manufacturing costs and disagreement between distributors. None of which mattered to the end-user, and yet they had to pay the high price for an experimental technology that would soon be rendered 'not worth it' by distributors.
 
@@ -1032,7 +1032,7 @@ I guess the most optimal solution would be to connect the CPU to a quantum compu
 
 Furthermore, this subsystem provides two extra memory blocks.
 
-Firstly, **32 KB of ROM**, identical to the [Secure ROM](playstation-3#tab-12-1-cell-bootrom) found in Cell. It's used for storing unencrypted data that the CPU can read without fear of being exposed or traced by a third party. As you've seen before, this is where the first boot stage is found.
+Firstly, **32 KB of ROM**, identical to the [Secure ROM](playstation-3#tab-7-1-cell-bootrom) found in Cell. It's used for storing unencrypted data that the CPU can read without fear of being exposed or traced by a third party. As you've seen before, this is where the first boot stage is found.
 
 Secondly, **64 KB of SRAM** are provided as fast general-purpose memory that the CPU can use to work out a sensible operation (most probably cryptographically-related) without fear, again, of being _spied on_.
 
@@ -1092,7 +1092,7 @@ Because there's only **64 KB of SRAM** to store the page table and hashes, all m
 
 Once the hypervisor is fully running with Level 1 privilege, it dips into the internal SRAM of Xenon to provide the following functions:
 
-- Act as a **Memory Management Unit** (MMU) by handling its private virtual memory page table, where it keeps track of the memory boundaries of every program and whether they are executable or not. This protects the hardware from [buggy software](xbox#tab-9-3-permanent-unlock) producing buffer overflows.
+- Act as a **Memory Management Unit** (MMU) by handling its private virtual memory page table, where it keeps track of the memory boundaries of every program and whether they are executable or not. This protects the hardware from [buggy software](xbox#tab-5-3-permanent-unlock) producing buffer overflows.
 - In cooperation with the L2 block, it ensures all executable code is encrypted when stored with RAM.
 
 To execute any userland application, the Kernel copies the (unencrypted) code into memory and the hypervisor checks that it's been signed with Microsoft's private RSA key [@cpu-steil]. If the signature is valid, the Hypervisor proceeds to duplicate the executable code in memory, and in doing so the L2 block automatically encrypts it. Finally, the Hypervisor marks the respective memory pages as 'executable' and the rest is history.

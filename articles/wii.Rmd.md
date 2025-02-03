@@ -116,7 +116,7 @@ Back to the point, the Wii standardised this feature by allowing a 'widescreen m
 
 The new and disruptive controller design meant new types of interactions on Wii games. Since the Wiimote enabled users to point at the screen, some games like *Super Mario Galaxy* or *The Legend of Zelda: Twilight Princess* used this feature to allow the player to interact with the scenery.
 
-In the report titled _Myth Debugging: Is the Wii More Demanding to Emulate than the GameCube?_ [@graphics-dolphin], developers of the Dolphin emulator explain that games like Super Mario Galaxy and other first-person shooters rely on the [embedded z-buffer](gamecube#tab-1-4-render) to identify the object the Wiimote is pointing at and/or check how far the object is from the Wiimote cursor.
+In the report titled _Myth Debugging: Is the Wii More Demanding to Emulate than the GameCube?_ [@graphics-dolphin], developers of the Dolphin emulator explain that games like Super Mario Galaxy and other first-person shooters rely on the [embedded z-buffer](gamecube#tab-3-4-render) to identify the object the Wiimote is pointing at and/or check how far the object is from the Wiimote cursor.
 
 This is not a new feature per se, but a novel use of current capabilities. GameCube games didn't depend on a multi-use controller with pointer functionality. Now, players can control the character and point at the screen at the same time.
 

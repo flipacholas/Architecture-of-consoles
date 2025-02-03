@@ -173,7 +173,7 @@ As emphasised by fail0verflow, the Wii U, as a system, is in fact **not cache co
 
 Moreover, two existing PowerPC instructions made for multi-processing environments, `lwarx` (Load Word and Reserve Indexed) and `stwcx` (Store Word Conditional Indexed), no longer function as intended. As fail0verflow also noted [@graphics-smp], these now need a manual cache flush to work as intended. At least it's not the first PowerPC variant to ship with broken instructions (see [Xbox 360's `xdcbt`](xbox-360#a-new-but-short-lived-instruction)).
 
-It's not all bad news, luckily. At least Espresso inherits Gekko's ability for [out-of-order instruction execution](gamecube#features), something that had to be [cut from Xenon and Cell](xbox-360#revisiting-old-paradigms).
+It's not all bad news, luckily. At least Espresso inherits Gekko's ability for [out-of-order instruction execution](gamecube#the-powerpc-gekko), something that had to be [cut from Xenon and Cell](xbox-360#revisiting-old-paradigms).
 
 ### Memory Available {.tabs-close}
 
@@ -283,7 +283,7 @@ Most of the content related to graphics resides in the aforementioned **2 GB of 
 
 ![Example of how data is organised across the memory available.](gpu/gpu_content.png)
 
-Conversely, the Wii U's EDRAM is larger than the Xbox 360's (meaning the need for [tiling](dreamcast#graphics) is reduced). However, it does not include [dedicated circuitry for post-processing](xbox-360#tab-6-5-pixel-operations).
+Conversely, the Wii U's EDRAM is larger than the Xbox 360's (meaning the need for [tiling](dreamcast#graphics) is reduced). However, it does not include [dedicated circuitry for post-processing](xbox-360#tab-2-5-pixel-operations).
 
 ### Constructing the frame
 
@@ -339,7 +339,7 @@ Finally, the pipeline continues to the rasterisation stage.
 
 The rasterisation stage tends to be much simpler than other stages. The main reason being the act of converting vertices into pixels is mostly systematic, and no extra programmability is needed (aside from a few parameters available to tweak). As such, this stage is identical to Crayola/Xenos.
 
-Be as it may, the Z and stencil buffers are not allocated on dedicated memory anymore. Instead, the new **Render backend** block (performing Z and stencil testing, with support for [hierarchical testing](xbox-360#tab-6-3-rasterization) as well) must access RAM to work (either EDRAM or main RAM).
+Be as it may, the Z and stencil buffers are not allocated on dedicated memory anymore. Instead, the new **Render backend** block (performing Z and stencil testing, with support for [hierarchical testing](xbox-360#tab-2-3-rasterisation) as well) must access RAM to work (either EDRAM or main RAM).
 
 The rasteriser can compose frames of up to 8192 x 8192 pixels using 128-bit pixel formats [@graphics-r7xxreference]. This would allow massive frames with HDR colour quality. However and for obvious reasons, developers don't need frames _that_ big (1280 x 720 will suffice for this console), except HDR which will be used thoroughly.
 
@@ -359,7 +359,7 @@ I guess it's worth pointing out that the shader model (OpenGL GLSL 3.3) adds an 
 
 Once the frame has been rendered, developers can apply more Z-testing (in case it wasn't activated at an earlier stage), colour blending and, finally, export the pixels to the frame-buffer for display. This is all performed by the **Render backends** (there's of two of them) which are found at the end of the Pixel shader stage.
 
-Finally, even though the Wii U doesn't feature the sophisticated circuitry that the Xbox 360 bundles within its EDRAM module, there are still many interesting capabilities provided by GPU7. This includes automatic Multisample Anti-aliasing of up to 16 passes (**MSAA 16x**) to soften edges, which surprisingly doesn't require [tiled rendering](xbox-360#tab-6-5-pixel-operations) since the larger 32 MB of EDRAM (MEM1) of the Wii U is more than enough for these operations (well, maybe MSAA 16x will eat up too much MEM1, however, MSAA 8x is still acceptable).
+Finally, even though the Wii U doesn't feature the sophisticated circuitry that the Xbox 360 bundles within its EDRAM module, there are still many interesting capabilities provided by GPU7. This includes automatic Multisample Anti-aliasing of up to 16 passes (**MSAA 16x**) to soften edges, which surprisingly doesn't require [tiled rendering](xbox-360#tab-2-5-pixel-operations) since the larger 32 MB of EDRAM (MEM1) of the Wii U is more than enough for these operations (well, maybe MSAA 16x will eat up too much MEM1, however, MSAA 8x is still acceptable).
 
 Apart from that, we have to take into account the custom algorithms programmers may decide to implement. This is thanks to the flexibility of the APIs and the vast amount of shader operations available, including [Compute Shaders](xbox-360#the-impact-on-the-industry) (which offload CPU computations into the GPU).
 
@@ -598,9 +598,9 @@ Alrighty, let's begin already. Once the user presses the power button, the follo
     9. Espresso is next, so IOSU copies `Cafe OS` (in encrypted form) into MEM2 and kickstarts Espresso.
 2. The first core of Espresso powers on, then...
     1. The reset vector is at address `0x00000100`, which at this point is masked by the Boot ROM, so it starts execution there.
-    2. MMU, L1/L2 caches and registers are cleared. Then, Espresso switches to 'Translated mode' (activates [virtual memory](gamecube#organising-memory-and-sorting-out-aram)).
+    2. MMU, L1/L2 caches and registers are cleared. Then, Espresso switches to 'Translated mode' (activates [virtual memory](gamecube#making-the-most-of-aram)).
     3. By fiddling with locked L1 cache and empty memory writes, the BootROM is copied to L1 (to run faster) without reaching external RAM.
-    4. The reset vector becomes an infinite loop (to prevent intruders from attempting to [reset the CPU](xbox-360#tab-23-1-the-glitcher)).
+    4. The reset vector becomes an infinite loop (to prevent intruders from attempting to [reset the CPU](xbox-360#tab-13-1-the-glitcher)).
     4. AES keys from OTP are copied into L1. Then, OTP is disabled.
     5. `Cafe OS Kernel`'s header is copied to L1 and its signature is verified using the stored keys.
     6. `Cafe OS Kernel`'s data is hashed and decrypted by using the DMA engine to send blocks to L1 back and forth.
@@ -721,7 +721,7 @@ This section is very much aligned with the 7th generation of consoles. In summar
 
 ![Example of a retail game.](photos/retail_game.jpg){.open-float}
 
-Retail stores sold **Wii U optical disc**, a proprietary disc medium designed by Panasonic in an attempt to replicate many capabilities of the [Blu-ray disc](playstation-3#tab-14-1-blu-ray-discs)... without using Blu-ray discs. These can hold ~24 GB of data but only **~20 GB is available for actual game data**, the rest is used for storing software update files, meta-data and other information Cafe OS needs to read.
+Retail stores sold **Wii U optical disc**, a proprietary disc medium designed by Panasonic in an attempt to replicate many capabilities of the [Blu-ray disc](playstation-3#tab-8-1-blu-ray-discs)... without using Blu-ray discs. These can hold ~24 GB of data but only **~20 GB is available for actual game data**, the rest is used for storing software update files, meta-data and other information Cafe OS needs to read.
 
 The same drive is also able to read [Wii optical discs](wii#medium) which, in turn, are similar to the standard DVD format. However, the drive doesn't support either DVD or Blu-ray's playback capabilities.
 
@@ -773,7 +773,7 @@ First things first: The disc drive.
 
 ... Well, to this date, **the drive hasn't been publicly cracked**. There have been reports about the development of 'WiiKeyU' [@anti_piracy-wiiukey], a drive emulator that can load disc images, but nothing ever reached the stores.
 
-Considering the low adoption of Blu-ray drives throughout the Wii U's lifecycle, I presume there wasn't enough enthusiasm to crack the drive and/or deeply research its new protection methods. For the curious, the Wii U's motherboard now authenticates with the drive in a similar way to the [Xbox 360's drive](xbox-360#tab-19-1-first-party-security) and, from there, all communication appears encrypted [@games-drive].
+Considering the low adoption of Blu-ray drives throughout the Wii U's lifecycle, I presume there wasn't enough enthusiasm to crack the drive and/or deeply research its new protection methods. For the curious, the Wii U's motherboard now authenticates with the drive in a similar way to the [Xbox 360's drive](xbox-360#tab-9-1-first-party-security) and, from there, all communication appears encrypted [@games-drive].
 
 That leaves us with two remaining targets (IOSU and Cafe OS) and, this time, there's plenty of research done.
 
@@ -841,7 +841,7 @@ As soon as a device makes employs a symmetric encryption model like AES, it's a 
 
 On 2013, during the 30th Chaos Communication Congress, fail0overflow published a vast amount of discoveries [@cpu-fail0verflow] and, shortly after, kickstarted a chain of reaction for other researchers and developers. To give an overview, fail0verflow noted:
 
-1. Old Broadway and Starlet exploits from the Wii era **still work on vWii mode**. This grants researchers control of Starbuck, which can then be used to fiddle with memory and/or zap Espresso. In other words, a [glitcher](xbox-360#tab-23-1-the-glitcher) and [snooper](xbox#tab-9-2-bootstrap-search) in-house.
+1. Old Broadway and Starlet exploits from the Wii era **still work on vWii mode**. This grants researchers control of Starbuck, which can then be used to fiddle with memory and/or zap Espresso. In other words, a [glitcher](xbox-360#tab-13-1-the-glitcher) and [snooper](xbox#tab-5-2-bootstrap-search) in-house.
 2. As soon as Boot ROM finishes decrypting an Ancast image, **nothing verifies the unencrypted data against third-party alterations**. So, by altering decrypted memory (using a hijacked Starbuck in vWii mode), **Espresso will end up executing arbitrary code**. So much for having a Boot ROM...
     - This was a starting point for fail0verflow and it enabled the group to extract system code (only in vWii mode for now) for research purposes. Thus, paving the way for new discoveries. Although, this didn't include the Boot ROM and OTP keys as access is disabled before arbitrary code can be executed.
 3. With control of Starbuck, latching the `SREST` (soft reset) line on Espresso while it's executing its Boot ROM induces it in an infinite loop (as the Boot ROM adds traps in Espresso's reset vector). However, if Espresso is soft reset at its last stages of Boot ROM execution (particularly, just after flushing the caches), the reset vectors point to a writable location in MEM2. Hence, **enabling arbitrary code execution while the Boot ROM is still visible**.

@@ -58,7 +58,7 @@ StrongARM was a new ARM-based CPU that featured [@cpu-furber]:
 
 - The **ARMv4 instruction set**. If you want to know more about it, I've [previously analysed it](game-boy-advance#commanding-the-cpu) in the Game Boy Advance article.
 - Up to **233 MHz** of clock speed, roughly 583% faster than the beefiest ARM7 chip.
-- **5-stage pipeline**, an increment from the original [3-stage design](game-boy-advance#the-core).
+- **5-stage pipeline**, an increment from the original [3-stage design](game-boy-advance#tab-2-1-the-core).
 - A **new cache system** implementing a **Harvard architecture**, where **16 KB** are allocated for instructions and another **16 KB** for data.
   - This design helped alleviate memory bottlenecks (something the von Neumann/Princeton model suffered from).
 
@@ -199,7 +199,7 @@ Before we discuss the different modes the 2D engine can operate to generate back
 
 - **Character type group**: These background types follow the traditional tile system, the frame is rendered by filling it with tiles.
     - **Static** or 'Text' background: An ordinary background. Up to 512x512 pixels wide, 256 colours and 16 palettes. It includes all the typical [effects](super-nintendo#tab-1-2-background) (H/V flipping, H/V scrolling, mosaic, alpha blending) plus an extra 'fading' effect. Up to 1024 tiles can be used.
-    - **Affine** background: A background with [affine transformations](super-nintendo#unique-features). However, it doesn't allow H/V flipping and can only fetch 256 tiles (one quarter from the maximum). The size of this layer is 1024x1024 pixels wide.
+    - **Affine** background: A background with [affine transformations](super-nintendo#that-feature). However, it doesn't allow H/V flipping and can only fetch 256 tiles (one quarter from the maximum). The size of this layer is 1024x1024 pixels wide.
     - **Affine Extended - Character**: Same as affine but restores the full amount of tiles and supports H/V flip.
 - **Bitmap type group**: Instead of processing tiles, the engine treats VRAM as a frame buffer.
     - **Affine Extended - 256 colours**: Inherit all the effects available from the 'Affine Extended - Character'. The difference is that they are applied on a single 512x512 px bitmap.
@@ -281,7 +281,7 @@ The rendering system is a mix of old and new: Instead of rendering to a frame bu
 
 Without the traditional frame buffer, the rasteriser employs **scan-line rendering**, traversing each scan-line to process polygon edges found within. Arisotura (the developer of MelonDS emulator) reported that for each quadrangle, the renderer can only fill **one span per scan-line** [@graphics-arisotura]. This can be a bit troubling, since the result will get messy if the quad is concave or has crossed edges, for instance.
 
-Regarding effects, the unit also provides **shadowing** and a distinct feature called **Toon Shading** (another name for [Cel Shading](gamecube#creativity)): Even though this unit is not [programmable](xbox#importance-of-programmability), the lighting parameters can be altered to achieve a cartoony effect.
+Regarding effects, the unit also provides **shadowing** and a distinct feature called **Toon Shading** (another name for [Cel Shading](gamecube#creativity)): Even though this unit is not [programmable](xbox#the-importance-of-programmability), the lighting parameters can be altered to achieve a cartoony effect.
 
 #### Result {.tab}
 
@@ -556,7 +556,7 @@ If everything goes well, the firmware will find the required executable of the c
 
 #### Download Play protection {.tab}
 
-Programs received via Download Play must be signed by Nintendo using an [RSA signature](wii#tab-7-2-chain-of-trust) (only Nintendo knows the private key).
+Programs received via Download Play must be signed by Nintendo using an [RSA signature](wii#tab-2-2-chain-of-trust) (only Nintendo knows the private key).
 
 This check is performed by the firmware.
 

@@ -65,7 +65,7 @@ In any case, SCS fabrication enabled Sony and Toshiba to fit cutting-edge techno
 - The **main GPU**, a PowerVR SGX543MP4+ by Imagination Technologies.
 - Many **accelerators** (some proprietary, others off the shelf), including a large DSP, [DMA Controllers](playstation#taking-over-the-cpu) and security blocks (housing hidden ROM space).
 - **Around 640 MB of RAM** (split into multiple types).
-- Last but not least, **legacy PlayStation Portable circuitry** (the [MIPS CPU](playstation-portable#cpu) and the [Graphics Engine](playstation-portable#graphics)).
+- Last but not least, **legacy PlayStation Portable circuitry** (the [MIPS CPU](playstation-portable#main-cpu) and the [Graphics Engine](playstation-portable#graphics)).
 
 ...and throughout this article we'll take a look at each of those!
 
@@ -128,13 +128,13 @@ Speaking of which, the new cores share many characteristics with their predecess
  
 - The next-generation instruction set called **ARMv7-A**, I explain more details further on.
 - **64 KB of L1 cache** which inherently follows the [Harvard architecture](nintendo-ds#arms-new-territories). Consequently, it's divided into **32 KB for data** and **32 KB for instructions**.
-  - Data cache coherency among the cores is automatically handled by the [Snoop Control Unit](nintendo-3ds#tab-3-3-the-axi-bus), previously featured in the ARM11MpCore.
+  - Data cache coherency among the cores is automatically handled by the [Snoop Control Unit](nintendo-3ds#tab-1-3-the-axi-bus), previously featured in the ARM11MpCore.
 - **2-issue superscalar**: For the first time, ARM has brought [instruction-level parallelism](xbox-360#an-alternative-solution). This means that, as long as there are no [hazards](playstation#delay-galore), the CPU will try to execute two instructions using two separate pipelines. This increases the amount of instructions executed per clock cycle. [MIPS](playstation-2#tab-1-1-outperforming-success) and [SuperH](dreamcast#the-offering) brought this a decade before, but the two suffered a quick demise, so it's now ARM's turn to carry it forward.
 - **Dynamic branch prediction**: The CPU now predicts the execution path by relying on two dedicated buffers while fetching instructions. The first anticipates whether an upcoming instruction will be a branch, and the next buffer maps the previous flow of the program. Finally, the latter is used to predict whether upcoming branches will be taken or not [@cpu-cortexa8_imp].
   - It's worth mentioning that this unit **only predicts branching instructions**, omitting other optimisation techniques such as [conditionals](game-boy-advance#commanding-the-cpu) or the `IT` instruction... Maybe that's a hint about the future of the ARM ISA.
 - A [Memory Management Unit](nintendo-64#memory-management) (MMU) with a Translation Lookaside Buffer (TLB). This is already typical on most CPUs.
-  - By the way, in the case of the Cortex brand, only the 'Cortex-A' profile includes this package. The 'Cortex-R' series only bundles an [MPU](playstation-vita#focused-memory-management) (and it's even optional on some 'Cortex-M' models [@cpu-cortexm3]).
-- **TrustZone**: A new security subsystem that adds a dimension to the [privilege levels](playstation-vita#focused-memory-management) of the MMU. It's implemented on both the hardware level (by segregating components between non-secure and secure groups) and the software level (by executing a secondary and isolated operating system that handles confidential data). The special OS is called **Trusted Execution Environment**. Furthermore, data transfers carry an extra tag to indicate whether they are secure or insecure transactions [@cpu-cortexa_prog].
+  - By the way, in the case of the Cortex brand, only the 'Cortex-A' profile includes this package. The 'Cortex-R' series only bundles an [MPU](playstation-portable#focused-memory-management) (and it's even optional on some 'Cortex-M' models [@cpu-cortexm3]).
+- **TrustZone**: A new security subsystem that adds a dimension to the [privilege levels](playstation-portable#focused-memory-management) of the MMU. It's implemented on both the hardware level (by segregating components between non-secure and secure groups) and the software level (by executing a secondary and isolated operating system that handles confidential data). The special OS is called **Trusted Execution Environment**. Furthermore, data transfers carry an extra tag to indicate whether they are secure or insecure transactions [@cpu-cortexa_prog].
   - The OS model of TrustZone reminds me of the [isolated SPU of Cell](playstation-3#cells-privileged-security).
 - **NEON Media Processing Engine** (MPE), a new co-processor that carries out vector and floating-point operations. We'll dive more into it in the next sections.
 
@@ -172,7 +172,7 @@ In the case of using programming languages (C, Objective-C, C++, etc.), the deci
 
 The most notable component of the Cortex-A9, in particular for the PSVita, is the **Media Processing Engine** (MPE). This is ARM's new coprocessor for 3D applications. It's been engineered in a very convoluted way, however, as it executes two different but related instruction sets:
 
-- The **Vector Floating-Point v3** (VFPv3): A continuation of [VFPv2](nintendo-3ds#tab-3-1-the-original-mpcore) for floating-point capabilities. It's IEEE-754 compliant and now extended to provide instructions like `VCVT` (to convert between fixed-point and floating-point values) and `VMOV` (to transfer values between the CPU and the FPU register file). This is helpful since **the VFP only understands 32-bit and 64-bit floating-point values**.
+- The **Vector Floating-Point v3** (VFPv3): A continuation of [VFPv2](nintendo-3ds#tab-1-1-the-original-mpcore) for floating-point capabilities. It's IEEE-754 compliant and now extended to provide instructions like `VCVT` (to convert between fixed-point and floating-point values) and `VMOV` (to transfer values between the CPU and the FPU register file). This is helpful since **the VFP only understands 32-bit and 64-bit floating-point values**.
   - The exact variant included in the Cortex-A9 is called 'VFPv3-D32', meaning it includes **thirty-two 64-bit registers**.
   - Even though this ISA contains the word 'vector', ARMv7 deprecated the use of the vector instructions and the Cortex-A9 includes none [@cpu-cortexa9_mpe]. *So much for being called a 'vector FPU'...*
 - The **NEONv1**, also known as 'ARMv7 Advanced SIMD', is the *real* vector instruction set, enabling to operate multiple scalars at once. NEON provides **sixteen 128-bit registers**, which can be also split into thirty-two 64-bit or 32-bit 'virtual' registers. The integers being operated may be as big as 64 bits, while floating-point types can't surpass 32 bits.
@@ -186,7 +186,7 @@ All in all, this means the compiler will need to work harder optimising the code
 
 ### The master bus (or buses)
 
-Another popular product from ARM, the [AMBA specification](wii#the-hidden-co-processor) designed for interconnecting components, carries forward with the Cortex-A9. Within its [third revision](nintendo-3ds#tab-3-3-the-axi-bus), the AXI protocol was selected for interfacing the cores within the MPCore cluster. Curiously enough, it's the [same choice](nintendo-3ds#tab-3-3-the-axi-bus) found in the ARM11 and its well-known adopter, the Nintendo 3DS.
+Another popular product from ARM, the [AMBA specification](wii#the-hidden-co-processor) designed for interconnecting components, carries forward with the Cortex-A9. Within its [third revision](nintendo-3ds#tab-1-3-the-axi-bus), the AXI protocol was selected for interfacing the cores within the MPCore cluster. Curiously enough, it's the [same choice](nintendo-3ds#tab-1-3-the-axi-bus) found in the ARM11 and its well-known adopter, the Nintendo 3DS.
 
 Speaking of which, remember Nintendo's adoption of the **Open Core Protocol** (OCP) for [communicating with its PICA GPU](nintendo-3ds#adopting-open-standards)? Well, that's also another protocol found in the PSVita, now used for all communications outside the MPCore [@cpu-memory_system].
 

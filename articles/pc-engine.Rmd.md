@@ -150,7 +150,7 @@ Each entry is 8 bytes long, although some space is wasted due to the 16-bit gran
 
 To top it all off, **the CPU can't access this table**, so it needs to be completed in VRAM and then activate a DMA channel to copy it to the VDC (so the latter can use it).
 
-Regarding limitations, there can only be up to 16 sprites per scan-line. On the other side, interrupts can be set so the game can be notified when there's been a case of sprite overflow or [collision](master-system#tab-4-1-collision-detection).
+Regarding limitations, there can only be up to 16 sprites per scan-line. On the other side, interrupts can be set so the game can be notified when there's been a case of sprite overflow or [collision](master-system#tab-2-1-collision-detection).
 
 #### Result {.tab}
 

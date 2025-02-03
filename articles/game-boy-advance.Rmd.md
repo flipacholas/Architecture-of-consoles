@@ -224,7 +224,7 @@ Static background layers in use.
 
 :::
 
-The background layer of this system has improved significantly since the Game Boy Color. It finally includes some features found in the [Super Nintendo](super-nintendo) (remember the [affine transformations](super-nintendo#unique-features)?).
+The background layer of this system has improved significantly since the Game Boy Color. It finally includes some features found in the [Super Nintendo](super-nintendo) (remember the [affine transformations](super-nintendo#that-feature)?).
 
 The PPU can draw up to four background layers. The capabilities of each one will depend on the selected mode of operation [@graphics-tiles]:
 

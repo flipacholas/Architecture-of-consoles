@@ -56,7 +56,7 @@ Fast forward, the next big leap arrived in 1995, with the release of the **R1000
 
 - **Speculative execution**: The CPU predicts the result of conditional branches before they are computed. The predictions are based on previous results stored in an internal 512-entry table. Once the condition is computed, if the prediction turns out to be correct, the CPU has saved valuable time. Otherwise, the extra computations are discarded.
   - Thanks to this, MIPS has finally turned a recurrent problem ([control hazards](playstation#delay-galore)) into an advantage.
-  - In other CPUs, you may find similar functionality referred to as [dynamic branch prediction](gamecube#features).
+  - In other CPUs, you may find similar functionality referred to as [dynamic branch prediction](gamecube#the-powerpc-gekko).
 - **4-issue superscalar** pipeline: On top of the [pipelined design](sega-saturn#cpu), the CPU will now fetch up to four instructions at the start of the pipeline, and distribute them across separate units, allowing the CPU to execute these instructions at the same time. In doing so, the CPU achieves a greater degree of parallelism. 
 - **Out-of-order execution**: The CPU will also re-arrange the sequence of instructions to try to fill up its units as much as possible (as long as no hazards are added).
 - **L2 cache with a 128-bit bus**, enabling to pull more data into the CPU at a time, which becomes a requirement based on the previous enhancements.
@@ -272,7 +272,7 @@ This stage is powered by a large Pixel Unit that can compute up to 16 pixels at 
 
 Texture maps are fetched from DRAM in an area defined as **Texture buffer**, although this is interfaced by a separate area called **Texture Page Buffer** which seems to serve as a caching mechanism for textures. CLUTs are also mapped using this page system. Both elements are retrieved using a **512-bit bus**.
 
-The pixel unit performs **perspective correction** to map textures onto the primitives (a great improvement considering the previous [affine mapping](playstation#tab-4-5-textures) approach). Moreover, it also provides **bilinear and trilinear filtering**, the latter one is used alongside mipmapped textures.
+The pixel unit performs **perspective correction** to map textures onto the primitives (a great improvement considering the previous [affine mapping](playstation#tab-3-5-textures) approach). Moreover, it also provides **bilinear and trilinear filtering**, the latter one is used alongside mipmapped textures.
 
 #### Testing {.tab}
 
@@ -604,7 +604,7 @@ Interestingly enough, FreeMCBoot's user interface borrows assets from `OSDSYS`, 
 
 Additionally, the installer provides two options: to install only the files needed for the current console, or install a global setup for all PS2 variants. Curiously enough, the latter option was challenging to accomplish [@anti_piracy-fmcb]. Initially, the installer would fiddle with the partition table of the Memory Card to avoid running out of space, something that wasn't particularly safe.
 
-As luck would have it, in 2011, the [security system](playstation-3#os-security-hierarchy) of the [PlayStation 3](playstation-3) had just been [compromised](playstation-3#tab-17-4-the-fall-of-encryption), exposing many secrets hidden within. Among others, a collection of MagicGate keys globaly used for [PS2 backwards compatibility](playstation-3#backwards-compatibility). From then on, it was no longer needed to resort to the limited DVD binary signature trick to craft PS2 executables. And so, since version `1.8b`, FreeMCBoot has maintained its position as the safest and most popular method for running any type of Homebrew on a PlayStation 2.
+As luck would have it, in 2011, the [security system](playstation-3#os-security-hierarchy) of the [PlayStation 3](playstation-3) had just been [compromised](playstation-3#tab-9-4-the-fall-of-encryption), exposing many secrets hidden within. Among others, a collection of MagicGate keys globaly used for [PS2 backwards compatibility](playstation-3#backwards-compatibility). From then on, it was no longer needed to resort to the limited DVD binary signature trick to craft PS2 executables. And so, since version `1.8b`, FreeMCBoot has maintained its position as the safest and most popular method for running any type of Homebrew on a PlayStation 2.
 
 ### Follow-up developments {.tabs-close}
 

@@ -228,7 +228,7 @@ The rasteriser is the unit in charge of converting vectors into lines, triangles
 
 - **Triangles** are the most complex (and versatile) type, which can be textured and shaded.
 - **Lines** are quicker to draw but naturally unfeasible for textured surfaces. They can still be shaded.
-- **Rectangles** are also faster but can only fit a [sprite](nes#tab-5-3-sprite-layer) of up to 256 x 256 pixels (a larger rectangle will duplicate the sprite's graphic). Even so, they offer no [affine transformation](super-nintendo#that-feature) (except X/Y flip), shading or effects. I suspect this was implemented to assist the implementation of 2D games.
+- **Rectangles** are also faster but can only fit a [sprite](nes#tab-1-3-sprite-layer) of up to 256 x 256 pixels (a larger rectangle will duplicate the sprite's graphic). Even so, they offer no [affine transformation](super-nintendo#that-feature) (except X/Y flip), shading or effects. I suspect this was implemented to assist the implementation of 2D games.
 
 In the case of the triangle, being the only textured polygon, the rasteriser will:
 

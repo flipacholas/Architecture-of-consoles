@@ -126,7 +126,7 @@ Tiles Found in VRAM.
 
 :::
 
-Mode IV is based on the **tile system**. To recall [previous explanations](nes#tab-2-1-tiles) about tile engines, tiles are just **8x8 pixel bitmaps** which the renderer fetches to draw the game's graphics. In the case of the VDP, the frame is composed of two planes, the background layer and the sprite layer.
+Mode IV is based on the **tile system**. To recall [previous explanations](nes#tab-1-1-tiles) about tile engines, tiles are just **8x8 pixel bitmaps** which the renderer fetches to draw the game's graphics. In the case of the VDP, the frame is composed of two planes, the background layer and the sprite layer.
 
 Inside VRAM, there's an area dedicated for tiles called **Character generator** (Sega calls 'Characters' to tiles) and it's set to be **14 KB long**. Each tile occupies 32 bytes, so we can store up to 448 tiles.
 
@@ -254,7 +254,7 @@ Just like the VDP, the PSG is a no-brainer, but it does hide some interesting fu
 
 ![Double Dragon (1987).](){audio_switcher="true" src1="psg" src2="fm" label1="PSG" label2="FM" .float}
 
-The Japanese version of the Master System embedded an extra chip for audio made by Yamaha called **YM2413**. It's drastically different from the previous PSG as it uses the **frequency modulation** technique to generate sound. I've explained briefly how this works in the [Mega Drive article](mega-drive-genesis#tab-7-1-yamaha-ym2612), in case you are interested.
+The Japanese version of the Master System embedded an extra chip for audio made by Yamaha called **YM2413**. It's drastically different from the previous PSG as it uses the **frequency modulation** technique to generate sound. I've explained briefly how this works in the [Mega Drive article](mega-drive-genesis#tab-2-1-yamaha-ym2612), in case you are interested.
 
 This chip in particular has **nine channels** of audio. Each channel can either select one of the 16 preset instruments, or define a custom one by programming the carrier and modulator. Unfortunately, only one custom instrument is allowed at a time. On the other side, the new instrument provides some interesting functions, such as ADSR envelope controls and feedback.
 
@@ -280,7 +280,7 @@ I don't have the necessary tools right now to confirm whether the SMS should sho
 
 ![Alex Kidd - The Lost Stars (1986).<br>1-bit PCM sample.](ball){.tab-float video="true"}
 
-While the SN76489 doesn't have a [PCM channel](nes#tab-7-4-sample) to reproduce samples, there are some tricks that can be used to simulate this feature.
+While the SN76489 doesn't have a [PCM channel](nes#tab-3-4-sample) to reproduce samples, there are some tricks that can be used to simulate this feature.
 
 These rely on the pulse channels, it's discovered that if the tone level is fixed at `1`, the volume level (which alters the amplitude) will condition the shape of the waveform.
 

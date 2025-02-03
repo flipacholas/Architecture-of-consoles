@@ -104,7 +104,7 @@ All graphics calculations are done by the CPU, and then the **Picture Processing
 
 The picture is displayed on an integrated LCD screen, it has a resolution of **160×144 pixels** and, in the case of the monochrome Game Boy, shows **4 shades of grey** (white, light grey, dark grey and black). Since the original Game Boy has a green LCD, the picture will look *greenish*.
 
-If you've read the NES article before, you may remember that the PPU was designed to follow the CRT beam. However (and for obvious reasons), we got an LCD screen in the Game Boy. Well, the new PPU also follows that methodology as LCDs require to be refreshed too. In doing so, this console will enjoy [CRT-based effects](nes#tab-5-4-background-split) that previously enabled NES developers to come up with imaginative content.
+If you've read the NES article before, you may remember that the PPU was designed to follow the CRT beam. However (and for obvious reasons), we got an LCD screen in the Game Boy. Well, the new PPU also follows that methodology as LCDs require to be refreshed too. In doing so, this console will enjoy [CRT-based effects](nes#tab-1-4-background-split) that previously enabled NES developers to come up with imaginative content.
 
 ### Organising the content
 
@@ -176,7 +176,7 @@ The Window is a **160x144 pixel** layer containing tiles displayed on top of the
 
 The remaining tile map can be assigned to the Window layer, it also shares the same palette with the Background layer.
 
-All in all, this may sound like a silly feature. Since the Window has no transparency and thus completely obscures the Background, you may wonder 'What is it useful for?'. Well, both Background and Window can be used **concurrently** at different parts of the screen. This is intended for displaying information chiefly at the bottom of the screen, but whereas on the NES this required performing [complex and timed writes](nes#tab-5-4-background-split), the Game Boy's PPU can automatically handle it.
+All in all, this may sound like a silly feature. Since the Window has no transparency and thus completely obscures the Background, you may wonder 'What is it useful for?'. Well, both Background and Window can be used **concurrently** at different parts of the screen. This is intended for displaying information chiefly at the bottom of the screen, but whereas on the NES this required performing [complex and timed writes](nes#tab-1-4-background-split), the Game Boy's PPU can automatically handle it.
 
 Thus, games normally use it to display player stats, scores and other 'always-on' information.
 

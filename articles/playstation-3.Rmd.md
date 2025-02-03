@@ -181,7 +181,7 @@ The first block is called **Instruction unit** (IU) and as its name suggests, it
 
 Instruction issuing is carried out with a **12-stage pipeline**, though in practice the total number of stages will greatly vary depending on the type of instruction. For instance, the **branch prediction** block may bypass great parts. If we combine the IU with the neighbour units, the final number of stages is often **close to 24** (yes, it's a big number, but remember Cell runs at 3.2 GHz).
 
-Now for the interesting parts, The IU is **dual-issued**: in some cases, the IU will dispatch up to two instructions at the same time, consequently improving throughput greatly. In practice, however, there are many conditions for this to work, so programmers/compilers are responsible for optimising their routines so their sequence of instructions can take advantage of this function. By the way, dual-issuing has been implemented by [previous CPUs](gamecube#features) as well, and the term varies between vendors, so here I used IBM's definition.
+Now for the interesting parts, The IU is **dual-issued**: in some cases, the IU will dispatch up to two instructions at the same time, consequently improving throughput greatly. In practice, however, there are many conditions for this to work, so programmers/compilers are responsible for optimising their routines so their sequence of instructions can take advantage of this function. By the way, dual-issuing has been implemented by [previous CPUs](gamecube#the-powerpc-gekko) as well, and the term varies between vendors, so here I used IBM's definition.
 
 Furthermore, to top it off, the IU is also **multi-threaded**, where the unit can execute two different sequences of instructions (called 'threads') at the same time. Behind the scenes, the IU is just alternating between the two threads at each cycle, giving the appearance of multi-threading. This technique is historically known as **simultaneous multi-threading** (SMT) or _hyper-threading_, as Intel later coined. Nevertheless, IBM's multi-threading mitigates unwanted effects like [pipeline stalls](nintendo-64#tab-3-1-pipeline-stalls), since the CPU will no longer be blocked if one instruction jams up the flow. To accomplish multi-threading, IBM engineers duplicated the internal resources of the IU, which includes general-purpose registers (previously I said there are 32 registers available, that's per thread. In reality, there are 64 in total!), however, resources that don't belong to the PowerPC specification (such as L1 and L2 cache; and the interfaces) are still shared. Thus, the latter group is single-threaded.
 
@@ -426,7 +426,7 @@ As with any other GPU, there must be a block of circuitry in charge of receiving
 
 The Host is responsible for reading commands from memory (either at local or main) and translating them into internal signals that other components in RSX understand, this is done with the use of four sub-blocks:
 
-- **Pusher**: fetches graphics commands from memory and [interprets](playstation-portable#tab-2-1-commands) branch instructions. It also contains 1 KB of [prefetch buffer](game-boy-advance#memory-locations). The processed commands are sent to the FIFO Cache.
+- **Pusher**: fetches graphics commands from memory and [interprets](playstation-portable#tab-1-1-commands) branch instructions. It also contains 1 KB of [prefetch buffer](game-boy-advance#memory-locations). The processed commands are sent to the FIFO Cache.
 - **FIFO Cache**: stores up to 512 commands decoded by the Pusher in a FIFO manner to provide quick access.
 - **Puller**: as the name indicates, it pulls commands from the FIFO cache whenever RSX is ready to render and sends them to the next unit.
 - **Graphics FIFO**: stores up to eight commands that will be read by the Graphics Front End.
@@ -450,14 +450,14 @@ The Geometry Processing block works like this:
 1. The **Index Vertex Processor** (IDX) fetches and caches vertex data and textures from VRAM. Afterwards, it sends the data to the VAB.
 2. The **Vertex Attribute Buffer** (VAB) pulls data from the IDX cache and redirects it to each VPE.
 3. Each VPE processes the data based on the shader loaded. It computes **one shader instruction per clock**.
-4. The result of each VPE is sent to the **Post Transform Cache**, which caches results to skip identical computations over the same vertex. This only applies if [vertex indices](gamecube#tab-1-2-geometry) are used instead of vertex data.
+4. The result of each VPE is sent to the **Post Transform Cache**, which caches results to skip identical computations over the same vertex. This only applies if [vertex indices](gamecube#tab-3-2-geometry) are used instead of vertex data.
 5. The final result is stored in the **Viewport Cull Unit** (VPC), which applies scissoring to discard vertices found outside the viewport; and the **Attribute RAM** (ATR), which caches vertex attributes (texture, colour, fog, etc) to be read at the next stages.
 
 #### Rasterization {.tab}
 
 ![Simplified diagram of the rasterization stage. RSX embeds different units to calculate values used for interpolation of pixels and colours.](gpu/rasterizer.png){.tab-float}
 
-Moving on, it's time to convert ([rasterize](playstation#tab-4-3-rasterization)) vertices into pixels. The RSX's rasterizer is quite fast, it can rasterize up to 8x8 pixels (64) per cycle and works with frame-buffers of up to **4096x4096 pixels** (though developers may need less than that).
+Moving on, it's time to convert ([rasterize](playstation#tab-3-3-rasterisation)) vertices into pixels. The RSX's rasterizer is quite fast, it can rasterize up to 8x8 pixels (64) per cycle and works with frame-buffers of up to **4096x4096 pixels** (though developers may need less than that).
 
 The rasterizer accepts points, lines (including strips and closed types), triangles (including strips and fans), quadrilaterals and regular polygons. Naturally, as with this console generation, the rasterizer works with **sub-pixel coordinates**, where the sampling points are half-coordinates (`0.5`) of pixels. This allows the unit to apply anti-aliasing methods such as **Multisampling** afterwards. Multisampling consists in rasterizing the same geometry multiple times but shifting a few sub-pixels apart at every batch (the RSX supports four different shifting modes) and then computes an average. This results in a smoothed image.
 
@@ -505,7 +505,7 @@ Throughout the PS3 lifecycle, Sony added certain HDMI features of new revisions 
 
 ### 'Real' 3D vision/projection
 
-So what was that '3D television' I mentioned before? Well, it so happens that the lifetime of this console overlapped with a short-lived fever for 3D tellies (the so-called _3DTV_) [@graphics-3dtv]. To support these, Sony updated their SDK to assist the rendering of stereoscopic frames in RSX and implemented the '3D specification' in their HDMI encoder. What's happening behind the scenes is that the encoder broadcasts two frames at a time, and the television alternates them similarly to what the [Master System's 3D glasses](master-system#tab-4-3-3d-glasses) used to do 30 years before.
+So what was that '3D television' I mentioned before? Well, it so happens that the lifetime of this console overlapped with a short-lived fever for 3D tellies (the so-called _3DTV_) [@graphics-3dtv]. To support these, Sony updated their SDK to assist the rendering of stereoscopic frames in RSX and implemented the '3D specification' in their HDMI encoder. What's happening behind the scenes is that the encoder broadcasts two frames at a time, and the television alternates them similarly to what the [Master System's 3D glasses](master-system#tab-2-3-3d-glasses) used to do 30 years before.
 
 ## Audio
 
@@ -547,7 +547,7 @@ In the case of user-accessible ports, the Southbridge is connected to:
 - A **Serial ATA** (SATA) interface: connects the Blu-ray drive and a 2.5" Hard Disk.
   - Until 2008, Blu-ray readers interfaced with Parallel ATA [@io-bd_rev], so an intermediate chip was fitted in the middle to do the SATA → PATA conversion.
 - **1000/100/10 (Gigabit) Ethernet Controller**: in the form of an RJ45 socket on the back, but it also forks to a Wireless daughterboard, providing **Wi-Fi 802.11b/g** and **Bluetooth 2.0** connection.
-- A **Multi-card reader**: provides slots for [Memory Stick](playstation-portable#tab-5-2-memory-stick-duo), SD, MultiMediaCard (MMC), Microdrive and Compact Flash.
+- A **Multi-card reader**: provides slots for [Memory Stick](playstation-portable#tab-3-2-memory-stick-duo), SD, MultiMediaCard (MMC), Microdrive and Compact Flash.
 
 {.close-float}
 
@@ -603,7 +603,7 @@ Personally, I believe pure software emulation is the most feasible option in the
 
 We are not over talking about compatibility just yet! It may surprise you that Sony also allowed users to run a subset of [PlayStation Portable](playstation-portable#games) games as well. Though emulation was carried out completely with software, just like the PS2 compatibility in later models.
 
-As there isn't any [UMD disc](playstation-portable#tab-5-1-umd-discs) reader in the PS3, users must access a game catalogue from Sony's online store to download and install any PSP game.
+As there isn't any [UMD disc](playstation-portable#tab-3-1-umd-discs) reader in the PS3, users must access a game catalogue from Sony's online store to download and install any PSP game.
 
 ## Operating System
 
@@ -666,7 +666,7 @@ Remember about those **256 MB of NAND flash** I briefly mentioned before? Well, 
 - **Console-specific Loaders**: specifically, two loaders called `bootldr` and `metldr`. These files are encrypted with a key engraved during manufacturing, so they can't be replaced!
   - Be as it may, there are hidden functions in Sony's hypervisor that allow to update these, although, for some reason, they have never been used [@operating_system-psxplace].
 - **CoreOS**: the first half of the operating system. It mainly consists of more loaders that will continue the boot process and eventually bootstrap the second half (**GameOS**). CoreOS also supplies the **Recovery Menu**, an alternative shell that contains maintenance utilities that users can use to (attempt to) repair their console.
-- **Unique IDs**: similar to the [PSP's IDStorage](playstation-portable#tab-3-2-kernelipl), these are used by the console to control secured hardware like the Blu-ray drive; or by Sony to authenticate the console with their online servers (i.e. the IDPS key).
+- **Unique IDs**: similar to the [PSP's IDStorage](playstation-portable#tab-2-2-kernelipl), these are used by the console to control secured hardware like the Blu-ray drive; or by Sony to authenticate the console with their online servers (i.e. the IDPS key).
 - **Security assets**: some programs depend on them to perform security operations. For instance, Blu-ray movies with DRM check a block called Virtual Table Rights Management (VTRM). Sony also stores **revocation tools and records** to blacklist security certificates that have been compromised in the past.
 
 Due to their larger size, models with NAND Flash also store the remaining part of the OS (called **GameOS** or `devflash`). This includes:
@@ -743,7 +743,7 @@ Additionally, since this is a home console that might be shared by multiple memb
 
 ![XMB can install games, updates and expansions (DLCs) using a native package installer.](xmb/installpkg.jpg){.tabs-nested-last title="Installation"}
 
-Finally, the inclusion of a hard drive is a relief for the veterans that in the past were obliged to buy expensive proprietary storage ([Memory Stick Pro Duo](playstation-portable#tab-5-2-memory-stick-duo)) whenever they ran out of space.
+Finally, the inclusion of a hard drive is a relief for the veterans that in the past were obliged to buy expensive proprietary storage ([Memory Stick Pro Duo](playstation-portable#tab-3-2-memory-stick-duo)) whenever they ran out of space.
 
 #### Lend me your PS3
 
@@ -817,7 +817,7 @@ Now that we've finished talking about game development, it's time for distributi
 
 ![Example of retail game.](games/retail.jpg){.tab-float}
 
-New generation = new medium. As the advantages of DVD start to wear down and its limitations, expressed by the game industry (space limit) and the film industry (480i format) [@games-dvd], become apparent, it's a matter of time before Sony unveils [another standard](playstation-portable#tab-5-1-umd-discs) to replace their new appliances. For this new console, the **Blu-Ray disc** was chosen.
+New generation = new medium. As the advantages of DVD start to wear down and its limitations, expressed by the game industry (space limit) and the film industry (480i format) [@games-dvd], become apparent, it's a matter of time before Sony unveils [another standard](playstation-portable#tab-3-1-umd-discs) to replace their new appliances. For this new console, the **Blu-Ray disc** was chosen.
 
 The Blu-ray, as the name indicates, is a new optical disc format that delivered higher storage density thanks to the use of **blue light diodes** [@games-brit], as opposed to red diodes used with DVDs. Since blue light has a shorter wavelength than red light, more information ([pits and lands](playstation#anti-piracy--region-lock)) can be squashed together in the same space [@games-blue_laser]. As a result, Blu-ray discs provide a surprisingly large capacity (between 25 GB and 50 GB!) using the same plastic disc with the same dimensions as the CD/DVD.
 
@@ -877,7 +877,7 @@ On top of this, Sony implemented the following protections in software:
   - The chain of trust implements multiple **encryption algorithms**, including asymmetric ones like RSA and ECDSA and symmetric systems like AES; combined with HMAC and SHA-1 (to confirm the integrity of data).
 - Some encryption keys are **produced during manufacturing**, meaning if hackers find and leak these keys, they will not work on other consoles. Though this comes at a cost of Sony not being able to patch software encrypted with those keys once the console leaves the factory.
   - These special keys are used for `bootldr` and `metldr` (the early boot stages).
-- Games must call the kernel to access the hardware, which in turn asks the **Hypervisor**. This 'abstraction onion' prevents [game exploits](playstation-portable#tab-8-1-early-blunders) from escalating privileges, _in theory_.
+- Games must call the kernel to access the hardware, which in turn asks the **Hypervisor**. This 'abstraction onion' prevents [game exploits](playstation-portable#tab-6-1-early-blunders) from escalating privileges, _in theory_.
 
 ### Defeat
 
@@ -913,16 +913,16 @@ This product was subsequently reversed-engineered by other communities and short
 
 Before I finally talk about the grand prize of the PS3 homebrew scene, let me describe to you a couple of methods that were developed around the same time:
 
-- The **USB Jig**: another USB stick, this time programmed to trick the console into entering **Factory Service Mode**, which is only intended for servicing the console by authorised personnel. The program embedded in the Jig replicates what Sony provides to their engineers. The main advantage of service mode is to enable to [downgrade](playstation-portable#tab-8-2-downgrading) the console to a PSJailbreak-compatible version. The payload was also available in the form of a Homebrew app for the PSP [@anti_piracy-pspjig]. Sony responded by patching service mode to make it harder to restore it to 'normal' mode or alter the firmware from it, discouraging users from resorting to Service mode.
+- The **USB Jig**: another USB stick, this time programmed to trick the console into entering **Factory Service Mode**, which is only intended for servicing the console by authorised personnel. The program embedded in the Jig replicates what Sony provides to their engineers. The main advantage of service mode is to enable to [downgrade](playstation-portable#tab-6-2-downgrading) the console to a PSJailbreak-compatible version. The payload was also available in the form of a Homebrew app for the PSP [@anti_piracy-pspjig]. Sony responded by patching service mode to make it harder to restore it to 'normal' mode or alter the firmware from it, discouraging users from resorting to Service mode.
 - The **Optical Disc Emulator** (ODE): a series of hardware products that different companies (Cobra, E3, etc) shipped. Instead of tampering with the console's firmware, these tampered with the Blu-ray's SATA/PATA interface. ODEs are boards that sit between the motherboard and the Blu-ray drive, thereby acting as a middleman that tricks the console into thinking it contains a valid disc game, but it's instead loading a disc image from an external USB drive. The hacking history of the PS3 contains long gaps of 'unhackable periods' where there was no software exploit available for new consoles. So, at a hefty price tag, ODEs came to fill that gap.
 - The **Downgrader**: as Sony kept mitigating exploits with more software updates, users were left with no viable options but to downgrade to an exploitable firmware. Thus, there were companies like E3 that shipped specialised equipment that could overwrite the console's system the 'hard way'. That is, by directly flashing the NAND or NOR chips. For obvious reasons, this method required more skill and patience compared to the USB-based ones.
-- **Isolated leaks**: this one is for research purposes, as opposed to a 'feature' the user will see (but imperative for further developments, nonetheless). Anyway, the revocation data (used to blacklist compromised certificates) is parsed by `lv2ldr`, so far so good? Well, it was discovered that this process contained many vulnerabilities. Firstly and for some unexplained reason, **revocation data is writable in userland**. Secondly, **the parser doesn't perform bounds checking** on the data fetched ([_here we go again_](playstation-2#tab-8-4-ps1-overflow)). Therefore, hackers managed to craft custom revocation data that could produce a buffer overflow and ultimately enable them to run **arbitrary code inside the SPU's isolated mode**. This allowed them to get access to confidential data (i.e. keys) that was presumably protected from the rest of the system [@operating_system-psxplace].
+- **Isolated leaks**: this one is for research purposes, as opposed to a 'feature' the user will see (but imperative for further developments, nonetheless). Anyway, the revocation data (used to blacklist compromised certificates) is parsed by `lv2ldr`, so far so good? Well, it was discovered that this process contained many vulnerabilities. Firstly and for some unexplained reason, **revocation data is writable in userland**. Secondly, **the parser doesn't perform bounds checking** on the data fetched ([_here we go again_](playstation-2#tab-5-1-independence-overflow)). Therefore, hackers managed to craft custom revocation data that could produce a buffer overflow and ultimately enable them to run **arbitrary code inside the SPU's isolated mode**. This allowed them to get access to confidential data (i.e. keys) that was presumably protected from the rest of the system [@operating_system-psxplace].
 
 #### The fall of encryption {.tab}
 
 Just like the PSP saga, the initial exploits required a lot of effort and could be easily patched by Sony, thereby resulting in a disadvantageous cat-and-mouse game. However, as it happened with the PSP, it was a matter of time before a discovery broke the fundamental security of this system: its chain of trust.
 
-In 2011, George Hotz (along with the fail0verflow team) published another breakthrough, **the private encryption keys that Sony uses to sign binaries executed by `metldr`**. Binaries loaded during that boot stage are signed with an ECDSA key. Being an asymmetric encryption system, this means that anyone that possesses the private key (Sony, and now _others_) can encrypt and sign binaries, consequently, they will look 'authentic' in `metldr`'s eyes. Since `metldr` is the third boot stage before loading `lv1` (the hypervisor), this means hackers will be able to customise or develop their own hypervisor, kernel and anything underneath it. On top of that, every PlayStation 3 in the market will also think the custom binaries are authentic. All in all, a [Pandora-style](playstation-portable#tab-8-3-pandora) exploit completely done with software.
+In 2011, George Hotz (along with the fail0verflow team) published another breakthrough, **the private encryption keys that Sony uses to sign binaries executed by `metldr`**. Binaries loaded during that boot stage are signed with an ECDSA key. Being an asymmetric encryption system, this means that anyone that possesses the private key (Sony, and now _others_) can encrypt and sign binaries, consequently, they will look 'authentic' in `metldr`'s eyes. Since `metldr` is the third boot stage before loading `lv1` (the hypervisor), this means hackers will be able to customise or develop their own hypervisor, kernel and anything underneath it. On top of that, every PlayStation 3 in the market will also think the custom binaries are authentic. All in all, a [Pandora-style](playstation-portable#tab-6-3-pandora) exploit completely done with software.
 
 The discovery of this key, which should have been computationally unfeasible, is possible thanks to what is considered a 'blunder' in Sony's implementation of the ECDSA algorithm. To make a long story short, the mathematical formula used for ECDSA uses a random value which Sony never changed in all the update files they distributed [@anti_piracy-ecsda], turning that number into a constant, thereby making it easier to solve the other variables, which is what happened eventually.
 
@@ -950,7 +950,7 @@ There's also my favourite one: bring the debugging functions of a testkit, allow
 
 <!-- TODO: metldr.2 is not mentioned. -->
 
-Similarly to the events that happened after [CFWs](playstation-portable#tab-8-4-cfw-and-beyond) were invented for the PSP, Sony retaliated with two security updates:
+Similarly to the events that happened after [CFWs](playstation-portable#tab-6-4-cfw-and-beyond) were invented for the PSP, Sony retaliated with two security updates:
 
 From the **software side**, Sony shipped two system updates that enhanced the security system:
 

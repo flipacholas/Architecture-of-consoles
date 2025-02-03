@@ -114,7 +114,7 @@ The Neo Geo is the pinnacle of tile-based graphics, its richness of colours is c
 
 ### Design
 
-The graphics subsystem revolves around the typical **Video Display Controller** (VDC) model, but this time is surrounded by a considerable number of components. The result is a console that can display an immense amount of sprites, and such is the number that the iconic [background layers](nes#tab-5-2-background-layer) are no longer relevant. This makes sense as backgrounds were originally devised to tackle the limited number of sprites.
+The graphics subsystem revolves around the typical **Video Display Controller** (VDC) model, but this time is surrounded by a considerable number of components. The result is a console that can display an immense amount of sprites, and such is the number that the iconic [background layers](nes#tab-1-2-background-layer) are no longer relevant. This makes sense as backgrounds were originally devised to tackle the limited number of sprites.
 
 ::: {.subfigures .tabs-nested .pixel}
 
@@ -201,7 +201,7 @@ The CPU may update Palette RAM at any moment, but it should only do so during bl
 
 ![The Fixed plane with a black backdrop.](aof/fixed_plane.png){.tab-float .pixel}
 
-The Fixed plane is a layer **320 x 256 pixels** (40 x 32 tiles) wide [@graphics-fixed_layer], pretty much the entire screen. Its tiles displayed are completely static and only have access to 16 colour palettes. In practice, this is used to display 'Always on' information, similar to the [window layer](game-boy#tab-3-3-window) of the Game Boy.
+The Fixed plane is a layer **320 x 256 pixels** (40 x 32 tiles) wide [@graphics-fixed_layer], pretty much the entire screen. Its tiles displayed are completely static and only have access to 16 colour palettes. In practice, this is used to display 'Always on' information, similar to the [window layer](game-boy#tab-1-3-window) of the Game Boy.
 
 When broadcasted to a CRT screen, the displayed area will be smaller. Thus, its [safe area](nes#constructing-the-frame) is 38 x 28 tiles wide.
 
@@ -231,7 +231,7 @@ As you can see, for practical reasons, the last three blocks are stored in fast 
 
 ![Resulting frame shown on the screen.](aof/result.png){.tab-float .pixel}
 
-While [competitors](nes#constructing-the-frame) are known for rendering at the pace of the CRT beam, the Neo Geo implements a **line buffer rendering** system. With the latter, the console stores the rendered scan lines in the aforementioned buffer, instead of beaming them directly to the screen. Since the VDC incorporates enough memory for two scan lines, this allows the VDC to render one scan line while displaying the other one, thereby enabling games to update graphics during **active display** (aside from [H-Blank](game-boy#tab-3-5-result) and [V-Blank](nes#tab-5-5-result)).
+While [competitors](nes#constructing-the-frame) are known for rendering at the pace of the CRT beam, the Neo Geo implements a **line buffer rendering** system. With the latter, the console stores the rendered scan lines in the aforementioned buffer, instead of beaming them directly to the screen. Since the VDC incorporates enough memory for two scan lines, this allows the VDC to render one scan line while displaying the other one, thereby enabling games to update graphics during **active display** (aside from [H-Blank](game-boy#tab-1-5-result) and [V-Blank](nes#tab-1-5-result)).
 
 Truth to be told, the VDC will still be accessing VRAM at the same time, so the CPU must wait between 12 and 16 cycles [@graphics-vram] (depending on the operation) before accessing VRAM again, otherwise the next operation will be ignored (hence the use of two VRAM variants).
 
@@ -249,7 +249,7 @@ Remember the Z80 CPU I mentioned at the start of the article? It's still the typ
 
 ![The Yamaha YM2610 paired with the YM3016 below. Both chips are needed to output audio.](audio/yamaha.jpg)
 
-The YM2610 is another [FM synthesiser](mega-drive-genesis#tab-8-1-yamaha-ym2612) from the popular Japanese manufacturer. It's closely similar to the [YM2612](mega-drive-genesis#tab-8-1-yamaha-ym2612) featured in the [Mega Drive](mega-drive-genesis#audio), but don't let its name fool you because the Neo Geo one is a bit more premium (albeit with some compromises).
+The YM2610 is another [FM synthesiser](mega-drive-genesis#tab-2-1-yamaha-ym2612) from the popular Japanese manufacturer. It's closely similar to the [YM2612](mega-drive-genesis#tab-2-1-yamaha-ym2612) featured in the [Mega Drive](mega-drive-genesis#audio), but don't let its name fool you because the Neo Geo one is a bit more premium (albeit with some compromises).
 
 Both the YM2610 and YM2612 are part of the high-end 'OPN' series, meaning Yamaha enables four operators per FM channel. Now, the Neo Geo's chip features **four FM channels** which, to be fair, is two less than the YM2612. That's as far as the weaknesses go.
 

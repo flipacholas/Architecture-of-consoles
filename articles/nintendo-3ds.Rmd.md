@@ -346,7 +346,7 @@ If I had to summarise it in one sentence, the PICA200 is a budget low-power 3D p
 
 You see, even though the pipeline is segregated and the pixel stage is fixed-function (à la [PlayStation 2](playstation-2#graphics)), DMP expanded the limited circuitry with a set of **Maestro functions** that provide capabilities beyond the expectations of the embedded market [@graphics-ocp]. This includes fragment lighting, multiple shadowing algorithms, polygon subdivision, bump mapping, procedural textures and many fog effects.
 
-Additionally and in contrast to the [Nintendo DS](nintendo-ds#tab-5-3-result), the PICA200 **only works with framebuffers**. That's it. The [sprite engine](nes#graphics), a popular workaround to tackle unaffordable memory requirements, is now a thing of the past. This also includes [scan-line tricks](nes#secrets-and-limitations), as contemporary GPUs work way faster than the refresh rate of a CRT.
+Additionally and in contrast to the [Nintendo DS](nintendo-ds#tab-3-3-result), the PICA200 **only works with framebuffers**. That's it. The [sprite engine](nes#graphics), a popular workaround to tackle unaffordable memory requirements, is now a thing of the past. This also includes [scan-line tricks](nes#secrets-and-limitations), as contemporary GPUs work way faster than the refresh rate of a CRT.
 
 #### Organising the content
 
@@ -366,7 +366,7 @@ Based on this, the display process works as follows:
 2. Meanwhile, the GPU finishes rendering new geometry in a separate frame-buffer.
 3. The frame-buffer is exported to the inactive LCD frame-buffer.
 4. The GPU swaps the index of the active LCD frame-buffer.
-    - For practical reasons, the index swap happens at the end of [Vertical Sync](nes#tab-5-5-result) to avoid tearing down the picture [@graphics-opengl_swap].
+    - For practical reasons, the index swap happens at the end of [Vertical Sync](nes#tab-1-5-result) to avoid tearing down the picture [@graphics-opengl_swap].
 5. The LCD will now be scanning the recently updated LCD frame-buffer from now on.
 
 #### Adopting open standards
@@ -399,7 +399,7 @@ That being said, here is an overview of how data travels to draw a single frame:
 
 This is Nintendo's first portable console to finally draw triangles in 'the usual way'. That is, with the use of commands. But it's not a surprising factor, as the PICA200 is expected to abide by the teachings of OpenGL ES.
 
-In essence, the PICA200 draws polygons by reading a [command buffer](xbox-360#tab-6-1-commands) [@graphics-nintendo_gpu_reg]. Furthermore, the vertex data can either be embedded within the command or stored in a separate buffer in VRAM, with the latter being the most efficient.
+In essence, the PICA200 draws polygons by reading a [command buffer](xbox-360#tab-2-1-commands) [@graphics-nintendo_gpu_reg]. Furthermore, the vertex data can either be embedded within the command or stored in a separate buffer in VRAM, with the latter being the most efficient.
 
 #### Vertex {.tab}
 
@@ -445,18 +445,18 @@ The fragment stage is made of two areas: the **texture units**, which can fetch 
 The PICA200 contains **four** texture units [@graphics-fragment], each houses **256 Bytes of L1** cache and all of them share **8 KB of L2** cache. However, the units are not homogenous. Instead, the range of services varies between each unit [@graphics-pica_pipeline_diagram]:
 
 - Only three units can process 2D textures.
-- Only one unit can perform shadow, cube and [projective texture](playstation-portable#tab-2-4-textures) mapping.
+- Only one unit can perform shadow, cube and [projective texture](playstation-portable#tab-1-4-textures) mapping.
 - The last unit is more of a noise generator, meaning it only outputs **random textures**. It uses a combination of a random number generator and a colour lookup table. This is a slender yet efficient way of implementing [procedure generation](playstation-2#infinite-worlds) with textures, saving bandwidth along the way.
 
 Afterwards, it's the job of the shading unit to creatively fiddle with the textures coming in. However - and something unexpected considering we're talking about an 8th-generation console - is that the PICA200's unit is **not programmable with [pixel shaders](xbox#tab-2-3-pixel)** [@graphics-kazakov]. Instead, we find six **configurable colour combiners**, each combiner receives three RGB or Alpha values and performs a logical operation on them. The result is passed to the next combiner and so forth. Each colour combiner can get its input from the previous combiner (except the first), a texture unit or a constant value.
 
-All in all, a modern reflection of the [Flipper era](gamecube#tab-1-3-texture) (while abiding by the OpenGL specification [@graphics-glTexEnv]), but don't forget developers may also combine this with the aforementioned Maestro functions.
+All in all, a modern reflection of the [Flipper era](gamecube#tab-3-3-texture) (while abiding by the OpenGL specification [@graphics-glTexEnv]), but don't forget developers may also combine this with the aforementioned Maestro functions.
 
 #### Post-processing {.tab}
 
 ![Overview of the post-processing stage.](gpu/pipeline/post.png){.tab-float}
 
-After the frame is processed and ready to be written into the framebuffer (or [render targets](xbox-360#tab-6-4-pixel-shader)), it goes through a sequence of final 'corrections'. This is similar to the OpenGL ES 2.0's pipeline.
+After the frame is processed and ready to be written into the framebuffer (or [render targets](xbox-360#tab-2-4-pixel-shader)), it goes through a sequence of final 'corrections'. This is similar to the OpenGL ES 2.0's pipeline.
 
 That being said, the frame goes through **alpha**, **stencil** and **depth** testing. Afterwards, the result can be mixed with an existing frame (in the framebuffer) using the colour blender or logical operators (AND, XOR, etc.). Finally, the frame is written into the assigned buffer in memory either as a whole or through a stencil filter (for masking).
 
@@ -684,7 +684,7 @@ Both Kernel and Process9 reside on an ARM9-only block of 1 MB of SRAM (1.5 MB in
 
 In terms of security, there's no privilege distinction between Kernel9 and Process9, since the latter has unconditional access to a system call that runs arbitrary code in kernel mode.
 
-In summary, combined with the exclusive I/O hardwired into the ARM9, this CPU has the role of a **security processor**, much like what the [Wii and Wii U's ARM9](wii#the-hidden-co-processor) also did, and unlike the [co-processor architecture](nintendo-ds#design) of the Nintendo DS, where its second processor just offloaded I/O and audio tasks.
+In summary, combined with the exclusive I/O hardwired into the ARM9, this CPU has the role of a **security processor**, much like what the [Wii and Wii U's ARM9](wii#the-hidden-co-processor) also did, and unlike the [co-processor architecture](nintendo-ds#nintendos-debuting-soc) of the Nintendo DS, where its second processor just offloaded I/O and audio tasks.
 
 #### The user processor
 
@@ -739,9 +739,9 @@ Moreover, while multiple components have changed with the arrival of the New 3DS
 
 #### OTP memory {.tab}
 
-To further increase the level of security, the console stores a series of console-unique information in **One-Time-Programmable** (OTP) memory [@operating_system-otp]. Similarly to the [Wii](wii#tab-7-1-shared-encryption) and [Wii U](wiiu#tab-7-1-dedicated-hardware), this information also includes encryption keys.
+To further increase the level of security, the console stores a series of console-unique information in **One-Time-Programmable** (OTP) memory [@operating_system-otp]. Similarly to the [Wii](wii#tab-2-1-shared-encryption) and [Wii U](wiiu#tab-5-1-dedicated-hardware), this information also includes encryption keys.
 
-OTP is written once during manufacturing, so the keys differ between each console. Hence, one hacked console won't necessarily be able to compromise the rest. This is a significant milestone for a portable console, considering a certain [previous implementation](nintendo-ds#tab-10-1-encryption-system) included global keys.
+OTP is written once during manufacturing, so the keys differ between each console. Hence, one hacked console won't necessarily be able to compromise the rest. This is a significant milestone for a portable console, considering a certain [previous implementation](nintendo-ds#tab-6-1-encryption-system) included global keys.
 
 #### eMMC NAND {.tab}
 
@@ -880,7 +880,7 @@ Nintendo partnered with two suppliers to produce development kits [@games-hardwa
 
 Among the many options, studios could rent a general-purpose 'CTR-BOX'. This is a metallic box housing the 3DS hardware, and connected to it is a 'dummy' 3DS case that serves as a controller and display. With it, developers could deploy, test and debug their code.
 
-For more single-purpose tools, studios could get official [flashcards](nintendo-ds#tab-9-1-the-hardware) to distribute game prototypes to external testers. These flashcards still only run on non-retail equipment, though this included cheaper options (with reduced functionality) than the fully-fledged CTR-BOX.
+For more single-purpose tools, studios could get official [flashcards](nintendo-ds#tab-5-1-the-hardware) to distribute game prototypes to external testers. These flashcards still only run on non-retail equipment, though this included cheaper options (with reduced functionality) than the fully-fledged CTR-BOX.
 
 With the arrival of the New 3DS, IS and Partner offered the 'SNAKE' kits with updated hardware.
 
@@ -1166,7 +1166,7 @@ Thankfully, people were working on this. During the second half of 2014, a new m
 
 1. A crafted **QR code** to be scanned by 'Cubic Ninja', a game that allows to share user-designed levels using QR codes. This served as a new entry point exploit.
 2. **GSPWN**: A userland vulnerability where the GPU's DMA is used to write over the HOME Menu's heap. Furthermore, the combination with ROP leads to privilege escalation. This resulted in the ability to create & kill processes, SD card access, decrypt & dump titles and override executable data.
-    - [Other GPUs](xbox-360#graphics) were also known for [intruding](xbox-360#tab-17-3-king-kong-exploit) into the system's RAM.
+    - [Other GPUs](xbox-360#graphics) were also known for [intruding](xbox-360#tab-10-3-king-kong-exploit) into the system's RAM.
 3. **Homebrew launcher**: A new service running under the HOME Menu process thanks to GSPWN. It provides a graphical user interface to load unsigned Homebrew apps (using a new portable .3dsx format) and take over processes. The launcher loads homebrew by opening an official application with enough privileges and then hijacks it with GSPWN, replaces the code with Homebrew code and finally executes it.
     - With its ability to alter user data, the Homebrew launcher can also be used to install alternative entry points as they're discovered (i.e. OotHax, Ironhax and so forth). Thus, reducing its dependency on Cubic Ninja. A notable aftermarket exploit was **MenuHax**, which exploited a vulnerability in the HOME Menu theme engine and was triggered at boot, **making it a permanent solution to launch a payload**.
     - If you are curious, the Wii U also experienced [similar methodologies](wiiu#fooling-iosu) as early attempts to run Homebrew.

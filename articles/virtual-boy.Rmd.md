@@ -80,7 +80,7 @@ If you haven't noticed before, there **isn't any dot-matrix display to be found*
 
 In practice, there are some conditions for all these principles to work:
 
-- The LEDs must only operate when the angular velocity of the mirror is stable (in other words, not when the mirror is changing direction). This can be thought of as the [**Active State**](master-system#tab-2-4-result) of a CRT monitor.
+- The LEDs must only operate when the angular velocity of the mirror is stable (in other words, not when the mirror is changing direction). This can be thought of as the [**Active State**](master-system#tab-1-4-result) of a CRT monitor.
 - In relation to the previous point, the angular velocity of the mirror can't stay constant (since the mirror can't change direction instantly, the periods considered 'stable' will be subject to forces that will disrupt its velocity). To remedy this, the Virtual Boy stores a list of values in memory called **Column Table** which instructs how much time to dedicate for each column interval, in an effort to balance out excessive & insufficient periods of 'LED column' exposure.
 - Let's not forget that this whole process has to be done twice since we've got two display units (one per eye). Unfortunately, both units can't pull energy and data at the same time, so each one operates at different display periods (out-of-phase, 10ms apart). We don't notice this (another illusion!).
 
@@ -234,7 +234,7 @@ Let's dive deeper and see now how a single frame is drawn on the Pixel Processor
 
 ![Tiles found in VRAM, separated with a grid.](wario/tiles_grid.jpg){.tabs-nested-last .pixel title="Grid"}
 
-We have [previously seen](game-boy#tab-2-1-tiles) how traditional tile engines build their layers using 8x8 bitmaps. In the case of the Virtual Boy, tiles (originally called 'Characters') are stored in VRAM in an area called **Pattern table**. Each tile declared occupies 2 bytes, so there is enough space for 2048 of them.
+We have [previously seen](game-boy#tab-1-1-tiles) how traditional tile engines build their layers using 8x8 bitmaps. In the case of the Virtual Boy, tiles (originally called 'Characters') are stored in VRAM in an area called **Pattern table**. Each tile declared occupies 2 bytes, so there is enough space for 2048 of them.
 
 In terms of colours, developers can construct eight colour palettes, four for Background graphics and another four for Sprites.
 
@@ -300,8 +300,8 @@ The fact is, to display any of the previous layers mentioned, we have to place t
 
 Windows provide different **rendering modes**. You can grab a Background or Sprite layer and display it as it is. For that, the Window has to be set to **Normal mode** and **Object mode**, depending on which type of layer you are using. However, you can also take advantage of additional modes which apply extra effects on background layers:
 
-- **Line Shift Mode**: Individual rows of pixels can be shifted horizontally. This resembles the good ol' effects applied during [horizontal interrupts](game-boy#tab-5-1-wobble-effect).
-- **Affine Mode**: As the name indicates, you get to apply [affine transformations](super-nintendo#unique-features)! (scaling and rotation or combined to form perspective projection [@graphics-tucker]).
+- **Line Shift Mode**: Individual rows of pixels can be shifted horizontally. This resembles the good ol' effects applied during [horizontal interrupts](game-boy#tab-2-1-wobble-effect).
+- **Affine Mode**: As the name indicates, you get to apply [affine transformations](super-nintendo#that-feature)! (scaling and rotation or combined to form perspective projection [@graphics-tucker]).
 
 #### Result {.tab}
 
@@ -331,7 +331,7 @@ Mario's Tennis (1995).
 
 :::
 
-At first, I thought the [Game Boy Advance](game-boy-advance) was the first portable console that could reconstruct the acclaimed [Mode 7](super-nintendo#unique-features) of the Super Nintendo, almost 11 years later. It turns out it was the Virtual Boy all along, five years later. But even so, we've seen before that affine transformations in the Virtual Boy could be applied to each of the 32 layers (although with some limitations).
+At first, I thought the [Game Boy Advance](game-boy-advance) was the first portable console that could reconstruct the acclaimed [Mode 7](super-nintendo#that-feature) of the Super Nintendo, almost 11 years later. It turns out it was the Virtual Boy all along, five years later. But even so, we've seen before that affine transformations in the Virtual Boy could be applied to each of the 32 layers (although with some limitations).
 
 Furthermore, all these new functions worked alongside the Parallax effects, something that the VIP also took care of.
 
@@ -355,7 +355,7 @@ Unfortunately, fundamental issues like [visible surface determination](sega-satu
 
 ## Audio
 
-Imagine you grab the Game Boy's [Wave channel](game-boy#tab-7-3-wave), multiply it by five and add a noise channel: That's pretty much the offering of the Virtual Boy's sound chip. You can also think of it as a sibling of the [PC Engine's](pc-engine#audio).
+Imagine you grab the Game Boy's [Wave channel](game-boy#tab-3-2-wave), multiply it by five and add a noise channel: That's pretty much the offering of the Virtual Boy's sound chip. You can also think of it as a sibling of the [PC Engine's](pc-engine#audio).
 
 ![Mario's Tennis (1995).](tennis){.open-float video="true"}
 

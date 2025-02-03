@@ -73,7 +73,7 @@ Allegrex is a complete 32-bit core offering [@cpu-hitmen] [@cpu-naked]:
 - A **custom MIPS ISA**: mixes MIPS32R2 instructions with exclusive ones for **arithmetic operations** (multiplication, subtraction, min/max, bit-shifts) and **interrupt control**. These are called 'Allegrex Extended Instructions'.
 - A **32-bit address bus**: this means that up to 4 GB of memory can be seen by this CPU.
 - **32 general-purpose registers**: all of them store 32-bit numbers; and two (the zero register and link register) are reserved for special uses. By now, this should come as no surprise.
-- A **7-stage pipeline** (one more than its [home sibling](playstation-2#a-special-order-for-sony)). [Here](game-boy-advance#the-core) is a previous explanation of CPU pipelining if you'd like to know more.
+- A **7-stage pipeline** (one more than its [home sibling](playstation-2#a-special-order-for-sony)). [Here](game-boy-advance#tab-2-1-the-core) is a previous explanation of CPU pipelining if you'd like to know more.
 - **32 KB of L1 Cache**: of which 16 KB is for instructions and 16 KB for data.
 - A **cache write-back buffer**: the CPU can write over cache believing it has updated physical memory as well. Then, the cache takes care of updating memory when the buffer is full.
   - This design speeds up memory stores, but doesn't work right away with multi-processor systems like the PSP. So, developers will have to take care of evicting the buffer when other components require those new values in memory.
@@ -122,7 +122,7 @@ The PSP comes with two memory blocks accessible from the CPU:
 
 ### Bus design
 
-You'll soon find that the PSP accommodates lots of components with unique functionality. So, to organise them without repeating [previous mistakes](nintendo-64#tab-4-1-pipeline-stalls), engineers interconnected them using dedicated buses. Thus, only small groups of components, with similar applications, will share the same bus. Those buses talk to each other using dedicated arbiters (in the form of 'memory controllers' or Direct Memory Access (DMA)).
+You'll soon find that the PSP accommodates lots of components with unique functionality. So, to organise them without repeating [previous mistakes](nintendo-64#tab-3-1-pipeline-stalls), engineers interconnected them using dedicated buses. Thus, only small groups of components, with similar applications, will share the same bus. Those buses talk to each other using dedicated arbiters (in the form of 'memory controllers' or Direct Memory Access (DMA)).
 
 All of the buses found in Tachyon implement a well-known design called **Advanced High-performance Bus** (AHB), a solution built by Arm to tackle congestion on their chips and SoCs. If you are curious, AHBs are also used in the [Wii](wii#io).
 
@@ -311,7 +311,7 @@ The engine draws many types of primitives, including points, lines, line strips,
 
 Developers can supply a projection matrix to apply **perspective transformation**. This sends their 3D world to a 2D space (so you can see it on the screen), using the virtual camera as a model.
 
-Sony didn't provide much information about how its rasteriser works in particular, so it's not well-known how many pixels are processed per cycle, for instance. Modern features, like sub-pixel precision, are assumed to be implemented (otherwise, users would've been able to [spot its absence](playstation#tab-5-1-distorted-modelstextures) right away).
+Sony didn't provide much information about how its rasteriser works in particular, so it's not well-known how many pixels are processed per cycle, for instance. Modern features, like sub-pixel precision, are assumed to be implemented (otherwise, users would've been able to [spot its absence](playstation#tab-4-1-distorted-modelstextures) right away).
 
 #### Textures {.tab}
 
@@ -392,7 +392,7 @@ In this section we tend to encounter a [PSG](master-system#audio), [sequencer](n
 
 Now, what we consider 'sound hardware' in the PSP is very bare-bones: only **two PCM channels and a stereo mixer**. The maximum sampling rate and resolution are **48 kHz** and **16-bit**, respectively.
 
-I don't see any of the accelerators I mentioned in the first paragraph. So, does this imply that the sound will be as limited as [other](nintendo-64#secrets-and-limitations-1) [cases](game-boy-advance#audio) showed? No! Because the hardware of the PSP enables to compensate it with more software.
+I don't see any of the accelerators I mentioned in the first paragraph. So, does this imply that the sound will be as limited as [other](nintendo-64#secrets-and-limitations) [cases](game-boy-advance#audio) showed? No! Because the hardware of the PSP enables to compensate it with more software.
 
 You see, while there isn't a large amount of sound-related circuitry, Sony supplied a lot of general-purpose components. These can help with audio decoding, streaming and mixing. I'm talking about the **Media Engine**.
 
@@ -573,7 +573,7 @@ In this kit we could find:
 - SN System's **assembler**, **linker** and **archiver**. The latter generates PSP executables.
 - A **plugin for Visual Studio 2005 and 2008**, so developers could use Microsoft's IDE for PSP development.
 
-Initially, Sony only provided an emulator to test PSP software. This was later replaced with the **PSP Hardware Tool**: a PC-like tower connected to a dummy PSP case (similar to the [Nintendo DS kit](nintendo-ds#tab-9-1-the-hardware)). The devkit connected to the workstation using a piece of software called **ProDG** (only available on Windows).
+Initially, Sony only provided an emulator to test PSP software. This was later replaced with the **PSP Hardware Tool**: a PC-like tower connected to a dummy PSP case (similar to the [Nintendo DS kit](nintendo-ds#tab-5-1-the-hardware)). The devkit connected to the workstation using a piece of software called **ProDG** (only available on Windows).
 
 ### Storage medium
 
@@ -703,7 +703,7 @@ After the release of the PSP in Japan, it was a matter of time before user-land 
 - 'Wipe Out' embedded a web browser to access downloadable content. It wasn't protected against **DNS attacks (domain hijacking)**, allowing users to browse any URL in the world-wide-web.
   - Later on, it was discovered that the browser's URL entry didn't verify the input. So, entering `file:///disc0:/` as URL would **list the contents of the UMD**, already unencrypted. This enabled hackers to inspect PSP executables and reverse engineer them.
 - The first revision of the system **didn't check for signatures** in the executables stored in the memory stick, allowing to run custom user modules (not kernel ones).
-  - This was probably accidental as it's common practice to use a debug version of the system (without signature checks) for development purposes. So they may have rushed into release and forgotten to re-activate the checks, like [Microsoft](xbox#tab-9-2-bootstrap-search) did.
+  - This was probably accidental as it's common practice to use a debug version of the system (without signature checks) for development purposes. So they may have rushed into release and forgotten to re-activate the checks, like [Microsoft](xbox#tab-5-2-bootstrap-search) did.
 - After this was patched, hackers discovered **a flaw in the file system implementation** and used it to keep running unsigned code. In a nutshell, the user would have to duplicate the folder containing the executable, add an extra `%` at the end of the name of the second folder and strategically reorganise the contents of both folders.
 
 These early blunders helped to build a knowledge base of the inner workings of the PSP, which led to more attack vectors and software routines built to interact with the hardware (keep in mind only game studios had access to official SDKs and documentation).
@@ -740,13 +740,13 @@ Don't forget that all this was a tremendous task, especially if we take into acc
 
 ![Some CFWs include special modules to operate low-level options.](xmb/cfw.jpg){.tab-float}
 
-The Pandora method represented a big blow for Sony – it was an effective bootrom exploit, and just like the [Nintendo DS](nintendo-ds#tab-11-3-native-slot-1), fixes would only arrive in the form of new hardware revisions.
+The Pandora method represented a big blow for Sony – it was an effective bootrom exploit, and just like the [Nintendo DS](nintendo-ds#tab-7-3-native-slot-1), fixes would only arrive in the form of new hardware revisions.
 
 Furthermore, before Pandora was published, so-called **Custom Firmware** or 'CFW' arrived. CFW is an official firmware with modifications applied (such as Homebrew modules). These customisations enjoyed kernel privileges and, as you may guess, they had complete control of the console. Examples of new modules included ISO loaders, signature disablers, low-level CPU management, a 'plugin' loader (to add more customisations without re-installing the firmware), and many, many more. Lots of hackers crafted their own flavour, such as M33, PRO and ME.
 
 A CFW can be installed on top of the current firmware with the help of any kernel-level exploit (this was the earliest method). However, it can only be automatically booted with exploits previously used by Pandora to bypass signature checks. Otherwise, users need to rely on cat-and-mouse exploits to reboot to a CFW. That's why the latest PSP models weren't able to kickstart a CFW using the *good-old* methods.
 
-In the end, the last straw was when the [security system](playstation-3#os-security-hierarchy) of the [PlayStation 3](playstation-3) was [hacked](playstation-3#tab-17-4-the-fall-of-encryption), as it contained the **private keys used to decrypt PSP executables** (the PS3's OS includes a PSP emulator). This allowed anyone to sign user-land software and embed a kernel exploit to produce CFW installers and/or CFW loaders, for instance.
+In the end, the last straw was when the [security system](playstation-3#os-security-hierarchy) of the [PlayStation 3](playstation-3) was [hacked](playstation-3#tab-9-4-the-fall-of-encryption), as it contained the **private keys used to decrypt PSP executables** (the PS3's OS includes a PSP emulator). This allowed anyone to sign user-land software and embed a kernel exploit to produce CFW installers and/or CFW loaders, for instance.
 
 In recent developments, it was discovered that the latest firmware contains a kernel exploit during the boot process, which could be used to kickstart a CFW of choice. This was packaged in an solution called **Infinity 2** [@anti_piracy-davee].
 

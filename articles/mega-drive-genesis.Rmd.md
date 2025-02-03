@@ -109,7 +109,7 @@ The VDP runs at **~13 MHz** and supports multiple resolution modes depending on 
 
 ### Behind the multiple display resolutions
 
-Technically speaking, the VDP can either fit 40 or 32 columns of [tiles](master-system#tiles) per scan-line, and the number of tile rows depends on the region (28 in NTSC or 30 in PAL) [@graphics-keil]. Although, most PAL games don't bother with the extra tiles allowed in PAL systems (as they probably need to keep consistency between the two regions, and NTSC is the common denominator) so they instruct the VDP to render with 28 rows (as they would do in NTSC systems). Thus, the VDP has no option but to fill the unused area with a backdrop colour (also used during overscan).
+Technically speaking, the VDP can either fit 40 or 32 columns of [tiles](master-system#tab-1-1-tiles) per scan-line, and the number of tile rows depends on the region (28 in NTSC or 30 in PAL) [@graphics-keil]. Although, most PAL games don't bother with the extra tiles allowed in PAL systems (as they probably need to keep consistency between the two regions, and NTSC is the common denominator) so they instruct the VDP to render with 28 rows (as they would do in NTSC systems). Thus, the VDP has no option but to fill the unused area with a backdrop colour (also used during overscan).
 
 You can see which PAL games render in NTSC mode by checking the `Mode Set Register #2` in an emulator with debugging capabilities (i.e. Exodus). If the fourth bit from the right is `0`, then the VDP is running in NTSC mode [@graphics-resolution].
 
@@ -203,7 +203,7 @@ All in all, you can see the new priority values and separate planes enable game 
 
 ![Allocated Sprite layer with selected area marked.](vdp_sonic/sprite_selected.png){.tabs-nested-last .pixel title="Selected"}
 
-In this plane, tiles are treated as **sprites**. They are positioned in a **512x512 pixel** map and only a part of it (VDP's output resolution) is selected for display. This is convenient for hiding unwanted sprites or preparing others that will be shown in the future. The VDP also provides an old [collision detection](master-system#tab-4-1-collision-detection) function.
+In this plane, tiles are treated as **sprites**. They are positioned in a **512x512 pixel** map and only a part of it (VDP's output resolution) is selected for display. This is convenient for hiding unwanted sprites or preparing others that will be shown in the future. The VDP also provides an old [collision detection](master-system#tab-2-1-collision-detection) function.
 
 Sprites are formed by combining up to 4x4 tiles (32x32 pixel map) and selecting up to 16 colours (including *transparent*). If a bigger sprite is needed, then multiple sprites can be combined into one.
 
