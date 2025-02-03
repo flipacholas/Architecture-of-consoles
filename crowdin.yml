@@ -4,7 +4,7 @@ files:
   - source: /articles/*.Rmd.md
     ignore:
       - /articles/playstation-vita.Rmd.md
-    translation: /articles/translations/%two_letters_code%/%file_name%.Rmd.md
+    translation: /articles/translations/%two_letters_code%/%file_name%.md
   - source: /resources/strings.toml
     translation: /resources/translations/%two_letters_code%.toml
   - source: /resources/generations.yaml
