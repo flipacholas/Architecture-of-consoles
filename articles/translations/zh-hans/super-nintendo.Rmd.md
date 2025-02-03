@@ -373,7 +373,7 @@ S-PPU由**旋转矩阵**控制，以改变该模式的参数。 这里就不多�
 
 ![地球冒险2（Mother 2/Earthbound）（1994）](snowman_snes){.toright video="true"}
 
-###
+### 高级用法
 
 ::: {.subfigures .tabs-nested .tab-float .open-float max_subfigures=1}
 
