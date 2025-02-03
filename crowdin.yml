@@ -1,8 +1,6 @@
 commit_message: 'Crowdin: (%language%) Updated %original_file_name% translations'
 append_commit_message: 
 files:
-  - source: /articles/*.md
-    translation: /articles/translations/%two_letters_code%/%file_name%.md
   - source: /articles/*.Rmd.md
     ignore:
       - /articles/playstation-vita.Rmd.md
