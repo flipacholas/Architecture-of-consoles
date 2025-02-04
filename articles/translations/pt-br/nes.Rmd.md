@@ -503,7 +503,7 @@ Os dois componentes que compõem o *Famicom Disk System* (FDS).
 O *Famicom Disk System* adicionou os seguintes serviços ao Famicom:
 
 - Uma nova mídia de distribuição para jogos chamada **Famicom Disk** [@games-fds]. Baseado no "Quick Disk" da Mitsumi, ele fornece **~64 KB de dados** por lado e é regravável.
-- Um **canal de áudio extra** que usa [síntese de tabela de onda](game-boy#tab-7-3-wave) [@games-fds_audio].
+- Um **canal de áudio extra** que usa [síntese de tabela de onda](game-boy#tab-3-2-wave) [@games-fds_audio].
 
 ![O equipamento FDS acoplado ao Famicom.](fds/mounted.png) {.open-float.no-borders}
 
@@ -511,7 +511,7 @@ Como o disquete é uma mídia única (diferente dos cartuchos que podem ter vár
 
 No entanto, o Famicom/NES exige rigorosamente que a memória de Programa e de Personagens seja segregada para funcionar, então esse é o trabalho que "adaptador de RAM" tem que resolver. Este componente abriga **32 KB de RAM de Programa** e **8 KB de RAM de Personagem** para armazenar em *buffer* os dados do jogo lidos do disquete, e ao fazê-lo, permite que o console leia dele como se fosse um jogo em cartucho.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Para operar a unidade, o adaptador de RAM incorpora uma ROM adicional de 8 KB para armazenar um **BIOS** [@games-fds_bios]. Este programa realiza as seguintes tarefas:
 

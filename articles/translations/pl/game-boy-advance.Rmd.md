@@ -210,7 +210,7 @@ Statyczne warstwy tła w użyciu.
 
 :::
 
-Warstwa tła tego systemu znacznie się poprawiła od czasu Game Boy Color. W końcu zawiera niektóre funkcje znalezione w [Super Nintendo](super-nintendo) (pamiętasz [przekształcenia afiniczne](super-nintendo#unique-features)?).
+Warstwa tła tego systemu znacznie się poprawiła od czasu Game Boy Color. W końcu zawiera niektóre funkcje znalezione w [Super Nintendo](super-nintendo) (pamiętasz [przekształcenia afiniczne](super-nintendo#that-feature)?).
 
 PPU może narysować do czterech warstw tła. Możliwości każdego z nich będą zależeć od wybranego trybu działania [@graphics-tiles]:
 

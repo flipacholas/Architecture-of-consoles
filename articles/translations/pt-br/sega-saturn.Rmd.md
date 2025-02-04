@@ -39,7 +39,7 @@ No caso de algum desenvolvedor querer usar a dimensão adicional, a Sega adaptou
 
 ## CPU
 
-Assim como seus competidores mais próximos, que estiveram [cheios de opções](playstation#a-bit-of-history) ao longo da febre do RISC, a Sega precisou passar por todos os dilemas de escolher um novo fornecedor que pudesse erguer a próxima geração de jogos (inclusive aqueles com capacidades "3D"). No final, a empresa optou por uma CPU recente, cujo criador estava desesperado atrás de algum adotante: a **Hitachi SuperH**, ou "SH".
+Assim como seus competidores mais próximos, que estiveram [cheios de opções](playstation#tab-1-1-a-bit-of-history) ao longo da febre do RISC, a Sega precisou passar por todos os dilemas de escolher um novo fornecedor que pudesse erguer a próxima geração de jogos (inclusive aqueles com capacidades "3D"). No final, a empresa optou por uma CPU recente, cujo criador estava desesperado atrás de algum adotante: a **Hitachi SuperH**, ou "SH".
 
 Ainda que, de início, a nova criação da Hitachi tenha focado em aplicativos embarcados, ela estreou artifícios modernos, como [@cpu-prog_manual]:
 
@@ -218,7 +218,7 @@ Por esse motivo, a maior parte dos jogos acabava variando drasticamente de quali
 
 Até agora haviam sido usados quadriláteros individuais regulares para formar sprites e/ou planos de fundo. Mas e se agruparmos múltiplas primitivas irregulares e as ordenarmos para formar uma figura mais complexa? É assim que surgem os modelos 3D.
 
-Simplificando, consoles 2D clássicos como o [Super Nintendo](super-nintendo) organizam seus gráficos (fundos e sprites) em áreas mais ou menos retangulares. Em alguns casos, tais como o do [Mode 7](super-nintendo#unique-features), os programadores podem providenciar uma matriz de rotação para aplicar transformações sobre algumas dessas áreas. O Saturn, pelo contrário, permite a definição de quadriláteros de 4 pontos com ângulos arbitrários entre suas bordas (a Sega chama isso de "sprites distorcidos"). Então, as capacidades de mapeamento de texturas do VDP pinta a área do quadrilátero com uma textura, esta sendo escalada de acordo com a forma do polígono.
+Simplificando, consoles 2D clássicos como o [Super Nintendo](super-nintendo) organizam seus gráficos (fundos e sprites) em áreas mais ou menos retangulares. Em alguns casos, tais como o do [Mode 7](super-nintendo#that-feature), os programadores podem providenciar uma matriz de rotação para aplicar transformações sobre algumas dessas áreas. O Saturn, pelo contrário, permite a definição de quadriláteros de 4 pontos com ângulos arbitrários entre suas bordas (a Sega chama isso de "sprites distorcidos"). Então, as capacidades de mapeamento de texturas do VDP pinta a área do quadrilátero com uma textura, esta sendo escalada de acordo com a forma do polígono.
 
 Quanto às operações de que um jogo 3D necessita, as CPUs e a SCU recebem a função de formular um mundo 3D e projetá-lo num espaço 2D. Daí, ambas as VDPs recebem o comando para renderizá-lo, aplicar efeitos e finalmente transmiti-lo para a TV.
 

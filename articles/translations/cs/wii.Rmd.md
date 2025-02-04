@@ -117,7 +117,7 @@ Vraťme se ale k Wii. Wii tuto funkci standardizovalo tím, že umožňovalo sna
 
 Nový a neotřelý design ovladače znamenal nové způsoby interakce ve Wii hrách. Protože Wiimote umožňuje mířit na obrazovku, některé hry jako *Super Mario Galaxy* nebo *The Legend of Zelda: Twilight Princess* použily tuto funkci k tomu, aby hráči mohli interagovat s herním prostředím.
 
-V článku nazvaném _Myth Debugging: Is the Wii More Demanding to Emulate than the GameCube?_ [@graphics-dolphin], vývojáři emulátoru Dolphin vysvětlují, že hry jako Super Mario Galaxy nebo first-person střílečky spoléhají na [zabudovaný z-buffer](gamecube#tab-1-4-render) pro identifikaci objektu, na který Wiimote míří a/nebo hlídá, jak daleko je nějaký objekt od Wiimote kurzoru.
+V článku nazvaném _Myth Debugging: Is the Wii More Demanding to Emulate than the GameCube?_ [@graphics-dolphin], vývojáři emulátoru Dolphin vysvětlují, že hry jako Super Mario Galaxy nebo first-person střílečky spoléhají na [zabudovaný z-buffer](gamecube#tab-3-4-render) pro identifikaci objektu, na který Wiimote míří a/nebo hlídá, jak daleko je nějaký objekt od Wiimote kurzoru.
 
 Nejedná se o novou funkci jako takovou, ale o nové využití současné funkcionality. GameCube hry nepotřebovaly víceúčelový ovladač s funkcí kurzoru. Nyní mohou hráči ovládat postavu a zároveň mířit na obrazovku.
 

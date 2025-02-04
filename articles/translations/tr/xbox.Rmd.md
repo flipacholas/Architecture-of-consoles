@@ -83,11 +83,11 @@ x86 talimatlarını yorumlayabilen bir devre inşa etme konusunda, Intel CPU'lar
 
 Şimdi, Xbox CPU'su, geri kalan Pentium III işlemcileri ile birlikte **P6 Mikromimari**'yi (aynı zamanda 'i686' olarak da bilinir) kullanır. Bu, 8086'dan saymaya başladığımızda 6. nesildir ve şunları içerir:
 
-- *Devasa* **14 Aşamalı Pipeline**: Bu, paralel olarak 14 talimatın işlenebileceği anlamına gelir. Öte yandan, bireysel talimatlar tamamlanmak için çok daha fazla döngü alabilir. [Daha önceki bir açıklamaya](game-boy-advance#the-core) bakın.
+- *Devasa* **14 Aşamalı Pipeline**: Bu, paralel olarak 14 talimatın işlenebileceği anlamına gelir. Öte yandan, bireysel talimatlar tamamlanmak için çok daha fazla döngü alabilir. [Daha önceki bir açıklamaya](game-boy-advance#tab-2-1-the-core) bakın.
 - **Sıradışı Yürütme**: Mümkünse, CPU talimatların sırasını artırmak için yeniden düzenler ve verimliliği artırır.
-- **Dinamik Yürütme**: P6, sıradışı ve [üst ölçekli](dreamcast#cpu) bir tasarım olduğundan. Geleneksel [dal tahmincisi](gamecube#features) şimdi diğer tekniklerle birleştirilmiştir ('spekülatif yürütme' ve 'veri akış analizi'), yeni yeteneklerden faydalanmak için. Böylece, Pipeline durmaları daha da azaltır.
+- **Dinamik Yürütme**: P6, sıradışı ve [üst ölçekli](dreamcast#cpu) bir tasarım olduğundan. Geleneksel [dal tahmincisi](gamecube#the-powerpc-gekko) şimdi diğer tekniklerle birleştirilmiştir ('spekülatif yürütme' ve 'veri akış analizi'), yeni yeteneklerden faydalanmak için. Böylece, Pipeline durmaları daha da azaltır.
 
-Bu özelliklere biraz daha yakından bakalım. Bu özellikler, [önceki konsollarla](gamecube#features) çok benzer oldukları ortaya çıkıyor. Ancak diğer CPU'lar, tasarım açısından Intel olanlara kıyasla çok farklı. Tarihsel olarak, bir kişi, x86 tasarımının Intel'e örneğin bir boru hattına sahip bir CPU üretme yeteneği vermediği konusunda bir argüman yapabilirdi. Ancak bunu başardılar, peki neden...
+Bu özelliklere biraz daha yakından bakalım. Bu özellikler, [önceki konsollarla](gamecube#the-powerpc-gekko) çok benzer oldukları ortaya çıkıyor. Ancak diğer CPU'lar, tasarım açısından Intel olanlara kıyasla çok farklı. Tarihsel olarak, bir kişi, x86 tasarımının Intel'e örneğin bir boru hattına sahip bir CPU üretme yeteneği vermediği konusunda bir argüman yapabilirdi. Ancak bunu başardılar, peki neden...
 
 #### CISC veya RISC {.tab}
 
@@ -215,7 +215,7 @@ Bu aşamada, vertex'ler piksellere dönüştürülür. İşlem, her üçgeni çi
 
 Sonuçta elde edilen pikseller, bir **ortak kayıt kümesine** depolanır ve ardından her biri bunlara aritmetik işlemler uygulayan **8 register birleştirici**den geçirilir. Bu işlem, GPU tarafından yürütülen bir başka tür program olan **piksel shader**'larının kullanımıyla **programlanabilir** bir nitelik taşır [@graphics-wasson]. Her döngüde, her bir birleştirici, kayıt kümesinden RGBA değerlerini (RGB + Alpha) alır [@graphics-spitzer]. Ardından, shader tarafından belirlenen işleme dayanarak değerleri işler ve sonucu geri yazar. Son olarak, daha büyük bir miktar değer, yalnızca speküler renkleri karıştırabilir ve/veya sis ekleyebilen **son birleştiriciye** gönderilir.
 
-Register birleştiricileri, [Texture Environment Unit](gamecube#tab-1-3-texture) ile benzer bir şekilde programlanabilir. Yani belirli bir kombinasyonu ayarlarıyla register'ları değiştirerek. Xbox'ın durumunda, PFIFO, PGRAPH'ı kurmak için pushbuffer'ları okur, bu da register birleştiricilerini ve doku shader'larını içerir.
+Register birleştiricileri, [Texture Environment Unit](gamecube#tab-3-3-texture) ile benzer bir şekilde programlanabilir. Yani belirli bir kombinasyonu ayarlarıyla register'ları değiştirerek. Xbox'ın durumunda, PFIFO, PGRAPH'ı kurmak için pushbuffer'ları okur, bu da register birleştiricilerini ve doku shader'larını içerir.
 
 #### Post-processing (İşlem Sonrası) {.tab}
 
@@ -253,9 +253,9 @@ Shader'ların gelecekteki makalelerde düzenli olarak ele alınacağını düş�
 
 ### Xbox'ın Çerçevesi
 
-Oyunların standart çözünürlüğü **640x480**'dir, bu altıncı neslin standartıdır. Ancak, bu kısıtlama sadece bir sayıdır: GPU, 4096x4096'ya kadar olan çerçeve belleklerini çizebilir, ancak donanımın kabul edilebilir performans sağlayıp sağlamayacağı ayrı bir konudur. Öte yandan, konsol, ekran ayarlarını genel olarak yapılandırma olanağı tanır, bu da pioner özellikleri (örneğin geniş ekran ve 'yüksek çözünürlük') geliştirmeye yönlendirebilir, geliştiricilerin bunları keşfetmelerini beklemek yerine ([Gamecube/Wii](wii#tab-2-1-standardised-widescreen)'de olduğu gibi).
+Oyunların standart çözünürlüğü **640x480**'dir, bu altıncı neslin standartıdır. Ancak, bu kısıtlama sadece bir sayıdır: GPU, 4096x4096'ya kadar olan çerçeve belleklerini çizebilir, ancak donanımın kabul edilebilir performans sağlayıp sağlamayacağı ayrı bir konudur. Öte yandan, konsol, ekran ayarlarını genel olarak yapılandırma olanağı tanır, bu da pioner özellikleri (örneğin geniş ekran ve 'yüksek çözünürlük') geliştirmeye yönlendirebilir, geliştiricilerin bunları keşfetmelerini beklemek yerine ([Gamecube/Wii](wii#tab-1-1-standardised-widescreen)'de olduğu gibi).
 
-Öte yandan, video kodlayıcı, çerçeve belleğinde ne varsa TV'niz tarafından anlaşılabilir bir formatta yayınlamaya çalışacaktır. Bu, oyunlar HD çıkış yapmadıkça (örneğin 720p veya 1080i, ki bunu sadece birkaç oyun yapar), geniş ekran görüntülerin [anamorfik](wii#tab-2-1-standardised-widescreen) hale geleceği anlamına gelir.
+Öte yandan, video kodlayıcı, çerçeve belleğinde ne varsa TV'niz tarafından anlaşılabilir bir formatta yayınlamaya çalışacaktır. Bu, oyunlar HD çıkış yapmadıkça (örneğin 720p veya 1080i, ki bunu sadece birkaç oyun yapar), geniş ekran görüntülerin [anamorfik](wii#tab-1-1-standardised-widescreen) hale geleceği anlamına gelir.
 
 Bu söylendiğine göre, bu konsol hangi sinyalleri yayınlar? Oldukça fazla. Xbox, tipik PAL/NTSC kompozitin yanı sıra <strong x-id=“1”>YPbPr</strong> ('component' konektörlerini almak için ekstra bir aksesuar gerekir) ve RGB (hem SCART hem de VGA uyumlu) sunar. Sonuç olarak, pahalı adaptörlere ve benzeri şeylere ihtiyaç duymadan oldukça kullanışlıdır.
 
@@ -469,7 +469,7 @@ Aslında durum bu kadar basit değil: Microsoft, kullanıcılara bu işlevselli�
 
 Bu konsolun hazır bileşenler içerip içermediğinden bağımsız olarak, uygulanan bir dizi güvenlik önlemi bulunmaktadır.
 
-Lütfen RSA şifrelemesinin burada tekrar eden bir konu olduğunu unutmayın, bunu daha önceki [Wii makalesinde](wii#tab-7-2-chain-of-trust) tanıtmıştım, bu nedenle RSA veya herhangi bir simetrik/asimetrik şifreleme sistemi hakkında bilgi sahibi değilseniz lütfen önce o makaleye göz atın.
+Lütfen RSA şifrelemesinin burada tekrar eden bir konu olduğunu unutmayın, bunu daha önceki [Wii makalesinde](wii#tab-2-2-chain-of-trust) tanıtmıştım, bu nedenle RSA veya herhangi bir simetrik/asimetrik şifreleme sistemi hakkında bilgi sahibi değilseniz lütfen önce o makaleye göz atın.
 
 Bunu söylendikten sonra, bir göz atalım.
 

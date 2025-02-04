@@ -117,7 +117,7 @@ GameCube游戏缺乏对宽屏显示的适当支持（即从传统的4:3改为16:
 
 全新的、颠覆性的手柄设计意味着Wii游戏中出现了新的交互方式。 由于Wiimote可以让用户指向屏幕，一些游戏（如*《超级马里奥银河》*或*《塞尔达传说：黄昏公主》（The Legend of Zelda: Twilight Princess）*）利用这一功能让玩家与场景进行互动。
 
-在题为_《神话调试：Wii是否比GameCube更难模拟？》（Myth Debugging: Is the Wii More Demanding to Emulate than the GameCube?）_的报告中[@graphics-dolphin]，Dolphin模拟器的开发人员解释说，像《超级马里奥银河》和其他第一人称射击游戏都依赖[嵌入式Z缓冲区](gamecube#tab-1-4-render)来识别Wiimote指向的物体，和/或检查物体离Wiimote光标有多远。
+在题为_《神话调试：Wii是否比GameCube更难模拟？》（Myth Debugging: Is the Wii More Demanding to Emulate than the GameCube?）_的报告中[@graphics-dolphin]，Dolphin模拟器的开发人员解释说，像《超级马里奥银河》和其他第一人称射击游戏都依赖[嵌入式Z缓冲区](gamecube#tab-3-4-render)来识别Wiimote指向的物体，和/或检查物体离Wiimote光标有多远。
 
 这本身并不是一项新功能，而是对当前功能的一种新颖利用。 GameCube游戏并不依赖带有指示器功能的多功能控制器。 现在，玩家可以同时控制角色和指向屏幕。
 

@@ -152,7 +152,7 @@ Cada entrada tiene una longitud de 8 bytes, aunque se desperdicia algo de espaci
 
 Para colmo, **la CPU no puede acceder a esta tabla**, por lo que necesita ser completada en VRAM y luego activar un canal DMA para copiarla al VDC (para que este último pueda utilizarla).
 
-En cuanto a las limitaciones, solo puede haber hasta 16 sprites por línea de barrido. Por otro lado, se pueden establecer interrupciones para que el juego pueda ser notificado cuando haya un caso de desbordamiento de sprite o [colisión](master-system#tab-4-1-collision-detection).
+En cuanto a las limitaciones, solo puede haber hasta 16 sprites por línea de barrido. Por otro lado, se pueden establecer interrupciones para que el juego pueda ser notificado cuando haya un caso de desbordamiento de sprite o [colisión](master-system#tab-2-1-collision-detection).
 
 #### Resultado {.tab}
 

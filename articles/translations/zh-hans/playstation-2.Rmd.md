@@ -57,7 +57,7 @@ PlayStation 2 并非当年的最强主机，却积累了其它公司无可企及
 
 - **推测执行**： 在计算条件分支之前，CPU会预测其结果。 预测结果基于存储在内部512条目的表中的先前结果。 一旦计算出条件，如果预测结果正确，CPU就节省了宝贵的时间。 否则，多余的计算将被丢弃。
   - 得益于此，MIPS 终于将一个经常出现的问题（[控制冒险](playstation#delay-galore)）转化为优势。
-  - 在其他 CPU 中，类似的功能被称为[动态分支预测](gamecube#features)。
+  - 在其他 CPU 中，类似的功能被称为[动态分支预测](gamecube#the-powerpc-gekko)。
 - **4个超标量**流水线： 在[流水线设计](sega-saturn#cpu)的基础上，CPU 现在会在流水线的起点获取多达四条指令，并将它们分配到不同的单元，使CPU可以同时执行这些指令。 这样，CPU就实现了更高程度的并行性。
 - **乱序执行**： CPU还会重新排列指令顺序，尽量填满其单元（只要不增加冒险）。
 - **配备128位总线的二级高速缓存（L2 cache）**，可一次将更多数据输入中央处理器，这是在前面改进的基础上提出的要求。
@@ -273,7 +273,7 @@ EE通过向嵌入式DRAM中填充所需素材（**纹理位图**和**颜色查�
 
 纹理映射是从DRAM中定义为**纹理缓冲区**的区域获取的，不过该区域与一个名为**纹理页缓冲区**（Texture Page Buffer）的独立区域相互连接，后者似乎是一种纹理缓存机制。 CLUT也使用该页面系统进行映射。 这两个元素都使用**512位总线**进行检索。
 
-像素单元执行**透视校正**，将纹理映射到基元上（与之前的[仿射映射](playstation#tab-4-5-textures)方法相比，这是一项重大改进）。 此外，它还提供**双线性和三线性过滤**功能，后者与混合映射纹理一起使用。
+像素单元执行**透视校正**，将纹理映射到基元上（与之前的[仿射映射](playstation#tab-3-5-textures)方法相比，这是一项重大改进）。 此外，它还提供**双线性和三线性过滤**功能，后者与混合映射纹理一起使用。
 
 #### 测试 {.tab}
 
@@ -605,7 +605,7 @@ Memento被逆向工程破解后，互联网上出现了一种不需要Memor32的
 
 此外，安装程序还提供了两个选项：只安装当前游戏机所需的文件，或安装适用于所有PS2变体的全局设置。 奇怪的是，后一个选项的实现却很有难度[@anti_piracy-fmcb]。 起初，安装程序会在记忆卡的分区表上做手脚，以避免空间耗尽，这并不是一件特别安全的事。
 
-幸运的是，2011年，[PlayStation 3](playstation-3)的[安全系统](playstation-3#os-security-hierarchy)刚刚遭到[破坏](playstation-3#tab-17-4-the-fall-of-encryption)，暴露了许多隐藏在其中的秘密。 其中包括一组用于[向后兼容PS2](playstation-3#backwards-compatibility)的全球MagicGate密钥。 从那时起，制作PS2可执行文件就不再需要使用有限的DVD二进制签名技巧了。 因此，自`1.8b`版以来，FreeMCBoot一直是在PlayStation 2上运行任何类型自制软件的最安全、最受欢迎的方法。
+幸运的是，2011年，[PlayStation 3](playstation-3)的[安全系统](playstation-3#os-security-hierarchy)刚刚遭到[破坏](playstation-3#tab-9-4-the-fall-of-encryption)，暴露了许多隐藏在其中的秘密。 其中包括一组用于[向后兼容PS2](playstation-3#backwards-compatibility)的全球MagicGate密钥。 从那时起，制作PS2可执行文件就不再需要使用有限的DVD二进制签名技巧了。 因此，自`1.8b`版以来，FreeMCBoot一直是在PlayStation 2上运行任何类型自制软件的最安全、最受欢迎的方法。
 
 ### 后续开发 {.tabs-close}
 

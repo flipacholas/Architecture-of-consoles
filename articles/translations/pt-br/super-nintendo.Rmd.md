@@ -274,7 +274,7 @@ Apresentando o **Modo 7**, *mais um* modo de plano de fundo, mas desta vez, com 
 
 A S-PPU é controlada com uma **matriz de rotação** para alterar os parâmetros desse modo. Não entrarei em álgebra linear aqui, mas dependendo do efeito desejado, a CPU terá que executar algumas funções trigonométricas (seno e cosseno) para preencher as entradas dessas tabelas adequadamente. Isso é realmente caro para a 65C816, mesmo com o uso de precisão de ponto fixo. Por esse motivo, com a 5A22, a Ricoh adicionou registradores de multiplicação e divisão para aliviar alguns ciclos.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 A propósito, observe que a lista de transformações não menciona a **perspectiva**, que é o que você vê no jogo de exemplo (F-Zero). Isso é alcançado alterando a matriz de rotação em cada chamada do HDMA, criando um efeito pseudo-3D no processo. Isso deve dar uma ideia de quão prático é a S-PPU!
 
@@ -336,7 +336,7 @@ Como você pode ver, o subsistema de som foi um grande avanço em comparação c
 
 Como consequência, foram encontrados muitos *drivers* de som diferentes no mercado [@audio-drivers], e alguns deles acabaram apresentando recursos surpreendentes.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Controle de tom
 
@@ -372,7 +372,7 @@ Aqui está uma composição mais rica em instrumentos que tira grande proveito d
 
 Essa combinação de técnicas permitiu que a música utilizasse no total apenas cinco canais de som, deixando os outros três canais para efeitos sonoros.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 ### Confusão estéreo
 
@@ -428,7 +428,7 @@ Alternativamente, e o mais importante, a LoROM e a HiROM também podem ser adapt
 - Duas configurações extras, uma baseada em LoROM e outra em HiROM, abrem caminho para a série de chips **DSP**. Estes são os mesmos derivados da CPU NEC µPD77C25, mas executando um programa diferente. Eles fornecem cálculos de vetores e matrizes [@games-dsp] e diferentes jogos os usam para calcular transformações afins, descomprimir gráficos e calcular o caminho mais curtos.
 - O modelo **SFX** tem como alvo o popular chip **Super FX GSU**. Esta configuração mapeia até 8 MB de ROM, onde 2 MB são compartilhados entre a CPU principal e o Super FX. O restante do espaço de endereço também inclui RAM de backup e SRAM. O Super FX é um processador proprietário feito pela Argonaut que se especializa em **renderização de superfícies 3D** e **transformações afins 2D**, os resultados são então transmitidos como *tiles* para que a S-PPU possa exibi-los. Um punhado de jogos notáveis o usou para desenhar modelos 3D e/ou estender o Modo 7 para *sprites* (já que o Modo 7 só pode transformar fundos).</ul>
 
-`r close_float_group()`
+{.close-float}
 
 É difícil ignorar o impacto que essa engenharia teve nos jogos durante os anos 90, muitos dos quais conseguiram superar as expectativas destes consoles sem exigir módulos de expansão e afins. Pode-se dizer que isso dificultou os planos da Nintendo de lançar um sucessor do SNES (o que pode explicar por que jogos em estágio de desenvolvimento avançado como Star Fox 2 foram cancelados).
 

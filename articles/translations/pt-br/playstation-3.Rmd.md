@@ -233,7 +233,7 @@ Primeiramente, o tipo de memória utilizada é chamado de **Extreme Data Rate** 
 
 A Rambus, como qualquer outra empresa, melhora suas invenções. Sua terceira revisão (XDR) opera em taxa óctupla (*octa-rate* — quatro vezes a taxa de sua adversária, a DDR DRAM) [@cpu-xdr]. A latência não é mais um problema, se olharmos para a ficha técnica de seus fabricantes, a latência do XDR é relatada entre 28 ns e 36 ns [@cpu-k4y5016, p. 2], quase [10 vezes mais rápido](nintendo-64#memory-design) do que os chips RDRAM de primeira geração.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 A primeira revisão da placa-mãe do PlayStation 3 contém quatro chips de 64 MB, operandos em pares. O XDR é conectado ao Cell usando dois barramentos de 32 bits, um para cada par. Então, sempre que a PPU escreve uma palavra (dados de 64 bits), ela é dividida entre dois chips XDR. Estes últimos são sincronizados em 400 MHz [@cpu-ram].
 
@@ -389,7 +389,7 @@ O RSX herda a tecnologia existente da Nvidia, é referido como sendo baseado no 
 
 Na minha [análise anterior do Xbox](xbox#graphics), eu falei sobre a GeForce3 e seus estreantes *shaders* de píxel. Então, o que mudou? Houve altos e baixos, mas principalmente mudanças incrementais, nada muito revolucionário em comparação com os *shaders* de píxel da GeForce3.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Por outro lado, enquanto o 7800 GTX depende do protocolo PCI Express para se comunicar com a CPU, o RSX foi remodelado para trabalhar com um protocolo proprietário chamado **Flex I/O** [@graphics-gschwind], uma interface diferente dentro do Cell projetada para se conectar a chips vizinhos. O Flex I/O opera em dois modos:
 
@@ -428,7 +428,7 @@ Assim como acontece com qualquer outra GPU, deve haver um bloco de circuito enca
 
 O Host é responsável por ler os comandos da memória (seja local ou principal) e traduzi-los em sinais internos que outros componentes do RSX entendam. Isso é feito com o uso de quatro sub-blocos:
 
-- O **Pusher**: busca comandos gráficos da memória e [interpreta](playstation-portable#tab-2-1-commands) as instruções de desvio (*branch*). Ele também contém 1 KB de [*buffer* de pré-busca](game-boy-advance#memory-locations). Os comandos processados são enviados para uma *cache* FIFO.
+- O **Pusher**: busca comandos gráficos da memória e [interpreta](playstation-portable#tab-1-1-commands) as instruções de desvio (*branch*). Ele também contém 1 KB de [*buffer* de pré-busca](game-boy-advance#memory-locations). Os comandos processados são enviados para uma *cache* FIFO.
 - **Cache FIFO**: armazena até 512 comandos decodificados pelo Pusher obedecendo à ordem de chegada na *cache* para fornecer acesso rápido.
 - **Puller**: coleta comandos da *cache* FIFO sempre que o RSX está pronto para renderizar e os envia para a próxima unidade.
 - **Graphics FIFO**: armazena até oito comandos que serão lidos pelo Graphics Front End.
@@ -452,14 +452,14 @@ O bloco de Geometry Processing funciona da seguinte maneira:
 1. O **Index Vertex Processor** (IDX) busca e armazena na *cache* de dados de vértices e texturas da VRAM. Em seguida, envia os dados para o VAB.
 2. O **Vertex Attribute Buffer** (VAB) busca os dados na *cache* IDX e os redireciona para cada VPE.
 3. Cada VPE processa os dados com base no *shader* carregado. Ele computa **uma instrução de *shader* por pulso de clock**.
-4. O resultado de cada VPE é enviado para o **Post Transform Cache**, que armazena em *cache* os resultados para pular cálculos idênticos sobre o mesmo vértice. Isso se aplica se [índices de vértices](gamecube#tab-1-2-geometry) forem usados em vez de dados de vértices.
+4. O resultado de cada VPE é enviado para o **Post Transform Cache**, que armazena em *cache* os resultados para pular cálculos idênticos sobre o mesmo vértice. Isso se aplica se [índices de vértices](gamecube#tab-3-2-geometry) forem usados em vez de dados de vértices.
 5. O resultado final é armazenado na **Viewport Cull Unit** (VPC), que aplica corte para descartar vértices encontrados fora da janela de visualização; e na **Attribute RAM** (ATR), que armazena em *cache* os atributos dos vértices (textura, cor, neblina, etc.) a serem lidos nas próximas etapas.
 
 #### Rasterização {.tab}
 
 ![Diagrama simplificado do estágio de rasterização. O RSX incorpora unidades diferentes para calcular os valores usados para interpolação de píxeis e cores.](gpu/rasterizer.png) {.tab-float}
 
-Seguindo, é hora de converter ([rasterizar](playstation#tab-4-3-rasterization)) os vértices em píxeis. O rasterizador do RSX é bastante rápido, ele pode rasterizar até 8x8 píxeis (64) por ciclo e funciona com um *buffer* de imagem até **4096x4096 píxeis** (embora os desenvolvedores possam precisar de menos que isso).
+Seguindo, é hora de converter ([rasterizar](playstation#tab-3-3-rasterisation)) os vértices em píxeis. O rasterizador do RSX é bastante rápido, ele pode rasterizar até 8x8 píxeis (64) por ciclo e funciona com um *buffer* de imagem até **4096x4096 píxeis** (embora os desenvolvedores possam precisar de menos que isso).
 
 O rasterizador aceita pontos, linhas (incluindo tipos fechados e em tiras), triângulos (incluindo tiras e leques), quadriláteros e polígonos regulares. Naturalmente, como nesta geração de consoles, o rasterizador trabalha com **coordenadas de subpixel**, onde os pontos de amostragem são meias-coordenadas (`0,5`) de píxeis. Isso permite que a unidade aplique métodos de anti-serrilhamento, como o **multiamostragem** (*multisampling*), posteriormente. A multiamostragem consiste em rasterizar a mesma geometria várias vezes, mas deslocando alguns subpíxeis a cada lote (o RSX suporta quatro modos de deslocamento) e, em seguida, calcular uma média. Isso resulta em uma imagem suavizada.
 
@@ -501,13 +501,13 @@ O conector HDMI é composto por 19 pinos [@graphics-hdmi_wiki], todos em um úni
 
 Até hoje, o protocolo HDMI é continuamente revisado [@graphics-hdmi_spec], com novas versões da especificação oferecendo mais recursos (por exemplo, resolução de imagem maior, taxa de atualização, espaço de cores alternativos, etc.) enquanto mantém o mesmo meio físico para compatibilidade com versões anteriores.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Durante o ciclo de vida do PS3, a Sony adicionou certas funcionalidades das novas revisões do HDMI no console por meio de atualizações de software [@graphics-hdmi_dev]. O último protocolo compatível com o PS3 é a versão 1.4, trazendo suporte para "televisores 3D", embora outras capacidades, como resoluções de vídeo mais altas, permaneçam limitadas a **1920x1080** píxeis (e mesmo assim, a maioria dos jogos renderizava seu *buffer* de imagem em 1280x720 píxeis).
 
 ### Visão/projeção 3D "real"
 
-Mas o que é esse "televisor 3D" que eu mencionei antes? Bem, acontece que a vida útil do console coincidiu com uma febre passageira por TVs 3D (as chamadas _3DTV_) @graphics-3dtv]. Para suportá-las, a Sony atualizou seu SDK para ajudar na renderização de quadros estereoscópios na RSX e implementou a "especificação 3D" em seu codificador HDMI. O que acontecia nos bastidores é que o codificador transmitia dois quadros por vez, e a televisão os alternava de maneiras semelhantes ao que os óculos 3D do [Master System](master-system#tab-4-3-3d-glasses) faziam 30 anos antes.
+Mas o que é esse "televisor 3D" que eu mencionei antes? Bem, acontece que a vida útil do console coincidiu com uma febre passageira por TVs 3D (as chamadas _3DTV_) @graphics-3dtv]. Para suportá-las, a Sony atualizou seu SDK para ajudar na renderização de quadros estereoscópios na RSX e implementou a "especificação 3D" em seu codificador HDMI. O que acontecia nos bastidores é que o codificador transmitia dois quadros por vez, e a televisão os alternava de maneiras semelhantes ao que os óculos 3D do [Master System](master-system#tab-2-3-3d-glasses) faziam 30 anos antes.
 
 ## Áudio
 
@@ -549,9 +549,9 @@ No caso das portas acessíveis pelo usuário, o Southbridge está conectada a:
 - Uma interface **Serial ATA** (SATA): conecta a unidade de Blu-ray e um disco rígido de 2,5 polegadas.
   - Até 2008, leitores de Blu-ray se conectavam com ATA paralelo (PATA) [@io-bd_rev], então um chip intermediário foi instalado para fazer a conversão SATA → PATA.
 - Um **Controlador Ethernet 1000/100/10 (Gigabit)**: na forma de um conector RJ45 na parte de trás, mas também se ramifica para uma placa-filha sem fio, fornecendo conexões **Wi-Fi 802.11b/g** e **Bluetooth 2.0**.
-- Um **leitor de cartões múltiplos**: fornece *slots* para cartões do tipo [Memory Stick](playstation-portable#tab-5-2-memory-stick-duo), SD, MultiMediaCard (MMC), Microdrive e Compact Flash.
+- Um **leitor de cartões múltiplos**: fornece *slots* para cartões do tipo [Memory Stick](playstation-portable#tab-3-2-memory-stick-duo), SD, MultiMediaCard (MMC), Microdrive e Compact Flash.
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 #### Equipamentos com "menos fios"
 
@@ -605,7 +605,7 @@ Pessoalmente, acredito que a emulação puramente via software seja a opção ma
 
 Ainda não terminamos de falar sobre compatibilidade! Você pode ficar surpreso que a Sony permitiu que os usuários jogassem um subconjunto de jogos do [PlayStation Portable](playstation-portable#games). Embora a emulação tenha sido realizada completamente via software, assim como a compatibilidade com o PS2 em modelos posteriores.
 
-Como não há nenhum leitor de [disco UMD](playstation-portable#tab-5-1-umd-discs) no PS3, os usuários devem acessar um catálogo de jogos da loja online da Sony para baixar e instalar qualquer jogo do PSP.
+Como não há nenhum leitor de [disco UMD](playstation-portable#tab-3-1-umd-discs) no PS3, os usuários devem acessar um catálogo de jogos da loja online da Sony para baixar e instalar qualquer jogo do PSP.
 
 ## Sistema Operacional
 
@@ -668,7 +668,7 @@ Lembre-se daquelas **256 MB de memória flash NAND** que mencionei brevemente an
 - **Carregadores específicos do console**: especificamente, dois carregadores chamados `bootldr` e `metldr`. Esses arquivos são criptografados com uma chave gravada durante a fabricação, portanto, não podem ser substituídos!
   - Seja como for, existem funções ocultas no hipervisor da Sony que permitem atualizá-los, embora, por alguma razão, nunca tenham sido usadas [@operating_system-psxplace].
 - **CoreOS**: a primeira metade do sistema operacional. Consiste principalmente em mais carregadores que continuarão o processo de inicialização e, eventualmente, a inicialização a segunda metade (**GameOS**). O CoreOS também fornece o **menu de recuperação**, um *shell* alternativo que contém os utilitários de manutenção que os usuários podem usar para (tentar) reparar seu console.
-- **IDs únicos**: semelhantes ao [IDStorage](playstation-portable#tab-3-2-kernelipl) do PSP, eles são usados pelo console para controlar o hardware protegido como a unidade de Blu-ray; ou pela Sony para autenticar o console em seus servidores online (ou seja, a chave IDPS).
+- **IDs únicos**: semelhantes ao [IDStorage](playstation-portable#tab-2-2-kernelipl) do PSP, eles são usados pelo console para controlar o hardware protegido como a unidade de Blu-ray; ou pela Sony para autenticar o console em seus servidores online (ou seja, a chave IDPS).
 - **Recursos de segurança**: alguns programas dependem deles para executar operações de segurança. Por exemplo, filmes em Blu-ray com DRM verificam um bloco chamado *Virtual Table Rights Management* (VTRM — tabela virtual de gestão de direitos, em tradução livre). A Sony também armazena **ferramentas de revogação e registros** para fazer uma lista negra de certificados de segurança que foram comprometidos no passado.
 
 Devido ao seu tamanho maior, os modelos com memória Flash NAND também armazenam a parte restante do sistema operacional (chamada de **GameOS** ou `devflash`). Isso inclui:
@@ -745,7 +745,7 @@ Além disso, como este é um console doméstico que pode ser compartilhado por v
 
 ![O XMB pode instalar jogos, atualizações e expansões (DLCs) usando um instalador de pacotes nativo.](xmb/installpkg.jpg){.tabs-nested-last title="Instalação"}
 
-Por fim, a inclusão de um disco rígido é um alívio para os jogadores veteranos (do PSP) que, no passado, eram obrigados a comprar armazenamento proprietário caro ([Memory Stick Pro Duo](playstation-portable#tab-5-2-memory-stick-duo)) sempre que ficavam sem espaço.
+Por fim, a inclusão de um disco rígido é um alívio para os jogadores veteranos (do PSP) que, no passado, eram obrigados a comprar armazenamento proprietário caro ([Memory Stick Pro Duo](playstation-portable#tab-3-2-memory-stick-duo)) sempre que ficavam sem espaço.
 
 #### Empreste-me o seu PS3
 
@@ -769,7 +769,7 @@ Graças ao OtherOS, usuários experientes tiveram a oportunidade de desenvolver 
 
 Por outro lado, embora os privilégios do OtherOS possam superar os do GameOS (no nível de Kernel), **eles não ultrapassam o hypervisor**, que ainda reside na memória. Portanto, qualquer acesso de hardware do OtherOS ainda depende da vontade do hypervisor da Sony, e acontece que este último **bloqueia o acesso aos *buffers* de comando do RSX** (impedindo o uso das unidades de sombreamento, entre outros componentes usados para acelerar as operações gráficas). Consequentemente, as distribuições Linux recorrem à renderização de software (todos os gráficos são desenhados pelo Cell) e, em seguida, o *buffer* de imagem é transmitido para o RSX para exibição. Embora seja decepcionante que o OtherOS não possa aproveitar todas as capacidades do console, isso provavelmente foi feito para reduzir as superfícies de ataque. Ironicamente, o uso do Cell pelo OtherOS é semelhante ao que a IBM/Toshiba/Sony podem ter originalmente previsto para o PS3!
 
-`r close_float_group(with_markdown = TRUE)`
+{.close-float}
 
 Compartilhando o mesmo destino do aplicativo Folding&#64;home, o OtherOS foi eventualmente removido em uma atualização subsequente, mas devido a causas diferentes (principalmente relacionadas à segurança). Pouco depois, o OtherOS foi restaurado de forma _não oficial_ graças a *exploits* de software e de engenharia reversa. No momento, o OtherOS está disponível se o usuário instalar um _firmware personalizado_. Eu explico isso mais detalhadamente na seção "Antipirataria e homebrew".
 
@@ -819,7 +819,7 @@ Agora que terminamos de falar sobre o desenvolvimento de jogos, é hora de falar
 
 ![Exemplo de jogo de varejo.](games/retail.jpg) {.tab-float}
 
-Nova geração = nova mídia. Conforme as vantagens do DVD começaram a diminuir e suas limitações, expressas pela indústria de jogos (limite de espaço) e pela indústria de filmes (formato 480i) [@games-dvd], se tornaram evidentes, era apenas uma questão de tempo até que a Sony apresentasse [outro padrão](playstation-portable#tab-5-1-umd-discs) para substituir seus novos aparelhos. Para seu novo console, o **disco Blu-ray** foi escolhido.
+Nova geração = nova mídia. Conforme as vantagens do DVD começaram a diminuir e suas limitações, expressas pela indústria de jogos (limite de espaço) e pela indústria de filmes (formato 480i) [@games-dvd], se tornaram evidentes, era apenas uma questão de tempo até que a Sony apresentasse [outro padrão](playstation-portable#tab-3-1-umd-discs) para substituir seus novos aparelhos. Para seu novo console, o **disco Blu-ray** foi escolhido.
 
 O Blu-ray, como o próprio nome indica, é um novo formato de disco óptico que proporciona maior densidade de armazenamento graças ao uso de diodos de luz azul [@games-brit], ao invés dos diodos de luz vermelha usados em DVDs. Como a luz azul tem um comprimento de onda menor do que a luz vermelha, mais informações ([pits e lands](playstation#anti-piracy--region-lock)) podem ser comprimidas no mesmo espaço [@games-blue_laser]. Como resultado, os discos Blu-ray oferecem uma capacidade surpreendentemente grande (entre 25 GB a 50 GB!) usando o mesmo disco de plástico com as mesmas dimensões do CD/DVD.
 
@@ -881,7 +881,7 @@ Além disso, a Sony implementou as seguintes proteções no software:
   - A cadeia de confiança implementa múltiplos **algoritmos de criptografia**, incluindo algoritmos assimétricos como RSA e ECDSA e sistemas simétricos como AES, combinados com HMAC e SHA-1 (para confirmar a integridade dos dados).
 - Algumas chaves de criptografia são **produzidas durante a fabricação** do console, o que significa que, se o hackers encontrarem e vazarem essas chaves, elas não funcionarão em outros consoles. No entanto, isso tem um custo para a Sony, pois ela não pode corrigir o software criptografado com essas chaves depois que o console sai da fábrica.
   - Essas chaves especiais são usadas para o `bootldr` e o `metldr` (os estágios iniciais de inicialização).
-- Os jogos devem chamar o Kernel para acessar o hardware, que por sua vez solicita o acesso ao **Hypervisor**. Essa "cebola de abstração" impede que as [vulnerabilidades do jogo](playstation-portable#tab-8-1-early-blunders) aumentem os privilégios, _em teoria_.
+- Os jogos devem chamar o Kernel para acessar o hardware, que por sua vez solicita o acesso ao **Hypervisor**. Essa "cebola de abstração" impede que as [vulnerabilidades do jogo](playstation-portable#tab-6-1-early-blunders) aumentem os privilégios, _em teoria_.
 
 ### Derrota
 
@@ -917,16 +917,16 @@ Posteriormente, este produto sofreu engenharia reversa por outras comunidades e,
 
 Antes de finalmente falar sobre o grande vencedor da cena *homebrew* do PS3, deixe-me descrever-lhe alguns métodos que foram desenvolvidos na mesma época:
 
-- O **USB Jig**: outro pendrive, dessa vez programado para enganar o console para entrar no **Modo de Serviço de Fábrica**, que é destinado apenas para manutenção do console por pessoal autorizado. O programa embutido no Jig replica o que a Sony fornece para seus engenheiros. A principal vantagem do modo de serviço é permitir um [*downgrade*](playstation-portable#tab-8-2-downgrading) do console para uma versão compatível com o PS Jailbreak. O *payload* também estava disponível na forma de um aplicativo *Homebrew* para o PSP [@anti_piracy-pspjig]. A Sony respondeu corrigindo o modo de serviço para tornar mais difícil restaurá-lo ao modo "normal" ou alterar o firmware dele, desencorajando os usuários a recorrerem ao modo de serviço.
+- O **USB Jig**: outro pendrive, dessa vez programado para enganar o console para entrar no **Modo de Serviço de Fábrica**, que é destinado apenas para manutenção do console por pessoal autorizado. O programa embutido no Jig replica o que a Sony fornece para seus engenheiros. A principal vantagem do modo de serviço é permitir um [*downgrade*](playstation-portable#tab-6-2-downgrading) do console para uma versão compatível com o PS Jailbreak. O *payload* também estava disponível na forma de um aplicativo *Homebrew* para o PSP [@anti_piracy-pspjig]. A Sony respondeu corrigindo o modo de serviço para tornar mais difícil restaurá-lo ao modo "normal" ou alterar o firmware dele, desencorajando os usuários a recorrerem ao modo de serviço.
 - O **Emulador de Disco Óptico** (ODE, de *Optical Disc Emulator*): uma série de produtos de hardware que diferentes empresas (Cobra, E3, etc.) lançaram. Em vez de mexer no firmware do console, eles mexeram na interface SATA/PATA do Blu-ray. Os ODEs são placas que ficam entre a placa-mãe e o drive de Blu-ray, agindo como intermediários que enganam o console fazendo-o pensar que contém um jogo em disco válido, mas está, na verdade, carregando uma imagem de disco de um dispositivo USB externo. Entretanto, esses dispositivos eram bastante caros quando foram lançados. A história *hacking* do PS3 inclui longos períodos de "inviolabilidade" em que não havia nenhum *exploit* de software disponível para novos consoles, então os ODEs foram capazes de preencher essa lacuna.
 - O **Downgrader**: à medida que a Sony continuava a mitigar as vulnerabilidades com mais atualizações de software, os usuários não tinham outra opção senão fazer *downgrade* para um firmware explorável. Assim, empresas como a E3 lançaram equipamentos especializados que podiam sobrescrever o sistema do console "à moda antiga". Ou seja, diretamente programando os chips NAND ou NOR. Por razões óbvias, esse método exigia mais habilidade e paciência em comparação com os métodos baseados em dispositivos USB.
-- **Vazamentos isolados**: este é para fins de pesquisa, ao contrário de uma "funcionalidade" que o usuário verá (mas ainda é imperativo para futuros desenvolvimentos). De qualquer maneira, os dados de revogação (usados para listar certificados comprometidos) são analisados pelo `lv2ldr`, até aí tudo bem? Bem, foi descoberto que esse processo continha muitas vulnerabilidades. Em primeiro lugar e por alguma razão inexplicável, **os dados de revogação podem ser escritos no espaço do usuário**. Em segundo lugar, **o analisador não realiza verificação de limites** nos dados coletados ([_lá vamos nós novamente_](playstation-2#tab-8-4-ps1-overflow)). Portanto, os hackers conseguiram criar dados personalizados de revogação que poderiam produzir um estouro de *buffer* e, em última instância, permitir que eles executassem **código arbitrário no modo isolado da SPU**. Isso permitiu que eles acessassem dados confidenciais (ou seja, chaves) que presumivelmente estavam protegidos do restante do sistema [@operating_system-psxplace].
+- **Vazamentos isolados**: este é para fins de pesquisa, ao contrário de uma "funcionalidade" que o usuário verá (mas ainda é imperativo para futuros desenvolvimentos). De qualquer maneira, os dados de revogação (usados para listar certificados comprometidos) são analisados pelo `lv2ldr`, até aí tudo bem? Bem, foi descoberto que esse processo continha muitas vulnerabilidades. Em primeiro lugar e por alguma razão inexplicável, **os dados de revogação podem ser escritos no espaço do usuário**. Em segundo lugar, **o analisador não realiza verificação de limites** nos dados coletados ([_lá vamos nós novamente_](playstation-2#tab-5-1-independence-overflow)). Portanto, os hackers conseguiram criar dados personalizados de revogação que poderiam produzir um estouro de *buffer* e, em última instância, permitir que eles executassem **código arbitrário no modo isolado da SPU**. Isso permitiu que eles acessassem dados confidenciais (ou seja, chaves) que presumivelmente estavam protegidos do restante do sistema [@operating_system-psxplace].
 
 #### A quebra da criptografia {.tab}
 
 Assim como na saga do PSP, os *exploits* iniciais exigiam muito esforço e poderiam ser facilmente corrigidos pela Sony, resultando em um desvantajoso jogo de gato e rato. No entanto, como aconteceu com o PSP, era apenas uma questão de tempo antes que uma descoberta quebrasse a segurança fundamental deste sistema: sua cadeia de confiança.
 
-Em 2011, George Hotz (junto com a equipe failOverflow) publicou outro avanço: **as chaves privadas de criptografias que a Sony usa para assinar binários executados por `metldr`**. Os binários carregados durante essa fase de inicialização são assinados com uma chave ECDSA. Sendo um sistema de criptografia assimétrica, isso significa que qualquer pessoa que possua a chave privada (Sony, e agora _outros_) pode criptografar e assinar binários, consequentemente, eles parecerão "autênticos" aos olhos do `metldr`. Como o `metldr` é o terceiro estágio de inicialização antes de carregar o `lv1` (o Hypervisor), isso significa que os hackers poderão personalizar ou desenvolver seu próprio Hypervisor, Kernel e qualquer coisa abaixo dele. Além disso, todos os PlayStation 3 no mercado também pensarão que os binários personalizados são autênticos. No geral, um *exploit* do [tipo Pandora](playstation-portable#tab-8-3-pandora) completamente feito por software.
+Em 2011, George Hotz (junto com a equipe failOverflow) publicou outro avanço: **as chaves privadas de criptografias que a Sony usa para assinar binários executados por `metldr`**. Os binários carregados durante essa fase de inicialização são assinados com uma chave ECDSA. Sendo um sistema de criptografia assimétrica, isso significa que qualquer pessoa que possua a chave privada (Sony, e agora _outros_) pode criptografar e assinar binários, consequentemente, eles parecerão "autênticos" aos olhos do `metldr`. Como o `metldr` é o terceiro estágio de inicialização antes de carregar o `lv1` (o Hypervisor), isso significa que os hackers poderão personalizar ou desenvolver seu próprio Hypervisor, Kernel e qualquer coisa abaixo dele. Além disso, todos os PlayStation 3 no mercado também pensarão que os binários personalizados são autênticos. No geral, um *exploit* do [tipo Pandora](playstation-portable#tab-6-3-pandora) completamente feito por software.
 
 A descoberta dessa chave, que deveria ser computacionalmente inviável, é possível graças ao que é considerado um "erro" na implementação da Sony do algoritmo ECDSA. Para resumir, a fórmula matemática usada para o ECDSA usa um valor aleatório que a Sony nunca mudou em todos os arquivos de atualização que distribuiu [@anti_piracy-ecsda], tornando aquele número uma constante, e deixando mais fácil descobrir as outras variáveis. Foi o que acabou acontecendo.
 
@@ -954,7 +954,7 @@ Há também o meu favorito: trazer as funções de depuração de um kit de test
 
 <!-- TODO: metldr.2 is not mentioned. -->
 
-Semelhante aos eventos que ocorreram após a criação de [CFWs](playstation-portable#tab-8-4-cfw-and-beyond) para o PSP, a Sony retaliou com duas atualizações de segurança:
+Semelhante aos eventos que ocorreram após a criação de [CFWs](playstation-portable#tab-6-4-cfw-and-beyond) para o PSP, a Sony retaliou com duas atualizações de segurança:
 
 Do **lado do software**, a Sony lançou duas atualizações de sistema que aprimoraram o sistema de segurança:
 

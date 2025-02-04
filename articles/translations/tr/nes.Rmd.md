@@ -521,7 +521,7 @@ Famicom Disk Sistemini (FDS) oluşturan iki bileşen.
 Famicom Disk Sistemi, Famicom'a aşağıdaki hizmetleri ekledi:
 
 - Oyunlar için **Famicom Disk** [@games-fds] adlı yeni bir dağıtım aracı. Mitsumi'nin 'Quick Disk'ini temel alan bu disk, her bir taraf için **~64 KB veri** sağlar ve yeniden yazılabilir.
-- [Wavetable synthesis](game-boy#tab-7-3-wave) [@games-fds_audio] kullanan bir **ekstra ses kanalı**.
+- [Wavetable synthesis](game-boy#tab-3-2-wave) [@games-fds_audio] kullanan bir **ekstra ses kanalı**.
 
 ![FDS ekipmanı Famicom'a takılıyken [@photography-amos].](fds/mounted.png) {.open-float.no-borders}
 

@@ -107,7 +107,7 @@ Tous les calculs graphiques sont réalisés par le CPU, avant que le **Picture P
 
 L'image est affichée sur un écran LCD intégré, elle a une résolution de **160×144 pixels** et, dans le cas du Game Boy monochrome, affiche **4 nuances de gris** (blanc, gris clair, gris foncé et noir). Comme le Game Boy original a un écran LCD vert, l'image aura une apparence *verdâtre*.
 
-Si vous avez lu l'article sur la NES, vous vous souvenez peut-être que le PPU a été conçu pour se conformer au faisceau du CRT (tube cathodique). Cependant (et pour des raisons évidentes), nous avons un écran LCD dans la Game Boy. Eh bien, le nouveau PPU suit également cette méthodologie car les écrans LCD doivent également être rafraîchis. En faisant cela, cette console bénéficiera des [effets basés sur CRT](nes#tab-5-4-background-split) qui ont précédemment permis aux développeurs NES de proposer du contenu imaginatif.
+Si vous avez lu l'article sur la NES, vous vous souvenez peut-être que le PPU a été conçu pour se conformer au faisceau du CRT (tube cathodique). Cependant (et pour des raisons évidentes), nous avons un écran LCD dans la Game Boy. Eh bien, le nouveau PPU suit également cette méthodologie car les écrans LCD doivent également être rafraîchis. En faisant cela, cette console bénéficiera des [effets basés sur CRT](nes#tab-1-4-background-split) qui ont précédemment permis aux développeurs NES de proposer du contenu imaginatif.
 
 ### Organiser le contenu
 
@@ -179,7 +179,7 @@ La couche Window est une couche de **160x144 pixels** contenant des tuiles affic
 
 La carte de tuiles restante peut être affectée à la couche Window, elle partage également la même palette avec la couche Background.
 
-En somme, cela peut sembler être une fonctionnalité stupide. Comme la fenêtre n'a pas de transparence et occulte donc complètement l'arrière-plan, vous pouvez vous demander 'À quoi sert-elle ?'. Eh bien, les couches Background et Window peuvent être utilisées **simultanément** à différentes parties de l'écran. Cela est destiné à afficher des informations principalement en bas de l'écran, mais alors que sur la NES cela nécessitait de réaliser des [écritures complexes et chronométrées](nes#tab-5-4-background-split), le PPU de la Game Boy peut le gérer automatiquement.
+En somme, cela peut sembler être une fonctionnalité stupide. Comme la fenêtre n'a pas de transparence et occulte donc complètement l'arrière-plan, vous pouvez vous demander 'À quoi sert-elle ?'. Eh bien, les couches Background et Window peuvent être utilisées **simultanément** à différentes parties de l'écran. Cela est destiné à afficher des informations principalement en bas de l'écran, mais alors que sur la NES cela nécessitait de réaliser des [écritures complexes et chronométrées](nes#tab-1-4-background-split), le PPU de la Game Boy peut le gérer automatiquement.
 
 Ainsi, les jeux l'utilisent normalement pour afficher les statistiques des joueurs, les scores et autres informations 'toujours actives'.
 

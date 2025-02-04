@@ -152,7 +152,7 @@ Her giriş 8 bayt uzunluğundadır, ancak 16 bitlik ayrıntı düzeyi nedeniyle 
 
 Hepsinden önemlisi, <strong x-id=“1”>CPU bu tabloya erişemez</strong>, bu nedenle VRAM'de tamamlanması ve ardından VDC'ye kopyalamak için bir DMA kanalının etkinleştirilmesi gerekir (böylece ikincisi onu kullanabilir).
 
-Sınırlamalarla ilgili olarak, tarama çizgisi başına en fazla 16 sprite olabilir. Diğer taraftan, sprite taşması veya <a href=“master-system#tab-4-1-collision-detection”>çarpışma</a> olduğunda oyunun bilgilendirilebilmesi için kesmeler ayarlanabilir.
+Sınırlamalarla ilgili olarak, tarama çizgisi başına en fazla 16 sprite olabilir. Diğer taraftan, sprite taşması veya <a href=“master-system#tab-2-1-collision-detection”>çarpışma</a> olduğunda oyunun bilgilendirilebilmesi için kesmeler ayarlanabilir.
 
 #### Sonuç {.tab}
 

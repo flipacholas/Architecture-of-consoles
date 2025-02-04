@@ -117,7 +117,7 @@ Volviendo al tema, la Wii estandarizó esta característica al permitir activar 
 
 El nuevo y disruptivo diseño del mando supuso nuevos tipos de interacción en los juegos de Wii. Dado que el Wiimote permitía a los usuarios apuntar a la pantalla, algunos juegos como *Super Mario Galaxy* o *The Legend of Zelda: Twilight Princess* utilizaban esta función para permitir al jugador interactuar con el escenario.
 
-En el informe titulado _Depuración de Mitos: ¿es más exigente emular la Wii que la GameCube?_[@graphics-dolphin], los desarrolladores del emulador Dolphin explican que los juegos como Super Mario Galaxy y otros juegos de disparos en primera persona dependen del[ Z-Buffer integrado](gamecube#tab-1-4-render) para identificar el objeto al que el Wiimote está apuntando y/o revisar que tan lejos está el objeto del cursor del Wiimote.
+En el informe titulado _Depuración de Mitos: ¿es más exigente emular la Wii que la GameCube?_[@graphics-dolphin], los desarrolladores del emulador Dolphin explican que los juegos como Super Mario Galaxy y otros juegos de disparos en primera persona dependen del[ Z-Buffer integrado](gamecube#tab-3-4-render) para identificar el objeto al que el Wiimote está apuntando y/o revisar que tan lejos está el objeto del cursor del Wiimote.
 
 No se trata de una función nueva en sí, sino de un uso novedoso de las capacidades actuales. Los juegos de GameCube no dependían de un mando multiusos con función de puntero. Ahora, los jugadores pueden controlar al personaje y apuntar a la pantalla al mismo tiempo.
 

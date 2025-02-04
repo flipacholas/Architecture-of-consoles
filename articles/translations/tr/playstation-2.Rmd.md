@@ -57,7 +57,7 @@ Yeni sayıların ardında yatan şeyi anlamak için o dönemi kuşatan bir tarih
 
 - **Speculative execution**: CPU, hesaplanmadan önce conditional branch sonucunu tahmin eder. Bu öngörüler, dâhilî 512 girdilik bir tabloda saklanan önceki işlemlerin sonuçlarına göre gerçekleştirilir. Koşul hesaplandığında, eğer öngörü doğru ise, İşlemci önemli zaman kazanmış olacak. Yok değilse, ekstra hesaplamalar yok edilir.
   - Bu sayede MIPS, sonunda sürekli tekrar eden bir sorunu ([control hazards](playstation#delay-galore)<!--Türkçesi için önce PS1 makalesi çevirilmeli-->) bir avantaja çevirdi.
-  - Diğer işlemcilerde ise [dynamic branch prediction](gamecube#features) olarak anılan benzer bir işleyiş biçimi görebilirsiniz.
+  - Diğer işlemcilerde ise [dynamic branch prediction](gamecube#the-powerpc-gekko) olarak anılan benzer bir işleyiş biçimi görebilirsiniz.
 - **4-çıkışlı süperskaler** pipeline: [Pipeline tasarımına](sega-saturn#cpu) ek olarak, CPU artık pipeline'ın başlangıcında dört adede kadar talimat getirecek ve bunları ayrı birimlere dağıtarak CPU'nun bu talimatları aynı anda yürütmesini sağlayacaktır. Bunu yapmak suretiyle, İşlemci, daha üst derecede bir paralelliğe erişir.
 - **Out-of-order execution**: Ayrıca İşlemci, birimlerini olabildiğince doldurmak için talimatların sırasını da yeniden düzenleyecek (hazard eklenmediği sürece).
 - **128-bit'lik veri yoluna sahip L2 önbelleği**, aynı anda İşlemciye daha fazla veri çekmeyi mümkün kılar, bu da önceki geliştirmeler göz önüne alındığında bir gerekiliktir.
@@ -273,7 +273,7 @@ Bu aşama, her seferde 16'ya kadar pikseli işleyebilen geniş bir Piksel Birimi
 
 Doku haritaları, DRAM'in **Doku Arabelleği** olarak adlandırılan bir bölümünden getirilirler, kaldı ki bölümle de **Doku Sayfa Arabelleği** denilen ayrı bir yer sayesinde bağlantı kurulur ve bu, dokular için bir önbellekleme mekanizması görevinde gibi görünüyor. Ayrıca CLUT'lar da bu sayfa sistemiyle haritalanır. Her iki eleman da **512-bit veri yolu** kullanılarak taşınıp alınır.
 
-Piksel Birimi, temel şekiller üzerine dokuları giydirirken **perspektif düzeltme** gerçekleştirir (önceki kosoldaki [affine mapping](playstation#tab-4-5-textures) yaklaşımına göre fevkalâde bir iyileştirme). Dahası, **bilineer ve trilineer filtreleme** de gerçekleştirebilir ki bunlardan ikincisi, mipmap'lenmiş dokularla beraber kullanılır.
+Piksel Birimi, temel şekiller üzerine dokuları giydirirken **perspektif düzeltme** gerçekleştirir (önceki kosoldaki [affine mapping](playstation#tab-3-5-textures) yaklaşımına göre fevkalâde bir iyileştirme). Dahası, **bilineer ve trilineer filtreleme** de gerçekleştirebilir ki bunlardan ikincisi, mipmap'lenmiş dokularla beraber kullanılır.
 
 #### Testler {.tab}
 
@@ -614,7 +614,7 @@ Memento'nun ters mühendisliği yapıldıktan sonra, Memor32 gerektirmeyen bir a
 
 Ek olarak, yükleyici iki seçenek sunar: yalnızca mevcut konsol için gereken dosyaları yüklemek veya tüm PS2 varyantları için genel bir kurulum yüklemek. İlginçtir ki, ikinci seçeneği gerçekleştirmek oldukça zordu [@anti_piracy-fmcb]. Başlangıçta, yükleyici, alanın tükenmesini önlemek için Hafıza Kartının bölümleme tablosuyla oynayacaktı, bu özellikle güvenli olmayan bir şeydi.
 
-Şans eseri 2011 yılında [PlayStation 3'ün](playstation-3) [güvenlik sistemi](playstation-3#os-security-hierarchy) [ele geçirildi](playstation-3#tab-17-4-the-fall-of-encryption) ve içinde saklı birçok sır açığa çıktı. Diğerlerinin yanı sıra, [PS2 geri uyumluluğu](playstation-3#backwards-compatibility) için global olarak kullanılan MagicGate anahtarları koleksiyonu bulunmaktadır. O andan itibaren, PS2 çalıştırılabilir dosyaları oluşturmak için sınırlı DVD ikili imza hilesine başvurmak artık gerekli değildi. Ve böylece, `1.8b` sürümünden bu yana FreeMCBoot, PlayStation 2'de her türlü Homebrew'u çalıştırmak için en güvenli ve en popüler yöntem olarak konumunu korumuştur.
+Şans eseri 2011 yılında [PlayStation 3'ün](playstation-3) [güvenlik sistemi](playstation-3#os-security-hierarchy) [ele geçirildi](playstation-3#tab-9-4-the-fall-of-encryption) ve içinde saklı birçok sır açığa çıktı. Diğerlerinin yanı sıra, [PS2 geri uyumluluğu](playstation-3#backwards-compatibility) için global olarak kullanılan MagicGate anahtarları koleksiyonu bulunmaktadır. O andan itibaren, PS2 çalıştırılabilir dosyaları oluşturmak için sınırlı DVD ikili imza hilesine başvurmak artık gerekli değildi. Ve böylece, `1.8b` sürümünden bu yana FreeMCBoot, PlayStation 2'de her türlü Homebrew'u çalıştırmak için en güvenli ve en popüler yöntem olarak konumunu korumuştur.
 
 ### Takip eden gelişmeler {.tabs-close}
 

@@ -111,7 +111,7 @@ VDP działa z częstotliwością **~13 MHz** i obsługuje wiele trybów rozdziel
 
 ### Powód wielu rozdzielczości wyświetlania
 
-Technicznie rzecz biorąc, VDP może zmieścić 40 lub 32 kolumny [kafelków](master-system#tiles) na linię skanowania, a liczba kafelków na wiersz zależy od regionu (28 w NTSC lub 30 w PAL) [@graphics-keil]. Większość gier PAL nie przejmuje się dodatkowymi kafelkami dozwolonymi w systemach PAL (ponieważ prawdopodobnie muszą zachować spójność między dwoma regionami, a NTSC jest wspólnym mianownikiem), więc instruują VDP, aby renderował z 28 rzędami (tak jak zrobiłoby w systemach NTSC). W ten sposób VDP nie ma innego wyjścia, jak wypełnić nieużywany obszar kolorem tła (używanym również podczas overscan).
+Technicznie rzecz biorąc, VDP może zmieścić 40 lub 32 kolumny [kafelków](master-system#tab-1-1-tiles) na linię skanowania, a liczba kafelków na wiersz zależy od regionu (28 w NTSC lub 30 w PAL) [@graphics-keil]. Większość gier PAL nie przejmuje się dodatkowymi kafelkami dozwolonymi w systemach PAL (ponieważ prawdopodobnie muszą zachować spójność między dwoma regionami, a NTSC jest wspólnym mianownikiem), więc instruują VDP, aby renderował z 28 rzędami (tak jak zrobiłoby w systemach NTSC). W ten sposób VDP nie ma innego wyjścia, jak wypełnić nieużywany obszar kolorem tła (używanym również podczas overscan).
 
 Możesz zobaczyć, które gry PAL są renderowane w trybie NTSC, sprawdzając `Mode Set Register #2` w emulatorze z możliwościami debugowania (tj. Exodus). Jeśli czwarty bit od prawej to `0`, to VDP działa w trybie NTSC [@graphics-resolution].
 
@@ -205,7 +205,7 @@ Podsumowując, możecie zobaczyć nowe wartości priorytetów, a oddzielne płas
 
 ![Przydzielona warstwa Sprite z zaznaczonym wybranym obszarem.](vdp_sonic/sprite_selected.png){.tabs-nested-last .pixel title="Wybrany"}
 
-Na tej płaszczyźnie kafelki są traktowane jako **sprite'y**. Są one umieszczone na mapie **512x512 pikseli** i tylko jej część (rozdzielczość wyjściowa VDP) jest wybierana do wyświetlania. Jest to przydatne do ukrywania niechcianych sprite'ów lub przygotowywania innych, które będą pokazywane w przyszłości. VDP udostępnia również starą funkcję [wykrywania kolizji](master-system#tab-4-1-collision-detection).
+Na tej płaszczyźnie kafelki są traktowane jako **sprite'y**. Są one umieszczone na mapie **512x512 pikseli** i tylko jej część (rozdzielczość wyjściowa VDP) jest wybierana do wyświetlania. Jest to przydatne do ukrywania niechcianych sprite'ów lub przygotowywania innych, które będą pokazywane w przyszłości. VDP udostępnia również starą funkcję [wykrywania kolizji](master-system#tab-2-1-collision-detection).
 
 Sprite'y są tworzone przez połączenie maksymalnie 4x4 kafelków (mapa 32x32 piksele) i wybranie do 16 kolorów (w tym *przezroczyste*). Jeśli potrzebny jest większy sprite, można połączyć kilka spriteów w jeden.
 

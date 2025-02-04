@@ -175,7 +175,7 @@ Espresso 中的所有L2缓存都是 **4路关联**。 与Xenon和Cell中的8路�
 
 此外，PowerPC针对多核心环境下的两条指令。 `lwarx` (Load Word和Reserve Indexed) 和`stwcx` (tore Word Condition Indexed), 不再能够正常工作. 正如fail0verflow所指出的[@graphics-smp]，这些现在需要手动刷新缓存才能按预期工作。 至少它不是第一个带有损坏指令的 PowerPC 变体(参见 [Xbox 360 的 `xdcbt`](xbox-360#a-new-but-short-lived-instruction)).
 
-幸运的是，这并不全是坏消息. 至少Espresso继承了Gekko的[乱序执行](gamecube#features)，而这一点不得不从 [Xenon 和 Cell](xbox-360#revisiting-old-paradigms) 中删除.
+幸运的是，这并不全是坏消息. 至少Espresso继承了Gekko的[乱序执行](gamecube#the-powerpc-gekko)，而这一点不得不从 [Xenon 和 Cell](xbox-360#revisiting-old-paradigms) 中删除.
 
 ### 可用内存 {.tabs-close}
 
@@ -285,7 +285,7 @@ TeraScale架构是Xenos/Crayola移植到PC 市场的具体化……而GPU7则是
 
 ![数据如何在可用内存中进行编排的例子.](gpu/gpu_content.png)
 
-反过来，Wii U的EDRAM 大于Xbox 360(意味着 [tiling（tiling指的是一种将渲染区分割为小单元的技术，同样的可以在DC的图形板块看见）](dreamcast#graphics)的需求更小了)。 然而，EDRAM不包括[用于后处理的专用电路](xbox-360#tab-6-5-pixel-operations)。
+反过来，Wii U的EDRAM 大于Xbox 360(意味着 [tiling（tiling指的是一种将渲染区分割为小单元的技术，同样的可以在DC的图形板块看见）](dreamcast#graphics)的需求更小了)。 然而，EDRAM不包括[用于后处理的专用电路](xbox-360#tab-2-5-pixel-operations)。
 
 ### 构造画面（frame）
 
@@ -341,7 +341,7 @@ TeraScale架构是Xenos/Crayola移植到PC 市场的具体化……而GPU7则是
 
 光栅化阶段往往比其他的阶段简单得多 主要原因是将顶点转换为像素的行为大多是系统性的，不需要额外的编程能力(除了一些可供调整的参数)。 因此，这个阶段与Crayola/Xenos是相同的。
 
-虽然如此，Z缓冲区和模板缓冲区不再分配在专用内存上。 相反，新的**渲染后端**块(执行Z和模板测试，并支持[分层测试](xbox-360#tab-6-3-rasterization)) 必须访问RAM才能工作(EDRAM或主RAM)。
+虽然如此，Z缓冲区和模板缓冲区不再分配在专用内存上。 相反，新的**渲染后端**块(执行Z和模板测试，并支持[分层测试](xbox-360#tab-2-3-rasterisation)) 必须访问RAM才能工作(EDRAM或主RAM)。
 
 光栅化器可以使用128位像素格式[@graphics-r7xxreference] 合成高达8192 x 8192像素的帧。 这将允许具有HDR色彩质量的大帧数。 然而，出于显而易见的原因，开发者并不需要_那么_大的帧数(1280 x 720对于这个控制台已经足够了)，除了HDR将被广泛使用。
 
@@ -361,7 +361,7 @@ TeraScale架构是Xenos/Crayola移植到PC 市场的具体化……而GPU7则是
 
 一旦帧被渲染出来，开发人员可以应用更多的Z测试(如果在之前的阶段没有激活)，颜色混合，并最终将像素导出到帧缓冲区以进行显示。 这都是由**渲染后端**(有两个) 执行的操作，它们位于像素着色器阶段的末尾。
 
-最后，尽管Wii U没有像Xbox 360那样在EDRAM模块中捆绑复杂的电路，但GPU7仍然提供了许多有趣的功能。 这些功能包括 高达16次的自动多样本抗锯齿(**MSAA 16x**)，用于软化边缘，令人惊讶的是，它不需要[平铺渲染](xbox-360#tab-6-5-pixel-operations)，因为Wii U拥有更大的32 MB EDRAM(MEM1)，足以支持这些操作(当然，MSAA 16x可能会消耗过多的MEM1，不过MSAA 8x仍然可以接受)。
+最后，尽管Wii U没有像Xbox 360那样在EDRAM模块中捆绑复杂的电路，但GPU7仍然提供了许多有趣的功能。 这些功能包括 高达16次的自动多样本抗锯齿(**MSAA 16x**)，用于软化边缘，令人惊讶的是，它不需要[平铺渲染](xbox-360#tab-2-5-pixel-operations)，因为Wii U拥有更大的32 MB EDRAM(MEM1)，足以支持这些操作(当然，MSAA 16x可能会消耗过多的MEM1，不过MSAA 8x仍然可以接受)。
 
 除此之外，我们还需要考虑程序员可能决定实现的自定义算法。 这要归功于API的灵活性和大量可用的着色器操作，包括[Compute Shaders](xbox-360#the-impact-on-the-industry)(将CPU计算卸载到GPU)。
 
@@ -600,9 +600,9 @@ Wii 毫不避讳地提供了以多媒体为中心的存储选项 (SD 卡是一�
     9. Espresso 是下一个，所以IOSU 将 `Cafe OS` (加密形式) 复制到 MEM2 并启动 Espresso。
 2. Espresso 的第一个核心启动后...
     1. 重置矢量（vector）处于地址 `0x00000100`, 此处被 Boot ROM 占用, 所以它开始在那里执行.
-    2. MMU, L1/L2 缓存和注册表被清除。 然后，Espresso 切换到“翻译模式”(激活 [虚拟内存](gamecube#organising-memory-and-sorting-out-aram))。
+    2. MMU, L1/L2 缓存和注册表被清除。 然后，Espresso 切换到“翻译模式”(激活 [虚拟内存](gamecube#making-the-most-of-aram))。
     3. 通过篡改锁定的 L1 缓存和空内存写入，BootROM 被复制到 L1（为了更快地运行），而不会到达外部 RAM。
-    4. 重置向量（reset vector）变成一个无限循环(以阻止试图重置 [的 CPU](xbox-360#tab-23-1-the-glitcher))。
+    4. 重置向量（reset vector）变成一个无限循环(以阻止试图重置 [的 CPU](xbox-360#tab-13-1-the-glitcher))。
     4. OTP 的 AES 密钥已复制到 L1。 然后，OTP 被禁用。
     5. `Cafe OS 内核`的 header 已复制到L1，其签名使用存储的密钥进行验证。
     6. `Cafe OS 内核`的数据通过使用 DMA 将数据散列和解密，以区块的方式来回发送到 L1 缓存。
@@ -723,7 +723,7 @@ vWii 模式不一定需要电视。 如果用户选择激活 GamePad 显示，Ga
 
 ![一款零售游戏的例子。](photos/retail_game.jpg) {.open-float}
 
-零售店出售的**Wii U光盘**，是松下公司设计的专有光盘介质，试图复制[Blu-Ray光盘](playstation-3#tab-14-1-blu-ray-discs)的许多功能...... 而不使用蓝光光盘。 它可以容纳约 24 GB 的数据，但只有 **~20 GB 可用于实际游戏数据**，其余用于存储软件更新文件、元数据和其他Cafe OS需要的信息。
+零售店出售的**Wii U光盘**，是松下公司设计的专有光盘介质，试图复制[Blu-Ray光盘](playstation-3#tab-8-1-blu-ray-discs)的许多功能...... 而不使用蓝光光盘。 它可以容纳约 24 GB 的数据，但只有 **~20 GB 可用于实际游戏数据**，其余用于存储软件更新文件、元数据和其他Cafe OS需要的信息。
 
 光驱还能够读取[Wii光盘](wii#medium)，而Wii光盘又与标准DVD格式类似。 然而，光驱不支持DVD或蓝光的播放功能。
 
@@ -775,7 +775,7 @@ vWii 模式不一定需要电视。 如果用户选择激活 GamePad 显示，Ga
 
 …… 嗯，到目前为止，**光驱还没有被公开破解**。 有报道称，已经开发出名为'WiiKeyU'[@anti_piracy-wiiukey]的驱动器模拟器，该模拟器可以加载光盘镜像，但是没有任何产品进入市场。
 
-考虑到蓝光驱动器在整个Wii U的生命周期中的低采用率，我推测没有足够的热情来破解驱动器 和/或 深入研究其新的保护方法。 对于好奇的人来说，Wii U的主板现在以类似于[Xbox 360驱动器](xbox-360#tab-19-1-first-party-security)的方式与驱动器进行身份验证，并且从那里开始，所有的通信都是加密的。
+考虑到蓝光驱动器在整个Wii U的生命周期中的低采用率，我推测没有足够的热情来破解驱动器 和/或 深入研究其新的保护方法。 对于好奇的人来说，Wii U的主板现在以类似于[Xbox 360驱动器](xbox-360#tab-9-1-first-party-security)的方式与驱动器进行身份验证，并且从那里开始，所有的通信都是加密的。
 
 这让我们剩下两个目标(IOSU和Cafe OS)，而且，这一次，我们做了大量的研究。
 
@@ -843,7 +843,7 @@ Wii 模式下的应用程序**具有相同的性质**，Espresso 提供了一个
 
 2013年，在第30届混沌通信大会(Chaos Communication Congress) 期间，fail0overflow发表了大量的发现[@cpu-fail0verflow]，不久之后，为其他研究人员和开发人员启动了一个连锁反应。 为了给出一个概述，fail0verflow 指出：
 
-1. Wii时代的老Broadway和Starlet漏洞**仍然在vWii模式下工作**。 这使研究人员获得了对 Starbuck的控制权，然后可以利用它来篡改内存 和/或 攻击Espresso。 换句话说，内部存在一个[glitcher](xbox-360#tab-23-1-the-glitcher)与[snooper](xbox#tab-9-2-bootstrap-search)。
+1. Wii时代的老Broadway和Starlet漏洞**仍然在vWii模式下工作**。 这使研究人员获得了对 Starbuck的控制权，然后可以利用它来篡改内存 和/或 攻击Espresso。 换句话说，内部存在一个[glitcher](xbox-360#tab-13-1-the-glitcher)与[snooper](xbox#tab-5-2-bootstrap-search)。
 2. 一旦Boot ROM完成了对Ancast image的解密，**没有任何东西可以验证未加密的数据是否被第三方更改**。 因此，通过改变解密的内存(在vWii模式下使用被劫持的Starbuck)，**Espresso最终将执行任意代码**。 但只是提取了Boot ROM便到此为止了…………
     - 这是fail0verflow的一个起点，它使该小组能够提取系统代码 (目前只在vWii模式下) 用于研究目的。 但这为新发现铺平了道路。 虽然，这并不包括Boot ROM和OTP密钥，因为在任意代码执行之前，访问是被禁用的。
 3. 在 Starbuck 的控制下，在 Espresso 执行其 Boot ROM 时锁定 `SREST`（软重置）行会导致它陷入无限循环（因为 Boot ROM 在 Espresso 的重置向量中添加了陷阱）。 然而，如果Espresso在Boot ROM执行的最后阶段被软复位 (特别是在刷新缓存之后)，复位向量会指向MEM2中的一个可写位置。 因此，这使得**在 Boot ROM 仍然可见的情况下允许执行任意代码**。

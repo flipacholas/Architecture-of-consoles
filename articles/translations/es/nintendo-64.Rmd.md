@@ -206,7 +206,7 @@ Si has leído sobre las consolas anteriores, probablemente estás al tanto del i
 
 Una vez que el RDP rasteriza los vectores, el z-value del nuevo píxel se compara con el valor respectivo en el Z-buffer. Si el nuevo píxel contiene un z-value más pequeño, esto significa que el nuevo píxel se posiciona delante del anterior, por lo que el nuevo valor se escribirá el frame-buffer y z-buffer. De lo contrario, el píxel se descarta.
 
-En general, el nuevo algoritmo es muy beneficioso: Los programadores ya no tienen que preocuparse por implementar métodos para ordenar polígonos [basados en software](playstation#tab-4-2-visibility-approach) que tienden a consumir bastantes recursos de la CPU. Sin embargo, el Z-buffer no previene procesar geometría innecesaria (eventualmente descartada o sobrescrita, que consumen recursos de todas maneras). Para ello, el motor del juego puede optar por incluir un algoritmo de **'occlusion culling'** para descartar la geometría, que no será visible, lo antes posible.
+En general, el nuevo algoritmo es muy beneficioso: Los programadores ya no tienen que preocuparse por implementar métodos para ordenar polígonos [basados en software](playstation#tab-3-2-visibility-approach) que tienden a consumir bastantes recursos de la CPU. Sin embargo, el Z-buffer no previene procesar geometría innecesaria (eventualmente descartada o sobrescrita, que consumen recursos de todas maneras). Para ello, el motor del juego puede optar por incluir un algoritmo de **'occlusion culling'** para descartar la geometría, que no será visible, lo antes posible.
 
 ### Secretos y limitaciones
 

@@ -103,7 +103,7 @@ O VDP opera a **~13 MHz** e suporta múltiplos modos de resolução dependendo d
 
 ### Por trás das múltiplas resoluções de exibição
 
-Tecnicamente falando, o VDP pode acomodar tanto 40 ou 32 colunas de *[tiles](master-system#tiles)* (ladrilhos) por linha de varredura, e o número de linhas de *tiles* depende da região (28 no NTSC ou 30 no PAL) [@graphics-keil]. No entanto, a maioria dos jogos PAL não se preocupa com os *tiles* extras permitidos em sistemas PAL (provavelmente porque precisam manter a consistência entre as duas regiões, e o NTSC é o denominador comum), então eles instruem o VDP a renderizar apenas 28 linhas (como fariam em sistemas NTSC). Assim, o VDP não tem opção se não preencher a área não utilizada com uma cor de fundo (também usada durante o *overscan*).
+Tecnicamente falando, o VDP pode acomodar tanto 40 ou 32 colunas de *[tiles](master-system#tab-1-1-tiles)* (ladrilhos) por linha de varredura, e o número de linhas de *tiles* depende da região (28 no NTSC ou 30 no PAL) [@graphics-keil]. No entanto, a maioria dos jogos PAL não se preocupa com os *tiles* extras permitidos em sistemas PAL (provavelmente porque precisam manter a consistência entre as duas regiões, e o NTSC é o denominador comum), então eles instruem o VDP a renderizar apenas 28 linhas (como fariam em sistemas NTSC). Assim, o VDP não tem opção se não preencher a área não utilizada com uma cor de fundo (também usada durante o *overscan*).
 
 É possível ver quais jogos em PAL renderizam no modo NTSC verificando o `Mode Set Register #2` em um emulador com recursos de depuração (por exemplo, o Exodus). Se o quarto bit contando da direita for `0`, então o VDP está sendo executado no modo NTSC [@graphics-resolution].
 
@@ -197,7 +197,7 @@ Em resumo, é possível ver que os novos valores de prioridade e planos separado
 
 ![Camada de <em>sprite</em> alocada com área selecionada marcada.](vdp_sonic/sprite_selected.png){.tabs-nested-last .pixel title="Selecionado"}
 
-Neste plano, tiles são tratados como ***sprites***. Eles são posicionados em um mapa de **512x512 píxeis** e apenas uma parte dele (a resolução de saída do VDP) é selecionada para exibição. Isto é conveniente para ocultar *sprites* indesejados ou preparar outros que serão mostrados no futuro. O VDP também fornece uma antiga função de [detecção de colisão](master-system#tab-4-1-collision-detection).
+Neste plano, tiles são tratados como ***sprites***. Eles são posicionados em um mapa de **512x512 píxeis** e apenas uma parte dele (a resolução de saída do VDP) é selecionada para exibição. Isto é conveniente para ocultar *sprites* indesejados ou preparar outros que serão mostrados no futuro. O VDP também fornece uma antiga função de [detecção de colisão](master-system#tab-2-1-collision-detection).
 
 Os *sprites* são formados pela combinação de até 4x4 *tiles* (mapa de 32x32 píxeis) e selecionando até 16 cores (incluindo *transparência*). Se for necessário um *sprite* maior, vários *sprites* podem ser combinados em um.
 

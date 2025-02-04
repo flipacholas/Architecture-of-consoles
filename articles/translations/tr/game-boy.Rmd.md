@@ -107,7 +107,7 @@ Tüm grafik hesaplamaları CPU tarafından yapılıyor, daha sonra **Resim İşl
 
 Resim entegre bir LCD ekranda görüntülenir, **160×144 piksel** çözünürlüğe sahiptir ve **4 gri tonu** (beyaz, açık gri, koyu gri ve siyah) gösterir. Ancak orijinal Game Boy yeşil bir LCD'ye sahip olduğundan, resim *yeşilimsi* görünecektir.
 
-NES makalesini daha önce okuduysanız, PPU'nun CRT ışınını takip edecek şekilde tasarlandığını hatırlayabilirsiniz. Ancak (ve bariz nedenlerden dolayı), Game Boy'da bir LCD ekranımız var. Eh, yeni PPU da LCD'lerin de yenilenmesi gerektiğinden dolayı bu metodolojiyi izliyor. Böyle yaparak, bu konsol [CRT tabanlı efektler](nes#tab-5-4-background-split) sayesinde NES geliştiricilerinin daha önce yaratıcı içerikler sunabilmesini sağladı.
+NES makalesini daha önce okuduysanız, PPU'nun CRT ışınını takip edecek şekilde tasarlandığını hatırlayabilirsiniz. Ancak (ve bariz nedenlerden dolayı), Game Boy'da bir LCD ekranımız var. Eh, yeni PPU da LCD'lerin de yenilenmesi gerektiğinden dolayı bu metodolojiyi izliyor. Böyle yaparak, bu konsol [CRT tabanlı efektler](nes#tab-1-4-background-split) sayesinde NES geliştiricilerinin daha önce yaratıcı içerikler sunabilmesini sağladı.
 
 ### İçeriğin düzenlenmesi
 
@@ -179,7 +179,7 @@ Pencere, arka plan ve sprite'ların üstünde görüntülenen kutucukları içer
 
 Geriye kalan döşeme haritası Window katmanına atanabilir, ayrıca Arka Plan katmanıyla aynı paleti paylaşır.
 
-Sonuç olarak, bu aptalca bir özellik gibi gelebilir. Pencerenin saydam olmaması ve Dolayısıyla Arka Planı tamamen gizlemesi nedeniyle, 'Bu ne işe yarar?' diye merak edebilirsiniz. Hem Arka Plan hem de Pencere, ekranın farklı bölümlerinde **aynı anda** kullanılabilir. Bu, esas olarak ekranın altında bilgi görüntülemek için tasarlanmıştır, ancak NES'te bu, [karmaşık ve zamanlanmış yazmalar](nes#tab-5-4-background-split) gerektirirken, Game Boy'un PPU'su bunu otomatik olarak halledebilir.
+Sonuç olarak, bu aptalca bir özellik gibi gelebilir. Pencerenin saydam olmaması ve Dolayısıyla Arka Planı tamamen gizlemesi nedeniyle, 'Bu ne işe yarar?' diye merak edebilirsiniz. Hem Arka Plan hem de Pencere, ekranın farklı bölümlerinde **aynı anda** kullanılabilir. Bu, esas olarak ekranın altında bilgi görüntülemek için tasarlanmıştır, ancak NES'te bu, [karmaşık ve zamanlanmış yazmalar](nes#tab-1-4-background-split) gerektirirken, Game Boy'un PPU'su bunu otomatik olarak halledebilir.
 
 Bu nedenle, oyunlar normalde bunu oyuncu istatistiklerini, puanları ve diğer 'her zaman açık' bilgileri görüntülemek için kullanır.
 

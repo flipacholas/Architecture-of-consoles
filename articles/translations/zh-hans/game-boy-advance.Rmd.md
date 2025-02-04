@@ -225,7 +225,7 @@ GBA 的图块是严格的**8x8像素位图**，可以使用16种颜色（4bpp）
 
 :::
 
-自Game Boy Color推出以来，该系统的背景层有了很大改进。 它终于包含了[超级任天堂中的一些功能](super-nintendo)（还记得[仿射变换](super-nintendo#unique-features)吗？）
+自Game Boy Color推出以来，该系统的背景层有了很大改进。 它终于包含了[超级任天堂中的一些功能](super-nintendo)（还记得[仿射变换](super-nintendo#that-feature)吗？）
 
 PPU 最多可以绘制四个背景层。 每个图层的功能取决于所选的运行模式[@graphics-tiles]：
 

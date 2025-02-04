@@ -195,7 +195,7 @@ Jeśli przeczytałeś o poprzednich konsolach, napotkałeś niekończący się p
 
 Gdy RDP dokonuje rasteryzacji wektorów, wartość z nowego piksela porównywana jest z odpowiednią wartością w buforze Z. Jeśli nowy piksel zawiera mniejszą wartość 'z' oznacza to, że nowy piksel jest umieszczony przed poprzednim, więc jest nakładany na bufor ramki i z-bufor jest również zaktualizowany. W przeciwnym razie piksel zostaje odrzucony.
 
-Ogółem jest to bardzo pożądane uzupełnienie: Programiści nie muszą już martwić się implementacją [opartych na oprogramowaniu](playstation#tab-4-2-visibility-approach) metod sortowania wielokątów, które zużywają wiele zasobów procesora. Jednakże bufor Z nie zachowa Cię przed używaniem niepotrzebnej geometrii (odrzuconej lub przesadzonej, obie zużywając zasoby). W tym celu silniki gier mogą wybrać dodanie algorytmu **wycinania okluzji** w celu odrzucenia zasłoniętej geometrii tak szybko, jak to możliwe.
+Ogółem jest to bardzo pożądane uzupełnienie: Programiści nie muszą już martwić się implementacją [opartych na oprogramowaniu](playstation#tab-3-2-visibility-approach) metod sortowania wielokątów, które zużywają wiele zasobów procesora. Jednakże bufor Z nie zachowa Cię przed używaniem niepotrzebnej geometrii (odrzuconej lub przesadzonej, obie zużywając zasoby). W tym celu silniki gier mogą wybrać dodanie algorytmu **wycinania okluzji** w celu odrzucenia zasłoniętej geometrii tak szybko, jak to możliwe.
 
 ### Sekrety i ograniczenia
 

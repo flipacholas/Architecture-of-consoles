@@ -117,7 +117,7 @@ Tornando al Wii, la console ha standardizzato questa funzionalità permettendo d
 
 L'innovativo sistema di controllo rendeva possibili nuovi tipi di interazioni all'interno dei giochi per Wii. Dal momento che il WiiMote consentiva agli utenti di puntare lo schermo, alcuni giochi come *Super Mario Galaxy* o *The Legend of Zelda: Twilight Princess* sfruttavano questa funzionalità per far interagire il giocatore con lo scenario.
 
-Nel rapporto intitolato _Debugging Myths: Is the Wii More Demanding to Emulate than the GameCube?_ [@graphics-dolphin], gli sviluppatori dell'emulatore Dolphin spiegano che giochi come Super Mario Galaxy e altri sparatutto in prima persona si affidano allo [z-buffer integrato](gamecube#tab-1-4-render) per identificare l'oggetto verso cui punta il Wiimote e/o controllare quanto dista l'oggetto dal cursore del Wiimote.
+Nel rapporto intitolato _Debugging Myths: Is the Wii More Demanding to Emulate than the GameCube?_ [@graphics-dolphin], gli sviluppatori dell'emulatore Dolphin spiegano che giochi come Super Mario Galaxy e altri sparatutto in prima persona si affidano allo [z-buffer integrato](gamecube#tab-3-4-render) per identificare l'oggetto verso cui punta il Wiimote e/o controllare quanto dista l'oggetto dal cursore del Wiimote.
 
 Non si tratta di una funzionalità nuova in assoluto, bensì di un nuovo modo di utilizzare funzionalità già esistenti. I giochi per GameCube non usavano un controller multiuso con una funzione di puntamento integrata. Ora, invece, i giocatori avrebbero potuto controllare il proprio personaggio e puntare lo schermo contemporaneamente.
 

@@ -57,7 +57,7 @@ Avançons dans le temps, et le prochain grand saut est arrivé en 1995, avec la 
 
 - **Exécution spéculative** : Le processeur prédit le résultat des branches conditionnelles avant qu'elles ne soient calculées. Les prédictions sont basées sur des résultats antérieurs stockés dans une table interne de 512 entrées. Une fois la condition calculée, si la prédiction se révèle correcte, le processeur a économisé un temps précieux. Sinon, les calculs supplémentaires sont écartés.
   - Grâce à cela, MIPS a enfin transformé un problème récurrent ([aléas de contrôle](playstation#delay-galore)) en avantage.
-  - Dans d'autres processeurs, vous pouvez trouver une fonctionnalité similaire appelée [prédiction de branche dynamique](gamecube#features).
+  - Dans d'autres processeurs, vous pouvez trouver une fonctionnalité similaire appelée [prédiction de branche dynamique](gamecube#the-powerpc-gekko).
 - **Pipeline superscalaire à 4 instructions** : En plus du [design pipeliné](sega-saturn#cpu), le processeur va maintenant rechercher jusqu'à quatre instructions au début du pipeline et les distribuer à travers des unités séparées, permettant ainsi au processeur d'exécuter ces instructions simultanément. En procédant ainsi, le processeur atteint un plus grand degré de parallélisme.
 - **Exécution hors ordre** : Le processeur va également réorganiser la séquence des instructions pour essayer de remplir ses unités autant que possible (tant qu'aucun risque n'est ajouté).
 - **Cache L2 avec un bus de 128 bits**, permettant d'amener plus de données dans le processeur à la fois, ce qui devient une nécessité grâce aux améliorations précédentes.
@@ -273,7 +273,7 @@ Cette étape est accomplie par une grande unité Pixel qui peut calculer jusqu'�
 
 Les matrices des textures sont récupérées depuis la DRAM dans une zone définie comme le **Texture buffer**, bien que cela soit interfacé via une zone séparée intitulée **Texture Page Buffer** qui semble agir comme un mécanisme de mise en cache des textures. Les CLUTs sont également mappés en utilisant ce système de pages. Les deux sont récupérés au travers d'un **bus 512 bits**.
 
-L'unité pixel réalise de la **correction de perspective** pour appliquer les textures sur les primitives (une grande amélioration, par rapport à la précédente approche d'[affine mapping](playstation#tab-4-5-textures)). De plus, il permet aussi un **filtrage bilinéaire ou trilinéaire**, ce dernier étant utilisé en même temps que les textures à mipmapping.
+L'unité pixel réalise de la **correction de perspective** pour appliquer les textures sur les primitives (une grande amélioration, par rapport à la précédente approche d'[affine mapping](playstation#tab-3-5-textures)). De plus, il permet aussi un **filtrage bilinéaire ou trilinéaire**, ce dernier étant utilisé en même temps que les textures à mipmapping.
 
 #### Tests {.tab}
 
@@ -605,7 +605,7 @@ Assez curieusement, l'interface utilisateur de FreeMCBoot emprunte des élément
 
 De plus, l'installateur offre deux options : installer uniquement les fichiers nécessaires pour la console actuelle, ou installer une configuration globale pour toutes les variantes de la PS2. Fait curieux, cette dernière option a été difficile à réaliser [@anti_piracy-fmcb]. Initialement, l'installateur modifiait la table de partition de la carte mémoire pour éviter de manquer d'espace, ce qui n'était pas particulièrement sûr.
 
-Comme par chance, en 2011, le [système de sécurité](playstation-3#os-security-hierarchy) de la [PlayStation 3](playstation-3) venait d'être [compromis](playstation-3#tab-17-4-the-fall-of-encryption), révélant de nombreux secrets cachés à l'intérieur. Parmi eux, une collection de clés MagicGate utilisées globalement pour la [compatibilité descendante PS2](playstation-3#backwards-compatibility). À partir de ce moment, il n'était plus nécessaire de recourir à l'astuce de la signature binaire limitée du DVD pour fabriquer des exécutables PS2. Et donc, depuis la version `1.8b`, FreeMCBoot a maintenu sa position comme la méthode la plus sûre et la plus populaire pour exécuter tout type de Homebrew sur une PlayStation 2.
+Comme par chance, en 2011, le [système de sécurité](playstation-3#os-security-hierarchy) de la [PlayStation 3](playstation-3) venait d'être [compromis](playstation-3#tab-9-4-the-fall-of-encryption), révélant de nombreux secrets cachés à l'intérieur. Parmi eux, une collection de clés MagicGate utilisées globalement pour la [compatibilité descendante PS2](playstation-3#backwards-compatibility). À partir de ce moment, il n'était plus nécessaire de recourir à l'astuce de la signature binaire limitée du DVD pour fabriquer des exécutables PS2. Et donc, depuis la version `1.8b`, FreeMCBoot a maintenu sa position comme la méthode la plus sûre et la plus populaire pour exécuter tout type de Homebrew sur une PlayStation 2.
 
 ### Développements ultérieurs {.tabs-close}
 

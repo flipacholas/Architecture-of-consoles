@@ -219,7 +219,7 @@ Esse estágio é movido por uma grande Unidade de Pixel que pode computar até 1
 
 Mapeamentos de textura são obtidos da DRAM em uma área definida como **buffer de textura**, embora isso seja interligada com uma área separada chamada **buffer de paginação de texturas**, que parece servir como um mecanismo de cache de texturas. CLUTs também são mapeados utilizando este sistema de paginação. Ambos os elementos são retirados com o uso de um **barramento de 512 bits**.
 
-A unidade de pixel executa uma **correção de perspectiva** para mapear texturas nas primitivas (uma grande melhoria considerando a abordagem anterior de [mapeamento afim](playstation#tab-4-5-textures)). Adicionalmente, ela também fornece **filtragem bilinear e trilinear**, o último sendo usado junto com texturas MIP mapeadas.
+A unidade de pixel executa uma **correção de perspectiva** para mapear texturas nas primitivas (uma grande melhoria considerando a abordagem anterior de [mapeamento afim](playstation#tab-3-5-textures)). Adicionalmente, ela também fornece **filtragem bilinear e trilinear**, o último sendo usado junto com texturas MIP mapeadas.
 
 #### Testes {.tab}
 

@@ -521,7 +521,7 @@ NES 游戏主要用 6502 汇编编写，并保存在**程序 ROM**中，而游�
 Famicom Disk System 为 Famicom 增加了以下服务：
 
 - 一种名为 **Famicom Disk** 的新游戏分发介质[@games-fds]。 基于三美（Mitsumi）公司的“Quick Disk”，它提供了每一面**约 64 KB** 的可读写数据存储功能。
-- 一个**额外音频通道**，使用了[波表合成（wavetable synthesis）](game-boy#tab-7-3-wave)技术 [@games-fds_audio]。
+- 一个**额外音频通道**，使用了[波表合成（wavetable synthesis）](game-boy#tab-3-2-wave)技术 [@games-fds_audio]。
 
 ![安装在 Famicom 上的 FDS [@photography-amos]。](fds/mounted.png) {.open-float.no-borders}
 

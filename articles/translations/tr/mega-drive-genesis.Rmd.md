@@ -112,7 +112,7 @@ VDP **~13 MHz** hızında çalışır ve bölgeye bağlı olarak birden fazla ç
 
 ### Çoklu ekran çözünürlüklerinin arkasında
 
-Teknik olarak, VDP tarama satırı başına 40 veya 32 sütun [tiles](master-system#tiles) sığdırabilir ve karo satırlarının sayısı bölgeye bağlıdır (NTSC'de 28 veya PAL'de 30) [@graphics-keil]. Yine de, çoğu PAL oyunu PAL sistemlerinde izin verilen ekstra karolarla uğraşmaz (muhtemelen iki bölge arasında tutarlılığı korumaları gerektiğinden ve NTSC ortak paydadır), bu nedenle VDP'ye 28 satırla (NTSC sistemlerinde yapacakları gibi) işleme talimatı verirler. Bu nedenle, VDP'nin kullanılmayan alanı bir arka plan rengiyle (aşırı tarama sırasında da kullanılır) doldurmaktan başka seçeneği yoktur.
+Teknik olarak, VDP tarama satırı başına 40 veya 32 sütun [tiles](master-system#tab-1-1-tiles) sığdırabilir ve karo satırlarının sayısı bölgeye bağlıdır (NTSC'de 28 veya PAL'de 30) [@graphics-keil]. Yine de, çoğu PAL oyunu PAL sistemlerinde izin verilen ekstra karolarla uğraşmaz (muhtemelen iki bölge arasında tutarlılığı korumaları gerektiğinden ve NTSC ortak paydadır), bu nedenle VDP'ye 28 satırla (NTSC sistemlerinde yapacakları gibi) işleme talimatı verirler. Bu nedenle, VDP'nin kullanılmayan alanı bir arka plan rengiyle (aşırı tarama sırasında da kullanılır) doldurmaktan başka seçeneği yoktur.
 
 Hata ayıklama özelliklerine sahip bir emülatörde `Mode Set Register #2`'yi kontrol ederek hangi PAL oyunlarının NTSC modunda işlendiğini görebilirsiniz (örn. Exodus). Sağdan dördüncü bit `0` ise, VDP NTSC modunda [@graphics-resolution] çalışıyor demektir.
 
@@ -206,7 +206,7 @@ Sonuç olarak, yeni öncelik değerlerinin ve ayrı uçakların oyun tasarımcı
 
 ![Seçili alan işaretli olarak ayrılmış Sprite katmanı.](vdp_sonic/sprite_selected.png){.tabs-nested-last .pixel title="Seçili"}
 
-Bu düzlemde karolar **sprites** olarak değerlendirilir. Bunlar bir **512x512 piksel** haritaya yerleştirilir ve sadece bir kısmı (VDP'nin çıkış çözünürlüğü) görüntülenmek üzere seçilir. Bu, istenmeyen sprite'ları gizlemek veya gelecekte gösterilecek diğerlerini hazırlamak için kullanışlıdır. VDP ayrıca eski bir [çarpışma algılama](master-system#tab-4-1-collision-detection) işlevi sağlar.
+Bu düzlemde karolar **sprites** olarak değerlendirilir. Bunlar bir **512x512 piksel** haritaya yerleştirilir ve sadece bir kısmı (VDP'nin çıkış çözünürlüğü) görüntülenmek üzere seçilir. Bu, istenmeyen sprite'ları gizlemek veya gelecekte gösterilecek diğerlerini hazırlamak için kullanışlıdır. VDP ayrıca eski bir [çarpışma algılama](master-system#tab-2-1-collision-detection) işlevi sağlar.
 
 Sprite'lar 4x4'e kadar karo (32x32 piksel haritası) birleştirilerek ve 16 renge kadar (*transparent* dahil) seçilerek oluşturulur. Daha büyük bir sprite gerekiyorsa, birden fazla sprite birleştirilerek tek bir sprite haline getirilebilir.
 

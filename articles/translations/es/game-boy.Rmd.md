@@ -107,7 +107,7 @@ Todos los cálculos relacionados con los gráficos son realizados por la CPU. Un
 
 La imagen se muestra en una pantalla integrada de tipo LCD a una resolución de **160×144 píxeles** y, en el caso del Game Boy monocromo, muestra **4 tonos de gris** (blanco, gris claro, gris oscuro y negro). Dado que la Game Boy original tiene una pantalla LCD verde, la imagen se verá *verdosa*.
 
-Si has leído el artículo de la NES con anterioridad, puede que recuerdes que la PPU fue diseñada a partir del funcionamiento del tubo de rayos catódicos (CRT). Sin embargo (y por razones obvias), tenemos una pantalla LCD en la Game Boy. Pues bien, la nueva PPU también sigue esa metodología ya que los LCDs requieren ser refrescados también. Al hacerlo, esta consola disfrutará de efectos [basados en CRT](nes#tab-5-4-background-split) que anteriormente permitieron a los desarrolladores de NES crear contenido imaginativo.
+Si has leído el artículo de la NES con anterioridad, puede que recuerdes que la PPU fue diseñada a partir del funcionamiento del tubo de rayos catódicos (CRT). Sin embargo (y por razones obvias), tenemos una pantalla LCD en la Game Boy. Pues bien, la nueva PPU también sigue esa metodología ya que los LCDs requieren ser refrescados también. Al hacerlo, esta consola disfrutará de efectos [basados en CRT](nes#tab-1-4-background-split) que anteriormente permitieron a los desarrolladores de NES crear contenido imaginativo.
 
 ### Organizando el contenido
 
@@ -179,7 +179,7 @@ La ventana es una capa de **160x144 píxeles** que contiene tiles mostrados enci
 
 El mapa de mosaicos restante se puede asignar a la capa de ventana, también comparte la misma paleta con la capa de fondo.
 
-En definitiva, esto puede sonar como una característica tonta. Dado que la Ventana no tiene transparencia y por lo tanto oscurece completamente el Fondo, te puedes preguntar '¿Para qué sirve?'. Pues bien, tanto el fondo como la ventana se pueden utilizar **simultáneamente** en diferentes partes de la pantalla. Esto está destinado a mostrar información principalmente en la parte inferior de la pantalla, pero mientras que en la NES esto requería realizar [escrituras complejas y sincronizadas](nes#tab-5-4-background-split), la PPU del Game Boy puede manejarlo automáticamente.
+En definitiva, esto puede sonar como una característica tonta. Dado que la Ventana no tiene transparencia y por lo tanto oscurece completamente el Fondo, te puedes preguntar '¿Para qué sirve?'. Pues bien, tanto el fondo como la ventana se pueden utilizar **simultáneamente** en diferentes partes de la pantalla. Esto está destinado a mostrar información principalmente en la parte inferior de la pantalla, pero mientras que en la NES esto requería realizar [escrituras complejas y sincronizadas](nes#tab-1-4-background-split), la PPU del Game Boy puede manejarlo automáticamente.
 
 Por lo tanto, los juegos lo utilizan normalmente para mostrar estadísticas del jugador, puntuaciones y otra información "siempre activa".
 

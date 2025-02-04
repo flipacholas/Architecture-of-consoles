@@ -224,7 +224,7 @@ Capas de fondo estático en uso.
 
 :::
 
-La capa de fondo de este sistema ha mejorado notablemente desde la Game Boy Color. Por fin incluye algunas características encontradas en la [Super Nintendo](super-nintendo) (¿recuerdas las [transformaciones afines](super-nintendo#características-únicas)?).
+La capa de fondo de este sistema ha mejorado notablemente desde la Game Boy Color. Por fin incluye algunas características encontradas en la [Super Nintendo](super-nintendo) (¿recuerdas las [transformaciones afines](super-nintendo#that-feature)?).
 
 La PPU puede dibujar hasta cuatro capas de fondo. Las capacidades de cada uno dependerán del modo de funcionamiento seleccionado [@graphics-tiles]:
 

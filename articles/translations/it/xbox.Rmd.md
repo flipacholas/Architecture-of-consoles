@@ -83,11 +83,11 @@ Nello sviluppare circuiti per proprie CPU in grado di interpretare le istruzioni
 
 La CPU dell’Xbox, così come tutti gli altri processori Pentium III, utilizza la **microarchitettura P6** (nota anche come “i686”). Si tratta di un’architettura di sesta generazione (la prima risale all’8086) caratterizzata da:
 
-- Una *gigantesca* **pipeline a 14 stadi**: è possibile elaborare fino a 14 istruzioni in parallelo. Il rovescio della medaglia è che le istruzioni singole possono richiedere molti più cicli prima di essere elaborate. Vedi [una spiegazione precedente](game-boy-advance#the-core).
+- Una *gigantesca* **pipeline a 14 stadi**: è possibile elaborare fino a 14 istruzioni in parallelo. Il rovescio della medaglia è che le istruzioni singole possono richiedere molti più cicli prima di essere elaborate. Vedi [una spiegazione precedente](game-boy-advance#tab-2-1-the-core).
 - **Esecuzione fuori ordine**: se possibile, la CPU riordina la sequenza di istruzioni per aumentare l’efficienza e le prestazioni.
-- **Esecuzione dinamica**: Poiché il P6 è un design fuori ordine e [supercalare](dreamcast#cpu). Il tradizionale [predittore di diramazioni](gamecube#features) è ora combinato con altre tecniche ('esecuzione speculativa' e 'analisi del flusso di dati') per sfruttare le nuove capacità. Così facendo, riduce ulteriormente i blocchi della pipeline.
+- **Esecuzione dinamica**: Poiché il P6 è un design fuori ordine e [supercalare](dreamcast#cpu). Il tradizionale [predittore di diramazioni](gamecube#the-powerpc-gekko) è ora combinato con altre tecniche ('esecuzione speculativa' e 'analisi del flusso di dati') per sfruttare le nuove capacità. Così facendo, riduce ulteriormente i blocchi della pipeline.
 
-Chiariti questi punti, è il caso di osservarli più attentamente. Si tratta di caratteristiche molto simili a quelle contenute nelle [console che abbiamo analizzato in precedenza](gamecube#features), per quanto le loro CPU siano molto diverse, in termini di design, dalle CPU Intel. Considerato sia il contesto storico che il design di x86, sarebbe stato molto difficile immaginare che Intel avrebbe mai potuto presentare, ad esempio, una CPU con pipeline. Eppure, ci sono riusciti; ecco come hanno fatto.
+Chiariti questi punti, è il caso di osservarli più attentamente. Si tratta di caratteristiche molto simili a quelle contenute nelle [console che abbiamo analizzato in precedenza](gamecube#the-powerpc-gekko), per quanto le loro CPU siano molto diverse, in termini di design, dalle CPU Intel. Considerato sia il contesto storico che il design di x86, sarebbe stato molto difficile immaginare che Intel avrebbe mai potuto presentare, ad esempio, una CPU con pipeline. Eppure, ci sono riusciti; ecco come hanno fatto.
 
 #### CISC o RISC {.tab}
 
@@ -215,7 +215,7 @@ In questa fase, i vertici vengono trasformati in pixel. La procedura inizia a pa
 
 I pixel risultanti vengono memorizzati in un **set di registri condivisi**, quindi ciclati in **8 combinatori di registri**, dove ogni combinatore applica delle operazioni aritmetiche. È possibile **programmare** questo processo utilizzando i **pixel shader** (un altro tipo di programma eseguito dalla GPU). A ciascun ciclo, ogni combinatore riceve i valori RGBA (RGB + canale alfa) contenuti nei set di registri [@graphics-spitzer]. Quindi, in base alle operazioni definite dagli shader, applica ai valori le operazioni richieste e memorizza il risultato. Infine, una maggiore quantità di valori viene inviata al **combinatore finale**, l'unico a poter applicare colori speculari e/o nebbia.
 
-I combinatori di registri sono programmabili in modo simile alla [Texture Environment Unit](gamecube#tab-1-3-texture). Ciò significa che è possibile alterare i registri con combinazioni di impostazioni specifiche. Nel caso dell'Xbox, il gestore PFIFO legge i pushbuffer e imposta il PGRAPH, che include i combinatori di registri e i texture shader.
+I combinatori di registri sono programmabili in modo simile alla [Texture Environment Unit](gamecube#tab-3-3-texture). Ciò significa che è possibile alterare i registri con combinazioni di impostazioni specifiche. Nel caso dell'Xbox, il gestore PFIFO legge i pushbuffer e imposta il PGRAPH, che include i combinatori di registri e i texture shader.
 
 #### Post-processing {.tab}
 
@@ -253,9 +253,9 @@ Credo che gli shader saranno menzionati di frequente nei prossimi articoli. Per 
 
 ### I frame dell'Xbox
 
-Come da prassi per la sesta generazione, la risoluzione standard dei giochi Xbox è di **640x480** pixel. Certo, la GPU può comporre frame-buffer a risoluzioni fino a 4096x4096, ma l'hardware non sarebbe comunque in grado di garantire prestazioni accettabili. Di contro, la console permette di applicare le impostazioni dello schermo (ossia widescreen e "alta risoluzione") globalmente, anziché lasciare che siano gli sviluppatori a implementarle (come successe per il [GameCube/Wii](wii#tab-2-1-standardised-widescreen)).
+Come da prassi per la sesta generazione, la risoluzione standard dei giochi Xbox è di **640x480** pixel. Certo, la GPU può comporre frame-buffer a risoluzioni fino a 4096x4096, ma l'hardware non sarebbe comunque in grado di garantire prestazioni accettabili. Di contro, la console permette di applicare le impostazioni dello schermo (ossia widescreen e "alta risoluzione") globalmente, anziché lasciare che siano gli sviluppatori a implementarle (come successe per il [GameCube/Wii](wii#tab-1-1-standardised-widescreen)).
 
-Il compito dell'encoder video è quello di trasmettere in un formato decodificabile dalla TV qualsiasi cosa sia nel frame-buffer. Ciò significa che le immagini widescreen vengono trasmesse in formato [anamorfico](wii#tab-2-1-standardised-widescreen), a meno che il gioco non produca immagini in HD (ossia in 720p o in 1080i, funzionalità offerta solo da una manciata di giochi).
+Il compito dell'encoder video è quello di trasmettere in un formato decodificabile dalla TV qualsiasi cosa sia nel frame-buffer. Ciò significa che le immagini widescreen vengono trasmesse in formato [anamorfico](wii#tab-1-1-standardised-widescreen), a meno che il gioco non produca immagini in HD (ossia in 720p o in 1080i, funzionalità offerta solo da una manciata di giochi).
 
 Detto ciò: quanti tipi di segnali possono uscire dalla console? Un bel po'. Oltre al classico segnale composito PAL/NTSC, l'Xbox può produrre sia un segnale **YPbPr** (trasmesso tramite connettori 'component', e che quindi richiede un cavo aggiuntivo) che un segnale RGB (compatibile con SCART e con VGA). Un'offerta tutto sommato ampia, che non richiede l'utilizzo di costosi adattatori o altri dispositivi.
 
@@ -469,7 +469,7 @@ Tuttavia, questa era solo una parte dell'intera questione: Microsoft doveva infa
 
 La console implementa molte misure di sicurezza, indipendentemente dal fatto che contenga componenti "off-the-shelf", ossia disponibili largamente sul mercato.
 
-In questa sezione parleremo più volte di crittografia RSA; l'argomento è stato già introdotto [nell'articolo sul Wii](wii#tab-7-2-chain-of-trust), che potete consultare se non avete familiarità con RSA o con altri sistemi di crittografia simmetrica o asimmetrica.
+In questa sezione parleremo più volte di crittografia RSA; l'argomento è stato già introdotto [nell'articolo sul Wii](wii#tab-2-2-chain-of-trust), che potete consultare se non avete familiarità con RSA o con altri sistemi di crittografia simmetrica o asimmetrica.
 
 Iniziamo.
 

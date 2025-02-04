@@ -117,7 +117,7 @@ Kafelki znalezione w VRAM.
 
 :::
 
-Tryb IV jest oparty na **systemie kafelków**. Aby przypomnieć [poprzednie wyjaśnienia](nes#tab-2-1-tiles) dotyczące silników kafelków, kafelki to po prostu **mapy bitowe 8x8 pikseli**, które renderer pobiera, aby narysować grafikę gry. W przypadku VDP klatka składa się z dwóch płaszczyzn, warstwy tła i warstwy sprite.
+Tryb IV jest oparty na **systemie kafelków**. Aby przypomnieć [poprzednie wyjaśnienia](nes#tab-1-1-tiles) dotyczące silników kafelków, kafelki to po prostu **mapy bitowe 8x8 pikseli**, które renderer pobiera, aby narysować grafikę gry. W przypadku VDP klatka składa się z dwóch płaszczyzn, warstwy tła i warstwy sprite.
 
 Wewnątrz VRAM znajduje się obszar dedykowany kafelkom nazywany **Character generator** (Sega nazywa kafelki 'Characters') i jest ustawiony by mieć **długość 14 KB**. Każdy kafelek zajmuje 32 bajty, dzięki czemu możemy przechowywać do 448 kafelków.
 
@@ -251,7 +251,7 @@ Podobnie jak VDP, PSG jest oczywisty, ale kryje kilka interesujących funkcji:
 
 ![Double Dragon (1987).](){audio_switcher="true" src1="psg" src2="fm" label1="PSG" label2="FM" .float}
 
-Japońska wersja Master System zawiera dodatkowy układ audio firmy Yamaha o nazwie **YM2413**. Drastycznie różni się od poprzedniego PSG, ponieważ do generowania dźwięku wykorzystuje technikę **modulacji częstotliwości**. Jeśli jesteś zainteresowany, pokrótce wyjaśniłem, jak to działa, w [artykule o Mega Drive](mega-drive-genesis#tab-7-1-yamaha-ym2612).
+Japońska wersja Master System zawiera dodatkowy układ audio firmy Yamaha o nazwie **YM2413**. Drastycznie różni się od poprzedniego PSG, ponieważ do generowania dźwięku wykorzystuje technikę **modulacji częstotliwości**. Jeśli jesteś zainteresowany, pokrótce wyjaśniłem, jak to działa, w [artykule o Mega Drive](mega-drive-genesis#tab-2-1-yamaha-ym2612).
 
 Ten dokładny układ ma **dziewięć kanałów** dźwięku. Każdy kanał może wybrać jeden z 16 zaprogramowanych instrumentów lub zdefiniować własny, programując nośną i modulator. Niestety w danym momencie dozwolony jest tylko jeden instrument niestandardowy. Z drugiej strony nowy instrument zapewnia kilka interesujących funkcji, takich jak sterowanie obwiednią ADSR i sprzężenie zwrotne.
 
@@ -277,7 +277,7 @@ W tej chwili nie mam niezbędnych narzędzi, aby potwierdzić, czy SMS powinien 
 
 ![Alex Kidd - The Lost Stars (1986).<br>1-bitowa próbka PCM.](ball){.tab-float video="true"}
 
-Chociaż SN76489 nie ma [kanału PCM](nes#tab-7-4-sample) do odtwarzania próbek, jest kilka sztuczek które można wykorzystać do symulacji tej funkcji.
+Chociaż SN76489 nie ma [kanału PCM](nes#tab-3-4-sample) do odtwarzania próbek, jest kilka sztuczek które można wykorzystać do symulacji tej funkcji.
 
 Opierają się one na kanałach impulsowych, odkryto, że jeśli poziom tonu jest ustalony na `1`, poziom głośności (który zmienia amplitudę) będzie warunkował kształt przebiegu.
 

@@ -62,7 +62,7 @@ StrongARM是一种基于ARM的新型CPU，其特点包括[@cpu-furber]：
 
 - **ARMv4指令集**。 如果你想了解更多，我之前在Game Boy Advance的文章中[分析过](game-boy-advance#commanding-the-cpu)。
 - 高达**233 MHz**的时钟速度，比最强的ARM7芯片快约583%。
-- **5级流水线**，与原来的[3级设计](game-boy-advance#the-core)相比又做了提升。
+- **5级流水线**，与原来的[3级设计](game-boy-advance#tab-2-1-the-core)相比又做了提升。
 - 一个**新的缓存系统**，实现了**Harvard架构**，其中**16 KB**用于指令，另**16 KB**用于数据。
   - 这种设计有助于缓解内存瓶颈（这是冯·诺依曼/普林斯顿模型所遭受的问题）。
 
@@ -203,7 +203,7 @@ StrongARM是一种基于ARM的新型CPU，其特点包括[@cpu-furber]：
 
 - **字符类型（Character type）组**：这些背景类型遵循传统的图块系统，通过填充图块来渲染帧。
     - **静态（Static）**或者说“文本”（text）背景： 普通背景， 最大支持512x512像素，256色和16个调色板。 包括了所有典型的[特效（effects）](super-nintendo#tab-1-2-background)（H/V翻转、H/V滚动、马赛克、alpha混合），外加一个额外的“褪色”效果。 最多可使用1024个图块。
-    - **仿射（Affine）** 背景：一个带有[仿射变换（affine transformations）](super-nintendo#unique-features)的背景， 不支持水平/垂直翻转，并且只能获取256个图块(最大值的四分之一)。 图层大小为1024x1024像素。
+    - **仿射（Affine）** 背景：一个带有[仿射变换（affine transformations）](super-nintendo#that-feature)的背景， 不支持水平/垂直翻转，并且只能获取256个图块(最大值的四分之一)。 图层大小为1024x1024像素。
     - **仿射扩展 - Character**：与仿射背景相同，但是可使用1024个图块，并且支持水平/垂直翻转。
 - **位图（Bitmap）类型组**：引擎不再处理图块，直接把VRAM用作frame buffer。
     - **仿射扩展 - 256色**：继承“仿射扩展 - character”中所有可用的特效。 区别在于本模式将它们应用于单个512x512 px位图。
@@ -285,7 +285,7 @@ Sprites或者说“objects”继承了GBA PPU的功能，但新增两个重要�
 
 没有传统的frame buffer，光栅化器采用了**扫描线渲染（scan-line rendering）**，遍历每个扫描线以处理其中的多边形边缘。 Arisotura（MelonDS模拟器的开发者）称，对于每个四边形，渲染器只能在每条扫描线上填充**一个span**[@graphics-arisotura]。 这可能会有隐患，因为如果四边形是凹四边形或者有交叉的边，结果会变得一团糟。
 
-关于效果，该单元还提供**shadowing**和一个被称为**Toon Shading**的独特功能（又称[Cel Shading](gamecube#creativity)）：该单元[不可编程](xbox#importance-of-programmability)，但也可以通过改变照明参数达到卡通效果。
+关于效果，该单元还提供**shadowing**和一个被称为**Toon Shading**的独特功能（又称[Cel Shading](gamecube#creativity)）：该单元[不可编程](xbox#the-importance-of-programmability)，但也可以通过改变照明参数达到卡通效果。
 
 #### 结果 {.tab}
 
@@ -560,7 +560,7 @@ KEY1和KEY2在不同阶段被Slot-1接口用来保护其与卡片的通信。 AR
 
 #### Download Play 保护 {.tab}
 
-通过Download Play收到的程序必须由任天堂使用[RSA签名](wii#tab-7-2-chain-of-trust)（只有任天堂知道私钥）进行签名。
+通过Download Play收到的程序必须由任天堂使用[RSA签名](wii#tab-2-2-chain-of-trust)（只有任天堂知道私钥）进行签名。
 
 该检查由固件执行。
 
