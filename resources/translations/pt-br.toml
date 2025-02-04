@@ -104,7 +104,7 @@ other = 'A edição "clássica" é uma versão alternativa à <a href="{{ .moder
 other = 'Esta edição é idêntica no quesito de conteúdo. No entanto, widgets interativos foram simplificados para trabalhar com HTML puro, embora estes ofereçam um link para o artigo original, caso o leitor queira experimentar a "versão completa".'
 
 [general_description]
-other = 'Como sempre, este artigo está disponível no <a href="{{ .github }}">Github</a>, para que os leitores possam reportar erros ou propor mudanças. Também existe uma <a href="{{ .readings }}">lista de leitura de apoio</a> disponível, para ajudar na compreensão dessa série. O autor também aceita <a href="{{ .donations }}">doações</a> para ajudar nas melhorias de qualidade dos artigos atuais e dos que ainda virão.'
+other = 'Como sempre, este artigo está disponível no <a href="{{ .github }}">Github</a>, para que os leitores possam reportar erros ou propor mudanças. Também existe uma <a href="{{ .readings }}">lista de leitura de apoio</a> disponível para ajudar na compreensão dessa série. O autor também aceita <a href="{{ .donations }}">doações</a> e <a href="{{ .translations }}">traduções</a> para ajudar nas melhorias de qualidade dos artigos atuais e dos que ainda virão.'
 
 [subscribe_title]
 other = "Receba atualizações"
@@ -197,10 +197,13 @@ other = "Imagens de suporte"
 other = "Uma análise prática por {{ . }}"
 
 [translated_by]
-other = '<a href="{{ .crowdin_url }}">Traduzido</a> por {{ .author }}'
+other = "Traduzido por {{ .author }}"
 
 [translated_by_many]
-other = '<a href="{{ .crowdin_url }}">Traduzido</a> por <a href="{{ .authors }}">vários autores</a>'
+other = 'Traduzido por <a href="{{ .authors }}">múltiplos autores</a>'
+
+[translation_help]
+other = 'Esta é uma tradução voluntária do <a href="{{ .original_url }}">artigo original</a>. Se encontrar algum erro, <a href="{{ .crowdin_url }}">por favor, ajude a melhorá-lo</a>. Obrigado!'
 
 [interactive_model_origin]
 other = 'Modelo interativo disponível na <a href="{{ . }}">edição moderna</a>'
@@ -276,3 +279,18 @@ other = "Outras Mídias"
 
 [bonus]
 other = "Bônus"
+
+[paused]
+other = "Pausado"
+
+[slower]
+other = "Mais lento"
+
+[faster]
+other = "Mais rápido"
+
+[animating_at]
+other = "Animando a {{ . }}x de velocidade"
+
+[ready_to_play]
+other = "Pronto para reproduzir e alternar"
