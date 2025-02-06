@@ -169,7 +169,7 @@ PPU 使用 **图块**（Tiles）作为渲染图形的基本元素 —— 更具�
 
 ![已分配的窗口图](ppu_mario/window.png){.active title="整体"}
 
-![显示的窗口图。 游戏会在最后一行扫描时激活它。 因此，屏幕底部只显示第一行。](ppu_mario/window_rendered.png){title="选定的"}
+![显示的窗口图。 游戏会在最后一行扫描时激活它。 因此，屏幕底部只显示第一行。](ppu_mario/window_rendered.png){title="已选区域"}
 
 窗口图渲染过程
 
