@@ -30,7 +30,7 @@ aliases:
   - "game-boy-color"
 ---
 
-## 快速入门
+## 一个简短的介绍
 
 GameBoy（GB）系列可以看作 NES （即日版的 FamiCom） 的便携版，只是在性能上受到了限制。不过，它的一些非常有趣的功能，仍然能够让我们眼前一亮。
 
@@ -169,7 +169,7 @@ PPU 使用 **图块**（Tiles）作为渲染图形的基本元素 —— 更具�
 
 ![已分配的窗口图](ppu_mario/window.png){.active title="整体"}
 
-![显示的窗口图。 游戏会在最后一行扫描时激活它。 因此，屏幕底部只显示第一行。](ppu_mario/window_rendered.png){title="已选区域"}
+![显示的窗口图。 游戏会在最后一行扫描时激活它。 因此，屏幕底部只显示第一行。](ppu_mario/window_rendered.png){title="选定的"}
 
 窗口图渲染过程
 
