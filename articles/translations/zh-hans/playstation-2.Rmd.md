@@ -23,7 +23,7 @@ aliases:
   - /projects/consoles/playstation-2/
 ---
 
-## 快速入门
+## 快速介绍
 
 PlayStation 2 并非当年的最强主机，却积累了其它公司无可企及的人气。
 
