@@ -38,7 +38,7 @@ aliases:
   - /writings/consoles/psp-private/
 ---
 
-## 快速入门
+## 快速介绍
 
 在[任天堂 DS](nintendo-ds)发布仅一个月后，索尼用 PSP 证明"横向创新"并不是在便携式游戏机市场取得成功的唯一途径。
 
@@ -398,7 +398,7 @@ Graphics Engine通过存储在主内存中的传统"显示列表"（display list
 
 PSP 中的"声音硬件"非常简陋：只有**两个 PCM 通道和一个立体声混音器**。 最大采样率和分辨率分别为**48 kHz**和**16 位**。
 
-这里没有我在第一段中提到的任何加速器。 那么，这是否意味着声音会像[其他](nintendo-64#secrets-and-limitations)[案例](game-boy-advance#audio)一样受限？ 不！ 因为 PSP 的硬件短板可以通过软件来弥补。
+这里没有我在第一段中提到的任何加速器。 那么，这是否意味着声音会像[其他](nintendo-64#secrets-and-limitations-1)[案例](game-boy-advance#audio)一样受限？ 不！ 因为 PSP 的硬件短板可以通过软件来弥补。
 
 虽然没有大量与声音相关的电路，但索尼提供了许多通用元件。 这些元件可以帮助进行音频解码、流处理和混音。 也就是**Media Engine**。
 
