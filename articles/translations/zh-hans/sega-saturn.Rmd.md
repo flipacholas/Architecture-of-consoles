@@ -14,11 +14,11 @@ seo_image_pos: "Top"
 top_tabs:
   Models:
     - 
-      title: "日版（Japanese）"
+      title: "日版"
       caption: "世嘉土星，1994年11月22日在日本发行"
       file: japanese
     - 
-      title: "国际版（International）"
+      title: "国际版"
       caption: "世嘉土星，1995年5月11日在美国发行，1995年7月8日在欧洲发行"
       active: true
       file: international
