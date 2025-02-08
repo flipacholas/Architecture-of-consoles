@@ -11,7 +11,7 @@ published: true
 top_tabs:
   Models:
     - 
-      title: "国际版（International）"
+      title: "国际版"
       file: international
       caption: "SNES（欧版）或者叫SFC（日版）<br>1990年11月21日于日本，1992年4月11日于欧洲发售"
       active: true
@@ -31,7 +31,7 @@ aliases:
   - /writings/consoles/snes/
 ---
 
-## 快速入门
+## 快速介绍
 
 任天堂似乎设法在不使用昂贵的现成组件的情况下带来了下一代图形和声音。 但有一个问题：新控制台在设计时也**考虑到了可扩展性**。 在 CPU 发展速度快于光速的世界中，任天堂最终依靠游戏卡带使其游戏机大放异彩。
 
@@ -165,7 +165,7 @@ NES 的内存只有[2 KB](nes#memory)，但却能显示大量内容，这实在�
 - 512 B **CGRAM** (彩色图形RAM)：存放512个彩色调色板条目，每个条目的大小为 一个*word* (16位)。
 - 544 B **OAM** (Object Attribute Memory)：包含128个将被用作登记*精灵* 及其属性的查找表。
 
-### 构造帧
+### 构造画面（frame）
 
 现在让我们看看如何在游戏机上渲染画面，然后在电视上显示。 我们将以*超级马里奥世界*为例进行演示。
 
@@ -185,7 +185,7 @@ NES 的内存只有[2 KB](nes#memory)，但却能显示大量内容，这实在�
 
 ![背景图层 1 (BG1)。](sppu_mario/background1_map.png){.active title="图层1"}
 
-![背景图层 2 (BG2)。](sppu_mario/background2_map.png){title="图层2"}
+![背景图层2 (BG2)。](sppu_mario/background2_map.png){title="图层2"}
 
 ![背景图层3 (BG3)。](sppu_mario/background3_map.png){title="图层3"}
 
@@ -242,7 +242,7 @@ S-PPU提供了许多背景操作，但这些操作不能任意选择。 相反�
 
 #### 精灵 {.tab}
 
-![渲染的Sprite图层.](sppu_mario/sprites.png) {.tab-float.pixel}
+![渲染的Sprite图层。](sppu_mario/sprites.png) {.tab-float.pixel}
 
 内存中一个名为**对象属性内存**（OAM）的区域存储了一个表，其中最多可引用128个具有这些属性的精灵[@graphics-guidelines]：
 
