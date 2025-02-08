@@ -175,7 +175,7 @@ Espresso 中的所有L2缓存都是 **4路关联**。 与Xenon和Cell中的8路�
 
 此外，PowerPC针对多核心环境下的两条指令。 `lwarx` (Load Word和Reserve Indexed) 和`stwcx` (tore Word Condition Indexed), 不再能够正常工作. 正如fail0verflow所指出的[@graphics-smp]，这些现在需要手动刷新缓存才能按预期工作。 至少它不是第一个带有损坏指令的 PowerPC 变体(参见 [Xbox 360 的 `xdcbt`](xbox-360#a-new-but-short-lived-instruction)).
 
-幸运的是，这并不全是坏消息. 至少Espresso继承了Gekko的[乱序执行](gamecube#the-powerpc-gekko)，而这一点不得不从 [Xenon 和 Cell](xbox-360#revisiting-old-paradigms) 中删除.
+幸运的是，这并不全是坏消息. 至少Espresso继承了Gekko的[乱序执行](gamecube#the-powerpc-gekko)，而这一点不得不从 [Xenon 和 Cell](xbox-360#revisiting-old-paradigms) 中删除。
 
 ### 可用内存 {.tabs-close}
 
