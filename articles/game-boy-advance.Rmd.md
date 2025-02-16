@@ -87,6 +87,8 @@ To begin with, the ARM7TDMI implements the **ARMv4** instruction set, the succes
 
 - A **RISC-based design**: As explained before, ARM CPUs have been influenced by a paper from the University of California, Berkeley called 'The Case for the Reduced Instruction Set Computer' [@cpu-patterson]. Its research outlines a series of guidelines for scalable processor design and defends the use of a [load-store architecture](xbox#tab-1-4-cisc-or-risc), a fixed instruction size and a large register file. Many of these were absent in the populated CPU market (i.e. [Intel 8086](xbox#cpu), [MOS 6502](nes#cpu), [Zilog Z80](master-system#cpu) and the [Motorola 68000](mega-drive-genesis#cpu)), but would influence the design of new CPU lines throughout the 80s and 90s.
 - **Conditional execution**: A peculiar feature of the ARM ISA. Essentially, almost every instruction embeds a condition that states whether it should be executed. Typically, other CPUs follow the 'compare and jump' process (also called 'branching') to control which instructions must the CPU execute. By contrast, ARM programmers may insert the condition in the instruction itself. This is possible due to the first four bits of ARM's opcodes are reserved for a condition (i.e. `equal`, `not equal`, etc). All in all, this reduces the complexity of ARM code, as conditional execution provides a cleaner design for routines, unlike branching and subroutine splitting. Additionally, this also serves as a workaround for [control hazards](playstation#delay-galore) (explained in more detail later).
+- A **flexible second operand**, also known as 'Operand2' [@cpu-operand2]. Typically, operations are made of two operands (like `add 2 and 2`). However, ARM instructions also allows embedding an extra `shift` operation into the second operand. For example, you can compute `shift 2 by four bits and then add it to 2` in a single instruction.
+  - Bit shifting is also a cheap shortcut to perform division or multiplication with powers of 2, which leads to many optimisation techniques.
 - **32-bit** and **64-bit multiplication** instructions: An addition of the ARM v4. Furthermore, 64-bit operations output the result in two registers.
 
 #### The package
@@ -117,9 +119,13 @@ Like two very [similar](playstation#delay-galore) [contemporaries](sega-saturn#t
 
 One of the drawbacks of a load-store architecture led to ARM's code being very **sparse**. Competitors like x86 could perform the same tasks using smaller amounts of code, requiring less storage. Consequently, when Nintendo took a look at ARM's latest design, the ARM7, they weren't pleased with it. The size of ARM's instructions meant that hypothetical gadgets comprised of 16-bit buses with limited memory and storage - all to save cost and energy - would make the CPU inefficient and bottlenecked. Luckily, Dave Jaggar had just finished designing the ARM7 and wouldn't give up yet. During his commute after meeting Nintendo, he came up with a solution: The **Thumb instruction set** [@cpu-jaggar].
 
-Thumb is a subset of the ARM instruction set whose instructions are encoded into **16-bit words** (as opposed to 32-bit) [@cpu-thomas]. Being 16-bit, Thumb instructions require **half the bus width** and occupy **half the memory**.
- 
-The main compromise is that **Thumb doesn't offer conditional execution**, relying on branching instead. Additionally, its data processing opcodes only use a two-address format, rather than a three-address one, and it only has access to the bottom half of the register file (thus, **only eight general-purpose registers** are available). All in all, since Thumb instructions offer only a functional subset of ARM, developers may have to write more instructions to achieve the same effect.
+Thumb is a subset of the ARM instruction set whose instructions are encoded into **16-bit words** (as opposed to 32-bit) [@cpu-thomas]. Being 16-bit, Thumb instructions require **half the bus width** and occupy **half the memory**. To achieve this, it compromises in the following ways:
+
+- **Thumb doesn't offer conditional execution**, relying on branching instead.
+- Its data processing opcodes only use a **two-address format** (i.e. `add R1 to R3`), rather than a three-address one (i.e. `add R1 and R2 and store the result in R3`).
+- It only has access to the bottom half of the register file. Thus, **only eight general-purpose registers** are available.
+
+All in all, since Thumb instructions offer only a functional subset of ARM, developers may have to write more instructions to achieve the same effect.
 
 In practice, Thumb uses 70% of the space of ARM code. For 16-bit wide memory, Thumb runs *faster* than ARM. If required, ARM and Thumb instructions can be mixed in the same program (called *interworking*) so developers can choose when and where to use each mode.
 
