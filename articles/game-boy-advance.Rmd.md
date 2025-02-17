@@ -318,7 +318,7 @@ The new sound system can now play PCM samples, it provides two channels called *
 
 Samples are **8-bit** and **signed** (encoded in values from -128 to 127). The default sampling rate is 32 kHz, although this depends on each game: since a higher rate means a larger size and more CPU cycles, not every game will spend the same amount of resources to feed the audio chip.
 
-**DMA** is essential to avoid clogging CPU cycles. **Timers** are also available to keep in sync with the queue.
+Consequently, **DMA** is essential to avoid clogging CPU cycles. **Timers** are also available to keep in sync with the queue.
 
 #### PSG {.tab}
 
@@ -327,7 +327,7 @@ Samples are **8-bit** and **signed** (encoded in values from -128 to 127). The d
 While the Game Boy subsystem won't share its CPU, it does give out access to its PSG.
 For compatibility reasons, this is the same design found on the original Game Boy. I've previously written [this article](game-boy#audio) that goes into detail about each channel in particular.
 
-The majority of GBA games used it for accompaniment or effects. Later ones will optimise their music for PCM and leave the PSG unused.
+The majority of GBA games used it for accompaniment or effects. Later ones will optimise their music for PCM and often leave the PSG unused.
 
 #### Combined {.tab}
 
@@ -335,7 +335,7 @@ The majority of GBA games used it for accompaniment or effects. Later ones will 
 
 Finally, everything is automatically mixed and output through the speaker/headphone jack.
 
-Even though the GBA has just two PCM channels, some games can magically play more than two concurrent samples. How is this possible? Well, while only having two channels may seem a bit weak on paper, the main CPU can use some of its cycles to provide both audio sequencing and mixing [@audio-programming] (that should give you an idea of how powerful the ARM7 is!). Furthermore, in the 'Operating System' section, you'll find out that the BIOS ROM included an audio sequencer!
+Even though the GBA only exhibits two PCM channels, you may notice that games magically play more than two samples concurrently. How is this possible? Well, while only having two channels may seem a bit weak on paper, the main CPU can lend some of its cycles to sequence and mix samples in a single channel [@audio-programming] (that should give you an idea of how powerful the ARM7TDMI is!). This wasn't an afterthought, however: in the 'Operating System' section, you will find that the **BIOS ROM already provides an audio sequencer** to assist developers with this task.
 
 ### Best of both worlds {.tabs-close}
 
