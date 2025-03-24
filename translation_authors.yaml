@@ -1,0 +1,132 @@
+dreamcast:
+  ru: AbsurdlySuspicious и Иван "rndtrash" Кузьменко
+  pl: LunaDook & MoonbowPlushie
+  tr: EuropaYou
+gameboy:
+  fr:
+    authors:
+      - name: SuperDelphi
+        year: 2022
+    pretranslated_with_ai: true
+  es:
+    authors: null
+    pretranslated_with_ai: true
+  pl: LunaDook & MoonbowPlushie
+  tr: EuropaYou
+  zh-hans: Carryspider
+gamecube:
+  tr: EuropaYou
+  es:
+    authors: null
+    pretranslated_with_ai: true
+  zh-hans: Carryspider
+gba:  
+  es:
+    authors:
+      - name: Jonathan Lojo Muñiz
+        year: 2023
+    pretranslated_with_ai: true
+  pl: LunaDook & MoonbowPlushie
+  ru: Pawel Ryndovskiy, L1Q и Иван "rndtrash" Кузьменко
+  zh-hans: Carryspider
+mastersystem:
+  pl: LunaDook & MoonbowPlushie
+megadrive:
+  tr: EuropaYou
+  pl: LunaDook & MoonbowPlushie
+  pt-br: Walper e Estrelaura
+  ru: Pawel Ryndovskiy
+nes:
+  ar:
+    authors: null
+    pretranslated_with_ai: true
+  tr: EuropaYou
+  es:
+    authors: null
+    pretranslated_with_ai: true
+  ko:
+    authors: null
+    pretranslated_with_ai: true
+  zh-hans:
+    authors:
+      - name: 猫咪啊呀呀
+        year: 2022
+    pretranslated_with_ai: true
+  pt-br: Walper, Estrelaura e Pedro Bertella
+nintendo64:
+  es: Rodrigo Copetti
+  zh-hans:
+    authors: 
+      - name: heihei123456780
+        year: 2023
+    pretranslated_with_ai: true
+  pl: michasrutek
+nintendods:
+  zh-hans:
+    authors: 
+      - name: Cerallin
+        year: 2023
+    pretranslated_with_ai: true
+  ja:
+    authors: null
+    pretranslated_with_ai: true
+pcengine:
+  es: Carlos Díaz
+  tr: EuropaYou
+  zh-hans: Carryspider
+ps1:
+  pt-br: Walper
+  ru: Zerocker и Иван "rndtrash" Кузьменко
+  zh-hans: Carryspider
+ps2:
+  pt-br: Lucas Akira Morishita
+  tr: Annayo ve EuropaYou
+  ru:
+    authors: null
+    pretranslated_with_ai: true
+  fr:
+    authors: null
+    pretranslated_with_ai: true
+  zh-hans: Carryspider
+ps3:
+  ru:
+    authors:
+      - name: Vladimir Kovalev
+        year: 2021
+    pretranslated_with_ai: true
+  pt-br: Walper
+  zh-hans: Carryspider
+psp: 
+  zh-hans: Jepe
+saturn:
+  pt-br: Eugênio Lloyd
+snes:
+  pt-br: Walper
+  es:
+    authors: null
+    pretranslated_with_ai: true
+  zh-hans: Carryspider
+virtualboy: 
+  zh-hans: Carryspider
+wii:
+  es: Jonathan Lojo Muñiz
+  it: 
+    authors: 
+      - name: Valerio Francesco Vallone
+        year: 2022
+    pretranslated_with_ai: true
+  pl: LunaDook & MoonbowPlushie
+  cs: CoriTelma
+  zh-hans: Carryspider
+xbox:
+  tr: EuropaYou
+  it: 
+    authors: 
+      - name: Valerio Francesco Vallone
+        year: 2021
+    pretranslated_with_ai: true
+  zh-hans: Carryspider
+xbox360:
+  zh-hans: Carryspider
+wiiu:
+  zh-hans: 晓晓的锋 和 总比没有强, 我在, 合二为一, BLACKFEATHER, 东风 以及其他群友
