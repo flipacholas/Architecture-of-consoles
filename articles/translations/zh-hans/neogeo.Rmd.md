@@ -330,7 +330,7 @@ MVS系统还提供了一个**测试菜单**来配置机柜（例如调整日历�
 
 不过，我得说Neo Geo的卡带是我见过的家庭游戏机中最大的。 这是因为卡带内装载了大量的专用芯片。 与[SFC](super-nintendo), 不同，后者的游戏 [可以选择性地扩展](super-nintendo#beyond-convention) 游戏机的功能，而Neo Geo的游戏严格要求捆绑大量的电路。
 
-![Neo Geo通用卡带\[@photography-amos\]。 请注意突出的两块电路板。](cartridge.png){.no-borders}
+![Neo Geo通用卡带[@photography-amos]。 请注意突出的两块电路板。](cartridge.png){.no-borders}
 
 我在前面的部分已经提到了卡带系统的某些部分，但让我给你做一个快速总结，以便你能够更清楚地了解这个系统是如何工作的。
 
@@ -348,7 +348,7 @@ MVS系统还提供了一个**测试菜单**来配置机柜（例如调整日历�
 
 作为家用与街机的混合体，SNK提供了一个基本的配件来追踪分数和进度：一种专有的**记忆卡**。
 
-![记忆卡 \[@photography-amos\].](memorycard.png){.no-borders}
+![记忆卡 [@photography-amos].](memorycard.png){.no-borders}
 
 记忆卡适用于AES和MVS两种型号。 选项从**2KB**到**16KB**的电池支持SRAM不等[@games-memory_card]，但在所有情况下，电池都是不可更换的。
 
