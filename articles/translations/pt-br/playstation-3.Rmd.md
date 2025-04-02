@@ -19,14 +19,17 @@ top_tabs:
       caption: "O PlayStation 3 original ou \"PS3\". <br>Lançado em 11/11/2006 no Japão, 17/11/2006 na América e 23/03/2007 na Europa"
       title: Original
       file: original
+      latex_height: 85
     - 
       caption: "O PS3 série 2000/3000 (também conhecido como  \"<em>Slim</em>\").<br>Lançado em 01/09/2009 na Europa e América; e 03/09/2009 no Japão"
       title: <em>Slim</em>
       file: slim
+      latex_height: 95
     - 
       caption: "O PS3 série 4000 (também conhecido como  \"Super <em>Slim</em>\").<br>Lançado em 09/2012 internacionalmente"
       title: Super <em>Slim</em>
       file: super-slim
+      latex_height: 95
 ---
 
 ## Uma breve introdução
@@ -39,9 +42,7 @@ Este artigo examina em profundidade o projeto de parceria da Sony, IBM, Toshiba 
 
 Receio que este artigo não seja o típico "intervalo de almoço" que eu geralmente escrevo para os outros consoles desta [série](consoles). Se você estiver interessado em todas as áreas do PlayStation 3, prepare-se para uma jornada completa! Dito isso, esta redação abrange cerca de 6 anos de pesquisa e desenvolvimento realizados por incontáveis engenheiros, então não espero que você digira tudo de uma vez. Por favor, leve o seu tempo (e faça pausas, se necessário) e se, no final ainda quiser mais, consulte a seção de "Fontes"!
 
-```{r results="asis"}
-supporting_imagery()
-```
+## {.supporting-imagery}
 
 ## CPU
 
@@ -53,9 +54,9 @@ A CPU do PS3 é extremamente complexa, mas também é um trabalho de engenharia 
 
 #### O estado do progresso {.tabs.active}
 
-![A CPU do PS1 (1994). Desenvolvido pela LSI e a Sony, usando a tecnologia MIPS.](cpu/ps1.png) {.tab-float}
+![A CPU do PS1 (1994). Desenvolvido pela LSI e a Sony, usando a tecnologia MIPS.](_diagrams/cell/ps1.webp) {.tab-float}
 
-![O Emotion Engine do PS2 (2001). Desenvolvido pela Toshiba, novamente com tecnologia MIPS.](cpu/ee.png) {.tab-float}
+![O Emotion Engine do PS2 (2001). Desenvolvido pela Toshiba, novamente com tecnologia MIPS.](_diagrams/cell/ee.webp) {.tab-float}
 
 Quase dez anos após a introdução do [PlayStation original com processador MIPS](playstation), no início dos anos 2000, as coisas não pareciam boas para a CGI/MIPS. A Nintendo tinha recentemente abandonado os processadores MIPS em favor de um [núcleo PowerPC de baixo custo](gamecube#cpu) com a IBM como novo fornecedor, enquanto a Microsoft, a novata deste mercado, [escolheu a Intel](xbox#cpu) e seu império x86.
 
@@ -77,9 +78,9 @@ Consequentemente, o Cell fez parte dessa nova onda de pesquisa e desenvolvimento
 
 #### A nova era dos multinúcleos {.tab}
 
-![Exemplo de projeto heterogêneo.<br> Este está sendo a arquitetura predominante de muitos consoles poderosos até os dias atuais.](cpu/paradigm/heterogeneous.png) {.tab-float}
+![Exemplo de projeto heterogêneo.<br> Este está sendo a arquitetura predominante de muitos consoles poderosos até os dias atuais.](_diagrams/cell/paradigm/heterogeneous.webp) {.tab-float}
 
-![Exemplo de projeto homogêneo.<br>Cada núcleo pode realizar as mesmas tarefas como antes, mas não necessariamente está restrito a essa tarefa.](cpu/paradigm/homogeneous.png) {.tab-float}
+![Exemplo de projeto homogêneo.<br>Cada núcleo pode realizar as mesmas tarefas como antes, mas não necessariamente está restrito a essa tarefa.](_diagrams/cell/paradigm/homogeneous.webp) {.tab-float}
 
 Se você parar para pensar, tanto o processador do PS1 quanto o Emotion Engine já eram processadores multinúcleos. Então, por que houve tanta empolgação em relação ao Cell? Bem, os dois processadores anteriores eram compostos por um núcleo de propósito geral e vários núcleos de aplicação específica (ou seja, processador de áudio, descompressão de imagem, etc.), misturando diferentes arquiteturas, em que o núcleo de propósito geral é responsável por comandar os outros.
 
@@ -89,9 +90,9 @@ Voltando ao assunto, o **Cell combina ambos os modelos**: há dois tipos de núc
 
 ### Um olhar sobre o Cell {.tabs-close}
 
-Após ter explicado toda essa história e teoria, acredito que estamos prontos para apresentar o protagonista desta seção. Este é o Cell:
+Após ter explicado toda essa história e teoria, acredito que estamos prontos para apresentar o protagonista desta seção. Este é Cell @fig-cell...
 
-![O Cell Broadband Engine (variante PS3).<br> Projetado pela IBM para supercomputação e simulação científica. O "SPE" riscado significa que está desabilitado (inutilizado). O outro "SPE" à esquerda é reservado para o sistema operacional.](cpu/cell.png)
+![O Cell Broadband Engine (variante PS3).<br> Projetado pela IBM para supercomputação e simulação científica. O "SPE" riscado significa que está desabilitado (inutilizado). O outro "SPE" à esquerda é reservado para o sistema operacional.](_diagrams/cell/cell.webp) {#fig-cell}
 
 ... e ao final desta seção, você saberá o que cada componente faz.
 
@@ -99,7 +100,7 @@ Após ter explicado toda essa história e teoria, acredito que estamos prontos p
 
 O Cell funciona a uma _impressionante_ velocidade de **3,2 GHz** e é composto por uma infinidade de componentes. Portanto, para fins de análise, essa CPU pode ser dividida em três áreas principais [@cpu-architecture]:
 
-- O **líder**: esta é a parte do Cell que controla os outros do circuitos. Aqui encontramos um componente chamado de **Power Processing Element** (PPE).
+- O **líder**: esta é a parte do Cell que controla os outros do circuitos. Aqui encontramos um componente chamado **PowerPC Processing Element** (PPE).
 - Os **assistentes**: esses são tão cruciais quanto o PPE, mas suas capacidades se limitam a um papel de assistente/acelerador. Esse grupo é composto por oito **Synergistic Processing Elements** (SPEs).
 - As **interfaces**: à medida que a necessidade de largura de banda aumenta exponencialmente, novas interfaces são implementadas para transferir os dados sem produzir gargalos. No grupo de interfaces, encontramos um punhado de protocolos: o **Element Interconnect Bus** (EIB), o **Broadband Engine Interface Unit** (BEI), o **Memory Interface Controller** (MIC) e o **Flex I/O buses**.
 
@@ -121,7 +122,7 @@ Dito isso, vamos começar a análise real.
 
 Desde o seu anúncio, o Cell tem sido referido como uma ***Network-on-Chip*** (NoC) [@cpu-koranne, p. 62] em vez da definição tradicional do *System-on-Chip* (SoC), isso se deve ao barramento de dados incomum do Cell, o **Element Interconnect Bus** (EIB). [Já vimos](playstation-2#a-recognisable-memory-choice) até agora o quão exigentes os componentes da CPU podem ser, além de quão [suscetível](nintendo-64#tab-3-1-pipeline-stalls) um sistema é a gargalos. Bem, para enfrentar isso pela décima primeira vez, a IBM criou um novo projeto... e o documentou usando termos análogos à _condução de veículos_.
 
-![Diagrama simplificado do Element Interconnect Bus (EIB).<br> Cada seta entre as "<em>Ramps</em>" (nós) representa dois barramentos unidirecionais, assim, cada nó está conectado ao próximo usando quatro canais.](cpu/eib.png)
+![Diagrama simplificado do Element Interconnect Bus (EIB).<br> Cada seta entre as "<em>Ramps</em>" (nós) representa dois barramentos unidirecionais, assim, cada nó está conectado ao próximo usando quatro canais.](_diagrams/cell/eib.webp)
 
 O EIB é composto por doze nós chamados de **Ramps**, cada um conectando um componente do Cell. Os Ramps são interconectados usando quatro barramentos, dois deles seguem no **sentido horário** e os outros dois no **sentido anti-horário**. Cada barramento (ou **canal**) possui uma largura de banda de 128 bits. Em vez de usar topologias de barramento único (como o Emotion Engine e seu antecessor fazia), os Ramps são interconectados seguindo a topologia em anel (***token ring***), onde os pacotes de dados devem passar por todos os vizinhos até chegar ao destino (não há caminho direto). Considerando que o EIB fornece quatro canais, existem quatro rotas possíveis (**anéis**).
 
@@ -141,7 +142,7 @@ Aqui vamos dar uma olhada na "parte principal" do Cell. Essa é a parte do silí
 
 Lembra como eu dividi o Cell em diferentes áreas? Bem, o mesmo pode ser feito com o PPE. A IBM usa o termo "elemento" para descrever a máquina independente [@cpu-arevalo, p. 8], mas uma vez dentro dele, usa o termo "unidade" para separar a parte do circuito principal das interfaces que se comunicam com o resto do Cell.
 
-![Diagrama simplificado do PowerPC Processing Element (PPE).](cpu/ppe.png)
+![Diagrama simplificado do PowerPC Processing Element (PPE).](_diagrams/cell/ppe.webp)
 
 Dito isso, o elemento PowerPC Processor é _surpreendentemente_ composto por duas partes:
 
@@ -156,15 +157,15 @@ Vamos dar uma olhada no interior da PPU agora. Para recapitular, mergulhamos no 
 
 ##### Uma arquitetura familiar {.tabs.active}
 
-Para começar, a PPU não é construída do zero, mas **reutiliza a tecnologia PowerPC existente**. No entanto, ao contrário de [iterações anteriores](gamecube#cpu) em que a IBM pegou um processador existente e o atualizou pela metade para atender novos requisitos, o PPE não sucede nenhum projeto anterior de CPU. Em vez disso, a IBM construiu uma nova CPU que segue a versão 2.02 da especificação PowerPC (que acontece de ser a última especificação PowerPC antes de ser renomeada para "Power ISA"). Resumindo, você não encontrará o mesmo projeto da PPU em nenhum chip existente daquela época, no entanto, ele é programado usando o mesmo código de máquina que em outros chips PowerPC.
+Para começar, a PPU não é construída do zero, mas **reutiliza a tecnologia PowerPC existente**. No entanto, ao contrário de [iterações anteriores](gamecube#the-powerpc-gekko) em que a IBM pegou um processador existente e o atualizou pela metade para atender novos requisitos, o PPE não sucede nenhum projeto anterior de CPU. Em vez disso, a IBM construiu uma nova CPU que segue a versão 2.02 da especificação PowerPC (que acontece de ser a última especificação PowerPC antes de ser renomeada para "Power ISA"). Resumindo, você não encontrará o mesmo projeto da PPU em nenhum chip existente daquela época, no entanto, ele é programado usando o mesmo código de máquina que em outros chips PowerPC.
 
-Dito isto, por que a IBM escolheu a tecnologia PowerPC para desenvolver um chip de alto desempenho? Simples, o PowerPC é uma plataforma madura que desfrutou de cerca de 10 anos de testes e revisões por parte dos usuários do Macintosh, atende a todas as necessidades da Sony e, se surgir a necessidade, pode ser adaptado a diferentes ambientes. Por último, mas não menos importante, o uso de uma arquitetura conhecida é uma boa notícia para compiladores e conjuntos de códigos existentes, o que, para um novo console, é uma grande vantagem inicial.
+Dito isto, por que a IBM escolheu a tecnologia PowerPC para desenvolver um chip de alto desempenho? Simples, o PowerPC é uma plataforma madura [@cpu-koranne] que desfrutou de cerca de 10 anos de testes e revisões por parte dos usuários do Macintosh [testando e revisando](gamecube#tab-2-2-joining-forces-again), atende a todas as necessidades da Sony e, se surgir a necessidade, pode ser adaptado a diferentes ambientes. Por último, mas não menos importante, o uso de uma arquitetura conhecida é uma boa notícia para compiladores e conjuntos de códigos existentes, o que, para um novo console, é uma grande vantagem inicial.
 
-Vale ressaltar que a IBM foi uma das autoras dos primeiros chips PowerPC, juntamente com a Motorola e a Apple (lembre da aliança [AIM](gamecube#cpu)). Seja como for, no início dos anos 2000, os chamados membros da aliança já estavam trabalhando separadamente, onde a Motorola/Freescale desenvolveu uma série diferente de PowerPC da IBM.
+Vale ressaltar que a IBM foi uma das autoras dos primeiros chips PowerPC, juntamente com a Motorola e a Apple (lembre da aliança [AIM](gamecube#tab-1-2-reaching-the-average-user)). Seja como for, no início dos anos 2000, os chamados membros da aliança já estavam [trabalhando separadamente](gamecube#tab-2-3-the-band-splits-for-good), onde a Motorola/Freescale desenvolveu uma série diferente de PowerPC da IBM.
 
 ##### Recursos distintos {.tab}
 
-A PPU compartilha parte da história com o PowerPC 970 (chamado de _G5_ pela Apple), ambos são descendentes do POWER4, um antecessor do PowerPC usado principalmente em estações de trabalho e supercomputadores. Isso fica mais evidente quando eu lhe mostrar as unidades de execução modularizadas. Esta foi uma mudança radical comparado com a CPU da [linha 750](gamecube#cpu) do GameCube, que teve uma considerável contribuição da Motorola, mas foi ligeiramente modificada pela IBM.
+A PPU compartilha parte da história com o PowerPC 970 (chamado de _G5_ pela Apple), ambos são descendentes do POWER4, um antecessor do PowerPC usado principalmente em estações de trabalho e supercomputadores. Isso fica mais evidente quando eu lhe mostrar as unidades de execução modularizadas. Esta foi uma mudança radical comparado com a CPU da [linha 750](gamecube#the-powerpc-gekko) do GameCube, que teve uma considerável contribuição da Motorola, mas foi ligeiramente modificada pela IBM.
 
 Voltando ao assunto, a PPU é um **processador completo de 64 bits**. Isso significa:
 
@@ -181,21 +182,21 @@ Ao aplicarmos uma visão "microscópica" à PPU, podemos observar que esta unida
 
 ##### Instruções {.tabs.active}
 
-![Diagrama simplificado da Instruction Unit (IU).](cpu/ppu/iu.jpg) {.tab-float}
+![Diagrama simplificado da Instruction Unit (IU).](_diagrams/cell/ppu/iu.webp) {.tab-float}
 
-O primeiro bloco é chamado de **Instruction unit** (IU) e, como o nome sugere, ele retira as instruções da cache L2 e sinaliza outras unidades para executar a operação solicitada. Assim como seus [contemporâneos i686](xbox#cpu), parte do conjunto de instruções é interpretada com o uso de [**microcódigo**](nintendo-64#tab-1-1-reality-signal-processor) (a IU incorpora uma pequena ROM para esse fim). Por fim, a IU também possui **32 KB de cache L1 para instruções**.
+O primeiro bloco é chamado de **Instruction Unit** (IU) e, como o nome sugere, ele retira as instruções da cache L2 e sinaliza outras unidades para executar a operação solicitada. Assim como seus [contemporâneos i686](xbox#cpu), parte do conjunto de instruções é interpretada com o uso de [**microcódigo**](nintendo-64#tab-1-1-reality-signal-processor) (a IU incorpora uma pequena ROM para esse fim). Por fim, a IU também possui **32 KB de cache L1 para instruções**.
 
 A emissão de instruções é realizada com um **pipeline de 12 estágios**, embora, na prática o número total de estágios varie muito dependendo do tipo de instrução. Por exemplo, o bloco de **previsão de desvio** (*branch prediction*) pode ignorar boa parte do *pipeline*. Se combinarmos a IU com as unidades vizinhas, o número final de estágios geralmente fica **próximo de 24** (sim, é um número grande, mas lembre-se que o Cell funciona a 3,2 GHz).
 
-Agora para as partes interessantes, a IU é de **dupla emissão**: em alguns casos, a IU emitirá até duas instruções ao mesmo tempo, aumentando assim consideravelmente a taxa de transferência. Na prática, no entanto, existem muitas condições para que isso funcione, portanto, os programadores/compiladores são responsáveis por otimizar suas rotinas para que sua sequência de instruções possa aproveitar essa funcionalidade. A propósito, a emissão dupla (*dual-issuing*) também foi implementada por outras CPUs, e o termo varia entre os fornecedores, então aqui usei a definição da IBM.
+Agora para as partes interessantes, a IU é de **dupla emissão**: em alguns casos, a IU emitirá até duas instruções ao mesmo tempo, aumentando assim consideravelmente a taxa de transferência. Na prática, no entanto, existem muitas condições para que isso funcione, portanto, os programadores/compiladores são responsáveis por otimizar suas rotinas para que sua sequência de instruções possa aproveitar essa funcionalidade. A propósito, a emissão dupla também foi implementada por [outras CPUs](gamecube#the-powerpc-gekko), e o termo varia entre os fornecedores, então aqui usei a definição da IBM.
 
-Além disso, para completar, a IU também é ***multi-threaded***, onde a unidade pode executar duas sequências diferentes de instruções (chamadas de "*threads*") simultaneamente. Nos bastidores, a IU simplesmente alterna entre os dois *threads* a cada ciclo, dando a aparência de *multi-threading*. Essa técnica é historicamente conhecida como ***simultaneous multi-threading*** (SMT) ou __hyper-threading_*, como a Intel posteriormente chamou. No entanto, o *multi-threading* da IBM mitiga efeitos indesejados como [bloqueios de *pipeline*](nintendo-64#tab-3-1-pipeline-stalls), uma vez que a CPU não ficará mais bloqueada se uma instrução travar o fluxo. Para realizar o *multi-threading*, os engenheiros da IBM duplicaram os recursos internos da IU, que incluem registradores de propósito geral (anteriormente eu disse que existem 32 registradores disponíveis, isso é por *thread*. De fato, existem 64 no total!), no entanto, recursos que não pertencem à especificação do PowerPC (como *cache* L1 e L2; e as interfaces) ainda são compartilhados. Assim, o último grupo é de thread único.
+Além disso, para completar, a IU também é ***multi-threaded***, onde a unidade pode executar duas sequências diferentes de instruções (chamadas de "*threads*") simultaneamente. Nos bastidores, a IU simplesmente alterna entre os dois *threads* a cada ciclo, dando a aparência de *multi-threading*. Essa técnica é historicamente conhecida como **Simultaneous Multi-Threading** (SMT) ou _hyper-threading_, como a Intel posteriormente chamou. No entanto, o *multi-threading* da IBM mitiga efeitos indesejados como [bloqueios de *pipeline*](nintendo-64#tab-3-1-pipeline-stalls), uma vez que a CPU não ficará mais bloqueada se uma instrução travar o fluxo. Para realizar o *multi-threading*, os engenheiros da IBM duplicaram os recursos internos da IU, que incluem registradores de propósito geral (anteriormente eu disse que existem 32 registradores disponíveis, isso é por *thread*. De fato, existem 64 no total!), no entanto, recursos que não pertencem à especificação do PowerPC (como *cache* L1 e L2; e as interfaces) ainda são compartilhados. Assim, o último grupo é de thread único.
 
 Resumindo, combinando o *threading* duplo com a emissão dupla, a PPU pode executar **até quatro instruções por ciclo**. Mesmo que este seja um "cenário ideal", ele ainda oferece oportunidades de otimização que os usuários eventualmente perceberão na taxa de quadros do jogo!
 
 ##### Gerência de memória {.tab}
 
-![Diagrama simplificado da Load-Store Unit (LSU) e sua vizinhança.](cpu/ppu/lsu.png) {.tab-float}
+![Diagrama simplificado da Load-Store Unit (LSU) e sua vizinhança.](_diagrams/cell/ppu/lsu.webp) {.tab-float}
 
 Os blocos seguintes concedem à PPU a capacidade de executar instruções de carga-armazenamento e de realizar gerenciamento de memória.
 
@@ -205,7 +206,7 @@ Além disso, a LSU é acoplada à **Memory Management Unit** (MMU — Unidade de
 
 ##### Aritmética {.tab}
 
-![Diagrama simplificado das unidades que realizam as operações aritméticas.](cpu/ppu/vsu_fxu.png) {.tab-float}
+![Diagrama simplificado das unidades que realizam as operações aritméticas.](_diagrams/cell/ppu/vsu_fxu.webp) {.tab-float}
 
 Restam apenas duas unidades do PPU para explicar, aquelas que calculam a matemática que qualquer jogo precisa.
 
@@ -213,7 +214,7 @@ A primeira é uma **Fixed-Point Integer Unit** (FXU — Unidade de Ponto Fixo, e
 
 Se você olhar o diagrama, verá que a FXU, LSU e MMU são agrupados em uma única unidade chamada de **Execution Unit** (XU), isso porque eles compartilham o mesmo arquivo de registro.
 
-A segunda unidade é muito mais interessante, a **Vector/Scalar Unit** (VSU) realiza operações com números de ponto flutuante e vetores. Ela é composta por uma **FPU de 64 bits** (segue o padrão IEEE 754) e uma **Vector/SIMD Multimedia Extension Unit** (VXU), que executa um conjunto de instruções SIMD chamado _VMX_. Esses vetores são codificados com 128 bits de comprimento e feitos de dois ou três valores de 8/16/32 bits. Você pode ter ouvido falar dessa extensão antes, já que "VMX" é o nome da IBM para "AltiVec" da Motorola ou "Velocity Engine" da Apple (_viva as marcas registradas_). Por outro lado, as capacidades competitivas SIMD do Cell são encontradas em outro processador, então não relaxe ainda!
+A segunda unidade é muito mais interessante, a **Vector/Scalar Unit** (VSU) realiza operações com números de ponto flutuante e vetores. Ela é composta por uma **FPU de 64 bits** (segue o padrão IEEE 754) e uma **Vector/SIMD Multimedia Extension Unit** (VXU), que executa um conjunto de instruções SIMD chamado _VMX_. Este último opera com vetores de 128 bits, compostos por dezesseis valores de 8 bits até quatro de 32 bits [@cpu-arevalo]. Você pode ter ouvido falar dessa extensão antes, já que "VMX" é o nome da IBM para "AltiVec" da Motorola ou "Velocity Engine" da Apple (_viva as marcas registradas_). Por outro lado, as capacidades competitivas SIMD do Cell são encontradas em outro processador, então não relaxe ainda!
 
 #### Concluindo o PPE {.tabs-close}
 
@@ -237,7 +238,7 @@ A Rambus, como qualquer outra empresa, melhora suas invenções. Sua terceira re
 
 A primeira revisão da placa-mãe do PlayStation 3 contém quatro chips de 64 MB, operandos em pares. O XDR é conectado ao Cell usando dois barramentos de 32 bits, um para cada par. Então, sempre que a PPU escreve uma palavra (dados de 64 bits), ela é dividida entre dois chips XDR. Estes últimos são sincronizados em 400 MHz [@cpu-ram].
 
-![Diagrama da arquitetura de memória do Cell.](cpu/memory.jpg)
+![Diagrama da arquitetura de memória do Cell.](_diagrams/cell/memory.webp)
 
 O Cell se conecta aos chips XDR usando o **Memory Interface Controller** (MIC), outro componente dentro do Cell (como o PPE). Além disso, o MIC armazena em *buffer* as transferências de memória para melhorar a largura de banda, mas possui uma grande limitação: o alinhamento de bytes. Em essência, o tamanho mínimo de dados do MIC para transferência é de **128 bytes**, o que funciona bem para leituras ou gravações sequenciais. Mas se os dados forem menores que 128 B ou se for exigido a alternância entre gravação e leitura, as penalidades de desempenho aparecem.
 
@@ -259,7 +260,7 @@ Os aceleradores incluídos dentro do Cell do PS3 são os **Synergistic Processor
 
 Seguindo em frente, o Synergistic Processor Element (SPE) é um pequeno computador independente dentro do Cell e comandado pelo PPE. Lembra do que eu expliquei antes sobre a adoção de elementos de computação homogênea? Bem, esses coprocessadores são um tanto quanto de propósito geral e não restritos a uma única aplicação, então eles serão capazes de auxiliar em uma ampla gama de tarefas, isto é, desde que os desenvolvedores possam programá-los adequadamente.
 
-![Diagrama simplificado do Synergistic Processor Element (SPE), existem oito dentro do Cell (um fica desativado).](cpu/spe.png)
+![Diagrama simplificado do Synergistic Processor Element (SPE), existem oito dentro do Cell (um fica desativado).](_diagrams/cell/spe.webp)
 
 Assim como fizemos com o PPE, vamos dar uma olhada no SPE. É um tópico mais curto, então se no final você quiser aprender mais sobre os SPEs, confira a seção "Fontes" no final do texto. Dito isso, vamos começar...
 
@@ -295,23 +296,23 @@ Vamos dar uma olhada nos dois *pipelines* [@cpu-hyesoon]:
 
 ##### *Pipeline* ímpar {.tabs.active}
 
-![Diagrama simplificado do <em>pipeline</em> ímpar.](cpu/spu/odd.png) {.tab-float}
+![Diagrama simplificado do <em>pipeline</em> ímpar.](_diagrams/cell/spu/odd.webp) {.tab-float}
 
 O *pipeline* ímpar executa a maioria das instruções, exceto as aritméticas.
 
-Em primeiro lugar, você encontrará a **SPU load/store unit** (SLS), que faz três coisas essenciais:
+Em primeiro lugar, você encontrará a **SPU Load/Store unit** (SLS), que faz três coisas essenciais:
 
 - Contém **256 KB de memória local** para armazenar instruções e dados. O tipo de memória utilizada é de porta única (considerando que esta é uma área crítica, é um pouco decepcionante que eles não tenham usado chips de porta dupla...). Além disso, o barramento de endereço tem 32 bits de comprimento.
 - Executa instruções de carga e armazenamento.
 - Encaminha instruções para outro bloco para emissão.
 
-Observe que **apenas 256 KB estão disponíveis para armazenar o programa**. Considerando que os programas SPU podem ser compilados usando C/C++, não é fácil prever o tamanho que o programa terá. Por esse motivo, é recomendado que os programas assumam que há apenas metade da memória disponível (128 KB) [@cpu-hpc, p. 4], o que deixa espaço suficiente para que o código compilado ocupe o espaço que precisar, embora isso venha com o custo de armazenamento e eficiência.
+Observe que **apenas 256 KB estão disponíveis para armazenar o programa**. Considerando que os programas da SPU podem ser compilados usando C/C++, não é fácil prever o tamanho que o arquivo binário terá. Por isso, é recomendando que os desenvolvedores considerem haver apenas metade da memória disponível (128 KB) [@cpu-hpc, p. 4], o que deixa espaço suficiente para o código compilado ocupar o espaço que precisar, embora isso resulte em custo de armazenamento e eficiência.
 
 Finalmente, também há uma **SPU Channel and DMA Transport Unit** (SSC), que o Memory Flow Controller usa para preencher e/ou buscar memória local, e uma unidade de **ponto fixo** _insignificante_ que apenas faz embaralhamento e rotação de vetores.
 
 ##### *Pipeline* par {.tab}
 
-![Diagrama simplificado do <em>pipeline</em> par.](cpu/spu/even.png) {.tab-float}
+![Diagrama simplificado do <em>pipeline</em> par.](_diagrams/cell/spu/even.webp) {.tab-float}
 
 O * pipeline* par é notável por suas capacidades aritméticas.
 
@@ -325,11 +326,11 @@ Como chegamos no final do Cell, você pode se perguntar como os desenvolvedores 
 
 #### Abordagens centradas no PPE
 
-![Representação do padrão de vários estágios, em que o PPE atribui uma tarefa passada por cada SPE e, eventualmente, retornada com os dados processados.](cpu/programming/multistage.png){.tabs-nested .active title="Multiestágio"}
+![Representação do padrão de vários estágios, em que o PPE atribui uma tarefa passada por cada SPE e, eventualmente, retornada com os dados processados.](_diagrams/cell/programming/multistage.webp){.tabs-nested .active title="Multiestágio"}
 
-![Representação do padrão paralelo, em que o PPE atribui uma sub-tarefa para cada SPE e, por sua vez, cada SPE retorna os dados processados, que o PPE mescla.](cpu/programming/parallel.png){.tab-nested title="Paralelo"}
+![Representação do padrão paralelo, em que o PPE atribui uma sub-tarefa para cada SPE e, por sua vez, cada SPE retorna os dados processados, que o PPE mescla.](_diagrams/cell/programming/parallel.webp){.tab-nested title="Paralelo"}
 
-![Representação do padrão de serviços, em que o PPE aloca uma tarefa diferente para cada SPE, e cada um trabalha individualmente para cumprí-la.](cpu/programming/services.png){.tabs-nested-last title="Serviços"}
+![Representação do padrão de serviços, em que o PPE aloca uma tarefa diferente para cada SPE, e cada um trabalha individualmente para cumprí-la.](_diagrams/cell/programming/services.webp){.tabs-nested-last title="Serviços"}
 
 As abordagens centradas no PPE são um conjunto de padrões de programação que colocam as principais responsabilidades no PPE e deixam o SPE para a descarga de trabalho. Existem três possíveis padrões:
 
@@ -341,7 +342,7 @@ As abordagens centradas no PPE são um conjunto de padrões de programação que
 
 #### Abordagens centradas no SPE
 
-![Representação do padrão centrado em SPE, em que cada SPE é responsável por sua funcionalidade e interage apenas com o PPE para obter um recurso.](cpu/programming/spe_centric.png)
+![Representação do padrão centrado em SPE, em que cada SPE é responsável por sua funcionalidade e interage apenas com o PPE para obter um recurso.](_diagrams/cell/programming/spe_centric.webp)
 
 Em vez de usar os SPEs para servir o PPE, é o contrário. Usando a unidade interna de DMA, os SPEs buscam e executam tarefas armazenadas na memória principal, enquanto o PPE é limitado ao gerenciamento de recursos.
 
@@ -351,7 +352,7 @@ Este modelo é muito mais radical do que o restante, no sentido de que os padrõ
 
 Como você pode imaginar, embora o projeto multi-núcleos do Cell acelere técnicas emergentes, como [geração procedural](playstation-2#infinite-worlds), nenhum desses projetos é particularmente simples de implementar, especialmente considerando que os estúdios de jogos preferem bases de código que possam ser compartilhadas em diferentes plataformas.
 
-Para dar um exemplo, os desenvolvedores do Unreal Engine 3 (Epic Games) demonstraram as limitações dos SPUs ao tentar implementar seu sistema de detecção de colisão [@cpu-unreal]. Seu projeto depende do *Binary Space Partitioning* (BSP — partição binária do espaço, em tradução livre), um algoritmo fortemente dependente de comparações (*branching*). Como as SPUs não fornecem previsão dinâmica de desvios (*dynamic branch prediction*) como a PPU, sua implementação decepcionou os usuários do PlayStation 3 quando comparada lado a lado com outras plataformas (ou seja, Xbox 360 ou PCs [i386](xbox#tab-1-3-the-microarchitecture), ambos que fornecem técnicas avançadas de previsão em todos os seus núcleos). Assim, a Epic Games teve que recorrer a mais otimizações compatíveis apenas com o Cell.
+Para dar um exemplo, os desenvolvedores do Unreal Engine 3 (Epic Games) demonstraram as limitações dos SPUs ao tentar implementar seu sistema de detecção de colisão [@cpu-unreal]. Seu projeto depende do *Binary Space Partitioning* (BSP — partição binária do espaço, em tradução livre), um algoritmo fortemente dependente de comparações (*branching*). Como as SPUs não fornecem previsão dinâmica de desvios como a PPU, sua implementação decepcionou os usuários do PlayStation 3 quando comparada lado a lado com outras plataformas (ou seja, [Xbox 360](xbox-360#cpu) ou PCs [i686](xbox#tab-1-3-the-microarchitecture), ambas fornecendo técnicas consistentes de previsão em todos os seus núcleos). Assim, a Epic Games teve que recorrer a mais otimizações compatíveis apenas com o Cell.
 
 Suponho que seja apenas uma questão de tempo, paciência e muito aprendizado para que os engenheiros de software aproveitem todo o potencial do Cell. No entanto, a história demonstrou [que isso não é viável para todos os estúdios](sega-saturn#as-a-challenging-3d-console), o que me faz pensar se esse é o motivo pelo qual o hardware do console atual (a partir de 2021) se tornou tão homogêneo.
 
@@ -373,9 +374,13 @@ Exemplos de jogos de PS3. Todos são renderizados na resolução máxima (1280x7
 
 :::
 
-Parece que mesmo com um chip de supercomputador, a Sony ainda teve que buscar uma GPU para finalizar o PlayStation 3. Isso faz você se perguntar se a IBM/Sony/Tpshiba encontrou algum obstáculo ao tentar escalar ainda mais o Cell, então a Sony não teve outra opção senão buscar ajuda de uma empresa de processadores gráficos. No entanto, isso é pura especulação e não tenho certeza se, algum dia, saberei a resposta.
+Parece que mesmo com um chip de supercomputador, a Sony ainda teve que buscar uma GPU para finalizar o PlayStation 3. Isso faz você se perguntar se a IBM/Sony/Tpshiba encontrou algum obstáculo ao tentar escalar ainda mais o Cell, então a Sony não teve outra opção senão buscar ajuda de uma empresa de processadores gráficos.
 
-O que eu sei é que o PS3 contém um chip GPU fabricado pela **Nvidia**, destinado a aliviar parte do *pipeline* gráfico. O chip é chamado de **Reality Synthesizer** ou "RSX" e roda a **500 MHz** [@graphics-rsx_dev]. Sua frequência de *clock* parece preocupante quando comparada com a do Cell (3,2 GHz), mas veja que a GPU é melhor equipada para realizar quantidades grandes de operações em paralelo. Portanto, é uma questão de encontrar um equilíbrio entre o Cell e o RSX quando se trata de construir o *pipeline* gráfico (embora eu deva confessar que isso parece mais simples no papel do que na prática).
+> Nós iniciamos esta equipe ICE [Iniciativa para um Motor Comum] com o objetivo de desenvolver alguma tecnologia central que pudesse ser compartilhada entre todos os primeiros partidos (...) Por um tempo, [PS3 teve] sem GPU, ia rodar tudo com SPUs. A equipe da ICE provou ao Japão que isso era simplesmente impossível. Isso seria ridículo. Em termos de desempenho, seria um desastre. É por isso que eles finalmente adicionaram a GPU, mais perto do fim [@graphics-ign_naughtydog].
+> 
+> -- <cite>Fontes anônimas da Naughty Dog</cite>
+
+O que eu sei é que o PS3 contém um chip GPU fabricado pela **Nvidia**, destinado a aliviar parte do gráfico. O chip é chamado de **Reality Synthesizer** ou "RSX" e roda a **500 MHz** [@graphics-rsx_dev]. Sua frequência de *clock* parece preocupante quando comparada com a do Cell (3,2 GHz), mas veja que a GPU é melhor equipada para realizar quantidades grandes de operações em paralelo. Portanto, é uma questão de encontrar um equilíbrio entre o Cell e o RSX quando se trata de construir o *pipeline* gráfico (embora eu deva confessar que isso parece mais simples no papel do que na prática).
 
 Agora, farei a análise do RSX e suas capacidades gráficas no mesmo nível que fiz com o Cell.
 
@@ -404,7 +409,7 @@ Para fins de comparação, o IOIF funciona como um barramento paralelo de 32 bit
 
 O RSX tem **256 MB de GDDR3 SDRAM dedicados** à sua disposição. Surpreendentemente, é o [mesmo tipo de memória](wii#what-about-memory) encontrada no Wii. O barramento de memória funciona a **650 MHz** com uma largura de banda teórica de até **20,8 GB/s**.
 
-![Exemplo de como os dados são organizados na memória disponível. Observe como o RSX pode acessar seu conteúdo dos diferentes chips de memória.](gpu/content.png)
+![Exemplo de como os dados são organizados na memória disponível. Observe como o RSX pode acessar seu conteúdo dos diferentes chips de memória.](_diagrams/rsx/content.webp)
 
 Dentro desses 256 MB, o Cell pode colocar tudo o que o RSX precisa para renderizar um quadro. Isso inclui os dados de vértices, os *shaders*, as texturas e os comandos. Graças ao barramento Flex I/O do Cell, o RSX também pode utilizar os mencionados 256 MB de memória XDR (RAM principal da CPU) como espaço de trabalho, embora isso acarrete algumas penalidades de desempenho. Isso é útil se o quadro renderizado for processado posteriormente por um SPU, por exemplo.
 
@@ -416,19 +421,19 @@ Por fim, o RSX suporta muitas formas de otimização de dados para economizar la
 
 Vamos dar uma olhada em como o RSX processa e renderiza cenas em 3D.
 
-![Visão geral do <em>pipeline</em> do RSX.](gpu/pipeline.png)
+![Visão geral do <em>pipeline</em> do RSX.](_diagrams/rsx/pipeline.webp)
 
 Seu modelo de *pipeline* é muito semelhante ao da [GeForce3](xbox#architecture-and-design), mas foi turbinado com cinco anos de progresso tecnológico. Então, sugiro verificar este artigo [@graphics-marcelina] antes, já que este texto foca nas novas funcionalidades. Também recomendo ler sobre a [GPU do PlayStation Portable](playstation-portable#functionality), pois muitos dos novos desenvolvimentos e das novas necessidades se sobrepõem com a desse chip. Dito isso, vamos ver o que temos aqui...
 
 #### Comandos {.tabs.active}
 
-![Diagrama do estágio de comando.](gpu/commands.png) {.tab-float}
+![Diagrama do estágio de comando.](_diagrams/rsx/pipeline_commands.webp) {.tab-float}
 
 Assim como acontece com qualquer outra GPU, deve haver um bloco de circuito encarregado de receber as ordens de fora. Com o RSX, isso é tratado por dois blocos: **Host** e **Graphics Front End**.
 
 O Host é responsável por ler os comandos da memória (seja local ou principal) e traduzi-los em sinais internos que outros componentes do RSX entendam. Isso é feito com o uso de quatro sub-blocos:
 
-- O **Pusher**: busca comandos gráficos da memória e [interpreta](playstation-portable#tab-1-1-commands) as instruções de desvio (*branch*). Ele também contém 1 KB de [*buffer* de pré-busca](game-boy-advance#memory-locations). Os comandos processados são enviados para uma *cache* FIFO.
+- **Pusher**: busca comandos gráficos da memória e [interpreta](playstation-portable#tab-1-1-commands) as instruções de desvio. Ele também contém 1 KB de [*buffer* de pré-busca](game-boy-advance#memory-locations). Os comandos processados são enviados para uma *cache* FIFO.
 - **Cache FIFO**: armazena até 512 comandos decodificados pelo Pusher obedecendo à ordem de chegada na *cache* para fornecer acesso rápido.
 - **Puller**: coleta comandos da *cache* FIFO sempre que o RSX está pronto para renderizar e os envia para a próxima unidade.
 - **Graphics FIFO**: armazena até oito comandos que serão lidos pelo Graphics Front End.
@@ -439,7 +444,7 @@ Como pode ser visto, comandos e dados passam por muitos *buffers* e *caches* ant
 
 #### *Shader* de vértice {.tab}
 
-![Diagrama do processo do estágio de vértice, observe que os Vertex Processing Engine (VPE) são ignorados se os vértices não precisam de mais serem processados pelo vertex shader.](gpu/vertex.png) {.tab-float}
+![Diagrama do processo do estágio de vértice, observe que os Vertex Processing Engine (VPE) são ignorados se os vértices não precisam de mais serem processados pelo vertex shader.](_diagrams/rsx/pipeline_vertex.webp) {.tab-float}
 
 A próxima unidade é o bloco de **Geometry Processing**, uma evolução do "Bloco de Vértices" da GeForce3 que realiza a transformações de vértices. Permanece programável com o uso de **shaders de vértices**, que atualmente é um recurso amplamente utilizado na indústria de gráficos. Além disso, o limite de instruções foi aumentado para um mínimo de 512 instruções (originalmente, 136 era o limite!).
 
@@ -457,7 +462,7 @@ O bloco de Geometry Processing funciona da seguinte maneira:
 
 #### Rasterização {.tab}
 
-![Diagrama simplificado do estágio de rasterização. O RSX incorpora unidades diferentes para calcular os valores usados para interpolação de píxeis e cores.](gpu/rasterizer.png) {.tab-float}
+![Diagrama simplificado do estágio de rasterização. O RSX incorpora unidades diferentes para calcular os valores usados para interpolação de píxeis e cores.](_diagrams/rsx/pipeline_rasterizer.webp) {.tab-float}
 
 Seguindo, é hora de converter ([rasterizar](playstation#tab-3-3-rasterisation)) os vértices em píxeis. O rasterizador do RSX é bastante rápido, ele pode rasterizar até 8x8 píxeis (64) por ciclo e funciona com um *buffer* de imagem até **4096x4096 píxeis** (embora os desenvolvedores possam precisar de menos que isso).
 
@@ -469,7 +474,7 @@ Uma unidade separada é usada para rasterizar objetos 2D (*sprites*), embora est
 
 #### *Shader* de píxel {.tab}
 
-![Diagrama do estágio de Píxel/Fragmento.](gpu/pixel.png) {.tab-float}
+![Diagrama do estágio de Píxel/Fragmento.](_diagrams/rsx/pipeline_pixel.webp) {.tab-float}
 
 A próxima unidade é o bloco **Fragment Shader & Texture**, que é uma unidade programável (por meio do uso de "programas de fragmentos" ou "*shader*") que aplica mapeamento de texturas e outros efeitos.
 
@@ -483,7 +488,7 @@ Por fim, como as unidades estarão constantemente buscando fragmentos de textura
 
 #### Operações de píxeis {.tab}
 
-![Estágio de pós-processamento.](gpu/post.png) {.tab-float}
+![Estágio de pós-processamento.](_diagrams/rsx/pipeline_post.webp) {.tab-float}
 
 Antes de escrever os resultados no *buffer* de imagem (armazenado na VRAM ou na RAM principal), um bloco final chamado **Raster Operation Block** (ROP) realiza testes finais nos píxeis resultantes.
 
@@ -515,7 +520,7 @@ Receio que você não encontrará muitas informações nesta seção, principalm
 
 Observe que, enquanto a necessidade de gráficos melhores tende a crescer exponencialmente (os consumidores querem mais cenários, detalhes e cores melhores), não há a mesma demanda por som. Presumo que isso ocorre porque as capacidades técnicas já alcançaram nosso limite cognitivo (taxa de amostragem de 44,1 kHz e resolução de 16 bits). A única coisa que ainda resta é implementar mais canais e efeitos, mas para isso não é necessário tanto poder de processamento a ponto de exigir a instalação de chips dedicados, pelo menos para equipamentos de uso doméstico.
 
-![Resumo do <em>pipeline</em> de áudio.](audio.png)
+![Resumo do <em>pipeline</em> de áudio.](_diagrams/audio.webp)
 
 Então, no fim das contas, o áudio agora é completamente implementado com software e processado pelas SPUs (quero dizer pelas Synergistic Processor Units, não pela [Sound Processing Unit](playstation-2#audio)! É um pouco irônico que ambos compartilhem a mesma sigla...). Continuando, a Sony fornece diversas bibliotecas em seu SDK que instruem as SPUs a realizar sequenciamento, mixagem e transmissão de áudio. E se isso não for suficiente, muitos efeitos também podem ser aplicados.
 
@@ -533,7 +538,7 @@ Assim como no [IOP](playstation-2#io) do PS2, o Southbridge é completamente pro
 
 Além disso, o Southbridge implementa algoritmos de criptografia para proteger a comunicação entre protocolos de maneira transparente, como os dados do disco rígido.
 
-![Diagrama das conexões do Southbridge.](southbridge_diagram.png)
+![Diagrama das conexões do Southbridge.](_diagrams/southbridge.webp)
 
 Em geral, o Southbridge incorpora uma quantidade enorme de interfaces, isso se deve ao fato de que o console foi projetado durante a tendência das "centrais multimídia". Não era suficiente para os consoles de videogame apenas reproduzirem jogos, eles também precisavam se tornar reprodutores de DVD e Blu-ray, decodificadores (parcialmente), visualizadores de fotos (importando as fotos da câmera usando o leitor de cartões múltiplos) e possivelmente realizar mais outras funções a medida que as necessidades evoluiam (graças ao seu sistema oeracional atualizável).
 
@@ -549,7 +554,7 @@ No caso das portas acessíveis pelo usuário, o Southbridge está conectada a:
 - Uma interface **Serial ATA** (SATA): conecta a unidade de Blu-ray e um disco rígido de 2,5 polegadas.
   - Até 2008, leitores de Blu-ray se conectavam com ATA paralelo (PATA) [@io-bd_rev], então um chip intermediário foi instalado para fazer a conversão SATA → PATA.
 - Um **Controlador Ethernet 1000/100/10 (Gigabit)**: na forma de um conector RJ45 na parte de trás, mas também se ramifica para uma placa-filha sem fio, fornecendo conexões **Wi-Fi 802.11b/g** e **Bluetooth 2.0**.
-- Um **leitor de cartões múltiplos**: fornece *slots* para cartões do tipo [Memory Stick](playstation-portable#tab-3-2-memory-stick-duo), SD, MultiMediaCard (MMC), Microdrive e Compact Flash.
+- Um **leitor de cartões múltiplos**: fornece slots para [Memory Stick](playstation-portable#tab-3-2-memory-stick-duo), SD, MultiMediaCard (MMC), Microdrive e Compact Flash.
 
 {.close-float}
 
@@ -643,7 +648,7 @@ Como eu disse antes, o sistema operacional é bastante complexo. Portanto, para 
 
 Em termos gerais, o sistema operacional do PS3 é projetado com a mesma abordagem modular do PSP. Relembrando do artigo anterior, o sistema operacional é composto de vários **módulos**. Esses podem servir ao usuário (como um jogo ou aplicativo) ou residir na memória indefinidamente para servir outros módulos (na forma de chamadas de sistema e/ou drivers). Alguns módulos têm mais acesso privilegiado do que outros (módulo do Kernel versus módulo do usuário).
 
-![Diagrama mostrando como os componentes do sistema operacional do PlayStation se encaixam nos níveis de privilégio do Cell.<br>Referência ao "OtherOS" são explicadas com mais detalhes nas próximas seções.](oslevels.png)
+![Diagrama mostrando como os componentes do sistema operacional do PlayStation se encaixam nos níveis de privilégio do Cell.<br>Referência ao "OtherOS" são explicadas com mais detalhes nas próximas seções.](_diagrams/os_levels.webp)
 
 O sistema operacional, durante seu ciclo de vida, chamará muitos módulos com diferentes privilégios. A Sony construiu seu sistema operacional para que os módulos rodem nos três níveis de privilégio do Cell:
 
@@ -737,15 +742,21 @@ Embora os usuários do PSP encontrem muitas semelhanças, a Sony adicionou um no
 
 Além disso, como este é um console doméstico que pode ser compartilhado por várias pessoas, a XMB suporta **múltiplos usuários**, onde cada um pode usar uma conta diferente da PlayStation Network e armazenar seus dados de usuários separados (jogo comprados e *saves*).
 
-![Assim como no PSP, destacar um jogo pode estilizar o plano de fundo para chamar sua atenção!.](xmb/game.jpg){.tabs-nested .active title="Jogo"}
+::: {.subfigures .tabs-nested}
 
-![O XMB fornece uma imensa quantidade de configurações, especialmente úteis quando você precisa configurar sua novíssima TV 1080p com áudio <em>surround</em> 3.1.](xmb/settings.jpg){.tab-nested title="Configurações"}
+![Assim como no PSP, destacar um jogo pode estilizar o plano de fundo para chamar sua atenção!.](xmb/game.jpg){.active title="Jogo"}
 
-![Várias opções multimídia.](xmb/multimedia.jpg){.tab-nested title="Multimídia"}
+![O XMB fornece uma imensa quantidade de configurações, especialmente úteis quando você precisa configurar sua novíssima TV 1080p com áudio <em>surround</em> 3.1.](xmb/settings.jpg){title="Configurações"}
 
-![O XMB pode instalar jogos, atualizações e expansões (DLCs) usando um instalador de pacotes nativo.](xmb/installpkg.jpg){.tabs-nested-last title="Instalação"}
+![Várias opções multimídia.](xmb/multimedia.jpg){title="Multimídia"}
 
-Por fim, a inclusão de um disco rígido é um alívio para os jogadores veteranos (do PSP) que, no passado, eram obrigados a comprar armazenamento proprietário caro ([Memory Stick Pro Duo](playstation-portable#tab-3-2-memory-stick-duo)) sempre que ficavam sem espaço.
+![O XMB pode instalar jogos, atualizações e expansões (DLCs) usando um instalador de pacotes nativo.](xmb/installpkg.jpg){title="Instalação"}
+
+A interface XrossMediaBar (XMB) do PlayStation 3
+
+:::
+
+Por fim, a inclusão de um disco rígido é um alívio para os jogadores veteranos que, no passado, eram obrigados a comprar armazenamento proprietário caro ([Memory Stick Pro Duo](playstation-portable#tab-3-2-memory-stick-duo)) sempre que ficavam sem espaço.
 
 #### Empreste-me o seu PS3
 
@@ -841,15 +852,13 @@ Na mesma época do lançamento do console, a Sony lançou seu canal de distribui
 
 Dentro de sua loja digital, a Sony também aproveitou a oportunidade para vender versões digitalizadas de jogos do PS1, PS2 e PSP chamados de **PlayStation Classics**. Eles também são baixados e instalados da mesma maneira, mas usam emuladores incorporados para funcionar. Na verdade, os clássicos do PS2 invocam o mesmo software de emulação não acelerada, independentemente se os modelos do PS3 contém ou não o chipset do PS2 [@io-ps2emu]! Creio que este foi o capítulo final para a emulação baseada em hardware no PS3.
 
-Nos bastidores, a PS Store não passa de um site acessível somente através do aplicativo PS Store no XMB. Ao longo de sua vida útil, sua interface do usuário foi reformulada algumas vezes para refletir o que suponho ser _uma demanda global por interfaces de usuário mais sofisticadas_.
+Nos bastidores, a PS Store não passa de um site acessível somente através do aplicativo PS Store no XMB. Ao longo de seu ciclo de vida, sua interface do usuário foi reformulada algumas vezes para refletir o que suponho ser _uma demanda global por interfaces de usuário mais sofisticadas_.
 
 ### Serviços de rede {.tabs-close}
 
 Além da loja online, muitas outras soluções online foram adicionadas à plataforma, incluindo a estreante **PlayStation Network**, um serviço online gratuito competindo diretamente com o [Xbox Live](xbox#network-service), o serviço online pago da Microsoft.
 
 A PlaySation Network permitiu que os usuários criassem uma conta pessoal e atribuíssem um avatar, e então usassem essa nova identidade digital para jogos multijogadores, mensagens e outras interações sociais. Os usuários também podem ganhar **troféus** se completarem um determinado evento em um jogo, e esses então aparecem no seu perfil online (como uma espécie de medalha de honra) para intimidar rivais e ganhar o respeito de amigos, acredito eu.
-
-(ref:trophiestitle) Troféus
 
 ![Os jogos oferecem um catálogo de objetivos para desafiar seus usuários. A intenção é proporcionar aos jogadores uma sensação de orgulho e conquista.](xmb/trophies.jpg){.tabs-nested .active title="Troféus"}
 
@@ -859,7 +868,7 @@ A PlaySation Network permitiu que os usuários criassem uma conta pessoal e atri
 
 Por último, mas não menos importante, assim como tendo um sistema operacional atualizável, os jogos também são atualizados. Portanto, ao iniciar um jogo, o XMB pode lhe sugerir baixar atualizações do jogo (na forma de "pacotes") que corrigem erros e/ou adicionam novos conteúdos. As atualizações são instaladas no disco rígido e funcionam de forma como um _sistema de arquivos em camadas_.
 
-## Antipirataria e Homebrew
+## Anti-Pirataria e Homebrew
 
 Tudo o que você acabou de ler precisa ser protegido de alguma forma contra o acesso "não autorizado". A seguir, você terá uma visão geral de como a Sony lidou com isso.
 
@@ -917,8 +926,8 @@ Posteriormente, este produto sofreu engenharia reversa por outras comunidades e,
 
 Antes de finalmente falar sobre o grande vencedor da cena *homebrew* do PS3, deixe-me descrever-lhe alguns métodos que foram desenvolvidos na mesma época:
 
-- O **USB Jig**: outro pendrive, dessa vez programado para enganar o console para entrar no **Modo de Serviço de Fábrica**, que é destinado apenas para manutenção do console por pessoal autorizado. O programa embutido no Jig replica o que a Sony fornece para seus engenheiros. A principal vantagem do modo de serviço é permitir um [*downgrade*](playstation-portable#tab-6-2-downgrading) do console para uma versão compatível com o PS Jailbreak. O *payload* também estava disponível na forma de um aplicativo *Homebrew* para o PSP [@anti_piracy-pspjig]. A Sony respondeu corrigindo o modo de serviço para tornar mais difícil restaurá-lo ao modo "normal" ou alterar o firmware dele, desencorajando os usuários a recorrerem ao modo de serviço.
-- O **Emulador de Disco Óptico** (ODE, de *Optical Disc Emulator*): uma série de produtos de hardware que diferentes empresas (Cobra, E3, etc.) lançaram. Em vez de mexer no firmware do console, eles mexeram na interface SATA/PATA do Blu-ray. Os ODEs são placas que ficam entre a placa-mãe e o drive de Blu-ray, agindo como intermediários que enganam o console fazendo-o pensar que contém um jogo em disco válido, mas está, na verdade, carregando uma imagem de disco de um dispositivo USB externo. Entretanto, esses dispositivos eram bastante caros quando foram lançados. A história *hacking* do PS3 inclui longos períodos de "inviolabilidade" em que não havia nenhum *exploit* de software disponível para novos consoles, então os ODEs foram capazes de preencher essa lacuna.
+- O **USB Jig**: outro pendrive, dessa vez programado para enganar o console para entrar no **Modo de Serviço de Fábrica**, que é destinado apenas para manutenção do console por pessoal autorizado. O programa embutido no Jig replica o que a Sony fornece para seus engenheiros. A principal vantagem do modo de serviço é permitir um [downgrade](playstation-portable#tab-6-2-downgrading) do console para uma versão compatível com o PSJailbreak. O *payload* também estava disponível na forma de um aplicativo *Homebrew* para o PSP [@anti_piracy-pspjig]. A Sony respondeu corrigindo o modo de serviço para tornar mais difícil restaurá-lo ao modo "normal" ou alterar o firmware dele, desencorajando os usuários a recorrerem ao modo de serviço.
+- O **Emulador de Disco Óptico** (ODE, de *Optical Disc Emulator*): uma série de produtos de hardware que diferentes empresas (Cobra, E3, etc.) lançaram. Em vez de mexer no firmware do console, eles mexeram na interface SATA/PATA do Blu-ray. ODEs são placas que ficam entre a placa-mãe e a unidade de Blu-ray, agindo como intermediários que enganam o console, fazendo-o pensar que contém um jogo em disco válido, mas, na verdade, está carregando uma imagem de disco de uma unidade USB externa. A história de hackeamento do PS3 contém períodos logos de "inviolabilidade" em que não havia nenhum *exploit* de software disponível para os novos consoles. Assim, a um preço elevado, os ODEs vieram preencher essa lacuna.
 - O **Downgrader**: à medida que a Sony continuava a mitigar as vulnerabilidades com mais atualizações de software, os usuários não tinham outra opção senão fazer *downgrade* para um firmware explorável. Assim, empresas como a E3 lançaram equipamentos especializados que podiam sobrescrever o sistema do console "à moda antiga". Ou seja, diretamente programando os chips NAND ou NOR. Por razões óbvias, esse método exigia mais habilidade e paciência em comparação com os métodos baseados em dispositivos USB.
 - **Vazamentos isolados**: este é para fins de pesquisa, ao contrário de uma "funcionalidade" que o usuário verá (mas ainda é imperativo para futuros desenvolvimentos). De qualquer maneira, os dados de revogação (usados para listar certificados comprometidos) são analisados pelo `lv2ldr`, até aí tudo bem? Bem, foi descoberto que esse processo continha muitas vulnerabilidades. Em primeiro lugar e por alguma razão inexplicável, **os dados de revogação podem ser escritos no espaço do usuário**. Em segundo lugar, **o analisador não realiza verificação de limites** nos dados coletados ([_lá vamos nós novamente_](playstation-2#tab-5-1-independence-overflow)). Portanto, os hackers conseguiram criar dados personalizados de revogação que poderiam produzir um estouro de *buffer* e, em última instância, permitir que eles executassem **código arbitrário no modo isolado da SPU**. Isso permitiu que eles acessassem dados confidenciais (ou seja, chaves) que presumivelmente estavam protegidos do restante do sistema [@operating_system-psxplace].
 
@@ -926,7 +935,7 @@ Antes de finalmente falar sobre o grande vencedor da cena *homebrew* do PS3, dei
 
 Assim como na saga do PSP, os *exploits* iniciais exigiam muito esforço e poderiam ser facilmente corrigidos pela Sony, resultando em um desvantajoso jogo de gato e rato. No entanto, como aconteceu com o PSP, era apenas uma questão de tempo antes que uma descoberta quebrasse a segurança fundamental deste sistema: sua cadeia de confiança.
 
-Em 2011, George Hotz (junto com a equipe failOverflow) publicou outro avanço: **as chaves privadas de criptografias que a Sony usa para assinar binários executados por `metldr`**. Os binários carregados durante essa fase de inicialização são assinados com uma chave ECDSA. Sendo um sistema de criptografia assimétrica, isso significa que qualquer pessoa que possua a chave privada (Sony, e agora _outros_) pode criptografar e assinar binários, consequentemente, eles parecerão "autênticos" aos olhos do `metldr`. Como o `metldr` é o terceiro estágio de inicialização antes de carregar o `lv1` (o Hypervisor), isso significa que os hackers poderão personalizar ou desenvolver seu próprio Hypervisor, Kernel e qualquer coisa abaixo dele. Além disso, todos os PlayStation 3 no mercado também pensarão que os binários personalizados são autênticos. No geral, um *exploit* do [tipo Pandora](playstation-portable#tab-6-3-pandora) completamente feito por software.
+Em 2011, George Hotz (junto com a equipe failOverflow) publicou outro avanço: **as chaves privadas de criptografias que a Sony usa para assinar binários executados por `metldr`**. Os binários carregados durante essa fase de inicialização são assinados com uma chave ECDSA. Sendo um sistema de criptografia assimétrica, isso significa que qualquer pessoa que possua a chave privada (Sony, e agora _outros_) pode criptografar e assinar binários, consequentemente, eles parecerão "autênticos" aos olhos do `metldr`. Como o `metldr` é o terceiro estágio de inicialização antes de carregar o `lv1` (o Hypervisor), isso significa que os hackers poderão personalizar ou desenvolver seu próprio Hypervisor, Kernel e qualquer coisa abaixo dele. Além disso, todos os PlayStation 3 no mercado também pensarão que os binários personalizados são autênticos. No geral, um exploit do [tipo Pandora](playstation-portable#tab-6-3-pandora) completamente feito por software.
 
 A descoberta dessa chave, que deveria ser computacionalmente inviável, é possível graças ao que é considerado um "erro" na implementação da Sony do algoritmo ECDSA. Para resumir, a fórmula matemática usada para o ECDSA usa um valor aleatório que a Sony nunca mudou em todos os arquivos de atualização que distribuiu [@anti_piracy-ecsda], tornando aquele número uma constante, e deixando mais fácil descobrir as outras variáveis. Foi o que acabou acontecendo.
 
@@ -964,13 +973,13 @@ Do **lado do software**, a Sony lançou duas atualizações de sistema que aprim
 
 Do **lado do hardware**, não apenas os modelos posteriores do PS3 (CECH-25xxx, CECH-3xxx e CECH-4xxx) vieram pré-instalados com uma versão de sistema mais recente que a versão `3.55`, mas também continham uma versão diferente do `bootldr`/`lv0ldr` (chamdo `lv0ldr.1`) que não apenas descriptografa e carrega o `lv0`, mas também buscava um novo arquivo de sistema chamado `lv0.2`. Este último contém metadados sobre `lv0` [@anti_piracy-lv0ldr] para garantir que o `lv0` não tenha sido adulterado. O `lv0.2` é assinado com uma nova chave criptográfica (também é imune à descoberta ECDSA anterior), impedindo assim que hackers pudessem assumir o controle da cadeia de inicialização.
 
-Até hoje, **esses modelos não conseguem executar um CFW**, por isso foram apelidados de _invioláveis_. No entanto, eles podem executar um "Firmware Híbrido" (HFW) e falaremos mais sobre isso posteriormente.
+Até o momento **esses modelos não conseguem executar um CFW**, sendo assim apelidados de _invioláveis_. No entanto, eles podem executar um "Firmware Híbrido" (HFW) e falaremos mais sobre isso posteriormente.
 
-Com o tempo, o número de consoles compatíveis com o CFW foi diminuindo, tornando os PS3s que não foram atualizados além de 3.55 uma espécie de _relíquia_. Enquanto isso, houve um aumento na demanda por alternativas, como *downgraders* (para reverter para a versão do sistema `3.55` em modelos antigos) e ODEs (para jogar jogos pirateados em modelos novos).
+Conforme o tempo passou, o número de consoles compatíveis com o CFW diminuiu. Portanto, os PS3s que não foram atualizados além da versão `3.55` se tornaram uma espécie de _relíquias_. Enquanto isso, houve um aumento na demanda por alternativas, como * downgraders* (para retornar à versão do sistema `3.55` em modelos antigos) e ODEs (para jogar jogos pirateados em modelos novos).
 
 #### O renascimento do Homebrew
 
-Após um longo período de espera para os usuários que perderam a oportunidade de instalar um CFW, no final de 2017, uma equipe de hackers lançou o **PS3Xploit**, uma coleção de *exploit* e utilitários [@anti_piracy-ps3xploit] que trouxeram de volta a capacidade de instalar o CFW em modelos antigos sem precisar de um *downgrader* caro (e habilidade para operá-lo).
+Após um longo período de espera para os usuários que perderam a oportunidade de instalar um CFW, no final de 2017, um grupo de hackers lançou o **PS3Xploit**, uma coleção de *exploits* e utilitários [@anti_piracy-ps3xploit] que trouxe de volta a capacidade de instalar um CFW em modelos antigos sem a necessidade de um *downgrader* caro (e habilidades de operá-lo).
 
 O *payload* principal do PS3Xploit replica o trabalho de um *downgrader* de hardware (patcheando os arquivos do CoreOS) inteiramente por software, e funciona da seguinte maneira:
 
