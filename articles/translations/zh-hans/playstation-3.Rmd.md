@@ -19,14 +19,17 @@ top_tabs:
       caption: "初代 PlayStation 3（PS3）。<br>2006年11月11日于日本发售，2006年11月17日于美国发售，2007年3月23日于欧洲发售。"
       title: 原版
       file: original
+      latex_height: 85
     - 
       caption: "PS3 2000/3000 系列（ “Slim”）。<br>在2009年9月1日在欧洲和美国发售，2009年9月3日于日本发售。"
       title: Slim
       file: slim
+      latex_height: 95
     - 
       caption: "PS3 4000系列（ “Super Slim”）。<br>2012年9月份在全球发售"
       title: Super Slim
       file: super-slim
+      latex_height: 95
 ---
 
 ## 快速介绍
@@ -51,9 +54,9 @@ PS3 的 CPU 极其复杂，同时也是一项非常迷人的工程杰作，它�
 
 #### 背景 {.tabs.active}
 
-![PS1的CPU（1994）。 由索尼和LSI设计，使用MIPS技术](cpu/ps1.png) {.tab-float}
+![PS1的CPU（1994）。 由索尼和LSI设计，使用MIPS技术](_diagrams/cell/ps1.webp) {.tab-float}
 
-![PS2的EE（Emotion Engine）（2001）。 由东芝设计，再一次使用MIPS技术](cpu/ee.png) {.tab-float}
+![PS2的EE（Emotion Engine）（2001）。 由东芝设计，再一次使用MIPS技术](_diagrams/cell/ee.webp) {.tab-float}
 
 在[初代 MIPS 架构的 PlayStation](playstation)推出近十年后，我们来到了21世纪初，而此时 SGI/MIPS 的情况并不乐观。 任天堂在那时刚刚抛弃他们，转而选择IBM作为新的供应商，使用了一款[低端的 PowerPC 核心](gamecube#cpu)；新入局的微软则[选择了 Intel ](xbox#cpu)和他们的 x86 帝国。
 
@@ -75,9 +78,9 @@ PS3 的 CPU 极其复杂，同时也是一项非常迷人的工程杰作，它�
 
 #### 新的多核纪元 {.tab}
 
-![异构设计示例。<br>迄今为止，这是许多功能强大的游戏机的事实上的架构](cpu/paradigm/heterogeneous.png) {.tab-float}
+![异构设计示例。<br>迄今为止，这是许多功能强大的游戏机的事实上的架构](_diagrams/cell/paradigm/heterogeneous.webp) {.tab-float}
 
-![同构设计示例。<br>每个内核都可以执行与之前相同的任务，但不必局限于这些任务](cpu/paradigm/homogeneous.png) {.tab-float}
+![同构设计示例。<br>每个内核都可以执行与之前相同的任务，但不必局限于这些任务](_diagrams/cell/paradigm/homogeneous.webp) {.tab-float}
 
 仔细想想，就会发现 PS1 的 CPU 和 Emotion Engine 已经是多核处理器了。 那为何 Cell 搞的如此大张旗鼓呢？ 其实，之前两代芯片是由单个通用核心加上多个特定应用核心（例如音频处理器、图像解压缩器等）组成，它们混合了多种不同架构，其中通用核心负责指挥其他核心的工作。
 
@@ -87,9 +90,9 @@ PS3 的 CPU 极其复杂，同时也是一项非常迷人的工程杰作，它�
 
 ### Cell 速览 {.tabs-close}
 
-解释完所有历史和理论之后，我认为我们已经准备好去回头看到这节的主人公。 这是Cell：
+解释完所有历史和理论之后，我认为我们已经准备好去回头看到这节的主人公。 这是 Cell @fig-cell……
 
-![Cell宽带引擎（Cell Broadband Engine）（PS3的变体）<br>IBM为超算和科研模拟设计。 划线的“SPE”表示禁用（不可用）。 左边的另一个“SPE”保留给操作系统使用。](cpu/cell.png)
+![Cell宽带引擎（Cell Broadband Engine）（PS3的变体）<br>IBM为超算和科研模拟设计。 划线的“SPE”表示禁用（不可用）。 左边的另一个“SPE”保留给操作系统使用。](_diagrams/cell/cell.webp) {#fig-cell}
 
 ……到这节的末尾时，读者将了解到每个组件的用途。
 
@@ -119,7 +122,7 @@ Cell 运行在_超高的_** 3.2 GHz **，且由很多组件构成。 为了文�
 
 Cell 自发布以来一直被称为**片上网络**（NoC）而不是传统的片上系统（SoC）[@cpu-koranne, p. 62] ，这主要归结于 Cell 的非正统数据总线：**元件互联总线**（EIB）。 截至目前我们已经看到了[CPU组件对内存的需求有多高](playstation-2#a-recognisable-memory-choice)，[一个系统对瓶颈能有多敏感](nintendo-64#tab-3-1-pipeline-stalls)。 为了解决这个麻烦问题，IBM这次换用了新的设计……并用类似于_道路驾驶_的术语撰写了文档。
 
-![元件互连总线 (Element Interconnect Bus，EIB) 的简化图。<br>“坡道”（节点）之间的每个箭头代表两条单向总线，因此每个节点通过四个通道与下一个节点相连。](cpu/eib.png)
+![元件互连总线 (Element Interconnect Bus，EIB) 的简化图。<br>“坡道”（节点）之间的每个箭头代表两条单向总线，因此每个节点通过四个通道与下一个节点相连。](_diagrams/cell/eib.webp)
 
 EIB 有 12 个被称为**坡道（Ramp）**的节点，每个节点都连接着一个 Cell 组件。 这些坡道通过四组总线内联，其中两组数据方向为**顺时针**，另外两组则是**逆时针**。 每一组总线（或者叫**车道**）有128位宽。 不同于单总线的拓扑结构（类似于 Emotion Engine 及其前身），坡道采用**令牌环**拓扑结构互联，这种结构中的数据包在到达目的地前需要通过路径上的所有邻居，没有直接路径。 因为 EIB 提供了四个通道，所以它有四条可能的路径（**环路**）。
 
@@ -139,7 +142,7 @@ EIB 有 12 个被称为**坡道（Ramp）**的节点，每个节点都连接着�
 
 还记得之前我是如何将 Cell 拆分成不同区域的吗？ 我们同样可以对 PPE 这么干。 IBM 使用“元件”（element）这个词来形容这个独立的机器[@cpu-arevalo, p. 8]，但在内部，我们需要使用“单元”（unit）这个词来区别开和 Cell 其他部分做通信的接口芯片区域。
 
-![PowerPC处理元件 (PPE) 简化图。](cpu/ppe.png)
+![PowerPC处理元件 (PPE) 简化图。](_diagrams/cell/ppe.webp)
 
 在这个前提下，PPE _竟然_由两个部分构成：
 
@@ -154,15 +157,15 @@ EIB 有 12 个被称为**坡道（Ramp）**的节点，每个节点都连接着�
 
 ##### 熟悉的架构 {.tabs.active}
 
-首先，PPU 部分不是全新的，而是**现有 PowerPC 技术的重新利用**。 但是不同于[前几代主机](gamecube#cpu)上 IBM 直接拿现有处理器做小幅升级来满足新需求的做法，PPE 没有基于现有的 CPU 设计。 相反，IBM 根据 2.02 版的 PowerPC 规范 （更名为“Power 指令集”前的最后一个 PowerPC 规范版本）构建了一个新的 CPU。 总之，尽管它的机器码和其他 PowerPC 芯片一样，但当时市面上并没有与 PPU 一样的设计。
+首先，PPU 部分不是全新的，而是**现有 PowerPC 技术的重新利用**。 但是不同于[前几代主机](gamecube#the-powerpc-gekko)上 IBM 直接拿现有处理器做小幅升级来满足新需求的做法，PPE 没有基于现有的 CPU 设计。 相反，IBM 根据 2.02 版的 PowerPC 规范 （更名为“Power 指令集”前的最后一个 PowerPC 规范版本）构建了一个新的 CPU。 总之，尽管它的机器码和其他 PowerPC 芯片一样，但当时市面上并没有与 PPU 一样的设计。
 
-那么，为什么 IBM 选择了 PowerPC 来开发高性能芯片呢？ 在当时，PowerPC 是一个经过 Macintosh 用户测试和迭代了约10年的成熟平台[@cpu-koranne]，它能够满足Sony所有的需求，且适应不同的环境。 同时，使用常用架构可以复用现有的编译器和代码库，这对于一台新主机来说是巨大的起步优势。
+那么，为什么 IBM 选择了 PowerPC 来开发高性能芯片呢？ 在当时，PowerPC 是一个经过 Macintosh 用户测试和迭代了约10年的成熟平台 [@cpu-koranne]，它能够满足索尼所有的需求，且适应不同的环境。 同时，使用常用架构可以复用现有的编译器和代码库，这对于一台新主机来说是巨大的起步优势。
 
-值得一提的是，IBM 其实是第一枚 PowerPC 芯片的共同开发者之一，另外两个是 Motorola 和 Apple（也就是[ AIM 联盟](gamecube#cpu)）。 但是在00年代初期的时候，所谓的联盟已经分崩离析，当时 Motorola/Freescale 开发了与 IBM 所不同的 PowerPC 系列。
+值得一提的是，IBM 其实是第一枚 PowerPC 芯片的共同开发者之一，另外两个是 Motorola 和 Apple（也就是[AIM 联盟](gamecube#tab-1-2-reaching-the-average-user)）。 但是在00年代初期的时候，所谓的联盟已经分崩离析，当时 Motorola/Freescale 开发了与 IBM 所不同的 PowerPC 系列。
 
 ##### 独特功能 {.tab}
 
-PPU 和 PowerPC 970（Apple 称之为_ G5_） 有一些历史渊源，两者都是 POWER4 的后代，POWER4 作为 PowerPC 前身主要用于工作站和超级计算机。 稍后的模块化执行单元会更明显地展示这点。 它相较于 GameCube 上的 [750 系列 CPU ](gamecube#cpu)有着根本性的变化，后者主要归功于 Motorola ，IBM 只是做了小幅改动。
+PPU 和 PowerPC 970（Apple 称之为_ G5_） 有一些历史渊源，两者都是 POWER4 的后代，POWER4 作为 PowerPC 前身主要用于工作站和超级计算机。 稍后的模块化执行单元会更明显地展示这点。 它相较于 GameCube 上的 [750 系列 CPU ](gamecube#the-powerpc-gekko)有着根本性的变化，后者主要归功于 Motorola ，IBM 只是做了小幅改动。
 
 回到主题，PPU 是一个**完整的64位处理器**。 这意味着：
 
@@ -179,7 +182,7 @@ PPU 和 PowerPC 970（Apple 称之为_ G5_） 有一些历史渊源，两者都�
 
 ##### 指令 {.tabs.active}
 
-![指令单元（IU）的简化图](cpu/ppu/iu.jpg) {.tab-float}
+![指令单元（IU）的简化图](_diagrams/cell/ppu/iu.webp) {.tab-float}
 
 头一个模块被称为**指令单元（IU）**，顾名思义，它从L2缓存中提取指令，并向其他单元发出信号以执行所需的操作。 正如同时代的i686指令集，一部分指令集会被[**微码**](nintendo-64#tab-1-1-reality-signal-processor)（指令单元为此用途集成了一小片ROM）做进一步解释。 最后，指令单元还包含了**32KB的L1指令缓存**。
 
@@ -193,7 +196,7 @@ PPU 和 PowerPC 970（Apple 称之为_ G5_） 有一些历史渊源，两者都�
 
 ##### 内存管理 {.tab}
 
-![存-取单元（LSU）和它的邻居的简化图](cpu/ppu/lsu.png) {.tab-float}
+![存-取单元（LSU）和它的邻居的简化图](_diagrams/cell/ppu/lsu.webp) {.tab-float}
 
 以下模块赋予PPU执行存-取指令和内存管理的能力。
 
@@ -203,7 +206,7 @@ PPU 和 PowerPC 970（Apple 称之为_ G5_） 有一些历史渊源，两者都�
 
 ##### 算术 {.tab}
 
-![运算单元简化图](cpu/ppu/vsu_fxu.png) {.tab-float}
+![运算单元简化图](_diagrams/cell/ppu/vsu_fxu.webp) {.tab-float}
 
 PPU还有两个单元需要说明，它们是计算游戏所需的数学运算单元。
 
@@ -235,7 +238,7 @@ Rambus和其他公司一样，也会对自己的发明进行改进。 他们的�
 
 PlayStation 3的第一版主板包含四个64 MB芯片，成对使用。 XDR通过两条32位总线与Cell相连，每对内存芯片上有一条总线。 因此，每当PPU写入一个字（64位数据）时，就会在两个XDR芯片之间进行分配。 后者的时钟频率为400 MHz[@cpu-ram]。
 
-![Cell 的内存架构图](cpu/memory.jpg)
+![Cell 的内存架构图](_diagrams/cell/memory.webp)
 
 Cell通过**内存接口控制器**（Memory Interface Controller，MIC）与XDR芯片连接，MIC是Cell 的另一个组件（与PPE类似）。 此外，MIC还能对内存传输进行缓冲，以提高带宽，但它有一个很大的限制：大字节对齐。 从本质上讲，MIC传输的最小数据大小为**128字节**，这对于顺序读取或写入非常有效。 但如果数据小于128字节，或者需要交替写入和读取，性能就会受到影响。
 
@@ -258,7 +261,7 @@ PS3 的 Cell 中包含的加速器是**协同处理器元件（Synergistic Proce
 继续往下看，协同处理器元件（SPE）是Cell内部的一台独立小计算机，由PPE指挥。 还记得我之前解释过的关于采用同构计算元件的问题吗？ 这些协处理器具有一定的通用性，并不局限于单一应用，因此只要开发人员能正确编程，它们就能协助完成各种任务。
 
 ![协同处理器元件（SPE）简图，Cell内有八个这样的元件（其中一个已禁用）。
-](cpu/spe.png)
+](_diagrams/cell/spe.webp)
 
 就像我们在PPE上所做的那样，我们来看看SPE。 由于篇幅较短，如果您想了解更多有关 SPE 的信息，请查看文章末尾的“资料来源”部分。 既然如此，让我们开始吧......
 
@@ -294,7 +297,7 @@ SPE是一种与PPE结构类似的处理器，由两部分组成：
 
 ##### 奇数流水线 {.tabs.active}
 
-![奇数流水线简图](cpu/spu/odd.png) {.tab-float}
+![奇数流水线简图](_diagrams/cell/spu/odd.webp) {.tab-float}
 
 奇数流水线执行除算术指令外的大部分指令。
 
@@ -310,7 +313,7 @@ SPE是一种与PPE结构类似的处理器，由两部分组成：
 
 ##### 偶数流水线 {.tab}
 
-![偶数流水线简图](cpu/spu/even.png) {.tab-float}
+![偶数流水线简图](_diagrams/cell/spu/even.webp) {.tab-float}
 
 偶数流水线的显著特点是其算术功能。
 
@@ -324,11 +327,11 @@ SPE是一种与PPE结构类似的处理器，由两部分组成：
 
 #### 以PPE为中心的方法
 
-![多阶段模式的示意图，其中PPE分配一个任务，该任务在每个SPE之间传递，并最终与处理过的数据一起返回。](cpu/programming/multistage.png){.tabs-nested .active title="多阶段"}
+![多阶段模式的示意图，其中PPE分配一个任务，该任务在每个SPE之间传递，并最终与处理过的数据一起返回。](_diagrams/cell/programming/multistage.webp){.tabs-nested .active title="多阶段"}
 
-![并行模式的表现形式，即PPE为每个SPE分配一个子任务，然后每个SPE返回处理过的数据，PPE再将其合并。](cpu/programming/parallel.png){.tab-nested title="并行"}
+![并行模式的表现形式，即PPE为每个SPE分配一个子任务，然后每个SPE返回处理过的数据，PPE再将其合并。](_diagrams/cell/programming/parallel.webp){.tab-nested title="并行"}
 
-![服务模式展示图：PPE为每个SPE分配不同的任务，每个SPE单独完成任务。](cpu/programming/services.png){.tabs-nested-last title="服务"}
+![服务模式展示图：PPE为每个SPE分配不同的任务，每个SPE单独完成任务。](_diagrams/cell/programming/services.webp){.tabs-nested-last title="服务"}
 
 以PPE为中心的方法是一套编程模式，它将主要责任放在PPE上，让SPE来卸载工作。 有三种可能的模式：
 
@@ -340,7 +343,7 @@ SPE是一种与PPE结构类似的处理器，由两部分组成：
 
 #### 以SPE为中心的方法
 
-![以SPE为中心的模式的示意图，即每个SPE负责自己的功能，只在获取资源时与PPE交互。](cpu/programming/spe_centric.png)
+![以SPE为中心的模式的示意图，即每个SPE负责自己的功能，只在获取资源时与PPE交互。](_diagrams/cell/programming/spe_centric.webp)
 
 这与使用SPE为PPE服务的方式正好相反。 利用内部DMA单元，SPE获取并执行存储在主内存中的任务，而PPE则仅限于资源管理。
 
@@ -407,7 +410,7 @@ RSX继承了英伟达现有的技术，据说它基于面向PC销售的7800 GTX�
 
 RSX拥有**256 MB专用GDDR3 SDRAM**。 令人惊讶的是，它与Wii的[内存类型相同](wii#what-about-memory)。 内存总线运行频率为**650 MHz**，理论带宽高达**20.8 GB/s**。
 
-![数据如何在可用内存中进行编排的例子. 请注意RSX如何从不同的内存芯片访问其内容。](gpu/content.png)
+![数据如何在可用内存中进行编排的例子. 请注意RSX如何从不同的内存芯片访问其内容。](_diagrams/rsx/content.webp)
 
 在这256 MB内，Cell可以放置RSX渲染一帧所需的所有内容。 其中包括顶点数据、着色器、纹理和命令。 现在，得益于Cell的Flex I/O总线，RSX还可以利用上述256 MB的XDR内存（CPU的主RAM）作为工作空间，不过这会带来一些性能上的影响。 例如，如果渲染后的帧将由SPU进行后处理，这就派上了用场。
 
@@ -419,13 +422,13 @@ RSX拥有**256 MB专用GDDR3 SDRAM**。 令人惊讶的是，它与Wii的[内存
 
 现在让我们看看RSX如何处理和渲染3D场景。
 
-![RSX的流水线的概览](gpu/pipeline.png)
+![RSX的流水线的概览](_diagrams/rsx/pipeline.webp)
 
 它的流水线模型与[GeForce3](xbox#architecture-and-design)非常相似，但在五年的技术进步中得到了极大的提升。 因此，我建议大家先看看那篇文章，因为这篇文章的重点将放在新功能上，我还建议大家阅读[PlayStation Portable](playstation-portable#functionality)的GPU，因为很多新的发展和需求都与该芯片重叠。 话虽如此，让我们来看看这里有什么[@graphics-marcelina]……
 
 #### 指令 {.tabs.active}
 
-![取指阶段示意图](gpu/commands.png) {.tab-float}
+![取指阶段示意图](_diagrams/rsx/pipeline_commands.webp) {.tab-float}
 
 与其他GPU一样，必须有一块电路负责接收来自外部的指令。 在RSX中，这由**主机**和**图形前端**两个模块负责。
 
@@ -442,7 +445,7 @@ RSX拥有**256 MB专用GDDR3 SDRAM**。 令人惊讶的是，它与Wii的[内存
 
 #### 顶点着色器 {.tab}
 
-![顶点阶段流程图，注意如果顶点不需要顶点着色器进一步处理，顶点处理引擎（VPE）就会被绕过。](gpu/vertex.png) {.tab-float}
+![顶点阶段流程图，注意如果顶点不需要顶点着色器进一步处理，顶点处理引擎（VPE）就会被绕过。](_diagrams/rsx/pipeline_vertex.webp) {.tab-float}
 
 下一个单元是**几何处理**块，它是GeForce3中“顶点块”的进化版，用于执行顶点变换。 它仍然可以使用**顶点着色器**进行编程，这已成为图形行业广泛采用的功能。 此外，指令限制已增加到最少512条（最初的限制是136条！）。
 
@@ -460,7 +463,7 @@ RSX拥有**256 MB专用GDDR3 SDRAM**。 令人惊讶的是，它与Wii的[内存
 
 #### 光栅化 {.tab}
 
-![光栅化阶段简图。 RSX嵌入了不同的单位，用于计算像素和颜色的插值。](gpu/rasterizer.png) {.tab-float}
+![光栅化阶段简图。 RSX嵌入了不同的单位，用于计算像素和颜色的插值。](_diagrams/rsx/pipeline_rasterizer.webp) {.tab-float}
 
 接下来就是将顶点转换（[光栅化](playstation#tab-3-3-rasterisation)）为像素。 RSX的光栅化器速度非常快，每个周期最多可光栅化8x8像素（64），帧缓冲区最大可达**4096x4096像素**（不过开发人员可能需要小于此值的缓冲区）。
 
@@ -472,7 +475,7 @@ RSX拥有**256 MB专用GDDR3 SDRAM**。 令人惊讶的是，它与Wii的[内存
 
 #### 像素着色器 {.tab}
 
-![像素/片段阶段图](gpu/pixel.png) {.tab-float}
+![像素/片段阶段图](_diagrams/rsx/pipeline_pixel.webp) {.tab-float}
 
 接下来是**片段着色器和纹理**块，这是一个可编程单元（通过使用“片段程序”或“着色器”），用于应用纹理映射和其他效果。
 
@@ -486,7 +489,7 @@ RSX拥有**256 MB专用GDDR3 SDRAM**。 令人惊讶的是，它与Wii的[内存
 
 #### 像素操作 {.tab}
 
-![后处理阶段](gpu/post.png) {.tab-float}
+![后处理阶段](_diagrams/rsx/pipeline_post.webp) {.tab-float}
 
 在将结果写入帧缓冲区（存储在VRAM或主RAM中）之前，最后一个名为**光栅操作块**（Raster Operation Block，或ROP/光栅操作单元）的模块会对生成的像素进行最终测试。
 
@@ -518,7 +521,7 @@ HDMI接口由19个针脚[@graphics-hdmi_wiki]组成，全部安装在一个插�
 
 你看，虽然对更好图形的需求呈指数级增长（消费者需要更多的场景、更好的细节和色彩），但你不会听到对声音有同样高的要求。 我想这是因为我们的认知能力已经达到了极限（44.1 kHz采样率和16位分辨率）。 唯一剩下的就是实现更多的声道和效果，但这些并不需要安装专用芯片的处理能力，至少在消费电子上是这样。
 
-![音频流水线概要。](audio.png)
+![音频流水线概要。](_diagrams/audio.webp)
 
 因此，音频现在完全由软件实现，并由SPU们（我指的是协同处理器单元，而不是[声音处理单元](playstation-2#audio)！ 有点讽刺的是，两者的首字母相同......）进行处理。 接下来，索尼在其SDK中提供了许多库，用于指导SPU执行音频排序、混音和流式传输。 如果这还不够，还可以应用许多效果。
 
@@ -536,7 +539,7 @@ HDMI接口由19个针脚[@graphics-hdmi_wiki]组成，全部安装在一个插�
 
 此外，南桥还采用加密算法，以无缝方式保护标准协议之间的通信，如硬盘数据。
 
-![南桥连接示意图](southbridge_diagram.png)
+![南桥连接示意图](_diagrams/southbridge.webp)
 
 总的来说，南桥嵌入了大量接口，这与这款游戏机是在“多媒体集线器”潮流中设计的有关。 对于视频游戏机来说，仅仅玩游戏是不够的，它们还需要成为DVD和蓝光播放器、机顶盒（部分）、照片查看器（通过使用多卡读写器导入相机的照片），而且随着需求的发展，可能还会有更多的功能（得益于其可更新的操作系统）。
 
@@ -646,7 +649,7 @@ HDMI接口由19个针脚[@graphics-hdmi_wiki]组成，全部安装在一个插�
 
 总的来说，PS3的操作系统采用与PSP相同的模块化设计。 回顾前文，操作系统由多个**模块**组成。 这些模块可以为用户服务（如游戏或应用程序），也可以无限期地驻留在内存中，为其他模块服务（以系统调用和/或驱动程序的形式）。 有些模块比其他模块拥有更多的访问权限（内核模块与用户模块）。
 
-![PlayStation 操作系统各组件与 Cell 权限级别的关系图。<br>有关“其他操作系统”的内容将在接下来的章节中进一步解释。](oslevels.png)
+![PlayStation 操作系统各组件与 Cell 权限级别的关系图。<br>有关“其他操作系统”的内容将在接下来的章节中进一步解释。](_diagrams/os_levels.webp)
 
 操作系统在其整个生命周期中会调用许多具有不同权限的模块。 索尼在构建操作系统时，将模块置于Cell的三个权限级别之下：
 
@@ -740,13 +743,19 @@ HDMI接口由19个针脚[@graphics-hdmi_wiki]组成，全部安装在一个插�
 
 此外，由于这是一台可能由多个成员共享的家用游戏机，XMB支持**多用户**，每个用户可以使用不同的PlayStation Network账户，并存储独立的用户数据（已购买的游戏和保存）。
 
-![就像在PSP中一样，选中一个游戏可能会使背景风格化，以引起你的注意！](xmb/game.jpg){.tabs-nested .active title="游戏"}
+::: {.subfigures .tabs-nested}
 
-![XMB 提供了大量的设置功能，尤其是当你需要为闪亮的1080p新电视设置3.1环绕声时，它能帮上忙。](xmb/settings.jpg){.tab-nested title="设置"}
+![就像在PSP中一样，选中一个游戏可能会使背景风格化，以引起你的注意！](xmb/game.jpg){.active title="游戏"}
 
-![各种各样的多媒体设置](xmb/multimedia.jpg){.tab-nested title="多媒体"}
+![XMB 提供了大量的设置功能，尤其是当你需要为闪亮的1080p新电视设置3.1环绕声时，它能帮上忙。](xmb/settings.jpg){title="设置"}
 
-![XMB可以使用本地软件包安装程序安装游戏及其更新和扩展（DLC）。](xmb/installpkg.jpg){.tabs-nested-last title="安装"}
+![各种各样的多媒体设置](xmb/multimedia.jpg){title="多媒体"}
+
+![XMB可以使用本地软件包安装程序安装游戏及其更新和扩展（DLC）。](xmb/installpkg.jpg){title="安装"}
+
+PlayStation 3 的 XrossMediaBar (XMB) 界面
+
+:::
 
 最后，硬盘的加入让老手们松了一口气，因为过去只要空间不够，他们就不得不购买昂贵的专有存储设备（[Memory Stick Pro Duo](playstation-portable#tab-3-2-memory-stick-duo)）。
 
