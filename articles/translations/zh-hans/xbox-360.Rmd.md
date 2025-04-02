@@ -20,16 +20,19 @@ top_tabs:
       title: 原版
       file: original
       img_class: reduced-width
+      latex_height: 85
     - 
       caption: "“新”Xbox 360 （又称“薄版”或“S版”）<br>2010年6月18日于美国，2010年6月24日于日本，2010年7月16日于欧洲发布"
       title: 薄版
       file: the-s
       img_class: reduced-width
+      latex_height: 90
     - 
       caption: "<br>2013年6月10日于美国，2013年6月20日于欧洲和日本发售"
       title: E型机
       file: the-e
       img_class: reduced-width
+      latex_height: 90
 ---
 
 ## 快速入门
@@ -74,9 +77,9 @@ Xbox 360比其主要竞争对手提前一年发布，而且它已经在宣称产
 
 #### 共享同样的问题 {.tab}
 
-![初代Xbox的CPU（2001）。 英特尔设计制造。](cpu/copermine.png) {.tab-float}
+![初代Xbox的CPU（2001）。 英特尔设计制造。](_diagrams/cpu/coppermine.webp) {.tab-float}
 
-![同构CPU的概念。 这正是微软为他们的下一代CPU所设想的。 ](images/consoles/ps3/cpu/paradigm/homogeneous.png) {.tab-float}
+![同构CPU的概念。 这正是微软为他们的下一代CPU所设想的。 ](images/consoles/ps3/_diagrams/cell/paradigm/homogeneous.webp) {.tab-float}
 
 与计算机行业的任何其他公司一样，21世纪初的[创新危机](playstation-3#tab-1-2-new-design-philosophies)无差别地影响了微软和索尼。 然而，不同之处在于，这两家公司为他们的 CPU 设计下了不同的赌注。 初代Xbox依赖于流行的现成产品（英特尔的[奔腾III](xbox#cpu)）并进行了一些定制，这是一个单核CPU，通过向量化指令和复杂的缓存设计进行了扩展。 另一方面，索尼的向量化冒险（[情感引擎（EE）](playstation-2#cpu)）由一个低端CPU组成，周围环绕着专有的但功能强大的助手。
 
@@ -116,11 +119,11 @@ Xbox 360比其主要竞争对手提前一年发布，而且它已经在宣称产
 ### Cell的半个兄弟
 <!-- TODO: Explain Power mac g5 prototype?? -->
 
-现在我们已经把微软和IBM放在了地图上，让我们来谈谈新的CPU。 这就是Xenon在Xbox 360项目结束时如何成型的：
+现在我们已经把微软和IBM放在了地图上，让我们来谈谈新的CPU。 这就是Xenon在Xbox 360项目结束时如何成型的 @fig-xenon
 
-![Xenon的简化示意图。](cpu/xenon.png) {.toleft}
+![Xenon的简化示意图。](_diagrams/cpu/xenon.webp) {#fig-xenon.toleft}
 
-![为了比较，这里是Cell的示意图。 Cell也包括32 KB的ROM，这里没有显示。 ](images/consoles/ps3/cpu/cell.png) {.toright}
+![为了比较，这里是Cell的示意图。 Cell也包括32 KB的ROM，这里没有显示。 ](images/consoles/ps3/_diagrams/cell/cell.webp) {.toright}
 
 别担心，这篇文章将解释所有这些组件，从左上角显示的PPE块开始。
 
@@ -164,9 +167,9 @@ Cell项目，因其对向量化计算的痴迷，引入了非常有趣的方法�
 
 XBAR依赖于一种**网状拓扑**结构，它不是以令牌方式引导流量。 相反，每个节点都提供了一个专用通道来移动其数据[@cpu-brown]。 这看起来可能比EIB的令牌拓扑结构更优化，但这是因为XBAR只需要服务于少数节点。 此外，XBAR以全速（**3.2 GHz**）运行。
 
-![这是XBAR/Crossbar与L2组件结合的简化示意图。 ](cpu/crossbar.png) {.toleft}
+![这是XBAR/Crossbar与L2组件结合的简化示意图。 ](_diagrams/cpu/crossbar.webp) {.toleft}
 
-![为了比较，这是Cell处理器中EIB的架构（在PS3中找到）。 ](images/consoles/ps3/cpu/eib.png) {.toright}
+![为了比较，这是Cell处理器中EIB的架构（在PS3中找到）。 ](images/consoles/ps3/_diagrams/cell/eib.webp) {.toright}
 
 公平地说，到目前为止，我只谈到了连接PPE的特定接口。 好吧，XBAR只是IBM为Xenon设计的庞大块状结构中的一部分。 事实证明，剩余的空间让他们有机会整合另一个非常重要的块，以加速PPE与系统其他部分之间的交易：**L2缓存**。
 
@@ -178,7 +181,7 @@ PPE通过XBAR可以访问**1 MB的L2**。 L2块也是以网状方式连接的，
 
 首先，每当缓存从内存中获取数据时（在发生“缓存未命中”的情况下），它都是通过拉取一个被称为“缓存行”的大块数据来完成的，在Cell和Xenon的情况下，这个缓存行是**128字节宽**。 然后，L2会在一个内部列表上记录这个缓存行，以便将来能够找到它。 此外，在Xenon/Cell中，L2是**8路关联**的，这意味着缓存集可以存储多达八个不同的缓存行。 如果你不知道这是什么意思，也不用担心，CPU缓存背后的理论可能很难理解，特别是如果你只想了解游戏机的话。 用通俗的话来说，关联度越高，缓存未命中的概率就越小，但遍历内部列表的速度也会越慢。
 
-![Xenon中的缓存布局 ](cpu/caches.png)
+![Xenon中的缓存布局 ](_diagrams/cpu/caches.webp)
 
 选择8路关联缓存对Xenon来说并非一时冲动，因为提供八个关联可以缓解六个同时运行的线程（每个PPE都是双线程的）试图同时访问L2缓存块的压力。 这也在频繁的缓存未命中和查找时间之间取得了平衡。 所有这些，同时还要控制成本。 作为比较，昂贵的英特尔“Smithfield”（2005年的Pentium D）为每个核心提供了2 MB的L2缓存！ [@cpu-shimpi_intel]
 
@@ -190,9 +193,9 @@ PPE通过XBAR可以访问**1 MB的L2**。 L2块也是以网状方式连接的，
 
 首先，Xenon的PPE不再包含[PowerPC处理器存储子系统（PPSS）](playstation-3#composition-of-the-ppe)，可能是因为接口部分由XBAR处理，而且L2现在是在三个单元之间共享的。
 
-![Xenon的PowerPC处理元件（PPE）的简化示意图。 ](cpu/ppe.png) {.toleft}
+![Xenon的PowerPC处理元件（PPE）的简化示意图。 ](_diagrams/cpu/ppe.webp) {.toleft}
 
-![为了比较，这是Cell的PPE。 ](images/consoles/ps3/cpu/ppe.png) {.toright}
+![为了比较，这是Cell的PPE。 ](images/consoles/ps3/_diagrams/cell/ppe.webp) {.toright}
 
 说实话，我不确定为什么技术手册总是把Xenon的PPE称为“PPE”，因为它们更像是一个[PPU](playstation-3#the-powerpc-processing-unit)。
 
@@ -272,7 +275,7 @@ SMP编程使用“虚拟线程”抽象访问物理CPU核心。 虚拟线程是�
 
 这个抽象层允许程序员避免区分所使用的核心类型（因此使程序与**类似平台兼容**）和硬编码核心数量（使其**可扩展**）。
 
-![Xenon上多线程范式的表示。 一个程序可以创建n个线程（在这个例子中是两个），然后操作系统的调度器负责将线程分派到物理核心。 请注意，操作系统也作为一个线程运行。](cpu/programming.png)
+![Xenon上多线程范式的表示。 一个程序可以创建n个线程（在这个例子中是两个），然后操作系统的调度器负责将线程分派到物理核心。 请注意，操作系统也作为一个线程运行。](_diagrams/cpu/programming.webp)
 
 这种风格成为未来游戏机世代的标准并不奇怪，因为与不对称系统（即 Cell）相比，对称系统更容易扩展和编程。 后者通常依赖于不寻常的编程风格，侵蚀了与其他系统的兼容性。
 
@@ -320,13 +323,13 @@ _真是经久不衰的商战啊_，谁又能预料这番缠斗中将催生何等
 
 你知道，曾经有一段时间，GPU只是[简单的光栅化器](playstation#graphics)，只有“接受或放弃”的功能，这意味着它们提供了一组固定的功能，程序员可以选择激活它们或不激活。 直到后来，借助SGI的革新，[可编程顶点管线](nintendo-64#graphics)的出现才将部分算力负载从CPU剥离。 最后，“简单的光栅化器”定义变得_过时_，因为英伟达推广了一个新东西，称为[可编程像素着色器](xbox#graphics)，它给了程序员在光栅化后控制发生什么的自由。
 
-![GPU总览。其由多个单元组成，其中包括可编程着色器。 在本文的例子中，GPU为顶点操作分配的单元比像素操作多，这意味着几何变换的速度会更快，但可能会牺牲一些颜色效果。](gpu/traditional_pipeline.png)
+![GPU总览。其由多个单元组成，其中包括可编程着色器。 在本文的例子中，GPU为顶点操作分配的单元比像素操作多，这意味着几何变换的速度会更快，但可能会牺牲一些颜色效果。](_diagrams/gpu/traditional_pipeline.webp)
 
 这表明，随着GPU的性能和功能不断提升，它们将逐渐开放，允许开发者实现他们所需的确切功能。 然而，这也将增加硅芯片的整体复杂性。
 
 多年来，为了满足不断增长的需求，顶点和像素处理管线一直在扩大，但这也带来了新的可伸缩性问题。 毕竟，空间、成本和散热都有其物理限制。 那么，我们应该优先考虑哪些任务呢？ 是顶点操作还是像素效果？ 如果顶点处理能力不足，将会限制像素处理的速度。 同样，如果像素单元的表现不佳，也无法吸引用户，因为它们产生的画面效果会显得单调乏味。
 
-![GPU的组成单元总览，其中引入了一种新的统一管线设计。 现在，顶点和像素处理这两个阶段都拥有相同数量的资源，因此开发者无需因为某些着色器单元性能较弱而减少操作。](gpu/unified_pipeline.png)
+![GPU的组成单元总览，其中引入了一种新的统一管线设计。 现在，顶点和像素处理这两个阶段都拥有相同数量的资源，因此开发者无需因为某些着色器单元性能较弱而减少操作。](_diagrams/gpu/unified_pipeline.webp)
 
 基于此，ATI的架构师们重新思考，提出了两个关键问题：“有没有办法简化这个模型，而不是简单地增加更多的晶体管？”和“为什么像素和顶点管线要分开？” 最终，他们将这两个阶段**合并**为一个统一的电路模块。 这就是我们所说的**“统一着色器模型”**。在这种模型下，GPU仍然支持可编程的顶点和像素管线，但两者的计算电路是共享的。
 
@@ -350,7 +353,7 @@ Xenos的另一个独特之处在于其**三重内存架构**（对于强调UMA�
 
 这512 MB存储了Xenos渲染一帧所需的大部分（如果不是全部）材料，包括纹理、着色器以及游戏所需的各种类型的缓冲区。 另一方面，10 MB的EDRAM用于需要快速访问的小元素，如Z缓冲区、模板缓冲区、后备缓冲区（中间帧缓冲区）以及任何其他需要的自定义缓冲区。 这减少了共享GDDR3 RAM的拥堵，并加快了使用这些缓冲区的操作速度。
 
-![数据如何在可用内存中进行编排的例子.](gpu/content.png)
+![数据如何在可用内存中进行编排的例子.](_diagrams/gpu/content.webp)
 
 如果这还不够，还有一个第三种来源可以喂养GPU，那就是**直接连接到CPU的线路**！ 与以往所见的不同，CPU可以直接流式传输命令和几何数据，而无需通过传统的在外部内存中存储[命令缓冲区](playstation#tab-3-1-commands)的步骤，从而再次节省了主RAM的流量。 这就是微软所宣传的**Xbox程序合成**（Xbox Procedural Synthesis，XPS），并且是通过两个改变实现的[@cpu-andrews]：
 
@@ -361,9 +364,9 @@ Xenos的另一个独特之处在于其**三重内存架构**（对于强调UMA�
 
 ### 构造画面（frame）
 
-那么，Xenon究竟是如何渲染一帧图像的呢？ 其实，它的过程与市场上的其他GPU类似，涉及多个步骤。 你可以通过这个Xenos的图形管线图来了解整个过程：
+那么，Xenon究竟是如何渲染一帧图像的呢？ 其实，它的过程与市场上的其他GPU类似，涉及多个步骤。 你可以通过这个Xenos的图形管线图来了解整个过程 @fig-xenos 。
 
-![Xenos内的图形管线总览](gpu/pipeline.png)
+![Xenos内的图形管线总览](_diagrams/gpu/pipeline.webp) {#fig-xenos}
 
 从图中可以看出，Xenos的图形管线阶段与[其他不使用统一着色模型的图形芯](playstation-3#graphics)片基本相同。 这是因为主要的改变发生在**电路层面**，而不是API层面。 这样，开发者就无需学习可能颠覆他们传统方法的新技术。不过，他们很快就会发现，这种新的底层设计不仅能提升性能，还能提供额外的功能（在传统功能之上）。
 
@@ -373,7 +376,7 @@ Xenos的另一个独特之处在于其**三重内存架构**（对于强调UMA�
 
 #### 指令 {.tabs.active}
 
-![命令阶段概述.](gpu/pipeline_commands.png) {.tab-float}
+![命令阶段概述.](_diagrams/gpu/pipeline_commands.webp) {.tab-float}
 
 欢迎光临本系列的_第十二个多边形工厂_。 和往常一样，我们从**指令阶段**开始。 指令指导GPU在屏幕上绘制图像的内容、位置和方式。 不过，这次指令的存储方式有所不同，它们可以**存储在主内存的[缓冲区](gamecube#tab-3-1-database)中**，或者**直接由CPU传输**。 然后，**命令处理器**[@graphics-ati_review]会获取这些命令，解析后转发给执行相应操作的单元（因为命令可能包含各种指令，比如“绘制一个三角形”或“设置寄存器X”）。
 
@@ -385,7 +388,7 @@ Xenos的另一个独特之处在于其**三重内存架构**（对于强调UMA�
 
 #### 顶点着色器 {.tab}
 
-![顶点 (vertex) 阶段概述. 你很快会发现，这个阶段和像素阶段也没有 _那样地_ 不同.](gpu/pipeline_vertex.png) {.tab-float}
+![顶点 (vertex) 阶段概述. 你很快会发现，这个阶段和像素阶段也没有 _那样地_ 不同.](_diagrams/gpu/pipeline_vertex.webp) {.tab-float}
 
 自[Flipper](gamecube#graphics)时代（甚至是[RCP](nintendo-64#graphics)时代，因为它有共同的核心开发团队成员）以来，ATI一直致力于提供几何处理单元来加速顶点操作。 随着Xenos的出现，现在可以通过Direct3D的**高级着色器语言**（High-Level Shader Language，HLSL）进行完全编程。HLSL类似于C语言，但用于实现顶点着色器，无需使用汇编语言，尽管汇编语言仍然可以使用。
 
@@ -401,7 +404,7 @@ Xenos和[RSX](playstation-3#tab-6-2-vertex-shader)都遵循顶点着色器模型
 
 #### 光栅化 {.tab}
 
-![光栅阶段概述.](gpu/pipeline_raster.png) {.tab-float}
+![光栅阶段概述.](_diagrams/gpu/pipeline_raster.webp) {.tab-float}
 
 一旦图元完成转换或细分，光栅化过程便开始，将图元转换为像素。
 
@@ -417,7 +420,7 @@ Hi-Z块使用专门的内存来执行这些操作，这种内存每个周期可�
 
 #### 像素着色器 {.tab}
 
-![像素着色器阶段总览](gpu/pipeline_pixel.png) {.tab-float}
+![像素着色器阶段总览](_diagrams/gpu/pipeline_pixel.webp) {.tab-float}
 
 为了运行像素着色器，Xenos重新利用了顶点处理流程中的相同组件，但进行了一些小的调整。 同样，HLSL的像素着色器模型3.0（`ps_3_0`）规范定义了开发人员在这一阶段可以实现的效果，这与[Sony的技术](playstation-3#tab-6-4-pixel-shader)在功能上没有显著差异。 不过，由于底层架构的简化（或者说，统一），资源得到了整合，这使得整个处理流程中各阶段的性能更加均衡。
 
@@ -432,7 +435,7 @@ Hi-Z块使用专门的内存来执行这些操作，这种内存每个周期可�
 
 #### 像素操作 {.tab}
 
-![可用的像素操作概述.](gpu/pipeline_post.png) {.tab-float}
+![可用的像素操作概述.](_diagrams/gpu/pipeline_post.webp) {.tab-float}
 
 这就是渲染的全部内容，但我们还未探讨的是，那10MB的EDRAM如何提升性能。 这块芯片非常特殊，它内置逻辑电路，能够自动执行**多重采样抗锯齿**（MSAA）以及**深度和模板检测**。 其内部数据传输速率（内部逻辑电路与内部存储器之间）高达惊人的**256 GB/秒**，这使得它非常适合用来存储中间缓冲区，而不是将它们存储在主内存中。
 
@@ -497,7 +500,7 @@ Hi-Z块使用专门的内存来执行这些操作，这种内存每个周期可�
 
 #### 多媒体编解码器的兴起   {.tabs.active}
 
-![1999年发布的Windows Media Player 6 成为了微软对抗其竞争对手，如QuickTime、Winamp等的重要工具。 ](screenshots/windows/media6.jpg) {.tab-float}
+![1999年发布的Windows Media Player 6 成为了微软对抗其竞争对手，如QuickTime、Winamp等的重要工具。 ](screenshots/windows/media6.jpg) {.tab-float.no-upscaling}
 
 在21世纪初（甚至是上世纪90年代末），随着互联网的普及和价格亲民的多媒体产品（如加速卡、支持SIMD的CPU和快速网络带宽）的出现，许多曾经主要专注于生产软件的公司开始涉足多媒体服务领域。
 
@@ -521,7 +524,7 @@ Hi-Z块使用专门的内存来执行这些操作，这种内存每个周期可�
 
 就功能而言，XMA解码器能够解码多达**5.1声道的音频**，支持**48 kHz**的采样率和**16位**的分辨率。 这些规格都在意料之中，没有太多惊喜。
 
-![音频管道概述.](audio.png)
+![音频管道概述.](_diagrams/audio.webp)
 
 XMA解码器的工作流程如下：
 
@@ -550,7 +553,7 @@ XMA解码器的工作流程如下：
 
 如你所见，第七世代游戏机中提供了众多服务，这导致了许多被称为“黑盒”的组件被集成进来。 这些黑盒的主要作用是将安全和I/O任务从用户可接触的部件（如CPU和GPU）中分离出来。
 
-![南桥连接的示意图。](southbridge_diagram.png)
+![南桥连接的示意图。](_diagrams/southbridge.webp)
 
 Xbox 360也采用了这种设计。 在南桥芯片内部，有一个名为**系统管理控制器**（System Management Controller，SMC）的组件。类似于[Wii](wii#the-hidden-co-processor)，即使处于待机状态，SMC也会消耗电力。 SMC负责处理许多I/O操作，包括电源管理、实时时钟、温度控制、LED控制和红外传感器[@io-smc]。 CPU通过[FIFO命令缓冲区](nintendo-ds#interconnection)与SMC通信，但这项任务仅限于内核操作（更多详情将在“操作系统”部分介绍）。 因此，普通用户和游戏都无法直接干预SMC的操作。
 
@@ -578,7 +581,7 @@ SMC还有许多其他引人入胜的特质，我们将在适当的时候进行�
 
 索尼选择直接使用蓝牙技术实现无线控制，而Xbox 360则根据购买的不同版本配备了不同类型的控制器。需要注意的是，这并不影响主板版本，只是影响了随盒附带的配件数量。
 
-![新款无线控制器/游戏手柄[@photography-amos]， 背面需安装两节AA电池。](amos/controller.png) {.open-float.no-borders}
+![新款无线控制器/游戏手柄[@photography-amos]， 背面需安装两节AA电池。](amos/controller.png){.open-float .no-borders width="70%"}
 
 无线控制器通常随高端豪华版赠送，而基础版或无硬盘的街机版则配备了一个有线控制器，使用标准的**USB-A型线缆**连接。 无线控制器需两节AA电池供电，但微软也提供了可充电的电池组供购买。
 
@@ -644,7 +647,7 @@ Xbox 360的操作系统是一系列紧密集成的裸机实用程序和用户空
 
 IBM采用了三种权限级别（而非传统的两种），以支持同时运行多个操作系统。 按照这一设计，每个操作系统只能在最低的两个权限级别运行，而最高权限级别则专门保留给负责监控所有操作系统的管理程序。 在实际应用中，PlayStation 3和Xbox 360通常仅需要一个操作系统（尽管曾短暂支持[OtherOS功能](playstation-3#a-multi-os-proposal)，但很快被取消）。 因此，索尼和微软分别设计了各自的管理程序，以实施各自的安全策略，并执行内存管理任务。 由于Cell和Xenon在架构上的差异，这两种管理程序的实现方式存在显著差异，从而各自拥有独特的优势和潜在弱点。
 
-![该图表展示Xbox操作系统的组件如何适应Xenon的权限级别。 ](os_levels.png)
+![该图表展示Xbox操作系统的组件如何适应Xenon的权限级别。 ](_diagrams/os_levels.webp)
 
 Xbox 360和PlayStation 3在安全模型上的主要区别在于，Xbox 360在**相同的权限级别**（第二级）下同时运行内核和用户空间程序[@cpu-steil]。 因此，所有关键任务都由管理程序承担，它还从硬件方面获得了额外的加速支持（我将在“反盗版”部分详细说明）。
 
@@ -730,7 +733,7 @@ FU的作者之一Michael Brundage将开发过程描述为“可能是我的职�
 
 ![外置硬盘 作为单独的配件销售，并随“高级”版本一起附带。 硬盘外壳内部有一个传统的2.5英寸硬盘，连接到数据线和电源适配器。](amos/hdd.png){.tab-nested title="外置硬盘"}
 
-![内置硬盘，是薄型机（2010）的另一种配置。 硬盘外壳被安装在一个隐藏的插槽中，不需要任何类型的适配器（它的唯一目的是防止晃动）。](amos/hdd_slim.png){.tabs-nested-last title="内置硬盘"}
+![内置硬盘，是薄型机（2010）的另一种配置。 硬盘外壳被安装在一个隐藏的插槽中，不需要任何类型的适配器（它的唯一目的是防止晃动）。](amos/hdd_slim.png){.tabs-nested-last title="内置硬盘" width="60%"}
 
 当你将游戏机立起放置时，可以看到前面有**两个“记忆卡”插槽**。 在游戏机的顶部，你会发现一个修改过的SATA接口，用于连接**硬盘驱动器**（只适合那些由微软封装和销售的硬盘）。 这两种存储介质都是**选装的**，并用作**大容量存储设备**。
 
@@ -742,7 +745,7 @@ FU的作者之一Michael Brundage将开发过程描述为“可能是我的职�
 
 #### 外部USB {.tab}
 
-![典型的U盘[@photography-amos]](photos/usb.png) {.tab-float.no-borders}
+![典型的U盘[@photography-amos]](photos/usb.png){.tab-float .no-borders width="60%"}
 
 2010年4月，微软承认_了廉价U盘（它们已经征服了每个家庭）的入侵_，并发布了一个软件更新，允许在Xbox 360上使用U盘，作为扩展存储空间的一种方法。
 
@@ -838,7 +841,7 @@ U盘可以存储硬盘上大多数的内容（包括游戏），除了Xbox经典
 
 #### 新Xbox体验（2008）
 
-::: {.subfigures .tabs-nested}
+::: {.subfigures .tabs-nested .individual-first}
 
 ![新的主菜单。 请注意，用户必须滚动才能查看所有可用元素。](screenshots/nxe/home.jpg){.active title="主页"}
 
@@ -858,15 +861,15 @@ U盘可以存储硬盘上大多数的内容（包括游戏），除了Xbox经典
 
 随着微软不断增加新的服务和功能，Blades的导航方式逐渐显现出其局限性（因为它限制了顶层导航界面的数量），并且在后续的软件更新中，空间不足的问题也日益突出。 为了应对这些挑战，2008年，微软推出了一个全新的仪表板界面——**新Xbox体验**（NXE）。这个界面采用了“无限滚动”的设计模式，使得用户可以在首页上看到更多的服务选项。 此外，它还引入了一些新的元素，比如最近在**Windows Vista**和一系列新的**Windows Live**应用程序中流行的光泽效果和3D动画效果。
 
-![Windows Vista（2007）。 展示了如何使用标志性的“Flip 3D”功能在多个窗口之间进行切换。](screenshots/windows/vista_flip3d.jpg) {.toleft}
+![Windows Vista（2007）。 展示了如何使用标志性的“Flip 3D”功能在多个窗口之间进行切换。](screenshots/windows/vista_flip3d.jpg){.toleft width="90%"}
 
-![2008年的Windows Live Mail[@operating_system-livemail]，采用了类似Windows Vista的主题风格，包括光泽效果。](screenshots/windows/livemail.jpg) {.toright}
+![2008年的Windows Live Mail[@operating_system-livemail]，采用了类似Windows Vista的主题风格，包括光泽效果。](screenshots/windows/livemail.jpg){.toright width="90%"}
 
 通过新的设计，无论屏幕所在的操作层级如何，都可以充分利用全屏空间。 有趣的是，这种导航布局与索尼的[XMB](playstation-portable#visual-shell)设计非常相似，都是通过垂直箭头切换不同的类别，而水平箭头则用于在同一类别内导航不同的元素。
 
 #### “Kinect”更新（2010）
 
-::: {.subfigures .tabs-nested}
+::: {.subfigures .tabs-nested .individual-first}
 
 ![专为Kinect控制设计的新主页屏幕。 注意右下角的容器显示了Kinect当前正在捕捉的内容。](screenshots/kinect/home.jpg){.active title="主页"}
 
@@ -886,15 +889,15 @@ U盘可以存储硬盘上大多数的内容（包括游戏），除了Xbox经典
 
 随着**Kinect**的推出，微软需要对仪表板进行适配，以减少对传统控制器的依赖。 在这次更新中，设计团队将光泽效果替换为更为低调的绿色和灰色调。 此外，原先类似3D _Aero_的视觉效果也被更常见的放大动画所取代。 这一变化与**Windows 7**的发布及其对视觉效果简约化的处理风格相一致。
 
-![Windows 7（2009）。 展示了新的“Aero Peek”功能，用于预览最小化的窗口。](screenshots/windows/seven.jpg) {.toleft}
+![Windows 7（2009）。 展示了新的“Aero Peek”功能，用于预览最小化的窗口。](screenshots/windows/seven.jpg){.toleft width="92%"}
 
-![2011年的Windows Live Mail[@operating_system-livemaildesktop]，是名为“Windows Essentials”的桌面套件的一部分。](screenshots/windows/livemail_desktop.jpg) {.toright}
+![2011年的Windows Live Mail[@operating_system-livemaildesktop]，是名为“Windows Essentials”的桌面套件的一部分。](screenshots/windows/livemail_desktop.jpg){.toright width="92%"}
 
 除此之外，值得一提的是，这个设计仅在一年后就被一个更为彻底的全新设计所取代。
 
 #### “Metro”风格的全面革新（2011）
 
-::: {.subfigures .tabs-nested}
+::: {.subfigures .tabs-nested .individual-first}
 
 ![新的主屏幕上，新闻、广告和应用占据了相等的空间。 一些信息类型（比如广告）所占的空间比用户期望的还要多。](screenshots/metro/home.jpg){.active title="主页"}
 
@@ -912,7 +915,7 @@ U盘可以存储硬盘上大多数的内容（包括游戏），除了Xbox经典
 
 2010年，**Windows Phone 7**推出，一种名为**Metro**的新型界面首次亮相，这种界面的设计风格以纯色和白色剪影为主。 由于Metro设计的灵活性，微软计划将其应用到所有平台上，这一目标在接下来的年份随着**Windows 8**的发布和Xbox 360的**更新**而实现。 尽管不同设备对Metro的接纳程度存在显著差异，但Xbox 360却几乎完全采用了Metro风格（与Windows 8不同，后者的大部分应用程序仍然采用‘传统’设计）。
 
-![Windows Phone 7（2010年）的宣传屏幕展示了新的主页屏幕、联系人应用（采用了新的“全景”布局）以及锁屏界面。](screenshots/windows/phone7_promotional.png)
+![Windows Phone 7（2010年）的宣传屏幕展示了新的主页屏幕、联系人应用（采用了新的“全景”布局）以及锁屏界面。](screenshots/windows/phone7_promotional.png){width="88%"}
 
 其中最显著的变化是主页屏幕的设计，它从二维导航风格转变为一种名为“全景”的新型多行分布方式。 这种新的导航模式借鉴了旧Blades仪表板的类似设计，但避免了旧设计的错误。 现在，图标比文字标签更加突出，统一的形状使得整体布局显得更为简洁。 不过，至少这种布局在所有主页屏幕视图上保持了一致性（尽管我必须承认，我有点怀念以前那些充满变化和惊喜的设计时代）。
 
@@ -1020,7 +1023,7 @@ U盘可以存储硬盘上大多数的内容（包括游戏），除了Xbox经典
 
 还记得Xenon中的L2子系统有多复杂吗？ 嗯，还有一件事需要解释，那就是在其中包含了一个**隐藏的加密块**。 我之所以称它为“隐藏”，是因为微软和IBM都没有对其进行过任何文档记录。 我是通过一个由Free60小组（由Michael Steil和Felix Domke领导，前者还做过‘The ultimate Game Boy talk’！）名为“Xbox 360安全系统及其弱点”的极具洞察力的演讲 [@cpu-steil]以及Mathieu Renard的“安全攻击与防御策略”[@operating_system-renard]了解到它的，我在这里描述的大部分信息都依赖于这两次演讲。
 
-![Xenon内部安全组件概览。 它们被策略性地放置，使得PPE不需要知道它们的存在，也不需要进行任何手动操作。](cpu/crypto.png)
+![Xenon内部安全组件概览。 它们被策略性地放置，使得PPE不需要知道它们的存在，也不需要进行任何手动操作。](_diagrams/cpu/crypto.webp)
 
 接下来，加密子系统被划分为执行独特功能的独立区域：
 
