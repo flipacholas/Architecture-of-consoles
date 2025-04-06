@@ -278,7 +278,7 @@ APU只能处理音频数据，但不能输出音频数据。 后者是ACI的工�
 
 正如我之前提到的，我们有一个“南桥”子系统，它集中了所有I/O访问。 南桥由MCPX芯片实现。
 
-![主机结构的主图. 请注意MCPX是如何控制大部分I/O的。](diagram.png)
+![主机结构的主图. 请注意MCPX是如何控制大部分I/O的。](_diagrams/main.webp)
 
 顺便提一下，MCPX源自PC上的**英伟达nForce多媒体和通信处理器（Multimedia and Communications Processor，“MCP”）**。 在使用nForce 220/415/420芯片组的主板上可以找到它[@io-reactos]。
 
