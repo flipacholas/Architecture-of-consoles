@@ -153,7 +153,7 @@ Wii采用了与[GameCube](gamecube#audio)相同的**旺宏（Macronix）DSP**，
 
 Starlet就是一个**ARM926EJ-S CPU**，与游戏机的大部分内部组件相连。 它位于Hollywood内，运行频率为**243 MHz**（与Hollywood相同），还包含自己的ROM和RAM。 因此，您可以将Starlet视为与主CPU同时运行的独立计算机。
 
-![Wii的架构主图。 请注意，Starlet能够控制大部分的I/O，甚至还能隐藏Broadway的一些I/O。](diagram.png)
+![Wii的架构主图。 请注意，Starlet能够控制大部分的I/O，甚至还能隐藏Broadway的一些I/O。](_diagrams/main.webp)
 
 其内核与[任天堂DS](nintendo-ds)上使用的内核相似，只是增加了两个“特殊”部件：
 
