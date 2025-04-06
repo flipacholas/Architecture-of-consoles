@@ -1148,7 +1148,7 @@ In May 2006 (before the PlayStation 3 reached the stores), user 'commodore4eva' 
 
 The firmware was flashed through the use of ATA commands, but it required a computer with a spare SATA socket and special flashing software. Consequently, users had to open up the console and connect the SATA data cable to their computer, run the flasher while the console supplied energy to the drive and then re-assemble everything back. The act of flashing emerged from a hidden 'maintenance mode' that was discovered in the drive's firmware, this was subsequently reversed and re-enabled. If the process was carried out successfully, the Xbox 360 would now read pirated games just like any genuine one.
 
-![Example of a DVD drive flashing tutorial found on Youtube [@anti_piracy-flashing_tut]. Here, the Xbox 360's drive connects to the PC using SATA while the console still supplies power (as the power connector is proprietary).](photos/flashing.jpg)
+![Example of a DVD drive flashing tutorial found on Youtube @anti_piracy-flashing_tut. Here, the Xbox 360's drive connects to the PC using SATA while the console still supplies power (as the power connector is proprietary).](photos/flashing.jpg)
 
 That's pretty much how the DVD drive got cracked. As time went by, the techniques evolved but the fundamental idea remained the same (flash a custom firmware). Subsequent readers increased their security to seal backdoors and Microsoft helped by bundling DVD drive firmwares within their 'software updates' to undo any unauthorised work done by the user. In later years, readers levelled up to the point the user had to drill a hole into the drive's System-on-Chip to enable flashing [@anti_piracy-hacking_2].
 
