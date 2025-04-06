@@ -223,7 +223,7 @@ NES 将图块定义为基本的 **8x8 像素图**，它们存储在 **Character 
 
 #### 精灵层 {.tab}
 
-![渲染精灵图层.](ppu_mario/sprite_layer.png) {.tab-float.pixel}
+![渲染精灵图层.](ppu_mario/sprite_layer.png) {.tab-float.pixel.latex-framed}
 
 精灵图（Sprite）是可以在屏幕上移动的图块（Tile）。 它们可以相互重叠，或者出现在背景后面。 可见性由它自身优先级数值决定（与传统图形设计软件中的“图层”概念相同）。
 
@@ -319,7 +319,7 @@ APU的功能通过内存地址暴露出来，CPU读取程序ROM中的与音乐�
 
 #### 脉冲 {.tabs.active}
 
-::: {.subfigures .tabs-nested .tab-float}
+::: {.subfigures .tabs-nested .tab-float max_subfigures=1}
 
 ![脉冲1通道的示波器视图。](pulse_single_1){video="true" title="脉冲1"}
 
@@ -339,7 +339,7 @@ Mother (1989).
 
 #### 三角波 {.tab}
 
-::: {.subfigures .tabs-nested .tab-float}
+::: {.subfigures .tabs-nested .tab-float max_subfigures=1}
 
 ![三角波通道的示波器视图。](triangle_single){.active video="true" title="三角波"}
 
@@ -357,7 +357,7 @@ APU 为这种类型的波形保留了一个通道。 在幕后，专用的序列
 
 #### 噪声 {.tab}
 
-::: {.subfigures .tabs-nested .tab-float}
+::: {.subfigures .tabs-nested .tab-float max_subfigures=1}
 
 ![噪声通道的示波器视图。](noise_single){.active video="true" title="噪音"}
 
@@ -377,7 +377,7 @@ Mother (1989).
 
 #### 采样 {.tab}
 
-::: {.subfigures .tabs-nested .tab-float}
+::: {.subfigures .tabs-nested .tab-float max_subfigures=1}
 
 ![采样通道的示波器视图。](sample_single){.active video="true" title="采样"}
 
@@ -508,7 +508,7 @@ NES 游戏主要用 6502 汇编编写，并保存在**程序 ROM**中，而游�
 
 尽管它只在日本发售，但是我想这是介绍这个寿命短暂但奇特的附加组件的好机会。就像 Mapper 一样，它为这台主机增加了更多功能。 这个外围设备被称为 **Famicom Disk System**（Famicom 磁碟机，FDS），它于 1986 年上架（约为 Famicom 发售后第三年）。 它有着外置软盘读取器一样的形状，并且捆绑了一个被称为“RAM 适配器”的奇怪形状的卡带。
 
-::: {.subfigures .side-by-side}
+::: {.subfigures .side-by-side max_subfigures=1}
 
 ![插入软盘的驱动器（图片中插入的是保护驱动器用的软盘形状的硬纸板）[@photography-amos]。 它可以使用 6 节 C 型电池（即 2 号电池，每节 1.5 V）或 3.6 W 的交流适配器运行。](fds/drive.png) {.toleft.no-borders}
 
