@@ -117,7 +117,7 @@ To sum it up, IBM signed an agreement with Sony and Toshiba to develop Cell in 2
 
 Now that we've positioned Microsoft and IBM on the map, let's talk about the new CPU. This is how Xenon materialised at the end of the Xbox 360 project... @fig-xenon
 
-![Simplified view of Xenon.](_diagrams/cpu/xenon.webp){#fig-xenon .toleft}
+![Simplified view of Xenon.](_diagrams/cpu/xenon.webp){.toleft #fig-xenon}
 
 ![For comparison purposes, here's the equivalent view of Cell. Cell also includes 32 KB of ROM not shown here.](images/consoles/ps3/_diagrams/cell/cell.webp){.toright}
 
@@ -885,9 +885,9 @@ The 'Kinect' dashboard with a custom wallpaper. Screens are from [@operating_sys
 
 With the arrival of **Kinect**, Microsoft had to adapt the Dashboard to remove its dependency on the controller. As part of the update, the designers replaced the glossy touch with faded greens and greys. The 3D _aero_-like touches were also succeeded by typical zoom-in animations. This coincides with the arrival of **Windows 7** and its modest reduction of visual effects.
 
-![Windows 7 (2009). Showing the new 'Aero Peek' to preview minimised windows.](screenshots/windows/seven.jpg){.toleft width="92%"}
+![Windows 7 (2009). Showing the new 'Aero Peek' to preview minimised windows.](screenshots/windows/seven.jpg){.toleft}
 
-![Windows Live Mail during 2011 [@operating_system-livemaildesktop], part of a desktop suite called 'Windows Essentials'.](screenshots/windows/livemail_desktop.jpg){.toright width="92%"}
+![Windows Live Mail during 2011 [@operating_system-livemaildesktop], part of a desktop suite called 'Windows Essentials'.](screenshots/windows/livemail_desktop.jpg){.toright}
 
 I don't think there's anything else to mention apart from the fact it only lasted a year before being replaced by a considerably more radical redesign.
 

@@ -166,7 +166,7 @@ The capabilities of the Saturn for drawing 2D scenes were huge compared to the [
 
 #### Sprites {.tabs .active}
 
-![Mega Man X4 (1997).<br>VDP1's Sprites plane.](2d/sprites.png){.tab-float}
+![Mega Man X4 (1997).<br>VDP1's Sprites plane.](2d/sprites.png){.tab-float .latex-framed}
 
 In this case, the VDP1 is tasked with plotting traditional sprites without any 3D distortion applied.
 
@@ -174,13 +174,13 @@ The CPU sets up the VDP1 by writing over its registers and filling its VRAM with
 
 #### Backgrounds {.tab}
 
-::: {.subfigures .tabs-nested .tab-float .pixel}
+::: {.subfigures .tabs-nested .tab-float .pixel max_subfigures=1}
 
-![2D plane 1.](2d/bg1.png){.active title="2D plane 1"}
+![2D plane 1.](2d/bg1.png){.active title="2D plane 1" .latex-framed}
 
-![2D plane 2.](2d/bg2.png){title="2D plane 2"}
+![2D plane 2.](2d/bg2.png){title="2D plane 2" .latex-framed}
 
-![2D plane 3.](2d/bg3.png){title="2D plane 3"}
+![2D plane 3.](2d/bg3.png){title="2D plane 3" .latex-framed}
 
 Mega Man X4 (1997). VDP2's Background planes.
 

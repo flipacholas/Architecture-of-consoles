@@ -41,7 +41,7 @@ From now on I'll use the term 'Master System' or 'SMS' to refer to all of these,
 
 Sega decided on a fully-fledged **Zilog Z80** CPU running at **~3.58 MHz**. A popular choice by computer manufacturers like the Spectrum, Amstrad or Tandy.
 
-::: {.subfigures .side-by-side}
+::: {.subfigures .side-by-side max_subfigures=1}
 
 ![The American Tandy TRS-80 (1977) I found in the Computer History Museum (San Jose, California) during my visit in June 2019.](trs80.webp){.toleft}
 

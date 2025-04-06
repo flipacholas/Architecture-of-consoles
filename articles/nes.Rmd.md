@@ -221,7 +221,7 @@ The last bytes of each Nametable store a 64-byte **Attribute table** that specif
 
 #### Sprite Layer {.tab}
 
-![Rendered sprite layer.](ppu_mario/sprite_layer.png){.tab-float .pixel}
+![Rendered sprite layer.](ppu_mario/sprite_layer.png){.tab-float .pixel .latex-framed}
 
 Sprites are tiles that can move around the screen. They can also overlap each other, or appear behind the background. The viewable graphic will be decided based on its priority value (it's the same concept as 'layers' in traditional graphic design software).
 
@@ -317,7 +317,7 @@ Let's now go over the five channels the APU provides [@audio-review]:
 
 #### Pulse {.tabs .active}
 
-::: {.subfigures .tabs-nested .tab-float}
+::: {.subfigures .tabs-nested .tab-float max_subfigures=1}
 
 ![Oscilloscope view of the pulse 1 channel.](pulse_single_1){video="true" title="Pulse 1"}
 
@@ -337,7 +337,7 @@ I think it's fair to say that pulse waves are one of the emblems of this generat
 
 #### Triangle {.tab}
 
-::: {.subfigures .tabs-nested .tab-float}
+::: {.subfigures .tabs-nested .tab-float max_subfigures=1}
 
 ![Oscilloscope view of the triangle channel.](triangle_single){.active video="true" title="Triangle"}
 
@@ -355,7 +355,7 @@ On the other side, the respective circuitry does not provide volume control. In 
 
 #### Noise {.tab}
 
-::: {.subfigures .tabs-nested .tab-float}
+::: {.subfigures .tabs-nested .tab-float max_subfigures=1}
 
 ![Oscilloscope view of the noise channel.](noise_single){.active video="true" title="Noise"}
 
@@ -375,7 +375,7 @@ Generally speaking, games use the noise channel for percussion or ambient effect
 
 #### Sample {.tab}
 
-::: {.subfigures .tabs-nested .tab-float}
+::: {.subfigures .tabs-nested .tab-float max_subfigures=1}
 
 ![Oscilloscope view of the sample channel.](sample_single){.active video="true" title="Sample"}
 
@@ -506,7 +506,7 @@ Furthermore, games were sold (or rented out) at retail stores under the approval
 
 Even though it was only released in Japan, I thought this would be a good opportunity to introduce a short-lived but peculiar add-on that, just like the mappers, brought in more capabilities to this console. This peripheral was called **Famicom Disk System** (FDS) and shipped in 1986 (~3 years after the Famicom). It had the shape of an external floppy reader and came bundled with an odd-shaped cartridge called 'RAM adapter'.
 
-::: {.subfigures .side-by-side}
+::: {.subfigures .side-by-side max_subfigures=1}
 
 ![The drive [@photography-amos], where floppies are inserted (the photo shows a cardboard floppy inserted for protection). It either runs on six C batteries (1.5 V each) or a 3.6 W AC adapter.](fds/drive.png){.toleft .no-borders}
 

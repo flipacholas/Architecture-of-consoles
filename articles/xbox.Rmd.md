@@ -279,7 +279,7 @@ The APU only processes audio data but can't output it. The latter is the job of 
 
 As I mentioned before, we have a 'Southbridge' subsystem which concentrates all I/O access. This Southbridge is implemented by the MCPX chip.
 
-![Main diagram of the console's architecture. Notice how the MCPX controls most of the I/O.](diagram.png)
+![Main diagram of the console's architecture. Notice how the MCPX controls most of the I/O.](_diagrams/main.webp)
 
 Incidentally, the MCPX derives from its PC counterpart called **nVidia nForce Multimedia and Communications Processor** or 'MCP'. This is found on motherboards using the nForce 220/415/420 chipset [@io-reactos].
 

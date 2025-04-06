@@ -541,7 +541,7 @@ This section tends to be very rich in technologies considering Nintendo's consol
 
 The Nintendo DS had tons of modules built-in and the Nintendo DSi added more on top of it (after removing the GBA Slot). Now we find ourselves with a new console combining interfaces from two decades (the 2000s and 2010s).
 
-![Main diagram of the console's architecture. You can sense that the I/O area on the left side was a strong selling point of this console.](diagram.png){.no-borders}
+![Main diagram of the console's architecture. You can sense that the I/O area on the left side was a strong selling point of this console.](_diagrams/main.webp){.no-borders}
 
 To be fair, we still don't have a standard like USB, but that may be expendable considering the Nintendo 3DS bundles the following:
 

@@ -349,9 +349,9 @@ The SPU2 inherits the same effects available from the original SPU. The memory p
 
 Finally, the chip can mix all channels to provide **stereo output**. Now, here is the interesting part: The SPU2 can feed itself the mixed stereo sample as new input, this enables the EE to access it (to mix it with even more audio, for instance), or keep adding more effects (such as reverb, echo and delay).
 
-![Kingdom Hearts II (2005). Without reverb.](goomy_noreverb){.toleft video="true"}
+![Kingdom Hearts II (2005). Without reverb.](goomy_noreverb){.toleft video="true" .interactive-only}
 
-![Kingdom Hearts II (2005). With reverb.](goomy){.toright video="true"}
+![Kingdom Hearts II (2005). With reverb.](goomy){.toright video="true" .interactive-only}
 
 ### Audio out
 
@@ -368,7 +368,7 @@ Initially, the I/O of the PS2 wasn't particularly complicated. Yet, subsequent r
 
 To start with, there's a dedicated processor that arbitrates the communication between different components, this CPU is no other than the **original MIPS R3000-based core** found in the [PlayStation 1](playstation#cpu). This time, it's called **I/O Processor** (IOP) and runs at **37.5 MHz** attached to a **32-bit bus** [@io-buses].
 
-![Main diagram of the PlayStation 2's architecture. Notice the I/O Processor exhibiting exclusive access to most of the I/O.](diagram.png)
+![Main diagram of the PlayStation 2's architecture. Notice the I/O Processor exhibiting exclusive access to most of the I/O.](_diagrams/main.webp)
 
 The IOP communicates with the Emotion Engine using a specialised I/O interface called **System Interface** or 'SIF', both endpoints use their DMA units to transfer data between each other. The IOP also comes with dedicated memory - **2 MB of [EDO RAM](playstation#the-offering)** (just like the PS1) - used as a buffer.
 
