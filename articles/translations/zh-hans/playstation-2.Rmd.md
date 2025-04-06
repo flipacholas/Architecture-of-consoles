@@ -350,9 +350,9 @@ SPU2继承了原始SPU的相同效果。 提供的内存用作“工作区”：
 
 最后，芯片可以混合所有通道，提供**立体声输出**。 现在，有趣的部分来了：SPU2可以将混音后的立体声采样作为新的输入，这使得EE可以访问这些采样（例如，将其与更多音频混合），或继续添加更多效果（如混响、回声和延迟）。
 
-![王国之心2（Kingdom Hearts II）（2005） 无混响效果](goomy_noreverb){.toleft video="true"}
+![王国之心2（Kingdom Hearts II）（2005） 无混响效果](goomy_noreverb){.toleft video="true" .interactive-only}
 
-![王国之心2（Kingdom Hearts II）（2005） 带混响效果](goomy){.toright video="true"}
+![王国之心2（Kingdom Hearts II）（2005） 带混响效果](goomy){.toright video="true" .interactive-only}
 
 ### 音频输出
 
@@ -369,7 +369,7 @@ SPU2继承了原始SPU的相同效果。 提供的内存用作“工作区”：
 
 首先，有一个专用处理器负责协调不同组件之间的通信，这个CPU就是[PlayStation 1](playstation#cpu)中**基于MIPS R3000的原版核心**。 这次，它被称为**I/O 处理器**（I/O Processor，IOP），运行频率为**37.5 MHz**，连接**32位总线**[@io-buses]。
 
-![PlayStation 2的主架构图。 请注意，I/O处理器显示出对大部分I/O的独占访问权限。](diagram.png)
+![PlayStation 2的主架构图。 请注意，I/O处理器显示出对大部分I/O的独占访问权限。](_diagrams/main.webp)
 
 IOP 通过一个名为**系统接口**（System Interface，“SIF”）的专用I/O接口与情感引擎通信，两个端点都使用各自的DMA单元在彼此间传输数据。 IOP还配有专用内存，即**2 MB [EDO RAM](playstation#the-offering)**（与PS1类似），用作缓冲区。
 
