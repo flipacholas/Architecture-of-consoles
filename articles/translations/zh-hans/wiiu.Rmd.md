@@ -425,7 +425,7 @@ DSP会帮助完成混音和排序任务，其余的(即过滤、效果等)由软
 
 顺便说一句，在 Wii U 中没有这个 ARM9 CPU 的官方名称的情况下 (毕竟，任天堂认为，你不应该知道这个芯片...)，fail0verflow想出了他们的标识代号：**Starbuck**.
 
-![主机结构的主图. 注意 Starbuck 是如何被放置于 Latte 的重要区域的.](diagram.png)
+![主机结构的主图. 注意 Starbuck 是如何被放置于 Latte 的重要区域的.](_diagrams/main.webp)
 
 话虽如此，Starbuck 的编程相关能力已经大大加强了. 我在“操作系统”和“反盗版和自制”部分进行了详细介绍. 现在，请记住 Starbuck 相当于 [Southbridge](xbox#motherboard-architecture).
 
