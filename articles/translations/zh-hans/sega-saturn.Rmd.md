@@ -169,7 +169,7 @@ VDP1还提供了以下效果选择：
 
 #### 精灵图 {.tabs.active}
 
-![洛克人 X4 (1997).<br>VDP1 的精灵图版](2d/sprites.png) {.tab-float}
+![洛克人 X4 (1997).<br>VDP1 的精灵图版](2d/sprites.png) {.tab-float.latex-framed}
 
 在这种情况下，VDP1的任务是绘制传统精图灵，而不应用任何3D失真。
 
@@ -177,13 +177,13 @@ CPU通过写入其寄存器并用命令和图块填充其VRAM来设置VDP1。 �
 
 #### 背景 {.tab}
 
-::: {.subfigures .tabs-nested .tab-float .pixel}
+::: {.subfigures .tabs-nested .tab-float .pixel max_subfigures=1}
 
-![2D平面1。](2d/bg1.png){.active title="2D 平面1"}
+![2D平面1。](2d/bg1.png){.active title="2D 平面1" .latex-framed}
 
-![2D平面2。](2d/bg2.png){title="2D 平面2"}
+![2D平面2。](2d/bg2.png){title="2D 平面2" .latex-framed}
 
-![2D平面3。](2d/bg3.png){title="2D 平面3"}
+![2D平面3。](2d/bg3.png){title="2D 平面3" .latex-framed}
 
 洛克人 X4 (1997)。 VDP2的背景平面。
 
