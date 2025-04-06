@@ -889,9 +889,9 @@ U盘可以存储硬盘上大多数的内容（包括游戏），除了Xbox经典
 
 随着**Kinect**的推出，微软需要对仪表板进行适配，以减少对传统控制器的依赖。 在这次更新中，设计团队将光泽效果替换为更为低调的绿色和灰色调。 此外，原先类似3D _Aero_的视觉效果也被更常见的放大动画所取代。 这一变化与**Windows 7**的发布及其对视觉效果简约化的处理风格相一致。
 
-![Windows 7（2009）。 展示了新的“Aero Peek”功能，用于预览最小化的窗口。](screenshots/windows/seven.jpg){.toleft width="92%"}
+![Windows 7（2009）。 展示了新的“Aero Peek”功能，用于预览最小化的窗口。](screenshots/windows/seven.jpg) {.toleft}
 
-![2011年的Windows Live Mail[@operating_system-livemaildesktop]，是名为“Windows Essentials”的桌面套件的一部分。](screenshots/windows/livemail_desktop.jpg){.toright width="92%"}
+![2011年的Windows Live Mail[@operating_system-livemaildesktop]，是名为“Windows Essentials”的桌面套件的一部分。](screenshots/windows/livemail_desktop.jpg) {.toright}
 
 除此之外，值得一提的是，这个设计仅在一年后就被一个更为彻底的全新设计所取代。
 
@@ -1152,9 +1152,7 @@ Xenon拥有一个64位的地址总线，然而，只有512MB的RAM（以及一�
 
 固件是通过使用ATA命令来烧录的，但它需要一个带有备用SATA插槽的计算机和特殊的烧录软件。 因此，用户需要打开游戏机并将SATA数据线连接到他们的计算机上，在游戏机为光驱供电时运行烧录器，然后重新组装一切。 烧录操作源于光驱固件中发现的隐藏的“维护模式”，这个模式随后被逆向工程并重新启用。 如果过程成功完成，Xbox 360现在就可以像读取任何正版游戏一样读取盗版游戏。
 
-![在YouTube上找到的DVD光驱烧录教程示例[@anti_piracy-flashing_tut]。 
-
- 在这里，Xbox 360的光驱通过SATA连接到电脑，同时游戏机仍然提供电源（因为电源连接器是专有的）。](photos/flashing.jpg)
+![在YouTube上找到的DVD光驱烧录教程示例 @anti_piracy-flashing_tut。 在这里，Xbox 360的光驱通过SATA连接到电脑，同时游戏机仍然提供电源（因为电源连接器是专有的）。](photos/flashing.jpg)
 
 这就是DVD光驱被破解的大致过程。 随着时间的推移，技术不断进化，但基本思想保持不变（烧录自定义固件）。 后续的光驱增加了安全性以封堵后门，微软通过将DVD光驱固件捆绑在其软件更新中来帮助撤销用户所做的任何未经授权的工作。 在后来的年份里，光驱的级别提升到了用户必须钻透驱动器的系统芯片才能启用刷新的程度[@anti_piracy-hacking_2]。
 
