@@ -93,16 +93,18 @@ The PowerPC 601 was meant to kickstart momentum for the PowerPC line, but the fo
 
 #### Individual developments {.tabs .active}
 
-Once the 601 shipped, Motorola and IBM decided to separately work on the follow-up generation. This would be a pure PowerPC implementation (removing traces of the POWER ISA) materialising as two separate products [@cpu-paradox]:
+Once the 601 shipped, Motorola and IBM decided to separately work on the follow-up generation. This would be a pure PowerPC implementation (removing traces of the POWER ISA) materialising as two separate product lines [@cpu-paradox]:
 
 - The low-end **PowerPC 603**, headed by Motorola, was designed for the portable market. In doing so, it delivered a smaller L1 cache (now based on the Harvard architecture), two additional execution units and no multiprocessor support. The design decisions resulted in an overall consumption rate of 1.8-2.0 Watts [@cpu-603].
 - The high-end **PowerPC 604** headed by IBM. In exchange for a premium price and high power consumption (14.5-18.5 Watts), it provided advanced parallelism capabilities ([à la MIPS](playstation-2#tab-1-1-outperforming-success)), such as 4-issue execution, the return of out-of-order execution, dynamic branch prediction and multiprocessor support [@cpu-604].
 
 Even though the 603 should've shined for its power efficiently, existing business applications ended up eclipsing its capabilities. For instance, Apple's software architecture was still relying on emulating [68000 instructions](mega-drive-genesis#the-leader), which bottlenecked the 603's small cache size.
 
+As a side note, IBM also developed the **PowerPC 4xx** series, conceived as a microcontroller solution instead of a desktop CPU [@cpu-403]. They bundle small cache and skip sophisticated modules such as the MMU and FPU. However, their variants were offered as a [customisable package](playstation#tab-1-3-lsi-and-the-commission) to tailor it to the manufacturer's needs. That being said, while the 4xx is not of particular interest for this article, a famous competitor [did adopt it](playstation-2#the-special-upgrade) for secondary tasks.
+
 #### Joining forces again {.tab}
 
-Ultimately, the second generation of PowerPC chips was deemed either too expensive or downright uncompetitive against Intel. Thus, Apple got IBM and Motorola to collaborate again in a new unified generation that brought out the best of both worlds. The energy-efficient 603 was chosen as the foundation for the new design. To improve upon this basis, certain decisions were taken:
+Ultimately, the second generation of desktop PowerPC chips was deemed either too expensive or downright uncompetitive against Intel. Thus, Apple got IBM and Motorola to collaborate again in a new unified generation that brought out the best of both worlds. The energy-efficient 603 was chosen as the foundation for the new design. To improve upon this basis, certain decisions were taken:
 
 - **Addressing its limitations** by providing larger cache and higher memory bandwidth.
 - **Incorporating design ideas of the 604**, such as dynamic branch prediction and out-of-order execution (limited to memory operations, for now).

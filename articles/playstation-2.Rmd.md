@@ -374,13 +374,27 @@ The IOP communicates with the Emotion Engine using a specialised I/O interface c
 
 All in all, this processor gives access to the front ports, DVD controller, SPU2, the BIOS ROM and the PC card slot.
 
-Be as it may, one year after the 'Slim' revision arrived (2005), the IOP was replaced with an SoC that instead houses a **PowerPC 401 'Deckard'** (a cutdown PowerPC 601 for microcontrollers), **4 MB of SDRAM** (2 MB more than before) and an Ethernet transceiver (previously found in an external accessory).
+#### The special upgrade
+
+Be as it may, one year after the 'Slim' revision arrived in 2005, the MIPS core was swapped for a *very unusual* SoC that instead houses [@io-ppc_monitor]:
+
+- A **PowerPC 440x5 CPU**. This chip is part of the [streamlined PowerPC 4xx series](gamecube#tab-2-1-individual-developments) led by IBM and tailored for microcontroller applications.
+- An **Auxiliary Processing Unit** (APU), a package composed of partial MIPS R3000A circuitry (the decoder and ALU), the good-old [Geometry Transformation Engine](playstation#tab-2-2-geometry-transformation-engine) and extra registers for inter-process communication.
+- An **Ethernet transceiver** (previously sold as an external accessory).
+
+There's also **4 MB of SDRAM** sitting next to the chip (2 MB more than before).
+
+The new package is referred to as **PPC-IOP** and runs at a lightning **440 MHz** instead. Curiously enough, the PPC CPU will still be tasked with running MIPS code [@io-ppc_iop_discussion]. This is done with the help of a MIPS emulator called **DECKARD** (stored in the BIOS ROM [@io-ps2_mysteries]), which makes use of the additional SDRAM and the APU to accelerate this.
+
+As the inner workings and operating speed of PPC-IOP are considerably different from the original IOP, there's an additional database of patches with entries for each affected game [@io-deckard]. Furthermore, DECKARD tries to approximate timings using an event handler. However, performance degrades during certain instructions [@io-ppc_monitor]. Additionally, almost 24% of SDRAM is left unused for some reason [@io-deckard].
+
+Considering all this, I wonder why Sony redesigned the I/O ecosystem in a way that not only it degrades performance but it also wastes all its perks. Perhaps, it was only done to reduce manufacturing costs while keeping backwards compatibility (I explain more in the next paragraphs). It's worth mentioning that, around that time, Sony had recently [struck a deal with IBM to build the Cell processor as well](playstation-3#tab-1-1-the-state-of-progress).
 
 #### Inherited compatibility
 
 For those models bundling the predecessor's CPU, one can suspect PS1 compatibility would be part of the package. Conveniently enough, Sony did bundle a PS1 emulator (called `PS1DRV`) that loads whenever a PS1 disc is inserted. When this happens, the IOP is under-clocked to run at PS1 speed, the EE is 'repurposed' to emulate the [old GPU](playstation#graphics) and the SPU2 is remapped to behave like the [original SPU](playstation#audio).
 
-With PowerPC-based models, backwards compatibility persisted but through a complete software implementation instead.
+With PowerPC-based models, PS1DRV runs on top of DECKARD.
 
 ### Available interfaces
 
