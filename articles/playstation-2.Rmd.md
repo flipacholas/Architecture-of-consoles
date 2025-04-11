@@ -382,7 +382,7 @@ Be as it may, one year after the 'Slim' revision arrived in 2005, the MIPS core 
 - An **Auxiliary Processing Unit** (APU), a package composed of partial MIPS R3000A circuitry (the decoder and ALU), the good-old [Geometry Transformation Engine](playstation#tab-2-2-geometry-transformation-engine) and extra registers for inter-process communication.
 - An **Ethernet transceiver** (previously sold as an external accessory).
 
-There's also **4 MB of SDRAM** sitting next to the chip (2 MB more than before).
+There's also **4 MB of SDRAM** sitting next to the chip (2 MB more than before and 'SDRAM' this time).
 
 The new package is referred to as **PPC-IOP** and runs at a lightning **440 MHz** instead. Curiously enough, the PPC CPU will still be tasked with running MIPS code [@io-ppc_iop_discussion]. This is done with the help of a MIPS emulator called **DECKARD** (stored in the BIOS ROM [@io-ps2_mysteries]), which makes use of the additional SDRAM and the APU to accelerate this.
 
