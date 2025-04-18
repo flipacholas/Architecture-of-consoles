@@ -156,7 +156,7 @@ Some games like 'The Legend of Zelda: A Link to the Past' account for this facto
 
 ### Organising the content
 
-![Memory architecture of the S-PPU.](SPPU_architecture.png){.no-borders}
+![Memory architecture of the S-PPU.](_diagrams/sppu.png){.no-borders}
 
 Due to costs and performance reasons, graphics data is distributed across three regions of memory:
 

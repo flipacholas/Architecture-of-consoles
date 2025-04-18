@@ -68,7 +68,7 @@ One thing I didn't mention *yet* is that NEC also added a **Memory Management Un
 
 This MMU is very different from any modern-day MMU, I would say the former is closer to a [mapper](nes#going-beyond-existing-capabilities). Having said that, the MMU found in the PC Engine is composed of **eight 8-bit registers** (called **Mapping Register** or 'MPR') which are combined with the CPU's 16 address lines to form a 21-bit address bus.
 
-![Addressing approach of the MMU.](mmu.png)
+![Addressing approach of the MMU.](_diagrams/mmu.png)
 
 This works as follows:
 
@@ -88,7 +88,7 @@ This is taken care of by the **Hudson Soft HuC6270**, a separate chip also refer
 
 First things first, the VDC is a **tile engine** (pretty much the standard until the 5th generation showed up) but notice how the PC Engine includes **64 KB of VRAM** which is a significant amount compared to the competition. This may lead to a new type of content, which we'll check later on.
 
-![Memory architecture of the VDP.](graphics/vdc.png)
+![Memory architecture of the VDP.](_diagrams/vdc.png)
 
 The way graphics data is arranged is a bit confusing: Both CPU and VDC use 16-bit addresses, but while the CPU can only handle 8-bit words, the HuC6270 stores 16-bit words in VRAM [@graphics-chibi]. This means that a single address in RAM contains a byte while an address in VRAM stores two bytes, so developers had to watch out for that discrepancy when transferring data to VRAM.
 
@@ -118,9 +118,9 @@ The video encoder is a separate chip that stores **32 colour palettes** (16 for 
 
 #### Storing tiles {.tab}
 
-![How a single background tile is structured.](graphics/storagetiles.png){.tabs-nested .active .tab-float title="Background"}
+![How a single background tile is structured.](_diagrams/tiles.png){.tabs-nested .active .tab-float title="Background"}
 
-![How a single sprite tile is structured.](graphics/storagetiles_sprites.png){.tabs-nested-last title="Sprites"}
+![How a single sprite tile is structured.](_diagrams/tiles_sprites.png){.tabs-nested-last title="Sprites"}
 
 (This section is written for those interested in how Hudson took advantage of 64 KB of VRAM with that 16-bit granularity, but you don't have to understand it completely to be able to follow the rest of the article).
 

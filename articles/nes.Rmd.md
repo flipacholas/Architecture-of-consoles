@@ -130,9 +130,9 @@ One of the big limitations of 16-bit address buses (affecting 3rd and 4th-genera
 
 So, did this mean game studios could only develop games that didn't exceed the 49.97 KB limit? Absolutely not! If history taught us something, is that there's always a clever solution to a challenging problem; and this issue was tackled with a **Mapper**.
 
-![Simplified representation of how a mapper extends the addressing capabilities of the CPU. With the inclusion of a mapper, the CPU can access extra banks (groups of addresses) of a large Program ROM. Although the game/program has the new task of manually switching between banks whenever needed.](mapper/mapper.png){.tabs-nested .active title="With mapper"}
+![Simplified representation of how a mapper extends the addressing capabilities of the CPU. With the inclusion of a mapper, the CPU can access extra banks (groups of addresses) of a large Program ROM. Although the game/program has the new task of manually switching between banks whenever needed.](_diagrams/mapper/mapper.png){.tabs-nested .active title="With mapper"}
 
-![The same setup but without a mapper installed. While simpler and inexpensive, the CPU can only access a finite number of banks.](mapper/no_mapper.png){.tabs-nested-last title="Without mapper"}
+![The same setup but without a mapper installed. While simpler and inexpensive, the CPU can only access a finite number of banks.](_diagrams/mapper/no_mapper.png){.tabs-nested-last title="Without mapper"}
 
 A mapper is an extra chip included in the cartridge that sits between the memory chips and the console's address lines. Its main job is to extend the address space so developers may fit more chips. This is done by **bank switching**: Memory addresses are grouped into banks, and the mapper provides switches (controlled through memory addresses) to alternate between banks. Now, the CPU still sees the same amount of memory, so it's the game that's been programmed with a mapper present in charge of operating it. Due to their cost-effectiveness, mappers were the order of the day in 80s-to-early 90s technology.
 
@@ -152,7 +152,7 @@ That being said, the PPU renders 2D graphics called **sprites** and **background
 
 ### Organising the content
 
-![Memory architecture of the PPU](ppu_content.png)
+![Memory architecture of the PPU](_diagrams/ppu.png)
 
 To render something on the screen, the PPU must know *what* graphics to draw, *where* on the screen to place them; and *how* to draw them (i.e. which palette to use).
 

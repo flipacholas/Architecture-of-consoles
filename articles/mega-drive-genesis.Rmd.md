@@ -93,7 +93,7 @@ The main CPU contains **64 KB** of dedicated RAM to store general-purpose data a
 
 Sega chose two independent processors that have **no awareness of each other**, so how can games manage both at the same time? Well, the main program is executed in the 68000, and this CPU can subsequently write on Z80's RAM. So, the 68000 can send a program to the Z80's RAM and instruct the Z80 to load it (by sending a reset signal to the Z80) [@cpu-using_z80]. Once the Z80 is under control, it can then be used to manage the sound sub-system and move memory around using the previously described method, all of this while the 68000 is taking care of other operations.
 
-![Memory architecture of the Mega Drive/Genesis.](memory.png){.no-borders}
+![Memory architecture of the Mega Drive/Genesis.](_diagrams/memory.png){.no-borders}
 
 Because one CPU will have to step in the other's CPU bus and both can't use it at the same time, there's an extra component called **Bus arbiter** that must be activated to stall either processor, so memory can be written without hazards.
 
@@ -135,7 +135,7 @@ As an interesting note, I've been later told by a former developer of this syste
 
 #### Memory available
 
-![Memory architecture of the VDP.](VDP_architecture.png){.no-borders}
+![Memory architecture of the VDP.](_diagrams/vdp.png){.no-borders}
 
 The graphics content is distributed across three regions of memory [@graphics-keil]:
 

@@ -81,7 +81,7 @@ This is because the Z80 family contains an interesting feature called **I/O port
 
 When an `IN` or `OUT` instruction is executed, the Z80 sets up the address lines pointing to the peripheral (which could be, for instance, a keyboard), flags its `IORQ` pin indicating that an I/O request has been initiated and finally flags the `RD` pin or the `WR` pin whether it's an `IN` or `OUT` instruction, respectively. The addressed peripheral must manually check for the address bus and the I/O pins and perform the required operation. In the case of an `IN` instruction, the CPU will store the received value on a pre-defined register.
 
-![SMS' Addressing layout.](addressing.png)
+![SMS' Addressing layout.](_diagrams/addressing.png)
 
 The way SEGA interconnected the CPU with the rest of the components enables not only to access values but also to show/hide certain components from appearing in the memory map. 
 
@@ -97,7 +97,7 @@ The drawings on the screen are produced by a proprietary chip called **Video Dis
 
 ### Organising the content
 
-![Memory architecture of the VDP.](vdp.png)
+![Memory architecture of the VDP.](_diagrams/vdp.png)
 
 Next to the VDP is connected **16 KB of VRAM** which only the VDP can access using a **16-bit data bus** (Sega modified the original design to access two memory chips with 8-bit buses at the same time [@cpu-service]). If you look at the motherboard picture again, you'll notice that both RAM and VRAM chips are roughly the same, except that VRAM uses the chip model ending in '20' which has lower latency [@cpu-nec].
 

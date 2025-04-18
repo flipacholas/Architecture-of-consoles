@@ -76,7 +76,7 @@ The Neo Geo takes advantage of this design with the addition of a controller chi
 
 Whenever there's a system featuring a dual-processor layout, there must be a way for both CPUs to communicate. In this console, SNK implemented inter-process communication (IPC) with the use of an **I/O arbiter** chip. The latter exposes a single 8-bit register, which the 68000 can write to [@cpu-68k_z80].
 
-![Representation of the IPC channel between the 68000 and the Z80.](cpu/ipc.png){.no-borders}
+![Representation of the IPC channel between the 68000 and the Z80.](_diagrams/cpu/ipc.png){.no-borders}
 
 Once the register is updated, the arbiter will send a non-maskable interrupt to the Z80. From then on, the Z80 may read the value (mapped at a [port](master-system#accessing-the-rest-of-the-components)) and react accordingly. This includes writing back to that register, so the 68000 receives new data. However, for some reason, the 68000 will not be interrupted (so it will need to do some sort of polling).
 
@@ -161,7 +161,7 @@ Don't worry if the previous explanation is too dense. All of this will be explai
 
 Graphics data is distributed across **two separate boards**. The first one is the **console's motherboard** and the other one is found in the **game cartridge**. You may recall a similar model implemented in the [NES/Famicom](nes#cartridgegame-data).
 
-![Memory architecture of the graphics subsystem](vdc/content.png)
+![Memory architecture of the graphics subsystem](_diagrams/vdc/content.png)
 
 In the motherboard area, we find:
 
