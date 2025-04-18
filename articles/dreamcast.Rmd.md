@@ -71,7 +71,7 @@ The Dreamcasts houses **16 MB of SDRAM**, and it's directly connected to the CPU
 
 Conversely, the memory's data bus is only 32-bit wide [@cpu-spec]. Does this mean the CPU's shiny 64-bit bus is wasted? No, because the RAM is installed using **two 8 MB banks**. So, each chip is connected to half of the CPU's bus lines.
 
-![Memory diagram.](memory.png)
+![Memory diagram.](_diagrams/memory.png)
 
 To access this memory, the CPU includes a dedicated **Memory Management Unit** or 'MMU' for virtual addressing, this is helpful since the physical memory address space of this CPU happens to be **29 bits wide**. Additionally, thanks to the incorporation of four **Translation Lookaside Buffers** (TLBs), programmers can use 32-bit addresses without hitting performance penalties.
 
@@ -120,7 +120,7 @@ Let's take a look at the two main components of the Dreamcast's GPU [@graphics-m
 
 #### Tile Accelerator {.tabs .active}
 
-![Architecture of the Tile Accelerator.](tile_accelerator.png){.tab-float}
+![Architecture of the Tile Accelerator.](_diagrams/tile_accelerator.png){.tab-float}
 
 Before the rendering process starts, a component known as the **Tile Accelerator** performs pre-processing. It starts by allocating several 32x32 tile bins into which the geometry will be rendered.
 
@@ -135,7 +135,7 @@ These Display Lists are then interpreted by the 3D engine: The PowerVR2.
 
 #### PowerVR2 Core {.tab}
 
-![Architecture of the PowerVR2 Core.](powervr2.png){.tab-float}
+![Architecture of the PowerVR2 Core.](_diagrams/powervr2.png){.tab-float}
 
 Here is where the graphics are brought to life, the Display Lists received from the TA tell the core to render the geometry of a single tile using an **internal frame-buffer**. The process is as follows:
 

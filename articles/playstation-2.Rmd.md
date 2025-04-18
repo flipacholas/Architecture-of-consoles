@@ -107,7 +107,7 @@ Moreover, the core is complemented with a **dedicated floating point unit** (ide
 
 Next to the Emotion Engine are two blocks of 16 MB of RAM, giving a total of **32 MB** of main memory. The type of memory used is **RDRAM** ([*déjà vu!*](nintendo-64#memory-design)) which is accessed through a **16-bit bus**.
 
-![Memory design of the Emotion Engine. You can guess where the congestion will emerge.](MemoryArch.png)
+![Memory design of the Emotion Engine. You can guess where the congestion will emerge.](_diagrams/memoryarch.png)
 
 At first, this can be a little disappointing to hear, considering the internal bus of the Emotion engine is as wide as 128 bits. However, the RAM chips are strategically placed by following the **dual-channel architecture**, which consists of connecting both chips using two independent 16-bit buses (one bus per chip) to improve data throughput. The resulting setup provides a theoretical 3.2 GB/sec, so rest assured that memory latency is not an issue in this console!
 
@@ -158,7 +158,7 @@ There are **two VPUs** fitted in the Emotion engine, but they are arranged diffe
 
 #### Vector Processing Unit 0 {.tabs .active}
 
-![Architecture of VPU0.](VU0.png){.tab-float}
+![Architecture of VPU0.](_diagrams/vpu0.png){.tab-float}
 
 The first VPU, the **VPU0**, is positioned between the CPU and the other vector unit (VPU1). It provides an 'assisting' role to the main CPU.
 
@@ -173,7 +173,7 @@ The memory map of the VPU0 also has access to some of the other VPU's registers 
 
 #### Vector Processing Unit 1 {.tab}
 
-![Architecture of VPU1.](VUP1.png){.tab-float}
+![Architecture of VPU1.](_diagrams/vpu1.png){.tab-float}
 
 The second VPU found, the **VPU1**, is an enhanced version of the VPU0 with quadruple the amount of micro memory and VU memory. Moreover, this unit includes an additional component called **Elementary function unit** or 'EFU' which speeds up the execution of exponential and trigonometric functions.
 
@@ -201,9 +201,9 @@ To sum up, procedural rendering is not a new technique, but thanks to the VPUs, 
 
 With these new additions, programmers now have a lot of flexibility to design their graphics engines. To assist with this, Sony spent additional resources to devise and document efficient pipeline designs. The following are examples of graphics pipelines optimised for different types of workloads [@cpu-stokes]:
 
-![Parallel pipeline design.](Parallel.png){.tabs-nested .active title="Parallel"}
+![Parallel pipeline design.](_diagrams/programming/parallel.png){.tabs-nested .active title="Parallel"}
 
-![Serial pipeline design.](Serial.png){.tabs-nested-last title="Serial"}
+![Serial pipeline design.](_diagrams/programming/serial.png){.tabs-nested-last title="Serial"}
 
 In the first example, the **Parallel** design, the CPU is combined with the VPU0 in macromode to produce geometry in parallel with the VPU1. The CPU/VPU0 group makes full utilisation of scratchpad and cache to avoid using the main bus, which the VPU1 relies on to fetch data from main memory. In the end, both rendering groups concurrently send their respective Display Lists to the GPU.
 
@@ -237,13 +237,13 @@ The GS has fewer features than other graphics systems [previously reviewed](game
 
 This GPU only does **rasterisation** and that is... Generating pixels, mapping textures, applying lighting and some other effects. This means there are no vertex transformations (these are covered by the VPUs). Also, this is a fixed-function pipeline, so no [fancy tweaking](gamecube#creativity) or [shaders](xbox#graphics) either, you are stuck with a fixed shading model (e.g. Gouraud).
 
-![Pipeline design of the Graphics Synthesizer](GS_Pipeline.png)
+![Pipeline design of the Graphics Synthesizer](_diagrams/gs_pipeline/pipeline.png)
 
 Looks pretty simple right? Well, let's dive deeper to see what happens at each stage.
 
 #### Pre-Processing {.tabs .active}
 
-![Pre-processing stage.](gs_pipeline/Preprocessing.png){.tab-float}
+![Pre-processing stage.](_diagrams/gs_pipeline/preprocessing.png){.tab-float}
 
 The Emotion Engine kickstarts the Graphics Synthesizer by filling its embedded DRAM with the required materials (**Texture bitmaps** and **Colour Lookup tables**, the latter are also known as 'CLUT'), assigning values on the GS's registers to configure it, and finally, issuing the drawing commands (Display Lists) which instruct the GS to draw primitives (points, lines, triangles, sprites, etc) at specific locations of the screen.
 
@@ -251,7 +251,7 @@ Additionally, the GS will preprocess some values that will be needed for later c
 
 #### Rasterisation {.tab}
 
-![Rasterising stage.](gs_pipeline/Rasterizing.png){.tab-float}
+![Rasterising stage.](_diagrams/gs_pipeline/rasterizing.png){.tab-float}
 
 Using the previous values calculated, the renderer generates pixels from the primitives. This unit can generate 8 pixels (with textures) or 16 pixels (without textures) concurrently, each pixel entry contains the following properties calculated:
 
@@ -266,7 +266,7 @@ The pack is then delivered to the 'Texture mapping' engine, but each property is
 
 #### Texturing {.tab}
 
-![Texture mapping stage](gs_pipeline/Textures.png){.tab-float}
+![Texture mapping stage](_diagrams/gs_pipeline/textures.png){.tab-float}
 
 This stage is powered by a large Pixel Unit that can compute up to 16 pixels at a time, here textures will be mapped onto the polygons (now pixels). Furthermore, fog and anti-aliasing effects are applied here.
 
@@ -276,7 +276,7 @@ The pixel unit performs **perspective correction** to map textures onto the prim
 
 #### Testing {.tab}
 
-![Pixel Testing stage](gs_pipeline/Tests.png){.tab-float}
+![Pixel Testing stage](_diagrams/gs_pipeline/tests.png){.tab-float}
 
 Here certain pixels will be discarded if they don't meet several requirements. Having said that, the following tests are carried out:
 
@@ -286,7 +286,7 @@ Here certain pixels will be discarded if they don't meet several requirements. H
 
 #### Post-Processing {.tab}
 
-![Post-Processing stage](gs_pipeline/Postprocessing.png){.tab-float}
+![Post-Processing stage](_diagrams/gs_pipeline/postprocessing.png){.tab-float}
 
 The last stage can apply some effects over our new pixels using the previous frame-buffer found in local DRAM:
 
