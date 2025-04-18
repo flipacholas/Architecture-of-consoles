@@ -73,7 +73,7 @@ Dreamcast包含**16 MB的SDRAM**，它使用**100 MHz**总线（CPU速度的一�
 
 相对的，内存的数据总线只有32位宽[@cpu-spec]。 这是否意味着CPU闪亮的64位总线被浪费了？ 并不是，因为RAM是使用**两个8 MB存储体**安装的。 因此，每个芯片都连接到CPU的一半总线。
 
-![内存图](memory.png)
+![内存图](_diagrams/memory.png)
 
 为了访问这个内存，CPU包括一个专用的**内存管理单元**或“MMU”用于虚拟寻址，这是很有效的，因为这个CPU的物理内存地址空间恰好是**29位宽**。 此外，由于结合了四个**地址变换高速缓存**（TLB），程序员可以使用32位地址而不会受到性能损失。
 
@@ -122,7 +122,7 @@ TBDR不是一次渲染整个帧（如传统的**即时模式渲染器**或'IMR'�
 
 #### 图块加速器 {.tabs.active}
 
-![图块加速器架构。](tile_accelerator.png) {.tab-float}
+![图块加速器架构。](_diagrams/tile_accelerator.png) {.tab-float}
 
 在渲染过程开始之前，称为**图块加速器**的组件执行预处理。 它首先分配了几个32x32的图块容器，几何图形将会被渲染到这些容器中。
 
@@ -137,7 +137,7 @@ TBDR不是一次渲染整个帧（如传统的**即时模式渲染器**或'IMR'�
 
 #### PowerVR2 核心 {.tab}
 
-![PowerVR2 核心架构。](powervr2.png) {.tab-float}
+![PowerVR2 核心架构。](_diagrams/powervr2.png) {.tab-float}
 
 在这里图形被赋予了生命，从TA（译注：纹理地址单元/Texture Address Unit）接收到的显示列表告诉核心使用**内部帧缓冲区 **来渲染单个图块的几何图形。 过程如下：
 
