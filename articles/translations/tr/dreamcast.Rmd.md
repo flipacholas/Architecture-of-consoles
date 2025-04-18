@@ -73,7 +73,7 @@ Dreamcast'lerde **16 MB SDRAM** bulunur ve **100 MHz** bus (CPU hızının yarı
 
 Buna karşılık, belleğin data bus'ı sadece 32 bit genişliğindedir [@cpu-spec]. Bu, CPU'nun 64-bit data bus'ının boşa gitti anlamına mı geliyor? Hayır, çünkü RAM <strong x-id=“1”>iki adet 8 MB bank</strong> kullanılarak takılmıştır. Yani, her bir çip CPU'nun data bus hatlarının yarısına bağlıdır.
 
-![Bellek şeması.](memory.png)
+![Bellek şeması.](_diagrams/memory.png)
 
 Bu belleğe erişmek için CPU, sanal adresleme için özel bir <strong x-id=“1”>Memory Management Unit</strong> veya 'MMU' içerir, bu CPU'nun fiziksel bellek adres alanı <strong x-id=“1”>29 bit genişliğinde</strong> olduğu için bu yararlıdır. Ayrıca, dört <strong x-id=“1”>Translation Lookaside Buffers</strong> (TLB'ler) sayesinde programcılar 32 bit adresleri performans kaybı yaşamadan kullanabilirler.
 
@@ -122,7 +122,7 @@ Dreamcast'in GPU'sunun iki ana bileşenine bir göz atalım [@graphics-marcus]:
 
 #### Tile Accelerator {.tabs.active}
 
-![Karo Hızlandırıcının Mimarisi.](tile_accelerator.png) {.tab-float}
+![Karo Hızlandırıcının Mimarisi.](_diagrams/tile_accelerator.png) {.tab-float}
 
 Render işlemi başlamadan önce, **Tile Accelerator** olarak bilinen bir bileşen ön işleme gerçekleştirir. İşlem, geometrinin render edileceği birkaç 32x32 karo kutusu tahsis ederek başlar.
 
@@ -137,7 +137,7 @@ Bu Display List'ler daha sonra 3D motoru tarafından işlenir: PowerVR2.
 
 #### PowerVR2 Çekirdeği {.tab}
 
-![PowerVR2 Çekirdeğinin Mimarisi.](powervr2.png) {.tab-float}
+![PowerVR2 Çekirdeğinin Mimarisi.](_diagrams/powervr2.png) {.tab-float}
 
 Grafiklerin hayata geçirildiği yer burasıdır, Tile Accelerator'dan alınan Display Lists çekirdeğe **dahili bir çerçeve arabelleği** kullanarak tek bir karenin geometrisini oluşturmasını söyler. Süreç şöyledir:
 
