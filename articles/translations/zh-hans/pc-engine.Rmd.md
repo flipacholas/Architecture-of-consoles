@@ -70,7 +70,7 @@ HuC6280不像[Z80](master-system#cpu)那样是现成零件，而是由NEC设计�
 
 这款MMU非常不同于现今的任何一款MMU，我会说前者更接近于一个[mapper](nes#going-beyond-existing-capabilities)。 尽管这么说，PC Engine中的MMU是由**八个8位寄存器**（称为**映射寄存器**或 "MPR"）组成，它们与CPU的16条地址线结合起来，形成了21位地址总线。
 
-![MMU的寻址方法](mmu.png)
+![MMU的寻址方法](_diagrams/mmu.png)
 
 它做了以下工作：
 
@@ -90,7 +90,7 @@ HuC6280不像[Z80](master-system#cpu)那样是现成零件，而是由NEC设计�
 
 首先，VDC是 **图块引擎**（在第五代游戏机出现之前几乎是标准），但请注意PC Engine包含64 KB的VRAM，这与其竞争对手相比是相当大的。 这可能会带来一种新的内容类型，我们稍后将对此进行验证。
 
-![VDP的内存架构。](graphics/vdc.png)
+![VDP的内存架构。](_diagrams/vdc.png)
 
 图形数据的排列方式有点混乱：CPU和VDC都使用16位地址，但CPU只能处理8位字，而HuC6270却在VRAM中存储16位字。[@graphics-chibi] 这意味着RAM中的单个地址存着一个字节，而VRAM中的单个地址存着两个字节，所以开发者们在向VRAM传输数据时必须注意这一差异。
 
@@ -120,9 +120,9 @@ HuC6280不像[Z80](master-system#cpu)那样是现成零件，而是由NEC设计�
 
 #### 排序图块 {.tab}
 
-![单个背景图块的结构](graphics/storagetiles.png){.tabs-nested .active .tab-float title="背景层"}
+![单个背景图块的结构](_diagrams/tiles.png){.tabs-nested .active .tab-float title="背景层"}
 
-![单个精灵图块的结构](graphics/storagetiles_sprites.png){.tabs-nested-last title="精灵层"}
+![单个精灵图块的结构](_diagrams/tiles_sprites.png){.tabs-nested-last title="精灵层"}
 
 这部分内容是为那些对Hudson如何利用64 KB VRAM和16位颗粒度感兴趣的人编写的，但您不必完全理解这部分内容，也可以继续阅读文章的其他部分
 
