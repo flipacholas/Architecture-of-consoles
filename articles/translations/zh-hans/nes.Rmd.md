@@ -132,9 +132,9 @@ NES 的 CPU 型号为 **理光（Ricoh）2A03** [@cpu-cpu] ，基于当时流行
 
 所以，这是否意味着游戏开发商只能开发不超过 49.97 KB 限制的游戏？ 绝对不是！ 如果说我们能从历史中学到什么，那就是对挑战性的问题总有一个聪明的解决办法；而这个问题是被 **Mapper** 解决的。
 
-![映射器如何扩展 CPU 的寻址能力的简化表示图。 通过引入 Mapper，CPU 可以访问超过大程序 ROM 的额外内存组（地址组）。 不过游戏或程序现在有了在需要时手动切换 Bank 的新任务。](mapper/mapper.png){.tabs-nested .active title="带有映射器"}
+![映射器如何扩展 CPU 的寻址能力的简化表示图。 通过引入 Mapper，CPU 可以访问超过大程序 ROM 的额外内存组（地址组）。 不过游戏或程序现在有了在需要时手动切换 Bank 的新任务。](_diagrams/mapper/mapper.png){.tabs-nested .active title="带有映射器"}
 
-![相同的配置但是没有安装映射器。 虽然简单且便宜，但是 CPU 只能访问有限数量的 Banks。](mapper/no_mapper.png){.tabs-nested-last title="没有映射器"}
+![相同的配置但是没有安装映射器。 虽然简单且便宜，但是 CPU 只能访问有限数量的 Banks。](_diagrams/mapper/no_mapper.png){.tabs-nested-last title="没有映射器"}
 
 Mapper 是卡带中包含的额外芯片，位于内存芯片和主机地址线之间。 它的主要工作是扩展地址空间，以便开发人员可以安装更多的芯片。 这是通过 **Bank (地址组) 切换**实现的：内存地址被组织成 Bank，Mapper 提供开关（通过读写特定内存地址控制）在 Bank 之间切换。 现在，CPU 仍然看到相同数量的内存，所以游戏需要针对操作 Mapper 进行编程。 由于成本效益问题，Mapper 是 80 年代至 90 年代初的主流技术。
 
@@ -154,7 +154,7 @@ Mapper 是卡带中包含的额外芯片，位于内存芯片和主机地址线�
 
 ### 硬件组织
 
-![PPU的内存架构](ppu_content.png)
+![PPU的内存架构](_diagrams/ppu.png)
 
 为了在屏幕上渲染图形，PPU 必须知道要绘制*什么*图形，将它们放置在屏幕上的*哪个*位置；以及*如何*绘制它们（即，使用哪个调色板）。
 
