@@ -157,7 +157,7 @@ NES 的内存只有[2 KB](nes#memory)，但却能显示大量内容，这实在�
 
 ### 硬件组织
 
-![S-PPU的内存架构.](SPPU_architecture.png) {.no-borders}
+![S-PPU的内存架构.](_diagrams/sppu.png) {.no-borders}
 
 由于成本和性能原因，图形数据分布在三个内存区域：
 
