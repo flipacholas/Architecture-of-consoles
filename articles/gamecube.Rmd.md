@@ -126,7 +126,7 @@ And this is where the history section ends. Thus, it's time to take a look at th
 
 Back to the year 2001, Nintendo required something powerful but cheap. So, to comply with those red lines, IBM grabbed one of its past designs, an enhanced G3 called the **PowerPC 750CXe** (found on the late iMac G3, known as the *Early-Summer 2001*), and beefed it up with capabilities that would please game developers. The result was the **PowerPC Gekko** and runs at **486 MHz**.
 
-![Construction of Gekko.](cpu/cpu_features.png){.no-borders}
+![Construction of Gekko.](_diagrams/gekko.png){.no-borders}
 
 Let's find out what makes Gekko so special, and to do that we need to first look at the offerings of the 750CXe. Now, having gone through the history of PowerPC, you may find that a lot this information overlaps with previous designs (*that's the point of these studies!*). That being said, the 750CXe offers [@cpu-750cxe]:
 
@@ -182,7 +182,7 @@ During the design of the next-gen architecture, Nintendo's architects performed 
 
 For that reason the GameCube's architects came up with a new memory system strictly based on **providing dedicated memory space** and **using low-latency chips**. With the new design, GPU and CPU will no longer compete for the same RAM (causing fill-rate issues) since the GPU will now have its own internal and *amazingly* fast memory. On the other side, the GPU will still be in charge of arbitrating access to I/O too.
 
-![Memory layout of this system.](cpu/memory.png)
+![Memory layout of this system.](_diagrams/memory.png)
 
 The result was a system organised with two main buses:
 
@@ -231,13 +231,13 @@ During the development process, ArtX got acquired by ATI, which in turn was sold
 
 Flipper is a complex block that handles multiple services [@graphics-cheng], so let's focus on the graphics component for now (since it's the one responsible for bringing our geometry to life). We'll call this area the **GPU** or **Graphics Engine** and, if you've been reading the [N64 article](nintendo-64#graphics), just letting you know that the core is now functional out of the box, so programmers won't need to worry about injecting code to make it work. Nevertheless, there will be some interesting parts that are customisable.
 
-![Pipeline design of Flipper's GPU.](flipper_pipeline.png)
+![Pipeline design of Flipper's GPU.](_diagrams/gpu/pipeline.png)
 
 As always, in order to draw a frame on the screen, our data will be pumped through the GPU's pipeline. Data goes through lots of different components which we can group into four stages:
 
 #### Database {.tabs .active}
 
-![Database stage diagrams.](flipper_pipeline/database.jpg){.tab-float}
+![Database stage diagrams.](_diagrams/gpu/database.png){.tab-float}
 
 The CPU and GPU communicate to each other using a fixed-length **FIFO buffer** in main RAM, this is a reserved portion where the CPU will write drawing commands that the GPU will read (and eventually display), this functionality is natively supported by the CPU and GPU.
 
@@ -249,7 +249,7 @@ The GPU contains a **command processor** which is in charge of fetching commands
 
 #### Geometry {.tab}
 
-![Vertex stage diagram using indirect mode.](flipper_pipeline/vertex.jpg){.tab-float}
+![Vertex stage diagram using indirect mode.](_diagrams/gpu/vertex.png){.tab-float}
 
 Here primitives are transformed to shape accordingly for the desired scenery and prepared for rasterising. The engine uses a dedicated **Vertex unit** or 'VU' to accomplish this.
 
@@ -262,7 +262,7 @@ Once loaded, the primitives can be **transformed**, **clipped**, **lighted** (ea
 
 #### Texture {.tab}
 
-![Texture stage diagram using a default setup.](flipper_pipeline/texture.jpg){.tab-float}
+![Texture stage diagram using a default setup.](_diagrams/gpu/texture.png){.tab-float}
 
 Now it's time to apply textures and effects to our models, and for that the GPU includes multiple units which will process our pixels. Now, this is a very sophisticated (yet quite complex) procedure, so if you find it difficult to follow, just think of it as a big assembly line that processes pixels. Having said that, there are three groups of units available:
 
@@ -279,7 +279,7 @@ All of this is assisted by 1 MB of Texture memory (1T-SRAM type) which can be sp
 
 #### Render {.tab}
 
-![Render stage diagram.](flipper_pipeline/render.png){.tab-float}
+![Render stage diagram.](_diagrams/gpu/render.png){.tab-float}
 
 The final stage of the rendering process includes applying some optional but useful touches to our scene:
 

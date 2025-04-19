@@ -184,9 +184,9 @@ The system features **1 MB of VRAM** that will be used to store the frame buffer
 
 The type of chip fitted (**VRAM**) is dual-ported, like the [Virtual Boy's](virtual-boy#organising-the-content). VRAM uses two 16-bit buses, which enables concurrent access between the CPU/DMA/GPU and the Video encoder.
 
-![Memory layout using VRAM.](vram/vram.png){.tabs-nested .active title="VRAM"}
+![Memory layout using VRAM.](_diagrams/vram/vram.png){.tabs-nested .active title="VRAM"}
 
-![Memory layout using SGRAM.](vram/sgram.png){.tabs-nested-last title="SGRAM"}
+![Memory layout using SGRAM.](_diagrams/vram/sgram.png){.tabs-nested-last title="SGRAM"}
 
 Though in later revisions of this console, Sony switched to **SGRAM** chips (the single-ported option using an individual 32-bit data bus). *Boo!*... Well, to be fair, each one comes with its pros and cons. One thing for sure is that due to the timing differences, later games (such as Jet Moto 3) will display glitched graphics when ran on VRAM-based systems. If you want to know the details, Martin Korth's 'Nocash PSX Specifications' document the different timings and such [@cpu-korth].
 
@@ -198,7 +198,7 @@ Now, to show how a scene is drawn, I'll mainly use Insomniac's *Spyro: Year of t
 
 #### Commands {.tabs .active}
 
-![Basic GPU command pipeline.](commands.png){.tab-float}
+![Basic GPU command pipeline.](_diagrams/gpu_commands.png){.tab-float}
 
 To start with, the CPU sends geometry data (vertices) to the GPU by filling its internal 64-byte FIFO buffer with **commands** (up to three). These commands may request to GPU to render something, change a setting or manipulate VRAM.
 
@@ -392,7 +392,7 @@ There are two I/O ports (**Serial** and **Parallel**) available for add-ons. How
 
 The block controlling the CD drive is an interesting area, you can imagine it as a separate computer living inside the PlayStation.
 
-![CD Subsystem layout.](cd.png){.open-float}
+![CD Subsystem layout.](_diagrams/cd.png){.open-float}
 
 This subsystem is composed of:
 

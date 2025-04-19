@@ -56,7 +56,7 @@ Having said that, let us take a look:
 
 #### Branding {.tabs .active}
 
-![How this study is organised.](cpu/branding.png){.tab-float}
+![How this study is organised.](_diagrams/cpu/branding.png){.tab-float}
 
 First things first, the Xbox's CPU is identified as a **Pentium III**. So what does this mean? Back then (early noughties), the Pentium series represented the next generation of CPUs. They were the 'new high-end' that grouped all the fancy technology that made computers super-fast, plus it helped buyers decide which CPU they had to buy if they wanted *the best of the best*.
 
@@ -101,7 +101,7 @@ As a side note, microcode is already embedded in the silicon but it can be patch
 
 #### The Core {.tab}
 
-![The Coppermine design.](cpu/core.png){.tab-float}
+![The Coppermine design.](_diagrams/cpu/core.png){.tab-float}
 
 Intel shipped numerous chips that implemented the P6 microarchitecture. The Xbox includes one model called **Coppermine**. It was branded as the second revision of the Pentium III (replacing the 'Katmai' core) and features the following components:
 
@@ -126,7 +126,7 @@ On a curious note, I wonder if the naming of the Yonah core is meant as a metaph
 
 At some point in the history of the PC, motherboards grew so much in complexity that new designs had to be developed from the ground up to efficiently tackle emerging needs.
 
-![Overview of Xbox Motherboard.](cpu/motherboard.png){.open-float}
+![Overview of Xbox Motherboard.](_diagrams/cpu/motherboard.png){.open-float}
 
 The new standard developed relied on two dedicated chips to handle most of the motherboard functions. These chips are:
 
@@ -143,7 +143,7 @@ Both chips are interconnected using a specialised bus called the **HyperTranspor
 
 The Xbox includes a total of **64 MiB of DDR SDRAM**, this type of RAM is very fast compared to what the competition offers. However, it's also shared across all components of this system. Hence, once more, we find ourselves in front of another **unified memory architecture** or 'UMA' layout.
 
-![Representation of the switching network. GPU uses two banks while the CPU uses a different one, reducing contention in the process.](cpu/memory.png)
+![Representation of the switching network. GPU uses two banks while the CPU uses a different one, reducing contention in the process.](_diagrams/cpu/memory.png)
 
 We have previously seen how [troublesome](playstation-2#preventing-past-mishaps) this design can be sometimes. Nonetheless, programs can address this issue by spreading their data between different banks of memory. NV2A implements a **switching network** that enables different units (CPU, GPU, etc) to concurrently access them [@cpu-huang] [@cpu-informit].
 
@@ -173,7 +173,7 @@ In the following section, we'll examine the inner workings of this chip. Now, I'
 
 The GPU core found on the NV2A is based on the popular 'GeForce3' series of GPUs [@graphics-mslusarz] [@graphics-g3arch], it's also referred to as **NV20** in Nvidia's technical documents.
 
-![Pipeline design of the NV2A.](NV2A_Pipeline.png){.open-float}
+![Pipeline design of the NV2A.](_diagrams/gpu/pipeline.png){.open-float}
 
 Please note that, while the pipeline of the Xbox's GPU is based on the NV20 architecture, the NV2A has some modifications that are not compatible with the rest of the NV20 series (most importantly, it has been adapted to work in a UMA environment).
 
@@ -185,7 +185,7 @@ Having said that, let's take a look at how frames are drawn in the Xbox. Some ex
 
 #### Commands {.tabs .active}
 
-![Commands stage.](pipeline/commands.png){.tab-float}
+![Commands stage.](_diagrams/gpu/commands.png){.tab-float}
 
 First and foremost is explaining how the GPU can receive commands from the CPU. For that, the GPU contains a command processor called **PFIFO** that effectively fetches and processes graphics commands (called **Pushbuffer**) in a FIFO manner, the unpacked commands are subsequently delivered to the **PGRAPH** (the block in charge of graphics processing) and other engines.
 
@@ -195,7 +195,7 @@ The next explanations happen in PGRAPH.
 
 #### Vertex {.tab}
 
-![Vertex stage.](pipeline/vertex.png){.tab-float}
+![Vertex stage.](_diagrams/gpu/vertex.png){.tab-float}
 
 This is an interesting section for this GPU in particular. At this stage, the GPU provides the ability to apply vertex transformations to our geometry. We've already seen this feature with Flipper, but unlike that GPU, this one uses a **programmable engine**. This means that developers may specify which vertex operations are performed and how, as opposed to relying on a pre-defined program. Although, the NV2A can also operate in 'fixed' mode, if required.
 
@@ -209,7 +209,7 @@ In a nutshell, the vertex unit processes vertices by manipulating them in its re
 
 #### Pixel {.tab}
 
-![Fragment/Pixel stage.](pipeline/pixel.png){.tab-float}
+![Fragment/Pixel stage.](_diagrams/gpu/pixel.png){.tab-float}
 
 At this stage, vertices are transformed into pixels. The process starts with a rasteriser that generates pixels to draw each triangle. The NV2A's rasteriser can generate four pixels per cycle. <!-- Nvidia designed a memory system called 'Lightspeed Memory Architecture' which, among other things, compresses the Z-buffer to four times its original size which enables to increase bandwidth (since it has to be accessed from main memory, while [competitors embedded it]()). -->
 
@@ -221,7 +221,7 @@ Register combiners are programmable in a similar nature to the [Texture Environm
 
 #### Post-processing {.tab}
 
-![Post-processing stage.](pipeline/postprocessing.png){.tab-float}
+![Post-processing stage.](_diagrams/gpu/postprocessing.png){.tab-float}
 
 Before the pixels are written to the frame-buffer, the NV2A contains four dedicated engines called **Raster Output Unit** or 'ROP' which perform necessary tests (alpha, depth and stencil) using allocated blocks in main memory. Finally, batches of pixels (four per cycle) are written back only if they pass these tests. 
 
@@ -403,7 +403,7 @@ Game development in this console is very complex in terms of libraries, terminol
 
 #### Hardware Abstraction {.tabs .active}
 
-![Representation of HAL.](hal/general.png){.tab-float}
+![Representation of HAL.](_diagrams/hal/general.png){.tab-float}
 
 We have seen how elements like a 'programmable coprocessor with microcode' tend to come with a lot of fanfare at first, but slowly dissipates once developers discover the real complexity of the new hardware.
 
@@ -413,7 +413,7 @@ There are multiple SDKs available to develop for this console, some 'official' a
 
 #### Microsoft XDK {.tab}
 
-![XDK structure](hal/xdk.png){.tab-float}
+![XDK structure](_diagrams/hal/xdk.png){.tab-float}
 
 Microsoft's Xbox Development Kit or 'XDK' is the official SDK used for Xbox development. It's a package that contains many tools, libraries and compilers. Most notably, it's used alongside Visual Studio .NET (2002 version) which was *quite an IDE* from that time, for better or worse.
 
@@ -425,7 +425,7 @@ To try all of this out, Microsoft distributed their own development kit hardware
 
 #### NXDK {.tab}
 
-![NXDK structure. Notice that even though some low-level libraries are wrapped with high-level ones, they are still accessible to the developer](hal/nxdk.png){.tab-float}
+![NXDK structure. Notice that even though some low-level libraries are wrapped with high-level ones, they are still accessible to the developer](_diagrams/hal/nxdk.png){.tab-float}
 
 To avoid Copyright litigation to Homebrew developers using the official SDK, a group of developers unaffiliated with Microsoft created a replacement of the official SDK called **Open XDK**. After some years, its development stopped, so another group picked it up from there and named the new fork **New XDK** or 'nxdk'.
 
