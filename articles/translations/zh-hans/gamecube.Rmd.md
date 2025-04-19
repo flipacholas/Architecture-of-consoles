@@ -128,7 +128,7 @@ PowerPC 601旨在为PowerPC系列积累势头，但在接下来的几年中，�
 
 回到2001年，任天堂需要一款既强大又便宜的处理器。 为了满足这些要求，IBM采用了其过去的一款设计，一个增强版的G3，称为**PowerPC 750CXe**（可以在*2001年初夏*发布的晚期iMac G3中找到），并对其进行了加强，增加了游戏开发者会喜欢的能力。 结果就是**PowerPC Gekko**处理器，主频为**486 MHz**。
 
-![Gekko的构成](cpu/cpu_features.png) {.no-borders}
+![Gekko的构成](_diagrams/gekko.png) {.no-borders}
 
 让我们来看看是什么让Gekko如此特别，为了做到这一点，我们首先需要了解750CXe的特点。 现在，回顾了PowerPC的历史，你可能会发现很多信息与之前的设计重叠（*这就是这些研究的目的！*）。 话虽如此，750CXe提供了[@cpu-750cxe]：
 
@@ -184,7 +184,7 @@ PowerPC 601旨在为PowerPC系列积累势头，但在接下来的几年中，�
 
 因此，GameCube的设计者提出了一种新的内存系统，严格基于**提供专用内存空间**和**使用低延迟芯片**。 采用新设计后，GPU和CPU将不再争夺相同的内存（导致填充率问题），因为GPU现在拥有自己的内部内存，而且*速度惊人*。 另一方面，GPU仍将负责对I/O的访问进行仲裁。
 
-![此系统的内存布局。](cpu/memory.png)
+![此系统的内存布局。](_diagrams/memory.png)
 
 这样系统就有了两条主要总线：
 
@@ -233,13 +233,13 @@ PowerPC 601旨在为PowerPC系列积累势头，但在接下来的几年中，�
 
 Flipper是一个处理多种服务的复杂单元[@graphics-cheng]，所以现在让我们把重点放在图形组件上（因为它负责让我们的几何图形栩栩如生）。 我们将这一区域称为**GPU**或**图形引擎**，如果你一直在阅读[N64的文章](nintendo-64#graphics)，我只是想告诉你，这个核心现在已经可以正常工作了，所以程序员无需担心要注入代码才能让它工作。 不过，还有一些有趣的部分可以定制。
 
-![Flipper的GPU部分的流水线设计](flipper_pipeline.png)
+![Flipper的GPU部分的流水线设计](_diagrams/gpu/pipeline.png)
 
 与往常一样，为了在屏幕上绘制一帧图像，我们的数据将通过GPU的流水线传输。 数据会经过许多不同的组件，我们可以将其分为四个阶段：
 
 #### 数据库 {.tabs.active}
 
-![数据库阶段示意图](flipper_pipeline/database.jpg) {.tab-float}
+![数据库阶段示意图](_diagrams/gpu/database.png) {.tab-float}
 
 CPU和GPU通过主RAM中固定长度的**FIFO缓冲区**相互通信，这是CPU编写绘图命令的预留部分，GPU将读取（并最终显示）这些命令，CPU和GPU本身都支持这一功能。
 
@@ -251,7 +251,7 @@ GPU包含一个**命令处理器**，负责从FIFO中获取命令。
 
 #### 几何 {.tab}
 
-![使用间接模式的顶点阶段示意图。](flipper_pipeline/vertex.jpg) {.tab-float}
+![使用间接模式的顶点阶段示意图。](_diagrams/gpu/vertex.png) {.tab-float}
 
 在这里，基元会根据所需的场景进行相应的形状转换，并为光栅化做好准备。 引擎使用专用的**顶点单元**（Vertex unit，“VU”）来完成这项工作。
 
@@ -264,7 +264,7 @@ GPU包含一个**命令处理器**，负责从FIFO中获取命令。
 
 #### 纹理 {.tab}
 
-![使用默认设置的纹理阶段示意图](flipper_pipeline/texture.jpg) {.tab-float}
+![使用默认设置的纹理阶段示意图](_diagrams/gpu/texture.png) {.tab-float}
 
 现在是为模型应用纹理和特效的时候了，为此GPU包含多个处理像素的单元。 现在，这是一个非常精密（但也相当复杂）的程序，如果你觉得难以理解，就把它想象成一条处理像素的大流水线吧。 因此，有三组单元可供选择：
 
@@ -281,7 +281,7 @@ GPU包含一个**命令处理器**，负责从FIFO中获取命令。
 
 #### 渲染 {.tab}
 
-![渲染阶段示意图](flipper_pipeline/render.png) {.tab-float}
+![渲染阶段示意图](_diagrams/gpu/render.png) {.tab-float}
 
 渲染流程的最后阶段包括对场景进行一些可选但有用的润色：
 
