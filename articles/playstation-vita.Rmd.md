@@ -158,7 +158,7 @@ ARMv7 is a superset of the ARMv6 ISA. Its additions can be grouped into four are
 
 Moreover, the alternative [Thumb ISA](game-boy-advance#tab-2-3-squeezing-performance) (previously enhanced with [Thumb v2](nintendo-ds#tab-1-2-arm946e-s)) has undergone a major revision called **Thumb-2**. Truth to be told, it already debuted on embedded ARMv6 CPUs (implementing the ARMv6T2 variant), but it has now become a standard on the Cortex-A line.
 
-On the other side, it's worth mentioning that **ThumbEE**, the successor of the deprecated [Jazelle](wii#the-hidden-co-processor), has been left unused or even excluded from many Cortex-A CPUs. Surpirsingly enough, Kermit's Cortex-A9 CPU happens to implement ThumbEE and Jazelle [@cpu-main_processor], but I don't think any application takes advantage of these. If you want an idea of its adoption back in the day, let me tell you that Dalvik (Android's Java interpreter, to put it simply) didn't even bother using Jazelle/Thumb-2EE at all. That tells you the general attitude towards ARM's Java efforts.
+On the other side, it's worth mentioning that **ThumbEE**, the successor of the deprecated [Jazelle](wii#the-hidden-co-processor), has been left unused or even excluded from many Cortex-A CPUs. Surprisingly enough, Kermit's Cortex-A9 CPU happens to implement ThumbEE and Jazelle [@cpu-main_processor], but I don't think any application takes advantage of these. If you want an idea of its adoption back in the day, let me tell you that Dalvik (Android's Java interpreter, to put it simply) didn't even bother using Jazelle/Thumb-2EE at all. That tells you the general attitude towards ARM's Java efforts.
 
 ##### Overshadowing features {.tab}
 
