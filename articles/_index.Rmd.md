@@ -26,6 +26,6 @@ This is not a developer manual, just an *in-depth* introduction to how each syst
 
 Basic knowledge of computing is preferable, however, I try really hard to adapt my content for wider audiences, so please don't be afraid to give it a try! But if that's not enough, you may want to look at the [supporting readings](readings).
 
-While I try to be as accurate as possible, if you find any mistakes please [give me a shout](https://github.com/flipacholas/Architecture-of-consoles). Finally, if you prefer reading using an eBook reader, check out the [eBook edition](ebook).
+While I try to be as accurate as possible, if you find any mistakes please [give me a shout](https://github.com/flipacholas/Architecture-of-consoles). Finally, if you prefer reading offline, check out the [multiple book editions](book).
 
 Without further ado, here they are!

@@ -49,10 +49,10 @@ other = "Translations"
 other = "More at '{{ . }}' &raquo;"
 
 [ebook_edition_title]
-other = "Get the eBook editions"
+other = "Get the paper/eBook editions"
 
 [ebook_edition_content]
-other = 'You can now read the <a href="{{ .consoles }}">Architecture of Consoles</a> series on eBook readers too. <a href="{{ .ebooks }}">Check it out here</a>.'
+other = 'You can now read the <a href="{{ .consoles }}">Architecture of Consoles</a> series on paper and eBook readers too. <a href="{{ .ebooks }}">Check it out here</a>.'
 
 # Navigation
 
@@ -92,7 +92,7 @@ other = "Switch to classic edition"
 # Multi edition
 
 [ebook_edition]
-other = "eBook edition"
+other = "Book edition"
 
 [about_edition]
 other = "About this edition"
@@ -104,7 +104,7 @@ other = "Last updated: {{ . }}"
 other = "Classic edition"
 
 [classic_intro]
-other = 'The ‘classic’ edition is an alternative version to the <a href="{{ .modern }}">‘modern’ counterpart</a>. It doesn’t require Javascript, state-of-the-art CSS or convoluted HTML to work, which makes it ideal for readers who use accessibility tools or legacy internet browsers. On the other hand, eBook users can now check the <a href="{{ .ebook }}">eBook edition</a>.'
+other = 'The ‘classic’ edition is an alternative version to the <a href="{{ .modern }}">‘modern’ counterpart</a>. It doesn’t require Javascript, state-of-the-art CSS or convoluted HTML to work, which makes it ideal for readers who use accessibility tools or legacy internet browsers. On the other hand, paper/eBook users can now check the <a href="{{ .ebook }}">book editions</a>.'
 
 [classic_description]
 other = "This edition is identical content-wise. However, interactive widgets have been simplified to work with pure HTML, though these will offer an link to the original article in case the reader wants to try the ‘full version’."
@@ -147,7 +147,7 @@ other = "If you find my articles interesting then please consider donating. Your
 other = "As a token of gratitude, your name will be included in the credits section of the next article or your nominated one, unless stated otherwise."
 
 [contribution_footer_ebook]
-other = 'You can also buy the <a href="{{ . }}">eBook edition</a> in English. I treat profits as donations.'
+other = 'You can also buy the <a href="{{ . }}">book editions</a> in English. I treat profits as donations.'
 
 [contribution_suggestions]
 other = 'Alternatively, you can help out by <a href="{{ . }}">suggesting changes</a> and/or <a href="{{ . }}">adding translations</a>.'
