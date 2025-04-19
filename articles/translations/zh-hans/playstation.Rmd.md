@@ -187,9 +187,9 @@ MIPS I架构就容易出现这种情况[@cpu-chen]：
 
 配备的芯片（**VRAM**）是双端口的，就像[Virtual Boy](virtual-boy#organising-the-content)的一样。 VRAM使用两条16位总线，可在CPU/DMA/GPU和视频编码器之间同时访问。
 
-![使用VRAM的内存布局](vram/vram.png){.tabs-nested .active title="VRAM"}
+![使用VRAM的内存布局](_diagrams/vram/vram.png){.tabs-nested .active title="VRAM"}
 
-![使用SGRAM的内存布局](vram/sgram.png){.tabs-nested-last title="SGRAM"}
+![使用SGRAM的内存布局](_diagrams/vram/sgram.png){.tabs-nested-last title="SGRAM"}
 
 不过在这款游戏机的后期版本中，索尼改用了SGRAM芯片（使用单独32位数据总线的单端口选项）。 *嘘！*...... 好吧，公平地说，每一种都有其优点和缺点。 可以肯定的是，由于时序上的差异，后来的游戏（如喷气摩托3（Jet Moto 3））在基于VRAM的系统上运行时，会出现图形卡顿的现象。 如果你想了解详情，Martin Korth的“Nocash PSX规格”记录了不同的时序等信息[@cpu-korth]。
 
@@ -201,7 +201,7 @@ MIPS I架构就容易出现这种情况[@cpu-chen]：
 
 #### 指令 {.tabs.active}
 
-![基本GPU指令流水线](commands.png) {.tab-float}
+![基本GPU指令流水线](_diagrams/gpu_commands.png) {.tab-float}
 
 首先，CPU通过向内部64字节FIFO缓冲区填充**指令**（最多三条），向 GPU 发送几何数据（顶点）。 这些命令可能要求GPU渲染某些内容、更改设置或操作VRAM。
 
@@ -395,7 +395,7 @@ CD控制器还能将采样直接发送到音频混音器，而无需经过音频
 
 控制CD驱动器的区块是一个有趣的区域，你可以把它想象成PlayStation内部的一台独立电脑。
 
-![CD子系统布局](cd.png) {.open-float}
+![CD子系统布局](_diagrams/cd.png) {.open-float}
 
 该子系统由以下部分组成
 
