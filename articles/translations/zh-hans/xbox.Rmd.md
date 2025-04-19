@@ -56,7 +56,7 @@ aliases:
 
 #### 牌子 {.tabs.active}
 
-![本研究的组织方式](cpu/branding.png) {.tab-float}
+![本研究的组织方式](_diagrams/cpu/branding.png) {.tab-float}
 
 首先，Xbox的CPU确定为**奔腾III**。 这意味着什么呢？ 在当时（20世纪90年代初），奔腾系列代表了新一代CPU。 它们是“新高端”，集合了所有能让电脑超快运行的花哨技术，还能帮助买家决定购买哪款CPU，以获得*最佳性能*。
 
@@ -101,7 +101,7 @@ RISC处理器的优势之一在于其简单的设计方法使其CPU的设计具�
 
 #### 内核 {.tab}
 
-![“铜矿”设计图](cpu/core.png) {.tab-float}
+![“铜矿”设计图](_diagrams/cpu/core.png) {.tab-float}
 
 英特尔推出了大量采用P6微架构的芯片。 Xbox包括一个名为**铜矿（Coppermine）**的型号。 它被称为奔腾III的第二次修订版（取代了“Katmai”内核），具有以下组件：
 
@@ -126,7 +126,7 @@ RISC处理器的优势之一在于其简单的设计方法使其CPU的设计具�
 
 在PC发展史上的某个时期，主板变得越来越复杂，必须从头开始开发新的设计，才能有效地满足新出现的需求。
 
-![Xbox主板概览](cpu/motherboard.png) {.open-float}
+![Xbox主板概览](_diagrams/cpu/motherboard.png) {.open-float}
 
 所制定的新标准依靠两个专用芯片来处理主板的大部分功能。 这两个芯片是：
 
@@ -143,7 +143,7 @@ RISC处理器的优势之一在于其简单的设计方法使其CPU的设计具�
 
 Xbox包含总容量为**64 MiB的DDR SDRAM**，与同类产品相比，这种内存的速度非常快。 不过，它也是系统所有组件共享的。 因此，我们又一次看到了**统一内存架构**（unified memory architecture，“UMA”）布局。
 
-![交换网络的表示。 GPU使用两个内存库，而CPU使用另一个内存库，从而减少了过程中的竞争。](cpu/memory.png)
+![交换网络的表示。 GPU使用两个内存库，而CPU使用另一个内存库，从而减少了过程中的竞争。](_diagrams/cpu/memory.png)
 
 我们已经看到，这种设计有时会很[麻烦](playstation-2#preventing-past-mishaps)。 不过，程序可以通过将数据分散到不同的内存库来解决这个问题。 NV2A实现了一个**交换网络**，可以让不同的单元（CPU、GPU等）同时访问它们\[@cpu-huang\] \[@cpu-informit\]。
 
@@ -174,7 +174,7 @@ Xbox包含总容量为**64 MiB的DDR SDRAM**，与同类产品相比，这种内
 
 NV2A的GPU内核基于流行的“GeForce3”系列GPU\[@graphics-mslusarz\] \[@graphics-g3arch\]，在英伟达的技术文档中也被称为NV20。
 
-![NV2A的流水线设计](NV2A_Pipeline.png) {.open-float}
+![NV2A的流水线设计](_diagrams/gpu/pipeline.png) {.open-float}
 
 请注意，虽然Xbox的GPU流水线基于NV20架构，但NV2A有一些与NV20系列其他产品不兼容的修改（最重要的是，它已被调整为在统一内存架构环境中工作）。
 
@@ -186,7 +186,7 @@ NV2A的GPU内核基于流行的“GeForce3”系列GPU\[@graphics-mslusarz\] \[@
 
 #### 指令 {.tabs.active}
 
-![指令阶段](pipeline/commands.png) {.tab-float}
+![指令阶段](_diagrams/gpu/commands.png) {.tab-float}
 
 首先要解释的是GPU如何从CPU接收命令。 为此，GPU包含一个名为**PFIFO**的命令处理器，它能以FIFO的方式有效地获取和处理图形命令（称为**Pushbuffer**），解压缩的命令随后会被传送到**PGRAPH**（负责图形处理的块）和其他引擎。
 
@@ -196,7 +196,7 @@ NV2A的GPU内核基于流行的“GeForce3”系列GPU\[@graphics-mslusarz\] \[@
 
 #### 顶点 {.tab}
 
-![顶点阶段](pipeline/vertex.png) {.tab-float}
+![顶点阶段](_diagrams/gpu/vertex.png) {.tab-float}
 
 对于GPU而言，这是一个特别有趣的部分。 在这一阶段，GPU能够对我们的几何体进行顶点变换。 我们已经在Flipper上看到过这一功能，但与Flipper不同的是，这款GPU使用的是**可编程引擎**。 这意味着开发人员可以指定执行哪些顶点操作以及如何执行，而不是依赖于预定义的程序。 不过，如果需要，NV2A也可以在“固定”模式下运行。
 
@@ -210,7 +210,7 @@ NV2A的GPU内核基于流行的“GeForce3”系列GPU\[@graphics-mslusarz\] \[@
 
 #### 像素 {.tab}
 
-![片段/像素阶段](pipeline/pixel.png) {.tab-float}
+![片段/像素阶段](_diagrams/gpu/pixel.png) {.tab-float}
 
 在这一阶段，顶点被转换成像素。 这一过程由光栅化器开始，光栅化器生成像素来绘制每个三角形。 NV2A的光栅化器每个周期可生成四个像素。<!-- Nvidia designed a memory system called 'Lightspeed Memory Architecture' which, among other things, compresses the Z-buffer to four times its original size which enables to increase bandwidth (since it has to be accessed from main memory, while \[competitors embedded it\]()). -->之后，**4个纹理着色器**用于从内存中获取纹理[@graphics-domine]，这些着色器还能自动应用各向异性过滤、mipmapping 和**阴影缓冲（shadow buffering）**。 阴影缓冲用于测试像素是可见还是被光源遮挡，从而应用正确的颜色。 此时，GPU还可以执行剪切和早期[Z测试](nintendo-64#modern-visible-surface-determination)（NV2A将Z缓冲压缩为原来的四倍，以节省带宽，从而大大提高了性能）。
 
@@ -220,7 +220,7 @@ NV2A的GPU内核基于流行的“GeForce3”系列GPU\[@graphics-mslusarz\] \[@
 
 #### 后处理 {.tab}
 
-![后处理阶段](pipeline/postprocessing.png) {.tab-float}
+![后处理阶段](_diagrams/gpu/postprocessing.png) {.tab-float}
 
 在将像素写入帧缓冲区之前，NV2A包含四个称为光栅输出单元（Raster Output Unit，“ROP”）的专用引擎，它们使用主内存中分配的块执行必要的测试（Alpha、深度和模版）。 最后，只有通过这些测试的像素才会被写回（每个周期四个）。
 
@@ -402,7 +402,7 @@ Dashboard提供多种服务
 
 #### 硬件抽象 {.tabs.active}
 
-![HAL（硬件抽象层）示意图](hal/general.png) {.tab-float}
+![HAL（硬件抽象层）示意图](_diagrams/hal/general.png) {.tab-float}
 
 我们已经看到，像“带微码的可编程协处理器”这样的元素一开始往往会大张旗鼓，但当开发者发现新硬件的真正复杂性后，这些元素就会慢慢消失。
 
@@ -412,7 +412,7 @@ Dashboard提供多种服务
 
 #### 微软XDK {.tab}
 
-![XDK的结构](hal/xdk.png) {.tab-float}
+![XDK的结构](_diagrams/hal/xdk.png) {.tab-float}
 
 微软的Xbox开发工具包（Xbox Development Kit，“XDK”）是用于Xbox开发的官方SDK。 它是一个包含许多工具、库和编译器的软件包。 最值得注意的是，它与Visual Studio .NET（2002版）一起使用，无论好坏，后者在当时都是*相当不错的IDE*。
 
@@ -424,7 +424,7 @@ Dashboard提供多种服务
 
 #### NXDK {.tab}
 
-![NXDK的结构。 请注意，尽管一些低级库被高级库所包裹，但开发者仍可访问它们](hal/nxdk.png) {.tab-float}
+![NXDK的结构。 请注意，尽管一些低级库被高级库所包裹，但开发者仍可访问它们](_diagrams/hal/nxdk.png) {.tab-float}
 
 为了避免使用官方SDK的自制软件开发者遭遇版权诉讼，一群与微软无关的开发者创建了一个名为**Open XDK**的官方SDK替代版本。 几年后，开发工作停止了，于是另一个开发小组接手了它，并将新分支命名为**“New XDK”**或“nxdk”。
 
