@@ -857,9 +857,9 @@ The 'NXE' dashboard. Screens are from [@operating_system-nxe_dash] and [@operati
 
 As Microsoft expanded its catalogue of services and features, the navigation pattern of the blades turned into a liability (as it constrained the number of navigation screens on the top hierarchy) and the lack of available space became apparent in later software updates. In 2008, Microsoft released a revamped Dashboard interface called **New Xbox Experience** (NXE) which focused on 'infinite scrolling' patterns to offer a wider selection of services on the front page. It also incorporated other elements like a glossy filter and 3D transitions recently popularised by **Windows Vista** and the new range of **Windows Live** applications.
 
-![Windows Vista (2007). Showing the use of the iconic 'Flip 3D' to switch between windows.](screenshots/windows/vista_flip3d.jpg){.toleft width="90%"}
+![Windows Vista (2007). Showing the use of the iconic 'Flip 3D' to switch between windows.](screenshots/windows/vista_flip3d.jpg){.toleft latex_width="90%"}
 
-![Windows Live Mail during 2008 [@operating_system-livemail], featuring a Vista-like theme with glossy effects.](screenshots/windows/livemail.jpg){.toright width="90%"}
+![Windows Live Mail during 2008 [@operating_system-livemail], featuring a Vista-like theme with glossy effects.](screenshots/windows/livemail.jpg){.toright latex_width="90%"}
 
 With the new design, screens could now enjoy full-screen space without being conditioned by the hierarchical level they were placed in. Curiously enough, the navigation layout is very similar to what Sony designed with [XMB](playstation-portable#visual-shell), where vertical arrows change category and horizontal arrows navigate through the elements of the same category.
 
@@ -1148,7 +1148,7 @@ In May 2006 (before the PlayStation 3 reached the stores), user 'commodore4eva' 
 
 The firmware was flashed through the use of ATA commands, but it required a computer with a spare SATA socket and special flashing software. Consequently, users had to open up the console and connect the SATA data cable to their computer, run the flasher while the console supplied energy to the drive and then re-assemble everything back. The act of flashing emerged from a hidden 'maintenance mode' that was discovered in the drive's firmware, this was subsequently reversed and re-enabled. If the process was carried out successfully, the Xbox 360 would now read pirated games just like any genuine one.
 
-![Example of a DVD drive flashing tutorial found on Youtube @anti_piracy-flashing_tut. Here, the Xbox 360's drive connects to the PC using SATA while the console still supplies power (as the power connector is proprietary).](photos/flashing.jpg)
+![Example of a DVD drive flashing tutorial found on Youtube [@anti_piracy-flashing_tut]. Here, the Xbox 360's drive connects to the PC using SATA while the console still supplies power (as the power connector is proprietary).](photos/flashing.jpg)
 
 That's pretty much how the DVD drive got cracked. As time went by, the techniques evolved but the fundamental idea remained the same (flash a custom firmware). Subsequent readers increased their security to seal backdoors and Microsoft helped by bundling DVD drive firmwares within their 'software updates' to undo any unauthorised work done by the user. In later years, readers levelled up to the point the user had to drill a hole into the drive's System-on-Chip to enable flashing [@anti_piracy-hacking_2].
 
