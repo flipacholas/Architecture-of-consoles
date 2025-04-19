@@ -108,7 +108,7 @@ SGI/MIPS已经意识到R1000 在商业上的局限性，因此聘请**Quantum Ef
 
 Emotion Engine旁装有两颗各16 MB的内存芯片，总内存共计 **32 MB**。 使用的内存类型是**RDRAM**（[*似曾相识！*](nintendo-64#memory-design)（译注：原文为déjà vu，容易让人想起一首已成为meme的eurobeat）），通过**16位总线访问**。
 
-![Emotion Engine的内存设计。 你可以猜到拥堵会出现在哪里](MemoryArch.png)
+![Emotion Engine的内存设计。 你可以猜到拥堵会出现在哪里](_diagrams/memoryarch.png)
 
 乍看之下，Emotion Engine的内部总线只有128位宽，并无亮眼之处。 不过，RAM芯片采用了**双通道架构**，即使用两条独立的16位总线（每个芯片一条总线）连接两个芯片，以提高数据吞吐量。 这一布局理论上可达到3.2 GB/秒的带宽。所以大可放心，这款主机不存在内存延迟问题！
 
@@ -159,7 +159,7 @@ EE中安装有**两个VPU**，但它们的安排方式不同，因此有不同�
 
 #### 矢量处理单元0 {.tabs.active}
 
-![VPU0的架构](VU0.png) {.tab-float}
+![VPU0的架构](_diagrams/vpu0.png) {.tab-float}
 
 第一个VPU**（VPU0）**位于CPU和另一个向量单元（VPU1）之间。 它为主CPU提供“辅助”作用。
 
@@ -174,7 +174,7 @@ VPU0的内存映射还可以访问其他VPU的某些寄存器和标志，大概�
 
 #### 矢量处理单元1 {.tab}
 
-![VPU1的架构](VUP1.png) {.tab-float}
+![VPU1的架构](_diagrams/vpu1.png) {.tab-float}
 
 第二个VPU**（VPU1）**是VPU0的增强版，其微型存储器和VU存储器的容量是VPU0的四倍。 此外，该单元还包括一个名为**初等函数单元**（Elementary function unit，“EFU”）的附加组件，可加快指数和三角函数的执行速度。
 
@@ -202,9 +202,9 @@ VPU1位于VPU0和图形接口（通往GPU的“门”）之间，因此它包括
 
 有了这些新功能，程序员在设计图形引擎时就有了很大的灵活性。 为此，索尼投入了更多资源来设计和记录高效的流水线设计。 以下是针对不同类型工作负载进行优化的图形流水线示例[@cpu-stokes]：
 
-![并行流水线设计](Parallel.png){.tabs-nested .active title="并行"}
+![并行流水线设计](_diagrams/programming/parallel.png){.tabs-nested .active title="并行"}
 
-![串行流水线设计](Serial.png){.tabs-nested-last title="串行"}
+![串行流水线设计](_diagrams/programming/serial.png){.tabs-nested-last title="串行"}
 
 在第一个并行设计示例中，CPU与宏模式下的VPU0结合，与VPU1并行生成几何图形。 CPU/VPU0组充分利用Scratchpad和高速缓存，避免使用主总线，而VPU1则依靠主内存获取数据。 最后，两个渲染组同时向GPU发送各自的显示列表。
 
@@ -238,13 +238,13 @@ Travellers Tales的前总监解释了他的团队是如何在VPU1中实现完全
 
 GPU只进行**光栅化**处理，即...... 生成像素、贴图、应用光照和其他一些效果。 这意味着没有顶点变换（这些由VPU完成）。 此外，这是一条固定功能流水线，因此也没有[花哨的调整](gamecube#creativity)或[着色器](xbox#graphics)，只能使用固定的着色模型（如高洛德（Gouraud）着色）。
 
-![GS的流水线设计](GS_Pipeline.png)
+![GS的流水线设计](_diagrams/gs_pipeline/pipeline.png)
 
 看起来很简单吧？ 那么，让我们深入了解一下每个阶段会发生什么。
 
 #### 预处理 {.tabs.active}
 
-![预处理阶段](gs_pipeline/Preprocessing.png) {.tab-float}
+![预处理阶段](_diagrams/gs_pipeline/preprocessing.png) {.tab-float}
 
 EE通过向嵌入式DRAM中填充所需素材（**纹理位图**和**颜色查找表**，后者也称为“CLUT”）来启动图形合成器，为GS的寄存器赋值以对其进行配置，最后发出绘图命令（显示列表），指示GS在屏幕的特定位置绘制基元（点、线、三角形、精灵等）。
 
@@ -252,7 +252,7 @@ EE通过向嵌入式DRAM中填充所需素材（**纹理位图**和**颜色查�
 
 #### 光栅化 {.tab}
 
-![光栅化阶段](gs_pipeline/Rasterizing.png) {.tab-float}
+![光栅化阶段](_diagrams/gs_pipeline/rasterizing.png) {.tab-float}
 
 着色器利用之前计算出的值，从基元生成像素。 该单元可同时生成8个像素（带纹理）或16个像素（不带纹理），每个像素条目都包含计算出的以下属性：
 
@@ -267,7 +267,7 @@ EE通过向嵌入式DRAM中填充所需素材（**纹理位图**和**颜色查�
 
 #### 形成纹理 {.tab}
 
-![纹理映射阶段](gs_pipeline/Textures.png) {.tab-float}
+![纹理映射阶段](_diagrams/gs_pipeline/textures.png) {.tab-float}
 
 该阶段由一个大型像素单元驱动，一次最多可计算16个像素，在这里纹理将被映射到多边形（即现在的像素）上。 此外，这里还应用了雾和抗锯齿效果。
 
@@ -277,7 +277,7 @@ EE通过向嵌入式DRAM中填充所需素材（**纹理位图**和**颜色查�
 
 #### 测试 {.tab}
 
-![像素测试阶段](gs_pipeline/Tests.png) {.tab-float}
+![像素测试阶段](_diagrams/gs_pipeline/tests.png) {.tab-float}
 
 在这里，如果某些像素不符合某些要求，就会被舍弃。 因此，将进行以下测试：
 
@@ -287,7 +287,7 @@ EE通过向嵌入式DRAM中填充所需素材（**纹理位图**和**颜色查�
 
 #### 后处理 {.tab}
 
-![后处理阶段](gs_pipeline/Postprocessing.png) {.tab-float}
+![后处理阶段](_diagrams/gs_pipeline/postprocessing.png) {.tab-float}
 
 最后一个阶段可以使用本地DRAM中的上一帧缓冲区，在新像素上应用一些特效：
 
@@ -375,13 +375,27 @@ IOP 通过一个名为**系统接口**（System Interface，“SIF”）的专�
 
 总之，该处理器可以访问前端端口、DVD控制器、SPU2、BIOS ROM 和PC卡插槽。
 
-尽管如此，在薄型机改版一年后（2005年），IOP被SoC取代，取而代之的是**PowerPC 401“Deckard”**（用于微控制器的PowerPC 601阉割版）、**4 MB SDRAM**（比以前多2 MB）和以太网收发器（以前在外部附件中）。
+#### 特殊升级
+
+无论如何，在2005年“Slim”版本发布一年后，MIPS核心被一个*异常特殊*的SoC所取代，这个芯片内部集成了以下组件：[@io-ppc_monitor]
+
+- 一款**PowerPC 440x5 CPU**。 这款芯片是IBM主导的[精简PowerPC 4xx系列](gamecube#tab-2-1-individual-developments)的一部分，专为微控制器应用而设计。
+- 一款**辅助处理单元**（Auxiliary Processing Unit，APU），这是一个包含了部分MIPS R3000A电路（包括解码器和ALU）、经典的[几何变换引擎](playstation#tab-2-2-geometry-transformation-engine)以及用于进程间通信的额外寄存器的芯片。
+- 一个**以太网收发器**（之前作为外置配件出售）。
+
+芯片旁边还有**4 MB的SDRAM**，比以前多2 MB，且这次采用的真是SDRAM。
+
+这个新芯片被称为**PPC-IOP**，并以惊人的440 MHz运行。 有趣的是，PPC CPU仍然负责运行MIPS代码[@io-ppc_iop_discussion]。 这是通过一个名为**DECKARD**的MIPS模拟器实现的，该模拟器存储在BIOS ROM中[@io-ps2_mysteries]，它利用额外的SDRAM和APU来加速运行MIPS代码。
+
+由于PPC-IOP的内部工作和运行速度与原始IOP大不相同，因此有一个额外的补丁数据库，每个受影响的游戏都有一个条目[@io-deckard]。 此外，DECKARD试图使用事件句柄来近似定时， 但在某些指令期间性能会降低[@io-ppc_monitor]。 此外，几乎有24%的SDRAM因某种原因未被使用[@io-deckard]。
+
+考虑到所有这些，我不明白为什么索尼要以这种方式重新设计I/O生态系统，这不仅会降低性能，还会浪费其所有特性。 也许，这只是为了在保持向后兼容性的同时降低制造成本（我将在接下来的段落中解释更多）。 值得一提的是，大约在同一时间，[索尼刚刚与IBM达成了一项协议，共同制造Cell处理器](playstation-3#tab-1-1-the-state-of-progress)。
 
 #### 继承兼容性
 
 对于那些捆绑了前代CPU的机型，我们可以猜测，PS1兼容性也是其中的一部分。 索尼确实捆绑了一个PS1模拟器（名为`PS1DRV`），只要插入PS1光盘，它就会加载。 在这种情况下，IOP的频率会降低，以PS1的速度运行，EE 会被“再利用”以模拟[旧的GPU](playstation#graphics)，SPU2会被重新映射，以类似于[原版SPU](playstation#audio)。
 
-对于基于PowerPC的机型，向后兼容性依然存在，但要通过完整的软件实现。
+在采用PowerPC架构的型号上，PS1DRV是建立在DECKARD模拟器之上的
 
 ### 接口
 
