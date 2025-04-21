@@ -152,7 +152,9 @@ Kirby's Dream Land 3 (1997).
 
 :::
 
-Some games like 'The Legend of Zelda: A Link to the Past' account for this factor so shapes are explicitly squashed by design, which looks correct after being stretched by the TV. This, however, is an exceptional case since the majority of games take no extra measure to account for this factor.
+The reasoning behind Nintendo's deviation from the standard aspect ratio boils down to **cost**. You'll soon see that the S-PPU is very rich in functionality, but not fast enough to render everything at the pace of the CRT beam [@graphics-sanglard]. Rather than adding more circuitry to the board, Nintendo chose to shorten the length of the visible image, allocating extra space for the horizontal blanking period instead.
+
+Nevertheless, some games like 'Chrono Trigger' account for this factor so shapes are explicitly squashed by design, which looks correct after being stretched by the TV. This, however, is an exceptional case since the majority of games take no extra measure to account for this factor.
 
 ### Organising the content
 
