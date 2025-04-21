@@ -66,6 +66,8 @@ To dive further and not get lost in the way, I have catalogued the information i
 
 #### The ISA {.tab}
 
+![An Intel 80386 (1985), or compatible, was the minimum requirement for mid-90s applications.](photos/i386.webp){.tab-float}
+
 Indeed, once I mention 'Intel' it's a matter of time before I introduce the famous **x86**, its instruction set.
 
 The first form of x86 debuted with the release of the **Intel 8086** in 1978, a 16-bit CPU. Afterwards, the ISA was constantly expanded with more instructions as more Intel CPUs were released (80186, 80286 and so on) [@cpu-thompson]. Consequently, x86 started to fragment as more ground-breaking features were added (i.e. 'protected mode' and 'long mode'). To tackle this, modern x86 applications commonly target the 80386 ISA (also called **IA-32** or **i386**) as a baseline, which among other things, operates in a 32-bit environment.
@@ -90,6 +92,8 @@ Now, the Xbox CPU, along with the rest of Pentium III processors, use the **P6 M
 Having said that, take a closer look at these features. It so happens they are very similar to [previous consoles](gamecube#the-powerpc-gekko), however, the other CPUs are very different in terms of design compared to Intel ones. Historically, one could argue that the design of the x86 would've never allowed Intel to produce, let's say, a pipelined CPU. Yet they managed to do so, so let us see why...
 
 #### CISC or RISC {.tab}
+
+![Intel's Pentium Pro (1995) debuted the P6 microarchitecture, bridging the gap between CISC and RISC advancements in the x86 world. This came as a surprise to many - particularly those who believed x86's days were numbered.](photos/pentiumpro.webp){.tab-float}
 
 The competition happens to feature CPUs designed around the [**RISC guidelines**](playstation#tab-1-1-a-bit-of-history), whereas Intel's x86 is not, thereby being placed in the **CISC** group. RISC CPUs are known for having an intentionally simplified design compared to CISC CPUs. This includes, for instance, implementing a **load–store architecture**, which only provides instructions that operate values from registers (as opposed to operating directly from memory).
 

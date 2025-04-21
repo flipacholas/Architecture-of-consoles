@@ -60,6 +60,8 @@ Nevertheless, the POWER1 CPU was a large and expensive package comprised of mult
 
 #### Reaching the average user {.tab}
 
+![IBM's POWER development board (1992), used by Apple.](prototype.webp){.tab-float}
+
 In the midsts of these developments, IBM also agreed to join forces with Apple and Motorola to tackle the Intel-Microsoft monopoly in the desktop market, forming the **AIM alliance**. Thus, a new project was conceived for a competitive CPU in the low-end arena. This would be made of intellectual property from the three companies, including:
 
 - IBM's RSC processor design.

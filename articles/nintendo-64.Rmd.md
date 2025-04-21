@@ -39,6 +39,8 @@ For their next-generation console, Nintendo looked into bringing industrial hard
 
 Back at SGI's headquarters, the R4000 was an expensive product (around $400 [@cpu-r4000demo]), which made it unfeasible for a video game console. Yet, Nintendo didn't want to give up on its state-of-the-art offerings, so they went for a low-end variant called **R4300i**, from which NEC was able to second-source it.
 
+![The MIPS R4300i CPU (1994).](r4300i.webp)
+
 In the end, Nintendo and SGI's CPU of choice became the **NEC VR4300** running at **93.75 MHz** [@cpu-anatomy]. This is a binary-compatible version of the MIPS R4300i that features [@cpu-nec]:
 
 - **Two modes of operation**:
