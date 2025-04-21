@@ -82,9 +82,10 @@ With the Mega Drive, however, the Z80 was mainly designated for **sound control*
 
 - 8 KB of RAM.
 - The two sound chips available.
-- 68000's RAM (again, handled by the bus arbiter).
+- A dynamic chunk of 32 KB pointing to the 68000's address space, selectable using the bus arbiter.
+  - In practice, however, the only reliable area to access here is the cartridge ROM [@audio-stealth].
 
-Finally, it's important to note that **both CPUs can run in parallel** (under certain constraints, the next paragraphs explain more).
+Finally, it's important to note that **both CPUs can run in parallel**... under certain constraints, the next paragraphs explain more.
 
 ### Memory available
 
@@ -228,9 +229,7 @@ While the frame is being drawn, the system will sequentially call different inte
 
 Conventionally, there are two types of interrupts called: **H-Blank** (every horizontal line) and **V-Blank** (every frame).
 
-H-Blank is called numerous times but is limited to executing short routines. Also, only CRAM and VSRAM are accessible, so games can only update their colour palettes or vertically scroll their planes.
-
-V-Blank allows for longer routines with the drawback of being called only 50 or 60 times per second (depending on the console's region), but it's able to access all memory locations.
+H-Blank is called numerous times but is limited to executing short routines. V-Blank allows for longer routines, with the drawback of only being called 50 or 60 times per second (depending on the console's region).
 
 Notice that the overscan area in the example exhibits some random coloured dots at the bottom right corner. This is popularly known as **CRAM dots** and what's happening is that the CPU is updating the palettes in CRAM at the same time the VDP is beaming the remaining scan-lines (in the example, this happens during overscan). This conflict makes the VDP fetch whatever value the CPU is writing at that time (as opposed to the required location in CRAM) so the image gets corrupted. In this case, the game is only updating CRAM at overscan, so this anomaly goes unnoticed on traditional CRTs. In another level, however, the game changes the palette mid-frame to simulate water effects. Hence, programmers tried to mask it by drawing a flickering water ripple in-between [@audio-sonic_water]. As you can see, it's all about balancing the extra colours with the CRAM side-effect.
 
@@ -268,11 +267,11 @@ Sonic The Hedgehog (1991).
 
 :::
 
-The **Yamaha YM2612** is an **FM synthesiser** [@audio-ymwiki] that runs at the 68000 speed and supplies **six FM channels**, where one can play **PCM samples** (with 8-bit resolution and 32 kHz sampling rate). Its bus is only connected to the Z80, however.
+The **Yamaha YM2612** is an **FM synthesiser** [@audio-ymwiki] that provides **six FM channels**, where one may play **PCM samples** instead. It operates at one sixth of the 68000 clock and outputs one channel at a time, but it alternates between each channel every four cycles to give the illusion it's generating all six channels at once [@audio-jsgroth]. For this reason, the Yamaha YM2612's sampling rate is **~53 kHz**. Furthermore, it accepts PCM samples with a resolution of **nine bits** [@audio-nukeykt]. Yet, the ninth bit was never officially documented so comercial games only sent 8-bit samples. Apart from that, its bus is only connected to the Z80.
 
-Frequency modulation or 'FM' synthesis is one of many professional techniques used for synthesising sound, it significantly rose in popularity during the 80s and made way to completely new sounds (many of which you can find by listening to the pop hits from that era).
+**Frequency Modulation** or 'FM' synthesis is one of many professional techniques used for producing sound, it significantly rose in popularity during the 80s and made way to completely new sounds (many of which you can find by listening to the pop hits from that era).
 
-In an *incredibly simplified* nutshell, the FM algorithm takes a single waveform (**carrier**) and alters its frequency using another waveform (**modulator**). The result is a new waveform with a different sound. The carrier-modulator combination is called **operator** and multiple operators can be chained together to form the final waveform. Different combinations achieve different results. This chip allows 4 operators per channel.
+In an *incredibly simplified* nutshell, the FM algorithm takes a single waveform (**carrier**) and alters its frequency using another waveform (**modulator**). The result is a new waveform with a different sound. The carrier-modulator combination is called **operator** and multiple operators can be chained together to form the final waveform. Different combinations achieve different results. The YM2612 allows four operators per channel.
 
 Compared to traditional PSG synthesisers, this was a drastic improvement: You were no longer stuck with pre-defined waveforms.
 
@@ -298,7 +297,7 @@ Finally, the resulting analogue signal is sent through the audio output line.
 
 ### The conductor {.tabs-close}
 
-The Z80 is an independent processor by itself, so it needs its own program (stored in the 8 KB of RAM available) to interpret the music data received from the 68000 and effectively manipulate the two sound chips accordingly. This program is called **sequencer** or **driver**.
+The Z80 is an independent processor by itself, so it needs its own program (stored in the 8 KB of RAM available) to interpret the music data received from the 68000 or the cartridge ROM and effectively manipulate the two sound chips accordingly. This program is called **sequencer** or **driver**.
 
 Nevertheless, the basis of sound driver is not limited to the Z80 CPU. While the Z80's memory map suggests this CPU is the **only one** capable of commanding the two audio chips in unison (which may be a relief for the 68000, since the latter is already fed up with other tasks). The Bus Arbiter can still shut down the Z80 to grant the 68000 access to the YM2612 as well [@audio-68kym]. This is not as efficient but it's still another option for programmers to consider. For instance, the first Sonic The Hedgehog implemented its sound driver on the 68000 while later ones offloaded the task to the Z80 [@audio-stealth].
 
