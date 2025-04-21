@@ -63,7 +63,8 @@ Back on topic, the 68k has the role of 'main' CPU and it will be tasked with the
   - The Video Display Processor's registers, ports and DMA.
   - Motherboard's registers (identifies the console).
   - Expansion ports (used for 'future' accessories).
-  - The second CPU's RAM, intermediated by the *bus arbiter*.
+  - The second CPU's RAM, intermediated by a *bus arbiter*.
+  - The Texas Instruments SN76489 (a PSG, acting as the second sound chip).
 
 If you wonder the reason behind using 24-bit addresses in a CPU that can handle 32-bit words: the equipment of that era was hardly asking to manage 4 GB of memory. Given that implementing unused lines is costly in terms of performance and money, Motorola reached a sensible compromise with 32-bit registers and 24 address lines, preparing developers for the arrival of the full 32-bit CPU (the 68020) five years later. 
 
@@ -75,15 +76,15 @@ This principle is called **instruction set orthogonality** and it greatly influe
 
 ### The second banana
 
-There's another CPU fitted in this console, a **Zilog Z80** running at **~3.5 MHz**. This is the same processor previously analyzed in the [Master System's article](master-system#cpu).
+There's another CPU fitted in this console, a **Zilog Z80** running at **~3.5 MHz**. This is the same processor previously analysed in the [Master System's article](master-system#cpu).
 
-The Z80 is mainly used for **sound control**. Thus, its **16-bit address bus** is composed of the following [@cpu-z80map]:
+With the Mega Drive, however, the Z80 was mainly designated for **sound control**. Thus, its **16-bit address bus** is composed of the following [@cpu-z80map]:
 
 - 8 KB of RAM.
-- Two sound chips.
+- The two sound chips available.
 - 68000's RAM (again, handled by the bus arbiter).
 
-Finally, it's important to note that **both CPUs run in parallel**.
+Finally, it's important to note that **both CPUs can run in parallel** (under certain constraints, the next paragraphs explain more).
 
 ### Memory available
 
@@ -95,9 +96,9 @@ Sega chose two independent processors that have **no awareness of each other**, 
 
 ![Memory architecture of the Mega Drive/Genesis.](_diagrams/memory.png){.no-borders}
 
-Because one CPU will have to step in the other's CPU bus and both can't use it at the same time, there's an extra component called **Bus arbiter** that must be activated to stall either processor, so memory can be written without hazards.
+There's one caveat, however: because one CPU will have to step into the other's bus and **both CPUs can't access the same bus at the same time**, there's an extra component called **Bus arbiter** that must be operated to stall either processor, enabling to manipulate memory without any hazards.
 
-It's important to point out that this design can underperform if not managed properly, so games will have to take special care of the bus arbiter and watch for not stalling either CPU for longer than needed.
+It's worth noting that this design can underperform if not managed properly, so games will need to take special care of the bus arbiter and ensure that neither CPU is stalled for longer than necessary.
 
 ## Graphics
 
@@ -231,7 +232,7 @@ H-Blank is called numerous times but is limited to executing short routines. Als
 
 V-Blank allows for longer routines with the drawback of being called only 50 or 60 times per second (depending on the console's region), but it's able to access all memory locations.
 
-Notice that the overscan area in the example exhibits some random coloured dots at the bottom right corner. This is popularly known as **CRAM dots** and what's happening is that the CPU is updating the palettes in CRAM at the same time the VDP is beaming the remaining scan-lines (in the example, this happens during overscan). This conflict makes the VDP fetch whatever value the CPU is writing at that time (as opposed to the required location in CRAM) so the image gets corrupted. However, since in this case the game only updates CRAM at overscan, this anomaly goes unnoticed on traditional CRTs. Other games attempt to update the palettes mid-frame to achieve more colours, with the cost of having to balance the appearance of CRAM dots.
+Notice that the overscan area in the example exhibits some random coloured dots at the bottom right corner. This is popularly known as **CRAM dots** and what's happening is that the CPU is updating the palettes in CRAM at the same time the VDP is beaming the remaining scan-lines (in the example, this happens during overscan). This conflict makes the VDP fetch whatever value the CPU is writing at that time (as opposed to the required location in CRAM) so the image gets corrupted. In this case, the game is only updating CRAM at overscan, so this anomaly goes unnoticed on traditional CRTs. In another level, however, the game changes the palette mid-frame to simulate water effects. Hence, programmers tried to mask it by drawing a flickering water ripple in-between [@audio-sonic_water]. As you can see, it's all about balancing the extra colours with the CRAM side-effect.
 
 ### A dedicated transfer unit {.tabs-close}
 
@@ -247,7 +248,7 @@ The first design of this console (commonly referred to as the 'Model 1') has the
 
 ## Audio
 
-The audio capabilities of this console are a bit unorthodox, to say the least. On one side, the Mega Drive provides existing audio technology from the previous generation, on the other side, it adds a new (but complicated) synthesis technique on top of the existing one. So, in some ways, you get both generations.
+The audio capabilities of this console are a bit unorthodox, to say the least. On one side, the Mega Drive provides existing audio technology from the previous generation. On the other side, it adds a novel (yet complicated) synthesis technique on top of the existing one. So, in some ways, you get both generations simultaneously.
 
 That being said, the Mega Drive houses two sound chips: A **Yamaha YM2612** and a **Texas Instruments SN76489**.
 
@@ -267,37 +268,39 @@ Sonic The Hedgehog (1991).
 
 :::
 
-The **Yamaha YM2612** is an **FM synthesiser** [@audio-ymwiki] that runs at the 68000 speed and supplies **six FM channels**, where one can play **PCM samples** (with 8-bit resolution and 32 kHz sampling rate).
+The **Yamaha YM2612** is an **FM synthesiser** [@audio-ymwiki] that runs at the 68000 speed and supplies **six FM channels**, where one can play **PCM samples** (with 8-bit resolution and 32 kHz sampling rate). Its bus is only connected to the Z80, however.
 
 Frequency modulation or 'FM' synthesis is one of many professional techniques used for synthesising sound, it significantly rose in popularity during the 80s and made way to completely new sounds (many of which you can find by listening to the pop hits from that era).
 
 In an *incredibly simplified* nutshell, the FM algorithm takes a single waveform (**carrier**) and alters its frequency using another waveform (**modulator**). The result is a new waveform with a different sound. The carrier-modulator combination is called **operator** and multiple operators can be chained together to form the final waveform. Different combinations achieve different results. This chip allows 4 operators per channel.
 
-Compared to traditional PSG synthesisers, this was a drastic improvement: You were no longer stuck with *pre-defined* waveforms.
+Compared to traditional PSG synthesisers, this was a drastic improvement: You were no longer stuck with pre-defined waveforms.
 
 #### Texas Instruments SN76489 {.tab}
 
 ![PSG Channels.<br>Sonic The Hedgehog (1991).](psg_single){.tab-float video="true"}
 
-The **Texas Instruments SN76489** is a **PSG chip** that can produce three pulse waves and one noise.
+The **Texas Instruments SN76489** is a **Programmable Sound Generator** (PSG) that can produce three pulse waves and one noise.
 
 This is actually the original Master System's [sound chip](master-system#audio) and it's embedded in the VDP. It runs at the speed of the Z80.
 
-Notice the 'Pulse 3' channel remains unused. This is because the game uses a mode for the noise channel that reserves the third pulse channel for modulation [@audio-sonic], a function featured on the Master System as well.
+Programming the PSG involves writing to a single 8-bit location (called `PSG port` [@audio-plutiedev_psg]), and both CPUs can do so. Behind the scenes, its bus is only connected to the 68000, but the Bus Arbiter will seamlessly handle access whenever the Z80 writes to it.
+
+Notice in this example, the 'Pulse 3' channel remains unused. This is because the game uses a mode for the noise channel that reserves the third pulse channel for modulation [@audio-sonic], a function featured on the Master System as well.
 
 #### Mixed {.tab}
 
 ![All audio channels.<br>Sonic The Hedgehog (1991).](complete){.tab-float video="true"}
 
-Both chips can output sound at the same time, then an extra component called 'audio mixer' is tasked with receiving both signals and mixing them.
+Both chips can output sound at the same time, then an extra component called **Audio Mixer** is tasked with receiving both signals and combining them.
 
-Finally, the resulting analogue signal is sent through the audio output.
+Finally, the resulting analogue signal is sent through the audio output line.
 
 ### The conductor {.tabs-close}
 
-In theory, the Z80's memory map suggests the Z80 is the **only CPU** capable of commanding those two chips (which may be a relief for the 68000 since the latter is already fed up with other tasks). In practice, however, the Z80 can be shut down so the 68000 has access to the YM2612 (but not the SN76489) [@audio-68kym]. So, for simplicity purposes, in this article, we are going to assume audio tasks are designated to the Z80.
+The Z80 is an independent processor by itself, so it needs its own program (stored in the 8 KB of RAM available) to interpret the music data received from the 68000 and effectively manipulate the two sound chips accordingly. This program is called **sequencer** or **driver**.
 
-Moving on, the Z80 is an independent processor by itself, so it needs its own program (stored in the 8 KB of RAM available) to be able to interpret the music data received from the 68000 and effectively manipulate the two sound chips accordingly. This program is called **sequencer** or **driver**.
+Nevertheless, the basis of sound driver is not limited to the Z80 CPU. While the Z80's memory map suggests this CPU is the **only one** capable of commanding the two audio chips in unison (which may be a relief for the 68000, since the latter is already fed up with other tasks). The Bus Arbiter can still shut down the Z80 to grant the 68000 access to the YM2612 as well [@audio-68kym]. This is not as efficient but it's still another option for programmers to consider. For instance, the first Sonic The Hedgehog implemented its sound driver on the 68000 while later ones offloaded the task to the Z80 [@audio-stealth].
 
 ### Cracking sampling
 
@@ -321,11 +324,11 @@ I know they are nowhere near CD-quality (16-bit at 44.1 kHz), but bear in mind t
 
 ### Assisted FM Composition
 
-If programming an FM synthesiser was already considered complicated using the Yamaha DX7's dashboard, imagine the headaches of composing music with only 68k assembly...
+If programming an FM synthesiser was already considered complicated using the Yamaha DX7's dashboard, imagine the headaches of composing music with only 68k/Z80 assembly...
 
 Luckily, Sega later distributed a piece of software for MS-DOS PCs called **GEMS** to facilitate the composition (and debugging) of Mega Drive music [@audio-gst]. It was a very complete tool, among many things it included lots of *patches* (pre-configured operators to choose from), which would also explain why some games have *very* similar sounds.
 
-Moreover, the audio subsystem enabled games to instantiate more channels than allowed and assign each one a **priority value**, then when the console would play the music, it dynamically dispatched the music channels to the available slots based on priorities. Additionally, channels with a high priority but without music could be automatically skipped.
+Moreover, their audio driver enabled games to instantiate more channels than allowed and assign each one a **priority value**, then when the console would play the music, it dynamically dispatched the music channels to the available slots based on priorities. Additionally, channels with a high priority but without music could be automatically skipped.
 
 Channels also contained some **logic** by implementing conditionals inside their data, enabling music to 'evolve' depending on how the player progresses in the game.
 
