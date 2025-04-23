@@ -27,6 +27,6 @@ aliases:
 
 阅读本文最好有基础的计算机知识，不过我也尽力使我的文章显得通俗易懂。所以请不要害怕，读一下试试看！ 如果还是不能看懂，可以先看一下这篇[前置阅读材料](readings)。
 
-虽然我的行文力求准确，但如果您发现任何错误，请[联系我](https://github.com/flipacholas/Architecture-of-consoles)提交更改建议。 最后，如果您喜欢使用电子书阅读器阅读，请查看[电子书版本](ebook)。
+虽然我的行文力求准确，但如果您发现任何错误，请[联系我](https://github.com/flipacholas/Architecture-of-consoles)提交更改建议。 最后，如果您更喜欢离线阅读，也可以选择[多种实体书版本](book)。
 
 无需多言，让我们开始吧！
