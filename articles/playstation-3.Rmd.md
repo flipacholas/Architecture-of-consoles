@@ -30,7 +30,7 @@ top_tabs:
 
 ## A quick introduction
 
-In 2006, Sony unveiled the long-awaited 'next generation' video-game console, a shiny (albeit heavy) machine whose underlying hardware architecture continues the teachings of the [Emotion Engine](playstation-2), that is, focus on vector processing to achieve power, even at the cost of complexity. Meanwhile, their new 'super processor', the Cell Broadband Engine, is conceived during a crisis of innovation and will have to keep up as trends for multimedia services evolve.
+In 2006, Sony unveiled the long-awaited 'next generation' video game console, a shiny (albeit heavy) machine whose underlying hardware architecture continues the teachings of the [Emotion Engine](playstation-2), that is, focus on vector processing to maximise performance, even at the cost of complexity. Meanwhile, their new 'super processor', the Cell Broadband Engine, is conceived during a crisis of innovation and will have to keep up as trends for multimedia services evolve.
 
 This write-up takes a deep look at Sony, IBM, Toshiba and Nvidia's joint project, along with its execution and effect on the industry.
 
@@ -153,7 +153,7 @@ We are going to take a look at the insides of the PPU just now. To recap, we've 
 
 ##### A familiar architecture {.tabs .active}
 
-To start with, the PPU is not built from the ground up but **re-purposes existing PowerPC technology**. However, unlike [previous iterations](gamecube#the-powerpc-gekko) where IBM grabbed an existing processor and half-updated it to meet new requirements, the PPE doesn't succeed any previous CPU design. Instead, IBM constructed a new CPU that follows version 2.02 of the PowerPC specification (which happens to be the last PowerPC spec before being rebranded to 'Power ISA'). To sum up, you won't find the same design of the PPU on any existing chip from that date, yet, it's programmed using the same machine code as in other PowerPC chips.
+To start with, the PPU is not built from the ground up but **re-purposes existing PowerPC technology**. However, unlike [previous iterations](gamecube#the-powerpc-gekko) where IBM grabbed an existing processor and half-updated it to meet new requirements, the PPE doesn't replicate any previous CPU design. Instead, IBM constructed a new CPU that follows version 2.02 of the PowerPC specification (which happens to be the last PowerPC spec before being rebranded to 'Power ISA'). To sum up, you won't find the PPU's design on any existing chip from that time, yet, it's programmed using the same machine code as other PowerPC chips.
 
 That being said, why did IBM choose PowerPC technology to develop a high-performance chip? Simple, PowerPC is a mature platform [@cpu-koranne] that enjoyed ~10 years of Macintosh user-base [testing and revisioning](gamecube#tab-2-2-joining-forces-again), it ticks all the boxes in Sony's list and, if the need arises, it can be adapted to different environments. Last but not least, the use of a well-known architecture is good news for existing compilers and codebases which, for a new console, is a big starting advantage.
 
@@ -226,7 +226,7 @@ Thus, Sony fitted **256 MB of XDR DRAM** on the motherboard... But, again, _what
 
 ![Cell next to the four 64 MB XDR DRAM chips.](cell_mem.jpg){.open-float}
 
-First of all, the type of memory fitted is called **Extreme Data Rate** (XDR). You may recognise XDR DRAM as the successor of the _jinxed_ **RDRAM** found in the [Nintendo 64](nintendo-64) and the [PlayStation 2](playstation-2#a-recognisable-memory-choice). But don't jump to conclusions just yet! 
+First of all, the type of memory fitted is called **Extreme Data Rate** (XDR). You may recognise XDR DRAM as the successor of the _jinxed_ **RDRAM** found in the [Nintendo 64](nintendo-64) and the [PlayStation 2](playstation-2#a-recognisable-memory-choice). But don't jump to conclusions just yet!
 
 Rambus, like any other company, improves upon their inventions. Their third revision (XDR) now operates at octa-rate (four times the rate of its adversary, DDR DRAM) [@cpu-xdr]. Latency doesn't pose an issue anymore, if we take a look at one of its manufacturers' data-sheets, XDR's latency is reported between 28 ns and 36 ns [@cpu-k4y5016, p. 2], almost [10 times faster](nintendo-64#memory-design) than the first-generation RDRAM chips.
 
@@ -498,13 +498,13 @@ Gone are the days of console-proprietary video sockets and dozens of analogue si
 
 ![Back of the PS3, HDMI output on the left side and at the other extreme there's the old Multi A/V for analogue video out.](cecha/back.jpg){.open-float}
 
-The HDMI connector is made of 19 pins [@graphics-hdmi_wiki], all in a single socket. It transfers a digital signal, meaning that the picture and audio are broadcast using discrete zeroes and ones (and not a range of continous values found in analogue signals). Consequently, it doesn't suffer from the interference or image degradation that previous equipment did, such as screen artefacts produced by cheap SCART cables.
+The HDMI connector is made of 19 pins [@graphics-hdmi_wiki], all in a single socket. It transfers a digital signal, meaning that the picture and audio are broadcast using discrete zeroes and ones (and not a range of continuous values found in analogue signals). Consequently, it doesn't suffer from the interference or image degradation that previous equipment did, such as screen artefacts produced by cheap SCART cables.
 
 To this day, the HDMI protocol is continuously being revised [@graphics-hdmi_spec], with new versions of the specification offering more features (i.e. larger image resolution, refresh rate, alternative colour spaces, etc) while retaining the same physical medium for backwards compatibility.
 
 {.close-float}
 
-Throughout the PS3 lifecycle, Sony added certain HDMI features of new revisions into the PS3 through software updates [@graphics-hdmi_dev]. The last protocol compatible with the PS3 is version 1.4, most notably bringing support for '3D television', though other capabilities such as higher video resolutions stayed capped at **1920x1080 pixels** (and even so most games rendered their frame-buffer at 1280x720 pixels).
+Throughout the PS3 lifecycle, Sony added certain HDMI features of new revisions to the PS3 through software updates [@graphics-hdmi_dev]. The last protocol compatible with the PS3 is version 1.4, which most notably brought support for '3D television'. Although, other capabilities, such as higher video resolutions, remained capped at **1920x1080 pixels**, with most games rendering their frame buffers at just 1280x720 pixels.
 
 ### 'Real' 3D vision/projection
 
@@ -536,7 +536,7 @@ Furthermore, the southbridge implements encryption algorithms to protect the com
 
 ![Diagram of the Southbridge's connections.](_diagrams/southbridge.webp)
 
-Overall, Southbridge embeds an enormous amount of interfaces, this has to do with the fact this console was designed during the 'multimedia hub' trend. It's not enough for video-game consoles to play games, but they also need to become DVD and Blu-ray players, set-top boxes (partially), photo viewers (by importing the camera's photos using the multi-card reader) and possibly more as the needs evolve (thanks to its updatable operating system).
+Overall, Southbridge embeds an enormous amount of interfaces, this has to do with the fact this console was designed during the 'multimedia hub' trend. It's not enough for video game consoles to play games, but they also need to become DVD and Blu-ray players, set-top boxes (partially), photo viewers (by importing the camera's photos using the multi-card reader) and possibly more as the needs evolve (thanks to its updatable operating system).
 
 ### External interfaces
 
@@ -591,7 +591,7 @@ As if wasn't enough, PS1 games can run as well, this time without needing to emb
 
 #### The strange end of terms
 
-Throughout the lifecycle of the PS3, Sony slowly trimmed PS2-only chips from the PS3 motherboard to the point backwards compatibility was solely software-emulated (with greater limitations, such as only running PS2 games purchased from their online store). Because Sony never replaced the PS2 chipset (like it previously did with the PS1 hardware inside the PS2), it makes you wonder about the technical and executive rationale behind this. Well, as a case study, here's my quick opinion about the reasons for this:
+Throughout the lifecycle of the PS3, Sony slowly trimmed PS2-only chips from the PS3 motherboard to the point backwards compatibility was solely software-emulated (with greater limitations, such as only running PS2 games purchased from their online store). Because Sony never replaced the PS2 chipset (as it had previously done with the PS1 hardware inside the PS2), it makes you wonder about the technical and executive rationale behind this. Well, as a case study, here's my quick opinion about the reasons for this:
 
 - **Timing**: Sony likely intended PS2 owners to buy their new product as a replacement of their current one, as this is more affordable for consumers (they can sell their old system). However, for some reason, Sony didn't have a software emulator prepared before release day, so they initially resorted to adding extra chips. Later on, as the software emulation progressed satisfactorily, they slowly removed these in further motherboard revisions.
   - To complement this, developer 'M4j0r' commented: "An interesting point might be that Sony developed the two hardware emulation revisions at the same time (EE/GS and GS only), I guess because some games run better depending on which you use." [@operating_system-psxplace].
@@ -633,7 +633,7 @@ Sony's operating system, which I'm going to describe in the following paragraphs
 
 As I said before, the OS is quite complex. So, to be able to follow this section without too much trouble, we can divide the type of files we'll find in the operating system of this console into different layers:
 
-- **Loaders**: to make a long story short, programs/binaries in this console are systematically encrypted. So, 'Loaders' are programs that execute 'real' programs. To put it in another way, Loaders grab binaries, decrypt them, check their authenticity and finally send them to the respective processor (the PPE or either SPE) for execution. If that doesn't sound complicated, Loaders are chained together to protect the software even further. Finally, Loaders are found across many mediums.
+- **Loaders**: to make a long story short, programs/binaries in this console are systematically encrypted. So, 'Loaders' are programs that execute 'real' programs. To put it in another way, Loaders grab binaries, decrypt them, check their authenticity and finally send them to the respective processor (the PPE or either SPE) for execution. If that doesn't sound complicated, Loaders are chained together to protect the software even further. Finally, Loaders are found across many media.
   - Some Loaders are updated by Sony (through software updates) while others can't be changed. This is independent of whether they are installed in re-writable storage, as some loaders are encrypted using console-specific keys, so they can't be altered after the console leaves the factory (at least through traditional means).
 - **System files**: these comprise low-level binaries (executed through Loaders), metadata for organising the hardware, utilities and other assets (i.e. fonts, imagery). Just like Loaders, there are console-specific system files that cannot be replaced or autogenerated.
   - Some binaries borrowed code from the Free BSD and NetBSD projects [@operating_system-opensource].
@@ -644,21 +644,21 @@ As I said before, the OS is quite complex. So, to be able to follow this section
 
 Generally speaking, the PS3's OS is designed with the same modular approach as the PSP. To recall the previous article, the OS is made of multiple **modules**. These may serve the user (like a game or app) or reside in memory indefinitely to serve other modules (in the form of system calls and/or drivers). Some modules have more privilege access than others (kernel module vs. user module).
 
-![Diagram showing how the components of the PlayStation operating system fit in Cell's privilege levels.<br>References to 'OtherOS' are further explained in the next sections.](_diagrams/os_levels.webp)
+![Diagram showing how the components of the PlayStation operating system fit in Cell's privilege levels.<br>References to 'OtherOS' are explained further in the next sections.](_diagrams/os_levels.webp)
 
-The operating system, throughout its lifecycle, will call upon many modules with different privileges. Sony constructed its OS so modules will run under Cell's three privilege levels:
+The operating system, throughout its lifecycle, will call upon many modules with different privileges. Sony constructed its OS so that modules run under Cell's three privilege levels:
 
-- **Level 1**: here is where a **Hypervisor** programmed by Sony resides. Also referred to as `lv1`, this program is the door to every single bit of this console and chained to exceptions triggered by the MMU. That being said, the hypervisor only accepts requests by programs authorised by Sony (residing in the next privilege level). While the Hypervisor resides in memory, it also provides low-level system calls and FAT16 filesystem support.
-- **Level 2**: naturally reserved for the **Kernel**, a privileged program also named `lv2` or 'Supervisor'. The kernel abstracts the hypervisor so level 3 programs don't have direct interaction with it. The Kernel provides multi-threading functions for both PPU and SPU. Ultimately, the Kernel bootstraps user-land modules.
-- **Level 3**: the rest of the programs (called user-land/userspace), including **games** and the **visual shell**, run at this level. These _plebs_ are under the will of the Kernel to communicate with the console's hardware and they cannot spawn any new process/program unilaterally.
+- **Level 1**: here is where a **Hypervisor** programmed by Sony resides. Also referred to as `lv1`, this program is the door to every single bit of this console and chained to exceptions triggered by the MMU. That being said, the hypervisor only accepts requests from programs authorised by Sony (residing in the next privilege level). While the Hypervisor resides in memory, it also provides low-level system calls and FAT16 filesystem support.
+- **Level 2**: naturally reserved for the **Kernel**, a privileged program also named `lv2` or 'Supervisor'. The kernel abstracts the hypervisor so level 3 programs don't interact with it directly. The Kernel provides multi-threading functions for both PPU and SPU. Ultimately, the Kernel bootstraps userland modules.
+- **Level 3**: the rest of the programs (called userland or userspace), including **games** and the **visual shell**, run at this level. These _plebs_ are under the will of the Kernel to communicate with the console's hardware and cannot spawn any new process or program unilaterally.
 
 ### Storage medium
 
-With all being said, where is all this data stored? From the general user perspective, there are only two visible mediums: Blu-ray discs for games and a Hard Disk for saves. Well, there are a few more, so we are now going to take a look at every one of them!
+With all being said, where is all this data stored? From a general user's perspective, there are only two visible media: Blu-ray discs for games and a Hard Disk for saves. Well, there are a few more, so we will now examine every one of them!
 
 #### Cell BootROM {.tabs .active}
 
-It turns out, within Cell there's a small ROM hidden somewhere that manufacturers may store a 'protected' boot-loader. IBM provides this space to save any company (not just Sony) from having to manually implement [tailored obfuscation methods](xbox#system-protection) to protect their boot code, as off-the-shelf components are not always prepared for bespoken needs.
+It turns out, within Cell there's a small ROM hidden somewhere that manufacturers may store a 'protected' boot-loader. IBM provides this space to spare any company (not just Sony) from having to manually implement [tailored obfuscation methods](xbox#system-protection) to protect their boot code, as off-the-shelf components are not always prepared for bespoken needs.
 
 Since this piece is already physically protected with obfuscation, it doesn't have to be encrypted. Thus, it's ideal for a first-stage boot-loader (which can't be encrypted) and the PlayStation 3 stores its early boot stage there.
 
@@ -672,7 +672,7 @@ Remember about those **256 MB of NAND flash** I briefly mentioned before? Well, 
 - **Unique IDs**: similar to the [PSP's IDStorage](playstation-portable#tab-2-2-kernelipl), these are used by the console to control secured hardware like the Blu-ray drive; or by Sony to authenticate the console with their online servers (i.e. the IDPS key).
 - **Security assets**: some programs depend on them to perform security operations. For instance, Blu-ray movies with DRM check a block called Virtual Table Rights Management (VTRM). Sony also stores **revocation tools and records** to blacklist security certificates that have been compromised in the past.
 
-Due to their larger size, models with NAND Flash also store the remaining part of the OS (called **GameOS** or `devflash`). This includes:
+Due to their larger size, models with NAND Flash also store the remainder of the OS (called **GameOS** or `devflash`). This includes:
 
 - The **Visual Shell** (VSH): a continuation of the [PSP's signature interface](playstation-portable#visual-shell), it's also bundled with tons of modules (plugins) and assets.
 - **Emulators**: aforementioned programs that enable a PS3 to run PS1, PS2 or PSP games. The specific PS2 emulator loaded depends on the console revision (whether it has full PS2 hardware, partial hardware or uses no PS2 hardware whatsoever).
@@ -692,7 +692,7 @@ The debuting 2.5-inch Hard drive, ranging between 20 GB and 500 GB (as more revi
 
 NOR systems, however, also store GameOS in the HDD. As a consequence, whenever the user swaps out the hard drive, the console asks for an update file to re-install GameOS into the disk. Be as it may, neither NOR nor NAND systems will boot without the hard disk.
 
-Certain user data can be backed up using a USB stick and then moved to another console if needed, though this process re-formats the newer console before copying the old data.
+Certain user data can be backed up using a USB stick and then moved to another console if necessary, though this process re-formats the newer console before copying the old data.
 
 #### eMMC {.tab}
 
@@ -704,7 +704,7 @@ Curiously enough, if the user decides to fit a Hard Drive into the eMMC model, t
 
 ### Boot process {.tabs-close}
 
-Alright, using all the previous knowledge, you are going to learn now how the system boots up - and let me tell you, it's pretty complicated. The reason is simple: Sony doesn't want you fiddling with their hardware or software, so they built many layers of obfuscation and encryption to prevent you from breaking in and side-loading your own code (and hopefully _give up and keep buying games/movies/whatever_) but, as history will tell you, the opposite happened.
+All right, using all the previous knowledge, you are going to learn now how the system boots up - and let me tell you, it's pretty complicated. The reason is simple: Sony doesn't want you fiddling with their hardware or software, so they built many layers of obfuscation and encryption to prevent you from breaking in and side-loading your own code (and hopefully _give up and keep buying games/movies/whatever_) but, as history will tell you, the opposite happened.
 
 In the following section, I'm going to describe what this console does once you push the power button. Note that this process only drastically changed once (after hackers cracked it). So, for simplicity purposes, we'll start with the 'original' boot process (implemented before system version `3.60`)[@operating_system-levin] [@operating_system-boot] [@operating_system-the_exploit]:
 
@@ -722,7 +722,7 @@ The PPU, having loaded `vsh`, grants the user control through a graphical user i
 
 #### Revisioned boot process
 
-In March 2011, a hacker known by the name 'GeoHot' broke the security of `metldr`, thereby compromising the authenticity of subsequent loaders. Thus, Sony retaliated by issuing security updates in their hardware and software. These fixes are further discussed in the 'Anti-piracy' section of this article.
+In March 2011, a hacker known by the name 'GeoHot' broke the security of `metldr`, thereby compromising the authenticity of subsequent loaders. Thus, Sony retaliated by issuing security updates for both their hardware and software. These fixes are further discussed in the 'Anti-piracy' section of this article.
 
 ### Visual Shell
 
@@ -786,7 +786,7 @@ At the time of this writing, developer René Rebe is currently implementing prop
 
 For the final part of this long section, let's talk about the updatability capabilities of GameOS.
 
-In a nutshell, just like the [PSP](playstation-portable#updatability), Sony distributed `PS3UPDAT.PUP` files which packages all the new OS binaries. Due to the console's security system, only those files which aren't secured with unique console keys and are stored in re-writable storage (Flash, Hard drive, eMMC) are updatable, the rest must stay as it is.
+In a nutshell, just like the [PSP](playstation-portable#updatability), Sony distributed `PS3UPDAT.PUP` files that package all the new OS binaries. Due to the console's security system, only those files which aren't secured with unique console keys and are stored in re-writable storage (Flash, Hard drive, eMMC) are updatable, the rest must stay as it is.
 
 PUP files were distributed through Sony's official website, the XMB update assistant or found in the contents of a game disc (all games embed a PUP file, reflecting the SDK version developed for). Since models with NAND Flash contain only 256 MB of space and store the whole OS there, Sony never released update files with sizes higher than 256 MB.
 
@@ -830,7 +830,7 @@ New generation = new medium. As the advantages of DVD start to wear down and its
 
 The Blu-ray, as the name indicates, is a new optical disc format that delivered higher storage density thanks to the use of **blue light diodes** [@games-brit], as opposed to red diodes used with DVDs. Since blue light has a shorter wavelength than red light, more information ([pits and lands](playstation#anti-piracy--region-lock)) can be squashed together in the same space [@games-blue_laser]. As a result, Blu-ray discs provide a surprisingly large capacity (between 25 GB and 50 GB!) using the same plastic disc with the same dimensions as the CD/DVD.
 
-The Blu-ray data format responds to many needs by different industries: high definition film, digital rights management (DRM), region locking, a new file system and even a runtime environment for Java programs [@games-bdj]. In the case of the video-game industry, retail games for PlayStation 3 were distributed in **25 GB or 50 GB** Blu-ray discs with **copy protection**. These are read by a 2x drive reaching speeds of up to 8.58 MB/sec [@io-bd_rev], though the PS3's laser can also read DVDs (at 8x speed) and CDs (at 24x speed) to play old games and movies.
+The Blu-ray data format responds to many needs by different industries: high definition film, digital rights management (DRM), region locking, a new file system and even a runtime environment for Java programs [@games-bdj]. In the case of the video game industry, retail games for PlayStation 3 were distributed in **25 GB or 50 GB** Blu-ray discs with **copy protection**. These are read by a 2x drive reaching speeds of up to 8.58 MB/sec [@io-bd_rev], though the PS3's laser can also read DVDs (at 8x speed) and CDs (at 24x speed) to play old games and movies.
 
 While launch titles execute from the disc, later games copied part of their assets to the Hard Drive to increase reading speeds. Nevertheless, the game disc is always needed to kickstart the game.
 
@@ -982,7 +982,7 @@ PS3Xploit's main payload replicates the job of a hardware downgrader (patching C
 1. The starting point is the XMB's internet browser, built on top of WebKit. PS3Xploit uses JavaScript to gain **arbitrary code execution within the system's userspace** (and outside JavaScript's environment). To kickstart this, users only have to open XMB's native web browser, enter an URL pointing to the PS3Xploit's host an let it do its job.
 2. It so happens the kernel provides system calls that can be used to **overwrite the operating system's files in Flash memory**. On top of this, the Visual Shell (XMB) and its plugins store routines in memory that make use of those calls.
 3. PS3Xploit can't trigger those system calls directly due to the Hypervisor's 'no-execute' protection, preventing the exploit from loading new code in userland. However, it can find a way to overwrite Flash memory by 'borrowing' Visual Shell's routines.
-4. Consequently, PS3Xploit proceeds to modify Webkit's execution stack to redirect execution to Visual Shell's routines. This type of technique (corrupting the stack to deviate execution to other code residing in memory) is called **Return Oriented Programming** (ROP) and it's very popular in the InfoSec genre. One way of mitigating this is by implementing **Address space layout randomisation** (ASLR), which makes it difficult to guess the location of the routines (called _gadgets_) but, as you can guess, Sony's hypervisor lacks of ASLR.
+4. Consequently, PS3Xploit proceeds to modify Webkit's execution stack to redirect execution to Visual Shell's routines. This type of technique (corrupting the stack to deviate execution to other code residing in memory) is called **Return Oriented Programming** (ROP) and it's very popular in the InfoSec genre. One way of mitigating this is by implementing **Address space layout randomisation** (ASLR), which makes it difficult to guess the location of the routines (called _gadgets_) but, as you can guess, Sony's hypervisor lacks ASLR.
 5. Finally, those system calls are triggered with PS3Xploit's parameters and so they replace CoreOS files (the first part of the operating system, stored in Flash memory) with patched ones [@anti_piracy-flash_writer].
 6. The console is now able to install unofficial software updates, an opportunity the user can now _exploit_ to install a custom firmware. However, it can't downgrade the system version, yet, but once an up-to-date CFW is installed, the user can install further utilities to downgrade the system and install a better-equipped CFW, if so wants.
 

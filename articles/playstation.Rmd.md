@@ -58,7 +58,7 @@ All of these processors had something in common: They followed the **Reduced Ins
 
 #### MIPS and Sony {.tab}
 
-![The SGI Iris 4D/80, a beefy graphics workstation with a twin-tower design. The 4D series inaugurated the MIPS CPU in SGI computers and this particular model bundles the R2000 [@cpu-iris]. I took this photo at the Computer History Museum (San Jose, California), during my visit in June 2019.](irix.webp){.tab-float}
+![The SGI Iris 4D/80, a beefy graphics workstation with a twin-tower design. The 4D series inaugurated the MIPS CPU in SGI computers and this particular model bundles the R2000 [@cpu-iris]. I took this photo at the Computer History Museum (Mountain View, California), during my visit in June 2019.](irix.webp){.tab-float}
 
 **MIPS Computer Systems** originated from the eagerness of its founders (Stanford faculty) to turn their research into physical processors, something that Silicon Valley-based venture capitalists in the 80s were also anxious to invest in [@cpu-chm_mips]. Their debuting CPU, the 'MIPS R2000', is considered the first commercial CPU to incorporate a RISC design; and it found a space in many UNIX workstations.
 

@@ -33,29 +33,29 @@ top_tabs:
 
 ## A quick introduction
 
-Released a year before its main competitor, the Xbox 360 was already claiming technological superiority against the yet-to-be-seen PlayStation 3. But while the Xbox 360 might be the flagship of the 7th generation, it will need to fight strongly once Nintendo and Sony take up retail space.
+Released a year before its main competitor, the Xbox 360 was already claiming technological superiority over the yet-to-be-seen PlayStation 3. But while the Xbox 360 might be the flagship of the 7th generation, it will need to fight strongly once Nintendo and Sony take up retail space.
 
-This new entry of the [console architecture series](consoles) will give you an additional perspective of how technology was envisioned during the early naughties, with emphasis on the emerging 'multi-core' processor and unorthodox symbiosis between components, all of which enabled engineers to tackle unsolvable challenges with cost-effective solutions.
+This new entry in the [console architecture series](consoles) will give you an additional perspective on how technology was envisioned during the early naughties, with emphasis on the emerging 'multi-core' processor and unorthodox symbiosis between components, all of which enabled engineers to tackle unsolvable challenges with cost-effective solutions.
 
 ### Highly recommended pre-reading
 
-The first section of this writing (titled 'CPU') makes recurring references to IBM and Sony's joint venture, Cell. If you don't know about that component, I highly suggest that you read [my previous article about the PS3](playstation-3) beforehand. The latter is written as if the Xbox 360 never existed, this was intentional to avoid confusing the reader with circular references. Hence, the new article completes the timeline by adding Xbox 360 into the mix.
+The first section of this writing (titled 'CPU') makes recurring references to IBM and Sony's joint venture, Cell. If you don't know about that component, I highly suggest that you read [my previous article about the PS3](playstation-3) beforehand, the latter is written as if the Xbox 360 never existed. This was intentional to avoid confusing the reader with circular references. Hence, the new article completes the timeline by adding Xbox 360 into the mix.
 
 For those who are already familiar with the PS3's architecture, I've structured this study similar to the PS3 article, so you'll be able to compare both side-by-side objectively if you choose to do so.
 
 ### Personal video introduction
 
-Because this article is way longer than my previous ones, I also made a quick video where I (attempt to) present this article and give you an idea of the content you will find. [You can watch it here](https://youtu.be/uZXHQT3NRss). It's my first 'personal introduction' so you'll have to forgive my occasional fillers :)
+Because this article is way longer than my previous ones, I also made a quick video where I (attempt to) present this article and give you an idea of the content you will find. [You can watch it here](https://youtu.be/uZXHQT3NRss). It's my first 'personal introduction', so you'll have to forgive my occasional fillers!
 
 ## {.supporting-imagery}
 
 ## CPU
 
-Once again, we find ourselves with a new type of CPU that is unlike anything seen on the store shelves. After all, this is another 7th-generation console that reflects an obsessive need for innovation, a peculiar trait of that era.
+Once again, we find ourselves with a new type of CPU that is unlike anything seen on the store shelves. After all, this is another 7th-generation console that reflects an obsessive need for innovation, a peculiar trait during that era.
 
 ### Introduction
 
-Before we discuss the architecture, I'll start with a bit of history to bring you up to speed. The following paragraphs focus on the business aspect of the Xbox 360's CPU, whose sequence of events you may find amusing, to say the least.
+Before we discuss the architecture, I'll start with a bit of history to bring you up-to-speed. The following paragraphs focus on the business aspect of the Xbox 360's CPU, whose sequence of events you may find amusing, to say the least.
 
 I'll try to keep it short so we can focus on the main topics of [this series](consoles), but if in the end, you are interested in more, you may enjoy a book called 'The Race For A New Game Machine' which is written by the former executives at IBM.
 
@@ -67,9 +67,9 @@ After enjoying the surprising success of the [original Xbox](xbox), it was time 
 
 To put things in context, back when the original Xbox project was still at an early stage, neither Intel nor Nvidia were willing to share their intellectual property with Microsoft. This decision limited Microsoft's capacity to mould Nvidia's or Intel's chips for the specific needs of the Xbox. 
 
-For instance, the security subsystem that protected the console against the execution of unauthorised code was implemented outside these two critical chips. This made it vulnerable to [snooping attacks](xbox#tab-5-2-bootstrap-search) that eventually paved way for the execution of Homebrew and piracy. Moreover, Microsoft did not control the manufacturing stage either, so the production of Xbox consoles was at the mercy of Intel's and Nvidia's supply.
+For instance, the security subsystem that protected the console against the execution of unauthorised code was implemented outside these two critical chips. This made it vulnerable to [snooping attacks](xbox#tab-5-2-bootstrap-search) that eventually paved way for the execution of Homebrew and piracy. Moreover, Microsoft did not control the manufacturing stage either, so the production of Xbox systems was at the mercy of Intel's and Nvidia's supply.
 
-Well, now that Microsoft has gained more leverage in the console market, they aren't willing to give away those rights anymore.
+Well, now that Microsoft had gained more leverage in the console market, they weren't willing to give away those rights anymore.
 
 #### Sharing common problems {.tab}
 
@@ -87,7 +87,7 @@ Thus, Microsoft began meeting with Intel, though the talks didn't last long, as 
 
 #### Resentful old friends {.tab}
 
-![An IBM PC that I found in the Computer History Museum (San Jose, California), during my visit in June 2019. For some reason, they don't allow you to use it...](photos/ibm_pc.jpeg){.tab-float}
+![An IBM PC that I found in the Computer History Museum (Mountain View, California), during my visit in June 2019. For some reason, they don't allow you to use it...](photos/ibm_pc.jpeg){.tab-float}
 
 It so happened that one of the potential candidates for Microsoft was none other than IBM. Maybe I watched too many dramatic documentaries, but I always pictured the two as the kind of passive-aggressive 'friends' who only smile at each other if they are among other people.
 
@@ -102,7 +102,7 @@ When Microsoft approached IBM for a new _frictionless_ venture, IBM was already 
 
 #### The new CPU partner {.tabs-close}
 
-In a turn of events, IBM agreed to share its IP and to design a new multi-core processor, and so the **Xbox 360's CPU supplier became IBM**. Although, [you may remember](playstation-3#tab-1-1-the-state-of-progress) this was the same IBM that already signed an agreement with Sony and Toshiba to produce the PlayStation's 3 CPU ('Cell'). Apparently, IBM assumed Microsoft was not aware of the Cell project [@cpu-alexander] and their current contract with Sony didn't forbid them to sell to third parties.
+In a turn of events, IBM agreed to share its IP and to design a new multi-core processor, and so the **Xbox 360's CPU supplier became IBM**. Although, [you may remember](playstation-3#tab-1-1-the-state-of-progress) this was the same IBM that already signed an agreement with Sony and Toshiba to produce the PlayStation's 3 CPU ('Cell'). Apparently, IBM assumed Microsoft was not aware of the Cell project [@cpu-alexander], and their current contract with Sony did not forbid them from selling to third parties.
 
 > All three companies [IBM, Toshiba and Sony]... legally all had rights to go and put any of that technology, any of those processor cores into other spaces. (...) It is very common to develop an interesting, leading-edge new technology and then utilize that technology across multiple platforms. (...) I guess what everyone didn't anticipate was -- before we even got done with the Cell chip and PS3 product -- that **we'd be showing this off specifically to a competitor**. [@cpu-alexander]
 >
@@ -159,7 +159,7 @@ To explain the aforementioned groups, I've organised the study of Xenon into the
 
 ### Inside Xenon: The messenger
 
-The original chip (Cell) was required to house **twelve** independent nodes actively moving data around, this forced IBM engineers to devise a complicated system that could tackle emerging bottlenecks, which materialised in the form of the [Element Interconnect Bus](playstation-3#inside-cell-the-heart) (EIB). With the Xbox 360, Xenon only accommodates three units (the three PPEs), so the EIB has no purpose here. Thus, a simpler solution called **XBAR** was produced to solely focus on the three PPEs, with space for extra functionality.
+The original chip (Cell) was required to house **twelve** independent nodes actively moving data around, this forced IBM engineers to devise a complicated system that could tackle emerging bottlenecks, which materialised in the form of the [Element Interconnect Bus](playstation-3#inside-cell-the-heart) (EIB). With the Xbox 360, Xenon only accommodates three units (the three PPEs), so the EIB has no purpose here. Thus, a simpler solution called **XBAR** was produced to focus solely on the three PPEs, with space for extra functionality.
 
 XBAR relies on a **mesh topology** that doesn't direct traffic in a token-style manner. Instead, each node is provided with a dedicated lane to move its data through [@cpu-brown]. This may appear more optimal than the token topology of the EIB, but that's because the XBAR only needs to serve a small number of nodes. Furthermore, the XBAR operates at full speed (**3.2 GHz**).
 
@@ -219,7 +219,7 @@ In the end, Microsoft purged `xdcbt` from the compiler due to its non-determinis
 
 #### Revisiting old paradigms
 
-There's a recurring subject found in noteworthy writings from 2005 like 'Inside the Xbox 360' by Jon Stokes [@cpu-stokes] or 'Understanding the Cell Microprocessor' by Anand Lal Shimpi [@cpu-shimpi], and that is the **lack of out-of-order execution** that once debuted in early PowerPC chips like Gekko, but for some reason is completely absent in Cell & Xenon. If you recall from the [GameCube article](gamecube#the-powerpc-gekko) (which I wrote two years ago), Gekko is an out-of-order CPU, meaning it's able to analyse the instruction stream as instructions come in, and subsequently re-order them to better distribute the load of Gekko's internal units.
+There's a recurring subject found in noteworthy writings from 2005 like 'Inside the Xbox 360' by Jon Stokes [@cpu-stokes] or 'Understanding the Cell Microprocessor' by Anand Lal Shimpi [@cpu-shimpi], and that is the **lack of out-of-order execution** that once debuted in early PowerPC chips like Gekko, but for some reason is completely absent in Cell & Xenon. If you recall from the [GameCube article](gamecube#the-powerpc-gekko) (which I wrote two years ago), Gekko is an out-of-order CPU, meaning it's able to analyse the instruction stream as instructions come in, and subsequently reorder them to better distribute the load on Gekko's internal units.
 
 By then, CPU cores employing out-of-order execution were in the order of the day (_pun intended_). IBM's PowerPC 604 (1994) brought it to high-end Macintosh computers, Intel's P6 (1995) introduced it to the x86 line and MIPS implemented it with the R10000 (1996) CPU, a successor of the R4000 (found on the [Nintendo 64](nintendo-64#cpu)). Afterwards, all of a sudden, Cell and Xenon arrive with an in-order execution style... _care to explain_?
 
@@ -269,7 +269,7 @@ From the programming perspective, a CPU that's made of multiple homogeneous core
 
 SMP programming abstracts access to physical CPU cores with the use of 'virtual threads'. A virtual thread is a sequence of instructions the programmer defines. Threads can then be submitted to a 'scheduler' for their execution. The scheduler is another program (often part of the operating system) that handles how virtual threads are dispatched to the physical CPU cores.
 
-This abstraction layer allows the programmer to avoid discriminating the type of core used (therefore making the program **cross-compatible** with similar platforms) and hard-coding the number of cores (making it **scalable**).
+This abstraction layer allows the programmer to avoid discriminating against the type of core used (therefore making the program **cross-compatible** with similar platforms) and hard-coding the number of cores (making it **scalable**).
 
 ![Representation of the multi-threading paradigm on Xenon. A program may create n-threads (two in this example), and then the operating system's scheduler takes care of dispatching the threads to physical cores. Bear in mind, the operating system also runs as a thread.](_diagrams/cpu/programming.webp)
 
@@ -297,7 +297,7 @@ Example of Xbox 360 games. All rendered at their maximum resolution (1280x720 pi
 
 :::
 
-The graphics chip is designed and manufactured by no other than **ATI**, [Nvidia](playstation-3#graphics)'s direct rival. To put it into perspective, a new company called 'ArtX' was set up by former employers of SGI that developed the Nintendo 64's graphics chip, the [Reality Co-Processor](nintendo-64#graphics). Afterwards, Nintendo hired them again to produce the GameCube's [Flipper](gamecube#graphics) chip... at the same time ATI was in the process of acquiring them [@graphics-ati_merger]. By then, ATI was competing in the PC arena with their 'ATI Rage' graphics cards and will soon inherit Flipper's engineers. Fast forward to 2005, Nvidia (now supplying Sony) was now facing ATI again in the console market.
+The graphics chip is designed and manufactured by no other than **ATI**, [Nvidia](playstation-3#graphics)'s direct rival. To put it into perspective, a new company called 'ArtX' was set up by former SGI employees who developed the Nintendo 64's graphics chip, the [Reality Co-Processor](nintendo-64#graphics). Afterwards, Nintendo hired them again to produce the GameCube's [Flipper](gamecube#graphics) chip... at the same time ATI was in the process of acquiring them [@graphics-ati_merger]. By then, ATI was competing in the PC arena with their 'ATI Rage' graphics cards and will soon inherit Flipper's engineers. Fast forward to 2005, Nvidia (now supplying Sony) was now facing ATI again in the console market.
 
 _Good old competition_, one can only wonder what new innovative product will come out of it.
 
@@ -482,33 +482,33 @@ Even though the video encoder can broadcast signals in a multitude of formats, i
 - The general consensus from 2005 predicted that most consumer TVs will soon be equipped with high-resolution and widescreen screens.
 - Since it would take time to master Xenos' capabilities, launch titles were assumed to not use all of the GPU resources. Thus, games painlessly added HD support to compensate.
 
-With the same rationale, why is not 1080p the focus instead? Well, 1080p puts a significantly higher workload on Xenos, which limits effects like anti-aliasing. Instead, Microsoft suggested developers should render at 720p and direct the internal video scaler to upscale it to 1080p, if required. To assist with this, Microsoft released another software update in October 2006 to enable 1080p (initially, only 1080i had been available).
+With the same rationale, why is 1080p not the focus instead? Well, 1080p puts a significantly higher workload on Xenos, which limits effects like anti-aliasing. Instead, Microsoft suggested developers to render at 720p and direct the internal video scaler to upscale the frame to 1080p, if required. To assist with this, Microsoft released another software update in October 2006 to enable 1080p output (initially, only 1080i had been available).
 
 ## Audio
 
-As CPUs evolve to become multi-core jack of all trades, the grounds for housing dedicated audio hardware slowly dissipates. In the end, Microsoft decided that the Xbox 360's audio department would be the responsibility of the CPU, and as such, the **audio pipeline is implemented through software**. So, the operating system provides routines which games access through the official SDK. This brings in new advantages, as the general-purpose capabilities of CPUs are not restricted to a fixed set of audio functions.
+As CPUs evolved to become multi-core jack of all trades, the grounds for housing dedicated audio hardware slowly dissipated. In the end, Microsoft decided that the Xbox 360's audio department would be the responsibility of the CPU, and as such, the **audio pipeline was implemented through software**. So, the operating system provides routines which games access through the official SDK. This brings in new advantages, as the general-purpose capabilities of CPUs are not restricted to a fixed set of audio functions.
 
-A year later, the PS3 will [follow suit](playstation-3#audio), and thus cement this practice across the video game industry.
+A year later, the PS3 would [follow suit](playstation-3#audio), and thus cement this practice across the video game industry.
 
 ### The hidden audio chip
 
-Conversely, in the case of the Xbox 360, we find a huge exception to this rule: Microsoft fitted a **hardware audio decoder** on the motherboard [@cpu-andrews]. Although this circuit is hidden within the Southbridge chip (explained further in the 'I/O' section) and it only supports one codec called **Xbox Media Audio** (XMA). The latter is a variant of Microsoft's proprietary **Windows Media Audio** (WMA), which you may have heard about already. In any case, why was that codec so crucial that Microsoft invested extra hardware in a console already facing budget cuts?
+Conversely, in the case of the Xbox 360, we find a huge exception to this rule: Microsoft fitted a **hardware audio decoder** on the motherboard [@cpu-andrews]. Although, this circuit is hidden within the Southbridge chip (explained further in the 'I/O' section) and it only supports one codec called **Xbox Media Audio** (XMA). The latter is a variant of Microsoft's proprietary **Windows Media Audio** (WMA), which you may have heard about already. In any case, why was that codec so crucial that Microsoft invested extra hardware in a console already facing budget cuts?
 
 #### A codec-rich industry {.tabs .active}
 
 ![Windows Media Player 6, released in 1999. This was Microsoft's weapon against its contemporaries, namely QuickTime, Winamp and so forth.](screenshots/windows/media6.jpg){.tab-float .no-upscaling}
 
-Back in the naughties (and even the late 90s), during the rise of the World Wide Web and affordable multimedia products (i.e. accelerator cards, SIMD-capable CPUs and fast network bandwidth), many companies which were once narrowly focused on productivity software suddenly ventured into a new area of multimedia services.
+Back in the naughties (and even the late 90s), during the rise of the World Wide Web and affordable multimedia products (e.g., accelerator cards, SIMD-capable CPUs, and fast network bandwidth), many companies that were once narrowly focused on productivity software suddenly ventured into a new area of multimedia services.
 
-It so happens users now wanted to watch full-motion movies on a PC, listen to an Audio CD while working on a spreadsheet, rip (and even mix) Audio CDs, just to mention a few examples. We of course take all of this for granted now but mind these 'abilities' had to be implemented at some point in history. Initially, they were delivered through third-party software (i.e. Nero and Winamp, to state a few) and later bundled with the operating system (i.e. Windows XP and its integrated CD burner; and Mac OS X 10.1 bundled with iTunes).
+It so happened that, all of a sudden, users began asking to watch full-motion movies on a PC, listen to music while working on a spreadsheet, and even compile their own audio CDs (the iconic *rip and mix*). We, of course, take all of this for granted now, but mind these 'abilities' had to be implemented at some point in history. Initially, they were delivered through third-party software (*Nero* and *Winamp*, to state a few) and later bundled with the operating system: Windows XP had built-in CD burning features, albeit mediocre, and Mac OS X 10.1 integrated *iTunes*.
 
-Now, if we take a deeper dive into the music world and its never-ending sharing systems, we see that the MP3 became the de-facto codec used for transmitting music [@audio-mp3] and that brings huge demand for media players that decode MP3 (well, technically, MPEG-1). That being said, what is Microsoft's response to this trend? Well, develop _another_ codec to displace MP3, a new format called **Windows Media Audio** or 'WMA' [@audio-wma].
+Now, if we focus on the events surrounding the music world and its never-ending sharing systems, we also see that the MP3 became the de-facto codec for transmitting music [@audio-mp3] and that brought huge demand for media players that could decode MP3 (well, technically, MPEG-1). That being said, what was Microsoft's response to this trend? Well, develop *another* codec to displace MP3, a new format called **Windows Media Audio** or 'WMA' [@audio-wma].
 
 #### One more push for WMA {.tab}
 
 ![Windows Media Player 11, released in 2006. Now with a fancier UI and more proprietary codecs!](screenshots/windows/media11.png){.tab-float}
 
-Unfortunately for them, the adoption of WMA wasn't as popular as MP3, presumably due to Microsoft's licensing schemes. To top it off, Microsoft fragmented the WMA user base by releasing non-backwards compatible revisions and offering multiple tiers. Yet, the company still kept pushing for adoption by other means, for instance, through DirectX's audio playback libraries, namely 'DirectShow' [@audio-directshow].
+Unfortunately for them, the adoption of WMA was not as popular as MP3, presumably due to Microsoft's licensing schemes. To top it off, Microsoft later fragmented their user base by releasing non-backwards compatible revisions and offering multiple tiers. Yet, the company still kept pushing for adoption by other means, for instance, through DirectX's audio playback libraries, namely 'DirectShow' [@audio-directshow].
 
 You can see now that it's not difficult to put two and two together. The original Xbox was conceived as a 'DirectX-compatible console' and, while one could debate about such statement, the same slogan also applied to the Xbox 360. So, it's no mystery that WMA carried on in this console.
 
@@ -666,10 +666,10 @@ The hypervisor is operated through the use of 'system calls' [@operating_system-
 
 #### The Kernel {.tab}
 
-Since the Hypervisor focuses on bare-metal services, an extra layer of abstraction is added in the form of a **Kernel**. The latter also resides in memory but gets assigned a lower privilege level. The main job of the Kernel is to expose routines that user-land programs can benefit from, for instance:
+Since the Hypervisor focuses on bare-metal services, an extra layer of abstraction is added in the form of a **Kernel**. The latter also resides in memory but gets assigned a lower privilege level. The main job of the Kernel is to expose routines that userland programs can benefit from, for instance:
 
 - **Device drivers**: in essence, I/O is interfaced by the Kernel so programs are not hard-coded to specific hardware (resulting in platform-dependent code), which would prevent old games from working on late Xbox 360 revisions.
-- **File system management**: a file system defines how data is organised in a physical medium, the Xbox 360 supports many types of mediums and the Kernel implements various file systems for each one. This enables programs to manipulate persistent storage using files and directories and not raw sectors.
+- **File system management**: a file system defines how data is organised in a physical medium, the Xbox 360 supports many types of media and the Kernel implements various file systems for each one. This enables programs to manipulate persistent storage using files and directories and not raw sectors.
 - **Bootstrapping** core applications: once the Kernel is up and running, it makes sure that the user interface and other executables are running, allowing the user to interact with the console.
 - **Thread scheduling**: remember the previous paragraph about programming styles? Well, the thread scheduler is found here. Furthermore, the scheduler implements **preemptive multitasking** as its method for alternating between threads and avoiding jams.
   - To balance performance across all running services, the scheduler applies some constraints. For instance, the fourth hardware thread is reserved for the audio pipeline and software downloads; and the second hardware thread is prioritised for concurrent file system operations.
@@ -678,7 +678,7 @@ To work, the kernel **reserves 32 MB from main RAM** to allocate all of its reso
 
 #### The User land {.tab}
 
-User-land programs encompass any executable running on top of the kernel. These are found in the form of a special container called **Xbox EXecutable** or 'XEX' [@operating_system-fs]; and follow a similar structure to the traditional EXE container used by Windows - albeit tailored to the specifications of the Xbox 360. The most important difference is that XEX's executable code follows the PowerPC ISA binary structure (instead of x86) and it must be encrypted to run (the code is signed with Microsoft's private keys and the headers/meta-data store a hash to prevent tampering).
+Userland programs encompass any executable running on top of the kernel. These are found in the form of a special container called **Xbox EXecutable** or 'XEX' [@operating_system-fs]; and follow a similar structure to the traditional EXE container used by Windows - albeit tailored to the specifications of the Xbox 360. The most important difference is that XEX's executable code follows the PowerPC ISA binary structure (instead of x86) and it must be encrypted to run (the code is signed with Microsoft's private keys and the headers/meta-data store a hash to prevent tampering).
 
 From the boot animation to the game itself, everything is a distinct XEX file. Some are automatically loaded by the Kernel (the boot animation and the interactive shell) and others by the user (the game, the media player, etc) using the shell. When the user or the Kernel request to run a XEX, the Kernel copies it to main memory and the Hypervisor checks its signature, re-encrypts it, marks the area as 'executable' and finally instructs the CPU to run it [@cpu-steil].
 
@@ -696,7 +696,7 @@ Michael Brundage, one of the authors of FU, described the development process as
 
 ### Storage medium
 
-Now that we've seen the structure of the OS, let's now check how information is scattered across this console. You'll soon find that there's an abundance of mediums available, and Microsoft had to device different file systems and protocols to keep the security integrity in place.
+Now that we've seen the structure of the OS, let's now check how information is scattered across this console. You'll soon find that there's an abundance of media available, and Microsoft had to device different file systems and protocols to keep the security integrity in place.
 
 #### Boot ROM {.tabs .active}
 
@@ -715,7 +715,7 @@ In the motherboard of every Xbox 360, you'll find a **NAND Flash** chip. This is
 - The remaining boot loaders after boot ROM.
 - The Hypervisor and Kernel.
 - System updates (in the form of delta patches for the Hypervisor and Kernel).
-- User-land programs (i.e the splash screen, dashboard, XAM/profile manager, media player, etc).
+- Userland programs (i.e the splash screen, dashboard, XAM/profile manager, media player, etc).
 - Console-unique information like serial number, region and unique encryption keys used for a variety of operations. This area is also known as the 'Keyvault'.
 - Configuration data read by the System Management Controller (that tiny computer inside the Southbridge) which includes calibrations for thermal control. This is also referred to as 'config block'.
 
@@ -731,7 +731,7 @@ Contrarily to the PS3, Microsoft managed to fit all of this in a smaller **16 MB
 
 ![Internal HDD, an alternative packaging for the Slim models (2010). The case is fitted into a hidden slot and doesn't require any type of adapter (its only purpose is to prevent wobbling).](amos/hdd_slim.png){.tabs-nested-last title="Internal HDD" width="60%"}
 
-If you place the console in a vertical position, on the front you'll see **two 'Memory Unit' slots**. On the top of it, you'll find a modified SATA socket for a **hard drive** (only fits those encased and sold by Microsoft). Both of these mediums are **optional** and used as **mass storage devices**.
+If you place the console in a vertical position, on the front you'll see **two 'Memory Unit' slots**. On the top of it, you'll find a modified SATA socket for a **hard drive** (only fits those encased and sold by Microsoft). Both of these media are **optional** and used as **mass storage devices**.
 
 Upon fitting any of them, the Xbox 360 initialises it and adds a multitude of partitions. Though it doesn't write a master partition table! It turns out the locations (offsets) of each partition are already hard-coded into the Kernel and all partitions - except the one storing user data - are fixed in size. Additionally, every partition uses proprietary and undocumented filesystems (recall that this is coming from the company that co-authored FAT, NTFS and exFAT), including one called 'FAT Xbox' (**FATX**) for generic data and 'Secure Transacted File System' (**STFS**) for caching purposes [@operating_system-fatx].
 
@@ -741,7 +741,7 @@ Microsoft sold Memory Units of up to **512 MB** and hard drives of up to **500 G
 
 #### External USB {.tab}
 
-![Typical USB stick [@photography-amos].](photos/usb.png){.tab-float .no-borders width="60%"}
+![Typical USB stick [@photography-amos].](amos/usb.png){.tab-float .no-borders width="60%"}
 
 In April 2010, Microsoft conceded to the _invasion of the cheapo USB sticks_ (which already conquered every household) and released a software update that allowed to use **USB drives** in the Xbox 360, as a method for expanding storage space.
 
@@ -793,7 +793,7 @@ Though, it may surprise you that no matter the revision, all consoles ship with 
 
 ![Old Xbox interface from 2005 installing an update (_bye bye Blades_).](screenshots/blades/update.jpg)
 
-Updates can be fetched from Xbox Live (as an online download), through a retail game, by burning a conventional CD (_that's how we shared files before the 2010s_); or through a USB stick. A typical update will install the aforementioned patches for the hypervisor and kernel, but it will override user-land files like the dashboard. Finally, to prevent rolling back, the updater will finish by blowing an eFuse so, from now on, the Xbox will only be able to boot the updated version of the system.
+Updates can be fetched from Xbox Live (as an online download), through a retail game, by burning a conventional CD (_that's how we shared files before the 2010s_); or through a USB stick. A typical update will install the aforementioned patches for the hypervisor and kernel, but it will override userland files like the dashboard. Finally, to prevent rolling back, the updater will finish by blowing an eFuse so, from now on, the Xbox will only be able to boot the updated version of the system.
 
 Updates don't usually require extra storage. However, when Microsoft released the 'NXE' update in 2008, the updater also installed static resources onto the Hard Drive (mainly themes and assets for the new 3D avatars) as NAND wasn't big enough. This led Microsoft to increase the size of NAND in further revisions of the motherboard to bundle up to 512 MB of NAND, and later include internal memory units of up to 4 GB instead. You would only find these enhancements on hard-drive-less models.
 
@@ -942,7 +942,7 @@ All in all, the suite includes a variety of libraries and tools, for instance:
 - The well-known **Direct3D** API for graphics. Although it's hardly a replica of the Windows version. For example, the shader compiler now generates microcode at compile-time, unlike Windows' edition where it's done at runtime (as Windows games must support a multitude of graphics cards). The APIs have also been extended to accommodate Procedural Synthesis, Predicated Tiling and many more cases. These have been documented by the Xenia emulator's development team [@graphics-nopixel].
 - Familiar functions from **Windows 2000's Win32 API**, now targeting the Xbox 360's Kernel, such as the `CreateThread()` routine for multi-threading operations. 
 - Old but soon-to-be-replaced APIs like **DirectSound** which, as seen in further revisions of the XDK, was soon succeeded with **XAudio2**. The latter was developed to take advantage of the unique features of the Xbox 360 and to unify the syntax with Windows's DirectX APIs.
-- Other non-DirectX APIs like the **Natural User Interface** to operate Kinect; and **Xbox 360 Unified Storage** to abstract the large number of storage mediums available.
+- Other non-DirectX APIs like the **Natural User Interface** to operate Kinect; and **Xbox 360 Unified Storage** to abstract the large number of storage media available.
 
 Now, for the budget studios using XNA. Well, the latter was designed to facilitate **cross-platform** development for Windows XP and the Xbox 360 [@games-carter]. XNA worked as a **wrapper of DirectX**, so low-level functions were abstracted by routines that work on both Windows and the Xbox 360. Even though additional code is still needed to accommodate the small discrepancies between the two unequal platforms [@games-considerations], the platform benefited many developers that were looking to port their games to the Xbox 360 without a lot of effort or cost. For those who are familiar with Windows' development ecosystem, XNA is a successor of the old 'Managed DirectX' platform, which includes a subset of the **.NET Compact Framework** [@games-compact].
 
@@ -1319,7 +1319,7 @@ And with this, the homebrew community was gifted with an unfixable exploit to lo
 
 #### Microsoft's retaliation {.tab}
 
-![While the new 'Trinity' motherboard brought many long-awaited improvements, such as unifying the CPU and GPU into one package to reduce heat. It also complicated hacker's endeavours.](photos/xcgpu.jpg){.tab-float}
+![While the new 'Trinity' motherboard brought many long-awaited improvements - such as unifying the CPU and GPU into one package to reduce heat - it also complicated hackers' endeavours.](photos/xcgpu.jpg){.tab-float}
 
 While the RGH hack attacks the fundamental construction of the CPU at an early stage (thereby making it impossible to tackle it with a software update), Microsoft never displayed any sign of weakness and released further updates of CB (the second-stage bootloader) and new motherboard revisions in an attempt to garble the glitching process.
 
@@ -1364,7 +1364,7 @@ Congratulations on reaching the end of the article!
 
 I think this writing has shown us [again](super-nintendo) that you don't need an expensive technology to conquer the new generation. Don't get me wrong, I still consider Cell a great invention that brought many technical advancements to the consumer market, but I perceive its capabilities differed drastically compared to the rest of the chips in the PS3. By contrast, the Xbox 360 presented a more harmonious mix where all components could work together to unlock each other's potential. In any case, every console carries its unique set of strengths and weaknesses. That's why I like writing about all of them.
 
-Moving on, to gather materials for this study, I end up hoarding an absurd amount of models, mainly because I needed to find consoles with specific operating versions installed (as they can't be downgraded). This later became a hit-and-miss challenge and, to make matters worse, my old one broke just before starting this site. Anyhow, at the end of the day I found myself surrounded with:
+By the way, to gather materials for this study, I ended up hoarding an absurd amount of models, mainly because I needed to find consoles with specific operating versions installed (as they could not be downgraded). This later became a hit-or-miss challenge and, to make matters worse, my old one broke just before I started this site. Anyhow, in the end, I found myself surrounded by:
 
 - An unused **Xenon** from 2005 that the owner was afraid to open the box. To my surprise, it's running `2.0.1888` (too relic-like for me to fiddle with), so I had to let it be...
 - A **Zephyr** model that the previous owner sent for repair, but by the time Microsoft shipped it back, the owner had already bought another one. It's got an NXE system installed.
@@ -1372,7 +1372,7 @@ Moving on, to gather materials for this study, I end up hoarding an absurd amoun
 - A **Falcon** with RGH 1.2. I bought it to attempt to downgrade it to a Blades-era system, which turned out to be impossible without proper tools. Fortunately, thanks to the software provided by Octal's Console Shop, it's now straightforward to do so.
 - My old **Trinity** that I had since I was a teenager. Unfortunately, it got cursed with the Red Lights of Death and I couldn't manage to repair it. Luckily, after RGH 3.0 came out, I bought a cheap spare Trinity, applied RGH and transplanted the internal Flash unit to recover my old profile and saves. All of the game screenshots in this article come from this model.
 
-With the write-up now finished, I'm glad I can finally put this search to rest. By the way, this is the last article of the [7th generation saga](consoles#7th-generation)!
+With the write-up now finished, I'm glad I can finally put this search to rest. As a side note, this is the last article of the [7th generation saga](consoles#7th-generation)!
 
 So, regarding my next steps, I'm considering returning to the 90s era to pay tribute to historical consoles that slipped my mind, or maybe do some more work on the site... we'll see!
 

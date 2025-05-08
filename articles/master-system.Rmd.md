@@ -43,7 +43,7 @@ Sega decided on a fully-fledged **Zilog Z80** CPU running at **~3.58 MHz**. A po
 
 ::: {.subfigures .side-by-side max_subfigures=1}
 
-![The American Tandy TRS-80 (1977) I found in the Computer History Museum (San Jose, California) during my visit in June 2019.](trs80.webp){.toleft}
+![The American Tandy TRS-80 (1977) I found in the Computer History Museum (Mountain View, California) during my visit in June 2019.](trs80.webp){.toleft latex_width="87%"}
 
 ![The British Sinclair ZX80 (1980). It's way smaller than it looks! Part of Christopher Rivett's collection [@photography-crivett].](zx80.webp){.toright}
 
