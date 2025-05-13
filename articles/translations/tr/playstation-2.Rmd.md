@@ -57,7 +57,7 @@ Yeni sayıların ardında yatan şeyi anlamak için o dönemi kuşatan bir tarih
 
 - **Speculative execution**: CPU, hesaplanmadan önce conditional branch sonucunu tahmin eder. Bu öngörüler, dâhilî 512 girdilik bir tabloda saklanan önceki işlemlerin sonuçlarına göre gerçekleştirilir. Koşul hesaplandığında, eğer öngörü doğru ise, İşlemci önemli zaman kazanmış olacak. Yok değilse, ekstra hesaplamalar yok edilir.
   - Bu sayede MIPS, sonunda sürekli tekrar eden bir sorunu ([control hazards](playstation#delay-galore)<!--Türkçesi için önce PS1 makalesi çevirilmeli-->) bir avantaja çevirdi.
-  - Diğer işlemcilerde ise [dynamic branch prediction](gamecube#the-powerpc-gekko) olarak anılan benzer bir işleyiş biçimi görebilirsiniz.
+  - Diğer işlemcilerde ise [dynamic branch prediction](gamecube#features) olarak anılan benzer bir işleyiş biçimi görebilirsiniz.
 - **4-çıkışlı süperskaler** pipeline: [Pipeline tasarımına](sega-saturn#cpu) ek olarak, CPU artık pipeline'ın başlangıcında dört adede kadar talimat getirecek ve bunları ayrı birimlere dağıtarak CPU'nun bu talimatları aynı anda yürütmesini sağlayacaktır. Bunu yapmak suretiyle, İşlemci, daha üst derecede bir paralelliğe erişir.
 - **Out-of-order execution**: Ayrıca İşlemci, birimlerini olabildiğince doldurmak için talimatların sırasını da yeniden düzenleyecek (hazard eklenmediği sürece).
 - **128-bit'lik veri yoluna sahip L2 önbelleği**, aynı anda İşlemciye daha fazla veri çekmeyi mümkün kılar, bu da önceki geliştirmeler göz önüne alındığında bir gerekiliktir.
@@ -108,7 +108,7 @@ Bunların yanı sıra, geliştiricilerin hoşuna gidebilecek başka iyileştirme
 
 Emotion Engine'in yanında iki adet 16 MB RAM bloğu olmak üzere toplam **32 MB** ana hafızası vardır. Kullanılan hafızaya **16-bit veri yolu** ile ulaşılıyor, türü ise **RDRAM**. ([*dejavu!*](nintendo-64#memory-design)).
 
-![Emotion Engine'in bellek dizaynı. Tıkanıklığın nerede ortaya çıkacağını tahmin edebilirsiniz.](MemoryArch.png)
+![Emotion Engine'in bellek dizaynı. Tıkanıklığın nerede ortaya çıkacağını tahmin edebilirsiniz.](_diagrams/memoryarch.png)
 
 İlk başta, bunu duyması biraz hayal kırıklığı yaşatabilir zira bunun aksine Emotion Engine'in dahili veriyolu 128-bit gibi büyük bir genişliğe sahip. Ancak, RAM çipleri; iki çipi bağımsız iki 16-bit veriyolu (her çipe 1 veriyolu) ile bağlamak suretiyle elde edilen **çift kanallı mimariyi** kullanacak şekilde stratejik olarak konumlandırılmıştır. Ortaya çıkan kurulumla teorik olarak 3,2 GB/sn'lik bir hız elde edilir, dolayısıyla hafıza gecikmesinin bu konsolda bir sorun olmayacağından emin olabilirsiniz!
 
@@ -159,7 +159,7 @@ Emotion Engine'in içine konmuş **iki VPU** vardır ancak bunlar farklı şekil
 
 #### Vector Processing Unit 0 {.tabs.active}
 
-![VPU0 Mimarisi.](VU0.png) {.tab-float}
+![VPU0 Mimarisi.](_diagrams/vpu0.png) {.tab-float}
 
 İlk VPU yani **VPU0**, CPU ile diğer vektör birimi (VPU1) arasında konumlandırılmıştır. Ana işlemciye 'yardımcı' rolde bulunur.
 
@@ -174,7 +174,7 @@ VPU0'ın memory map'i, muhtemelen durumunu kontrol etmek veya diğer VPU tarafı
 
 #### Vector Processing Unit 1 {.tab}
 
-![VPU1 Mimarisi.](VUP1.png) {.tab-float}
+![VPU1 Mimarisi.](_diagrams/vpu1.png) {.tab-float}
 
 Mevcut ikinci VPU, yani **VPU1** ise VPU0'ın dört katı mikro hafıza ve VU Hafızasıyla yükseltilmiş bir versiyonudur. Dahası, bu birim **Elementary Function Unit** ya da 'EFU' adı verilen; üstel ve trigonometrik fonksiyonların yürütülmesini hızlandıran ilâve bir bileşen içerir.
 
@@ -202,9 +202,9 @@ Kesin bir biçimde yazılmış verileri kullanmakla kıyaslandığında prosedü
 
 Bu yeni eklemelerle, programlayıcılar artık kendi grafik motorlarını tasarlamak konusunda oldukça esnek davranabilirler. Buna yardımcı olmak adına Sony, verimli boru hattı (pipeline) tasarımları ortaya çıkarıp bunları belgelemek için ekstra kaynak harcadı. Aşağıdakiler, farklı iş yükü çeşitleri için optimize edilmiş grafik boru hattı örnekleridir [@cpu-stokes]:
 
-![Paralel boru hattı (pipeline) dizaynı.](Parallel.png){.tabs-nested .active title="Paralel"}
+![Paralel boru hattı (pipeline) dizaynı.](_diagrams/programming/parallel.png){.tabs-nested .active title="Paralel"}
 
-![Seri boru hattı dizaynı.](Serial.png){.tabs-nested-last title="Seri"}
+![Seri boru hattı dizaynı.](_diagrams/programming/serial.png){.tabs-nested-last title="Seri"}
 
 Birinci örnekteki **Paralel** diazyn için; İşlemci, makro moddaki VPU0 ile takım hâlindedir ki VPU1 ile paralel olarak geometri işleyebilsin. CPU&VPU0 grubu, VPU1'in ana hafızadan veri aldığı yol olan ana veri yolunu kullanmaktan kaçınmak için, karalama belleğinden ve önbellekten tamamıyla istifade eder. Sonuç olarak, her iki görüntü işleme grubu da aynı anda kendi payına düşen Görüntü Listelerini GPU'ya gönderir.
 
@@ -238,13 +238,13 @@ GS, bu sitede [daha önce ele anınan](gamecube#graphics) diğer grafik sistemle
 
 Bu GPU, sadece **rasterizasyon** yapar ve bu da... Pikselleri oluşturma, dokuları kaplama (texture mapping), ışık ve diğer diğer bazı efektleri uygulamadır. Bu demek oluyor ki vertex dönüşümleri yapamaz (bunlar VPU'larca üstlenilir). Ayrıca bu, sabit işlevli bir boru hattıdır yani [hayal gücünüze kalmış ince ayarlar](gamecube#creativity) çekilemez ya da [gölgelendiriciler (shader)](xbox#graphics) yoktur, sâbit bir gölgelendirme modeline saplanmış durumdasınız (bu model örn. Gouraud Shading'dir).
 
-![Grafik Sentezleyici'nin boru hattı dizaynı](GS_Pipeline.png)
+![Grafik Sentezleyici'nin boru hattı dizaynı](_diagrams/gs_pipeline/pipeline.png)
 
 Oldukça basit görünüyor, değil mi? Öyleyse, daha derinlere dalıp her bir aşamada neler döndüğüne bakalım.
 
 #### Ön İşleme {.tabs.active}
 
-![Ön İşleme aşaması.](gs_pipeline/Preprocessing.png) {.tab-float}
+![Ön İşleme aşaması.](_diagrams/gs_pipeline/preprocessing.png) {.tab-float}
 
 Emotion Engine, Grafik Sentezleyiciyi, gömülü DRAM'ini gerekli malzemelerle (**Texture bitmap**'ler ve 'CLUT' olarak da bilinen **Colour Lookup Table**'lar ile) doldurarak tezelden başlatır, GS'yi onun işlemci kayıtlarına değerler atayarak yapılandırır ve son olarak GS'ye ekranın belirli konumlarına temel şekilleri (noktalar, çizgiler, üçgenler, sprite'lar, vb.) çizmesi talimatını veren çizim komutlarını (Görüntü Listeleri) gönderir.
 
@@ -252,7 +252,7 @@ Ayrıca, GS, ileriki hesaplamalarda gerekecek olan bazı değerleri de ön işle
 
 #### Pikselleştirme (Rasterisation) {.tab}
 
-![Pikselleştirme (rasterisation) aşaması.](gs_pipeline/Rasterizing.png) {.tab-float}
+![Pikselleştirme (rasterisation) aşaması.](_diagrams/gs_pipeline/rasterizing.png) {.tab-float}
 
 Önceden hesaplanmış olan verileri kullanarak, işleyici (renderlayıcı), temel şekilleri (çizgi, üçgen vb.) kullanarak pikselleri oluşturur. Bu birim eş zamanlı olarak 8 piksel (dokularla) ya da 16 piksel (dokular olmadan) oluşturabilir. Her piksel girdisi, aşağıda sıralanan hesaplanmış özellikleri içerir:
 
@@ -267,17 +267,17 @@ Paket, 'Doku Kaplama' (Texture Mapping) motoruna taşınır, ancak her özellik,
 
 #### Doku Kaplama {.tab}
 
-![Doku kaplama aşaması](gs_pipeline/Textures.png) {.tab-float}
+![Doku kaplama aşaması](_diagrams/gs_pipeline/textures.png) {.tab-float}
 
 Bu aşama, her seferde 16'ya kadar pikseli işleyebilen geniş bir Piksel Birimi tarafından gerçekleştirilir, burada dokular çokgenlerin üstüne kaplanır (bunlar artık pikseldirler). Dahası, sis ve kenar yumuşatma (anti-aliasing) efektleri de burada uygulanır.
 
 Doku haritaları, DRAM'in **Doku Arabelleği** olarak adlandırılan bir bölümünden getirilirler, kaldı ki bölümle de **Doku Sayfa Arabelleği** denilen ayrı bir yer sayesinde bağlantı kurulur ve bu, dokular için bir önbellekleme mekanizması görevinde gibi görünüyor. Ayrıca CLUT'lar da bu sayfa sistemiyle haritalanır. Her iki eleman da **512-bit veri yolu** kullanılarak taşınıp alınır.
 
-Piksel Birimi, temel şekiller üzerine dokuları giydirirken **perspektif düzeltme** gerçekleştirir (önceki kosoldaki [affine mapping](playstation#tab-3-5-textures) yaklaşımına göre fevkalâde bir iyileştirme). Dahası, **bilineer ve trilineer filtreleme** de gerçekleştirebilir ki bunlardan ikincisi, mipmap'lenmiş dokularla beraber kullanılır.
+Piksel Birimi, temel şekiller üzerine dokuları giydirirken **perspektif düzeltme** gerçekleştirir (önceki kosoldaki [affine mapping](playstation#tab-4-5-textures) yaklaşımına göre fevkalâde bir iyileştirme). Dahası, **bilineer ve trilineer filtreleme** de gerçekleştirebilir ki bunlardan ikincisi, mipmap'lenmiş dokularla beraber kullanılır.
 
 #### Testler {.tab}
 
-![Piksel Testi aşaması](gs_pipeline/Tests.png) {.tab-float}
+![Piksel Testi aşaması](_diagrams/gs_pipeline/tests.png) {.tab-float}
 
 Burada, belli pikseller, eğer birtakım gereksinimleri karşılamazlarsa atılırlar. Konusu açılmışken, bu işlem için aşağıdaki testler uygulanır:
 
@@ -287,7 +287,7 @@ Burada, belli pikseller, eğer birtakım gereksinimleri karşılamazlarsa atıl�
 
 #### Son İşleme (Post-Processing) {.tab}
 
-![Son İşleme aşaması.](gs_pipeline/Postprocessing.png) {.tab-float}
+![Son İşleme aşaması.](_diagrams/gs_pipeline/postprocessing.png) {.tab-float}
 
 Son aşamada yeni piksellerimize yerel DRAM'de bulunan önceki çerçeve arabelleği (frame-buffer) kullanılarak bazı efektler uygulanabilir:
 
@@ -359,9 +359,9 @@ SPU2, orijinal SPU'da bulunan efektlerin aynısını miras alır. Kullanıma sun
 
 Sonunda, çip, **stereo çıkış** hazırlamak için bütün kanalları karıştırır. Şimdi, gelelim ilginç kısma: SPU2, karıştırılmış stereo örneği yeni girdi olarak alarak kendini besleyebilir ve bu EE'nin ona (örneğin başka seslerle karıştırması için) erişmesine ya da daha fazla efekt (örn. reverb (yankı), eko, delay (gecikme) gibi) eklemeye devam edebilmesine olanak tanır.
 
-![Kingdom Hearts II (2005). Yankı (reverb) olmadan.](goomy_noreverb){.toleft video="true"}
+![Kingdom Hearts II (2005). Yankı (reverb) olmadan.](goomy_noreverb){.toleft video="true" .interactive-only}
 
-![Kingdom Hearts II (2005). Yankıyla.](goomy){.toright video="true"}
+![Kingdom Hearts II (2005). Yankıyla.](goomy){.toright video="true" .interactive-only}
 
 ### Ses çıkışı
 
@@ -378,19 +378,33 @@ Başlangıçta, PS2'nin I/O'su özellikle karmaşık değildi. Ancak, bu konsolu
 
 Başlangıç olarak, farklı birimler arsındaki iletişimi sağlayan ayrılmış bir işlemci bulunur ve bu işlemci, **PlayStation 1**'de bulunan [orijinal MIPS R3000 tabanlı çekirdekten](playstation#cpu) başkası değildir. Bu kez **I/O Processor** (IOP) olarak adlandırılıyor ve **37,5 MHz** hızında **32-bit veri yoluna** bağlı olarak çalışıyor [@io-buses].
 
-![Playstation 2'nin mimarisinin ana şeması. I/O İşlemcisinin I/O'nun çoğuna özel erişim gösterdiğine dikkat edin.](diagram.png)
+![Playstation 2'nin mimarisinin ana şeması. I/O İşlemcisinin I/O'nun çoğuna özel erişim gösterdiğine dikkat edin.](_diagrams/main.webp)
 
 IOP, **Sistem Arayüzü (System Interface)** ya da 'SIF' denilen özelleştirilmiş bir Giriş/Çıkış arayüzü kullanarak Emotion Engine'le iletişim kuruyor ve iki uç da birbirine veri transferi yapmak için kendi DMA birimlerini kullanıyor. IOP ayrıca tampon olarak kullanılan **2 MB [EDO RAM](playstation#the-offering)** (tıpkı PS1'de olduğu gibi) özel belleğe sahiptir.
 
 Sonuç olarak, bu işlemci ön bağlantı noktalarına, DVD denetleyicisine, SPU2'ye, BIOS ROM'a ve PC kartı yuvasına erişim sağlar.
 
-Her ne olursa olsun, 'Slim' revizyonunun gelmesinden bir yıl sonra (2005), IOP yerine **PowerPC 401 'Deckard'** (mikrodenetleyiciler için kesilmiş bir PowerPC 601), **4 MB SDRAM** (öncekinden 2 MB daha fazla) ve bir Ethernet alıcı-vericisi (daha önce harici bir aksesuarda bulunan) içeren bir SoC yerleştirildi.
+#### Özel yükseltme
+
+Her ne olursa olsun, 2005'te ‘Slim’ revizyonunun gelmesinden bir yıl sonra MIPS çekirdeği, bunun yerine <em x-id=“3”>çok sıradışı</em> bir SoC ile değiştirildi [@io-ppc_monitor]:
+
+- Bir **PowerPC 440x5 CPU**. Bu çip, IBM tarafından yönetilen ve mikrodenetleyici uygulamaları için özelleştirilmiş [yeni PowerPC 4xx serisinin](gamecube#tab-2-1-individual-developments) bir parçasıdır.
+- Bir <strong x-id=“1”>Auxiliary Processing Unit</strong> (APU), kısmi MIPS R3000A devresi (kod çözücü ve ALU), iyi bilinen [Geometry Transformation Engine](playstation%23tab-2-2-geometry-transformation-engine) ve işlemler arası iletişim için ekstra kayıtlardan oluşan bir paket.
+- Bir **Ethernet alıcı-vericisi** (daha önce harici bir aksesuar olarak satılıyordu).
+
+Çipin yanında **4 MB SDRAM** de bulunuyor (öncekinden 2 MB daha fazla ve bu sefer 'SDRAM').
+
+Yeni paket **PPC-IOP** olarak adlandırılır ve bunun yerine **440 MHz** hızında çalışır. İlginçtir ki, PPC CPU hala MIPS kodunu çalıştırmakla görevlendirilecektir [@io-ppc_iop_discussion]. Bu, <strong x-id=“1”>DECKARD</strong> (BIOS ROM'da [@io-ps2_mysteries] saklanır) adlı bir MIPS emülatörü yardımıyla yapılır ve bunu hızlandırmak için ek SDRAM ve APU'dan yararlanır.
+
+PPC-IOP'nin iç yapısı ve çalışma hızı, orijinal IOP'dan önemli ölçüde farklı olduğundan, etkilenen her oyun için girişler içeren ek bir yama veritabanı vardır [@io-deckard]. Ayrıca, DECKARD zamanlamaları olay işleyici kullanarak yaklaşık olarak hesaplamaya çalışır. Ancak, belirli talimatlar sırasında performans düşer [@io-ppc_monitor]. Ek olarak, SDRAM'in yaklaşık %24'ü bir sebepten dolayı kullanılmamış olarak kalıyor [@io-deckard].
+
+Bütün bunları düşününce, Sony'nin I/O ekosistemini neden yeniden tasarladığı merak konusu, performansı düşürmekle kalmayıp tüm avantajlarını da boşa harcıyor. Muhtemelen, geri uyumluluğu korurken üretim maliyetlerini azaltmak için yapılmıştır (bir sonraki paragraflarda daha fazla açıklıyorum). Şu dönemde Sony'nin [IBM ile anlaşarak Cell işlemcisini üretmeye başladığını](playstation-3#tab-1-1-the-state-of-progress) da belirtmekte fayda var.
 
 #### Geriye uyumluluk
 
 Önceki modelin CPU'sunu içeren modeller için PS1 uyumluluğunun da paketin bir parçası olacağı düşünülebilir. Sony, uygun bir şekilde, bir PS1 diski takıldığında yüklenen bir PS1 emülatörü (`PS1DRV` olarak adlandırılır) ile paketlemiştir. Bu gerçekleştiğinde, IOP PS1 hızında çalışmak için düşük hızda çalıştırılır, EE [eski GPU](playstation#graphics)'yu taklit etmek için 'yeniden kullanılır' ve SPU2 [orijinal SPU](playstation#audio) gibi davranmak için yeniden eşlenir.
 
-PowerPC tabanlı modellerde geriye dönük uyumluluk devam etti, ancak bunun yerine tam bir yazılım uygulaması yapıldı.
+PowerPC tabanlı modellerde, PS1DRV DECKARD'ın üzerinde çalışır.
 
 ### Mevcut arayüzler
 
@@ -614,7 +628,7 @@ Memento'nun ters mühendisliği yapıldıktan sonra, Memor32 gerektirmeyen bir a
 
 Ek olarak, yükleyici iki seçenek sunar: yalnızca mevcut konsol için gereken dosyaları yüklemek veya tüm PS2 varyantları için genel bir kurulum yüklemek. İlginçtir ki, ikinci seçeneği gerçekleştirmek oldukça zordu [@anti_piracy-fmcb]. Başlangıçta, yükleyici, alanın tükenmesini önlemek için Hafıza Kartının bölümleme tablosuyla oynayacaktı, bu özellikle güvenli olmayan bir şeydi.
 
-Şans eseri 2011 yılında [PlayStation 3'ün](playstation-3) [güvenlik sistemi](playstation-3#os-security-hierarchy) [ele geçirildi](playstation-3#tab-9-4-the-fall-of-encryption) ve içinde saklı birçok sır açığa çıktı. Diğerlerinin yanı sıra, [PS2 geri uyumluluğu](playstation-3#backwards-compatibility) için global olarak kullanılan MagicGate anahtarları koleksiyonu bulunmaktadır. O andan itibaren, PS2 çalıştırılabilir dosyaları oluşturmak için sınırlı DVD ikili imza hilesine başvurmak artık gerekli değildi. Ve böylece, `1.8b` sürümünden bu yana FreeMCBoot, PlayStation 2'de her türlü Homebrew'u çalıştırmak için en güvenli ve en popüler yöntem olarak konumunu korumuştur.
+Şans eseri 2011 yılında [PlayStation 3'ün](playstation-3) [güvenlik sistemi](playstation-3#os-security-hierarchy) [ele geçirildi](playstation-3#tab-17-4-the-fall-of-encryption) ve içinde saklı birçok sır açığa çıktı. Diğerlerinin yanı sıra, [PS2 geri uyumluluğu](playstation-3#backwards-compatibility) için global olarak kullanılan MagicGate anahtarları koleksiyonu bulunmaktadır. O andan itibaren, PS2 çalıştırılabilir dosyaları oluşturmak için sınırlı DVD ikili imza hilesine başvurmak artık gerekli değildi. Ve böylece, `1.8b` sürümünden bu yana FreeMCBoot, PlayStation 2'de her türlü Homebrew'u çalıştırmak için en güvenli ve en popüler yöntem olarak konumunu korumuştur.
 
 ### Takip eden gelişmeler {.tabs-close}
 
