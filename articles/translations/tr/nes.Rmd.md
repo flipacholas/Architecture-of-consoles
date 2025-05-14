@@ -132,9 +132,9 @@ Farklı kombinasyonların olması, CPU'nun ne tür bir bileşenden okuma yapıld
 
 Peki bu, oyun stüdyolarının yalnızca 49,97 KB sınırını aşmayan oyunlar geliştirebileceği anlamına mı geliyordu? Kesinlikle değil! Tarih bize bir şey öğrettiyse, o da zorlu bir soruna her zaman akıllıca bir çözüm bulunabileceğidir; ve bu sorun bir **Mapper** ile ele alındı.
 
-![Bir eşleyicinin CPU'nun adresleme yeteneklerini nasıl genişlettiğinin basitleştirilmiş gösterimi. CPU, bir mapper'ın dahil edilmesiyle, büyük bir Program ROM'unun ekstra bankalarına (adres grupları) erişebilir. Her ne kadar oyun/program gerektiğinde bankalar arasında manuel geçiş yapma gibi yeni bir göreve sahip olsa da.](mapper/mapper.png){.tabs-nested .active title="Mapper ile"}
+![Bir eşleyicinin CPU'nun adresleme yeteneklerini nasıl genişlettiğinin basitleştirilmiş gösterimi. CPU, bir mapper'ın dahil edilmesiyle, büyük bir Program ROM'unun ekstra bankalarına (adres grupları) erişebilir. Her ne kadar oyun/program gerektiğinde bankalar arasında manuel geçiş yapma gibi yeni bir göreve sahip olsa da.](_diagrams/mapper/mapper.png){.tabs-nested .active title="Mapper ile"}
 
-![Aynı kurulum ancak eşleyici yüklü değil. Daha basit ve ucuz olsa da, CPU yalnızca sınırlı sayıda bankaya erişebilir.](mapper/no_mapper.png){.tabs-nested-last title="Mapper olmadan"}
+![Aynı kurulum ancak eşleyici yüklü değil. Daha basit ve ucuz olsa da, CPU yalnızca sınırlı sayıda bankaya erişebilir.](_diagrams/mapper/no_mapper.png){.tabs-nested-last title="Mapper olmadan"}
 
 Eşleyici, kartuşta bulunan ve bellek yongaları ile konsolun adres hatları arasında yer alan ekstra bir yongadır. Ana görevi, geliştiricilerin daha fazla yonga sığdırabilmesi için adres alanını genişletmektir. Bu **bank switching** ile yapılır: Bellek adresleri bankalar halinde gruplandırılır ve eşleyici bankalar arasında geçiş yapmak için anahtarlar (bellek adresleri aracılığıyla kontrol edilir) sağlar. Şimdi, CPU hala aynı miktarda bellek görüyor, bu yüzden onu çalıştırmaktan sorumlu bir eşleyici ile programlanmış olan oyun. Maliyet etkinliği nedeniyle, 80'lerden 90'ların başlarına kadar teknolojide haritacılar ön plandaydı.
 
@@ -154,7 +154,7 @@ Bununla birlikte PPU, **sprites** ve **backgrounds** adı verilen 2D grafikleri 
 
 ### İçeriğin düzenlenmesi
 
-![PPU'nun bellek mimarisi](ppu_content.png)
+![PPU'nun bellek mimarisi](_diagrams/ppu.png)
 
 Ekranda bir şey oluşturmak için PPU'nun *hangi* grafikleri çizeceğini, *ekranda nereye* yerleştireceğini ve *nasıl* çizeceğini (yani hangi paleti kullanacağını) bilmesi gerekir.
 
@@ -223,7 +223,7 @@ Her İsim Tablosunun son baytları, her bloğa hangi renk paletinin atanacağın
 
 #### Sprite Katmanı {.tab}
 
-![Render edilmiş sprite katmanı.](ppu_mario/sprite_layer.png) {.tab-float.pixel}
+![Render edilmiş sprite katmanı.](ppu_mario/sprite_layer.png) {.tab-float.pixel.latex-framed}
 
 Sprite'lar ekran etrafında hareket edebilen kutucuklardır. Ayrıca birbirleriyle örtüşebilir veya arka planın arkasında görünebilirler. Görüntülenebilir grafiğe öncelik değerine göre karar verilecektir (geleneksel grafik tasarım yazılımındaki 'katmanlar' ile aynı kavramdır).
 
@@ -319,7 +319,7 @@ Ayrıca, özellikle Famicom modeli, karışık ses sinyalini kartuşa gönderen 
 
 #### Nabız {.tabs.active}
 
-::: {.subfigures .tabs-nested .tab-float}
+::: {.subfigures .tabs-nested .tab-float max_subfigures=1}
 
 ![Pulse 1 kanalının osiloskop görünümü.](pulse_single_1){video="true" title="Pulse 1"}
 
@@ -339,7 +339,7 @@ Darbe dalgalarının bu nesil konsolların simgelerinden biri olduğunu söyleme
 
 #### Triangle {.tab}
 
-::: {.subfigures .tabs-nested .tab-float}
+::: {.subfigures .tabs-nested .tab-float max_subfigures=1}
 
 ![Triangle kanalın osiloskop görünümü.](triangle_single){.active video="true" title="Triangle"}
 
@@ -357,7 +357,7 @@ Diğer tarafta, ilgili devre ses seviyesi kontrolü sağlamaz. Her halükarda, b
 
 #### Ses {.tab}
 
-::: {.subfigures .tabs-nested .tab-float}
+::: {.subfigures .tabs-nested .tab-float max_subfigures=1}
 
 ![Noise kanalının osiloskop görünümü.](noise_single){.active video="true" title="Ses"}
 
@@ -377,7 +377,7 @@ Genel olarak, oyunlar ses kanalını perküsyon veya ortam efektleri için kulla
 
 #### Örnek {.tab}
 
-::: {.subfigures .tabs-nested .tab-float}
+::: {.subfigures .tabs-nested .tab-float max_subfigures=1}
 
 ![Örnek kanalın osiloskop görünümü.](sample_single){.active video="true" title="Örnek"}
 
@@ -508,7 +508,7 @@ Ayrıca, oyunlar Nintendo'nun onayı altında perakende mağazalarında satıld�
 
 Sadece Japonya'da piyasaya sürülmüş olsa da, bunun kısa ömürlü ama tıpkı haritacılar gibi bu konsola daha fazla yetenek kazandıran tuhaf bir eklentiyi tanıtmak için iyi bir fırsat olacağını düşündüm. Bu çevre birimi **Famicom Disk System** (FDS) olarak adlandırıldı ve 1986'da (Famicom'dan ~3 yıl sonra) piyasaya sürüldü. Harici bir disket okuyucu şeklindeydi ve 'RAM adaptörü' adı verilen garip şekilli bir kartuşla birlikte geliyordu.
 
-::: {.subfigures .side-by-side}
+::: {.subfigures .side-by-side max_subfigures=1}
 
 ![Disketlerin [@photography-amos] yerleştirildiği sürücü (fotoğrafta koruma için yerleştirilmiş bir karton disket gösterilmektedir). Altı adet C pille (her biri 1,5 V) ya da 3,6 W AC adaptörle çalışır.](fds/drive.png) {.toleft.no-borders}
 
@@ -521,7 +521,7 @@ Famicom Disk Sistemini (FDS) oluşturan iki bileşen.
 Famicom Disk Sistemi, Famicom'a aşağıdaki hizmetleri ekledi:
 
 - Oyunlar için **Famicom Disk** [@games-fds] adlı yeni bir dağıtım aracı. Mitsumi'nin 'Quick Disk'ini temel alan bu disk, her bir taraf için **~64 KB veri** sağlar ve yeniden yazılabilir.
-- [Wavetable synthesis](game-boy#tab-3-2-wave) [@games-fds_audio] kullanan bir **ekstra ses kanalı**.
+- [Wavetable synthesis](game-boy#tab-7-3-wave) [@games-fds_audio] kullanan bir **ekstra ses kanalı**.
 
 ![FDS ekipmanı Famicom'a takılıyken [@photography-amos].](fds/mounted.png) {.open-float.no-borders}
 
