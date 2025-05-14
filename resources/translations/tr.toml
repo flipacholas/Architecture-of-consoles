@@ -47,10 +47,10 @@ other = "Çeviriler"
 other = "Daha fazlası için '{{ . }}' &raquo;"
 
 [ebook_edition_title]
-other = "E-Kitap sürümlerini edinin"
+other = "Kağıt/E-Kitap sürümlerini edinin"
 
 [ebook_edition_content]
-other = '<a href="{{ .consoles }}">Konsolların Mimarileri</a> serisini artık e-Kitap uygulamalarında da okuyabilirsiniz. <a href="{{ .ebooks }}">Buradan göz atabilirsiniz</a>.'
+other = '<a href="{{ .consoles }}">Konsolların Mimarileri</a> serisini artık kağıt ve e-Kitap okuyucularında da okuyabilirsiniz. <a href="{{ .ebooks }}">Buradan göz atabilirsiniz</a>.'
 
 [home]
 other = "Ana sayfa"
@@ -86,7 +86,7 @@ other = "Modern baskıya geçin"
 other = "Klasik basıma geç"
 
 [ebook_edition]
-other = "e-kitap"
+other = "Kitap baskısı"
 
 [about_edition]
 other = "Bu baskı hakkında"
@@ -98,7 +98,7 @@ other = "Son güncelleme: {{ . }}"
 other = "Klasik"
 
 [classic_intro]
-other = "'Klasik' sürüm, <a href=\"{{ .modern }}\">'modern'</a> muadiline alternatif bir sürümdür. Çalışması için Javascript, son teknoloji CSS veya karmaşık HTML gerektirmez, bu da onu erişilebilirlik araçları veya eski internet tarayıcıları kullanan okuyucular için ideal hale getirir. Öte yandan, e-Kitap kullanıcıları artık <a href=\"{{ .ebook }}\">e-Kitap sürümünü</a> kontrol edebilirler."
+other = "'Klasik' sürüm, <a href=\"{{ .modern }}\">'modern'</a> muadiline alternatif bir sürümdür. Çalışması için Javascript, son teknoloji CSS veya karmaşık HTML gerektirmez, bu da onu erişilebilirlik araçları veya eski internet tarayıcıları kullanan okuyucular için ideal hale getirir. Öte yandan, kağıt/e-Kitap kullanıcıları artık <a href=\"{{ .ebook }}\">kitap sürümlerini</a> kontrol edebilirler."
 
 [classic_description]
 other = "Bu basım içerik açısından aynıdır. Bununla birlikte, etkileşimli widget'lar saf HTML ile çalışacak şekilde basitleştirilmiştir, ancak bunlar okuyucunun \"tam sürümü\" denemek istemesi durumunda orijinal makaleye bir bağlantı sunacaktır."
@@ -137,7 +137,7 @@ other = "Eğer makalelerimi ilginç buluyorsanız lütfen bağış yapmayı dü�
 other = "Minnettarlığın bir göstergesi olarak, belirtilmedikçe adınız bir sonraki makalenin krediler bölümünde veya aday gösterdiğiniz bölümde yer alacaktır."
 
 [contribution_footer_ebook]
-other = 'Ayrıca <a href="{{ . }}">eBook sürümünü</a> İngilizce olarak da satın alabilirsiniz. Kârları bağış olarak kabul ediyorum.'
+other = 'Ayrıca <a href="{{ . }}">kitap sürümlerini</a> İngilizce olarak da satın alabilirsiniz. Kârları bağış olarak kabul ediyorum.'
 
 [contribution_suggestions]
 other = 'Alternatif olarak, <a href="{{ . }}">değişiklikler önererek</a> ve/veya <a href="{{ . }}">çeviriler ekleyerek</a> yardımcı olabilirsiniz.'

@@ -44,7 +44,7 @@ SMS源自一个长期的传承系列。 最初只是一系列现成部件的集�
 
 ::: {.subfigures .side-by-side max_subfigures=1}
 
-![我于2019年6月参观计算机历史博物馆（加利福尼亚州圣何塞）时，发现了这台美国的Tandy TRS-80（1977年）。](trs80.webp) {.toleft}
+![2019年6月我到访加州山景城的计算机历史博物馆时，见到的美国Tandy TRS-80电脑（1977年款）。](trs80.webp){.toleft latex_width="87%"}
 
 ![英国 Sinclair ZX80（1980）。 比它看起来要小得多！ 克里斯托弗·里维特（Christopher Rivett）的收藏品的一部分 [@photography-crivett]。](zx80.webp) {.toright}
 

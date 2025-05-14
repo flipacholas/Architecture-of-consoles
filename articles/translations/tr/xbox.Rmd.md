@@ -56,7 +56,7 @@ Bununla birlikte, şöyle bir göz atalım:
 
 #### Marka {.tabs.active}
 
-![Bu çalışma nasıl düzenlenmiştir.](cpu/branding.png) {.tab-float}
+![Bu çalışma nasıl düzenlenmiştir.](_diagrams/cpu/branding.png) {.tab-float}
 
 İlk olarak, Xbox'ın CPU'su **Pentium III** olarak tanımlanır. Peki, bu ne anlama geliyor? O dönemde (erken 2000'ler), Pentium serisi, bilgisayarları süper hızlı yapan tüm şık teknolojiyi bir araya getiren 'yeni yüksek kalite'yi temsil ediyordu ve alıcıların *en iyisi*ni istiyorsa hangi CPU'yu satın alması gerektiğine karar vermelerine yardımcı oluyordu.
 
@@ -65,6 +65,8 @@ Pentium III, Pentium II'nin yerine geçti, ki bu da orijinal Pentium'un yerine g
 Daha fazla kaybolmamak ve derinleşmek için, bilgiyi üç bölüme kataloglamış bulunmaktayım: **Instruction Set Architecture (ISA)** veya 'ISA' (CPU'ya komut vermek için kullanılan talimatlar grubu), **Mikro mimari** (ISA'nın silikonda nasıl uygulandığı) ve **Core** (belirli CPU modelini oluşturmak için mikro mimariyi paketlemek için kullanılan bileşen seti).
 
 #### ISA {.tab}
+
+![Intel 80386 (1985) veya uyumlu bir model, 90'ların ortasındaki uygulamalar için minimum gereklilikti.](photos/i386.webp) {.tab-float}
 
 Gerçekten de 'Intel'den bir kez bahsettiğimde, ünlü <strong x-id=“1”>x86</strong> komut setini tanıtmam an meselesidir.
 
@@ -83,13 +85,15 @@ x86 talimatlarını yorumlayabilen bir devre inşa etme konusunda, Intel CPU'lar
 
 Şimdi, Xbox CPU'su, geri kalan Pentium III işlemcileri ile birlikte **P6 Mikromimari**'yi (aynı zamanda 'i686' olarak da bilinir) kullanır. Bu, 8086'dan saymaya başladığımızda 6. nesildir ve şunları içerir:
 
-- *Devasa* **14 Aşamalı Pipeline**: Bu, paralel olarak 14 talimatın işlenebileceği anlamına gelir. Öte yandan, bireysel talimatlar tamamlanmak için çok daha fazla döngü alabilir. [Daha önceki bir açıklamaya](game-boy-advance#tab-2-1-the-core) bakın.
+- *Devasa* **14 Aşamalı Pipeline**: Bu, paralel olarak 14 talimatın işlenebileceği anlamına gelir. Öte yandan, bireysel talimatlar tamamlanmak için çok daha fazla döngü alabilir. [Daha önceki bir açıklamaya](game-boy-advance#the-core) bakın.
 - **Sıradışı Yürütme**: Mümkünse, CPU talimatların sırasını artırmak için yeniden düzenler ve verimliliği artırır.
-- **Dinamik Yürütme**: P6, sıradışı ve [üst ölçekli](dreamcast#cpu) bir tasarım olduğundan. Geleneksel [dal tahmincisi](gamecube#the-powerpc-gekko) şimdi diğer tekniklerle birleştirilmiştir ('spekülatif yürütme' ve 'veri akış analizi'), yeni yeteneklerden faydalanmak için. Böylece, Pipeline durmaları daha da azaltır.
+- **Dinamik Yürütme**: P6, sıradışı ve [üst ölçekli](dreamcast#cpu) bir tasarım olduğundan. Geleneksel [dal tahmincisi](gamecube#features) şimdi diğer tekniklerle birleştirilmiştir ('spekülatif yürütme' ve 'veri akış analizi'), yeni yeteneklerden faydalanmak için. Böylece, Pipeline durmaları daha da azaltır.
 
-Bu özelliklere biraz daha yakından bakalım. Bu özellikler, [önceki konsollarla](gamecube#the-powerpc-gekko) çok benzer oldukları ortaya çıkıyor. Ancak diğer CPU'lar, tasarım açısından Intel olanlara kıyasla çok farklı. Tarihsel olarak, bir kişi, x86 tasarımının Intel'e örneğin bir boru hattına sahip bir CPU üretme yeteneği vermediği konusunda bir argüman yapabilirdi. Ancak bunu başardılar, peki neden...
+Bu özelliklere biraz daha yakından bakalım. Bu özellikler, [önceki konsollarla](gamecube#features) çok benzer oldukları ortaya çıkıyor. Ancak diğer CPU'lar, tasarım açısından Intel olanlara kıyasla çok farklı. Tarihsel olarak, bir kişi, x86 tasarımının Intel'e örneğin bir boru hattına sahip bir CPU üretme yeteneği vermediği konusunda bir argüman yapabilirdi. Ancak bunu başardılar, peki neden...
 
 #### CISC veya RISC {.tab}
+
+![Intel Pentium Pro (1995), x86 dünyasında CISC ve RISC gelişmeleri arasında köprü kuran P6 mikro mimarisini piyasaya sürmüştür. Bu, özellikle x86'nın günlerinin sayılı olduğuna inanan birçok kişi için sürpriz oldu.](photos/pentiumpro.webp) {.tab-float}
 
 İlginç bir şekilde, rekabette yer alan işlemciler [**RISC yönergeleri**](playstation#tab-1-1-a-bit-of-history) etrafında tasarlanmışken, Intel'in x86 işlemcileri bu şekilde tasarlanmamıştır ve bu nedenle **CISC** grubuna dâhil edilmektedir. RISC işlemcileri, CISC işlemcilerine kıyasla sadeleştirilmiş bir tasarıma sahip oldukları bilinmektedir. Bu, örneğin, (bellekten doğrudan işlem yapmanın aksine) yalnızca register'lardaki değerler üzerinde işlem yapan komutlar sağlayan bir **load-store mimarisinin** uygulanmasını içerir.
 
@@ -101,7 +105,7 @@ Bir yan not olarak, mikrokod zaten silikona gömülüdür, ancak Intel'in bir ha
 
 #### Çekirdek {.tab}
 
-![Coppermine dizaynı.](cpu/core.png) {.tab-float}
+![Coppermine dizaynı.](_diagrams/cpu/core.png) {.tab-float}
 
 Intel, P6 mikromimarisini uygulayan birçok çip sevk etti. Xbox, **Coppermine** adlı bir model içerir. Bu aynı zamanda Pentium III'ün ikinci revizyonu olarak markalanmıştır ('Katmai' çekirdeğinin yerini alır) ve şu bileşenlere sahiptir:
 
@@ -126,7 +130,7 @@ Sonuç olarak, bu durum İsrail'deki Intel ekibini düşük güçlü P6 CPU'lar�
 
 PC tarihinin bir noktasında, anakartlar o kadar karmaşık hale geldi ki, yeni ihtiyaçları etkili bir şekilde ele almak için temelden tasarlanmış yeni tasarımlar geliştirilmek zorunda kaldı.
 
-![Xbox Anakart Genel Bakış.](cpu/motherboard.png) {.open-float}
+![Xbox Anakart Genel Bakış.](_diagrams/cpu/motherboard.png) {.open-float}
 
 Geliştirilen yeni standart, çoğu anakart fonksiyonunu işlemek için iki ayrılmış yonga kullanmaya dayanıyordu. Bu yongalar şunlardır:
 
@@ -143,7 +147,7 @@ Her iki yonga da **HyperTransport** adlı özel bir otobüsü kullanarak birbiri
 
 Xbox, toplamda **64 MiB DDR SDRAM** içerir; bu tür RAM, rakiplerin sunduğuna göre çok hızlıdır. Ancak, bu RAM türü tüm sistem bileşenleri arasında paylaşılmıştır. Dolayısıyla, bir kez daha, karşımıza başka bir **unified memory architecture (birleşik bellek mimarisi)** veya 'UMA' düzeni çıkıyor.
 
-![Anahtarlama ağının temsili. GPU iki banka kullanırken, CPU farklı bir banka kullanır ve bu süreçte çatışmayı azaltır.](cpu/memory.png)
+![Anahtarlama ağının temsili. GPU iki banka kullanırken, CPU farklı bir banka kullanır ve bu süreçte çatışmayı azaltır.](_diagrams/cpu/memory.png)
 
 Daha önce [ne kadar sorunlu](playstation-2#preventing-past-mishaps) olabileceğini görmüştük. Yine de, programlar verilerini belleğin farklı bankalarına yayarak bu sorunu ele alabilir. NV2A, farklı ünitelerin (CPU, GPU vb.) aynı anda bunlara erişmesini sağlayan bir **anahtarlama ağı** uygular \[@cpu-huang\] \[@cpu-informit\].
 
@@ -173,7 +177,7 @@ Sonraki bölümde, bu çipin iç işleyişini inceleyeceğiz. Şimdi, korkarım 
 
 NV2A üzerinde bulunan GPU çekirdeği, popüler 'GeForce3' serisine dayanmaktadır \[@graphics-mslusarz\] \[@graphics-g3arch\], aynı zamanda Nvidia'nın teknik belgelerinde **NV20** olarak adlandırılır.
 
-![NV2A'nın pipeline tasarımı.](NV2A_Pipeline.png) {.open-float}
+![NV2A'nın pipeline tasarımı.](_diagrams/gpu/pipeline.png) {.open-float}
 
 Lütfen unutmayın ki, Xbox'ın GPU'sunun pipeline NV20 mimarisine dayanmasına rağmen, NV2A'nın geri kalan NV20 serisi ile uyumlu olmayan bazı modifikasyonlara sahiptir (en önemlisi, bir UMA ortamında çalışacak şekilde adapte edilmiştir).
 
@@ -185,7 +189,7 @@ Bunu söylendikten sonra, Xbox'da karelerin nasıl çizildiğine bir göz atalı
 
 #### Komutlar {.tabs.active}
 
-![Komut aşaması.](pipeline/commands.png) {.tab-float}
+![Komut aşaması.](_diagrams/gpu/commands.png) {.tab-float}
 
 İlk ve en önemlisi, GPU'nun CPU'dan komut alabilmesinin açıklanmasıdır. Bu işlem için GPU, grafik komutlarını etkin bir şekilde alıp işleyen bir komut işlemcisine sahiptir ve buna **PFIFO** denir (grafik komutları **Pushbuffer** olarak adlandırılır), ardından paketten çıkarılan komutlar **PGRAPH** (grafik işlemeden sorumlu blok) ve diğer motorlara iletilir.
 
@@ -195,7 +199,7 @@ Sonraki açıklamalar PGRAPH içinde gerçekleşir.
 
 #### Vertex {.tab}
 
-![Vertex aşaması.](pipeline/vertex.png) {.tab-float}
+![Vertex aşaması.](_diagrams/gpu/vertex.png) {.tab-float}
 
 Bu özellikle bu GPU için ilginç bir bölümdür. Bu aşamada GPU, geometrimiz üzerinde vertex dönüşümleri uygulama yeteneği sunar. Bu özelliği Flipper ile zaten görmüştük, ancak bu GPU, **programlanabilir bir motor** kullanır. Yani geliştiriciler, hangi vertex işlemlerinin nasıl gerçekleştirileceğini belirleyebilirler, önceden tanımlanmış bir programa güvenmek yerine. Bununla birlikte, NV2A aynı zamanda 'sabit' modda çalışabilir, eğer gerekiyorsa.
 
@@ -209,17 +213,17 @@ Kısacası, vertex ünitesi, vertex'leri kayıtlarında manipüle ederek işler.
 
 #### Piksel {.tab}
 
-![Fragment/Pixel aşaması.](pipeline/pixel.png) {.tab-float}
+![Fragment/Pixel aşaması.](_diagrams/gpu/pixel.png) {.tab-float}
 
 Bu aşamada, vertex'ler piksellere dönüştürülür. İşlem, her üçgeni çizmek için piksel üreten bir pikselleştirici (rasteriser) ile başlar. NV2A'nın pikselleştiricisi döngü başına dört piksel üretebilir.<!-- Nvidia designed a memory system called 'Lightspeed Memory Architecture' which, among other things, compresses the Z-buffer to four times its original size which enables to increase bandwidth (since it has to be accessed from main memory, while \[competitors embedded it\]()). -->Ardından, bellekten dokuları çekmek için **4 texture shader** kullanılır [@graphics-domine], bunlar aynı zamanda anizotropik filtreleme, mipharitalama ve **shadow buffering** uygulamak için otomatik olarak sunar. Gölgeleme işlemi, bir pikselin görünür mü yoksa aydınlatma kaynağı tarafından gölgelenmiş mi olduğunu test etmek için kullanılır, böylece doğru renk uygulanabilir. Bu noktada, GPU aynı zamanda kırpma ve erken bir [Z-testi](nintendo-64#modern-visible-surface-determination) gerçekleştirme olanağı da sunar (NV2A, Z-buffer'ı orijinal boyutunun dört katına sıkıştırarak bant genişliğini tasarruf etmeye katkıda bulunarak birçok performans iyileştirmesine neden olur).
 
 Sonuçta elde edilen pikseller, bir **ortak kayıt kümesine** depolanır ve ardından her biri bunlara aritmetik işlemler uygulayan **8 register birleştirici**den geçirilir. Bu işlem, GPU tarafından yürütülen bir başka tür program olan **piksel shader**'larının kullanımıyla **programlanabilir** bir nitelik taşır [@graphics-wasson]. Her döngüde, her bir birleştirici, kayıt kümesinden RGBA değerlerini (RGB + Alpha) alır [@graphics-spitzer]. Ardından, shader tarafından belirlenen işleme dayanarak değerleri işler ve sonucu geri yazar. Son olarak, daha büyük bir miktar değer, yalnızca speküler renkleri karıştırabilir ve/veya sis ekleyebilen **son birleştiriciye** gönderilir.
 
-Register birleştiricileri, [Texture Environment Unit](gamecube#tab-3-3-texture) ile benzer bir şekilde programlanabilir. Yani belirli bir kombinasyonu ayarlarıyla register'ları değiştirerek. Xbox'ın durumunda, PFIFO, PGRAPH'ı kurmak için pushbuffer'ları okur, bu da register birleştiricilerini ve doku shader'larını içerir.
+Register birleştiricileri, [Texture Environment Unit](gamecube#tab-1-3-texture) ile benzer bir şekilde programlanabilir. Yani belirli bir kombinasyonu ayarlarıyla register'ları değiştirerek. Xbox'ın durumunda, PFIFO, PGRAPH'ı kurmak için pushbuffer'ları okur, bu da register birleştiricilerini ve doku shader'larını içerir.
 
 #### Post-processing (İşlem Sonrası) {.tab}
 
-![Post-processing aşaması.](pipeline/postprocessing.png) {.tab-float}
+![Post-processing aşaması.](_diagrams/gpu/postprocessing.png) {.tab-float}
 
 Piksellerin çerçeve belleğine yazılmadan önce, NV2A, ana bellekte ayrılmış blokları kullanarak gerekli testleri (alfa, derinlik ve damga) gerçekleştiren dört adanmış motor içeren **Raster Output Unit** veya 'ROP' içerir. Son olarak, piksel toplulukları (her biri dört piksel) yalnızca bu testleri geçerse geri yazılır.
 
@@ -253,9 +257,9 @@ Shader'ların gelecekteki makalelerde düzenli olarak ele alınacağını düş�
 
 ### Xbox'ın Çerçevesi
 
-Oyunların standart çözünürlüğü **640x480**'dir, bu altıncı neslin standartıdır. Ancak, bu kısıtlama sadece bir sayıdır: GPU, 4096x4096'ya kadar olan çerçeve belleklerini çizebilir, ancak donanımın kabul edilebilir performans sağlayıp sağlamayacağı ayrı bir konudur. Öte yandan, konsol, ekran ayarlarını genel olarak yapılandırma olanağı tanır, bu da pioner özellikleri (örneğin geniş ekran ve 'yüksek çözünürlük') geliştirmeye yönlendirebilir, geliştiricilerin bunları keşfetmelerini beklemek yerine ([Gamecube/Wii](wii#tab-1-1-standardised-widescreen)'de olduğu gibi).
+Oyunların standart çözünürlüğü **640x480**'dir, bu altıncı neslin standartıdır. Ancak, bu kısıtlama sadece bir sayıdır: GPU, 4096x4096'ya kadar olan çerçeve belleklerini çizebilir, ancak donanımın kabul edilebilir performans sağlayıp sağlamayacağı ayrı bir konudur. Öte yandan, konsol, ekran ayarlarını genel olarak yapılandırma olanağı tanır, bu da pioner özellikleri (örneğin geniş ekran ve 'yüksek çözünürlük') geliştirmeye yönlendirebilir, geliştiricilerin bunları keşfetmelerini beklemek yerine ([Gamecube/Wii](wii#tab-2-1-standardised-widescreen)'de olduğu gibi).
 
-Öte yandan, video kodlayıcı, çerçeve belleğinde ne varsa TV'niz tarafından anlaşılabilir bir formatta yayınlamaya çalışacaktır. Bu, oyunlar HD çıkış yapmadıkça (örneğin 720p veya 1080i, ki bunu sadece birkaç oyun yapar), geniş ekran görüntülerin [anamorfik](wii#tab-1-1-standardised-widescreen) hale geleceği anlamına gelir.
+Öte yandan, video kodlayıcı, çerçeve belleğinde ne varsa TV'niz tarafından anlaşılabilir bir formatta yayınlamaya çalışacaktır. Bu, oyunlar HD çıkış yapmadıkça (örneğin 720p veya 1080i, ki bunu sadece birkaç oyun yapar), geniş ekran görüntülerin [anamorfik](wii#tab-2-1-standardised-widescreen) hale geleceği anlamına gelir.
 
 Bu söylendiğine göre, bu konsol hangi sinyalleri yayınlar? Oldukça fazla. Xbox, tipik PAL/NTSC kompozitin yanı sıra <strong x-id=“1”>YPbPr</strong> ('component' konektörlerini almak için ekstra bir aksesuar gerekir) ve RGB (hem SCART hem de VGA uyumlu) sunar. Sonuç olarak, pahalı adaptörlere ve benzeri şeylere ihtiyaç duymadan oldukça kullanışlıdır.
 
@@ -277,7 +281,7 @@ APU yalnızca ses verilerini işler ancak çıkış yapamaz. Çıkış işlemi A
 
 Daha önce belirttiğim gibi, tüm I/O erişimini bir araya getiren bir 'Southbridge' alt sistemimiz var. Bu Southbridge MCPX yongası aracılığıyla gerçekleştirilir.
 
-![Konsol mimarisinin ana şeması. MCPX'in I/O'nun çoğunu nasıl kontrol ettiğine dikkat edin.](diagram.png)
+![Konsol mimarisinin ana şeması. MCPX'in I/O'nun çoğunu nasıl kontrol ettiğine dikkat edin.](_diagrams/main.webp)
 
 Bu arada MCPX, PC muadili olan **nVidia nForce Multimedia and Communications Processor** veya 'MCP' den türetilmiştir. Bu, nForce 220/415/420 yonga setini kullanan anakartlarda bulunur [@io-reactos].
 
@@ -401,7 +405,7 @@ Bu konsolda oyun geliştirmek, kütüphaneler, terimler ve benzeri açılardan o
 
 #### Donanım Soyutlama {.tabs.active}
 
-![HAL'nin temsili.](hal/general.png) {.tab-float}
+![HAL'nin temsili.](_diagrams/hal/general.png) {.tab-float}
 
 'Bir mikro kodlu programlanabilir yardımcı işlemci' gibi unsurların genellikle başta çok ses getirdiğini, ancak geliştiricilerin yeni donanımın gerçek karmaşıklığını keşfettikçe yavaşça azaldığını gördük.
 
@@ -411,7 +415,7 @@ Bu konsol için geliştirme yapmak için birkaç SDK bulunmaktadır; bazıları 
 
 #### Microsoft XDK {.tab}
 
-![XDK yapısı](hal/xdk.png) {.tab-float}
+![XDK yapısı](_diagrams/hal/xdk.png) {.tab-float}
 
 Microsoft'un Xbox Development Kit veya 'XDK', Xbox geliştirmek için kullanılan resmi SDK'dır. Bu, birçok aracı, kütüphaneyi ve derleyiciyi içeren bir pakettir. Özellikle, o dönem için *oldukça bir IDE* olan Visual Studio .NET (2002 sürümü) ile birlikte kullanılır.
 
@@ -423,7 +427,7 @@ Bunları denemek için Microsoft, kendi geliştirme kiti donanımlarını dağı
 
 #### NXDK {.tab}
 
-![NXDK yapısı. Dikkat edilmesi gereken, bazı düşük seviye kütüphanelerin yüksek seviyeli olanlarla sarmalanmış olmasına rağmen, geliştirici tarafından hala erişilebilir olduğudur](hal/nxdk.png) {.tab-float}
+![NXDK yapısı. Dikkat edilmesi gereken, bazı düşük seviye kütüphanelerin yüksek seviyeli olanlarla sarmalanmış olmasına rağmen, geliştirici tarafından hala erişilebilir olduğudur](_diagrams/hal/nxdk.png) {.tab-float}
 
 Homebrew geliştiricilerine resmi SDK kullanımında Telif Hukuku davalarını önlemek için, Microsoft ile bağlantılı olmayan bir grup geliştirici, resmi SDK'nın bir alternatifi olan **Open XDK**'yı oluşturdu. Birkaç yıl sonra geliştirmesi durdu, bu nedenle başka bir grup onu devraldı ve yeni bir çatalı **New XDK** veya 'nxdk' olarak adlandırdı.
 
@@ -469,7 +473,7 @@ Aslında durum bu kadar basit değil: Microsoft, kullanıcılara bu işlevselli�
 
 Bu konsolun hazır bileşenler içerip içermediğinden bağımsız olarak, uygulanan bir dizi güvenlik önlemi bulunmaktadır.
 
-Lütfen RSA şifrelemesinin burada tekrar eden bir konu olduğunu unutmayın, bunu daha önceki [Wii makalesinde](wii#tab-2-2-chain-of-trust) tanıtmıştım, bu nedenle RSA veya herhangi bir simetrik/asimetrik şifreleme sistemi hakkında bilgi sahibi değilseniz lütfen önce o makaleye göz atın.
+Lütfen RSA şifrelemesinin burada tekrar eden bir konu olduğunu unutmayın, bunu daha önceki [Wii makalesinde](wii#tab-7-2-chain-of-trust) tanıtmıştım, bu nedenle RSA veya herhangi bir simetrik/asimetrik şifreleme sistemi hakkında bilgi sahibi değilseniz lütfen önce o makaleye göz atın.
 
 Bunu söylendikten sonra, bir göz atalım.
 

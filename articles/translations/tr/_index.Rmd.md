@@ -27,6 +27,6 @@ Bu bir geliştirici kılavuzu değildir, yalnızca her bir sistemin dahili olara
 
 Temel bilgisayar bilgisi olan kişiler içindir, ancak içeriğimi daha geniş kitlelere uyarlamak için gerçekten çok çalışıyorum, bu yüzden lütfen denemekten korkmayın! Ancak bu yeterli değilse, [destekleyici okumalara](readings) bakmak isteyebilirsiniz.
 
-Mümkün olduğunca doğru olmaya çalışsam da, herhangi bir hata bulursanız lütfen [bana ulaşın](https://github.com/flipacholas/Architecture-of-consoles). Son olarak, bir e-Kitap okuyucu kullanarak okumayı tercih ediyorsanız, [e-Kitap baskısına](ebook) göz atın.
+Mümkün olduğunca doğru olmaya çalışsam da, herhangi bir hata bulursanız lütfen [bana ulaşın](https://github.com/flipacholas/Architecture-of-consoles). Son olarak, çevrimdışı okumayı tercih ediyorsanız, [birden fazla kitap baskısına](book) göz atın.
 
 Lafı fazla uzatmadan başlayalım!
