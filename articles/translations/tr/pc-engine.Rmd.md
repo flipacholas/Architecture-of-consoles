@@ -70,7 +70,7 @@ Son olarak, genel amaç için <strong x-id=“1”>8 KB RAM</strong> bulunmaktad
 
 Bu MMU günümüz MMU'larından çok farklıdır, ilkinin bir <a href=“nes#going-beyond-existing-capabilities”>mapper</a>'a daha yakın olduğunu söyleyebilirim. Bununla birlikte, PC Engine'de bulunan MMU, 21 bitlik bir adres veri yolu oluşturmak için CPU'nun 16 adres hattıyla birleştirilen <strong x-id=“1”>eight 8-bit register</strong>'dan (<strong x-id=“1”>Mapping Register</strong> veya 'MPR' olarak adlandırılır) oluşur.
 
-![MMU'nun adresleme yaklaşımı.](mmu.png)
+![MMU'nun adresleme yaklaşımı.](_diagrams/mmu.png)
 
 Bu şu şekilde çalışır:
 
@@ -90,7 +90,7 @@ Grafikler, <strong x-id=“1”>Hudson Soft HuC6270</strong> tarafından halledi
 
 Öncelikle, VDC bir <strong x-id=“1”>tile engine</strong> (5. nesil ortaya çıkana kadar hemen hemen standart) ancak PC Engine'in rakiplerine kıyasla önemli bir miktar olan <strong x-id=“1”>64 KB VRAM</strong> içerdiğine dikkat edin. Bu, daha sonra kontrol edeceğimiz yeni bir içerik türüne yol açabilir.
 
-![VDP'nin bellek mimarisi.](graphics/vdc.png)
+![VDP'nin bellek mimarisi.](_diagrams/vdc.png)
 
 Grafik verilerinin düzenlenme şekli biraz kafa karıştırıcıdır: Hem CPU hem de VDC 16 bit adresler kullanır, ancak CPU yalnızca 8 bit kelimeleri işleyebilirken, HuC6270 16 bit kelimeleri VRAM'de saklar [@graphics-chibi]. Bu, RAM'deki tek bir adresin bir bayt içerdiği, VRAM'deki bir adresin ise iki bayt depoladığı anlamına gelir, bu nedenle geliştiricilerin VRAM'e veri aktarırken bu tutarsızlığa dikkat etmeleri gerekir.
 
@@ -120,9 +120,9 @@ Video kodlayıcı, <strong x-id=“1”>32 renk paleti</strong> (arka plan için
 
 #### Karoların saklanması {.tab}
 
-![Arka plandaki tek bir tile'ın yapılandırılması.](graphics/storagetiles.png){.tabs-nested .active .tab-float title="Arka plan"}
+![Arka plandaki tek bir tile'ın yapılandırılması.](_diagrams/tiles.png){.tabs-nested .active .tab-float title="Arka plan"}
 
-![Tek bir sprite karosu yapılandırılması.](graphics/storagetiles_sprites.png){.tabs-nested-last title="Sprite'lar"}
+![Tek bir sprite karosu yapılandırılması.](_diagrams/tiles_sprites.png){.tabs-nested-last title="Sprite'lar"}
 
 (Bu bölüm Hudson'ın 64 KB VRAM'den bu 16 bitlik tanecikle nasıl yararlandığını merak edenler için yazılmıştır, ancak makalenin geri kalanını takip edebilmek için bunu tamamen anlamanız gerekmez).
 
@@ -152,7 +152,7 @@ Her giriş 8 bayt uzunluğundadır, ancak 16 bitlik ayrıntı düzeyi nedeniyle 
 
 Hepsinden önemlisi, <strong x-id=“1”>CPU bu tabloya erişemez</strong>, bu nedenle VRAM'de tamamlanması ve ardından VDC'ye kopyalamak için bir DMA kanalının etkinleştirilmesi gerekir (böylece ikincisi onu kullanabilir).
 
-Sınırlamalarla ilgili olarak, tarama çizgisi başına en fazla 16 sprite olabilir. Diğer taraftan, sprite taşması veya <a href=“master-system#tab-2-1-collision-detection”>çarpışma</a> olduğunda oyunun bilgilendirilebilmesi için kesmeler ayarlanabilir.
+Sınırlamalarla ilgili olarak, tarama çizgisi başına en fazla 16 sprite olabilir. Diğer taraftan, sprite taşması veya <a href=“master-system#tab-4-1-collision-detection”>çarpışma</a> olduğunda oyunun bilgilendirilebilmesi için kesmeler ayarlanabilir.
 
 #### Sonuç {.tab}
 
