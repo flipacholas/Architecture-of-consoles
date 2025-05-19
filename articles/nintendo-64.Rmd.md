@@ -105,7 +105,7 @@ The MMU can also work in 64-bit mode, where memory addresses are 40-bit long. Th
 
 ## Graphics
 
-What you see on the screen is produced by a huge chip designed by Silicon Graphics called **Reality Co-Processor** and running at **62.5 MHz**. This package contains *a lot* of circuitry so don't worry if you find it difficult to follow, the graphics sub-system has a very complex architecture!
+What you see on the screen is produced by a huge chip designed by Silicon Graphics called **Reality Co-Processor** and running at **62.5 MHz**. This package contains *a lot* of circuitry so don't worry if you find it difficult to follow, the graphics subsystem has a very complex architecture!
 
 This design is based on the philosophy that the GPU is not meant to be a 'simple' rasteriser like the [competitor's](playstation#graphics). Instead, it should also be capable of **accelerating geometry calculations** (offloading the CPU), and for that, more circuitry will be needed.
 
@@ -235,7 +235,7 @@ The good news is that the three lines can still be reconstructed in the first re
 
 ## Audio
 
-Before we go into the details, let's define the two endpoints of the N64's audio sub-system:
+Before we go into the details, let's define the two endpoints of the N64's audio subsystem:
 
 - Our starting point is the cartridge ROM, it contains data that only the CPU can interpret.
 - The ending point is the **Digital-to-Analog converter** or 'DAC', which only understands *waveform data*.
@@ -265,7 +265,7 @@ Because of this design, the constraints will depend on the implementation:
 
 - The sampling rate can be up to **44.1 kHz**, but using the top rate will steal lots of CPU cycles.
 - There's no strict limit on the number of channels, it all depends on how much the RSP is capable of mixing (often around 16-24 channels if processing ADPCM or ~100 if PCM).
-- Memory is another concern, while competitors relied on larger mediums (i.e. CD-ROM) and dedicated audio memory, Nintendo 64 cartridges hold much less data (let alone music data) and have to share main memory with other components.
+- Memory is another concern, while competitors relied on larger media (i.e. CD-ROM) and dedicated audio memory, Nintendo 64 cartridges hold much less data (let alone music data) and have to share main memory with other components.
   
 For those reasons, players may notice that N64 ports contain lesser-quality music or repeated scores. Although, a common workaround is to implement a music sequencer that 'constructs' samples at runtime using a pre-populated set of sounds (similar to MIDI music).
 

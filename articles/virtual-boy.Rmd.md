@@ -142,7 +142,7 @@ Alrighty, we're back to actual architecture, let's see now how games construct t
 
 The system uses a customised version of the **NEC V810** which operates at an amazing **20 MHz** (*if the [SNES](super-nintendo#cpu) ran at an average 1.79 MHz and the [GameBoy](game-boy#cpu) ran at 4.19 MHz, I can't wait to see what can you do with this one!*). Nintendo refers to it as **NVC** because the processor shipped with the Virtual Boy is a combination of a V810 core with some additional components (more details soon).
 
-The V810 is part of the V800 CPU family that NEC designed for the embedded market [@cpu-necfamily] [@cpu-necv805]. While this CPU is not as popular as the competition (i.e. [MIPS](playstation#cpu), [6502](nes#cpu), [Z80](master-system#cpu)) it does bring a lot of cutting-edge functionality, specifically:
+The V810 is part of the V800 CPU family that NEC designed for the embedded market [@cpu-necfamily] [@cpu-necv805]. While this CPU is not as popular as the competition (i.e. [MIPS](playstation#cpu), [6502](nes#core-functionality), [Z80](master-system#cpu)) it does bring a lot of cutting-edge functionality, specifically:
 
 - **32 32-bit registers**: This is a complete 32-bit CPU and the registers are well aligned to that.
 - **V800 series ISA**: A RISC instruction set that mixes 16-bit and 32-bit instructions.

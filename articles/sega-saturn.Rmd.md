@@ -158,7 +158,7 @@ I recommend checking out the sources (at the end of the article) if this section
 
 ### Defining the problem {.tabs-close}
 
-As you can see, the architecture of the graphics sub-system is quite complex, so it's interpreted differently depending on the needs:
+As you can see, the architecture of the graphics subsystem is quite complex, so it's interpreted differently depending on the needs:
 
 ### As a *powerful* 2D console
 
@@ -229,7 +229,7 @@ Some prioritised the VDP1 to draw the closest polygons and left the VDP2 to proc
 
 ### The new designs {.tabs-close}
 
-These are some examples of characters that were re-designed for this console, the models are interactive so do try to fiddle with them!
+These are some examples of characters that were redesigned for this console, the models are interactive so do try to fiddle with them!
 
 ![Sonic in Sonic R (1997).<br>185 quadrilaterals.](sonic_r_saturn){.toleft model3d="true"}
 

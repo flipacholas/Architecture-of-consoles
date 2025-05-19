@@ -86,7 +86,7 @@ Back on topic, **Cell combines both models**: there are two types of cores in th
 
 ### A glance at Cell {.tabs-close}
 
-Having explained all that history and theory, I think we are ready to bring forward the protagonist of this section. This is Cell @fig-cell...
+Having explained all that history and theory, I think we are ready to bring forward the protagonist of this section. This is Cell [@fig-cell]...
 
 ![The Cell Broadband Engine (PS3 variant).<br>Designed by IBM for supercomputing and scientific simulation. The crossed out 'SPE' means it's disabled (unusable). The other 'SPE' on the left is reserved to the operating system.](_diagrams/cell/cell.webp){#fig-cell}
 

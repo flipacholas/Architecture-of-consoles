@@ -89,7 +89,7 @@ Past System-on-Chips (SoCs) housing iconic ARM CPUs.
 
 ARM has come a long way since the days of the [Game Boy Advance](game-boy-advance), to recall its significant milestones:
 
-- The ARM CPU was conceived as a [replacement](game-boy-advance#tab-1-1-the-rise-of-acorn-computers) of the [MOS 6502](nes#cpu) CPU for Acorn's computers, later reaching maturity thanks to [Apple's input](game-boy-advance#tab-1-2-a-new-cpu-venture).
+- The ARM CPU was conceived as a [replacement](game-boy-advance#tab-1-1-the-rise-of-acorn-computers) of the [MOS 6502](nes#core-functionality) CPU for Acorn's computers, later reaching maturity thanks to [Apple's input](game-boy-advance#tab-1-2-a-new-cpu-venture).
 - The [ARM7TDMI](game-boy-advance#the-arm7tdmi) paved the way for success in the embedded market. At the same time, competitors across the pond [chose to avoid any mobile venture](playstation-portable#the-end-of-the-line).
 - The subsequent [StrongARM/ARM9](nintendo-ds#arms-new-territories) line granted the company a spot in the performance sector.
 - [As the competition faded](playstation-portable#the-end-of-the-line), the new [ARM11 line](nintendo-3ds#cpu) demonstrated this CPU could now partake on 3D applications.

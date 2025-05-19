@@ -721,7 +721,7 @@ The curtailment is further extended with the New 3DS, whose ARM11 MPCore now com
   - Considering the New Nintendo 2DS XL is a New Nintendo 3DS without the stereoscopic screen, that means half of its quad-core CPU is wasted!
 - CDMA, the 'New' DMA unit, is only accessible during the console's boot [@operating_system-dma]. After the boot process finishes, **CDMA is never used again**.
 
-Moving on, in terms of usable RAM for games, we know that the Nintendo 3DS and New Nintendo 3DS come with 128 MB and 256 MB of FCRAM, respectively. What you need to know now is that the available RAM for apps is only **64 MB** and **124 MB** [@operating_system-memory], respectively. This means that the OS consumes ~50% of the console's main memory, not a particularly pleasant quality! To alleviate this, games also have the option to set a flag in their metadata (called `APPMEMTYPE`) to claim more FCRAM from the system, up to **96 MB** and **176 MB**, respectively. Behind the scenes, that flag instructs the system to reboot the console and boot the game without launching the HOME Menu beforehand, saving memory in the way. 
+Moving on, in terms of usable RAM for games, we know that the Nintendo 3DS and New Nintendo 3DS come with 128 MB and 256 MB of FCRAM, respectively. What you need to know now is that the available RAM for apps is only **64 MB** and **124 MB** [@operating_system-memory], respectively. This means that the OS consumes ~50% of the console's main memory, not a particularly pleasant quality! To alleviate this, games also have the option to set a flag in their metadata (called `APPMEMTYPE`) to claim more FCRAM from the system, up to **96 MB** and **176 MB**, respectively. Behind the scenes, that flag instructs the system to reboot the console and boot the game without launching the HOME Menu beforehand, saving memory along the way. 
 
 All things considered, you can now sense how not all extra hardware in the New 3DS will automatically imply faster software. It's a shame, and it gives me the feeling that the New 3DS was a rushed product, from the software perspective. But to be fair, Nintendo never planned the 'New' 3DS to be a full successor of the original 3DS. The 'New' brand was a clear move to refresh the 3DS line, considering the sales number wasn't satisfying, to say the least.
 
@@ -907,7 +907,7 @@ If that wasn't enough, developers also had access to NintendoWare to download co
 
 ### Medium {.tabs-close}
 
-The Nintendo 3DS can run software from three different mediums.
+The Nintendo 3DS can run software from three different media.
 
 #### Gamecards {.tabs .active}
 
@@ -1265,7 +1265,7 @@ With this, one would now be allowed to craft a firmware for the ARM9 core, sign 
 
 ##### Boot9strap {.tab}
 
-The year is 2017. Most know about the existence of Sighax but only a handful can apply it, all because the new method requires a crafted RSA signature and writing access to the NAND, none of which is easy to come by (and let's not forget Nintendo was still clamping down hard on user-land exploits through system updates). Luckily, Sighax was in the process of being democratised.
+The year is 2017. Most know about the existence of Sighax but only a handful can apply it, all because the new method requires a crafted RSA signature and writing access to the NAND, none of which is easy to come by (and let's not forget Nintendo was still clamping down hard on userland exploits through system updates). Luckily, Sighax was in the process of being democratised.
 
 Even though Derrek's announcement didn't include a suitable RSA signature or a copy of Boot9 (due to copyright reasons, I'm guessing), that didn't stop hackers SciresM and Myria from finding alternative resources that would enable them to craft an RSA signature.
 
@@ -1307,7 +1307,7 @@ To give you an idea of how elegant exploitation became by 2023, let me show you 
 
 This route consisted of exploiting `SAFE_FIRM` and was described in earlier tutorials:
 
-1. **unSAFE_MODE**: Users can boot into Safe Mode by pressing a combination of buttons during the console's boot, the alternative firmware then enables the user to perform a system update, which is useful for repairing the console. Well, zoogie discovered that the proxy settings can be overflowed [@anti_piracy-unsafe_mode]. Hence, providing user-land execution within Safe Mode.
+1. **unSAFE_MODE**: Users can boot into Safe Mode by pressing a combination of buttons during the console's boot, the alternative firmware then enables the user to perform a system update, which is useful for repairing the console. Well, zoogie discovered that the proxy settings can be overflowed [@anti_piracy-unsafe_mode]. Hence, providing userland execution within Safe Mode.
 2. **safehax**: a port of 'firmlaunch-hax' to work under SAFE_FIRM. Nintendo originally patched it with system update `9.5.0` released in February 2015 [@anti_piracy-9_5]. Yet, SAFE_FIRM is an immutable replica of the factory firmware, and thus it features old exploits NATIVE_FIRM once _enjoyed_.
     1. **firmlaunch-hax**: When the firmware is booting, the ARM9 stores the firmware's header in FCRAM for verifying and then parsing. With the help of a race condition, execution can take control of the ARM9, so the boot9strap installer can be launched. Nintendo fixed this by keeping the header in ARM9 RAM instead, although this stayed unpatched on SAFE_FIRM.
 
@@ -1315,7 +1315,7 @@ This route consisted of exploiting `SAFE_FIRM` and was described in earlier tuto
 
 Sometime later, a new route was proposed by new tutorials. This exploited the HOME Menu with a new Menuhax-style hack: 
 
-1. **menuhax67**: The screen brightness configuration value can be overflown [@anti_piracy-menuhax67], leading to user-land control from the HOME Menu.
+1. **menuhax67**: The screen brightness configuration value can be overflown [@anti_piracy-menuhax67], leading to userland control from the HOME Menu.
 2. **nimdsphax**: An modern exploit chain combining 'ctr-httpwn', 'nimhax' and 'dsp pwn' [@anti_piracy-nimdsphax].
     1. **ctr-httpwn** by yellows8: The HTTP service used for network connections can be controlled by overriding its heap memory (using the old GPU DMA exploit) [@anti_piracy-httpwn].
     2. **nimhax** by luigoalma: Uses ctr-httpwn to escalate and take over the services that control the user file system, console configuration and application management [@anti_piracy-nimhax].

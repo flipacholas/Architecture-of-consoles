@@ -355,7 +355,7 @@ Finally, the chip can mix all channels to provide **stereo output**. Now, here i
 
 ### Audio out
 
-The audio signal is outputted through two mediums:
+The audio signal is outputted through two media:
 
 - **Digital Audio**: Referred to as the Sony/Philips Digital Interface or 'S/PDIF'.
 - **Analog Audio**: Goes through the digital-to-analogue converter and ends at the Multi A/V port.

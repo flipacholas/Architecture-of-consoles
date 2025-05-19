@@ -44,7 +44,7 @@ The main processor is one of those 'x designed by y, based on z and second-sourc
 
 ![A Macintosh Quadra 700 next to a PowerPC upgrade card. As it happened to many adopters of the Motorola 68k, the 90s dictated a necessary move to RISC-based CPUs (PowerPC in the case of Apple).](quadra.webp){.tab-float}
 
-The early nineties were marked by a change in the fates of many popular CPUs. The once-leading 8-bit CPUs, such as the [Z80](master-system#cpu) and [6502](nes#cpu), were already out of spotlight and Motorola’s famous [68000](mega-drive-genesis#cpu), along with other [16-bit designs](super-nintendo#cpu) that enjoyed success in the late 80s, had become candidates for replacement. Even at this time in the PC world, Tanenbaum, in his celebrated debate with Torvalds, gave Intel’s x86 architecture only *five more years* until its demise from the home market.
+The early nineties were marked by a change in the fates of many popular CPUs. The once-leading 8-bit CPUs, such as the [Z80](master-system#cpu) and [6502](nes#core-functionality), were already out of spotlight and Motorola’s famous [68000](mega-drive-genesis#cpu), along with other [16-bit designs](super-nintendo#cpu) that enjoyed success in the late 80s, had become candidates for replacement. Even at this time in the PC world, Tanenbaum, in his celebrated debate with Torvalds, gave Intel’s x86 architecture only *five more years* until its demise from the home market.
 
 At first, it may look as if technological development had hit a wall at this point. But in reality, there was a new wave of relatively unknown CPUs making their way into mainstream devices. Many of these designs had originated in academia, and so existed to prove particular sets of design ideas. Examples of novel CPUs of that era included:
 
@@ -382,7 +382,7 @@ The CD controller is also able to send samples directly to the audio mixer witho
 
 ### The streaming era
 
-[Similarly to the Saturn](sega-saturn#the-opportunity), games are no longer dependent on music sequencing or pre-defined waveforms, and thanks to the amount of storage available on the CD-ROM medium, developers can store fully produced samples and just stream them to the audio chip.
+[Similarly to the Saturn](sega-saturn#the-opportunity), games are no longer dependent on music sequencing or predefined waveforms, and thanks to the amount of storage available on the CD-ROM medium, developers can store fully produced samples and just stream them to the audio chip.
 
 ## I/O
 

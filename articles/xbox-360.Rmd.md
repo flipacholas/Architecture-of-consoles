@@ -115,7 +115,7 @@ To sum it up, IBM signed an agreement with Sony and Toshiba to develop Cell in 2
 ### Cell's half-sibling
 <!-- TODO: Explain Power mac g5 prototype?? -->
 
-Now that we've positioned Microsoft and IBM on the map, let's talk about the new CPU. This is how Xenon materialised at the end of the Xbox 360 project... @fig-xenon
+Now that we've positioned Microsoft and IBM on the map, let's talk about the new CPU. This is how Xenon materialised at the end of the Xbox 360 project [@fig-xenon]...
 
 ![Simplified view of Xenon.](_diagrams/cpu/xenon.webp){.toleft #fig-xenon}
 
@@ -360,7 +360,7 @@ Overall, this synergy is what has enabled the Xbox 360 to achieve such a high le
 
 ### Constructing the frame
 
-Having said all that, how does Xenon actually render a frame? Well, similarly to other GPUs in the market, there are many steps involved. Take a look at this diagram of Xenos' pipeline @fig-xenos.
+Having said all that, how does Xenon actually render a frame? Well, similarly to other GPUs in the market, there are many steps involved. Take a look at this diagram of Xenos' pipeline [@fig-xenos].
 
 ![Overview of the graphics pipeline in Xenos.](_diagrams/gpu/pipeline.webp){#fig-xenos}
 

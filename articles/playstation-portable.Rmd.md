@@ -102,7 +102,7 @@ A traditional Memory Management Unit or 'MMU' takes care of the CPU's access to 
 
 This is particularly advantageous for features like 'virtual memory' and 'memory protection'. Well, to achieve virtual memory, an MMU must contain a component called 'Translation Look-aside Buffer' (TLB) to prevent performance degradation. Now, **Allegrex's MMU lacks a TLB**, so it focuses on memory protection. This is why Allegrex's MMU is instead called an MPU (Memory Protection Unit). An MPU is a cut-down version of an MMU without virtual memory. In any case, **memory protection gives the system the power to decide which memory locations a program can access**.
 
-Thanks to this, Allegrex won't have to deal with user-land programs (i.e. games) accessing restricted locations (i.e. encryption keys). To accomplish the restriction itself, memory addresses are grouped into five segments with different privilege levels. Furthermore, Allegrex's MPU contains three modes of operation: **User mode**, **Supervisor mode** and **Kernel mode**.
+Thanks to this, Allegrex won't have to deal with userland programs (i.e. games) accessing restricted locations (i.e. encryption keys). To accomplish the restriction itself, memory addresses are grouped into five segments with different privilege levels. Furthermore, Allegrex's MPU contains three modes of operation: **User mode**, **Supervisor mode** and **Kernel mode**.
 
 If a normal process (operating in user mode) wants to access a memory address found in a privileged location, the MPU will ask the operating system (through the use of 'exceptions') whether to grant permission to the process. 
 
@@ -698,7 +698,7 @@ Despite all the security, it seems that hackers never gave up on this console (m
 
 #### Early blunders {.tabs .active}
 
-After the release of the PSP in Japan, it was a matter of time before user-land exploits emerged. Some of them used the flawed security found in early versions of the firmware:
+After the release of the PSP in Japan, it was a matter of time before userland exploits emerged. Some of them used the flawed security found in early versions of the firmware:
 
 - 'Wipe Out' embedded a web browser to access downloadable content. It wasn't protected against **DNS attacks (domain hijacking)**, allowing users to browse any URL in the world-wide-web.
   - Later on, it was discovered that the browser's URL entry didn't verify the input. So, entering `file:///disc0:/` as URL would **list the contents of the UMD**, already unencrypted. This enabled hackers to inspect PSP executables and reverse engineer them.
@@ -746,7 +746,7 @@ Furthermore, before Pandora was published, so-called **Custom Firmware** or 'CFW
 
 A CFW can be installed on top of the current firmware with the help of any kernel-level exploit (this was the earliest method). However, it can only be automatically booted with exploits previously used by Pandora to bypass signature checks. Otherwise, users need to rely on cat-and-mouse exploits to reboot to a CFW. That's why the latest PSP models weren't able to kickstart a CFW using the *good-old* methods.
 
-In the end, the last straw was when the [security system](playstation-3#os-security-hierarchy) of the [PlayStation 3](playstation-3) was [hacked](playstation-3#tab-9-4-the-fall-of-encryption), as it contained the **private keys used to decrypt PSP executables** (the PS3's OS includes a PSP emulator). This allowed anyone to sign user-land software and embed a kernel exploit to produce CFW installers and/or CFW loaders, for instance.
+In the end, the last straw was when the [security system](playstation-3#os-security-hierarchy) of the [PlayStation 3](playstation-3) was [hacked](playstation-3#tab-9-4-the-fall-of-encryption), as it contained the **private keys used to decrypt PSP executables** (the PS3's OS includes a PSP emulator). This allowed anyone to sign userland software and embed a kernel exploit to produce CFW installers and/or CFW loaders, for instance.
 
 In recent developments, it was discovered that the latest firmware contains a kernel exploit during the boot process, which could be used to kickstart a CFW of choice. This was packaged in an solution called **Infinity 2** [@anti_piracy-davee].
 

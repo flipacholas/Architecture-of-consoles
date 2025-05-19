@@ -201,7 +201,7 @@ The next explanations happen in PGRAPH.
 
 ![Vertex stage.](_diagrams/gpu/vertex.png){.tab-float}
 
-This is an interesting section for this GPU in particular. At this stage, the GPU provides the ability to apply vertex transformations to our geometry. We've already seen this feature with Flipper, but unlike that GPU, this one uses a **programmable engine**. This means that developers may specify which vertex operations are performed and how, as opposed to relying on a pre-defined program. Although, the NV2A can also operate in 'fixed' mode, if required.
+This is an interesting section for this GPU in particular. At this stage, the GPU provides the ability to apply vertex transformations to our geometry. We've already seen this feature with Flipper, but unlike that GPU, this one uses a **programmable engine**. This means that developers may specify which vertex operations are performed and how, as opposed to relying on a predefined program. Although, the NV2A can also operate in 'fixed' mode, if required.
 
 This stage is handled by a **Vertex Unit** and the NV2A features **two of them**. Each can load a program containing up to 136 instructions (also called **microcode**). This program is referred to as **vertex program** and it's loaded at runtime. A vertex program can perform the following operations [@graphics-koppelman]:
 
@@ -353,7 +353,7 @@ All right, let's start by addressing the elephant in the room.
 
 I'm afraid this is a *yes and no* answer: There is a 'Windows' present in this console, but not in the form conventional PC users would expect.
 
-First things first, the Xbox's operating system is composed of a **Kernel** and **user-land applications** (i.e. the Dashboard). These are stored in the 1 MiB Flash ROM and the HDD, respectively.
+First things first, the Xbox's operating system is composed of a **Kernel** and **userland applications** (i.e. the Dashboard). These are stored in the 1 MiB Flash ROM and the HDD, respectively.
 
 The Kernel borrows a significant codebase from **Windows 2000's kernel** [@operating_system-os] (which, in turn, is based on the modern **Windows NT** architecture). The result is a stripped-down Windows 2000 kernel that only embeds the necessary components for the Xbox hardware. These are finally compressed and packaged in a single executable [@operating_system-kernel] for optimal memory efficiency. All in all, you can think of it as a highly-optimised Windows machine exclusively designed for gaming.
 
