@@ -20,7 +20,7 @@ aliases: [../projects/consoles]
 
 ![](banner.png){linked_img=true .no_lazyload .no_link}
 
-Looking at the evolution of video game consoles is fascinating. While conventional PCs tend to evolve 'incrementally', new generations of consoles introduce completely new ways of working. What you see here is a series of articles that will hopefully uncover the rationale behind the latest trends in technology. They will also demonstrate why each system can't be summarised by its 'bits', megahertz, amount of RAM and whatnot.
+Looking at the evolution of video game consoles is fascinating. While conventional PCs tend to evolve 'incrementally', new generations of consoles introduce completely new ways of working. What you see here is a series of articles aimed at uncovering the rationale behind the latest trends in technology. They will also demonstrate why each system can't be summarised by its 'bits', megahertz, amount of RAM and whatnot.
 
 This is not a developer manual, just an *in-depth* introduction to how each system works internally. Bear in mind that tech has gotten really complicated lately, so if you struggle to follow my latest articles, try reading the early ones first. They introduce many concepts and definitions that are constantly revisited.
 
