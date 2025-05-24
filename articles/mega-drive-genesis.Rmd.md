@@ -143,9 +143,9 @@ Technically speaking, the VDP can fit either 40 or 32 columns of [tiles](master-
 
 You can identify which PAL games render in NTSC mode by checking the `Mode Set Register #2` in an emulator with debugging capabilities (e.g., Exodus). If the fourth bit from the right is `0`, the VDP is running in NTSC mode [@graphics-resolution].
 
-![To provide a quick multiplayer mode in Sonic 2 (1992), the game activates 'interlaced mode' to render a single-player level using 8x16 pixel tiles instead (along with other changes).](twopsonic/sonic2.png){.side-by-side .toleft .pixel}
+![To provide a quick multiplayer mode in Sonic 2 (1992), the game activates 'interlaced mode' to render a single-player level using 8x16 pixel tiles instead (along with other changes).](twopsonic/sonic2.png){.side-by-side .toleft .border .pixel}
 
-![By contrast, the more sophisticated multiplayer mode of Sonic 3 (1994) relies on dedicated 8x8 pixel tiles that are separate from single-player levels.](twopsonic/sonic3.png){.toright .pixel}
+![By contrast, the more sophisticated multiplayer mode of Sonic 3 (1994) relies on dedicated 8x8 pixel tiles that are separate from single-player levels.](twopsonic/sonic3.png){.toright .border .pixel}
 
 Furthermore, there's an additional parameter that can be set on the VDP to stack two tiles to form **8x16 maps** and then treat them as a single tile. Hence, doubling the vertical resolution. However, this halves the refresh rate as frames are now rendered with interlacing (one frame renders even scan-lines, the next beams odd ones, and so forth) so it's more limited in terms of functionality. The multiplayer mode of Sonic 2 is a good representation of this mode [@graphics-sonicmultip].
 
@@ -197,7 +197,7 @@ Tiles are used to construct a total of **four planes**, which, when merged, form
 
 #### Background {.tab}
 
-::: {.subfigures .tabs-nested .tab-float .pixel}
+::: {.subfigures .tabs-nested .tab-float .pixel #fig-background_map}
 
 ![Allocated Background map.](vdp_sonic/layer2.png){.active .border title="Full"}
 
@@ -213,7 +213,7 @@ This plane supports six different dimensions: 256x256, 256x512, 256x1024, 512x25
 
 Each tile can be **flipped horizontally and/or vertically** and have a **priority** set.
 
-In the example shown, you will notice that the selected area for display is not a square... *It doesn't have to be!*. The VDP allows to set up horizontal scrolling values for the whole frame, each individual scan-line or every eight pixels. This means that developers can shape the selected area like a rhomboid and alter its angles as the player moves to simulate **perspective effects**. Tricks like this do not corrupt the plane; the VDP fetches each selected horizontal line and constructs a regular frame from it.
+In the example shown [@fig-background_map], you will notice that the selected area for display is not a square... *It doesn't have to be!*. The VDP allows to set up horizontal scrolling values for the whole frame, each individual scan-line or every eight pixels. This means that developers can shape the selected area like a rhomboid and alter its angles as the player moves to simulate **perspective effects**. Tricks like this do not corrupt the plane; the VDP fetches each selected horizontal line and constructs a regular frame from it.
 
 #### Foreground {.tab}
 
@@ -249,11 +249,11 @@ The region in VRAM where sprites are defined is called **Sprite Attribute Table*
 
 #### Result {.tab}
 
-::: {.subfigures .tabs-nested .tab-float .pixel}
+::: {.subfigures .tabs-nested .tab-float .pixel #fig-result_frame}
 
 ![Resulting frame.](vdp_sonic/result.png){.active .border latex_width="90%" title="Frame"}
 
-![Frame broadcast to the TV (NTSC format), the VDP automatically covers the frame with overscan area that most CRT TVs will hide.](vdp_sonic/overscan.png){.border latex_width="90%" title="With overscan"}
+![Frame broadcasted to the TV (in NTSC format). The VDP automatically adds an overscan area, which most CRT TVs will hide.](vdp_sonic/overscan.png){.border latex_width="90%" title="With overscan"}
 
 Tada!
 
@@ -265,7 +265,7 @@ Conventionally, two types of interrupts are called: **H-Blank** (at every horizo
 
 H-Blank is called numerous times per frame, but is limited to executing short routines. V-Blank, on the other hand, allows for longer routines, with the drawback of only being called 50 or 60 times per second (depending on the console's region).
 
-Notice that the overscan area in the example exhibits some random coloured dots in the bottom-left corner. This phenomenon, known as **CRAM dots**, occurs when the CPU updates the palettes in CRAM while the VDP is beaming the remaining scan-lines (in the example, this happens during overscan). This conflict causes the VDP to fetch whatever value the CPU is writing at that moment, rather than the required location in CRAM. So, the image gets corrupted. In this particular case, the game updates CRAM only during overscan, so this anomaly goes unnoticed on traditional CRTs. At another level in the game, however, the game changes the palette mid-frame to simulate water effects. Hence, programmers tried to mask it by drawing a flickering water ripple in-between [@audio-sonic_water]. As you can see, it's all about balancing the extra colours with the CRAM side-effect.
+Notice that the overscan area in the example [@fig-result_frame] exhibits some random coloured dots in the bottom-left corner. This phenomenon, known as **CRAM dots**, occurs when the CPU updates the palettes in CRAM while the VDP is beaming the remaining scan-lines (in the example, this happens during overscan). This conflict causes the VDP to fetch whatever value the CPU is writing at that moment, rather than the required location in CRAM. So, the image gets corrupted. In this particular case, the game updates CRAM only during overscan, so this anomaly goes unnoticed on traditional CRTs. At another level in the game, however, the game changes the palette mid-frame to simulate water effects. Hence, programmers tried to mask it by drawing a flickering water ripple in-between [@audio-sonic_water]. As you can see, it's all about balancing the extra colours with the CRAM side-effect.
 
 ### A dedicated transfer unit {.tabs-close}
 
