@@ -14,16 +14,18 @@ top_tabs:
       file: international
       caption: "The Super Nintendo (in Europe) or Super Famicom (in Japan).<br>Released on 21/11/1990 in Japan and 11/04/1992 in Europe."
       active: true
-      latex_height: 90
+      latex_height: 86
     - title: "American"
       file: american
       caption: "The Super Nintendo.<br>Released on 13/08/1991 in America."
+      latex_height: 94
   Motherboard:
     caption: "Showing revision 'SNS-RGB-CPU-01'.<br>Earlier revisions had the Sound Subsystem connected as a daughterboard, later ones unified both PPUs."
     bib_source: photography-yaca
     extension: "jpg"
   Diagram: 
     caption: "Bus 'A' and 'B' are address buses, the data bus follows the trail of bus 'B' and it's 8 bits wide."
+    latex_height: 93
 
 # Historical
 aliases:
@@ -155,9 +157,9 @@ Now, here's the tricky part: traditional TVs have an aspect ratio of 4:3. Yet, i
 
 ::: {.subfigures .side-by-side .pixel}
 
-![Rendered frame with a resolution of 256 x 224 pixels. This is what the console sends to the TV.](stretch/internal.png){.toleft .snesratiosmaller latex_width="77%" .border}
+![Rendered frame with a resolution of 256 x 224 pixels. This is what the console sends to the TV.](stretch/internal.png){.toleft .snesratiosmaller hardcover_latex_width="76%" paperback_latex_width="66%" .border}
 
-![Stretched frame as seen from the TV (with an apparent resolution of 292 x 224 pixels).](stretch/external.png){.toright .snesratiobigger latex_width="77%" .border}
+![Stretched frame as seen from the TV (with an apparent resolution of 292 x 224 pixels).](stretch/external.png){.toright .snesratiobigger hardcover_latex_width="85%" paperback_latex_width="75%" .border}
 
 Kirby's Dream Land 3 (1997).
 
@@ -197,11 +199,11 @@ Just like its predecessor, the S-PPU uses tiles to build sophisticated graphics.
 
 ::: {.subfigures .tabs-nested .tab-float .pixel}
 
-![Background Layer 1 (BG1).](sppu_mario/background1_map.png){.active latex_width="77%" .border title="Layer 1"}
+![Background Layer 1 (BG1).](sppu_mario/background1_map.png){.active hardcover_latex_width="77%" paperback_latex_width="69%" .border title="Layer 1"}
 
-![Background Layer 2 (BG2).](sppu_mario/background2_map.png){latex_width="77%" .border title="Layer 2"}
+![Background Layer 2 (BG2).](sppu_mario/background2_map.png){hardcover_latex_width="77%" paperback_latex_width="69%" .border title="Layer 2"}
 
-![Background Layer 3 (BG3).](sppu_mario/background3_map.png){latex_width="77%" .border title="Layer 3"}
+![Background Layer 3 (BG3).](sppu_mario/background3_map.png){hardcover_latex_width="77%" paperback_latex_width="69%" .border title="Layer 3"}
 
 Background maps in VRAM.
 
@@ -256,7 +258,7 @@ As you can see, programmers can now decide whether to prioritise colour depth, n
 
 #### Sprites {.tab}
 
-![Rendered Sprite layer.](sppu_mario/sprites.png){.tab-float .pixel latex_width="70%" .border}
+![Rendered Sprite layer.](sppu_mario/sprites.png){.tab-float .pixel latex_width="90%" .border}
 
 A dedicated memory region called **Object Attribute Memory** (OAM) stores a table with references of up to 128 sprites, each with the following properties [@graphics-guidelines]:
 
@@ -271,7 +273,7 @@ The S-PPU can render **up to 32 sprites per scanline**; overflowing this will on
 
 #### Result {.tab}
 
-![Tada!](sppu_mario/complete.png){.tab-float .pixel latex_width="70%" .border}
+![Tada!](sppu_mario/complete.png){.tab-float .pixel latex_width="90%" .border}
 
 The S-PPU renders each scanline on-the-fly, first processing the relevant portion of each layer and then mixing them.
 
@@ -329,9 +331,9 @@ This functionality is collectively known as **Color Math** [@graphics-color_math
 
 ::: {.subfigures .side-by-side .pixel max_subfigures=2 #fig-dk_layers}
 
-![The lamp sways along with the light, such daunting effect is accomplished by altering the S-PPU's masking options.](color_math/dk1.png){.toleft .border latex_width="77%"}
+![The lamp sways along with the light, such daunting effect is accomplished by altering the S-PPU's masking options.](color_math/dk1.png){.toleft .border hardcover_latex_width="78%" paperback_latex_width="70%"}
 
-![The parrot follows you around with a torchlight, which can point to either direction and bounce. This plays very well with the overall atmosphere.](color_math/dk2.png){.toright .border latex_width="77%"}
+![The parrot follows you around with a torchlight, which can point to either direction and bounce. This plays very well with the overall atmosphere.](color_math/dk2.png){.toright .border hardcover_latex_width="78%" paperback_latex_width="70%"}
 
 Donkey Kong Country (1994) exploited the capabilities of the S-PPU's blender to astonishing levels.
 
@@ -401,7 +403,7 @@ Oscilloscope display of Star Fox (1993).
 
 :::
 
-For the S-SMP to do useful work, it needs to load a type of program known as **Sound Driver**. This software instructs the chip on how to manipulate raw audio data sent by the main CPU to PSRAM, as well as how to control the S-DSP.
+For the S-SMP to do independent work, it needs to load a type of program known as **Sound Driver**. This software instructs the chip on how to manipulate raw audio data sent by the main CPU to PSRAM, as well as how to control the S-DSP.
 
 As evident, the sound subsystem was a major leap forward compared to previous generations, but it also posed significant programming challenges. The documentation provided by Nintendo was infamous for its vague explanations and omission of critical features, forcing developers to conduct their own research.
 
@@ -439,7 +441,7 @@ Oscilloscope display of the same score across the two different games.
 
 ### Advanced usage {.interactive-only}
 
-::: {.subfigures .tabs-nested .tab-float .open-float latex_subfigure_width="0.49" .interactive-only}
+::: {.subfigures .tabs-nested .tab-float .open-float .interactive-only}
 
 ![Channels used for melody.](kirby/trebble){.active video="true" .negate .border title="Melody"}
 

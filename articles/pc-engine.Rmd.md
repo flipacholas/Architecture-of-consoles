@@ -18,10 +18,14 @@ top_tabs:
       caption: "The TurboGrafx-16.<br>Released on 29/08/1989 in America, 22/11/1989 in France and 1990 in the UK and Spain."
       active: true
       file: international
+      latex_height: 93
   Motherboard:
     caption: "Showing the TurboGrafx's motherboard.<br>The PC Engine one was considerably smaller and stacked."
+    latex_height: 93
+    marked_latex_height: 94
   Diagram:
     caption: "Looks pretty simple, huh?"
+    paperback_latex_height: 95
 
 # Historical
 aliases: [/projects/consoles/pc-engine/]
@@ -183,7 +187,7 @@ The video encoder outputs RGB (along with Sync) and YPbPr, which is ideal for us
 
 ![RF port at the right side of the PC Engine.](rfport.jpg){.tabs-nested .active .open-float .tab-float latex_width="85%" title="RF"}
 
-![The 'Turbo Booster' for the TurboGrafx-16 [@photography-amos], connected to the Expansion port to supply video composite and power.](turbo_booster.png){.tabs-nested-last title="Accessory"}
+![The 'Turbo Booster' for the TurboGrafx-16 [@photography-amos], connected to the Expansion port to supply video composite and power.](turbo_booster.png){.tabs-nested-last latex_width="85%" title="Accessory"}
 
 ... Unfortunately, Hudson decided to fit an RF modulator as the only way to get video out-of-the-box, so it's not that great after all. But then again, the PC Engine was designed in the 80s, so this approach guaranteed compatibility with most TVs of the same region.
 

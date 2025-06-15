@@ -12,11 +12,14 @@ published: true
 top_tabs:
   Model:
     caption: "The Sega Master System.<br>Released on 20/10/1985 in Japan, 09/1986 in America and 06/1987 in Europe"
-    latex_height: 90
+    latex_height: 87
   Motherboard:
     caption: "The sound chip is embedded in the video display processor."
+    latex_height: 95
+    marked_latex_height: 95
   Diagram:
     caption: ""
+    latex_height: 95
 
 # Historical
 aliases: [/projects/consoles/master-system/]
@@ -44,9 +47,9 @@ Sega opted for a fully-fledged **Zilog Z80** CPU running at **~3.58 MHz**, a pop
 
 ::: {.subfigures .side-by-side}
 
-![The American Tandy TRS-80 (1977). I found it in the Computer History Museum (Mountain View, California), during my visit in June 2019.](trs80.webp){.toleft latex_width="65%"}
+![The American Tandy TRS-80 (1977). I found it in the Computer History Museum (Mountain View, California), during my visit in June 2019.](trs80.webp){.toleft paperback_latex_width="60%" hardcover_latex_width="70%"}
 
-![The British Sinclair ZX80 (1980), it is way smaller than it looks! This is part of Christopher Rivett's collection [@photography-crivett].](zx80.webp){.toright latex_width="65%"}
+![The British Sinclair ZX80 (1980), it is way smaller than it looks! This is part of Christopher Rivett's collection [@photography-crivett].](zx80.webp){.toright paperback_latex_width="60%" hardcover_latex_width="70%"}
 
 Popular computers across the world carrying a Z80 CPU.
 
@@ -257,7 +260,7 @@ Just like the VDP, the PSG is a no-brainer, but it does hide some interesting fu
 
 #### FM Expansion {.tabs .active}
 
-![Double Dragon (1987).](){audio_switcher="true" src1="psg" src2="fm" label1="PSG" label2="FM" .float}
+![Double Dragon (1987).](){audio_switcher="true" src1="psg" src2="fm" .float .interactive-only label1="PSG" label2="FM"}
 
 The Japanese version of the Master System embedded an extra chip made by Yamaha called **YM2413**. It is drastically different from the PSG, as it uses **frequency modulation** to generate sound. I briefly explained how this works in the [Mega Drive article](mega-drive-genesis#tab-2-1-yamaha-ym2612), in case you are interested.
 

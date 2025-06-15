@@ -134,7 +134,7 @@ The extra megahertz of Broadway and Hollywood, combined with avant-garde designs
 
 ### Video Signal
 
-Surprisingly enough, this console doesn't use the old [Multi Out](super-nintendo.md#a-convenient-video-out) port anymore, but a variation of it called **AV Multi Out** (so much for a name) with a slightly different shape. This one carries all of the previous signals plus **YPbPr** (known as 'component') [@graphics-video]. It also includes some data lines that the system uses to identify the type of cable plugged in.
+Surprisingly enough, this console doesn't use the old [Multi Out](super-nintendo#a-convenient-video-out) port anymore, but a variation of it called **AV Multi Out** (so much for a name) with a slightly different shape. This one carries all of the previous signals plus **YPbPr** (known as 'component') [@graphics-video]. It also includes some data lines that the system uses to identify the type of cable plugged in.
 
 Unfortunately, this medium inherits the same [limitations](gamecube.md#connections) of the GameCube. That is, no S-Video on PAL systems and no RGB on NTSC ones. Also, RGB can only broadcast interlaced signals (no progressive).
 

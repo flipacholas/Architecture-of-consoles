@@ -18,17 +18,22 @@ top_tabs:
     title: Original
     file: original
     img_class: reduced-width
-    latex_height: 85
+    paperback_latex_height: 85
+    hardcover_latex_height: 88
   - caption: "The 'new' Xbox 360 (a.k.a. 'Slim' or 'S').<br>Released on 18/06/2010 in America, 24/06/2010 in Japan and 16/07/2010 in Europe"
     title: The 'S'
     file: the-s
     img_class: reduced-width
-    latex_height: 90
+    paperback_latex_height: 90
+    hardcover_latex_height: 93
   - caption: "Another 'new' Xbox 360 (a.k.a. 'E').<br>Released on 10/06/2013 in America, 20/06/2013 in Europe and similar in Japan"
     title: The 'E'
     file: the-e
     img_class: reduced-width
-    latex_height: 90
+    paperback_latex_height: 92
+    hardcover_latex_height: 95
+  Diagram:
+    paperback_latex_height: 95
 ---
 
 ## A quick introduction
@@ -807,17 +812,17 @@ In the following paragraphs, you may sense that I'm very critical of each interf
 
 ::: {.subfigures .tabs-nested}
 
-![The home screen, the controls are shown on the centre, while the horizontal edges indicates the existence of other blades to navigate to.](screenshots/blades/home.jpg){.active title="Home"}
+![The home screen, the controls are shown on the centre, while the horizontal edges indicates the existence of other blades to navigate to.](screenshots/blades/home.jpg){.active paperback_latex_width="98%" title="Home"}
 
-![List of games installed, previously downloaded from the Xbox Live Arcade (a digital marketplace). Notice how this is a full-screen view, as there wasn't enough space on the previous type of screen.](screenshots/blades/games.jpg){title="Games"}
+![List of games installed, previously downloaded from the Xbox Live Arcade (a digital marketplace). Notice how this is a full-screen view, as there wasn't enough space on the previous type of screen.](screenshots/blades/games.jpg){paperback_latex_width="98%" title="Games"}
 
-![Settings menu.](screenshots/blades/settings.jpg){title="Settings"}
+![Settings menu.](screenshots/blades/settings.jpg){paperback_latex_width="98%" title="Settings"}
 
-![Storage menu, enabling the user to delete or copy user-only content. Notice how it removes the other blades indicators to reclaim a bit more screen space.](screenshots/blades/storage.jpg){title="Storage"}
+![Storage menu, enabling the user to delete or copy user-only content. Notice how it removes the other blades indicators to reclaim a bit more screen space.](screenshots/blades/storage.jpg){paperback_latex_width="98%" title="Storage"}
 
-![A simple avatar selector screen.](screenshots/blades/avatar.jpg){title="Avatar"}
+![A simple avatar selector screen.](screenshots/blades/avatar.jpg){paperback_latex_width="98%" title="Avatar"}
 
-![Pressing the guide button (a.k.a Xbox logo on the controller) for a long period would bring in the 'Xbox Guide', a popup menu offering various shortcuts.](screenshots/blades/guide.jpg){title="Guide"}
+![Pressing the guide button (a.k.a Xbox logo on the controller) for a long period would bring in the 'Xbox Guide', a popup menu offering various shortcuts.](screenshots/blades/guide.jpg){paperback_latex_width="98%" title="Guide"}
 
 The 'Blades' dashboard. Screens are from [@operating_system-blades_1] and [@operating_system-blades_2].
 
@@ -845,9 +850,9 @@ Nevertheless, this is the GUI that gave this console an identity, and it's obvio
 
 ![The settings menu keeps the same layout but inherits a new colour palette.](screenshots/nxe/settings.jpg){title="Settings"}
 
-![The storage menu and its similar palette update. In this example, a custom background has been set by the user.](screenshots/nxe/storage.jpg){title="Storage"}
+![The storage menu and its similar palette update. In this example, a custom background has been set by the user.](screenshots/nxe/storage.jpg){paperback_latex_width="96%" title="Storage"}
 
-![2D avatars are still available, though users are now encouraged to define their own 3D avatar too. This will be used by games (à la [Nintendo's Mii](wii#personalised-titles)).](screenshots/nxe/avatar.jpg){title="Avatar"}
+![2D avatars are still available, though users are now encouraged to define their own 3D avatar too. This will be used by games (à la [Nintendo's Mii](wii#personalised-titles)).](screenshots/nxe/avatar.jpg){paperback_latex_width="96%" title="Avatar"}
 
 ![As a nice tribute, the new guide menu resembles the old Blades design, which also helps provide more and better-organised shortcuts.](screenshots/nxe/guide.jpg){title="Guide"}
 
@@ -857,9 +862,9 @@ The 'NXE' dashboard. Screens are from [@operating_system-nxe_dash] and [@operati
 
 As Microsoft expanded its catalogue of services and features, the navigation pattern of the blades turned into a liability (as it constrained the number of navigation screens on the top hierarchy) and the lack of available space became apparent in later software updates. In 2008, Microsoft released a revamped Dashboard interface called **New Xbox Experience** (NXE) which focused on 'infinite scrolling' patterns to offer a wider selection of services on the front page. It also incorporated other elements like a glossy filter and 3D transitions recently popularised by **Windows Vista** and the new range of **Windows Live** applications.
 
-![Windows Vista (2007). Showing the use of the iconic 'Flip 3D' to switch between windows.](screenshots/windows/vista_flip3d.jpg){.toleft latex_width="90%"}
+![Windows Vista (2007). Showing the use of the iconic 'Flip 3D' to switch between windows.](screenshots/windows/vista_flip3d.jpg){.toleft paperback_latex_width="90%"}
 
-![Windows Live Mail during 2008 [@operating_system-livemail], featuring a Vista-like theme with glossy effects.](screenshots/windows/livemail.jpg){.toright latex_width="90%"}
+![Windows Live Mail during 2008 [@operating_system-livemail], featuring a Vista-like theme with glossy effects.](screenshots/windows/livemail.jpg){.toright paperback_latex_width="90%"}
 
 With the new design, screens could now enjoy full-screen space without being conditioned by the hierarchical level they were placed in. Curiously enough, the navigation layout is very similar to what Sony designed with [XMB](playstation-portable#visual-shell), where vertical arrows change category and horizontal arrows navigate through the elements of the same category.
 
@@ -1089,7 +1094,7 @@ In essence, programs only use **32-bit virtual addresses**. Then, the MMU uses a
 
 The flags are automatically read by the L2 block, which then carries out the encryption/hashing operations accordingly. 
 
-Because there's only **64 KB of SRAM** to store the page table and hashes, all main RAM can be encrypted but **only the hypervisor is hashed**. This means that CPU ↔ RAM communication is always protected, but the L2 block can only verify the integrity of the hypervisor. This seems like a good compromise, right?... we'll see how it pans out!
+Because there's only **64 KB of SRAM** to store the page table and hashes, all main RAM can be encrypted but **only the hypervisor is hashed**. This means that CPU-RAM communication is always protected, but the L2 block can only verify the integrity of the hypervisor. This seems like a good compromise, right?... we'll see how it pans out!
 
 #### The hypervisor's duties {.tabs-close}
 

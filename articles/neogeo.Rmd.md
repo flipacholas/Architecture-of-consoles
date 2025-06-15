@@ -13,10 +13,14 @@ top_tabs:
   Model:
     caption: "The Neo Geo 'AES'.<br>Released on 26/04/1990 in Japan and on 01/07/1991 America and Europe"
     file: "international"
-    latex_height: 90
+    paperback_latex_height: 85
+    hardcover_latex_height: 88
   Motherboard:
     caption: "Showing revision 'NEO-AES3-6'.<br>I took this photo using the model I bought. Also, the previous owner re-arranged some capacitors to improve the video signal."
-  Diagram: {}
+    paperback_latex_height: 91
+    marked_paperback_latex_height: 91
+  Diagram:
+    latex_height: 95
 ---
 
 ## A quick introduction
@@ -91,7 +95,7 @@ We are no strangers to games suddenly freezing due to a software bug. The fix is
 
 The Neo Geo - having inherited the requirements of coin-slot machines - provides an 'auto-repair' process by bundling a **Watchdog program**. This is found in the I/O arbiter chip [@cpu-watchdog].
 
-![Arcade cabinets can't afford to be continuously serviced. They're already busy trying to lure players.](games/dragon.png){.pixel}
+![Arcade cabinets can't afford to be continuously serviced. They're already busy trying to lure players.](games/dragon.png){.border .pixel}
 
 The system works as follows: games are required to periodically notify the watchdog of their presence (by writing to a particular register). In the unfortunate event that the watchdog does not receive a ping after a certain period, it will assume the program has frozen and proceed to reset the system.
 
@@ -119,15 +123,15 @@ The graphics subsystem revolves around the typical **Video Display Controller** 
 
 ::: {.subfigures .tabs-nested .pixel}
 
-![Metal Slug 3 (2000).](games/metalslug3.png){.active latex_width="87%" title="Metal Slug"}
+![Metal Slug 3 (2000).](games/metalslug3.png){.active hardcover_latex_width="90%" paperback_latex_width="78%" .border title="Metal Slug"}
 
-![Neo Turf Masters (1996).](games/turfmast.png){latex_width="87%" title="Golf"}
+![Neo Turf Masters (1996).](games/turfmast.png){hardcover_latex_width="90%" paperback_latex_width="78%" .border title="Golf"}
 
-![Neo Drift Out (1996).](games/neodrift.png){latex_width="87%" title="Drift Out"}
+![Neo Drift Out (1996).](games/neodrift.png){hardcover_latex_width="90%" paperback_latex_width="78%" .border title="Drift Out"}
 
-![Art of Fighting 3: The Path of the Warrior (1996).](games/artoffight.png){latex_width="87%" title="Fighting"}
+![Art of Fighting 3: The Path of the Warrior (1996).](games/artoffight.png){hardcover_latex_width="90%" paperback_latex_width="78%" .border title="Fighting"}
 
-![Windjammers (1993).](games/windjammers.png){latex_width="87%" title="Windjammers"}
+![Windjammers (1993).](games/windjammers.png){hardcover_latex_width="90%" paperback_latex_width="78%" .border title="Windjammers"}
 
 Example of Neo Geo games.
 
@@ -141,9 +145,9 @@ The group of chips in charge of drawing to the TV has evolved as new revisions w
 
 ::: {.subfigures .side-by-side}
 
-![The 'LSPC-A2' chip.](vdc/lspca2.jpg){.toleft latex_width="70%"}
+![The 'LSPC-A2' chip.](vdc/lspca2.jpg){.toleft hardcover_latex_width="73%" paperback_latex_width="65%"}
 
-![The 'NEO-B1' chip.](vdc/neob1.jpg){.toright latex_width="70%"}
+![The 'NEO-B1' chip.](vdc/neob1.jpg){.toright hardcover_latex_width="73%" paperback_latex_width="65%"}
 
 In my motherboard revision, these two components make up the Video Display Processor (VDC). Both were produced by Fujitsu.
 
@@ -162,7 +166,7 @@ Don't worry if the previous explanation is too dense. All of this will be explai
 
 Graphics data is distributed across **two separate boards**. The first is the **console's motherboard**, and the other is found in the **game cartridge**. You may recall a similar arrangement implemented in the [NES/Famicom](nes#cartridgegame-data).
 
-![Memory architecture of the graphics subsystem](_diagrams/vdc/content.png){.auto_rotate}
+![Memory architecture of the graphics subsystem](_diagrams/vdc/content.png){.auto_rotate paperback_latex_width="95%"}
 
 On the motherboard, we find:
 
@@ -208,7 +212,7 @@ The CPU may update Palette RAM at any moment, but it should only do so during bl
 
 #### Fixed plane {.tab}
 
-![The Fixed plane with a black backdrop.](aof/fixed_plane.png){.tab-float .pixel}
+![The Fixed plane with a black backdrop.](aof/fixed_plane.png){.tab-float .border .pixel}
 
 The Fixed plane is a layer **320 x 256 pixels** (40 x 32 tiles) wide [@graphics-fixed_layer], pretty much the entire screen. Its tiles displayed are completely static and only have access to 16 colour palettes. In practice, this is used to display 'always-on' information, similar to the [window layer](game-boy#tab-1-3-window) of the Game Boy.
 
@@ -220,7 +224,7 @@ The S ROM stores the exclusive tiles for the fixed plane in the cartridge. The V
 
 #### Sprites {.tab}
 
-![The Sprite layer, notice how it's used for all the areas of the scene (not just the two characters).](aof/sprites.png){.tab-float .pixel}
+![The Sprite layer, notice how it's used for all the areas of the scene (not just the two characters).](aof/sprites.png){.tab-float .border .pixel}
 
 As you may know, sprites are **freely moving tiles**. Yet, in the case of the Neo Geo, the tiles used for sprites are exceptionally **16 x 16 pixels** wide. With that in mind, the VDC can compose sprites ranging from **16 x 16 pixels** (1 x 1 tiles) to **16 x 512 pixels** (1 x 32 tiles). The reason for providing such tall compositions is that any sprite can also be **combined horizontally** by 'attaching' them to the previous one (though they still count as separate sprites). Overall, there is a limit of **96 sprites per scan line** and **381 per frame** [@graphics-sprites], a large number compared to its competitors.
 
@@ -238,7 +242,7 @@ As you can see, for practical reasons, the last three blocks are stored in fast 
 
 #### Result {.tab}
 
-![Resulting frame shown on the screen.](aof/result.png){.tab-float .pixel}
+![Resulting frame shown on the screen.](aof/result.png){.tab-float .border .pixel}
 
 While [competitors](nes#constructing-the-frame) are known for rendering at the pace of the CRT beam, the Neo Geo implements a **line buffer rendering** system. With this approach, the console stores the rendered scan lines in the aforementioned buffer, rather than beaming them directly to the screen. Since the VDC incorporates enough memory for two scan lines, this allows the VDC to render one scan line while displaying the other, thereby enabling games to update graphics during **active display** (aside from [H-Blank](game-boy#tab-1-5-result) and [V-Blank](nes#tab-1-5-result)).
 
@@ -304,9 +308,9 @@ After powering on the console, the user will notice a splash screen known as the
 
 Alternatively, the P ROM header may contain a flag instructing the System ROM to delegate the splash routine to the cartridge [@operating_system-prom_header]. This only works on the AES variant [@graphics-beginners], yet later games adopted this to display different text.
 
-![The Eyecatcher implemented by the System ROM. It still relies on tiles supplied by the cartridge. The official implementation displays the characteristic 'Max 330 Mega' subtitle, as a way to show off the theoretical storage capacity of Neo Geo cartridges. Later games, through the use of the flag, render 'Giga Power' instead.](system/eyecatcher.jpg){.toleft .pixel}
+![The Eyecatcher implemented by the System ROM. It still relies on tiles supplied by the cartridge. The official implementation displays the characteristic 'Max 330 Mega' subtitle, as a way to show off the theoretical storage capacity of Neo Geo cartridges. Later games, through the use of the flag, render 'Giga Power' instead.](system/eyecatcher.jpg){.toleft .pixel hardcover_latex_width="80%"}
 
-![The Test Menu, showing many maintenance functions required to set up the arcade cabinet.](system/testmenu.jpg){.toright .pixel}
+![The Test Menu, showing many maintenance functions required to set up the arcade cabinet.](system/testmenu.jpg){.toright .pixel hardcover_latex_width="80%"}
 
 The MVS system also provides a **Test Menu** to configure the cabinet (e.g., adjust the calendar, test the components, etc.). This menu is triggered by flipping one of the DIP switches of the MVS (inaccessible to the end user). Consequently, its motherboard bundles an S ROM that stores the Fix tiles for this menu.
 

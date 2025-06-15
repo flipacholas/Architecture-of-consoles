@@ -12,20 +12,28 @@ top_tabs:
   Motherboard:
     caption: "Showing COK-001 revision (the first one), taken from my CECHA12 model.<br>The remaining 128 MB NAND Flash and the connectors for the Blu-ray PATA drive, Wifi/BT daughterboard, front panel and MultiCard reader are fitted on the back"
     bib_source: copetti
+    paperback_latex_height: 93
+    marked_paperback_latex_height: 93
   Models:
   - active: true
     caption: "The original PlayStation 3 or 'PS3'.<br>Released on 11/11/2006 in Japan, 17/11/2006 in America and 23/03/2007 in Europe"
     title: Original
     file: original
-    latex_height: 85
+    paperback_latex_height: 83
+    hardcover_latex_height: 86
   - caption: "The PS3 2000/3000 series (a.k.a. 'Slim').<br>Released on 01/09/2009 in Europe and America; and 03/09/2009 in Japan"
     title: Slim
     file: slim
-    latex_height: 95
+    paperback_latex_height: 93
+    hardcover_latex_height: 96
   - caption: "The PS3 4000 series (a.k.a. 'Super Slim').<br>Released on 09/2012 internationally"
     title: Super Slim
     file: super-slim
-    latex_height: 95
+    paperback_latex_height: 93
+    hardcover_latex_height: 96
+  Diagram:
+    hardcover_latex_height: 95
+    paperback_latex_height: 97
 ---
 
 ## A quick introduction
