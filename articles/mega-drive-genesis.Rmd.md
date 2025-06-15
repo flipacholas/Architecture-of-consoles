@@ -13,19 +13,22 @@ top_tabs:
     - title: "Japanese"
       caption: "The Mega Drive.<br>Released on 29/10/1988 in Japan."
       file: japanese
-      latex_height: 90
+      latex_height: 91
     - title: "American"
       caption: "The Genesis.<br>Released on 14/08/1989 in America."
       file: american
+      latex_height: 95
     - title: "European"
       caption: "The Mega Drive.<br>Released on 09/1990 in Europe."
       file: european
       active: true
+      latex_height: 95
   Motherboard:
     caption: "Showing the Japanese 'VA0' revision.<br>Notice the unusual daughterboard on top of the VDP used to fix post-manufacturing glitches (properly corrected in later revisions)."
     extension: "jpg"
     bib_source: photography-okqubit
-  Diagram: {}
+  Diagram:
+    latex_height: 95
 
 # Historical
 aliases: [/projects/consoles/mega-drive-genesis/]
@@ -75,7 +78,7 @@ Having set the scene, let me tell you what the 68000 provides [@cpu-user]:
 - A **16-bit Arithmetic Logic Unit** (ALU): Meaning it needs extra cycles to compute arithmetic operations on 32-bit numbers, but it's fine on 16-bit/8-bit ones.
 - An external **16-bit data bus**: As you can see, while this CPU has some '32-bit capabilities', it hasn't been designed to be a complete 32-bit machine. The width of this bus implies better performance when moving 16-bit data around.
   - Interestingly enough, Motorola debuted a complete 32-bit CPU, the **68020**, four years before this console's release. But I imagine costs would've skyrocketed had Sega chosen the latter chip.
-- A **24‑bit address bus**: This means that **up to 16 MB of memory can be accessed**. Memory addresses are still encoded with 32-bit values inside the CPU (the upper byte is just discarded).
+- A **24-bit address bus**: This means that **up to 16 MB of memory can be accessed**. Memory addresses are still encoded with 32-bit values inside the CPU (the upper byte is just discarded).
 
 If you wonder the reason behind using 24-bit addresses in a CPU that can handle 32-bit words: the equipment of that era was hardly asking to manage 4 GB of memory. Given that implementing unused lines is costly in terms of both performance and money, Motorola reached a sensible compromise with 32-bit registers and 24 address lines, preparing developers for the arrival of the full 32-bit CPU (the 68020) five years later.
 
@@ -149,7 +152,7 @@ You can identify which PAL games render in NTSC mode by checking the `Mode Set R
 
 Furthermore, there's an additional parameter that can be set on the VDP to stack two tiles to form **8x16 maps** and then treat them as a single tile. Hence, doubling the vertical resolution. However, this halves the refresh rate as frames are now rendered with interlacing (one frame renders even scan-lines, the next beams odd ones, and so forth) so it's more limited in terms of functionality. The multiplayer mode of Sonic 2 is a good representation of this mode [@graphics-sonicmultip].
 
-Finally, it's worth pointing out that the VDP automatically takes care of adding padding for the overscan area, so games don't have to worry about which areas are safe to draw graphics into (as it happened with the [NES' 'danger zones'](nes#constructing-the-frame))
+Finally, it's worth pointing out that the VDP automatically takes care of adding padding for the overscan area, so games don't have to worry about which areas are safe to draw graphics into (as it happened with the [NES' 'danger zones'](nes#constructing-the-frame)).
 
 ### Organising the content
 
@@ -249,11 +252,13 @@ The region in VRAM where sprites are defined is called **Sprite Attribute Table*
 
 #### Result {.tab}
 
-::: {.subfigures .tabs-nested .tab-float .pixel #fig-result_frame}
+::: {.subfigures .tabs-nested .tab-float .pixel max_subfigures=2 #fig-result_frame}
 
-![Resulting frame.](vdp_sonic/result.png){.active .border latex_width="90%" title="Frame"}
+![Resulting frame.](vdp_sonic/result.png){.active .border paperback_latex_width="81%" hardcover_latex_width="90%" title="Frame"}
 
-![Frame broadcasted to the TV (in NTSC format). The VDP automatically adds an overscan area, which most CRT TVs will hide.](vdp_sonic/overscan.png){.border latex_width="90%" title="With overscan"}
+![Frame broadcasted to the TV (in NTSC format). The VDP automatically adds an overscan area, which most CRT TVs will hide.](vdp_sonic/overscan.png){.border paperback_latex_width="81%" hardcover_latex_width="90%" title="With overscan"}
+
+![CRAM dots in the bottom-left corner of the overscan area.](vdp_sonic/cram_dots.png){.border paperback_latex_width="81%" hardcover_latex_width="90%" title="CRAM dots"}
 
 Tada!
 
