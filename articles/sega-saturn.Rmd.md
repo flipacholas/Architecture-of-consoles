@@ -15,12 +15,16 @@ top_tabs:
     - title: "Japanese"
       caption: "The Sega Saturn, released on 22/11/1994 in Japan"
       file: japanese
+      latex_height: 90
     - title: "International"
       caption: "The Sega Saturn, released on 11/05/1995 in America and 08/07/1995 in Europe"
       active: true
       file: international
+      latex_height: 95
   Motherboard:
     caption: "Showing 'VA8' revision which includes all components in a single board. <br>Remaining RAM chips are fitted on the back"
+  Diagram:
+    latex_height: 98
 
 # Historical
 aliases: [/projects/consoles/sega-saturn/]
@@ -121,7 +125,7 @@ Having said that, let's take a look at the two chips.
 
 #### VDP1 {.tabs .active}
 
-![VDP1 Architecture.](vdp/VDP1.png){.tab-float}
+![VDP1 Architecture.](_diagrams/vdp/vdp1.png){.tab-float}
 
 The **Video Display Processor 1** (VDP1) is a chip that draws sprites with geometric transformations [@graphics-vdp1]. The results are written onto a frame buffer, which is in turn streamed to the VDP2 for display.
 
@@ -140,7 +144,7 @@ The VDP1 also provides this selection of effects:
 
 #### VDP2 {.tab}
 
-![VDP2 Architecture.](vdp/VDP2.png){.tab-float}
+![VDP2 Architecture.](_diagrams/vdp/vdp2.png){.tab-float}
 
 The **Video Display Processor 2** (VDP2) specialises in rendering large (4096×4096 pixels) planes with transformations (rotation, scale and translation) applied on them [@graphics-vdp2].
 
@@ -337,7 +341,7 @@ Unlike the [PlayStation](playstation) whose ROM chip bundled a [BIOS](playstatio
 
 ## Games
 
-Official Sega Saturn games are loaded from the **2x CD-ROM reader**. Its medium, the compact disc (CD), has a capacity of **680 MB** and Sega Saturn games follow the **ISO 9660** standard for storing data [@games-format]. Additionally, many games store audio tracks next to the data tracks for streaming uncompressed audio while executing the game.
+Official Sega Saturn games are loaded from the **2x CD-ROM reader**. Its medium, a tailored variant of the **Compact Disc** (CD), has a capacity of **650 MB** [@anti_piracy-rings] and follows the **ISO 9660** standard for storing data [@games-format]. Additionally, many games store audio tracks next to the data tracks for streaming uncompressed audio while executing the game.
 
 ### The Compact Disc (CD)
 
@@ -369,19 +373,21 @@ This console bundles a considerable number of external connectors and interfaces
 
 ## Anti-Piracy & Homebrew
 
-In response to the easiness of cloning a CD, Saturn added a copy protection system (along with region locking) to control the distribution of games.
+In response to the easiness of cloning a CD, Sega implemented a copy protection system - along with region locking - to control the distribution of its games.
 
-Copy protection on CDs is applied by burning special data (called 'system area') out of reach from conventional burners, the Saturn refuses to boot the disc as a 'game disc' if the out-of-reach data is not found or it's invalid. The disc reader also contains a custom **SH-1** processor that interfaces with the rest of the console using obscured protocols.
+For the copy protection itself, Sega deliberately deviated from the standard CD format, making it impossible for regular CD burners to produce a perfect copy of a Saturn game. In turn, the Saturn's disc reader looks for these non-standard features as part of its verification process.
 
-It's worth mentioning that since Saturn CDs follow the ISO9660 (a standard file system for CD data), PCs can read the game disc without problems (but, of course, they can't execute the game unless they use an emulator).
+Specifically, Saturn discs were manufactured with an unusual data pattern pressed into the outer edge [@anti_piracy-rings], creating a visible ring engraved with trademark labels. This ring sits outside the standard data area of a CD (known as the 'Program Area') and beyond the Lead-out section, which signals the end of readable data. As a result, conventional drives couldn’t access or replicate that part of the disc.
+
+Inside the Saturn’s disc drive is a dedicated **SH-1 processor** that verifies the presence of the ring independently from the main CPUs. It uses obscure communication protocols to communicate with the rest of the system. This check, however, is only performed once.
 
 ### Defeat
 
-First of all, the classic method used for disabling the copy protection consisted in installing a **mod-chip** that could trick the CD reader when a burned disc is inserted. There was also a 'swap trick' that consisted in **hot-swapping** a genuine disc with a burned one just after the protection checks passed... with the risk of damaging the drive!
+First of all, the classic method used for disabling the copy protection consisted in installing a **mod-chip** that could trick the CD reader when a burned disc is inserted. There was also a 'swap trick' that consisted in **hot-swapping** a genuine disc with a burned one just after the protection checks passed... with the risk of damaging the drive.
 
-After the turn of the century, alternative but more sophisticated methods used for running unauthorised code were discovered, for instance:
+After the turn of the century, more sophisticated methods used for running unauthorised code were discovered, for instance:
 
-- An **exploit in the copy protection mechanism** was found and it allowed to boot up any disc game without going through the copy protection checks. This was subsequently in the form of a cartridge called **pseudosaturn** [@anti_piracy-pseudosaturn]. Due to the use of the cartridge medium, Action Replay cartridges are often re-flashed with pseudosaturn (though the flasher also needs to be bootstrapped somehow, most commonly through the swap trick).
+- An **exploit in the copy protection mechanism** was found and it allowed to boot up any disc game without going through the copy protection checks. This was subsequently implemented in the form of a cartridge called **pseudosaturn** [@anti_piracy-pseudosaturn]. Due to the use of the cartridge medium, Action Replay cartridges were often re-flashed with pseudosaturn (though the flasher also needs to be bootstrapped somehow, most commonly through the swap trick).
   - This method is still being used as of 2022, although a new fork of pseudosaturn named 'Pseudo Saturn Kai' is installed instead.
 - Another method was reported in 2016 (almost 20 years later) by exploiting the fact that the **Video CD add-on can inject unencrypted code** to the CD subsystem (bypassing the CD reader altogether). This finally allowed users to load Homebrew independently of the ageing drive. The Video CD exploit is commercially distributed in a product called 'Satiator' (I'm not sponsored, by the way).
 - Finally, there's another commercial alternative that replaces the CD reader with an SD or SATA adapter. The Saturn still thinks it's reading from a CD, but the 'CD' is being emulated by the adapter, which is in turn reading from a disc image [@anti_piracy-ode].  These products are called **Optical Drive Emulators** (ODE).
