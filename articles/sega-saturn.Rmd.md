@@ -20,11 +20,11 @@ top_tabs:
       caption: "The Sega Saturn, released on 11/05/1995 in America and 08/07/1995 in Europe"
       active: true
       file: international
-      latex_height: 95
+      latex_height: 93
   Motherboard:
     caption: "Showing 'VA8' revision which includes all components in a single board. <br>Remaining RAM chips are fitted on the back"
   Diagram:
-    latex_height: 98
+    latex_height: 95
 
 # Historical
 aliases: [/projects/consoles/sega-saturn/]
@@ -32,46 +32,46 @@ aliases: [/projects/consoles/sega-saturn/]
 
 ## A quick introduction
 
-Welcome to the 3D era! Well... *sorta*. Sega enjoyed quite a success with the Mega Drive so there's no reason to force developers to write 3D games *right now*.
+Welcome to the 3D era! Well... *sorta*. Sega enjoyed quite a success with the Mega Drive so there was no reason to force developers to write 3D games *right now*.
 
-Just in case developers want the extra dimension, Sega adapted some bits of the hardware to enable polygon drawing as well. Hopefully, the result didn't get out of hand!
+Just in case developers wanted the extra dimension, Sega prepared some bits of the hardware to enable polygon drawing as well. Hopefully, the result didn't get out of hand!
 
 ## {.supporting-imagery}
 
 ## CPU
 
-Just like its close competitors [drowned with options](playstation#tab-1-1-a-bit-of-history) during the RISC fever, Sega had to go through all the conundrums of choosing a new vendor that could bring up the next generation of games (including those with '3D' capabilities). In the end, the company chose a fresh CPU whose creator was desperately looking for an adopter, the **Hitachi SuperH** or 'SH'.
+Just like its close competitors [drowned in options](playstation#tab-1-1-a-bit-of-history) during the RISC fever, Sega had to go through all the conundrums of choosing a new vendor that could deliver the next generation of games (including those with '3D' capabilities). In the end, the company chose a fresh CPU whose creator was desperately seeking an adopter: the **Hitachi SuperH**, or 'SH'.
 
 While initially focused on embedded applications, Hitachi's new creation debuted modern arts such as [@cpu-prog_manual]:
 
 - A [load-store architecture](xbox#tab-1-4-cisc-or-risc), meaning instructions don't mix memory and register operations, resulting in a cleaner and scalable CPU design. This is one of the pillars of RISC CPUs.
-- **32-bit data bus and ALU**, enabling to move and operate larger amounts of data (32-bit values) without consuming extra cycles.
-- **16 general-purpose 32-bit registers**, which is double the amount of previous CPUs like the [Motorola 68000](mega-drive-genesis#cpu). This is another design decision derived from the RISC guidelines [@cpu-patterson].
-- **32-bit address bus**, allowing up to 4 GB of memory to be addressed (_farewell [mappers](nes#going-beyond-existing-capabilities)_).
-- A **pipelined data path** with **five stages**: The execution of instructions is now divided into five steps or *stages*. The CPU will queue up to five instructions and each one is allocated in one stage. This allows taking advantage of all the CPU's resources without idling while also incrementing the number of instructions executed per unit of time.
+- A **32-bit data bus and Arithmetic Logic Unit (ALU)**, enabling the flow and operation of larger amounts of data (32-bit values) without consuming extra cycles.
+- **16 general-purpose 32-bit registers**, this time more flexible than those found in previous CPUs, such as the [Motorola 68000](mega-drive-genesis#cpu). This is another design decision derived from the RISC guidelines [@cpu-patterson].
+- **32-bit address bus**, allowing up to 4 GB of memory to be addressed (*farewell [mappers](nes#going-beyond-existing-capabilities)*).
+- A **pipelined data path** with **five stages**: The execution of instructions is now divided into five steps, or *stages*. The CPU can queue up to five instructions simultaneously, with each one assigned to a different stage. This allows taking advantage of all the CPU's resources without idling, while also increasing the number of instructions processed per unit of time.
 - A **16-bit multiplication unit**: Performs multiplications with 16-bit integers.
 
-Furthermore, the SuperH features a new instruction set called **SuperH ISA** which, apart from adopting a RISC design, **all of its instructions are 16-bit wide**. This comes as a surprise since this CPU operates 32-bit words, so you would expect instructions to have the same length. Yet, Hitachi managed to fit its ISA using half the size. Not only does this format reduce the size of programs, but since the CPU fetches instructions in 32-bit batches, **two instructions can be retrieved in one cycle**. Overall, this technique of compressing the instruction set helped tackle a common concern of RISC-based architectures called 'code density', where the latter required more instructions (therefore, more memory) to perform the same tasks as non-RISC systems.
+Furthermore, the SuperH features a new instruction set called **SuperH ISA** which, apart from adopting a RISC design, **all of its instructions are 16 bits wide**. This comes as a surprise since this CPU operates 32-bit words, so you would expect instructions to have the same length. Yet, Hitachi managed to fit its ISA using half the size. Not only does this format reduce the size of programs, but since the CPU fetches instructions in 32-bit batches, **two instructions can be retrieved in one cycle**. Overall, this technique of compressing the instruction set helped tackle a common concern of RISC-based architectures called 'code density', where the latter required more instructions (therefore, more memory) to perform the same tasks as non-RISC systems.
 
 ### The ramifications
 
 Conversely, other drawbacks of RISC designs are still present in the SuperH, such as [control hazards](playstation#delay-galore). Consequently, programs are required to include **branch delay slots** to avoid calculation errors. To remediate things, the SuperH features **delayed branch instructions** which are branch instructions pre-fitted with a delay slot [@cpu-prog_manual].
 
-**Data hazards** are also present but not tackled by the programmer or compiler, the CPU will automatically stall the pipeline whenever it's needed.
+**Data hazards** are also present but not tackled by the programmer or compiler, the CPU will automatically stall the pipeline whenever necessary.
 
 ### Sega is not satisfied
 
-Nevertheless, all of that didn't stop Sega from expressing dissatisfaction with the end product. This was mainly due to the small 16-bit multiplier, which was seen as a bottleneck when processing larger amounts of data (a new need for 3D games). Thus, Hitachi synthesised a second revision with an extended multiplier unit and other requirements on Sega's checklist [@cpu-history], leading to a new CPU called **SH-2**.
+Nevertheless, all of that didn't stop Sega from expressing dissatisfaction with the end product. This was mainly due to the small 16-bit multiplier, which was seen as a bottleneck when processing larger amounts of data (a new need for 3D games). Thus, Hitachi synthesised a second revision with an extended multiplier unit and other features from Sega's checklist [@cpu-history], leading to a new CPU called **SH-2**.
 
 ![The two SH-2 chips found in the Sega Saturn](sh2s.jpg)
 
-Even so, Sega couldn't stand still after hearing what choice of CPU [its](playstation#cpu) [competitors](nintendo-64#cpu) went for. So, it asked Hitachi to step up the clock frequency of the SH-2 - an impossible task once the chip is already out for manufacturing. Luckily, Hitachi had another trick up in their sleeve: **multiprocessing**. During the research phase of the SH, the team added minimal circuitry to allow the SH to work with other SHs within the same system at the same time. Upon hearing that, Sega decided on a two-chip configuration for the Sega Saturn. And the rest is history. 
+Even so, Sega couldn't stand still after hearing what choice of CPU [its](playstation#cpu) [competitors](nintendo-64#cpu) went for. So, it asked Hitachi to step up the clock frequency of the SH-2 - an impossible task once the chip is already out for manufacturing. Luckily, Hitachi had another trick up their sleeve: **multiprocessing**. During the research phase of the SH, the team added minimal circuitry to allow the SH to work alongside other SHs within the same system simultaneously. Upon hearing that, Sega decided on a two-chip configuration for the Sega Saturn. And the rest is history.
 
 ### The final product
 
 Having explained the origins, let's take a look at the shipped product.
 
-This console has not one but **two Hitachi SH-2** CPUs running at **~28.63 MHz each** [@cpu-overview]. While both physically identical, they are placed in a **master-slave state**, where the first one may send commands to the second one. This can achieve some degree of parallelism, albeit both sharing the same external bus [@cpu-dualcpu] (which can lead to congestion).
+This console has not one but **two Hitachi SH-2** CPUs running at **~28.63 MHz each** [@cpu-overview]. While both physically identical, they are placed in a **master-slave state**, where the first one may send commands to the second one. This can achieve some degree of parallelism, albeit both sharing the same external bus [@cpu-dualcpu] (which is prone to congestion).
 
 Hitachi packaged different variants of the SH-2 and sold them as part of a series called 'SH7600'. All of them feature [@cpu-brief]:
 
@@ -83,314 +83,367 @@ The specific chip selected for this console, the 'SH7604', contains the followin
 
 - **4 KB of cache**: Stores a small number of instructions and data previously fetched from memory to speed up future reads.
 - A **32-bit division unit**: Performs division with 32-bit integers.
-- **Internal DMA controller**: Transfers data from memory without the intervention of the CPU.
+- An **internal Direct Memory Access (DMA) controller**: Transfers data from memory without the intervention of the CPU.
 - Support for **little endian**, enabling the CPU to understand values encoded in the opposite order. This is useful when external memory is shared with other processors.
 
-It's worth pointing out that **having two CPUs doesn't mean that games will work twice as fast!** In practice, however, this requires very complex programming to efficiently manage CPUs that share the same bus. Thus, orderly use of the cache also plays a critical role in this console.
+It's worth pointing out that **having two CPUs doesn't mean that games will work twice as fast!** In practice, however, this requires very complex programming to efficiently manage CPUs that share the same bus. For instance, memory access should leverage the cache as much as possible.
+
+### The octopus architecture
+
+![Overview of the multi-subsystem model.](_diagrams/subsystems.png)
+
+The Sega Saturn houses a significant number of processors (eight!). So, to avoid making them fight for resources, engineers grouped the circuitry into four separate subsystems:
+
+- The **CPU** subsystem, where the main CPUs and memory reside. Truth to be told, there's also an unusual *third* component. This is explained further down.
+- The **Video** subsystem, comprising the graphics accelerators.
+- The **Audio** subsystem, which can be considered a separate computer in its own right (you'll see more in the 'Audio' section of this article).
+- The **CD-ROM** subsystem, a walled fortress owing to the copy-protection mechanisms implemented. These are explained further in the 'Anti-piracy' section.
+
+It's worth noting that each subsystem is wired to a dedicated bus - except the Video and Audio ones, which share one.
 
 ### A divided choice of memory
 
-The Sega Saturn contains a total of **2 MB of RAM** for general-purpose usage called **Work RAM** (WRAM). Now, these two megs are split between two very different blocks:
+![Overview of the main memory architecture.](_diagrams/memory.png)
 
-- The first one provides **1 MB of SDRAM** and due to its fast access rates, this block is also called 'WRAM-H'.
-- The other block contains the other megabyte, but it's named 'WRAM-L' since it uses **DRAM** instead, resulting in lower rates.
+The CPU subsystem contains a total of **2 MB of RAM** for general-purpose use, called **Work RAM** (WRAM). But it's not that simple: this memory is split into two distinct blocks and, once again, each is accessed via different buses:
+
+- The first block provides **1 MB of SDRAM**. Due to its higher access speed, this block is also called **WRAM-H**. Its bus is shared with other components.
+- The other megabyte is named **WRAM-L**, as it uses **DRAM** instead, resulting in lower rates. Its bus, however, is reserved for the main CPUs.
 
 ### The third processor (and counting)
 
-Surprisingly, it seems that the two SH-2 CPUs weren't still enough for Sega. So, to accelerate vector processing (at the cost of more complexity), the console houses an additional coprocessor, the **Saturn Control Unit** or 'SCU'.
+Surprisingly, it seems that the two SH-2 CPUs still weren't enough for Sega. So, to accelerate vector processing (at the cost of more complexity), the CPU group also houses an additional coprocessor, the **Saturn Control Unit** or 'SCU'.
 
-This is a chip comprised of two modules [@cpu-scu]:
+![The Saturn Control Unit in my motherboard revision.](chips/scu.webp){latex_width="80%"}
 
-- **A DMA controller**: Arbitrates access to WRAM across the three main buses without the intervention of the CPUs.
-- **A DSP**: Used as a fixed-point 'geometry unit'. Compared to the SH-2, it does matrix/vectors calculations such as 3D transformations and lighting faster. However, it runs at half-speed and its instruction set is more complex. Moreover, it relies on the SH-2's WRAM to fetch and store data (using the DMA).
+This is a separate chip comprised of two modules [@cpu-scu]:
 
-On the bright side, the SCU comes with **32 KB of SRAM** for local use. On the bad side, the SCU can't access WRAM-L.
+- A **Direct Memory Access (DMA) controller**: Arbitrates access to WRAM-L across the three subsystems without the intervention of the CPUs.
+- A **Digital Signal Processor (DSP)**: Used as a fixed-point 'geometry unit'. Compared to the SH-2, it performs matrix/vectors calculations such as 3D transformations and lighting faster. However, it runs at half-speed and its instruction set is more complex. Furthermore, it depends on the SH-2's slow WRAM-L to fetch and store data (using the DMA).
+
+To alleviate things, the SCU comes with **32 KB of SRAM** for local use.
 
 ## Graphics
 
-Since the Saturn is the first '3D console' reviewed for [this series](consoles), let us first go over the fundamental design changes that made way to the new generation of 3D graphics:
+Since the Saturn is the first '3D console' reviewed for [this series](consoles), let us first go over the fundamental design changes that made way to the new generation of 3D graphics.
 
-- The GPU now relies on a **frame-buffer**: Graphics are no longer required to be rendered on-the-fly. Instead, the GPU reserves a portion of VRAM to draw a bitmap with all the computed geometry requested by the CPU, and then a video encoder picks up that region and outputs it through the video signal.
-  - Consequently, having this reserved 'working space' allows the GPU to continue manipulating the bitmap even after finishing rendering the scene, so the CPU may now offload some exhaustive tasks such as lighting and anti-aliasing to the GPU. Here is when the term **graphics pipeline** starts to gain momentum.
-- **More VRAM required**: The use of a frame buffer implies an increment of memory requirements (which is not a big issue anymore), the amount of RAM required for a frame buffer is proportional to the dimension of the screen and the number of colours used. As an example, with 600 KB of VRAM we can contain a frame buffer of 640x480 pixels wide with 32k colours per pixel (16 bpp).
-  - Additionally, programmers are free to organise their VRAM usage: Not every single bit has to be allocated for the frame buffer, so why don't we also use it to cache textures, render other frame-buffers concurrently and add colour lookup tables to speed things up?
-- The CPU incorporates **vector operations**: A GPU with 3D capabilities would be incomplete without a proper CPU capable of feeding the required geometry. For that reason, next-gen CPUs include a form of specialised instructions that accelerates vector calculations, these are known as **Single instruction multiple data** or 'SIMD' extension.
-  - In the case of the Saturn, vector operations are accelerated by the Saturn Control Unit (not by the SH-2 CPUs).
+### Revised methodologies
+
+Firstly, the GPU now relies on a **frame buffer**: graphics are no longer required to be rendered on the fly. Instead, the GPU reserves a portion of VRAM to draw a bitmap containing all the computed geometry requested by the CPU. A video encoder then picks up that region and outputs it through the video output signal. Be as it may, the Saturn does mix the two models... I will explain more later.
+
+Consequently, having this reserved 'working space' allows the GPU to continue manipulating the bitmap even after finishing rendering the scene, enabling the CPU to offload additional exhaustive tasks (such as lighting and anti-aliasing) to the GPU. Here is where the concept of **graphics pipeline** starts to gain significance.
+
+Secondly, **more is VRAM required**: Using a frame buffer increases memory requirements (which is no longer a major issue). The amount of RAM required for a frame buffer is proportional to the screen dimensions and the number of colours used (a.k.a. *colour depth*). As an example, 600 KB of VRAM can contain a frame buffer of 640x480 pixels at 32k colours (16 bits per pixel).
+
+Additionally, programmers are free to organise their VRAM usage: not every bit must be allocated for the frame buffer. So, why not also use it to cache textures, render other frame buffers concurrently, and add colour lookup tables to speed things up?
+
+Finally, the CPU incorporates **vector operations**: a GPU with 3D capabilities would be incomplete without a CPU capable of feeding the required geometry. For this reason, next-generation CPUs feature some form of specialised instructions that accelerates vector calculations, these are known as **Single Instruction Multiple Data** (SIMD) extensions. Nonetheless, their design across the industry will be far from standardised.
+
+In the case of the Saturn, vector operations are accelerated by the Saturn Control Unit, not the SH-2 CPUs.
 
 ### Sega's offering
 
-This console includes **two proprietary GPUs**, each one serving different purposes while working concurrently. Some may argue that the new GPUs are an evolution of the [classic VDP](mega-drive-genesis#graphics), while others may say it's a complete redesign... I think it's a bit of both.
+This console includes **two proprietary GPUs**: the VDP1 and VDP2. Each serves a different purpose while operating concurrently. Some might argue that the new GPUs are an evolution of the [classic VDP](mega-drive-genesis#graphics), while others may claim it's a complete redesign... I think it's a bit of both.
 
-Having said that, let's take a look at the two chips.
+With that in mind, let's take a look at the two chips.
 
 #### VDP1 {.tabs .active}
 
-![VDP1 Architecture.](_diagrams/vdp/vdp1.png){.tab-float}
+![Architecture of the VDP1.](_diagrams/vdp/vdp1.png){.tab-float}
 
-The **Video Display Processor 1** (VDP1) is a chip that draws sprites with geometric transformations [@graphics-vdp1]. The results are written onto a frame buffer, which is in turn streamed to the VDP2 for display.
+The **Video Display Processor 1** (VDP1) is a chip that draws [sprites](mega-drive-genesis#tab-1-4-sprites) with **geometric transformations** [@graphics-vdp1]. The results are written to a frame buffer, which is subsequently streamed to the VDP2 for display.
 
-This chip is programmed by sending 'drawing commands' to it. So, programmers are provided with **512 KB of dedicated RAM** to store these drawing commands and the required materials (textures/tiles, colour lookup tables, etc).
+This chip is programmed by issuing **drawing commands**. So, programmers are provided with **512 KB of dedicated RAM** to store these commands, along with the necessary materials (textures/tiles, colour lookup tables, etc.) to process them.
 
-Consequently, the VDP1 is designed to use **quadrilaterals as primitives**, which means that it can only compose models using 4-vertex polygons (sprites). The chip applies **Forward Texture Mapping** to connect texture points onto the quadrilateral, in that direction. It doesn't come with any filtering/interpolation technique, so the calculations are subject to **aliasing**.
+Consequently, the VDP1 is designed to use **quadrilaterals as primitives**, meaning it can only compose models using only four-vertex polygons (sprites). The chip applies **Forward Texture Mapping** to connect texture points onto the quadrilateral, in that direction. It doesn't come with any filtering or interpolation techniques, so the rendering is subject to **aliasing**.
 
 The VDP1 also provides this selection of effects:
 
 - Two **shading algorithms** (Flat and Gouraud) for lighting.
-- **Anti-aliasing**: In this case, it duplicates pixels to cover gaps during mapping.
+- **Anti-aliasing**: In this case, it duplicates pixels to cover gaps during texture mapping.
 - **Clipping** to discard polygons outside the camera's viewport.
 - **Transparency** to blend two non-opaque bitmaps.
 
-**Two 256 KB frame buffer chips** are available to concurrently draw new scenes of the game without breaking the current one being displayed. When the secondary buffer is finished being drawn, the VDP1 starts broadcasting the latter instead (**page-flipping**), and the cycle continues.
+**Two 256 KB frame buffer chips** are available to concurrently draw new scenes of the game without breaking the current one being displayed. When the secondary buffer is finished being drawn, the VDP1 switches to broadcasting that one instead, and the cycle repeats. This technique is called **page flipping**.
 
 #### VDP2 {.tab}
 
-![VDP2 Architecture.](_diagrams/vdp/vdp2.png){.tab-float}
+![Architecture of the VDP2.](_diagrams/vdp/vdp2.png){.tab-float}
 
-The **Video Display Processor 2** (VDP2) specialises in rendering large (4096×4096 pixels) planes with transformations (rotation, scale and translation) applied on them [@graphics-vdp2].
+The **Video Display Processor 2** (VDP2) specialises in rendering large planes (up to 4096×4096 pixels) with transformations (rotation, scaling and translation) applied [@graphics-vdp2].
 
-More importantly, the VDP2's renders **on-the-fly** (without a frame-buffer) like previous [tile-based engines](mega-drive-genesis#constructing-the-frame). It can display up to **16.7 million colours** (24-bit). This chip is also responsible for displaying the VDP1's buffer, which can also be transformed and/or mixed with the VDP2's layers. The VDP2's 'frame' is composed of up to four 2D planes and one 3D plane; or two 3D planes.
+More importantly, the VDP2 renders **on the fly** (without a frame buffer), much like earlier [tile-based engines](mega-drive-genesis#constructing-the-frame). It supports up to **16.7 million colours** (24-bit).
 
-This chip relies on [tile-maps](mega-drive-genesis#constructing-the-frame) to compose planes and performs **perspective correction** for 3D texture mapping, this is a more sophisticated approach which takes into account the depth value to compute rotations.
+This chip is also responsible for displaying the VDP1's output buffer, which can itself be transformed and mixed with the VDP2's layers. The VDP2's 'frame' consists of up to **four 2D planes and one 3D plane, or just two 3D planes**.
 
-Effects available include **multi-texturing** (mapping more than one texture per polygon) and **shadowing**. With the latter, after the VDP2 receives the sprites generated by the VDP1, it can reduce their brightness and blend them with half-transparency. Nonetheless, the VDP2 only receives a sprite stream from the VDP1 (in pace with the CRT beam) so this function tends to be tricky to encode and operate.
+This chip relies on [tile-maps](mega-drive-genesis#constructing-the-frame) to compose planes and applies **perspective correction** for 3D texture mapping. This is a more sophisticated approach that accounts for the depth value when computing rotations.
 
-This chip also houses **4 KB of Colour RAM (CRAM)** which is used to translate VDP1's custom colour values (index colours) into 24-bit RGB colours.
+Effects available include:
 
-Finally, even though the VDP2 is limited to two 3D planes, nothing prevents the CPU from using its VRAM as frame-buffer area to draw additional 2D or 3D graphics in software.
+- **Multi-texturing** for mapping more than one texture onto a single polygon.
+- **Shadowing**: after the VDP2 receives the sprites generated by the VDP1, it can reduce their brightness and blend them with half-transparency. 
+  - Nonetheless, the VDP2 only receives a sprite stream from the VDP1 (in pace with the CRT beam) so this function tends to be tricky to encode and operate.
 
-I recommend checking out the sources (at the end of the article) if this section got your attention, since the VDPs have a lot more quirks that are beyond the scope of this article.
+This chip also houses **4 KB of Colour RAM (CRAM)** which is used to translate the VDP1's custom colour values (indexed colours) into 24-bit RGB colours.
+
+Finally, even though the VDP2 is limited to two 3D planes, nothing prevents the CPU from using its VRAM as a software-based frame buffer to render additional 2D or 3D graphics.
+
+If this section got your attention, I recommend checking out the sources at the end, the VDPs have a lot more interesting quirks that lie beyond the scope of this article.
 
 ### Defining the problem {.tabs-close}
 
-As you can see, the architecture of the graphics subsystem is quite complex, so it's interpreted differently depending on the needs:
+As you can see, the architecture of the graphics subsystem is quite complex, and its interpretation often varies depending on the needs:
 
 ### As a *powerful* 2D console
 
-The capabilities of the Saturn for drawing 2D scenes were huge compared to the [Mega Drive](mega-drive-genesis) or [SNES](super-nintendo), although they weren't the main selling point of this console.
+The capabilities of the Saturn for drawing 2D scenes were vast compared to those of the [Mega Drive](mega-drive-genesis) or [SNES](super-nintendo), although they were not the console's main selling point.
+
+For a quick demonstration, I will use Mega Man X4 (1997) as example.
 
 #### Sprites {.tabs .active}
 
-![Mega Man X4 (1997).<br>VDP1's Sprites plane.](2d/sprites.png){.tab-float .latex-framed}
+![The VDP1's Sprite plane.](2d/sprites.png){.tab-float .latex-framed}
 
 In this case, the VDP1 is tasked with plotting traditional sprites without any 3D distortion applied.
 
-The CPU sets up the VDP1 by writing over its registers and filling its VRAM with commands and tiles. The process can also be accelerated thanks to the DMA controller. 
+The CPU sets up the VDP1 by writing to its registers and populating its VRAM with commands and tiles. The process can also be accelerated using the DMA controller. 
 
 #### Backgrounds {.tab}
 
-::: {.subfigures .tabs-nested .tab-float .pixel max_subfigures=1}
+::: {.subfigures .tabs-nested .tab-float .pixel max_subfigures=2 #fig-vdp2_bgframes}
 
-![2D plane 1.](2d/bg1.png){.active title="2D plane 1" .latex-framed}
+![2D plane 1.](2d/bg1.png){.active .border hardcover_latex_width="87%" paperback_latex_width="77%" title="2D plane 1"}
 
-![2D plane 2.](2d/bg2.png){title="2D plane 2" .latex-framed}
+![2D plane 2.](2d/bg2.png){.border hardcover_latex_width="87%" paperback_latex_width="77%" title="2D plane 2"}
 
-![2D plane 3.](2d/bg3.png){title="2D plane 3" .latex-framed}
+![2D plane 3.](2d/bg3.png){.border paperback_latex_width="80%" title="2D plane 3"}
 
-Mega Man X4 (1997). VDP2's Background planes.
+VDP2's Background planes.
 
 :::
 
-The VDP2 is then instructed to draw background planes. These, along with the sprite layer, are automatically mixed to form a fully coloured scene.
+The VDP2 is then instructed to draw background planes. These, together with the sprite layer, are automatically composited to form a fully coloured scene.
 
-The commanding part is fundamentally similar to the VDP1: Programmers got registers and VRAM to set up accordingly.
+The commanding part is fundamentally similar to that of the VDP1: programmers have access to registers and VRAM to configure the chip accordingly.
 
-Some functions from the VDP2 can be exploited to create more realistic scenery, such as scaling to simulate a heatwave (see '2D plane 2').
+Certain VDP2 functions can be exploited to create more realistic scenery, such as scaling effects to simulate a heat haze, as seen in the '2D plane 2' [@fig-vdp2_bgframes].
 
 #### Result {.tab}
 
-![Mega Man X4 (1997). Mixed planes (_Tada!_).](2d/result.jpg){.tab-float}
+![Mixed planes (_Tada!_).](2d/result.jpg){.tab-float .border}
 
-Not much mystery here, the VDP2 is responsible for the last step of sending the processed signal to the video encoder.
+Not much mystery here, the VDP2 handles the last step of passing the processed signal to the video encoder.
 
-The VDP2 operates in sync with the CRT beam, meaning that its computations correspond to the pixels that will be displayed on the next scan line.
+The VDP2 operates in sync with the CRT beam, meaning that its ongoing computations correspond to the pixels due to appear on the upcoming scan line.
 
 ### As a *challenging* 3D console {.tabs-close}
 
-Here's where the Saturn *shined and struggled* at the same time. While this console had eight processors to take advantage of, it all came down to:
+Here's where the Saturn both *shone and struggled* at the same time. While this console had eight processors to take advantage of, it ultimately came down to:
 
-- Whether programmers would be able to master most of the console's features during a small time frame (remember the console's commercial lifespan would be over once its successor is released, or even announced).
-- Whether their game would be shipped at a reasonable date.
+- Whether programmers would be able to master most of the console's features during a small time frame (remember the console's commercial lifespan would effectively end once its successor was released, or even announced).
+- Whether their game could ship within a reasonable date.
 
-For this reason, most games ended up dramatically ranging in quality since each studio came up with a unique solution.
+For this reason, game quality varied dramatically from title to title, with each studio coming up with unique approaches.
 
 #### 3D modelling {.tabs .active}
 
-![Virtua Fighter Remix (1995).<br>3D models of characters without textures or background. Notice the primitives used to build the models.](3d/models.png){.tab-float}
+![3D models of characters without textures or background. Notice the primitives used to build the models.<br>Virtua Fighter Remix (1995).](3d/models.png){.tab-float}
 
-So far we've been using individual regular quadrilaterals to form sprites and/or background layers. But what if we group multiple irregular primitives and arrange them to form a more complex figure? This is how 3D models come to fruition.
+So far, previous examples used individual regular quadrilaterals to form sprites and/or background layers. But what if we group multiple irregular primitives and arrange them to form a more complex figure? This is how 3D models come to fruition.
 
-To put it in simple terms, classic 2D consoles like the [Super Nintendo](super-nintendo) arranges their graphics (backgrounds and sprites) in quasi-rectangular areas. In some cases, such as with [Mode 7](super-nintendo#that-feature), programmers can supply a rotation matrix to apply transformations over some of these areas. The Saturn, by contrast, allows defining 4-point quadrilaterals with arbitrary angles between their edges (Sega calls them 'distorted sprites'). Then, the VDPs' texture mapping capabilities paint the quadrilateral's area with a texture, the latter is scaled to conform to the polygon's shape.
+To put it in simple terms, classic 2D consoles like the [Super Nintendo](super-nintendo) arrange their graphics (backgrounds and sprites) in quasi-rectangular areas. In some cases, such as with [Mode 7](super-nintendo#that-feature), programmers can supply a rotation matrix to apply transformations to some of these areas. The Saturn, by contrast, allows developers to define four-point quadrilaterals with arbitrary angles between their edges - Sega calls them **distorted sprites**. Then, the VDPs' texture-mapping capabilities paint the quadrilateral's area with a texture, which is scaled to conform to the polygon's shape.
 
-In terms of operations needed with a 3D game, the CPUs and SCU are assigned to formulating a 3D world and project it in a 2D space. Then, both VDPs are commanded to render it, apply effects and finally broadcast it on TV.
+In terms of operations required in a 3D game, the CPUs and SCU are tasked with formulating a 3D world and projecting it onto a 2D space. Then, both VDPs are commanded to render it, apply effects, and finally broadcast it to the television.
 
 #### Pixel processing {.tab}
 
-![Virtua Fighter Remix (1995).<br>Rendered scene with 3D models and backgrounds.](3d/complete.png){.tab-float}
+![Rendered scene with 3D models and backgrounds.<br>Virtua Fighter Remix (1995).](3d/complete.png){.tab-float}
 
-Either VDP can draw this new (projected) 3D space and stamp textures and effects. Now, which chip is 'in charge' varies between each game.
+Either VDP can draw the newly projected 3D space and stamp textures and effects. However, which chip is 'in charge' varies from game to game.
 
-Some prioritised the VDP1 to draw the closest polygons and left the VDP2 to process distant scenery, others found interesting workarounds to task the VDP2 to draw closer polygons (thereby off-loading the amount of geometry fed into the VDP1). The challenge consists in designing an efficient engine that could display *impressive* graphics while keeping an acceptable frame rate.
+Some developers prioritised the VDP1 for rendering nearby polygons, leaving the VDP2 to handle distant scenery. Others devised clever workarounds that allowed the VDP2 to draw closer polygons (thereby offloading the volume of geometry passed to the VDP1). The core challenge lies in designing an efficient engine capable of displaying *impressive* graphics while maintaining an acceptable frame rate.
 
 ### The new designs {.tabs-close}
 
-These are some examples of characters that were redesigned for this console, the models are interactive so do try to fiddle with them!
+These are some examples of characters that were redesigned specifically for this console. I initially built an interactive model viewer for the website edition, and later adapted the visualisations for the physical formats.
 
-![Sonic in Sonic R (1997).<br>185 quadrilaterals.](sonic_r_saturn){.toleft model3d="true"}
+![Sonic in Sonic R (1997).<br>185 quadrilaterals.](sonic_r_saturn){.toleft model3d="true" paperback_latex_width="93%"}
 
-![Tails in Sonic R (1997).<br>254 quadrilaterals.](tails_r_saturn){.toright model3d="true"}
+![Tails in Sonic R (1997).<br>254 quadrilaterals.](tails_r_saturn){.toright model3d="true" hardcover_latex_width="93%" paperback_latex_width="84%"}
 
-While the Saturn is only able to draw quadrangles, you'll soon notice that these models exhibit two triangles instead of a single quadrangle in 'Wireframe' mode. This is because the format used to encode this model (glTF, an open standard for modern 3D modelling), so your modern device can render it, doesn't support quadrangles at the time of this writing. So, I recommend switching to 'Surface' mode to observe the quads.
+While the Saturn is only able to draw quadrangles, the Wireframe view exhibits two triangles in place of a single quadrangle. This occurs because the modern format used to encode this model (glTF, an open standard for contemporary 3D modelling), allowing modern devices to still render it, doesn't support quadrangles at the time of this writing. This behaviour is not apparent in the Surface view.
 
-In some way, this tells you how the current graphics technology can struggle to reproduce their ~30-year-old predecessors!
+In a way, this highlights how modern graphics technology can struggle to faithfully emulate their ~30-year-old predecessors!
 
 ### An introduction to the visibility problem
 
-When 3D polygons are projected onto a 2D space, it is crucial to determine **which polygons are visible from the camera's position and which are hidden behind** [@graphics-vsd]. Otherwise, models are not drawn correctly, effects like transparency appear 'broken' and ultimately, hardware resources are wasted. This process is widely known as **Visible surface determination** or 'VSD' and it's a fundamental problem in the world of computer graphics. There are multiple papers published that describe algorithms that tackle this at different stages of the graphics pipeline. Some of them give very accurate results, while others trade precision for better performance.
+When 3D polygons are projected onto a 2D space, it is crucial to determine **which polygons are visible from the camera's perspective and which are hidden behind** [@graphics-vsd]. Otherwise, models are not drawn correctly, effects like transparency appear broken, and hardware resources are wasted.
 
-Now, unlike academic/professional equipment, consumer hardware is incredibly limited, so the choice of algorithm is narrowed down to just a few... or none whatsoever.
+This process is widely known as **Visible Surface Determination** or 'VSD', and it's a fundamental challenge in the field of computer graphics. Numerous publications describe algorithms that tackle this issue at different stages of the graphics pipeline - some offering highly accurate results, while others sacrifice precision in favour of better performance.
 
-![Project Z-Treme (2019, Homebrew) [@graphics-ztreme].<br>This engine ditched Z-sort in favour of a binary space partitioning (BSP) approach, fixing the glitches.](projectz.jpg){.open-float}
+Now, unlike academic or professional-grade equipment, consumer hardware is severely constrained, meaning the choice of algorithm is often restricted to only a few options... or none whatsoever.
 
-The Sega Saturn approach is what I consider a 'semi-solved' case. The VDP1 doesn't implement any VSD function: You either feed the geometry in the correct order or you get a mess. However, Sega provided a graphics library called 'SGL' that implemented a solution called **Z-sort** or **Painter's algorithm** [@graphics-sgl] which performs **polygon sorting by software**. 
+![Project Z-Treme [@graphics-ztreme], a 2019 Homebrew engine. It ditched Z-sort in favour of a Binary Space Partitioning (BSP) approach, fixing many glitches.](projectz.jpg){.open-float}
 
-Essentially, SGL allocates a buffer to sort the polygons based on the distance from the camera (from furthest to nearest), then, issues the display commands to the VDP1 in that order.
+The Sega Saturn's approach is what I consider a *semi-solved* case. The VDP1 doesn't implement any VSD functionality: you either feed the geometry in the correct order or you get a mess. However, Sega provided a graphics library known as 'SGL' that implements a solution called **Z-sort** or **Painter's algorithm** [@graphics-sgl]. This performs **polygon sorting in software**.
+
+Essentially, SGL allocates a buffer to sort polygons by their distance from the camera (arranging them from furthest to nearest). Then, it issues the corresponding display commands to the VDP1 in that order.
 
 {.close-float}
 
-One of the issues of Z-sort with 3D spaces is that its distance value (Z-order) is **approximated**, so graphic glitches may still appear. For this, programmers can skip SGL in favour of implementing their own algorithm.
+One of the limitations of Z-sort in 3D environments is that its distance value (Z-order) is only **approximated**, meaning graphic glitches may still appear. For this, programmers may skip SGL in favour of implementing their own algorithms.
 
-In later articles, you will see alternative approaches. Some still rely on software, while others are accelerated by hardware.
+In later articles, you will see alternative approaches to visible surface determination. Some still rely on software, while others benefit from hardware acceleration.
 
 ### The transparency issue
 
-The Sega Saturn is capable of drawing **half-transparent graphics**, in other words, mixing overlapping layers of colours (blending) to give the illusion we can see through them. Unfortunately, both VDPs aren't as coordinated as one would expect, so this effect will not work properly when these layers are found in different VDPs.
+As part of its own set of [colour math](super-nintendo#more-colour-magic), the Sega Saturn is capable of rendering **half-transparent graphics** - that is, blending overlapping layers of colours to give the illusion we can see through them (a.k.a. translucency). However, there are significant caveats to this functionality [@graphics-vdp1]:
 
-As a workaround, games can activate the 'mesh' property on a texture. With 'meshed' textures, the VDP1 sets the odd X/Y texture coordinates as 'transparent' (empty). Making it possible to blend other layers using the transparent pixels. Curiously enough, the mesh would appear blurred if the console was connected to the TV using the composite video signal (which was pretty much the standard back then, aside from RF) resulting in an accidental but effective way to accomplish half-transparency [@graphics-geer].
+- Only the VDP2 can blend pixels with half-transparency, while the VDP1 only outputs a rendered buffer, with no distinction between overlapping sprites. As a result, overlapping half-transparent sprites occlude the ones beneath.
+- The VDP1's forward texture-mapping process corrupts half-transparency when applied to distorted sprites (i.e. polygons).
+- Half-transparent pixels require six times longer to draw.
 
-As you may suspect, this just wasn't viable for some games, so in the end, these had no option but to ditch half-transparency altogether... Although some studios found ingenious fixes, take a look at these two cases:
+As a workaround, 2D games can activate the 'mesh' property on a texture. With meshed textures, the VDP1 sets the odd X/Y texture coordinates as 'fully transparent' (i.e. empty), allowing layers beneath to appear through. Curiously enough, when the console is connected to the television via the composite video signal (a standard at the time, aside from RF) the mesh pattern appears blurred. This accidental but effective consequence provided a way to simulate half-transparency [@graphics-geer].
 
-::: {.subfigures .side-by-side}
+Nevertheless, the opaque portions of a mesh would still occlude other sprites. Moreover, this didn't resolve the issue for 3D games. In the end, some titles had no option but to ditch half-transparency altogether... yet some studios found ingenious fixes, take a look at these two cases [@fig-sat_transparency].
 
-![Sega's Daytona (1993).](daytona){.toleft video="true"}
+::: {.subfigures .side-by-side max_subfigures=1}
+
+![Sega's Daytona (1993).](daytona){.toleft video="true" #fig-sat_transparency}
 
 ![Traveller's Tales' Sonic R (1997).](sonicr){.toright video="true"}
 
-Both games command the VDP1 to draw foreground objects and background scenery. In turn, the VDP2 renders the landscape image far away and the stats in front of the 3D models. Consequently, VDP1 models with half-transparency won't refract the VDP2's landscape as the VDP1 is not aware of the VDP2's frame buffers.
+Example of games dealing with half-transparency in different ways.
 
 :::
 
-Apart from my terrible gameplay, you'll notice that the background of the first game pops out of nowhere (no half-transparency) whereas the second game not only accomplished half-transparency but also a **fading effect**: Traveller's Tales found a workaround by changing the 'mix ratio' registers of the VDP2 (used for defining the texture's alpha) combined with switching the lighting levels as the character gets closer [@graphics-burton].
+In both examples, the game commands the VDP1 to draw foreground objects and background scenery. In turn, the VDP2 renders the landscape imagery far away, and overlays the HUD statistics in front of the 3D models. Consequently, the VDP1's 3D models (rendered as distorted sprites) are unable to employ half-transparency, this prevents them from naturally blending with the VDP2's layers.
+
+Nevertheless, the two games exhibit different behaviour. During gameplay, the background of Daytona pops out of nowhere (as half-transparency is disabled). In contrast, Sonic R achieves not only half-transparency but also a **fading effect**. Traveller's Tales devised a workaround by adjusting the 'mix ratio' registers of the VDP2 (used for defining the texture's alpha) and manually switching the lighting levels as the character gets closer [@graphics-burton].
 
 ## Audio
 
-The sound subsystem consists of several parts [@audio-scsp]:
+The audio capabilities of this console were part of a broader digital revolution taking place during the same period. In essence, the combination of new storage formats and affordable (yet sophisticated) sample synthesisers ultimately unlocked the composers' ability to produce their music in-house, and then incorporate it directly into games in its original form.
 
-- **Motorola 68EC000**: Controls the other components and interfaces with the main CPUs. It runs a [sound driver](mega-drive-genesis#the-conductor) to operate the neighbour components.
-- **Saturn Custom Sound Processor** (SCSP): Also referred to as Yamaha YMF292, it's composed of two modules:
-  - A **multi-function sound generator**: Processes up to **32 channels** with **PCM samples** (up to 16-bit with 44.1 kHz, a.k.a 'CD quality') or [**FM channels**](mega-drive-genesis#audio). In the case of the latter, a number of channels are reserved for operators.
-  - A **DSP**: Applies effects like echo, reverb and chorus. The docs also mention 'filters' but I don't know if it means envelope or frequency filter (i.e. low pass, etc).
-- **512 KB of RAM**: Stores the driver, audio data (i.e. PCM samples) and it's also a working area for the DSP.
+### The tech stack
+
+Be as it may, beneath the surface of attractive functionality lies a complex arrangement. In the case of the Sega Saturn, its sound subsystem is composed of several parts [@audio-scsp]:
+
+- The **Saturn Custom Sound Processor** (SCSP): Also referred to as the Yamaha YMF292, it's composed of two modules:
+  - A **multi-function sound generator**: Processes up to **32 channels** with **PCM samples** (up to 16-bit at 44.1 kHz - a.k.a. 'CD quality') or [**FM channels**](mega-drive-genesis#audio). In the case of the latter, a subset of channels is reserved for operators.
+  - A **Digital Signal Processor** (DSP): Applies audio effects such as echo, reverb, and chorus. The documentation also mentions 'filters', but it's unclear whether this means envelope or frequency-based filters (e.g. low-pass).
+- A **Motorola 68EC000**: Controls the audio components and interfaces with the main CPUs. It executes a [sound driver](mega-drive-genesis#the-conductor) to operate the neighbouring modules.
+  - If this CPU looks familiar, that's because it is: the Mega Drive carried a 68000 as its [main CPU](mega-drive-genesis#cpu), while the 68EC000 in the Saturn is a small upgrade designed for embedded applications. The latter runs at 11.3 MHz and is connected using a 16-bit bus [@cpu-overview].
+- **512 KB of RAM**: Used to store the sound driver and audio data (e.g. PCM samples). It also serves as a working area for the DSP.
 
 ### The opportunity
 
-The new audio capabilities mean that studios can finally record/produce soundtracks in-house and then bundle them in the game without having to re-arrange it (as it happened with limited [sequencers](super-nintendo#audio) or chips with strict [synthesis methods](mega-drive-genesis#audio)).
+As previously mentioned, the new audio subsystem allowed studios to finally record and produce soundtracks in-house, then bundle them in the game without the need for rearrangement - unlike earlier systems that relied on constrained [sequencers](super-nintendo#audio) or sound hardware with strict [synthesis methods](mega-drive-genesis#audio)).
 
-This has been possible thanks to a combination of many factors:
+This shift was made possible thanks to a combination of key factors:
 
-- The new storage medium for games (CD-ROM) enables developers to store large soundtracks.
-- The audio endpoint receives and mixes PCM data with acceptable quality.
-- The audio subsystem provides enough power and bandwidth to stream PCM data in some compressed form, and then decode it on-the-fly.
+- The adoption of CD-ROM as storage medium for games allowed developers to store large and high-quality soundtracks.
+- The audio endpoint could receive and mix PCM data with acceptable fidelity.
+- The audio subsystem offered sufficient power and bandwidth to stream compressed PCM data and decode it in real time.
 
 ## Operating System
 
-Once the user powers on the console, the first component that starts up is the **System Management & Peripheral Control** (SMPC), a 4-bit microcontroller that takes care of initialising the neighbouring chips (such as switching on two SH-2s and setting them in a 'master-slave' configuration) [@games-smpc].
+Upon powering on the console, the first component that starts up is the **System Management and Peripheral Control** (SMPC), a 4-bit microcontroller that takes care of initialising nearby chips, such as switching on the two SH-2s and setting them in a 'master-slave' configuration [@games-smpc].
+
+![The SMPC chip in my motherboard revision.](chips/smpc.webp){latex_width="90%"}
+
+Afterwards, the reset vector of the master SH-2 is set to `0x00000000` [@games-sh2], which points to a 512 KB ROM chip containing the **Initial Program Loader** (IPL).
 
 ::: {.subfigures .side-by-side}
 
-![Japanese version.](ipl/logo_jap.jpg){.toleft}
+![Japanese version.](ipl/logo_jap.jpg){.toleft hardcover_latex_width="95%" paperback_latex_width="84%"}
 
-![European and American versions.](ipl/logo_eu.jpg){.toright}
+![European and American versions.](ipl/logo_eu.jpg){.toright hardcover_latex_width="95%" paperback_latex_width="84%"}
 
 Logo displayed after splash animation finishes.
 
 :::
 
-Afterwards, the master SH-2's reset vector is set to `0x00000000` [@games-sh2], which points to an internal ROM containing the **Initial Program Loader** (IPL). This program performs the following functions [@operating_system-bootrom]:
+The IPL performs the following functions as part of the boot sequence [@operating_system-bootrom]:
 
 1. Finish initialising the hardware.
-2. If there's a cartridge inserted and it includes a program, continue booting from there.
-4. If the 'Video CD' card is inserted, boot it.
-3. If there's a disc inserted, check that it's genuine.
-    - While at it, it displays the splash screen animation.
+2. If a cartridge is inserted and contains executable code, continue booting from there.
+4. If a 'Video CD' card is inserted, boot it.
+3. If a disc is inserted, verify that it's genuine.
+    - While at it, the system displays the splash screen animation.
 4. If the disc is genuine, boot the game.
-4. If the disc is not genuine or there's no disc inserted, run the shell.
+4. If the disc is not genuine or there's no disc inserted, launch the interactive shell.
 
 ### Interactive shell
 
-Alternatively to playing games, the Saturn included a music player called 'Multiplayer', from which a save manager can be opened.
+Alternatively to playing games, the Saturn included a built-in music player called 'Multiplayer', from which users could also access a save data manager.
 
 ![Interactive shell called 'Multiplayer' or 'Audio CD Control Panel'.](ipl/multiplayer.jpg){.toleft}
 
 ![Memory Manager. Moves saves between the cartridge and internal memory.](ipl/mem_manager.jpg){.toright}
 
-If a Video CD card is inserted, the player can reproduce MPEG video decoded from the card itself.
+If a Video CD card was inserted, Multiplayer could also reproduce MPEG video decoded from the card itself.
 
 ### No BIOS?
 
-Unlike the [PlayStation](playstation) whose ROM chip bundled a [BIOS](playstation#operating-system), which in turn exposed APIs for programmers to use. The Saturn's ROM is often called 'IPL' presumably since its main job is to bootstrap the game and run the shell. However, the latter still stores some routines (called **services**) to manipulate the hardware (such as managing save data and power control). It even implements a 'semaphore'! (used to synchronise operations that involve multiple processors at the same time). Hence, that part of the ROM is called **System program**.
+Unlike the [PlayStation](playstation), whose ROM chip bundles a [BIOS](playstation#operating-system) that exposes APIs for programmers to use, the Saturn's ROM is often referred to as 'IPL' instead - presumably since its main job is to initialise the system, bootstrap the game, and run the shell.
+
+However, the IPL ROM also stores some routines (called **services**) to manipulate the hardware, such as managing save data and power control. It even implements a semaphore mechanism for synchronising operations across multiple processors simultaneously. Hence, that part of the ROM is called **System program**.
 
 ## Games
 
-Official Sega Saturn games are loaded from the **2x CD-ROM reader**. Its medium, a tailored variant of the **Compact Disc** (CD), has a capacity of **650 MB** [@anti_piracy-rings] and follows the **ISO 9660** standard for storing data [@games-format]. Additionally, many games store audio tracks next to the data tracks for streaming uncompressed audio while executing the game.
+Official Sega Saturn games are loaded from the **2x CD-ROM drive**. Its medium, a tailored variant of the **Compact Disc** (CD), has a capacity of **650 MB** [@anti_piracy-rings] and adheres to the **ISO 9660** standard for storing data [@games-format]. Additionally, many games include audio tracks next to the data tracks to stream uncompressed audio during gameplay.
 
 ### The Compact Disc (CD)
 
-The CD is an optical medium where information is stored by engraving **pits** and **lands** on its polycarbonate surface [@cpu-optical]. Then, an infrared light is beamed from the reader and the reflection produced on the CD's surface is used to read the information back.
+The CD is an optical medium on which information is stored by engraving **pits** and **lands** into its polycarbonate surface [@cpu-optical]. An infrared beam is then directed from the drive, and the reflection produced on the CD's surface is used to retrieve the information.
 
-The process of converting digital information (ones and zeroes) into pits and lands and vice versa is not simple by any means, especially since CDs must be robust enough to sustain day-to-day damage and intensive use; and reliable enough to store any kind of information without fear of data loss. Hence, as part of its specification, data is encoded using the **Non-Return-to-Zero inverted** (NRZi) model, meaning that the bitstream will be all zeroes until a land-to-pit or pit-to-land change is detected, at which a `1` will be appended instead.
+The process of converting digital information (ones and zeroes) into pits and lands and vice versa is by no means simple, especially since CDs must be robust enough to sustain day-to-day damage and intensive use, and reliable enough to store any kind of information without fear of data loss. Hence, as part of its specification, data is encoded using the **Non-Return-to-Zero inverted** (NRZi) scheme. This means the bitstream consists of zeroes until a land-to-pit or pit-to-land transition occurs, at which point a `1` will be appended instead.
 
-This design works well until the reader encounters a sequence of ones (continuous pit and land changes) or long sequences of zeroes (constant pits or lands), at which the sensor will struggle to detect or keep synchronised, respectively. Thus, an additional model called **Eight-to-Fourteen** (ETF) modulation is applied. With this, a handful of zeroes are padded in-between the encodings, these help the sensor during the reading process.
+This design works well until the reader encounters a sequence of ones (continuous pit and land changes) or long sequences of zeroes (constant pits or lands), at which the sensor will struggle to detect or keep synchronised, respectively. To address this, an additional model called **Eight-to-Fourteen** (ETF) modulation is applied. This inserts a handful of zeroes between the encodings, helping the sensor during the reading process.
 
-On top of all this, further mechanisms of error detection may be added, although these are beyond the scope of this article. If you are interested in learning more, you can check out a slide presentation from RWTH Aachen University [@cpu-optical].
+Beyond this, further mechanisms for error detection may be added, although these are outside the scope of this article. If you'd like to explore more, check out an insightful slide presentation authored by RWTH Aachen University [@cpu-optical].
 
 ### Development
 
-At first, Sega didn't provide complete software libraries and development tools (in fact, the initial documentation was inaccurate) so the only way to achieve good performance was through *harsh* assembly.
+At first, Sega did not provide comprehensive software libraries or development tools (in fact, the initial documentation was inaccurate), so the only way to achieve good performance was through *harsh* assembly.
 
-Later on, Sega released complete SDKs, hardware kits and some libraries to ease I/O and graphics operations. Overall, games are written in a mix of **C** and various assemblies targeting individual components.
+Eventually, Sega released complete SDKs, hardware kits and additional libraries to ease I/O and graphics operations. Overall, games were written using a combination of **C** and various assembly languages targeting individual components.
 
 ### I/O
 
-Peripheral management and real-time clock are also provided by the aforementioned **System Management & Peripheral Control** (SMPC). The SMPC is controlled with commands sent by the SH-2s.
+Peripheral management and **Real-Time Clock** (RTC) are also provided by the aforementioned **System Management and Peripheral Control** (SMPC), which is controlled via commands sent by the SH-2s.
 
 ### Expansion methods
 
-This console bundles a considerable number of external connectors and interfaces that only received a handful of uses, at most.
+This console bundles a considerable number of external connectors and interfaces, most of which only saw a handful of uses:
 
-- Behind the drive there's a **cartridge slot** officially used for **additional storage** (save data) or **extra RAM**. In Japan and the United Stated, a modem was also offered to provide [online functionality](mega-drive-genesis#early-network-attempts).
-- At the back of the console, there's a slot for a **Video CD Card** that performs MPEG decompression for programs/games that support it.
-- Finally, there's a mysterious socket at the back of the console called **Communication Connector**. Sega didn't publish any documentation for developers, but after some reverse engineering efforts, people discovered that it's connected to the SCSP's MIDI pins and the two SH-2's serial interface (SCI) [@games-development]. In any case, Sega released a Floppy drive that relied on this interface.
+- Behind the drive, there is a **cartridge slot**, officially intended for **additional storage** (save data) or **extra RAM**. In Japan and the United States, a modem was also offered to provide [online connectivity](mega-drive-genesis#early-network-attempts).
+- At the rear of the console, there is a slot for a **Video CD Card**, which performs MPEG decompression for programs or games that support it.
+- Finally, there is a mysterious socket at the back of the console called **Communication Connector**. Although Sega did not publish any developer documentation, reverse-engineering efforts revealed that it connects to the SCSP's MIDI pins and the Serial Interface (SCI) of two SH-2's [@games-development]. In any case, Sega released a floppy drive that made use of this interface.
 
 ## Anti-Piracy & Homebrew
 
 In response to the easiness of cloning a CD, Sega implemented a copy protection system - along with region locking - to control the distribution of its games.
 
-For the copy protection itself, Sega deliberately deviated from the standard CD format, making it impossible for regular CD burners to produce a perfect copy of a Saturn game. In turn, the Saturn's disc reader looks for these non-standard features as part of its verification process.
+For the copy protection itself, Sega deliberately deviated from the standard CD format, making it impossible for regular CD burners to produce a perfect copy of a Saturn game. Then, as part of its verification process, the Saturn's disc reader looks for these non-standard features.
 
-Specifically, Saturn discs were manufactured with an unusual data pattern pressed into the outer edge [@anti_piracy-rings], creating a visible ring engraved with trademark labels. This ring sits outside the standard data area of a CD (known as the 'Program Area') and beyond the Lead-out section, which signals the end of readable data. As a result, conventional drives couldn’t access or replicate that part of the disc.
+To be more specific, Saturn discs were manufactured with an unusual data pattern pressed into the outer edge [@anti_piracy-rings], creating a visible ring engraved with trademark labels. This ring sits outside the standard data area of a CD (known as the 'Program Area') and beyond the Lead-out section, which signals the end of readable data. As a result, conventional drives couldn't access or replicate that part of the disc.
 
-Inside the Saturn’s disc drive is a dedicated **SH-1 processor** that verifies the presence of the ring independently from the main CPUs. It uses obscure communication protocols to communicate with the rest of the system. This check, however, is only performed once.
+Inside the Saturn's disc drive is a dedicated **SH-1 processor** that verifies the presence of the ring independently from the main CPUs. It uses obscure communication protocols to talk with the rest of the system. This check, however, is only performed once.
 
 ### Defeat
 
-First of all, the classic method used for disabling the copy protection consisted in installing a **mod-chip** that could trick the CD reader when a burned disc is inserted. There was also a 'swap trick' that consisted in **hot-swapping** a genuine disc with a burned one just after the protection checks passed... with the risk of damaging the drive.
+To begin with, the classic method used for disabling the copy protection consisted in installing a **mod chip**, which could deceive the CD reader when any type of disc was inserted. Another technique, known as the 'swap trick', consisted in **hot-swapping** a genuine disc with a burned one immediately after the protection checks had passed... with the risk of damaging the drive.
 
-After the turn of the century, more sophisticated methods used for running unauthorised code were discovered, for instance:
+![My Saturn with the Fenrir chip installed. This is an Optical Drive Emulator (ODE) that replaces the original CD drive to execute games from an SD card instead. This is one of the many modern methods used for executing Homebrew.](fenrir.webp)
 
-- An **exploit in the copy protection mechanism** was found and it allowed to boot up any disc game without going through the copy protection checks. This was subsequently implemented in the form of a cartridge called **pseudosaturn** [@anti_piracy-pseudosaturn]. Due to the use of the cartridge medium, Action Replay cartridges were often re-flashed with pseudosaturn (though the flasher also needs to be bootstrapped somehow, most commonly through the swap trick).
-  - This method is still being used as of 2022, although a new fork of pseudosaturn named 'Pseudo Saturn Kai' is installed instead.
-- Another method was reported in 2016 (almost 20 years later) by exploiting the fact that the **Video CD add-on can inject unencrypted code** to the CD subsystem (bypassing the CD reader altogether). This finally allowed users to load Homebrew independently of the ageing drive. The Video CD exploit is commercially distributed in a product called 'Satiator' (I'm not sponsored, by the way).
-- Finally, there's another commercial alternative that replaces the CD reader with an SD or SATA adapter. The Saturn still thinks it's reading from a CD, but the 'CD' is being emulated by the adapter, which is in turn reading from a disc image [@anti_piracy-ode].  These products are called **Optical Drive Emulators** (ODE).
+After the turn of the century, more sophisticated methods for running unauthorised code were discovered, for instance:
+
+- An **exploit in the copy protection mechanism** was identified, allowing to boot up any disc game without undergoing copy protection checks. This was subsequently implemented in the form of a cartridge called **PseudoSaturn** [@anti_piracy-pseudosaturn]. As it relied on the cartridge medium, Action Replay cartridges were often re-flashed with PseudoSaturn (though the flasher program still needed to be bootstrapped somehow, most commonly through the swap trick).
+  - This method remains in use as of 2022, although a newer fork named 'Pseudo Saturn Kai' is installed instead.
+- Another method emerged in 2016 (almost 20 years after the console's release) by exploiting the fact that the **Video CD add-on can inject unencrypted code** into the CD subsystem (bypassing the CD drive entirely). This finally allowed users to load Homebrew independently of the ageing drive. The Video CD exploit is commercially distributed as a product called 'Satiator' (I'm not sponsored, by the way).
+- Lastly, there's a commercial alternative that replaces the CD reader with an SD or SATA adapter. The Saturn still thinks it's reading from a CD, but the 'CD' is being emulated by the adapter, which is in turn reading from a disc image [@anti_piracy-ode]. These products are known as **Optical Drive Emulators** (ODE).
 
 ## That's all folks
 
