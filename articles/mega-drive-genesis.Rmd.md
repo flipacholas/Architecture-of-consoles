@@ -84,9 +84,15 @@ If you wonder the reason behind using 24-bit addresses in a CPU that can handle 
 
 #### A peculiar instruction set
 
-Before the [RISC revolution](playstation#tab-1-1-a-bit-of-history), there was a prior school of thought that attempted to consolidate how instruction sets were designed. In essence, consumer CPUs of the 70s (like the 6502 or the 8080) provide instructions that have already predefined how memory will be accessed (this is called the 'addressing mode'). A choice of multiple addressing modes enables the CPU to handle different use cases. However, the number of addressing modes tends to proportionally increment the complexity of the instruction set.
+Before the [RISC revolution](playstation#tab-1-1-a-bit-of-history), there was a prior school of thought that attempted to consolidate how instruction sets were designed. In essence, consumer CPUs of the 70s (like the 6502 or the 8080) provide instructions that have already predefined how memory can be accessed (this is called the 'addressing mode'). A choice of multiple addressing modes enables the CPU to handle different use cases. However, the number of addressing modes tends to proportionally increment the complexity of the instruction set.
 
-To remedy this, with the 68000, Motorola detached the instruction function (the 'opcode') from the addressing mode, making the latter just another parameter (or 'operand'). In doing so, developers could now use the same opcodes with their addressing mode of choice (based on their needs).
+To remedy this, with the 68000, Motorola sought to unify most of its instructions. It did so by detaching the instruction function (the 'opcode') from the addressing mode, making the latter just another parameter (or 'operand'). In doing so, developers could now use the same opcodes with their addressing mode of choice (based on their needs).
+
+As a simple example, to move data around:
+
+- The [MOS 6052](nes#cpu) and [WDC 65816](super-nintendo#cpu) offer `LDA`, `STA`, `LDX`, `STX`, `LDY`, and `STY` opcodes. The choice depends on the direction of information (whether from register to memory or vice versa) and the specific register involved.
+  - Additionally, in the WDC 65816, the parameter specifying the size of data (8-bit or 16-bit) resides in a separate register, requiring additional instructions (`SEP` and `REP`) to change it.
+- In contrast, the Motorola 68000 provides a single `MOVE` opcode; its operands specify the origin, destination, size and addressing type.
 
 This principle is called **instruction set orthogonality**, and it greatly influenced the new generation of CPUs in the late 70s, but quickly dissipated as [RISC designs](game-boy-advance#tab-1-1-the-rise-of-acorn-computers) took over, effectively shifting the burden onto compilers. In any case, the Motorola 68k series enjoyed great popularity during the 80s decade, and it wasn't until the early '90s that companies started the switch to another vendor.
 
