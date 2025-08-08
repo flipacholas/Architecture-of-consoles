@@ -768,7 +768,7 @@ Impressively enough, not every app bundled with this console had _self-interest_
 
 Folding&#64;home was an application installed in every PlayStation 3 that, once opened by the user, connected to a central server and ran protein simulations. Moreover, the app was also allowed to run in the background during off-peak times.
 
-![Folding&#64;Home displaying the work accomplished since the user started the app [@operating_system-folding_app].](xmb/folding.jpg)
+![Folding&#64;home displaying the work accomplished since the user started the app [@operating_system-folding_app].](xmb/folding.jpg)
 
 Throughout its lifetime, the joined computing power of 15 million PS3 users worldwide assisted Folding&#64;home with their research towards curing Alzheimer's disease [@operating_system-protein_retirement]. In the end, Folding&#64;home and Sony retired the app in 2012 and the former lives on on other platforms.
 

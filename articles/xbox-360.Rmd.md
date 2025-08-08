@@ -1013,7 +1013,7 @@ The first thing is to introduce the two main targets. As soon as the Xbox 360 re
 
 - The **Hypervisor**, which holds control of the CPU and enforces signed executables, both of which had to be tackled if Homebrew or booting another OS (i.e. Linux) were to ever be possible.
   - By extension, this also affects user data (i.e. profiles stored on the hard drive and/or Memory Unit) but they implement extra layers of security. These are not mentioned here so we can focus on the main targets.
-- The **DVD drive**, which enforces the copy protection system and prevented burned discs from being executed as games. DVDs are inexpensive and most PCs of that era were equipped with a DVD RW drive, so cracking looks extremely rewarding. Although, it would only lead to piracy, but not Homebrew (as the code is still signed). That is, unless someone discovers an exploit that depends on the DVD drive but once 'triggered' enables to execute Homebrew... we'll see! 
+- The **DVD drive**, which enforces the copy protection system and prevented burned discs from being executed as games. DVDs are inexpensive and most PCs of that era were equipped with a DVD RW drive, so cracking the drive looks extremely rewarding. Although, it would only lead to piracy, but not Homebrew (as the code is still signed). That is, unless someone discovers an exploit that depends on the DVD drive but once 'triggered' enables to execute Homebrew... we'll see! 
   - Curiously enough, the hypervisor and the rest of the operating system have no awareness of the state of the copy protection [@cpu-steil], that's delegated to the disc drive, which has the upper hand on accepting the inserted disc as a valid Xbox 360 game or not.
 
 ### The hypervisor front
