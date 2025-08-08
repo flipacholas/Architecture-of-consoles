@@ -482,11 +482,11 @@ Overall, there isn't extensive documentation about this component and I can only
 
 ### Nostalgic rendering
 
-After all that's been explained, there's one question left unanswered: How does the PICA200 render Nintendo DS and Game Boy Advanced games? You may remember that the DS and GBA's GPU exhibit completely different modus operandi for [rendering and broadcasting](nintendo-ds#the-3d-accelerator) frames.
+After all that's been explained, there's one question left unanswered: How does the PICA200 render Nintendo DS and Game Boy Advance games? You may remember that the DS and GBA's GPU exhibit completely different modus operandi for [rendering and broadcasting](nintendo-ds#the-3d-accelerator) frames.
 
 ![A frame rendered by the Nintendo DS' [Graphics Engine](nintendo-ds#graphics), whose pipeline segregates between 2D and 3D data. That's something the OpenGL-compliant PICA200 doesn't understand.](images/consoles/nintendods/mario/complete.png){.pixel}
 
-The explanation is that the **DS and GBA PPUs are housed in the SoC** and DSi/DS/GBA games will operate them as they originally did on previous consoles. The PPUs output (scanlines) is delivered to a block called **LgyFB**, which may optionally upscale the frame, and then forwarded to the framebuffer, where the PICA200 will take care of displaying it. It's the job of the ARM11 and its DMA to take care of all memory transfers during this process.
+The explanation is that the **DS and GBA PPUs are housed in the SoC** and DSi/DS/GBA games will operate them as they originally did on previous consoles. The PPUs output (scanlines) is delivered to a block called **LgyFB**, which may optionally upscale the frame, and then forward it to the framebuffer, where the PICA200 will take care of displaying it. It's the job of the ARM11 and its DMA to take care of all memory transfers during this process.
 
 Naturally, this arrangement will add some delay (a.k.a. lag), albeit negligible to the user.
 
@@ -571,7 +571,7 @@ Now, to prevent leaving 'old' users behind, Nintendo provided external accessori
 
 ![Front view of the New Nintendo 3DS XL and the original 3DS, notice the different button sets each one offers.](photos/bird_n3ds.webp){.toleft}
 
-![The original 3DS with the SD slot opened. Here you can see the two back cameras, the SD slot and an audio jack port. With the New 3DS, the microSD can't be replaced without taking the back cover is taken off.](photos/sd_slot.webp){.toright}
+![The original 3DS with the SD slot opened. Here you can see the two back cameras, the SD slot and an audio jack port. With the New 3DS, the microSD can't be replaced without taking the back cover off.](photos/sd_slot.webp){.toright}
 
 Not all the exclusive features of the New 3DS can be replicated, however. For instance, the New 3DS' head tracking mechanism depends on the extra ARM11 core.
 
