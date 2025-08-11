@@ -305,10 +305,10 @@ These routines are also referred to as **Initial Program Loader** (IPL) and work
     - The PIF-NUS and the CIC chip are explained further in the I/O and anti-piracy sections, respectively.
 2. If the verification process finishes successfully, the CPU starts execution at `0xBFC00000`. This address points to an **internal ROM** within PIF-NUS, specifically the first boot stage called **IPL1**.
 3. IPL1 initialises part of the hardware (CPU registers, the parallel interface, and the RCP), then copies the next stage (**IPL2**) from the internal ROM to the RSP's memory for faster execution. It then redirects execution there.
-4. IPL2 copies the first megabyte of the game ROM into RSP memory, verifies it (using the PIF-NUS), and executes it. This block contains the next boot stage, called **IPL3**.
-5. IPL3 initialises RDRAM and the CPU cache. Afterwards, it starts the operating system (i.e. virtual memory and exception vectors), sets up the program state (i.e. stack pointer), and finally calls the game's starting routine.
+4. IPL2 copies the first four bytes of the game ROM into the RSP's memory. This is used to adjust the ROM bus timings. Afterwards, it copies another 4 KB of the ROM header and sends a checksum of it to the PIF-NUS, which verifies the checksum using the cartridge's CIC chip. If the verification fails, the PIF-NUS interrupts the CPU indefinitely. Otherwise, the CPU continues execution on those 4 KB, which contain the next boot stage, called **IPL3**.
+5. IPL3 initialises RDRAM, the CPU cache, and the Expansion Pak (if present). Afterwards, it copies 1 MB of game ROM into RDRAM, computes its checksum, and compares it against a precomputed value stored in the ROM header. Finally, the CPU jumps to the game code in RDRAM.
 
-As IPL3 resides within the game cartridge, not every game includes the same code. Presumably, the variants are correlated to the CIC chip variant bundled with the cartridge.
+As IPL3 resides within the game cartridge, not every game includes the same code. Additionally, the IPL3 checksum stored in the CIC is hardcoded [@operating_system-ipl]. Thus, the CIC chip and IPL3 variants found in the cartridge are bound together and cannot be swapped with different models.
 
 ## I/O
 
