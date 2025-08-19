@@ -378,7 +378,7 @@ Başlangıçta, PS2'nin I/O'su özellikle karmaşık değildi. Ancak, bu konsolu
 
 Başlangıç olarak, farklı birimler arsındaki iletişimi sağlayan ayrılmış bir işlemci bulunur ve bu işlemci, **PlayStation 1**'de bulunan [orijinal MIPS R3000 tabanlı çekirdekten](playstation#cpu) başkası değildir. Bu kez **I/O Processor** (IOP) olarak adlandırılıyor ve **37,5 MHz** hızında **32-bit veri yoluna** bağlı olarak çalışıyor [@io-buses].
 
-![Playstation 2'nin mimarisinin ana şeması. I/O İşlemcisinin I/O'nun çoğuna özel erişim gösterdiğine dikkat edin.](_diagrams/main.webp)
+![Playstation 2'nin mimarisinin ana şeması. I/O İşlemcisinin I/O'nun çoğuna özel erişim gösterdiğine dikkat edin.](_diagrams/main.png)
 
 IOP, **Sistem Arayüzü (System Interface)** ya da 'SIF' denilen özelleştirilmiş bir Giriş/Çıkış arayüzü kullanarak Emotion Engine'le iletişim kuruyor ve iki uç da birbirine veri transferi yapmak için kendi DMA birimlerini kullanıyor. IOP ayrıca tampon olarak kullanılan **2 MB [EDO RAM](playstation#the-offering)** (tıpkı PS1'de olduğu gibi) özel belleğe sahiptir.
 
