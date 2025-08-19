@@ -152,7 +152,7 @@ The I/O subsystem of this console is truly a game changer (*if you'll pardon the
 
 Starlet is just an **ARM926EJ-S** CPU wired up to most of the internal components of this console. It resides inside Hollywood, runs at **243 MHz** (same as Hollywood) and contains its own ROM and RAM too. Thus, you can consider Starlet an independent computer running alongside the main CPU.
 
-![Main diagram of the Wii's architecture. Notice how Starlet is able to control most of the I/O, and even hide some from Broadway.](_diagrams/main.webp)
+![Main diagram of the Wii's architecture. Notice how Starlet is able to control most of the I/O, and even hide some from Broadway.](_diagrams/main.png)
 
 The core is similar to the one used on the [Nintendo DS](nintendo-ds), except for including two 'special' additions:
 

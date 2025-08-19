@@ -6,6 +6,7 @@ generation: 7
 subtitle: A supercomputer from another planet
 long_name: PlayStation 3
 name: PS3
+cover: ps3
 release_date: 2006-11-11
 aliases: [/writings/consoles/ps3-private]
 top_tabs:
@@ -58,9 +59,9 @@ The PS3's CPU is massively complex, but it's also a very fascinating work of eng
 
 #### The state of progress {.tabs .active}
 
-![The PS1's CPU (1994). Designed by LSI and Sony, using MIPS' technology.](_diagrams/cell/ps1.webp){.tab-float}
+![The PS1's CPU (1994). Designed by LSI and Sony, using MIPS' technology.](_diagrams/cell/ps1.png){.tab-float}
 
-![The PS2's Emotion Engine (2001). Designed by Toshiba, with MIPS' technology, again.](_diagrams/cell/ee.webp){.tab-float}
+![The PS2's Emotion Engine (2001). Designed by Toshiba, with MIPS' technology, again.](_diagrams/cell/ee.png){.tab-float}
 
 Almost ten years after the introduction of the [original MIPS-powered PlayStation](playstation), we find ourselves in the early noughties, and things are not looking good for SGI/MIPS. Nintendo recently ditched them for a [low-end PowerPC core](gamecube#cpu) with IBM as their new supplier while Microsoft, the newcomer in this market, [chose Intel](xbox#cpu) and their x86 empire.
 
@@ -82,9 +83,9 @@ Consequently, Cell is part of this new wave of research and development. This ne
 
 #### A new multicore era {.tab}
 
-![Example of heterogeneous design.<br>This is has been the de-facto architecture of many powerful consoles to this date.](_diagrams/cell/paradigm/heterogeneous.webp){.tab-float}
+![Example of heterogeneous design.<br>This is has been the de-facto architecture of many powerful consoles to this date.](_diagrams/cell/paradigm/heterogeneous.png){.tab-float}
 
-![Example of homogeneous design.<br>Each core can carry the same tasks as before, but they are not necessary restricted to such task.](_diagrams/cell/paradigm/homogeneous.webp){.tab-float}
+![Example of homogeneous design.<br>Each core can carry the same tasks as before, but they are not necessary restricted to such task.](_diagrams/cell/paradigm/homogeneous.png){.tab-float}
 
 If you stop to think about it, both the PS1's CPU and the Emotion Engine were already multi-core processors. So why was there so much fanfare about Cell? Well, the previous two chips were composed of one general-purpose core and several application-specific cores (i.e. audio processor, image decompression, etc) mixing different architectures, where the general-purpose core is in charge of commanding the others.
 
@@ -96,7 +97,7 @@ Back on topic, **Cell combines both models**: there are two types of cores in th
 
 Having explained all that history and theory, I think we are ready to bring forward the protagonist of this section. This is Cell [@fig-cell]...
 
-![The Cell Broadband Engine (PS3 variant).<br>Designed by IBM for supercomputing and scientific simulation. The crossed out 'SPE' means it's disabled (unusable). The other 'SPE' on the left is reserved to the operating system.](_diagrams/cell/cell.webp){#fig-cell}
+![The Cell Broadband Engine (PS3 variant).<br>Designed by IBM for supercomputing and scientific simulation. The crossed out 'SPE' means it's disabled (unusable). The other 'SPE' on the left is reserved to the operating system.](_diagrams/cell/cell.png){#fig-cell}
 
 ... and by the end of this section, you'll know what each component does.
 
@@ -126,7 +127,7 @@ That being said, let's begin the real analysis.
 
 Since its announcement, Cell has been referred to as a **Network-on-Chip** (NoC) [@cpu-koranne, p. 62] instead of traditional the System-on-Chip (SoC) definition, this is attributed to Cell's unorthodox data bus, the **Element Interconnect Bus** (EIB). [We've seen](playstation-2#a-recognisable-memory-choice) so far how demanding CPU components can be, in addition to how [susceptible](nintendo-64#tab-3-1-pipeline-stalls) a system is to bottlenecks. Well, to tackle this for the eleventh time, IBM has devised a new design... and has documented it using terms analogous to _road driving_.
 
-![Simplified diagram of the Element Interconnect Bus (EIB).<br>Each arrow between 'Ramps' (nodes) represent two unidirectional buses, thus, each node is connected to the next one using four channels.](_diagrams/cell/eib.webp)
+![Simplified diagram of the Element Interconnect Bus (EIB).<br>Each arrow between 'Ramps' (nodes) represent two unidirectional buses, thus, each node is connected to the next one using four channels.](_diagrams/cell/eib.png)
 
 The EIB is made of twelve nodes called **Ramps**, each one connecting one component of Cell. Ramps are interconnected using four buses, two of them travel **clockwise** and the other two do so **anti-clockwise**. Each bus (or **channel**) is 128-bit wide. Having said that, instead of recurring to single bus topologies (like the Emotion Engine and its precursor did), ramps are inter-connected following the **token ring** topology, where data packets must cross through all neighbours until it reaches the destination (there's no direct path). Considering the EIB provides four channels, there're four possible routes (**rings**).
 
@@ -146,7 +147,7 @@ Here we will take a look at the 'main part' of Cell. That is the part of the sil
 
 Remember how I divided Cell into different areas before? Well, the same can be done with the PPE. IBM uses the term 'element' to describe the independent machine [@cpu-arevalo, p. 8], but once inside it uses the term 'unit' to separate the core circuitry from the interfaces that communicate with the rest of Cell.
 
-![Simplified diagram of the PowerPC Processing Element (PPE).](_diagrams/cell/ppe.webp)
+![Simplified diagram of the PowerPC Processing Element (PPE).](_diagrams/cell/ppe.png)
 
 Having said that, the PowerPC Processor element is _surprisingly_ composed of two parts:
 
@@ -186,7 +187,7 @@ By applying a 'microscopic' view to the PPU, we can observe this unit is compose
 
 ##### Instructions {.tabs .active}
 
-![Simplified diagram of the Instruction Unit (IU).](_diagrams/cell/ppu/iu.webp){.tab-float}
+![Simplified diagram of the Instruction Unit (IU).](_diagrams/cell/ppu/iu.png){.tab-float}
 
 The first block is called **Instruction Unit** (IU) and as its name suggests, it pulls instructions from L2 cache and signals other units to perform the requested operation. Like its [i686 contemporaries](xbox#cpu), part of the instruction set is interpreted with the use of [**microcode**](nintendo-64#tab-1-1-reality-signal-processor) (the IU embeds a small ROM for this purpose). Lastly, the IU also houses **32 KB of L1 cache for instructions**.
 
@@ -200,7 +201,7 @@ All in all, combining dual-threading with dual-issuing, the PPU can execute **up
 
 ##### Memory management {.tab}
 
-![Simplified diagram of the Load-Store Unit (LSU) and its neighbours.](_diagrams/cell/ppu/lsu.webp){.tab-float}
+![Simplified diagram of the Load-Store Unit (LSU) and its neighbours.](_diagrams/cell/ppu/lsu.png){.tab-float}
 
 The following blocks grant the PPU the ability to execute load-store instructions and carry out memory management.
 
@@ -210,7 +211,7 @@ Furthermore, the LSU is coupled with **Memory Management Unit** (MMU), which is 
 
 ##### Arithmetic {.tab}
 
-![Simplified diagram of the units that perform arithmetic.](_diagrams/cell/ppu/vsu_fxu.webp){.tab-float}
+![Simplified diagram of the units that perform arithmetic.](_diagrams/cell/ppu/vsu_fxu.png){.tab-float}
 
 There're only two more units of the PPU left to explain, the ones computing the math any game will need.
 
@@ -242,7 +243,7 @@ Rambus, like any other company, improves upon their inventions. Their third revi
 
 The first revision of the PlayStation 3's motherboard contains four 64 MB chips, handled in pairs. XDR is connected to Cell using two 32-bit buses, one on each pair. So, whenever the PPU writes a word (64-bit data), it's split between two XDR chips. The latter are clocked at 400 MHz [@cpu-ram].
 
-![Cell's memory architecture diagram.](_diagrams/cell/memory.webp)
+![Cell's memory architecture diagram.](_diagrams/cell/memory.png)
 
 Cell connects to XDR chips is using the **Memory Interface Controller** (MIC), another component within Cell (like the PPE). Additionally, the MIC buffers memory transfers to improve bandwidth, but it has a big limitation: large byte alignment. In essence, the MIC's smallest data size for transfers is **128 Bytes**, which works well for sequential reads or writes. But if the data is smaller than 128 B or it requires alternating between writing and reading, performance penalties appear.
 
@@ -264,7 +265,7 @@ The accelerators included within PS3's Cell are the **Synergistic Processor Elem
 
 Moving on, the Synergistic Processor Element (SPE) is a tiny independent computer inside Cell and commanded by the PPE. Remember what I explained before about the adoption of elements from homogeneous computing? Well, these coprocessors are somewhat general-purpose and not restricted to a single application, so they will be able to assist in a wide range of tasks, that is, as long as developers can program them properly.
 
-![Simplified diagram of the Synergistic Processor Element (SPE), there are eight of these within Cell (one disabled).](_diagrams/cell/spe.webp)
+![Simplified diagram of the Synergistic Processor Element (SPE), there are eight of these within Cell (one disabled).](_diagrams/cell/spe.png)
 
 Just like we did with the PPE, we'll have a look at the SPE. It's a shorter one so if at the end, you'd like to learn more about the SPEs, check out the 'Sources' section at the end of the article. That being said, let's start...
 
@@ -300,7 +301,7 @@ Let's now take a look at the two pipelines [@cpu-hyesoon]:
 
 ##### Odd Pipeline {.tabs .active}
 
-![Simplified diagram of the odd pipeline.](_diagrams/cell/spu/odd.webp){.tab-float}
+![Simplified diagram of the odd pipeline.](_diagrams/cell/spu/odd.png){.tab-float}
 
 The Odd pipeline executes most of the instructions except the arithmetic ones.
 
@@ -316,7 +317,7 @@ Finally, there's also a **SPU Channel and DMA Transport** (SSC) unit, which the 
 
 ##### Even Pipeline {.tab}
 
-![Simplified diagram of the even pipeline.](_diagrams/cell/spu/even.webp){.tab-float}
+![Simplified diagram of the even pipeline.](_diagrams/cell/spu/even.png){.tab-float}
 
 The Even pipeline is notable for its arithmetic capabilities.
 
@@ -330,11 +331,11 @@ As we reach the end of Cell, you may ask how are developers supposed to program 
 
 #### PPE-centric approaches
 
-![Representation of the multistage pattern, where the PPE assigns a task that gets passed around each SPE, and eventually returned with the data processed.](_diagrams/cell/programming/multistage.webp){.tabs-nested .active title="Multistage"}
+![Representation of the multistage pattern, where the PPE assigns a task that gets passed around each SPE, and eventually returned with the data processed.](_diagrams/cell/programming/multistage.png){.tabs-nested .active title="Multistage"}
 
-![Representation of the parallel pattern, where the PPE assigns a subtask to each SPE, and in turn each SPE returns the processed data, which the PPE merges.](_diagrams/cell/programming/parallel.webp){.tab-nested title="Parallel"}
+![Representation of the parallel pattern, where the PPE assigns a subtask to each SPE, and in turn each SPE returns the processed data, which the PPE merges.](_diagrams/cell/programming/parallel.png){.tab-nested title="Parallel"}
 
-![Representation of the services pattern, where the PPE allocates a different task to each SPE, and each work individually to fulfil it.](_diagrams/cell/programming/services.webp){.tabs-nested-last title="Services"}
+![Representation of the services pattern, where the PPE allocates a different task to each SPE, and each work individually to fulfil it.](_diagrams/cell/programming/services.png){.tabs-nested-last title="Services"}
 
 PPE-centric approaches are a set of programming patterns that place the main responsibilities on the PPE and leave the SPE for offloading work. There are three possible patterns:
 
@@ -346,7 +347,7 @@ PPE-centric approaches are a set of programming patterns that place the main res
 
 #### SPE-centric approaches
 
-![Representation of the SPE-centric pattern, where each SPE is in charge of its functionality and only interacts with the PPE to obtain a resource.](_diagrams/cell/programming/spe_centric.webp)
+![Representation of the SPE-centric pattern, where each SPE is in charge of its functionality and only interacts with the PPE to obtain a resource.](_diagrams/cell/programming/spe_centric.png)
 
 Instead of using the SPEs to serve the PPE, it's the other way around. Using the internal DMA unit, SPEs fetch and execute tasks stored in main memory, while the PPE is limited to resource management.
 
@@ -413,7 +414,7 @@ For comparison purposes, IOIF behaves as a 32-bit parallel bus with a theoretica
 
 RSX has **256 MB of dedicated GDDR3 SDRAM** at its disposal. Surprisingly, it's the [same memory type](wii#what-about-memory) found in the Wii. The memory bus runs at **650 MHz** with a theoretical bandwidth of up to **20.8 GB/s**.
 
-![Example of how data is organised across the memory available. Notice how RSX can access its content from different memory chips.](_diagrams/rsx/content.webp)
+![Example of how data is organised across the memory available. Notice how RSX can access its content from different memory chips.](_diagrams/rsx/content.png)
 
 Inside those 256 MB, Cell can place everything that RSX will need to render a frame. That includes vertex data, shaders, textures and commands. Now, thanks to Cell's Flex I/O bus, RSX can also utilise the aforementioned 256 MB of XDR memory (CPU's main RAM) as working space, though this will come with some performance penalties. This comes in handy if the rendered frame will be post-processed by an SPU, for instance.
 
@@ -425,13 +426,13 @@ Finally, RSX supports many forms of data optimisation to save bandwidth, example
 
 Let's now take a look at how RSX processes and renders 3D scenes.
 
-![Pipeline overview of the RSX.](_diagrams/rsx/pipeline.webp)
+![Pipeline overview of the RSX.](_diagrams/rsx/pipeline.png)
 
 Its pipeline model is very similar to the [GeForce3](xbox#architecture-and-design), but super-charged with five years of technological progress. So I suggest checking out that article beforehand since this one will focus on the new features, I also recommend reading about the [PlayStation Portable's GPU](playstation-portable#functionality) because a lot of new developments and needs overlap with that chip. That being said, let's see what we've got here... [@graphics-marcelina]
 
 #### Commands {.tabs .active}
 
-![Diagram of the command stage.](_diagrams/rsx/pipeline_commands.webp){.tab-float}
+![Diagram of the command stage.](_diagrams/rsx/pipeline_commands.png){.tab-float}
 
 As with any other GPU, there must be a block of circuitry in charge of receiving the orders from outside. With RSX, this is handled by two blocks, **Host** and **Graphics Front End**.
 
@@ -448,7 +449,7 @@ As you can see, commands and data pass through many buffers and caches before re
 
 #### Vertex Shader {.tab}
 
-![Diagram of the vertex stage process, notice that the Vertex Processing Engines (VPE) are bypassed if the vertices don't need further processing by the vertex shader.](_diagrams/rsx/pipeline_vertex.webp){.tab-float}
+![Diagram of the vertex stage process, notice that the Vertex Processing Engines (VPE) are bypassed if the vertices don't need further processing by the vertex shader.](_diagrams/rsx/pipeline_vertex.png){.tab-float}
 
 The next unit is the **Geometry Processing** block, an evolution of the 'Vertex Block' in the GeForce3 that performs vertex transformation. It's still programmable with the use of **vertex shaders**, which is now a widely adopted feature in the graphics industry. Furthermore, the instruction limit has been increased to 512 instructions minimum (originally, 136 was the limit!).
 
@@ -466,7 +467,7 @@ The Geometry Processing block works like this:
 
 #### Rasterization {.tab}
 
-![Simplified diagram of the rasterization stage. RSX embeds different units to calculate values used for interpolation of pixels and colours.](_diagrams/rsx/pipeline_rasterizer.webp){.tab-float}
+![Simplified diagram of the rasterization stage. RSX embeds different units to calculate values used for interpolation of pixels and colours.](_diagrams/rsx/pipeline_rasterizer.png){.tab-float}
 
 Moving on, it's time to convert ([rasterize](playstation#tab-3-3-rasterisation)) vertices into pixels. The RSX's rasterizer is quite fast, it can rasterize up to 8x8 pixels (64) per cycle and works with frame-buffers of up to **4096x4096 pixels** (though developers may need less than that).
 
@@ -478,7 +479,7 @@ A separate unit is used for rasterizing 2D objects (sprites), although this one 
 
 #### Pixel Shader {.tab}
 
-![Pixel/Fragment stage diagram.](_diagrams/rsx/pipeline_pixel.webp){.tab-float}
+![Pixel/Fragment stage diagram.](_diagrams/rsx/pipeline_pixel.png){.tab-float}
 
 Next in line we've got the **Fragment Shader & Texture** block, this is a programmable unit (through the use of 'fragment programs' or 'shader') that applies texture mapping and other effects.
 
@@ -492,7 +493,7 @@ Finally, since the units will be constantly fetching texture pieces from video R
 
 #### Pixel operations {.tab}
 
-![Post-processing stage.](_diagrams/rsx/pipeline_post.webp){.tab-float}
+![Post-processing stage.](_diagrams/rsx/pipeline_post.png){.tab-float}
 
 Before writing the results into the frame-buffer (stored either in VRAM or Main RAM), a final block called **Raster Operation Block** (ROP) performs final tests on the resulting pixels.
 
@@ -524,7 +525,7 @@ I'm afraid you won't see a lot of information in this section anymore, mainly be
 
 You see, while the need for better graphics tends to grow exponentially (consumers want more scenery, better detail and colours), you won't hear the same level of demands for sound. I presume this is because the capabilities have reached our cognitive limit (44.1 kHz sampling rate and 16-bit resolution). The only thing left is to implement more channels and effects, but these don't need the processing power that would require installing specialised chips, at least with consumer equipment.
 
-![Summary of the audio pipeline.](_diagrams/audio.webp)
+![Summary of the audio pipeline.](_diagrams/audio.png)
 
 So, in the end, audio is now completely implemented with software and processed by the SPUs (I mean the Synergistic Processor Unit, not the [Sound Processing Unit](playstation-2#audio)! it's a bit ironic that both share the same initials...). Moving on, Sony provides many libraries in their SDK that instruct the SPUs to carry out audio sequencing, mixing and streaming. And if that's not enough, many effects can also be applied.
 
@@ -542,7 +543,7 @@ Like the PS2's [IOP](playstation-2#io), the Southbridge is completely proprietar
 
 Furthermore, the southbridge implements encryption algorithms to protect the communication between standard protocols in a seamless way, such as the Hard Drive data.
 
-![Diagram of the Southbridge's connections.](_diagrams/southbridge.webp)
+![Diagram of the Southbridge's connections.](_diagrams/southbridge.png)
 
 Overall, Southbridge embeds an enormous amount of interfaces, this has to do with the fact this console was designed during the 'multimedia hub' trend. It's not enough for video game consoles to play games, but they also need to become DVD and Blu-ray players, set-top boxes (partially), photo viewers (by importing the camera's photos using the multi-card reader) and possibly more as the needs evolve (thanks to its updatable operating system).
 
@@ -652,7 +653,7 @@ As I said before, the OS is quite complex. So, to be able to follow this section
 
 Generally speaking, the PS3's OS is designed with the same modular approach as the PSP. To recall the previous article, the OS is made of multiple **modules**. These may serve the user (like a game or app) or reside in memory indefinitely to serve other modules (in the form of system calls and/or drivers). Some modules have more privilege access than others (kernel module vs. user module).
 
-![Diagram showing how the components of the PlayStation operating system fit in Cell's privilege levels.<br>References to 'OtherOS' are explained further in the next sections.](_diagrams/os_levels.webp)
+![Diagram showing how the components of the PlayStation operating system fit in Cell's privilege levels.<br>References to 'OtherOS' are explained further in the next sections.](_diagrams/os_levels.png)
 
 The operating system, throughout its lifecycle, will call upon many modules with different privileges. Sony constructed its OS so that modules run under Cell's three privilege levels:
 

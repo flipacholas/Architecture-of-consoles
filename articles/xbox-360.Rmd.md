@@ -8,6 +8,7 @@ generation: 7
 release_date: 2005-11-22
 aliases: [/writings/consoles/xbox-360-private]
 seo_image_pos: "Bottom"
+cover: xbox360
 top_tabs:
   Motherboard:
     caption: "Showing the 'Xenon' revision (the first one), taken from my model from 2005. Xenon motherboards are also famous for being defective by design (they get too hot to play games with!). Remaining GDDR3 chips are found on the back."
@@ -78,9 +79,9 @@ Well, now that Microsoft had gained more leverage in the console market, they we
 
 #### Sharing common problems {.tab}
 
-![The original Xbox's CPU (2001). Designed and manufactured by Intel.](_diagrams/cpu/coppermine.webp){.tab-float}
+![The original Xbox's CPU (2001). Designed and manufactured by Intel.](_diagrams/cpu/coppermine.png){.tab-float}
 
-![Concept of an homogeneous CPU. This is what Microsoft had in mind for their next CPU.](images/consoles/ps3/_diagrams/cell/paradigm/homogeneous.webp){.tab-float}
+![Concept of an homogeneous CPU. This is what Microsoft had in mind for their next CPU.](images/consoles/ps3/_diagrams/cell/paradigm/homogeneous.png){.tab-float}
 
 As with any other company in the computer business, the [innovation crisis](playstation-3#tab-1-2-new-design-philosophies) of the early noughties affected both Microsoft and Sony indiscriminately. The difference, however, was that the two placed their bets on different designs for their CPUs. The original Xbox relied on popular off-the-shelf stock (Intel's [Pentium III](xbox#cpu)) with slight customisations, this was a single-core CPU extended with vectorised instructions and a sophisticated cache design. On the other side, Sony's vectorised venture (the [Emotion Engine](playstation-2#cpu)) consisted of a low-end CPU surrounded by proprietary but potent assistants.
 
@@ -122,9 +123,9 @@ To sum it up, IBM signed an agreement with Sony and Toshiba to develop Cell in 2
 
 Now that we've positioned Microsoft and IBM on the map, let's talk about the new CPU. This is how Xenon materialised at the end of the Xbox 360 project [@fig-xenon]...
 
-![Simplified view of Xenon.](_diagrams/cpu/xenon.webp){.toleft #fig-xenon}
+![Simplified view of Xenon.](_diagrams/cpu/xenon.png){.toleft #fig-xenon}
 
-![For comparison purposes, here's the equivalent view of Cell. Cell also includes 32 KB of ROM not shown here.](images/consoles/ps3/_diagrams/cell/cell.webp){.toright}
+![For comparison purposes, here's the equivalent view of Cell. Cell also includes 32 KB of ROM not shown here.](images/consoles/ps3/_diagrams/cell/cell.png){.toright}
 
 Don't worry, all of these components will be explained throughout this article, starting with the 'PPE' blocks shown at the top left corner.
 
@@ -168,9 +169,9 @@ The original chip (Cell) was required to house **twelve** independent nodes acti
 
 XBAR relies on a **mesh topology** that doesn't direct traffic in a token-style manner. Instead, each node is provided with a dedicated lane to move its data through [@cpu-brown]. This may appear more optimal than the token topology of the EIB, but that's because the XBAR only needs to serve a small number of nodes. Furthermore, the XBAR operates at full speed (**3.2 GHz**).
 
-![Simplified diagram of the XBAR/Crossbar combined with the L2 component.](_diagrams/cpu/crossbar.webp){.toleft}
+![Simplified diagram of the XBAR/Crossbar combined with the L2 component.](_diagrams/cpu/crossbar.png){.toleft}
 
-![For comparison purposes, this is the architecture of Cell's EIB (found in the PS3).](images/consoles/ps3/_diagrams/cell/eib.webp){.toright}
+![For comparison purposes, this is the architecture of Cell's EIB (found in the PS3).](images/consoles/ps3/_diagrams/cell/eib.png){.toright}
 
 To be fair, until now I only talked about the particular interface that interconnects the PPEs. Well, the XBAR is just one piece of the sizeable chunk IBM designed for Xenon. It turns out the leftover space gave them room to incorporate another very important block that speeds up the transactions between the PPEs and the rest of the system: **L2 Cache**.
 
@@ -182,7 +183,7 @@ Coincidentally, Cell also houses [512 KB of L2 cache](playstation-3#composition-
 
 First things first, every time the cache fetches data from memory (in the event of a 'cache miss'), it does so by pulling a large slice called 'cache line', which is **128 Bytes wide** in the case of Cell and Xenon. Then, L2 records the cache line on an internal list for locating it in the future. Moreover, in Xenon/Cell, L2 is **8-way associative**, which means that cache sets may store up to eight different cache lines. Don't worry if you don't know what this means, the theory behind CPU cache can be hard to follow, especially if you only want to learn about game consoles. In layman's terms, the greater the number of associations, the fewer probabilities of cache misses, but the slower it becomes to iterate through the internal list.
 
-![Layout of cache in Xenon](_diagrams/cpu/caches.webp)
+![Layout of cache in Xenon](_diagrams/cpu/caches.png)
 
 The choice of an 8-way associative cache was not a rash decision for Xenon, as providing eight associations can alleviate the six simultaneous threads (each PPE is dual-threaded) trying to access the L2 block at the same time. This also balances frequent cache misses and lookup times. All of this, while keeping the costs down. For comparison purposes, the expensive Intel 'Smithfield' (a Pentium D from 2005) provides two cores with 2 MB of L2 cache each! [@cpu-shimpi_intel]
 
@@ -194,9 +195,9 @@ This is as far as we go with our description of the XBAR and L2 cache, let's now
 
 To start with, Xenon's PPEs don't feature a [PowerPC Processor Storage Subsystem](playstation-3#composition-of-the-ppe) (PPSS) anymore, presumably since the interfacing part is handled by the XBAR and the L2 cache is now shared across the three units.
 
-![Simplified diagram of Xenon's PowerPC Processing Element (PPE).](_diagrams/cpu/ppe.webp){.toleft}
+![Simplified diagram of Xenon's PowerPC Processing Element (PPE).](_diagrams/cpu/ppe.png){.toleft}
 
-![For comparison purposes, this is Cell's PPE.](images/consoles/ps3/_diagrams/cell/ppe.webp){.toright}
+![For comparison purposes, this is Cell's PPE.](images/consoles/ps3/_diagrams/cell/ppe.png){.toright}
 
 To be honest, I'm not sure why technical manuals keep calling Xenon's PPEs a 'PPE' as they better resemble a [PPU](playstation-3#the-powerpc-processing-unit).
 
@@ -276,7 +277,7 @@ SMP programming abstracts access to physical CPU cores with the use of 'virtual 
 
 This abstraction layer allows the programmer to avoid discriminating against the type of core used (therefore making the program **cross-compatible** with similar platforms) and hard-coding the number of cores (making it **scalable**).
 
-![Representation of the multi-threading paradigm on Xenon. A program may create n-threads (two in this example), and then the operating system's scheduler takes care of dispatching the threads to physical cores. Bear in mind, the operating system also runs as a thread.](_diagrams/cpu/programming.webp)
+![Representation of the multi-threading paradigm on Xenon. A program may create n-threads (two in this example), and then the operating system's scheduler takes care of dispatching the threads to physical cores. Bear in mind, the operating system also runs as a thread.](_diagrams/cpu/programming.png)
 
 It's no surprise that this style became a standard in future console generations, as it's easier to scale and program with symmetric systems than asymmetric ones (i.e. Cell). The latter often depends on unusual programming styles, eroding compatibility with other systems.
 
@@ -324,13 +325,13 @@ You'd be surprised that Microsoft's push for homogeneous computing also dragged 
 
 You see, there was a time when GPUs were [mere rasterisers](playstation#graphics) with 'take it or leave it' functionality, meaning they provided a fixed set of functions and programmers could either activate them or not. Later on, thanks to SGI's innovations, workloads were offloaded from the CPU thanks to the new [programmable vertex pipelines](nintendo-64#graphics). Finally, the 'mere rasteriser' definition was _rendered_ obsolete (_pun intended_) as Nvidia promoted a new stage called [programmable pixel shader](xbox#graphics) which gave programmers the liberty to control what happens after rasterisation.
 
-![Overview of the units that compose a GPU with programmable shaders. In this example, our GPU provides more units for vertex operations than pixel operations, meaning geometry transformations will be quick at the expense of colour effects, for instance.](_diagrams/gpu/traditional_pipeline.webp)
+![Overview of the units that compose a GPU with programmable shaders. In this example, our GPU provides more units for vertex operations than pixel operations, meaning geometry transformations will be quick at the expense of colour effects, for instance.](_diagrams/gpu/traditional_pipeline.png)
 
 This pattern shows us that, as GPUs grow in performance and functionality, they eventually open up to allow developers to implement the exact functionality they seek. However, this also increases the overall complexity of the silicon.
 
 Over the years, both vertex and pixel pipelines kept enlarging to accommodate current needs, with new scalability problems emerging. Space, costs and heat emissions have a limit. So, which tasks should be prioritised? Vertex operations or pixel effects? A weak vertex pipeline will stall the pixel pipeline. Alternatively, a disappointing pixel unit won't attract users with its dully-composed frames.
 
-![Overview of the units that compose a GPU with a new unified pipeline. Now that both stages are now provided with the same amount of resources, developers won't have to trim down operations executed by a weak shader units.](_diagrams/gpu/unified_pipeline.webp)
+![Overview of the units that compose a GPU with a new unified pipeline. Now that both stages are now provided with the same amount of resources, developers won't have to trim down operations executed by a weak shader units.](_diagrams/gpu/unified_pipeline.png)
 
 Thus, architects at ATI took two steps back and asked themselves 'Is there any way to simplify this model instead of adding more transistors on top of it?' which later became 'Why are pixel and vertex pipelines segregated?'. And so, the two stages were ultimately **merged** into a single -unified- block of circuitry. This is what we call the **Unified shader model** and a GPU implementing it still provides both programmable vertex and pixel pipelines, but the circuitry used for computations is shared.
 
@@ -354,7 +355,7 @@ Another unusual element from Xenos is its **triple memory architecture** (so muc
 
 Those 512 MB store most - if not all - the materials Xenos needs to render a frame, including textures, shaders and many types of buffers as the game sees fit. On the other side, the 10 MB of EDRAM are left for small elements that require rapid access, such as the Z-buffer, the stencil buffer, the back buffer (intermediate frame buffer) and any other custom buffer if needed. This mitigates congestion from the shared GDDR3 RAM and speeds up operations that make use of those buffers.
 
-![Example of how data is organised across the memory available.](_diagrams/gpu/content.webp)
+![Example of how data is organised across the memory available.](_diagrams/gpu/content.png)
 
 As if this wasn't enough, there's a third source that can feed the GPU, and that is a **direct line to the CPU**! Unlike anything seen before, the CPU can stream commands and geometry without going through the traditional steps of storing [command buffers](playstation#tab-3-1-commands) in external memory, thereby saving once again traffic from main RAM. This is what Microsoft advertised as **Xbox Procedural Synthesis** (XPS) and made possible by two changes [@cpu-andrews]:
 
@@ -367,7 +368,7 @@ Overall, this synergy is what has enabled the Xbox 360 to achieve such a high le
 
 Having said all that, how does Xenon actually render a frame? Well, similarly to other GPUs in the market, there are many steps involved. Take a look at this diagram of Xenos' pipeline [@fig-xenos].
 
-![Overview of the graphics pipeline in Xenos.](_diagrams/gpu/pipeline.webp){#fig-xenos}
+![Overview of the graphics pipeline in Xenos.](_diagrams/gpu/pipeline.png){#fig-xenos}
 
 As you can see, the pipeline stages are not different at all compared to [other graphics chips](playstation-3#graphics) that don't employ the unified shader model. This is because the actual change happens at the **circuitry level** and not at the API level (for now). This way, developers are not forced to learn new techniques that will disrupt their traditional methods, but they'll soon find that the new underlying design will benefit them in terms of performance and extra functionality (on top of the 'traditional' one).
 
@@ -377,7 +378,7 @@ Now it's time to make a full dive and see how this pipeline works, just like we 
 
 #### Commands {.tabs .active}
 
-![Overview of the command stage.](_diagrams/gpu/pipeline_commands.webp){.tab-float}
+![Overview of the command stage.](_diagrams/gpu/pipeline_commands.png){.tab-float}
 
 Welcome to the tour of the _12th polygon factory_ of this series. As always, the starting point is the **command stage**. Commands tell the GPU what, where and how to draw something on the screen. This time, however, commands may be **stored in Main Memory** (within a [buffer](gamecube#tab-3-1-database)) or **directly streamed** by the CPU. Both are subsequently fetched by the **Command Processor** [@graphics-ati_review], which parses it and forwards it to the respective unit that performs the required operations (as commands may encode different types of instructions, such as 'draw a triangle' or 'set X register').
 
@@ -389,7 +390,7 @@ Finally, this GPU can also conditionally execute commands depending on arbitrary
 
 #### Vertex Shader {.tab}
 
-![Overview of the vertex stage. You'll soon find that this stage and the pixel stage are not _that_ different.](_diagrams/gpu/pipeline_vertex.webp){.tab-float}
+![Overview of the vertex stage. You'll soon find that this stage and the pixel stage are not _that_ different.](_diagrams/gpu/pipeline_vertex.png){.tab-float}
 
 Since the times of [Flipper](gamecube#graphics) (or even the [RCP](nintendo-64#graphics), as it shared its core team members), ATI maintained the initiative of providing a geometry block to accelerate vertex operations. With Xenos, it is now fully programmable using Direct3D's **High-Level Shader Language** (HLSL), which is similar to C but used for implementing vertex shaders without needing assembly, although the latter is still possible.
 
@@ -405,7 +406,7 @@ Furthermore, let's not forget that the hardware carrying out those operations re
 
 #### Rasterisation {.tab}
 
-![Overview of the rasteriser stage.](_diagrams/gpu/pipeline_raster.webp){.tab-float}
+![Overview of the rasteriser stage.](_diagrams/gpu/pipeline_raster.png){.tab-float}
 
 Once the primitives have been transformed or subdivided as requested, the rasteriser begins the transformation to pixels.
 
@@ -421,7 +422,7 @@ Finally, the scan converter gets back groups of 2x2 blocks (so 16x16 pixels in t
 
 #### Pixel Shader {.tab}
 
-![Overview of the pixel shader stage.](_diagrams/gpu/pipeline_pixel.webp){.tab-float}
+![Overview of the pixel shader stage.](_diagrams/gpu/pipeline_pixel.png){.tab-float}
 
 To execute the pixel shader, Xenos re-uses the same components of the vertex pipeline with slight detours. Similarly, HLSL's Pixel Shader Model 3.0 (`ps_3_0`) specification states what developers can accomplish at this stage, which is not significantly different from [Sony's counterpart](playstation-3#tab-6-4-pixel-shader). Nevertheless, since the underlying foundation has been simplified (well, unified), resources have been homogenised, improving the balance of performance across all stages.
 
@@ -436,7 +437,7 @@ That being said, the pixel stage works as follows:
 
 #### Pixel Operations {.tab}
 
-![Overview of pixel operations available.](_diagrams/gpu/pipeline_post.webp){.tab-float}
+![Overview of pixel operations available.](_diagrams/gpu/pipeline_post.png){.tab-float}
 
 This is as far as it goes for rendering, but one thing we haven't explored yet is how those 10 MB of EDRAM benefit all of this. Well, this chip is very special, because it contains internal logic to perform automatic **Multisample Antialiasing** (MSAA) along with **Depth and Stencil testing**. Its internal bandwidth (between its internal logic and internal memory) provides an absurd **256 GB/second**, which makes it very attractive for storing intermediate buffers (as opposed to storing them in main RAM).
 
@@ -525,7 +526,7 @@ For the coup de grace, Microsoft added dedicated circuitry to offload CPU cycles
 
 In terms of functions, The XMA decoder can decode up to **5.1 audio channels** with a sample rate of **48 kHz** and a resolution of **16-bit**. No surprises here!
 
-![Overview of the audio pipeline.](_diagrams/audio.webp)
+![Overview of the audio pipeline.](_diagrams/audio.png)
 
 Moving on, the decoder works as follows:
 
@@ -554,7 +555,7 @@ To keep up with the demand, the **Southbridge can write to main RAM**. Consequen
 
 You've seen before that the abundance of services in 7th generation consoles has led to the inclusion of many black boxes. These are meant to offload most of (if not all) the security and I/O tasks away from user-accessible components like the CPU and GPU.
 
-![Diagram of the Southbridge’s connections.](_diagrams/southbridge.webp)
+![Diagram of the Southbridge’s connections.](_diagrams/southbridge.png)
 
 The Xbox 360 is no stranger to this. Hidden within the Southbridge chip there's a component called **System Management Controller** (SMC) and, like [the Wii](wii#the-hidden-co-processor), it draws current even on standby mode. The SMC abstracts lots of I/O operations, including power management, real-time clock, temperature control, LED control and the infrared sensor [@io-smc]. The CPU communicates to the SMC using a [FIFO command buffer](nintendo-ds#interconnection), though this task is restricted to the Kernel only (more about it in the 'Operating System' section). So, neither the user nor the game can fiddle with it.
 
@@ -648,7 +649,7 @@ This design is correlated to the [PPU's privilege levels](playstation-3#cells-pr
 
 IBM enacted three privileges (instead of just two) to allow multiple operating systems running at the same time. With this idea, each OS would only live under the two lowest levels while the highest level would be reserved for the program supervising all operating systems. In practice, the PlayStation 3 and Xbox 360 only require a single operating system (except for [OtherOS](playstation-3#a-multi-os-proposal), but that was quickly scrapped). Consequently, Sony and Microsoft designed a hypervisor that enforces their respective security model and performs memory management tasks. Conversely, the architectural differences between Cell and Xenon led to very distinct implementations of hypervisors, so each is subject to unique flaws and strengths.
 
-![Diagram showing how the components of the Xbox operating system fit in Xenon's privilege levels.](_diagrams/os_levels.webp)
+![Diagram showing how the components of the Xbox operating system fit in Xenon's privilege levels.](_diagrams/os_levels.png)
 
 The most notable difference between the security model of the Xbox 360 and the PlayStation 3, is that the former runs both the Kernel and user-space programs **under the same privilege mode** (the second level) [@cpu-steil]. So, all critical tasks rest within Hypervisor, which enjoys extra acceleration from the hardware side (I'll explain more about it in the 'Anti-piracy' section).
 
@@ -850,9 +851,9 @@ Nevertheless, this is the GUI that gave this console an identity, and it's obvio
 
 ![The settings menu keeps the same layout but inherits a new colour palette.](screenshots/nxe/settings.jpg){title="Settings"}
 
-![The storage menu and its similar palette update. In this example, a custom background has been set by the user.](screenshots/nxe/storage.jpg){paperback_latex_width="96%" title="Storage"}
+![The storage menu and its similar palette update. In this example, a custom background has been set by the user.](screenshots/nxe/storage.jpg){paperback_latex_width="94%" title="Storage"}
 
-![2D avatars are still available, though users are now encouraged to define their own 3D avatar too. This will be used by games (à la [Nintendo's Mii](wii#personalised-titles)).](screenshots/nxe/avatar.jpg){paperback_latex_width="96%" title="Avatar"}
+![2D avatars are still available, though users are now encouraged to define their own 3D avatar too. This will be used by games (à la [Nintendo's Mii](wii#personalised-titles)).](screenshots/nxe/avatar.jpg){paperback_latex_width="94%" title="Avatar"}
 
 ![As a nice tribute, the new guide menu resembles the old Blades design, which also helps provide more and better-organised shortcuts.](screenshots/nxe/guide.jpg){title="Guide"}
 
@@ -1024,7 +1025,7 @@ We'll now learn how the hypervisor is protected and, in turn, how it protects th
 
 Remember how complex was the L2 subsystem within Xenon? Well, there's one more thing to explain, and that is the inclusion of a **hidden cryptographic block** in it. I define it as 'hidden' since it's not documented at all by Microsoft or IBM. I was made aware of it thanks to an incredibly insightful talk called 'The Xbox 360 Security System and its Weaknesses' by the Free60 group (lead by Michael Steil and Felix Domke, the former also did 'The ultimate Game Boy talk'!) [@cpu-steil] and 'Security offence and defence strategies' by Mathieu Renard [@operating_system-renard], which is where I rely on for a big part of the information described here.
 
-![Overview of the security components placed within Xenon. They are strategically placed so the PPEs don't need to be aware of them and/or perform any manual work.](_diagrams/cpu/crypto.webp)
+![Overview of the security components placed within Xenon. They are strategically placed so the PPEs don't need to be aware of them and/or perform any manual work.](_diagrams/cpu/crypto.png)
 
 Moving on, the cryptographic subsystem is split into distinct areas that perform unique functions:
 

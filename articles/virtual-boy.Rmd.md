@@ -22,7 +22,7 @@ top_tabs:
       caption: "Front view of the console.<br>Users are meant to look through the eyepieces."
       latex_height: 95
   Motherboard:
-    caption: "The mainboard.<br>Not to be confused with the 'Servo board', which the mainboard connects to.<br>The Virtual Sound Unit chip, 128 KB of DRAM, and 64 KB of PSRAM are fitted on the back."
+    caption: "Not to be confused with the 'Servo board', which the motherboard connects to.<br>The Virtual Sound Unit chip, 128 KB of DRAM, and 64 KB of PSRAM are fitted on the back."
     paperback_latex_height: 90
     marked_paperback_latex_height: 90
   Diagram:
@@ -89,7 +89,7 @@ In reality, some conditions must be met for these principles to work:
 
 #### Display {.tab}
 
-![A simplified illustration of how the first LED unit operates during specific periods of time. Notice how the LEDs display columns of the frame buffer during active phases.](frame){.tab-float animation="true" hardcover_latex_width="95%" paperback_latex_width="87%"}
+![A simplified illustration of how the first LED unit operates during specific periods of time. Notice how the LEDs display columns of the frame buffer during active phases.](frame){.tab-float animation="true" hardcover_latex_width="95%" paperback_latex_width="85%"}
 
 Contrary to previous video chips modelled on CRT displays (e.g. the [PPU](nes#graphics) and [VDP](master-system#graphics)), the Virtual Boy does **not render graphics on-the-fly**. Instead, its graphics chip sends the processed frame to a frame buffer in memory. Then, each column of the frame is transferred to the LED array for display.
 
@@ -99,7 +99,7 @@ Moreover, we need to store two frame buffers, since each one will go to a differ
 
 #### Active periods {.tab}
 
-![Another simplified illustration, this time showing how the oscillation of the mirror deflects LED light so the user ultimately perceives a proper frame.](active){.tab-float animation="true" paperback_latex_width="95%"}
+![Another simplified illustration, this time showing how the oscillation of the mirror deflects LED light so the user ultimately perceives a proper frame.](active){.tab-float animation="true" paperback_latex_width="92%"}
 
 As a consequence of this design, there will be periods of:
 

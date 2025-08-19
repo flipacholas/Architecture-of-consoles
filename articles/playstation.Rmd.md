@@ -14,7 +14,7 @@ top_tabs:
       caption: "The original PlayStation.<br>Released on 03/12/1994 in Japan, 09/09/1995 in North America, 29/09/1995 in Europe."
       file: original
       active: true
-      latex_height: 90
+      latex_height: 87
     - title: "Slim"
       caption: "The PS One (slim revision).<br>Released on 07/07/2000 in Japan, 19/09/2000 in North America, 29/09/2000 in Europe. <br>This is what you get after cramming so many custom ICs into a single one."
       file: slim
@@ -293,7 +293,7 @@ Let's take a break now from all this theory. Here are some examples of game char
 
 ![Spyro the Dragon (1998).<br>413 triangles.](spyro_ps1){.toleft model3d="true" hardcover_latex_width="62%" paperback_latex_width="55%"}
 
-![Crash Bandicoot (1996).<br>732 triangles.](crash_ps1){.toright model3d="true" hardcover_latex_width="76%" paperback_latex_width="70%"}
+![Crash Bandicoot (1996).<br>732 triangles.](crash_ps1){.toright model3d="true" hardcover_latex_width="76%" paperback_latex_width="68%"}
 
 ### Playing with VRAM
 
@@ -476,6 +476,8 @@ The shell is a simple graphical interface that allows the user to copy or delete
 ## Games
 
 Just like the [Sega Saturn](sega-saturn) and other consoles that made the switch to the CD format, PS1 games benefit from a new set of facilities: large storage (620 MB, in the case of the PS1), rich audio quality and a 'not-so-slow' read speed thanks to its 2x drive.
+
+![A typical PS1 game, shown with the disc flipped over. The underside of PS1 CDs feature a distinctive black coating that was once believed to prevent piracy. While technically incorrect - and I explain more in the 'Anti-piracy' section - I think it does provide a visual indicator of a genuine disc.](parappa.webp)
 
 If you are curious about how Compact Discs (CDs) work, I've written a brief explanation in the [Sega Saturn article](sega-saturn#the-compact-disc-cd).
 

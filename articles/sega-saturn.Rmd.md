@@ -198,7 +198,7 @@ As you can see, the architecture of the graphics subsystem is quite complex, and
 
 The capabilities of the Saturn for drawing 2D scenes were vast compared to those of the [Mega Drive](mega-drive-genesis) or [SNES](super-nintendo), although they were not the console's main selling point.
 
-For a quick demonstration, I will use Mega Man X4 (1997) as example.
+For a quick demonstration, I will use *Mega Man X4* (1997) as example.
 
 #### Sprites {.tabs .active}
 
@@ -269,7 +269,7 @@ These are some examples of characters that were redesigned specifically for this
 
 ![Sonic in Sonic R (1997).<br>185 quadrilaterals.](sonic_r_saturn){.toleft model3d="true" paperback_latex_width="93%"}
 
-![Tails in Sonic R (1997).<br>254 quadrilaterals.](tails_r_saturn){.toright model3d="true" hardcover_latex_width="93%" paperback_latex_width="84%"}
+![Tails in Sonic R (1997).<br>254 quadrilaterals.](tails_r_saturn){.toright model3d="true" hardcover_latex_width="91%" paperback_latex_width="82%"}
 
 While the Saturn is only able to draw quadrangles, the Wireframe view exhibits two triangles in place of a single quadrangle. This occurs because the modern format used to encode this model (glTF, an open standard for contemporary 3D modelling), allowing modern devices to still render it, doesn't support quadrangles at the time of this writing. This behaviour is not apparent in the Surface view.
 
@@ -319,7 +319,7 @@ Example of games dealing with half-transparency in different ways.
 
 In both examples, the game commands the VDP1 to draw foreground objects and background scenery. In turn, the VDP2 renders the landscape imagery far away, and overlays the HUD statistics in front of the 3D models. Consequently, the VDP1's 3D models (rendered as distorted sprites) are unable to employ half-transparency, this prevents them from naturally blending with the VDP2's layers.
 
-Nevertheless, the two games exhibit different behaviour. During gameplay, the background of Daytona pops out of nowhere (as half-transparency is disabled). In contrast, Sonic R achieves not only half-transparency but also a **fading effect**. Traveller's Tales devised a workaround by adjusting the 'mix ratio' registers of the VDP2 (used for defining the texture's alpha) and manually switching the lighting levels as the character gets closer [@graphics-burton].
+Nevertheless, the two games exhibit different behaviour. During gameplay, the background of *Daytona* pops out of nowhere (as half-transparency is disabled). In contrast, *Sonic R* achieves not only half-transparency but also a **fading effect**. Traveller's Tales devised a workaround by adjusting the 'mix ratio' registers of the VDP2 (used for defining the texture's alpha) and manually switching the lighting levels as the character gets closer [@graphics-burton].
 
 ## Audio
 

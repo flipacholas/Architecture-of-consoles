@@ -405,7 +405,7 @@ It seems that this generation is putting a lot of work into expandability and ac
 
 ### Internal I/O
 
-![Main diagram of the GameCube's architecture. In there, we find the 'Northbridge' which controls most of the I/O.](_diagrams/main.webp)
+![Main diagram of the GameCube's architecture. In there, we find the 'Northbridge' which controls most of the I/O.](_diagrams/main.png)
 
 Flipper is in charge of interfacing the CPU with the rest of the components so, apart from including sound and graphics circuitry, it also provides a collection of hardware named **Northbridge** that is composed of [@cpu-tree]:
 

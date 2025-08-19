@@ -423,7 +423,7 @@ Remember the old [ARM926EJ-S](wii#the-hidden-co-processor) that had [complete co
 
 By the way, in the absence of an official name for the ARM9 CPU in the Wii U (after all, in the eyes of Nintendo, you shouldn't know about this chip...), fail0verflow came up with their identifier: **Starbuck**.
 
-![Main diagram of the console's architecture. Notice how Starbuck is located in a strategic area within Latte.](_diagrams/main.webp)
+![Main diagram of the console's architecture. Notice how Starbuck is located in a strategic area within Latte.](_diagrams/main.png)
 
 That being said, Starbuck's program has been greatly enhanced. I go over it in the 'Operating System' and 'Anti-Piracy and Homebrew' sections. For now, just remember Starbuck is the equivalent of the [Southbridge](xbox#motherboard-architecture).
 
