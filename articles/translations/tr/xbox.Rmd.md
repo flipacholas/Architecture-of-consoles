@@ -281,7 +281,7 @@ APU yalnızca ses verilerini işler ancak çıkış yapamaz. Çıkış işlemi A
 
 Daha önce belirttiğim gibi, tüm I/O erişimini bir araya getiren bir 'Southbridge' alt sistemimiz var. Bu Southbridge MCPX yongası aracılığıyla gerçekleştirilir.
 
-![Konsol mimarisinin ana şeması. MCPX'in I/O'nun çoğunu nasıl kontrol ettiğine dikkat edin.](_diagrams/main.webp)
+![Konsol mimarisinin ana şeması. MCPX'in I/O'nun çoğunu nasıl kontrol ettiğine dikkat edin.](_diagrams/main.png)
 
 Bu arada MCPX, PC muadili olan **nVidia nForce Multimedia and Communications Processor** veya 'MCP' den türetilmiştir. Bu, nForce 220/415/420 yonga setini kullanan anakartlarda bulunur [@io-reactos].
 
