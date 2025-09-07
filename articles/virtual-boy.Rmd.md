@@ -254,7 +254,7 @@ Tiles found in VRAM.
 
 :::
 
-We have [previously seen](game-boy#tab-1-1-tiles) how traditional tile engines build their layers using 8x8 bitmaps. In the case of the Virtual Boy, tiles (originally called 'Characters') are stored in VRAM within an area known as the **Pattern table**. Each tile occupies 2 bytes, so there is enough space for 2048 of them.
+We have [previously seen](game-boy#tab-1-1-tiles) how traditional tile engines build their layers using 8x8 bitmaps. In the case of the Virtual Boy, tiles (originally called 'Characters') are stored in VRAM within an area known as the **Pattern table**. Each tile occupies 16 bytes (as 2 bits are allocated per pixel), so there is enough space for 2048 tiles.
 
 In terms of colours, developers can compose **eight colour palettes**, four for background graphics and another four for sprites.
 
