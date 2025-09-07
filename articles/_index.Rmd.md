@@ -2,7 +2,7 @@
 title: Architecture of Consoles
 description: Understanding the evolution of consoles through their architecture
 id: consoles
-layout: consoles
+type: consoles
 seo_image: banner.png
 cascade:
     description: "An in-depth analysis that explains how this console works internally"
