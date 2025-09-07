@@ -1077,7 +1077,7 @@ This method encompassed the Nintendo 3DS as well, following the same process as 
 
 #### The 3DS flashcard era (2013-2016)
 
-There was much progress during the first two years of this console (a big achievement for Nintendo!). Yet, things took a turn in August 2013...
+There wasn't much progress during the first two years of this console (a big achievement for Nintendo!). Yet, things took a turn in August 2013...
 
 ##### The first _real_ 3DS Flashcard {.tabs .active}
 
