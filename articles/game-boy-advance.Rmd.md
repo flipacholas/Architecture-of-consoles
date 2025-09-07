@@ -144,7 +144,7 @@ Overall, this made the ARM7TDMI an attractive solution for mobile and embedded d
 
 The inclusion of Thumb in particular had a strong influence on the final design of this console. Nintendo mixed 16-bit and 32-bit buses between its different modules to reduce costs, all while providing programmers with the necessary resources to optimise their code.
 
-![Memory architecture of this system.](memory.png)
+![Memory architecture of this system.](_diagrams/memory.png)
 
 The Game Boy Advance's usable memory is distributed across the following locations (ordered from fastest to slowest) [@cpu-vijn]:
 
@@ -180,7 +180,7 @@ Compared to previous [Game Boys](game-boy), we now have an LCD screen that can d
 
 ### Organising the content
 
-![Memory architecture of the PPU.](ppu.png)
+![Memory architecture of the PPU.](_diagrams/ppu.png)
 
 Graphics are distributed across these regions of memory:
 
@@ -392,7 +392,7 @@ While the ARM7 has a 32-bit address bus, there are **only 24 address lines conne
 
 This means, in theory, that up to 16 MB can be accessed on the cartridge without needing a mapper. However, the memory map shows that **32 MB of cartridge ROM are accessible**. So, what's happening here? The truth is, the Gamepak uses **25-bit addresses** (which explains that 32 MB block) but its bottommost bit is fixed at zero. Thus, the only 24 remaining bits are set. That's how Game Pak addressing works.
 
-![Representation of the Game Pak addressing model. Notice how the last bit of the 25-bit address (named 'A0') is always zero. I must also point out that in reality, the address and data pins are also shared/multiplexed.](cart_addressing.png)
+![Representation of the Game Pak addressing model. Notice how the last bit of the 25-bit address (named 'A0') is always zero. I must also point out that in reality, the address and data pins are also shared/multiplexed.](_diagrams/cart_addressing.png)
 
 Now, does this mean that data located at odd addresses (with its least significant bit at `1`) will be inaccessible? No, because the data bus is 16-bit: For every transfer, the CPU/DMA will fetch the located byte plus the next one, enabling it to read both even and odd addresses. As you can see, this is just another work of engineering that makes full use of hardware capabilities while reducing costs.
 
@@ -414,7 +414,7 @@ The previous [Game Boy Link socket](game-boy#external-communications) is include
 
 Additionally, the GBA's BIOS implemented a special feature internally known as **Multi-boot**: Another console (either GBA or GameCube) can send a functional game to the receiver's EWRAM and then, the latter would boot from there (instead of the Game Pak).
 
-## Anti-Piracy & Homebrew
+## Anti-Piracy and Homebrew
 
 In general terms, the usage of proprietary cartridges was a big barrier compared to the constant cat-and-mouse game that other console manufacturers had to battle while using the CD-ROM.
 

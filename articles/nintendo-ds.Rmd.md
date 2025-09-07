@@ -86,7 +86,7 @@ Let's now take a look at the two CPUs.
 
 #### ARM7TDMI {.tabs .active}
 
-![ARM7 structure and components.](cpu/arm7_core.png){.tab-float}
+![ARM7 structure and components.](_diagrams/cpu/arm7_core.png){.tab-float}
 
 Starting with the more familiar one, the **ARM7TDMI** is the same CPU found on the [Game Boy Advance](game-boy-advance#cpu) but now running at **~34 MHz** (double its original speed). It still includes all its original features (especially [Thumb](game-boy-advance#tab-2-3-squeezing-performance)).
 
@@ -94,7 +94,7 @@ Now for the changes: Because Nintendo's engineers placed the ARM7 next to most o
 
 #### ARM946E-S {.tab}
 
-![ARM9 structure and components.](cpu/arm9_core.png){.tab-float}
+![ARM9 structure and components.](_diagrams/cpu/arm9_core.png){.tab-float}
 
 Here is the 'main' CPU of the Nintendo DS, the **ARM946E-S**. It runs at **~67 MHz**, so not exactly 'StrongARM speed'. Yet, being part of the **ARM9 series**, this core in particular not only inherits all the features of the **ARM7TDMI** and **StrongARM**, but also includes some additional bits you may find interesting [@cpu-arm9reference]:
 
@@ -119,7 +119,7 @@ I guess with hardware like this, it's easy to figure out the *real* reason kids 
 
 So far I've talked about how the two CPUs work individually. But to work as a whole, they are required to cooperate constantly. To accomplish this, both CPUs directly 'talk' to each other using a dedicated **FIFO unit** [@cpu-double], this block of data holds two 64-byte queues (up to 16 elements) for **bi-directional communication**.
 
-![Representation of FIFO unit.](cpu/fifo.png)
+![Representation of FIFO unit.](_diagrams/cpu/fifo.png)
 
 This works as follows: The 'sender' CPU (that effectively needs to send the other a message) places a 32-bit block of data in the queue, and the CPU acting as a 'receiver' can then pull that block from the queue and perform the required operations with it.
 
@@ -129,7 +129,7 @@ Whenever there's a value written on the queue, either CPU can fetch it manually 
 
 Just like its predecessor, RAM is spread around many different locations, enabling it to prioritise data placement by access rate. In summary, we have the following general-purpose memory available:
 
-![RAM model of this console.](cpu/ram.png){.open-float}
+![RAM model of this console.](_diagrams/cpu/ram.png){.open-float}
 
 - **32 KB of WRAM** (Work RAM) using a **32-bit** bus: To hold fast data shared between the ARM7 and ARM9.
   - Bear in mind that only one CPU can access the same address at a time.
@@ -171,7 +171,7 @@ The graphics subsystem can draw 2D and 3D objects. The former is composed of two
 
 Diving into the internal chip that operates those screens, we can observe this console has distinctive hardware for 2D and 3D geometry. The 2D data is operated by a familiar engine, the PPU (now just called **2D engine**), while 3D data is handled by a completely new subsystem. It's worth mentioning that while this is not the [first console](nintendo-64) to debut 3D graphics, it's still the first one to include an in-house design to render 3D graphics.
 
-![Layout of the different graphic units.](gpu/overall.png)
+![Layout of the different graphic units.](_diagrams/gpu/overall.png)
 
 Now, these engines must be linked to either screen, this is not an issue for 2D-only games since there's one 2D engine for each screen. However, for those games who want to show off cutting-the-edge features, there's only one 3D engine available. As a consequence, 3D capabilities are only available on one screen at a time. But what about mixing 2D and 3D objects? Absolutely, let me explain each engine separately so we can discuss this afterwards.
 
@@ -263,7 +263,7 @@ Revisiting the 'Background modes' section, you'll notice every mode has at least
 
 #### Geometry Engine {.tabs .active}
 
-![Architecture of the Geometry Engine.](gpu/geometry.png){.tab-float}
+![Architecture of the Geometry Engine.](_diagrams/gpu/geometry.png){.tab-float}
 
 If you read any of the articles from the 5th or 6th generation, you may be wondering... Where's the [SIMD processor](sega-saturn#graphics)? That's a good question because the ARM9 is not particularly good at vector operations and I don't think the dedicated divider is enough. That's why Nintendo embedded a component called **Geometry Engine** that takes care of **vertex transformations**, **projection**, **lighting**, **clipping**, **culling** and **polygon sorting**, the latter is essential to properly use the transparency features.
 
@@ -273,7 +273,7 @@ Anyway, this engine is commanded using a **Command FIFO** which is filled with d
 
 #### Rendering Engine {.tab}
 
-![The architecture of the Rendering Engine.](gpu/rendering.png){.tab-float}
+![The architecture of the Rendering Engine.](_diagrams/gpu/rendering.png){.tab-float}
 
 The rendering engine is in charge of converting vectors to pixels (rasterising), colouring them (texture mapping) and applying lighting and other effects. It relies on **perspective correction** and **Gouraud shading** for interpolating textures and light, respectively. Moreover, the unit provides modern features like **fog**, **alpha blending**, **depth buffering** (either [Z-buffering](nintendo-64#modern-visible-surface-determination) or a variant called W-buffering), **stencil tests** and **anti-aliasing**. However, the latter is very primitive (it just sets the outer edges of polygons as transparent) and it only works with opaque pixels.
 
@@ -388,7 +388,7 @@ To make a long story short, I/O is strictly handled by the ARM7. In fact, you wo
 
 There's an external memory interface connecting three endpoints: **Slot-1** (where Nintendo DS cards go), **Slot-2** (where GBA cartridges or accessories go) and the **4 MB of PSRAM** (Main memory). The interface can be accessed by both CPUs, but it contains registers that can be modified to prioritise one CPU over the other in case there are two requests from the same bus at the same time.
 
-![External memory model with labelled data bus width.](memoryaccess.png){.open-float}
+![External memory model with labelled data bus width.](_diagrams/memory_access.png){.open-float}
 
 Now, here's the important bit: DS cards are **not memory-mapped**, so for either CPU to read game data, the content must be copied to RAM first. This is done by sending to the cartridge blocks of 8-bit commands referencing 32-bit addresses. Afterwards, the data can be manually retrieved by pulling it from a 32-bit register or through DMA. The data bus is 8-bit wide but can reach speeds of up to **5.96 MB/sec** (as claimed by Nintendo).
 
@@ -437,7 +437,7 @@ At some point, the ARM7 and ARM9 will need to initialise the hardware and to do 
 
 When the console starts up, each CPU boots from its respective ROM. This is because their **reset vector** points to each chip (for reference, ARM9's vector is at `0xFFFF0000` while ARM7's one is `0x00000000`) [@operating_system-boot].
 
-Moving forward, each BIOS stores two sets of routines: Boot code and interrupt calls. The latter is no stranger giving the history of the [previous console](game-boy-advance#anti-piracy--homebrew), however the former has increased in complexity: Apart from initialising the hardware, ARM7's code will also handle security by running some checks on the DS cartridge (if there is one inserted).
+Moving forward, each BIOS stores two sets of routines: Boot code and interrupt calls. The latter is no stranger giving the history of the [previous console](game-boy-advance#anti-piracy-and-homebrew), however the former has increased in complexity: Apart from initialising the hardware, ARM7's code will also handle security by running some checks on the DS cartridge (if there is one inserted).
 
 After running the boot code, both CPUs will synchronise so they can start acting as a 'single machine': It turns out the ARM9 finishes loading way before the ARM7, so the ARM9 sends a 4-bit value to the ARM7, stalls on a semi-endless loop waiting for the ARM7 to respond and once it does, both 'cross the finish line' at the same time, that is to say, they are now in-sync.
 

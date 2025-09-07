@@ -88,13 +88,13 @@ These will be explained throughout this article.
 
 ### Memory available
 
-![Memory architecture of the DMG (original Game Boy). The PPU arbitrates access to VRAM.](dmg-ram.png)
+![Memory architecture of the DMG (original Game Boy). The PPU arbitrates access to VRAM.](_diagrams/dmg-ram.png)
 
 Nintendo fitted **8 KB of RAM** on the motherboard, this is for general purpose use (which they call **Work RAM** or 'WRAM') [@cpu-nintendo]. Notice that this is four times larger than what the [NES](nes) included.
 
 There's an additional **127 B** of RAM housed in the SoC. It is called **High RAM** or 'HRAM', and provides a small space for data that can be accessed faster via the SM83's unique `LDH` instruction. This is very similar to the 6502's 'Zero Page' mode [@cpu-zero_page], which also optimised performance based on the memory location. Now, High RAM is not technically faster to access than general RAM, but it's an area prioritised for the CPU. You'll see what this means when you reach the 'Graphics' section, where I discuss the DMA component.
 
-![Expanded memory architecture of the CGB (Game Boy Color). Again, the PPU arbitrates access to VRAM.](cgb-ram.png)
+![Expanded memory architecture of the CGB (Game Boy Color). Again, the PPU arbitrates access to VRAM.](_diagrams/cgb-ram.png)
 
 Later on, with the Color variant, Nintendo enlarged WRAM to **32 KB**. However, since the CPU remained unchanged (particularly its addressing capabilities), it's not possible to connect all the new memory without first overflowing the available address space. To tackle this, Nintendo's engineers implemented [bank switching](nes#going-beyond-existing-capabilities). Originally found in [NES cartridges](nes#cartridgegame-data), the Game Boy Color uses the same principle to access those 32 KB only using 8 KB of memory space. The trick is simple: the last 4 KB can be swapped using seven different banks. Consequently, the CPU bundles an extra register (called `SVBK`) acting as the bank switcher, this is what developers must use to examine the extended memory.
 
@@ -108,7 +108,7 @@ If you've read the NES article before, you may remember that the PPU was designe
 
 ### Organising the content
 
-![Memory architecture of the PPU.](ppu.png)
+![Memory architecture of the PPU.](_diagrams/ppu.png)
 
 The PPU is connected to **8 KB of VRAM** or 'Display RAM'. In doing so, it also provides arbitrated access to the CPU. Those 8 KB will contain most of the data the PPU will need to render graphics. The remaining materials will instead be stored inside the PPU, as they require faster access rates.
 

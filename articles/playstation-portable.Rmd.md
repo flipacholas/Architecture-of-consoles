@@ -96,7 +96,7 @@ In conclusion: Allegrex is incredibly fast. However, we still don't know what ca
 
 Let me talk for a moment about the memory system implemented in this system. Among other things, the System Control Coprocessor provides the functionality of a **Memory Protection Unit** or 'MPU' (not to be confused with an 'MMU'), this maps the physical hardware onto the CPU's memory space with some special quirks in between. Even though its *modus operandi* can be seen as a bit primitive at first, we'll see why it's optimal for the needs of this console.
 
-![Memory addressing with the MPU.](cpu/mmu.png)
+![Memory addressing with the MPU.](_diagrams/cpu/mmu.png)
 
 A traditional Memory Management Unit or 'MMU' takes care of the CPU's access to the components surrounding it. This implies that all the address lines of the CPU will be connected to the MMU; only the latter is connected to the rest of the system.
 
@@ -112,7 +112,7 @@ All in all, this allows Sony, the developer of the operating system, to implemen
 
 So far we've analysed the PSP's main CPU and its accelerators. Now let's see the physical memory available in this system.
 
-![Memory layout from the main CPU perspective.](cpu/memory.png)
+![Memory layout from the main CPU perspective.](_diagrams/cpu/memory.png)
 
 The PSP comes with two memory blocks accessible from the CPU:
 
@@ -126,7 +126,7 @@ You'll soon find that the PSP accommodates lots of components with unique functi
 
 All of the buses found in Tachyon implement a well-known design called **Advanced High-performance Bus** (AHB), a solution built by Arm to tackle congestion on their chips and SoCs. If you are curious, AHBs are also used in the [Wii](wii#io).
 
-![Basic layout of the three main buses in this system.](cpu/buses.png)
+![Basic layout of the three main buses in this system.](_diagrams/cpu/buses.png)
 
 Using the principles above, the following buses were constructed for the PSP:
 
@@ -227,7 +227,7 @@ First things first – the GE is made of three components:
 
 The reason for this design is that both main CPU and the graphics core can access those 2 MB of eDRAM. So, to prevent congestion, the traffic inside the GE goes through another Advanced High-performance Bus called **local bus** ('local' from the perspective of the GE). This allows the graphics core to perform its functions without depending on the System Bus to move data around (and consequently stalling the rest of the system).
 
-![Architecture of the Graphics Engine.](ge_arch.png){.open-float}
+![Architecture of the Graphics Engine.](_diagrams/ge_arch.png){.open-float}
 
 The local bus is as wide as the System Bus (128 bits), but if that wasn't enough, the graphics core has a direct line to eDRAM using a 512-bit bus (made of two unidirectional 256-bit buses). You'll see why it will be needed in the following section.
 
@@ -254,7 +254,7 @@ There are three memory locations from which the GE will end up pulling from or f
 
 Like its [home sibling](playstation-2#graphics), the PSP's graphics system focuses on **rasterisation**. However, the PSP's VRAM is half the size of the PS2's, and its bus is not as fast. To compensate, the PSP's Graphics Engine features a vector processor!
 
-![Pipeline design of the Graphics Engine.<br>I've skipped the interfaces since it's becoming too convoluted.](pipeline.png)
+![Pipeline design of the Graphics Engine.<br>I've skipped the interfaces since it's becoming too convoluted.](_diagrams/gpu/pipeline.png)
 
 The graphics pipeline is very similar to that of the PS2, with the addition of the vector processing stage. The graphics core is divided into two areas: the **surface engine**, which deals with vector processing, and the **rendering engine** which, as its name indicates, performs rasterisation and effects.
 
@@ -264,7 +264,7 @@ On another note, I've decided to make it a bit more technical than previous arti
 
 #### Commands {.tabs .active}
 
-![Command stage.](gpu/commands.png){.tab-float}
+![Command stage.](_diagrams/gpu/commands.png){.tab-float}
 
 The Graphics Engine is controlled using traditional 'display lists' stored in main memory. The CPU builds them and the GPU reads them (using Direct Memory Access). Display lists basically tell the GPU what, how and where to draw. In the case of the PSP, display lists are not limited to rendering tasks – they can also include vector transformations.
 
@@ -279,7 +279,7 @@ Finally, the DMA can also interpret **bounding box data**: combined with informa
 
 #### Vector Processing {.tab}
 
-![Vector Processing stage.](gpu/vector.png){.tab-float}
+![Vector Processing stage.](_diagrams/gpu/vector.png){.tab-float}
 
 The Graphics Engine debuts the ability to perform operations over vectors, which helps to offload a lot of work from the CPU. Sony built this unit to accelerate common tasks previously carried out by the PS2's VPUs using microcode [@cpu-programming]. While the GE is not as flexible as a VPU (the GE is a fixed-function unit), it does simplify a lot of coding (considering microcode had a considerable weight on the learning curve). The GE's vector processor is called **surface engine**.
 
@@ -303,7 +303,7 @@ Finally, the surface engine provides **scissoring** (discarding vertices outside
 
 #### Rasterisation {.tab}
 
-![Rasterising stage.](gpu/rasterizing.png){.tab-float}
+![Rasterising stage.](_diagrams/gpu/rendering.png){.tab-float}
 
 The next stage of graphics generation takes place in the **rendering engine** (skipping the command processor). In here, vector data is transformed into pixels, which is pretty much in pace with any other GPU in the market.
 
@@ -315,7 +315,7 @@ Sony didn't provide much information about how its rasteriser works in particula
 
 #### Textures {.tab}
 
-![Texture mapping stage.](gpu/textures.png){.tab-float}
+![Texture mapping stage.](_diagrams/gpu/textures.png){.tab-float}
 
 This may be the topic of most interest for some. Polygons (now mere pixels) can be painted with textures. At this stage, texture maps are fetched from memory and processed with many functions. This process is called **texture mapping**.
 
@@ -335,7 +335,7 @@ Finally, while this pipeline is not programmable, developers can send extra colo
 
 #### Pixel Operations {.tab}
 
-![Pixel operation stage.](gpu/operation.png){.tab-float}
+![Pixel operation stage.](_diagrams/gpu/operation.png){.tab-float}
 
 We're reaching the end of the pipeline. The initial geometry has been transformed into pixels and these are now rich-coloured, so it's time to decide what to do with them.
 
