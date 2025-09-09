@@ -91,13 +91,13 @@ Bunlar, makale boyunca açıklanacaktır.
 
 ### Kullanılabilir hafıza
 
-![DMG'nin (orijinal Game Boy) bellek mimarisi. PPU, VRAM erişimini yönetir.](dmg-ram.png)
+![DMG'nin (orijinal Game Boy) bellek mimarisi. PPU, VRAM erişimini yönetir.](_diagrams/dmg-ram.png)
 
 Nintendo anakarta **8 KB RAM** yerleştirmiştir, bu genel amaçlı kullanım içindir (ki buna **Work RAM'i** veya 'WRAM' adını vermişlerdir) [@cpu-nintendo]. Bunun [NES](nes)'in içerdiğinden dört kat daha büyük olduğuna dikkat edin.
 
 SoC'de yer alan ilave **127 B** RAM var. **High RAM** veya 'HRAM' olarak adlandırılır ve SM83'ün benzersiz `LDH` talimatı ile daha hızlı erişilebilen veriler için küçük bir alan sağlar. Bu, 6502'nin bellek konumuna dayalı performansı optimize eden "Zero Page" moduna [@cpu-zero_page] çok benzer. Şimdi, High RAM teknik olarak genel RAM'den daha hızlı erişilebilir değildir, ancak CPU için öncelikli bir alandır. DMA bileşenini tartıştığım 'Grafikler' bölümüne ulaştığınızda bunun ne anlama geldiğini göreceksiniz.
 
-![CGB'nin (Game Boy Color) genişletilmiş bellek mimarisi. Yine PPU, VRAM'e erişim konusunda hakemlik yapar.](cgb-ram.png)
+![CGB'nin (Game Boy Color) genişletilmiş bellek mimarisi. Yine PPU, VRAM'e erişim konusunda hakemlik yapar.](_diagrams/cgb-ram.png)
 
 Daha sonra, Color varyantıyla birlikte, Nintendo WRAM'i **32 KB**'ye genişletti. Ancak, CPU değişmeden kaldığı için (özellikle adresleme yetenekleri), mevcut adres alanı taşmadan tüm yeni belleği bağlamak mümkün değildir. Bununla başa çıkmak için, Nintendo'nun mühendisleri [bank switching](nes#going-beyond-existing-capabilities) tekniğini kullandı. Başlangıçta [NES kartuşlarında](nes#cartridgegame-data) bulunan, Game Boy Color yalnızca 8 KB bellek alanı kullanarak bu 32 KB'ye erişmek için aynı prensibi kullanır. Hile basittir: son 4 KB, yedi farklı bank kullanılarak değiştirilebilir. Sonuç olarak, CPU bir bank değiştirici işlevi gören ekstra bir kayıt ("`SVBK`" adı verilen) sağlar, geliştiricilerin genişletilmiş belleği incelemek için bunu kullanmaları gerekir.
 
@@ -111,7 +111,7 @@ NES makalesini daha önce okuduysanız, PPU'nun CRT ışınını takip edecek ş
 
 ### İçeriğin düzenlenmesi
 
-![PPU'nun bellek mimarisi.](ppu.png)
+![PPU'nun bellek mimarisi.](_diagrams/ppu.png)
 
 PPU, **8 KB VRAM** veya 'Display RAM'i ile bağlantılıdır. Bunu yaparken, CPU'ya kontrollü erişim sağlar. Bu 8 KB, PPU'nun grafikleri işlemek için ihtiyaç duyacağı verilerin çoğunu içerecektir. Geri kalanlar daha hızlı erişim hızları gerektirdiğinden PPU içinde depolanacaktır.
 

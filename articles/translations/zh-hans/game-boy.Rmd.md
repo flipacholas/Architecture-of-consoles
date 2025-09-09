@@ -91,13 +91,13 @@ SM83 沿用了** 8 位数据总线** 和** 16 位地址总线**，可以寻址 *
 
 ### 可用内存
 
-![DMG（原版 GameBoy）的内存架构 PPU负责对VRAM的访问进行仲裁](dmg-ram.png)
+![DMG（原版 GameBoy）的内存架构 PPU负责对VRAM的访问进行仲裁](_diagrams/dmg-ram.png)
 
 Nintendo 装在主板上的 **8 KB RAM** 是为“一般用途”准备的，这部分就是所谓的 **WRAM**。 这一大小可是 [NES](nes) 的四倍。
 
 另外还有 **127 B** RAM 位于 SoC 中， 这便是 **HRAM**。借助 SM83 独特的 `LDH` 指令，这部分空间的数据能够以更快的速度读取。 这与 6502（NES 上的处理器）上的“Zero Page”模式非常相似，它也是利用内存位置优化性能的。 从技术上讲，它跟外面的那部分相比没有实质性区别，但这是 CPU 优先访问的区域。 这里先放一边，等到“图形”章节讨论到 DMA （Direct Memory Access，直接内存访问）组件的时候，您就会明白这意味着什么。
 
-![扩展后的CGB内存架构（Game Boy Color）。 PPU再次负责对VRAM的访问进行仲裁](cgb-ram.png)
+![扩展后的CGB内存架构（Game Boy Color）。 PPU再次负责对VRAM的访问进行仲裁](_diagrams/cgb-ram.png)
 
 在 GameBoy Color 中，WRAM 扩大到 **32 KB**。 然而，由于 CPU 还是那个 CPU（特别是因为它有限的内存总线），直接把这些内存加进去会造成地址空间溢出，显然很不现实。 为了解决这个问题，Nintendo 的工程师引入了 ["地址组切换"](nes#going-beyond-existing-capabilities) 机制。 这种机制继承自 [NES 的卡带](nes#cartridgegame-data)，使得 GameBoy Color 可以只使用 8 KB 的内存来访问 32 KB 的 WRAM。 技巧相当简单：8 KB 内存中，后面的 4 KB 可以在 7 个不同的 Bank 之间进行交换。 这样一来，为了让开发者能够检查扩展内存，CPU 又捆绑了一个额外的寄存器，即 `SVBK`，作为地址组切换器。
 
@@ -111,7 +111,7 @@ Nintendo 装在主板上的 **8 KB RAM** 是为“一般用途”准备的，这
 
 ### 硬件组织
 
-![PPU的内存架构。](ppu.png)
+![PPU的内存架构。](_diagrams/ppu.png)
 
 PPU 与一个 8 KB 的 **VRAM** 相连。 这样一来，PPU 就需要通过仲裁机制，从 CPU 手中拿过对内存的控制权。 这 8 KB 包含了PPU渲染图形所需的大部分数据。 其他的数据就直接储存在 PPU 中，因为它们需要更快的读取速率。
 
