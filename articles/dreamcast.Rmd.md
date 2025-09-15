@@ -306,14 +306,82 @@ Games are stored in GD-ROMs, which are just [CD-ROMs](sega-saturn#the-compact-di
 
 ### Online platform
 
-The Dreamcast shipped with a **modem** module installed which games could use to 'call' a dial-up service for online gaming. Sega provided two services: **SegaNet** (used in America and Japan) and **Dreamarena** (the European counterpart).
+The Dreamcast shipped with a **modem** module that allowed games to be 'dial-up' connected to Sega's online gaming platform. The platform was known as SegaNet in America and Japan and as Dreamarena in Europe. A disc that also provided NetFront 2.0 web browser, some countries had different browsers, for account registration. NetFront offered browsing the internet (HTML/3.2 and some features of HTML/4), emailing, TCP/IP and PPP. It also supported SSL for internet security.
 
-Players registered with a service using **DreamKey**, an extra disc that was bundled with some games. DreamKey provided a web browser to register an account. Initially, DreamKey came as a pre-configured service depending on the region, but later revisions allowed users to alter its ISP settings to connect to any of them.
+Sega worked with GTE Internetworking on the technology backbone for SegaNet, which provided high-performance connectivity for national and local access. The KAGE API was the main component of Sega's attempt to make the Dreamcast successful as an online platform. KAGE was Sega's own API specifically for accessing the gaming features of SegaNet, and developers could make use of it to ensure games featured the lowest latency on the internet. Sega aimed to get the latency below 200 milliseconds, which is lower than typical internet connections at that moment. Development support was provided by SOA and Sega.com to help developers work with online games. KAGE was made available later that month.
 
-There was also a Dreamcast-branded keyboard and mouse available to buy, just in case the user fancied surfing the net *PC-style*.
+Because it used dial-up, Sega released an accessory called the '**DreamPhone**'. This enabled you to talk on the phone while playing games. It was available directly from Sega using 4000 Dream points accumulated through Dream point certificates included with software sold only in Japan. It is extremely rare and little is known about it, as it was only available from Sega.
 
-Unfortunately, SegaNet and Dreamarena were discontinued two years after launch. Thus, games that exclusively relied on them became unusable, unless such services are emulated using extra tools (like the DreamPi, a Raspberry Pi image that replicates them with the help of servers maintained by a community of users).
+You can replace the modem adapter with a broadband adapter to get faster connections. However, Broadband adapters were not sold in Europe, but they were not region coded. But if you do so, you cannot talk to DreamPhone, and only a few games supported the broadband adapter. Broadband users would probably end up with an advantage over modem adapter users. A game lobby will determine if someone has a broadband connection and will prevent someone with a broadband adapter from joining the lobby of someone with a modem adapter. And vice versa.
 
+To enhance the browsing experience, a Dreamcast-branded keyboard and mouse were also available for purchase, in case users preferred a PC-style browsing experience. The mouse also had one more button called 'programmable button', 'side button' or 'thumb button'. But it is not clear how to program this programmable button. At the same time, some developers integrated the Mouse and Keyboard into their games. Games like Quake 3, Unreal Tournament, and Outtrigger are some of them.
+
+- **Japan Online Service**
+
+  The Japanese online service, launched in 1998. TODO
+
+  To sign up for the service users had to insert the ***Dream Passport*** that came with their Dreamcast console. Without Dream Passport users can't access the internet. First version of the Dream Passport gave users ability to browse the web and check email but lacked compatibility and had issues. Dream Passport had branded versions of Hello-Kitty and Sakura Taisen.
+  
+  About one year later Dream Passport 2 released and improved the previous version by new featurs and adding web standars that were missing in predecessor. Users had given time to exchange their old Dream Passport with Dream Passport 2 after that date users had to use Dreamcast Direct (Mentioned later).
+
+  After six months later Dream Passport 2, Dream Passport 3 was released. This version included 43 Sega Mega Drive ROMs that remain unused.
+
+  Users could replace the modem adapter with a broadband adapter, but they had to have the ***Dream Passport 2 for LAN*** to enable this functionality. TODO: Find out if Broadband adapter shipped out with that.
+
+  - **Dreamcast Direct**
+
+    Dreamcast Direct was an electronic commerce service released in April 27 1999 and operated by SEGA for Japanese.
+  
+    Service allowed Japanese users to purchase Dreamcast accessories, pre-order games and included exclusive games.
+
+- **European Online Service**
+
+  The European online service Dreamarena, launched in October 14 1999, was created through a partnership between ICL, BT, and various ISPs. Although the service was free in the UK, other European countries had different access requirements and prices, which made the service expensive for some users.
+
+  In the UK, November 1999, gave an order to remove all references to online gaming from Dreamcast advertisements. That's because online gaming services had not yet been launched because compatible games were not available. As a result, complaints of misleading advertising were filed.
+
+    
+  By September 2000, Dreamarena had reached 300,000 registrations, with over half of these users being "active or very active."
+
+  To promote Dreamarena, Sega Europe decided to launch an advertising campaign and link it to the Euro 2000 that was being played. However, the advertising campaign was unsurprisingly banned due to "condoning and possible incitement of violence".
+
+  To sign up for the service, users had to plug their Dreamkey that came with their Dreamcast into the console. With the Dreamkey, you could create an online account, make settings and browse the internet. Without the Dreamkey, you couldn't access the internet and the first version of the Dreamkey didn't allow you to choose your own ISP. If users registered users would recieve free copy of Chu Chu Rocket.
+
+  Dreamkey 2.0 was released in 2001. Send messages with the Dreamcast Mouse, DreamNote and up to 10 seconds of audio with the Dreamcast Microphone. Streamlined registration process. This version also has a "URL Locator", which can display any other (European) Dreamcast users currently looking on the same website. Users could then engage in conversation, providing the Dreamnote feature was turned on.
+
+  Dreamkey 3.0 was released in 2002 and was included with Phantasy Star Online Ver. 2.
+
+  In 2001 some European copies of the games such as Daytona USA 2001, Outtrigger and Unreal Tourament didn't released with online playability but this functionality existed in non-European copies of the game.
+
+  When Dreamarena closed in March 2002, the Dreamcast's internet function was made available with the Dreamkey 3.0, allowing users to use the internet by choosing their own ISP even after Dreamarena closed.
+
+- **America Online Service**
+
+  In August 1999, Sega made a deal with AT&T, and consumers who chose AT&T as their ISP had three options: $9.95/hour for 10 hours of access per month, $19.95/month for 150 hours of access per month, or an unlimited access plan for $21.95/month. It became available with Dreamcast's launch. 
+  
+  Sega announced a new business strategy in 2000 with the creation of a new company called Sega.com, Inc. The company was designed to function as an internet service provider (ISP) and launch an internet service called "SegaNet" later that year. Sega.com's website would be featuring chat, instant messaging, message boards, and other functionality. The company aimed to attract a user base similar to that of AOL. By signing up for two years of SegaNet service, users received a free Dreamcast system and keyboard.
+  
+  SegaNet was launched in September 7, 2000. SegaNet was not free, and players needed to pay a monthly subscription fee to use the service. The subscription cost $21.95 per month, and it provided unlimited access to the service. Including online access for the games. A puzzle game, Sega Swirl, that was given away for free to SegaNet subscribers. After launch SegaNet had reached 100,000 users in just one month. However, the subscription fee for SegaNet was seen as a major drawback by some players.
+
+  In July 2001 Sega made an agreement with ISP provider Earthlink. With this agreement EarthLink became SegaNet's preffered ISP. Existing SegaNet ISP subscribers were seamlessly transitioned to EarthLink accounts and were able to continue enjoying the online console gaming experience of SegaNet for only $19.95 per month.
+  
+  The service was not just for Dreamcast owners. PC owners could also sign up and use the service on their PCs instead of, or in conjunction with, their existing ISP. Subscribe to the service and receive a free Dreamcast, or if you already owned a Dreamcast, receive a cheque from Sega for $200, the price of your Dreamcast purchase.
+  
+  SegaNet reached 100,000 subscribers a month after its launch
+
+- **Australia and New Zeland Online Service**
+
+  In Australia and New Zeland, Sega partnered with Telstra to develop an online service for the Dreamcast and publish Dreamkey, but it was unavailable at launch due to delays in development and testing. Users had to use Telstra's Big Pond service and the Internet access disc came with 150 hours of free Internet access. The browser went to the Comma web portal powered by LookSmart's search engine.
+
+  Similar to Dreamarena users had to register through Dreamkey and go through same process as Europeans.
+
+- **Taiwan**
+
+  In Taiwan, Sega partnered with GigaMedia. It also included localized web site that features game summaries, online community services, e-commerce services and other online game content services as featured on America and Europe.
+  
+Despite initial popularity, Sega faced criticism and legal challenges. SegaNet's online service was discontinued on July 20, 2001, while Dreamarena's service ended on February 28, 2002. After the official services were shut down, users who hadn't registered before the closures were unable to access the internet through the Dreamcast. However, the online game servers for both platforms continued to operate until September 30, 2003. The SegaNet platform was officially shut down on September 30, 2003, and Dreamarena followed on February 28, 2003. Consequently, games that depended exclusively on these services became unusable unless players used alternative methods, such as the DreamPi—a Raspberry Pi image that emulates these services with the support of community-maintained servers.
+
+  
 ### Interactive memory card
 
 Another innovative feature of the Dreamcast was the **Visual Memory Unit** or 'VMU'. It is attached to the controller and, aside from serving as a memory card, is a fully-fledged device that includes [@games-vmu]:
