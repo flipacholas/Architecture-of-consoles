@@ -41,7 +41,7 @@ When the Dreamcast finally launched, it faced several significant issues:
 
     - All of the Dreamcast software was seized by customs officials due to the absence of a 'country of origin' marking on the packaging. When Ozisoft got their hands on them. All the games were disorganized, shrink wrapped and missing classification.
 
-  - **No Advertising**: Unless you follow the console market, you won't know that the Dreamcast was released in Australia, because it was not advertised.
+  - **No Advertising**: Unless you follow the console market, you won't know that the Dreamcast was released in Australia, because it was not advertised. However, marketing campaign began on December 5th, 1999, five days after the console's launch.
 
   - **High Price Point**: Even if you followed the console market, it was priced at $499 AUD (about $350 USD), much higher than the $199 USD price tag in the US. This price was reduced to $299 AUD (about $175 USD) about a year after launch.
 
