@@ -25,7 +25,7 @@ aliases: [/projects/consoles/dreamcast/]
 
 The Sega Dreamcast introduced many new features over its predecessor (the [Saturn](sega-saturn)) to appeal to both game developers and console gamers. While this was Sega's last attempt to conquer the console market, some of the technologies that were pioneered in the Dreamcast carried on and into future mainstream devices.
 
-The Dreamcast console was originally scheduled for release in Australia and New Zealand on October 25, 1999, but was delayed just three days before the launch to November 30 without any explanation. Ozisoft, the distributor, warned retailers that selling the console before the new date would result in fines. The delay was partly due to the console still awaiting approval from Telecom NZ, as announced by Ozisoft New Zealand.
+The Dreamcast console was originally scheduled for release in Australia and New Zealand at the end of September but got delayed due to issues with internet compatibility and game availability. The new release date was October 25, 1999, but got delayed again just three days before the launch this time to November 30 without any explanation. Ozisoft, the distributor, warned retailers that selling the console before the new release date would result in fines. The delay was partly due to the console still awaiting approval from Telecom NZ, as announced by Ozisoft New Zealand. 
 
 When the Dreamcast finally launched, it faced several significant issues:
 
