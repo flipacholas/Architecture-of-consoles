@@ -13,7 +13,7 @@ top_tabs:
     file: international
     caption: "The one and only GameCube.<br>Released on 14/09/2001 in Japan, 18/11/2001 in America and 03/05/2002 in Europe."
   Motherboard:
-    caption: "Taken from my 'DOL-CPU-10' model, later ones removed Serial Port 2 and Digital Output. Encoder chip, expansion, controller and PSU slots are found on the other side."
+    caption: "Taken from my 'DOL-CPU(P)-01' model, later ones removed Serial Port 2 and Digital Output. Encoder chip, expansion, controller and PSU slots are found on the other side."
     bib_source: copetti
   Diagram:
     caption: "Each data bus is labelled with its width."
