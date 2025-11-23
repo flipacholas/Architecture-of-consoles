@@ -683,7 +683,7 @@ Both operating systems are very much 'updatable' with Nintendo issuing software 
 
 ![Screenshot of the console installing a system update.](screenshots/updates.jpeg)
 
-When the updater is launched, Starlet loads a different variant of IOSU called 'IOSU255' and proceeds to install updates from there [@operating_system-cafe]. The update package can include both updates for Wii U and vWii mode.
+When the updater is launched, Starbuck loads a different variant of IOSU called 'IOSU255' and proceeds to install updates from there [@operating_system-cafe]. The update package can include both updates for Wii U and vWii mode.
 
 ## Games
 
@@ -695,7 +695,7 @@ Game studios were offered two sets of products to develop Wii U games, one was a
 
 #### Hardware Kits {.tabs .active}
 
-Similarly to the Wii, Nintendo distributed three types of units [@games-devkit]:
+Similarly to the Wii, Nintendo distributed multiple development units, to name a few [@games-devkit]:
 
 - The **Cafe Tool for Development** (CAT-DEV) is the flagship devkit for development, debugging and profiling. It houses larger amounts of memory and enhanced I/O to assist with prototyping. The CAT-DEV communicates to a PC over TCP/IP.
 - Once development reaches its testing stage, **Cafe Tool Reader** (CAT-R) is available to testers to try out beta builds without requiring to purchase the more expensive CAT-DEV. CAT-R is shaped like a retail Wii U and the only changes are found in its software. Its disc drive can only read **CAT-R Discs** which are identical to retail discs but engrave alternative signatures made for development units. An equivalent GamePad accessory was also shipped and purchased separately.
@@ -781,13 +781,13 @@ That leaves us with two remaining targets (IOSU and Cafe OS) and, this time, the
 
 In general, there are many methodologies IBM and Nintendo employed to secure this console efficiently and cost-effectively.
 
-First is a **separation of concerns** model present to limit hardware access between Espresso and Starbucks. This makes sure that if the main CPU (Espresso) is ever hijacked, the I/O is still protected somehow. Additionally, both CPUs contain a **Memory Management Unit** to disguise the physical memory map as they see fit.
+First is a **separation of concerns** model present to limit hardware access between Espresso and Starbuck. This makes sure that if the main CPU (Espresso) is ever hijacked, the I/O is still protected somehow. Additionally, both CPUs contain a **Memory Management Unit** to disguise the physical memory map as they see fit.
 
 Secondly, as I mentioned before, both Espresso and Starbuck bundle their own hidden **Boot ROMs** (with 16 KB and 4 KB, respectively) so they always come prepared with some degree of protection (RSA and AES encryption) before reaching out outer areas that are susceptible to tampering. In doing so, all subsequent code processed must be encrypted and only authored by Nintendo.
 
 Thirdly, Starbuck disposes of **considerable amounts of memory within Latte** to boot up its operating system (IOSU) without having to reach out to external memory. This adds another layer of tampering protection.
 
-Next, Starbucks embeds **SHA-1** and **AES-128** accelerators on its hardware to hash, encrypt and decrypt data without performance penalties.
+Next, Starbuck embeds **SHA-1** and **AES-128** accelerators on its hardware to hash, encrypt and decrypt data without performance penalties.
 
 Moving on, while Starbuck is technically an outdated [ARM9 CPU](nintendo-ds#tab-1-2-arm946e-s), Nintendo enhanced it with a custom **eXecute Never** (XN) controller that restricts which memory locations Starbuck may execute [@anti_piracy-xn]. The XN block fulfils the role of an [NX bit](xbox-360#the-hypervisors-duties).
 
