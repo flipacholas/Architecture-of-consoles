@@ -554,7 +554,7 @@ The two components that make up the Famicom Disk System (FDS).
 The Famicom Disk System added the following functionality to the console:
 
 - A new medium of distribution for games called **Famicom Disk** [@games-fds]. Based on the 'Quick Disk' by Mitsumi, it offers **~64 KB of data** per side and is re-writable.
-- An **extra audio channel** that uses [wavetable synthesis](game-boy#tab-3-2-wave) [@games-fds_audio].
+- An **extra audio channel** that uses [wavetable synthesis](game-boy#tab-2-2-wave) [@games-fds_audio].
 
 ![FDS equipment mounted onto the Famicom [@photography-amos].](fds/mounted.png){.open-float .no-borders latex_width="85%"}
 

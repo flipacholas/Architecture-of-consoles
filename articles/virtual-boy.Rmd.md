@@ -328,7 +328,7 @@ Windows provide various **rendering modes**. Developers can select a background 
 
 However, the chip offers additional modes that apply extra effects to background layers:
 
-- **Line Shift Mode**: Individual rows of pixels can be shifted horizontally. This resembles the good ol' effects triggered during [horizontal interrupts](game-boy#tab-2-1-wobble-effect).
+- **Line Shift Mode**: Individual rows of pixels can be shifted horizontally. This resembles the good ol' effects triggered during [horizontal interrupts](game-boy#the-wobble-effect).
 - **Affine Mode**: As the name indicates, this enables [affine transformations](super-nintendo#that-feature)! In other words, scaling, rotation, or a combination to simulate perspective projection [@graphics-tucker].
 
 #### Result {.tab}
@@ -383,7 +383,7 @@ Unfortunately, fundamental challenges such as [visible surface determination](se
 
 ## Audio
 
-Imagine taking the Game Boy's [wave channel](game-boy#tab-3-2-wave), multiplying it by five and adding a noise channel: that's pretty much the offering of the Virtual Boy's sound chip. It can also be regarded as a sibling of the [PC Engine's audio system](pc-engine#audio).
+Imagine taking the Game Boy's [wave channel](game-boy#tab-2-2-wave), multiplying it by five and adding a noise channel: that's pretty much the offering of the Virtual Boy's sound chip. It can also be regarded as a sibling of the [PC Engine's audio system](pc-engine#audio).
 
 ![Oscilloscope display of Mario's Tennis (1995), showing all the audio channels.](tennis){.open-float .negate .border video="true"}
 

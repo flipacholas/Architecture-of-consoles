@@ -73,7 +73,7 @@ Let me introduce you to a noble capability of the 68000 which I have not covered
 
 To be fair, CPUs like the Z80 provided extra circuitry to allow the peripheral to tell the CPU which instruction to execute next. Nevertheless, this wasn't widely adopted.
 
-The 68000 improved this technique by treating interrupts as **exceptions**. Peripherals are required to identify themselves when they interrupt the CPU [@cpu-68k_int]. the latter then uses the identifier to compose a memory address, which in turn points to a tailored software routine. All in all, this enables programmers to handle I/O communication efficiently, as they can now catalogue their dedicated interrupt handlers in a memory area called **autovector table**, and the CPU will execute each automatically.
+The 68000 improved this technique by treating interrupts as **exceptions**. Peripherals are required to identify themselves when they interrupt the CPU [@cpu-68k_int]. The latter then uses the identifier to compose a memory address, which in turn points to a tailored software routine. All in all, this enables programmers to handle I/O communication efficiently, as they can now catalogue their dedicated interrupt handlers in a memory area called **autovector table**, and the CPU will execute each automatically.
 
 The Neo Geo takes advantage of this design with the addition of a controller chip called the **NEO-E0**. Essentially, both the Neo Geo's Operating System and the game implement a dedicated exception table; this is because the OS table focuses on hardware interfacing and the game table is used during normal execution. However, the 68000 is only aware of one at a time. So, the NEO-E0 provides automatic [bank switching](nes#going-beyond-existing-capabilities) that ensures the 68000 reads from the right table at all times.
 
@@ -214,7 +214,7 @@ The CPU may update Palette RAM at any moment, but it should only do so during bl
 
 ![The Fixed plane with a black backdrop.](aof/fixed_plane.png){.tab-float .border .pixel}
 
-The Fixed plane is a layer **320 x 256 pixels** (40 x 32 tiles) wide [@graphics-fixed_layer], pretty much the entire screen. Its tiles displayed are completely static and only have access to 16 colour palettes. In practice, this is used to display 'always-on' information, similar to the [window layer](game-boy#tab-1-3-window) of the Game Boy.
+The Fixed plane is a layer **320 x 256 pixels** (40 x 32 tiles) wide [@graphics-fixed_layer], pretty much the entire screen. Its tiles displayed are completely static and only have access to 16 colour palettes. In practice, this is used to display 'always-on' information, similar to the [window layer](game-boy#tab-1-4-window) of the Game Boy.
 
 When broadcasted to a CRT screen, the displayed area will be smaller. Thus, its [safe area](nes#constructing-the-frame) is 38 x 28 tiles wide.
 

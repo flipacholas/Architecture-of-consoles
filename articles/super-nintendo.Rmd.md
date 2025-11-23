@@ -244,7 +244,7 @@ The S-PPU provides many operations for backgrounds, but these cannot be chosen a
   - One layer can be split into foreground and background.
   - This is the most commonly used mode.
 - **Mode 2**: 2 layers with 16 colours each.
-  - There is an extra effect available: layers can have each of their columns scrolled independently (similarly to the [Game Boy wobble effect](game-boy#tab-2-1-wobble-effect) but applied vertically).
+  - There is an extra effect available: layers can have each of their columns scrolled independently (similarly to the [Game Boy wobble effect](game-boy#the-wobble-effect) but applied vertically).
 - **Mode 3**: 1 layer with 256 colours + 1 layer with 16 colours.
   - Colours can be defined using RGB values instead of referencing CGRAM.
 - **Mode 4**: Mode 2 and 3 combined (Column scroll + RGB colour mapping).
