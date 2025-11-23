@@ -212,7 +212,7 @@ Tiles are used to construct a total of **four planes**, which, when merged, form
 
 ![Allocated Background map with selected area marked.](vdp_sonic/layer2_selected.png){.border title="Selected"}
 
-Example of Background plane
+Example of Background plane.
 
 :::
 
@@ -264,11 +264,11 @@ The region in VRAM where sprites are defined is called **Sprite Attribute Table*
 
 ![Frame broadcasted to the TV (in NTSC format). The VDP automatically adds an overscan area, which most CRT TVs will hide.](vdp_sonic/overscan.png){.border paperback_latex_width="81%" hardcover_latex_width="90%" title="With overscan"}
 
-![CRAM dots in the bottom-left corner of the overscan area.](vdp_sonic/cram_dots.png){.border paperback_latex_width="81%" hardcover_latex_width="90%" title="CRAM dots"}
-
 Tada!
 
 :::
+
+![CRAM dots in the bottom-left corner of the overscan area.](vdp_sonic/cram_dots.png){.tab-float .pixel .border paperback_latex_width="81%" hardcover_latex_width="90%" #fig-cram_dots}
 
 While the frame is being drawn, the system sequentially calls different interrupt routines based on the position of the CRT's beam. As you have probably seen in previous consoles, this allows the CPU to prepare the next frame (or alter the current one).
 
@@ -276,7 +276,7 @@ Conventionally, two types of interrupts are called: **H-Blank** (at every horizo
 
 H-Blank is called numerous times per frame, but is limited to executing short routines. V-Blank, on the other hand, allows for longer routines, with the drawback of only being called 50 or 60 times per second (depending on the console's region).
 
-Notice that the overscan area in the example [@fig-result_frame] exhibits some random coloured dots in the bottom-left corner. This phenomenon, known as **CRAM dots**, occurs when the CPU updates the palettes in CRAM while the VDP is beaming the remaining scan-lines (in the example, this happens during overscan). This conflict causes the VDP to fetch whatever value the CPU is writing at that moment, rather than the required location in CRAM. So, the image gets corrupted. In this particular case, the game updates CRAM only during overscan, so this anomaly goes unnoticed on traditional CRTs. At another level in the game, however, the game changes the palette mid-frame to simulate water effects. Hence, programmers tried to mask it by drawing a flickering water ripple in-between [@audio-sonic_water]. As you can see, it's all about balancing the extra colours with the CRAM side-effect.
+Notice that the overscan area in the example exhibits some random coloured dots in the bottom-left corner [@fig-cram_dots]. This phenomenon, known as **CRAM dots**, occurs when the CPU updates the palettes in CRAM while the VDP is beaming the remaining scan-lines (in the example, this happens during overscan). This conflict causes the VDP to fetch whatever value the CPU is writing at that moment, rather than the required location in CRAM. So, the image gets corrupted. In this particular case, the game updates CRAM only during overscan, so this anomaly goes unnoticed on traditional CRTs. At another level in the game, however, the game changes the palette mid-frame to simulate water effects. Hence, programmers tried to mask it by drawing a flickering water ripple in-between [@audio-sonic_water]. As you can see, it's all about balancing the extra colours with the CRAM side-effect.
 
 ### A dedicated transfer unit {.tabs-close}
 
