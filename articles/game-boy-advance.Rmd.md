@@ -10,7 +10,7 @@ cover: gba
 top_tabs:
   Models:
     - title: "Original"
-      file: original
+      file: international
       caption: "The original Game Boy Advance.<br>Released on 21/03/2001 in Japan, 11/06/2001 in America, and 22/06/2001 in Europe."
       latex_height: 85
       active: true
@@ -356,7 +356,7 @@ Let's breakdown each audio component. I will be using *Sonic Advance 2* as an ex
 
 As indicated earlier, the GBA comes with a revamped audio system called **Direct Sound**. It plays **stereo Pulse-Code Modulation (PCM) samples** [@cpu-korth]. In other words, straight out recordings that are no longer limited to a [predefined set of waveforms](game-boy#audio). Behind the scenes, the audio data is fed into a 16-byte First-In-First-Out (FIFO) queue, and a Digital-to-Analogue Converter (DAC) turns it into audible sound.
 
-Conversely, the audio samples don't share the quality of CD audio, I'm afraid, as this console must remain affordable. The DAC can only operate **8-bit signed samples** (i.e. values between -128 to 127). This is half the resolution of typical CD audio (16-bit), which introduces significant noise. Additionally, the system is limited to a sampling rate of up to **~32 kHz** (for reference, CD audio is 44.1 kHz). Even so, the top rate requires large cartridge sizes and plenty CPU cycles, so not every game will spend the same amount of resources to feed the audio chip.
+Conversely, the audio samples don't share the quality of CD audio, I'm afraid, as this console must remain affordable. The DAC can only operate **8-bit signed samples** (i.e. values between -128 to 127). This is half the resolution of typical CD audio (16-bit), which introduces significant noise. Nevertheless, games can choose the sampling rate: the technical limit is 65 kHz (for reference, CD audio is 44.1 kHz), although higher rates are possible at the expense of sample resolution [@audio-jsgroth]. Even so, all these options require large cartridge sizes and plenty CPU cycles, so not every game will spend the same amount of resources to feed the audio circuitry.
 
 On the other hand, to avoid bottlenecking the CPU, each audio channel comes equipped with a **Direct Memory Access (DMA)** unit and a **timer**, which helps to transfers audio data and keep the queue in sync, respectively.
 
@@ -374,7 +374,7 @@ Now, its job is to complement Direct Sound. The majority of GBA games used it fo
 
 ![Final result. *Tada!*](complete){.tab-float .negate .border latex_width="85%" video="true"}
 
-At the end of the process, all channels are automatically mixed and output via the **mono speaker** and the **stereo output jack**.
+At the end of the process, all channels are automatically mixed and output via the **mono speaker** and the **stereo headphone jack**.
 
 Cycling back to the Direct Audio channels, I still haven't explained where the PCM data originates. Unlike some home consoles of the [5th generation](sega-saturn#audio) capable of reproducing high-fidelity samples, the GBA offers neither the storage medium nor the necessary hardware resources to stream CD-quality music. So, how do games take advantage of it? Well, much like the [Nintendo 64](nintendo-64#audio), they employ **music sequencing**: games store small instrument data, and the main CPU lends some of its cycles to sequence and mix melodies in real time (similar to MIDI). The result is then continuously streamed to the sample channels [@audio-programming].
 
