@@ -122,11 +122,11 @@ For comparison, the 68000 employs a vector table to handle exceptions, ensuring 
 
 It's fascinating to realise how much content the NES managed to display with only [2 KB of RAM](nes#memory). Well, the Super Nintendo now features **128 KB of RAM** (still referred to as 'Work RAM' or WRAM) - a staggering 6400% increase in general-purpose memory compared to its predecessor.
 
-So, what can developers do with this? Anything they desire, really. WRAM is used to store variable data for the game. The more space available, the greater the amount of information that can be stored and processed (thus, reducing reliance on [cartridge hardware](nes#cartridgegame-data)).
+Be as it may, while the NES enjoyed the fast Static RAM (SRAM) type, Nintendo opted to use Dynamic RAM (DRAM) for the Super Nintendo's WRAM. *Dynamic*, in this case, means memory needs to be **refreshed periodically**. The 5A22 performs this automatically, but during each refresh operation, the CPU is paused. This causes an overall CPU slowdown of roughly 3% [@cpu-korth].
+
+That said, what can developers do with this memory? Anything they desire, really. WRAM is used to store variable data for the game. The more space available, the greater the amount of information that can be stored and processed (thus, reducing reliance on [cartridge hardware](nes#cartridgegame-data)).
 
 However, as the following sections will demonstrate, the Super Nintendo is a fairly complex machine (albeit its 'simplistic' CPU). I tend to call this console a 'collection of mini-computers/subsystems'. Each subsystem may need data from the CPU, meaning programmers may reserve portions of WRAM to process that information - thus justifying the need for 128 KB of memory.
-
-Furthermore, while the RAM in the NES was fast SRAM, Nintendo opted to use DRAM as technology for the Super Nintendo's WRAM. As it stands for *dynamic* RAM, this type of memory needs to be refreshed periodically. The 5A22 performs this automatically, but during this refresh operation, the CPU must be paused. This causes an overall CPU slowdown of roughly 3%.
 
 ## Graphics
 
