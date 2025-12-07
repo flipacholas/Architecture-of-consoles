@@ -90,7 +90,7 @@ Looking at this, I have to confess that the 65C816 feels excessively cumbersome 
 
 In 1983, the 65C816 CPU was conceived as a general-purpose successor of its 1975 ancestor, with all the associated requirements and constraints. Yet, Nintendo planned its console to last throughout the 90s, meaning Ricoh had to step up its game (if you'll pardon the pun).
 
-First on the list was tackling its arithmetic limitations - the 65C816 lacks dedicated instructions for multiplication or division. As a result, Ricoh incorporated **multiplication** and **division units**, enabling the CPU to perform these types of operations via hardware (rather of software). Instead of conventional instructions, they are operated through registers.
+First on the list was tackling its arithmetic limitations - the 65C816 lacks dedicated instructions for multiplication or division. As a result, Ricoh incorporated **multiplication** and **division units**, enabling the CPU to perform these types of operations via hardware (rather than software). Instead of conventional instructions, they are operated through registers.
 
 The multiplier receives 8-bit numbers and outputs 16-bit ones [@cpu-multiplication]. Conversely, the divider takes a 16-bit dividend and an 8-bit divisor; and returns a 16-bit quotient along with a 16-bit remainder [@cpu-division]. Both units only support positive numbers (called 'unsigned').
 
@@ -167,7 +167,7 @@ Kirby's Dream Land 3 (1997).
 
 :::
 
-The reasoning behind Nintendo's deviation from the standard aspect ratio boils down to **cost**. You will soon see that the S-PPU is very rich in functionality, but not fast enough to render everything at the pace of the CRT beam [@graphics-sanglard]. Rather than adding more circuitry to the board, Nintendo opted to short the width of the visible image, allocating extra space for the horizontal blanking period instead.
+The reasoning behind Nintendo's deviation from the standard aspect ratio boils down to **cost**. You will soon see that the S-PPU is very rich in functionality, but not fast enough to render everything at the pace of the CRT beam [@graphics-sanglard]. Rather than adding more circuitry to the board, Nintendo opted to shorten the width of the visible image, allocating extra space for the horizontal blanking period instead.
 
 Nevertheless, some games like 'Chrono Trigger' account for this factor by intentionally using squashed shapes, which then look correct after being stretched by the TV. This, however, remains an exception, since the majority of games take no extra measures to compensate for this effect.
 
@@ -315,7 +315,7 @@ Mode 7 is controlled via a **rotation matrix**, which alters its parameters. Wit
 
 By the way, you may notice that the list of transformations does not mention **perspective**, despite its presence in the example game, F-Zero [@fig-fzero_mode7]. This effect is achieved by adjusting the rotation matrix at each HDMA call, creating a pseudo-3D effect in the process. This should give you an idea of just how versatile the S-PPU truly is!
 
-Finally, due to the use of affine transformations, it is no longer useful to fetch adjacent pixels from VRAM. So, to maintain acceptable bandwidth, the memory map is restructured in a way that benefits the new pipeline. Thus, the first VRAM chip stores the **Tilemap** (where tiles are referenced), while the second stores the **Tileset** (where tiles are stored). Considering entries in both tables are 8 bits long, this setup allows the PPU 1 to retrieve references and tiles in a single cycle.
+Finally, due to the use of affine transformations, it is no longer beneficial to fetch adjacent pixels from VRAM. So, to maintain acceptable bandwidth, the memory map is restructured in a way that benefits the new pipeline. Thus, the first VRAM chip stores the **Tilemap** (where tiles are referenced), while the second stores the **Tileset** (where tiles are stored). Considering entries in both tables are 8 bits long, this setup allows the PPU 1 to retrieve references and tiles in a single cycle.
 
 #### Generous circuits
 
@@ -329,7 +329,7 @@ Reflecting on this 30 years later, I must say this concept is an earlier precurs
 
 Behind every rich frame is a flexible rendering pipeline. Well, if all the previous advancements weren't impressive enough, the S-PPU features a **versatile colour blender** that enables to customise how layers are merged. Unlike other sprite engines with fixed rendering steps, Nintendo's engineers exposed multiple parameters within the S-PPU's pipeline, enabling developers to alter how certain pixels of different layers interact to form the final frame.
 
-This functionality is collectively known as **Color Math** [@graphics-color_math], but it is also called 'Screen Addition/Subtraction' - despite also supporting division by two. In any case, this pave the way for **realistic transparency, dynamic lighting, and other creative effects**.
+This functionality is collectively known as **Color Math** [@graphics-color_math], but it is also called 'Screen Addition/Subtraction' - despite also supporting division by two. In any case, this paved the way for **realistic transparency, dynamic lighting, and other creative effects**.
 
 ::: {.subfigures .side-by-side .pixel max_subfigures=2 #fig-dk_layers}
 
@@ -386,7 +386,7 @@ And so, Sony delivered quite an audio subsystem, consisting of the following com
   - **ADSR Envelope Control**: Adjusts how the volume changes over time.
   - **Delay**: Simulates echo effects. It also includes a frequency filter to cut out selected frequencies during the feedback (not to be confused with *Reverb*!).
   - **Noise generator**: Generates pseudo-random waveforms resembling white static.
-  - **Pitch modulation**: Allows some channels to influence each other’s pitch, similar to FM synthesis (used by [its competitor](mega-drive-genesis#audio)).
+  - **Pitch modulation**: Allows some channels to influence each other's pitch, similar to FM synthesis (used by [its competitor](mega-drive-genesis#audio)).
 - **The SPC700 CPU** (also known as 'S-SMP'): An independent 8-bit CPU that drives the S-DSP and receives commands from the main CPU [@audio-smp].
 - **64 KB of PSRAM**: Stores audio data and programs, with the main CPU responsible for loading content into it.
   - If 'Delay' is enabled, some memory is reserved for feedback data. This is can be dangerous - if not managed carefully, feedback storage could override existing data!
@@ -407,15 +407,17 @@ Oscilloscope display of Star Fox (1993).
 
 For the S-SMP to do independent work, it needs to load a type of program known as **Sound Driver**. This software instructs the chip on how to manipulate raw audio data sent by the main CPU to PSRAM, as well as how to control the S-DSP.
 
-As evident, the sound subsystem was a major leap forward compared to previous generations, but it also posed significant programming challenges. The documentation provided by Nintendo was infamous for its vague explanations and omission of critical features, forcing developers to conduct their own research.
+Considering the overall capabilities of this system, most games bundled sound drivers that performed **music sequencing**. Similar to MIDI, they drive the S-SMP and S-DSP to read sampled instrument data and subsequently play it at different pitches and effects to produce the musical score. This was something that this console excelled at.
 
-As a result, a wide variety of sound drivers emerged in the market [@audio-drivers], with some uncovering impressive capabilities.
+As evident, the sound subsystem represented a major leap forward compared to previous generations, but it also posed significant programming challenges. Nintendo only provided one driver, the *Nintendo SPC Sound Engine* [@audio-engine]. Along with it, the documentation was infamous for its vague explanations and omission of critical features.
+
+All in all, this forced developers to conduct their own research and derive their own implementations if they wanted extra functionality. Consequently, a wide variety of sound drivers emerged in the market [@audio-drivers], with some uncovering impressive capabilities.
 
 {.close-float}
 
 ### Pitch control {.interactive-only}
 
-Pitch bending enables to produce distinct notes using the same sample. Well, the S-SMP included a useful bender to alter the pitch in a smooth manner. Take a look at this extracted channel from Mother 2/Earthbound @[fig-pitch_bend], both examples come from the original soundtrack, however, the first one has the pitch control disabled.
+Pitch bending enables to produce distinct notes using the same sample. Well, the S-SMP included a useful bender to alter the pitch in a smooth manner. Take a look at this extracted channel from Mother 2/Earthbound [@fig-pitch_bend], both examples come from the original soundtrack, however, the first one has the pitch control disabled.
 
 ::: {.subfigures .side-by-side .interactive-only #fig-pitch_bend}
 
