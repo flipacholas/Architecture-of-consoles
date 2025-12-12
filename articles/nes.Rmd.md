@@ -81,7 +81,7 @@ Back in Japan, Nintendo needed something inexpensive yet familiar to develop for
 
 To understand how capable this console is, let's first check what the original MOS 6502 offers:
 
-- The **6502 ISA**: MOS wanted to offer drastic improvements at the cost of compatibility with third-parties (especially Motorola) [@cpu-arizona]. Thus, the 6502 instruction set still handles **8-bit** words like the 6800 and others, but its programming is not cross-compatible.
+- The **6502 Instruction Set Architecture (ISA)**: MOS wanted to offer drastic improvements at the cost of compatibility with third-parties (especially Motorola) [@cpu-arizona]. Thus, the 6502 instruction set still handles **8-bit** words like the 6800 and others, but its programming is not cross-compatible.
 - An **8-bit data bus** and a **16-bit address bus**. This was the typical combination for microprocessors of that era. Basically, it allows to operate data in chunks of eight bits without running out of memory locations (at least, too quickly).
   - On paper, 16-bit addresses means the 8-bit CPU will need extra cycles to process the extra size. However, thanks to MOS's new addressing modes (explained further down), these penalties were alleviated without requiring too much circuitry.
 - **Three general-purpose registers** (`X`, `Y` and `A`), which may look constrained when compared to [larger register files](master-system#cpu). This decision reduces costs but also means the CPU would need to move memory around more frequently. With the 6502, `X` and `Y` are called 'index registers' and are used to address memory, while `A` is directly connected to the ALU and dedicated to arithmetic operations.

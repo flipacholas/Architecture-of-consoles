@@ -226,9 +226,9 @@ SGI clearly invested a lot of technology into this system. Nevertheless, the Nin
 
 #### Pipeline Stalls {.tabs .active}
 
-Due to the large number of components and operations in the graphics pipeline, the RCP became highly susceptible to **stalls**: an undesirable situation in which sub-components remain idle for considerable periods, as the required data is delayed at the back of the pipeline.
+The deprecation of load delay slots in MIPS II, in favour of automatic pipeline stalls, had the benefit of alleviating the need for [filler instructions](playstation#a-core-philosophy). However, this breakaway from MIPS' core philosophy also exposed new bottlenecks. Due to the large number of components and operations in the graphics pipeline, the RCP became highly susceptible to **excessive stalls**: an undesirable situation in which sub-components remain idle for considerable periods, as the required data is delayed at the back of the pipeline.
 
-This invariably results in performance degradation, and it is the programmer's job to avoid it. Although, to alleviate things, MIPS-based CPUs such as the Scalar Unit implement a mechanism called **bypassing**, which enables similar instructions to execute at a faster rate by bypassing some execution stages that can be skipped [@cpu-nec].
+This invariably results in performance degradation, and it is the programmer's job to avoid. Although, to help mitigate this, MIPS CPUs had long provided **pipeline bypassing**, a mechanism that enables similar instructions to execute at a faster rate by bypassing some execution stages that can be skipped [@cpu-nec].
 
 For example, if the CPU has to compute sequential `ADD` instructions that are dependent on each other, there's no need to write the result back to a register and then read it again after each operation. Instead, the CPU can forward the values within the datapath and perform the write-back only after the last `ADD` has been completed.
 
