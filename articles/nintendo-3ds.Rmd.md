@@ -198,7 +198,7 @@ Let's start with the cores now and then we'll check the AXI bus.
 
 #### The original MPCore {.tabs .active}
 
-![Overview of the ARM11 MPCore CPU cluster](cpu/mpcore_overview.png){.tab-float}
+![Overview of the ARM11 MPCore CPU cluster](_diagrams/cpu/mpcore_overview.png){.tab-float}
 
 The first ARM11 MPCore variant, which debuted with the original 3DS, includes two cores. Each is called **MP11** and runs at **268 MHz** [@cpu-lioncash].
 
@@ -212,7 +212,7 @@ Finally, each core houses a co-processor called **Vector Floating-point Coproces
 
 #### The 'New' MPCore {.tab}
 
-![Overview of the 'New' CPU cluster](cpu/mpcore_new_overview.png){.tab-float}
+![Overview of the 'New' CPU cluster](_diagrams/cpu/mpcore_new_overview.png){.tab-float}
 
 With the arrival of the New 3DS in 2014, a new SoC was included (**CPU LGR**) and with it, a luxurious CPU upgrade.
 
@@ -224,7 +224,7 @@ Moving on, all cores now run at **804 MHz** (three times the original speed, whi
 
 #### The AXI bus {.tab}
 
-![Example of the Nintendo 3DS' AXI implementation interconnecting different types of components. Here, the CPU and DMA act as masters while the RAM node is the slave. However, the roles can change as deemed fit.](cpu/axi.png){.tab-float}
+![Example of the Nintendo 3DS' AXI implementation interconnecting different types of components. Here, the CPU and DMA act as masters while the RAM node is the slave. However, the roles can change as deemed fit.](_diagrams/cpu/axi.png){.tab-float}
 
 Whether we're talking about two or four MP11 cores, all of these are connected using a popular bus, proudly authored by ARM, called the **Advanced eXtensible Interface** (AXI). This protocol is part of the AMBA3 model, a successor of the original AMBA revision that we've seen in the [Wii](wii#the-hidden-co-processor) and [Wii U](wiiu#internal-interfaces) (both housing an ARM9 CPU). In doing so, ARM offered the AXI model as a critical building block for **System On Chips** (SoC).
 
@@ -265,7 +265,7 @@ Since the ARM9 and ARM7 are predominantly for I/O, security and backwards compat
 
 I guess the question now is, how can CPUs and cores talk to each other? Well, the easiest way is to share RAM... but you could also try a more efficient approach, depending on the cores trying to communicate:
 
-![Representation of the communication channels each CPU is provided with.](cpu/inter_core.png)
+![Representation of the communication channels each CPU is provided with.](_diagrams/cpu/inter_core.png)
 
 - With **inter-core ARM11 communication**, a core can send interrupts to another core by writing on its `Software Interrupt Register` [@cpu-arm_reference].
 - In the case of **ARM11↔ARM9** or **ARM9↔ARM7 communication**, the same [FIFO model](nintendo-ds#interconnection) from the Nintendo DS is implemented. Plus, the ARM11↔ARM9 FIFO is also called 'PXI' [@cpu-korth].
@@ -274,7 +274,7 @@ I guess the question now is, how can CPUs and cores talk to each other? Well, th
 
 Having three different CPUs also means the memory layout will not be simple, especially if you care about security.
 
-![Overview of memory organisation on the Nintendo 3DS.](cpu/memory.png)
+![Overview of memory organisation on the Nintendo 3DS.](_diagrams/cpu/memory.png)
 
 To make a long story short, we've got the following blocks:
 
@@ -354,7 +354,7 @@ Now that we know that this console can draw 3D shapes, the question now is: wher
 
 Nintendo only provided **6 MB of VRAM** exclusively for the GPU. Ideally, programmers would fit as much as they can there, but since it will fill up pretty quickly, it is expected to be used to store data that needs instant access (i.e. commands, buffers and recurrent textures) while placing the rest on FCRAM. The PICA200 comes with a **DMA unit** that can transfer data between FCRAM and VRAM. So, at the end of the day, it's the responsibility of the programmer to come up with an efficient placement to avoid bottlenecks.
 
-![Example of how data is organised across the memory available.](gpu/content.png)
+![Example of how data is organised across the memory available.](_diagrams/gpu/content.png)
 
 During rendering, programmers allocate dedicated render buffers (i.e. frame, stencil, depth, etc.) for many operations. That's always been the case. With the 3DS, however, the LCD controllers don't understand the data that the PICA200 renders in the frame-buffer. Thus, programmers are also expected to reserve extra space for **LCD frame-buffers** [@graphics-gpu_reg]. Each is bound to a physical screen and encodes the frame in the required format for the LCD controller.
 
@@ -389,13 +389,13 @@ Considering players will expect acceptable frame rates on all three screens (esp
 
 That being said, here is an overview of how data travels to draw a single frame:
 
-![Overview of the graphics pipeline in PICA200.](gpu/pipeline.png)
+![Overview of the graphics pipeline in PICA200.](_diagrams/gpu/pipeline.png)
 
 ... and as customary in this series of articles, we'll now take a look at what happens at each stage.
 
 #### Commands {.tabs .active}
 
-![Overview of the command stage.](gpu/pipeline/command.png){.tab-float}
+![Overview of the command stage.](_diagrams/gpu/pipeline/command.png){.tab-float}
 
 This is Nintendo's first portable console to finally draw triangles in 'the usual way'. That is, with the use of commands. But it's not a surprising factor, as the PICA200 is expected to abide by the teachings of OpenGL ES.
 
@@ -403,7 +403,7 @@ In essence, the PICA200 draws polygons by reading a [command buffer](xbox-360#ta
 
 #### Vertex {.tab}
 
-![Overview of the vertex stage.](gpu/pipeline/vertex.png){.tab-float}
+![Overview of the vertex stage.](_diagrams/gpu/pipeline/vertex.png){.tab-float}
 
 The PICA200 provides **four Vertex Processors** (VP) that operate in parallel. However, if the geometry shader (the next pipeline stage) is activated, only **three** processors can be utilised.
 
@@ -418,7 +418,7 @@ Once the vertex cores finish processing, they output the results to the **Sync C
 
 #### Geometry {.tab}
 
-![Overview of the geometry stage.](gpu/pipeline/geometry.png){.tab-float}
+![Overview of the geometry stage.](_diagrams/gpu/pipeline/geometry.png){.tab-float}
 
 The geometry stage is a signature feature of 8th-generation consoles, allowing developers to spawn complex geometry out of simple vertex data.
 
@@ -430,7 +430,7 @@ Examples of uses for the geometry shader include square or line generation (usin
 
 #### Rasteriser {.tab}
 
-![Overview of the rasteriser stage.](gpu/pipeline/rasteriser.png){.tab-float}
+![Overview of the rasteriser stage.](_diagrams/gpu/pipeline/rasteriser.png){.tab-float}
 
 At this stage, all primitives are converted into pixels.
 
@@ -438,7 +438,7 @@ The rasterizer unit on the PICA200 is very simple, it just generates triangles o
 
 #### Fragment {.tab}
 
-![Overview of the fragment stage.](gpu/pipeline/fragment.png){.tab-float}
+![Overview of the fragment stage.](_diagrams/gpu/pipeline/fragment.png){.tab-float}
 
 The fragment stage is made of two areas: the **texture units**, which can fetch textures in memory and process them. And the **shading unit**, which can perform extra operations on the texture data.
 
@@ -454,7 +454,7 @@ All in all, a modern reflection of the [Flipper era](gamecube#tab-3-3-texture) (
 
 #### Post-processing {.tab}
 
-![Overview of the post-processing stage.](gpu/pipeline/post.png){.tab-float}
+![Overview of the post-processing stage.](_diagrams/gpu/pipeline/post.png){.tab-float}
 
 After the frame is processed and ready to be written into the framebuffer (or [render targets](xbox-360#tab-2-4-pixel-shader)), it goes through a sequence of final 'corrections'. This is similar to the OpenGL ES 2.0's pipeline.
 
@@ -529,7 +529,7 @@ Curiously enough, early homebrew defaulted to this block for providing sounds, w
 
 Both DSP and CSND work independently and separately output their audio to the speaker.
 
-![Overview of the audio pipeline.](audio.png)
+![Overview of the audio pipeline.](_diagrams/audio.png)
 
 As a curious note, the original Nintendo 3DS didn't play well with the speaker's capabilities, as Nintendo ended up providing troubleshooting guides for cases of buzzing noises and fluctuations with 3D slider [@audio-buzzing], all caused by the design of the case.
 
@@ -705,7 +705,7 @@ The ARM11's kernel resides on a dedicated block 512 KB of SRAM [@operating_syste
 
 Now for the bitter news, NATIVE_FIRM also enforces unusual restrictions on user programs.
 
-![Overview of the privilege levels in the Nintendo 3DS running NATIVE_FIRM, after combining both operating systems.](os_levels.png)
+![Overview of the privilege levels in the Nintendo 3DS running NATIVE_FIRM, after combining both operating systems.](_diagrams/os_levels.png)
 
 To start with, the ARM11's scheduler is hard-coded with specific behaviour for each core (as opposed to treating every core as general-purpose units):
 

@@ -61,7 +61,7 @@ In practice, however, there wasn't any standardisation in place. So, the adoptio
 
 Let's now see what the GamePad is made of, a tricky task by itself since the internals of the GamePad aren't documented whatsoever. Luckily, a hacking group called 'Memahaxx' took matters into their own hands and completely reversed-engineered the device. If that wasn't enough, they also took the time to share their discoveries with the public.
 
-![The internal architecture of the GamePad.](gamepad/overview.png){.no-borders}
+![The internal architecture of the GamePad.](_diagrams/gamepad/overview.png){.no-borders}
 
 The device bundles three main chips [@io-controller_overview] or, better yet, three independent computers:
 
@@ -79,7 +79,7 @@ The rest of the GamePad's motherboard is filled with I/O endpoints and unusual s
 
 The Wii U's motherboard includes a tiny chip called **DRH** which relies on the Wi-Fi protocol to communicate with the GamePad and the USB protocol to communicate with the rest of the motherboard. This includes the GPU, which streams frame-buffers directly to the DRH so they get displayed on the GamePad.
 
-![Overview of the GamePad-Wii U connection.](gamepad/connections.png){.no-borders}
+![Overview of the GamePad-Wii U connection.](_diagrams/gamepad/connections.png){.no-borders}
 
 DRH runs a Real-time Operating System (RTOS) which implements the µITRON 4.0 specification. It's quite sophisticated, offering cooperative multitasking and inter-task communication. Finally, it's worth noting that the Wii U-GamePad communication over Wi-Fi is not mixed with the internet capabilities of the Wii U, that's handled by a separate chip (and antenna).
 
@@ -121,7 +121,7 @@ That being said, Nintendo partnered with IBM to deliver their new CPU. The resul
 
 Now, let's bring Espresso forward:
 
-![Overview of Espresso.](espresso/espresso.png)
+![Overview of Espresso.](_diagrams/espresso/espresso.png)
 
 ... and as with any other article in this series, I'll explain how it works.
 
@@ -147,7 +147,7 @@ In the end, IBM grabbed three Broadway CPUs, stepped up the clock to 1.24 GHz an
 
 #### A recallable bus {.tab}
 
-![Layout of the internal cores of Espresso](espresso/cores.png){.tab-float}
+![Layout of the internal cores of Espresso](_diagrams/espresso/cores.png){.tab-float}
 
 The external bus that connects the CPU cores with external components has an interesting history, dating back to 1993, with the launch of the **Motorola 88110**. After the formation of the [AIM alliance](gamecube#cpu), IBM and Motorola created a joint CPU based on their best inventions. IBM contributed with their POWER architecture and Motorola chipped in with the bus design of their 88110 CPU. In 1993, the PowerPC 601 was unveiled.
 
@@ -185,7 +185,7 @@ This section is simple and complicated at the same time. In summary, there are t
 
 The reason for such disparity is that you may remember MEM1 and MEM0 from the times of the Wii and GameCube. They've been carried forward with the Wii U, albeit with a slight increase of MEM1.
 
-![Memory layout of general-purpose memory (in 'Wii U' mode).](espresso/memory.png)
+![Memory layout of general-purpose memory (in 'Wii U' mode).](_diagrams/espresso/memory.png)
 
 In any case, from the developer's point of view, only MEM2 and MEM1 (the two bigger blocks) are accessible. The 2 GB of DDR3 may hold any kind of data (supplying both CPU and GPU), while the other two have more limited functions. MEM1 is used for graphics data (more details in the 'Graphics' section) and MEM0 is used by the operating system (more details in the 'Operating System' section).
 
@@ -281,7 +281,7 @@ It's worth emphasising that when Xenos arrived, the API model was still based on
 
 Most of the content related to graphics resides in the aforementioned **2 GB of DDR3 RAM** called **MEM2**, which is shared between the CPU and GPU. That means the GPU must place its materials there, but MEM2 is relatively slow and not prepared for the contention that concurrent CPU and GPU work leads to. Therefore, Nintendo implemented something [similar to the Xbox 360](xbox-360#organising-the-content), and that is the inclusion of a dedicated and closer **32 MB of EDRAM** (called **MEM1**) for fast operations (i.e. render targets and other high-demanded buffers). Consequently, not only large frames may be rendered, but also have extra space to perform post-processing (i.e. anti-aliasing) with acceptable performance.
 
-![Example of how data is organised across the memory available.](gpu/gpu_content.png)
+![Example of how data is organised across the memory available.](_diagrams/gpu/gpu_content.png)
 
 Conversely, the Wii U's EDRAM is larger than the Xbox 360's (meaning the need for [tiling](dreamcast#graphics) is reduced). However, it does not include [dedicated circuitry for post-processing](xbox-360#tab-2-5-pixel-operations).
 
@@ -293,7 +293,7 @@ The most important changes since Xenos is the implementation (or better said, st
 
 Being an AMD/ATI chip built for a Nintendo console, GX2 supports two shader APIs, **OpenGL's GLSL 3.3** and **OpenGL ESSL**. The SDK also comes with some extensions to provide functionality only available on GPU7, but it doesn't support OpenCL and certainly not Direct3D.
 
-![Overview of the graphics pipeline in GPU7.](gpu/gpu_pipeline.png)
+![Overview of the graphics pipeline in GPU7.](_diagrams/gpu/gpu_pipeline.png)
 
 Be as it may, GPU7 still inherits the designs of the Radeon R700 series, so GPU7's pipeline is somewhat aligned to Direct3D 10.1 and OpenGL 3.3 standards. Although, their respective shader languages aren't natively understood by GPU7 (they require proprietary compilers shipped with the official SDK).
 
@@ -303,7 +303,7 @@ Let's now go over the pipeline, stage by stage. Since the design is very similar
 
 #### Commands {.tabs .active}
 
-![Overview of the command stage.](gpu/gpu_pipeline_commands.png){.tab-float}
+![Overview of the command stage.](_diagrams/gpu/gpu_pipeline_commands.png){.tab-float}
 
 With most graphics cards, especially ATI/AMD ones, the starting point is always the **Command Processor** [@graphics-r700isa]. As we've seen many times before, this is the door between the GPU and the outside world (i.e. the CPU).
 
@@ -313,7 +313,7 @@ Furthermore, DMA may work asynchronously (out of pace with the rest of the circu
 
 #### Vertex {.tab}
 
-![Overview of the vertex stage. You'll soon find that this stage and the pixel stage are not _that_ different.](gpu/pipeline_vertex.png){.tab-float}
+![Overview of the vertex stage. You'll soon find that this stage and the pixel stage are not _that_ different.](_diagrams/gpu/pipeline_vertex.png){.tab-float}
 
 At first glance, this stage is pretty much in line with Xenos/Crayola except that some blocks have been expanded (increased cache) while others have contracted (reduced number of ALU units and the Memory Export path is shorter). None of this necessarily means a performance decrease, however, as let's not forget GPU7 is ~7 years ahead of Xenos.
 
@@ -325,7 +325,7 @@ I assume this new design is what enables manufacturers to devise different range
 
 #### Geometry {.tab}
 
-![Overview of the geometry stage.](gpu/pipeline_geometry.png){.tab-float}
+![Overview of the geometry stage.](_diagrams/gpu/pipeline_geometry.png){.tab-float}
 
 The geometry shader is a new stage of the graphics pipeline that appeared right after the two famous APIs (Direct3D and OpenGL) incorporated the unified shader into their specification. The purpose of this new stage is to allow developers to manipulate primitives (points, lines or triangles) as opposed to single vertices [@graphics-geometryshader]. This can be useful for [procedurally generating](playstation-2#infinite-worlds) new geometry out of existing one (i.e. devise shadows, fur and so forth). The GPU7, like the Radeon R700, inherits compliance with OpenGL 3.3 and therefore supports this new shader type.
 
@@ -335,7 +335,7 @@ Finally, the pipeline continues to the rasterisation stage.
 
 #### Rasteriser {.tab}
 
-![Overview of the rasteriser stage.](gpu/pipeline_raster.png){.tab-float}
+![Overview of the rasteriser stage.](_diagrams/gpu/pipeline_raster.png){.tab-float}
 
 The rasterisation stage tends to be much simpler than other stages. The main reason being the act of converting vertices into pixels is mostly systematic, and no extra programmability is needed (aside from a few parameters available to tweak). As such, this stage is identical to Crayola/Xenos.
 
@@ -345,7 +345,7 @@ The rasteriser can compose frames of up to 8192 x 8192 pixels using 128-bit pixe
 
 #### Fragment {.tab}
 
-![Overview of the Pixel/Fragment Shader stage.](gpu/pipeline_pixel.png){.tab-float}
+![Overview of the Pixel/Fragment Shader stage.](_diagrams/gpu/pipeline_pixel.png){.tab-float}
 
 The pixel shader stage follows the same methodology as the vertex shader except it's now pixels being shuffled around. After going through Xenos' pixel capabilities and GPU7's new vertex pipeline, I'm afraid there's not a lot left to explain here.
 
@@ -355,7 +355,7 @@ I guess it's worth pointing out that the shader model (OpenGL GLSL 3.3) adds an 
 
 #### Pixel Operations {.tab}
 
-![Overview of pixel operations available.](gpu/pipeline_post.png){.tab-float}
+![Overview of pixel operations available.](_diagrams/gpu/pipeline_post.png){.tab-float}
 
 Once the frame has been rendered, developers can apply more Z-testing (in case it wasn't activated at an earlier stage), colour blending and, finally, export the pixels to the frame-buffer for display. This is all performed by the **Render backends** (there's of two of them) which are found at the end of the Pixel shader stage.
 
@@ -407,7 +407,7 @@ Well, that's not all. Unlike the Wii, the audio pipeline of the Wii U must servi
 
 Lo and behold, **Latte also houses a custom DSP** that performs audio synthesis. It's operated through Nintendo's libraries, although developers can extend the audio pipeline through software (at the cost of CPU cycles) if it's not enough for them.
 
-![Overview of the audio pipeline. In this example, the game is loaded from the disc drive.](audio.png)
+![Overview of the audio pipeline. In this example, the game is loaded from the disc drive.](_diagrams/audio.png)
 
 The DSP helps with mixing and sequencing tasks, the rest (i.e. filtering, effects, etc) is done with software (part of Espresso's workload). Moreover, Nintendo's libraries take care of workload management, where audio tasks are first assigned to the DSP and, in the event of full capacity, these are sent to Espresso.
 
@@ -495,7 +495,7 @@ First things first, Espresso now runs an actual operating system. That's the mos
 
 Moving on, the Kernel runs in [supervisor mode](playstation-3#os-security-hierarchy) and communicates with Starbuck using the same [Inter-Process Communication](wii#starlets-os) (IPC) channel that the Wii relied on. This component can load multiple programs (processes) in memory, but it's very limited in the number of processes it can run simultaneously (especially if they require foreground capabilities), I'll talk more about it in a bit.
 
-![Overview of the privilege levels in the Wii U, after combining both operating systems.](os_levels.png)
+![Overview of the privilege levels in the Wii U, after combining both operating systems.](_diagrams/os_levels.png)
 
 Cafe OS loads system and user applications using a proprietary binary structure called 'RPL', which is used for both executables and libraries. Moreover, the main executable is referred to as 'RPX'. One of Cafe OS' utilities, `Loader`, takes care of loading them up into memory (with the cooperation of IOSU) and executing them. `Loader` also performs **dynamic linking** to connect references of Cafe OS in the program with the physical Cafe OS installed in the console. Finally, applications are installed in the form of 'channels' which later show up in the 'System Menu' (the interactive shell).
 

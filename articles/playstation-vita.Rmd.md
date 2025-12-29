@@ -120,9 +120,9 @@ So far I've talked about the Cortex-A8, that's the first Cortex CPU. But the PSV
 
 Moving on, the full name of the PSVita's CPU is **ARM Cortex-A9 MPCore**. Overall, this means the CPU is a cluster made of **multiple Cortex-A9 cores**, **four** in this case. It runs at a clock speed of **up to 500 MHz** [@cpu-psdev_cpu], an underwhelming number considering contemporary adopters of the quad-core A9, such as the Samsung Galaxy S III, reached speeds of 1.4 GHz [@cpu-galaxy]. It's possible that battery life was the main priority here. Nevertheless, clock speed is not the only decisive measurement, the inner workings of the CPU are as important.
 
-![Overview of the PSVita's Cortex-A9 MPCore CPU. 'Falcon' is the codename of the Cortex-A9 core.](cpu/mpcore_overview.png){.tabs-nested .active title="Cortex-A9"}
+![Overview of the PSVita's Cortex-A9 MPCore CPU. 'Falcon' is the codename of the Cortex-A9 core.](_diagrams/cpu/mpcore_overview.png){.tabs-nested .active title="Cortex-A9"}
 
-![Here's the previous quad-core [ARM11 MPCore](nintendo-3ds#cpu), found on the 'New' Nintendo 3DS, for comparison purposes.](images/consoles/nintendo3ds/cpu/mpcore_new_overview.png){.tabs-nested-last title="ARM11"}
+![Here's the previous quad-core [ARM11 MPCore](nintendo-3ds#cpu), found on the 'New' Nintendo 3DS, for comparison purposes.](images/consoles/nintendo3ds/_diagrams/cpu/mpcore_new_overview.png){.tabs-nested-last title="ARM11"}
 
 Speaking of which, the new cores share many characteristics with their predecessor, the Cortex-A8, which includes [@cpu-cortexa8_reference]:
  
@@ -204,7 +204,7 @@ Having said that, this accelerator is called **Venezia**. This is a complete and
 
 #### Architecture of Venezia {.tabs .active}
 
-![Overview of Venezia.](cpu/venezia.png){.tab-float}
+![Overview of Venezia.](_diagrams/cpu/venezia.png){.tab-float}
 
 Similarly to the MPCore, Venezia is a cluster, this time made of **eight 'Media Processing Engine' (MPE) cores** operating at **266.7 MHz**. Notice that its naming confusingly overlaps with ARM's vector accelerators, but they are different silicon. That being said, each of Toshiba's MPEs houses [@cpu-venezia]:
 
