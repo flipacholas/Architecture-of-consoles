@@ -15,7 +15,7 @@ top_tabs:
     file: international
     caption: "İlk ve tek GameCube.<br>14/09/2001 tarihinde Japonya'da, 18/11/2001 tarihinde Amerika'da ve 03/05/2002 tarihinde Avrupa'da piyasaya sürüldü."
   Motherboard:
-    caption: "'DOL-CPU-10' modelimden alınmıştır, daha sonrakiler Seri Port 2 ve Dijital Çıkışı çıkarmıştır. Kodlayıcı yongası, genişletme, kontrolör ve PSU yuvaları diğer tarafta bulunur."
+    caption: "'DOL-CPU(P)-01' modelimden alınmıştır, daha sonrakiler Seri Port 2 ve Dijital Çıkışı çıkarmıştır. Kodlayıcı yongası, genişletme, kontrolör ve PSU yuvaları diğer tarafta bulunur."
     bib_source: copetti
   Diagram:
     caption: "Her veri yolu genişliği ile etiketlenmiştir."
@@ -34,23 +34,109 @@ Bu mimarinin tasarımının, bu neslin en kompakt donanımlarından birini ortay
 
 ## İşlemci (CPU)
 
-SGI'ın grafik pazarındaki hakimiyetini kaybetmesinin ardından Nintendo'nun ortaklık kuracağı yeni oyunculara ihtiyacı vardı.
+[SGI'ın grafik pazarındaki hakimiyetini](nintendo-64#cpu) kaybetmesinin ardından Nintendo'nun ortaklık kuracağı yeni oyunculara ihtiyacı vardı.
 
-![Gekko'nun mimarisi.](cpu/cpu_features.png) {.open-float.no-borders}
+Umut verici bir aday **IBM** gibi görünüyor: Ana bilgisayarlar üzerindeki ünlü çalışmalarının yanı sıra, yakın zamanda Motorola ve Apple ile Intel'in PC pazarındaki hakimiyetiyle rekabet edebilecek kadar güçlü bir CPU yaratmak için ittifak kurdular. Ortaya çıkan ürün, **PowerPC** adını taşıyan ve Apple'ın Macintosh'larının ve bazı gömülü sistemlerinin *%99'una güç vermek* üzere seçilen bir dizi işlemcidir.
 
-Umut verici bir aday IBM gibi görünüyor: Ana bilgisayarlar üzerindeki ünlü çalışmalarının yanı sıra, yakın zamanda Motorola ve Apple ile Intel'in PC pazarındaki hakimiyetiyle rekabet edebilecek kadar güçlü bir CPU yaratmak için ittifak kurdular. Ortaya çıkan ürün, **PowerPC** adını taşıyan ve Apple'ın Macintosh'larının ve bazı gömülü sistemlerinin *%99'una güç vermek* üzere seçilen bir dizi işlemcidir.
+![PowerPC Gekko çipi. Bu, GameCube'un barındırdığı şeydir.](cpu.webp)
 
-Hızlı bir şekilde ilerlediğimizde, Nintendo'nun güçlü ama ucuz bir şeye ihtiyacı vardı, bu yüzden IBM bu kırmızı çizgilere uymak için eski tasarımlarından biri olan *PowerPC 750CXe*'yi (*Early-Summer 2001* olarak bilinen son iMac G3'te bulunan) aldı ve oyun geliştiricilerini memnun edecek yeteneklerle güçlendirdi. Sonuç **PowerPC Gekko** oldu ve **486 MHz** hızında çalışıyor.
+GameCube için bunun ne anlama geldiğini anlamak için, PowerPC CPU ile gelen yeniliklere bir göz atalım.
 
-{.close-float}
+### PowerPC'nin Kökenleri
 
-### Özellikler
+IBM, [RISC CPU tasarımı](playstation#tab-1-1-a-bit-of-history)nı ana akım pazara iten üç erken güçten biriydi. 80’ler sırasında, Berkeley 'RISC CPU' geliştirirken ve Stanford akademisyenleri [MIPS’i](playstation#tab-1-2-mips-and-sony) henüz kurarken, IBM zaten **801** ve **ROMP** CPU’larını üretmişti. Bu, daha sonra 'RISC modeli' olarak bilinen bir dizi yönergeyi uygulayan, çığır açıcı ancak ticari olarak başarısız silikonlardı [@cpu-diefendorff_601].
 
-Gekko'yu bu kadar özel yapan şeyin ne olduğunu bulalım ve bunu yapmak için önce 750CXe'nin sunduklarına bakmamız gerekiyor [@cpu-750cxe]:
+#### Ticari kilometre taşı {.tabs.active}
+
+90'lara girerken, IBM 'IBM RS/6000' adını verdiği yeni bir UNIX iş istasyonu serisiyle yeniden denedi ve bu seride, yeni bir yerleşik RISC CPU: **POWER1**. [Instruction-level parallelism](xbox-360#revisiting-old-paradigms) odaklı olarak, bu sonuncusu, cazip gelişmeler sundu, örneğin [@cpu-power1]:
+
+- **POWER** adı verilen tam 32-bitlik bir komut seti.
+- Bir **64-bit kayan nokta birimi**.
+- Bir **Harvard önbellek** mimarisi, bu, veri ve komut alanını ayırarak bant genişliğini artırır.
+- Talimatları üç ayrı birime (branch, fixed-point ve floating-point) dağıtarak aynı anda iki talimatı yürütebilme yeteneği. Bu nedenle, POWER1 **two-way superscalar** olarak tanınmaktadır.
+- **Static branch prediction**, [control hazards](playstation#delay-galore)'ı yürütme hızını hızlandırma fırsatına dönüştüren bir tekniktir.
+- <strong x-id=“1”>Out-of-order execution</strong> aracılığıyla kayan nokta işlemleri, [register renaming](xbox-360#revisiting-old-paradigms) [@cpu-rs6000]. Sonuç olarak, bu, CPU'nun birim zamanda yürüttüğü instruction sayısını büyük ölçüde artırır (ve [data hazards'ı](playstation#delay-galore) ortadan kaldırır).
+  - Temel tasarım, IBM'in ana bilgisayar döneminden kaynaklanmaktadır. Bu tasarım, <strong x-id=“1”>Tomasulo algoritması</strong> olarak yayınlanmış ve ardından IBM System/360 (1966) üzerinde uygulanmıştır. POWER1 ile IBM, bunun bir kısmını iş istasyonu ekipmanlarına taşımayı başardı.
+
+Buna rağmen, POWER1 CPU birden fazla çipten oluşan büyük ve pahalı bir paketti. Bu nedenle, IBM'in bir sonraki girişimi için tasarımını küçülterek tek bir çipe sığdırdı. Hâlâ POWER uyumlu olmasına rağmen, bu, 32 bit FPU'ya sahip olmanın maliyetinden, bir von Neumann önbellek mimarisinden ve sıralı yürütmeye geri dönmenin maliyetine yol açtı. Yeni çip, **RISC Tek Çipli** (veya 'RSC') olarak adlandırıldı ve RS/6000 iş istasyonlarının düşük hat textle gönderildi.
+
+#### Ortalama kullanıcıya ulaşmak {.tab}
+
+![IBM'nin POWER geliştirme kartı (1992), Apple tarafından kullanıldı.](prototype.webp) {.tab-float}
+
+Bu gelişmelerin ortasında, IBM ayrıca Intel-Microsoft tekelini masaüstü pazarında alt edebilmek için Apple ve Motorola ile güçlerini birleştirmeyi kabul ederek **AIM ittifakını** oluşturdu. Böylece, düşük seviyede rekabetçi bir CPU için yeni bir proje tasarlandı. Bu, üç şirketin fikri mülkiyeti içerir ve şunları kapsar:
+
+- IBM'in RSC işlemci tasarımı.
+- Motorola'nın veri yolu mimarisi (şirketin kendi RISC işlemcisi Motorola 88110'da bulunur).
+- Apple ve Motorola'nın son kullanıcının ihtiyaçları hakkındaki bilgisi.
+
+Motorola 88110 ekibinin bir üyesi olan Keith Diefendorff, baş mimar olarak işe alındı ve 1993 yılında proje şu sonuçlarla tamamlandı:
+
+- <strong x-id=“1”>PowerPC instruction set</strong>: POWER'ın bir subset'i olup, çarpma işlemleri için ek instructionlar, symmetric multiprocessor desteği ve isteğe bağlı 64 bit modu içerir.
+  - Bundan sonra, IBM'in POWER CPU serisi PowerPC ISA'yı kullanmaya başladı. Bu durum ilk olarak 1998 yılında PowerPC'nin 64 bit spesifikasyonunu uygulayan yüksek performanslı bir CPU olan POWER3'ün piyasaya sürülmesiyle ortaya çıktı.
+  - Bu makale serisinde, [Xbox 360](xbox-360) ve [Wii U](wiiu) piyasaya çıkana kadar symmetric multiprocessor (simetrik çoklu işlemci) kurulumunu görmeyeceğiz.
+- <strong x-id=“1”>PowerPC CPU</strong>, PowerPC ISA'yı uygulayan yeni bir masaüstü CPU serisi olup, <strong x-id=“1”>PowerPC 601</strong> ile başlar. Bu, RSC mikro mimarisinin uygun maliyetli bir versiyonuydu.
+  - Motorola da bu yeni seriye odaklanmak için 88000 CPU'nun geliştirilmesini tamamen bıraktı.
+
+#### PowerPC'yi Yaygınlaştırmak {.tab}
+
+Yeni serinin hem teknik olarak rekabetçi hem de ticari olarak uygulanabilir olmasını sağlamak için, PowerPC 601, komut paralelliği konusunda bazı gelişmeleri kitlelere sunmaya çalıştı. Bunlardan bazıları şunlardır [@cpu-diefendorff_601]:
+
+- POWER geliştiricilerinin PowerPC'ye geçişine yardımcı olmak için <strong x-id=“1”>hem POWER hem de PowerPC ISA'ların</strong> kullanılması.
+- Üç ayrı execution unit (FPU, branch ve ALU) kullanan <strong x-id=“1”>three-way superscalar execution</strong> [@cpu-601_report]. Önceki tasarımlara göre bir iyileştirme.
+- Motorola'nın modeline dayanan, <strong x-id=“1”>Bus Interface Unit</strong> adlı yeni bir veri yolu tasarımı, aşağıdakileri sağlar:
+  - Bir <strong x-id=“1”>64 bit veri yolu</strong> ve bir <strong x-id=“1”>32 bit adres yolu</strong>, ilki süperskaler özelliklerinden yararlanmak için çok önemlidir.
+  - <strong x-id=“1”>Burst işlemleri</strong>, tek bir komutla 32 baytlık bellek (L1 önbellek boyutu) aktarımı sağlar [@cpu-601].
+- <strong x-id=“1”>Memory Management Unit</strong> (MMU), aynı pakette [sanal bellek](nintendo-64#memory-management) sunar.
+
+Son kullanıcılar için, bu yeni CPU artık IBM'in düşük kaliteli RS/6000 serisinde ve Apple'ın ‘Power Macintosh’ adlı yeni Macintosh bilgisayar serisinde yer alacaktı.
+
+### Çağdaş eser {.tabs-close}
+
+PowerPC 601, PowerPC serisinin ivmesini başlatmak için tasarlanmıştı, ancak sonraki yıllarda mikro mimaride büyük değişiklikler oldu.
+
+#### Bireysel gelişmeler {.tabs.active}
+
+601 piyasaya sürüldükten sonra, Motorola ve IBM bir sonraki nesil üzerinde bağımsız olarak çalışmaya karar verdiler. Bu, iki ayrı ürün grubu olarak somutlaşan saf bir PowerPC uygulaması (POWER ISA izlerini ortadan kaldırarak) olabilir [@cpu-paradox]:
+
+- Motorola'nın öncülüğünü yaptığı düşük kaliteli <strong x-id=“1”>PowerPC 603</strong>, taşınabilir pazar için tasarlanmıştır. Böylece, daha küçük bir L1 önbellek (Harvard mimarisine dayalı), iki ilave execution unit sunarken, çoklu işlemci desteği sunmadı. Tasarım kararları, toplam tüketim oranının 1,8-2,0 Watt [@cpu-603] olmasına neden oldu.
+- IBM tarafından geliştirilen yüksek teknoloji ürünü <strong x-id=“1”>PowerPC 604</strong>. Yüksek fiyat ve yüksek güç tüketimi (14,5-18,5 Watt) karşılığında, 4-issue execution, out-of-order execution'ın geri dönüşü, dynamic branch prediction ve çoklu işlemci desteği [@cpu-604] gibi gelişmiş paralellik özellikleri ([MIPS tarzı](playstation-2#tab-1-1-outperforming-success)) sunuyordu.
+
+603, verimli gücüyle öne çıkması gerekirken, mevcut iş uygulamaları onun yeniliklerini gölgede bıraktı. Örneğin, Apple'ın yazılım mimarisi hala [68000 komutlarını](mega-drive-genesis#the-leader) emüle etmeye dayanıyordu ve bu da 603'ün küçük cache boyutunu darboğaza sokuyordu.
+
+Ek olarak, IBM ayrıca masaüstü CPU yerine mikrodenetleyici çözümü olarak tasarlanan <strong x-id=“1”>PowerPC 4xx</strong> serisini de geliştirmiştir [@cpu-403]. Küçük cache'leri bir araya getirir ve MMU ve FPU gibi karmaşık modülleri atlarlar. Ancak, bunların varyantları, üreticinin ihtiyaçlarına göre uyarlanabilmesi için [özelleştirilebilir bir paket](playstation#tab-1-3-lsi-and-the-commission) olarak sunuldu. Bununla birlikte, 4xx bu makale için özel bir ilgi konusu olmasa da, ünlü bir rakip [onu ikincil görevler için benimsemiştir](playstation-2#the-special-upgrade).
+
+#### Yeniden güç birliği {.tab}
+
+Sonuç olarak, ikinci nesil masaüstü PowerPC yongaları ya çok pahalı ya da Intel'e karşı rekabet edemeyecek kadar zayıf olarak değerlendirildi. Böylece Apple, IBM ve Motorola'yı, her iki dünyanın en iyi özelliklerini bir araya getiren yeni birleşik nesilde yeniden işbirliği yapmaya ikna etti. Enerji verimli 603, yeni tasarımın temeli olarak seçildi. Bu temeli geliştirmek için bazı kararlar alındı:
+
+- <strong x-id=“1”>Darboğazları gidermek</strong> için daha büyük önbellek ve daha yüksek bellek bant genişliği sağlamak.
+- **604'ün dynamic branch prediction ve out-of-order execution** (şimdilik bellek işlemleriyle sınırlı) gibi tasarım fikirlerini içermektedir.
+- **Yeni geliştirmelerin uygulanması**, örneğin daha fazla paralellik için ekstra ALU.
+
+Bu, Apple tarafından <strong x-id=“1”>PowerPC G3</strong> olarak popüler hale getirilen <strong x-id=“1”>750 serisi</strong> oldu. O zamandan itibaren IBM ve Motorola, 750 modelinin varyantları ve iyileştirmeleri üzerinde çalışmaya devam etti. Bunlar, daha yüksek saat hızları, daha büyük cache ve daha küçük üretim sürecine odaklanıyordu.
+
+İlginçtir ki, geliştirme sürecindeki çalkantıları atlatmayı başaranlar her zaman en enerji verimli CPU'lardır, diğerleri ([MIPS](playstation-portable#mips-after-the-turn-of-the-century), [Intel](xbox#p6-and-the-end-of-pentium-numbers) ve [ARM](nintendo-ds# arms-new-territories)) daha sonra bunu doğrulayacaktır.
+
+#### Grup dağılıyor {.tab}
+
+Zaman geçtikçe, üç şirket giderek daha da uzaklaştı. PowerPC G3'ün piyasaya sürülmesinden iki yıl sonra, Motorola kendi başına <strong x-id=“1”>7400</strong> adlı yeni bir seri çıkardı (Apple bu seriye <strong x-id=“1”>G4</strong> adını verdi). Bu, 64 bit FPU, ‘MPX’ adı verilen daha hızlı bir veri yolu mimarisi ve ‘Altivec’ adı verilen bir dizi SIMD komutunu içeriyordu. Masaüstü pazarında popüler olmasına rağmen (Apple sayesinde), IBM yalnızca kendi özel POWER CPU serisine odaklandı.
+
+Yıllar sonra, 2003 yılında Motorola nihayet CPU işinden vazgeçti ve yarı iletken bölümünü elinden çıkardı, bu da ‘Freescale’ şirketinin kurulmasına yol açtı. Bu şirket de PowerPC yongaları üzerinde çalışmakla ilgilenmiyordu ve böylece <strong x-id=“1”>AIM ittifakı sona erdi</strong>. Her ne olursa olsun, Apple'ın hala yeni CPU'lara ihtiyacı vardı, bu yüzden IBM, POWER4 tasarımını alıp küçülterek bu seriyi devam ettirdi ve PowerPC 970 CPU'yu (aynı zamanda ‘G5’ olarak da bilinir) ortaya çıkardı.
+
+Ve tarih bölümü burada sona eriyor. Bu nedenle, GameCube'ün benzersiz CPU'suna (750/G3 ile 7400/G4 arasında yer alır) bir göz atmanın zamanı geldi. Şimdi, bundan sonra GameCube donanımına odaklanacağım, ancak bu sapma dikkatinizi çektiyse, [PlayStation 3](playstation-3), [Xbox 360](xbox-360) ve [Wii U](wiiu) çalışmalarını da okumak isteyebilirsiniz.
+
+### PowerPC Gekko {.tabs-close}
+
+2001 yılına geri dönersek, Nintendo güçlü ama ucuz bir şeye ihtiyaç duyuyordu. Hızlı bir şekilde ilerlediğimizde, Nintendo'nun güçlü ama ucuz bir şeye ihtiyacı vardı, bu yüzden IBM bu kırmızı çizgilere uymak için eski tasarımlarından biri olan *PowerPC 750CXe*'yi (*Early-Summer 2001* olarak bilinen son iMac G3'te bulunan) aldı ve oyun geliştiricilerini memnun edecek yeteneklerle güçlendirdi. Sonuç **PowerPC Gekko** oldu ve **486 MHz** hızında çalışıyor.
+
+![Gekko'nun mimarisi.](_diagrams/gekko.png) {.no-borders}
+
+Gekko'yu bu kadar özel yapan şeyin ne olduğunu bulalım ve bunu yapmak için önce 750CXe'nin sunduklarına bakmamız gerekiyor. PowerPC'nin tarihçesini inceledikten sonra, bu bilgilerin birçoğunun önceki tasarımlarla örtüştüğünü fark edebilirsiniz (<em x-id=“3”>bu çalışmaların amacı da budur!</em>). Bununla birlikte, 750CXe [@cpu-750cxe] şunları sunmaktadır:
 
 - **PowerPC ISA**: Fazla ayrıntıya girmeden, *başka* bir 32 bit RISC komut setidir. 750CXe v1.10 spesifikasyonunu uygular.
 - Harici **64-bit veri yolu**: ISA 32 bitlik bir veri yoluna sığabilse de, daha geniş veri parçalarını (bir sonraki bölümde açıklanmıştır) performans cezalarına çarpmadan taşımamız gerekir.
-- <strong x-id=“1”>Dual-issue superscalar</strong>: Gerekli birimler mevcutsa, CPU boru hattının aynı aşamasında en fazla iki talimatı işleyebilir. Sıranın bir dallanma talimatı içermesi durumunda, olası eşzamanlı talimatların sayısı **üç**'e yükseltilir.
+- <strong x-id=“1”>Dual-issue superscalar</strong>: Gerekli birimler mevcutsa, CPU boru hattının aynı aşamasında en fazla iki talimatı işleyebilir. Sıranın bir branch talimatı içermesi durumunda, olası eşzamanlı talimatların sayısı üçe yükseltilir.
 - **Sıra dışı yürütme**: CPU, tüm birimlerinin çalışmasını sağlamak için talimat sırasını yeniden düzenleyebilir, böylece verimliliği ve performansı artırır.
 - **İki Tamsayı Birimi**: Superscalar ve out-of-order modeli ile birlikte, birim zamanda yapılan tamsayı işlemlerinin sayısını artırır.
 - 32-bit ve 64-bit kayıtlara sahip **entegre FPU**: Kayan ve çift sayılarla yapılan işlemleri hızlandırır.
@@ -74,7 +160,7 @@ Ve elbette, bellek bant genişliğini hızlandırmak için bir miktar önbellek 
 Önceki özelliklerin listesi (önceki nesillere göre) çok takdir edilse de, bu CPU hala oyun performansı açısından diğerlerinden geride kalır (unutmayalım ki bu hala bir genel amaçlı CPU'dur, elektronik tablolarda iyidir ancak *ortalama* fizikte). Bunu telafi etmek için IBM, Gekko'yu [@cpu-ibm] oluşturacak aşağıdaki ince ayarları ekledi:
 
 - **50 yeni SIMD komutu** ile geliştirilmiş komut seti: Bunlar iki 32 bit kayan noktalı sayıyı veya bir 64 bit kayan noktalı sayıyı yalnızca bir döngü kullanarak işler. Sonuç olarak, yeni SIMD talimatları vektör hesaplamalarını hızlandıracak ve özellikle geometri dönüşümleri sırasında faydalı olacaktır.
-  - Motorola'nın üst düzey G4 Mac'lerde bulunan SIMD uzantısı (AltiVec) ile karıştırılmamalıdır.
+  - PowerPC 7400/G4 ile birlikte sunulan Motorola'nın SIMD uzantısı (AltiVec) ile karıştırılmamalıdır. Birbirleriyle uyumlu değiller. İlginç bir şekilde, IBM sonunda Altivec'i POWER4 CPU'suna ve dolayısıyla 970/G5 serisine, [Cell](playstation-3#cpu) ve [Xenon](xbox-360#cpu) serisiyle de dahil etti.
 - **32 floating-point kaydı**: Bunlar yeni SIMD talimatlarıyla birlikte gelir.
 - **Write Gather pipe**: Kullanılabilen özel bir bellek yazma mekanizması. Etkinleştirilirse, *tek vuruşlu* aktarımlar gerçekleştirmek yerine, tüm bellek yazma isteklerini %25 dolana kadar 128 baytlık bir arabellekte tutar, ardından istenen yazmaları 32 baytlık veri bloklarını bir kerede taşıyabilen *burst transaction* adlı bir teknik kullanarak gerçekleştirir.
   - Tahmin edebileceğiniz gibi bu, mevcut veri yollarının tam olarak kullanılmasını sağlayarak çok fazla bant genişliği tasarrufu sağlar.
@@ -100,7 +186,7 @@ Yeni nesil mimarinin tasarımı sırasında, Nintendo'nun mimarları [önceki ta
 
 Bu nedenle GameCube mühendisleri, **ayrılmış bellek alanı** sağlayan ve **düşük gecikmeli yongalar** kullanan yeni bir bellek sistemi geliştirdiler. Yeni tasarımla birlikte GPU ve CPU artık aynı RAM için rekabet etmeyecek (doluluk oranı sorunlarına neden olacak) çünkü GPU artık kendi dahili ve *şaşırtıcı derecede* hızlı belleğine sahip olacak. Diğer taraftan, GPU hala G/Ç'ye erişim konusunda hakemlik yapmaktan sorumlu olacaktır.
 
-![Bu sistemin bellek düzeni.](cpu/memory.png)
+![Bu sistemin bellek düzeni.](_diagrams/memory.png)
 
 Sonuç olarak iki ana otobüsle organize edilen bir sistem ortaya çıktı:
 
@@ -113,7 +199,7 @@ Ayrıca, bu tasarım daha fazla belleğin bulunabileceği ek (ancak alışılmad
 
 Genel olarak bu, ARAM'ın önemli miktarda RAM sağlarken, ses tamponu olarak hareket etmek veya belirli aksesuarlar tarafından kullanılmak gibi daha az kritik görevlerle sınırlı olacağı anlamına gelir (G/Ç bölümünde açıklanmıştır).
 
-### Belleğin düzenlenmesi ve ARAM'ın sıralanması
+### ARAM'dan en iyi şekilde yararlanmak
 
 Şimdiye kadar, kağıt üzerinde bellek özelliklerinin selefinden şüphesiz daha üstün olduğunu gördük, ancak hala iyileştirme için yer var. Örneğin Nintendo, ARAM'ı CPU'nun bellek haritasına dahil etmek için daha fazla donanım takabilirdi.
 
@@ -149,13 +235,13 @@ Geliştirme süreci sırasında ArtX, ATI tarafından satın alındı ve bu şir
 
 Flipper birden fazla hizmeti işleyen karmaşık bir bloktur [@graphics-cheng], bu yüzden şimdilik grafik bileşenine odaklanalım (geometrimizi hayata geçirmekten sorumlu olduğu için). Bu alanı **GPU** veya **Grafik Motoru** olarak adlandıracağız ve eğer [N64 makalesini](nintendo-64#graphics) okuduysanız, sadece bileşenin kutudan çıktıktan sonra çalışır hale geldiğini bilmenizi isteriz, bu yüzden programcıların çalışmasını sağlamak için kod enjekte etme endişesi olmayacak. Bununla birlikte, özelleştirilebilir bazı ilginç parçalar olacaktır.
 
-![Flipper'ın GPU'sunun boru hattı tasarımı.](flipper_pipeline.png)
+![Flipper'ın GPU'sunun boru hattı tasarımı.](_diagrams/gpu/pipeline.png)
 
 Her zaman olduğu gibi, ekrana bir kare çizmek için verilerimiz GPU'nun boru hattından pompalanacaktır. Veri, dört aşamada gruplandırabileceğimiz birçok farklı bileşenden geçer:
 
 #### Veritabanı {.tabs.active}
 
-![Veritabanı aşama diyagramları.](flipper_pipeline/database.jpg) {.tab-float}
+![Veritabanı aşama diyagramları.](_diagrams/gpu/database.png) {.tab-float}
 
 CPU ve GPU, ana RAM'de sabit uzunlukta bir **FIFO tamponu** kullanarak birbirleriyle iletişim kurar; bu, CPU'nun GPU'nun okuyacağı (ve sonunda görüntüleyeceği) çizim komutlarını yazacağı ayrılmış bir bölümdür, bu işlevsellik CPU ve GPU tarafından yerel olarak desteklenir.
 
@@ -167,7 +253,7 @@ GPU, FIFO'dan komutları almakla görevli bir **komut işlemcisi** içerir.
 
 #### Geometri {.tab}
 
-![Dolaylı mod kullanılarak Vertex aşama diyagramı.](flipper_pipeline/vertex.jpg) {.tab-float}
+![Dolaylı mod kullanılarak Vertex aşama diyagramı.](_diagrams/gpu/vertex.png) {.tab-float}
 
 Burada ilkeller istenen manzaraya göre şekle dönüştürülür ve pikselleştirme (rasterisation) için hazırlanır. Motor bunu gerçekleştirmek için özel bir **Vertex ünitesi** veya 'VU' kullanır.
 
@@ -180,7 +266,7 @@ FIFO aracılığıyla verilen ilkelleri işlemek için iki **vertex modu** mevcu
 
 #### Doku {.tab}
 
-![Varsayılan kurulum kullanılarak doku aşaması diyagramı.](flipper_pipeline/texture.jpg) {.tab-float}
+![Varsayılan kurulum kullanılarak doku aşaması diyagramı.](_diagrams/gpu/texture.png) {.tab-float}
 
 Şimdi sıra modellerimize doku ve efektler uygulamaya geldi ve bunun için GPU, piksellerimizi işleyecek birden fazla birim içeriyor. Şimdi, bu çok sofistike (ancak oldukça karmaşık) bir prosedürdür, bu nedenle takip etmekte zorlanırsanız, bunu pikselleri işleyen büyük bir montaj hattı olarak düşünün. Bununla birlikte, üç grup ünite mevcuttur:
 
@@ -188,7 +274,7 @@ FIFO aracılığıyla verilen ilkelleri işlemek için iki **vertex modu** mevcu
 - **Her Piksel biriminin sonunda bir Doku eşleme birimi** (toplamda **dört tane**): Bunlar birlikte her döngüde ilkellerimiz (artık yalnızca pikseller) için sekiz adede kadar doku işler.
   - Ayrıca, kendini aynı önceliğin üzerine birden fazla doku katmanını birleştirmek için döndürebilir, bu özellik **Çoklu-Doku** olarak adlandırılır ve **detaylı dokular**, **environment mapping** (yansımalar) ve **düğüm haritalama** [@graphics-staff] gibi durumlarda kullanılabilir.
   - Son olarak, birim ayrıca bir **erken [z-tamponu](nintendo-64#modern-görünür-yüzey-belirleme)**, **mipmapping** (bunun yerine küçültülmüş bir doku işleme) sağlar, detay seviyesine göre) ve **anizotropik filtreleme** (eğimli dokularla daha fazla detay sağlayan [önceki filtrelere](nintendo-64#tab-1-2-reality-display-processor) göre memnuniyet verici bir gelişme).
-- **Texture Environment unit** veya 'TEV': Çok güçlü ve programlanabilir 16 aşamalı renk karıştırıcı. Temel olarak çoklu [texelleri](playstation#tab-3-5-textures) (aydınlatma, dokular ve sabitler) birleştirerek çokgenlerimiz üzerinde uygulanacak muazzam miktarda doku efekti elde eder.
+- **Texture Environment unit** veya 'TEV': Çok güçlü ve programlanabilir 16 aşamalı renk karıştırıcı. Temel olarak çoklu [texelleri](playstation#tab-4-5-textures) (aydınlatma, dokular ve sabitler) birleştirerek çokgenlerimiz üzerinde uygulanacak muazzam miktarda doku efekti elde eder.
   - Ünite dört texel alarak çalışır ve bunlar daha sonra talep edilen işleme göre işlenir. Daha sonra, elde edilen texelleri yeni girdi olarak besleyebilir, böylece bir sonraki aşamada/döngüde ünite önceki sonuç üzerinde farklı bir işlem gerçekleştirebilir. Bu 'döngü' 15 iterasyona kadar sürebilir.
   - Her aşamada seçilebilecek 2^4 işlem vardır [@graphics-dolphin_uber] ve sonucun bir sonraki aşamada yeniden işlenebileceği düşünüldüğünde, ~5.64 × 10^511 olası permütasyon vardır!
   - Programcılar TEV'i çalışma zamanında kurarlar (yani her an değişebilir) ve bu çok önemlidir çünkü birçok orijinal malzeme ve efekte kapı açar.
@@ -197,7 +283,7 @@ Tüm bunlar, önbellek ve Scratchpad belleğine (hızlı RAM) bölünebilen 1 MB
 
 #### Render {.tab}
 
-![Render aşaması diyagramı.](flipper_pipeline/render.png) {.tab-float}
+![Render aşaması diyagramı.](_diagrams/gpu/render.png) {.tab-float}
 
 Render işleminin son aşaması, sahnemize isteğe bağlı ancak yararlı bazı dokunuşlar uygulamayı içerir:
 
@@ -256,7 +342,7 @@ Konsolda bir değil, iki video çıkış konektörü bulunuyordu:
 
 ![A/V Bağlantıları arkada.](av_photo.jpg) {.open-float}
 
-- Bir tanesi **Analog A/V** olarak adlandırılmış ve aslında eski güzel [Multi Out](super-nintendo.md#a-convenient-video-out). Bu en popüler olanıdır.
+- Bunlardan biri <strong x-id=“1”>Analog A/V</strong> olarak adlandırılmış ve aslında eski [Multi Out](super-nintendo#a-convenient-video-out) özelliğidir. Bu en popüler olanıdır.
   - Bu konsolun PAL sürümü S-Video taşımaz ve NTSC sürümü RGB sağlamaz (bummer!).
 - **Dijital A/V** adı verilen bir diğeri ise ses ve görüntüyü dijital olarak gönderir (günümüzde HDMI'a benzer şekilde ancak tamamen farklı bir protokol kullanarak!).
   - Nintendo bu sokete bağlanan bir komponent kablo seti çıkardı. Aynı fiş, dijital sinyali YPbPr'ye (optimum kalite) dönüştürmek için bir video DAC ve kodlayıcı içeriyordu.
@@ -321,7 +407,7 @@ Görünüşe göre bu nesil genişletilebilirlik ve aksesuarlar üzerinde çok �
 
 ### Dahili G/Ç
 
-![GameCube'ün mimarisinin ana şeması. Burada, I/O'nun çoğunu kontrol eden 'Kuzey Köprüsü'nü buluyoruz.](diagram.png)
+![GameCube'ün mimarisinin ana şeması. Burada, I/O'nun çoğunu kontrol eden 'Kuzey Köprüsü'nü buluyoruz.](_diagrams/main.png)
 
 Flipper, CPU'yu diğer bileşenlerle arayüzlemekten sorumludur, bu nedenle ses ve grafik devrelerini içermenin yanı sıra, [@cpu-tree] 'den oluşan **Northbridge** adlı bir donanım koleksiyonu da sağlar:
 
