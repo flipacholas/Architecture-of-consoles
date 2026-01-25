@@ -272,7 +272,7 @@ FIFO aracılığıyla verilen ilkelleri işlemek için iki **vertex modu** mevcu
 
 - **Dört paralel Piksel birimi** ('piksel boru hatları' olarak da adlandırılır): İlkellerimizi rasterleştirir (piksellere dönüştürür). Dört ünitenin mevcut olması, her döngüde 2x2 piksele kadar dağıtım yapılmasını sağlar.
 - **Her Piksel biriminin sonunda bir Doku eşleme birimi** (toplamda **dört tane**): Bunlar birlikte her döngüde ilkellerimiz (artık yalnızca pikseller) için sekiz adede kadar doku işler.
-  - Ayrıca, kendini aynı önceliğin üzerine birden fazla doku katmanını birleştirmek için döndürebilir, bu özellik **Çoklu-Doku** olarak adlandırılır ve **detaylı dokular**, **environment mapping** (yansımalar) ve **düğüm haritalama** [@graphics-staff] gibi durumlarda kullanılabilir.
+  - Ayrıca, kendini aynı önceliğin üzerine birden fazla doku katmanını birleştirmek için döndürebilir, bu özellik **Mutli-Texturing** olarak adlandırılır ve **detaylı dokular**, **environment mapping** (yansımalar) ve **bump mapping** [@graphics-staff] gibi durumlarda kullanılabilir.
   - Son olarak, birim ayrıca bir **erken [z-tamponu](nintendo-64#modern-görünür-yüzey-belirleme)**, **mipmapping** (bunun yerine küçültülmüş bir doku işleme) sağlar, detay seviyesine göre) ve **anizotropik filtreleme** (eğimli dokularla daha fazla detay sağlayan [önceki filtrelere](nintendo-64#tab-1-2-reality-display-processor) göre memnuniyet verici bir gelişme).
 - **Texture Environment unit** veya 'TEV': Çok güçlü ve programlanabilir 16 aşamalı renk karıştırıcı. Temel olarak çoklu [texelleri](playstation#tab-4-5-textures) (aydınlatma, dokular ve sabitler) birleştirerek çokgenlerimiz üzerinde uygulanacak muazzam miktarda doku efekti elde eder.
   - Ünite dört texel alarak çalışır ve bunlar daha sonra talep edilen işleme göre işlenir. Daha sonra, elde edilen texelleri yeni girdi olarak besleyebilir, böylece bir sonraki aşamada/döngüde ünite önceki sonuç üzerinde farklı bir işlem gerçekleştirebilir. Bu 'döngü' 15 iterasyona kadar sürebilir.
@@ -288,11 +288,11 @@ Tüm bunlar, önbellek ve Scratchpad belleğine (hızlı RAM) bölünebilen 1 MB
 Render işleminin son aşaması, sahnemize isteğe bağlı ancak yararlı bazı dokunuşlar uygulamayı içerir:
 
 - **Sis**: Sisli bir ortamı etkili bir şekilde simüle etmek için TEV'deki son rengi sis sabit rengiyle karıştırır.
-- **Z-karşılaştırma** bir geç aşama [Z-tamponlama](nintendo-64#modern-visible-surface-determination). Motor, Z tamponlama hesaplamaları için 2 MB gömülü 1T-SRAM kullanacaktır.
+- **Z-karşılaştırma** bir geç aşama [Z-tamponlama](nintendo-64#modern-visible-surface-determination). Motor, Z-buffer hesaplamaları için 2 MB gömülü 1T-SRAM kullanacaktır.
 - **Blending**: Geçerli karenin renklerini önceki kare arabelleği ile birleştirir.
 - **Dithering**: Çerçevenin üzerinde titreme uygular.
 
-Ortaya çıkan çerçeve son olarak gömülü 1T-SRAM'deki çerçeve arabelleğine yazılır, ancak bu hala Flipper'ın içinde kilitlidir (alan 'Gömülü Çerçeve Arabelleği' veya 'EFB' olarak adlandırılır, ancak z-buffer'ı da içerir). Bu nedenle, TV'mizde görüntülemek için, **External Frame-Buffer** veya 'XFB'ye [@graphics-xfb] kopyalamamız gerekir; bu da **Video Interface** veya 'VI' ile alınabilir. Ayrıca kopyalama işlemi **Antialiasing** (bloklu kenarları azaltır), **Deflicker** (parlaklıktaki ani değişiklikleri yumuşatır), **RGB'den YUV'ye dönüştürme** (bellekte daha az yer kaplayan benzer bir format) ve **Y-scaling** (kareyi dikey olarak ölçeklendirir) gibi efektler uygulayabilir.
+Ortaya çıkan çerçeve son olarak gömülü 1T-SRAM'deki çerçeve arabelleğine yazılır, ancak bu hala Flipper'ın içinde kilitlidir (alan 'Embedded Frame Buffer' (Gömülü Çerçeve Arabelleği) veya 'EFB' olarak adlandırılır, ancak z-buffer'ı da içerir). Bu nedenle, TV'mizde görüntülemek için, **External Frame-Buffer** veya 'XFB'ye [@graphics-xfb] kopyalamamız gerekir; bu da **Video Interface** veya 'VI' ile alınabilir. Ayrıca kopyalama işlemi **Antialiasing** (bloklu kenarları azaltır), **Deflicker** (parlaklıktaki ani değişiklikleri yumuşatır), **RGB'den YUV'ye dönüştürme** (bellekte daha az yer kaplayan benzer bir format) ve **Y-scaling** (kareyi dikey olarak ölçeklendirir) gibi efektler uygulayabilir.
 
 XFB alanının CPU tarafından da manipüle edilebildiğini belirtmek gerekir; bu, daha önce işlenmiş bitmap'leri son işlenmiş karemizle birleştirmesini sağlar; veya bazı oyunların EFB'ye sığamayan çok renkli zengin kareler işlemesi gerektiğinde, bunlar parçalar halinde işlenir ve daha sonra CPU tarafından birleştirilir (her zaman VI ile senkronize kalır).
 
@@ -302,7 +302,7 @@ Tüm bunları bir perspektife oturtmanın zamanı geldi, programcıların bu kon
 
 #### Yükseltme {.tabs.active}
 
-[Önceki nesilde](nintendo-64) poligon sayısı nedeniyle küçültülmek zorunda kalan ünlü Mario modeli bu nesil için tamamen yeniden tasarlandı, modelin düz yüzlerden buruşuk kollara nasıl evrildiğine yakından bakın.
+[Önceki nesilde](nintendo-64) poligon sayısı nedeniyle küçültülmek zorunda kalan ünlü Mario modeli bu nesil için tamamen yeniden tasarlandı, modelin düz yüzleyerden detaylı kollara nasıl evrildiğine yakından bakın.
 
 ![Super Smash Bros (1999) N64.<br>320 üçgen.](mario_smash_64){.toleft .nested model3d="true"}
 
@@ -344,7 +344,7 @@ Konsolda bir değil, iki video çıkış konektörü bulunuyordu:
 
 - Bunlardan biri <strong x-id=“1”>Analog A/V</strong> olarak adlandırılmış ve aslında eski [Multi Out](super-nintendo#a-convenient-video-out) özelliğidir. Bu en popüler olanıdır.
   - Bu konsolun PAL sürümü S-Video taşımaz ve NTSC sürümü RGB sağlamaz (bummer!).
-- **Dijital A/V** adı verilen bir diğeri ise ses ve görüntüyü dijital olarak gönderir (günümüzde HDMI'a benzer şekilde ancak tamamen farklı bir protokol kullanarak!).
+- **Dijital A/V** adı verilen bir diğeri ise ses ve görüntüyü dijital olarak gönderir (günümüzde HDMI'a benzer şekilde ancak tamamen farklı bir protokol kullanıyor!).
   - Nintendo bu sokete bağlanan bir komponent kablo seti çıkardı. Aynı fiş, dijital sinyali YPbPr'ye (optimum kalite) dönüştürmek için bir video DAC ve kodlayıcı içeriyordu.
   - Kablo ekstra bir aksesuar olarak satılıyordu ve şimdi bir tür kalıntı olarak kabul ediliyor!
 
@@ -354,13 +354,13 @@ Konsolda bir değil, iki video çıkış konektörü bulunuyordu:
 
 Nintendo sonunda bu büyük görevi CPU-GPU'dan kurtarmak ve daha zengin sesler sağlamak için bazı özel ses devreleri sundu. Bu konsolda sundukları şey ise, Flipper içinde çalışan **Macronix** tarafından üretilen bağımsız bir **Dijital Sinyal İşlemcisi** veya 'DSP'.
 
-DSP'nin görevi, ham ses verilerimiz üzerinde farklı işlemler gerçekleştirmek (örneğin, ses seviyesi değişiklikleri, örnekleme hızı dönüşümü, 3D ses efektleri, filtreleme, yankı, yankı, vb) ve ardından 2 kanallı bir PCM sinyali çıkarmaktır. Ancak tek başına çalışmaz, DSP diğer bileşenlerin yardımıyla ses sağlar.
+DSP'nin görevi, ham ses verilerimiz üzerinde farklı işlemler gerçekleştirmek (örneğin, ses seviyesi değişiklikleri, örnekleme hızı dönüşümü, 3D ses efektleri, filtering, echo, reverb, vb) ve ardından 2 kanallı bir PCM sinyali çıkarmaktır. Ancak tek başına çalışmaz, DSP diğer bileşenlerin yardımıyla ses sağlar.
 
 İlk yoldaşı **Audio Interface** (AI), TV'de sonlanan ses sinyali aracılığıyla son örneği göndermekten sorumlu 16 bit stereo dijital-analog dönüştürücüdür. Yapay zeka, her 0.25ms'te sadece 32 bayt ses verisi işleyebilir, bu nedenle her ses örneğinin 2 bayt ağırlığı olduğunu ve stereo ses oluşturmak için iki taneye ihtiyaç duyulduğunu dikkate alırsak, Yapay zeka en fazla 32 kHz örnekleme hızına sahip 8 stereo örneğini karıştırabilir, *ses*!
 
 Son olarak, ham ses verilerini depolamak için kullanılabilecek büyük (16 MB) ancak çok yavaş bir yedek bellek olan **Audio RAM** (ARAM) bloğumuz var. Oldukça fazla alan var, bu nedenle GPU bunu ek materyalleri (dokular gibi) depolamak için de kullanabilir. CPU'nun bu belleğe doğrudan erişimi yoktur, bu nedenle içeriği taşımak için DMA'ya başvuracaktır.
 
-Daha iyi veya daha kötü, DSP mikrokod kullanılarak programlanabilir ([_endişe verici_](nintendo-64#audio)), ancak endişelenmeyin, çünkü resmi SDK zaten her oyun tarafından kullanılan genel amaçlı bir mikrokod içerir, ancak konsol açılış dizisi ve bazı Nintendo oyunlarında (_nasıl rahat_, çünkü Nintendo DSP'yi belgelememişti, bu yüzden sadece onu nasıl programlayabileceklerini biliyorlar).
+Daha iyi veya daha kötü, DSP mikrokod kullanılarak programlanabilir ([_endişe verici_](nintendo-64#audio)), ancak endişelenmeyin, çünkü resmi SDK zaten her oyun tarafından kullanılan genel amaçlı bir mikrokod içerir, ancak konsol açılış dizisi ve bazı Nintendo oyunlarında (_çok rahat_, çünkü Nintendo DSP'yi belgelememişti, bu yüzden sadece onu nasıl programlayabileceklerini biliyorlar).
 
 Bununla birlikte, ses üretme süreci aşağıdaki gibi işler [@audio-bourdon]:
 
@@ -496,13 +496,13 @@ Oyunlar **miniDVD** adı verilen özel bir diskten yüklenir, bu disk geleneksel
 
 Oyun kayıtları **Memory Card** adı verilen özel bir harici aksesuarda saklanır ve bunlardan iki tanesi için yeterli yuva vardır.
 
-### Sıradışı kontrolörler
+### Sıradışı kontrolcüler
 
 Nintendo, **GameBoy Link Cable** olarak bilinen ve [**Game Boy Advance**](game-boy-advance)'ı GC kontrolör portuna takan bir aksesuar gönderdi, böylece oyunlar GBA'ya küçük programlar yükleyebilir ve onu özel bir kontrolör olarak ele alabilirdi. Bu ilginç özellik, bazı oyunlarda benzersiz etkileşimler ve içerikler sağladı.
 
 ### Çevrim içi Platform
 
-[rekabetin](dreamcast) aksine, Nintendo kullanıcıların çevrim içi içeriğe erişmek için ekstra aksesuar satın almalarını zorunlu kılmakla kalmadı, aynı zamanda yayıncıların güvenebileceği herhangi bir internet hizmeti de sunmadı [@games-online] ve geliştiricileri gerekli internet altyapısını sağlamaktan tek başına sorumlu kıldı.
+[Rekabetin](dreamcast) aksine, Nintendo kullanıcıların çevrim içi içeriğe erişmek için ekstra aksesuar satın almalarını zorunlu kılmakla kalmadı, aynı zamanda yayıncıların güvenebileceği herhangi bir internet hizmeti de sunmadı [@games-online] ve geliştiricileri gerekli internet altyapısını sağlamaktan tek başına sorumlu kıldı.
 
 Sonuç olarak, çevrim içi oyun oynamak mümkün bir özellik olsa da, yaygın olarak benimsenmedi ve yalnızca çok az sayıda oyun bundan yararlandı.
 
@@ -534,7 +534,7 @@ Her ne olursa olsun, IPL çipi XOR koşullular ve bir Şifre-metni [@anti_piracy
 
 Bu da yetmezmiş gibi, bilgisayar korsanları miniDVD okuyucuyu geleneksel DVD'leri yüklemesi için kandıracak yeni yöntemler de buldular.
 
-#### Mansiyon Ödülü {.tab}
+#### Şeref Ödülü {.tab}
 
 Bu iki mekanizma keşfedilmeden önce, aslında herhangi bir değişiklik yapmadan rastgele kod yüklemenin çok daha basit bir yolu vardı. Bu yöntem **çevrim içi protokolün ele geçirilmesinden** oluşuyordu.
 
