@@ -77,7 +77,7 @@ Buna karşılık, belleğin data bus'ı sadece 32 bit genişliğindedir [@cpu-sp
 
 Bu belleğe erişmek için CPU, sanal adresleme için özel bir <strong x-id=“1”>Memory Management Unit</strong> veya 'MMU' içerir, bu CPU'nun fiziksel bellek adres alanı <strong x-id=“1”>29 bit genişliğinde</strong> olduğu için bu yararlıdır. Ayrıca, dört <strong x-id=“1”>Translation Lookaside Buffers</strong> (TLB'ler) sayesinde programcılar 32 bit adresleri performans kaybı yaşamadan kullanabilirler.
 
-Şimdi, adresleme için sadece 29 bit gerektiğinden, fazladan üç bit bellek korumasını kontrol eder, sırasıyla bellek haritasını değiştirir ve önbelleği atlatır \[@cpu-marcus\] \[@cpu-akiba\].
+Şimdi, adresleme için sadece 29 bit gerektiğinden, fazladan üç bit ise bellek korumasını kontrol eder, sırasıyla bellek haritasını değiştirir ve önbelleği atlatır \[@cpu-marcus\] \[@cpu-akiba\].
 
 Nihayetinde, bu özelliklerin kullanılıp kullanılmayacağına programcı karar verir. Bu sistem için oyunlar kesinlikle bellek korumasına ihtiyaç duymaz ve MMU'nun açılışta manuel olarak etkinleştirilmesi gerekir.
 
@@ -105,7 +105,7 @@ Holly'nin içinde VideoLogic'in <strong x-id=“1”>PowerVR2</strong> ('PowerVR
 
 VideoLogic, 3D motorunun yapımı için **Tile-Based Deferred Rendering** (TBDR) adı verilen alternatif bir yaklaşım seçti.
 
-TBDR, tüm kareyi bir kerede oluşturmak yerine (geleneksel **Immediate Mode Renderers** veya 'IMR'nin yaptığı gibi [@graphics-arch]), oluşturma alanını 'karo' adı verilen birden çok bölüme ayırır. Ardından, her bir karo üzerinde ayrı ayrı render işlemini gerçekleştirir ve sonuç nihai kareyi oluşturmak için birleştirilir [@graphics-powervr].
+TBDR, tüm kareyi bir kerede oluşturmak yerine (geleneksel **Immediate Mode Renderers** veya 'IMR'ın yaptığı gibi [@graphics-arch]), oluşturma alanını 'tile' adı verilen birden çok bölüme ayırır. Ardından, her bir tile üzerinde ayrı ayrı render işlemini gerçekleştirir ve sonuç nihai kareyi oluşturmak için birleştirilir [@graphics-powervr].
 
 ![Sonic Adventure (1999).](sonic.png)
 
@@ -122,9 +122,9 @@ Dreamcast'in GPU'sunun iki ana bileşenine bir göz atalım [@graphics-marcus]:
 
 #### Tile Accelerator {.tabs.active}
 
-![Karo Hızlandırıcının Mimarisi.](_diagrams/tile_accelerator.png) {.tab-float}
+![Tile Accelerator Mimarisi.](_diagrams/tile_accelerator.png) {.tab-float}
 
-Render işlemi başlamadan önce, **Tile Accelerator** olarak bilinen bir bileşen ön işleme gerçekleştirir. İşlem, geometrinin render edileceği birkaç 32x32 karo kutusu tahsis ederek başlar.
+Render işlemi başlamadan önce, **Tile Accelerator** olarak bilinen bir bileşen ön işleme gerçekleştirir. İşlem, geometrinin render edileceği birkaç 32x32 tile kutusu tahsis ederek başlar.
 
 Ardından, Tile Accelerator:
 
@@ -141,10 +141,10 @@ Bu Display List'ler daha sonra 3D motoru tarafından işlenir: PowerVR2.
 
 Grafiklerin hayata geçirildiği yer burasıdır, Tile Accelerator'dan alınan Display Lists çekirdeğe **dahili bir çerçeve arabelleği** kullanarak tek bir karenin geometrisini oluşturmasını söyler. Süreç şöyledir:
 
-1. **Image Synthesis Processor (Görüntü Sentez İşlemcisi)** veya 'ISP' ilkelleri (üçgenler veya dörtlüler) alır ve görünmeyen çokgenleri kaldırmak için **Hidden-Surface Removal (Gizli Yüzey Kaldırma işlemi)** gerçekleştirir. Ardından, Z tamponlarını ve şablon tamponlarını hesapladıktan sonra veriler, diğerlerinin arkasında görünecek çokgenlerin işlenmesini önlemek için **Depth Testing (Derinlik Testi)** ve bir 2B çokgenin (**Mask (Maske)** olarak da adlandırılır) arkasında yer almaları halinde görünmeyecek geometriyi ayıklamak için **Stencil Tests (Şablon Testleri)** işemlerinden geçer.
-    - Bu testlerin boru hattının başlangıcında nasıl etkin bir şekilde gerçekleştirildiğine dikkat edin. Bunun aksine, [late z-buffering kullanan](nintendo-64#modern-visible-surface-determination) önceki konsollar geometriyi pipeline'ın sonunda atmaktadır. ISP yaklaşımı, sonunda çöpe gidecek geometrinin işlenmesini önler [@graphics-surface] ve böylece kaynak tasarrufu sağlar.
+1. **Image Synthesis Processor (Görüntü Sentez İşlemcisi)** veya 'ISP' ilkelleri (üçgenler veya dörtlüler) alır ve görünmeyen çokgenleri kaldırmak için **Hidden-Surface Removal (Gizli Yüzey Kaldırma işlemi)** gerçekleştirir. Ardından, Z-buffer ve stencil bufferlarını hesapladıktan sonra veriler, diğerlerinin arkasında görünecek çokgenlerin işlenmesini önlemek için **Depth Testing (Derinlik Testi)** ve bir 2B çokgenin (**Mask (Maske)** olarak da adlandırılır) arkasında yer almaları halinde görünmeyecek geometriyi ayıklamak için **Stencil Tests (Şablon Testleri)** işemlerinden geçer.
+    - Bu testlerin pipeline'ın başlangıcında nasıl etkin bir şekilde gerçekleştirildiğine dikkat edin. Bunun aksine, [late z-buffering kullanan](nintendo-64#modern-visible-surface-determination) önceki konsollar geometriyi pipeline'ın sonunda atmaktadır. ISP yaklaşımı, sonunda çöpe gidecek geometrinin işlenmesini önler [@graphics-surface] ve böylece kaynak tasarrufu sağlar.
 2. **Texture and Shading Processor (Doku ve Gölgelendirme İşlemcisi)** veya 'TSP' karo alanı üzerinde renklendirme, gölgelendirme ve çoklu efektler uygular.
-    - Dokular karo dışa aktarılana kadar uygulanmaz, yani ortaya çıkan fazla çizim (varsa) dolgu oranını düşürmez.
+    - Dokular tile dışa aktarılana kadar uygulanmaz, yani ortaya çıkan fazla çizim (varsa) dolum oranını düşürmez.
 
 İşlem tamamlandıktan sonra, işlenen karo VRAM'deki ana çerçeve arabelleğine yazılır. Bu işlem tüm karolar bitene kadar tekrarlanır. İşlem tamamlandığında, ortaya çıkan çerçeve arabelleği **Video kodlayıcı** tarafından seçilir ve video sinyali aracılığıyla gönderilir.
 
@@ -154,10 +154,10 @@ Açık mimari farkın yanı sıra, Texture and Shading Processor, bu konsolun es
 
 - **Alpha blending**: Şeffaflık efektleri elde etmek için üst üste binen katmanların renklerini birleştirir.
   - Bu sistemde saydamlık uygulamak için kullanılan işleme sıralamadan **order-independent transparency** denir. Algoritma, renklerini karıştırmadan önce ilkelleri otomatik olarak sıralar ve bu işlem render işlemini yavaşlatsa da, tüm sıralamayı manuel olarak yapmak için oyunun kendisine güvenilmesini önler. Bu nedenle Dreamcast oyunları şeffaf nesneleri görüntülemede mükemmeldi.
-  - Karo tabanlı sistemle birlikte, siparişten bağımsız şeffaflık önceki [aksaklıkları](sega-saturn#the-transparency-issue) tamamen giderir.
-- **Mip-Mapping**: Gerekli ayrıntı düzeyine bağlı olarak dokunun küçültülmüş bir sürümünü otomatik olarak seçer. Bu, kameradan uzakta görülebilecek büyük dokuların işlenmesini önlemek için yapılır (bu işlem gücü kaybı olur ve örtüşme üretir).
+  - Tile tabanlı sistemle birlikte, siparişten bağımsız şeffaflık önceki [aksaklıkları](sega-saturn#the-transparency-issue) tamamen giderir.
+- **Mip-Mapping**: Gerekli ayrıntı düzeyine bağlı olarak dokunun küçültülmüş bir sürümünü otomatik olarak seçer. Bu, kameradan uzakta görülecek büyük dokuların işlenmesini önlemek için yapılır (bu, işlem gücünün boşa harcanmasına ve kenar bozulmasına neden olur).
 - **Environment mapping**: Dokular üzerinde yansımalar uygular.
-- **Bilinear, Trilinear ve anizotropik filtreleme**: Bu, dokuları yumuşatmak ve pikselleşmeyi önlemek için kullanılan farklı algoritmaları ifade eder. Bunlar 'en kötü'den 'en iyi'ye doğru sıralanır ve her birinin sonuç kalitesi, gereken hesaplama miktarıyla doğru orantılıdır.
+- **Bilinear, Trilinear ve anisotropic filtreleme**: Bu, dokuları yumuşatmak ve pikselleşmeyi önlemek için kullanılan farklı algoritmaları ifade eder. Bunlar 'en kötü'den 'en iyi'ye doğru sıralanır ve her birinin sonuç kalitesi, gereken hesaplama miktarıyla doğru orantılıdır.
   - Bu Saturn'e göre büyük bir adım, çünkü önceki model herhangi bir doku filtresi sağlamıyordu!
 - **Bump mapping**: Fazladan poligon harcamadan yüzeylerdeki çıkıntıları simüle eder.
 
@@ -165,7 +165,7 @@ Açık mimari farkın yanı sıra, Texture and Shading Processor, bu konsolun es
 
 Holly artık [selefine](sega-saturn) göre ~10 kat daha fazla poligon çizebiliyor, işte model tasarımlarının artık o kadar da sınırlı olmadığını gösteren bir *Önce ve Sonra* örneği. Onları kurcalayın ve ne kadar fark olduğunu görün!
 
-![Satürn için Sonic R (1997).<br>286 üçgen (veya 185 dörtgen).](sonic_r_saturn){.toleft model3d="true"}
+![Saturn için Sonic R (1997).<br>286 üçgen (veya 185 dörtgen).](sonic_r_saturn){.toleft model3d="true"}
 
 ![Dreamcast için Sonic Adventure (1999).<br>1001 üçgen.](sonic_adventure_dc){.toright model3d="true"}
 
@@ -292,7 +292,7 @@ GPU ayrıca **Sistem Veriyolu** adı verilen G/Ç'nin çoğunu işlemek için ba
 - **Maple** arayüzü: Kontrolörler (bunlara bağlı aksesuarlarla birlikte) ve CPU arasında veri parçalarını aktarır. Bu bir **seri veri yoludur** ve özel bir DMA sağlar.
 - **SH-4** arayüzü: Genel amaçlı iletişim için ana CPU'yu bağlar.
 - **DDT** arayüzü: DMA aktarımları sırasında ana belleğe erişmek için CPU veriyolunun kontrolünü ele alır.
-- **PVR** arayüzü: CPU'yu özel bir DMA kullanarak Karo Hızlandırıcıya bağlar.
+- **PVR** arayüzü: CPU'yu özel bir DMA kullanarak Tile Accelerator'a bağlar.
 
 ## Oyunlar
 
@@ -312,7 +312,7 @@ Dreamcast, oyunların çevrim içi oyun için çevirmeli bir hizmeti 'aramak' i�
 
 Oyuncular, bazı oyunlarla birlikte verilen ekstra bir disk olan **DreamKey'i** kullanarak bir hizmete kaydoldular. DreamKey bir hesap açmak için bir web tarayıcısı sağlıyordu. Başlangıçta, DreamKey bölgeye bağlı olarak önceden yapılandırılmış bir hizmet olarak geldi, ancak daha sonraki revizyonlar kullanıcıların herhangi birine bağlanmak için ISS ayarlarını değiştirmelerine izin verdi.
 
-Ayrıca, kullanıcının internette *PC tarzı* sörf yapmak istemesi durumunda satın alınabilecek Dreamcast markalı bir klavye ve fare de vardı.
+Ayrıca, kullanıcının internette *PC tarzı* gezinmek istemesi durumunda satın alınabilecek Dreamcast markalı bir klavye ve fare de vardı.
 
 Ne yazık ki, SegaNet ve Dreamarena piyasaya sürüldükten iki yıl sonra durduruldu. Bu nedenle, bu tür hizmetler ekstra araçlar kullanılarak taklit edilmediği sürece (DreamPi gibi, bir kullanıcı topluluğu tarafından tutulan sunucuların yardımıyla bunları kopyalayan bir Raspberry Pi kopyası), yalnızca bunlara dayanan oyunlar kullanılamaz hale geldi.
 
@@ -322,12 +322,12 @@ Dreamcast'in bir diğer yenilikçi özelliği de <strong x-id=“1”>Visual Mem
 
 ![VMU kontrolcüden ayrılmış.](vmu.png){.tabs-nested .active .open-float .tab-float title="VMU"}
 
-![VMU takılı olmayan kontrolör.](controller.png){.tab-nested title="Ayrılmış"}
+![VMU takılı olmayan kontrolcü.](controller.png){.tab-nested title="Ayrılmış"}
 
-![VMU takılı kontrolör.](controller-vmu.png){.tabs-nested-last title="Ekli"}
+![VMU takılı kontrolcü.](controller-vmu.png){.tabs-nested-last title="Ekli"}
 
 - Bir **Sanyo LC86K87**: 8 bitlik düşük güçlü bir CPU.
-- Dört ek simgeye sahip bir **32x48 Tek Renkli LCD:** Çerçeve tamponu olarak 196 B XRAM (harici RAM) kullanılarak komut verilir.
+- Dört ek simgeye sahip bir **32x48 Tek Renkli LCD:** Frame buffer olarak 196 B XRAM (harici RAM) kullanılarak komut verilir.
 - **İki seri konektör**: Biri IN ve diğeri OUT için.
 - **Altı fiziksel düğme**: VMU kontrol ünitesinden ayrıldığında kullanılır.
 - **16 KB'lık bir Maske-ROM**: BIOS-IPL'yi depolar.
@@ -338,12 +338,12 @@ Dreamcast'in bir diğer yenilikçi özelliği de <strong x-id=“1”>Visual Mem
 
 VMU'nun iki çalışma modu vardır:
 
-- **Kontrol cihazına takılı**: Resmi kontrol cihazında VMU'ları ve aynı şekle sahip diğer aksesuarları bağlamak için iki yuva vardır, VMU ilk yuvaya takılırsa (kontrol cihazının önünden görülebilir), oyun sırasında çizimleri görüntüleyebilir. Ayrıca Dreamcast, VMU'da kayıtları ve bir programı saklayabilir.
-- **Kumandadan ayrılmış**: Aygıt, saati, kayıt yöneticisi olan Tamagotchi benzeri bir cihaz haline gelir ve Dreamcast'in daha önce aktardığı programı da çalıştırabilir. İçerik paylaşmak için iki VMU da bağlanabilir.
+- **Kontrolcüye takılı**: Resmi kontrolcü VMU'ları ve aynı şekle sahip diğer aksesuarları bağlamak için iki yuva vardır, VMU ilk yuvaya takılırsa (kontrol cihazının önünden görülebilir), oyun sırasında çizimleri görüntüleyebilir. Ayrıca Dreamcast, VMU'da kayıtları ve bir programı saklayabilir.
+- **Kontrolcüden ayrılmış**: Aygıt, saati, kayıt yöneticisi olan Tamagotchi benzeri bir cihaz haline gelir ve Dreamcast'in daha önce aktardığı programı da çalıştırabilir. İçerik paylaşmak için iki VMU da bağlanabilir.
 
 ## Korsanla Mücadele ve Homebrew
 
-Tescilli GD-ROM formatının kullanılması, oyunların izinsiz kopyalarının üretilmesini (ve diğer konsollarda çalıştırılmasını) engellemeye yardımcı oldu. Dreamcast oyunları aynı zamanda *bölge kilitlidir,* yani bir konsol farklı bir bölge için tasarlanmış bir oyunu çalıştırmayı reddedecektir.
+Özel GD-ROM formatının kullanılması, oyunların izinsiz kopyalarının üretilmesini (ve diğer konsollarda çalıştırılmasını) engellemeye yardımcı oldu. Dreamcast oyunları aynı zamanda *bölge kilitlidir,* yani bir konsol farklı bir bölge için tasarlanmış bir oyunu çalıştırmayı reddedecektir.
 
 ### Korsan Korumasını Yenmek
 
