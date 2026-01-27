@@ -33,7 +33,7 @@ Sega Dreamcast, hem oyun geliştiricilerine hem de konsol oyuncularına hitap et
 
 Hitachi için işler sorunsuz ilerliyordu, [ikonik SuperH çipleri](sega-saturn#cpu) birden fazla müşteri bulmuştu ve şirket artık serinin dördüncü sürümü için hazırdı. Yeni girişleri, gömülü yetenekleri 3D oyunların sahip olduğu işlevsellikle birleştirecek.
 
-SuperH'yi ilk benimseyenlerden biri olan Sega, yeni konsollarına güç sağlamak için şaşırtıcı olmayan bir şekilde Hitachi'nin son sevkiyatını seçti. Bu nedenle Dreamcast'te **SH-4 CPU** bulunmaktadır ve bu işlemci **200 MHz** [@cpu-spec] hızında çalışmaktadır. Ayrıca, [bu sefer işleri yoluna koymak](sega-saturn#the-final-product) için, **sadece bir tam donanımlı CPU** var.
+SuperH'yi ilk benimseyenlerden biri olan Sega, yeni konsollarına güç sağlamak için şaşırtıcı olmayan bir şekilde Hitachi'nin son ürününü seçti. Bu nedenle Dreamcast'te **SH-4 CPU** bulunmaktadır ve bu işlemci **200 MHz** [@cpu-spec] hızında çalışmaktadır. Ayrıca, [bu sefer işleri yoluna koymak](sega-saturn#the-final-product) için, **sadece bir tane tam donanımlı CPU** var.
 
 ### Teklif
 
@@ -45,9 +45,9 @@ Bununla birlikte, bu yeni işlemci hakkında ilginç olan nedir?
 
 Bunun da ötesinde, yeni nesil CPU olarak, gömülü uygulamaların kapsamının ötesine geçen birçok iyileştirme sunuyor [@cpu-arch]:
 
-- Bir **2-way superscalar** pipeline: CPU'nun boru hattının her aşamasında birden fazla komutu (bu durumda iki) işleyebildiği yeni bir paralellik tekniği. Bu da saniyede daha fazla talimatın yürütülmesine neden olur.
-  - Perde arkasında, CPU iki talimatı iki farklı (kullanılabilir) yürütme birimine dağıtıyor. Bu nedenle - çok küçük bir grup hariç - tüm komutların paralelleştirilmesi için farklı türlerde (yani branching, aritmetik, vb.) olması gerekir [@cpu-soft_doc]. Aksi takdirde, yalnızca sıralı olarak yürütülebilirler. Her ne olursa olsun, SH-4 aynı zamanda asla paralelleştirilemeyecek bir talimat alt kümesi de sergiler, çünkü bunu mümkün kılmak için çok fazla bağımlılık içerirler.
-- **8 KB instruction cache** ve **16 KB data cache**: Konsollar veri önbelleğinden daha fazla komut önbelleği içerme eğiliminde olduğundan bu oran oldukça ilginçtir. Ancak SH-4, veri önbelleğinin iki bölüme ayrılmasına izin verir: **8 KB Scratchpad** (hızlı RAM) ve **8 KB veri önbelleği**.
+- <strong x-id=“1”>2-way superscalar</strong> pipeline: CPU'nun pipeline'nın her aşamasında birden fazla komut (bu durumda iki) işleyebildiği yeni bir paralellik tekniği. Bu da saniyede daha fazla talimatın yürütülmesine neden olur.
+  - Perde arkasında, CPU iki talimatı iki farklı (ve kullanılabilir) yürütme birimine dağıtıyor. Bu nedenle - çok küçük bir grup hariç - tüm komutların paralelleştirilmesi için farklı türlerde (yani branching, aritmetik, vb.) olması gerekir [@cpu-soft_doc]. Aksi takdirde, yalnızca sıralı olarak yürütülebilirler. Her ne olursa olsun, SH-4 aynı zamanda asla paralelleştirilemeyecek bir talimat alt kümesi de sergiler, çünkü bunu mümkün kılmak için çok fazla bağımlılık içerirler.
+- **8 KB instruction cache** ve **16 KB data cache**: Konsollar data cache'den daha fazla instruction cache içerme eğiliminde olduğundan bu oran oldukça ilginçtir. Ancak SH-4, veri önbelleğinin iki bölüme ayrılmasına izin verir: **8 KB Scratchpad** (hızlı RAM) ve **8 KB veri önbelleği**.
 
 #### Özel bir çalışma
 
@@ -55,7 +55,7 @@ Bir oyun konsolu CPU'sunun ortak işleri arasında bir oyunun mantığını idar
 
 Dreamcast ile GPU'nun yalnızca [rasteriser](playstation#graphics) görevlerini yerine getirdiğini göreceksiniz. Dolayısıyla, CPU'nun grafik işlem hattının büyük bir kısmına dahil olması gerekir. Bu, CPU'nun büyük miktarda geometri verisini [işleyeceği](playstation#tab-2-2-geometry-transformation-engine) anlamına gelir (perspektif dönüşümlerini hesaplamak gibi). Şimdi, CPU'nun bu rolü sürdürebilmesini sağlamak için Sega ve Hitachi işbirliği yaparak SH-4'e iki önemli eklenti eklediler.
 
-İlk eklenti özel bir **64-bit Kayan Nokta Birimi** (FPU). Bu bileşen, **IEEE-754 standardına** uyarak 32 bit ondalık sayıları ('tek hassasiyetli' veya 'float' olarak adlandırılır) veya 64 bit olanları ('çift hassasiyetli' veya 'double' türü) hesaplar. Register dosyası **otuz iki 32 bitlik register'dan** oluşur, ancak bunlar aynı zamanda **on altı 64 bitlik register'dan** oluşan farklı bir grupta birleştirilebilir, bu da birimin double işlem yapabilmesini sağlar.
+İlk eklenti özel bir **64-bit Kayan Nokta Birimi** (FPU). Bu bileşen, **IEEE-754 standardına** uyarak 32 bit ondalık sayıları ('single-precision' veya 'float' olarak adlandırılır) veya 64 bit olanları ('double-precision' veya 'double' türü) hesaplar. Register dosyası **otuz iki 32 bitlik register**’dan oluşur, ancak bunlar aynı zamanda **on altı 64 bitlik register**’dan oluşan farklı bir grupta birleştirilebilir, bu da birimin double işlem yapabilmesini sağlar.
 
 Bu yeterli gelmediyse, Hitachi FPU ile bir adım daha ileri gitti ve bu kez **sekiz 128 bitlik register**'dan oluşan başka bir register grubu oluşturmak için ekstra logic uyguladı. İçinde her bir register artık dört adet 32 bit float ya da başka bir deyişle **128 bit vektör** olarak saklamaktadır. Bu format grafikle ilgili işlemler için idealdir.
 
