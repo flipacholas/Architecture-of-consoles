@@ -129,7 +129,7 @@ On the other side, the components of the system are **memory-mapped** [@cpu-cpu_
 
 #### Segmentation Fault
 
-Inherited from MOS' design, this console also features a special 'anomaly' called **Open Bus**: If an instruction tries to read from an unmapped or invalid address, the last value read is supplied instead [@nes-open_bus]. If this goes unhandled by the program, execution may continue in an unpredictable state.
+Inherited from MOS' design, this console also features a special 'anomaly' called **Open Bus**: If an instruction tries to read from an unmapped or invalid address, the last value read is supplied instead [@cpu-open_bus]. If this goes unhandled by the program, execution may continue in an unpredictable state.
 
 #### Cartridge/game data
 
