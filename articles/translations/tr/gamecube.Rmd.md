@@ -302,7 +302,7 @@ Tüm bunları bir perspektife oturtmanın zamanı geldi, programcıların bu kon
 
 #### Yükseltme {.tabs.active}
 
-[Önceki nesilde](nintendo-64) poligon sayısı nedeniyle küçültülmek zorunda kalan ünlü Mario modeli bu nesil için tamamen yeniden tasarlandı, modelin düz yüzleyerden detaylı kollara nasıl evrildiğine yakından bakın.
+[Önceki nesilde](nintendo-64) poligon sayısı nedeniyle küçültülmek zorunda kalan ünlü Mario modeli bu nesil için tamamen yeniden tasarlandı, modelin düz yüzeylerden detaylı kollara nasıl evrildiğine yakından bakın.
 
 ![Super Smash Bros (1999) N64.<br>320 üçgen.](mario_smash_64){.toleft .nested model3d="true"}
 
