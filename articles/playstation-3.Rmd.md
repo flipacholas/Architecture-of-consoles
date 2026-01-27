@@ -11,7 +11,7 @@ release_date: 2006-11-11
 aliases: [/writings/consoles/ps3-private]
 top_tabs:
   Motherboard:
-    caption: "Showing COK-001 revision (the first one), taken from my CECHA12 model.<br>The remaining 128 MB NAND Flash and the connectors for the Blu-ray PATA drive, Wifi/BT daughterboard, front panel and MultiCard reader are fitted on the back"
+    caption: "Showing COK-001 revision (the first one), taken from my CECHA12 model.<br>The remaining 128 MB NAND Flash and the connectors for the Blu-ray PATA drive, Wi-Fi/BT daughterboard, front panel and MultiCard reader are fitted on the back"
     bib_source: copetti
     paperback_latex_height: 93
     marked_paperback_latex_height: 93
@@ -65,7 +65,7 @@ The PS3's CPU is massively complex, but it's also a very fascinating work of eng
 
 Almost ten years after the introduction of the [original MIPS-powered PlayStation](playstation), we find ourselves in the early noughties, and things are not looking good for SGI/MIPS. Nintendo recently ditched them for a [low-end PowerPC core](gamecube#cpu) with IBM as their new supplier while Microsoft, the newcomer in this market, [chose Intel](xbox#cpu) and their x86 empire.
 
-Sony has a history of grabbing existing low-end designs (cheap MIPS cores) and moulding them to achieve acceptable 3D performance at a reduced cost, a process that involved other companies like LSI (for the [PS1's CPU](playstation#cpu)) and Toshiba (for the PS2's [Emotion Engine](playstation-2#cpu)). This methodology carried on until 2004 with the release of the [PlayStation Portable](playstation-portable). So, what new MIPS amalgamate were they going to build for the PlayStation 3?
+Sony has a history of grabbing existing low-end designs (cheap MIPS cores) and moulding them to achieve acceptable 3D performance at a reduced cost, a process that involved other companies like LSI (for the [PS1's CPU](playstation#cpu)) and Toshiba (for the PS2's [Emotion Engine](playstation-2#cpu)). This methodology carried on until 2004 with the release of the [PlayStation Portable](playstation-portable). So, what new MIPS amalgamation were they going to build for the PlayStation 3?
 
 Well, it turns out the development of the PlayStation 3 predates the PlayStation Portable one [@cpu-koranne, p. 5]. In 2000, months after the PS2's release, Sony formed an alliance with IBM and Toshiba called 'STI' with the sole goal to deliver the next chip that could power the next generation of supercomputers [@cpu-engine]. If this didn't sound extravagant enough, the next chip would also be used on the successor of the PS2. In the end, in 2004, IBM unveiled the **Cell Broadband Engine** (also known as 'Cell BE' or just 'Cell') [@cpu-nbc_cell].
 
@@ -83,15 +83,15 @@ Consequently, Cell is part of this new wave of research and development. This ne
 
 #### A new multicore era {.tab}
 
-![Example of heterogeneous design.<br>This is has been the de-facto architecture of many powerful consoles to this date.](_diagrams/cell/paradigm/heterogeneous.png){.tab-float}
+![Example of heterogeneous design.<br>This has been the de-facto architecture of many powerful consoles to this date.](_diagrams/cell/paradigm/heterogeneous.png){.tab-float}
 
-![Example of homogeneous design.<br>Each core can carry the same tasks as before, but they are not necessary restricted to such task.](_diagrams/cell/paradigm/homogeneous.png){.tab-float}
+![Example of homogeneous design.<br>Each core can carry the same tasks as before, but they are not necessarily restricted to such task.](_diagrams/cell/paradigm/homogeneous.png){.tab-float}
 
 If you stop to think about it, both the PS1's CPU and the Emotion Engine were already multi-core processors. So why was there so much fanfare about Cell? Well, the previous two chips were composed of one general-purpose core and several application-specific cores (i.e. audio processor, image decompression, etc) mixing different architectures, where the general-purpose core is in charge of commanding the others.
 
 This type of CPU design is called **Heterogeneous computing** and it's been the de-facto choice for building machines that are specialised in a particular set of applications (gaming, in this case). Its counterpart, **Homogeneous computing**, is more predominant on the PC market, where CPUs are required to perform a wider range of tasks (and they all have the same priority). Hence, the latter type may house multiple cores, but of the same type.
 
-Back on topic, **Cell combines both models**: there are two types of cores in this CPU, **one general-purpose 'leader' and eight vector 'assistants'**. These vector cores may take up various roles, and in doing so, they fulfil previous tasks that were originally solved by heterogeneous designs, but since Cell's vectors are not limited to a single type of task, their cores provide the flexibility of homogeneous computers. All in all, this design is not perfect and will inherit some compromises, but throughout this writing, you'll see the different problems that Cell will attempt to solve and how did it manage to do so.
+Back on topic, **Cell combines both models**: there are two types of cores in this CPU, **one general-purpose 'leader' and eight vector 'assistants'**. These vector cores may take up various roles, and in doing so, they fulfil previous tasks that were originally solved by heterogeneous designs, but since Cell's vectors are not limited to a single type of task, their cores provide the flexibility of homogeneous computers. All in all, this design is not perfect and will inherit some compromises, but throughout this writing, you'll see the different problems that Cell will attempt to solve and how it managed to do so.
 
 ### A glance at Cell {.tabs-close}
 
@@ -125,17 +125,17 @@ That being said, let's begin the real analysis.
 
 ### Inside Cell: The heart
 
-Since its announcement, Cell has been referred to as a **Network-on-Chip** (NoC) [@cpu-koranne, p. 62] instead of traditional the System-on-Chip (SoC) definition, this is attributed to Cell's unorthodox data bus, the **Element Interconnect Bus** (EIB). [We've seen](playstation-2#a-recognisable-memory-choice) so far how demanding CPU components can be, in addition to how [susceptible](nintendo-64#tab-3-1-pipeline-stalls) a system is to bottlenecks. Well, to tackle this for the eleventh time, IBM has devised a new design... and has documented it using terms analogous to _road driving_.
+Since its announcement, Cell has been referred to as a **Network-on-Chip** (NoC) [@cpu-koranne, p. 62] instead of the traditional System-on-Chip (SoC) definition; this is attributed to Cell's unorthodox data bus, the **Element Interconnect Bus** (EIB). [We've seen](playstation-2#a-recognisable-memory-choice) so far how demanding CPU components can be, in addition to how [susceptible](nintendo-64#tab-3-1-pipeline-stalls) a system is to bottlenecks. Well, to tackle this for the eleventh time, IBM has devised a new design... and has documented it using terms analogous to _road driving_.
 
-![Simplified diagram of the Element Interconnect Bus (EIB).<br>Each arrow between 'Ramps' (nodes) represent two unidirectional buses, thus, each node is connected to the next one using four channels.](_diagrams/cell/eib.png)
+![Simplified diagram of the Element Interconnect Bus (EIB).<br>Each arrow between 'Ramps' (nodes) represents two unidirectional buses, thus, each node is connected to the next one using four channels.](_diagrams/cell/eib.png)
 
-The EIB is made of twelve nodes called **Ramps**, each one connecting one component of Cell. Ramps are interconnected using four buses, two of them travel **clockwise** and the other two do so **anti-clockwise**. Each bus (or **channel**) is 128-bit wide. Having said that, instead of recurring to single bus topologies (like the Emotion Engine and its precursor did), ramps are inter-connected following the **token ring** topology, where data packets must cross through all neighbours until it reaches the destination (there's no direct path). Considering the EIB provides four channels, there're four possible routes (**rings**).
+The EIB is made of twelve nodes called **Ramps**, each one connecting one component of Cell. Ramps are interconnected using four buses, two of them travel **clockwise** and the other two do so **anti-clockwise**. Each bus (or **channel**) is 128-bit wide. Having said that, instead of recurring to single bus topologies (like the Emotion Engine and its precursor did), ramps are inter-connected following the **token ring** topology, where data packets must cross through all neighbours until they reach the destination (there's no direct path). Considering the EIB provides four channels, there're four possible routes (**rings**).
 
 Now, you may think, what's the point of a token ring if data may end up travelling longer paths (compared to a single direct bus)? Well, a single bus is highly susceptible to [congestion](playstation-2#a-recognisable-memory-choice). Hence, EIB's engineers decided on this topology to tackle large amounts of concurrent traffic (keep reading if you want to know how the token ring helped).
 
 Data is transferred in the form of **128-bit packets** [@cpu-cell_arch]. Each ring can carry up to **three concurrent transfers** as long as the packets don't overlap. The EIB operates with the use of **command credits**, in other words, whenever a component needs to initiate a transfer, it sends a request to the EIB's **Data Arbiter**, which manages the traffic within the rings. The moment the request is approved, packets enter the ring and receive a 'token', which the data arbiter uses as meta-data to supervise the transfer. Moreover, some components have preferential priority over others, like the **Memory Interface Controller** (MIC) component, which is where main RAM is located. Finally, the data arbiter will never place packets at rings whose path is longer than half of the ring.
 
-Each ramp plays a part in the transfer, they read the destination address of the packet to know whether to post data to their respective component or forward it to the next Ramp. During each clock cycle, ramps can receive and send 128-bit (16 Bytes) packets at the same time. So, considering there are four channels and the **EIB operates at 1.6 GHz** (half of Cell's speed), the theoretical maximum transfer rate is `16 Bytes x 2 transfer/clock x 4 rings x 1.6 GHz = 204.8 GB/s`, this value is of course too optimistic and there are many other external factors (i.e. origin/destination path, state of the bus, etc.) conditioning the performance. In any case, many research papers made by IBM and other authors compiled more realistic speeds using practical experiments [@cpu-hpc].
+Each ramp plays a part in the transfer: they read the destination address of the packet to know whether to post data to their respective component or forward it to the next Ramp. During each clock cycle, ramps can receive and send 128-bit (16 Bytes) packets at the same time. So, considering there are four channels and the **EIB operates at 1.6 GHz** (half of Cell's speed), the theoretical maximum transfer rate is `16 Bytes x 2 transfer/clock x 4 rings x 1.6 GHz = 204.8 GB/s`. This value is of course too optimistic and there are many other external factors (i.e. origin/destination path, state of the bus, etc.) conditioning performance. In any case, many research papers made by IBM and other authors compiled more realistic speeds using practical experiments [@cpu-hpc].
 
 Now that you've seen how every component of Cell is interconnected, it's time to check out the first component of this chip...
 
@@ -149,7 +149,7 @@ Remember how I divided Cell into different areas before? Well, the same can be d
 
 ![Simplified diagram of the PowerPC Processing Element (PPE).](_diagrams/cell/ppe.png)
 
-Having said that, the PowerPC Processor element is _surprisingly_ composed of two parts:
+Having said that, the PowerPC Processor Element is _surprisingly_ composed of two parts:
 
 - **PowerPC Processing Unit** (PPU): This is the logical part of the PPE (the 'core'). Don't forget this is not Nintendo's [PPU](nes#graphics)! (even though they are sharing the same letters of the Latin alphabet... in the same order...).
 - **PowerPC Processor Storage Subsystem** (PPSS): The big interface that connects the PPU to the outside world. Furthermore, it provides a whopping **512 KB of L2 cache**.
@@ -205,17 +205,17 @@ All in all, combining dual-threading with dual-issuing, the PPU can execute **up
 
 The following blocks grant the PPU the ability to execute load-store instructions and carry out memory management.
 
-To begin with, the **Load and Store Unit** (LSU) executes 'load' and 'store' opcodes backed by **32 KB of L1 data cache**. As a consequence, this unit has direct access to memory and registers.
+To begin with, the **Load and Store Unit** (LSU) executes 'load' and 'store' opcodes backed by **32 KB of L1 data cache**. As a consequence, this unit has direct access to memory and the register file.
 
-Furthermore, the LSU is coupled with **Memory Management Unit** (MMU), which is a common occurrence in nowadays hardware. To make a long story short, the MMU handles memory addressing using a [virtual address map](nintendo-64#memory-management) combined with [memory protection](playstation-portable#focused-memory-management). To improve the latter, this MMU in particular features a **segment unit**, which groups memory addresses using ranges called 'segments'. Now, to prevent performance degradation in the process, a Translation Lookaside Buffer (TLB) (caches converted addresses) and a Segment Lookaside Buffer (SLB) (caches segments) are included.
+Furthermore, the LSU is coupled with a **Memory Management Unit** (MMU), which is a common occurrence in contemporary hardware. To make a long story short, the MMU handles memory addressing using a [virtual address map](nintendo-64#memory-management) combined with [memory protection](playstation-portable#focused-memory-management). To improve the latter, this MMU in particular features a **segment unit**, which groups memory addresses using ranges called 'segments'. Now, to prevent performance degradation in the process, a Translation Lookaside Buffer (TLB) (caches converted addresses) and a Segment Lookaside Buffer (SLB) (caches segments) are included.
 
 ##### Arithmetic {.tab}
 
 ![Simplified diagram of the units that perform arithmetic.](_diagrams/cell/ppu/vsu_fxu.png){.tab-float}
 
-There're only two more units of the PPU left to explain, the ones computing the math any game will need.
+There are only two more units of the PPU left to explain: the ones computing the math any game will need.
 
-The first one is a traditional **Fixed-Point Integer Unit** (FXU). It carries out integer arithmetic, such as division, multiplication, bit rotation (similar to bit shifting but discarded bits are returned to the other end) and count-leading zero (useful for normalising vertex coordinates, for instance). Its pipeline is 11-stages long. 
+The first one is a traditional **Fixed-Point Integer Unit** (FXU). It carries out integer arithmetic, such as division, multiplication, bit rotation (similar to bit shifting but discarded bits are returned to the other end) and count-leading zero (useful for normalising vertex coordinates, for instance). Its pipeline is 11 stages long. 
 
 If you look at the diagram, you'll see that the FXU, LSU and MMU are grouped into a single unit called **Execution Unit** (XU), this is because they share the same register file.
 
@@ -223,7 +223,7 @@ The second unit is way more interesting, the **Vector/Scalar Unit** (VSU) perfor
 
 #### Wrapping the PPE up {.tabs-close}
 
-You've just seen how the PPE works and what is made of, but what does it mean for a developer?
+You've just seen how the PPE works and what it's made of, but what does it mean for a developer?
 
 After all, the PowerPC Processing Element is only a general-purpose processor, but here's the thing: **it's not meant to work alone**. Remember that wide main bus (the EIB)? IBM designed the PPE so engineers may combine it with other processors to accelerate particular applications (i.e. HPC, 3D graphics, security, scientific simulations, networking, video processing, etc) and since this writing is about the PlayStation 3, you'll see the rest of Cell is treated with computer graphics and physics in mind, so, the rest of the article reflects that purpose.
 
@@ -245,21 +245,21 @@ The first revision of the PlayStation 3's motherboard contains four 64 MB chips,
 
 ![Cell's memory architecture diagram.](_diagrams/cell/memory.png)
 
-Cell connects to XDR chips is using the **Memory Interface Controller** (MIC), another component within Cell (like the PPE). Additionally, the MIC buffers memory transfers to improve bandwidth, but it has a big limitation: large byte alignment. In essence, the MIC's smallest data size for transfers is **128 Bytes**, which works well for sequential reads or writes. But if the data is smaller than 128 B or it requires alternating between writing and reading, performance penalties appear.
+Cell connects to the XDR chips using the **Memory Interface Controller** (MIC), another component within Cell (like the PPE). Additionally, the MIC buffers memory transfers to improve bandwidth, but it has a big limitation: large byte alignment. In essence, the MIC's smallest data size for transfers is **128 Bytes**, which works well for sequential reads or writes. But if the data is smaller than 128 B or it requires alternating between writing and reading, performance penalties appear.
 
-That being said, is the MIC a bottleneck or an accelerator? Well, you have to put it into perspective, bandwidth optimisation is critical in data-hungry systems. In the past, we've seen solutions like the [write-gather pipe](gamecube#ibms-enhancements) or the [write back buffer](playstation-2#preventing-past-mishaps), so the MIC is simply a new proposal to a recurring problem. For what it's worth, Sony claims the transfer rate is 25.6 GB/s, still, there are too many factors that will condition the final rate in practice (you've seen how convoluted is to move data from one place to another within Cell).
+That being said, is the MIC a bottleneck or an accelerator? Well, you have to put it into perspective, bandwidth optimisation is critical in data-hungry systems. In the past, we've seen solutions like the [write-gather pipe](gamecube#ibms-enhancements) or the [write back buffer](playstation-2#preventing-past-mishaps), so the MIC is simply a new proposal to a recurring problem. For what it's worth, Sony claims the transfer rate is 25.6 GB/s. Still, there are too many factors that will condition the final rate in practice (you've seen how convoluted it is to move data from one place to another within Cell).
 
 This is as far as it goes for main RAM, but there's more memory elsewhere: the hard drive. The PS3 also enables games to use **2 GB** from its internal hard drive as a working area (similarly to what the [original Xbox provided](xbox#memory-layout)) [@cpu-files].
 
 ### Inside Cell: The assistants
 
-We've [seen before](playstation-2#the-leader) how Sony always supplies a general-purpose processor (the PPE in this case) accompanied by accelerators to reach acceptable gaming performance (the VPUs and IPU in the case of the PS2; and the GTE and MDEC with the PS1). This is common practice with video console hardware, as general-purpose can perform a wide range of tasks, but are not specialised in anything. Game consoles require only a subset of skills (physics, graphics and audio, for instance) so co-processors bring them up to their task.
+We've [seen before](playstation-2#the-leader) how Sony always supplies a general-purpose processor (the PPE in this case) accompanied by accelerators to reach acceptable gaming performance (the VPUs and IPU in the case of the PS2; and the GTE and MDEC with the PS1). This is common practice with video game console hardware, as general-purpose units can perform a wide range of tasks, but are not specialised in anything. Game consoles require only a subset of skills (physics, graphics and audio, for instance) so co-processors bring them up to their task.
 
 > [The PPE] is a watered-down version to reduce power consumption. So it doesn't have the horsepower that you see in say a Pentium 4 (...) If you take the code that runs today on your Intel or AMD, whatever your power,  and you recompile it on Cell, it'll run today - maybe you have to change the library or two, but it'll run today here, no problem. But it'll be about 60% slower, 50% slower and so people say "Oh my god! This cell processor's terrible!" **but that's because you're only using that one piece** [@cpu-mit].
 >
 > -- <cite>Dr. Michael Perrone, manager of the IBM TJ Watson Research Center's Cell Solutions Department</cite>
 
-The accelerators included within PS3's Cell are the **Synergistic Processor Element** (SPE). Cell includes **eight of them**, although one is disabled while the console boots up. This is because chip fabrication requires an exceptional amount of precision (Cell initially used the 90nm fabrication process) and the machinery is not perfect. So, instead of chucking out circuitry that came out < 10% defective, Cell includes one spare SPE. Thus, if one of them comes out defective, the whole chip is not discarded. Now, that spare SPE will always be deactivated, independently whether it's fine or not (Sony can't have two different PS3s in the market).
+The accelerators included within PS3's Cell are the **Synergistic Processor Elements** (SPE). Cell includes **eight of them**, although one is disabled while the console boots up. This is because chip fabrication requires an exceptional amount of precision (Cell initially used the 90nm fabrication process) and the machinery is not perfect. So, instead of chucking out circuitry that came out < 10% defective, Cell includes one spare SPE. Thus, if one of them comes out defective, the whole chip is not discarded. Now, that spare SPE will always be deactivated, regardless of whether it's working or not (Sony can't have two different PS3s in the market).
 
 #### Composition of the SPE
 
@@ -275,7 +275,7 @@ The SPE is a processor that follows similar structuring to the PPE, being made o
 
 The **Memory Flow Controller** (MFC) is the block that interconnects the core with the rest of Cell, this is equivalent to the PowerPC Processor Storage Subsystem (PPSS) in the PPE. The MFC's main job is to move data between SPU's local memory and Cell's main memory and keep the SPU in sync with its neighbours.
 
-To perform its duties, The MFC embeds a **DMA controller** to handle communication between the EIB and the SPU's local memory. Furthermore, the MFC houses another component called **Synergistic Bus Interface** (SBI) that sits between the EIB bus and the DMA controller. It's a very complex piece of circuitry to summarise, but it basically interprets commands and data received from outside and signals the internal units of the SPE. As the front door to Cell, the SBI operates in two modes: bus master (where the SPE is adapted to requests data from outside) or bus slave (where the SPE is set to receive orders from outside).
+To perform its duties, the MFC embeds a **DMA controller** to handle communication between the EIB and the SPU's local memory. Furthermore, the MFC houses another component called **Synergistic Bus Interface** (SBI) that sits between the EIB bus and the DMA controller. It's a very complex piece of circuitry to summarise, but it basically interprets commands and data received from outside and signals the internal units of the SPE. As the front door to Cell, the SBI operates in two modes: bus master (where the SPE is adapted to request data from outside) or bus slave (where the SPE is set to receive orders from outside).
 
 As a curious fact, considering the limit of EIB packets (up to 128-bit long), the MFC's Direct Memory Access block can only move up to 16 KB of data per cycle, otherwise, the EIB throws a 'Bus Error' exception during execution [@cpu-hpc, p. 4].
 
@@ -283,7 +283,7 @@ As a curious fact, considering the limit of EIB packets (up to 128-bit long), th
 
 The **Synergistic Processor Unit** (SPU) is the part of the SPE where the core processor resides, equivalent to the 'PPU' when we talked about the PPE.
 
-Contrariwise to the PPU, the SPU is isolated from the rest of the Cell. Thus, there's no shared memory between PPU or others SPUs. Instead, the SPU contains local memory used as working space. However, the contents of local memory can be moved back and forth using the MFC.
+Contrariwise to the PPU, the SPU is isolated from the rest of the Cell. Thus, there's no shared memory between the PPU and others SPUs. Instead, the SPU contains local memory used as working space. However, the contents of local memory can be moved back and forth using the MFC.
 
 In terms of functionality, the SPU is a lot more limited than the PPU. For instance, SPU doesn't include any memory management functions (address translation and memory protection) or even state-of-the-art functions (i.e. dynamic branch prediction). Nonetheless, it performs exceptionally well at vector processing.
 
@@ -311,7 +311,7 @@ First of all, you'll find the **SPU Load/Store unit** (SLS) does three essential
 - Executes load and store instructions.
 - Forwards instructions to another block for issuing.
 
-Notice that there are **only 256 KB available to store the program**. Considering SPU programs can be compiled using C/C++, it's not easy to predict how large the binary will be. For this reason, it is recommended that developers assume there's only half the memory available (128 KB) [@cpu-hpc, p. 4], which leaves enough window for the compiled code to take up as much space as it needs, although this comes at the cost of storage and efficiency.
+Notice that there are **only 256 KB available to store the program**. Considering SPU programs can be compiled using C/C++, it's not easy to predict how large the binary will be. For this reason, it is recommended that developers assume there is only half the memory available (128 KB) [@cpu-hpc, p. 4], which leaves enough window for the compiled code to take up as much space as it needs, although this comes at the cost of storage and efficiency.
 
 Finally, there's also a **SPU Channel and DMA Transport** (SSC) unit, which the Memory Flow controller uses to fill and/or fetch local memory, and a _puny_ **Fixed-Point Unit** that only does shuffling and vector rotation.
 
@@ -342,7 +342,7 @@ PPE-centric approaches are a set of programming patterns that place the main res
 - **Multistage pipeline model**: the PPE is tasked with sending work to a single SPE, which in turn performs the required computations and passes the results to the next SPE. This continues until the last SPE in the chain sends the processed data back to the PPE.
   - For obvious reasons, IBM doesn't suggest this design for primary tasks as it requires a considerable amount of bandwidth and it tends to be difficult to maintain.
 - **Parallel stages model**: the PPE divides its main task into independent sub-tasks and sends each one to a different SPE. Each SPE then returns the processed data to the PPE after they finish, then, the PPE combines it to produce the final result. 
-- **Services model**: each SPE get assigned a single job (i.e. MPEG decoding, audio streaming, perspective projection, vertex lighting, etc) and the PPE is in charge of sending raw data to the designated SPE. While waiting, the PPE carries out other functions.
+- **Services model**: each SPE gets assigned a single job (i.e. MPEG decoding, audio streaming, perspective projection, vertex lighting, etc) and the PPE is in charge of sending raw data to the designated SPE. While waiting, the PPE carries out other functions.
   - While this implies each SPE will have a single job, their job designation is not meant to last forever. The PPE must reallocate different jobs on the fly as the needs of the program change.
 
 #### SPE-centric approaches
@@ -809,7 +809,7 @@ As this console amalgamates technology from various companies, including product
 
 To program Cell, IBM and Sony shipped separate development suites, IBM ones targeted non-restrictive environments like Linux (and OtherOS), while Sony's tools explicitly targeted the PS3's GameOS as the only execution environment.
 
-Having said that, IBM distributed the **IBM Cell SDK** package for free [@games-cell_programming]. It includes the **GCC toolchain** modified to generate PPU and SPU binaries, allowing to development in C, C++, Fortran and assembly. It's also cross-platform, enabling to compile code from other equipment (like an x86 PC). The SDK also included low-level libraries to facilitate SIMD mathematical operations and SPU-PPU management. Finally, it bundled a fork of **Eclipse** IDE.
+Having said that, IBM distributed the **IBM Cell SDK** package for free [@games-cell_programming]. It includes the **GCC toolchain** modified to generate PPU and SPU binaries, allowing development in C, C++, Fortran and assembly. It's also cross-platform, enabling to compile code from other equipment (like an x86 PC). The SDK also included low-level libraries to facilitate SIMD mathematical operations and SPU-PPU management. Finally, it bundled a fork of **Eclipse** IDE.
 
 To ease the complexity of Cell development, IBM also developed another short-lived compiler called **XLCL** that compiles **OpenCL** code (C/C++ variant for parallelised computations) for the PPU and SPU. Though this was only distributed through IBM's Alphawork's channel, meaning it remained experimental.
 
