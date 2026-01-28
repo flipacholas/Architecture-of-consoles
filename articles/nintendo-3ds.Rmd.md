@@ -741,7 +741,7 @@ Moreover, while multiple components have changed with the arrival of the New 3DS
 
 To further increase the level of security, the console stores a series of console-unique information in **One-Time-Programmable** (OTP) memory [@operating_system-otp]. Similarly to the [Wii](wii#tab-2-1-shared-encryption) and [Wii U](wiiu#tab-5-1-dedicated-hardware), this information also includes encryption keys.
 
-OTP is written once during manufacturing, so the keys differ between each console. Hence, one hacked console won't necessarily be able to compromise the rest. This is a significant milestone for a portable console, considering a certain [previous implementation](nintendo-ds#tab-6-1-encryption-system) included global keys.
+OTP is written once during manufacturing, so the keys differ between each console. Hence, one hacked console won't necessarily be able to compromise the rest. This is a significant milestone for a portable console, considering a certain [previous implementation](nintendo-ds#tab-5-1-encryption-system) included global keys.
 
 #### eMMC NAND {.tab}
 
@@ -880,7 +880,7 @@ Nintendo partnered with two suppliers to produce development kits [@games-hardwa
 
 Among the many options, studios could rent a general-purpose 'CTR-BOX'. This is a metallic box housing the 3DS hardware, and connected to it is a 'dummy' 3DS case that serves as a controller and display. With it, developers could deploy, test and debug their code.
 
-For more single-purpose tools, studios could get official [flashcards](nintendo-ds#tab-5-1-the-hardware) to distribute game prototypes to external testers. These flashcards still only run on non-retail equipment, though this included cheaper options (with reduced functionality) than the fully-fledged CTR-BOX.
+For more single-purpose tools, studios could get official [flashcards](nintendo-ds#tab-4-1-the-hardware) to distribute game prototypes to external testers. These flashcards still only run on non-retail equipment, though this included cheaper options (with reduced functionality) than the fully-fledged CTR-BOX.
 
 With the arrival of the New 3DS, IS and Partner offered the 'SNAKE' kits with updated hardware.
 
@@ -983,7 +983,7 @@ Leaving irony aside, game updates are distributed through the eShop as well [@ga
 
 ### Network service
 
-Out with the old ([Nintendo Wi-Fi Connection](nintendo-ds#network-service)), in with the new ([Nintendo Network](wiiu#network-service))! The same service offered with the Wii U is also implemented on the Nintendo 3DS, and they're admirably unified, so I recommend checking the [Wii U article](wiiu#network-service) where it's been explained in detail.
+Out with the old ([Nintendo Wi-Fi Connection](nintendo-ds#wireless-network)), in with the new ([Nintendo Network](wiiu#network-service))! The same service offered with the Wii U is also implemented on the Nintendo 3DS, and they're admirably unified, so I recommend checking the [Wii U article](wiiu#network-service) where it's been explained in detail.
 
 ## Anti-Piracy and Homebrew
 

@@ -378,7 +378,7 @@ The Disk Drive also houses an internal ROM, known as 'DDROM', which stores code 
 
 ## Anti-piracy / Region Lock
 
-The anti-piracy system is a continuation of the [Super Nintendo's CIC](super-nintendo.md#anti-piracy--region-lock) model. As you know, earlier bootleg detection and region locking were enforced by the CIC chip (which was present in every *authorised* game cartridge) [@anti_piracy-cic]. The Nintendo 64 enhanced this system by assigning specific CIC chip variants to individual games, ensuring that each cartridge was not a counterfeit or contained a CIC clone.
+The anti-piracy system is a continuation of the [Super Nintendo's CIC](super-nintendo#anti-piracy-region-lock) model. As you know, earlier bootleg detection and region locking were enforced by the CIC chip (which was present in every *authorised* game cartridge) [@anti_piracy-cic]. The Nintendo 64 enhanced this system by assigning specific CIC chip variants to individual games, ensuring that each cartridge was not a counterfeit or contained a CIC clone.
 
 To enforce this, the PIF-NUS conducts checksum verifications both at the startup and during gameplay to supervise the current CIC installed on the cartridge.
 
