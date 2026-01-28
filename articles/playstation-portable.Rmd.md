@@ -14,6 +14,7 @@ top_tabs:
       caption: "The original PSP (model 1000, a.k.a. 'Fat').<br>Released on 12/12/2004 in Japan, 24/03/2005 in America and 01/09/2005 in Europe"
       active: true
       file: original
+      latex_height: 90
     - title: "Slim"
       caption: "The updated PSP (model 2000, a.k.a. 'Slim').<br>Released on 05/09/2007 in Europe, 06/09/2007 in America and 20/09/2007 in Japan"
       file: slim
@@ -25,6 +26,7 @@ top_tabs:
       file: go
   Motherboard:
     caption: "Such a tiny board... but you can do so much with it.<br>Those zigzags you see between the CPU and memory attempt to correct the length of each bus so all of the signals arrive at the same time. This tells you how fast technology has become!<br>After the 'Slim' model, Tachyon and 'NAND + SDRAM' became one."
+    latex_height: 95
   Diagram:
     caption: "After the 'Slim' model, NAND and SDRAM size were doubled (to 64 MB each)"
 
@@ -44,13 +46,13 @@ This article is dedicated to anyone who wants to understand, straight to the poi
 
 Similarly to Nintendo, Sony built an *extremely packed* System-on-Chip (SoC) that houses most of the components we are going to discuss throughout this article. This includes the **main CPU** in charge of executing games and other programs (unlike the other CPUs, which we'll talk about in due time). The SoC is called **Tachyon**, a name chosen by Sony themselves (after watching some *Star Trek*?).
 
-![The Tachyon chip on the original PSP model.](tachyon.jpg)
+![The Tachyon chip on the original PSP model.](tachyon.jpg){latex_width="90%"}
 
 The main CPU is also an in-house design by Sony that [keeps up with the tradition](playstation-2#cpu) of using **MIPS** technology. Be as it may, it's been four years since the release of the PlayStation 2, I wonder what's the state of MIPS since then?
 
 ### MIPS after the turn of the century
 
-I'm afraid the golden years of MIPS have been kept in the 90s and there aren't any indicators that these will repeat anytime soon. Its parent company, SGI, lost dominance against affordable x86 workstations and was running out of cash. So, in 1999 it sold its majority stake in MIPS [@cpu-foremski]. With this, MIPS became an independent company once again, however, the competition was more fierce than it was in the early days.
+I'm afraid the golden years of MIPS were left in the 90s, and there aren't any indicators that these will repeat anytime soon. Its parent company, SGI, lost dominance against affordable x86 workstations and was running out of cash. So, in 1999 it sold its majority stake in MIPS [@cpu-foremski]. With this, MIPS became an independent company once again; however, the competition was fiercer than in the early days.
 
 The company's first decision was to acknowledge that MIPS CPUs couldn't compute in the high-performance arena anymore. So, they shifted their focus to **low-power computing**, running head-to-head against [ARM](game-boy-advance#the-cambridge-miracle) and its [unprecedented popularity](nintendo-ds#arms-new-territories).
 
@@ -90,11 +92,11 @@ As with any MIPS CPU, Allegrex has three coprocessor slots. Sony added three:
   - Its efficiency comes from its 128-bit data bus connected to the rest of the system, offloading the main CPU's transit.
   - Unlike the FPU, some behaviour of the VFPU deviates from the IEEE-754 standard.
 
-In conclusion: Allegrex is incredibly fast. However, we still don't know what can you do with it. After all, you can imagine this CPU as the conductor of an orchestra, and we haven't checked out the performers yet.
+In conclusion: Allegrex is incredibly fast. However, we still don't know what you can do with it. After all, you can imagine this CPU as the conductor of an orchestra, and we haven't checked out the performers yet.
 
 #### Focused memory management
 
-Let me talk for a moment about the memory system implemented in this system. Among other things, the System Control Coprocessor provides the functionality of a **Memory Protection Unit** or 'MPU' (not to be confused with an 'MMU'), this maps the physical hardware onto the CPU's memory space with some special quirks in between. Even though its *modus operandi* can be seen as a bit primitive at first, we'll see why it's optimal for the needs of this console.
+Let me talk for a moment about the memory system implemented in this system. Among other things, the System Control Coprocessor provides the functionality of a **Memory Protection Unit** or 'MPU' (not to be confused with an 'MMU'), which maps the physical hardware onto the CPU's memory space with some special quirks in between. Even though its *modus operandi* can be seen as a bit primitive at first, we'll see why it's optimal for the needs of this console.
 
 ![Memory addressing with the MPU.](_diagrams/cpu/mmu.png)
 
@@ -104,7 +106,7 @@ This is particularly advantageous for features like 'virtual memory' and 'memory
 
 Thanks to this, Allegrex won't have to deal with userland programs (i.e. games) accessing restricted locations (i.e. encryption keys). To accomplish the restriction itself, memory addresses are grouped into five segments with different privilege levels. Furthermore, Allegrex's MPU contains three modes of operation: **User mode**, **Supervisor mode** and **Kernel mode**.
 
-If a normal process (operating in user mode) wants to access a memory address found in a privileged location, the MPU will ask the operating system (through the use of 'exceptions') whether to grant permission to the process. 
+If a normal process (operating in user mode) wants to access a memory address found in a privileged location, the MPU will ask the operating system (through the use of 'exceptions') whether to grant permission to the process.
 
 All in all, this allows Sony, the developer of the operating system, to implement a security system enforced by hardware.
 
@@ -132,13 +134,13 @@ Using the principles above, the following buses were constructed for the PSP:
 
 - The **System Bus**: connects the CPU, scratchpad and GPU. It's 128 bits wide.
 - The **Media Engine bus**: connects another group of components (explained in the next section). It has the same properties as the System Bus.
-- The **Peripheral Bus**: connects I/O and storage-related components. It's 32-bits wide.
+- The **Peripheral Bus**: connects I/O and storage-related components. It's 32 bits wide.
 
 All three buses connect to the DDR controller, which is where the main RAM is found.
 
 ### Tackling traffic congestion
 
-Inside each bus, there will be multiple components working independently. They will store processed data in a shared space (such as the main RAM). Now, we don't want the CPU to intervene whenever a module needs to read or write from memory. Traditionally, a DMA unit was placed in the bus to provide this facility, but a single DMA can only do so much. The PSP contains a significant number of components, and this will eventually lead to bottlenecks.
+Inside each bus, there will be multiple components working independently. They will store processed data in a shared space (such as the main RAM). Now, we don't want the CPU to intervene whenever a module needs to read or write from memory. Traditionally, a DMA unit was placed on the bus to provide this facility, but a single DMA can only do so much. The PSP contains a significant number of components, and this will eventually lead to bottlenecks.
 
 The solution is very simple: **bus mastering**. In a nutshell, each component will get its own DMA controller. This gives them the ability to become the 'bus master' and take control of the bus to access whatever location they want. To avoid contention (multiple 'bus masters' at the same time), the neighbouring components will acknowledge this event and wait until the operation completes.
 
@@ -154,7 +156,7 @@ Looking back at my analyses, however, it's hard to comprehend how such a talente
 
 In the case of low-power computing, it was more difficult for me to understand the retreat, as MIPS and ARM shared similar business models (IP licensing). Luckily, a previous interview from the Computer History Museum in 2011 also brought up the same question, resulting in this answer:
 
-> We made a mistake, we didn't realise how important the cellphone market was. Early there was no money to be made (...) but ARM got it by [investing in it](game-boy-advance#tab-1-2-a-new-cpu-venture). It was a very smart move and it turned out to be incredible leverage point. We just looked at the gross margin and said "that's not a great return! we'd be better off putting our attention elsewhere" but of course, it turned out cell phones became smartphones [and then] became a gigantic. [@cpu-chm_mips]
+> We made a mistake, we didn't realise how important the cellphone market was. Early there was no money to be made (...) but ARM got it by [investing in it](game-boy-advance#tab-1-2-a-new-cpu-venture). It was a very smart move and it turned out to be an incredible leverage point. We just looked at the gross margin and said "that's not a great return! we'd be better off putting our attention elsewhere" but of course, it turned out cell phones became smartphones [and then] became a gigantic. [@cpu-chm_mips]
 >
 > -- <cite>John Hennessy, co-founder of MIPS Computer Systems</cite>
 
@@ -171,9 +173,9 @@ Up to this point, we've discussed the main CPU and the buses inside Tachyon, but
 That being said, the new block is called **Media Engine group** and it's composed of the following components:
 
 - A second **Allegrex CPU** serving as the 'controller' of the Media Engine group. This is the same CPU found in the system group, but without the vector coprocessor [@cpu-marshall]. The controller is responsible for receiving orders from the main CPU and managing the rest of the multimedia hardware that will work concurrently.
-- **2 MB of eDRAM**: multimedia encoding and/or decoding consumes a considerable amount of bandwidth, so to avoid stalling the other components, the Media Engine contains dedicated memory to process the data 'in-house' and publish the results once it's necessary to do so.
+- **2 MB of eDRAM**: multimedia encoding and/or decoding consumes a considerable amount of bandwidth, so to avoid stalling the other components, the Media Engine contains dedicated memory to process the data 'in-house' and publish the results when necessary.
   - 'eDRAM' is the same as DRAM but manufactured inside another chip.
-- An **MPEG-AVC** decoder: a hardware decoder that does only one thing, and fast. That is, swallow **H.264 video stream** [@cpu-ppsspp] and spit out data that the audio and graphics endpoint understand.
+- An **MPEG-AVC** decoder: a hardware decoder that does only one thing, and fast. That is, swallow an **H.264 video stream** [@cpu-ppsspp] and spit out data that the audio and graphics endpoint understand.
 - A **Virtual Mobile Engine** or 'VME': this is *some sort* of programmable Digital Signal Processor (DSP). The controller programs it and then starts feeding in the data. Afterwards, like the AVC, the VME stores the processed chunk in local memory.
   - This is a very obscure component; only Sony seems to know the ins and outs of it (including how to program it). To this day, it's still a mystery.
   - From what it seems to be Sony's leaked slides [@cpu-specs], the VME seems to have local memory and a DMA controller. It's also known as the 'Dynamic Reconfigurable Engine'.
@@ -187,6 +189,8 @@ To begin with, let's go over the physical screen of this console, which is where
 ### Display
 
 The PSP carries a **4.3" TFT LCD screen**. It has a resolution of **480x272 pixels** (for reference, that's ~2.6 times the pixels of one screen of the Nintendo DS) and can display up to 16,777,216 colours. Thus, it's got a 24-bit colour depth (the so-called 'true color' scale).
+
+![A comparison of screen resolution and aspect ratio between the Game Boy, Game Boy Advance, Nintendo DS, and PSP series.](_diagrams/screen_comparison.png)
 
 The aspect ratio is *almost* 16:9, a format which during that time was increasingly becoming standard on home TVs. Notice that a wider range of view is also an opportunity for game designers to improve the experience (especially in the first-person shooting genre).
 
@@ -235,19 +239,19 @@ What about how the CPU and GE communicate with each other? As I said before, bot
 
 {.close-float}
 
-In a nutshell, two **bus matrix** blocks re-wire the connection between the local bus and the System Bus. Whenever there's a component that wants to access an 'alien' bus, the bus matrices configure the communication so that one unit becomes master of the two buses and no other overlaps, this persists until the designated unit finishes transferring memory.
+In a nutshell, two **bus matrix** blocks rewire the connection between the local bus and the System Bus. Whenever there's a component that wants to access an 'alien' bus, the bus matrices configure the communication so that one unit becomes master of the two buses and no other overlaps; this persists until the designated unit finishes transferring memory.
 
-This behaviour reminds me of the commonly known technique called **bus mastering**, where the leading component is the 'bus master' and has complete control of the bus, and the rest are 'slaves' waiting for commands. However, I'm not sure which protocol/standard Sony's engineers were trying to replicate. Based on my understanding, I think it may be somewhat similar to I²C, a protocol used for serial communications (particularly useful with embedded systems) that also performs bus mastering.
+This behaviour reminds me of the commonly known technique called **bus mastering**, where the leading component is the 'bus master' and has complete control of the bus, and the rest are 'slaves' waiting for commands. However, I'm not sure which protocol or standard Sony's engineers were trying to replicate. Based on my understanding, I think it may be somewhat similar to I²C, a protocol used for serial communications (particularly useful with embedded systems) that also performs bus mastering.
 
 ### Organising the content
 
 Now that we've seen what components we've got and how they interact with each other, let's find out what information related to graphics we can place in memory.
 
-There are three memory locations from which the GE will end up pulling from or filling:
+There are three memory locations from which the GE will end up pulling or filling:
 
 - **2 MB eDRAM**: the aforementioned eDRAM. It's used to store the frame-buffer, [z-buffer](nintendo-64#modern-visible-surface-determination) and texture buffer. Its contents are directly written by the GE. This memory space is also called 'local memory'.
   - The CPU can access this memory if needed, although its speed is not ideal.
-- **32 MB DDR SDRAM**: this is the working area of the CPU for building display lists, vertex data, texture data and CLUTs (Colour lookup tables). In the context of graphics, this bloc is called 'host memory'.
+- **32 MB DDR SDRAM**: this is the working area of the CPU for building display lists, vertex data, texture data and CLUTs (Colour lookup tables). In the context of graphics, this block is called 'host memory'.
 - **16 KB SRAM**: the scratchpad memory is also accessible by both CPU and GE.
 
 ### Functionality
@@ -364,11 +368,11 @@ As evidenced, the PSP inherits various features from the PS2. The difference, ho
 
 ### Interactive models
 
-To show how this system impacted model design and to help compare it to the [PS2](playstation-2#better-models) and [Nintendo DS](nintendo-ds#interactive-models), here are two examples of models designed for the PSP. Don't forget the viewer is interactive!
+To show how this system impacted model design and to help compare it to the [PS2](playstation-2#better-models) and [Nintendo DS](nintendo-ds#model-designs), here are two examples of models designed for the PSP. Don't forget the viewer is interactive!
 
-![Metal Gear Solid: Portable Ops Plus (2006).<br>1,383 triangles.](snake_psp){.toleft model3d="true"}
+![Metal Gear Solid: Portable Ops Plus (2006).<br>1,383 triangles.](snake_psp){.toleft paperback_latex_width="80%" model3d="true"}
 
-![Daxter (2006).<br>1,374 triangles.](daxter_psp){.toright model3d="true"}
+![Daxter (2006).<br>1,374 triangles.](daxter_psp){.toright paperback_latex_width="44%" model3d="true"}
 
 ### Video out
 
@@ -386,13 +390,11 @@ The video cable will send a frame with a resolution of **720x480 pixels (in NTSC
 
 ## Audio
 
-(Please note that there isn't space to define and explain every term used in this section. Where a term is uncommon, you can usually find a more comprehensive explanation in other articles from this series. I've put links where I can.)
-
-In this section we tend to encounter a [PSG](master-system#audio), [sequencer](nintendo-64#audio) or a *large* [mixer](nintendo-ds#audio). This is because, at the end of the day, dedicated audio hardware is meant to offload audio operations from the CPU. Although if this hardware turns out to be 'weak', it degrades the sound capabilities of the console.
+In this section, we tend to encounter a [Programmable Sound Generator](master-system#audio) (PSG), a [sequencer](nintendo-64#audio) or a *large* [mixer](nintendo-ds#audio). This is because, at the end of the day, dedicated audio hardware is meant to offload audio operations from the CPU. Although if this hardware turns out to be 'weak', it degrades the sound capabilities of the console.
 
 Now, what we consider 'sound hardware' in the PSP is very bare-bones: only **two PCM channels and a stereo mixer**. The maximum sampling rate and resolution are **48 kHz** and **16-bit**, respectively.
 
-I don't see any of the accelerators I mentioned in the first paragraph. So, does this imply that the sound will be as limited as [other](nintendo-64#secrets-and-limitations-1) [cases](game-boy-advance#audio) showed? No! Because the hardware of the PSP enables to compensate it with more software.
+I don't see any of the accelerators I mentioned in the first paragraph. So, does this imply that the sound will be as limited as [other](nintendo-64#secrets-and-limitations-1) [cases](game-boy-advance#audio) showed? No! Because the PSP relies on software to compensate for this.
 
 You see, while there isn't a large amount of sound-related circuitry, Sony supplied a lot of general-purpose components. These can help with audio decoding, streaming and mixing. I'm talking about the **Media Engine**.
 
@@ -434,13 +436,13 @@ The PSP has plenty of connections and sensors. However, this section will be a g
 
 Most of the I/O available is linked in the **Peripheral Bus**. It's only 32 bits wide, which is enough to transfer simple information at a normal pace. It has access to the main RAM as well.
 
-The D-pad, joystick and buttons are handled by a unique chip referred to as **'System Control' or SysCon**. This is a common codename in Sony's hardware and it deals with interfacing many internal components – in this case, only the physical buttons.
+The D-pad, joystick and buttons are handled by a unique chip referred to as **'System Control' or SysCon**. This is a common codename in Sony's hardware, and it deals with interfacing many internal components - in this case, only the physical buttons.
 
 ### External interfaces
 
 The console features a good amount of connections [@io-edepot]:
 
-- **802.11b WiFi**: either connects to a hub or operates in 'ad hoc' mode to talk to nearby PSPs. This is similar to what the [Nintendo DS](nintendo-ds#freedom-of-interaction) offered.
+- **802.11b Wi-Fi**: either connects to a hub or operates in 'ad hoc' mode to talk to nearby PSPs. This is similar to what the [Nintendo DS](nintendo-ds#freedom-of-interaction) offered.
 - **USB 2.0**: for accessories or to plug the console into a computer. In the case of the latter, the PSP is recognised as a mass storage device, providing access to the memory stick.
 - **IrDA**: stands for 'Infrared Data Association', similar to what a TV remote uses to change the channel. Before the release of the PSP, the infrared protocol was popular for transferring multimedia between a camera/phone and the computer. As for the PSP, however, the IrDA port went bluntly ignored.
   - As tends to happen, Sony removed it with the second revision of the PSP (2000).
@@ -454,14 +456,14 @@ The use of a standard port, USB, enabled other companies to design accessories f
 Examples of commercialised accessories include:
 
 - A **microphone** for audio chatting.
-- A **GPS antenna**: apart from navigation, I don't know what else can you do with it.
-- A **camera**: a good addition for the microphone to achieve videoconferencing. This makes sense as Skype was even embedded in the system.
+- A **GPS antenna**: apart from navigation, I can't imagine any other use.
+- A **camera**: a good addition for the microphone to achieve videoconferencing. This makes sense as *Skype* came included with the system.
 
 The funny thing is that these gadgets were also available for Pocket PCs and PDAs as well. It makes you wonder if Sony envisioned the PSP as a *Pocket PC for youngsters*.
 
 ### Home console connectivity
 
-After the release of the PlayStation 3, a new feature appeared on the PSP: **Remote Play**. Using a WiFi connection, the PS3 could be remotely controlled from the PSP.
+After the release of the PlayStation 3, a new feature appeared on the PSP: **Remote Play**. Using a Wi-Fi connection, the PS3 could be remotely controlled from the PSP.
 
 This was many years before the Wii U launched, eh? Unfortunately, only a handful of PS3 games supported Remote Play, meaning users could only navigate through the menus, do some multimedia and play PlayStation 1 games.
 
@@ -471,7 +473,7 @@ Over the years, the program in charge of controlling a given console before a ga
 
 ### Architecture and design
 
-First and foremost, the PSP contains a hidden, undocumented **4 KB ROM** inside Tachyon where the boot-loader is. In other words, upon powering on, the CPU will start by looking for instructions in there. That ROM has many names, including 'Bootrom', 'Pre-IPL' and 'Lib-PSP iplloader'. The latter is the internal codename used by Sony.
+First and foremost, the PSP contains a hidden, undocumented **4 KB ROM** inside Tachyon where the bootloader is. In other words, upon powering on, the CPU will start by looking for instructions in there. That ROM has many names, including 'Bootrom', 'Pre-IPL' and 'Lib-PSP iplloader'. The latter is the internal codename used by Sony.
 
 The rest of the system is installed on **32 MB of NAND Flash memory** found in the motherboard. Here is where the majority of the PSP's Operating System (OS) resides.
 
@@ -479,7 +481,8 @@ The OS is composed of the following components:
 
 #### Modules {.tabs .active}
 
-A **module** is what we would call a 'program' or 'driver' in the PC/Windows world. Once loaded, modules may reside in memory and perform the following tasks [@cpu-naked]: 
+A **module** is what we would call a 'program' or 'driver' in the PC/Windows world. Once loaded, modules may reside in memory and perform the following tasks [@cpu-naked]:
+
 - Expose functions to simplify access to certain hardware.
 - Run as a foreground program (i.e. games).
 
@@ -493,7 +496,7 @@ While this OS doesn't contain a kernel *per se*, it has multiple components that
 
 The first component is the **IPL**, which is loaded by the Pre-IPL and takes care of initialising the hardware. Part of the IPL, called **IDStorage**, also stores unique information about the console (such as its MAC address, serial number and UMD authentication keys) [@operating_system-jas]. Overwriting this last area causes catastrophic results! So the UMD keys are duplicated a couple of times, to survive corruption.
 
-The IPL then loads a set of **kernel modules** which handle low-level operations (memory management, multi-threading and file-system). They also implement memory access exceptions triggered by the MPU (remember the [segmentation paragraph](#focused-memory-management)?). For the sake of simplicity, whenever I use the word 'kernel' in this article, I'll be referring to these kernel modules.
+The IPL then loads a set of **kernel modules** which handle low-level operations (memory management, multi-threading and file system). They also implement memory access exceptions triggered by the MPU (remember the [segmentation paragraph](#focused-memory-management)?). For the sake of simplicity, whenever I use the word 'kernel' in this article, I'll be referring to these kernel modules.
 
 Having said that, the kernel doesn't do multitasking, but it does implement cooperative multi-threading for single processes.
 
@@ -518,12 +521,12 @@ The *complex* boot process works as follows [@operating_system-ipl] [@cpu-naked]
 1. The main CPU's reset vector is at `0x1FC00000`, which points to the Pre-IPL ROM inside Tachyon.
     1. The first half of the Pre-IPL tells the CPU to copy the other half to scratchpad memory and continue execution from there.
         - The Pre-IPL will now look for the next stage from either **NAND or an external memory stick**. When the latter is selected (never under normal use), the PSP enters a mode called **factory service mode**. For simplicity, we'll focus on the normal mode (selecting NAND).
-    3. The Pre-IPL initialises the NAND controller and continues execution from NAND. The second part of the Pre-IPL runs the IPL, which is encrypted, so it will be decrypted (using 'KIRK', more details later) and copied to eDRAM (in the Graphics Engine) as a working area.
-    4. Once finished decrypting, it continues execution at eDRAM, where the decrypted IPL is.
+    2. The Pre-IPL initialises the NAND controller and continues execution from NAND. The second part of the Pre-IPL runs the IPL, which is encrypted, so it will be decrypted (using 'KIRK', more details later) and copied to eDRAM (in the Graphics Engine) as a working area.
+    3. Once finished decrypting, it continues execution at eDRAM, where the decrypted IPL is.
 2. The IPL's execution process is divided into three stages.
     1. The first stage, called the **loader**, resets the main CPU and hides the Pre-IPL ROM from the memory map. The loader also initialises minimal hardware and decompresses 'Main.bin', the next stage, on eDRAM.
     2. **Main.bin** focuses on initialising the rest of the hardware, including main memory. Once it finishes, it decrypts the third stage onto main memory and continues execution from there.
-    3. The final stage, referred to as **payload**, loads the kernel. The kernel is stored in the form of different binaries, modules and meta-data that, once loaded into main RAM, will give life to the system. Afterwards, the interactive shell is shown.
+    3. The final stage, referred to as **payload**, loads the kernel. The kernel is stored in the form of different binaries, modules and metadata that, once loaded into main RAM, will give life to the system. Afterwards, the interactive shell is shown.
 
 ### Visual Shell
 
@@ -547,7 +550,7 @@ There's also a file viewer embedded, which is used for both multimedia and save 
 
 ### Updatability
 
-As we've seen before, everything except the Pre-IPL is stored in writable storage, and thus is 'updatable'. Sony distributed firmware updates in the form of downloadable files. Users could either manually download them or use the 'system update' assistant from the XrossMediaBar to automatically download (using WiFi) and install them.
+As we've seen before, everything except the Pre-IPL is stored in writable storage, and thus is 'updatable'. Sony distributed firmware updates in the form of downloadable files. Users could either manually download them or use the 'system update' assistant from the XrossMediaBar to automatically download (using Wi-Fi) and install them.
 
 ![System Update 'Wizard'.](xmb/update.jpg)
 
@@ -570,10 +573,10 @@ In this kit we could find:
 - An **SDK**: contained C++ libraries that linked to a particular version of the firmware (as they depend on the modules installed).
 - A choice of **two compilers**: a variant of the GCC compiler called 'psp-gcc', or one developed by SN Systems called 'SVCPSP' ('SVC' targeting the PSP).
 - The **GDB debugger**.
-- SN System's **assembler**, **linker** and **archiver**. The latter generates PSP executables.
+- SN Systems' **assembler**, **linker** and **archiver**. The latter generates PSP executables.
 - A **plugin for Visual Studio 2005 and 2008**, so developers could use Microsoft's IDE for PSP development.
 
-Initially, Sony only provided an emulator to test PSP software. This was later replaced with the **PSP Hardware Tool**: a PC-like tower connected to a dummy PSP case (similar to the [Nintendo DS kit](nintendo-ds#tab-5-1-the-hardware)). The devkit connected to the workstation using a piece of software called **ProDG** (only available on Windows).
+Initially, Sony only provided an emulator to test PSP software. This was later replaced with the **PSP Hardware Tool**: a PC-like tower connected to a dummy PSP case (similar to the [Nintendo DS kit](nintendo-ds#tab-4-1-the-hardware)). The devkit connected to the workstation using a piece of software called **ProDG** (only available on Windows).
 
 ### Storage medium
 
@@ -583,11 +586,11 @@ The PS1 and PS2 featured two types of storage: a read-only disc for loading game
 
 ![Typical retail game.](retail.jpg){.tab-float}
 
-CDs and DVDs are too big, and easily copiable. On the other hand, conventional readers won't work in a shaky environment (those who tried listening to an audio CD on a Walkman while *walking* know what I'm talking about). So, Sony's solution was a new invention from the ground up called **Universal Media Disc**, a proprietary medium.
+CDs and DVDs are too big, and easily copyable. On the other hand, conventional readers won't work in a shaky environment (those who tried listening to an audio CD on a Walkman while *walking* know what I'm talking about). So, Sony's solution was a new invention from the ground up called **Universal Media Disc** (UMD), a proprietary medium.
 
-UMDs hold either **900 MB or 1.8 GB** depending on whether they are single-layered or dual-layered, respectively. UMDs not only differ physically from a DVD or MiniDVD, but they also contain a different internal structure. Apart from games, Sony published the 'UMD video' and 'UMD audio' specifications, allowing other distributors to ship their content to PSP users – remember, this is the year 2004 (when the *iPod Photo* had a 2" display).
+UMDs hold either **900 MB or 1.8 GB** depending on whether they are single-layered or dual-layered, respectively. UMDs not only differ physically from a DVD or MiniDVD, but they also contain a different internal structure. Apart from games, Sony published the 'UMD video' and 'UMD audio' specifications, allowing other distributors to ship their content to PSP users - remember, this is the year 2004 (when the *iPod Photo* had a 2" display).
 
-These discs are presented with an **non-removable caddy**; the centre is magnetic so it attaches itself to the reader's motor once the disc is inserted.
+These discs are housed in a **non-removable caddy**; the centre is magnetic, so it attaches itself to the reader's motor once the disc is inserted.
 
 #### Memory Stick Duo {.tab}
 
@@ -609,11 +612,11 @@ Eventually, Sony caught up with the competition and improved its online infrastr
 
 ![PSN category in XMB.](xmb/network.jpg){.tab-float}
 
-In answer to Microsoft's [Xbox Live](xbox#network-service) and Nintendo's [Nintendo WiFi Connection](nintendo-ds#network-service), Sony had its own online infrastructure... **PlayStation Network**, or PSN.
+In response to Microsoft's [Xbox Live](xbox#network-service) and Nintendo's [Nintendo Wi-Fi Connection](nintendo-ds#wireless-network), Sony had its own online infrastructure... **PlayStation Network** or 'PSN'.
 
 This service superseded the primitive [DNAS](playstation-2#network-service), previously deployed for the PlayStation 2. One of the additions was the use of a centralised authentication system.
 
-Users could register a free PSN account using the console; this enabled them to play with other people around the globe using WiFi connection.
+Users could register a free PSN account using the console, enabling multiplayer gaming with other people around the globe via Wi-Fi connection.
 
 It's worth mentioning that at first, the PSP didn't include many online services. This changed drastically with the release of the PlayStation 3, but I guess this is a story for a later article...
 
@@ -633,13 +636,13 @@ Later on, the game catalogue drastically expanded with the arrival of **[PS1 gam
 
 Last but not least, online services provided the opportunity to **download game patches** (in the form of 'updates') directly to the console.
 
-However, not many games used this feature. This is hard to conceive nowadays, as large game updates tend to be published before the game hits the store...
+However, not many games used this feature. This is hard to imagine nowadays, as large game updates tend to be published before the game hits the store...
 
 ## Anti-Piracy and Homebrew {.tabs-close}
 
-Just because this is a portable console doesn't mean it should have weaker security than the PS2. It's quite the opposite in all senses – the security system implemented on the PSP is very diverse, with some parts still remaining a mystery to this day.
+Just because this is a portable console doesn't mean it should have weaker security than the PS2. It's quite the opposite in all senses - the security system implemented on the PSP is very diverse, with some parts still remaining a mystery to this day.
 
-Now, we all know by now that its implementation contained pitfalls that eventually lead to Homebrew and piracy, but considering it was released in 2004 and it's a portable console, you may find that some algorithms bundled are state-of-the-art compared to the competition.
+Now, we all know by now that its implementation contained pitfalls that eventually led to Homebrew and piracy, but considering that this was a console from 2004, certain design decisions may be considered ahead of time, if you compare them with the competition.
 
 ### Physical security
 
@@ -667,11 +670,11 @@ In short, the CPU sends commands to KIRK (i.e. 'encrypt this string with algorit
 
 As you know, UMD discs are not easily duplicated, but their contents are also stored in an encrypted form. Users will never notice this, however, since the decryption process is performed by hardware too.
 
-Living alongside Tachyon, another System-on-Chip known as **Lepton** controls the UMD drive, and serves as a middle-man between the main CPU and UMD content.
+Living alongside Tachyon, another System-on-Chip known as **Lepton** controls the UMD drive, and serves as a middleman between the main CPU and UMD content.
 
-Lepton contains an enormous amount of circuitry – you may even consider it another computer living inside the PSP. This component includes its own CPU, a DSP for decoding, 480 KB of memory (as buffer) and finally, 384 KB of ROM for storing its firmware.
+Lepton contains an enormous amount of circuitry - you may even consider it another computer living inside the PSP. This component includes its own CPU, a DSP for decoding, 480 KB of memory (as buffer) and finally, 384 KB of ROM for storing its firmware.
 
-The main CPU communicates to Lepton using the ATAPI protocol, an interface traditionally used for plugging conventional CD/DVD drives to PCs. The main difference, however, is that the Lepton will only decrypt data from a UMD if the disc is identified as authentic.
+The main CPU communicates to Lepton using the ATAPI protocol, an interface traditionally used for plugging conventional CD/DVD drives into PCs. The main difference, however, is that the Lepton will only decrypt data from a UMD if the disc is identified as authentic.
 
 #### SPOCK {.tab}
 
@@ -700,7 +703,7 @@ Despite all the security, it seems that hackers never gave up on this console (m
 
 After the release of the PSP in Japan, it was a matter of time before userland exploits emerged. Some of them used the flawed security found in early versions of the firmware:
 
-- 'Wipe Out' embedded a web browser to access downloadable content. It wasn't protected against **DNS attacks (domain hijacking)**, allowing users to browse any URL in the world-wide-web.
+- 'Wipe Out' embedded a web browser to access downloadable content. It wasn't protected against **DNS attacks (domain hijacking)**, allowing users to browse any URL on the World Wide Web.
   - Later on, it was discovered that the browser's URL entry didn't verify the input. So, entering `file:///disc0:/` as URL would **list the contents of the UMD**, already unencrypted. This enabled hackers to inspect PSP executables and reverse engineer them.
 - The first revision of the system **didn't check for signatures** in the executables stored in the memory stick, allowing to run custom user modules (not kernel ones).
   - This was probably accidental as it's common practice to use a debug version of the system (without signature checks) for development purposes. So they may have rushed into release and forgotten to re-activate the checks, like [Microsoft](xbox#tab-5-2-bootstrap-search) did.
@@ -726,7 +729,7 @@ The cat and mouse game was the order of the day until the so-called 'Pandora' ar
 
 The 'Pandora battery method' is a popular (and respected) collection of achievements. It managed to bypass most of the security layers, and focused on where Sony could not react quickly: the Pre-IPL. This is what Pandora managed to succeed in [@anti_piracy-pandora]:
 
-- **Find a way of entering entering 'Service Mode'**: by tampering with the PSP's removable battery, which had some circuitry attached for identification purposes, hackers discovered that overriding its serial number value to `0xFFFFFFFF` triggered service mode at boot time. Thus, the Pre-IPL would look for a secondary system in the Memory Stick. The modified battery was referred to as **JigKick** or 'Pandora' Battery.
+- **Find a way of entering 'Service Mode'**: by tampering with the PSP's removable battery, which had some circuitry attached for identification purposes, hackers discovered that overriding its serial number value to `0xFFFFFFFF` triggered service mode at boot time. Thus, the Pre-IPL would look for a secondary system in the Memory Stick. The modified battery was referred to as **JigKick** or 'Pandora' Battery.
   - Users could create a Jigkick battery with a hacked PSP, or by desoldering the ground pin of the battery's EEPROM. The latter is riskier, taking into account casual users are disassembling a Lithium battery! Thus, some companies distributed their own 'Pandora battery' maker.
   - A Jigkick battery works like any other battery. However, when inserted, the PSP will always boot from the Memory Stick.
 - **Trick 'Service mode' into loading fake/unsigned firmware**: the next step was to find a way to load a fake IPL in service mode (it still has to be encrypted and signed to work). Well, hackers found a way, by embedding an unencrypted payload next to the encrypted block. The Pre-IPL would try to validate it (due to the Pre-IPL not checking that the encrypted block is 1 KB long). The encrypted section had to be crafted in a way that, once decrypted, will tell the Pre-IPL to 'jump 100 bytes down'. This bypassed the security routines and redirected execution to the payload, enabling anyone to **execute code with maximum privileges** in service mode. This reminds me of what happened to the [Wii](wii#the-fall-of-encryption).
@@ -740,7 +743,7 @@ Don't forget that all this was a tremendous task, especially if we take into acc
 
 ![Some CFWs include special modules to operate low-level options.](xmb/cfw.jpg){.tab-float}
 
-The Pandora method represented a big blow for Sony – it was an effective bootrom exploit, and just like the [Nintendo DS](nintendo-ds#tab-7-3-native-slot-1), fixes would only arrive in the form of new hardware revisions.
+The Pandora method represented a big blow for Sony – it was an effective bootrom exploit, and just like the [Nintendo DS](nintendo-ds#tab-6-3-native-slot-1), fixes would only arrive in the form of new hardware revisions.
 
 Furthermore, before Pandora was published, so-called **Custom Firmware** or 'CFW' arrived. CFW is an official firmware with modifications applied (such as Homebrew modules). These customisations enjoyed kernel privileges and, as you may guess, they had complete control of the console. Examples of new modules included ISO loaders, signature disablers, low-level CPU management, a 'plugin' loader (to add more customisations without re-installing the firmware), and many, many more. Lots of hackers crafted their own flavour, such as M33, PRO and ME.
 
@@ -748,7 +751,7 @@ A CFW can be installed on top of the current firmware with the help of any kerne
 
 In the end, the last straw was when the [security system](playstation-3#os-security-hierarchy) of the [PlayStation 3](playstation-3) was [hacked](playstation-3#tab-9-4-the-fall-of-encryption), as it contained the **private keys used to decrypt PSP executables** (the PS3's OS includes a PSP emulator). This allowed anyone to sign userland software and embed a kernel exploit to produce CFW installers and/or CFW loaders, for instance.
 
-In recent developments, it was discovered that the latest firmware contains a kernel exploit during the boot process, which could be used to kickstart a CFW of choice. This was packaged in an solution called **Infinity 2** [@anti_piracy-davee].
+In recent developments, it was discovered that the latest firmware contains a kernel exploit during the boot process, which could be used to kickstart a CFW of choice. This was packaged in a solution called **Infinity 2** [@anti_piracy-davee].
 
 To sum it up, Sony was right when they claimed the UMDs were un-hackable. After all, hacking was achieved instead thanks to (many) flaws in software.
 
@@ -760,7 +763,7 @@ PSPSDK also includes a toolkit to handle the compilation and packaging process, 
 
 ## That's all folks
 
-![The PSP acquired for this article.<br>This is what grownups used to buy if they wanted to look cool 😉 (I had a DS).](mypsp.jpg)
+![The PSP acquired for this article.<br>This is what grownups used to buy if they wanted to look cool (I had a DS).](mypsp.jpg)
 
 There you go, you've just finished reading about the last portable console before smartphones and tablets took over! I think this gives us an idea of what services/features users were expecting from portable handhelds in the early noughties – and how this evolved during the next decade.
 
