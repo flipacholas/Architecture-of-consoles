@@ -50,7 +50,7 @@ The Game Boy Advance, as a brand, comprises four variants. To quickly summarise:
 - The **Game Boy Micro** is a miniaturised version with similar improvements, though this time at the expense of backwards compatibility.
 - The **Game Boy Player** is a modularised version that attaches below the [GameCube](gamecube) using the [Hi-Speed port](gamecube#unusual-io). It is operated through the GameCube and, thanks to the fact it houses most of the internals of the original console, it offers native and backwards compatibility. However, its distinct shape makes it physically and ergonomically incompatible with many accessories.
 
-I have to say, the (Game Boy) backwards compatibility is an intriguing topic to discuss, so I have dedicated a few paragraphs at the end of the CPU section.
+I have to say, Game Boy backwards compatibility is an intriguing topic, so I have dedicated a few paragraphs at the end of the CPU section.
 
 ## {.supporting-imagery}
 
@@ -73,9 +73,9 @@ The story about the origins of the ARM CPU and its subsequent rise to fame is ri
 
 ::: {.subfigures .tabs-nested .tab-float}
 
-![The BBC Micro (1981) with a box of 5¼ disks on top [@photography-bbc_micro], the first disk features the game *Elite* (1984).](bbc_micro.jpg){.active paperback_latex_width="77%" hardcover_latex_width="70%" title="BBC Micro"}
+![The BBC Micro (1981) with a box of 5¼ disks on top [@photography-bbc_micro], the first disk features the game *Elite* (1984).](bbc_micro.jpg){.active paperback_latex_width="79%" hardcover_latex_width="70%" title="BBC Micro"}
 
-![The ARM Evaluation Board (1986), a 'Tube' module carrying an ARM1 CPU. I found it at The Centre for Computing History (Cambridge, UK).](arm_evaluation.webp){paperback_latex_width="77%" hardcover_latex_width="70%" title="ARM1"}
+![The ARM Evaluation Board (1986), a 'Tube' module carrying an ARM1 CPU. I found it at The Centre for Computing History (Cambridge, UK).](arm_evaluation.webp){paperback_latex_width="79%" hardcover_latex_width="70%" title="ARM1"}
 
 The predecessors of the first commercial ARM CPU, the ARM2.
 
@@ -93,7 +93,7 @@ During the development of their next product, this time enterprise-focused, Acor
 
 During the commercialisation of the Acorn Archimedes, Apple became captivated by Acorn's energy-efficient CPUs, but the American company was still unconvinced that Acorn's latest ARM3 was suitable for Apple's new pet project, the **Newton**. However, rather than walking away (after all, Acorn was a competitor), both explored the possibility of evolving the ARM3 to meet Apple's requirements [@cpu-furber], namely **flexible clock frequency**, an **integrated [MMU](nintendo-64#memory-management)**, and **complete 32-bit addressing**.
 
-This collaboration soon turned into a partnership in which Acorn, Apple and VLSI (ARM chips manufacturer) set up a new company solely focused on developing ARM CPUs. Apple provided the investment (obtaining a 43% stake), Acorn shared its staff, and VLSI took care of manufacturing. In 1990, **Advanced RISC Machines (ARM) Ltd** came into existence, with Robin Saxby appointed as executive chairman.
+This collaboration soon turned into a partnership in which Acorn, Apple, and VLSI (ARM's chip manufacturer) set up a new company solely focused on developing ARM CPUs. Apple provided the investment (obtaining a 43% stake), Acorn shared its staff, and VLSI took care of manufacturing. In 1990, **Advanced RISC Machines (ARM) Ltd** came into existence, with Robin Saxby appointed as executive chairman.
 
 Years after, Apple finally shipped the **Newton MessagePad**, powered by an **ARM610** - one of the next-generation ARM chips shaped by Apple's input. Meanwhile, Acorn also released the **RiscPC** using the new CPUs.
 
@@ -121,7 +121,7 @@ To begin with, the ARM7TDMI implements the **ARMv4** instruction set, the succes
 - **Conditional execution**: A peculiar feature of the ARM ISA. Essentially, almost every instruction embeds a condition that states whether it should be executed. Typically, other CPUs follow the 'compare and jump' process (also called 'branching') to control which instructions the CPU must execute. By contrast, ARM programmers may insert the condition in the instruction itself. This is possible due to the first four bits of ARM's opcodes are reserved for a condition (i.e. `equal`, `not equal`, etc). All in all, this reduces the complexity of ARM code, as conditional execution provides a cleaner design for routines, unlike branching and subroutine splitting. Additionally, this also serves as a workaround for [control hazards](playstation#delay-galore) (explained in more detail later).
 - A **flexible second operand**, also known as 'Operand2' [@cpu-operand2]. Typically, operations are made of two operands (like `add 2 and 2`). However, ARM instructions also allows embedding an extra `shift` operation into the second operand. For example, you can compute `shift 2 by four bits and then add it to 2` in a single instruction.
   - Bit shifting is also a cheap shortcut to perform division or multiplication with powers of 2, which leads to many optimisation techniques.
-- **32-bit** and **64-bit multiplication** instructions: An addition of the ARM v4. Furthermore, 64-bit operations output the result in two registers.
+- **32-bit** and **64-bit multiplication** instructions: An addition in ARMv4. Furthermore, 64-bit operations output the result in two registers.
 
 #### The package
 
@@ -200,7 +200,7 @@ An interesting aspect reported in the Gbdev Wiki and GBATek is that **all Game B
 
 ## Graphics
 
-Before we begin, you'll find the graphics capabilities to be a blend of [Super Nintendo](super-nintendo.md#graphics) and [Game Boy](game-boy#graphics) elements. In fact, the new graphics core is still called **PPU**. Thus, I recommend reading those articles first, as I will be revisiting many previously explained concepts.
+Before we begin, you'll find the graphics capabilities to be a blend of [Super Nintendo](super-nintendo#graphics) and [Game Boy](game-boy#graphics) elements. In fact, the new graphics core is still called **PPU**. Thus, I recommend reading those articles first, as I will be revisiting many previously explained concepts.
 
 ![Comparison of screen resolution and aspect ratio between the Game Boy and Game Boy Advance series.](_diagrams/screen_comparison.png)
 
@@ -288,10 +288,10 @@ Sprite entries are 32-bit wide and their properties are divided into two groups:
 
 ![All layers merged (_Tada!_).](sonic/result.png){.tab-float .pixel .border}
 
-As always, the PPU combines and outputs all layers automatically, but it's not over yet! The system provides plenty effects to apply to these layers [@graphics-effects]:
+As always, the PPU combines and outputs all layers automatically, but it's not over yet! The system provides plenty of effects to apply to these layers [@graphics-effects]:
 
 - **Mosaic**: Makes tiles look even more *blocky*.
-- **Colour blending**: Combines the colours of two groups of overlapping layers. The opacity of each group can be controlled to achieve varying degrees of **transparency**. Alternatively, the second group can be set to solid back or white, resulting in **fading effects**.
+- **Colour blending**: Combines the colours of two groups of overlapping layers. The opacity of each group can be controlled to achieve varying degrees of **transparency**. Alternatively, the second group can be set to solid black or white, resulting in **fading effects**.
 - **Windowing**: Divides the screen into three separate rectangular areas (called 'windows'). These may overlap, and each hosts its own graphics and blending controls. Two windows have programmable positions, while the third is the complement of the first two (in other words, the remainder of the screen not covered by them).
 
 I have to say, these are strongly reminiscent of the [Super Nintendo era](super-nintendo#more-colour-magic).
@@ -303,7 +303,7 @@ Similarly, to update the frame, there are multiple options available:
 
 ### Beyond Tiles {.tabs-close}
 
-Sometimes, game artists may design a background for which the tile engine can't draw all required graphics. Now, modern consoles addressed this by implementing a **frame-buffer** architecture, enabling programmers to arbitrary alter each pixel individually. However, this is not possible when there's very little memory... Well, the GBA happens to house 96 KB of VRAM. This is enough to allocate a **bitmap** matching the dimensions of the LCD screen.
+Sometimes, game artists may design a background for which the tile engine can't draw all required graphics. Now, modern consoles addressed this by implementing a **frame-buffer** architecture, enabling programmers to arbitrarily alter each pixel individually. However, this is not possible when there's very little memory... Well, the GBA happens to house 96 KB of VRAM. This is enough to allocate a **bitmap** matching the dimensions of the LCD screen.
 
 The good news is that the PPU actually implemented this functionality by including three extra modes, these are called **bitmap modes** [@graphics-bitmap]:
 
@@ -348,17 +348,17 @@ Gone are the days of repetitive sounds. The GBA now features a **two-channel sam
 
 ### Functionality
 
-Let's breakdown each audio component. I will be using *Sonic Advance 2* as an example.
+Let's break down each audio component. I will be using *Sonic Advance 2* as an example.
 
 #### Direct Sound {.tabs .active}
 
 ![Oscilloscope display of the PCM channels.](pcm){.tab-float .negate .border latex_width="90%" video="true"}
 
-As indicated earlier, the GBA comes with a revamped audio system called **Direct Sound**. It plays **stereo Pulse-Code Modulation (PCM) samples** [@cpu-korth]. In other words, straight out recordings that are no longer limited to a [predefined set of waveforms](game-boy#audio). Behind the scenes, the audio data is fed into a 16-byte First-In-First-Out (FIFO) queue, and a Digital-to-Analogue Converter (DAC) turns it into audible sound.
+As indicated earlier, the GBA comes with a revamped audio system called **Direct Sound**. It plays **stereo Pulse-Code Modulation (PCM) samples** [@cpu-korth]. In other words, straight-out recordings that are no longer limited to a [predefined set of waveforms](game-boy#audio). Behind the scenes, the audio data is fed into a 16-byte First-In-First-Out (FIFO) queue, and a Digital-to-Analogue Converter (DAC) turns it into audible sound.
 
 Conversely, the audio samples don't share the quality of CD audio, I'm afraid, as this console must remain affordable. The DAC can only operate **8-bit signed samples** (i.e. values between -128 to 127). This is half the resolution of typical CD audio (16-bit), which introduces significant noise. Nevertheless, games can choose the sampling rate: the technical limit is 65 kHz (for reference, CD audio is 44.1 kHz), although higher rates are possible at the expense of sample resolution [@audio-jsgroth]. Even so, all these options require large cartridge sizes and plenty CPU cycles, so not every game will spend the same amount of resources to feed the audio circuitry.
 
-On the other hand, to avoid bottlenecking the CPU, each audio channel comes equipped with a **Direct Memory Access (DMA)** unit and a **timer**, which helps to transfers audio data and keep the queue in sync, respectively.
+On the other hand, to avoid bottlenecking the CPU, each audio channel comes equipped with a **Direct Memory Access (DMA)** unit and a **timer**, which help to transfer audio data and keep the queue in sync, respectively.
 
 #### PSG {.tab}
 
@@ -420,7 +420,7 @@ Among the available routines, we can find:
 - **Affine matrix calculation**: Given a 'zoom' value and angle, it calculates the affine matrix to be supplied to the PPU in order to scale or rotate a background or sprite.
   - There are two functions, one for sprites and another for backgrounds. Their parameters differ slightly but the principle is the same.
 - **Decompression functions**: Implements decompression algorithms including Run-Length, LZ77 and Huffman. They also offer bit unpacking and sequential difference.
-- **Memory copy**: Two functions that move memory around. The first copies 32-byte blocks using a specialised opcode once (`LDMIA` to load and `SDMIA` to store). The second copies 2-byte or 4-byte blocks using repeated `LDRH/STRH` or `LDMIA/STMIA` opcodes, respectively. Thus, the second function is more flexible but not as fast.
+- **Memory copy**: Two functions that move memory around. The first copies 32-byte blocks using specialised opcodes once (`LDMIA` to load and `STMIA` to store). The second copies 2-byte or 4-byte blocks using repeated `LDRH/STRH` or `LDMIA/STMIA` opcodes, respectively. Thus, the second function is more flexible but not as fast.
 - **Sound**: Implements the aforementioned MIDI sequencer! It includes many functions to control it.
 - **Power interface**: Provides shortcuts for resetting, clearing most of the RAM, halting the CPU until a specific event occurs (i.e. V-blank or a custom one), and switching to 'low-power mode' (it just pauses the audio and PPU).
 - **Multiboot**: Uploads a program to another GBA through the 'EXT' port (the Link/serial interface) and kickstarts it. The protocol is proprietary and the uploaded program is stored in the other console's EWRAM.
@@ -438,7 +438,7 @@ Games often referred to this functionality as **Single-Pak Link**, because it al
 
 ## Games
 
-Games are distributed in a new proprietary cartridge format, it's still called **Game Pak** but features a smaller design.
+Games are distributed in a new proprietary cartridge format; it's still called **Game Pak** but features a smaller design.
 
 ![The new Game Pak design for GBA games [@photography-amos].](gba_gamepak.png){.no-borders latex_width="80%"}
 
@@ -468,7 +468,7 @@ To hold saves, Game Paks could either include [@games-ziegler]:
 
 ### Accessories
 
-Throughout its lifespan, the GBA enjoyed an interesting rage of accessories that reimagined how this console could be used. Many of the peripherals devised took advantage of Multiboot, the versatility of the EXT port, and the flexibility of the Game Pak slot.
+Throughout its lifespan, the GBA enjoyed an interesting range of accessories that reimagined how this console could be used. Many of the peripherals devised took advantage of Multiboot, the versatility of the EXT port, and the flexibility of the Game Pak slot.
 
 #### The new EXT slot {.tabs .active}
 
@@ -479,7 +479,7 @@ First things first, the new Link cable that was designed for the GBA exhibits a 
 - Distinct colouring and sizing: One end is purple, while the other is grey and larger. Behind the scenes lies a hardwired hierarchy: the purple end designates the connected console as the **master**, and the gray end designates the **slave**.
 - An extra socket in the middle of the cable: This enables daisy-chaining another GBA Link cable using the purple/master plug.
 
-The new design makes it incompatible with the previous consoles (and games). However, it can now easily chain up to four GBAs, therby standardising larger multiplayer arenas.
+The new design makes it incompatible with the previous consoles (and games). However, it can now easily chain up to four GBAs, thereby standardising larger multiplayer arenas.
 
 Additionally, Nintendo also shipped a variant of the GBA Link cable called the 'GameCube-Game Boy Advance Link cable', which is specifically wired to connect a GBA to a [GameCube](gamecube), I explain more later.
 
@@ -500,7 +500,7 @@ GBA games can choose between synchronous and asynchronous modes, while Game Boy 
 
 The EXT connector provides four programmable pins, which the console manages through these modes of operation [@games-comms]:
 
-- **Normal Mode**, using the SPI protocol. It's primarly designed to exchange data between a GBA and an accessory. The interface can send and receive packets of 8 or 32 bits, and operates at either 256 KHz or 2 MHz, achieving transfers of 32 KB/s or 250 KB/s, respectively. This is quite fast, however, due to reliability issues, the faster speed is only intended for accessories directly connected to the socket (without a cable).
+- **Normal Mode**, using the SPI protocol. It's primarily designed to exchange data between a GBA and an accessory. The interface can send and receive packets of 8 or 32 bits, and operates at either 256 KHz or 2 MHz, achieving transfers of 32 KB/s or 250 KB/s, respectively. This is quite fast, however, due to reliability issues, the faster speed is only intended for accessories directly connected to the socket (without a cable).
   - Even though the speed is high, it's up to the ARM CPU (running at 16.78 MHz) to digest the transferred data in time, which may be a challenge given that it's busy with many other tasks.
 - **Multi-player Mode**, using UART. In exchange for speed, it enables to communicate with up to four daisy-chained GBAs. Essentially, the four GBAs take turns broadcasting a 16-bit packet over the same data line. To make this work, each GBA signals the next one to transfer its packet, which is possible thanks to the wiring of the new Link cable. At the end of the transfer, all GBAs contain the packets each has sent, stored in four different 16-bit registers.
 
@@ -512,14 +512,14 @@ That said, remember Multiboot? This function is compatible with both Normal and 
 
 For very particular accessories, there are additional communication modes available:
 
-- **UART Mode**. It behaves like an RS-232 interface. Specifically, a *5‑wire null modem with RTS/CTS flow control*. Apart from that, it sends and receive data in 8-bit packets; and uses a FIFO buffer to queue up to four packets while they are being sent or received.
+- **UART Mode**. It behaves like an RS-232 interface. Specifically, a *5-wire null modem with RTS/CTS flow control*. Apart from that, it sends and receive data in 8-bit packets; and uses a FIFO buffer to queue up to four packets while they are being sent or received.
 - **JOY BUS Mode**. This is a proprietary protocol in which the GBA becomes a peripheral for the GameCube. The GBA can only receive packets, process the contents, and reply.
   - This is exclusively used with the 'GameCube-Game Boy Advance Link cable', which assigns the GBA as a slave.
 - **General-purpose Mode**. As the name indicates, all four pins become controllable by the program, enabling to implement a custom protocol. 
 
 ## Anti-Piracy and Homebrew {.tabs-close}
 
-In general terms, the use of proprietary cartridges was a major barrier compared to the constant [cat-and-mouse game](playstation#anti-piracy--region-lock) that other console manufacturers had to battle while using the [CD-ROM medium](sega-saturn#the-compact-disc-cd).
+In general terms, the use of proprietary cartridges was a major barrier compared to the constant [cat-and-mouse game](playstation#anti-piracy-region-lock) that other console manufacturers had to battle while using the [CD-ROM medium](sega-saturn#the-compact-disc-cd).
 
 To protect against *bootleg* cartridges (unauthorised reproductions), the GBA's BIOS incorporated [the same boot checks](game-boy#anti-piracy) as those found in the original Game Boy.
 

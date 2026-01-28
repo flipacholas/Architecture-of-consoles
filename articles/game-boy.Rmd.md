@@ -51,13 +51,13 @@ That being said, the SoC used in the Game Boy is referred to as **DMG-CPU** or *
 
 Inside the DMG-CPU, we find the main processor: a **Sharp SM83** [@cpu-gekkio]. This is just a mix of the popular Zilog Z80 (found in the [Sega Master System](master-system#cpu)) and the Intel 8080. It runs at **~4.19 MHz**, which is faster than the [average 1-MHz CPU](nes#cpu), but remember clock speeds [can be deceiving](master-system#relative-comparison).
 
-![The DMG-CPU chip on my Game Boy's motherboard.](dmg_cpu.png)
+![The DMG-CPU chip on my Game Boy's motherboard.](dmg_cpu.png){latex_width="90%"}
 
 Now, back when I conducted the [analysis of the Master System](master-system), I explained the Zilog Z80 is essentially a superset of the Intel 8080. So, what does the SM83 actually retain and omit from those two? [@cpu-z80_comparison]
 
-- Neither the Z80's `IX` and `IY` registers nor the 8080's `IN` or `OUT` instructions are present. This means that [I/O ports](master-system#accessing-the-rest-of-the-components) are not available. I'm not certain whether this was a cost-saving measure, but one thing for sure is that components must be **completely memory-mapped** [@cpu-fayzullin].
+- Neither the Z80's `IX` and `IY` registers nor the 8080's `IN` or `OUT` instructions are present. This means that [I/O ports](master-system#accessing-the-rest-of-the-components) are not available. I'm not certain whether this was a cost-saving measure, but one thing is for sure: components must be **completely memory-mapped** [@cpu-fayzullin].
 - Only the Intel 8080's register set is featured. Consequently, there are **only seven general-purpose registers** - unlike the Z80 with its 14 (thanks to its additional 'alternate' set).
-- Only portions of the Z80's extended instruction set are implemented. Specifically, bit manipulation instructions.
+- Only portions of the Z80's extended instruction set are implemented. Specifically, bit-manipulation instructions.
 
 Furthermore, Sharp also added a **few new instructions** that are not present in either the Z80 or 8080. They optimise certain operations related to the way Nintendo and Sharp arranged the hardware. One example is the new `LDH` instruction (meaning 'load high' [@cpu-ldh]), which was strategically designed to access the last 256 bytes of the memory map (where addresses start at `$FF00`) and, most importantly, fits in one fewer byte (making it slightly faster).
 
@@ -136,9 +136,9 @@ The PPU also arbitrates CPU-to-VRAM access, and the game is in charge of populat
 
 ### Constructing the frame
 
-The final frame that you seen on the LCD screen is composed of **three overlapping layers**. Each is designed for a different type of use.
+The final frame that you see on the LCD screen is composed of **three overlapping layers**. Each is designed for a different type of use.
 
-Let's see how the PPU manages to draw pixels on the screen. For demonstration purposes, *Super Mario Land 2* is used as example.
+Let's see how the PPU manages to draw pixels on the screen. For demonstration purposes, *Super Mario Land 2* is used as an example.
 
 #### Tiles {.tabs .active}
 
@@ -154,7 +154,7 @@ Tiles found in VRAM.
 
 The PPU uses **tiles** as a basic ingredient for rendering graphics, specifically, **sprites and backgrounds** [@graphics-overview].
 
-Tiles are just **8x8 pixels bitmaps**. Each occupies 16 bytes and they are stored in VRAM, in a region called **Tile set** or 'Tile pattern table'. The colour of the pixels come from one of the four available shades of grey, which is selected through a 'colour' palette. The use of palettes also allows to alternate colours without having to alter the tile set.
+Tiles are just **8x8-pixel bitmaps**. Each occupies 16 bytes and is stored in VRAM, in a region called **Tile set** or 'Tile pattern table'. The colour of the pixels comes from one of the four available shades of grey, which is selected through a 'colour' palette. The use of palettes also allows colours to be alternated without having to modify the tile set.
 
 The monochrome Game Boys house enough registers to define **up to three palettes**, yet their use is limited to the type of layer being rendered (explained in the next sections). As previously explained, there are only four colours/shades to choose from, so a single 8-bit register can accommodate a palette of four shades without issue.
 
@@ -184,7 +184,7 @@ One of the two tile maps is used to construct the background layer. Moreover, on
 
 #### Sprites {.tab}
 
-![Rendered sprite layer.](ppu_mario/sprite.png){.tab-float .border .pixel}
+![Rendered sprite layer.](ppu_mario/sprite.png){.tab-float .border .pixel latex_width="90%"}
 
 Sprites, also known as 'Objects', are tiles that can move independently across the screen. They can also overlap one another and appear behind the background; the viewable graphic is determined by a priority attribute.
 
@@ -218,7 +218,7 @@ Consequently, games normally use the window layer to draw life counters, scores,
 
 #### Result {.tab}
 
-![Final result. _Tada!_](ppu_mario/result.png){.tab-float .border .pixel}
+![Final result. *Tada!*](ppu_mario/result.png){.tab-float .border .pixel}
 
 Once the frame is finished, it's time to move on to the next one! However, the CPU cannot modify the tables while the PPU is reading from VRAM, so the system provides a set of interrupts triggered when the PPU is idle. You may recall this behaviour from the NES era.
 
@@ -230,11 +230,11 @@ There's an extra state called **OAM search** that is initiated at the start of t
 
 #### The Wobble effect {.tabs-close}
 
-![Super Mario Land 2: 6 Golden Coins (1992) plays with the X and Y scrolling controls mid-screen.](mario_wobble.png){.border .pixel}
+![Super Mario Land 2: 6 Golden Coins (1992) plays with the X and Y scrolling controls mid-screen.](mario_wobble.png){.border .pixel latex_width="90%"}
 
 The inclusion of the window layer and extra interrupts allowed for unique content and effects. For instance, horizontal interrupts made it possible to alter the frame before it was fully drawn. This meant that a different scrolling value could be applied to each line, causing each row of the frame to shift at different rates [@graphics-lyc].
 
-This achieved an interesting *wobble effect* (I'm not sure that is its official name, but I find it distinctive enough).
+This achieved an interesting *wobble effect* (I'm not sure whether that is its official name, but I find it distinctive enough).
 
 ### The Color additions
 
@@ -242,9 +242,9 @@ So far, we've been focusing on the original Game Boy entry. Let's now examine th
 
 #### Modes of operation
 
-![The Legend of Zelda: Link's Awakening DX (1998).<br>A hybrid Game Boy Color game running in CGB mode.](ppu_color/zelda.png){.toleft .border .pixel}
+![The Legend of Zelda: Link's Awakening DX (1998).<br>A hybrid Game Boy Color game running in CGB mode.](ppu_color/zelda.png){.toleft .border .pixel latex_width="90%"}
 
-![Super Mario Land 2, running in a Game Boy Color. The game executes in DMG mode, but the console applies a colourised palette nonetheless.](ppu_color/dmg_mario.png){.toright .border .pixel}
+![Super Mario Land 2, running in a Game Boy Color. The game executes in DMG mode, but the console applies a colourised palette nonetheless.](ppu_color/dmg_mario.png){.toright .border .pixel latex_width="90%"}
 
 The Game Boy Color's PPU essentially behaves as a superset of the original. Yet, Nintendo wanted Color users to experience enhancements even with monochrome-only games. Thus, to maintain compatibility, the new PPU exhibits **two modes of operation**:
 
@@ -401,9 +401,9 @@ Finally, some Game Paks also included a real-time clock and/or extra SRAM, along
 
 ::: {.subfigures .side-by-side}
 
-![Black design [@photography-amos], denoting 'Game Boy Color enhanced'.](gamepak_enhanced.webp){.toleft .no-borders latex_width="80%"}
+![Black design [@photography-amos], denoting 'Game Boy Color enhanced'.](gamepak_enhanced.webp){.toleft .no-borders latex_width="65%"}
 
-![Translucent design [@photography-amos], denoting 'Game Boy Color exclusive'.](gamepak_gbc.webp){.toright .no-borders latex_width="80%"}
+![Translucent design [@photography-amos], denoting 'Game Boy Color exclusive'.](gamepak_gbc.webp){.toright .no-borders latex_width="65%"}
 
 Color-era revisions of the Game Pak.
 
