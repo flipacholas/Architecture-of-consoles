@@ -14,7 +14,7 @@
   id: 5
   ordinal: Piąta
   description: Gry 3D stały się koniecznością, ale nie jest jeszcze jasne, jak właściwie to robić. Odpowiedź? Każda firma przedstawiła swoją inną wizję.
-  cpu: Etapy potoku i pamięć podręczna L1
+  cpu: Pipelinowane ścieżki danych i pamięć podręczna L1
   gpu: Programowalne potoki wierzchołków, Z-buffering i korekcja perspektywy
 - 
   id: 6

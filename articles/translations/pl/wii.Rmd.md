@@ -117,7 +117,7 @@ Wracając do sedna, Wii ustandaryzowało tę funkcję, umożliwiając aktywację
 
 Nowy i śmiały projekt kontrolera oznaczał nowe rodzaje interakcji w grach Wii. Ponieważ Wiimote umożliwiał użytkownikom wskazywanie ekranu, niektóre gry, takie jak *Super Mario Galaxy* lub *The Legend of Zelda: Twilight Princess* użyło tej funkcji, aby umożliwić graczowi interakcję ze scenerią.
 
-W raporcie zatytułowanym _Myth Debugging: Is the Wii More Demanding to Emulate than the GameCube?_ [@graphics-dolphin], developerzy emulatora Dolphin wyjaśniają, że gry takie jak Super Mario Galaxy i inne pierwszoosobowe strzelanki polegają na [wbudowanym buforze-Z](gamecube#tab-3-4-render), aby zidentyfikować obiekt, na który wskazuje Wiimote i/lub sprawdzić, jak daleko obiekt znajduje się od kursora Wiimote.
+W raporcie zatytułowanym _Myth Debugging: Is the Wii More Demanding to Emulate than the GameCube?_ [@graphics-dolphin], developerzy emulatora Dolphin wyjaśniają, że gry takie jak Super Mario Galaxy i inne pierwszoosobowe strzelanki polegają na [wbudowanym buforze-Z](gamecube#tab-1-4-render), aby zidentyfikować obiekt, na który wskazuje Wiimote i/lub sprawdzić, jak daleko obiekt znajduje się od kursora Wiimote.
 
 Nie jest to nowa funkcja per se, ale nowatorskie wykorzystanie obecnych możliwości. Gry GameCube nie były zależne od wielofunkcyjnego kontrolera z funkcją wskaźnika. Teraz gracze mogą sterować postacią i jednocześnie wskazywać na ekran.
 
@@ -135,7 +135,7 @@ Dodatkowa szybkość Broadwaya i Hollywood w połączeniu z awangardowymi projek
 
 ### Sygnał Wideo
 
-Co zaskakujące, ta konsola nie używa już starego portu [Multi Out](super-nintendo.md#a-convenient-video-out), ale jego odmianę o nazwie **AV Multi Out** (to tyle jeśli chodzi o nazwę) o nieco innym kształcie. Ten przenosi wszystkie poprzednie sygnały plus **YPbPr** (znany jako 'komponent') [@graphics-video]. Zawiera również niektóre linie danych, których system używa do identyfikacji typu podłączonego kabla.
+Co zaskakujące, ta konsola nie używa już starego portu [Multi Out](super-nintendo#a-convenient-video-out), ale jego odmianę o nazwie **AV Multi Out** (to tyle jeśli chodzi o nazwę) o nieco innym kształcie. Ten przenosi wszystkie poprzednie sygnały plus **YPbPr** (znany jako 'komponent') [@graphics-video]. Zawiera również niektóre linie danych, których system używa do identyfikacji typu podłączonego kabla.
 
 Niestety, to medium dziedziczy te same [ograniczenia](gamecube.md#connections) co GameCube. Oznacza to brak S-Video w systemach PAL i brak RGB w systemach NTSC. Ponadto RGB może nadawać tylko sygnały z przeplotem (bez progresywnego).
 
@@ -153,7 +153,7 @@ Podsystem WE/WY tej konsoli naprawdę zmienia zasady gry (*wybaczcie grę słów
 
 Starlet to po prostu procesor **ARM926EJ-S** podłączony do większości wewnętrznych komponentów tej konsoli. Znajduje się w Hollywood, działa z częstotliwością **243 MHz** (tak samo jak Hollywood) i zawiera również własny ROM i RAM. W ten sposób możesz uznać Starlet za niezależny komputer działający obok głównego procesora.
 
-![Główny schemat architektury Wii. Zwróć uwagę, jak Starlet jest w stanie kontrolować większość wejść/wyjść, a nawet ukryć niektóre przed Broadwayem.](diagram.png)
+![Główny schemat architektury Wii. Zwróć uwagę, jak Starlet jest w stanie kontrolować większość wejść/wyjść, a nawet ukryć niektóre przed Broadwayem.](_diagrams/main.png)
 
 Rdzeń jest podobny do tego używanego w [Nintendo DS](nintendo-ds), z wyjątkiem dwóch 'specjalnych' dodatków:
 
