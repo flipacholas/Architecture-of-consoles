@@ -97,14 +97,20 @@ other = "Son güncelleme: {{ . }}"
 [classic_edition]
 other = "Klasik"
 
+[blink_edition]
+other = "Blink baskısı"
+
 [classic_intro]
-other = "'Klasik' sürüm, <a href=\"{{ .modern }}\">'modern'</a> muadiline alternatif bir sürümdür. Çalışması için Javascript, son teknoloji CSS veya karmaşık HTML gerektirmez, bu da onu erişilebilirlik araçları veya eski internet tarayıcıları kullanan okuyucular için ideal hale getirir. Öte yandan, kağıt/e-Kitap kullanıcıları artık <a href=\"{{ .ebook }}\">kitap sürümlerini</a> kontrol edebilirler."
+other = "'Klasik' sürüm, <a href=\"{{ .modern }}\">‘modern’ sürümün</a> alternatif bir versiyonudur. Çalışması için Javascript, son teknoloji CSS veya karmaşık HTML gerektirmez, bu da erişilebilirlik araçları kullanan okuyucular için idealdir. Öte yandan, kağıt/e-kitap kullanıcıları artık <a href=\"{{ .ebook }}\">kitap sürümlerini</a> inceleyebilirler. Alternatif olarak, eski bir tarayıcı kullanıyorsanız, <a href=\"{{ .blink }}\">‘blink’ sürümünü</a> deneyebilirsiniz."
 
 [classic_description]
 other = "Bu basım içerik açısından aynıdır. Bununla birlikte, etkileşimli widget'lar saf HTML ile çalışacak şekilde basitleştirilmiştir, ancak bunlar okuyucunun \"tam sürümü\" denemek istemesi durumunda orijinal makaleye bir bağlantı sunacaktır."
 
+[blink_intro]
+other = "“Blink” sürümü, HTML 2.0 ve düz HTTP'ye saygı göstererek, 1990'ların ekipmanlarının erişimine izin vererek, <a href=\"{{ .classic }}\">“klasik” muadili</a>'nden bir adım öteye geçiyor. Sonuçta, World Wide Web başlangıçta araştırmaları paylaşmak için tasarlanmıştı."
+
 [general_description]
-other = "Her zaman olduğu gibi, bu makale okuyucuların hataları bildirmesine veya değişiklik önermesine olanak sağlamak için <a href=\"{{ .github }}\">Github'da</a> mevcuttur. Ayrıca seriyi anlamaya yardımcı olacak destekleyici bir <a href=\"{{ .readings }}\">okuma listesi de mevcuttur</a>. Yazar ayrıca mevcut ve gelecek makalelerin kalitesini artırmaya yardımcı olmak için <a href=\"{{ .donations }}\">bağışları</a> ve <a href=\"{{ .translations }}\">çevirileri</a> de kabul etmektedir."
+other = "Her zamanki gibi, bu makale okuyucuların hataları bildirmelerini veya değişiklik önerilerinde bulunmalarını sağlamak için <a href=\"{{ .github }}\">Github</a>'da mevcuttur. Serinin anlaşılmasına yardımcı olmak için <a href=\"{{ .readings }}\">destekleyici okuma listesi</a> de mevcuttur. Yazar, mevcut ve gelecek makalelerin kalitesini artırmak için <a href=\"{{ .donations }}\">bağışlar</a> ve <a href=\"{{ .translations }}\">çeviriler</a> kabul etmektedir."
 
 [subscribe_title]
 other = "Güncel kal"
@@ -212,7 +218,7 @@ other = 'Etkileşimli model <a href="{{ . }}">modern sürümde</a> kullanılabil
 other = 'Etkileşimli oynatıcı <a href="{{ . }}">modern sürümde</a> kullanılabilir'
 
 [goto_classic]
-other = "Erişilebilirlik araçları veya eski tarayıcılar kullanıyorsanız, <a href=\"{{ .classic }}\">'klasik' sürüme geçin</a>."
+other = 'Erişilebilirlik araçları kullanıyorsanız, <a href="{{ .classic }}">“klasik” sürüme geçin</a>. Eski bir tarayıcı kullanıyorsanız, <a href="{{ .blink }}">“blink” sürümünü deneyin</a>.'
 
 [audio_samples]
 other = "Ses örnekleri"
