@@ -200,7 +200,7 @@ Debian作为最流行的发行版之一，试图通过并行开发两个移植�
 
 #### 原始的MPCore {.tabs.active}
 
-![ARM11 MPCore CPU集群概述](cpu/mpcore_overview.png) {.tab-float}
+![ARM11 MPCore CPU集群概述](_diagrams/cpu/mpcore_overview.png) {.tab-float}
 
 随初代3DS首次亮相的首个ARM11 MPCore变体包含两个核心。 每个核心都称为**MP11**，运行频率为**268 MHz** [@cpu-lioncash]。
 
@@ -214,7 +214,7 @@ Debian作为最流行的发行版之一，试图通过并行开发两个移植�
 
 #### “新”MPCore {.tab}
 
-![“新”CPU集群概述](cpu/mpcore_new_overview.png) {.tab-float}
+![“新”CPU集群概述](_diagrams/cpu/mpcore_new_overview.png) {.tab-float}
 
 随着2014年新3DS的发布，引入了一个新的SoC（**CPU LGR**），随之而来的是一次豪华的CPU升级。
 
@@ -226,7 +226,7 @@ Debian作为最流行的发行版之一，试图通过并行开发两个移植�
 
 #### AXI总线 {.tab}
 
-![任天堂3DS AXI实现互连不同类型组件的示例。 在这里，CPU和DMA充当主设备，而RAM节点是从设备。 然而，角色可以根据需要改变。](cpu/axi.png) {.tab-float}
+![任天堂3DS AXI实现互连不同类型组件的示例。 在这里，CPU和DMA充当主设备，而RAM节点是从设备。 然而，角色可以根据需要改变。](_diagrams/cpu/axi.png) {.tab-float}
 
 无论是两个还是四个MP11核心，所有这些都通过ARM自豪地开发的一种流行总线——**高级可扩展接口**（AXI）进行连接。 该协议是AMBA3模型的一部分，它是我们在[Wii](wii#the-hidden-co-processor)和[Wii U](wiiu#internal-interfaces)（两者都搭载ARM9 CPU）中见过的原始AMBA修订版的继任者。 通过这种方式，ARM将AXI模型作为**系统级芯片**（SoC）的关键构建块。
 
@@ -267,7 +267,7 @@ Debian作为最流行的发行版之一，试图通过并行开发两个移植�
 
 我想现在的问题是，CPU和核心如何相互通信？ 嗯，最简单的方法是共享RAM……但你也可以尝试更高效的方法，这取决于尝试通信的核心：
 
-![每个CPU提供的通信通道示意图。](cpu/inter_core.png)
+![每个CPU提供的通信通道示意图。](_diagrams/cpu/inter_core.png)
 
 - 在**ARM11核心间通信**中，一个核心可以通过写入其`软件中断寄存器`向另一个核心发送中断 [@cpu-arm_reference]。
 - 在**ARM11↔︎ARM9**或**ARM9↔︎ARM7**通信中，采用了与[Nintendo DS](nintendo-ds#interconnection)相同的FIFO模型。 此外，ARM11↔︎ARM9 FIFO也称为“PXI”[@cpu-korth]。
@@ -276,7 +276,7 @@ Debian作为最流行的发行版之一，试图通过并行开发两个移植�
 
 拥有三个不同的CPU也意味着内存布局不会简单，特别是如果你关心安全的话。
 
-![任天堂3DS的内存组织概览。](cpu/memory.png)
+![任天堂3DS的内存组织概览。](_diagrams/cpu/memory.png)
 
 长话短说，我们有以下内存块：
 
@@ -356,7 +356,7 @@ MPCore和AMBA总线的发明者碰巧也提供了一个名为**CoreLink**的[DMA
 
 任天堂只为GPU提供了**6MB的VRAM**。 理想情况下，程序员会尽可能多地将数据放入其中，但由于它会很快被填满，因此预计它将用于存储需要即时访问的数据（即命令、缓冲区和重复纹理），而将其余数据放在FCRAM中。 PICA200带有一个**DMA单元**，可以在FCRAM和VRAM之间传输数据。 因此，归根结底，程序员有责任提出一个高效的布局以避免瓶颈。
 
-![数据如何在可用内存中进行编排的例子.](gpu/content.png)
+![数据如何在可用内存中进行编排的例子.](_diagrams/gpu/content.png)
 
 在渲染过程中，程序员为许多操作分配专用的渲染缓冲区（即帧、模板、深度等）。 一直如此。 然而，对于3DS，LCD控制器不理解PICA200在帧缓冲区中渲染的数据。 因此，程序员还需要为**LCD帧缓冲区**保留额外的空间[@graphics-gpu_reg]。 每个缓冲区都绑定到一个物理屏幕，并以LCD控制器所需的格式编码帧。
 
@@ -391,13 +391,13 @@ MPCore和AMBA总线的发明者碰巧也提供了一个名为**CoreLink**的[DMA
 
 话虽如此，以下是数据如何传输以绘制单个帧的概述：
 
-![PICA200中图形流水线的概述。](gpu/pipeline.png)
+![PICA200中图形流水线的概述。](_diagrams/gpu/pipeline.png)
 
 ……按照本系列文章的惯例，我们现在将查看每个阶段发生的情况。
 
 #### 指令 {.tabs.active}
 
-![命令阶段概述.](gpu/pipeline/command.png) {.tab-float}
+![命令阶段概述.](_diagrams/gpu/pipeline/command.png) {.tab-float}
 
 这是任天堂首款最终以“常规方式”绘制三角形的掌机。 也就是说，通过使用命令。 但这并不是一个令人惊讶的因素，因为PICA200预计将遵循OpenGL ES的教义。
 
@@ -405,7 +405,7 @@ MPCore和AMBA总线的发明者碰巧也提供了一个名为**CoreLink**的[DMA
 
 #### Vertex {.tab}
 
-![顶点 (vertex) 阶段概述.](gpu/pipeline/vertex.png) {.tab-float}
+![顶点 (vertex) 阶段概述.](_diagrams/gpu/pipeline/vertex.png) {.tab-float}
 
 PICA200提供了**四个并行操作的顶点处理器**（VP）。 然而，如果激活了几何着色器（下一个流水线阶段），则只能使用**三个**处理器。
 
@@ -420,7 +420,7 @@ PICA200提供了**四个并行操作的顶点处理器**（VP）。 然而，如
 
 #### 几何 {.tab}
 
-![几何 (geometry) 阶段概述.](gpu/pipeline/geometry.png) {.tab-float}
+![几何 (geometry) 阶段概述.](_diagrams/gpu/pipeline/geometry.png) {.tab-float}
 
 几何阶段是第八代主机的标志性功能，允许开发者从简单的顶点数据中生成复杂的几何体。
 
@@ -432,7 +432,7 @@ PICA200提供了**四个并行操作的顶点处理器**（VP）。 然而，如
 
 #### 光栅器 {.tab}
 
-![光栅阶段概述.](gpu/pipeline/rasteriser.png) {.tab-float}
+![光栅阶段概述.](_diagrams/gpu/pipeline/rasteriser.png) {.tab-float}
 
 在此阶段，所有图元都转换为像素。
 
@@ -440,7 +440,7 @@ PICA200上的光栅化单元非常简单，它只是从图元生成三角形，�
 
 #### 像素 {.tab}
 
-![片元阶段概述。](gpu/pipeline/fragment.png) {.tab-float}
+![片元阶段概述。](_diagrams/gpu/pipeline/fragment.png) {.tab-float}
 
 片元阶段由两个区域组成：纹理单元，可以从内存中获取**纹理**并进行处理。 以及**着色单元**，可以对纹理数据执行额外操作。
 
@@ -456,7 +456,7 @@ PICA200包含**四个**纹理单元 [@graphics-fragment]，每个单元都有**2
 
 #### 后处理 {.tab}
 
-![后处理阶段概述。](gpu/pipeline/post.png) {.tab-float}
+![后处理阶段概述。](_diagrams/gpu/pipeline/post.png) {.tab-float}
 
 帧经过处理并准备写入帧缓冲区（或[渲染目标](xbox-360#tab-2-4-pixel-shader)）后，它会经历一系列最终的“校正”。 这类似于OpenGL ES 2.0的流水线。
 
@@ -531,7 +531,7 @@ PICA200包含**四个**纹理单元 [@graphics-fragment]，每个单元都有**2
 
 DSP和CSND都独立工作，并分别将音频输出到扬声器。
 
-![音频管道概述.](audio.png)
+![音频管道概述.](_diagrams/audio.png)
 
 值得注意的是，最初的任天堂3DS与扬声器的功能配合不佳，任天堂最终为嗡嗡声和3D滑块波动的情况提供了故障排除指南 [@audio-buzzing]，所有这些都是由外壳设计引起的。
 
@@ -707,7 +707,7 @@ ARM11 的内核位于专用的 512KB SRAM 上 [@operating_system-glossary]，这
 
 现在来说坏消息，NATIVE_FIRM还对用户程序施加了不同寻常的限制。
 
-![结合两个操作系统后，运行NATIVE_FIRM的任天堂3DS的权限级别概览。](os_levels.png)
+![结合两个操作系统后，运行NATIVE_FIRM的任天堂3DS的权限级别概览。](_diagrams/os_levels.png)
 
 首先，ARM11 的调度器硬编码了每个核心的行为（而不是将各个核心均视为通用处理单元）：
 
