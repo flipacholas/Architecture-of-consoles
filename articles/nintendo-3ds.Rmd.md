@@ -248,7 +248,7 @@ But we do! So here's the complete list of the CPUs this system houses:
 
 - The **ARM11 MPCore** we've just seen.
 - An **ARM946E-S** from the [Nintendo DS days](nintendo-ds#cpu). It's treated as a secret co-processor and it's only managed by the operating system. Alternatively, it becomes the main processor whenever a DS or DSi game is executed.
-  - Thanks to its bundled CP15 co-processor, there's a [Memory Protection Unit](playstation-portable#focused-memory-management) (MPU) in place. This will protect the CPU from arbitrarily executing code from any location in memory.
+  - Thanks to its bundled CP15 co-processor, there's a [Memory Protection Unit](playstation-portable#a-focused-memory-management) (MPU) in place. This will protect the CPU from arbitrarily executing code from any location in memory.
 - An **ARM7TDMI** from the [Game Boy Advance days](game-boy-advance#cpu). It's a relatively ignored CPU, unless a DS or DSi game is being played, in which case it acts as a co-processor. However, on the special occasion when a Game Boy Advanced game is running, the main execution falls into this CPU.
 
 Unfortunately, or for obvious reasons, the three CPUs are never usable at the same time. Instead, the console has three modes of operation:
@@ -1014,7 +1014,7 @@ Before we continue, if you're not familiar with symmetric and asymmetric encrypt
 
 You'd be right if you suspected that the ARM11 lacks the powerhouse to protect the whole system. Nintendo knew that too, so they took extra care and bundled extra components to compensate:
 
-- The ARM11 cores implement the **XN flag** and the ARM9 bundles a [Memory Protection Unit](playstation-portable#focused-memory-management) (MPU), meaning the CPUs won't execute code from any location in memory just because the current program tells it to.
+- The ARM11 cores implement the **XN flag** and the ARM9 bundles a [Memory Protection Unit](playstation-portable#a-focused-memory-management) (MPU), meaning the CPUs won't execute code from any location in memory just because the current program tells it to.
 - As said before, the ARM9 acts as a **dedicated processor** to handle all security-related tasks while the ARM11 MPCore executes the game. Additionally, the ARM9 is exclusively wired to a few hidden **cryptographic accelerators**:
   - An **AES engine** that performs AES-128 encryption/decryption without consuming (and exposing) CPU resources. This was inherited from the Nintendo DSi, but can now store up to 64 keys and can operate in numerous block cipher modes, including CTR, CCM, CBC and ECB [@anti_piracy-aes]. Each key slot also features its own **key-scrambler**, meaning that two arbitrary keys can be used to generate the final AES key. Moreover, the key-scrambler won't allow anyone to read the generated key, only to treat it as a blackbox to encrypt/decrypt data.
   - An **RSA engine**. By contrast, this performs RSA encryption/decryption using a given RSA public key. This time, it only contains four key slots and there's no key-scrambler [@anti_piracy-crypto]. However, it's still a write-only space, meaning no one will be able to read the keys stored there. You'll soon see that this system is filled with RSA-2048 and RSA-4096 signatures, which explains why this component is as crucial as the AES engine.

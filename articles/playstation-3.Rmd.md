@@ -207,7 +207,7 @@ The following blocks grant the PPU the ability to execute load-store instruction
 
 To begin with, the **Load and Store Unit** (LSU) executes 'load' and 'store' opcodes backed by **32 KB of L1 data cache**. As a consequence, this unit has direct access to memory and the register file.
 
-Furthermore, the LSU is coupled with a **Memory Management Unit** (MMU), which is a common occurrence in contemporary hardware. To make a long story short, the MMU handles memory addressing using a [virtual address map](nintendo-64#memory-management) combined with [memory protection](playstation-portable#focused-memory-management). To improve the latter, this MMU in particular features a **segment unit**, which groups memory addresses using ranges called 'segments'. Now, to prevent performance degradation in the process, a Translation Lookaside Buffer (TLB) (caches converted addresses) and a Segment Lookaside Buffer (SLB) (caches segments) are included.
+Furthermore, the LSU is coupled with a **Memory Management Unit** (MMU), which is a common occurrence in contemporary hardware. To make a long story short, the MMU handles memory addressing using a [virtual address map](nintendo-64#memory-management) combined with [memory protection](playstation-portable#a-focused-memory-management). To improve the latter, this MMU in particular features a **segment unit**, which groups memory addresses using ranges called 'segments'. Now, to prevent performance degradation in the process, a Translation Lookaside Buffer (TLB) (caches converted addresses) and a Segment Lookaside Buffer (SLB) (caches segments) are included.
 
 ##### Arithmetic {.tab}
 

@@ -14,7 +14,7 @@ top_tabs:
       img_class: reduced-width
       file: international
       active: true
-      latex_height: 95
+      latex_height: 87
     - title: "Color"
       caption: "The next-generation successor called Game Boy Color.<br>Released on 21/10/1998 in Japan, 18/11/1998 in North America, and 23/11/1998 in Europe."
       img_class: reduced-width
@@ -110,15 +110,15 @@ In the world of Game Boy graphics, all calculations are done by the CPU, and the
 
 ::: {.subfigures .side-by-side}
 
-![Frame rendered by the PPU.](lcd/kirby_white.png){.toleft .border .pixel hardcover_latex_width="76%" paperback_latex_width="66%"}
+![Frame rendered by the PPU.](lcd/kirby_white.png){.toleft .border .pixel hardcover_latex_width="70%" paperback_latex_width="64%"}
 
-![Frame displayed on the original Game Boy's LCD.](lcd/kirby_green.png){.toright .border .pixel hardcover_latex_width="76%" paperback_latex_width="66%"}
+![Frame displayed on the original Game Boy's LCD.](lcd/kirby_green.png){.toright .border .pixel hardcover_latex_width="70%" paperback_latex_width="64%"}
 
-Kirby's Dream Land (1992), sampled from two different locations.
+Kirby's Dream Land (1992), sampled from the 'bgb' emulator to simulate different screen types.
 
 :::
 
-The picture is displayed on an integrated Liquid-Crystal Display (LCD) with a resolution of **160×144 pixels**. In the case of the monochrome Game Boy, the LCD can only reflect **4 shades of grey** (white, light grey, dark grey and black). However, due to the use of a green-tinted LCD, the picture will look slightly *greenish*.
+The picture is displayed on an integrated **Liquid-Crystal Display** (LCD) with a resolution of **160×144 pixels**. In the case of the monochrome Game Boy, the LCD can only reflect **4 shades of grey** (white, light grey, dark grey and black). However, due to the use of a green-tinted LCD, the picture will look slightly *greenish*.
 
 ### A familiar model
 
@@ -200,9 +200,9 @@ The PPU is limited to rendering **up to ten sprites per scan line** and **up to 
 
 ::: {.subfigures .tabs-nested .tab-float .pixel max_subfigures=2}
 
-![Allocated Window map.](ppu_mario/window.png){.active .border hardcover_latex_width="76%" paperback_latex_width="66%" title="Full"}
+![Allocated Window map.](ppu_mario/window.png){.active .border hardcover_latex_width="70%" paperback_latex_width="64%" title="Full"}
 
-![Displayed Window map. This is because the game intentionally activates it during the final scan lines. Hence, only the first rows are rendered at the bottom of the screen.](ppu_mario/window_rendered.png){.border hardcover_latex_width="76%" paperback_latex_width="66%" title="Selected"}
+![Displayed Window map. This is because the game intentionally activates it during the final scan lines. Hence, only the first rows are rendered at the bottom of the screen.](ppu_mario/window_rendered.png){.border hardcover_latex_width="70%" paperback_latex_width="64%" title="Selected"}
 
 The window layer rendering process.
 
@@ -218,7 +218,7 @@ Consequently, games normally use the window layer to draw life counters, scores,
 
 #### Result {.tab}
 
-![Final result. *Tada!*](ppu_mario/result.png){.tab-float .border .pixel}
+![Final result. *Tada!*](ppu_mario/result.png){.tab-float .border .pixel latex_width="90%"}
 
 Once the frame is finished, it's time to move on to the next one! However, the CPU cannot modify the tables while the PPU is reading from VRAM, so the system provides a set of interrupts triggered when the PPU is idle. You may recall this behaviour from the NES era.
 
@@ -242,9 +242,9 @@ So far, we've been focusing on the original Game Boy entry. Let's now examine th
 
 #### Modes of operation
 
-![The Legend of Zelda: Link's Awakening DX (1998).<br>A hybrid Game Boy Color game running in CGB mode.](ppu_color/zelda.png){.toleft .border .pixel latex_width="90%"}
+![The Legend of Zelda: Link's Awakening DX (1998).<br>A hybrid Game Boy Color game running in CGB mode.](ppu_color/zelda.png){.toleft .border .pixel hardcover_latex_width="71%" paperback_latex_width="90%"}
 
-![Super Mario Land 2, running in a Game Boy Color. The game executes in DMG mode, but the console applies a colourised palette nonetheless.](ppu_color/dmg_mario.png){.toright .border .pixel latex_width="90%"}
+![Super Mario Land 2, running in a Game Boy Color. The game executes in DMG mode, but the console applies a colourised palette nonetheless.](ppu_color/dmg_mario.png){.toright .border .pixel hardcover_latex_width="71%" paperback_latex_width="90%"}
 
 The Game Boy Color's PPU essentially behaves as a superset of the original. Yet, Nintendo wanted Color users to experience enhancements even with monochrome-only games. Thus, to maintain compatibility, the new PPU exhibits **two modes of operation**:
 
@@ -368,9 +368,9 @@ Interestingly enough, the Nintendo logo displayed on the screen is not cleared f
 
 ::: {.subfigures .side-by-side}
 
-![Start of the animation. The logo appears from the top and scrolls down.](boot/start.png){.toleft hardcover_latex_width="76%" paperback_latex_width="66%" .border .pixel}
+![Start of the animation. The logo appears from the top and scrolls down.](boot/start.png){.toleft hardcover_latex_width="70%" paperback_latex_width="64%" .border .pixel}
 
-![End of the transition. If the ROM's checks have passed, the console will proceed to execute the game, otherwise it stays frozen.](boot/end.png){.toright hardcover_latex_width="76%" paperback_latex_width="66%" .border .pixel}
+![End of the transition. If the ROM's checks have passed, the console will proceed to execute the game, otherwise it stays frozen.](boot/end.png){.toright hardcover_latex_width="70%" paperback_latex_width="64%" .border .pixel}
 
 The original GameBoy's boot animation.
 
@@ -401,9 +401,9 @@ Finally, some Game Paks also included a real-time clock and/or extra SRAM, along
 
 ::: {.subfigures .side-by-side}
 
-![Black design [@photography-amos], denoting 'Game Boy Color enhanced'.](gamepak_enhanced.webp){.toleft .no-borders latex_width="65%"}
+![Black design [@photography-amos], denoting 'Game Boy Color enhanced'.](gamepak_enhanced.webp){.toleft .no-borders hardcover_latex_width="68%" paperback_latex_width="60%"}
 
-![Translucent design [@photography-amos], denoting 'Game Boy Color exclusive'.](gamepak_gbc.webp){.toright .no-borders latex_width="65%"}
+![Translucent design [@photography-amos], denoting 'Game Boy Color exclusive'.](gamepak_gbc.webp){.toright .no-borders hardcover_latex_width="68%" paperback_latex_width="60%"}
 
 Color-era revisions of the Game Pak.
 

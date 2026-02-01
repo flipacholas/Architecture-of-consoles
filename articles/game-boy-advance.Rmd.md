@@ -27,9 +27,10 @@ top_tabs:
     extension: "jpg"
     bib_source: copetti
     latex_height: 95
+    marked_latex_height: 95
   Diagram:
     caption: "Each data bus is labelled with its width. The layout shown of the AGB Game Pak doesn't include a mapper (as the new CPU is able to address significantly more memory), although games with a large ROM may still bundle one."
-    latex_height: 95
+    latex_height: 92
 
 # Historical
 aliases: [/projects/consoles/game-boy-advance/]
@@ -73,9 +74,9 @@ The story about the origins of the ARM CPU and its subsequent rise to fame is ri
 
 ::: {.subfigures .tabs-nested .tab-float}
 
-![The BBC Micro (1981) with a box of 5¼ disks on top [@photography-bbc_micro], the first disk features the game *Elite* (1984).](bbc_micro.jpg){.active paperback_latex_width="79%" hardcover_latex_width="70%" title="BBC Micro"}
+![The BBC Micro (1981) with a box of 5¼ disks on top [@photography-bbc_micro], the first disk features the game *Elite* (1984).](bbc_micro.jpg){.active paperback_latex_width="79%" hardcover_latex_width="90%" title="BBC Micro"}
 
-![The ARM Evaluation Board (1986), a 'Tube' module carrying an ARM1 CPU. I found it at The Centre for Computing History (Cambridge, UK).](arm_evaluation.webp){paperback_latex_width="79%" hardcover_latex_width="70%" title="ARM1"}
+![The ARM Evaluation Board (1986), a 'Tube' module carrying an ARM1 CPU. I found it at The Centre for Computing History (Cambridge, UK).](arm_evaluation.webp){paperback_latex_width="79%" hardcover_latex_width="90%" title="ARM1"}
 
 The predecessors of the first commercial ARM CPU, the ARM2.
 
@@ -101,11 +102,11 @@ Now, while Acorn and Apple lingered on the computer/handheld market, ARM devised
 
 ### The Nintendo partnership {.tabs-close}
 
-Back in Japan, and thanks to the [Game Boy analysis](game-boy), we have learnt that Nintendo's hardware strategy for portable systems favours a [System On a Chip (SoC)](game-boy#cpu) model. This has allowed the company to obfuscate affordable off-the-shelf technology and combine it with in-house developments. In doing so, the new console could be unique and competitive.
+Back in Japan, and thanks to the [Game Boy analysis](game-boy), we have learnt that Nintendo's hardware strategy for portable systems favours a [System On a Chip (SoC)](game-boy#cpu) model. This has allowed the company to obfuscate affordable off-the-shelf technology and combine it with in-house developments. In doing so, the new console could be unique and competitive. Fortunately, ARM's licensing model fitted just right for those needs. 
 
 ![The CPU AGB chip, housing the ARM7TDMI CPU (among many other components).](cpu_agb.png){latex_width="90%"}
 
-Fortunately, ARM's licensing model fitted just right for those needs. Both companies had been in discussions since 1994 (a year before the [Virtual Boy](virtual-boy)'s launch) despite nothing materialising until many years later [@cpu-jaggar]. The reason was simple: the Japanese found ARM's code density and the need for 32 data wires unfeasible (something the [Virtual Boy's CPU](virtual-boy#cpu) had already managed to escape). Nevertheless, ARM's new CPU designer - Dave Jaggar - quickly answered with the **ARM7TDMI**, a new design that focused on maximising performance under power and storage constraints. **This marked a turning point for ARM**, as this new product not only pleased Nintendo, but also got the attention of **Texas Instruments**, **Nokia**, and other competitors in the cellphone arena.
+Both companies had been in discussions since 1994 (a year before the [Virtual Boy](virtual-boy)'s launch), likely as part of 'Project Atlantis', during which Nintendo considered the ARM710 [@cpu-atlantis]. However, nothing materialised until many years later [@cpu-jaggar], and the reason was simple: the Japanese found ARM's code density and the need for 32 data wires unfeasible (something the [Virtual Boy's CPU](virtual-boy#cpu) had already managed to escape). Nevertheless, ARM's new CPU designer - Dave Jaggar - quickly answered with the **ARM7TDMI**, a new design that focused on maximising performance under power and storage constraints. **This marked a turning point for ARM**, as this new product not only pleased Nintendo, but also got the attention of **Texas Instruments**, **Nokia**, and other competitors in the cellphone arena.
 
 Unsurprisingly, when Nintendo started working on the successor of the [Game Boy Color](game-boy#cpu), their CPU pick became the ARM7TDMI.
 
@@ -226,11 +227,11 @@ Now I'm going to borrow the graphics of Sega's *Sonic Advance 3* to show how a f
 
 ::: {.subfigures .tabs-nested .tab-float .pixel max_subfigures=2}
 
-![These two blocks are made of 4 bpp tiles.](sonic/tiles1.png){.active .pixel .border hardcover_latex_width="76%" paperback_latex_width="60%" title="Blocks 1-2"}
+![These two blocks are made of 4 bpp tiles.](sonic/tiles1.png){.active .pixel .border hardcover_latex_width="64%" paperback_latex_width="58%" title="Blocks 1-2"}
 
-![You may notice some weird vertical patterns in here, these are not graphics but 'Tile Maps' (explained in the next section).](sonic/tiles2.png){.pixel .border hardcover_latex_width="76%" paperback_latex_width="60%" title="Blocks 3-4"}
+![You may notice some weird vertical patterns in here, these are not graphics but 'Tile Maps' (explained in the next section).](sonic/tiles2.png){.pixel .border hardcover_latex_width="64%" paperback_latex_width="58%" title="Blocks 3-4"}
 
-![These two blocks are reserved for sprites.](sonic/tilesobj.png){.pixel .border hardcover_latex_width="76%" paperback_latex_width="60%" title="Block 5-6"}
+![These two blocks are reserved for sprites.](sonic/tilesobj.png){.pixel .border hardcover_latex_width="64%" paperback_latex_width="58%" title="Block 5-6"}
 
 Pairs of charblocks found in VRAM.
 
@@ -248,11 +249,11 @@ Finally, only four charblocks can be used for backgrounds, while two may be used
 
 ::: {.subfigures .tabs-nested .tab-float max_subfigures=2}
 
-![Background Layer 0 (BG0).](sonic/bg0.png){.active .pixel .border hardcover_latex_width="76%" paperback_latex_width="60%" title="Layer 0"}
+![Background Layer 0 (BG0).](sonic/bg0.png){.active .pixel .border hardcover_latex_width="65%" paperback_latex_width="60%" title="Layer 0"}
 
-![Background Layer 2 (BG2).](sonic/bg2.png){.pixel .border hardcover_latex_width="76%" paperback_latex_width="60%" title="Layer 2"}
+![Background Layer 2 (BG2).](sonic/bg2.png){.pixel .border hardcover_latex_width="65%" paperback_latex_width="60%" title="Layer 2"}
 
-![Background Layer 3 (BG3). This particular layer will be shifted horizontally at certain scan-lines to simulate water effects.](sonic/bg3.png){.pixel .border hardcover_latex_width="76%" paperback_latex_width="60%" title="Layer 3"}
+![Background Layer 3 (BG3). This particular layer will be shifted horizontally at certain scan-lines to simulate water effects.](sonic/bg3.png){.pixel .border hardcover_latex_width="65%" paperback_latex_width="60%" title="Layer 3"}
 
 Static background layers in use.
 
@@ -315,11 +316,11 @@ The reason for offering two bitmaps is to enable **page-flipping**: drawing over
 
 ::: {.subfigures .tabs-nested .open-float .tab-float .pixel}
 
-![Super Monkey Ball Jr. (2002). Bitmap mode allowed the CPU to render rudimentary 3D graphics for the scenery, while foreground objects were handled as sprites (a separate layer).](bitmap/monkey.png){.active .border hardcover_latex_width="76%" paperback_latex_width="83%" title="3D"}
+![Super Monkey Ball Jr. (2002). Bitmap mode allowed the CPU to render rudimentary 3D graphics for the scenery, while foreground objects were handled as sprites (a separate layer).](bitmap/monkey.png){.active .border hardcover_latex_width="95%" paperback_latex_width="83%" title="3D"}
 
-![Tonc's bitmap demo (Homebrew). Notice that the screen doesn't show the typical patterns produced by tile engines.](bitmap/demo.png){.border hardcover_latex_width="76%" paperback_latex_width="83%" title="Demo"}
+![Tonc's bitmap demo (Homebrew). Notice that the screen doesn't show the typical patterns produced by tile engines.](bitmap/demo.png){.border hardcover_latex_width="95%" paperback_latex_width="83%" title="Demo"}
 
-![Nickelodeon's SpongeBob SquarePants (distributed as a *GBA Video* cartridge). To fit the medium, it underwent heavy compression.](bitmap/spongebob.png){.border hardcover_latex_width="76%" paperback_latex_width="83%" title="Video"}
+![Nickelodeon's SpongeBob SquarePants (distributed as a *GBA Video* cartridge). To fit the medium, it underwent heavy compression.](bitmap/spongebob.png){.border hardcover_latex_width="95%" paperback_latex_width="83%" title="Video"}
 
 Examples of programs using bitmap modes.
 
@@ -404,9 +405,9 @@ ARM7's reset vector points at memory address `0x00000000`, where a **16 KB ROM**
 
 ::: {.subfigures .side-by-side}
 
-![Splash animation halfway through.](splash/start.png){.toleft .pixel .border hardcover_latex_width="76%" paperback_latex_width="83%"}
+![Splash animation halfway through.](splash/start.png){.toleft .pixel .border hardcover_latex_width="95%" paperback_latex_width="83%"}
 
-![Splash animation at the end.](splash/finish.png){.toright .pixel .border hardcover_latex_width="76%" paperback_latex_width="83%"}
+![Splash animation at the end.](splash/finish.png){.toright .pixel .border hardcover_latex_width="95%" paperback_latex_width="83%"}
 
 The GBA features a new splash animation that showcases its extended colour palette and sprite-scaling capabilities.
 

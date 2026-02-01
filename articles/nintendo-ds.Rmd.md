@@ -19,9 +19,11 @@ top_tabs:
       file: lite
   Motherboard:
     caption: "Showing first revision."
+    latex_height: 95
+    marked_latex_height: 95
   Diagram:
     caption: "If you have trouble following the components: Top is only accessed by ARM9, bottom section is ARM7-only, middle section is shared."
-    paperback_latex_height: 97
+    latex_height: 95
 
 # Historical
 aliases: [/projects/consoles/nintendo-ds/]
@@ -71,7 +73,7 @@ In the same year, ARM also released their promised ARM8-based CPU, the ARM810. I
 
 #### Turning points
 
-Thanks to the StrongARM, ARM also cemented its position in the handheld market, completely displacing [MIPS](nintendo-64#cpu) and [SuperH](dreamcast#cpu) as viable alternatives. From then on, ARM was en route to becoming the most widely adopted architecture for mobile devices [@cpu_android_abi].
+Thanks to the StrongARM, ARM also cemented its position in the handheld market, completely displacing [MIPS](nintendo-64#cpu) and [SuperH](dreamcast#cpu) as viable alternatives. From then on, ARM was en route to becoming the most widely adopted architecture for mobile devices [@cpu-android_abi].
 
 Unfortunately for DEC, this CPU would be their last major achievement before being acquired by Compaq in 1998. The fate of StrongARM would then rest in the hands of Intel, who continued development under the new 'Intel XScale' line... until they liquidated the division to focus on ['low-power' x86 CPUs](xbox#p6-and-the-end-of-pentium-numbers) (i.e. the Intel Atom) [@cpu-xscale]. Fifteen years later, not only has Intel lost its chance in the mobile market, but it now finds itself competing head-to-head with ARM in the desktop arena.
 
@@ -224,11 +226,11 @@ These modes can't be chosen arbitrarily; instead, the console provides a set of 
 
 ::: {.subfigures .tabs-nested .tab-float max_subfigures=2}
 
-![Background Layer 0 (BG0). This particular layer is shifted horizontally at certain scan lines to simulate the clouds moving.](mario/bg1.png){.active .pixel .border hardcover_latex_width="76%" paperback_latex_width="80%" title="Layer 0"}
+![Background Layer 0 (BG0). This particular layer is shifted horizontally at certain scan lines to simulate the clouds moving.](mario/bg1.png){.active .pixel .border hardcover_latex_width="85%" paperback_latex_width="78%" title="Layer 0"}
 
-![Background Layer 2 (BG2).](mario/bg2.png){.pixel .border hardcover_latex_width="76%" paperback_latex_width="80%" title="Layer 2"}
+![Background Layer 2 (BG2).](mario/bg2.png){.pixel .border hardcover_latex_width="85%" paperback_latex_width="78%" title="Layer 2"}
 
-![Background Layer 3 (BG3).](mario/bg3.png){.pixel .border hardcover_latex_width="76%" paperback_latex_width="80%" title="Layer 3"}
+![Background Layer 3 (BG3).](mario/bg3.png){.pixel .border hardcover_latex_width="85%" paperback_latex_width="78%" title="Layer 3"}
 
 Static Background layers in use.
 
@@ -310,9 +312,9 @@ Some of the early games released for this console attempt to resemble Nintendo 6
 
 ::: {.subfigures .side-by-side max_subfigures=2 #fig-mario_kart_comp}
 
-![Super Mario 64 (1996).<br>Rendered at 320×240 pixels.](comparison/mario_n64.png){.toleft hardcover_latex_width="76%" paperback_latex_width="80%" .border .pixel}
+![Super Mario 64 (1996).<br>Rendered at 320×240 pixels.](comparison/mario_n64.png){.toleft hardcover_latex_width="87%" paperback_latex_width="78%" .border .pixel}
 
-![Super Mario 64 DS (2004).<br>Rendered at 256x192 pixels.](comparison/mario_nds.png){.toright hardcover_latex_width="76%" paperback_latex_width="80%" .border .pixel}
+![Super Mario 64 DS (2004).<br>Rendered at 256x192 pixels.](comparison/mario_nds.png){.toright hardcover_latex_width="87%" paperback_latex_width="78%" .border .pixel}
 
 First example comparing the Super Mario 64 series.
 
@@ -320,9 +322,9 @@ First example comparing the Super Mario 64 series.
 
 ::: {.subfigures .side-by-side max_subfigures=2}
 
-![Mario Kart 64 (1996).<br>Rendered at 320×240 pixels.](comparison/kart_n64.png){.toleft hardcover_latex_width="76%" paperback_latex_width="80%" .border .pixel}
+![Mario Kart 64 (1996).<br>Rendered at 320×240 pixels.](comparison/kart_n64.png){.toleft hardcover_latex_width="87%" paperback_latex_width="78%" .border .pixel}
 
-![Mario Kart DS (2005).<br>Rendered at 256x192 pixels.](comparison/kart_nds.png){.toright hardcover_latex_width="76%" paperback_latex_width="80%" .border .pixel}
+![Mario Kart DS (2005).<br>Rendered at 256x192 pixels.](comparison/kart_nds.png){.toright hardcover_latex_width="87%" paperback_latex_width="78%" .border .pixel}
 
 Second example comparing the Mario Kart series.
 
@@ -341,7 +343,7 @@ That's pretty much in a nutshell. For more specialised cases, you'll have to div
 
 The following are 3D models visualisations from games designed for this console. Notice the use of detailed texture maps, albeit limited to nearest-neighbour filtering. This results in a 'modernish' pixelated look, an icon of Nintendo DS graphics.
 
-![Nintendogs (2005).<br>750 triangles.](dalmatian_ds){.toleft paperback_latex_width="63%" model3d="true"}
+![Nintendogs (2005).<br>750 triangles.](dalmatian_ds){.toleft hardcover_latex_width="70%" paperback_latex_width="63%" model3d="true"}
 
 ![New Super Mario Bros (2006).<br>636 triangles.](mario_ds){.toright model3d="true"}
 
@@ -371,7 +373,7 @@ Back on topic, how does a GBA game handle all of this? *It doesn't*. Within the 
 
 I've constructed this interactive widget to let you compare how the new audio system influenced the next generation of soundtracks. Each widget plays the same score but allows you to alternate between the old and new arrangements (I suggest wearing headphones to really notice the difference). Give it a whirl!
 
-::: {.subfigures .side-by-side figure="false"}
+::: {.subfigures .side-by-side figure="false" .interactive-only}
 
 ![**GBA:** Gyakuten Saiban (2001, JAP only).<br>**NDS:** Phoenix Wright: Ace Attorney (2005).](){audio_switcher="true" src1="trial_gba" src2="trial_nds" label1="GB Advance" label2="Nintendo DS" .toleft}
 
@@ -385,7 +387,7 @@ Be as it may, I had to boost the gain of the GBA soundtrack a little bit to matc
 
 Let me show you some tricky cases now. In some ports, the original console had unique audio capabilities that weren't straightforward to recreate on this console, but I'll let you be the judge of that:
 
-::: {.subfigures .side-by-side figure="false"}
+::: {.subfigures .side-by-side figure="false" .interactive-only}
 
 ![**SNES:** Super Mario Kart (1992).<br>**NDS:** Mario Kart DS (2005).](){audio_switcher="true" src1="mario_snes" src2="mario_nds" label1="SNES" label2="Nintendo DS" .toleft}
 
@@ -443,9 +445,9 @@ The ARM7 is also connected to another SPI node that interfaces with the **touchs
 
 ::: {.subfigures .open-float .tabs-nested .tab-float max_subfigures=2 #fig-hotel_dusk_puzzle}
 
-![A switchboard puzzle. To rescue the lassie, the player had to swipe the screen using two fingers at the same time to switch on the lights.](puzzle.png){.active .pixel .border latex_width="90%" title="Puzzle"}
+![A switchboard puzzle. To rescue the lassie, the player had to swipe the screen using two fingers at the same time to switch on the lights.](puzzle.png){.active .pixel .border hardcover_latex_width="95%" paperback_latex_width="87%" title="Puzzle"}
 
-![But if you do it wrong...](puzzle_fail.png){.pixel .border latex_width="90%" title="Fail"}
+![But if you do it wrong...](puzzle_fail.png){.pixel .border hardcover_latex_width="95%" paperback_latex_width="87%" title="Fail"}
 
 Hotel Dusk: Room 215 (2007).
 
@@ -506,11 +508,11 @@ If the executables are not copied (either because the card is not valid or not d
 
 Whether a game is present or not, the system completes its boot process by loading the firmware's interactive shell.
 
-![Home screen.](shell/home.png){.tabs-nested .active .open-float .tab-float .desktop-margined .pixel .border latex_width="80%" title="Home"}
+![Home screen.](shell/home.png){.tabs-nested .active .open-float .tab-float .desktop-margined .pixel .border hardcover_latex_width="90%" paperback_latex_width="80%" title="Home"}
 
-![You see this screen every time you switch the DS on. The 'Nintendo' logo only appears when there is a valid card inserted.](shell/welcome.png){.tab-nested .pixel .border latex_width="80%" title="Splash"}
+![You see this screen every time you switch the DS on. The 'Nintendo' logo only appears when there is a valid card inserted.](shell/welcome.png){.tab-nested .pixel .border hardcover_latex_width="90%" paperback_latex_width="80%" title="Splash"}
 
-![Settings screen.](shell/settings.png){.tabs-nested-last .pixel .border latex_width="80%" title="Settings"}
+![Settings screen.](shell/settings.png){.tabs-nested-last .pixel .border hardcover_latex_width="90%" paperback_latex_width="80%" title="Settings"}
 
 The shell is broadly similar to the rest of its contemporaries. Users rely on it to launch their game, change settings, download software via 'Download Play', or fiddle with **PictoChat**: an open chat room that talks to nearby Nintendo DSes (using the 'Multi-card Play' protocol).
 
@@ -545,7 +547,7 @@ You've seen that this console's BIOS must be split into ARM9 and ARM7 code. Well
 
 - **Header (4 KB)**: Contains metadata, including the entrypoint of each executable, manufacturer information, and Nintendo's Logo [@games-header].
 - **Secure Area (16 KB)**: Used for copy-protection purposes. We'll cover the details in the 'Anti-piracy' section.
-- **Main content (variable size)**: The remainder space stores the executables and game data (graphics, sounds, and so forth). Furthermore, the arrangement of this data was shaped by Nintendo's official SDK (a mandatory dependency for retail games), which implemented a filesystem structured hierarchically with files and directories [@games-fs].
+- **Main content (variable size)**: The remainder space stores the executables and game data (graphics, sounds, and so forth). Furthermore, the arrangement of this data was shaped by Nintendo's official Software Development Kit or 'SDK' (a mandatory dependency for retail games), which implemented a filesystem structured hierarchically with files and directories [@games-fs].
 
 ### Development ecosystem
 
