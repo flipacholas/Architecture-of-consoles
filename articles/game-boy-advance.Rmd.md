@@ -249,11 +249,11 @@ Finally, only four charblocks can be used for backgrounds, while two may be used
 
 ::: {.subfigures .tabs-nested .tab-float max_subfigures=2}
 
-![Background Layer 0 (BG0).](sonic/bg0.png){.active .pixel .border hardcover_latex_width="65%" paperback_latex_width="60%" title="Layer 0"}
+![Background Layer 0 (BG0).](sonic/bg0.png){.active .pixel .border hardcover_latex_width="65%" paperback_latex_width="58%" title="Layer 0"}
 
-![Background Layer 2 (BG2).](sonic/bg2.png){.pixel .border hardcover_latex_width="65%" paperback_latex_width="60%" title="Layer 2"}
+![Background Layer 2 (BG2).](sonic/bg2.png){.pixel .border hardcover_latex_width="65%" paperback_latex_width="58%" title="Layer 2"}
 
-![Background Layer 3 (BG3). This particular layer will be shifted horizontally at certain scan-lines to simulate water effects.](sonic/bg3.png){.pixel .border hardcover_latex_width="65%" paperback_latex_width="60%" title="Layer 3"}
+![Background Layer 3 (BG3). This particular layer will be shifted horizontally at certain scan-lines to simulate water effects.](sonic/bg3.png){.pixel .border hardcover_latex_width="65%" paperback_latex_width="58%" title="Layer 3"}
 
 Static background layers in use.
 

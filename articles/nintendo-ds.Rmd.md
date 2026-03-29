@@ -226,11 +226,11 @@ These modes can't be chosen arbitrarily; instead, the console provides a set of 
 
 ::: {.subfigures .tabs-nested .tab-float max_subfigures=2}
 
-![Background Layer 0 (BG0). This particular layer is shifted horizontally at certain scan lines to simulate the clouds moving.](mario/bg1.png){.active .pixel .border hardcover_latex_width="85%" paperback_latex_width="78%" title="Layer 0"}
+![Background Layer 0 (BG0). This particular layer is shifted horizontally at certain scan lines to simulate the clouds moving.](mario/bg1.png){.active .pixel .border hardcover_latex_width="85%" paperback_latex_width="76%" title="Layer 0"}
 
-![Background Layer 2 (BG2).](mario/bg2.png){.pixel .border hardcover_latex_width="85%" paperback_latex_width="78%" title="Layer 2"}
+![Background Layer 2 (BG2).](mario/bg2.png){.pixel .border hardcover_latex_width="85%" paperback_latex_width="76%" title="Layer 2"}
 
-![Background Layer 3 (BG3).](mario/bg3.png){.pixel .border hardcover_latex_width="85%" paperback_latex_width="78%" title="Layer 3"}
+![Background Layer 3 (BG3).](mario/bg3.png){.pixel .border hardcover_latex_width="85%" paperback_latex_width="76%" title="Layer 3"}
 
 Static Background layers in use.
 
@@ -343,7 +343,7 @@ That's pretty much in a nutshell. For more specialised cases, you'll have to div
 
 The following are 3D models visualisations from games designed for this console. Notice the use of detailed texture maps, albeit limited to nearest-neighbour filtering. This results in a 'modernish' pixelated look, an icon of Nintendo DS graphics.
 
-![Nintendogs (2005).<br>750 triangles.](dalmatian_ds){.toleft hardcover_latex_width="70%" paperback_latex_width="63%" model3d="true"}
+![Nintendogs (2005).<br>750 triangles.](dalmatian_ds){.toleft hardcover_latex_width="70%" paperback_latex_width="61%" model3d="true"}
 
 ![New Super Mario Bros (2006).<br>636 triangles.](mario_ds){.toright model3d="true"}
 
@@ -445,9 +445,9 @@ The ARM7 is also connected to another SPI node that interfaces with the **touchs
 
 ::: {.subfigures .open-float .tabs-nested .tab-float max_subfigures=2 #fig-hotel_dusk_puzzle}
 
-![A switchboard puzzle. To rescue the lassie, the player had to swipe the screen using two fingers at the same time to switch on the lights.](puzzle.png){.active .pixel .border hardcover_latex_width="95%" paperback_latex_width="87%" title="Puzzle"}
+![A switchboard puzzle. To rescue the lassie, the player had to swipe the screen using two fingers at the same time to switch on the lights.](puzzle.png){.active .pixel .border hardcover_latex_width="95%" paperback_latex_width="85%" title="Puzzle"}
 
-![But if you do it wrong...](puzzle_fail.png){.pixel .border hardcover_latex_width="95%" paperback_latex_width="87%" title="Fail"}
+![But if you do it wrong...](puzzle_fail.png){.pixel .border hardcover_latex_width="95%" paperback_latex_width="85%" title="Fail"}
 
 Hotel Dusk: Room 215 (2007).
 
