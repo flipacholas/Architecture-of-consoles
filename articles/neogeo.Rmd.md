@@ -232,7 +232,8 @@ In terms of effects, sprites can be **flipped** and/or **shrunk**. These attribu
 
 Due to their complexity, sprites are encoded in four areas in VRAM called **Sprite Control Blocks** (SCB), each of which stores the following attributes [@graphics-beginners]:
 
-- **SCB1**: Tile reference, colour palette reference, and X/Y flip.
+- **SCB1**: Tile reference, colour palette reference, auto animation, and X/Y flip.
+  - 'Auto animation' triggers an automatic tile reference increment every x frames (there are eight timings to choose from), which resets after 4 or 8 increments [@graphics-animation]. This is useful for animating graphics without consuming CPU cycles.
 - **SCB2**: Horizontal and vertical shrink.
 - **SCB3**: Y position, vertical size (in terms of tiles) and whether the sprite is attached to the previous one.
   - Sprite attachment causes the second sprite to inherit the predecessor's attributes, except for the horizontal shrink.
