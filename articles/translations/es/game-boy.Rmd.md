@@ -1,7 +1,7 @@
 ---
-short_title: Arquitectura de la Game Boy / Game Boy Color
-long_title: Arquitectura de la Game Boy / Game Boy Color
-name: Game Boy / Game Boy Color
+short_title: Arquitectura de la Game Boy / Color
+long_title: Arquitectura de la Game Boy / Color
+name: Game Boy / Color
 subtitle: Simple y portátil
 date: 2019-02-21
 release_date: 1989-04-21
@@ -11,15 +11,17 @@ top_tabs:
   Models:
     - 
       title: "Original"
-      caption: "La Game Boy original.<br>Lanzada el 21/04/1989 en Japón, el 31/07/1989 en Estados Unidos y el 28/09/1990 en Europa."
+      caption: "La Game Boy original.<br>Lanzada el 21/04/1989 en Japón, el 31/07/1989 en América y el 28/09/1990 en Europa."
       img_class: reduced-width
       file: international
       active: true
+      latex_height: 87
     - 
       title: "Color"
-      caption: "La sucesora de nueva generación llamada Game Boy Color.<br>Lanzada el 21/10/1998 en Japón, 18/11/1998 en América del Norte, 23/11/1998 en Europa."
+      caption: "La sucesora de nueva generación llamada Game Boy Color.<br>Lanzada el 21/10/1998 en Japón, el 18/11/1998 en América del Norte y el 23/11/1998 en Europa."
       img_class: reduced-width
       file: color
+      latex_height: 95
   Motherboard:
     caption: "Mostrando la revisión '04'. Ten en cuenta que 'DMG' es el identificador del modelo original de Game Boy."
   Diagram:
@@ -32,368 +34,414 @@ aliases:
 
 ## Una introducción rápida
 
-La Game Boy puede ser entendida como una versión portátil de la NES con potencia limitada, pero pronto se verá que incluye nueva funcionalidad muy interesante.
+La Game Boy puede imaginarse como una versión portátil de la NES con potencia limitada, aunque verás que introdujo novedades realmente interesantes.
 
 ### El análisis variado
 
-La inmensa popularidad de esta consola resultó en una variedad de revisiones (es decir, la Game Boy Pocket, Light, e incluso en forma de cartuchos para la [Super Nintendo](super-nintendo)). De hecho, la marca Game Boy cubre dos generaciones. Dentro de la cuarta generación encontramos la Game Boy monocroma y sus revisiones, y en la siguiente generación reside la Game Boy Color (lanzada después de la desaparición de la [Virtual Boy](virtual-boy)). La buena noticia es que este artículo cubre ambos extremos. Entonces, al final, tendrás una buena comprensión de cómo funciona la Game Boy y cómo su tecnología evolucionó para convertirse en la Game Boy Color.
+La inmensa popularidad de esta consola dio lugar a una amplia variedad de revisiones (la *Game Boy Pocket*, *Light*, e incluso adaptaciones en forma de cartuchos para la [Super Nintendo](super-nintendo)). De hecho, la marca *Game Boy* abarca dos generaciones: dentro de la cuarta encontramos la Game Boy monocroma y sus revisiones, mientras que la siguiente alberga la Game Boy Color (lanzada tras la desaparición de la [Virtual Boy](virtual-boy)).
+
+La buena noticia es que este artículo cubre ambos extremos del espectro. Al final, tendrás una visión clara de cómo funciona la Game Boy y cómo su tecnología evolucionó hasta convertirse en la Game Boy Color.
 
 ## {.supporting-imagery}
 
 ## CPU
 
-En lugar de colocar chips estándares en la placa base, Nintendo optó por un único chip para alojar (y ocultar) la mayor parte de los componentes, incluyendo la CPU. Este tipo de chip se llama **System On a Chip** (SoC) y, en este caso, ha sido específicamente diseñado para esta consola, permitiendo a Nintendo adaptarlo a sus necesidades (eficiencia energética, anti-piratería y E/S extra, entre otras cosas). Al mismo tiempo, este chip no se encuentra en ningún catálogo comercial, lo que significa que a los competidores de entonces les resultaba más difícil clonarlo.
+En lugar de colocar múltiples chips estándares en la placa base, Nintendo optó por un **diseño de chip único** para alojar (y ocultar) la mayor parte de los componentes, incluyendo la CPU. Este tipo de diseño se denomina comúnmente **System on a Chip** (SoC) y, en este caso, fue desarrollado específicamente para esta consola, lo que permitió a Nintendo adaptarlo a sus necesidades (eficiencia energética, antipiratería y capacidades de E/S adicionales, entre otras). Además, el SoC de la Game Boy no aparecía en ningún catálogo comercial, lo que complicaba sobremanera la tarea a quienes quisieran copiarlo.
 
-Dicho esto, el SoC que se encuentra en la Game Boy se conoce como **DMG-CPU** o **Sharp LR35902** [@cpu-realboy] y, como indica el nombre, es fabricado por **Sharp Corporation**. Esta empresa, junto con Ricoh (el [proveedor de CPU de NES](nes#a-bit-of-context)), disfrutaba de una estrecha relación con Nintendo.
+Dicho esto, el SoC de la Game Boy se conoce como **DMG-CPU** o **Sharp LR35902** [@cpu-realboy] y, como su nombre indica, fue fabricado por **Sharp Corporation**. Esta empresa, junto con Ricoh (el [proveedor de CPU de la NES](nes#a-bit-of-context)), mantenía una estrecha relación con Nintendo.
 
 ### El núcleo de la CPU
 
-Dentro del DMG-CPU, el procesador principal es un **Sharp SM83** [@cpu-gekkio] y es una mezcla entre el Z80 (la misma CPU utilizada en la [Sega Master System](master-system#cpu)) y el Intel 8080. Funciona a **~4.19 MHz**, que es más rápido que la CPU promedio de 1 MHz, pero recuerda que las velocidades de reloj [pueden ser engañosas](master-system#relative-comparison).
+Dentro del DMG-CPU se encuentra el procesador principal: un **Sharp SM83** [@cpu-gekkio], una combinación del popular Zilog Z80 (presente en la [Sega Master System](master-system#cpu)) y el Intel 8080. Funciona a **~4,19 MHz**, más rápido que [la CPU de ~1 MHz de la NES](nes#cpu), aunque recuerda que las velocidades de reloj [pueden ser engañosas](master-system#relative-comparison).
 
-![El DMG-CPU, encontrado en la placa base de la Game Boy.](dmg_cpu.png)
+![El chip DMG-CPU en la placa base de mi Game Boy.](dmg_cpu.png){latex_width="90%"}
 
-Ahora, cuando hice el [análisis de la Master System](master-system), expliqué que el Z80 es en sí mismo un superconjunto del 8080. Entonces, ¿qué tiene y qué le falta al SM83 de esos dos? [@cpu-z80_comparison]
+Cuando analicé la [Master System](master-system), expliqué que el Z80 es en esencia un superconjunto del 8080. Entonces, ¿qué retiene y qué omite el SM83 de ambos? [@cpu-z80_comparison]
 
-- Ni los registros `IX` o `IY` del Z80 ni las instrucciones `IN` o `OUT` del 8080 están incluidos. Esto significa que los [puertos de E/S](master-system#accessing-the-rest-of-the-components) no están disponibles. No sé a ciencia a cierta si es una medida tomada para reducir costes, pero lo que sí sé, es que los componentes tendrán que ser **completamente mapeados en memoria** [@cpu-fayzullin].
-- El conjunto de registros del Intel 8080 es el único que está implementado. En consecuencia, hay **solo siete registros de propósito general**, a diferencia del Z80 con sus 14 registros (debido a la adición de un conjunto 'alternativo').
-- Incluye algunas de las instrucciones extendidas del Z80 (solo instrucciones de manipulación de bits).
+- Ni los registros `IX` e `IY` del Z80 ni las instrucciones `IN` y `OUT` del 8080 están presentes. Esto significa que los [puertos de E/S](master-system#accessing-the-rest-of-the-components) no están disponibles. Desconozco si fue una medida de ahorro, pero lo que sí está claro es que los componentes deben estar **completamente mapeados en memoria** [@cpu-fayzullin].
+- Solo se implementa el conjunto de registros del Intel 8080. En consecuencia, hay **únicamente siete registros de propósito general**, frente a los 14 del Z80 (gracias a su conjunto 'alternativo' adicional).
+- Solo se implementan partes del conjunto de instrucciones extendido del Z80; concretamente, las instrucciones de manipulación de bits.
 
-Para finalizar, también se añadieron **nuevas instrucciones** que no están presentes ni en el Z80 ni en el 8080. Optimizan ciertas operaciones relacionadas con la forma en que Nintendo/Sharp organizó el hardware. Un ejemplo es la nueva instrucción `LDH` (que significa 'cargar desde la memoria alta' [@cpu-ldh]), que ha sido específicamente incluida para operar en los últimos 256 bytes del mapa de memoria (donde las direcciones comienzan en `$ff00`) y, lo más importante, ocupa un byte menos (y, por lo tanto, es ligeramente más rápida).
+Sharp también incorporó **algunas instrucciones propias**, ausentes tanto en el Z80 como en el 8080, que optimizan ciertas operaciones relacionadas con la forma en que Nintendo y Sharp organizaron el hardware. Un ejemplo es la nueva instrucción `LDH` (del inglés 'load high' [@cpu-ldh]), diseñada específicamente para acceder a los últimos 256 bytes del mapa de memoria (donde las direcciones comienzan en `$FF00`) y, lo más importante, ocupa un byte menos (lo que la hace ligeramente más rápida).
 
 #### El efecto Color
 
-![Placa base de la Game Color [@photography-amos].](motherboard_cgb.png){.tabs-nested .active title="Original"}
+![Placa base de la Game Boy Color [@photography-amos].](motherboard_cgb.png){.tabs-nested .active title="Original"}
 
 ![La misma imagen con las partes importantes marcadas.](motherboard_cgb_marked.png){.tabs-nested-last title="Marcado"}
 
-Casi 10 años después, tras el abandono de la [Virtual Boy](virtual-boy) y su [hardware de vanguardia](virtual-boy#cpu), llegó una humilde sucesora: la **Game Boy Color**. Dentro de ella, hay un nuevo SoC denominado **CPU CGB** que lleva algunas adiciones. Sin embargo, su núcleo de CPU SM83 sigue siendo el mismo, excepto por su velocidad de reloj duplicada (ahora funcionando a **~8.38 MHz**).
+Casi una década después, tras el abandono de la [Virtual Boy](virtual-boy) y su [hardware de vanguardia](virtual-boy#cpu), llegó una humilde sucesora: la **Game Boy Color**. Dentro de ella hay un nuevo SoC denominado **CPU CGB** que incorpora varias novedades. Sin embargo, su núcleo de CPU SM83 permanece prácticamente sin cambios, salvo por su velocidad de reloj duplicada (ahora a **~8,38 MHz**).
 
-Es difícil pensar que después de una década Nintendo aún incluiría la misma CPU, pero tal decisión viene con las siguientes ventajas:
+Cuesta pensar que, tras casi una década, Nintendo mantuviera el mismo núcleo de CPU, pero esta decisión conllevaba las siguientes ventajas:
 
-- Los desarrolladores pueden reutilizar las habilidades adquiridas para programar la nueva consola.
-- Hay un ahorro de costos al no tener que rediseñar su sistema para trabajar con una nueva arquitectura.
-- Se hace posible la compatibilidad hacia atrás sin un esfuerzo considerable. De hecho, Nintendo lo implementó programando dos modos de operación en la CPU CGB:
-  - **Modo normal**: El SM83 opera a **~4.19 MHz**.
-  - **Modo de doble velocidad**: El SM83 opera a **~8.38 MHz**.
+- Los desarrolladores podían reutilizar las habilidades adquiridas para programar la nueva consola.
+- Se ahorraban costes al no tener que rediseñar el sistema para una nueva arquitectura.
+- La retrocompatibilidad se conseguía con un esfuerzo mínimo. De hecho, Nintendo la implementó programando dos modos de operación en la CPU CGB:
+  - **Modo normal**: el SM83 opera a **~4,19 MHz**.
+  - **Modo de doble velocidad**: el SM83 opera a **~8,38 MHz**.
 
-Sin embargo, esto viene a costa de adoptar tecnología obsoleta para los estándares de finales de los 90. Solo tienes que mirar el [estado del mercado de CPU](playstation#tab-1-1-a-bit-of-history) para notar las capacidades que Nintendo se estaba perdiendo (para ser justos, Nintendo lo intentó con el [Virtual Boy](virtual-boy)).
+Eso sí, todo esto a costa de adoptar tecnología obsoleta para los estándares de finales de los 90. Basta con echar un vistazo al [estado del mercado de CPU](playstation#tab-1-1-a-bit-of-history) para apreciar las capacidades de las que Nintendo prescindía. Aunque, en su descargo, Nintendo sí lo intentó con el [hardware de la Virtual Boy](virtual-boy#cpu).
 
 ### Acceso al hardware
 
-El SM83 mantiene un **bus de datos de 8 bits** y un **bus de direcciones de 16 bits**, por lo que se puede direccionar hasta **64 KB de memoria**. El mapa de memoria está compuesto principalmente por los siguientes puntos finales [@cpu-memory_map]:
+El SM83 mantiene un **bus de datos de 8 bits** y un **bus de direcciones de 16 bits**, lo que permite direccionar hasta **64 KB de memoria**. El mapa de memoria se compone principalmente de las siguientes regiones [@cpu-memory_map]:
 
 - Espacio del Game Pak (el cartucho de juego).
-- Work RAM (WRAM), High RAM (HRAM) y Display RAM (VRAM).
-- E/S (joypad, audio, gráficos y LCD).
+- Work RAM (WRAM), High RAM (HRAM) y Video RAM (VRAM).
+- Diversas E/S (joypad, audio, gráficos y LCD).
 - Controles de interrupción.
 
-Esto se explicará a lo largo de este artículo.
+No te preocupes por los nombres nuevos: estos componentes se explican a lo largo del artículo.
 
-### Memoria Disponible
+### Memoria disponible
 
-![Arquitectura de memoria del DMG (Game Boy original). La PPU arbitra el acceso a la VRAM.](dmg-ram.png)
+![Arquitectura de memoria del DMG (Game Boy original). La PPU arbitra el acceso a la VRAM.](_diagrams/dmg-ram.png)
 
-Nintendo instaló **8 KB de RAM** en la placa base, esto es para uso general (que llamaron **Work RAM** o 'WRAM') [@cpu-nintendo]. Fíjese que es cuatro veces más que la cantidad incluida en la [NES](nes).
+Nintendo instaló **8 KB de RAM** en la placa base, destinada a uso general (de ahí el nombre **Work RAM** o 'WRAM') [@cpu-nintendo]. Vale la pena mencionar que eso supone cuatro veces la cantidad incluida en la [NES](nes#memory).
 
-Hay un adicional de **127 B** de RAM en el SoC. Se llama **High RAM** o 'HRAM', y proporciona un pequeño espacio para datos que se puede acceder más rápido a través de la instrucción `LDH` única del SM83. Esto es muy similar al modo 'Zero Page' del 6502 [@cpu-zero_page], que también optimizó el rendimiento basado en la ubicación de la memoria. Ahora, la High RAM no es técnicamente más rápida de acceder que la RAM general, pero es un área priorizada para la CPU. Verás lo que esto significa cuando llegues a la sección 'Gráficos', donde hablo del componente DMA.
+Hay **127 B** adicionales de RAM dentro del SoC. Se denomina **High RAM** (HRAM) y ofrece un pequeño espacio para datos que pueden recuperarse más rápido (mediante la ya mencionada instrucción `LDH`). La idea es muy similar al modo 'Zero Page' del MOS 6502 [@cpu-zero_page], que también optimizaba el rendimiento en función de la ubicación en memoria. Dicho esto, el bus de la High RAM no es técnicamente más rápido que el de la Work RAM, pero tiene prioridad para la CPU. Verás la importancia de esto en la sección 'Gráficos', cuando hable del Acceso Directo a Memoria (DMA).
 
-![Arquitectura de memoria ampliada del CGB (Game Boy Color). De nuevo, la PPU arbitra el acceso a la VRAM.](cgb-ram.png)
+![Arquitectura de memoria ampliada del CGB (Game Boy Color).](_diagrams/cgb-ram.png)
 
-Más tarde, con la variante Color, Nintendo amplió la WRAM a **32 KB**. Sin embargo, dado que la CPU se mantuvo sin cambios (particularmente sus capacidades de direccionamiento), no es posible conectar toda la nueva memoria sin desbordar primero el espacio de direcciones disponible. Para solucionar esto, los ingenieros de Nintendo implementaron [cambio de banco](nes#going-beyond-existing-capabilities). Originalmente encontrado en los [cartuchos de NES](nes#cartridgegame-data), la Game Boy Color utiliza el mismo principio para acceder a esos 32 KB utilizando solo 8 KB de espacio de memoria. El truco es simple: los últimos 4 KB se pueden intercambiar utilizando siete bancos diferentes. En consecuencia, la CPU agrupa un registro adicional (llamado `SVBK`) que actúa como el cambiador de banco, esto es lo que los desarrolladores deben usar para examinar la memoria extendida.
+Más adelante, con la variante Color, Nintendo amplió la WRAM a **32 KB**. Sin embargo, dado que las capacidades de direccionamiento de la CPU no habían cambiado, integrar toda esa nueva memoria sin agotar el espacio de direcciones no era tarea sencilla. Para resolverlo, los ingenieros de Nintendo recurrieron al [cambio de bancos](nes#going-beyond-existing-capabilities) dentro de la propia consola.
+
+Aunque anteriormente se encontraba en los [cartuchos de NES](nes#cartridgegame-data), la Game Boy Color aplica el mismo principio para acceder a los 24 KB extra de WRAM. El truco es sencillo: los últimos 4 KB del espacio original de 8 KB pueden intercambiarse entre siete bancos distintos. Para que esto funcione, la CPU incluye un registro adicional (llamado `SVBK`) que actúa como selector de banco, y es lo que los desarrolladores deben usar para acceder a la memoria extendida.
 
 ## Gráficos
 
-Todos los cálculos relacionados con los gráficos son realizados por la CPU. Una vez finalizados, la **Picture Processing Unit** ('PPU' o Unidad de procesamiento de imágenes) los renderiza. Este es otro componente encontrado dentro del DMG-CPU y podría describirse como una versión mejorada del [chip de gráficos del predecesor](nes#graphics) (con el mismo nombre).
+En el mundo gráfico de la Game Boy, todos los cálculos los realiza la CPU, y la **Picture Processing Unit** (PPU) se encarga de renderizarlos. Este es otro componente del SoC DMG-CPU que podría describirse como una versión mejorada del [chip gráfico del predecesor](nes#graphics) (que, curiosamente, comparte el mismo nombre).
 
-La imagen se muestra en una pantalla integrada de tipo LCD a una resolución de **160×144 píxeles** y, en el caso del Game Boy monocromo, muestra **4 tonos de gris** (blanco, gris claro, gris oscuro y negro). Dado que la Game Boy original tiene una pantalla LCD verde, la imagen se verá *verdosa*.
+::: {.subfigures .side-by-side}
 
-Si has leído el artículo de la NES con anterioridad, puede que recuerdes que la PPU fue diseñada a partir del funcionamiento del tubo de rayos catódicos (CRT). Sin embargo (y por razones obvias), tenemos una pantalla LCD en la Game Boy. Pues bien, la nueva PPU también sigue esa metodología ya que los LCDs requieren ser refrescados también. Al hacerlo, esta consola disfrutará de efectos [basados en CRT](nes#tab-1-4-background-split) que anteriormente permitieron a los desarrolladores de NES crear contenido imaginativo.
+![Frame renderizado por la PPU.](lcd/kirby_white.png){.toleft .border .pixel hardcover_latex_width="70%" paperback_latex_width="64%"}
+
+![Frame mostrado en la pantalla LCD de la Game Boy original.](lcd/kirby_green.png){.toright .border .pixel hardcover_latex_width="70%" paperback_latex_width="64%"}
+
+Kirby's Dream Land (1992), capturado desde el emulador 'bgb' para simular distintos tipos de pantalla.
+
+:::
+
+La imagen se muestra en una pantalla integrada de tipo **Liquid-Crystal Display** (LCD) con una resolución de **160×144 píxeles**. En el caso de la Game Boy monocroma, la LCD solo puede mostrar **4 tonos de gris** (blanco, gris claro, gris oscuro y negro). No obstante, al estar tintada de verde, la imagen presentará un tono ligeramente *verdoso*.
+
+### Un modelo familiar
+
+Si has leído el [análisis de la NES](nes#graphics), puede que recuerdes que la PPU fue diseñada en torno al comportamiento de los monitores CRT (especialmente al funcionamiento de su haz). Esto puede parecer incompatible con una pantalla LCD, aunque esta también debe actualizarse periódicamente. Así pues, la nueva PPU aprovecha este requisito para ofrecer [efectos basados en CRT](nes#tab-1-4-background-split), similares a los que permitieron a los desarrolladores de NES crear contenido imaginativo.
+
+Además, a diferencia de su homólogo doméstico, la Game Boy no se alimenta de la corriente alterna que proporcionan los enchufes de pared —esa que varía según el país o la región—. En consecuencia, sus circuitos analógicos no están ligados a la red eléctrica local. Dicho de otro modo: mientras la NES debía adaptarse a configuraciones de 60 Hz y 50 Hz, la Game Boy funciona con las mismas **cuatro pilas AA** independientemente del lugar del mundo. Por lo tanto, todas las Game Boys comparten las mismas velocidades de reloj de CPU y una tasa de refresco de **59,7 Hz**, lo cual facilita la vida a desarrolladores y usuarios por igual.
 
 ### Organizando el contenido
 
-![Arquitectura de memoria de la PPU.](ppu.png)
+![Arquitectura de memoria de la PPU.](_diagrams/ppu.png)
 
-La PPU está conectada a **8 KB de VRAM** o 'Display RAM'. Al hacerlo, también proporciona acceso arbitrado a la CPU. Esos 8 KB contendrán la mayor parte de los datos que la PPU necesitará para renderizar los gráficos. El resto de materiales se almacenarán dentro de la PPU, ya que requieren tasas de acceso más rápidas.
+La PPU está conectada exclusivamente a **8 KB de Video RAM** (también denominada 'VRAM' o 'Display RAM'). Esos 8 KB contienen la mayor parte de los datos que la PPU necesita para renderizar los gráficos. Los demás datos se almacenan dentro de la propia PPU, pues requieren tasas de acceso más rápidas.
 
-El juego se encarga de rellenar las diferentes áreas con el tipo de dato correcto. Además, la PPU expone registros para que el juego pueda instruir a la PPU sobre cómo se organiza esos datos. No obstante, hay muchas reglas a seguir (lo verás en las siguientes secciones).
+La PPU también arbitra el acceso de la CPU a la VRAM, y es el juego quien se encarga de rellenar las distintas áreas con el tipo de datos correcto. Además, la PPU pone a disposición registros que permiten definir cómo se organiza la información gráfica. No obstante, hay muchas reglas que respetar (explicadas en las secciones siguientes).
 
 ### Construyendo el frame
 
-Veamos cómo la PPU logra dibujar cosas en pantalla. Para fines de demostración, se utilizará como ejemplo *Super Mario Land 2*.
+El frame final que se ve en la pantalla LCD está compuesto por **tres capas superpuestas**, cada una pensada para un tipo de uso diferente.
 
-#### Tiles {.tabs.active}
+Veamos cómo la PPU logra dibujar píxeles en pantalla. Para la demostración se usará *Super Mario Land 2*.
 
-::: {.subfigures .tabs-nested .tab-float .pixel max_subfigures=1}
+#### Tiles {.tabs .active}
 
-![Múltiples mosaicos.](ppu_mario/tiles.png){.active title="Todo"}
+::: {.subfigures .tabs-nested .tab-float .pixel max_subfigures=2 latex_subfigure_width="0.46"}
 
-![Múltiples mosaicos separados en una cuadrícula.](ppu_mario/tiles_grid.png){title="Cuadrícula"}
+![Una tabla de patrones con múltiples tiles.](ppu_mario/tiles.png){.active .border title="Todo"}
 
-![Un único mosaico.](ppu_mario/tiles_single.png){title="Individual"}
+![Un único tile.](ppu_mario/tiles_single.png){.border title="Individual"}
 
-Tiles encontrados en la Tabla de Patrones (o 'Tile pattern table').
+Tiles encontrados en la VRAM.
 
 :::
 
-La PPU utiliza **mosaicos** como ingrediente principal para renderizar gráficos, especialmente, **sprites y fondos** [@graphics-overview].
+La PPU utiliza **tiles** como ingrediente básico para renderizar gráficos; en concreto, **sprites y fondos** [@graphics-overview].
 
-Los tiles son sencillamente **mapas de bits de 8x8 pixeles** almacenados en VRAM en una región llamada **Tile Set** o 'Tile pattern table', cada pixel corresponde con uno de los cuatro tonos de gris disponibles. En la práctica, sin embargo, los tonos de gris se seleccionan a través de una paleta de 'color'. Los Game Boys monocromos contienen registros que definen estas paletas. Como se explicó antes, solo hay cuatro colores/tonos de grises para elegir, por lo que un único registro de 8 bits puede contener una paleta de cuatro tonos sin problema. Dicho esto, el sistema proporciona tres registros (por lo tanto, **tres paletas programables**) con **uso restringido** (más sobre esto se explica más adelante).
+Los tiles son sencillamente **mapas de bits de 8×8 píxeles**. Cada uno ocupa 16 bytes y se almacena en la VRAM, en una región denominada **Tile set** o 'Tile pattern table'. El color de cada píxel corresponde a uno de los cuatro tonos de gris disponibles, seleccionado mediante una paleta de 'color'. El uso de paletas también permite cambiar los colores sin necesidad de modificar el Tile set.
 
-Además, los mosaicos se agrupan en **dos tablas de patrones**.
+Las Game Boys monocromas disponen de registros suficientes para definir **hasta tres paletas**, aunque su uso está restringido según el tipo de capa que se renderiza (explicado en las secciones siguientes). Como ya se indicó, solo hay cuatro colores/tonos disponibles, por lo que un único registro de 8 bits puede albergar una paleta de cuatro tonos sin problema.
 
-Para construir la imagen, los mosaicos se referencian en otro tipo de tabla llamada **Mapa de mosaico**. Esta información le dirá a la PPU donde renderizar estos tiles. Dos mapas son almacenados para construir diferentes capas de un frame.
+Además, los tiles se agrupan en **dos tablas de patrones**.
 
-Las siguientes secciones explican como son utilizados los 'Tile maps' para construir las capas.
+Para construir la imagen, los tiles se recogen en otro tipo de tabla denominada **Tile map**, que indica a la PPU dónde renderizar cada tile. Se almacenan dos mapas para construir **distintas capas** del frame.
+
+Las secciones siguientes explican cómo se usan los Tile maps para ensamblar estas capas.
 
 #### Capa de fondo {.tab}
 
-::: {.subfigures .tabs-nested .tab-float .pixel}
+::: {.subfigures .tabs-nested .tab-float .pixel max_subfigures=3 latex_subfigure_width="0.49"}
 
-![Mapa de fondo asignado en la VRAM.](ppu_mario/background.png){.active title="Completa"}
+![Mapa de fondo asignado en la VRAM.](ppu_mario/background.png){.active .border title="Completa"}
 
-![Área seleccionada del mapa de fondo. Nótese que la parte seleccionada incluye una porción de la parte superior, esta será superpuesta por la _Capa de ventana_.](ppu_mario/background_selected.png){title="Selección"}
+![Área seleccionada del mapa de fondo. La selección incluye una porción sin usar en la parte superior, que quedará cubierta por la capa *Ventana*.](ppu_mario/background_selected.png){.border title="Selección"}
 
-![Mapa de fondo mostrado.](ppu_mario/background_rendered.png){title="Renderizado"}
+![Capa de fondo mostrada.](ppu_mario/background_rendered.png){.border title="Renderizado"}
 
-Proceso de renderización del mapa de fondo.
-
-:::
-
-La capa de fondo es un mapa de **256x256 píxeles** (32x32 tiles) que contiene **tiles estáticos**. Sin embargo, recuerda que sólo 160x144 píxeles son visible en pantalla, por lo que el juego decide qué parte es seleccionada para mostrarse. Los juegos pueden también mover el área visible durante el gameplay, así es como se consigue el **Efecto de desplazamiento (Scrolling effect)**.
-
-Uno de los dos 'Tile maps' puede ser utilizado para proyectar la capa de fondo. Además, solo hay **una paleta** disponible para esta capa.
-
-#### Ventana {.tab}
-
-::: {.subfigures .tabs-nested .tab-float .pixel}
-
-![Mapa de ventana asignada.](ppu_mario/window.png){.active title="Completa"}
-
-![Mapa de ventana mostrada. El juego la activa durante la última línea escaneada (scan-line). Por lo tanto, sólo las primeras filas se renderizan en la parte inferior de la pantalla.](ppu_mario/window_rendered.png){title="Selección"}
-
-Proceso de renderización del mapa de ventana.
+Proceso de renderización de la capa de fondo.
 
 :::
 
-La ventana es una capa de **160x144 píxeles** que contiene tiles mostrados encima del fondo y sprites. Esta capa **no se desplaza**.
+La capa de fondo es un mapa de **256×256 píxeles** (32×32 tiles) que contiene **tiles estáticos**. Sin embargo, recuerda que solo 160×144 píxeles son visibles en pantalla, por lo que el juego decide qué zona mostrar en cada momento. Los juegos también pueden desplazar el área visible durante el gameplay, que es como se consigue el **efecto de desplazamiento**.
 
-El mapa de mosaicos restante se puede asignar a la capa de ventana, también comparte la misma paleta con la capa de fondo.
-
-En definitiva, esto puede sonar como una característica tonta. Dado que la Ventana no tiene transparencia y por lo tanto oscurece completamente el Fondo, te puedes preguntar '¿Para qué sirve?'. Pues bien, tanto el fondo como la ventana se pueden utilizar **simultáneamente** en diferentes partes de la pantalla. Esto está destinado a mostrar información principalmente en la parte inferior de la pantalla, pero mientras que en la NES esto requería realizar [escrituras complejas y sincronizadas](nes#tab-1-4-background-split), la PPU del Game Boy puede manejarlo automáticamente.
-
-Por lo tanto, los juegos lo utilizan normalmente para mostrar estadísticas del jugador, puntuaciones y otra información "siempre activa".
+Uno de los dos Tile maps puede emplearse para construir la capa de fondo. Además, solo hay **una paleta** disponible para esta capa.
 
 #### Sprites {.tab}
 
-![Capa de sprite renderizado.](ppu_mario/sprite.png) {.tab-float.pixel}
+![Capa de sprite renderizada.](ppu_mario/sprite.png){.tab-float .border .pixel latex_width="90%"}
 
-Los sprites son tiles que pueden moverse de forma independiente alrededor de la pantalla. También pueden superponerse entre sí y aparecer detrás del fondo, el gráfico visible se decidirá basándose en el atributo de prioridad.
+Los sprites, también conocidos como 'Objects', son tiles que pueden moverse de forma independiente por la pantalla. También pueden superponerse entre sí o aparecer detrás del fondo; lo que se muestra en pantalla viene determinado por su atributo de prioridad.
 
-Esta capa también tiene un color extra disponible: **Transparente**. Inicialmente, esto significa que solo pueden mostrar tres grises diferentes en lugar de cuatro. Afortunadamente, esta capa en particular está provista de **dos paletas dedicadas** para elegir.
+Esta capa dispone de un color extra: **Transparente**. Esto implica que los sprites solo pueden mostrar tres tonos de gris en lugar de cuatro, pero a cambio esta capa cuenta con **dos paletas dedicadas**.
 
-La **Memoria de Atributo de Objeto** o 'OAM' es un mapa almacenado dentro de la PPU que especifica los mosaicos que serán utilizados como sprites. En lugar de usar un mapa de mosaico, los **sprites se definen en la OAM**. Los juegos típicamente llenan esta región llamando a la **unidad OAM DMA** localizada dentro del chip, la DMA obtiene datos de la RAM principal o de la ROM del juego y los envía a la OAM. Ahora, mientras la DMA está trabajando, la CPU no puede acceder a la memoria externa (de ahí la importancia de usar HRAM durante ese período).
+La **Object Attribute Memory** (OAM) es un mapa almacenado dentro de la PPU que especifica qué tiles se usarán como sprites; su ubicación dentro de la PPU agiliza el acceso durante el renderizado. Por esta razón, **todos los sprites se definen en la OAM** (en lugar de en un Tile map de la VRAM). Los juegos suelen rellenar esta región llamando a la **unidad OAM DMA** del chip, que obtiene los datos de la RAM principal o de la ROM del juego y los transfiere a la OAM. Mientras la DMA está activa, la CPU no puede acceder a la memoria externa, de ahí la importancia de aprovechar la High RAM durante ese período.
 
-Aparte del índice de mosaicos, cada entrada contiene los siguientes atributos: posición X-Y, paleta elegida, prioridad y 'flip flags' (permitiendo girar el mosaico vertical y horizontalmente).
+Aparte del índice de tiles, cada entrada de la OAM contiene los siguientes atributos: posición X-Y, paleta elegida, prioridad y flip flags (que permiten reflejar el tile vertical y horizontalmente).
 
-La PPU está limitada a renderizar hasta **diez sprites por escaneo de línea** y **hasta 40 por frame**, sobrecargar esto hará que no se muestren algunos sprites.
+La PPU está limitada a renderizar **hasta diez sprites por línea de escaneo** y **hasta 40 por frame**; si se supera este límite, algunos sprites no se dibujarán.
+
+#### Ventana {.tab}
+
+::: {.subfigures .tabs-nested .tab-float .pixel max_subfigures=2}
+
+![Mapa de Ventana asignado.](ppu_mario/window.png){.active .border hardcover_latex_width="70%" paperback_latex_width="64%" title="Completa"}
+
+![Mapa de Ventana mostrado. El juego la activa durante las últimas líneas de escaneo, por lo que solo se renderizan las primeras filas en la parte inferior de la pantalla.](ppu_mario/window_rendered.png){.border hardcover_latex_width="70%" paperback_latex_width="64%" title="Selección"}
+
+Proceso de renderización del mapa de Ventana.
+
+:::
+
+La capa Ventana es un mapa de **160×144 píxeles** (que cubre toda la pantalla) y renderiza tiles sobre el fondo y los sprites. Dicho esto, esta capa **no se desplaza**.
+
+El Tile map restante puede asignarse a la capa Ventana, que además comparte la misma paleta.
+
+En definitiva, puede parecer una característica un tanto limitada: dado que la Ventana carece de transparencia y por tanto oscurece completamente las capas inferiores, cabe preguntarse para qué sirve. La respuesta es que, combinada con efectos de trama temporizados, la Ventana puede emplearse **parcialmente** en distintas zonas de la pantalla. ¿Recuerdas las [complejas rutinas sincronizadas](nes#tab-1-4-background-split) que los juegos de NES necesitaban para mostrar las estadísticas del jugador? La Ventana resuelve ese problema, y la PPU de la Game Boy lo gestiona de forma automática.
+
+Por consiguiente, los juegos suelen usar la capa Ventana para mostrar contadores de vida, puntuaciones y otra información persistente.
 
 #### Resultado {.tab}
 
-![Resultado final _¡Tachán!_](ppu_mario/result.png) {.tab-float.pixel}
+![Resultado final. *Tachán.*](ppu_mario/result.png){.tab-float .border .pixel latex_width="90%"}
 
-Una vez finalizado el frame... ¡Es hora de pasar al siguiente! Sin embargo, la CPU no puede modificar las tablas mientras la PPU está leyendo la VRAM, por lo que el sistema proporciona un conjunto de interrupciones que se activan cuando la PPU está inactiva. Tal vez recuerdes este comportamiento por la NES.
+Una vez finalizado el frame, es hora de pasar al siguiente. Sin embargo, la CPU no puede modificar las tablas mientras la PPU está leyendo la VRAM, por lo que el sistema dispone de interrupciones que se activan cuando la PPU está inactiva. Este comportamiento te resultará familiar de la era NES.
 
-Cuando se completa una sola línea de exploración, comienza el período de **Horizontal Blank**. Esto permite manipular la parte del frame que aún no se ha dibujado.
+Cuando se completa una sola línea de escaneo, comienza el período de **Horizontal Blank**, que permite a los desarrolladores modificar la parte del frame que aún no se ha dibujado.
 
-Cuando se completan todas las líneas de exploración, comienza el período de **Vertical Blank** y se llama a una interrupción dedicada. En ese momento, el juego puede actualizar los gráficos para el siguiente frame.
+Cuando se completan todas las líneas de escaneo, comienza el período de **Vertical Blank** y se activa una interrupción dedicada. En ese momento, el juego puede actualizar los gráficos para el siguiente frame.
 
-Hay un estado extra llamado **'OAM search'** que se activa al inicio del escaneo de línea, en ese momento la PPU está procesando qué sprites se mostrarán en esa línea de escaneo, así que el juego puede actualizar cualquier región excepto la OAM.
+Hay un estado adicional denominado **OAM search** que se inicia al comienzo de cada línea de escaneo. En ese punto, la PPU determina qué sprites se mostrarán en esa línea, por lo que el juego puede actualizar cualquier región excepto la OAM.
 
-### Secretos y limitaciones {.tabs-close}
+#### El efecto de tambaleo {.tabs-close}
 
-La inclusión de la Capa de ventana y las interrupciones adicionales permitieron nuevos tipos de contenido y efectos.
+![Super Mario Land 2: 6 Golden Coins (1992), jugando con los controles de desplazamiento X e Y a mitad de pantalla.](mario_wobble.png){.border .pixel latex_width="90%"}
 
-#### Efecto de tambaleo ('Wobble') {.tabs.active}
+La inclusión de la capa Ventana y las interrupciones adicionales dieron pie a contenidos y efectos únicos. Por ejemplo, las interrupciones horizontales permitían modificar el frame antes de que terminara de completarse, de modo que podía aplicarse un valor de desplazamiento diferente a cada línea, haciendo que cada fila se desplazara a su propio ritmo [@graphics-lyc].
 
-![The Legend of Zelda: Link's Awakening (1993). _¡Spoilers!_](zelda){.tab-float video="true"}
+El resultado es un interesante *efecto de tambaleo* (no estoy seguro de que ese sea su nombre oficial, pero me parece suficientemente descriptivo).
 
-Las interrupciones horizontales permitieron alterar el frame antes de completarse. Lo que significa que se podría aplicar un valor de desplazamiento diferente a cada línea, de tal manera que cada fila del frame se desplazara a diferentes intervalos.
+### Las adiciones de color
 
-Esto resultó en un *Efecto de tambaleo (Wobble)* (aunque no estoy seguro de que ese sea su nombre oficial).
-
-### Las adiciones de color {.tabs-close}
-
-El PPU de la Game Boy Color se comporta como un superconjunto del original. Verás ahora cuáles son las adiciones del modelo denominado 'Color' de esta marca.
+Hasta aquí hemos analizado la Game Boy original. Veamos ahora las novedades del modelo denominado 'Color'.
 
 #### Modos de operación
 
-![The Legend of Zelda: Link's Awakening DX (1998).<br>Un juego híbrido de Game Boy Color ejecutándose en modo CGB.](ppu_color/zelda.png) {.toleft.pixel}
+![The Legend of Zelda: Link's Awakening DX (1998).<br>Un juego híbrido de Game Boy Color ejecutándose en modo CGB.](ppu_color/zelda.png){.toleft .border .pixel hardcover_latex_width="71%" paperback_latex_width="90%"}
 
-![Super Mario Land 2, visto desde una Game Boy Color. Este último añade una paleta colorizada y se ejecuta en modo DMG.](ppu_color/dmg_mario.png) {.toright.pixel}
+![Super Mario Land 2, ejecutándose en una Game Boy Color. El juego corre en modo DMG, pero la consola aplica una paleta colorizada igualmente.](ppu_color/dmg_mario.png){.toright .border .pixel hardcover_latex_width="71%" paperback_latex_width="90%"}
 
-Para empezar, por razones de compatibilidad, el nuevo PPU tiene **dos modos de operación**. Sin embargo, Nintendo quería que los usuarios de Color vieran mejoras incluso con los juegos únicamente monocromáticos. Por consiguiente, los dos modos de operación son los siguientes:
+La PPU de la Game Boy Color se comporta en esencia como un superconjunto de la original. Con todo, Nintendo quería que los usuarios de Color percibieran mejoras incluso con juegos exclusivamente monocromáticos. Por ello, para mantener la compatibilidad, la nueva PPU ofrece **dos modos de operación**:
 
-- **Modo CGB**: Modo PPU extendido con todas las mejoras visuales que comprenden los nuevos juegos de Game Boy Color.
-- **Modo DMG**: Modo tradicional con todos los extras deshabilitados. Sin embargo, verás en la sección 'Sistema operativo' que los juegos monocromáticos aún así se mejoran con paletas de colores.
+- **Modo CGB**: modo PPU extendido con todas las mejoras visuales de los juegos de Game Boy Color.
+- **Modo DMG**: modo tradicional con todos los extras deshabilitados. Sin embargo, como verás en la sección 'Sistema operativo', los juegos monocromáticos igualmente se mejoran con paletas de color.
 
 #### Organizando el (nuevo) contenido
 
-La placa madre del CGB ahora alberga **16 KB de VRAM** en su lugar, lo cual es el doble de la cantidad original de VRAM. Debido a las limitaciones de direccionamiento de la CPU, este nuevo arreglo se implementa en forma de **dos bancos de 8 KB**, con un nuevo registro (llamado `VBK`) actuando como un conmutador. Por otro lado, el PPU puede acceder a los dos bancos al mismo tiempo. Al final del día, esto significa que los programadores solo necesitan llenar los bancos VRAM con la ayuda de `VBK`, y luego especificar en el mapa de mosaicos el banco donde se encuentra el mosaico, para que el PPU pueda encargarse del resto.
+La placa base del CGB alberga ahora **16 KB de VRAM**, el doble de la cantidad original. Debido a las limitaciones de direccionamiento de la CPU, esta nueva configuración se implementa en forma de **dos bancos de 8 KB**, con un nuevo registro (`VBK`) que actúa como selector. Por su parte, la PPU puede acceder a los dos bancos simultáneamente. En la práctica, los programadores solo necesitan rellenar los bancos de VRAM con ayuda de `VBK` y luego indicar en el Tile map en qué banco reside cada tile, dejando el resto a la PPU.
 
-Dicho esto, ¿qué puedes hacer con la VRAM extra? Muchas cosas:
+Dicho esto, ¿qué se puede hacer con la VRAM extra? Muchas cosas:
 
-- Almacenar el doble de mosaicos.
-- Almacenar más paletas, que también ofrecen una gama de colores más amplia.
-- Extender el espacio de metadatos de mosaicos para codificar más efectos y direccionar paletas adicionales.
+- Almacenar el doble de tiles.
+- Almacenar paletas adicionales, que también ofrecen una gama de colores más amplia.
+- Ampliar el espacio de metadatos de los tiles para codificar más efectos y referenciar paletas adicionales.
 
 ##### Los visuales
 
-Gracias al nuevo PPU, los programadores ahora pueden definir paletas de colores con **32,768 colores** a elegir.
+Gracias a la nueva PPU, los programadores pueden diseñar paletas con una gama de **32.768 colores**.
 
-En primer lugar, los desarrolladores ahora deben poblar una nueva área llamada **Memoria de Paleta**, que almacena hasta **dieciséis paletas de colores** (la mitad para el Fondo y la Ventana, la otra mitad para los sprites) que codifican **cuatro colores** [@cpu-nintendo]. Cada entrada cabe en un valor de 16 bits (2 bytes) y solo se usan 15 bits. La Memoria de Paleta no es direccionada por la CPU, sin embargo, se utiliza un nuevo registro como un búfer para escribir sobre esta memoria (una metodología encontrada en la [Super Nintendo](super-nintendo#organising-the-content)). En general, así es como la CPU define paletas.
+En primer lugar, los desarrolladores deben rellenar una nueva área denominada **Palette Memory**, que almacena hasta **dieciséis paletas de colores** (la mitad para el fondo y la ventana, y la otra mitad para los sprites), cada una con **cuatro colores** [@cpu-nintendo]. Cada entrada ocupa 16 bits (2 bytes), aunque solo se usan 15. La Palette Memory no es directamente direccionable por la CPU; en su lugar, un nuevo registro actúa como búfer para escribir en esta memoria (metodología presente también en la [Super Nintendo](super-nintendo#organising-the-content)). Así es, en definitiva, como los juegos en color definen sus paletas.
 
-Dicho esto, los mosaicos de fondo y ventana pueden referenciar cualquiera de esas ocho paletas. Lo mismo ocurre con los mosaicos de Sprites, excepto que están restringidos a paletas de tres colores, ya que una entrada está reservada para el color 'transparente'.
+Dicho esto, los tiles de fondo y ventana pueden usar cualquiera de las ocho paletas disponibles. Lo mismo se aplica a los tiles de sprite, con la diferencia de que están limitados a paletas de tres colores, pues una entrada sigue reservada para el color 'transparente'.
 
 ##### El espacio extra
 
-Continuando, **los conjuntos de mosaicos ahora son el doble de grandes**. Por lo tanto, los programadores pueden almacenar el doble de mosaicos en VRAM. **Los mapas de mosaicos de fondo/ventana se han extendido** también, resultando en metadatos extra siendo codificados. Por consiguiente, expandiendo las capacidades de estas capas. Por ejemplo, sus mosaicos ahora pueden ser **invertidos horizontal y verticalmente**, ahorrando al juego de almacenar gráficos duplicados en VRAM (lo cual, a su vez, puede ser explotado para dibujar más contenido único).
+Por otro lado, **los tile sets doblan ahora su tamaño**, lo que permite a los programadores almacenar el doble de tiles en la VRAM. **Los Tile maps de fondo y ventana también se han ampliado**, incorporando metadatos adicionales que expanden las capacidades de estas capas. Por ejemplo, los tiles de fondo y ventana ahora pueden **invertirse horizontal y verticalmente**, lo que evita tener que almacenar gráficos duplicados en la VRAM (y, a su vez, permite renderizar más contenido único).
 
-Además, la CPU CGB también incluye **una unidad de DMA adicional**, que puede copiar el contenido del Game Pak o WRAM a VRAM. Opera en dos modos [@cpu-nintendo]:
+Además, la CPU CGB incluye **una unidad DMA adicional**, capaz de copiar datos del Game Pak o de la WRAM a la VRAM. Opera en dos modos [@cpu-nintendo]:
 
-- **DMA de propósito general**: La transferencia ocurrirá en cualquier momento y el DMA tendrá prioridad sobre cualquier otro acceso a la memoria. Así que, los programadores deben tener cuidado sobre cuándo usar este componente (es decir, durante o fuera del escaneo) y cómo (la cantidad de datos a copiar), ya que el uso incorrecto puede llevar al desgarro de la pantalla (el acceso a VRAM será bloqueado durante la transferencia).
-- **DMA de espacio en blanco horizontal (H-Blank)**: La transferencia solo ocurrirá durante los períodos de H-Blank. Esto evita artefactos en la pantalla, pero solo puede transferir contenido en lotes de 16 bytes, y se pausa durante el escaneo LCD.
+- **DMA de propósito general**: las transferencias pueden ocurrir en cualquier momento; el DMA toma prioridad sobre otros accesos a memoria. Los programadores deben por ello planificar cuándo usar este componente (durante o fuera del escaneo) y cuántos datos copiar, pues un uso incorrecto puede provocar desgarro de imagen (ya que el acceso a la VRAM quedará bloqueado durante la transferencia).
+- **DMA de Horizontal Blank (H-Blank)**: las transferencias solo se producen durante los períodos de H-Blank. Esto evita artefactos en pantalla, pero limita las transferencias a lotes de 16 bytes y las pausa durante el escaneo LCD.
 
-Una vez más, esta unidad ofrece a los programadores nuevas posibilidades para proporcionar contenido más enriquecido, aprovechando períodos originalmente destinados a la inactividad.
+Una vez más, esta unidad ofrece a los programadores nuevas posibilidades para crear contenido más rico, aprovechando períodos que de otro modo permanecerían inactivos.
 
 ## Audio
 
-El sistema de audio lo lleva a cabo la **Unidad de Procesamiento de Audio** (APU), un [chip PSG](master-system#audio) con cuatro canales [@audio-overview].
+El audio lo gestiona la **Audio Processing Unit** (APU, o 'Unidad de Procesamiento de Audio'), un chip [Generador de Sonido Programable (PSG)](master-system#audio) con **cuatro canales** [@audio-overview].
 
-Curiosamente, esta es una de las pocas secciones que no ha evolucionado entre modelos. De hecho, ni siquiera puede acelerarse, ya que si cambias la velocidad de los osciladores, no escucharás sonidos 'mejores', sino un tono más alto.
+Curiosamente, este es uno de los pocos componentes que no evolucionó entre revisiones de la Game Boy. De hecho, a diferencia de la CPU, no puede acelerarse: modificar la velocidad de los osciladores no mejora la calidad del sonido, sino que simplemente cambia el tono. Para mejorar sus capacidades habría hecho falta más circuitería, lo que también habría encarecido el coste.
 
 ### Funcionalidad
 
-Cada uno de los cuatro canales está reservado para un solo tipo de forma de onda:
+Veamos lo que ofrece. Cada uno de los cuatro canales está reservado para un solo tipo de forma de onda:
 
-#### Pulso {.tabs.active}
+#### Pulso {.tabs .active}
 
-::: {.subfigures .tabs-nested .tab-float}
+::: {.subfigures .tabs-nested .tab-float max_subfigures=3 latex_subfigure_width="0.49"}
 
-![Osciloscopio del canal de pulso 1.](pulse_single_1){.active video="true" title="Pulso 1"}
+![Canal de pulso 1.](pulse_single_1){.active video="true" title="Pulso 1"}
 
-![Osciloscopio del canal de pulso 2.](pulse_single_2){video="true" title="Pulso 2"}
+![Canal de pulso 2.](pulse_single_2){video="true" title="Pulso 2"}
 
-![Osciloscopio de todos los canales de audio.](pulse_full){video="true" title="Completado"}
+![Todos los canales de audio.](pulse_full){video="true" title="Completo"}
 
-Pokémon Rojo/Azul (1996).
+Osciloscopio de Pokémon Rojo/Azul (1996).
 
 :::
 
-Las ondas de pulso tienen un sonido *beep* distintivo y son utilizadas para **melodía o efectos de sonido**.
+Las ondas de pulso tienen un sonido *beep* muy característico y se utilizan principalmente para **melodías y efectos de sonido**.
 
-La APU reserva dos canales para cada onda de pulso. Estos producen uno de cuatro tonos diferentes, resultante de variar la anchura del pulso. El primer canal tiene disponible un **control de 'Sweep'** exclusivo.
+La APU reserva dos canales, cada uno dedicado a una onda de pulso. Estos ofrecen cuatro tonos diferentes, obtenidos al variar la anchura del pulso. El primer canal cuenta con un exclusivo **control de barrido**.
 
-Debido al número limitado de canales, la melodía a menudo será interrumpida, especialmente cuando ciertos efectos se reproduzcan durante el gameplay. Esto es muy notable en juegos como Pokémon Rojo/Azul cuando durante un combate, el grito del Pokémon se superpone por encima de todos los canales de música; esta es también la razón por la cual ninguna música de batalla Pokémon usa percusión.
+Dado el número limitado de canales, las melodías a menudo se interrumpen cuando se activan efectos de sonido durante el gameplay. Esto resulta especialmente notorio en juegos como *Pokémon Rojo/Azul*, donde durante un combate el grito del Pokémon se apodera de todos los canales de música.
 
 #### Onda {.tab}
 
-::: {.subfigures .tabs-nested .tab-float}
+::: {.subfigures .tabs-nested .tab-float max_subfigures=2 latex_subfigure_width="0.49"}
 
-![Osciloscopio del canal de onda.](wave_single){.active video="true" title="Onda"}
+![Canal de onda.](wave_single){.active video="true" title="Onda"}
 
-![Osciloscopio de todos los canales.](wave_full){video="true" title="Completado"}
+![Todos los canales de audio.](wave_full){video="true" title="Completo"}
 
-Pokémon Rojo/Azul (1996).
+Osciloscopio de Pokémon Rojo/Azul (1996).
 
 :::
 
-La APU permite definir una **forma de onda personalizada** para ser escuchada desde su tercer canal. La onda está compuesta de 32 muestras de 4 bits que se almacenan en una tabla de ondas.
+El tercer canal de la APU permite definir una **forma de onda personalizada**. La onda se compone de 32 muestras de 4 bits almacenadas en una tabla de ondas.
 
-Este canal también permite controlar su frecuencia (permitiendo producir diferentes notas musicales de la misma muestra) y volumen.
+Este canal también permite controlar el volumen y la frecuencia; esta última permite producir distintas notas musicales a partir de la misma entrada.
 
 #### Ruido {.tab}
 
-::: {.subfigures .tabs-nested .tab-float}
+::: {.subfigures .tabs-nested .tab-float max_subfigures=2 latex_subfigure_width="0.49"}
 
-![Osciloscopio del canal de ruido.](noise_single){.active video="true" title="Ruido"}
+![Canal de ruido.](noise_single){.active video="true" title="Ruido"}
 
-![Osciloscopio de todos los canales de audio.](noise_full){video="true" title="Completado"}
+![Todos los canales de audio.](noise_full){video="true" title="Completo"}
 
-Pokémon Rojo/Azul (1996).
+Osciloscopio de Pokémon Rojo/Azul (1996).
 
 :::
 
-El ruido es básicamente un conjunto de formas de onda aleatorias que suenan como estática blanca. Se reserva un canal para ello.
+El ruido es básicamente un conjunto de formas de onda aleatorias que suenan como estática blanca. La APU le dedica uno de sus cuatro canales.
 
-Los juegos lo utilizan para percusión o efectos de *ambiente*.
+Los juegos suelen emplearlo para percusión o efectos de *ambiente*.
 
-Este canal solo tiene disponibles 2 tonos para usar, uno produce *estática limpia* y el otro produce *estática robótica*. Su frecuencia también se puede controlar.
+Este canal ofrece solo dos tonos: uno produce *estática limpia* y el otro *estática robótica*. Su frecuencia también puede ajustarse.
 
 ### Secretos y limitaciones {.tabs-close}
 
-El mezclador (mixer) produce sonido estéreo, por lo que los canales pueden asignarse al lado izquierdo o derecho ¡pero esto sólo se puede escuchar con auriculares! El altavoz es monofónico.
+El mezclador produce sonido estéreo, lo que significa que los canales pueden asignarse al lado izquierdo o derecho. En otras palabras, el subsistema de audio ofrece **controles de paneo**. Esto solo se aprecia a través de los auriculares, pues el altavoz integrado es mono.
 
-Además, el chip del mezclador también está conectado a un pin dedicado en el cartucho, permitiendo transmitir un **canal adicional** con la condición de que el cartucho tenga que producir realmente el sonido analógico (esto solo es posible con hardware extra). Sin embargo, ningún juego en el mercado terminó usando esta característica, y tampoco encontrarás este pin en el [Game Boy Advance](game-boy-advance) en su [subsistema compatible con versiones anteriores](game-boy-advance#becoming-a-game-boy-color).
+Además, el hardware del mezclador está conectado a un pin dedicado del cartucho, lo que permite al cartucho transmitir un **canal adicional**, siempre que este produzca el sonido analógico (algo que solo es posible con hardware extra). Sin embargo, ningún juego del mercado llegó a usar esta característica, y tampoco encontrarás este pin en el [Game Boy Advance](game-boy-advance) (ni en su [subsistema compatible con versiones anteriores](game-boy-advance#becoming-a-game-boy-color)).
 
 ## Sistema operativo
 
-A diferencia de la NES, que se iniciaba directamente en el juego, la Game Boy fue diseñada para arrancar siempre desde una **ROM interna de 256 Bytes**, y solo luego saltar al código del juego. El proceso de arranque es el siguiente [@operating_system-boot]:
+A diferencia de la NES/Famicom, que arrancaba directamente en el juego, la Game Boy fue diseñada para arrancar siempre desde una **ROM interna de 256 bytes**, y solo entonces saltar al código del juego. El proceso de arranque es el siguiente [@operating_system-boot]:
 
-1. Después de encender la consola, la CPU comienza leyendo en la dirección **0x0000** (ubicada en la ROM de la Game Boy).
+1. Al encender la consola, la CPU comienza leyendo desde la dirección **0x0000** (la ubicación de la ROM de la Game Boy).
 2. Se inicializan la RAM y la APU.
-3. El logotipo de Nintendo se copia del cartucho ROM a la Display RAM, después se dibuja en el borde superior de la pantalla. Si no hay cartucho insertado, el logo contendrá tiles basura. Lo mismo puede ocurrir si está mal insertado.
-4. El logotipo se desplaza hacia abajo y se reproduce el famoso sonido de *po-ling*.
-5. El logotipo del juego se compara con el que está almacenado en la ROM de la consola. Una **suma de verificación (checksum)** rápida se hace en la cabecera de la ROM del cartucho para asegurarse de que éste se ha insertado correctamente. Si alguna de estas verificaciones falla, la consola se congela.
+3. El logotipo de *Nintendo* se copia de la ROM del cartucho a la Display RAM y se dibuja en el borde superior de la pantalla. Si no hay cartucho insertado, el logo mostrará tiles basura. Lo mismo puede ocurrir si el cartucho está mal insertado.
+4. El logotipo se desplaza hacia abajo y se reproduce el icónico sonido *po-ling*.
+5. El logotipo del juego se compara con el almacenado en la ROM de la consola. A continuación, se realiza un rápido **checksum** en la cabecera de la ROM del cartucho para confirmar que está correctamente insertado. Si alguna de estas comprobaciones falla, la consola se congela.
 6. La ROM de la consola desaparece del mapa de memoria.
 7. La CPU comienza a ejecutar el juego.
 
-Curiosamente, el logo de *Nintendo* que se está mostrado en pantalla no se borra de la VRAM, de tal manera que los juegos pueden aplicar alguna animación o efecto para añadir su propio logo.
+Curiosamente, el logotipo de *Nintendo* que aparece en pantalla no se borra de la VRAM, lo que brinda a los juegos la oportunidad de aplicar animaciones y efectos para hacer la transición a su propio logo.
 
-![La pantalla de inicio de la Game Boy junto con 20y, una demo casera que juega con el logo.](20y){video="true"}
+::: {.subfigures .side-by-side}
+
+![Inicio de la animación. El logotipo aparece desde arriba y se desliza hacia abajo.](boot/start.png){.toleft hardcover_latex_width="70%" paperback_latex_width="64%" .border .pixel}
+
+![Final de la transición. Si las comprobaciones han pasado, la consola ejecuta el juego; de lo contrario, se queda congelada.](boot/end.png){.toright hardcover_latex_width="70%" paperback_latex_width="64%" .border .pixel}
+
+La animación de arranque de la Game Boy original.
+
+:::
 
 ### La secuencia revisada
 
-![La pantalla de inicio de la Game Boy Color, el logo ya no se desliza pero tiene un efecto arcoíris.](boot_cgb.png) {.pixel}
+![La pantalla de inicio de la Game Boy Color. El logotipo ya no se desliza, sino que presenta un efecto de arcoíris.](boot_cgb.png){.border latex_width="90%" .pixel}
 
-Una vez más, en el caso de la Game Boy Color, encontramos cambios drásticos en el contenido de la ROM. Por ejemplo, el tamaño de la ROM ahora es de **2 KB** [@operating_system-boot_cgb] y las rutinas muestran un nuevo comportamiento:
+Una vez más, en el caso de la Game Boy Color encontramos cambios drásticos en el contenido de la ROM. Por ejemplo, el tamaño de la ROM es ahora de **2 KB** [@operating_system-boot_cgb] y las rutinas exhiben un nuevo comportamiento:
 
-- La secuencia de arranque ahora verificará si tiene insertado un juego solo de Game Boy o un juego de Game Boy Color, y luego establecerá los registros correspondientes para activar el modo DMG o CGB. El código de arranque revisa metadatos específicos del juego (dentro de la ROM del cartucho) que están estructurados de manera diferente para los juegos CGB.
-- En el caso de que se inserte un juego DMG, el programa de arranque también llenará la RAM de paleta con paletas calculadas, estas se basan en un algoritmo simple pero inteligente que también se apoya en los metadatos del juego. Esto es lo que hace que los juegos monocromáticos se vean coloreados cuando se ejecutan en la consola de próxima generación.
-  - En esta etapa, el usuario puede presionar una combinación de botones que alterará la paleta de elección del código de arranque.
-- La comprobación del logotipo de Nintendo ahora también utiliza HRAM (sin embargo, en vano).
+- La secuencia de arranque verifica si el juego insertado es exclusivo de Game Boy o de Game Boy Color, y establece los registros correspondientes para activar el modo DMG o CGB. Para ello, el código de arranque examina metadatos específicos del juego (dentro de la ROM del cartucho) que están estructurados de forma diferente en los juegos CGB.
+- Si se inserta un juego DMG, el programa de arranque también rellena la Palette RAM con **paletas calculadas**, basadas en un algoritmo sencillo pero ingenioso que también se vale de los metadatos del juego. Esto es lo que dota a los juegos monocromáticos de una apariencia a todo color al ejecutarse en la consola de nueva generación.
+  - En esta fase, el usuario puede pulsar una combinación de botones para modificar la paleta elegida por el código de arranque.
+- Por alguna razón, el logotipo de Nintendo también se copia a la HRAM, y la etapa del checksum solo verifica la primera mitad del logotipo en la HRAM.
 
 ## Juegos
 
-Los juegos están escritos en ensamblador y tienen un tamaño máximo de **32 KB**, esto se debe al limitado espacio de direcciones disponible. Sin embargo, con el uso de un **Banco controlador de memoria** ([mapeador](nes#going-beyond-existing-capabilities)), los juegos pueden alcanzar un mayor tamaño. El cartucho (Game Pak) más grande encontrado en el mercado tiene una ROM de 1 MB (o 8 MB, en el caso del Game Boy Color).
+Una de las principales limitaciones del hardware de consumo de los años 70 y 80 eran sus restricciones de programación: aunque prometedores, los lenguajes de alto nivel como C o Pascal aún no estaban preparados para aplicaciones con exigencias de rendimiento, pues los compiladores carecían de madurez y los juegos debían exprimir el máximo rendimiento posible. Como resultado, los juegos de Game Boy se escribían principalmente en **lenguaje ensamblador**.
 
-Los Game Pak pueden incluir un reloj en tiempo real y una batería externa junto con SRAM para guardar partidas, aunque todo esto es opcional.
+![El diseño original del Game Pak [@photography-amos].](gamepak_original.webp){.no-borders latex_width="80%"}
 
-### Tipos de cartuchos
+Por otro lado, los juegos comerciales se distribuían en forma de **Game Paks**, los cartuchos diseñados por Nintendo para la serie Game Boy. En cuanto a capacidad, los juegos tenían un tamaño máximo de **32 KB**, limitado por el espacio de direcciones disponible. Sin embargo, gracias a un **Memory Bank Controller** ([mapeador](nes#going-beyond-existing-capabilities)), los juegos podían alcanzar tamaños mayores. El Game Pak más grande del mercado contaba con una ROM de 1 MB (o 8 MB en el caso del Game Boy Color).
 
-Debido a los dos modos de operación que soportaba la Game Boy Color, Nintendo enumeró **tres tipos diferentes** de juegos de Game Boy:
+Por último, algunos Game Paks también incluían un reloj en tiempo real y/o SRAM adicional, junto con una batería externa para almacenar partidas.
 
-- **Game Boy**: Un tipo totalmente compatible con todos los modelos de Game Boy. Siempre se ejecuta en modo DMG.
-- **Mejorado para Game Boy Color**: Un híbrido que se ejecuta de manera diferente dependiendo de la consola anfitriona. Aunque es totalmente compatible con el modelo monocromático, se mejorará visualmente (debido a que se ejecuta en modo CGB) cuando se ejecute en la Game Boy Color. Sin embargo, la funcionalidad general aún estará restringida para mantener la compatibilidad con la Game Boy.
-- **Exclusivo de Game Boy Color**: Solo compatible con la Game Boy Color, pero aprovecha al máximo su hardware.
+### Cartuchos modernizados
+
+::: {.subfigures .side-by-side}
+
+![Diseño negro [@photography-amos], que indica 'Game Boy Color mejorado'.](gamepak_enhanced.webp){.toleft .no-borders hardcover_latex_width="68%" paperback_latex_width="60%"}
+
+![Diseño translúcido [@photography-amos], que indica 'exclusivo de Game Boy Color'.](gamepak_gbc.webp){.toright .no-borders hardcover_latex_width="68%" paperback_latex_width="60%"}
+
+Revisiones de los Game Pak de la era Color.
+
+:::
+
+Con la incorporación del modo de operación adicional de la Game Boy Color, Nintendo definió **tres tipos distintos** de juegos de Game Boy:
+
+- **Game Boy**: totalmente compatible con todos los modelos de Game Boy. Siempre se ejecuta en modo DMG.
+- **Game Boy Color mejorado**: un híbrido que se adapta a la consola anfitriona. Aunque es totalmente compatible con el modelo monocromo, se potencia visualmente al ejecutarse en modo CGB en la Game Boy Color. Sin embargo, la funcionalidad general sigue limitada para garantizar la compatibilidad con la primera Game Boy.
+- **Exclusivo de Game Boy Color**: solo compatible con la Game Boy Color, pero optimizado para aprovechar al máximo su hardware.
+
+A los tres tipos se les asignaron colores oficiales para facilitar su identificación, aunque algunos juegos como Pokémon y Donkey Kong contaron con diseños alternativos.
 
 ### Comunicación externa
 
-![Cable de enlace Game Boy para múltiples variantes de la consola [@photography-amos]. Desde el lanzamiento de la consola original, las revisiones subsiguientes miniaturizaron el conector manteniendo el mismo número de pines.](link_cable.png) {.no-borders}
+Por primera vez, los juegos podían comunicarse con hardware externo mediante un cable **Game Boy Link**, lo que hizo posible el juego multijugador y el uso de accesorios. El cable se conectaba al subconector de 6 pines de la consola, con el otro extremo unido a otra Game Boy o a un accesorio.
 
-Por primera vez, los juegos pueden comunicarse con otras Game Boys mediante el uso de un cable **Game Boy Link**, el cual proporciona funcionalidad multijugador, por ejemplo. La interfaz utiliza un protocolo bastante primitivo de **conexión en serie**.
+La interfaz se basa en el protocolo **Serial Peripheral Interface** (SPI), donde una Game Boy se designa como **maestra** (generando la señal de reloj) y la otra como **esclava**. En cada transferencia, tanto la maestra como la esclava intercambian un paquete de 8 bits (1 byte) [@games-spi].
 
-La Game Boy original transfiere información a 8 Kbit/segundo (1 KB/seg), mientras que la variante Color puede alcanzar hasta 512 Kbit/segundo (64 KB/seg), esta última velocidad se conocía como modo 'alta velocidad'.
+![El cable Game Boy Link, con distintos adaptadores para múltiples variantes de la consola [@photography-amos]. Desde el lanzamiento de la Game Boy original, las revisiones posteriores miniaturizaron el conector manteniendo el mismo número de pines.](link_cable.png){.no-borders}
 
-La última variante también viene con un **emisor y receptor de infrarrojos** (compuesto por un LED y un fototransistor, respectivamente) [@cpu-nintendo]. Esto hizo posible intercambiar datos de forma inalámbrica entre Game Boy Colors, como se ve en juegos como Pokémon Oro y similares. Sin embargo, encontrarás que el sistema no implementa ningún protocolo de comunicación, solo un único registro (`RP`) que codifica la acción del sensor IR (emitir o recibir), el bit único (`0` o `1`) transferido y el último bit recibido. No obstante, para aliviar las cosas a los desarrolladores, Nintendo incluyó una implementación de referencia en el manual oficial del desarrollador de Game Boy [@cpu-nintendo].
+La Game Boy original transfería datos a 8 Kbit/segundo (1 KB/seg), mientras que la variante Color podía alcanzar hasta 512 Kbit/segundo (64 KB/seg), lo que se conocía como modo de 'alta velocidad'.
+
+En un momento dado, Nintendo también comercializó un 'adaptador para 4 jugadores' que permitía a hasta cuatro Game Boys intercambiar datos simultáneamente. El protocolo base (SPI) se mantuvo, pero el adaptador —que actuaba como maestro— implementó una capa de comunicación adicional que los juegos debían seguir para emitir datos a las demás consolas [@games-fourplyr].
+
+#### Métodos inalámbricos
+
+El modelo Color también incorporó un **emisor y receptor de infrarrojos** (formado por un LED y un fototransistor, respectivamente) [@cpu-nintendo]. Esto permitió intercambiar datos de forma inalámbrica entre Game Boy Colors, como se vio en juegos como Pokémon Oro y similares. Sin embargo, el sistema no implementaba ningún protocolo de comunicación: solo un registro único (`RP`) que codificaba la acción del sensor IR (emitir o recibir), el bit (`0` o `1`) transferido y el último bit recibido. Para facilitar las cosas a los desarrolladores, Nintendo incluyó una implementación de referencia en el manual oficial de desarrollador de Game Boy [@cpu-nintendo].
 
 ## Antipiratería
 
-Como habéis visto en la sección 'Sistema Operativo', la consola nunca ejecutará un juego de inmediato, primero realiza una serie de verificaciones que **impiden la ejecución de cartuchos no autorizados** y también se asegura de que el cartucho **ha sido insertado correctamente**.
+Como has visto en la sección 'Sistema operativo', la consola nunca ejecuta un juego de inmediato: primero realiza una serie de comprobaciones que **impiden la ejecución de cartuchos no autorizados** y también verifican que el cartucho **se ha insertado correctamente**.
 
-Para pasar estas comprobaciones, los juegos tuvieron que incluir una copia del logotipo de Nintendo (en forma de mosaicos) en la cabecera de su ROM [@games-dhole], de esta manera Nintendo podía hacer uso de las leyes de **Copyright y marca registrada** para controlar la distribución. *¿Inteligente, verdad?*
+Para superar estas comprobaciones, los juegos debían incluir una copia del logotipo de Nintendo (en forma de tiles) en la cabecera de su ROM [@games-dhole]. De este modo, Nintendo podía valerse de las leyes de **copyright y marca registrada** para controlar la distribución. *Bastante ingenioso, ¿verdad?*
 
-Por el contrario, _Sega v. Accolade_ posteriormente otorgó a cualquier empresa el derecho de usar logotipos con copyright para este tipo de requerimiento, ya que se incluye en el uso justo.
+Por el contrario, *Sega v. Accolade* otorgó posteriormente a las empresas el derecho a usar logotipos con copyright para este tipo de requisito, al considerarse uso legítimo.
 
-Dicho esto, se pueden implementar más medidas antipiratería dentro de los juegos, por ejemplo, verificando el tamaño de la SRAM (normalmente, es mayor en copias piratas) y realizando sumas de verificación (checksum) de la ROM en puntos aleatorios del juego.
+Dicho esto, los juegos podían implementar medidas antipiratería adicionales, como verificar el tamaño de la SRAM (generalmente mayor en copias piratas) o realizar un checksum de la ROM en puntos aleatorios del gameplay para detectar modificaciones en el código del juego.
 
 ## Eso es todo amigos
