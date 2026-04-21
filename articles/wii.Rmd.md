@@ -413,7 +413,7 @@ After all this, it's worth mentioning that when the system runs GameCube games, 
 
 Let's start with AES keys, the algorithm may be hard to crack, but if the keys are extracted somehow (especially the common key), that layer of security would be instantly nullified. Thus, the main challenge is **how to extract them**.
 
-![Starlet's security diagram.](encryption.png){.open-float}
+![Starlet's security diagram.](_diagrams/encryption.png){.open-float}
 
 Well, a group of hackers called **Team Twiizers** found out that the lack of signatures on GameCube mode may be a promising attack surface [@cpu-ccc]. They not only discovered that **3/4 of that GDDR3 RAM were not cleared** after running a GC program, but also that by bridging some address points on the motherboard (using a pair of tweezers, nonetheless) they could swap the selected banks of GDDR3 RAM, allowing access to restricted areas. Lo and behold, the AES keys were found residing in there.
 
