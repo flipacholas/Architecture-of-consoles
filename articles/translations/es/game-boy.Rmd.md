@@ -365,13 +365,13 @@ A diferencia de la NES/Famicom, que arrancaba directamente en el juego, la Game 
 6. La ROM de la consola desaparece del mapa de memoria.
 7. La CPU comienza a ejecutar el juego.
 
-Curiosamente, el logotipo de *Nintendo* que aparece en pantalla no se borra de la VRAM, lo que brinda a los juegos la oportunidad de aplicar animaciones y efectos para hacer la transición a su propio logo.
+Curiosamente, el logotipo de *Nintendo* que aparece en pantalla no se borra de la VRAM, lo que da a los juegos la oportunidad de aplicar animaciones y efectos para dar paso a su propio logotipo.
 
 ::: {.subfigures .side-by-side}
 
 ![Inicio de la animación. El logotipo aparece desde arriba y se desliza hacia abajo.](boot/start.png){.toleft hardcover_latex_width="70%" paperback_latex_width="64%" .border .pixel}
 
-![Final de la transición. Si las comprobaciones han pasado, la consola ejecuta el juego; de lo contrario, se queda congelada.](boot/end.png){.toright hardcover_latex_width="70%" paperback_latex_width="64%" .border .pixel}
+![Final de la transición. Si las comprobaciones se han validado, la consola ejecuta el juego; de lo contrario, esta queda congelada.](boot/end.png){.toright hardcover_latex_width="70%" paperback_latex_width="64%" .border .pixel}
 
 La animación de arranque de la Game Boy original.
 
@@ -381,7 +381,7 @@ La animación de arranque de la Game Boy original.
 
 ![La pantalla de inicio de la Game Boy Color. El logotipo ya no se desliza, sino que presenta un efecto de arcoíris.](boot_cgb.png){.border latex_width="90%" .pixel}
 
-Una vez más, en el caso de la Game Boy Color encontramos cambios drásticos en el contenido de la ROM. Por ejemplo, el tamaño de la ROM es ahora de **2 KB** [@operating_system-boot_cgb] y las rutinas exhiben un nuevo comportamiento:
+Una vez más, en el caso de la Game Boy Color encontramos cambios drásticos en el contenido de la ROM. Por ejemplo, el tamaño de la ROM es ahora de **2 KB** [@operating_system-boot_cgb] y las rutinas presentan un nuevo comportamiento:
 
 - La secuencia de arranque verifica si el juego insertado es exclusivo de Game Boy o de Game Boy Color, y establece los registros correspondientes para activar el modo DMG o CGB. Para ello, el código de arranque examina metadatos específicos del juego (dentro de la ROM del cartucho) que están estructurados de forma diferente en los juegos CGB.
 - Si se inserta un juego DMG, el programa de arranque también rellena la Palette RAM con **paletas calculadas**, basadas en un algoritmo sencillo pero ingenioso que también se vale de los metadatos del juego. Esto es lo que dota a los juegos monocromáticos de una apariencia a todo color al ejecutarse en la consola de nueva generación.
@@ -390,13 +390,13 @@ Una vez más, en el caso de la Game Boy Color encontramos cambios drásticos en 
 
 ## Juegos
 
-Una de las principales limitaciones del hardware de consumo de los años 70 y 80 eran sus restricciones de programación: aunque prometedores, los lenguajes de alto nivel como C o Pascal aún no estaban preparados para aplicaciones con exigencias de rendimiento, pues los compiladores carecían de madurez y los juegos debían exprimir el máximo rendimiento posible. Como resultado, los juegos de Game Boy se escribían principalmente en **lenguaje ensamblador**.
+Una de las principales limitaciones del hardware doméstico de los años 70 y 80 eran sus restricciones de programación: aunque prometedores, los lenguajes de alto nivel como C o Pascal aún no estaban preparados para aplicaciones con exigencias de rendimiento, pues los compiladores carecían de madurez y los juegos debían exprimir el máximo rendimiento posible. En consecuencia, los juegos de Game Boy se escribían principalmente en **lenguaje ensamblador**.
 
 ![El diseño original del Game Pak [@photography-amos].](gamepak_original.webp){.no-borders latex_width="80%"}
 
 Por otro lado, los juegos comerciales se distribuían en forma de **Game Paks**, los cartuchos diseñados por Nintendo para la serie Game Boy. En cuanto a capacidad, los juegos tenían un tamaño máximo de **32 KB**, limitado por el espacio de direcciones disponible. Sin embargo, gracias a un **Memory Bank Controller** ([mapeador](nes#going-beyond-existing-capabilities)), los juegos podían alcanzar tamaños mayores. El Game Pak más grande del mercado contaba con una ROM de 1 MB (o 8 MB en el caso del Game Boy Color).
 
-Por último, algunos Game Paks también incluían un reloj en tiempo real y/o SRAM adicional, junto con una batería externa para almacenar partidas.
+Por último, algunos Game Paks también incluían un reloj en tiempo real y/o SRAM adicional, junto con una batería externa para conservar las partidas guardadas.
 
 ### Cartuchos modernizados
 
@@ -413,7 +413,7 @@ Revisiones de los Game Pak de la era Color.
 Con la incorporación del modo de operación adicional de la Game Boy Color, Nintendo definió **tres tipos distintos** de juegos de Game Boy:
 
 - **Game Boy**: totalmente compatible con todos los modelos de Game Boy. Siempre se ejecuta en modo DMG.
-- **Game Boy Color mejorado**: un híbrido que se adapta a la consola anfitriona. Aunque es totalmente compatible con el modelo monocromo, se potencia visualmente al ejecutarse en modo CGB en la Game Boy Color. Sin embargo, la funcionalidad general sigue limitada para garantizar la compatibilidad con la primera Game Boy.
+- **Game Boy Color mejorado**: un híbrido que se adapta a la consola anfitriona. Aunque es totalmente compatible con el modelo monocromo, presenta mejoras visuales al ejecutarse en modo CGB en la Game Boy Color. Sin embargo, la funcionalidad general sigue limitada para garantizar la compatibilidad con la primera Game Boy.
 - **Exclusivo de Game Boy Color**: solo compatible con la Game Boy Color, pero optimizado para aprovechar al máximo su hardware.
 
 A los tres tipos se les asignaron colores oficiales para facilitar su identificación, aunque algunos juegos como Pokémon y Donkey Kong contaron con diseños alternativos.
@@ -432,7 +432,7 @@ En un momento dado, Nintendo también comercializó un 'adaptador para 4 jugador
 
 #### Métodos inalámbricos
 
-El modelo Color también incorporó un **emisor y receptor de infrarrojos** (formado por un LED y un fototransistor, respectivamente) [@cpu-nintendo]. Esto permitió intercambiar datos de forma inalámbrica entre Game Boy Colors, como se vio en juegos como Pokémon Oro y similares. Sin embargo, el sistema no implementaba ningún protocolo de comunicación: solo un registro único (`RP`) que codificaba la acción del sensor IR (emitir o recibir), el bit (`0` o `1`) transferido y el último bit recibido. Para facilitar las cosas a los desarrolladores, Nintendo incluyó una implementación de referencia en el manual oficial de desarrollador de Game Boy [@cpu-nintendo].
+El modelo Color también incorporó un **emisor y receptor de infrarrojos** (formado por un LED y un fototransistor, respectivamente) [@cpu-nintendo]. Esto permitió intercambiar datos de forma inalámbrica entre Game Boy Colors, como se vio en juegos como Pokémon Oro y similares. Sin embargo, el sistema no implementaba ningún protocolo de comunicación: solo un registro único (`RP`) que codificaba la acción del sensor IR (emitir o recibir), el bit (`0` o `1`) transferido y el último bit recibido. Para facilitar las cosas a los desarrolladores, Nintendo sí incluyó una implementación de referencia en el manual oficial de desarrollador de Game Boy [@cpu-nintendo].
 
 ## Antipiratería
 
