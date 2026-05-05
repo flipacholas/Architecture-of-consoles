@@ -81,7 +81,7 @@ Al mismo tiempo, **LSI Logic** (un fabricante de semiconductores) era licenciata
 
 Al final, Sony encargó a LSI la construcción de su paquete de CPU. Eligieron el CW33000, realizaron algunos ajustes e integraron todo con otros bloques para dar forma al chip que encontramos en la placa base de la PlayStation.
 
-### Lo que ofrece {.tabs-close}
+### La oferta {.tabs-close}
 
 ![El chip SoC en la placa base de la PlayStation, donde reside el núcleo basado en el MIPS R3000A.](cpu_chip.jpg){latex_width="85%"}
 

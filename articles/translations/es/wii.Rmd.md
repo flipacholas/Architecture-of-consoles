@@ -153,7 +153,7 @@ El subsistema I/O de esta consola es un cambio de juego (*si me permites el jueg
 
 El Starlet no es más que una CPU **ARM926EJ-S** conectada a la mayoría de los componentes internos de esta consola. Reside dentro del Hollywood, funciona a **243 MHz** (igual que el Hollywood) y contiene también su propia ROM y RAM. Por lo tanto, puedes considerar al Starlet un ordenador independiente que funciona junto a la CPU principal.
 
-![Diagrama principal de la arquitectura de la Wii. Observe cómo Starlet es capaz de controlar la mayor parte del I/O e incluso ocultar algunos del Broadway.](diagram.png)
+![Diagrama principal de la arquitectura de la Wii. Observe cómo Starlet es capaz de controlar la mayor parte del I/O e incluso ocultar algunos del Broadway.](_diagrams/main.png)
 
 El núcleo es similar al utilizado en la [Nintendo DS](nintendo-ds), salvo por la inclusión de dos añadidos "especiales":
 
@@ -414,7 +414,7 @@ Después de todo esto, cabe mencionar que cuando el sistema ejecuta juegos de Ga
 
 Empecemos con las claves AES, el algoritmo puede ser difícil de descifrar, pero si las claves se extraen de alguna manera (especialmente la clave común), esa capa de seguridad quedaría anulada al instante. Por lo tanto, el principal reto es **cómo extraerlas**.
 
-![Diagrama de seguridad del Starlet.](encryption.png) {.open-float}
+![Diagrama de seguridad del Starlet.](_diagrams/encryption.png) {.open-float}
 
 Pues bien, un grupo de hackers llamado **Team Twiizers** descubrió que la falta de firmas en el modo GameCube puede ser una prometedora zona de ataque [@cpu-ccc]. No solo descubrieron que **3/4 de esa RAM GDDR3 no se inicializaban** tras ejecutar un programa GC, sino también que puenteando algunos puntos de dirección de la placa base (usando, eso sí, unas pinzas) podían intercambiar los bancos seleccionados de RAM GDDR3, permitiendo el acceso a zonas restringidas. Y he aquí, se descubrieron las claves AES residían allí.
 

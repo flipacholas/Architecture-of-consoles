@@ -212,11 +212,11 @@ La CPU configura el VDP1 escribiendo en sus registros y cargando la VRAM con com
 
 ::: {.subfigures .tabs-nested .tab-float .pixel max_subfigures=2 #fig-vdp2_bgframes}
 
-![Plano 2D 1.](2d/bg1.png){.active .border hardcover_latex_width="87%" paperback_latex_width="77%" title="2D plane 1"}
+![Plano 2D 1.](2d/bg1.png){.active .border hardcover_latex_width="87%" paperback_latex_width="77%" title="Plano 2D 1"}
 
-![Plano 2D 2.](2d/bg2.png){.border hardcover_latex_width="87%" paperback_latex_width="77%" title="2D plane 2"}
+![Plano 2D 2.](2d/bg2.png){.border hardcover_latex_width="87%" paperback_latex_width="77%" title="Plano 2D 2"}
 
-![Plano 2D 3.](2d/bg3.png){.border paperback_latex_width="80%" title="2D plane 3"}
+![Plano 2D 3.](2d/bg3.png){.border paperback_latex_width="80%" title="Plano 2D 3"}
 
 Planos de fondo del VDP2.
 

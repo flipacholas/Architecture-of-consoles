@@ -36,7 +36,7 @@ Vale la pena señalar que el diseño de esta arquitectura llevó a uno de los ha
 
 Después de la pérdida del dominio de SGI en el mercado gráfico, Nintendo necesitaba nuevos aliados con los que asociarse.
 
-![Construcción del Gekko.](cpu/cpu_features.png) {.open-float.no-borders}
+![Construcción del Gekko.](_diagrams/gekko.png){.open-float .no-borders}
 
 Un candidato prometedor parece ser IBM: Aparte de su famoso trabajo en mainframes, recientemente se aliaron con Motorola y Apple para crear una CPU lo suficientemente potente como para competir con el dominio de Intel en el mercado de PC. El producto resultante es una serie de procesadores que llevan el nombre **PowerPC**, que se seleccionaron para *impulsar* el 99% de los Macintoshes de Apple y algunos sistemas integrados.
 
@@ -100,7 +100,7 @@ Durante el diseño de la arquitectura de próxima generación, los arquitectos d
 
 Por esa razón, los arquitectos de GameCube idearon un nuevo sistema de memoria estrictamente basado en **proporcionar espacio de memoria dedicado** y **usar chips de baja latencia**. Con el nuevo diseño, la GPU y la CPU ya no competirán por la misma RAM (causando problemas de fill-rate) ya que la GPU ahora tendrá su propia memoria interna y *increíblemente* rápida. Por otro lado, la GPU aún estará a cargo de arbitrar el acceso a E/S también.
 
-![Organización de la memoria en este sistema.](cpu/memory.png)
+![Organización de la memoria en este sistema.](_diagrams/memory.png)
 
 El resultado fue un sistema organizado con dos buses principales:
 
@@ -149,13 +149,13 @@ Durante el proceso de desarrollo, ArtX fue adquirido por ATI, que a su vez fue v
 
 Flipper es un bloque complejo que maneja múltiples servicios [@graphics-cheng], así que enfoquémonos en el componente gráfico por ahora (ya que es el responsable de dar vida a nuestra geometría). Llamaremos a esta área la **GPU** o **Motor Gráfico** y, si has estado leyendo el [artículo de la N64](nintendo-64#graphics), solo para que sepas que el núcleo ahora es funcional desde el primer momento, por lo que los programadores no tendrán que preocuparse por inyectar código para hacerlo funcionar. Sin embargo, habrá algunas partes interesantes que son personalizables.
 
-![Diseño de la GPU, Flipper.](flipper_pipeline.png)
+![Diseño de la GPU, Flipper.](_diagrams/gpu/pipeline.png)
 
 Como siempre, para dibujar un fotograma en la pantalla, nuestros datos pasarán por el canal de la GPU. Los datos pasan por muchos componentes diferentes que podemos agrupar en cuatro etapas:
 
 #### Base de datos {.tabs.active}
 
-![Diagramas de la fase de base de datos.](flipper_pipeline/database.jpg) {.tab-float}
+![Diagramas de la fase de base de datos.](_diagrams/gpu/database.png){.tab-float}
 
 La CPU y la GPU se comunican entre sí usando un **búfer FIFO** de longitud fija en la RAM principal, esta es una porción reservada donde la CPU escribirá comandos de dibujo que la GPU leerá (y eventualmente mostrará), esta funcionalidad es nativamente soportada por la CPU y la GPU.
 
@@ -167,7 +167,7 @@ La GPU contiene un **procesador de comandos** que se encarga de buscar comandos 
 
 #### Geometría {.tab}
 
-![Diagrama de la fase de vértice usando modo indirecto.](flipper_pipeline/vertex.jpg) {.tab-float}
+![Diagrama de la fase de vértice usando modo indirecto.](_diagrams/gpu/vertex.png){.tab-float}
 
 Aquí los primitivos se transforman para darles forma según el escenario deseado y se preparan para el rasterizado. El motor utiliza una **unidad de vértices** o 'VU' dedicada para lograr esto.
 
@@ -180,7 +180,7 @@ Una vez cargados, los primitivos pueden ser **transformados**, **recortados**, *
 
 #### Textura {.tab}
 
-![Diagrama de la fase de textura usando una configuración predeterminada.](flipper_pipeline/texture.jpg) {.tab-float}
+![Diagrama de la fase de textura usando una configuración predeterminada.](_diagrams/gpu/texture.png){.tab-float}
 
 Ahora es el momento de aplicar texturas y efectos a nuestros modelos, y para eso la GPU incluye múltiples unidades que procesarán nuestros píxeles. Ahora, este es un procedimiento muy sofisticado (aunque bastante complejo), por lo que si encuentras difícil seguirlo, solo piensa en él como una gran línea de ensamblaje que procesa píxeles. Habiendo dicho esto, hay tres grupos de unidades disponibles:
 
@@ -197,7 +197,7 @@ Todo esto es asistido por 1 MB de memoria de Textura (del tipo 1T-SRAM) que pued
 
 #### Renderizado {.tab}
 
-![Diagrama de la fase de renderizado.](flipper_pipeline/render.png) {.tab-float}
+![Diagrama de la fase de renderizado.](_diagrams/gpu/render.png){.tab-float}
 
 La etapa final del proceso de renderizado incluye aplicar algunos toques opcionales pero útiles a nuestra escena:
 
@@ -321,7 +321,7 @@ Parece que esta generación está dedicando mucho trabajo a la capacidad de expa
 
 ### E/S interna
 
-![Diagrama principal de la arquitectura de la GameCube. Aquí encontramos el 'Northbridge', que controla la mayor parte de la E/S.](diagram.png)
+![Diagrama principal de la arquitectura de la GameCube. Aquí encontramos el 'Northbridge', que controla la mayor parte de la E/S.](_diagrams/main.png)
 
 Flipper está a cargo de interconectar la CPU con el resto de los componentes, así que, además de incluir circuitos de sonido y gráficos, también proporciona una colección de hardware llamado **Northbridge** que se compone de [@cpu-tree]:
 

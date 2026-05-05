@@ -320,7 +320,7 @@ La razón de ofrecer dos bitmaps es permitir la **conmutación de páginas**: mo
 
 ![Demo bitmap de Tonc (homebrew). Observa que la pantalla no muestra los patrones típicos producidos por los motores de tiles.](bitmap/demo.png){.border hardcover_latex_width="95%" paperback_latex_width="83%" title="Demo"}
 
-![SpongeBob SquarePants de Nickelodeon (distribuido como cartucho *GBA Video*). Para adaptarse al medio, sufrió una fuerte compresión.](bitmap/spongebob.png){.border hardcover_latex_width="95%" paperback_latex_width="83%" title="Video"}
+![SpongeBob SquarePants de Nickelodeon (distribuido como cartucho *GBA Video*). Para adaptarse al medio, sufrió una fuerte compresión.](bitmap/spongebob.png){.border hardcover_latex_width="95%" paperback_latex_width="83%" title="Vídeo"}
 
 Ejemplos de programas que utilizan modos bitmap.
 

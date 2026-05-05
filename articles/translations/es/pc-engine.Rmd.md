@@ -114,7 +114,7 @@ Ahora veamos cómo se dibuja un fotograma paso a paso; para ello, tomaré presta
 
 ::: {.subfigures .tabs-nested .tab-float .pixel latex_subfigure_width="0.46"}
 
-![Tiles de fondo en la VRAM.](graphics/tiles_background.png){.active .desktop-margined .border title="Background"}
+![Tiles de fondo en la VRAM.](graphics/tiles_background.png){.active .desktop-margined .border title="Fondo"}
 
 ![Tiles de sprite en la VRAM.](graphics/tiles_sprites.png){.border title="Sprites"}
 
@@ -134,7 +134,7 @@ El codificador de vídeo es un chip separado que almacena **32 paletas de colore
 
 ::: {.subfigures .tabs-nested .tab-float latex_subfigure_width="0.46"}
 
-![Estructura de un tile de fondo.](_diagrams/tiles.png){.active title="Background"}
+![Estructura de un tile de fondo.](_diagrams/tiles.png){.active title="Fondo"}
 
 ![Estructura de un tile de sprite.](_diagrams/tiles_sprites.png){title="Sprites"}
 

@@ -196,9 +196,9 @@ Con estos pasos en mente, analizaré en detalle cada etapa usando _Art of Fighti
 
 ::: {.subfigures .tabs-nested .tab-float .pixel latex_subfigure_width="0.46"}
 
-![Varios tiles.](aof/tiles.jpg){.active .border title="Various"}
+![Varios tiles.](aof/tiles.jpg){.active .border title="Varios"}
 
-![Un grupo de cuatro tiles.](aof/four_tiles.jpg){.border title="Group"}
+![Un grupo de cuatro tiles.](aof/four_tiles.jpg){.border title="Grupo"}
 
 Algunos tiles de la C ROM.
 
