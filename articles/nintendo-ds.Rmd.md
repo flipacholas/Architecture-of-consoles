@@ -130,7 +130,7 @@ Whenever a value is written to the queue, either CPU can fetch it manually (**po
 
 ### Main memory
 
-Just like its predecessor, RAM is spread across many different locations, enabling the system to prioritise data placement according to access speed. In summary, the following general-purpose memory is available [@cpu-mem_map]:
+Just like its predecessor, Random-Access Memory (RAM) is spread across many different locations, enabling the system to prioritise data placement according to access speed. In summary, the following general-purpose memory is available [@cpu-mem_map]:
 
 ![The memory architecture of the Nintendo DS.](_diagrams/cpu/ram.png){.open-float}
 
@@ -146,7 +146,7 @@ Just like its predecessor, RAM is spread across many different locations, enabli
 
 Even though the Nintendo DS' architecture is a radical departure from its predecessor, this console still managed to retain the critical bits that enables native compatibility with Game Boy Advance games.
 
-But for the DS to morph into a GBA, the console includes a set of software routines that place it in **AGB Compatibility Mode**. When activated, these routines halt the ARM9, disable most of the novel hardware, redirect the buses, put the ARM7 in charge, and slow its clock speed to 16.78 MHz. Finally, the ARM7 executes the original [AGB BIOS](game-boy-advance#operating-system), which bootstraps the GamePak cartridge (just like an original Game Boy Advance).
+But for the DS to morph into a GBA, the console includes a set of software routines that place it in **AGB Compatibility Mode**. When activated, these routines halt the ARM9, disable most of the novel hardware, redirect the buses, put the ARM7 in charge, and slow its clock speed to 16.78 MHz. Finally, the ARM7 executes the original [AGB Basic Input/Output System (BIOS)](game-boy-advance#operating-system), which bootstraps the GamePak cartridge (just like an original Game Boy Advance).
 
 AGB mode also exhibits some features not present in the original console, such as displaying the game with black margins (as the new screen resolution happens to be larger). Moreover, since the DS has two screens, users can set which screen will be used to display the GBA game.
 
@@ -401,7 +401,7 @@ I must confess the second example was included on purpose. I mean, what the *fre
 
 ## I/O
 
-To be honest, the I/O capabilities of the Nintendo DS are worthy of separate study. Once unaffordable equipment such as wireless connectivity, a touchscreen, a Real Time Clock (RTC), and a microphone, combined with flagship software, made this console stand out every single year of its lifecycle. I would say Nintendo delivered the right innovation, at the right price, at the right time; a philosophy reaffirmed with the arrival of the [Wii](wii), two years later.
+To be honest, the I/O capabilities of the Nintendo DS are worthy of separate study. Once unaffordable equipment such as wireless connectivity, a touchscreen, a Real-Time Clock (RTC), and a microphone, combined with flagship software, made this console stand out every single year of its lifecycle. I would say Nintendo delivered the right innovation, at the right price, at the right time; a philosophy reaffirmed with the arrival of the [Wii](wii), two years later.
 
 Under the hood, however, I/O components are strictly handled by the ARM7. In fact, you won't see much activity on that CPU beyond passing data around... which ultimately leaves the ARM7 a bit underused.
 

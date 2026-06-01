@@ -359,7 +359,7 @@ By contrast, the second board is the aforementioned **CHA Board** and embeds the
 
 ### Keeping progress
 
-As a home-arcade hybrid, SNK provided a rudimentary accessory to keep track of scores and progress: a proprietary **Memory Card**
+As a home-arcade hybrid, SNK provided a rudimentary accessory to keep track of scores and progress: a proprietary **Memory Card**.
 
 ![The Memory Card [@photography-amos].](memorycard.png){.no-borders latex_width="80%"}
 

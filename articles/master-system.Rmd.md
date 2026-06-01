@@ -34,7 +34,7 @@ The Master System comes from a long line of succession. What began as a collecti
 I was a bit confused at first when reading about the different models that Sega eventually shipped. So, here is a summary of the main models to clarify any potential confusion:
 
 - **Sega Mark III**: The first console featuring this architecture, released exclusively in Japan.
-- **Sega Master System** (Europe and America): A rebranded Mark III with a new case, a BIOS ROM chip, and a different cartridge slot.
+- **Sega Master System** (Europe and America): A rebranded Mark III with a new case, a Basic Input/Output System (BIOS) ROM chip, and a different cartridge slot.
 - **Sega Master System** (Japan): A European/American Master System with the Mark III's cartridge slot, a new FM chip, and a jack port for '3D glasses'. However, it lacks the `RESET` button.
 
 From now on, I'll use the term 'Master System' or 'SMS' to collectively refer to these models, except when discussing features exclusive to a specific variant.

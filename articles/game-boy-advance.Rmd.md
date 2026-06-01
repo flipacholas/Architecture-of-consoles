@@ -92,7 +92,7 @@ During the development of their next product, this time enterprise-focused, Acor
 
 ![A late Newton model... after a few minutes playing with it.](newton.jpg){.tab-float}
 
-During the commercialisation of the Acorn Archimedes, Apple became captivated by Acorn's energy-efficient CPUs, but the American company was still unconvinced that Acorn's latest ARM3 was suitable for Apple's new pet project, the **Newton**. However, rather than walking away (after all, Acorn was a competitor), both explored the possibility of evolving the ARM3 to meet Apple's requirements [@cpu-furber], namely **flexible clock frequency**, an **integrated [MMU](nintendo-64#memory-management)**, and **complete 32-bit addressing**.
+During the commercialisation of the Acorn Archimedes, Apple became captivated by Acorn's energy-efficient CPUs, but the American company was still unconvinced that Acorn's latest ARM3 was suitable for Apple's new pet project, the **Newton**. However, rather than walking away (after all, Acorn was a competitor), both explored the possibility of evolving the ARM3 to meet Apple's requirements [@cpu-furber], namely **flexible clock frequency**, an **integrated [Memory Management Unit (MMU)](nintendo-64#memory-management)**, and **complete 32-bit addressing**.
 
 This collaboration soon turned into a partnership in which Acorn, Apple, and VLSI (ARM's chip manufacturer) set up a new company solely focused on developing ARM CPUs. Apple provided the investment (obtaining a 43% stake), Acorn shared its staff, and VLSI took care of manufacturing. In 1990, **Advanced RISC Machines (ARM) Ltd** came into existence, with Robin Saxby appointed as executive chairman.
 
@@ -300,7 +300,7 @@ I have to say, these are strongly reminiscent of the [Super Nintendo era](super-
 Similarly, to update the frame, there are multiple options available:
 
 - Command the **CPU**: The processor now has full access to VRAM whenever it wants. However, it may produce unwanted artefacts if it alters data mid-frame, so waiting for VBlank/HBlank (*traditional way*) remains the safest option in most cases.
-- Use the **DMA Controller**: DMA provides transfer rates around ten times faster and can be scheduled during VBlank and HBlank. This console offers four DMA channels (two reserved for sound, one for critical operations, and one for general use). Bear in mind that the controller halts the CPU during the operation, although if used properly, the CPU will hardly notice.
+- Use the **DMA Controller**: Direct Memory Access (DMA) provides transfer rates around ten times faster and can be scheduled during VBlank and HBlank. This console offers four DMA channels (two reserved for sound, one for critical operations, and one for general use). Bear in mind that the controller halts the CPU during the operation, although if used properly, the CPU will hardly notice.
 
 ### Beyond Tiles {.tabs-close}
 

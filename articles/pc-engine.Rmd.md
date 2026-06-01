@@ -69,7 +69,7 @@ Compared to the 65C02, the HuC6280 includes [@cpu-hardware]:
 - An **interrupt controller** to handle interrupts from other devices.
 - A **timer**, which counts down from a specified value and, upon completion, dispatches an interrupt to the CPU.
 
-Finally, there are **8 KB of RAM** available for general-purpose use.
+Finally, there are **8 KB of Random-Access Memory (RAM)** available for general-purpose use.
 
 ### Memory access
 

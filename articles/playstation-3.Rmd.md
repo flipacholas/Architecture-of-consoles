@@ -105,8 +105,8 @@ Having explained all that history and theory, I think we are ready to bring forw
 
 Cell runs at a _mighty_ **3.2 GHz** and it's composed of a multitude of components. So, for the sake of this analysis, this CPU can be divided into three main areas [@cpu-architecture]:
 
-- The **leader**: this is the part of Cell that directs the rest of the circuitry. Here we find a component called **PowerPC Processing Element** (PPE). 
-- The **assistants**: these are as crucial as the PPE, but their capabilities are limited to an assistant/accelerator role. This group comprises eight **Synergistic Processing Elements** (SPEs).
+- The **leader**: this is the part of Cell that directs the rest of the circuitry. Here we find a component called **PowerPC Processor Element** (PPE). 
+- The **assistants**: these are as crucial as the PPE, but their capabilities are limited to an assistant/accelerator role. This group comprises eight **Synergistic Processor Elements** (SPEs).
 - The **interfaces**: As the need for bandwidth surges exponentially, newer interfaces are implemented to move data around without producing bottlenecks. In the interfaces group, we find a handful of protocols: the **Element Interconnect Bus** (EIB), the **Broadband Engine Interface Unit** (BEI), the **Memory Interface Controller** (MIC) and the **Flex I/O buses**.
 
 This information will be revisited throughout the article in more depth, so you don't have to memorise these names. The main goal of this section is to let the reader get a mental image of the nature of Cell and familiarise with all the components we'll be discussing in due time.
@@ -116,9 +116,9 @@ This information will be revisited throughout the article in more depth, so you 
 Seeing the previous structure, I had to organise this so you don't get fed up with lots of information. Thus, we are going to analyse Cell by studying each component in this order:
 
 1. The bus connecting all components, the **Element Interconnect Bus (EIB)**.
-2. The **PowerPC Processing Element (PPE)** and its core element, the **PowerPC Processing Unit (PPU)**. 
+2. The **PowerPC Processor Element (PPE)** and its core element, the **PowerPC Processing Unit (PPU)**. 
 3. What **general-purpose memory** is available in this console.
-4. The **Synergistic Processing Elements (SPE)** and their core element, the **Synergistic Processing Unit (SPU)**.
+4. The **Synergistic Processor Elements (SPE)** and their core element, the **Synergistic Processor Unit (SPU)**.
 5. The **programming model** devised to program Cell efficiently.
 
 That being said, let's begin the real analysis.
@@ -141,13 +141,13 @@ Now that you've seen how every component of Cell is interconnected, it's time to
 
 ### Inside Cell: The leader
 
-Here we will take a look at the 'main part' of Cell. That is the part of the silicon that is in charge of commanding the rest. The component's name is **PowerPC Processing Element** (PPE) and you can think of it as the MIPS R5900 of the Emotion Engine.
+Here we will take a look at the 'main part' of Cell. That is the part of the silicon that is in charge of commanding the rest. The component's name is **PowerPC Processor Element** (PPE) and you can think of it as the MIPS R5900 of the Emotion Engine.
 
 #### Composition of the PPE
 
 Remember how I divided Cell into different areas before? Well, the same can be done with the PPE. IBM uses the term 'element' to describe the independent machine [@cpu-arevalo, p. 8], but once inside it uses the term 'unit' to separate the core circuitry from the interfaces that communicate with the rest of Cell.
 
-![Simplified diagram of the PowerPC Processing Element (PPE).](_diagrams/cell/ppe.png)
+![Simplified diagram of the PowerPC Processor Element (PPE).](_diagrams/cell/ppe.png)
 
 Having said that, the PowerPC Processor Element is _surprisingly_ composed of two parts:
 
@@ -225,7 +225,7 @@ The second unit is way more interesting, the **Vector/Scalar Unit** (VSU) perfor
 
 You've just seen how the PPE works and what it's made of, but what does it mean for a developer?
 
-After all, the PowerPC Processing Element is only a general-purpose processor, but here's the thing: **it's not meant to work alone**. Remember that wide main bus (the EIB)? IBM designed the PPE so engineers may combine it with other processors to accelerate particular applications (i.e. HPC, 3D graphics, security, scientific simulations, networking, video processing, etc) and since this writing is about the PlayStation 3, you'll see the rest of Cell is treated with computer graphics and physics in mind, so, the rest of the article reflects that purpose.
+After all, the PowerPC Processor Element is only a general-purpose processor, but here's the thing: **it's not meant to work alone**. Remember that wide main bus (the EIB)? IBM designed the PPE so engineers may combine it with other processors to accelerate particular applications (i.e. HPC, 3D graphics, security, scientific simulations, networking, video processing, etc) and since this writing is about the PlayStation 3, you'll see the rest of Cell is treated with computer graphics and physics in mind, so, the rest of the article reflects that purpose.
 
 ### Outside Cell: Main Memory
 
@@ -549,7 +549,7 @@ Overall, Southbridge embeds an enormous amount of interfaces, this has to do wit
 
 ### External interfaces
 
-![Like many PC towers of that era (including mine), a multi-card reader was in order. Next to it, you get four USB 2.0 ports.<br>This was pretty 'premium' for a console costing £425! (£628 in 2021 money).](cecha/front_open.jpg){.open-float .tabs-nested .tab-float .active title="Opened"}
+![Like many PC towers of that era (including mine), a multi-card reader was in order. Next to it, you get four USB 2.0 ports.<br>This was pretty 'premium' for a console costing £425!](cecha/front_open.jpg){.open-float .tabs-nested .tab-float .active title="Opened"}
 
 ![Same console with the lid closed.<br>To further cut the cost down, later models sealed the bay and removed the card reader and two USB ports.](cecha/front_closed.jpg){.tabs-nested-last title="Closed"}
 
@@ -604,7 +604,7 @@ Throughout the lifecycle of the PS3, Sony slowly trimmed PS2-only chips from the
 
 - **Timing**: Sony likely intended PS2 owners to buy their new product as a replacement of their current one, as this is more affordable for consumers (they can sell their old system). However, for some reason, Sony didn't have a software emulator prepared before release day, so they initially resorted to adding extra chips. Later on, as the software emulation progressed satisfactorily, they slowly removed these in further motherboard revisions.
   - To complement this, developer 'M4j0r' commented: "An interesting point might be that Sony developed the two hardware emulation revisions at the same time (EE/GS and GS only), I guess because some games run better depending on which you use." [@operating_system-psxplace].
-- **Costs**: The introductory price of the first revision of the console (_CECHA_, only in Japan and US) in 2006, which was PS2-compatible, was priced at $599.99 or ¥60,000 without taxes (£425 adjusted for 2020 inflation) [@io-launch_fun]. The following model (_CECHC_, shipped in 2007 internationally) removed the Emotion Engine and RDRAM (shifting those tasks to software emulation) and launched in the UK with a £425 price tag (£603 in 2020 money). Later in the same year, Sony released a new model (_CECHG_) without any PS2-related chip for £126 less [@io-price_cut]. All this proves that backwards compatibility is, in the end, an expensive feature.
+- **Costs**: The introductory price of the first revision of the console (_CECHA_, only in Japan and US) in 2006, which was PS2-compatible, was priced at $599.99 or ¥60,000 without taxes [@io-launch_fun]. The following model (_CECHC_, shipped in 2007 internationally) removed the Emotion Engine and RDRAM (shifting those tasks to software emulation) and launched in the UK with a £425 price tag. Later in the same year, Sony released a new model (_CECHG_) without any PS2-related chip for £126 less [@io-price_cut]. All this proves that backwards compatibility is, in the end, an expensive add-on.
 - **Idling hardware and wasted power**: While Cell and RSX still take care of some tasks to recreate the original environment, these are minimal compared to their full potential. Combined with the fact CECHA models have a cumulative power consumption of 399 Watts [@io-psu], it does make you wonder if this design is worth the power consumption, let alone efficient (for comparison, CECHG's new power supply consumes 285 Watts).
   - I understand there are other factors involved in the reduction of power consumption, like the new revisions of Cell and RSX. However, I still believe the PS2's chipset plays an important role.
 - **Inflexibility**: The EE+GS chip is not re-programmable, which means the end result will always be the same, independently whether there are glitches or possible enhancements. Compare this to the PCSX2 emulator's graphic enhancements [@io-widescreen_hack] and its modding capabilities [@io-persona_mods], this show us that room for improvement is possible and appreciated.
@@ -884,7 +884,7 @@ Many parts of the console already provide security features that don't require a
 - **SysCon**, the obscure proprietary chip (briefly mentioned in the boot process), controls the power lines of Cell, RSX and Southbridge. Its EEPROM contains records read by the operating system's modules to determine which functions are enabled and which are not [@anti_piracy-qaflag].
   - Though I use the word 'obscure', SysCon is just a microcontroller, either an off-the-shelf [ARM7TDMI](game-boy-advance#cpu)-S (that's right, the PS3 shares some of its DNA with the [Game Boy Advance](game-boy-advance) and even late PS2 revisions) enhanced with [MagicGate](playstation-2#interactive-accessories) support, or a custom NEC 78K0R variant [@anti_piracy-syscon]. SysCon's internal firmware is what intrigues the most.
   - SysCon and Cell communicate to each other using a serial interface (SPI) which plugs to Cell's **TEST** component [@anti_piracy-cell_test]. TEST provides many debugging functions on Cell, although SysCon only connects to the 'Pervasive logic' port, enabling SysCon to manage areas like power or thermal [@anti_piracy-pervasive].
-- Cell houses a **hidden ROM** that store unencrypted boot routines without worrying about snoopers.
+- Cell houses a **hidden ROM** that store unencrypted boot routines without fear of prying eyes.
 - Cell's **privilege modes** and SPE's **isolated mode** prevents programs from accessing unauthorised resources.
 - The Southbridge seamlessly encrypts the hard drive's content using AES.
 - The Blu-ray subsystem is another walled fortress, and its disc content is encrypted using a key found in the 'ROM mark' area of the disc (inaccessible by conventional readers) [@anti_piracy-bdauth].

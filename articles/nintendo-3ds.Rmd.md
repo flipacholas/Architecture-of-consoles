@@ -1335,7 +1335,7 @@ If you are curious, this article took me almost a year to finish, mainly due to 
 
 Looking back, it's hard to admit this console didn't enjoy the same degree of success as the Nintendo DS. Considering all of its offerings analysed here, I think many external factors hindered its marketing. For starters, the timing was unfortunate and the price tag wasn't exactly tempting. From my perspective, back when it launched in 2011, the '08 financial crisis was hitting hard (I was living in Spain back then), so the Nintendo 3DS wasn't exactly on adults' (and kids') priorities. I eventually got mine in 2018, by then living in the UK.
 
-In any case, I want to thank the #ReSwitched and #Godmode9 for spotting lots of mistakes in my initial drafts. This has been the most intricate console I've written about (to this date!), nevertheless, I'm very grateful to find communities willing to help out.
+In any case, I want to thank #ReSwitched and #Godmode9 for spotting lots of mistakes in my initial drafts. This has been the most intricate console I've written about (to this date!), nevertheless, I'm very grateful to find communities willing to help out.
 
 Until next time!  
 Rodrigo

@@ -127,7 +127,7 @@ Now that we've positioned Microsoft and IBM on the map, let's talk about the new
 
 ![For comparison purposes, here's the equivalent view of Cell. Cell also includes 32 KB of ROM not shown here.](images/consoles/ps3/_diagrams/cell/cell.png){.toright}
 
-Don't worry, all of these components will be explained throughout this article, starting with the 'PPE' blocks shown at the top left corner.
+Don't worry, all of these components will be explained throughout this article, starting with the **Power Processing Element** (PPE) blocks shown at the top left corner.
 
 #### A new look at CPU history
 
@@ -135,7 +135,7 @@ The Cell project, with its obsession with vectorised computations, introduced ve
 
 ![Xenon chip, surrounded by an army of decoupling capacitors.](photos/xenon.jpg){.open-float}
 
-In doing so, you'll perceive that Xenon takes a more conservative approach than Cell. If we take another look at the previous diagram of Xenon, you can notice that the latter is equipped with the famous [**PowerPC Processing Elements**](playstation-3#inside-cell-the-leader) (PPEs), which is also the most important piece of Cell. However, Xenon's is now equipped with **three** of them. Additionally, **the [Synergic Processors Units (SPUs)](playstation-3#inside-cell-the-assistants) are no more**.
+In doing so, you'll perceive that Xenon takes a more conservative approach than Cell. If we take another look at the previous diagram of Xenon, you can notice that the latter is equipped with the famous [**PowerPC Processor Elements**](playstation-3#inside-cell-the-leader) (PPEs), which is also the most important piece of Cell. However, Xenon's is now equipped with **three** of them. Additionally, **the [Synergic Processors Units (SPUs)](playstation-3#inside-cell-the-assistants) are no more**.
 
 After all, Microsoft didn't want processors of very different natures squashed in their CPU. They instructed IBM to compose three powerful cores and enhance them with the ingredients game developers would expect to find. With this approach, IBM and Microsoft were also able to add non-standard features without disrupting the traditional _modus operandi_ of developers.
 
@@ -149,7 +149,7 @@ We'll now take a look main components that comprise Sony's counterpart. To avoid
 
 Having said that, the new CPU runs at **3.2 GHz** and it includes so much circuitry that, for this study, we have to split it into different groups:
 
-- The **three leaders** that execute the program's instructions. At first, each resembles Cell's **PowerPC Processing Element** (PPE), but you'll soon see that they are actually a superset of it. Additionally, since we've got three of them now, it may seem as if the whole chip behaves like a _Ceberus_ monster, where each core may claim control of the whole system. Alas, that's not feasible in a computer, so the first core is the designated **master core** while the others will be taking **assistant roles**.
+- The **three leaders** that execute the program's instructions. At first, each resembles Cell's **PowerPC Processor Element** (PPE), but you'll soon see that they are actually a superset of it. Additionally, since we've got three of them now, it may seem as if the whole chip behaves like a _Ceberus_ monster, where each core may claim control of the whole system. Alas, that's not feasible in a computer, so the first core is the designated **master core** while the others will be taking **assistant roles**.
 - A **single interface** that interconnects the cores with the rest of the system. This bus is called **XBAR** (pronounced 'Crossbar').
   - Like in Cell, there are other proprietary interfaces used for debugging or maintenance (i.e. temperature) but these will not be mentioned until we reach the 'Anti-piracy' section.
 - The **security block** which Microsoft oversaw to implement the anti-piracy system. It's a very complex section, so to avoid overwhelming you with information, I'll explain it in the 'Anti-piracy' section as well.
@@ -159,7 +159,7 @@ Having said that, the new CPU runs at **3.2 GHz** and it includes so much circui
 To explain the aforementioned groups, I've organised the study of Xenon into these areas, in that order:
 
 1. The bus connecting all the cores, the **XBAR** and its special **L2 cache block**.
-2. The new refinements of the **PowerPC Processing Element** (PPE).
+2. The new refinements of the **PowerPC Processor Element** (PPE).
 3. The unusual abundance of **general-purpose memory**.
 4. The new **programming model** suggested (and, in some ways, enforced) by Microsoft.
 
@@ -195,7 +195,7 @@ This is as far as we go with our description of the XBAR and L2 cache, let's now
 
 To start with, Xenon's PPEs don't feature a [PowerPC Processor Storage Subsystem](playstation-3#composition-of-the-ppe) (PPSS) anymore, presumably since the interfacing part is handled by the XBAR and the L2 cache is now shared across the three units.
 
-![Simplified diagram of Xenon's PowerPC Processing Element (PPE).](_diagrams/cpu/ppe.png){.toleft}
+![Simplified diagram of Xenon's PowerPC Processor Element (PPE).](_diagrams/cpu/ppe.png){.toleft}
 
 ![For comparison purposes, this is Cell's PPE.](images/consoles/ps3/_diagrams/cell/ppe.png){.toright}
 
@@ -211,7 +211,7 @@ The initial VMX specification implemented in the PlayStation 3 provides 32 128-b
 
 VMX128 supplies **128 128-bit** registers instead, along with an adapted instruction set to manipulate the larger set of registers. To accomplish that, IBM changed the opcode format to allocate 7 bits (as opposed to 5 bits) for referencing its extended register file [@cpu-gschwind]. This is possible thanks to some trickery applied on the last five bits at the end of the 32-bit opcode [@cpu-biallas]. The last five bits are mostly, but not completely, unused by VMX. Consequently, VMX128 is incompatible with a subset of VMX instructions (related to integer multiplication and additions).
 
-Furthermore, VMX128 adds new instructions that compute the **dot product** of two vectors composed of up to three 32-bit floating-point numbers; and others that handle **Direct3D's data compression formats** [@cpu-brown] (it's worth mentioning that DirectX is the sole API for programming this console). Finally, thanks to the symmetric design of Xenon and its multi-threaded model (dual-issuing), VMX128's register file is duplicated, so there are **256 128-bit registers per core**!
+Furthermore, VMX128 adds new instructions that compute the **dot product** of two vectors composed of up to three 32-bit floating-point numbers; and others that handle **Direct3D's data compression formats** [@cpu-brown] (it's worth mentioning that DirectX is the sole Application Programming Interface (API) for programming this console). Finally, thanks to the symmetric design of Xenon and its multi-threaded model (dual-issuing), VMX128's register file is duplicated, so there are **256 128-bit registers per core**!
 
 As we reach the end of this section, there's still one question left unanswered: which is faster for vector operations, 1 VMX + 6 SPEs (as in the PS3) or 3 VMX128 units (as in the Xbox 360)? Well, their designs are too divergent, so it's hard to quantify. One could say 'The SPE can execute up to two instructions per cycle while Xenon takes 12 cycles to add two vectors (due to the long pipeline of the PPE)' but that's relative, as the SPE's memory scope is restricted to its local memory (requiring DMA calls to interact with the outside), while Xenon's PPEs can access any memory location. So, in conclusion, these are two contrasting models and programmers will just have to get the best out of them.
   

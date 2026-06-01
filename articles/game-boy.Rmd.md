@@ -31,7 +31,7 @@ aliases: ["/projects/consoles/game-boy/", "game-boy-color"]
 
 ## A quick introduction
 
-The Game Boy series can be imagined as a portable version of the NES with limited power, but you'll see that it introduced very interesting functionality.
+The Game Boy series can be imagined as a portable version of the Nintendo Entertainment System (NES) with limited power, but you'll see that it introduced very interesting functionality.
 
 ### The rainbow analysis
 
@@ -55,7 +55,7 @@ Inside the DMG-CPU, we find the main processor: a **Sharp SM83** [@cpu-gekkio]. 
 
 Now, back when I conducted the [analysis of the Master System](master-system), I explained the Zilog Z80 is essentially a superset of the Intel 8080. So, what does the SM83 actually retain and omit from those two? [@cpu-z80_comparison]
 
-- Neither the Z80's `IX` and `IY` registers nor the 8080's `IN` or `OUT` instructions are present. This means that [I/O ports](master-system#accessing-the-rest-of-the-components) are not available. I'm not certain whether this was a cost-saving measure, but one thing is for sure: components must be **completely memory-mapped** [@cpu-fayzullin].
+- Neither the Z80's `IX` and `IY` registers nor the 8080's `IN` or `OUT` instructions are present. This means that [Input/Output (I/O) ports](master-system#accessing-the-rest-of-the-components) are not available. I'm not certain whether this was a cost-saving measure, but one thing is for sure: components must be **completely memory-mapped** [@cpu-fayzullin].
 - Only the Intel 8080's register set is featured. Consequently, there are **only seven general-purpose registers** - unlike the Z80 with its 14 (thanks to its additional 'alternate' set).
 - Only portions of the Z80's extended instruction set are implemented. Specifically, bit-manipulation instructions.
 
