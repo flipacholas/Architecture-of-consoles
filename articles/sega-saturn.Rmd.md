@@ -396,13 +396,21 @@ Official Sega Saturn games are loaded from the **2x CD-ROM drive**. Its medium, 
 
 ### The Compact Disc (CD)
 
-The CD is an optical medium on which information is stored by engraving **pits** and **lands** into its polycarbonate surface [@cpu-optical]. An infrared beam is then directed from the drive, and the reflection produced on the CD's surface is used to retrieve the information.
+Co-authored by the Dutch company Philips and the Japanese company Sony, the Compact Disc (CD) is an optical medium on which information is stored by engraving microscopic **pits** and **lands** into its polycarbonate surface [@games-optical]. An infrared beam is then directed from the drive, and the reflection produced on the CD's surface is used to retrieve the information.
 
-The process of converting digital information (ones and zeroes) into pits and lands and vice versa is by no means simple, especially since CDs must be robust enough to sustain day-to-day damage and intensive use, and reliable enough to store any kind of information without fear of data loss. Hence, as part of its specification, data is encoded using the **Non-Return-to-Zero inverted** (NRZi) scheme. This means the bitstream consists of zeroes until a land-to-pit or pit-to-land transition occurs, at which point a `1` will be appended instead.
+The process of converting digital information (ones and zeroes) into pits and lands, and vice versa, is by no means simple, especially since CDs must:
 
-This design works well until the reader encounters a sequence of ones (continuous pit and land changes) or long sequences of zeroes (constant pits or lands), at which the sensor will struggle to detect or keep synchronised, respectively. To address this, an additional model called **Eight-to-Fourteen** (ETF) modulation is applied. This inserts a handful of zeroes between the encodings, helping the sensor during the reading process.
+- Allow plenty of **capacity** to make them a competitive alternative to existing media.
+- Be **robust** enough to sustain day-to-day damage and intensive use.
+- Be **reliable** enough to store any kind of information without fear of data loss.
 
-Beyond this, further mechanisms for error detection may be added, although these are outside the scope of this article. If you'd like to explore more, check out an insightful slide presentation authored by RWTH Aachen University [@cpu-optical].
+Thus, on the surface, data is encoded using the **Non-Return-to-Zero inverted** (NRZI) scheme [@games-cd_origins]. This means the bitstream consists of zeroes until a land-to-pit or pit-to-land transition occurs, at which point a `1` is appended instead.
+
+Beneath the surface, however, things become more complex. NRZI looks manageable on paper, until the optical reader encounters a sequence of ones (continuous pit and land changes) or long sequences of zeroes (constant pits or lands), at which the sensor will struggle to detect or remain synchronised, respectively. To address this, a preliminary step called **Eight-to-Fourteen Modulation** (EFM) is added to the mix. EFM translates every possible combination of 8 bits into a 14-bit sequence that takes into account the constraints of the CD reader. Consequently, before data is engraved, groups of 8 bits are converted into a sequence 14 bits, after which three 'merging bits' are inserted between the encodings. All in all, the resulting engravings provide high data density while also keeping the CD reader synchronised.
+
+Finally, with regards to reliability and robustness, the CD also employs **Cross-Interleaved Reed-Solomon Coding** (CIRC), which spreads data across the disc and adds redundancy so that damaged regions can be reconstructed.
+
+I have to say, the evolution of optical storage is an interesting topic in itself, and as the CD evolved into the [DVD](playstation-2#medium) and [beyond](playstation-3#tab-8-1-blu-ray-discs), advanced mechanisms for sensing, encoding, and error correction made its way into consumer hardware - culminating in standards that dominated game distribution across multiple generations.
 
 ### Development
 
