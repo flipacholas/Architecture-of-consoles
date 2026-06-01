@@ -2,7 +2,7 @@
 title: Архитектура консолей
 description: Понимание эволюции консолей через их архитектуру
 id: consoles
-layout: consoles
+type: consoles
 seo_image: banner.png
 cascade:
   description: "Углубленный анализ, объясняющий внутреннюю работу этой консоли"
