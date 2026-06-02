@@ -2,7 +2,7 @@
 title: Konsol Mimarileri
 description: Mimarileri aracılığıyla konsolların evrimini anlama
 id: consoles
-layout: consoles
+type: consoles
 seo_image: banner.png
 cascade:
   description: "Konsolun dahili olarak nasıl çalıştığını açıklayan derinlemesine bir analiz"
