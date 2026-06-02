@@ -2,7 +2,7 @@
 title: 游戏主机架构
 description: 通过其架构理解游戏主机的演变
 id: consoles
-layout: consoles
+type: consoles
 seo_image: banner.png
 cascade:
   description: "深入分析游戏主机内部的工作原理"
