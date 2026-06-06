@@ -163,13 +163,15 @@ It can process either **triangles** or **rectangles** as primitives, the latter 
 
 The RDP provides **four operating modes**, each of which combines these blocks differently to optimise specific tasks.
 
-Since this module constantly updates the frame buffer, it interacts with main RAM in a unique way. Remember the unusual 9-bit ? The ninth bit is used as metadata for frame buffer-related calculations (i.e. z-buffering and antialiasing) and is only understood by the Memory Interface.
+Since this module constantly updates the frame buffer, it interacts with main RAM in a unique way. Remember the unusual 9-bit? The ninth bit is used as metadata for frame buffer-related calculations (i.e. z-buffering and antialiasing) and is only understood by the Memory Interface.
 
 #### Remaining steps {.tabs-close}
 
-The resulting frame must be sent to the **Video Encoder** to be displayed on-screen. **DMA** and the **Video Interface** component are essential to accomplish this.
+The resulting frame must be sent to the **Video Encoder** to be displayed on-screen. This is taken care by **DMA** and the **Video Interface** component.
 
-The theoretical maximum capabilities of the output frame are a **24-bit colour depth** (16.8 million colours) and a resolution of **640x480 pixels** (or 720x576 in the PAL region) [@graphics-video_interface]. I mention 'theoretical' because using the maximum capabilities can be resource-hungry, so programmers often opt for lower specifications to free up enough resources for other services.
+The Video Interface (VI) acts as a bridge between the game's framebuffer and the television signal. It basically converts the rendered frame into a format the TV will understand, which tends to vary by region. For instance, the Video Interface can broadcast frames of 640x480 or 320x240 pixels to NTSC tellies; whereas PAL systems get 640x576 or 320x288 frames [@graphics-video_interface]. To help with the translation, the VI provides anti-aliasing (in conjunction with the RDP), scaling, and many color correction modes.
+
+Other capabilities include up to **32-bit colour depth** (16.8 million colours), but it's worth mentioning that using the maximum capabilities can be resource-hungry, so programmers often opt for lower specifications to free up enough resources for other services.
 
 ### Quick demo
 
