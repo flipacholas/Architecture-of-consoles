@@ -327,18 +327,30 @@ The audio capabilities of this console were part of a broader digital revolution
 
 ### The tech stack
 
+![Overview of the audio components.](_diagrams/audio.png)
+
 Be as it may, beneath the surface of attractive functionality lies a complex arrangement. In the case of the Sega Saturn, its sound subsystem is composed of several parts [@audio-scsp]:
 
 - The **Saturn Custom Sound Processor** (SCSP): Also referred to as the Yamaha YMF292, it's composed of two modules:
   - A **multi-function sound generator**: Processes up to **32 channels** with **PCM samples** (up to 16-bit at 44.1 kHz - a.k.a. 'CD quality') or [**FM channels**](mega-drive-genesis#audio). In the case of the latter, a subset of channels is reserved for operators.
+    - This component provides pitch scaling, envelope generator, Low-frequency Oscillation (LFO), and volume and stereo panning.
   - A **Digital Signal Processor** (DSP): Applies audio effects such as echo, reverb, and chorus. The documentation also mentions 'filters', but it's unclear whether this means envelope or frequency-based filters (e.g. low-pass).
 - A **Motorola 68EC000**: Controls the audio components and interfaces with the main CPUs. It executes a [sound driver](mega-drive-genesis#the-conductor) to operate the neighbouring modules.
-  - If this CPU looks familiar, that's because it is: the Mega Drive carried a 68000 as its [main CPU](mega-drive-genesis#cpu), while the 68EC000 in the Saturn is a small upgrade designed for embedded applications. The latter runs at 11.3 MHz and is connected using a 16-bit bus [@cpu-overview].
-- **512 KB of RAM**: Used to store the sound driver and audio data (e.g. PCM samples). It also serves as a working area for the DSP.
+  - If this CPU looks familiar, that's because it is: the Mega Drive carried a 68000 as its [main CPU](mega-drive-genesis#cpu), while the 68EC000 in the Saturn is a cost-reduced variant designed for embedded applications. The latter runs at 11.3 MHz and is connected using a 16-bit bus [@cpu-overview].
+- **512 KB of RAM**: Named 'sound RAM', it's used to store the sound driver and audio data (e.g. PCM samples). It also serves as a working area for the DSP.
+
+In an nutshell, the audio pipeline works as follows:
+
+1. Either main CPU initialises the aforementioned components and loads a sound driver into sound RAM. It then activates the Motorola 68EC000, so it can begin working.
+2. During gameplay, the audio subsystem may receive data in the following ways:
+    - The main CPU can instruct the Saturn Control Unit (SCU) to transfer PCM samples (or other data) from the CD to sound RAM.
+    - The CD subsystem may send audio data from uncompressed audio tracks (called CD-DA) directly to the SCSP.
+    - If the 'Video CD' card is installed, the CD subsystem can forward compressed audio to the card, which in turn decompresses it and passes it on to the SCSP.
+3. Based on the sound driver running and the data received, the Motorola 68EC000 tasks the SCSP to generate the audio. This may involve allocating channels for FM synthesis or PCM playback, both of which have many effects at their disposal.
 
 ### The opportunity
 
-As previously mentioned, the new audio subsystem allowed studios to finally record and produce soundtracks in-house, then bundle them in the game without the need for rearrangement - unlike earlier systems that relied on constrained [sequencers](super-nintendo#audio) or sound hardware with strict [synthesis methods](mega-drive-genesis#audio)).
+As previously mentioned, the new audio subsystem allowed studios to finally record and produce soundtracks in-house, then bundle them in the game without the need for rearrangement - unlike earlier systems that relied on constrained [sequencers](super-nintendo#audio) or sound hardware with strict [synthesis methods](mega-drive-genesis#audio).
 
 This shift was made possible thanks to a combination of key factors:
 
@@ -401,6 +413,7 @@ Co-authored by the Dutch company Philips and the Japanese company Sony, the Comp
 The process of converting digital information (ones and zeroes) into pits and lands, and vice versa, is by no means simple, especially since CDs must:
 
 - Allow plenty of **capacity** to make them a competitive alternative to existing media.
+  - Notably, the first revision of the specification (*CD-DA*) only strived for 74 minutes of high-quality audio, while the later format (*CD-ROM*) allowed for 650 MB of general-purpose data.
 - Be **robust** enough to sustain day-to-day damage and intensive use.
 - Be **reliable** enough to store any kind of information without fear of data loss.
 
@@ -412,11 +425,15 @@ Finally, with regards to reliability and robustness, the CD also employs **Cross
 
 I have to say, the evolution of optical storage is an interesting topic in itself, and as the CD evolved into the [DVD](playstation-2#medium) and [beyond](playstation-3#tab-8-1-blu-ray-discs), advanced mechanisms for sensing, encoding, and error correction made its way into consumer hardware - culminating in standards that dominated game distribution across multiple generations.
 
+#### The Saturn's CD
+
+So far, I’ve been discussing the wider standard, but in the case of the Saturn, Sega adopted the **CD‑ROM XA** format (short for 'CD-ROM eXtended Architecture'). This is a superset of the CD‑ROM format that allows to store data, uncompressed audio, and interleaved multimedia tracks [@games‑disc]. The latter is essential for slow‑speed drives, allowing audio and images to be streamed at a reasonable rate, a capability particularly useful for video playback. Speaking of, video playback must still be decompressed, and for that Sega shipped an optional card called 'Video CD'.
+
 ### Development
 
-At first, Sega did not provide comprehensive software libraries or development tools (in fact, the initial documentation was inaccurate), so the only way to achieve good performance was through *harsh* assembly.
+At first, Sega did not provide comprehensive software libraries or development tools (in fact, the initial documentation contained several inaccuracies), meaning the only way to achieve acceptable performance was through *harsh* assembly. Eventually, Sega shipped a complete Software Development Kit (SDK), hardware kits and additional support libraries to ease I/O and graphics operations.
 
-Eventually, Sega released complete SDKs, hardware kits and additional libraries to ease I/O and graphics operations. Overall, games were written using a combination of **C** and various assembly languages targeting individual components.
+That said, Sega Saturn games were ultimately written using a combination of **C** and various assembly languages targeting individual components.
 
 ### I/O
 

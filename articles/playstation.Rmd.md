@@ -385,9 +385,11 @@ In subsequent revisions, most of these ports were phased out, leaving only the '
 
 ## Audio
 
-Sony's signature **Sound Processing Unit** (SPU) takes care of this. This chip supports the enormous amount of **24 channels** of **16-bit ADPCM samples** (a more efficient version of the well-known PCM sampling) with a sampling rate of **44.1 kHz** (Audio CD quality).
+Sony's signature **Sound Processing Unit** (SPU) takes care of this. This chip supports the enormous amount of **24 channels** of **16-bit samples** at a sampling rate of **44.1 kHz** [@audio-spu], matching the quality of audio CDs.
 
-This chip also provides the following capabilities:
+![Overview of the audio components.](_diagrams/audio.png)
+
+The SPU also provides the following capabilities:
 
 - **Pitch modulation**: As the name suggests, games can automatically alter the pitch of their samples instead of storing additional ones. This is useful for music sequencing.
 - **Frequency modulation**: Channels can be assigned to modify the frequency of others. This is comparable to [FM synthesis](mega-drive-genesis#audio).
@@ -395,13 +397,34 @@ This chip also provides the following capabilities:
 - **Looping**: Instructs the system to play a piece of audio repeatedly.
 - **Digital reverb**: Simulates the sample being played in a specific acoustic environment to enhance immersion.
 
-**512 KB of DRAM** (called 'Sound RAM') is provided as an audio buffer. This memory is accessible by the CPU (via DMA) and the CD controller. Nevertheless, games have access to only 508 KB to store samples, while the rest is reserved by the SPU to process Audio CD music. This amount is further reduced when reverb is enabled.
+**512 KB of DRAM** (called 'Sound RAM') is provided as working space. This memory is accessible by the CPU (via DMA) and the CD controller. Nevertheless, games have access to only 508 KB for storing samples, while the remainder is reserved by the SPU for buffering uncompressed audio data. This amount is further reduced when reverb is enabled.
 
-The CD controller can also send samples directly to the audio mixer without passing through the audio buffer or requiring CPU intervention. Samples can also be compressed using 'XA' encoding, which the SPU can decode in real time.
+### Storage and processing
+
+On the game disc, audio is stored in the form of **Adaptive Differential Pulse‑Code Modulation** (ADPCM) samples. Unlike the PCM format (used by audio CDs and the [Sega Saturn](sega-saturn#audio)) where each sample consumes 16 bits, ADPCM stores only the difference between samples. In this case, it requires only 4 bits per sample, trading off some fidelity in the process.
+
+Now, ADPCM needs to be processed/uncompressed so speakers can understand it. Who performs this, and the amount of work required, depends on the format used [@audio‑adpcm]:
+
+- **SPU-ADPCM**: Samples are loaded into Sound RAM and processed by the SPU.
+- **XA-ADPCM**: Samples are decompressed by the CD controller without the intervention of the SPU or CPU, then streamed to Sound RAM. This uses fewer resources, at the cost of limited control (i.e. there's no looping).
+
+### Inherited techniques
+
+Truth be told, games may also choose to store their music in **uncompressed form**, just like the original audio CD [@audio-cdda]. This is because the CD standard used by the PS1 also accommodates CD-DA tracks. It's not without its compromises, however, as the CD reader will be completely blocked while streaming audio, and the space consumed on the disc will be much greater. Yet, it unlocks the highest possible audio quality.
+
+By the way, as any CD player supports CD-DA, some games allocated one audio track to play a warning message whenever the disc was inserted into non‑PlayStation equipment. In fact, titles like *Castlevania: Symphony of the Night* went a step further and embedded a hidden track as well.
 
 ### The streaming era
 
-[Similarly to the Saturn](sega-saturn#the-opportunity), games are no longer dependent on music sequencing or predefined waveforms, and thanks to the extensive storage available on the CD-ROM medium, developers can store fully produced samples and just stream them directly to the audio chip.
+That said, what does this mean for game developers? In summary, they can now construct their music in the following ways:
+
+- Through **music sequencing**: Similar to [previous generations](super-nintendo#audio), the game constructs each soundtrack on the fly by combining short samples from the CD and applying effects provided by the SPU. *Final Fantasy VII* is a notable user of this.
+  - This is why the soundtrack of the PC port of *Final Fantasy VII* sounds noticeably different, and often worse, than its PS1 version.
+- Through **sample streaming**: The CD stores a pre-processed track that only needs to be forwarded to the audio output, allowing for further processing if needed.
+
+As you can see, each technique carries its own trade‑offs. Nevertheless, nothing prevents the two from being combined, which is what enables background music to blend with the game's special effects.
+
+Finally, I'd like to emphasise that, [similarly to the Saturn](sega-saturn#the-opportunity), this marks a significant milestone for the industry: games are no longer constrained by music sequencing or predefined waveforms, and thanks to the extensive storage offered by the CD medium, developers can store fully produced samples and stream them directly to the audio chip.
 
 ## I/O
 
@@ -475,11 +498,11 @@ The shell is a simple graphical interface that allows the user to copy or delete
 
 ## Games
 
-Just like the [Sega Saturn](sega-saturn) and other consoles that made the switch to the CD format, PS1 games benefit from a new set of facilities: large storage (620 MB, in the case of the PS1), rich audio quality and a 'not-so-slow' read speed thanks to its 2x drive.
+Just like the [Sega Saturn](sega-saturn) and other consoles that made the switch to the Compact Discs (CDs) format, PS1 games benefit from a new set of facilities: large storage (620 MB, in the case of the PS1), rich audio quality and a 'not-so-slow' read speed thanks to its 2x drive.
 
 ![A typical PS1 game, shown with the disc flipped over. The underside of PS1 CDs feature a distinctive black coating that was once believed to prevent piracy. While technically incorrect - and I explain more in the 'Anti-piracy' section - I think it does provide a visual indicator of a genuine disc.](parappa.webp)
 
-If you are curious about how Compact Discs (CDs) work, I've written a brief explanation in the [Sega Saturn article](sega-saturn#the-compact-disc-cd).
+If you are curious about how Compact Discs (CDs) work, I've written a brief explanation in the [Sega Saturn article](sega-saturn#the-compact-disc-cd). The PS1 also adopted the [CD‑ROM XA](sega-saturn#the-saturns-cd) standard, but Sony leveraged by combining game data with XA-ADPCM audio [@games-cdxa].
 
 Be as it may, PS1 revisions released up to 1997 (three years after the console's debut) were notorious for bundling a faulty CD drive laser [@games-revisions], which resulted in frequent FMV and audio CD 'skips'. Later models fixed the laser unit and improved the housing, mitigating the problem.
 
