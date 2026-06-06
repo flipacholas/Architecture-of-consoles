@@ -295,6 +295,14 @@ Let's take a break now from all this theory. Here are some examples of game char
 
 ![Crash Bandicoot (1996).<br>732 triangles.](crash_ps1){.toright model3d="true" hardcover_latex_width="76%" paperback_latex_width="68%"}
 
+### Optimising texture storage
+
+On the PS1, textures are stored inside **texture pages**. These are blocks of 256x256 pixels, and its storage size can range from 4 to 16 bits per pixel (bpp) in VRAM [@graphics-spx]. The more bits, the richer they look, but also the more space they occupy.
+
+Be as it may, 4bpp and 8bpp texture pages are not restricted to a predefined set of colours. Instead, they rely on a **Colour Lookup Table** (CLUT) - a customisable colour palette that can be placed anywhere in VRAM.
+
+When the CPU commands the GPU to draw a textured triangle, the command also embeds the location of both the texture page and the CLUT.
+
 ### Playing with VRAM
 
 Given the available amount of VRAM (a *whole megabyte*), one could allocate a *massive* frame buffer of 1024×512 pixels with 16-bit colours, or a *realistic* one of 960×512 pixels with 24-bit colours - allowing to draw some of the finest frames ever seen in gaming... This sounds pretty impressive, right? Well, it does raise a few issues, for instance:
@@ -303,17 +311,17 @@ Given the available amount of VRAM (a *whole megabyte*), one could allocate a *m
 - How is the GPU supposed to render anything decent if there isn't any space left for other assets (e.g. textures and colour tables)?
 - The PS1's GPU can only render frame buffers of up to 640×480 pixels and 16-bit colours.
 
-All right, let's use a 640x480 buffer with 16-bit colour instead, which leaves 424 KB of VRAM for materials. So far, so good? Again, such resolution may look fine on CRT monitors, but it's not particularly noticeable on those 90s TVs everyone had in their homes. Then, is there any way to optimise the frame buffer? Introducing **adjustable frame-buffers**.
+All right, let's use a 640x480 buffer with 16-bit colour instead, which leaves 424 KB of VRAM for materials. So far, so good? Again, such resolution may look fine on CRT monitors, but it's not particularly noticeable on those 90s TVs everyone had in their homes. Then, is there any way to optimise VRAM space? Introducing **adjustable frame-buffers**.
 
-![VRAM visualisation in the NO$PSX debugger. You can spot the dual frame buffer, along with textures. The latter are translated using a colour lookup table, also stored there.](vram.jpg){.open-float}
+![VRAM visualisation in the NO$PSX debugger. You can spot the dual frame buffer, along with texture pages. The latter are translated using a colour lookup table, also stored there.](vram.jpg){.open-float}
 
-In essence, rather than wasting valuable VRAM on 'unappreciated' resolutions, this console's GPU allows to decrease the dimensions of the frame buffer to effectively increment the space available for other resources. In a demonstration from 'Gears Episode 2' [@graphics-halkun], Halkun shows a setup that divides the 640x480 frame buffer into two 320x480 ones, employing a technique called **page flipping** to render multiple scenes at the same time.
+In essence, rather than hoarding VRAM with the frame buffer, this console's GPU allows to decrease the dimensions of the frame buffer, effectively incrementing the space available for other resources. In a demonstration from 'Gears Episode 2' [@graphics-halkun], Halkun shows a setup that divides the 640x480 frame buffer into two 320x480 ones, employing a technique called **page flipping** to render multiple scenes at the same time.
 
 Page flipping involves alternating the location of the frame for display between two buffers whenever required, allowing the game to render one scene while displaying another. Thus, hiding any flickering effect and improving loading times (something that the player will certainly appreciate!).
 
 {.close-float}
 
-Overall, Halkun's layout consumes only 600 KB of VRAM. The remaining 424 KB can be used to store colour lookup tables and textures which, paired with **2 KB of texture cache available**, result in a very convenient and efficient setup.
+Overall, Halkun's layout consumes only 600 KB of VRAM. The remaining 424 KB can be used to store colour lookup tables and texture pages which, paired with **2 KB of texture cache available**, result in a very convenient and efficient setup.
 
 Finally, it is also worth mentioning that VRAM can be mapped using **multiple colour depths simultaneously**, meaning that programmers can allocate a 16 bpp frame buffer next to 24 bpp bitmaps (commonly used by FMV frames, for instance). This is another avenue for further optimisation of space.
 
