@@ -169,9 +169,9 @@ Since this module constantly updates the frame buffer, it interacts with main RA
 
 The resulting frame must be sent to the **Video Encoder** to be displayed on-screen. This is taken care by **DMA** and the **Video Interface** component.
 
-The Video Interface (VI) acts as a bridge between the game's framebuffer and the television signal. It basically converts the rendered frame into a format the TV will understand, which tends to vary by region. For instance, the Video Interface can broadcast frames of 640x480 or 320x240 pixels to NTSC tellies; whereas PAL systems get 640x576 or 320x288 frames [@graphics-video_interface]. To help with the translation, the VI provides anti-aliasing (in conjunction with the RDP), scaling, and many color correction modes.
+The Video Interface (VI) acts as a bridge between the game's framebuffer and the television signal. It basically converts the rendered frame into a format the TV will understand, which tends to vary by region. For instance, the Video Interface can broadcast frames of 640x480 or 320x240 pixels to NTSC tellies; whereas PAL systems get 640x576 or 320x288 frames [@graphics-video_interface]. To help with the translation, the VI provides anti-aliasing (in conjunction with the RDP), scaling, and many colour correction modes.
 
-Other capabilities include up to **32-bit colour depth** (16.8 million colours), but it's worth mentioning that using the maximum capabilities can be resource-hungry, so programmers often opt for lower specifications to free up enough resources for other services.
+Other capabilities include supporting up to **32 bits of colour depth** (16.8 million colours), but it's worth mentioning that using the maximum settings can be resource-hungry, so programmers often opt for lower specifications to free up enough resources for other services.
 
 ### Quick demo
 
