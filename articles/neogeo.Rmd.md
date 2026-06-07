@@ -79,7 +79,7 @@ The Neo Geo takes advantage of this design with the addition of a controller chi
 
 ### Inter-process communication
 
-Whenever a system features a dual-processor layout, there must be a way for both CPUs to communicate. In this console, SNK implemented inter-process communication (IPC) through the use of an **I/O arbiter** chip. The latter exposes a single 8-bit register, which the 68000 can write to [@cpu-68k_z80].
+Whenever a system features a dual-processor layout, there must be a way for both CPUs to communicate. In this console, SNK implemented Inter-Process Communication (IPC) through the use of an **I/O arbiter** chip. The latter exposes a single 8-bit register, which the 68000 can write to [@cpu-68k_z80].
 
 ![Representation of the IPC channel between the 68000 and the Z80.](_diagrams/cpu/ipc.png){.no-borders}
 
@@ -275,7 +275,7 @@ Now, even though the YM2610 is known for its FM synthesis, it houses additional 
 
 - A **Software-controlled Sound Generator** (SSG): This is Yamaha's name for a [Programmable Sound Generator](nes#audio) (PSG). In essence, the chip bundles a legacy Yamaha YM2149 inside, this can generate **three square waves** with optional **noise**. It also comes with an envelope control.
   - The original YM2149 came with an interface called 'I/O ports' to transfer data between the CPU and another component [@audio-ym2149]. Since this is now irrelevant, the embedded variant in the YM2610 doesn't include it.
-- Seven **ADPCM channels**: Enables to play **samples** using the 4-bit ADPCM format. These channels are split into two groups:
+- Seven **ADPCM channels**: Enables to play **samples** using the 4-bit [Adaptive Differential Pulse-Code Modulation (ADPCM)](playstation#storage-and-processing) format. These channels are split into two groups:
   - ADPCM-A: Consists of six channels, providing a sample resolution of **12 bits** and a sampling frequency of **~18.5 kHz**.
   - ADPCM-B: This is the remaining channel, with a **16-bit** resolution and a sampling frequency of up to **~55.56 kHz** (better than CD quality).
 
@@ -363,7 +363,7 @@ As a home-arcade hybrid, SNK provided a rudimentary accessory to keep track of s
 
 ![The Memory Card [@photography-amos].](memorycard.png){.no-borders latex_width="80%"}
 
-The Memory Card worked on both AES and MVS models. Options ranged from **2 KB** to **16 KB** of battery-backed SRAM [@games-memory_card], though in all cases the battery was unserviceable.
+The Memory Card worked on both AES and MVS models. Options ranged from **2 KB** to **16 KB** of battery-backed Static RAM (SRAM) [@games-memory_card], though in all cases the battery was unserviceable.
 
 The save data was structured as 64 B blocks distributed across five segments, while the System ROM provided I/O routines to operate it.
 

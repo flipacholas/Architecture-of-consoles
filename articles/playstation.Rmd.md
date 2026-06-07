@@ -409,7 +409,7 @@ The SPU also provides the following capabilities:
 
 ### Storage and processing
 
-On the game disc, audio is stored in the form of **Adaptive Differential Pulse‑Code Modulation** (ADPCM) samples. Unlike the PCM format (used by audio CDs and the [Sega Saturn](sega-saturn#audio)) where each sample consumes 16 bits, ADPCM stores only the difference between samples. In this case, it requires only 4 bits per sample, trading off some fidelity in the process.
+On the game disc, audio is stored in the form of **Adaptive Differential Pulse-Code Modulation** (ADPCM) samples. Unlike the PCM format (used by audio CDs and the [Sega Saturn](sega-saturn#audio)) where each sample consumes 16 bits, ADPCM stores only the difference between samples. In this case, it requires only 4 bits per sample, trading off some fidelity in the process.
 
 Now, ADPCM needs to be processed/uncompressed so speakers can understand it. Who performs this, and the amount of work required, depends on the format used [@audio‑adpcm]:
 
@@ -446,7 +446,7 @@ The block responsible for controlling the CD drive is an interesting area, you c
 
 This subsystem comprises:
 
-- A **DSP**: Controls the motor and laser, and processes the RF signal coming from the laser.
+- A **Digital Signal Processor** (DSP): Controls the motor and laser, and processes the RF signal coming from the laser.
 - A **Sub-CPU**: A CPU package made of a **Motorola 68HC05** microcontroller, **512 B of RAM**, and **16 KB of ROM** [@io-cdrom]. In a nutshell, the Sub-CPU runs a local program stored in ROM and controls the DSP. The Sub-CPU program implements copy-protection measures and they are enforced whether the main CPU 'likes it or not'.
 - A **CD Controller**: Serves as the middle-man between the CD subsystem and the rest of the console, receiving commands from main CPU (in a FIFO manner) and triggering interrupts after specific events. As a controller, the chip talks to the Sub-CPU and receives CD data from the DSP.
   - Furthermore, the controller bundles a DMA unit that is connected to the SPU, which allows it to stream audio directly.
@@ -466,7 +466,7 @@ Communication with these devices is accomplished through a serial interface. Com
 
 ## Operating System
 
-The system includes a **512 KB ROM** that stores a 'BIOS'. This program performs many services, including taking care of the startup process, displaying the user shell, and exposing a collection of I/O routines [@operating_system-bios].
+The system includes a **512 KB ROM** that stores a Basic Input/Output System (BIOS). This program performs many services, including taking care of the startup process, displaying the user shell, and exposing a collection of I/O routines [@operating_system-bios].
 
 ### BIOS/Kernel
 

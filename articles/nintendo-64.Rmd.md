@@ -49,7 +49,7 @@ In the end, Nintendo and SGI settled on the **NEC VR4300** clocked at **93.75 MH
   - **32-bit mode**: Traditional mode in which the CPU behaves as a MIPS II-compatible processor. There's nothing special about this mode except that all new functions are locked out.
   - **64-bit mode**: 'Native' mode where all 64-bit extensions are available. It's also binary-compatible with 32-bit applications.
 - **32 general-purpose registers**: These are 32 bits wide in 32-bit mode, and 64 bits wide in 64-bit mode.
-- The **MIPS III ISA**: A RISC instruction set that builds on MIPS II. It introduces new opcodes for computing 64-bit words (called 'doublewords'). Finally, instructions are always **32-bit long**, regardless of mode.
+- The **MIPS III Instruction Set Architecture** (ISA): A RISC instruction set that builds on MIPS II. It introduces new opcodes for computing 64-bit words (called 'doublewords'). Finally, instructions are always **32-bit long**, regardless of mode.
   - It's worth mentioning that, starting with MIPS II, [load delay slots](playstation#delay-galore) became optional. Instead, the hardware can automatically interlock/stall the pipeline to prevent data hazards. This is an interesting contradiction to [MIPS' initials](playstation#a-core-philosophy)!
   - Weirdly, branch delay slots still persist, but there are new branch instructions that can discard the delay slot. Although these were removed in later revisions of the instruction set [@cpu-chen].
 - An internal **64-bit bus** connected to an **external 32-bit data bus**: While doublewords operations don't degrade performance when operated internally, moving 64-bit data across the system incurs extra cycles.
@@ -58,7 +58,7 @@ In the end, Nintendo and SGI settled on the **NEC VR4300** clocked at **93.75 MH
 - **Five-stage pipeline**: Up to five instructions can be allocated for execution (a detailed explanation can be found in a [previous article](sega-saturn#cpu)).
 - **24 KB of L1 cache**: Partitioned into 16 KB for instructions and 8 KB for data.
 
-The package also includes an internal **Floating-Point Unit** (FPU). The VR4300 designates it as a co-processor (CP1), however, the unit is fitted adjacent to the ALU and accessed solely via the ALU pipeline, meaning there's no co-processing per se. On the other side, the FPU still houses a dedicated register file and speeds up operations involving 64-bit and 32-bit floating-point numbers. Finally, this unit adheres to the IEEE 754 standard.
+The package also includes an internal **Floating-Point Unit** (FPU). The VR4300 designates it as a co-processor (CP1), however, the unit is fitted adjacent to the **Arithmetic Logic Unit** (ALU) and accessed solely via the ALU pipeline, meaning there's no co-processing per se. On the other side, the FPU still houses a dedicated register file and speeds up operations involving 64-bit and 32-bit floating-point numbers. Finally, this unit adheres to the IEEE 754 standard.
 
 ### Simplified memory access
 
@@ -251,13 +251,13 @@ The good news is that, on early revisions of the Nintendo 64, the three RGB line
 Before we go into the details, let's define the two endpoints of the N64's audio subsystem:
 
 - Our starting point is the cartridge ROM, which contains data that only the CPU can interpret.
-- The ending point is the **Digital-to-Analog Converter** (DAC), which only understands *waveform* data [@audio-programming].
+- The ending point is the **Digital-to-Analogue Converter** (DAC), which only understands *waveform* data [@audio-programming].
 
 Now, how do we connect both ends? Consoles normally include a dedicated audio chip that does the work for us. Unfortunately, the Nintendo 64 **doesn't have a dedicated chip**, so this task is distributed across these components:
 
 - The **main CPU**: Transfers the audio data from the game's ROM to RAM, then composes **Audio Lists** to be handled by the RSP.
 - The **RSP**: Using additional microcode, it interprets the audio lists previously stored in RAM and performs the required operations on the audio data, which can include:
-  - Decompressing **ADPCM samples** and applying effects.
+  - Decompressing [**Adaptive Differential Pulse-Code Modulation** (ADPCM) samples](playstation#storage-and-processing) and applying effects.
   - Sequencing and mixing **MIDI data** using **audio banks** stored in RAM.
 
 The resulting data is, as expected, waveform data. This is then sent to the **Audio Interface** (AI) block, which transfers it to the digital-to-analogue converter [@audio-audio_interface]. Being a stereo system, the resulting waveform contains two channels, each with 16-bit resolution.
@@ -303,7 +303,7 @@ Unlike previous cartridge-based systems, the Nintendo 64 follows a sophisticated
 These routines are also referred to as **Initial Program Loader** (IPL) and work as follows [@operating_system-ipl] [@operating_system-ipl_decomp]:
 
 1. The user turns on the console.
-2. The **PIF-NUS** (a separate chip on the motherboard) subdues the main CPU into an infinite reset until it validates the CIC chip found in the game cartridge.
+2. The **PIF-NUS** (a separate chip on the motherboard) subdues the main CPU into an infinite reset until it validates the **Checking Integrated Circuit** (CIC) chip found in the game cartridge.
     - The PIF-NUS and the CIC chip are explained further in the I/O and anti-piracy sections, respectively.
 2. If the verification process finishes successfully, the CPU starts execution at `0xBFC00000`. This address points to an **internal ROM** within PIF-NUS, specifically the first boot stage called **IPL1**.
 3. IPL1 initialises part of the hardware (CPU registers, the parallel interface, and the RCP), then copies the next stage (**IPL2**) from the internal ROM to the RSP's memory for faster execution. It then redirects execution there.
@@ -336,7 +336,7 @@ All accessories connected to the controller are managed by the **PIF-NUS**, an o
 
 Nintendo held on to the cartridge medium for storage instead of adopting optical discs. As a consequence, games enjoyed higher bandwidths (an average of 5 MB/sec) while also being more expensive to manufacture. The largest cartridge found in the market had a capacity of 64 MB.
 
-Inside cartridges, manufacturers often included extra memory (in the form of **EEPROM**, **flash**, or **SRAM** backed by battery) to hold save data. However, this became less essential, as certain accessories (like the Controller Pak) provided alternative storage.
+Inside cartridges, manufacturers often included extra memory (in the form of **Electrically Erasable Programmable ROM** (EEPROM), **flash**, or **Static RAM** (SRAM) backed by battery) to hold save data. However, this became less essential, as certain accessories (like the Controller Pak) provided alternative storage.
 
 Cartridges interface with the RCP using a dedicated 16-bit bus known as the **Parallel Bus** (PBUS) or 'Parallel Interface' (PI) [@games-peripheral_interface].
 

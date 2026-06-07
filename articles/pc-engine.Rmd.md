@@ -95,7 +95,7 @@ Graphics are managed by the **Hudson Soft HuC6270**, a separate chip also referr
 
 ### Organising the content
 
-First things first, the VDC is a **tile engine** (a standard feature until the 5th generation showed up) - but note that the PC Engine includes **64 KB of VRAM**, which is a significant amount compared to the competition. This may lead to new types of content, which we will explore later.
+First things first, the VDC is a **tile engine** (a standard feature until the 5th generation showed up) - but note that the PC Engine includes **64 KB of Video RAM** (VRAM), which is a significant amount compared to the competition. This may lead to new types of content, which we will explore later.
 
 ![Memory architecture of the VDC.](_diagrams/vdc.png)
 
@@ -169,7 +169,7 @@ The VDC contains an internal memory called **Sprite Attribute Table Buffer**, wh
 
 Each entry is 8 bytes long, although some space is wasted due to the 16-bit granularity.
 
-To top it all off, **the CPU can't access this table**, so it must be completed in VRAM first and then transferred to the VDC via a DMA channel.
+To top it all off, **the CPU can't access this table**, so it must be completed in VRAM first and then transferred to the VDC via a Direct Memory Access (DMA) channel.
 
 Regarding limitations, only be up to 16 sprites can appear per scan-line. On the other hand, interrupts can be configured to notify the game in case of sprite overflow or [collision](master-system#tab-2-1-collision-detection).
 
@@ -214,7 +214,7 @@ The system features **six audio channels** [@audio-manual], each of which is con
 
 Some groups of channels have additional modes of operation. For instance, the last two channels are connected to a **noise generator**. Moreover, the second channel can act as a **Low-Frequency Oscillator** (LFO) to modulate the first channel. I initially assumed this to be a synonym for [FM synthesis](mega-drive-genesis#audio), but LFOs are more of a 'subset' that produce a **vibrato effect**.
 
-Speaking of modes, there's another one available called **Direct D/A** (DDA), which enables the CPU to write directly to the audio buffer (bypassing the PSG). Consequently, the PC Engine can play **PCM samples**, which are still 5-bit and tightly dependent on CPU cycles. Nevertheless, two channels can be combined to reproduce 10-bit samples! [@audio-demo].
+Speaking of modes, there's another one available called **Direct D/A** (DDA), which enables the CPU to write directly to the audio buffer (bypassing the PSG). Consequently, the PC Engine can play **Pulse-Code Modulation** (PCM) samples, which are still 5-bit and tightly dependent on CPU cycles. Nevertheless, two channels can be combined to reproduce 10-bit samples! [@audio-demo].
 
 All in all, this makes the PC Engine's PSG an exceptionally flexible piece of hardware.
 
@@ -248,7 +248,7 @@ I have yet to mention the controller (or Joypad, as some sources call it). It is
 
 ## Operating System
 
-There is no internal ROM, 'BIOS' or any other software that runs before the game, meaning the console does not have an Operating System. The reset vector is located at addresses `$FFFE` and `$FFFF` (remember that the internal registers are 8-bit, but memory addresses are 16-bit, requiring two words to initialise the program counter). These addresses point to the game card [@operating_system-sheldows].
+There is no internal ROM, 'Basic Input/Output System' (BIOS) or any other software that runs before the game, meaning the console does not have an Operating System. The reset vector is located at addresses `$FFFE` and `$FFFF` (remember that the internal registers are 8-bit, but memory addresses are 16-bit, requiring two words to initialise the program counter). These addresses point to the game card [@operating_system-sheldows].
 
 This also means that it is the programmer's responsibility to handle 'housekeeping' (e.g., initialising memory, setting up the MMU, and so on).
 

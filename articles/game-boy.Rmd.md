@@ -43,7 +43,7 @@ The good news is that this article covers both ends of the spectrum. So, in the 
 
 ## CPU
 
-Instead of placing many off-the-shelf chips on the motherboard, Nintendo opted for a **single-chip design** to house (and hide) most of the components, including the CPU. This type of design is commonly known as a **System on a Chip** (SoC) and, in this case, it was specifically crafted for this console, enabling Nintendo to tailor it to their needs (such as power efficiency, anti-piracy, and extra I/O capabilities). At the same time, the Game Boy's SoC could not be found in any retail catalogue, meaning competitors had a harder time cloning it.
+Instead of placing many off-the-shelf chips on the motherboard, Nintendo opted for a **single-chip design** to house (and hide) most of the components, including the CPU. This type of design is commonly known as a **System-on-Chip** (SoC) and, in this case, it was specifically crafted for this console, enabling Nintendo to tailor it to their needs (such as power efficiency, anti-piracy, and extra I/O capabilities). At the same time, the Game Boy's SoC could not be found in any retail catalogue, meaning competitors had a harder time cloning it.
 
 That being said, the SoC used in the Game Boy is referred to as **DMG-CPU** or **Sharp LR35902** [@cpu-realboy], and as the name indicates, it was manufactured by **Sharp Corporation**. This company, along with Ricoh (the [NES' CPU supplier](nes#a-bit-of-context)), enjoyed a close relationship with Nintendo.
 
@@ -395,7 +395,7 @@ One of the main constraints of 70s-80s consumer hardware was its programming lim
 
 Apart from this, commercial games were distributed in the form of **Game Paks**, which were cartridges designed by Nintendo for the Game Boy series. In terms of storage options, games had a maximum size of **32 KB**, owing to the limited address space available. However, with the help of a **Memory Bank Controller** ([mapper](nes#going-beyond-existing-capabilities)), games could reach bigger sizes. The largest Game Pak found in the market featured a 1 MB ROM (or 8 MB, in the case of the Game Boy Color).
 
-Finally, some Game Paks also included a real-time clock and/or extra SRAM, along an external battery to hold saves.
+Finally, some Game Paks also included a real-time clock and/or extra Static RAM (SRAM), along with an external battery to hold saves.
 
 ### Modernised cartridges
 

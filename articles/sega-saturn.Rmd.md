@@ -107,8 +107,8 @@ It's worth noting that each subsystem is wired to a dedicated bus - except the V
 
 The CPU subsystem contains a total of **2 MB of RAM** for general-purpose use, called **Work RAM** (WRAM). But it's not that simple: this memory is split into two distinct blocks and, once again, each is accessed via different buses:
 
-- The first block provides **1 MB of SDRAM**. Due to its higher access speed, this block is also called **WRAM-H**. Its bus is shared with other components.
-- The other megabyte is named **WRAM-L**, as it uses **DRAM** instead, resulting in lower rates. Its bus, however, is reserved for the main CPUs.
+- The first block provides **1 MB of Synchronous DRAM** (SDRAM). Due to its higher access speed, this block is also called **WRAM-H**. Its bus is shared with other components.
+- The other megabyte is named **WRAM-L**, as it uses **Dynamic RAM** (DRAM) instead, resulting in lower rates. Its bus, however, is reserved for the main CPUs.
 
 ### The third processor (and counting)
 
@@ -121,7 +121,7 @@ This is a separate chip comprised of two modules [@cpu-scu]:
 - A **Direct Memory Access (DMA) controller**: Arbitrates access to WRAM-L across the three subsystems without the intervention of the CPUs.
 - A **Digital Signal Processor (DSP)**: Used as a fixed-point 'geometry unit'. Compared to the SH-2, it performs matrix/vectors calculations such as 3D transformations and lighting faster. However, it runs at half-speed and its instruction set is more complex. Furthermore, it depends on the SH-2's slow WRAM-L to fetch and store data (using the DMA).
 
-To alleviate things, the SCU comes with **32 KB of SRAM** for local use.
+To alleviate things, the SCU comes with **32 KB of Static RAM** (SRAM) for local use.
 
 ## Graphics
 
@@ -129,7 +129,7 @@ Since the Saturn is the first '3D console' reviewed for [this series](consoles),
 
 ### Revised methodologies
 
-Firstly, the GPU now relies on a **frame buffer**: graphics are no longer required to be rendered on the fly. Instead, the GPU reserves a portion of VRAM to draw a bitmap containing all the computed geometry requested by the CPU. A video encoder then picks up that region and outputs it through the video output signal. Be as it may, the Saturn does mix the two models... I will explain more later.
+Firstly, the GPU now relies on a **frame buffer**: graphics are no longer required to be rendered on the fly. Instead, the GPU reserves a portion of Video RAM (VRAM) to draw a bitmap containing all the computed geometry requested by the CPU. A video encoder then picks up that region and outputs it through the video output signal. Be as it may, the Saturn does mix the two models... I will explain more later.
 
 Consequently, having this reserved 'working space' allows the GPU to continue manipulating the bitmap even after finishing rendering the scene, enabling the CPU to offload additional exhaustive tasks (such as lighting and anti-aliasing) to the GPU. Here is where the concept of **graphics pipeline** starts to gain significance.
 
@@ -333,7 +333,7 @@ Be as it may, beneath the surface of attractive functionality lies a complex arr
 
 - The **Saturn Custom Sound Processor** (SCSP): Also referred to as the Yamaha YMF292, it's composed of two modules:
   - A **multi-function sound generator**: Processes up to **32 channels** with **PCM samples** (up to 16-bit at 44.1 kHz - a.k.a. 'CD quality') or [**FM channels**](mega-drive-genesis#audio). In the case of the latter, a subset of channels is reserved for operators.
-    - This component provides pitch scaling, envelope generator, Low-frequency Oscillation (LFO), and volume and stereo panning.
+    - This component provides pitch scaling, envelope generator, Low-Frequency Oscillator (LFO), and volume and stereo panning.
   - A **Digital Signal Processor** (DSP): Applies audio effects such as echo, reverb, and chorus. The documentation also mentions 'filters', but it's unclear whether this means envelope or frequency-based filters (e.g. low-pass).
 - A **Motorola 68EC000**: Controls the audio components and interfaces with the main CPUs. It executes a [sound driver](mega-drive-genesis#the-conductor) to operate the neighbouring modules.
   - If this CPU looks familiar, that's because it is: the Mega Drive carried a 68000 as its [main CPU](mega-drive-genesis#cpu), while the 68EC000 in the Saturn is a cost-reduced variant designed for embedded applications. The latter runs at 11.3 MHz and is connected using a 16-bit bus [@cpu-overview].

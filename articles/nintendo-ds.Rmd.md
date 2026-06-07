@@ -101,7 +101,7 @@ Now for the changes: because Nintendo's engineers placed the ARM7 next to most o
 
 Here is the 'main' CPU of the Nintendo DS, the **ARM946E-S**. It runs at **~67 MHz**, so not exactly 'StrongARM speed'. Yet, as part of the **ARM9 series**, this core not only inherits all the features of the **ARM7TDMI** and **StrongARM**, but also includes some additional bits you may find interesting [@cpu-arm9reference]:
 
-- The **ARMv5TE ISA**, an extension of the [previous ARMv4 ISA](game-boy-advance#commanding-the-cpu) and [Thumb](game-boy-advance#tab-2-3-squeezing-performance), offering more instructions and a faster multiplier.
+- The **ARMv5TE Instruction Set Architecture** (ISA), an extension of the [previous ARMv4 ISA](game-boy-advance#commanding-the-cpu) and [Thumb](game-boy-advance#tab-2-3-squeezing-performance), offering more instructions and a faster multiplier.
   - If you take a look at the core name, the letter 'E' means **Enhanced DSP**, indicating that many of these new instructions relate to signal-processing applications.
   - The extended Thumb is sometimes called **Thumb v2**. It adds `BLX` and `BKPT`, which assist with switching between ARM and Thumb mode; and facilitate debugging, respectively.
 - A **5-stage Pipeline**, like the StrongARM and ARM8 families.
@@ -120,7 +120,7 @@ I guess with hardware like this, it's easy to figure out the *real* reason kids 
 
 ### Interconnection {.tabs-close}
 
-So far I have discussed how the two CPUs operate individually. But to work as a whole, they are required to cooperate constantly. To accomplish this, both CPUs directly 'talk' to each other using a dedicated **FIFO unit** [@cpu-double]. This block holds two 64-byte queues (with up to 16 elements each) for **bi-directional communication**.
+So far I have discussed how the two CPUs operate individually. But to work as a whole, they are required to cooperate constantly. To accomplish this, both CPUs directly 'talk' to each other using a dedicated **First In, First Out** (FIFO) unit [@cpu-double]. This block holds two 64-byte queues (with up to 16 elements each) for **bi-directional communication**.
 
 ![Representation of the FIFO unit.](_diagrams/cpu/fifo.png)
 
@@ -198,7 +198,7 @@ To support the explanations, this time I will be using *New Super Mario Bros* as
 
 ![Some tiles found in VRAM. For demonstration purposes, a default palette is used.](mario/tiles.png){.tab-float .border .pixel latex_width="75%"}
 
-By now we all know how a basic tile engine works, but how are tiles particularly managed on this console? Well, there's a total of **656 KB of VRAM** available [@graphics-amero], and this chunk is split into different banks: four of 128 KB, one of 64 KB, one of 32 KB and three of 16 KB. Programmers are free to fill these banks with drawings and then point the engine to the required data. Furthermore, both engines can read from any of the banks, but they cannot access the same one concurrently.
+By now we all know how a basic tile engine works, but how are tiles particularly managed on this console? Well, there's a total of **656 KB of Video RAM** (VRAM) available [@graphics-amero], and this chunk is split into different banks: four of 128 KB, one of 64 KB, one of 32 KB and three of 16 KB. Programmers are free to fill these banks with drawings and then point the engine to the required data. Furthermore, both engines can read from any of the banks, but they cannot access the same one concurrently.
 
 Nonetheless, there are some limitations on how data can be distributed. For instance, the ARM7 can only access two 128 KB banks. At the same time, these two banks can't store sprites, and Sub is the only engine capable of accessing the last 16 KB bank. The list goes on, but you get the idea.
 
@@ -300,7 +300,7 @@ Regarding effects, the unit also provides **shadowing** and a distinct feature c
 
 ![Ah, that's more like it.](mario/complete.png){.tab-float .border .pixel}
 
-Instead of writing the results back to a frame buffer for display, the rendering engine writes to a block called **Colour Buffer** which stores up to 48 scan lines [@graphics-3d_overview]. Each scan line is fetched by the 2D engine to fill the BG0 layer in a FIFO manner.
+Instead of writing the results back to a frame buffer for display, the rendering engine writes to a block called **Colour Buffer** which stores up to 48 scan lines [@graphics-3d_overview]. Each scan line is fetched by the 2D engine to fill the BG0 layer in a 'First In, First Out' (FIFO) manner.
 
 3D rendering starts before the 2D one, enabling the latter to apply transformations on the new layer if required. Main also allows to capture the 2D, 3D or combined frame generated, blend it with another frame in VRAM, and write the result back to VRAM - which can be displayed afterwards.
 
@@ -355,7 +355,7 @@ We've already seen how Game Boy Advance games were provided with a mix of [moder
 
 ![Oscilloscope display of the mixed stereo output during a game of Last Window: The Secret of Cape West (2010).](window){.open-float .negate .border latex_width="90%" video="true"}
 
-As a result, the new audio suite features a total of **16 PCM channels**, allowing to shift the mixing task from the CPU to dedicated hardware. Internally, PCM samples can now be **8-bit** (*GBA-style*), **16-bit** (the optimal resolution), or **ACPCM** (a compressed form) [@audio-channels]. In all cases, the mixer produces a stereo signal that can be played through the speaker - now stereo - or through headphones. It can also write the resulting stereo data to WRAM, enabling the sub-processor (ARM7) to apply effects such as reverb.
+As a result, the new audio suite features a total of **16 PCM channels**, allowing to shift the mixing task from the CPU to dedicated hardware. Internally, PCM samples can now be **8-bit** (*GBA-style*), **16-bit** (the optimal resolution), or **Adaptive Differential Pulse-Code Modulation** (ADPCM, a [compressed form](playstation#storage-and-processing)) [@audio-channels]. In all cases, the mixer produces a stereo signal that can be played through the speaker - now stereo - or through headphones. It can also write the resulting stereo data to WRAM, enabling the sub-processor (ARM7) to apply effects such as reverb.
 
 {.close-float}
 

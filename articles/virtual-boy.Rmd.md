@@ -149,7 +149,7 @@ For the CPU, Nintendo employed a customised version of the **NEC V810**, operati
 
 To start with, the V810 is part of the **V800 CPU family** that NEC designed for the embedded market [@cpu-necfamily] [@cpu-necv805]. While this CPU wasn't as popular as the competition (such as the [MIPS series](playstation#cpu) or the [Motorola 68000](mega-drive-genesis#cpu)) it does offer a range of cutting-edge functionality, specifically:
 
-- The **V800 series ISA**: A RISC instruction set that mixes 16-bit and 32-bit instructions.
+- The **V800 series Instruction Set Architecture** (ISA): A RISC instruction set that mixes 16-bit and 32-bit instructions.
 - **Thirty-two 32-bit registers**: The V810 is a complete 32-bit CPU and the registers are well aligned to that architecture.
   - As common with [RISC CPUs](playstation#the-offering), `r0` is always zero.
 - A **32-bit address bus**: Enabling to access up to 4 GB of memory, an enormous amount for its time.
@@ -177,7 +177,7 @@ So, for good reasons, Nintendo cut down to **27-bit addressing**. This means tha
 Having said that, the memory map layout enables the CPU to access the majority of the components that make up this system. This includes [@cpu-guy]:
 
 - **64 KB of RAM** for general-purpose use. For that reason, Nintendo calls it 'Work RAM' or 'WRAM'.
-  - The type of chip fitted is called **PSRAM** (short for 'Pseudostatic RAM' or 'Pseudo-SRAM'), which incorporates self-refreshing DRAM. This setup is both faster and more energy-efficient than the traditional low-cost DRAM.
+  - The type of chip fitted is called **PSRAM** (short for 'Pseudo-Static RAM' or 'Pseudo-SRAM'), which incorporates self-refreshing Dynamic RAM (DRAM). This setup is both faster and more energy-efficient than the traditional low-cost DRAM.
 - The cartridge ROM and any onboard RAM (if present).
 - The sound chip.
 - The graphics chip, along with its dedicated memory.
@@ -210,7 +210,7 @@ Moving on, you can divide the VIP into three main areas:
 
 - The **Pixel Processor** or 'XP': Generates backgrounds and sprites, much like the classic PPU. It writes the final processed bitmap to the frame buffer area in memory.
 - The **Display Processor** or 'DP': Controls the scanner and sends a frame buffer for display.
-- The **interfaces**: Provide access to two memory memory blocks - **128 KB of VRAM** and **128 KB of DRAM** [@cpu-ic]. The interfaces also arbitrate access between VRAM and the CPU (called the 'Host', from the VIP's perspective).
+- The **interfaces**: Provide access to two memory blocks - **128 KB of Video RAM** (VRAM) and **128 KB of DRAM** [@cpu-ic]. The interfaces also arbitrate access between VRAM and the CPU (called the 'Host', from the VIP's perspective).
 
 {.close-float}
 
@@ -234,7 +234,7 @@ Notice that those 128 KB of VRAM are 'real' dual-ported DRAM [@cpu-toshiba], not
 
 ![The VRAM chip.](vram_chip.webp){latex_width="90%"}
 
-Additionally, Nintendo fitted a particular VRAM chip that is nowhere to be found in any off-the-shelf catalogue. There is limited documentation about it, but according to details outlined in the patent application [@graphics-patent], **Serial Access Memory** (SAM) might be stored in a separate area within this chip. SAM is presumably made of SRAM and contains extra circuitry that allows the scanner to pull 16 bits simultaneously [@cpu-sharp].
+Additionally, Nintendo fitted a particular VRAM chip that is nowhere to be found in any off-the-shelf catalogue. There is limited documentation about it, but according to details outlined in the patent application [@graphics-patent], **Serial Access Memory** (SAM) might be stored in a separate area within this chip. SAM is presumably made of Static RAM (SRAM) and contains extra circuitry that allows the scanner to pull 16 bits simultaneously [@cpu-sharp].
 
 ### Constructing a frame
 
@@ -444,7 +444,7 @@ I have to admit, when I tried using the Virtual Boy with the AC Tap connected (s
 
 The V810 starts execution at address `0xFFFFFFF0H`, meaning that when the Virtual Boy is switched on, it seeks instructions at that location. That being said, that address resides within the cartridge ROM, giving the game the upper hand in the initialisation of the hardware.
 
-Also, there isn't any BIOS chip on the motherboard, so no operating system or abstraction layer is present to simplify operations.
+Also, there isn't any Basic Input/Output System (BIOS) chip on the motherboard, so no operating system or abstraction layer is present to simplify operations.
 
 ### House chores
 
@@ -452,7 +452,7 @@ For this reason, Nintendo instructed developers to perform several chores to ens
 
 - WRAM becomes usable only after 200 microseconds (0.0002 seconds) following the console's startup. The documentation includes a list of steps that games must follow to account for this delay.
   - Many years later, unofficial sources claimed that this was an erratum on Nintendo's part, and that it is the VIP's DRAM that actually requires waiting, as the datasheets corroborate [@operating_system-dram]. 
-- The game must populate the Column Table. To recall previous explanations, the 'active display' period is subject to a variable angular velocity. To prevent certain columns of the frame from appearing narrower than others, games fill a table in DRAM that applies corrections. To make things easier, Nintendo provided a default Column Table in their SDK, which games could use.
+- The game must populate the Column Table. To recall previous explanations, the 'active display' period is subject to a variable angular velocity. To prevent certain columns of the frame from appearing narrower than others, games fill a table in DRAM that applies corrections. To make things easier, Nintendo provided a default Column Table in their Software Development Kit (SDK), which games could use.
   - The table can also be amended at any time during gameplay and, since it consequently controls the amount of LED emission, the table also serves as a mechanism for adjusting the amount of brightness per column.
 
 ## Games

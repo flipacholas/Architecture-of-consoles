@@ -73,9 +73,9 @@ Moving on, the CPU employs a **variable clock speed**, reaching up to **3.58 MHz
 
 Now, to properly understand the functionality of the 5A22, we must first look at what the 65C816 provides:
 
-- The **65816 ISA**: The debut 16-bit instruction set of the 65C816. It is based on the 6502 ISA but does not implement undocumented instructions that some NES games resorted to [@cpu-unoffopcodes].
+- The **65816 Instruction Set Architecture** (ISA): The debut 16-bit instruction set of the 65C816. It is based on the 6502 ISA but does not implement undocumented instructions that some NES games resorted to [@cpu-unoffopcodes].
   - The size of instructions can vary between 1 byte (8 bits) and 4 bytes (32 bits), depending on how memory addresses are referenced (a.k.a. the 'addressing mode' used) [@cpu-isaref].
-  - The [broken BCD mode](nes#scrapped-functions) is **functional** again (I'm guessing as a consequence of *appropriate* licensing).
+  - The [broken Binary-Coded Decimal (BCD) mode](nes#scrapped-functions) is **functional** again (I'm guessing as a consequence of *appropriate* licensing).
 - **10 different modes of operation**: Due to a combination of backwards compatibility with the 6502, the return of the BCD mode (missing on the NES), and the ability to switch between groups of 16-bit and 8-bit registers [@cpu-opcodes], developers can utilise this CPU using different combinations of these.
   - Unlike later [MIPS CPUs](nintendo-64#cpu), there isn't a mixed instruction set with dedicated opcodes for 8-bit and 16-bit words. Instead, the same instruction set is interpreted differently depending on the mode activated.
   - For compatibility reasons, the CPU always starts in 'emulation' mode (pure 6502), and it is up to the program to switch to a particular 'native' mode to enable 16-bit functionality. On a side note, it is amusing how Intel's x86 still follows the [same modus operandi](xbox#boot-process) in their modern CPUs.

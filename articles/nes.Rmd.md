@@ -189,7 +189,7 @@ To answer these questions, the PPU came pre-programmed with a different memory l
   - The PPU addresses **up to 8 KB** of Character memory organised into two groups of 4 KB each.
 - Meta-data telling the PPU 'where' and 'how' to draw graphics is found in other areas:
   - The motherboard houses **2 KB of SRAM** specifically for graphics-related data. Nintendo calls this space **Video RAM** (VRAM), and it stores two data structures called **Nametables**.
-  - The PPU embeds **256 bytes** of DRAM to store the **Object Attribute Memory** (OAM).
+  - The PPU embeds **256 bytes** of Dynamic RAM (DRAM) to store the **Object Attribute Memory** (OAM).
   - Lastly, the PPU also bundles **4 bytes** of memory to define colour palettes.
 
 Don't worry about the new terminology; the meanings of these data structures are discussed step by step in the following paragraphs.
@@ -564,7 +564,7 @@ Nonetheless, the architecture of the Famicom/NES strictly enforces segregated Pr
 
 {.close-float}
 
-To operate the drive, the RAM adapter embeds an additional 8 KB ROM to store a **BIOS** [@games-fds_bios]. This program performs the following tasks:
+To operate the drive, the RAM adapter embeds an additional 8 KB ROM to store a **Basic Input/Output System** (BIOS) [@games-fds_bios]. This program performs the following tasks:
 
 - Displays a splash animation.
 - Bootstraps the game from the floppy disk. Behind the scenes, the BIOS contains routines to copy the floppy's contents to the appropriate memory chip, allowing the console to read them.

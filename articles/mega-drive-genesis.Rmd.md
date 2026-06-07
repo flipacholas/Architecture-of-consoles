@@ -72,7 +72,7 @@ By the end of the 80s, however, interest in the 68000 [faded in favour of a new 
 
 Having set the scene, let me tell you what the 68000 provides [@cpu-user]:
 
-- The **68000 ISA**: A new instruction set with plenty of features, including a set of multiplication and division opcodes. Some instructions are 8-bit long (called 'byte'), others are 16-bit long (called 'word') and the rest are 32-bit long (called 'long-word').
+- The **68000 Instruction Set Architecture** (ISA): A new instruction set with plenty of features, including a set of multiplication and division opcodes. Some instructions are 8-bit long (called 'byte'), others are 16-bit long (called 'word') and the rest are 32-bit long (called 'long-word').
 - **Sixteen general-purpose 32-bit registers**. Bear in mind, this CPU splits the set into eight 'data registers' (where arithmetic computations may be performed) and eight 'address registers' (exclusively used for storing memory addresses).
   - Nevertheless, this is a big step, considering the 6502 and Z80 only provide 8-bit registers.
 - A **16-bit Arithmetic Logic Unit** (ALU): Meaning it needs extra cycles to compute arithmetic operations on 32-bit numbers, but it's fine on 16-bit/8-bit ones.
@@ -312,7 +312,7 @@ Sonic The Hedgehog (1991).
 
 :::
 
-The **Yamaha YM2612** is an **FM synthesiser** [@audio-ymwiki] that provides **six FM channels**, one of which can play **PCM samples** instead. It operates at one-sixth of the 68000's clock speed and outputs one channel at a time, but it alternates between each channel every four cycles to create the illusion of generating all six channels at once [@audio-jsgroth]. For this reason, the Yamaha YM2612's sampling rate is **~53 kHz**. Furthermore, it accepts PCM samples with a resolution of **nine bits** [@audio-nukeykt]. Yet, the ninth bit was never officially documented so commercial games only sent 8-bit samples. Apart from that, its bus is connected exclusively to the Z80.
+The **Yamaha YM2612** is an **FM synthesiser** [@audio-ymwiki] that provides **six FM channels**, one of which can play **Pulse-Code Modulation** (PCM) samples instead. It operates at one-sixth of the 68000's clock speed and outputs one channel at a time, but it alternates between each channel every four cycles to create the illusion of generating all six channels at once [@audio-jsgroth]. For this reason, the Yamaha YM2612's sampling rate is **~53 kHz**. Furthermore, it accepts PCM samples with a resolution of **nine bits** [@audio-nukeykt]. Yet, the ninth bit was never officially documented so commercial games only sent 8-bit samples. Apart from that, its bus is connected exclusively to the Z80.
 
 **Frequency Modulation** (FM) synthesis is one of many professional techniques used for producing sound. It significantly rose in popularity during the 80s and made way to completely new sounds, many of which you can find by listening to the pop hits from that era (I would give you a list but my [music taste](./about#super-curated-repertoire) is a bit _experimental_).
 

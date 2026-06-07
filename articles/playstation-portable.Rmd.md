@@ -63,7 +63,7 @@ The company's first decision was to acknowledge that MIPS CPUs couldn't compute 
 
 Consequently, MIPS revisited its fragmented CPU line and consolidated it with **three instruction sets** [@cpu-modern_mips]:
 
-- **MIPS32**: An update of [MIPS II](playstation#the-offering) (the last 32-bit-only ISA) bringing functionality gathered from later architectures while keeping the 32-bit boundary.
+- **MIPS32**: An update of [MIPS II](playstation#the-offering) - the last 32-bit-only Instruction Set Architecture (ISA) - bringing functionality gathered from later architectures while keeping the 32-bit boundary.
 - **MIPS64**: The continuation of MIPS V, a [64-bit ISA](nintendo-64#cpu) and the last one before the revamp. The MIPS V has been a superset of all previous ISAs, just like its predecessors.
 - **microMIPS**: Available as 'microMIPS32' and 'microMIPS64', these are supersets of the MIPS32 and MIPS64, respectively, with an additional group of 16-bit instructions (à la [Thumb](game-boy-advance#tab-2-3-squeezing-performance)). microMIPS is not binary compatible with the other ISAs, however, so it required re-compilation of legacy codebases to run on microMIPS.
 
@@ -92,8 +92,8 @@ Overall, this looks more competitive than the [ARM9-based competition](nintendo-
 As with any MIPS CPU, Allegrex has three coprocessor slots. Sony added three [@cpu-naked]:
 
 - The **System Control Coprocessor** as 'CP0': a [necessary building block](playstation#tab-2-1-system-control-coprocessor) of any MIPS CPU. This particular component is what enables memory protection, cache coherency and interrupt control in the core itself [@cpu-mips_4k].
-- A **Floating Point Unit** (FPU) as 'CP1': accelerates arithmetic operations with 32-bit decimal numbers (following the IEEE 754 standard). It has **thirty-two 32-bit registers** and an **independent 8-stage pipeline**, thereby adding more parallelism to the main CPU.
-- A **Vector Floating Point Unit** (VFPU) as 'CP2': a coprocessor designed for **vector operations**, similar to a traditional SIMD processor. Compared to the FPU, it instead provides **128 32-bit registers**, relies on a proprietary instruction set, and implements a variable-length pipeline. The VFPU operates up to 32-bit floating-point values, which can be grouped into a 4-component vector or **even a 4x4 matrix**. This is useful for computing different kinds of geometric operations without requiring to rearrange the data.
+- A **Floating-Point Unit** (FPU) as 'CP1': accelerates arithmetic operations with 32-bit decimal numbers (following the IEEE 754 standard). It has **thirty-two 32-bit registers** and an **independent 8-stage pipeline**, thereby adding more parallelism to the main CPU.
+- A **Vector Floating-Point Unit** (VFPU) as 'CP2': a coprocessor designed for **vector operations**, similar to a traditional SIMD processor. Compared to the FPU, it instead provides **128 32-bit registers**, relies on a proprietary instruction set, and implements a variable-length pipeline. The VFPU operates up to 32-bit floating-point values, which can be grouped into a 4-component vector or **even a 4x4 matrix**. This is useful for computing different kinds of geometric operations without requiring to rearrange the data.
   - Its efficiency comes from its 128-bit data bus connected to the rest of the system, offloading the main CPU's transit.
   - Unlike the FPU, some behaviour of the VFPU deviates from the IEEE-754 standard.
 
@@ -408,11 +408,11 @@ That block is very good at signal processing, but it needs to be programmed. So,
   - This synthesizer supports 32 channels, using the **PCM**, **ADPCM** or **ATRAC3** formats [@io-edepot].
   - Provides **digital reverb**, **pitch control** and **ADSR envelope**.
 
-Games don't have access to these modules directly. Instead, they call many libraries included in the official SDK. Some libraries are designed to operate raw signals while others are optimised for particular applications. Examples include:
+Games don't have access to these modules directly. Instead, they call many libraries included in the official Software Development Kit (SDK). Some libraries are designed to operate raw signals while others are optimised for particular applications. Examples include:
 
 - **MP3 and AAC decoding**.
 - **MIDI sequencing**.
-- **VoIP audio decoding** (G729 and u-law).
+- **Voice over IP (VoIP) audio decoding** (G729 and u-law).
   - The operating system of the PSP bundled a variant of the 'Skype' app, if you wonder what uses VoIP could have here.
 
 ### Audio comparison {.interactive-only}

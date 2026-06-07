@@ -61,13 +61,13 @@ The Z80 CPU has an interesting background, as it was designed by none other than
 
 Their debut product can be considered an unofficial successor to the Intel 8080, now featuring:
 
-- The **Z80 ISA**: An instruction set compatible with the Intel 8080 but expanded with lots more instructions. It handles **8-bit** words.
+- The **Z80 Instruction Set Architecture** (ISA): An instruction set compatible with the Intel 8080 but expanded with lots more instructions. It handles **8-bit** words.
 - An **8-bit data bus**, ideal for moving 8-bit data around. Larger values will consume extra CPU cycles.
 - **Fourteen 8-bit general-purpose registers** [@cpu-registers]: This is quite a lot, considering the Intel 8080 features half and the [MOS 6502 only three](nes#core-functionality). However, the Z80's register file exhibits some caveats (or advantages, depending on how you see it):
   - Only **seven registers are accessible at a time**, the other seven are called 'Alternative Registers' and must be swapped with the first set to be able to access them. This aligns with the principle of [bank switching](nes#going-beyond-existing-capabilities). Also, the Z80 provides specialised instructions like `EX` and `EXX` to transfer the contents between each set.
   - Within each set, six 8-bit registers may also be paired together to provide up to **three 16-bit registers**, allowing the manipulation of larger values.
 - A **16-bit address bus**, its consequences are explained in the next section.
-- A **4-bit ALU**: This may be a bit shocking, but it simply means that operations on 8-bit values take twice as many cycles to compute.
+- A **4-bit Arithmetic Logic Unit** (ALU): This may be a bit shocking, but it simply means that operations on 8-bit values take twice as many cycles to compute.
 
 The motherboard picture at the start of the article shows an NEC D780C-1 CPU, which is simply SEGA second-sourcing the chip to different manufacturers. Other revisions even included the chip manufactured by Zilog. But for this article, it doesn't matter who fabricated the CPU, as the internal features remain the same.
 
@@ -83,7 +83,7 @@ As mentioned earlier, the Z80 has a 16-bit address bus, so the CPU can find up t
 
 ### Accessing the rest of the components
 
-As you may have read in the previous paragraph, only the main RAM and some cartridge ROM are found in the address space. So, how does the program access other components? Well, unlike Nintendo's [Famicom/NES](nes), not all the hardware in the Master System is mapped to memory locations. Instead, certain peripherals are accessed through the **I/O space**.
+As you may have read in the previous paragraph, only the main RAM and some cartridge ROM are found in the address space. So, how does the program access other components? Well, unlike Nintendo's [Famicom/NES](nes), not all the hardware in the Master System is mapped to memory locations. Instead, certain peripherals are accessed through the **Input/Output (I/O) space**.
 
 This is because the Z80 family contains an interesting feature called **I/O ports**, which enable the CPU to communicate with other hardware without exhausting memory addresses. To achieve this, there is a separate address space for 'I/O devices' called **ports**, and both share the same data and address bus. The difference, however, is that ports are read from and written to using `IN` and `OUT` instructions, respectively, as opposed to the traditional load/store instruction (`LD`).
 
@@ -107,7 +107,7 @@ The drawings on the screen are produced by a proprietary chip called **Video Dis
 
 ![Memory architecture of the VDP.](_diagrams/vdp.png)
 
-Connected to the VDP are **16 KB of VRAM**, which only the VDP can access using a **16-bit data bus** (Sega modified the original design to access two memory chips with 8-bit buses simultaneously [@cpu-service]). If you look at the motherboard picture again, you'll notice that both RAM and VRAM chips are roughly the same, except that VRAM uses the chip model ending in '20', which offer lower latency [@cpu-nec].
+Connected to the VDP are **16 KB of Video RAM** (VRAM), which only the VDP can access using a **16-bit data bus** (Sega modified the original design to access two memory chips with 8-bit buses simultaneously [@cpu-service]). If you look at the motherboard picture again, you'll notice that both RAM and VRAM chips are roughly the same, except that VRAM uses the chip model ending in '20', which offer lower latency [@cpu-nec].
 
 For the Master System, VRAM houses everything the VDP requires for rendering (except Colour RAM). The CPU fills VRAM by writing to specific VDP registers, which in turn forward the values to VRAM. Since the VDP is accessed through I/O ports, the CPU must use `IN` and `OUT` instructions.
 
@@ -288,7 +288,7 @@ I don't have the necessary tools right now to confirm whether the SMS should exh
 
 ![Oscilloscope display of Alex Kidd - The Lost Stars (1986), showing the 1-bit PCM sample.](ball){.tab-float video="true" latex_width="80%" .negate .border}
 
-While the SN76489 lacks a [PCM channel](nes#tab-3-4-sample) for reproducing samples, there are some tricks that can be used to simulate this functionality.
+While the SN76489 lacks a [Pulse-Code Modulation (PCM) channel](nes#tab-3-4-sample) for reproducing samples, there are some tricks that can be used to simulate this functionality.
 
 These rely on the pulse channels, it was discovered that if the tone level is fixed at `1`, the volume level (which alters the amplitude) conditions the shape of the waveform.
 

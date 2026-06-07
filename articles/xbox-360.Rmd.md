@@ -127,7 +127,7 @@ Now that we've positioned Microsoft and IBM on the map, let's talk about the new
 
 ![For comparison purposes, here's the equivalent view of Cell. Cell also includes 32 KB of ROM not shown here.](images/consoles/ps3/_diagrams/cell/cell.png){.toright}
 
-Don't worry, all of these components will be explained throughout this article, starting with the **Power Processing Element** (PPE) blocks shown at the top left corner.
+Don't worry, all of these components will be explained throughout this article, starting with the **PowerPC Processor Element** (PPE) blocks shown at the top left corner.
 
 #### A new look at CPU history
 
@@ -557,7 +557,7 @@ You've seen before that the abundance of services in 7th generation consoles has
 
 ![Diagram of the Southbridge’s connections.](_diagrams/southbridge.png)
 
-The Xbox 360 is no stranger to this. Hidden within the Southbridge chip there's a component called **System Management Controller** (SMC) and, like [the Wii](wii#the-hidden-co-processor), it draws current even on standby mode. The SMC abstracts lots of I/O operations, including power management, real-time clock, temperature control, LED control and the infrared sensor [@io-smc]. The CPU communicates to the SMC using a [FIFO command buffer](nintendo-ds#interconnection), though this task is restricted to the Kernel only (more about it in the 'Operating System' section). So, neither the user nor the game can fiddle with it.
+The Xbox 360 is no stranger to this. Hidden within the Southbridge chip there's a component called **System Management Controller** (SMC) and, like [the Wii](wii#the-hidden-co-processor), it draws current even on standby mode. The SMC abstracts lots of I/O operations, including power management, real-time clock, temperature control, LED control and the infrared sensor [@io-smc]. The CPU communicates to the SMC using a [First In, First Out (FIFO) command buffer](nintendo-ds#interconnection), though this task is restricted to the Kernel only (more about it in the 'Operating System' section). So, neither the user nor the game can fiddle with it.
 
 Internally, the SMC is nothing more than a classic **Intel 8051** microcontroller with its own ROM and RAM [@anti_piracy-smc_hack]. Upon getting power, it boots its internal program and proceeds to read from a separate NAND chip to fetch configuration files.
 

@@ -102,7 +102,7 @@ Now, while Acorn and Apple lingered on the computer/handheld market, ARM devised
 
 ### The Nintendo partnership {.tabs-close}
 
-Back in Japan, and thanks to the [Game Boy analysis](game-boy), we have learnt that Nintendo's hardware strategy for portable systems favours a [System On a Chip (SoC)](game-boy#cpu) model. This has allowed the company to obfuscate affordable off-the-shelf technology and combine it with in-house developments. In doing so, the new console could be unique and competitive. Fortunately, ARM's licensing model fitted just right for those needs. 
+Back in Japan, and thanks to the [Game Boy analysis](game-boy), we have learnt that Nintendo's hardware strategy for portable systems favours a [System-on-Chip (SoC)](game-boy#cpu) model. This has allowed the company to obfuscate affordable off-the-shelf technology and combine it with in-house developments. In doing so, the new console could be unique and competitive. Fortunately, ARM's licensing model fitted just right for those needs. 
 
 ![The CPU AGB chip, housing the ARM7TDMI CPU (among many other components).](cpu_agb.png){latex_width="90%"}
 
@@ -133,7 +133,7 @@ Now that we know how developers talk to this chip, let's check what's inside the
 In terms of circuitry, the ARM7TDMI is a cut-down version of the ARM710 with interesting additions. The core includes [@cpu-arm] [@cpu-furber]:
 
 - **16 general-purpose 32-bit registers**: While it's a big step compared to the seven [8-bit registers of the SM83/Game Boy](game-boy#the-cpu-core), it represents a compromise on the RISC guidelines, which stipulate thirty-two 32-bit registers. This is because ARM favoured maintaining a small silicon footprint [@cpu-furber].
-- **32-bit data bus and ALU**: Meaning it can move and operate 32-bit values without consuming extra cycles.
+- **32-bit data bus and Arithmetic Logic Unit** (ALU): Meaning it can move and operate 32-bit values without consuming extra cycles.
 - **Clean 32-bit addressing**: This is part of Apple's input. The first three ARM CPUs employed 26-bit memory addresses to optimise performance (allowing to store the Program Counter and Status Register in a single 32-bit word) in exchange for memory addressability (only up to 64 MB of memory could be accessed). The follow-up ARM6 series (with its ARMv3 ISA) introduced 32-bit addressing logic, but kept a backwards-compatible mode for legacy code. Now, the ARM7TDMI (being mobile-focused) scrapped the 26-bit mode and only houses logic for 32-bit addresses, thereby reducing the amount of silicon needed.
 - **No [Memory Management Unit (MMU)](nintendo-64#memory-management)**: Ever since the ARM1, ARM provided an MMU solution. First as the 'MEMC' co-processor, and then integrated with the ARM610. Now, the ARM7TDMI seems to be the only one in its series to provide none, potentially due to the lack of interest (as early mobile devices didn't require sophisticated virtual memory).
 - **No cache**: Another cost-saving measure in this chip, as earlier ARM chips bundled some cache.
@@ -201,7 +201,7 @@ An interesting aspect reported in the Gbdev Wiki and GBATek is that **all Game B
 
 ## Graphics
 
-Before we begin, you'll find the graphics capabilities to be a blend of [Super Nintendo](super-nintendo#graphics) and [Game Boy](game-boy#graphics) elements. In fact, the new graphics core is still called **PPU**. Thus, I recommend reading those articles first, as I will be revisiting many previously explained concepts.
+Before we begin, you'll find the graphics capabilities to be a blend of [Super Nintendo](super-nintendo#graphics) and [Game Boy](game-boy#graphics) elements. In fact, the new graphics core is still called **Picture Processing Unit** (PPU). Thus, I recommend reading those articles first, as I will be revisiting many previously explained concepts.
 
 ![Comparison of screen resolution and aspect ratio between the Game Boy and Game Boy Advance series.](_diagrams/screen_comparison.png)
 
@@ -355,7 +355,7 @@ Let's break down each audio component. I will be using *Sonic Advance 2* as an e
 
 ![Oscilloscope display of the PCM channels.](pcm){.tab-float .negate .border latex_width="90%" video="true"}
 
-As indicated earlier, the GBA comes with a revamped audio system called **Direct Sound**. It plays **stereo Pulse-Code Modulation (PCM) samples** [@cpu-korth]. In other words, straight-out recordings that are no longer limited to a [predefined set of waveforms](game-boy#audio). Behind the scenes, the audio data is fed into a 16-byte First-In-First-Out (FIFO) queue, and a Digital-to-Analogue Converter (DAC) turns it into audible sound.
+As indicated earlier, the GBA comes with a revamped audio system called **Direct Sound**. It plays **stereo Pulse-Code Modulation (PCM) samples** [@cpu-korth]. In other words, straight-out recordings that are no longer limited to a [predefined set of waveforms](game-boy#audio). Behind the scenes, the audio data is fed into a 16-byte First In, First Out (FIFO) queue, and a Digital-to-Analogue Converter (DAC) turns it into audible sound.
 
 Conversely, the audio samples don't share the quality of CD audio, I'm afraid, as this console must remain affordable. The DAC can only operate **8-bit signed samples** (i.e. values between -128 to 127). This is half the resolution of typical CD audio (16-bit), which introduces significant noise. Nevertheless, games can choose the sampling rate: the technical limit is 65 kHz (for reference, CD audio is 44.1 kHz), although higher rates are possible at the expense of sample resolution [@audio-jsgroth]. Even so, all these options require large cartridge sizes and plenty CPU cycles, so not every game will spend the same amount of resources to feed the audio circuitry.
 
@@ -445,7 +445,7 @@ Games are distributed in a new proprietary cartridge format; it's still called *
 
 Programming for the GBA shares some philosophies with the [Super Nintendo](super-nintendo) but also inherits the advancements of the early 2000s, such as standardised high-level languages, reliable compilers, debuggable RISC CPUs, non-proprietary workstations for development, comparatively better documentation and... access to the World Wide Web!
 
-That said, GBA programs are mostly written in **C**, with performance-critical sections in **assembly** (ARM and Thumb) to save cycles. The official SDK that Nintendo supplied to authorised game studios contained libraries and compilers.
+That said, GBA programs are mostly written in **C**, with performance-critical sections in **assembly** (ARM and Thumb) to save cycles. The official Software Development Kit (SDK) that Nintendo supplied to authorised game studios contained libraries and compilers.
 
 ### Accessing cartridge data
 
