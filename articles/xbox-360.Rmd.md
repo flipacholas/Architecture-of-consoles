@@ -97,7 +97,7 @@ Thus, Microsoft began meeting with Intel, though the talks didn't last long, as 
 
 It so happened that one of the potential candidates for Microsoft was none other than IBM. Maybe I watched too many dramatic documentaries, but I always pictured the two as the kind of passive-aggressive 'friends' who only smile at each other if they are among other people.
 
-You see, in the past, IBM and Microsoft formed many partnerships that ended up with bitterness between the two. Be as it may, their agreements ended up disrupting the status quo of the global market and paved the way for new types of consumer products and developments. To name a few examples:
+You see, in the past, IBM and Microsoft formed many partnerships that ended up with bitterness between the two. Be that as it may, their agreements ended up disrupting the status quo of the global market and paved the way for new types of consumer products and developments. To name a few examples:
 
 - The arrival of the IBM **Personal Computer** in 1981 led to a new market of 'personal computers' and the subsequent choice of Microsoft's 'MS-DOS' as the default operating system. This granted Microsoft a monopolistic dominance in the PC business in the years to come.
 - In the 90s, with the advent of home networking and affordable servers and workstations, IBM and Microsoft's new venture resulted in **OS/2**, a new operating system targeting high-end IBM computers. However, upon the unexpected release of Microsoft's Windows NT, IBM was left alone to fight in an arena already favouring Windows.
@@ -108,7 +108,7 @@ When Microsoft approached IBM for a new _frictionless_ venture, IBM was already 
 
 #### The new CPU partner {.tabs-close}
 
-In a turn of events, IBM agreed to share its IP and to design a new multi-core processor, and so the **Xbox 360's CPU supplier became IBM**. Although, [you may remember](playstation-3#tab-1-1-the-state-of-progress) this was the same IBM that already signed an agreement with Sony and Toshiba to produce the PlayStation's 3 CPU ('Cell'). Apparently, IBM assumed Microsoft was not aware of the Cell project [@cpu-alexander], and their current contract with Sony did not forbid them from selling to third parties.
+In a turn of events, IBM agreed to share its IP and to design a new multi-core processor, and so the **Xbox 360's CPU supplier became IBM**. Although, [you may remember](playstation-3#tab-1-1-the-state-of-progress) this was the same IBM that already signed an agreement with Sony and Toshiba to produce the PlayStation 3's CPU ('Cell'). Apparently, IBM assumed Microsoft was not aware of the Cell project [@cpu-alexander], and their current contract with Sony did not forbid them from selling to third parties.
 
 > All three companies [IBM, Toshiba and Sony]... legally all had rights to go and put any of that technology, any of those processor cores into other spaces. (...) It is very common to develop an interesting, leading-edge new technology and then utilize that technology across multiple platforms. (...) I guess what everyone didn't anticipate was -- before we even got done with the Cell chip and PS3 product -- that **we'd be showing this off specifically to a competitor**. [@cpu-alexander]
 >
@@ -141,15 +141,15 @@ After all, Microsoft didn't want processors of very different natures squashed i
 
 {.close-float}
 
-Truth to be told, this also resulted in aggressive budget cuts to keep this design (and the rest of the system) at a competitive price range. To put it in context, multi-core CPUs for PCs weren't on the store shelves while IBM was building Xenon, and when they debuted in 2005 (coincidentally, the same year the Xbox 360 reached the stores), AMD priced their cheapest Athlon X2 at $537 (equivalent to ~£452 in 2021 money) and Intel charged $241 (equivalent to ~£203 in 2021 money) for their low-end Pentium D [@cpu-hachman] - and let's not forget the box only included the CPU.
+Truth be told, this also resulted in aggressive budget cuts to keep this design (and the rest of the system) at a competitive price range. To put it in context, multi-core CPUs for PCs weren't on the store shelves while IBM was building Xenon, and when they debuted in 2005 (coincidentally, the same year the Xbox 360 reached the stores), AMD priced their cheapest Athlon X2 at $537 (equivalent to ~£452 in 2021 money) and Intel charged $241 (equivalent to ~£203 in 2021 money) for their low-end Pentium D [@cpu-hachman] - and let's not forget the box only included the CPU.
 
 ### How this study is organised
 
-We'll now take a look main components that comprise Sony's counterpart. To avoid repeating [existing information](playstation-3#how-this-study-is-organised), I'll focus on the novelties of Xenon.
+We'll now take a look at the main components that comprise Sony's counterpart. To avoid repeating [existing information](playstation-3#how-this-study-is-organised), I'll focus on the novelties of Xenon.
 
 Having said that, the new CPU runs at **3.2 GHz** and it includes so much circuitry that, for this study, we have to split it into different groups:
 
-- The **three leaders** that execute the program's instructions. At first, each resembles Cell's **PowerPC Processor Element** (PPE), but you'll soon see that they are actually a superset of it. Additionally, since we've got three of them now, it may seem as if the whole chip behaves like a _Ceberus_ monster, where each core may claim control of the whole system. Alas, that's not feasible in a computer, so the first core is the designated **master core** while the others will be taking **assistant roles**.
+- The **three leaders** that execute the program's instructions. At first, each resembles Cell's **PowerPC Processor Element** (PPE), but you'll soon see that they are actually a superset of it. Additionally, since we've got three of them now, it may seem as if the whole chip behaves like a *Cerberus* monster, where each core may claim control of the whole system. Alas, that's not feasible in a computer, so the first core is the designated **master core** while the others will be taking **assistant roles**.
 - A **single interface** that interconnects the cores with the rest of the system. This bus is called **XBAR** (pronounced 'Crossbar').
   - Like in Cell, there are other proprietary interfaces used for debugging or maintenance (i.e. temperature) but these will not be mentioned until we reach the 'Anti-piracy' section.
 - The **security block** which Microsoft oversaw to implement the anti-piracy system. It's a very complex section, so to avoid overwhelming you with information, I'll explain it in the 'Anti-piracy' section as well.
@@ -167,7 +167,7 @@ To explain the aforementioned groups, I've organised the study of Xenon into the
 
 The original chip (Cell) was required to house **twelve** independent nodes actively moving data around, this forced IBM engineers to devise a complicated system that could tackle emerging bottlenecks, which materialised in the form of the [Element Interconnect Bus](playstation-3#inside-cell-the-heart) (EIB). With the Xbox 360, Xenon only accommodates three units (the three PPEs), so the EIB has no purpose here. Thus, a simpler solution called **XBAR** was produced to focus solely on the three PPEs, with space for extra functionality.
 
-XBAR relies on a **mesh topology** that doesn't direct traffic in a token-style manner. Instead, each node is provided with a dedicated lane to move its data through [@cpu-brown]. This may appear more optimal than the token topology of the EIB, but that's because the XBAR only needs to serve a small number of nodes. Furthermore, the XBAR operates at full speed (**3.2 GHz**).
+XBAR relies on a **mesh topology** that doesn't direct traffic in a ring-style manner. Instead, each node is provided with a dedicated lane to move its data through [@cpu-brown]. This may appear more optimal than the ring topology of the EIB, but that's because the XBAR only needs to serve a small number of nodes. Furthermore, the XBAR operates at full speed (**3.2 GHz**).
 
 ![Simplified diagram of the XBAR/Crossbar combined with the L2 component.](_diagrams/cpu/crossbar.png){.toleft}
 
@@ -243,7 +243,7 @@ The interesting thing is that neither approach is better or worse, out-of-order 
 
 ##### Eroded relationships
 
-Conversely, whilst the omission of out-of-order may look justified from a engineering standpoint, this would ultimately wither trust in IBM's long-term abilities. Apple, sensing that future PowerPC chips would no longer stand against Intel [@cpu-race_takahashi], was the first to abandon its partnership and switch to Intel in 2005 (just in time for [Yonah](xbox#p6-and-the-end-of-pentium-numbers)). Nonetheless, this didn't worry IBM, who preferred to focus on its server and gaming sector.
+Conversely, whilst the omission of out-of-order may look justified from an engineering standpoint, this would ultimately wither trust in IBM's long-term abilities. Apple, sensing that future PowerPC chips would no longer stand against Intel [@cpu-race_takahashi], was the first to abandon its partnership and switch to Intel in 2005 (just in time for [Yonah](xbox#p6-and-the-end-of-pentium-numbers)). Nonetheless, this didn't worry IBM, who preferred to focus on its server and gaming sector.
 
 The long-term outcome of the PowerPC CPU, however, became extinction. The aforementioned technical constraints (after all, IBM [used to be a trailblazer in out-of-order design](gamecube#tab-1-1-the-commercial-milestone)), combined with questionable business ethics (the fact IBM secretly designed for two close rivals at once), resulted in the loss of the entire console market: Sony and Microsoft selected AMD CPUs for their next-generation console. A decade later, Nintendo's [Wii U](wiiu#the-last-venture-of-powerpc) would become the last console to bundle a PowerPC chip.
 
@@ -303,7 +303,7 @@ Example of Xbox 360 games. All rendered at their maximum resolution (1280x720 pi
 
 :::
 
-The graphics chip is designed and manufactured by no other than **ATI**, [Nvidia](playstation-3#graphics)'s direct rival. To put it into perspective, a new company called 'ArtX' was set up by former SGI employees who developed the Nintendo 64's graphics chip, the [Reality Co-Processor](nintendo-64#graphics). Afterwards, Nintendo hired them again to produce the GameCube's [Flipper](gamecube#graphics) chip... at the same time ATI was in the process of acquiring them [@graphics-ati_merger]. By then, ATI was competing in the PC arena with their 'ATI Rage' graphics cards and will soon inherit Flipper's engineers. Fast forward to 2005, Nvidia (now supplying Sony) was now facing ATI again in the console market.
+The graphics chip is designed and manufactured by none other than **ATI**, [Nvidia](playstation-3#graphics)'s direct rival. To put it into perspective, a new company called 'ArtX' was set up by former SGI employees who developed the Nintendo 64's graphics chip, the [Reality Co-Processor](nintendo-64#graphics). Afterwards, Nintendo hired them again to produce the GameCube's [Flipper](gamecube#graphics) chip... at the same time ATI was in the process of acquiring them [@graphics-ati_merger]. By then, ATI was competing in the PC arena with their 'ATI Rage' graphics cards and will soon inherit Flipper's engineers. Fast forward to 2005, Nvidia (now supplying Sony) was now facing ATI again in the console market.
 
 _Good old competition_, one can only wonder what new innovative product will come out of it.
 
@@ -315,7 +315,7 @@ Since the early naughties, Nvidia and ATI have been trying to outmatch one anoth
 
 Nvidia enjoyed considerable leverage after the introduction of [programmable pixel pipeline](xbox#the-importance-of-programmability) which later became part of the OpenGL and Direct3D specification. Thus, ATI had no other choice but to follow suit. However, in 2003, ATI recovered its user base after Nvidia's anticipated 'GeForce 5' line disappointed Direct3D 9 users, who were expecting better performance and functionality from Nvidia's flagship card [@graphics-shimpi_5800]. As a result, attention shifted towards ATI's Radeon 9000 series.
 
-These events allowed ATI to keep the crown for a while longer, but unbeknownst to Nvidia, ATI had been working on a new disrupting ingredient that could hold Nvidia for another decade. This project eventually materialised in the form of **Unified Shaders** and debuted in no other than the Xbox 360, with the new graphics chip called **Xenos**.
+These events allowed ATI to keep the crown for a while longer, but unbeknownst to Nvidia, ATI had been working on a new disrupting ingredient that could hold Nvidia for another decade. This project eventually materialised in the form of **Unified Shaders** and debuted in none other than the Xbox 360, with the new graphics chip called **Xenos**.
 
 {.close-float}
 
@@ -351,7 +351,7 @@ Interestingly enough, the R400 branch carried on in the smartphone world with th
 
 ### Organising the content
 
-Another unusual element from Xenos is its **triple memory architecture** (so much for emphasising the UMA...). Xenos relies on two different chips to render graphics, one is the **aforementioned 512 MB of GDDR3 DRAM** (which is shared with the CPU) and the other is a smaller but way faster memory chip residing within the same package (which only Xenos has access too). The latter piece provides **10 MB of Embedded Dynamic RAM** (EDRAM) [@graphics-baumann]. Curiously enough, EDRAM is not a new ingredient, having been found in the [Graphics Synthesiser](playstation-2#graphics), the [Graphics Engine](playstation-portable#graphics) and, most importantly, [Flipper](gamecube#graphics) (also ATI's invention).
+Another unusual element from Xenos is its **triple memory architecture** (so much for emphasising the UMA...). Xenos relies on two different chips to render graphics, one is the **aforementioned 512 MB of GDDR3 DRAM** (which is shared with the CPU) and the other is a smaller but way faster memory chip residing within the same package (which only Xenos has access to). The latter piece provides **10 MB of Embedded Dynamic RAM** (EDRAM) [@graphics-baumann]. Curiously enough, EDRAM is not a new ingredient, having been found in the [Graphics Synthesiser](playstation-2#graphics), the [Graphics Engine](playstation-portable#graphics) and, most importantly, [Flipper](gamecube#graphics) (also ATI's invention).
 
 Those 512 MB store most - if not all - the materials Xenos needs to render a frame, including textures, shaders and many types of buffers as the game sees fit. On the other side, the 10 MB of EDRAM are left for small elements that require rapid access, such as the Z-buffer, the stencil buffer, the back buffer (intermediate frame buffer) and any other custom buffer if needed. This mitigates congestion from the shared GDDR3 RAM and speeds up operations that make use of those buffers.
 
@@ -416,7 +416,7 @@ Secondly, the **Scan converter** receives triangles and packs them into 8x8 pixe
 
 Instead of testing each pixel of the triangle, Hi-Z evaluates groups of pixels (**2x2 pixels** in this case) by calculating the maximum and minimum Z-value among the four pixels. Then, if the maximum z-value of the quadrant is less than the respective value stored in memory, the whole portion is assumed to be occluded and the quadrant is discarded [@graphics-baumann].
 
-The Hi-Z block uses dedicated memory for these operations, this memory can store up to 16 different Z-values for Z-testing **64 pixels per cycle**. The downside is that available memory only allows Xenos to perform Hi-Z if the framebuffer's resolution is no greater than 1280 x 720 pixels along with MultiSampling Anti-aliasing with up to two samples (2x MSSA) activated.
+The Hi-Z block uses dedicated memory for these operations, this memory can store up to 16 different Z-values for Z-testing **64 pixels per cycle**. The downside is that available memory only allows Xenos to perform Hi-Z if the framebuffer's resolution is no greater than 1280 x 720 pixels along with MultiSampling Anti-aliasing with up to two samples (2x MSAA) activated.
 
 Finally, the scan converter gets back groups of 2x2 blocks (so 16x16 pixels in total) and sends them in batches of 64 pixels to the next stage, where the pixel shader adds the _eye-catching_ effects.
 
@@ -457,7 +457,7 @@ Similarly, over the next years since the console's release, the concepts of Xeno
 
 {.close-float}
 
-Now, if you wonder if any of these advancements were later incorporated into the Xbox 360. I'm afraid by the time this console debuted, the unified shaders were still a relatively new concept. So, unfortunately, none of the consequent developments (i.e. Direct3D 10) got ever back-ported to the Xbox 360. But hey, that's a legacy left for the next generation of consoles to enjoy!
+Now, if you wonder if any of these advancements were later incorporated into the Xbox 360. I'm afraid by the time this console debuted, the unified shaders were still a relatively new concept. So, unfortunately, none of the consequent developments (i.e. Direct3D 10) were ever back-ported to the Xbox 360. But hey, that's a legacy left for the next generation of consoles to enjoy!
 
 On the other side, the PC market experienced a different revolution that strangely didn't originate from ATI. It turns out **Nvidia** won the race on becoming the first company to ship a graphics card using the unified model, I'm referring to the **GeForce 8** series (and its **Tesla** architecture) that landed in 2006 [@graphics-anand]. Ironically, it was the same year the PlayStation 3 arrived (also powered by Nvidia's technology, though with an older architecture...).
 
@@ -524,7 +524,7 @@ For the coup de grace, Microsoft added dedicated circuitry to offload CPU cycles
 
 ### A look at the XMA accelerator {.tabs-close}
 
-In terms of functions, The XMA decoder can decode up to **5.1 audio channels** with a sample rate of **48 kHz** and a resolution of **16-bit**. No surprises here!
+In terms of functions, the XMA decoder can decode up to **5.1 audio channels** with a sample rate of **48 kHz** and a resolution of **16-bit**. No surprises here!
 
 ![Overview of the audio pipeline.](_diagrams/audio.png)
 
@@ -535,7 +535,7 @@ Moving on, the decoder works as follows:
 3. Outputs PCM data, ready to be streamed, in an arbitrary location in main RAM.
 4. Finally, the CPU can apply effects on it and/or forward it to the audio DAC for hearing.
 
-All of this is abstracted with the use of Microsoft libraries, which handle how data is streamed, optimised in cache and moved around in memory. Developers have multiple APIs at their disposal, each offering thinner-to-thicker layers of abstraction. Be as it may, the thinnest API won't provide direct access to the XMA decoder, as it's still a proprietary and undocumented block of circuitry, after all.
+All of this is abstracted with the use of Microsoft libraries, which handle how data is streamed, optimised in cache and moved around in memory. Developers have multiple APIs at their disposal, each offering thinner-to-thicker layers of abstraction. Be that as it may, the thinnest API won't provide direct access to the XMA decoder, as it's still a proprietary and undocumented block of circuitry, after all.
 
 ## I/O
 
@@ -545,7 +545,7 @@ Following in the [footsteps](xbox#io) of the original Xbox, all I/O operations a
 
 ![The same picture with important parts labelled.](southbridge_marked.png){.tabs-nested-last title="Marked"}
 
-The Southbridge communicates to Xenos using the **PCI Express** protocol, composed of two unidirectional serial buses, one for each direction. In the case of this console, each bus can transfer up to **500 MB/sec** [@graphics-baumann].
+The Southbridge communicates with Xenos using the **PCI Express** protocol, composed of two unidirectional serial buses, one for each direction. In the case of this console, each bus can transfer up to **500 MB/sec** [@graphics-baumann].
 
 ### Clever L2 access
 
@@ -702,7 +702,7 @@ Michael Brundage, one of the authors of FU, described the development process as
 
 ### Storage medium
 
-Now that we've seen the structure of the OS, let's now check how information is scattered across this console. You'll soon find that there's an abundance of media available, and Microsoft had to device different file systems and protocols to keep the security integrity in place.
+Now that we've seen the structure of the OS, let's now check how information is scattered across this console. You'll soon find that there's an abundance of media available, and Microsoft had to devise different file systems and protocols to keep the security integrity in place.
 
 #### Boot ROM {.tabs .active}
 
@@ -837,7 +837,7 @@ In my opinion, this style reminds me of one of those brochures with eye-catching
 
 ![The Media Center app, included with Windows XP Media Center Edition (2005). This edition of Windows XP bundles an extra set of apps that target the TV, as opposed to the PC.](screenshots/windows/mediacenter2005.jpg){.toright}
 
-Truth to be told, the overall design was strongly compromised to comply with both 4:3 and 16:9 aspect ratios, without being able to take advantage of the latter. The organisation of elements wasn't very consistent either, as some views, like the Xbox Guide, felt like all controls had to be squashed into a small space. The most limiting aspect, in my opinion, is the fact the indicators for navigation (list of available blades) were always shown on both edges of the screen. This consumed useful space for the opened blade. Thus, exceptional navigation segues had to be used to move away from the home screen hierarchy and reclaim full-screen space, at the cost of adding more inconsistency to the user interface.
+Truth be told, the overall design was strongly compromised to comply with both 4:3 and 16:9 aspect ratios, without being able to take advantage of the latter. The organisation of elements wasn't very consistent either, as some views, like the Xbox Guide, felt like all controls had to be squashed into a small space. The most limiting aspect, in my opinion, is the fact the indicators for navigation (list of available blades) were always shown on both edges of the screen. This consumed useful space for the opened blade. Thus, exceptional navigation segues had to be used to move away from the home screen hierarchy and reclaim full-screen space, at the cost of adding more inconsistency to the user interface.
 
 Nevertheless, this is the GUI that gave this console an identity, and it's obvious that it targeted the 'young' audience group, which worked _fine_ for a few years.
 
@@ -875,7 +875,7 @@ With the new design, screens could now enjoy full-screen space without being con
 
 ![The new home screen built for Kinect controls. Notice how the container at the bottom right corner indicates what Kinect is capturing at the moment.](screenshots/kinect/home.jpg){.active title="Home"}
 
-![As the Xbox Live expands its repertoire, many types of applications can now be installed (not only games).](screenshots/kinect/apps.jpg){title="Apps"}
+![The Game Library gets a brighter colour scheme.](screenshots/kinect/apps.jpg){title="Apps"}
 
 ![The Settings menu with minor changes applied.](screenshots/kinect/settings.jpg){title="Settings"}
 
@@ -1069,15 +1069,15 @@ Let's see what Microsoft came up with the use of all those components.
 
 ##### Chain of Trust {.tabs .active}
 
-The convoluted boot process you've read before was designed to implement a sophisticated **chain of trust**. This makes sure that, once the hypervisor is ready to execute userland code, the latter is always encrypted and signed by no other than Microsoft.
+The convoluted boot process you've read before was designed to implement a sophisticated **chain of trust**. This makes sure that, once the hypervisor is ready to execute userland code, the latter is always encrypted and signed by none other than Microsoft.
 
 To efficiently obfuscate the boot process, multiple types of cyphers are employed. For instance, The second bootloader (2BL/CB) is decrypted using **RC4** (a fast algorithm), whose decryption key is constructed at run-time using **HMAC-SHA**. Then, the decrypted code is hashed (using **SHA1** and **ROT**). Finally, to check that 2BL hasn't been tampered with, the calculated hash is compared against a stored hash pre-signed with Microsoft's private key (using **RSA**).
 
-For an increased protection, each console embeds a unique **CPU key** imprinted on the eFuses just before the console leaves the factory. At runtime, the CPU key is mixed with other parameters to devise part of the bootloader's keys. All in all, this means cracking one CPU key won't affect other consoles.
+For increased protection, each console embeds a unique **CPU key** imprinted on the eFuses just before the console leaves the factory. At runtime, the CPU key is mixed with other parameters to devise part of the bootloader's keys. All in all, this means cracking one CPU key won't affect other consoles.
 
 Once the Hypervisor is loaded into main RAM, the chain of trust is in place and no code will be executed without the Hypervisor's permission, especially since the latter possesses **W^X** abilities.
 
-##### Irreversable and unique numbers {.tab}
+##### Irreversible and unique numbers {.tab}
 
 To further protect the chain of trust and prevent external alterations, boot stages also query the cluster of **768 eFuses** to find the following information [@anti_piracy-fusesets]:
 
@@ -1128,7 +1128,7 @@ In practice, the entity responsible for implementing Microsoft's copy protection
 
 As the copy protection subsystem is subsequently delegated to a third-party, multiple concerns arise. For instance, drives still communicate using standard ATA commands [@anti_piracy-hacking_2], so they must find ways to obfuscate sensitive exchanges of data. Furthermore, drives must be prepared to overwrite their firmware in case Microsoft revises a new copy protection mechanism. All of this, while preventing unauthorised parties from accessing this functionality.
 
-While going through each security measure of each manufacturer is beyond the scope of this article, it's important to denote that during the cat-and-mouse games that ultimately emerged, Microsoft had little control over how they were protected and subsequently patched [@cpu-steil], and this evident gap costed the company an early wave of piracy distribution.
+While going through each security measure of each manufacturer is beyond the scope of this article, it's important to note that during the cat-and-mouse games that ultimately emerged, Microsoft had little control over how they were protected and subsequently patched [@cpu-steil], and this evident gap cost the company an early wave of piracy distribution.
 
 ### Fallback techniques {.tabs-close}
 
@@ -1215,7 +1215,7 @@ And this is pretty much how the hypervisor got hijacked by arbitrary code. A com
 
 The King Kong exploit was a huge step for the Homebrew scene. I'm not sure if you noticed, but no encryption keys were needed whatsoever (_so much for having a strong security system in place..._).
 
-Be as it may, **Microsoft was already made aware of it** and subsequently patched it in January 2007 (one month before the report was published). Nonetheless, efforts continued in finding similar exploits for updated consoles. Additionally, hackers could now obtain an outdated console and make use of the King Kong exploit to expand their research.
+Be that as it may, **Microsoft was already made aware of it** and subsequently patched it in January 2007 (one month before the report was published). Nonetheless, efforts continued in finding similar exploits for updated consoles. Additionally, hackers could now obtain an outdated console and make use of the King Kong exploit to expand their research.
 
 As a result, throughout the same year of the King Kong events (2007), new discoveries were made:
 
@@ -1331,7 +1331,7 @@ While the RGH hack attacks the fundamental construction of the CPU at an early s
 
 For instance, the new Slim edition of the console released in 2010 (ironically, a year before the publication of RGH) codenamed **Trinity** moved the `CPU_PLL_BYPASS` point to a location hackers couldn't find (yet). Meanwhile, the RGH team found out they can fiddle with the PLL signal of the video encoder chip via I²C, and this will condition the speed of the CPU. Unfortunately, the video encoder can only slow it so much (just ~3 times [@anti_piracy-hacking_3]) so the precision and success rate is reduced. Nonetheless, it's still a huge accomplishment.
 
-Additionally, Slim consoles split the CB stage into CB_A and CB_B, where CB_B is further encrypted with the RC4 algorithm and relies on the CPU key. To add more to the despair, the zero-pairing backdoor got completely removed. Finally, all of these changes would soon be extended to older models as Microsoft publishes more software updates. Be as it may, hackers never gave up and found out they could modify CB_B in its encrypted form. Thanks to a mathematical flaw in RC4, encrypted information can be altered just by applying `XOR` with an unencrypted delta patch [@anti_piracy-hacking_3], thereby allowing to disable encryption routines on CB_B without knowing the CPU Key!
+Additionally, Slim consoles split the CB stage into CB_A and CB_B, where CB_B is further encrypted with the RC4 algorithm and relies on the CPU key. To add more to the despair, the zero-pairing backdoor got completely removed. Finally, all of these changes would soon be extended to older models as Microsoft publishes more software updates. Be that as it may, hackers never gave up and found out they could modify CB_B in its encrypted form. Thanks to a mathematical flaw in RC4, encrypted information can be altered just by applying `XOR` with an unencrypted delta patch [@anti_piracy-hacking_3], thereby allowing to disable encryption routines on CB_B without knowing the CPU Key!
 
 #### Selling RGH {.tab}
 

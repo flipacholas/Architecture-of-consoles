@@ -55,7 +55,7 @@ Welcome to the most recognisable and innovative part of this console.
 
 ### Introduction
 
-The PS3's CPU is massively complex, but it's also a very fascinating work of engineering that intersects complex needs and unusual solutions, prominent in an era of change and experimentation. So, before we step into the internals of the PS3's CPU, I wrote the following paragraphs to bring some historical context into the article. That way, we'll be able to decompose the chip from top to bottom in a way that not only you will understand how this chip works, but also get the reasoning behind major design decisions.
+The PS3's CPU is massively complex, but it's also a very fascinating work of engineering that intersects complex needs and unusual solutions, prominent in an era of change and experimentation. So, before we step into the internals of the PS3's CPU, I wrote the following paragraphs to bring some historical context into the article. That way, we'll be able to decompose the chip from top to bottom in a way that not only will you understand how this chip works, but also get the reasoning behind major design decisions.
 
 #### The state of progress {.tabs .active}
 
@@ -79,7 +79,9 @@ Every year, consumers ask for more speed. That's always been the case. However, 
 
 So, the focus turns to **distributed computing** [@cpu-mit]. In other words, why obsess with cranking up the performance of a single machine where you could instead have multiple smaller machines distributing their workload? Conversely, this approach is anything but new, considering all of the consoles analysed on this website contain more than one processor. However, it's the development of a 'single processor with multiple cores' that opens up new opportunities for CPU design (which are not necessarily limited to the console market).
 
-Consequently, Cell is part of this new wave of research and development. This new CPU combines a multi-core design with a special focus on vector processing. If you remember, vector computing is optimal for simulations (physics, lighting, etc) and it was previously materialised in the form of the [Geometry Transformation Engine](playstation#tab-2-2-geometry-transformation-engine) or the [Vector Units](playstation-2#co-cpus), but you'll soon see why Cell's design is a huge step forward from the previous two.
+These developments are, at the same time, marred by a marketing-driven fixation on **breaking the 3 GHz barrier**. I presume IBM feels the pressure after watching Intel surpass it with the Pentium 4. However, the two will eventually pay with severe tradeoffs, both [technical](xbox#p6-and-the-end-of-pentium-numbers) and [business-wise](xbox-360#eroded-relationships).
+
+In any case, Cell is part of this new wave of research and development. This new CPU combines a multi-core design with a special focus on vector processing. If you remember, vector computing is optimal for simulations (physics, lighting, etc) and it was previously materialised in the form of the [Geometry Transformation Engine](playstation#tab-2-2-geometry-transformation-engine) or the [Vector Units](playstation-2#co-cpus), but you'll soon see why Cell's design is a huge step forward from the previous two.
 
 #### A new multicore era {.tab}
 
@@ -109,7 +111,7 @@ Cell runs at a _mighty_ **3.2 GHz** and it's composed of a multitude of componen
 - The **assistants**: these are as crucial as the PPE, but their capabilities are limited to an assistant/accelerator role. This group comprises eight **Synergistic Processor Elements** (SPEs).
 - The **interfaces**: As the need for bandwidth surges exponentially, newer interfaces are implemented to move data around without producing bottlenecks. In the interfaces group, we find a handful of protocols: the **Element Interconnect Bus** (EIB), the **Broadband Engine Interface Unit** (BEI), the **Memory Interface Controller** (MIC) and the **Flex I/O buses**.
 
-This information will be revisited throughout the article in more depth, so you don't have to memorise these names. The main goal of this section is to let the reader get a mental image of the nature of Cell and familiarise with all the components we'll be discussing in due time.
+This information will be revisited throughout the article in more depth, so you don't have to memorise these names. The main goal of this section is to let the reader get a mental image of the nature of Cell and familiarise themselves with all the components we'll be discussing in due time.
 
 #### How this study is organised
 
@@ -129,9 +131,9 @@ Since its announcement, Cell has been referred to as a **Network-on-Chip** (NoC)
 
 ![Simplified diagram of the Element Interconnect Bus (EIB).<br>Each arrow between 'Ramps' (nodes) represents two unidirectional buses, thus, each node is connected to the next one using four channels.](_diagrams/cell/eib.png)
 
-The EIB is made of twelve nodes called **Ramps**, each one connecting one component of Cell. Ramps are interconnected using four buses, two of them travel **clockwise** and the other two do so **anti-clockwise**. Each bus (or **channel**) is 128-bit wide. Having said that, instead of recurring to single bus topologies (like the Emotion Engine and its precursor did), ramps are inter-connected following the **token ring** topology, where data packets must cross through all neighbours until they reach the destination (there's no direct path). Considering the EIB provides four channels, there're four possible routes (**rings**).
+The EIB is made of twelve nodes called **Ramps**, each one connecting one component of Cell. Ramps are interconnected using four buses, two of them travel **clockwise** and the other two do so **anti-clockwise**. Each bus (or **channel**) is 128-bit wide. Having said that, instead of resorting to single bus topologies (like the Emotion Engine and its precursor did), ramps are inter-connected following the **ring topology**, where data packets must cross through all neighbours until they reach the destination (there's no direct path). Considering the EIB provides four channels, there're four possible routes (**rings**).
 
-Now, you may think, what's the point of a token ring if data may end up travelling longer paths (compared to a single direct bus)? Well, a single bus is highly susceptible to [congestion](playstation-2#a-recognisable-memory-choice). Hence, EIB's engineers decided on this topology to tackle large amounts of concurrent traffic (keep reading if you want to know how the token ring helped).
+Now, you may think, what's the point of a ring if data may end up travelling longer paths (compared to a single direct bus)? Well, a single bus is highly susceptible to [congestion](playstation-2#a-recognisable-memory-choice). Hence, EIB's engineers decided on this topology to tackle large amounts of concurrent traffic (keep reading if you want to know how the ring helped).
 
 Data is transferred in the form of **128-bit packets** [@cpu-cell_arch]. Each ring can carry up to **three concurrent transfers** as long as the packets don't overlap. The EIB operates with the use of **command credits**, in other words, whenever a component needs to initiate a transfer, it sends a request to the EIB's **Data Arbiter**, which manages the traffic within the rings. The moment the request is approved, packets enter the ring and receive a 'token', which the data arbiter uses as meta-data to supervise the transfer. Moreover, some components have preferential priority over others, like the **Memory Interface Controller** (MIC) component, which is where main RAM is located. Finally, the data arbiter will never place packets at rings whose path is longer than half of the ring.
 
@@ -166,11 +168,11 @@ To start with, the PPU is not built from the ground up but **re-purposes existin
 
 That being said, why did IBM choose PowerPC technology to develop a high-performance chip? Simple, PowerPC is a mature platform [@cpu-koranne] that enjoyed ~10 years of Macintosh user-base [testing and revisioning](gamecube#tab-2-2-joining-forces-again), it ticks all the boxes in Sony's list and, if the need arises, it can be adapted to different environments. Last but not least, the use of a well-known architecture is good news for existing compilers and codebases which, for a new console, is a big starting advantage.
 
-It's worth mentioning that IBM was one of the authors of the first PowerPC chips, along with Motorola and Apple (recall the [AIM alliance](gamecube#tab-1-2-reaching-the-average-user)). Be as it may, towards the early 00s, the so-called alliance members were already [working separately](gamecube#tab-2-3-the-band-splits-for-good), where Motorola/Freescale developed a different PowerPC series from IBM.
+It's worth mentioning that IBM was one of the authors of the first PowerPC chips, along with Motorola and Apple (recall the [AIM alliance](gamecube#tab-1-2-reaching-the-average-user)). Be that as it may, towards the early 00s, the so-called alliance members were already [working separately](gamecube#tab-2-3-the-band-splits-for-good), where Motorola/Freescale developed a different PowerPC series from IBM.
 
 ##### Distinctive features {.tab}
 
-The PPU shares some history with the PowerPC 970 (called _G5_ by Apple), both are descendants of POWER4, a PowerPC predecessor mainly used in workstations and supercomputers. This will become more evident when I show you the modularised execution units soon. This is a radical change compared to the GameCube's [750-line CPU](gamecube#the-powerpc-gekko), which had considerable input from Motorola but was then slightly modified by IBM.
+The PPU shares some history with the PowerPC 970 (called *G5* by Apple). Both are descendants of [POWER4](gamecube#tab-2-3-the-band-splits-for-good), a PowerPC predecessor mainly used in workstations and supercomputers - not to be confused with the barely-related GameCube's [750-line CPU](gamecube#the-powerpc-gekko), which had considerable input from Motorola but was then slightly modified by IBM. Anyway, the influence of POWER4 will become more evident when I show you the modularised execution units soon.
 
 Back on topic, the PPU is a **complete 64-bit processor**. This means:
 
@@ -179,7 +181,7 @@ Back on topic, the PPU is a **complete 64-bit processor**. This means:
 - The data-bus is _at least_ 64-bit wide: in the next sections of the article, you'll see it's **much wider** than that, but for now, keep in mind that transferring 64-bit words **won't penalise performance**.
 - The address bus is 64-bit wide: in theory, the CPU can access up to **16 exabytes of memory**. Now, in practice, this is very costly if the machine doesn't house all that memory. So, modern CPUs delegate addressing to the Memory Management Unit (MMU) to provide more uses to the address bus.
 
-Finally, the PPU implements the **PowerPC ISA version 2.02**, including optional opcodes for floating-point square root [@cpu-prog_tut, p. 23]. It's also been extended with a group of SIMD instructions called **Vector/SIMD Multimedia Extension** (VMX). On the other side, some elements are missing from the original specification, such little-endian mode (in fact, Cell only operates in big-endian) and just a handful of opcodes.
+Finally, the PPU implements the **PowerPC ISA version 2.02**, including optional opcodes for floating-point square root [@cpu-prog_tut, p. 23]. It's also been extended with a group of SIMD instructions called **Vector/SIMD Multimedia Extension** (VMX). On the other side, some elements are missing from the original specification, such as little-endian mode (in fact, Cell only operates in big-endian) and just a handful of opcodes.
 
 #### PPU's building blocks {.tabs-close}
 
@@ -193,7 +195,7 @@ The first block is called **Instruction Unit** (IU) and as its name suggests, it
 
 Instruction issuing is carried out with a **12-stage pipeline**, though in practice the total number of stages will greatly vary depending on the type of instruction. For instance, the **branch prediction** block may bypass great parts. If we combine the IU with the neighbour units, the final number of stages is often **close to 24** (yes, it's a big number, but remember Cell runs at 3.2 GHz).
 
-Now for the interesting parts, The IU is **dual-issued**: in some cases, the IU will dispatch up to two instructions at the same time, consequently improving throughput greatly. In practice, however, there are many conditions for this to work, so programmers/compilers are responsible for optimising their routines so their sequence of instructions can take advantage of this function. By the way, dual-issuing has been implemented by [previous CPUs](gamecube#the-powerpc-gekko) as well, and the term varies between vendors, so here I used IBM's definition.
+Now for the interesting parts, the IU is **dual-issued**: in some cases, the IU will dispatch up to two instructions at the same time, consequently improving throughput greatly. In practice, however, there are many conditions for this to work, so programmers/compilers are responsible for optimising their routines so their sequence of instructions can take advantage of this function. By the way, dual-issuing has been implemented by [previous CPUs](gamecube#the-powerpc-gekko) as well, and the term varies between vendors, so here I used IBM's definition.
 
 Furthermore, to top it off, the IU is also **multi-threaded**, where the unit can execute two different sequences of instructions (called 'threads') at the same time. Behind the scenes, the IU is just alternating between the two threads at each cycle, giving the appearance of multi-threading. This technique is historically known as **Simultaneous Multi-Threading** (SMT) or _hyper-threading_, as Intel later coined. Nevertheless, IBM's multi-threading mitigates unwanted effects like [pipeline stalls](nintendo-64#tab-3-1-pipeline-stalls), since the CPU will no longer be blocked if one instruction jams up the flow. To accomplish multi-threading, IBM engineers duplicated the internal resources of the IU, which includes general-purpose registers (previously I said there are 32 registers available, that's per thread. In reality, there are 64 in total!), however, resources that don't belong to the PowerPC specification (such as L1 and L2 cache; and the interfaces) are still shared. Thus, the latter group is single-threaded.
 
@@ -283,7 +285,7 @@ As a curious fact, considering the limit of EIB packets (up to 128-bit long), th
 
 The **Synergistic Processor Unit** (SPU) is the part of the SPE where the core processor resides, equivalent to the 'PPU' when we talked about the PPE.
 
-Contrariwise to the PPU, the SPU is isolated from the rest of the Cell. Thus, there's no shared memory between the PPU and others SPUs. Instead, the SPU contains local memory used as working space. However, the contents of local memory can be moved back and forth using the MFC.
+Unlike the PPU, the SPU is isolated from the rest of the Cell. Thus, there's no shared memory between the PPU and other SPUs. Instead, the SPU contains local memory used as working space. However, the contents of local memory can be moved back and forth using the MFC.
 
 In terms of functionality, the SPU is a lot more limited than the PPU. For instance, SPU doesn't include any memory management functions (address translation and memory protection) or even state-of-the-art functions (i.e. dynamic branch prediction). Nonetheless, it performs exceptionally well at vector processing.
 
@@ -397,7 +399,7 @@ It's been five years since Nvidia debuted the [GeForce3/NV30 lineup](xbox#graphi
 
 The RSX inherits existing Nvidia technology, it's reported to be based on the 7800 GTX model sold for PCs, which implements the **GeForce7** (or NV47) architecture [@graphics-nvarch], also named 'Curie'.
 
-In my [previous Xbox analysis](xbox#graphics), I talked about the GeForce3 and their debuting pixel shaders, so what has changed since then? There have some been ups and downs, but mostly incremental changes, so nothing too groundbreaking compared to GeForce3's pixel shaders.
+In my [previous Xbox analysis](xbox#graphics), I talked about the GeForce3 and their debuting pixel shaders, so what has changed since then? There have been some ups and downs, but mostly incremental changes, so nothing too groundbreaking compared to GeForce3's pixel shaders.
 
 {.close-float}
 
@@ -453,7 +455,7 @@ As you can see, commands and data pass through many buffers and caches before re
 
 The next unit is the **Geometry Processing** block, an evolution of the 'Vertex Block' in the GeForce3 that performs vertex transformation. It's still programmable with the use of **vertex shaders**, which is now a widely adopted feature in the graphics industry. Furthermore, the instruction limit has been increased to 512 instructions minimum (originally, 136 was the limit!).
 
-The block that executes shaders is called **Vertex Processing Engine** (VPE) and it can process **one vertex per clock cycle**. As if wasn't enough, there are **eight VPEs working in parallel**. Since the GeForce6 series, Nvidia has aligned its shader programming interface to a model called 'Vertex Shader Model 3' or 'vs_3_0_', a standard developed by Microsoft for use with their DirectX 9.0c libraries [@graphics-vs3]. The VPEs also support the non-proprietary OpenGL 2.1 model [@graphics-kilgard] and Nvidia's own variant (Cg) [@graphics-vp40].
+The block that executes shaders is called **Vertex Processing Engine** (VPE) and it can process **one vertex per clock cycle**. As if that wasn't enough, there are **eight VPEs working in parallel**. Since the GeForce6 series, Nvidia has aligned its shader programming interface to a model called 'Vertex Shader Model 3' or 'vs_3_0_', a standard developed by Microsoft for use with their DirectX 9.0c libraries [@graphics-vs3]. The VPEs also support the non-proprietary OpenGL 2.1 model [@graphics-kilgard] and Nvidia's own variant (Cg) [@graphics-vp40].
 
 Compared to the GeForce3, we've got new instructions available for branching and subroutine calls. Also, the VPE contains four texture samplers that pull texture colours during this stage, in case programmers want to use this unit to perform some operations on them.
 
@@ -483,13 +485,13 @@ A separate unit is used for rasterizing 2D objects (sprites), although this one 
 
 Next in line we've got the **Fragment Shader & Texture** block, this is a programmable unit (through the use of 'fragment programs' or 'shader') that applies texture mapping and other effects.
 
-Being an advanced successor of GeForce3's [texture units](xbox#tab-2-3-pixel), the new block contains **six fragment units** (also called 'pipes'), each one process 2x2 texels (named 'quads'). To organise multiple units working concurrently, another sub-block called **Shader Quad Distributor** (SQD) is placed to dispatch quads to each fragment unit. Afterwards, each fragment unit loads the fragment program.
+Being an advanced successor of GeForce3's [texture units](xbox#tab-2-3-pixel), the new block contains **six fragment units** (also called 'pipes'), each one processes 2x2 texels (named 'quads'). To organise multiple units working concurrently, another sub-block called **Shader Quad Distributor** (SQD) is placed to dispatch quads to each fragment unit. Afterwards, each fragment unit loads the fragment program.
 
 To compute operations, each pipe contains the _enormous_ amount of **1536 128-bit registers**. On top of all that, each pipe can process multiple quads in parallel (**multi-threading**), though the number of quads processed in parallel depends on the number of registers allocated to the fragment program (`no. threads = 1536 ÷ no. registers reserved by shader`). In global terms, up to 460 quads can be processed in parallel. Furthermore, up to three fragment pipes can process two instructions at the same time (**dual-issuing**, like the PPU) as long as the instructions don't depend on each other.
 
 The fragment units provide similar arithmetic-type instructions to the vertex unit, with the addition of texture-related opcodes, such as multiple types of texture fetching (since textures can be encoded using many structures and then compressed) and unpacking. Similarly to the vertex block, the fragment shader abides by DirectX's Pixel Shader 3.0 model [@graphics-vs3], OpenGL's NV_fragment_program2 profile [@graphics-khronos] and Cg's 'fp40' profile [@graphics-fp40]. All of this to ease programming and avoid learning low-level APIs from the ground up.
 
-Finally, since the units will be constantly fetching texture pieces from video RAM or main RAM, this block includes three texture caches: **4 KB of L1 cache** for each pipe, **48 KB of L2 cache** for video RAM fetches; and **96 KB of L2 cache for main RAM**. Notice that main RAM cache is significantly larger, this was a conscientious decision made to compensate for higher latency.
+Finally, since the units will be constantly fetching texture pieces from video RAM or main RAM, this block includes three texture caches: **4 KB of L1 cache** for each pipe, **48 KB of L2 cache** for video RAM fetches; and **96 KB of L2 cache for main RAM**. Notice that main RAM cache is significantly larger, this was a conscious decision made to compensate for higher latency.
 
 #### Pixel operations {.tab}
 
@@ -527,7 +529,7 @@ You see, while the need for better graphics tends to grow exponentially (consume
 
 ![Summary of the audio pipeline.](_diagrams/audio.png)
 
-So, in the end, audio is now completely implemented with software and processed by the SPUs (I mean the Synergistic Processor Unit, not the [Sound Processing Unit](playstation-2#audio)! it's a bit ironic that both share the same initials...). Moving on, Sony provides many libraries in their SDK that instruct the SPUs to carry out audio sequencing, mixing and streaming. And if that's not enough, many effects can also be applied.
+So, in the end, audio is now completely implemented with software and processed by the SPUs (I mean the Synergistic Processor Unit, not the [Sound Processing Unit](playstation-2#audio)! It's a bit ironic that both share the same initials...). Moving on, Sony provides many libraries in their SDK that instruct the SPUs to carry out audio sequencing, mixing and streaming. And if that's not enough, many effects can also be applied.
 
 That being said, where is the audio signal sent for broadcast? **The RSX**. This chip also contains the ports used to broadcast raw audio signals to the TV. Before sending it, the signal is encoded in different formats, depending on the output selected (analogue, HDMI or S/PDIF, the latter is also called 'digital audio').
 
@@ -580,7 +582,7 @@ Regarding internal components, SouthBridge connects to:
 
 #### Backwards compatibility
 
-Having mentioned the PS2 chips, I guess this is my cue to talk about backwards compatibility of the PlayStation 3 once in for all.
+Having mentioned the PS2 chips, I guess this is my cue to talk about backwards compatibility of the PlayStation 3 once and for all.
 
 First things first, let me introduce how backwards compatibility generally works: consoles can either play their predecessor's games with the help of **software** (instructs existing hardware to behave as the old game would expect) and **hardware** (either the existing hardware provides total or partial backwards compatibility; and/or the company added extra chips to recreate the older system within the new motherboard). With the amount of processing power the PS3 shows, you would expect Sony to ship a PS2 emulator running within Cell and accelerated by RSX. Well, for some reason that didn't happen and instead, Sony fitted the PS2's chipset at one corner of the motherboard.
 
@@ -594,9 +596,9 @@ Since the Cell and RSX are still 'on' while playing a PS2 game, the system offer
 
 ![PS3's user interface showing the game entry after inserting a PS2 disc.<br>(Don't worry about the other icons for now, as some are not even official).](xmb/ps2.jpg)
 
-All in all, thanks to this setup, the PS3 runs PS2 games at an impressive compatibility rate. On top of all, you can take advantage of new features that come with the new console (wireless control, HDMI interface and virtual memory cards).
+All in all, thanks to this setup, the PS3 runs PS2 games at an impressive compatibility rate. On top of all that, you can take advantage of new features that come with the new console (wireless control, HDMI interface and virtual memory cards).
 
-As if wasn't enough, PS1 games can run as well, this time without needing to embed the old SoC or GPU (it relies on pure software emulation).
+As if that wasn't enough, PS1 games can run as well, this time without needing to embed the old SoC or GPU (it relies on pure software emulation).
 
 #### The strange end of terms
 
@@ -607,7 +609,7 @@ Throughout the lifecycle of the PS3, Sony slowly trimmed PS2-only chips from the
 - **Costs**: The introductory price of the first revision of the console (_CECHA_, only in Japan and US) in 2006, which was PS2-compatible, was priced at $599.99 or ¥60,000 without taxes [@io-launch_fun]. The following model (_CECHC_, shipped in 2007 internationally) removed the Emotion Engine and RDRAM (shifting those tasks to software emulation) and launched in the UK with a £425 price tag. Later in the same year, Sony released a new model (_CECHG_) without any PS2-related chip for £126 less [@io-price_cut]. All this proves that backwards compatibility is, in the end, an expensive add-on.
 - **Idling hardware and wasted power**: While Cell and RSX still take care of some tasks to recreate the original environment, these are minimal compared to their full potential. Combined with the fact CECHA models have a cumulative power consumption of 399 Watts [@io-psu], it does make you wonder if this design is worth the power consumption, let alone efficient (for comparison, CECHG's new power supply consumes 285 Watts).
   - I understand there are other factors involved in the reduction of power consumption, like the new revisions of Cell and RSX. However, I still believe the PS2's chipset plays an important role.
-- **Inflexibility**: The EE+GS chip is not re-programmable, which means the end result will always be the same, independently whether there are glitches or possible enhancements. Compare this to the PCSX2 emulator's graphic enhancements [@io-widescreen_hack] and its modding capabilities [@io-persona_mods], this show us that room for improvement is possible and appreciated.
+- **Inflexibility**: The EE+GS chip is not re-programmable, which means the end result will always be the same, independently whether there are glitches or possible enhancements. Compare this to the PCSX2 emulator's graphic enhancements [@io-widescreen_hack] and its modding capabilities [@io-persona_mods], this shows us that room for improvement is possible and appreciated.
 
 Personally, I believe pure software emulation is the most feasible option in the long term due to its scalability, customisation, and independence from proprietary hardware. But of course, this takes more effort to implement accurately, as the ongoing development of PCSX2 by a volunteer-driven community demonstrates it (please note that the aforementioned emulator only runs on x86 PCs, however).
 
@@ -676,7 +678,7 @@ Since this piece is already physically protected with obfuscation, it doesn't ha
 Remember about those **256 MB of NAND flash** I briefly mentioned before? Well, here is where most of the operating system resides. That is, until Sony released the _CECHH_ model in late 2007, replacing the 256 MB NAND for a puny **16 MB NOR**. As a consequence, some files had to be moved elsewhere. For the sake of simplicity, let's first see what these chips store [@operating_system-flash]:
 
 - **Console-specific Loaders**: specifically, two loaders called `bootldr` and `metldr`. These files are encrypted with a key engraved during manufacturing, so they can't be replaced!
-  - Be as it may, there are hidden functions in Sony's hypervisor that allow to update these, although, for some reason, they have never been used [@operating_system-psxplace].
+  - Be that as it may, there are hidden functions in Sony's hypervisor that allow to update these, although, for some reason, they have never been used [@operating_system-psxplace].
 - **CoreOS**: the first half of the operating system. It mainly consists of more loaders that will continue the boot process and eventually bootstrap the second half (**GameOS**). CoreOS also supplies the **Recovery Menu**, an alternative shell that contains maintenance utilities that users can use to (attempt to) repair their console.
 - **Unique IDs**: similar to the [PSP's IDStorage](playstation-portable#tab-2-2-kernelipl), these are used by the console to control secured hardware like the Blu-ray drive; or by Sony to authenticate the console with their online servers (i.e. the IDPS key).
 - **Security assets**: some programs depend on them to perform security operations. For instance, Blu-ray movies with DRM check a block called Virtual Table Rights Management (VTRM). Sony also stores **revocation tools and records** to blacklist security certificates that have been compromised in the past.
@@ -699,7 +701,7 @@ The debuting 2.5-inch Hard drive, ranging between 20 GB and 500 GB (as more revi
 - **Game assets**: games can copy files from the disc to the hard disk to improve loading times. These are treated as 'game data' by the operating system.
 - **Cache**: a separate 2 GB partition is available to games for temporary storage (in case main RAM is not enough).
 
-NOR systems, however, also store GameOS in the HDD. As a consequence, whenever the user swaps out the hard drive, the console asks for an update file to re-install GameOS into the disk. Be as it may, neither NOR nor NAND systems will boot without the hard disk.
+NOR systems, however, also store GameOS in the HDD. As a consequence, whenever the user swaps out the hard drive, the console asks for an update file to re-install GameOS into the disk. Be that as it may, neither NOR nor NAND systems will boot without the hard disk.
 
 Certain user data can be backed up using a USB stick and then moved to another console if necessary, though this process re-formats the newer console before copying the old data.
 
@@ -773,7 +775,7 @@ Folding&#64;home was an application installed in every PlayStation 3 that, once 
 
 Throughout its lifetime, the joined computing power of 15 million PS3 users worldwide assisted Folding&#64;home with their research towards curing Alzheimer's disease [@operating_system-protein_retirement]. In the end, Folding&#64;home and Sony retired the app in 2012 and the former lives on on other platforms.
 
-This is my personal opinion, but I enjoy reading about projects that make global contributions using the capabilities of distributed computing, as opposed to the never-ending sensational articles wining about cryptocurrency mining. I guess we shouldn't forget that, with every new powerful technology, there will always be selfless applications developed for it.
+This is my personal opinion, but I enjoy reading about projects that make global contributions using the capabilities of distributed computing, as opposed to the never-ending sensational articles whining about cryptocurrency mining. I guess we shouldn't forget that, with every new powerful technology, there will always be selfless applications developed for it.
 
 ### A multi-OS proposal
 
@@ -783,7 +785,7 @@ When IBM described Cell from the software level, they mentioned that Cell is cap
 
 Thanks to OtherOS, experienced users had the opportunity to develop homebrew applications running on Cell without licensing restrictions, this was particularly interesting for research/scientific purposes [@games-cluster] [@operating_system-barcelona], as this console carried a more affordable price tag than a mainframe. For multimedia purposes, the Blu-ray drive and Multi-card reader were also accessible from OtherOS.
 
-On the other side, while OtherOS' privileges may surpass GameOS' (at the kernel level), **they don't overtake the hypervisor**, which still resides in memory. So, any hardware access from OtherOS still depends on the will of Sony's hypervisor, and it so happens that the latter **blocks access to RSX's command buffers** (preventing the use of the shader units, among other components used for accelerating graphics operations). Consequently, resulting Linux distribution resort to software rendering (all graphics are drawn by Cell) and then stream the frame-buffer to the RSX for display. While it's disappointing that OtherOS can't make use of the full capabilities of this console, this was probably done to reduce attack surfaces. Ironically, OtherOS' use of Cell is similar to how IBM/Toshiba/Sony may have originally envisioned the PS3!
+On the other side, while OtherOS' privileges may surpass GameOS' (at the kernel level), **they don't overtake the hypervisor**, which still resides in memory. So, any hardware access from OtherOS still depends on the will of Sony's hypervisor, and it so happens that the latter **blocks access to RSX's command buffers** (preventing the use of the shader units, among other components used for accelerating graphics operations). Consequently, resulting Linux distributions resort to software rendering (all graphics are drawn by Cell) and then stream the frame-buffer to the RSX for display. While it's disappointing that OtherOS can't make use of the full capabilities of this console, this was probably done to reduce attack surfaces. Ironically, OtherOS' use of Cell is similar to how IBM/Toshiba/Sony may have originally envisioned the PS3!
 
 {.close-float}
 
@@ -884,7 +886,7 @@ Many parts of the console already provide security features that don't require a
 - **SysCon**, the obscure proprietary chip (briefly mentioned in the boot process), controls the power lines of Cell, RSX and Southbridge. Its EEPROM contains records read by the operating system's modules to determine which functions are enabled and which are not [@anti_piracy-qaflag].
   - Though I use the word 'obscure', SysCon is just a microcontroller, either an off-the-shelf [ARM7TDMI](game-boy-advance#cpu)-S (that's right, the PS3 shares some of its DNA with the [Game Boy Advance](game-boy-advance) and even late PS2 revisions) enhanced with [MagicGate](playstation-2#interactive-accessories) support, or a custom NEC 78K0R variant [@anti_piracy-syscon]. SysCon's internal firmware is what intrigues the most.
   - SysCon and Cell communicate to each other using a serial interface (SPI) which plugs to Cell's **TEST** component [@anti_piracy-cell_test]. TEST provides many debugging functions on Cell, although SysCon only connects to the 'Pervasive logic' port, enabling SysCon to manage areas like power or thermal [@anti_piracy-pervasive].
-- Cell houses a **hidden ROM** that store unencrypted boot routines without fear of prying eyes.
+- Cell houses a **hidden ROM** that stores unencrypted boot routines without fear of prying eyes.
 - Cell's **privilege modes** and SPE's **isolated mode** prevents programs from accessing unauthorised resources.
 - The Southbridge seamlessly encrypts the hard drive's content using AES.
 - The Blu-ray subsystem is another walled fortress, and its disc content is encrypted using a key found in the 'ROM mark' area of the disc (inaccessible by conventional readers) [@anti_piracy-bdauth].
@@ -972,7 +974,7 @@ Similarly to the events that happened after [CFWs](playstation-portable#tab-6-4-
 
 From the **software side**, Sony shipped two system updates that enhanced the security system:
 
-- With `3.56`, binaries are signed with new encryption keys resilient to the previous ECSDA discovery [@anti_piracy-keys], thus, CFW creators can't customise the new binaries (since they don't have the private keys to re-encrypt them). Furthermore, a new revision of the 'system updater' application is also shipped, this enforces the new certificates in system update files (`PS3UPDAT.PUP`), meaning that even if hackers manage to package a new CFW, only consoles with system version `3.55` or lower will be able to install it [@anti_piracy-spkg].
+- With `3.56`, binaries are signed with new encryption keys resilient to the previous ECDSA discovery [@anti_piracy-keys], thus, CFW creators can't customise the new binaries (since they don't have the private keys to re-encrypt them). Furthermore, a new revision of the 'system updater' application is also shipped, this enforces the new certificates in system update files (`PS3UPDAT.PUP`), meaning that even if hackers manage to package a new CFW, only consoles with system version `3.55` or lower will be able to install it [@anti_piracy-spkg].
 - Later on, system update `3.60` revamped the boot process, it nullified `metldr` and promoted `lv0` to take over in bootstraping the loaders (`lv1ldr`, `lv2ldr`, `appldr` and `isoldr`). All in all, this meant hackers could not modify the new system files without first cracking `lv0` (finding its private key).
   - This eventually happened in late 2012, when a team called "The Three Musketeers" published the lv0 keys [@anti_piracy-lv0leak], which paved the way to new CFWs made from system versions newer than `3.55`. Although, due to the aforementioned changes in the updater, only users on system version `3.55` or lower (including any CFW with signature checks disabled) can install it.
 
@@ -993,7 +995,7 @@ PS3Xploit's main payload replicates the job of a hardware downgrader (patching C
 3. PS3Xploit can't trigger those system calls directly due to the Hypervisor's 'no-execute' protection, preventing the exploit from loading new code in userland. However, it can find a way to overwrite Flash memory by 'borrowing' Visual Shell's routines.
 4. Consequently, PS3Xploit proceeds to modify Webkit's execution stack to redirect execution to Visual Shell's routines. This type of technique (corrupting the stack to deviate execution to other code residing in memory) is called **Return Oriented Programming** (ROP) and it's very popular in the InfoSec genre. One way of mitigating this is by implementing **Address space layout randomisation** (ASLR), which makes it difficult to guess the location of the routines (called _gadgets_) but, as you can guess, Sony's hypervisor lacks ASLR.
 5. Finally, those system calls are triggered with PS3Xploit's parameters and so they replace CoreOS files (the first part of the operating system, stored in Flash memory) with patched ones [@anti_piracy-flash_writer].
-6. The console is now able to install unofficial software updates, an opportunity the user can now _exploit_ to install a custom firmware. However, it can't downgrade the system version, yet, but once an up-to-date CFW is installed, the user can install further utilities to downgrade the system and install a better-equipped CFW, if so wants.
+6. The console is now able to install unofficial software updates, an opportunity the user can now _exploit_ to install a custom firmware. However, it can't downgrade the system version, yet, but once an up-to-date CFW is installed, the user can install further utilities to downgrade the system and install a better-equipped CFW, if he/she so wishes.
 
 As you can see, this _gift from the sky_ brought custom firmwares back into the spotlight and rendered hardware downgraders and ODEs obsolete. On the other side, for those units which couldn't install a CFW either way (the _unhackables_), the team later offered **PS3Hen**, a different exploit package that focused on enabling a subset of CFW functions (including the ability to execute homebrew). This one installs itself as an entry in XMB and the user must run it every time they power on their console to re-enable the execution of homebrew apps.
 

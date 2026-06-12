@@ -42,8 +42,8 @@ And while this is *technically* true, let me show you why the CPU is not the *ce
 
 Nintendo ended up shipping lots of different variants of the same console across the world [@general-variants] and even though they all share the same architecture, many look dramatically different and some may include built-in accessories. So, to keep it simple for this article, I'll focus on the two most popular revisions:
 
-- The **Family Computer** (known as *Famicom*) was the first incarnation, but was only released in Japan. This toy-looking design features two non-removable controllers (from which the second controller bundles an internal microphone), a front socket for the light gun (called *Zapper*), RF video out (using NTSC-J signal) and extra pins in the cartridge slot to expand the audio capabilities.
-- The **Nintendo Entertainment System** (known as *NES*) was the redesigned edition for western audiences living in North America, Europe and Oceania; with a look and mechanism that matches the common VHS/Betamax player. On the technical side, the controllers are now detachable (and microphone-lacking) and the video out has been improved with extra NTSC/PAL composite RCA connectors, although the audio expansion has been replaced with an anti-piracy subsystem. To top it off, the bottom of the case seals an 'expansion port' that was left unused, along with extra cartridge pins that communicate to that port [@general-cartridge].
+- The **Family Computer** (known as *Famicom*) was the first incarnation, but was only released in Japan. This toy-looking design features two non-removable controllers (of which the second controller bundles an internal microphone), a front socket for the light gun (called *Zapper*), RF video out (using NTSC-J signal) and extra pins in the cartridge slot to expand the audio capabilities.
+- The **Nintendo Entertainment System** (known as *NES*) was the redesigned edition for western audiences living in North America, Europe and Oceania; with a look and mechanism that match the common VHS/Betamax player. On the technical side, the controllers are now detachable (and microphone-lacking) and the video out has been improved with extra NTSC/PAL composite RCA connectors, although the audio expansion has been replaced with an anti-piracy subsystem. To top it off, the bottom of the case seals an 'expansion port' that was left unused, along with extra cartridge pins that communicate to that port [@general-cartridge].
 
 Because the author grew up with the 'NES' name, I will default to using that term to refer to the console in general, but I will switch to 'Famicom' when referring to unique capabilities only found in the Japanese variant.
 
@@ -86,7 +86,7 @@ To understand how capable this console is, let's first check what the original M
   - On paper, 16-bit addresses means the 8-bit CPU will need extra cycles to process the extra size. However, thanks to MOS's new addressing modes (explained further down), these penalties were alleviated without requiring too much circuitry.
 - **Three general-purpose registers** (`X`, `Y` and `A`), which may look constrained when compared to [larger register files](master-system#cpu). This decision reduces costs but also means the CPU would need to move memory around more frequently. With the 6502, `X` and `Y` are called 'index registers' and are used to address memory, while `A` is directly connected to the ALU and dedicated to arithmetic operations.
   - By comparison, the Motorola 6800 has two accumulator registers and only one index register, which allows for a simpler instruction set.
-- An **8-bit Arithmetic Logic Unit** (ALU), which comes as no surprise for an 8-bit CPU, but it's worth pointing out that others like the Zilog Z80 came with an [4-bit ALU instead](master-system#cpu).
+- An **8-bit Arithmetic Logic Unit** (ALU), which comes as no surprise for an 8-bit CPU, but it's worth pointing out that others like the Zilog Z80 came with a [4-bit ALU instead](master-system#cpu).
 - An **8-bit stack pointer**: This is usually beyond the scope of this analysis, but I wanted to highlight it due to its significant deviation from Motorola's design. As mentioned before, the address bus is 16-bit, so a memory-dependent component like the stack pointer should ideally match that size. However, MOS opted to halve the requirement and store the stack within a fixed memory range. Nevertheless, it was a clever cost-saving measure, as it encouraged developers to adopt efficient programming techniques to maximise the stack space.
 - **13 addressing modes**. Thanks to the inclusion of two index registers, programs can choose between many formats for accessing memory. Some are optimised for zero-page addressing (the first 256 bytes of memory), while others encode a lookup address to retrieve the actual address dynamically. In the end, this helped save as many memory cycles as possible, at the cost of complexity.
   - By comparison, the 6800 and its single index register only offer seven addressing modes, with no equivalent for the flexible types.
@@ -167,7 +167,7 @@ A mapper is an extra chip included in the cartridge that sits between the memory
 
 Back to the NES, games like 'Super Mario Bros 2' and 'Super Mario Bros 3' shipped with the 'MMC3' mapper (made by Nintendo) in their cartridges. For comparison, MMC3 provided up to 512 KB of space for the Program ROM, up to 256 KB for Character memory and up to 8 KB for extra WRAM [@cpu-mmc3]. You can now see why 'Super Mario Bros 3' differs significantly in quality compared to the first instalment.
 
-All in all, while this console may appear limited while examining its internal features, Nintendo made sure it could adapt as technology evolves. On the other side, while this technique helped to keep the costs down of the console, it shifted part of the burden to the game cartridge. So, game quality and cartridge costs were two concerns game studios had to balance.
+All in all, while this console may appear limited while examining its internal features, Nintendo made sure it could adapt as technology evolves. On the other side, while this technique helped to keep the costs of the console down, it shifted part of the burden to the game cartridge. So, game quality and cartridge costs were two concerns game studios had to balance.
 
 ## Graphics
 
@@ -290,7 +290,7 @@ If you're thinking that a frame-buffer system with memory allocated to store the
 
 Some games require the main character to move vertically; therefore, the nametable is set up with **horizontal mirroring**. Other games need their character to move left and right, and so implement **vertical mirroring** instead.
 
-Either type of mirroring allows the PPU to update background tiles without the user noticing, as there is ample of space to scroll while new tiles are being rendered at a distance.
+Either type of mirroring allows the PPU to update background tiles without the user noticing, as there is ample space to scroll while new tiles are being rendered at a distance.
 
 But what happens if the character needs to move diagonally? The PPU can scroll in any direction; however, without extra VRAM, the edges are forced to share the same colour palette (remember that tiles are grouped in blocks).
 
@@ -380,7 +380,7 @@ One of the specialities of the APU, when compared to the competition, is its abi
 
 The APU has one channel reserved for this type of wave. Behind the scenes, a dedicated sequencer takes 32 cycles to generate a triangle signal [@audio-aputriangle]; this limitation causes the resulting triangle waveform to resemble a step ladder.
 
-On the other side, the respective circuitry does not provide volume control. In any case, some games discovered alternative methods by fiddling with the mixer's volume control.
+On the other hand, the respective circuitry does not provide volume control. In any case, some games discovered alternative methods by fiddling with the mixer's volume control.
 
 #### Noise {.tab}
 
@@ -418,9 +418,9 @@ Samples are recorded pieces of music that can be replayed. As you can see, sampl
 
 The APU has one channel dedicated to samples. Here, samples are limited to **7-bit resolution** (encoded with values from `0` to `127`) and a **~15.74 kHz sampling rate** [@audio-2a03ref]. To program this channel, games can either stream 7-bit values (which steals significant cycles and storage) or use **delta modulation** to encode only the variation between consecutive samples.
 
-The delta modulation system in the APU only accepts 1-bit values, meaning games can only indicated whether the sample increments or decrements by `1` each time the counter kicks in. Thus, at the cost of fidelity, delta modulation can save games from having to stream continuous values to the APU.
+The delta modulation system in the APU only accepts 1-bit values, meaning games can only indicate whether the sample increments or decrements by `1` each time the counter kicks in. Thus, at the cost of fidelity, delta modulation can save games from having to stream continuous values to the APU.
 
-Since programming this channel takes longer space and CPU cycles, games typically store small pieces (like drum sounds) that can be replayed repeatedly. Be as it may, throughout the NES' lifespan, numerous developers have come up with clever uses for this channel.
+Since programming this channel takes longer space and CPU cycles, games typically store small pieces (like drum sounds) that can be replayed repeatedly. Be that as it may, throughout the NES' lifespan, numerous developers have come up with clever uses for this channel.
 
 ### Secrets and limitations {.tabs-close}
 
@@ -511,7 +511,7 @@ Although, by observing the timeline, you can distinguish between the various noi
 
 ![Spectrogram of the Sample channel.](spectrograms/eb0_dcm_nes.png){.tab-float .negate .border}
 
-Unlike the previous channels, the sample channel only plays back whatever low-resolution recording the developer feeds to the APU. Considering the example played a drum kit, I can't see any identifiable treats on the spectrogram (apart from similarities to white noise).
+Unlike the previous channels, the sample channel only plays back whatever low-resolution recording the developer feeds to the APU. Considering the example played a drum kit, I can't see any identifiable traits on the spectrogram (apart from similarities to white noise).
 
 ##### Sawtooth {.tab}
 

@@ -57,7 +57,7 @@ At first glance, it may look as though technological development had hit a wall.
 - **PowerPC**: Adopted by Apple (targeting desktop publishing).
 - **SPARC**: Developed by Sun Microsystems (targeting servers and business workstations).
 - **ARM**: [Developed by Acorn](game-boy-advance#the-cambridge-miracle), initially targeting the consumer market before expanding into PDAs, cell phones, and other embedded devices.
-- ... and many more 'microcontroller' chips that had yet to be finalised or adopted by a major industry - such as the **Hitachi's SH** and **NEC's V810**. To their surprise, these were subsequently selected for the [Sega Saturn](sega-saturn) and the [Nintendo Virtual Boy](virtual-boy), respectively.
+- ... and many more 'microcontroller' chips that had yet to be finalised or adopted by a major industry - such as **Hitachi's SH** and **NEC's V810**. To their surprise, these were subsequently selected for the [Sega Saturn](sega-saturn) and the [Nintendo Virtual Boy](virtual-boy), respectively.
 
 All of these processors had one thing in common: they adhered to the **Reduced Instruction Set Computer** (RISC) discipline, which radically shifted how such chips were designed and programmed. One rule of the RISC architecture dictated that a single instruction could not mix memory access with register operations. This allowed hardware designers to simplify the circuitry responsible for executing instructions... and then enhance it with parallelism techniques.
 
@@ -77,13 +77,13 @@ Back to the main topic, Sony designed their audio and graphics chips in-house, b
 
 At the same time, **LSI Logic** (a semiconductor manufacturer) was a MIPS licensee that provided a 'build-your-own' CPU programme for businesses. This service, known as **CoreWare**, enabled clients to assemble custom CPU packages by choosing from a series of building blocks [@cpu-lsi]. Part of the CoreWare library included the 'CW33300' block, a CPU core derived from the LSI LR33300 - an off-the-shelf CPU chip that LSI also commercialised.
 
-Now, where am I going with all this? It turns out both the LR33300 and CW33300 are a **binary-compatible with the MIPS R3000A family**. Their architectures differ slightly in some areas, but the programming interface (MIPS I ISA) remains the same.
+Now, where am I going with all this? It turns out both the LR33300 and CW33300 are **binary-compatible with the MIPS R3000A family**. Their architectures differ slightly in some areas, but the programming interface (MIPS I ISA) remains the same.
 
 In the end, Sony commissioned LSI to build their CPU package. They selected the CW33000, changed some bits, and integrated it with other blocks to form the chip you find on the PlayStation's motherboard.
 
 ### The offering {.tabs-close}
 
-![The SoC chip on the PlayStation's motherboard, where the MIPS R3000A-based core resides.](cpu_chip.jpg){latex_width="85%"}
+![The SoC chip on my PlayStation motherboard, where the MIPS R3000A-based core resides.](cpu_chip.jpg){latex_width="85%"}
 
 The resulting CPU core runs at **33.87 MHz** and features:
 
@@ -183,7 +183,7 @@ As illustrated in the example [@fig-opcodes_fillers], some delay slots are fille
 
 Having explained this, you may be wondering why a processor exhibiting such flaws would ever be commercialised. Well, one tenet of the RISC philosophy is that the burden of CPU programming is shifted from the developer to the **compiler**. MIPS, in particular, **prioritised the production of high-quality compilers** (including assemblers) to accompany their new CPUs [@cpu-chm_mips]. Hence, the company envisioned that developers would use a higher-level language (like C) while the toolchain automatically dealt with hazards, either by reordering instructions to fill in slots, or by adding useless fillers as a last measure.
 
-In fact, exposing the CPU pipeline to developers was an core design strategy at MIPS, evidenced by its very initials standing for 'Microprocessor without Interlocked Pipelined Stages'.
+In fact, exposing the CPU pipeline to developers was a core design strategy at MIPS, evidenced by its very initials standing for 'Microprocessor without Interlocked Pipelined Stages'.
 
 So, all in all, while I don't find it pleasant to see a program filling the CPU with bubbles, I think MIPS tackled this challenge in a very ingenious way. That said, it wasn't without its disadvantages, however. As [later years revealed](nintendo-64#cpu), exposing the pipeline made backwards compatibility very tricky, especially as future CPUs debuted revolutionary microarchitectures.
 
@@ -217,7 +217,7 @@ Now, to show how a scene is drawn, I will mainly use Insomniac's *Spyro: Year of
 
 ![Basic GPU command pipeline.](_diagrams/gpu_commands.png){.tab-float}
 
-To start with, the CPU sends geometry data (vertices) to the GPU by filling its internal 64-byte FIFO buffer with **commands** (up to three). These commands may request to GPU to render something, change a setting or manipulate VRAM.
+To start with, the CPU sends geometry data (vertices) to the GPU by filling its internal 64-byte FIFO buffer with **commands** (up to three). These commands may request the GPU to render something, change a setting or manipulate VRAM.
 
 Essentially, a render command states how and where to draw a primitive. The GPU can draw **lines**, **rectangles** and **triangles** individually - the latter being the fundamental ingredient for constructing rich 3D models.
 
@@ -250,7 +250,7 @@ The rasteriser is the unit in charge of converting vectors into lines, triangles
 In the case of the triangle, being the only textured polygon, the rasteriser will:
 
 1. Grab each three-point vertex and calculate the edges. This forms a triangle.
-2. Analyse the triangle's area to determine which pixels of the frame buffer they occupy. Only the portion of the polygon covering the **sampling points** get turned into pixels.
+2. Analyse the triangle's area to determine which pixels of the frame buffer they occupy. Only the portion of the polygon covering the **sampling points** gets turned into pixels.
 
 The generated pixels are not written into the frame buffer right away. Instead, they are passed to the next stages of the pipeline for further processing. I cover this in the subsequent paragraphs.
 
@@ -297,9 +297,9 @@ Let's take a break now from all this theory. Here are some examples of game char
 
 ### Optimising texture storage
 
-On the PS1, textures are stored inside **texture pages**. These are blocks of 256x256 pixels, and its storage size can range from 4 to 16 bits per pixel (bpp) in VRAM [@graphics-spx]. The more bits, the richer they look, but also the more space they occupy.
+On the PS1, textures are stored inside **texture pages**. These are blocks of 256x256 pixels, and their storage size can range from 4 to 16 bits per pixel (bpp) in VRAM [@graphics-spx]. The more bits, the richer they look, but also the more space they occupy.
 
-Be as it may, 4bpp and 8bpp texture pages are not restricted to a predefined set of colours. Instead, they rely on a **Colour Lookup Table** (CLUT) - a customisable colour palette that can be placed anywhere in VRAM.
+Be that as it may, 4bpp and 8bpp texture pages are not restricted to a predefined set of colours. Instead, they rely on a **Colour Lookup Table** (CLUT) - a customisable colour palette that can be placed anywhere in VRAM.
 
 When the CPU commands the GPU to draw a textured triangle, the command also embeds the location of both the texture page and the CLUT.
 
@@ -315,7 +315,7 @@ All right, let's use a 640x480 buffer with 16-bit colour instead, which leaves 4
 
 ![VRAM visualisation in the NO$PSX debugger. You can spot the dual frame buffer, along with texture pages. The latter are translated using a colour lookup table, also stored there.](vram.jpg){.open-float}
 
-In essence, rather than hoarding VRAM with the frame buffer, this console's GPU allows to decrease the dimensions of the frame buffer, effectively incrementing the space available for other resources. In a demonstration from 'Gears Episode 2' [@graphics-halkun], Halkun shows a setup that divides the 640x480 frame buffer into two 320x480 ones, employing a technique called **page flipping** to render multiple scenes at the same time.
+In essence, rather than hoarding VRAM with the frame buffer, this console's GPU allows to decrease the dimensions of the frame buffer, effectively increasing the space available for other resources. In a demonstration from 'Gears Episode 2' [@graphics-halkun], Halkun shows a setup that divides the 640x480 frame buffer into two 320x480 ones, employing a technique called **page flipping** to render multiple scenes at the same time.
 
 Page flipping involves alternating the location of the frame for display between two buffers whenever required, allowing the game to render one scene while displaying another. Thus, hiding any flickering effect and improving loading times (something that the player will certainly appreciate!).
 
@@ -354,7 +354,7 @@ If you check other technical channels or forums, you'll find alternative explana
 
 > Models and textures wobble due to lack of an FPU
 
-An FPU does not dictate whether a system can operate fractional numbers. The PS1, like any other computer without a hardware FPU, can still perform fixed-point arithmetic. Furthermore, floating-point numbers can also be computed (just slower) through software. In essence, **FPUs are accelerators**, do not confuse them with the concept of decimal numbers or with an ALU (the critical portion of a CPU responsible for arithmetic operations).
+An FPU does not dictate whether a system can operate fractional numbers. The PS1, like any other computer without a hardware FPU, can still perform fixed-point arithmetic. Furthermore, floating-point numbers can also be computed (just slower) through software. In essence, **FPUs are accelerators**; do not confuse them with the concept of decimal numbers or with an ALU (the critical portion of a CPU responsible for arithmetic operations).
 
 > Models and textures wobble due to the GPU's integer coordinate system
 
@@ -376,7 +376,7 @@ Let's highlight a *positive* feature now for a change...
 
 When a game strived for a more realistic scenery than the GPU could provide in real time, one available option was to stack two triangles and use the Motion Decoder to stream **pre-rendered cinematics** onto them. FMV sequences required lots of storage space, but luckily, the CD-ROM was well-prepared for this.
 
-Some titles relied on this technique to compose backgrounds and, honestly, it looked quite convincing on a CRT television. Of course, modern emulators with upscaling capabilities will tell on very quickly.
+Some titles relied on this technique to compose backgrounds and, honestly, it looked quite convincing on a CRT television. Of course, modern emulators with upscaling capabilities will give it away very quickly.
 
 ### Video out {.tabs-close}
 
@@ -411,7 +411,7 @@ The SPU also provides the following capabilities:
 
 On the game disc, audio is stored in the form of **Adaptive Differential Pulse-Code Modulation** (ADPCM) samples. Unlike the PCM format (used by audio CDs and the [Sega Saturn](sega-saturn#audio)) where each sample consumes 16 bits, ADPCM stores only the difference between samples. In this case, it requires only 4 bits per sample, trading off some fidelity in the process.
 
-Now, ADPCM needs to be processed/uncompressed so speakers can understand it. Who performs this, and the amount of work required, depends on the format used [@audio‑adpcm]:
+Now, ADPCM needs to be processed/uncompressed so speakers can understand it. Who performs this, and the amount of work required, depends on the format used [@audio-adpcm]:
 
 - **SPU-ADPCM**: Samples are loaded into Sound RAM and processed by the SPU.
 - **XA-ADPCM**: Samples are decompressed by the CD controller without the intervention of the SPU or CPU, then streamed to Sound RAM. This uses fewer resources, at the cost of limited control (i.e. there's no looping).
@@ -440,7 +440,7 @@ Two I/O ports - **Serial** and **Parallel** - were originally available for add-
 
 ### CD subsystem
 
-The block responsible for controlling the CD drive is an interesting area, you can imagine it as a separate computer living inside the PlayStation.
+The block responsible for controlling the CD drive is an interesting area; you can imagine it as a separate computer living inside the PlayStation.
 
 ![The architecture of the CD Subsystem.](_diagrams/cd.png){.open-float}
 
@@ -470,7 +470,7 @@ The system includes a **512 KB ROM** that stores a Basic Input/Output System (BI
 
 ### BIOS/Kernel
 
-The BIOS is a critical dependency for games. Not only this program bootstraps them from the CD drive, it also acts as an intermediary to interact with the console's hardware. This methodology resembles IBM's implementation of their IBM PC BIOS, which encouraged developers to use a standard interrupt table (containing I/O routines) instead of relying on platform-dependent [I/O ports](master-system#accessing-the-rest-of-the-components).
+The BIOS is a critical dependency for games. Not only does this program bootstrap them from the CD drive, it also acts as an intermediary to interact with the console's hardware. This methodology resembles IBM's implementation of their IBM PC BIOS, which encouraged developers to use a standard interrupt table (containing I/O routines) instead of relying on platform-dependent [I/O ports](master-system#accessing-the-rest-of-the-components).
 
 Having said that, the PS1 BIOS exposes routines such as:
 
@@ -510,15 +510,15 @@ Just like the [Sega Saturn](sega-saturn) and other consoles that made the switch
 
 ![A typical PS1 game, shown with the disc flipped over. The underside of PS1 CDs feature a distinctive black coating that was once believed to prevent piracy. While technically incorrect - and I explain more in the 'Anti-piracy' section - I think it does provide a visual indicator of a genuine disc.](parappa.webp)
 
-If you are curious about how Compact Discs (CDs) work, I've written a brief explanation in the [Sega Saturn article](sega-saturn#the-compact-disc-cd). The PS1 also adopted the [CD‑ROM XA](sega-saturn#the-saturns-cd) standard, but Sony leveraged by combining game data with XA-ADPCM audio [@games-cdxa].
+If you are curious about how Compact Discs (CDs) work, I've written a brief explanation in the [Sega Saturn article](sega-saturn#the-compact-disc-cd). The PS1 also adopted the [CD‑ROM XA](sega-saturn#the-saturns-cd) standard, but Sony leveraged this by combining game data with XA-ADPCM audio [@games-cdxa].
 
-Be as it may, PS1 revisions released up to 1997 (three years after the console's debut) were notorious for bundling a faulty CD drive laser [@games-revisions], which resulted in frequent FMV and audio CD 'skips'. Later models fixed the laser unit and improved the housing, mitigating the problem.
+Be that as it may, PS1 revisions released up to 1997 (three years after the console's debut) were notorious for bundling a faulty CD drive laser [@games-revisions], which resulted in frequent FMV and audio CD 'skips'. Later models fixed the laser unit and improved the housing, mitigating the problem.
 
 ### Development ecosystem
 
 Sony distributed an SDK to game studios comprising a **C** compiler and libraries. The latter were linked to BIOS routines for hardware access. As a side note, this level of abstraction later helped emulate the PS1 across a wide range of platforms - both [*official*](playstation-2#inherited-compatibility) and *unofficial*.
 
-Alongside the SDK, Sony also provided specialised hardware such as the **DTL-H2000**: a dual-slot ISA card containing the internals and I/O of the PS1 [@games-shadow], plus extra circuitry for debugging purposes. The board could access to the host's hard drive and execute PS1 software without restrictions. The accompanying software required a PC with Windows 3.1 or 95 installed.
+Alongside the SDK, Sony also provided specialised hardware such as the **DTL-H2000**: a dual-slot ISA card containing the internals and I/O of the PS1 [@games-shadow], plus extra circuitry for debugging purposes. The board could access the host's hard drive and execute PS1 software without restrictions. The accompanying software required a PC with Windows 3.1 or 95 installed.
 
 ![A typical Net Yaroze setup, part of Christopher Rivett's collection [@photography-crivett].](yaroze.webp)
 

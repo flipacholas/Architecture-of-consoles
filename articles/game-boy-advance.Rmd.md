@@ -60,7 +60,7 @@ I have to say, Game Boy backwards compatibility is an intriguing topic, so I hav
 Most of the building blocks of this console are combined into a single package called **CPU AGB**. This contains two entirely different CPUs:
 
 - A **Sharp SM83** running at either **8.4 or 4.2 MHz**. *If it isn't the same CPU found on the Game Boy!* It's effectively used to run Game Boy (**DMG**) and Game Boy Color (**CGB**) titles. [My previous article](game-boy) provides an overview of the predecessor.
-- An **ARM7TDMI** running at **16.78 MHz**: This is the new processor we will focus on, it most certainly runs Game Boy Advance games.
+- An **ARM7TDMI** running at **16.78 MHz**: This is the new processor we will focus on; it most certainly runs Game Boy Advance games.
 
 Note that both CPUs will **never run at the same time** or do any fancy co-processing. The **only** reason for including the *very* old Sharp is for **backwards compatibility**.
 
@@ -86,7 +86,7 @@ The late 70s were a tumultuous time for the United Kingdom populace. The interve
 
 Entering the 80s, ministerial interests within the new British government led to the creation of a project aimed at uplifting computer literacy in schools [@cpu-clp]. Thanks to Acorn's upcoming 'Proton' home computer, the company was awarded the contract to build an affordable computer that would realise the government's vision. The result was the **BBC Micro** (nicknamed the *Beeb*), which enjoyed significant success among schools, teachers, and pupils. Inside the Micro, Acorn incorporated an avant-garde **'Tube' interface** that could expand the computer with a **second processor**. This paved the way for Acorn's next big investment.
 
-During the development of their next product, this time enterprise-focused, Acorn did not find a suitable CPU to succeed the 6502. Pressure to innovate in the face of Japanese and American competition, coupled with unfortunate planning, placed Acorn in a troubled financial state. Thus, a new division in Acorn was tasked to produce a compelling CPU. To work around Acorn's recent constraints, the CPU team based their architecture on the teachings of a research paper called **The Case for the Reduced Instruction Set Computer** [@cpu-patterson] and its prototype, the **RISC CPU** [@cpu-furber]. Finally, in 1985, Acorn delivered the **ARM1 CPU** as a Tube module for the BBC Micro, although it was marketed solely for R&D purposes. It won't be until 1987, with the introduction of the first **Acorn Archimedes** computer, that ARM chips (by then, the ARM2 CPU) would take a central role.
+During the development of their next product, this time enterprise-focused, Acorn did not find a suitable CPU to succeed the 6502. Pressure to innovate in the face of Japanese and American competition, coupled with unfortunate planning, placed Acorn in a troubled financial state. Thus, a new division in Acorn was tasked to produce a compelling CPU. To work around Acorn's recent constraints, the CPU team based their architecture on the teachings of a research paper called **The Case for the Reduced Instruction Set Computer** [@cpu-patterson] and its prototype, the **RISC CPU** [@cpu-furber]. Finally, in 1985, Acorn delivered the **ARM1 CPU** as a Tube module for the BBC Micro, although it was marketed solely for R&D purposes. It wouldn't be until 1987, with the introduction of the first **Acorn Archimedes** computer, that ARM chips (by then, the ARM2 CPU) would take a central role.
 
 #### A new CPU venture {.tab}
 
@@ -120,7 +120,7 @@ To begin with, the ARM7TDMI implements the **ARMv4** instruction set, the succes
 
 - A **RISC-based design**: As explained before, ARM CPUs have been influenced by a paper from the University of California, Berkeley called 'The Case for the Reduced Instruction Set Computer' [@cpu-patterson]. Its research outlines a series of guidelines for scalable processor design and advocates the use of a [load-store architecture](xbox#tab-1-4-cisc-or-risc), fixed instruction size, and a large register file. Many of these traits were absent from the crowded CPU market at the time (i.e. the [Intel 8086](xbox#cpu), [MOS 6502](nes#core-functionality), [Zilog Z80](master-system#cpu), and the [Motorola 68000](mega-drive-genesis#cpu)), but they would influence the design of new CPU lines throughout the 80s and 90s.
 - **Conditional execution**: A peculiar feature of the ARM ISA. Essentially, almost every instruction embeds a condition that states whether it should be executed. Typically, other CPUs follow the 'compare and jump' process (also called 'branching') to control which instructions the CPU must execute. By contrast, ARM programmers may insert the condition in the instruction itself. This is possible due to the first four bits of ARM's opcodes are reserved for a condition (i.e. `equal`, `not equal`, etc). All in all, this reduces the complexity of ARM code, as conditional execution provides a cleaner design for routines, unlike branching and subroutine splitting. Additionally, this also serves as a workaround for [control hazards](playstation#delay-galore) (explained in more detail later).
-- A **flexible second operand**, also known as 'Operand2' [@cpu-operand2]. Typically, operations are made of two operands (like `add 2 and 2`). However, ARM instructions also allows embedding an extra `shift` operation into the second operand. For example, you can compute `shift 2 by four bits and then add it to 2` in a single instruction.
+- A **flexible second operand**, also known as 'Operand2' [@cpu-operand2]. Typically, operations are made of two operands (like `add 2 and 2`). However, ARM instructions also allow embedding an extra `shift` operation into the second operand. For example, you can compute `shift 2 by four bits and then add it to 2` in a single instruction.
   - Bit shifting is also a cheap shortcut to perform division or multiplication with powers of 2, which leads to many optimisation techniques.
 - **32-bit** and **64-bit multiplication** instructions: An addition in ARMv4. Furthermore, 64-bit operations output the result in two registers.
 
@@ -150,7 +150,7 @@ Like two closely [related](playstation#delay-galore) [contemporaries](sega-satur
 
 ##### Squeezing performance {.tab}
 
-One of the drawbacks of load-store architectures led to ARM's code being very **sparse**. Competitors like x86 could perform the same tasks using smaller amounts of code, requiring less storage. Consequently, when Nintendo took a look at ARM's latest design, the ARM7, they weren't pleased with it. The size of ARM's instructions meant that hypothetical gadgets comprised of 16-bit buses with limited memory and storage - all to save cost and energy - would make the CPU inefficient and bottlenecked. Luckily, Dave Jaggar had just finished designing the ARM7 and wouldn't give up yet. During his commute after meeting Nintendo, he came up with a solution: The **Thumb instruction set** [@cpu-jaggar].
+One of the drawbacks of load-store architectures led to ARM's code being very **sparse**. Competitors like x86 could perform the same tasks using smaller amounts of code, requiring less storage. Consequently, when Nintendo took a look at ARM's latest design, the ARM7, they weren't pleased with it. The size of ARM's instructions meant that hypothetical gadgets comprised of 16-bit buses with limited memory and storage - all to save cost and energy - would make the CPU inefficient and bottlenecked. Luckily, Dave Jaggar had just finished designing the ARM7 and wouldn't give up yet. During his commute after meeting Nintendo, he came up with a solution: the **Thumb instruction set** [@cpu-jaggar].
 
 Thumb is a separate instruction set that operates as an alternative mode within the CPU. It is comprised of a subset of the ARM instruction set, with instructions encoded into **16-bit words** (as opposed to 32-bit) [@cpu-thomas]. Being 16-bit, Thumb instructions require **half the bus width** and occupy **half the memory**. To achieve this, it compromises in the following ways:
 
@@ -269,7 +269,7 @@ The PPU can draw up to four background layers. The capabilities of each one will
 
 Each layer has a dimension of up to 512 x 512 pixels. For affine layers, this extends to a maximum of 1024 x 1024 pixels.
 
-The piece of data that defines the background layer is still called **Tile Map**. That said, this information is now encoded in the form of **screenblocks** - structures that define portions of the background layer (32 x 32 tiles). A single screenblock occupies just 2 KB, though multiple are needed to construct the whole layer. Programmers may place screenblocks anywhere in VRAM, potentially overlapping background charblocks (where tiles reside). This means that not all tiles entries contain graphics!
+The piece of data that defines the background layer is still called **Tile Map**. That said, this information is now encoded in the form of **screenblocks** - structures that define portions of the background layer (32 x 32 tiles). A single screenblock occupies just 2 KB, though multiple are needed to construct the whole layer. Programmers may place screenblocks anywhere in VRAM, potentially overlapping background charblocks (where tiles reside). This means that not all tile entries contain graphics!
 
 #### Sprites {.tab}
 
@@ -401,7 +401,7 @@ Oscilloscope display during a game of Mother 3 (2006).
 
 ## Operating System
 
-ARM7's reset vector points at memory address `0x00000000`, where a **16 KB ROM** happens to reside. This means that, upon powering on, the Game Boy Advance first boots from that ROM. The program that it runs makes the console show the iconic splash screen and then decide whether to load the cartridge game.
+ARM7's reset vector points to memory address `0x00000000`, where a **16 KB ROM** happens to reside. This means that, upon powering on, the Game Boy Advance first boots from that ROM. The program that it runs makes the console show the iconic splash screen and then decide whether to load the cartridge game.
 
 ::: {.subfigures .side-by-side}
 
@@ -513,7 +513,7 @@ That said, remember Multiboot? This function is compatible with both Normal and 
 
 For very particular accessories, there are additional communication modes available:
 
-- **UART Mode**. It behaves like an RS-232 interface. Specifically, a *5-wire null modem with RTS/CTS flow control*. Apart from that, it sends and receive data in 8-bit packets; and uses a FIFO buffer to queue up to four packets while they are being sent or received.
+- **UART Mode**. It behaves like an RS-232 interface. Specifically, a *5-wire null modem with RTS/CTS flow control*. Apart from that, it sends and receives data in 8-bit packets; and uses a FIFO buffer to queue up to four packets while they are being sent or received.
 - **JOY BUS Mode**. This is a proprietary protocol in which the GBA becomes a peripheral for the GameCube. The GBA can only receive packets, process the contents, and reply.
   - This is exclusively used with the 'GameCube-Game Boy Advance Link cable', which assigns the GBA as a slave.
 - **General-purpose Mode**. As the name indicates, all four pins become controllable by the program, enabling to implement a custom protocol. 

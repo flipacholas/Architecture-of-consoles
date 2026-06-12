@@ -49,7 +49,7 @@ Internally, it's a whole different story (and a very complicated one). For this 
 
 Once you switch on the Virtual Boy, you will see two **monochromatic red** pictures (one for each eye) through the eyepiece. So far, so good? Well, here is the interesting part: **this console doesn't have a screen**. What you're seeing is more of an illusion, so let's take a closer look at what's really going on.
 
-The topics involved in explaining this (including optics, visual phenomenons, and so on) may seem complex at first, so I drew many diagrams to make this section a little more immersive.
+The topics involved in explaining this (including optics, visual phenomena, and so on) may seem complex at first, so I drew many diagrams to make this section a little more immersive.
 
 #### Scanner {.tabs .active}
 
@@ -57,7 +57,7 @@ The topics involved in explaining this (including optics, visual phenomenons, an
 
 ![Bird's-eye view of the console. The first switch is the 'focus slider', and below it is the 'IPD dial'.](case/top.jpg){.tabs-nested-last title="Switches"}
 
-The large volume of this console is attributed to the **scanner**, which occupies a significant part of the interior. The scanner is the area of the Virtual Boy responsible for displaying images. It's composed of two **display units**, each one independently projects a frame (giving a total of two frames, one for each eye).
+The large volume of this console is attributed to the **scanner**, which occupies a significant part of the interior. The scanner is the area of the Virtual Boy responsible for displaying images. It's composed of two **display units**, each of which independently projects a frame (giving a total of two frames, one for each eye).
 
 A display unit is where all the 'magic' happens. It consists of the following components:
 
@@ -84,7 +84,7 @@ If you haven't noticed before, there **isn't a dot-matrix display to be found**,
 In reality, some conditions must be met for these principles to work:
 
 - The LEDs must only operate when the angular velocity of the mirror is stable (in other words, when the mirror is not changing direction). This can be thought of as the [active state](master-system#tab-1-4-result) of a CRT monitor.
-- Building on the previous point, the angular velocity of the mirror doesn't remain constant in practice. As the mirror cannot change direction instantly, 'stable' periods are subject to forces that disrupt its velocity. To manage this, the Virtual Boy stores a list of values in memory called **Column Table**, which specify how much time to allocate for each column interval. This helps balance excessive and insufficient periods of 'LED column' exposure.
+- Building on the previous point, the angular velocity of the mirror doesn't remain constant in practice. As the mirror cannot change direction instantly, 'stable' periods are subject to forces that disrupt its velocity. To manage this, the Virtual Boy stores a list of values in memory called **Column Table**, which specifies how much time to allocate for each column interval. This helps balance excessive and insufficient periods of 'LED column' exposure.
 - Finally, let's not forget that this entire process occurs **twice**, as there are two display units (one for each eye). Unfortunately, **both units can't draw energy and data at the same time**, so each one operates at different display periods (out-of-phase, **10 ms apart**). We don't notice this, yet another illusion!
 
 #### Display {.tab}
@@ -93,7 +93,7 @@ In reality, some conditions must be met for these principles to work:
 
 Contrary to previous video chips modelled on CRT displays (e.g. the [PPU](nes#graphics) and [VDP](master-system#graphics)), the Virtual Boy does **not render graphics on-the-fly**. Instead, its graphics chip sends the processed frame to a frame buffer in memory. Then, each column of the frame is transferred to the LED array for display.
 
-When the servo board determines it's time to display, the graphics chip will transmits columns of pixels from the frame buffer to the 224 vertically stacked LEDs, in a carefully synchronised matter. As a result, the LEDs display 384 columns during the display period, giving the console a 'screen resolution' **384x224 pixels**.
+When the servo board determines it's time to display, the graphics chip will transmit columns of pixels from the frame buffer to the 224 vertically stacked LEDs, in a carefully synchronised manner. As a result, the LEDs display 384 columns during the display period, giving the console a 'screen resolution' **384x224 pixels**.
 
 Moreover, we need to store two frame buffers, since each one will go to a different display unit. The graphics subsystem also employs double-buffering and other quirks (outlined later in the 'Graphics' section). So, for now, just remember how a digital frame is sent to the LEDs.
 
@@ -137,7 +137,7 @@ Objects shifted towards the centre of the viewer's eyes (moved right in the left
 
 {.close-float}
 
-One of the drawbacks of stereoscopy is **eyestrain**. This was alleviated by the fact games provided an 'automatic pause' feature, which reminded the user to take breaks every 30 minutes. Nintendo also included various warning messages in their packaging and documentation to help prevent serious conditions. That said, there was no option to disable the 3D effect.
+One of the drawbacks of stereoscopy is **eyestrain**. This was alleviated by the fact that games provided an 'automatic pause' feature, which reminded the user to take breaks every 30 minutes. Nintendo also included various warning messages in their packaging and documentation to help prevent serious conditions. That said, there was no option to disable the 3D effect.
 
 ## CPU
 
@@ -183,7 +183,7 @@ Having said that, the memory map layout enables the CPU to access the majority o
 - The graphics chip, along with its dedicated memory.
 - I/O interfaces and their respective registers.
 
-This is as far as the CPU goes, now it's time to see what can you do with it!
+This is as far as the CPU goes, now it's time to see what you can do with it!
 
 ## Graphics
 
@@ -302,7 +302,7 @@ Each sprite includes the following properties:
 - Horizontal/vertical flip.
 - The palette index.
 
-You'll notice there are no example screenshots included in this section, the following paragraphs explain why.
+You'll notice there are no example screenshots included in this section; the following paragraphs explain why.
 
 #### Window {.tab}
 
@@ -324,7 +324,7 @@ The layering system may seem simple at first. After all, the VIP provides backgr
 
 In reality, to display any of the previously mentioned layers, they must be placed into a container called **Window** (also referred to as 'World'). A window is the actual plane that gets rendered to the screen, populated with layers previously constructed. There are **32 windows available** which overlap to form the final frame, and each window definition occupies 32 bytes.
 
-Windows provide various **rendering modes**. Developers can select a background or sprite layer and display it as it is. To do so, the window must be be set to **Normal mode** or **Object mode**, depending on the layer type.
+Windows provide various **rendering modes**. Developers can select a background or sprite layer and display it as it is. To do so, the window must be set to **Normal mode** or **Object mode**, depending on the layer type.
 
 However, the chip offers additional modes that apply extra effects to background layers:
 
@@ -341,7 +341,7 @@ Since the system **employs a double-buffered design**, the Display Processor alw
 
 If there is minimal content to render (i.e. only a few windows are used), there will be long gaps between writing to the frame buffer and the Display Processor retrieving it. This enables the **CPU to make extra changes to the frame** if needed. The VIP is also prepared for this: the CPU can set up interrupts to monitor various states of the VIP, including this scenario.
 
-On the other side, if too many affine windows are rendered, the Pixel Processor may *miss the deadline*, resulting in frame drops. Luckily, interrupts are available to detect this condition as well. In any case, the official documentation provided the timings for each layer type.
+On the other hand, if too many affine windows are rendered, the Pixel Processor may *miss the deadline*, resulting in frame drops. Luckily, interrupts are available to detect this condition as well. In any case, the official documentation provided the timings for each layer type.
 
 ### Creative content {.tabs-close}
 

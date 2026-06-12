@@ -49,11 +49,11 @@ This article is dedicated to anyone who wants to understand, straight to the poi
 
 ## Main CPU
 
-Similarly to Nintendo, Sony built an *extremely packed* System on a Chip (SoC) that houses most of the components we are going to discuss throughout this article. This includes the **main CPU** in charge of executing games and other programs (unlike the other CPUs, which we'll talk about in due time). The SoC is called **Tachyon**, a name chosen by Sony themselves.
+Similarly to Nintendo, Sony built an *extremely packed* System-on-Chip (SoC) that houses most of the components we are going to discuss throughout this article. This includes the **main CPU** in charge of executing games and other programs (unlike the other CPUs, which we'll talk about in due time). The SoC is called **Tachyon**, a name chosen by Sony themselves.
 
 ![The Tachyon chip on the original PSP model.](tachyon.jpg){latex_width="90%"}
 
-The main CPU is an in-house design that [keeps up with the tradition](playstation-2#cpu) of using **MIPS** technology. Be as it may, it's been four years since the release of the PlayStation 2, I wonder what's the state of MIPS since then?
+The main CPU is an in-house design that [keeps up with the tradition](playstation-2#cpu) of using **MIPS** technology. Be that as it may, it's been four years since the release of the PlayStation 2, I wonder what's the state of MIPS since then?
 
 ### MIPS after the turn of the century
 
@@ -64,12 +64,12 @@ The company's first decision was to acknowledge that MIPS CPUs couldn't compute 
 Consequently, MIPS revisited its fragmented CPU line and consolidated it with **three instruction sets** [@cpu-modern_mips]:
 
 - **MIPS32**: An update of [MIPS II](playstation#the-offering) - the last 32-bit-only Instruction Set Architecture (ISA) - bringing functionality gathered from later architectures while keeping the 32-bit boundary.
-- **MIPS64**: The continuation of MIPS V, a [64-bit ISA](nintendo-64#cpu) and the last one before the revamp. The MIPS V has been a superset of all previous ISAs, just like its predecessors.
+- **MIPS64**: The continuation of MIPS V, a [64-bit ISA](nintendo-64#cpu) and the last one before the revamp. The MIPS V was a superset of all previous ISAs, just like its predecessors.
 - **microMIPS**: Available as 'microMIPS32' and 'microMIPS64', these are supersets of the MIPS32 and MIPS64, respectively, with an additional group of 16-bit instructions (à la [Thumb](game-boy-advance#tab-2-3-squeezing-performance)). microMIPS is not binary compatible with the other ISAs, however, so it required re-compilation of legacy codebases to run on microMIPS.
 
 The big difference was that these would now be developed in conjunction, as opposed to MIPS dropping the previous architecture as soon as the next one arrived. New revisions would be denoted with the 'Release x' suffix, such as 'MIPS32 Release 6' or 'MIPS32R6', which is the last revision to date.
 
-Along with the ISAs, MIPS also started selling a new line of IP cores. For instance, the **MIPS32 4k** design implemented the **MIPS32 R2 ISA**, it came in different variants and offered plenty of customisations.
+Along with the ISAs, MIPS also started selling a new line of IP cores. For instance, the **MIPS32 4k** design implemented the **MIPS32 R2 ISA**; it came in different variants and offered plenty of customisations.
 
 Back on topic, Sony presumably acquired a license of the MIPS32 4k and customised it by extending the ISA and bundling particular co-processors [@cpu-gcc_patch]. The result is called **Allegrex** and runs at a variable speed, from **33 MHz to 333 MHz**.
 
@@ -124,7 +124,7 @@ So far, we've analysed the PSP's main CPU and its accelerators. Now let's see th
 The PSP comes with two memory blocks accessible from the CPU [@cpu-tachyon]:
 
 - **16 KB of SRAM**: this is what we called **Scratchpad** in [previous articles](playstation#cpu). It's small but very fast RAM, so it's up to developers to make proper use of it, although unofficial documents have called it 'useless' [@cpu-naked].
-- **32 MB of DDR SDRAM**: a significant larger amount at a lower access rate. We'll refer to it as 'main memory' across the article.
+- **32 MB of DDR SDRAM**: a significantly larger amount at a lower access rate. We'll refer to it as 'main memory' across the article.
   - The 'DDR' initials mean 'Double Data Rate', which denotes an evolution from the traditional 'SDRAM', now featuring a faster transfer protocol. The [original Xbox](xbox#memory-layout) used the same type.
 
 ### Bus design
@@ -306,7 +306,7 @@ The second task is called **vertex blending**, a technique used for **animations
 - **Skinning** (a.k.a. skeleton animation): movement relies on a structure of 'joints' attached to the character model. It's often applied for normal animation (walking, jumping, etc.).
 - **Morphing**: uses multiple instances of a model and averages them to get a 'transition effect' (using linear interpolation). It's normally used for artificial animation (i.e. facial movement) and special effects. It comes with larger memory consumption and a steeper learning curve.
 
-It's important to denote that the CPU may still need to compute animations to process game logic (e.g. collision detection), so the CPU can't offload all the work.
+It's important to note that the CPU may still need to compute animations to process game logic (e.g. collision detection), so the CPU can't offload all the work.
 
 Finally, the surface engine provides **scissoring** (discarding vertices outside the viewport/rectangular area) as well.
 
@@ -462,7 +462,7 @@ Examples of commercialised accessories included:
 - A **GPS receiver**, to use with the *Go! Explore GPS* disc, for satellite navigation.
 - A **camera** for videoconferencing. This makes sense as *Skype* came included with the system.
 
-The interesting part is that these type of peripherals were already available in the Pocket PCs and PDAs market as well. This makes you wonder if Sony envisioned the PSP as a *Pocket PC for youngsters*.
+The interesting part is that these types of peripherals were already available in the Pocket PCs and PDAs market as well. This makes you wonder if Sony envisioned the PSP as a *Pocket PC for youngsters*.
 
 ### Home console connectivity
 
@@ -517,7 +517,7 @@ Secondly, there is a second partition in NAND that stores user-related data, suc
 
 ### Boot process {.tabs-close}
 
-Now that we have identified the main parts, let's examine how they work together to bring the console into a 'working state' (once it is switch on). Security is discussed only briefly here; the later 'Anti-Piracy and Homebrew' section explores it in more depth.
+Now that we have identified the main parts, let's examine how they work together to bring the console into a 'working state' (once it is switched on). Security is discussed only briefly here; the later 'Anti-Piracy and Homebrew' section explores it in more depth.
 
 The *complex* boot process works as follows [@operating_system-ipl] [@cpu-naked]:
 
@@ -569,7 +569,7 @@ For the first time in this series, games developed for this console are not writ
 
 ### Development ecosystem
 
-The development toolkit provided by Sony to game studios was produced by SN Systems (the same author of the PS1 and PS2 kits). The software kit required a workstation running either Windows XP and Cygwin; or CentOS Linux.
+The development toolkit provided by Sony to game studios was produced by SN Systems (the same author of the PS1 and PS2 kits). The software kit required a workstation running either Windows XP with Cygwin, or CentOS Linux.
 
 With this kit, developers had access to [@games-sdk]:
 
@@ -591,7 +591,7 @@ Given that this was Sony's first mainstream portable console, how did they manag
 
 ![A typical retail game.](retail.jpg){.tab-float}
 
-CDs and DVDs are too large and easily copyable. Furthermore, conventional readers won't work in a shaky environment (anyone who has tried listening to an audio CD on a Walkman while *walking* know what I'm talking about). So, Sony's solution was a new invention from the ground up: the **Universal Media Disc** (UMD), a proprietary medium.
+CDs and DVDs are too large and easily copyable. Furthermore, conventional readers won't work in a shaky environment (anyone who has tried listening to an audio CD on a Walkman while *walking* knows what I'm talking about). So, Sony's solution was a new invention from the ground up: the **Universal Media Disc** (UMD), a proprietary medium.
 
 UMDs hold either **900 MB or 1.8 GB**, depending on whether they are single-layer or dual-layer, respectively. They differ from [DVDs](playstation-2#medium) and [MiniDVDs](gamecube#medium) not only in physical design but also in their internal data structure.
 
@@ -677,7 +677,7 @@ Alongside Tachyon sits another System-on-Chip known as **Lepton**, which control
 
 Lepton contains an enormous amount of circuitry - you may even consider it another computer living inside the PSP. This component includes its own CPU, a DSP for decoding, 480 KB of memory (as buffer), and 384 KB of ROM for storing its firmware.
 
-The main CPU communicates to Lepton using the ATAPI protocol, an interface traditionally used for plugging conventional CD/DVD drives into PCs. The critical difference, however, is that Lepton only decrypts data from a UMD if the disc is identified as authentic.
+The main CPU communicates with Lepton using the ATAPI protocol, an interface traditionally used for plugging conventional CD/DVD drives into PCs. The critical difference, however, is that Lepton only decrypts data from a UMD if the disc is identified as authentic.
 
 #### SPOCK {.tab}
 
@@ -777,7 +777,7 @@ PSPSDK also includes a toolkit to handle the compilation and packaging process, 
 
 There you go, you've just finished reading about the last portable console before smartphones and tablets took over! I think this gives us an idea of what services/features users were expecting from portable handhelds in the early noughties - and how this evolved during the next decade.
 
-Nevertheless, I want to thank the PSP Homebrew Community discord for not only taking the time to proofread this *endless* article, but also to enlighten me with even more information. Various members of that group have dedicated great effort to develop free tools and Homebrew applications to expand the capabilities of this console. My acknowledgement is also directed to all the authors who produced the documents listed in the sources. It took me ~3 months to write this article, but it was possible thanks to the combined years of work that other people dedicated to reverse-engineer this console.
+Nevertheless, I want to thank the PSP Homebrew Community discord for not only taking the time to proofread this *endless* article, but also for enlightening me with even more information. Various members of that group have dedicated great effort to develop free tools and Homebrew applications to expand the capabilities of this console. My acknowledgement is also directed to all the authors who produced the documents listed in the sources. It took me ~3 months to write this article, but it was possible thanks to the combined years of work that other people dedicated to reverse-engineer this console.
 
 As for the next article, I'll need to first take one month or two to focus on all the issues and requests submitted on the [GitHub repo](https://github.com/flipacholas/Architecture-of-consoles) and do some maintenance work on the site, but rest assured I'm striving to make the next writing as complete as this one!
 

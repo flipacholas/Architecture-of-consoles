@@ -55,9 +55,9 @@ Furthermore, the SuperH features a new instruction set called **SuperH ISA** whi
 
 ### The ramifications
 
-Conversely, other drawbacks of RISC designs are still present in the SuperH, such as [control hazards](playstation#delay-galore). Consequently, programs are required to include **branch delay slots** to avoid calculation errors. To remediate things, the SuperH features **delayed branch instructions** which are branch instructions pre-fitted with a delay slot [@cpu-prog_manual].
+Conversely, other drawbacks of RISC designs are still present in the SuperH, such as [control hazards](playstation#delay-galore). Consequently, programs are required to include **branch delay slots** to avoid calculation errors. To remedy things, the SuperH features **delayed branch instructions** which are branch instructions pre-fitted with a delay slot [@cpu-prog_manual].
 
-**Data hazards** are also present but not tackled by the programmer or compiler, the CPU will automatically stall the pipeline whenever necessary.
+**Data hazards** are also present but not tackled by the programmer or compiler; the CPU will automatically stall the pipeline whenever necessary.
 
 ### Sega is not satisfied
 
@@ -94,7 +94,7 @@ It's worth pointing out that **having two CPUs doesn't mean that games will work
 
 The Sega Saturn houses a significant number of processors (eight!). So, to avoid making them fight for resources, engineers grouped the circuitry into four separate subsystems:
 
-- The **CPU** subsystem, where the main CPUs and memory reside. Truth to be told, there's also an unusual *third* component. This is explained further down.
+- The **CPU** subsystem, where the main CPUs and memory reside. Truth be told, there's also an unusual *third* component. This is explained further down.
 - The **Video** subsystem, comprising the graphics accelerators.
 - The **Audio** subsystem, which can be considered a separate computer in its own right (you'll see more in the 'Audio' section of this article).
 - The **CD-ROM** subsystem, a walled fortress owing to the copy-protection mechanisms implemented. These are explained further in the 'Anti-piracy' section.
@@ -125,19 +125,19 @@ To alleviate things, the SCU comes with **32 KB of Static RAM** (SRAM) for local
 
 ## Graphics
 
-Since the Saturn is the first '3D console' reviewed for [this series](consoles), let us first go over the fundamental design changes that made way to the new generation of 3D graphics.
+Since the Saturn is the first '3D console' reviewed for [this series](consoles), let us first go over the fundamental design changes that made way for the new generation of 3D graphics.
 
 ### Revised methodologies
 
-Firstly, the GPU now relies on a **frame buffer**: graphics are no longer required to be rendered on the fly. Instead, the GPU reserves a portion of Video RAM (VRAM) to draw a bitmap containing all the computed geometry requested by the CPU. A video encoder then picks up that region and outputs it through the video output signal. Be as it may, the Saturn does mix the two models... I will explain more later.
+Firstly, the GPU now relies on a **frame buffer**: graphics are no longer required to be rendered on the fly. Instead, the GPU reserves a portion of Video RAM (VRAM) to draw a bitmap containing all the computed geometry requested by the CPU. A video encoder then picks up that region and outputs it through the video output signal. Be that as it may, the Saturn does mix the two models... I will explain more later.
 
 Consequently, having this reserved 'working space' allows the GPU to continue manipulating the bitmap even after finishing rendering the scene, enabling the CPU to offload additional exhaustive tasks (such as lighting and anti-aliasing) to the GPU. Here is where the concept of **graphics pipeline** starts to gain significance.
 
-Secondly, **more is VRAM required**: Using a frame buffer increases memory requirements (which is no longer a major issue). The amount of RAM required for a frame buffer is proportional to the screen dimensions and the number of colours used (a.k.a. *colour depth*). As an example, 600 KB of VRAM can contain a frame buffer of 640x480 pixels at 32k colours (16 bits per pixel).
+Secondly, **more VRAM is required**: Using a frame buffer increases memory requirements (which is no longer a major issue). The amount of RAM required for a frame buffer is proportional to the screen dimensions and the number of colours used (a.k.a. *colour depth*). As an example, 600 KB of VRAM can contain a frame buffer of 640x480 pixels at 32k colours (16 bits per pixel).
 
 Additionally, programmers are free to organise their VRAM usage: not every bit must be allocated for the frame buffer. So, why not also use it to cache textures, render other frame buffers concurrently, and add colour lookup tables to speed things up?
 
-Finally, the CPU incorporates **vector operations**: a GPU with 3D capabilities would be incomplete without a CPU capable of feeding the required geometry. For this reason, next-generation CPUs feature some form of specialised instructions that accelerates vector calculations, these are known as **Single Instruction Multiple Data** (SIMD) extensions. Nonetheless, their design across the industry will be far from standardised.
+Finally, the CPU incorporates **vector operations**: a GPU with 3D capabilities would be incomplete without a CPU capable of feeding the required geometry. For this reason, next-generation CPUs feature some form of specialised instructions that accelerate vector calculations; these are known as **Single Instruction Multiple Data** (SIMD) extensions. Nonetheless, their design across the industry will be far from standardised.
 
 In the case of the Saturn, vector operations are accelerated by the Saturn Control Unit, not the SH-2 CPUs.
 
@@ -198,7 +198,7 @@ As you can see, the architecture of the graphics subsystem is quite complex, and
 
 The capabilities of the Saturn for drawing 2D scenes were vast compared to those of the [Mega Drive](mega-drive-genesis) or [SNES](super-nintendo), although they were not the console's main selling point.
 
-For a quick demonstration, I will use *Mega Man X4* (1997) as example.
+For a quick demonstration, I will use *Mega Man X4* (1997) as an example.
 
 #### Sprites {.tabs .active}
 
@@ -317,7 +317,7 @@ Example of games dealing with half-transparency in different ways.
 
 :::
 
-In both examples, the game commands the VDP1 to draw foreground objects and background scenery. In turn, the VDP2 renders the landscape imagery far away, and overlays the HUD statistics in front of the 3D models. Consequently, the VDP1's 3D models (rendered as distorted sprites) are unable to employ half-transparency, this prevents them from naturally blending with the VDP2's layers.
+In both examples, the game commands the VDP1 to draw foreground objects and background scenery. In turn, the VDP2 renders the landscape imagery far away, and overlays the HUD statistics in front of the 3D models. Consequently, the VDP1's 3D models (rendered as distorted sprites) are unable to employ half-transparency; this prevents them from naturally blending with the VDP2's layers.
 
 Nevertheless, the two games exhibit different behaviour. During gameplay, the background of *Daytona* pops out of nowhere (as half-transparency is disabled). In contrast, *Sonic R* achieves not only half-transparency but also a **fading effect**. Traveller's Tales devised a workaround by adjusting the 'mix ratio' registers of the VDP2 (used for defining the texture's alpha) and manually switching the lighting levels as the character gets closer [@graphics-burton].
 
@@ -329,7 +329,7 @@ The audio capabilities of this console were part of a broader digital revolution
 
 ![Overview of the audio components.](_diagrams/audio.png)
 
-Be as it may, beneath the surface of attractive functionality lies a complex arrangement. In the case of the Sega Saturn, its sound subsystem is composed of several parts [@audio-scsp]:
+Be that as it may, beneath the surface of attractive functionality lies a complex arrangement. In the case of the Sega Saturn, its sound subsystem is composed of several parts [@audio-scsp]:
 
 - The **Saturn Custom Sound Processor** (SCSP): Also referred to as the Yamaha YMF292, it's composed of two modules:
   - A **multi-function sound generator**: Processes up to **32 channels** with **PCM samples** (up to 16-bit at 44.1 kHz - a.k.a. 'CD quality') or [**FM channels**](mega-drive-genesis#audio). In the case of the latter, a subset of channels is reserved for operators.
@@ -339,7 +339,7 @@ Be as it may, beneath the surface of attractive functionality lies a complex arr
   - If this CPU looks familiar, that's because it is: the Mega Drive carried a 68000 as its [main CPU](mega-drive-genesis#cpu), while the 68EC000 in the Saturn is a cost-reduced variant designed for embedded applications. The latter runs at 11.3 MHz and is connected using a 16-bit bus [@cpu-overview].
 - **512 KB of RAM**: Named 'sound RAM', it's used to store the sound driver and audio data (e.g. PCM samples). It also serves as a working area for the DSP.
 
-In an nutshell, the audio pipeline works as follows:
+In a nutshell, the audio pipeline works as follows:
 
 1. Either main CPU initialises the aforementioned components and loads a sound driver into sound RAM. It then activates the Motorola 68EC000, so it can begin working.
 2. During gameplay, the audio subsystem may receive data in the following ways:
@@ -427,7 +427,7 @@ I have to say, the evolution of optical storage is an interesting topic in itsel
 
 #### The Saturn's CD
 
-So far, I’ve been discussing the wider standard, but in the case of the Saturn, Sega adopted the **CD‑ROM XA** format (short for 'CD-ROM eXtended Architecture'). This is a superset of the CD‑ROM format that allows to store data, uncompressed audio, and interleaved multimedia tracks [@games‑disc]. The latter is essential for slow‑speed drives, allowing audio and images to be streamed at a reasonable rate, a capability particularly useful for video playback. Speaking of, video playback must still be decompressed, and for that Sega shipped an optional card called 'Video CD'.
+So far, I’ve been discussing the wider standard, but in the case of the Saturn, Sega adopted the **CD‑ROM XA** format (short for 'CD-ROM eXtended Architecture'). This is a superset of the CD‑ROM format that allows to store data, uncompressed audio, and interleaved multimedia tracks [@games-format]. The latter is essential for slow‑speed drives, allowing audio and images to be streamed at a reasonable rate, a capability particularly useful for video playback. Speaking of, video playback must still be decompressed, and for that Sega shipped an optional card called 'Video CD'.
 
 ### Development
 
@@ -449,7 +449,7 @@ This console bundles a considerable number of external connectors and interfaces
 
 ## Anti-Piracy & Homebrew
 
-In response to the easiness of cloning a CD, Sega implemented a copy protection system - along with region locking - to control the distribution of its games.
+In response to the ease of cloning a CD, Sega implemented a copy protection system - along with region locking - to control the distribution of its games.
 
 For the copy protection itself, Sega deliberately deviated from the standard CD format, making it impossible for regular CD burners to produce a perfect copy of a Saturn game. Then, as part of its verification process, the Saturn's disc reader looks for these non-standard features.
 

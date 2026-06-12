@@ -77,7 +77,7 @@ It's hard to think that, after almost ten years, Nintendo still bundled the same
   - **Normal mode**, where the SM83 operates at **~4.19 MHz**.
   - **Dual-speed mode**, where the SM83 operates at **~8.38 MHz**.
 
-Albeit, this came at the expense of adopting outdated technology by late-90s standards. You only have to look at the [state of the CPU market](playstation#tab-1-1-a-bit-of-history) to notice the capabilities Nintendo was missing out. Though, to be fair, Nintendo did make an attempt with the [Virtual Boy hardware](virtual-boy#cpu).
+However, this came at the expense of adopting outdated technology by late-90s standards. You only have to look at the [state of the CPU market](playstation#tab-1-1-a-bit-of-history) to notice the capabilities Nintendo was missing out. Though, to be fair, Nintendo did make an attempt with the [Virtual Boy hardware](virtual-boy#cpu).
 
 ### Hardware access
 
@@ -326,7 +326,7 @@ Oscilloscope display of a music score from Pokémon Red/Blue (1996).
 
 The third channel of the APU allows to define a **custom waveform**. The wave is composed of 32 4-bit samples which are stored in a wavetable.
 
-This channel also allows control over its volume and frequency, the latter enables to produce different musical notes from the same entry.
+This channel also allows control over its volume and frequency; the latter enables to produce different musical notes from the same entry.
 
 #### Noise {.tab}
 
@@ -389,7 +389,7 @@ Once again, in the case of the Game Boy Color, we find drastic changes in the co
 
 ## Games
 
-One of the main constraints of 70s-80s consumer hardware was its programming limitations: while promising, high-level language like C or Pascal were not yet ready for performance-critical applications, as compilers lacked maturity and games had to squeeze as much performance as possible. As a result, Game Boy games were mainly written in **assembly language**.
+One of the main constraints of 70s-80s consumer hardware was its programming limitations: while promising, high-level languages like C or Pascal were not yet ready for performance-critical applications, as compilers lacked maturity and games had to squeeze as much performance as possible. As a result, Game Boy games were mainly written in **assembly language**.
 
 ![The original Game Pak design [@photography-amos].](gamepak_original.webp){.no-borders latex_width="80%"}
 
@@ -435,7 +435,7 @@ The Color model also bundled an **infrared emitter and receiver** (made of an LE
 
 ## Anti-piracy
 
-As you've seen in the 'Operating System' section, the console never runs a game straight away; it first performs a series of checks that **prevent the execution of unauthorised cartridges** and also makes sure the cartridge is **correctly inserted**.
+As you've seen in the 'Operating System' section, the console never runs a game straight away; it first performs a series of checks that **prevent the execution of unauthorised cartridges** and also make sure the cartridge is **correctly inserted**.
 
 To be able to pass these checks, games had to include a copy of Nintendo's logo (in the form of tiles) within the ROM header [@games-dhole]. This way, Nintendo could make use of **copyright and trademark** laws to control distribution. *Pretty clever, huh?*
 

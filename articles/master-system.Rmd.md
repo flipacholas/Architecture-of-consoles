@@ -101,13 +101,13 @@ The architecture of this console is very similar to its predecessor, the **Sega 
 
 ## Graphics
 
-The drawings on the screen are produced by a proprietary chip called **Video Display Processor** or 'VDP'. Internally, it shares the same design as the Texas Instrument TMS9918 (used in the SG-1000) [@graphics-texas], though it has been enhanced with features which we will discuss in the following sections.
+The drawings on the screen are produced by a proprietary chip called **Video Display Processor** or 'VDP'. Internally, it shares the same design as the Texas Instruments TMS9918 (used in the SG-1000) [@graphics-texas], though it has been enhanced with features which we will discuss in the following sections.
 
 ### Organising the content
 
 ![Memory architecture of the VDP.](_diagrams/vdp.png)
 
-Connected to the VDP are **16 KB of Video RAM** (VRAM), which only the VDP can access using a **16-bit data bus** (Sega modified the original design to access two memory chips with 8-bit buses simultaneously [@cpu-service]). If you look at the motherboard picture again, you'll notice that both RAM and VRAM chips are roughly the same, except that VRAM uses the chip model ending in '20', which offer lower latency [@cpu-nec].
+Connected to the VDP are **16 KB of Video RAM** (VRAM), which only the VDP can access using a **16-bit data bus** (Sega modified the original design to access two memory chips with 8-bit buses simultaneously [@cpu-service]). If you look at the motherboard picture again, you'll notice that both RAM and VRAM chips are roughly the same, except that VRAM uses the chip model ending in '20', which offers lower latency [@cpu-nec].
 
 For the Master System, VRAM houses everything the VDP requires for rendering (except Colour RAM). The CPU fills VRAM by writing to specific VDP registers, which in turn forward the values to VRAM. Since the VDP is accessed through I/O ports, the CPU must use `IN` and `OUT` instructions.
 
@@ -138,7 +138,7 @@ Mode IV is based on the **tile system**. To recall [previous explanations](nes#t
 
 Inside VRAM, there is an area dedicated to tiles called **Character generator** (Sega refers to tiles as 'Characters'), and it's set to be **14 KB long**. Each tile occupies 32 bytes, so we can store up to 448 tiles.
 
-Each tile contains 64 pixels, and the VDP rules that each pixel must use 4 bits, allowing **16 colours can be chosen**. These bits reference a single entry in **Colour RAM** or 'CRAM', which is located within the VDP and stores the colour palettes. Colour palette systems reduce the size of tiles in memory and enable programmers to alternate their colours without storing multiple copies.
+Each tile contains 64 pixels, and the VDP rules that each pixel must use 4 bits, allowing **16 colours to be chosen**. These bits reference a single entry in **Colour RAM** or 'CRAM', which is located within the VDP and stores the colour palettes. Colour palette systems reduce the size of tiles in memory and enable programmers to alternate their colours without storing multiple copies.
 
 Colour RAM stores **two palettes of 16 colours each**. Each entry is 6 bits wide, with each 2-bit set defining one colour from the RGB model. This provides a total of 64 colours to choose from.
 
@@ -180,7 +180,7 @@ If you examine the example image [@fig-frame_result], you may notice a vertical 
 
 To update the graphics for the next frame without disrupting the image currently being displayed, the VDP sends two types of **interrupts** to the CPU. One notifies that the CRT TV has finished beaming a chosen number of scan-lines (called **horizontal interrupt**), while the other signals that the CRT has completed drawing the final scan-line (called **vertical interrupt**), indicating the frame is finished. During these events, the CRT's beam is repositioning to draw the next scan-line (**blanking interval**), so any alteration of the VDP's state won't tear the image. Horizontal blanking has a shorter time-frame than vertical blanking, yet it still allows to change, let's say, the colour palette. This still can produce certain effects.
 
-### Secrets and limitation {.tabs-close}
+### Secrets and limitations {.tabs-close}
 
 At first glance, the VDP may seem like another chip with minimal functionality that we now take for granted. Although, it still managed to draw significant attention away from Nintendo's offering at the time. Why was that?
 
@@ -290,7 +290,7 @@ I don't have the necessary tools right now to confirm whether the SMS should exh
 
 While the SN76489 lacks a [Pulse-Code Modulation (PCM) channel](nes#tab-3-4-sample) for reproducing samples, there are some tricks that can be used to simulate this functionality.
 
-These rely on the pulse channels, it was discovered that if the tone level is fixed at `1`, the volume level (which alters the amplitude) conditions the shape of the waveform.
+These rely on the pulse channels: it was discovered that if the tone level is fixed at `1`, the volume level (which alters the amplitude) conditions the shape of the waveform.
 
 smspower.org describes various designs that enable the playback of 1-bit, 4-bit and 8-bit PCM samples. Although, storage requirements skyrocket with higher sample resolutions and rates, so these techniques are best exploited in homebrew games.
 
@@ -351,7 +351,7 @@ I have to say, in terms of the design of the error screen, the creative differen
 
 Because the Japanese variant was backwards compatible with the SG-1000, the header check is replaced with an 'integrity check' that instead reads data from the first 256 bytes multiple times to detect if it is garbage.
 
-Furthermore, the Mark III doesn't have a BIOS, so the slots are activated with hardware switches. Furthermore, the cartridge is the medium with the most priority.
+Furthermore, the Mark III doesn't have a BIOS, so the slots are activated with hardware switches. Furthermore, the cartridge is the medium with the highest priority.
 
 ### Updatability and later BIOS chips
 

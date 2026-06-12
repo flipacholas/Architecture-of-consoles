@@ -56,17 +56,17 @@ The Motorola 68000 or '68k' served as a generational leap in the history of micr
 
 ![Apple's Macintosh (1984) and Lisa (1983). While at very different price points, both relied on the Motorola 68000 to display their innovative user interface.](macintosh.webp)
 
-Released in 1979, the 68k arrived in time to power the next decade of microcomputers. While initially struggling after loosing IBM's contract to Intel, it didn't take long until other companies and start-ups adopted this chip to power their new inventions. Some implemented incremental improvements over their predecessors, while others achieved unthinkable capabilities, to name a few:
+Released in 1979, the 68k arrived in time to power the next decade of microcomputers. While initially struggling after losing IBM's contract to Intel, it didn't take long until other companies and start-ups adopted this chip to power their new inventions. Some implemented incremental improvements over their predecessors, while others achieved unthinkable capabilities, to name a few:
 
 - A **Graphical User Interface** (GUI). New 68k-based products from Amiga, Apple, Atari and Sinclair debuted a novel form of user interaction. This time, founded on iconography, shapes and colours - and controlled with a 'Mouse'.
 - **Workstation applications**: These cost-effective machines were now capable of processing huge workloads, with some degree of specialisation. This led to the rise of networking infrastructure, graphics design and research equipment - among others.
   - This also coincided with the arrival of UNIX-based operating systems to the masses, leading to an uneasy proliferation of 'standards' and subsequent lawsuits.
 
-It's worth pointing out that much of this functionality wasn't new - it had simply been reserved for the costly minicomputers or prohibitive mainframes. The milestone lies in the fact all of this could now be accessed from the typical office or household.
+It's worth pointing out that much of this functionality wasn't new - it had simply been reserved for the costly minicomputers or prohibitive mainframes. The milestone lies in the fact that all of this could now be accessed from the typical office or household.
 
 ![The Motorola 68000 chip on the Mega Drive, this one is second-sourced from Hitachi.](m68000.jpg)
 
-By the end of the 80s, however, interest in the 68000 [faded in favour of a new wave of RISC CPUs](playstation#tab-1-1-a-bit-of-history). Yet, prices had come down enough for companies like Sega to take an interest in bringing in it to the console market.
+By the end of the 80s, however, interest in the 68000 [faded in favour of a new wave of RISC CPUs](playstation#tab-1-1-a-bit-of-history). Yet, prices had come down enough for companies like Sega to take an interest in bringing it to the console market.
 
 #### Features
 
@@ -90,7 +90,7 @@ To remedy this, with the 68000, Motorola sought to unify most of its instruction
 
 As a simple example, to move data around:
 
-- The [MOS 6052](nes#cpu) and [WDC 65816](super-nintendo#cpu) offer `LDA`, `STA`, `LDX`, `STX`, `LDY`, and `STY` opcodes. The choice depends on the direction of information (whether from register to memory or vice versa) and the specific register involved.
+- The [MOS 6502](nes#cpu) and [WDC 65816](super-nintendo#cpu) offer `LDA`, `STA`, `LDX`, `STX`, `LDY`, and `STY` opcodes. The choice depends on the direction of information (whether from register to memory or vice versa) and the specific register involved.
   - Additionally, in the WDC 65816, the parameter specifying the size of data (8-bit or 16-bit) resides in a separate register, requiring additional instructions (`SEP` and `REP`) to change it.
 - In contrast, the Motorola 68000 provides a single `MOVE` opcode; its operands specify the origin, destination, size and addressing type.
 
@@ -162,7 +162,7 @@ Finally, it's worth pointing out that the VDP automatically takes care of adding
 
 ### Organising the content
 
-In terms of processing the graphics data, this chip has two modes of operations:
+In terms of processing the graphics data, this chip has two modes of operation:
 
 - **Mode IV**: The legacy mode that behaves like its [predecessor](master-system#graphics).
   - This doesn't mean this console will play Master System games right away, as an additional accessory, the *Power Base Converter*, is required to fit previous cartridges into this console. The converter also instructs the I/O chip to place the Z80 in control.
@@ -198,7 +198,7 @@ Some tiles found in VRAM.
 
 :::
 
-Just like Nintendo's PPU, The VDP is a tile-based engine, and as such, it uses **tiles** (basic 8x8 bitmaps) to compose graphic planes. In the case of the VDP, each tile is encoded with a 4-byte-long array, where each 4-bit entry corresponds to a pixel and its value corresponds to a colour entry (pointing to a colour palette).
+Just like Nintendo's PPU, the VDP is a tile-based engine, and as such, it uses **tiles** (basic 8x8 bitmaps) to compose graphic planes. In the case of the VDP, each tile is encoded with a 4-byte-long array, where each 4-bit entry corresponds to a pixel and its value corresponds to a colour entry (pointing to a colour palette).
 
 Game cartridges store tiles in their **ROM** (found in their cartridge) but these must be copied to **VRAM** for the VDP to read them [@graphics-ports]. Traditionally, this was only possible during specific time frames and handled by the CPU, fortunately, this console added special circuitry to offload this task to the VDP (we'll get into details later on).
 
@@ -218,7 +218,7 @@ Example of Background plane.
 
 The Background plane, also known as **Plane B**, is a scrollable tilemap (set of tiles) containing **static tiles** [@graphics-macdonald].
 
-This plane supports six different dimensions: 256x256, 256x512, 256x1024, 512x256, 512x512, and 1024x256. Programmers may select the dimension that best suits the requiring scrolling type.
+This plane supports six different dimensions: 256x256, 256x512, 256x1024, 512x256, 512x512, and 1024x256. Programmers may select the dimension that best suits the required scrolling type.
 
 Each tile can be **flipped horizontally and/or vertically** and have a **priority** set.
 
@@ -328,7 +328,7 @@ The **Texas Instruments SN76489** is a **Programmable Sound Generator** (PSG) ca
 
 This is actually the [original sound chip](master-system#audio) from the Master System, now embedded within the VDP. It runs at the speed of the Z80.
 
-Programming the PSG involves writing to a single 8-bit location (called `PSG port` [@audio-plutiedev_psg]), which both CPUs can do so. Behind the scenes, its bus is connected only to the 68000, but the Bus Arbiter seamlessly manages access when the Z80 writes to it.
+Programming the PSG involves writing to a single 8-bit location (called `PSG port` [@audio-plutiedev_psg]), and both CPUs can do so. Behind the scenes, its bus is connected only to the 68000, but the Bus Arbiter seamlessly manages access when the Z80 writes to it.
 
 Notice in this example [@fig-psg], the 'Pulse 3' channel remains muted. This is because the game activates a mode that reserves the third pulse for modulating the noise channel [@audio-sonic], a function featured on the Master System as well.
 
@@ -350,7 +350,7 @@ Nevertheless, the design of a sound driver is not completely dependent on the Z8
 
 Rather than sticking with ordinary drum kits, there have been occasions where music composers pushed the PCM channel to produce more natural sounds. Since this could only be implemented through software, games had to continuously sequence and stream their music without exceeding the Z80's limits. The main constraint was that, to fill its RAM during sequencing, the main bus had to be **blocked** first (preventing commands or samples from being sent to the audio chips during that timeframe). Otherwise, sound anomalies such as muting, frozen notes, or low sample rates could appear.
 
-While an unaffordable challenge at first, certain games overcame this with the help of creative techniques. For instance, Traveller's Tales' *Toy Story* (1995) allocated the 68000 for sequencing the music [@audio-gamehut]. This was a highly intensive task, meaning it could only executed at very particular points of the game, such as the main menu.
+While an unaffordable challenge at first, certain games overcame this with the help of creative techniques. For instance, Traveller's Tales' *Toy Story* (1995) allocated the 68000 for sequencing the music [@audio-gamehut]. This was a highly intensive task, meaning it could only be executed at very particular points of the game, such as the main menu.
 
 ::: {.subfigures .tabs-nested .toleft .interactive-only}
 
@@ -364,7 +364,7 @@ Oscilloscope view of Sonic The Hedgehog 3 (1994). Its soundtrack was rumoured to
 
 ![Oscilloscope view of Toy Story (1995).](good_sampling/randy_pcm){.tabs-nested .tabs-nested-last .active .toright video="true" .interactive-only title="PCM Sample/Complete"}
 
-While one can argue it's still miles ahead from achieving CD-quality (16-bit at 44.1 kHz), the advancements made compared to it predecessors certainly deserve recognition. And it is always this type of skill what pushes the boundaries of music in the next generation of consoles.
+While one can argue it's still miles ahead from achieving CD-quality (16-bit at 44.1 kHz), the advancements made compared to its predecessors certainly deserve recognition. And it is always this type of skill what pushes the boundaries of music in the next generation of consoles.
 
 ### Assisted FM Composition
 
@@ -378,7 +378,7 @@ Channels also incorporated some **logic** by embedding conditionals within their
 
 ### (Bonus) Mega CD Sound
 
-Here is an interesting fact, the Mega CD add-on provided two extra channels for Audio CD (among other things). One of its most famous games, Sonic CD, featured very impressive compositions but, like all games, it had to loop. The problem was that looping tracks on a 1x CD reader exposed noticeable gaps. So, the game included loop fillers that were executed from another PCM chip while the CD header was returning to the start.
+Here is an interesting fact, the Mega CD add-on provided two extra channels for Audio CD (among other things). One of its most famous games, Sonic CD, featured very impressive compositions but, like all games, it had to loop. The problem was that looping tracks on a 1x CD reader exposed noticeable gaps. So, the game included loop fillers that were executed from another PCM chip while the CD head was returning to the start.
 
 For some reason, these fillers are only found on early betas of the game and they didn't make it for the release. However, the 2011 remake finally included them.
 
@@ -388,7 +388,7 @@ For some reason, these fillers are only found on early betas of the game and the
 
 ## Games
 
-Games are primarily written in **68000 assembly**, while the sound driver is implemented in **Z80 assembly**. Both reside in the cartridge ROM and can be to 4 MB in size without the need for a [mapper](nes#going-beyond-existing-capabilities).
+Games are primarily written in **68000 assembly**, while the sound driver is implemented in **Z80 assembly**. Both reside in the cartridge ROM and can be up to 4 MB in size without the need for a [mapper](nes#going-beyond-existing-capabilities).
 
 ### Extra functions
 
@@ -400,7 +400,7 @@ Only one custom chip was produced for cartridges: the **Sega Virtua Processor** 
 
 Before online services became widely adopted and standardised, Sega tried its luck with **Sega Meganet**, a dial-up service for games to use. Meganet required users to purchase a separate accessory called the _Sega Mega Modem_, plug it to the back of the console (where the DE-9 connector is), and finally connect it to the phone line. Games treated the modem unit as another controller, with the addition of communicating with it serially [@games-ioports] (as opposed to the parallel encoding used for controllers).
 
-Be as it may, this feature only lasted a couple of years before Sega removed the DE-9 connector in later revisions and discontinued the service entirely.
+Be that as it may, this feature only lasted a couple of years before Sega removed the DE-9 connector in later revisions and discontinued the service entirely.
 
 ## Anti-piracy / Region Lock
 

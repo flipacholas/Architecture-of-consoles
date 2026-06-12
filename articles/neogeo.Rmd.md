@@ -33,7 +33,7 @@ In this entry, we'll take a look at the result of one company (SNK) setting asid
 
 The Neo Geo is exceptional in the sense it was designed for two markets at the same time: the arcade and the home. Consequently, SNK produced a single architecture which was sold in the form of **two variants**, each catering to a particular market:
 
-- The **Multi Video System** or 'MVS' is the form tailored for arcade centres. Its I/O follows the 'JAMMA' specification (with some deviations [@general-jamma]), facilitating integration with arcade cabinets. Alongside, its specialised motherboard provides extra circuitry for handling coin-based payments. Be as it may, throughout its lifetime, SNK ended up shipping tons of revisions, some of which could accommodate up to six game cartridges at once [@general-mvs_boards].
+- The **Multi Video System** or 'MVS' is the form tailored for arcade centres. Its I/O follows the 'JAMMA' specification (with some deviations [@general-jamma]), facilitating integration with arcade cabinets. Alongside, its specialised motherboard provides extra circuitry for handling coin-based payments. Be that as it may, throughout its lifetime, SNK ended up shipping tons of revisions, some of which could accommodate up to six game cartridges at once [@general-mvs_boards].
 - The **Advanced Entertainment System** or 'AES' is the simplified design for homes. While smaller and with reduced I/O, it doesn't compromise its fundamental capabilities.
 
 I suppose I should also mention the **Neo Geo CD**, which is the successor to the AES variant and embraced the CD-ROM for game distribution. Just like its previous forms, there were multiple revisions of this model.
@@ -115,7 +115,7 @@ Curiously enough, this system does not feature any form of **Direct Memory Acces
 
 ## Graphics
 
-The Neo Geo is the pinnacle of tile-based graphics, its richness of colours is comparable to [frame-buffer-based systems](sega-saturn#graphics) (which only became affordable four years later). Be as it may, when it comes to effects, the [Super Nintendo](super-nintendo#graphics) has managed to do more with less.
+The Neo Geo is the pinnacle of tile-based graphics, its richness of colours is comparable to [frame-buffer-based systems](sega-saturn#graphics) (which only became affordable four years later). Be that as it may, when it comes to effects, the [Super Nintendo](super-nintendo#graphics) has managed to do more with less.
 
 ### Design
 
@@ -214,7 +214,7 @@ The CPU may update Palette RAM at any moment, but it should only do so during bl
 
 ![The Fixed plane with a black backdrop.](aof/fixed_plane.png){.tab-float .border .pixel}
 
-The Fixed plane is a layer **320 x 256 pixels** (40 x 32 tiles) wide [@graphics-fixed_layer], pretty much the entire screen. Its tiles displayed are completely static and only have access to 16 colour palettes. In practice, this is used to display 'always-on' information, similar to the [window layer](game-boy#tab-1-4-window) of the Game Boy.
+The Fixed plane is a layer **320 x 256 pixels** (40 x 32 tiles) wide [@graphics-fixed_layer], pretty much the entire screen. Its displayed tiles are completely static and only have access to 16 colour palettes. In practice, this is used to display 'always-on' information, similar to the [window layer](game-boy#tab-1-4-window) of the Game Boy.
 
 When broadcasted to a CRT screen, the displayed area will be smaller. Thus, its [safe area](nes#constructing-the-frame) is 38 x 28 tiles wide.
 
@@ -335,7 +335,7 @@ As you can see, most of the low-end I/O is delegated to the System ROM; games in
 
 ## Games
 
-To start with, games are written in **68k** and **Z80 assembly**. It is only with the next generation of consoles (and the arrival of [new CPUs](playstation#tab-1-1-a-bit-of-history)) that programming languages become part of the toolbox.
+To start with, games are written in **68k** and **Z80 assembly**. It is only with the next generation of consoles (and the arrival of [new CPUs](playstation#tab-1-1-a-bit-of-history)) that programming languages became part of the toolbox.
 
 ### Distribution medium
 
@@ -377,7 +377,7 @@ Having said that, whether arcade cabinets were actually 'prepared' for Memory Ca
 
 Both consoles and games were targeted by unauthorised parties, many of whom ended up producing their own replicas [@anti_piracy-bootlegs]. Bootleg hardware was made using a combination of off-the-shelf and reverse-engineered chips, aiming to offer a cheaper alternative to SNK's hardware.
 
-Thus, on one side, you've got SNK trying to fend off bootleggers. On the other, game studios were enforcing that their code only ran on a genuine console and cartridge.
+Thus, on the one hand, you've got SNK trying to fend off bootleggers. On the other, game studios were enforcing that their code only ran on a genuine console and cartridge.
 
 ### Combating fake consoles
 
@@ -409,7 +409,7 @@ On the firmware side, there have been developments like the 'UNIVERSE BIOS'/UniB
 - Change the region. Some games are censored depending on the region they run on.
 - Activate cheats.
 
-Finally, to run arbitrary code in this console, stores are selling third-party flashcarts which can reprogram itself to replicate any past CHA and PROG boards. Due to their complexity, they are not exactly affordable, but that is another product Neo Geo owners have available nowadays.
+Finally, to run arbitrary code in this console, stores are selling third-party flashcarts which can reprogram themselves to replicate any past CHA and PROG boards. Due to their complexity, they are not exactly affordable, but that is another product Neo Geo owners have available nowadays.
 
 ## That's all folks
 

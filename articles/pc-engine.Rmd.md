@@ -73,7 +73,7 @@ Finally, there are **8 KB of Random-Access Memory (RAM)** available for general-
 
 ### Memory access
 
-One aspect I have not yet mentioned is that NEC also added a **Memory Management Unit** (MMU) adjacent to the CPU, allowing it to handle **21-bit addresses** (remember the original 6502 only supports 16-bit addresses) [@cpu-hardware_manual]. Thus, the amount of memory that can be accessed raises from 64 KB to **2 MB**.
+One aspect I have not yet mentioned is that NEC also added a **Memory Management Unit** (MMU) adjacent to the CPU, allowing it to handle **21-bit addresses** (remember the original 6502 only supports 16-bit addresses) [@cpu-hardware_manual]. Thus, the amount of memory that can be accessed rises from 64 KB to **2 MB**.
 
 This MMU is very different from any modern-day MMU; I would say it is closer to a [mapper](nes#going-beyond-existing-capabilities). Having said that, the MMU in the PC Engine consists of **eight 8-bit registers** (called **Mapping Register** or 'MPR') that combine with the CPU's 16 address lines to form a 21-bit address bus.
 
@@ -107,7 +107,7 @@ The reason for this lies in the way Hudson organised the circuitry: The VDC has 
 
 Aside from the aforementioned granularity oddity, the VDC is functionally straightforward. The subsystem has three main components: The **VDC** and **VRAM**, which we already discussed, and the **Video Colour Encoder** (also called 'VCE'; we will examine it in due course).
 
-The system supports **multiple resolutions**, this is because the game can modify a set of registers that act as parameters for controlling the display timings, which in turn alter the CRT's scan timings. The minimum resolution is **256 × 224 pixels** [@graphics-vdc_manual], while some homebrew projects have demonstrated that this system can achieve resolutions as high as **512 × 240 pixels**.
+The system supports **multiple resolutions**; this is because the game can modify a set of registers that act as parameters for controlling the display timings, which in turn alter the CRT's scan timings. The minimum resolution is **256 × 224 pixels** [@graphics-vdc_manual], while some homebrew projects have demonstrated that this system can achieve resolutions as high as **512 × 240 pixels**.
 
 Now, let's see how a frame is drawn step by step. For this, I will borrow assets from *Bonk's Adventure*.
 
@@ -119,7 +119,7 @@ Now, let's see how a frame is drawn step by step. For this, I will borrow assets
 
 ![Sprite tiles.](graphics/tiles_sprites.png){.border title="Sprites"}
 
-The two types of tiles Found in VRAM.
+The two types of tiles found in VRAM.
 
 :::
 
@@ -137,7 +137,7 @@ The video encoder is a separate chip that stores **32 colour palettes** (16 for 
 
 ![Structure of a single Background tile.](_diagrams/tiles.png){.active title="Background"}
 
-![Structure of a single Sprite tile.](_diagrams/tiles_sprites.png){title="Sprites"}
+![Structure of a single Sprite tile.](_diagrams/tiles_sprites.png){title="Sprites" latex_width="80%"}
 
 How tiles are structured in VRAM.
 
@@ -171,7 +171,7 @@ Each entry is 8 bytes long, although some space is wasted due to the 16-bit gran
 
 To top it all off, **the CPU can't access this table**, so it must be completed in VRAM first and then transferred to the VDC via a Direct Memory Access (DMA) channel.
 
-Regarding limitations, only be up to 16 sprites can appear per scan-line. On the other hand, interrupts can be configured to notify the game in case of sprite overflow or [collision](master-system#tab-2-1-collision-detection).
+Regarding limitations, only up to 16 sprites can appear per scan-line. On the other hand, interrupts can be configured to notify the game in case of sprite overflow or [collision](master-system#tab-2-1-collision-detection).
 
 #### Result {.tab}
 
@@ -206,7 +206,7 @@ The system features **six audio channels** [@audio-manual], each of which is con
 - **Waveform shape**: The waveform cycle is generated using thirty-two 5-bit values, each corresponding to the amplitude of the wave at a specific time.
   - Some games, such as *Fire Pro Wrestling 2* and *Bloody Wolf*, even altered these values during playback to obtain unique sounds (at the expense of audible clicks during transfers).
 - **Frequency control**: Two 8-bit registers adjust the frequency of the channel to produce different musical notes using the same waveform.
-- **Amplitude level**: A single 8-bit register stores two 4-bits values that determine the volume of the channel. These values correspond to the 'Left' and 'Right' **panning control**, a pioneering feature compared to what the competition offered.
+- **Amplitude level**: A single 8-bit register stores two 4-bit values that determine the volume of the channel. These values correspond to the 'Left' and 'Right' **panning control**, a pioneering feature compared to what the competition offered.
 
 {.close-float}
 
@@ -279,7 +279,7 @@ That expansion port opened the door to a wide range of accessories and expansion
 
 ![How it looked with everything fitted [@photography-amos].](cd/fitted.png){.tabs-nested-last title="Fitted"}
 
-Let's take a look at the **CD-ROM²** expansion, which consists of a CD-ROM reader and a special HuCard called the **System Card**. The latter acts as a **BIOS** to bootstrap the game and provide routines to interface with the reader. Internally, the CD-ROM reader included **64 KB of RAM** for general-purpose use, another **64 KB of RAM** for streaming ADPCM samples, and **2 KB** for save data. As you can guess, this enabled game developers to take the advantage of extra storage and CD audio, while providing publishers with the economic benefit of distributing games on a popular medium.
+Let's take a look at the **CD-ROM²** expansion, which consists of a CD-ROM reader and a special HuCard called the **System Card**. The latter acts as a **BIOS** to bootstrap the game and provide routines to interface with the reader. Internally, the CD-ROM reader included **64 KB of RAM** for general-purpose use, another **64 KB of RAM** for streaming ADPCM samples, and **2 KB** for save data. As you can guess, this enabled game developers to take advantage of extra storage and CD audio, while providing publishers with the economic benefit of distributing games on a popular medium.
 
 {.close-float}
 

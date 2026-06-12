@@ -144,7 +144,7 @@ Just like its predecessor, Random-Access Memory (RAM) is spread across many diff
 
 ### Backwards compatibility
 
-Even though the Nintendo DS' architecture is a radical departure from its predecessor, this console still managed to retain the critical bits that enables native compatibility with Game Boy Advance games.
+Even though the Nintendo DS' architecture is a radical departure from its predecessor, this console still managed to retain the critical bits that enable native compatibility with Game Boy Advance games.
 
 But for the DS to morph into a GBA, the console includes a set of software routines that place it in **AGB Compatibility Mode**. When activated, these routines halt the ARM9, disable most of the novel hardware, redirect the buses, put the ARM7 in charge, and slow its clock speed to 16.78 MHz. Finally, the ARM7 executes the original [AGB Basic Input/Output System (BIOS)](game-boy-advance#operating-system), which bootstraps the GamePak cartridge (just like an original Game Boy Advance).
 
@@ -160,7 +160,7 @@ Let me start with the ARM9, this CPU runs at twice the speed of the ARM7, yet mo
 
 Additionally, the PSRAM bus is only **16-bit wide** (still following the [Game Boy Advance's EWRAM](game-boy-advance#memory-locations) model) and operates at half the ARM9's clock speed. Consequently, whenever either CPU needs to fetch a 32-bit word from memory, the interface **stalls the CPU**, introducing up to three 'wait cycles' while the full word is reconstructed.
 
-The degree of stalling varies significantly depending on the transfer type (instruction or data fetch) and the transfer width (16-bit or 32-bit). The worst scenario occurs during non-sequential 32-bit data retrieval, where the ARM9 spends five cycles per transfer. This is alleviated when the data is sequential, reducing transfer times to a mere cycle. However, the ARM9 doesn't support sequential opcode fetching, so instruction retrieval gain no benefit. In other words, the same penalties apply regardless of whether instructions are adjacent.
+The degree of stalling varies significantly depending on the transfer type (instruction or data fetch) and the transfer width (16-bit or 32-bit). The worst scenario occurs during non-sequential 32-bit data retrieval, where the ARM9 spends five cycles per transfer. This is alleviated when the data is sequential, reducing transfer times to a mere cycle. However, the ARM9 doesn't support sequential opcode fetching, so instruction retrieval gains no benefit. In other words, the same penalties apply regardless of whether instructions are adjacent.
 
 All in all, this means that in the worst case, the ARM9's whopping 66 MHz horsepower is practically reduced to a mere ~8 MHz. That is, if the program makes an abysmal use of the cache and TCM. In situations like this, however, I wonder if Nintendo might have mitigated the issue simply by increasing the amount of internal fast RAM. I also question if this is just technical debt carried over for the sake of backwards compatibility.
 
@@ -168,7 +168,7 @@ Anyway, for a detailed report, I recommend checking out Martin Korth's documente
 
 ## Graphics
 
-This section is a bit unusual because not only this console has multiple screens to draw, but also bundles traditional tile engines working alongside a modern renderer.
+This section is a bit unusual because not only does this console have multiple screens to draw, but also bundles traditional tile engines working alongside a modern renderer.
 
 ![Comparison of screen resolution and aspect ratio between the Game Boy, Game Boy Advance, and Nintendo DS series.](_diagrams/screen_comparison.png)
 
@@ -190,9 +190,9 @@ Now, each engine can only be linked to one of the screens. This is not an issue 
 
 Before we review each stage, I recommend reading about the [GBA's PPU](game-boy-advance#graphics) since here I will only highlight the changes that led to the 'next-generation' of 2D games.
 
-To set the stage, as there are two 2D engines, the first one is named **Main** while the second one is called **Sub**. This doesn't necessarily imply which screen each on is connected to. On the other hand, Main provides a bit more functionality than Sub.
+To set the stage, as there are two 2D engines, the first one is named **Main** while the second one is called **Sub**. This doesn't necessarily imply which screen each one is connected to. On the other hand, Main provides a bit more functionality than Sub.
 
-To support the explanations, this time I will be using *New Super Mario Bros* as example.
+To support the explanations, this time I will be using *New Super Mario Bros* as an example.
 
 #### Tiles {.tabs .active}
 
@@ -220,7 +220,7 @@ Before we discuss the different modes that the 2D engine uses to generate backgr
     - **Large screen**: Eats up a whole 128 KB chunk of VRAM to render a large 1024 x 512-pixel frame buffer.
 - **3D background**: Displays the output of the 3D engine as a background layer, which is essential for showing whatever the 3D engine has processed. Although it doesn't provide a lot of 2D effects, there are interesting features like horizontal scrolling and alpha blending (with other background layers). Also, it's the only type that supports up to 262,144 colours (18-bit).
 
-These modes can't be chosen arbitrarily; instead, the console provides a set of **background modes** with predefined combinations. Be as it may, whenever a background mode states to support 'Affine Extended', developers are free to choose the flavour ('Tiled', '256 colours', and 'Direct colour').
+These modes can't be chosen arbitrarily; instead, the console provides a set of **background modes** with predefined combinations. Be that as it may, whenever a background mode states to support 'Affine Extended', developers are free to choose the flavour ('Tiled', '256 colours', and 'Direct colour').
 
 #### Background modes {.tab}
 
@@ -308,7 +308,7 @@ In terms of control, the rendering engine also enables its parameters to be alte
 
 ### Famous comparisons {.tabs-close}
 
-Some of the early games released for this console attempt to resemble Nintendo 64 counterparts. So I found this a good opportunity summarise why players may notice certain patterns between the two versions [@fig-mario_kart_comp].
+Some of the early games released for this console attempt to resemble Nintendo 64 counterparts. So I found this a good opportunity to summarise why players may notice certain patterns between the two versions [@fig-mario_kart_comp].
 
 ::: {.subfigures .side-by-side max_subfigures=2 #fig-mario_kart_comp}
 
@@ -347,7 +347,7 @@ The following are 3D models visualisations from games designed for this console.
 
 ![New Super Mario Bros (2006).<br>636 triangles.](mario_ds){.toright model3d="true"}
 
-Despite we talked about many limitations of the graphics subsystem, I have to say, lots of games knew how to leverage it.
+Despite having talked about many limitations of the graphics subsystem, I have to say, lots of games knew how to leverage it.
 
 ## Audio
 
@@ -381,7 +381,7 @@ I've constructed this interactive widget to let you compare how the new audio sy
 
 :::
 
-Be as it may, I had to boost the gain of the GBA soundtrack a little bit to match the loudness. This affects the signal-to-noise ratio - just something to bear in mind while you switch between the two. Anyway, I hope you got a sense of how the sound subsystem has evolved.
+Be that as it may, I had to boost the gain of the GBA soundtrack a little bit to match the loudness. This affects the signal-to-noise ratio - just something to bear in mind while you switch between the two. Anyway, I hope you got a sense of how the sound subsystem has evolved.
 
 ### Some struggles {.interactive-only}
 
@@ -421,9 +421,9 @@ The interface can be accessed by both CPUs, but it contains registers that are m
 
 Now, here's the challenging bit: unlike the old GamePak, **DS cards are not memory-mapped**, they use multiple **serial interfaces** to communicate. So, for either CPU to read the card's content, this must be copied to RAM first.
 
-In the case of the card's ROM chip, The CPU must send blocks of 64-bit commands, referencing 32-bit addresses, to the DS card. Afterwards, the data can be retrieved either by pulling from a 32-bit register or through DMA. The data bus is 4 bits wide and, depending on the type of ROM fitted, it can reach speeds of up to **6.7 MB/s** [@io-card_ports].
+In the case of the card's ROM chip, the CPU must send blocks of 64-bit commands, referencing 32-bit addresses, to the DS card. Afterwards, the data can be retrieved either by pulling from a 32-bit register or through DMA. The data bus is 4 bits wide and, depending on the type of ROM fitted, it can reach speeds of up to **6.7 MB/s** [@io-card_ports].
 
-Alongside the DS card ROM, there is typically a 'backup' chip used for storing save data. These chips are instead accessed using an **Serial Peripheral Interface** (SPI) bus [@io-backup]. In there, we may find:
+Alongside the DS card ROM, there is typically a 'backup' chip used for storing save data. These chips are instead accessed using a **Serial Peripheral Interface** (SPI) bus [@io-backup]. In there, we may find:
 
 - **EEPROM** or **flash memory**: As [Game Paks previously included](game-boy-advance#cartridge-ram-space).
 - **Ferroelectric RAM (FRAM)**: Behaves like Static RAM (SRAM) but doesn't require a battery.
@@ -543,7 +543,7 @@ This console runs games from three sources, where only two of them can make 'ful
 
 ### Program structure
 
-You've seen that this console's BIOS must be split into ARM9 and ARM7 code. Well, the same principle largely applies to games. Thus, the ROM inside NDS cards is organised into the the following areas:
+You've seen that this console's BIOS must be split into ARM9 and ARM7 code. Well, the same principle largely applies to games. Thus, the ROM inside NDS cards is organised into the following areas:
 
 - **Header (4 KB)**: Contains metadata, including the entrypoint of each executable, manufacturer information, and Nintendo's Logo [@games-header].
 - **Secure Area (16 KB)**: Used for copy-protection purposes. We'll cover the details in the 'Anti-piracy' section.
@@ -583,7 +583,7 @@ In fact, some 'games' were simply standalone applications wrapped in Nintendo's 
 
 ## Anti-Piracy and Homebrew
 
-Even though DS cards weren't affected by the [curse of the compact disc](playstation#anti-piracy-region-lock), [Trademark-based tricks](game-boy#anti-piracy) were not longer enough to deter the production of [Flashcarts](game-boy-advance#flashcarts). Thus, this time, Nintendo reinforced its traditional security with extra layers to regain control of game distribution.
+Even though DS cards weren't affected by the [curse of the compact disc](playstation#anti-piracy-region-lock), [Trademark-based tricks](game-boy#anti-piracy) were no longer enough to deter the production of [Flashcarts](game-boy-advance#flashcarts). Thus, this time, Nintendo reinforced its traditional security with extra layers to regain control of game distribution.
 
 ### Security mechanisms
 
@@ -645,7 +645,7 @@ As expected, later batches of Nintendo DS units shipped with updated firmwares t
 
 #### Native Slot-1 {.tab}
 
-![The 'R4 DS' was one of the first Slot-1 flashcards to reach the the market. Right afterwards, a swamp of replicas flooded it.](r4.webp){.tab-float latex_width="90%"}
+![The 'R4 DS' was one of the first Slot-1 flashcards to reach the market. Right afterwards, a swamp of replicas flooded it.](r4.webp){.tab-float latex_width="90%"}
 
 In January 2006, Martin Korth, developer of the Nintendo DS emulator called 'NO$GBA', managed to extract the ARM7 BIOS and reverse engineer the Slot-1 security system [@anti_piracy-passthrough]. With this, new tools and documentation revealed the true mechanisms of the Nintendo DS' security. As you have seen in this article, the encryption model is effective until the key is discovered (this is a weakness of symmetric encryption systems, unlike asymmetric encryption systems such as RSA, where the private key is kept by a separate entity).
 
@@ -657,9 +657,9 @@ Since the encryption system couldn't be altered without introducing breaking cha
 
 This is my personal opinion, but it's astonishing how simple it became to acquire and use plug-and-play flashcards compared to previous consoles. In older articles, I've described that if users ultimately wanted to run homebrew programs or pirated games, they would have to get down the rabbit hole and follow some cumbersome method.
 
-In the case of the DS, however, flashcards were literally sold just like retail games (albeit with a different 'style' of marketing), and I bet it must have been truly concerning for game studios to see how painless was to resort to piracy.
+In the case of the DS, however, flashcards were literally sold just like retail games (albeit with a different 'style' of marketing), and I bet it must have been truly concerning for game studios to see how painless it was to resort to piracy.
 
-![Slot-1 flashcards were a very active industry between 2007 and 2011. These are just a handful of the many offerings. Thanks annonymous donor for sending me these!](slot1_flashcards.webp)
+![Slot-1 flashcards were a very active industry between 2007 and 2011. These are just a handful of the many offerings. Thanks anonymous donor for sending me these!](slot1_flashcards.webp)
 
 Another sticking aspect is the sheer number of branded flashcards (aside from all knock-offs) that appeared on the market. If you look at it from a technical perspective, the purpose of a flashcard is very straightforward: to redirect commands to the MicroSD card (where a game ROM or homebrew is stored) [@anti_piracy-acekard]. But as this industry progressed, some manufacturers took extra steps to design better software running within the flashcard (referred to as 'kernel' or 'firmware') or even integrate rather unusual hardware. For instance, the 'N-Card' offered embedded storage, while the 'SuperCard DSTwo' bundled an Ingenic Jz4740 (a [MIPS](playstation#cpu)-compatible CPU) running at 360 MHz! [@anti_piracy-dstwo] I haven't seen this level of passion since the era of [expansion cartridges](super-nintendo#beyond-convention).
 
@@ -669,7 +669,7 @@ Another sticking aspect is the sheer number of branded flashcards (aside from al
 
 Alrighty! I think I covered 99% of what I wanted to talk about...
 
-I hope I didn't sound too harsh when criticising some sections. Don't get me wrong, I still think this console is a good piece of engineering! But there are some defects which make me wonder if it's really a cost-effective compromise, or part of a design flaw. Truth to be told, that didn't stop 11-year-old me from wanting one back then. So I guess that's pretty much 'mission accomplished' for the company!
+I hope I didn't sound too harsh when criticising some sections. Don't get me wrong, I still think this console is a good piece of engineering! But there are some defects which make me wonder if it's really a cost-effective compromise, or part of a design flaw. Truth be told, that didn't stop 11-year-old me from wanting one back then. So I guess that's pretty much 'mission accomplished' for the company!
 
 I would also like to thank friends and the MelonDS community for taking the time to check out the draft and pointing out *lots* of corrections. The Nintendo DS allowed me to mention many topics I've been interested in writing about for a while and I was afraid I would end up biting off more than I could chew, but hopefully you've enjoyed this article.
 

@@ -101,7 +101,7 @@ Now, you may be wondering 'why is this relevant?'. The significance of these add
 The second challenge was to increase its data bandwidth. Hence, **two exclusive DMAs** (Direct Memory Access) were added to move data around without the intervention of the CPU, resulting in faster speeds. For this design to work, regions of memory are referenced using two distinct address buses [@cpu-manual]:
 
 - A **24-bit 'A Bus'** controlled by the CPU: Connects the cartridge, CPU, and WRAM.
-- A **8-bit 'B Bus'** controlled by the S-PPU: Connects the cartridge, CPU, WRAM, S-PPU, and the Audio CPU.
+- An **8-bit 'B Bus'** controlled by the S-PPU: Connects the cartridge, CPU, WRAM, S-PPU, and the Audio CPU.
 
 When setting up a DMA transfer, the *origin* bus must differ from the *destination* bus.
 
@@ -122,11 +122,11 @@ For comparison, the 68000 employs a vector table to handle exceptions, ensuring 
 
 It's fascinating to realise how much content the NES managed to display with only [2 KB of RAM](nes#memory). Well, the Super Nintendo now features **128 KB of RAM** (still referred to as 'Work RAM' or WRAM) - a staggering 6400% increase in general-purpose memory compared to its predecessor.
 
-Be as it may, while the NES enjoyed the fast Static RAM (SRAM) type, Nintendo opted to use Dynamic RAM (DRAM) for the Super Nintendo's WRAM. *Dynamic*, in this case, means memory needs to be **refreshed periodically**. The 5A22 performs this automatically, but during each refresh operation, the CPU is paused. This causes an overall CPU slowdown of roughly 3% [@cpu-korth].
+Be that as it may, while the NES enjoyed the fast Static RAM (SRAM) type, Nintendo opted to use Dynamic RAM (DRAM) for the Super Nintendo's WRAM. *Dynamic*, in this case, means memory needs to be **refreshed periodically**. The 5A22 performs this automatically, but during each refresh operation, the CPU is paused. This causes an overall CPU slowdown of roughly 3% [@cpu-korth].
 
 That said, what can developers do with this memory? Anything they desire, really. WRAM is used to store variable data for the game. The more space available, the greater the amount of information that can be stored and processed (thus, reducing reliance on [cartridge hardware](nes#cartridgegame-data)).
 
-However, as the following sections will demonstrate, the Super Nintendo is a fairly complex machine (albeit its 'simplistic' CPU). I tend to call this console a 'collection of mini-computers/subsystems'. Each subsystem may need data from the CPU, meaning programmers may reserve portions of WRAM to process that information - thus justifying the need for 128 KB of memory.
+However, as the following sections will demonstrate, the Super Nintendo is a fairly complex machine (albeit with its 'simplistic' CPU). I tend to call this console a 'collection of mini-computers/subsystems'. Each subsystem may need data from the CPU, meaning programmers may reserve portions of WRAM to process that information - thus justifying the need for 128 KB of memory.
 
 ## Graphics
 
@@ -136,7 +136,7 @@ Before diving deeper into this topic, I strongly recommend reading the [NES arti
 
 ### Design
 
-As with any other console of its generation, the Super Nintendo draws graphics using 2D tiles (8 x 8 pixels). The NES initially achieved this through it signature **Picture Processing Unit** (PPU), which beams the image in sync with a CRT screen. The Super Nintendo follows suit but incorporates more sophisticated techniques to obtain richer results.
+As with any other console of its generation, the Super Nintendo draws graphics using 2D tiles (8 x 8 pixels). The NES initially achieved this through its signature **Picture Processing Unit** (PPU), which beams the image in sync with a CRT screen. The Super Nintendo follows suit but incorporates more sophisticated techniques to obtain richer results.
 
 #### The chipset
 
@@ -153,7 +153,7 @@ This separation, from a programming perspective, is redundant, as both chips are
 
 #### Display modalities
 
-The NTSC system outputs a standard resolution of **256 x 224 pixels** at **~60 Hz** [@graphics-guide]. The European variant, adhering to the PAL specification, outputs **256 × 240 pixels** at **~50 Hz**. Be as it may, most games do not utilise the additional pixels and instead display a *letterbox* (black lines).
+The NTSC system outputs a standard resolution of **256 x 224 pixels** at **~60 Hz** [@graphics-guide]. The European variant, adhering to the PAL specification, outputs **256 × 240 pixels** at **~50 Hz**. Be that as it may, most games do not utilise the additional pixels and instead display a *letterbox* (black lines).
 
 Now, here's the tricky part: traditional TVs have an aspect ratio of 4:3. Yet, if you do the math, the Super Nintendo's output resolution has an **aspect ratio of 8:7**. Consequently, once the image is beamed on the TV, it looks **horizontally stretched**, resembling a **292 x 224 pixels** frame instead (in the case of the NTSC variant) [@graphics-aspect]. Put simply, pixels on the Super Nintendo have an aspect ratio of 8:7, rather than being 'perfectly square'.
 
@@ -185,7 +185,7 @@ VRAM is implemented using **two 32 KB chips**, each accessed simultaneously via 
 
 ### Constructing the frame
 
-Let's now see how a frame is rendered on the console and subsequently displayed on TV. For demonstration purposes, *Super Mario World* will serve as example.
+Let's now see how a frame is rendered on the console and subsequently displayed on TV. For demonstration purposes, *Super Mario World* will serve as an example.
 
 #### Tiles {.tabs .active}
 
@@ -287,7 +287,7 @@ You see, because the new DMA/HDMA units enable programmers to perform memory tra
 
 ### *That* feature {.tabs-close}
 
-Truth to be told, I still haven't mentioned the most important characteristic of this console...
+Truth be told, I still haven't mentioned the most important characteristic of this console...
 
 ::: {.subfigures .tabs-nested .tab-float .open-float .pixel max_subfigures=3 latex_subfigure_width="0.49" #fig-fzero_mode7}
 
@@ -343,13 +343,13 @@ Donkey Kong Country (1994) exploited the capabilities of the S-PPU's blender to 
 
 In essence, the process works as follows [@graphics-rgme_color_math]:
 
-1. Internally, the S-PPU houses two rendering pipelines: **Main Screen** and **Sub Screen**, where programmers can assign backgrounds layers and the sprite layer to each.
+1. Internally, the S-PPU houses two rendering pipelines: **Main Screen** and **Sub Screen**, where programmers can assign background layers and the sprite layer to each.
     - The Sub Screen can also be filled with a solid colour instead of receiving layers.
     - High-resolution modes (Mode 5 and 6) consume the Sub Screen's resources, preventing Color Math from working in those modes.
 2. The pixels of both screens can be masked using individual window parameters.
 3. The S-PPU separately merges the background layers within Main and Sub Screen, respecting the priority of each layer and window settings.
 4. Finally, the S-PPU lets programmers decide how to merge the content of Main Screen and Sub Screen. It can **add** or **subtract** the two screens, and then **divide** the result by two (achieving transparency effects).
-    - Division by two is computationally cheap in digital circuits, as it only requires to shift the value one position to the right.
+    - Division by two is computationally cheap in digital circuits, as it only requires shifting the value one position to the right.
 
 In the second *Donkey Kong Country* example [@fig-dk_layers], Main Screen consists of a single white layer, while Sub Screen contains the rest of the scenery. However, the latter is encoded with **inverted colours**. At the last stage of the pipeline, the S-PPU applies subtraction and division, producing a correctly coloured frame with transparency effects and enhanced brightness - effectively simulating the torchlight.
 
@@ -389,7 +389,7 @@ And so, Sony delivered quite an audio subsystem, consisting of the following com
   - **Pitch modulation**: Allows some channels to influence each other's pitch, similar to FM synthesis (used by [its competitor](mega-drive-genesis#audio)).
 - **The SPC700 CPU** (also known as 'S-SMP'): An independent 8-bit CPU that drives the S-DSP and receives commands from the main CPU [@audio-smp].
 - **64 KB of PSRAM**: Stores audio data and programs, with the main CPU responsible for loading content into it.
-  - If 'Delay' is enabled, some memory is reserved for feedback data. This is can be dangerous - if not managed carefully, feedback storage could override existing data!
+  - If 'Delay' is enabled, some memory is reserved for feedback data. This can be dangerous - if not managed carefully, feedback storage could override existing data!
 
 The audio subsystem operates in parallel with the main CPU. When the console powers on, the SPC700 boots a 64-byte internal ROM that sets it up to receive commands from the main CPU [@audio-spc]. After this setup, it remains idle until instructed.
 
@@ -475,7 +475,7 @@ Additionally, out-of-phase stereo is cancelled out on mono devices, so those gam
 
 ## Games
 
-To be blunt, the main program is written in plain **65816 assembly** and the music driver is written in **SPC700 assembly**. Needless to say, you won't find any of the commodities available on 21st-century equipment.
+To be blunt, the main program is written in plain **65816 assembly** and the music driver is written in **SPC700 assembly**. Needless to say, you won't find any of the comforts available on 21st-century equipment.
 
 There were, however, some tools distributed by Nintendo, Intelligent Systems and Ricoh to make life easier for programmers, these included [@games-sdk]:
 
@@ -496,10 +496,10 @@ The 65C816 features a 24-bit address bus, enabling to access up to 16 MB worth o
 
 That being said, when it comes to designing a cartridge, there are many ways to electrically connect the address pins between the ROM and CPU, each utilising bank switching in a different way.
 
-There are two fundamental models that enables accessing up to **4 MB of ROM** and **64 KB of SRAM** [@games-memory], and they work as follows:
+There are two fundamental models that enable accessing up to **4 MB of ROM** and **64 KB of SRAM** [@games-memory], and they work as follows:
 
 - With the **LoROM Model**, ROM Data is arranged in 32 KB chunks with 128 banks available to choose from [@games-bazzinotti]. SRAM, though fitting within two banks, is accessible across 15 banks, where ROM data is also present.
-  - This setup requires frequent bank switching during execution. On the other side, half of the banks are also mapped to WRAM, meaning ROM, SRAM, and WRAM can be accessed without switching banks.
+  - This setup requires frequent bank switching during execution. On the other hand, half of the banks are also mapped to WRAM, meaning ROM, SRAM, and WRAM can be accessed without switching banks.
 - With the **HiROM Model**, ROM space is structured into full banks, meaning data is stored in 64 KB chunks across 64 banks. This configuration reduces the need for bank switching, but at the cost of not being able to read ROM, WRAM and SRAM within the same bank.
 
 In both cases, a significant portion of ROM space is mirrored across the leftover area of the CPU's address space. However, here's the interesting part: one half of the space operates at ~2.68 MHz while the other can reach **3.58 MHz** - but only if the ROM chip supports the higher speed and the CPU's `FastROM` flag is enabled [@games-registers].
@@ -527,7 +527,7 @@ It's difficult to overlook the impact this engineering had on 90s gaming, with m
 
 With the Super Nintendo, Nintendo assumed again the sole authority over game distribution. To enforce its policies, the company devised three layers of protection to prevent unauthorised cartridge distribution and circumvention of royalties.
 
-Firstly, the external shape of cartridges **is different between regions**, so they won't fit on consoles from different areas. Be as it may, this could be easily bypassed using a third-party adapter.
+Firstly, the external shape of cartridges **is different between regions**, so they won't fit on consoles from different areas. Be that as it may, this could be easily bypassed using a third-party adapter.
 
 Secondly, like the NES, this console still incorporates the [**10NES** protection system](nes#anti-piracy-and-region-lock) to lock out unauthorised distributors. However, the CIC chip was eventually cloned.
 
@@ -536,7 +536,7 @@ As a final layer - specifically designed to combat bootlegging - games included 
 1. **SRAM size verifications**: Bootleg cartridges often contain large SRAM blocks to accommodate various games.
 2. **Code integrity checks**: A series of checksums embedded throughout the game's code verify whether the previous SRAM size verification routines have been removed. These checks are dispersed at different stages of the game, making them difficult to locate and remove.
 
-While these measures could be nullified by manually stripping out the routines, this was a time-consuming task. After all, they would be scattered around the game only to upset the player (and eventually make them buy a legitimate copy). Truth to be told, you'll notice that most ROMs available online have had all their piracy checks removed.
+While these measures could be nullified by manually stripping out the routines, this was a time-consuming task. After all, they would be scattered around the game only to upset the player (and eventually make them buy a legitimate copy). Truth be told, you'll notice that most ROMs available online have had all their piracy checks removed.
 
 ## That's all folks
 

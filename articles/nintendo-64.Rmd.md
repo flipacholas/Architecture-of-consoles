@@ -64,7 +64,7 @@ The package also includes an internal **Floating-Point Unit** (FPU). The VR4300 
 
 The way RAM is assembled follows the **Unified Memory Architecture** (UMA), wherein all available RAM is centralised in one place only, and any component requiring RAM access draws from this shared location. The unit arbitrating its access is, in this case, the graphics chip.
 
-The reason for choosing this design comes down to **manufacturing costs**. At the same time, if not managed properly, it also increments access contention.
+The reason for choosing this design comes down to **manufacturing costs**. At the same time, if not managed properly, it also increases access contention.
 
 ### No DMA controller?
 
@@ -167,7 +167,7 @@ Since this module constantly updates the frame buffer, it interacts with main RA
 
 #### Remaining steps {.tabs-close}
 
-The resulting frame must be sent to the **Video Encoder** to be displayed on-screen. This is taken care by **DMA** and the **Video Interface** component.
+The resulting frame must be sent to the **Video Encoder** to be displayed on-screen. This is taken care of by **DMA** and the **Video Interface** component.
 
 The Video Interface (VI) acts as a bridge between the game's framebuffer and the television signal. It basically converts the rendered frame into a format the TV will understand, which tends to vary by region. For instance, the Video Interface can broadcast frames of 640x480 or 320x240 pixels to NTSC tellies; whereas PAL systems get 640x576 or 320x288 frames [@graphics-video_interface]. To help with the translation, the VI provides anti-aliasing (in conjunction with the RDP), scaling, and many colour correction modes.
 
@@ -183,7 +183,7 @@ Let's put all the previous explanations into perspective, for that, I will use N
 
 Initially, materials such as 3D models are located in the cartridge ROM. However, to keep a steady bandwidth, we need to copy them to RAM first. In some cases, the data is pre-compressed within the cartridge, requiring the CPU to decompress it before use.
 
-Once that's done, it's time to build a scene using our models. The CPU *could* carry out the entire graphics pipeline by itself, but that *takes ages*, so many tasks are offloaded to the RCP. The CPU will instead send orders to the RCP, this is done by carrying out these steps:
+Once that's done, it's time to build a scene using our models. The CPU *could* carry out the entire graphics pipeline by itself, but that *takes ages*, so many tasks are offloaded to the RCP. The CPU will instead send orders to the RCP; this is done by carrying out these steps:
 
 1. Compose the **Display Lists** that contain the operations to be executed by the RSP, and store them in RAM. The structure of Display Lists is dictated by the choice of microcode [@graphics-rcp_structures].
 2. Point the RSP to the location of the Display Lists.
@@ -218,7 +218,7 @@ Here are some examples of classic 2D characters from the [Super Nintendo](super-
 
 If you've read about the preceding consoles, you'll have come across the never-ending problem of [visibility of surfaces](sega-saturn#an-introduction-to-the-visibility-problem), and by now may think polygon sorting is the only way out of this. Well, for the first time in this series, the graphics chip features a hardware-based approach called **Z-buffering**. In a nutshell, the RDP allocates an extra buffer (called **Z-buffer**) in memory. This has the same dimensions as a frame buffer, but instead of storing RGB values, each entry contains the depth (Z-value) of the nearest pixel relative to the camera.
 
-After the RDP rasterises the vectors, the z-value of the new pixels are compared against the corresponding value in the z-buffer. If the new pixel has a smaller z-value, it means the new pixel is positioned in front of the previous one, so it is applied to the frame buffer and the z-buffer is also updated. Otherwise, the pixel is discarded.
+After the RDP rasterises the vectors, the z-value of the new pixels is compared against the corresponding value in the z-buffer. If the new pixel has a smaller z-value, it means the new pixel is positioned in front of the previous one, so it is applied to the frame buffer and the z-buffer is also updated. Otherwise, the pixel is discarded.
 
 Overall, this is a hugely welcome addition: programmers no longer need to worry about implementing [software-based](playstation#tab-3-2-visibility-approach) polygon sorting methods, which drain significant CPU resources. However, the z-buffer does not prevent feeding unnecessary geometry (whether discarded or overdrawn, both wasting resources). For this, game engines may choose to include an **occlusion culling** algorithm to discard unseen geometry as early as possible.
 
@@ -242,7 +242,7 @@ As a result, some games used solid colours with Gouraud shading (*Super Mario 64
 
 ### The universal video out {.tabs-close}
 
-Nintendo carried on using the 'universal' [Multi Out](super-nintendo#a-convenient-video-out) port from its predecessor, bad news is that it **no longer carries the RGB signal!** It looks to me like another cost-saving measure, given that RGB wasn't widely adopted in the previous console.
+Nintendo carried on using the 'universal' [Multi Out](super-nintendo#a-convenient-video-out) port from its predecessor. Bad news is that it **no longer carries the RGB signal!** It looks to me like another cost-saving measure, given that RGB wasn't widely adopted in the previous console.
 
 The good news is that, on early revisions of the Nintendo 64, the three RGB lines can still be restored by soldering some cables and fitting an inexpensive signal amplifier. This is possible because the video Digital-to-Analogue Converter (DAC) still transmits an RGB signal to the video encoder [@graphics-video_dac]. However, later motherboard revisions combined both chips, so the only remaining option is to bypass the video DAC and encoder altogether with custom circuitry that exposes RGB signals.
 
@@ -303,7 +303,7 @@ Unlike previous cartridge-based systems, the Nintendo 64 follows a sophisticated
 These routines are also referred to as **Initial Program Loader** (IPL) and work as follows [@operating_system-ipl] [@operating_system-ipl_decomp]:
 
 1. The user turns on the console.
-2. The **PIF-NUS** (a separate chip on the motherboard) subdues the main CPU into an infinite reset until it validates the **Checking Integrated Circuit** (CIC) chip found in the game cartridge.
+2. The **PIF-NUS** (a separate chip on the motherboard) subdues the main CPU with an infinite reset until it validates the **Checking Integrated Circuit** (CIC) chip found in the game cartridge.
     - The PIF-NUS and the CIC chip are explained further in the I/O and anti-piracy sections, respectively.
 2. If the verification process finishes successfully, the CPU starts execution at `0xBFC00000`. This address points to an **internal ROM** within PIF-NUS, specifically the first boot stage called **IPL1**.
 3. IPL1 initialises part of the hardware (CPU registers, the parallel interface, and the RCP), then copies the next stage (**IPL2**) from the internal ROM to the RSP's memory for faster execution. It then redirects execution there.
@@ -330,7 +330,7 @@ In addition to its unorthodox shape, the Nintendo 64 controller includes a conne
 
 ![The Transfer Pak [@photography-amos].](accessories/transfer_pak.webp){.tabs-nested-last title="Transfer"}
 
-All accessories connected to the controller are managed by the **PIF-NUS**, an obscure block that also handles security. The RCP communicates to the PIF using a **serial bus** [@io-serial_interface].
+All accessories connected to the controller are managed by the **PIF-NUS**, an obscure block that also handles security. The RCP communicates with the PIF using a **serial bus** [@io-serial_interface].
 
 ## Games
 
@@ -344,9 +344,9 @@ Cartridges interface with the RCP using a dedicated 16-bit bus known as the **Pa
 
 In general, development was mainly done in **C** and **assembly**, the latter was often required to achieve better performance.
 
-While we've seen this system supports 64-bit operations, the new instructions were rarely used since, in practice, 32-bit instructions happened to execute faster (given that the R4300i/VR4300 comes with a 32-bit data bus).
+While we've seen this system supports 64-bit operations, the new instructions were rarely used since, in practice, 32-bit instructions happened to execute faster (given that the R4300i/VR4300 came with a 32-bit data bus).
 
-The libraries in the official SDK feature several layers of abstractions to command the RCP. For example, C structs like the **Graphics Binary Interface** (GBI) were designed to facilitate the assembly of Display lists [@games-gbi]. The same applies to audio functions, its struct was called **Audio Binary Interface** (ABI).
+The libraries in the official SDK feature several layers of abstractions to command the RCP. For example, C structs like the **Graphics Binary Interface** (GBI) were designed to facilitate the assembly of Display lists [@games-gbi]. The same applies to audio functions; its struct was called **Audio Binary Interface** (ABI).
 
 In terms of microcode development, Nintendo provided a set of prewritten microcode programs to choose from. However, if developers wanted to customise them, that would indeed be a challenging task: the Scalar Unit instruction set wasn't initially documented. Later on, however, Nintendo and SGI changed their stance and released some documentation and tools for microcode programming [@games-gbi].
 
@@ -386,7 +386,7 @@ To enforce this, the PIF-NUS conducts checksum verifications both at the startup
 
 If the PIF determines the current cartridge is not valid, it forces the console into a permanent freeze state.
 
-Moving on, region locking was done by slightly altering the shape of the cartridge on a region basis, so users could not physically insert the game on a console from a different region.
+Moving on, region locking was done by slightly altering the shape of the cartridge on a region basis, so users could not physically insert the game into a console from a different region.
 
 Overall, piracy wasn't a significant concern due to the inherent complexity and cost of replicating cartridges, though game prices were often three times higher than CD-based titles.
 
@@ -420,7 +420,7 @@ Another reason is the 64-bit instruction set: since games rarely took full advan
 
 I have to say, this article may be the longest one I've ever written, but hopefully you found it a nice read!
 
-I'll probably take the following days to tide up some things on the website instead of starting to write the next article.
+I'll probably take the following days to tidy up some things on the website instead of starting to write the next article.
 
 Until next time!  
 Rodrigo
