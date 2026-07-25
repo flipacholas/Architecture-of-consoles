@@ -1,6 +1,6 @@
 ---
-short_title: Dreamcast'ın Mimarisi
-long_title: Dreamcast'ın Mimarisi
+short_title: Dreamcast'in Mimarisi
+long_title: Dreamcast'in Mimarisi
 name: Dreamcast'ın
 date: 2019-10-07
 release_date: 1998-11-27
@@ -13,9 +13,9 @@ cover: dreamcast
 top_tabs:
   Model:
     file: international
-    caption: "Dreamcast.<br>Japonya'da 29/11/1998, Amerika'da 09/09/1999 ve 14/10/1999'da Avrupa'da satışa sunuldu."
+    caption: "Dreamcast.<br>Japonya'da 29/11/1998, Amerika’da 09/09/1999 ve Avrupa’da 14/10/1999 tarihinde satışa sunuldu."
   Motherboard:
-    caption: "Revizyon 'VA1' gösteriliyor.<br>Resmi dokümanlarda sistemin 128KB flash bellek içerdiği belirtilirken, bu anakart nedense 256KB EEPROM yongası içeriyor.<br>Pil ve denetleyici bağlantı noktaları 'Ön panel' adı verilen bir ek kartta bulunuyor."
+    caption: "'VA1' revizyonu gösteriliyor.<br>Resmi dokümanlarda sistemin 128KB flash bellek içerdiği belirtilirken, bu anakart nedense 256KB EEPROM yongası içeriyor.<br>Pil ve denetleyici bağlantı noktaları 'Ön panel' adı verilen bir ek kartta bulunuyor."
   Diagram:
     caption: "Önemli veri yolları genişlikleri ve hızları ile etiketlenmiştir."
 #Historical
@@ -25,21 +25,21 @@ aliases:
 
 ## Giriş
 
-Sega Dreamcast, hem oyun geliştiricilerine hem de konsol oyuncularına hitap etmek için selefine ([Satürn](sega-saturn)) göre birçok yeni özellik sundu. Bu Sega'nın konsol pazarını fethetmek için son girişimi olsa da, Dreamcast'te öncülük edilen bazı teknolojiler devam etti ve gelecekteki ana akım cihazlara taşındı.
+Sega Dreamcast, hem oyun geliştiricilerine hem de konsol oyuncularına hitap etmek için selefine ([Saturn](sega-saturn)) göre birçok yeni özellik sundu. Bu Sega'nın konsol pazarını fethetmek için son girişimi olsa da, Dreamcast'te öncülük edilen bazı teknolojiler devam etti ve gelecekteki ana akım cihazlara taşındı.
 
 ## {.supporting-imagery}
 
 ## İşlemci (CPU)
 
-Hitachi için işler sorunsuz ilerliyordu, [ikonik SuperH çipleri](sega-saturn#cpu) birden fazla müşteri bulmuştu ve şirket artık serinin dördüncü sürümü için hazırdı. Yeni girişleri, gömülü yetenekleri 3D oyunların sahip olduğu işlevsellikle birleştirecek.
+Hitachi için işler sorunsuz ilerliyordu, [ikonik SuperH çipleri](sega-saturn#cpu) birden fazla müşteri bulmuştu ve şirket artık serinin dördüncü sürümü için hazırdı. Serinin bu yeni üyesi, gömülü yeteneklerini 3D oyunların sahip olduğu işlevsellikle birleştirecekti.
 
-SuperH'yi ilk benimseyenlerden biri olan Sega, yeni konsollarına güç sağlamak için şaşırtıcı olmayan bir şekilde Hitachi'nin son ürününü seçti. Bu nedenle Dreamcast'te **SH-4 CPU** bulunmaktadır ve bu işlemci **200 MHz** [@cpu-spec] hızında çalışmaktadır. Ayrıca, [bu sefer işleri yoluna koymak](sega-saturn#the-final-product) için, **sadece bir tane tam donanımlı CPU** var.
+SuperH'yi ilk benimseyenlerden biri olan Sega, yeni konsollarına güç sağlamak için şaşırtıcı olmayan bir şekilde Hitachi'nin son ürününü seçti. Bu nedenle Dreamcast'te **SH-4 CPU** bulunmaktadır ve bu işlemci **200 MHz** [@cpu-spec] hızında çalışmaktadır. Ayrıca, [bu sefer işleri yoluna koymak](sega-saturn#the-final-product) için, **yalnızca tek bir tam donanımlı CPU** var.
 
 ### Teklif
 
 Bununla birlikte, bu yeni işlemci hakkında ilginç olan nedir?
 
-Öncelikle, SH-4 önceki modellerin bir süper seti olarak devam ediyor, yani **32-bit RISC mimari**, **5 aşamalı pipeline** ve **16-bit instruction set** dahil olmak üzere SuperH serisinin mevcut [tüm özelliklerini](sega-saturn#cpu) miras alıyor. Ne yazık ki, aynı zamanda [control hazards](playstation#delay-galore)'ın da mirasçısıdır.
+Öncelikle, SH-4 önceki modellerin bir süper seti olarak devam ediyor, yani **32-bit RISC mimari**, **5 aşamalı pipeline** ve **16-bit instruction set** dahil olmak üzere SuperH serisinin mevcut [tüm özelliklerini](sega-saturn#cpu) miras alıyor. Ne yazık ki aynı zamanda [control hazards'ı](playstation#delay-galore) da devralmaktadır.
 
 ![SH-4 çipi.](sh4.jpg)
 
@@ -47,19 +47,19 @@ Bunun da ötesinde, yeni nesil CPU olarak, gömülü uygulamaların kapsamının
 
 - <strong x-id=“1”>2-way superscalar</strong> pipeline: CPU'nun pipeline'nın her aşamasında birden fazla komut (bu durumda iki) işleyebildiği yeni bir paralellik tekniği. Bu da saniyede daha fazla talimatın yürütülmesine neden olur.
   - Perde arkasında, CPU iki talimatı iki farklı (ve kullanılabilir) yürütme birimine dağıtıyor. Bu nedenle - çok küçük bir grup hariç - tüm komutların paralelleştirilmesi için farklı türlerde (yani branching, aritmetik, vb.) olması gerekir [@cpu-soft_doc]. Aksi takdirde, yalnızca sıralı olarak yürütülebilirler. Her ne olursa olsun, SH-4 aynı zamanda asla paralelleştirilemeyecek bir talimat alt kümesi de sergiler, çünkü bunu mümkün kılmak için çok fazla bağımlılık içerirler.
-- **8 KB instruction cache** ve **16 KB data cache**: Konsollar data cache'den daha fazla instruction cache içerme eğiliminde olduğundan bu oran oldukça ilginçtir. Ancak SH-4, veri önbelleğinin iki bölüme ayrılmasına izin verir: **8 KB Scratchpad** (hızlı RAM) ve **8 KB veri önbelleği**.
+- **8 KB instruction cache** ve **16 KB data cache**: Konsollar veri önbelleğinden (data cache) daha fazla komut önbelleği (instruction cache) içerme eğiliminde olduğundan bu oran oldukça ilginçtir. Ancak SH-4, veri önbelleğinin iki bölüme ayrılmasına izin verir: **8 KB Scratchpad** (hızlı RAM) ve **8 KB veri önbelleği**.
 
 #### Özel bir çalışma
 
-Bir oyun konsolu CPU'sunun ortak işleri arasında bir oyunun mantığını idare etmek, düşman yapay zekasını çalıştırmak ve GPU'yu instruction'la beslemek yer alır.
+Bir oyun konsolu CPU’sunun ortak işleri arasında bir oyunun mantığını idare etmek, düşman yapay zekasını çalıştırmak ve GPU'yu çizim komutlarıyla beslemek yer alır.
 
 Dreamcast ile GPU'nun yalnızca [rasteriser](playstation#graphics) görevlerini yerine getirdiğini göreceksiniz. Dolayısıyla, CPU'nun grafik işlem hattının büyük bir kısmına dahil olması gerekir. Bu, CPU'nun büyük miktarda geometri verisini [işleyeceği](playstation#tab-2-2-geometry-transformation-engine) anlamına gelir (perspektif dönüşümlerini hesaplamak gibi). Şimdi, CPU'nun bu rolü sürdürebilmesini sağlamak için Sega ve Hitachi işbirliği yaparak SH-4'e iki önemli eklenti eklediler.
 
-İlk eklenti özel bir **64-bit Kayan Nokta Birimi** (FPU). Bu bileşen, **IEEE-754 standardına** uyarak 32 bit ondalık sayıları ('single-precision' veya 'float' olarak adlandırılır) veya 64 bit olanları ('double-precision' veya 'double' türü) hesaplar. Register dosyası **otuz iki 32 bitlik register**’dan oluşur, ancak bunlar aynı zamanda **on altı 64 bitlik register**’dan oluşan farklı bir grupta birleştirilebilir, bu da birimin double işlem yapabilmesini sağlar.
+İlk eklenti, özel bir **64-bit Kayan Nokta Birimi** (FPU). Bu bileşen, **IEEE-754 standardına** uyarak 32 bit ondalık sayıları ('single-precision' veya 'float' olarak adlandırılır) veya 64 bit olanları ('double-precision' veya 'double' türü) hesaplar. Register dosyası **otuz iki 32 bitlik register**’dan oluşur, ancak bunlar aynı zamanda **on altı 64 bitlik register**’dan oluşan farklı bir grupta birleştirilebilir, bu da birimin double işlem yapabilmesini sağlar.
 
 Bu yeterli gelmediyse, Hitachi FPU ile bir adım daha ileri gitti ve bu kez **sekiz 128 bitlik register**'dan oluşan başka bir register grubu oluşturmak için ekstra logic uyguladı. İçinde her bir register artık dört adet 32 bit float ya da başka bir deyişle **128 bit vektör** olarak saklamaktadır. Bu format grafikle ilgili işlemler için idealdir.
 
-Yeni vektörleri iyi bir şekilde kullanmak için FPU, [Saturn Control Unit](sega-saturn#the-third-processor-and-counting)'in sağladığı gibi bunları çalıştırmak için özel instruction'lar içerir, ancak sektör artık daha standart hale gelmiştir. Yeni talimatlar genellikle **Single Instruction Multiple Data** (SIMD) olarak bilinen bir yapıya sahiptir ve aşağıdaki cebirsel işlemleri gerçekleştirebilir:
+Yeni vektörleri iyi bir şekilde kullanmak için FPU, [Saturn Control Unit](sega-saturn#the-third-processor-and-counting)'in sağladığı gibi bunları çalıştırmak için özel instruction'lar içerir, ancak sektör artık daha standart hale gelmiştir. Yeni komutlar genellikle **Single Instruction Multiple Data** (SIMD) olarak bilinen bir yapıya sahiptir ve aşağıdaki cebirsel işlemleri gerçekleştirebilir:
 
 - Nokta çarpım.
 - Karelerin toplamı.
@@ -71,25 +71,25 @@ Yeni vektörleri iyi bir şekilde kullanmak için FPU, [Saturn Control Unit](seg
 
 Dreamcast'lerde **16 MB SDRAM** bulunur ve **100 MHz** bus (CPU hızının yarısı) kullanılarak doğrudan CPU'ya bağlanır.
 
-Buna karşılık, belleğin data bus'ı sadece 32 bit genişliğindedir [@cpu-spec]. Bu, CPU'nun 64-bit data bus'ının boşa gitti anlamına mı geliyor? Hayır, çünkü RAM <strong x-id=“1”>iki adet 8 MB bank</strong> kullanılarak takılmıştır. Yani, her bir çip CPU'nun data bus hatlarının yarısına bağlıdır.
+Buna karşılık, belleğin data bus'ı sadece 32 bit genişliğindedir [@cpu-spec]. Bu, CPU'nun 64-bit data bus'ının boşa gittiği anlamına mı geliyor? Hayır, çünkü RAM <strong x-id=“1”>iki adet 8 MB bank</strong> kullanılarak takılmıştır. Yani, her bir çip CPU'nun data bus hatlarının yarısına bağlıdır.
 
 ![Bellek şeması.](_diagrams/memory.png)
 
-Bu belleğe erişmek için CPU, sanal adresleme için özel bir <strong x-id=“1”>Memory Management Unit</strong> veya 'MMU' içerir, bu CPU'nun fiziksel bellek adres alanı <strong x-id=“1”>29 bit genişliğinde</strong> olduğu için bu yararlıdır. Ayrıca, dört <strong x-id=“1”>Translation Lookaside Buffers</strong> (TLB'ler) sayesinde programcılar 32 bit adresleri performans kaybı yaşamadan kullanabilirler.
+Bu belleğe erişmek için CPU, sanal adresleme için özel bir <strong x-id=“1”>Memory Management Unit</strong> veya 'MMU' içerir. Bu işlem, CPU'nun fiziksel bellek adres alanı <strong x-id=“1”>29 bit genişliğinde</strong> olduğu için bu yararlıdır. Ayrıca, dört <strong x-id=“1”>Translation Lookaside Buffers</strong> (TLB'ler) sayesinde programcılar 32 bit adresleri performans kaybı yaşamadan kullanabilirler.
 
-Şimdi, adresleme için sadece 29 bit gerektiğinden, geriye kalan üç bit ise bellek korumasını kontrol eder, sırasıyla bellek haritasını değiştirir ve önbelleği atlatır \[@cpu-marcus\] \[@cpu-akiba\].
+Şimdi, adresleme için sadece 29 bit gerektiğinden, geriye kalan üç bit ise sırasıyla bellek korumasını kontrol etme, bellek haritasını değiştirme ve önbelleği devre dışı bırakma işlevlerini görür \[@cpu-marcus\] \[@cpu-akiba\].
 
 Nihayetinde, bu özelliklerin kullanılıp kullanılmayacağına programcı karar verir. Bu sistem için oyunlar kesinlikle bellek korumasına ihtiyaç duymaz ve MMU'nun açılışta manuel olarak etkinleştirilmesi gerekir.
 
 ### UMA yok ama...
 
-Bu sistem, [tanınmış bir rakibi](nintendo-64#simplified-memory-access) gibi katı Unified Memory Architecture veya UMA etrafında tasarlanmamış olsa da, **G/Ç erişimini GPU'ya devretmektedir**. Bu da CPU'nun kendi özel RAM'i ya da seri arayüzü (ki bunlar da bağlı) dışında bir şey alması gerektiğinde GPU'dan talepte bulunması ve gerekirse beklemesi gerektiği anlamına geliyor.
+Bu sistem, [tanınmış bir rakibi](nintendo-64#simplified-memory-access) gibi katı Unified Memory Architecture veya UMA etrafında tasarlanmamış olsa da, **G/Ç erişimini GPU'ya devretmektedir**. Bu durum, CPU’nun kendi özel RAM’i veya (doğrudan bağlı olan) seri arayüzü dışındaki bir veriye GPU’dan istek göndermesi ve gerekirse beklemesi gerektiği anlamına geliyor.
 
 Bu CPU aynı zamanda **Paralel I/O** veya 'PIO' olarak adlandırılan ve aynı anda birden fazla I/O konumunu manipüle etmek için kullanılan benzersiz bir işleve sahiptir. Sega bu pinleri CPU'nun GPU'nun <strong x-id=“1”>video modunu</strong> manipüle edebilmesi için bağladı (daha fazla ayrıntı 'Grafikler' bölümünde açıklanmıştır).
 
 ### Yolun sonu
 
-Bahsedilen tüm avantajlara rağmen, korkarım ki SuperH serisi son büyük kullanıcısı Dreamcast'in mağazaları terk etmesinden sonra önemli bir ilerleme kaydedemedi. SH-4'ün popülerliğinden sonra Hitachi (ya da şu anki sahipleri olan Renesas Electronics) aynı başarı seviyesini tekrarlayamadı ve gömülü/el tipi pazarın o zamandan beri [ARM](game-boy-advance#cpu)'ı tercih ettiğini düşünürsek ([StrongARM](nintendo-ds#arms-new-territories) sayesinde), Renesas'ın Hitachi'nin buluşunu yakın zamanda sürdüreceğini düşünmüyorum.
+Bahsedilen tüm avantajlara rağmen, korkarım ki SuperH serisi son büyük kullanıcısı Dreamcast'in mağazaları terk etmesinden sonra önemli bir ilerleme kaydedemedi. SH-4'ün popülerliğinden sonra Hitachi (ya da şu anki sahipleri olan Renesas Electronics) aynı başarı seviyesini tekrarlayamadı ve gömülü/el tipi pazarın o zamandan beri [ARM](game-boy-advance#cpu)'ı tercih ettiğini düşünürsek ([StrongARM](nintendo-ds#arms-new-territories) sayesinde), Renesas'ın Hitachi'nin bu mirasını yakın zamanda devam ettireceğini sanmıyorum.
 
 Ancak bilgisayarla ilgili iyi olan bir şey varsa o da teknolojik ilerlemenin markaların ve şirketlerin sınırlarının ötesine yayılma eğiliminde olmasıdır. Örneğin, SH'nin sıkıştırılmış komut tekniği ARM'nin [Thumb modu](game-boy-advance#tab-2-3-squeezing-performance) (ikincil bir 16-bit ISA) ile devam etmiştir [@cpu-lwn]. Ayrıca, 2012 yılında, 'J2' [@cpu-jcore] adı verilen modern bir SuperH uyumlu CPU üretmek için gönüllülük esasına dayalı bir proje başlatılmıştır.
 
@@ -112,7 +112,7 @@ TBDR, tüm kareyi bir kerede oluşturmak yerine (geleneksel **Immediate Mode Ren
 Bu yenilikçi tasarım ilginç avantajları da beraberinde getiriyor:
 
 - Büyük ölçüde **paralelleştirilebilir**, bu da bant genişliğini ve güç kullanımını önemli ölçüde azaltır.
-- Çokgenleri otomatik olarak **önden arkaya doğru** sıralayarak ve ardından boru hattının ilk aşamalarında [z-testleri](nintendo-64#modern-visible-surface-determination) gerçekleştirerek [**görünürlük sorununa**](sega-saturn#an-introduction-to-the-visibility-problem) akıllıca bir çözüm uygular. Bu görevlerin kombinasyonu yalnızca orijinal sorunu çözmekle kalmaz, aynı zamanda kaynakları boşa harcayan ve performansı düşüren **aşırı çizimi (gizli çokgenlerin pikselleştirmesi) de önler.**.
+- Çokgenleri otomatik olarak **önden arkaya doğru** sıralayarak ve ardından boru hattının ilk aşamalarında [z-testleri](nintendo-64#modern-visible-surface-determination) gerçekleştirerek [**görünürlük sorununa**](sega-saturn#an-introduction-to-the-visibility-problem) akıllıca bir çözüm uygular. Bu görevlerin kombinasyonu yalnızca orijinal sorunu çözmekle kalmaz, aynı zamanda kaynakları boşa harcayan ve performansı düşüren **aşırı çizimi (gizli çokgenlerin pikselleştirmesini) de önler**.
 
 Imagination'ın bu verimli teknolojiyi ileriye taşıyarak ilk nesil iPhone, iPhone 3G, Nokia N95 ve Dell Axim x51 gibi inanılmaz sayıda cihaza güç veren Seri 4 PowerVR çekirdeklerini üretmesi hiç de şaşırtıcı değil.
 
@@ -130,7 +130,7 @@ Ardından, Tile Accelerator:
 
 1. CPU tarafından verilen geometri verilerini ve çizim komutlarını alır (DMA veya geleneksel aktarımları kullanarak).
 2. Bu verileri *dahili* bir formata dönüştürür.
-3. Geometriyi koordinatlarına göre her birini dağıtır. Geriye kalan geometri ise atılacaktır.
+3. Geometriyi koordinatlarına göre her bir dağıtır. Kırpılan geometri ise atılacaktır.
 4. Ortaya çıkan Display List'lerini oluşturur.
 
 Bu Display List'ler daha sonra 3D motoru tarafından işlenir: PowerVR2.
@@ -141,7 +141,7 @@ Bu Display List'ler daha sonra 3D motoru tarafından işlenir: PowerVR2.
 
 Grafiklerin hayata geçirildiği yer burasıdır, Tile Accelerator'dan alınan Display Lists çekirdeğe **dahili bir çerçeve arabelleği** kullanarak tek bir karenin geometrisini oluşturmasını söyler. Süreç şöyledir:
 
-1. **Image Synthesis Processor (Görüntü Sentez İşlemcisi)** veya 'ISP' ilkelleri (üçgenler veya dörtlüler) alır ve görünmeyen çokgenleri kaldırmak için **Hidden-Surface Removal (Gizli Yüzey Kaldırma işlemi)** gerçekleştirir. Ardından, Z-buffer ve stencil bufferlarını hesapladıktan sonra veriler, diğerlerinin arkasında görünecek çokgenlerin işlenmesini önlemek için **Depth Testing (Derinlik Testi)** ve bir 2B çokgenin (**Mask (Maske)** olarak da adlandırılır) arkasında yer almaları halinde görünmeyecek geometriyi ayıklamak için **Stencil Tests (Şablon Testleri)** işemlerinden geçer.
+1. **Image Synthesis Processor (Görüntü Sentez İşlemcisi)** veya 'ISP' ilkelleri (üçgenler veya dörtlüler) alır ve görünmeyen çokgenleri kaldırmak için **Hidden-Surface Removal (Gizli Yüzey Kaldırma işlemi)** gerçekleştirir. Ardından, Z-buffer ve stencil bufferlarını hesapladıktan sonra veriler, diğerlerinin arkasında görünecek çokgenlerin işlenmesini önlemek için **Depth Testing (Derinlik Testi)** ve bir 2B çokgenin (**Mask (Maske)** olarak da adlandırılır) arkasında yer almaları halinde görünmeyecek geometriyi ayıklamak için **Stencil Tests (Şablon Testleri)** işlemlerinden geçer.
     - Bu testlerin pipeline'ın başlangıcında nasıl etkin bir şekilde gerçekleştirildiğine dikkat edin. Bunun aksine, [late z-buffering kullanan](nintendo-64#modern-visible-surface-determination) önceki konsollar geometriyi pipeline'ın sonunda atmaktadır. ISP yaklaşımı, sonunda çöpe gidecek geometrinin işlenmesini önler [@graphics-surface] ve böylece kaynak tasarrufu sağlar.
 2. **Texture and Shading Processor (Doku ve Gölgelendirme İşlemcisi)** veya 'TSP' karo alanı üzerinde renklendirme, gölgelendirme ve çoklu efektler uygular.
     - Dokular tile dışa aktarılana kadar uygulanmaz, yani ortaya çıkan fazla çizim (varsa) dolum oranını düşürmez.
@@ -153,7 +153,7 @@ Grafiklerin hayata geçirildiği yer burasıdır, Tile Accelerator'dan alınan D
 Açık mimari farkın yanı sıra, Texture and Shading Processor, bu konsolun eski [Saturn](sega-saturn)'den ne kadar uzak olduğu hakkında bir fikir veren birçok yetenekle birlikte gelir. İşte bazı önemli örnekler:
 
 - **Alpha blending**: Şeffaflık efektleri elde etmek için üst üste binen katmanların renklerini birleştirir.
-  - Bu sistemde saydamlık uygulamak için kullanılan işleme sıralamadan **order-independent transparency** denir. Algoritma, renklerini karıştırmadan önce ilkelleri otomatik olarak sıralar ve bu işlem render işlemini yavaşlatsa da, tüm sıralamayı manuel olarak yapmak için oyunun kendisine güvenilmesini önler. Bu nedenle Dreamcast oyunları şeffaf nesneleri görüntülemede mükemmeldi.
+  - Bu sistemde saydamlık uygulamak için kullanılan işleme sıradan bağımsız saydamlık (**order-independent transparency**) denir. Algoritma, renklerini karıştırmadan önce ilkelleri otomatik olarak sıralar ve bu işlem render işlemini yavaşlatsa da, tüm sıralamayı manuel olarak yapmak için oyunun kendisine güvenilmesini önler. Bu nedenle Dreamcast oyunları şeffaf nesneleri görüntülemede mükemmeldi.
   - Tile tabanlı sistemle birlikte, siparişten bağımsız şeffaflık önceki [aksaklıkları](sega-saturn#the-transparency-issue) tamamen giderir.
 - **Mip-Mapping**: Gerekli ayrıntı düzeyine bağlı olarak dokunun küçültülmüş bir sürümünü otomatik olarak seçer. Bu, kameradan uzakta görülecek büyük dokuların işlenmesini önlemek için yapılır (bu, işlem gücünün boşa harcanmamasına ve kenar bozulmasına neden olur).
 - **Environment mapping**: Dokular üzerinde yansımalar uygular.
@@ -193,7 +193,7 @@ Ses işlevselliği, Yamaha tarafından üretilen özel bir çip olan **AICA** ta
   - Ayrıca, CPU'nun iş yükünü azaltmak için bir **ADPCM çözücüsü** içerir.
   - İlginçtir ki, bir MIDI enstrümanı bağlamak için **iki MIDI pini** de sağlar, ancak bu geliştirme sırasında kullanılmak üzere tasarlanmıştır.
 - **2 MB SDRAM**: Ses verilerini ve programları depolar. Ana CPU tarafından DMA kullanılarak doldurulur.
-- Bir <strong x-id=“1”>ARM7DI</strong> <strong x-id=“1”>yaklaşık 2,82 MHz</strong> hızında çalışır: Ses IC'sini kontrol eder. Bu CPU, depolanan SRAM'deki küçük bir yazılımı ([sürücü](super-nintendo#audio) denilen) başlatarak programlanır. Bu yazılım, ses verilerini yorumlar ve buna göre Ses IC'yi manipüle eder.
+- Bir <strong x-id=“1”>ARM7DI</strong> <strong x-id=“1”>yaklaşık 2,82 MHz</strong> hızında çalışır: Ses IC'sini kontrol eder. Bu CPU, SRAM'deki depolanan küçük bir yazılımı ([sürücü](super-nintendo#audio) denilen) başlatarak programlanır. Bu yazılım, ses verilerini yorumlar ve buna göre Ses IC'yi manipüle eder.
   - Eğer merak ediyorsanız, benzer bir CPU [Game Boy Advance](game-boy-advance)'de de bulunmaktadır.
 - **Bellek Denetleyicisi**: 2 MB SDRAM'in arayüzünü oluşturur.
 
@@ -257,7 +257,7 @@ Windows 95 ya da NT'nin aksine, yeni sistem aşağıdaki avantajları sunuyordu:
 - SuperH ve hatta <a href=“nintendo-64#cpu”>NEC/MIPS VR4300</a> (Nintendo 64 tarafından kullanılan) dahil olmak üzere çok çeşitli CPU mimarilerinde [@operating_system-ce_archs] çalıştı.
 - Sınırlı bir güç kaynağı (AA piller), bellek (2 MB RAM) ve depolama (4 MB ROM) gibi kısıtlı donanım göz önünde bulundurularak tasarlanmıştır.
 
-![Windows CE 2.0 çalıştıran bir HP Palmtop PC 360LX (1997). Ağustos 2024'te ziyaret ettiğim The Centre for Computing History'de (Cambridge, Birleşik Krallık) özellikle bunu gördüm. Tesadüfe bakın ki bu Palmtop bir SH-3 CPU barındırıyor!](palmtop.webp)
+![Windows CE 2.0 çalıştıran bir HP Palmtop PC 360LX (1997). Ağustos 2024'te ziyaret ettiğim The Centre for Computing History'de (Cambridge, Birleşik Krallık) sergilendiğini gördüm. Tesadüfe bakın ki bu Palmtop bir SH-3 CPU barındırıyor!](palmtop.webp)
 
 Dahası, Windows CE üreticiler için bir dizi <strong x-id=“1”>yapı taşı</strong> olarak satıldı ve hangi bileşenleri paketleyeceklerini seçmelerine izin verdi. Üreticiler daha sonra bunu çeşitli donanımlara (el bilgisayarları, satış noktası terminalleri ve hatta otomotiv sistemleri gibi) entegre edebilirler. Bununla birlikte Windows CE, Apple Newton ve Palm'a karşı etkin bir şekilde rekabet ederek Palmtop'lara (PDA'ların öncüsü) güç veren işletim sistemi olarak önemli ölçüde dikkat çekti.
 
@@ -347,7 +347,7 @@ VMU'nun iki çalışma modu vardır:
 
 ### Korsan Korumasını Yenmek
 
-Uygulamada, Sega'nın büyük bir arka kapıyı açık bırakması nedeniyle korsan karşıtı önlemler *tamamen işe yaramazdı:* **MIL-CD**. Music Interactive Live-CD ya da 'MIL-CD' Sega tarafından bir Audio-CD'yi interaktif programlarla genişletmek için yaratılmış bir formattır... ve Dreamcast bununla uyumludur [@anti_piracy-history].
+Uygulamada, Sega'nın büyük bir arka kapıyı açık bırakması nedeniyle korsan karşıtı önlemler *tamamen etkisiz kaldı:* **MIL-CD**. Music Interactive Live-CD ya da 'MIL-CD' Sega tarafından bir Audio-CD'yi interaktif programlarla genişletmek için yaratılmış bir formattır... ve Dreamcast bununla uyumludur [@anti_piracy-history].
 
 Sonunda, yetkisiz ticari diskler (hile yükleyiciler, film oynatıcılar, vb.) Sega'nın onayı olmadan konsolda çalışmak için MIL-CD'ler olarak gizlendi. Daha sonra, farklı bilgisayar korsanlığı toplulukları bu açığı inceledi ve CD-ROM'ları kullanarak korsan oyunları önyüklemek için geçici bir çözüm buldu. Bu da internette durdurulamaz bir ISO dalgasının yayılmasına neden oldu.
 
