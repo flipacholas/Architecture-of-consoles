@@ -85,10 +85,10 @@ Toshiba bir süredir MIPS lisansı sahibiydi [@cpu-toshiba] ve MIPS varyasyonlar
 
 Bununla birlikte Toshiba, uygun fiyatlı R5000 tasarımını aldı ve vektör işlemlerini hızlandırmak için ince ayar yaptı. Yeni çekirdek **R5900** olarak adlandırılıyor ve aşağıdaki '3D' geliştirmeleri sunuyor [@cpu-stokes]:
 
-- **MIPS III ISA**'nın bir varyasyonu. Bu, daha önce [Nintendo 64](nintendo-64#cpu)'te görülen orijinal 64 bit ISA'yı içerir, ancak ilginç işlem kodlarıyla genişletilmiştir. Sony, vektör hesaplamalarını hızlandırmak için ([SH-4](dreamcast#special-work)'e benzer, ancak yalnızca tamsayı) **multimedia instructions** adlı kendi SIMD uzantısının yanı sıra **MIPS IV**'ten bazı talimatlar (prefetch ve conditional move) ekledi.
-  - Multimedya talimatları hala 32 bit genişliğindedir ancak bir seferde üç adede kadar 128 bit vektörü çalıştırabilir. Vektör aritmetiği, min/maks ve yeni vektörler oluşturmak için birçok skaler kombinasyon gibi işlemler sunarlar.
+- **MIPS III ISA**'nın bir varyasyonu. Bu, daha önce [Nintendo 64](nintendo-64#cpu)'te görülen orijinal 64 bit ISA'yı içerir, ancak ilginç işlem kodlarıyla genişletilmiştir. Sony, vektör hesaplamalarını hızlandırmak için ([SH-4](dreamcast#special-work)'e benzeyen fakat yalnızca tamsayı olan) **multimedia instructions** adlı kendi SIMD uzantısının yanında **MIPS IV**ten bazı komutları (prefetch ve conditional move) ekledi.
+  - Multimedya komutları hala 32 bit genişliğindedir ancak bir seferde üç adede kadar 128 bit vektörü çalıştırabilir. Vektör aritmetiği, min/maks ve yeni vektörler oluşturmak için birçok skaler kombinasyon gibi işlemler sunarlar.
 - **32 adet 128 bit genel amaçlı register**: Toshiba markalı bir başka önemli geliştirme. Tipik [32-bit depolama](playstation#the-offering) alanını unutun, şimdi 128-bit alanına adım attık. Bununla birlikte, işlemlerin çoğu mevcut alanın tamamını kullanmayacaktır (MIPS kelimeleri [hala 64 bit uzunluğundadır](nintendo-64#cpu)). İşte bu noktada, yukarıda bahsedilen multimedya uzantısı denkleme dahil olur, çünkü seti genişletilmiş kayıt dosyasını tam olarak kullanacaktır.
-  - Yeni talimatlar kullanıldığında, her bir register birçok skaler türünden oluşan vektörleri saklayabilir (iki 64 bitlik tamsayıdan on altı 8 bitlik olana kadar).
+  - Yeni komutlar kullanıldığında, her bir register birçok skaler türünden oluşan vektörleri saklayabilir (iki 64 bitlik tamsayıdan on altı 8 bitlik olana kadar).
   - Performans kayıplarını önlemek için bu kayıtlara bir **128-bit veri yolu** üzerinden erişilirken, CPU'nun geri kalanı dahili bir **64-bit veri yolu** kullanır.
 - İki **64-bit ALU**. Her biri 64 bit tamsayıları bağımsız olarak çalıştırabilir, ancak aynı zamanda bir **128 bit ALU** olmak için birleşebilir. İkincisi, bu parlak multimedya işlem kodlarının arkasındaki beyindir.
 
@@ -97,8 +97,8 @@ Bunların yanı sıra, geliştiricilerin hoşuna gidebilecek başka iyileştirme
 - **6 aşamalı pipeline**: Bu, [öncekilere](playstation#the-offering) kıyasla bir ek aşamadır.
 - **2 yönlü superscalar** yürütme: İki ALU sayesinde, iki adede kadar 64 bit tamsayı işlemi artık paralel olarak yürütülür.
   - Bu, MIPS R10000'ün kaybedilen bir başka avantajını geri kazandırır.
-- **24 KB L1 önbelleği**: **Talimatlar için 16 KB** ve veriler için **8 KB'a bölünmüştür**.
-  - Ayrıca bir **ön belleğe alma fonksiyonu** uygulayarak talimat ve verileri çağırılmadan önce önbelleğe alır. Bu işlem, hafızadaki hangi konumların daha sık ulaşıldığını belirleyen bir ilave devre sayesinde gerçekleşir.
+- **24 KB L1 önbelleği**: **Komutlar için 16 KB** ve veriler için **8 KB'a bölünmüştür**.
+  - Ayrıca bir **ön belleğe alma fonksiyonu** uygulayarak komut ve verileri çağırılmadan önce önbelleğe alır. Bu işlem, hafızadaki hangi konumların daha sık ulaşıldığını belirleyen bir ilave devre sayesinde gerçekleşir.
 - **16 KB Scratchpad RAM**: 'Hızlı RAM' olarak da bilinir.
 - **Hafıza yönetim birimi**: Bellek erişimini sistemin geri kalanıyla koordine eder.
 
@@ -165,9 +165,9 @@ Emotion Engine'in içine konmuş **iki VPU** vardır ancak bunlar farklı şekil
 
 VPU0, iki adet işlem moduna sahiptir:
 
-- **Mikro Mod**: Bu mod 'geleneksel mod'dur. VPU, Mikro Hafıza'da bulunan bir mikroprogramın 'mikro talimatlarını' bağımsızca yürütecektir.
-- **Makro Mod**: VPU0, CPU için 'COP2'ye (Yardımcı İşlemci 2'ye) dönüşür ve belli bir 128-bit veriyolu aracılığıyla CPU'dan alınan 'makro talimatlar'ı çalıştırır.
-  - Makro talimatlar, micro talimatlarla aynı işlevselliğe sahiptir ancak farklı opcode'lar (assembly kodları) kullanır. Buna rağmen, VPU yürütme birimi artık ayrık değildir (yani aynı zamanda sadece 1 talimat yürütebilir).
+- **Mikro Mod**: Bu mod 'geleneksel mod'dur. VPU, Mikro Hafıza'da bulunan bir mikroprogramın 'mikro komutları' bağımsızca yürütecektir.
+- **Makro Mod**: VPU0, CPU için 'COP2'ye (Yardımcı İşlemci 2'ye) dönüşür ve belli bir 128-bit veriyolu aracılığıyla CPU'dan alınan 'makro komutlar'ı çalıştırır.
+  - Makro komutlar, micro komutlarla aynı işlevselliğe sahiptir ancak farklı opcode'lar (assembly kodları) kullanır. Buna rağmen, VPU yürütme birimi artık ayrık değildir (yani aynı zamanda sadece bir komut yürütebilir).
   - Bu mod VPU0'ın tüm bileşenlerinden tamamen yararlanamasa da CPU'nun vektör işlemlerini hızlandırmaya devam eder. Üstelik, basitlik açısından, bir yardımcı işlemciyi programlamak, bağımsız bir birimi programlamaktan daha kolaydır (bilgisayar programlayıcıları bunu kullanışlı bulacaktır).
 
 VPU0'ın memory map'i, muhtemelen durumunu kontrol etmek veya diğer VPU tarafından yapılan bazı işlemlerin sonuçlarını hızlı bir şekilde okumak için diğer VPU'nun bazı register'larına ve flag'lere da erişebilir.
@@ -246,7 +246,7 @@ Oldukça basit görünüyor, değil mi? Öyleyse, daha derinlere dalıp her bir 
 
 ![Ön İşleme aşaması.](_diagrams/gs_pipeline/preprocessing.png) {.tab-float}
 
-Emotion Engine, Grafik Sentezleyiciyi, gömülü DRAM'ini gerekli malzemelerle (**Texture bitmap**'ler ve 'CLUT' olarak da bilinen **Colour Lookup Table**'lar ile) doldurarak tezelden başlatır, GS'yi onun işlemci kayıtlarına değerler atayarak yapılandırır ve son olarak GS'ye ekranın belirli konumlarına temel şekilleri (noktalar, çizgiler, üçgenler, sprite'lar, vb.) çizmesi talimatını veren çizim komutlarını (Görüntü Listeleri) gönderir.
+Emotion Engine, Grafik Sentezleyiciyi, gömülü DRAM'ini gerekli malzemelerle (**Texture bitmap**'ler ve 'CLUT' olarak da bilinen **Colour Lookup Table**'lar ile) doldurarak başlatır, GS'yi yazmaç değerlerine atayarak yapılandırır ve son olarak GS'ye ekranın belirli konumlarına ilkeliler (noktalar, çizgiler, üçgenler, sprite'lar, vb.) çizmesi komutlarını veren çizim komutlarını (Display Lists) gönderir.
 
 Ayrıca, GS, ileriki hesaplamalarda gerekecek olan bazı değerleri de ön işler. En kayda değer olanı, çizimler sırasında interpolasyon için kullanılacak olan **Digital Differential Algorithm (Sayısal Türev Alma Algoritması)** değeridir.
 
@@ -396,7 +396,7 @@ Her ne olursa olsun, 2005'te ‘Slim’ revizyonunun gelmesinden bir yıl sonra 
 
 Yeni paket **PPC-IOP** olarak adlandırılır ve bunun yerine **440 MHz** hızında çalışır. İlginçtir ki, PPC CPU hala MIPS kodunu çalıştırmakla görevlendirilecektir [@io-ppc_iop_discussion]. Bu, <strong x-id=“1”>DECKARD</strong> (BIOS ROM'da [@io-ps2_mysteries] saklanır) adlı bir MIPS emülatörü yardımıyla yapılır ve bunu hızlandırmak için ek SDRAM ve APU'dan yararlanır.
 
-PPC-IOP'nin iç yapısı ve çalışma hızı, orijinal IOP'dan önemli ölçüde farklı olduğundan, etkilenen her oyun için girişler içeren ek bir yama veritabanı vardır [@io-deckard]. Ayrıca, DECKARD zamanlamaları olay işleyici kullanarak yaklaşık olarak hesaplamaya çalışır. Ancak, belirli talimatlar sırasında performans düşer [@io-ppc_monitor]. Ek olarak, SDRAM'in yaklaşık %24'ü bir sebepten dolayı kullanılmamış olarak kalıyor [@io-deckard].
+PPC-IOP'nin iç yapısı ve çalışma hızı, orijinal IOP'dan önemli ölçüde farklı olduğundan, etkilenen her oyun için girişler içeren ek bir yama veritabanı vardır [@io-deckard]. Ayrıca, DECKARD zamanlamaları olay işleyici kullanarak yaklaşık olarak hesaplamaya çalışır. Ancak, belirli komutlar sırasında performans düşer [@io-ppc_monitor]. Ek olarak, SDRAM'in yaklaşık %24'ü bir sebepten dolayı kullanılmamış olarak kalıyor [@io-deckard].
 
 Bütün bunları düşününce, Sony'nin I/O ekosistemini neden yeniden tasarladığı merak konusu, performansı düşürmekle kalmayıp tüm avantajlarını da boşa harcıyor. Muhtemelen, geri uyumluluğu korurken üretim maliyetlerini azaltmak için yapılmıştır (bir sonraki paragraflarda daha fazla açıklıyorum). Şu dönemde Sony'nin [IBM ile anlaşarak Cell işlemcisini üretmeye başladığını](playstation-3#tab-1-1-the-state-of-progress) da belirtmekte fayda var.
 
@@ -523,7 +523,7 @@ Sony, oyun geliştirilmesine yardımcı olacak donanım ve yazılımı temin ett
 
 Yazılım tarafında, aşağıdakileri içeren **PlayStation 2 SDK** (PS2 Yazılım Geliştirme Kiti) mevcuttur [@games-sdkkit]:
 
-- Emotion Engine toolchain (araç seti): Bir **C** ve **C++** derleyicileri (compilers), işlemci talimatı derleyicileri (assemblers), bağlayıcılar (linkers) ve EE'nin bütün bileşenlerini kontrol etmek için hata ayıklarıcılar (debuggers) setidir. Ana İşlemci (CPU) temelde C/C++ kullanılarak programlandı ancak vektör birimleri gibi performans bakımından kritik bileşenler assembly (mikrokod/makrokod) kullanılarak programlandı.
+- Emotion Engine toolchain (araç seti): Bir **C** ve **C++** derleyicileri (compilers), işlemci komut derleyicileri (assemblers), bağlayıcılar (linkers) ve EE'nin bütün bileşenlerini kontrol etmek için hata ayıklayıcılar (debuggers) setidir. Ana İşlemci (CPU) temelde C/C++ kullanılarak programlandı ancak vektör birimleri gibi performans bakımından kritik bileşenler assembly (mikrokod/makrokod) kullanılarak programlandı.
   - Pakete ayrıca, gerçek donanıma göndermeden kodu yaklaşık olarak test edebilen bir 'Emotion Engine simülatörü' de dahildi, gerçi simülatör fiziksel EE çipi kadar doğru değildi.
   - Bu araçların tümü Linux, Solaris ve Windows'ta çalışır. Daha sonraki varyantı Cygnus ortamında çalıştı.
 - Düşük seviye kütüphaneler (Low-level libraries): Birçok sistem fonksiyonu için arabirin oluşturur (BIOS çağrıları / BIOS call kullanarak).
@@ -556,7 +556,7 @@ Görmüş olduğunuz üzere, konsolun genel ağ özellikleri, ilk piyasaya sür�
 
 Sony, *güzel grafikli* tüm bu oyunların yanı sıra, 'Kondara' tabanlı (ki bu da Red Hat 6 tabanlıdır) bir Linux dağıtımını iki CD halinde (ilk disk 'Runtime Environment' yani program çalıştırma ortamı ve ikincisi 'Software Packages' yani yazılım paketleridir), VGA adaptörü, USB Klavye ve Fare ve ek olarak bazı geliştirici kılavuzları ile birlikte piyasaya sürdü. Paket, **Linux Kit** olarak bilinirdi ve ilk DVD'yi başlatarak işletim sistemini çalıştırabilir ve herhangi bir *old school* Linux ortamı gibi devam edebilirdiniz. Tabii ki Linux dağıtımını kurmak için konsola bir sabit disk (Hard drive) takmanız gerekirdi. Kurulduktan sonra, bu işletim sistemini başlatmak için her zaman ilk DVD'ye ihtiyaç vardı.
 
-Linux Kit'e, EE'ye yönelik (glibc 2.2.2 ile gcc 2.95.2) derleyiciler (compilers), vektör birimlerine yönelik talimat derleyiciler (assemblers) ve beraberinde Grafik Sentezleyici'de hızlandırılmış bir pencere sistemi (XFree86 3.3.6) [@games-linux]. Genel anlamda bu, kulağa ilginç bir ortam gibi geliyor. Aslında, okuduğum araştırma makalelerinin biri bu kurulumla oluşturulmuştu.
+Linux Kit, EE'ye yönelik (glibc 2.2.2 ile gcc 2.95.2) derleyiciler (compilers), vektör birimlerine yönelik talimat derleyiciler (assemblers) ve beraberinde Grafik Sentezleyici'de hızlandırılmış bir pencere sistemi (XFree86 3.3.6) içerir [@games-linux]. Genel anlamda bu, kulağa ilginç bir ortam gibi geliyor. Aslında, okuduğum araştırma makalelerinin biri bu kurulumla oluşturulmuştu.
 
 ## Korsanla Mücadele ve Ev Yapımı (Homebrew)
 
