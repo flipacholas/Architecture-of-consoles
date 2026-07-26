@@ -45,8 +45,8 @@ Bununla birlikte, bu yeni işlemci hakkında ilginç olan nedir?
 
 Bunun da ötesinde, yeni nesil CPU olarak, gömülü uygulamaların kapsamının ötesine geçen birçok iyileştirme sunuyor [@cpu-arch]:
 
-- <strong x-id=“1”>2-way superscalar</strong> pipeline: CPU'nun pipeline'nın her aşamasında birden fazla komut (bu durumda iki) işleyebildiği yeni bir paralellik tekniği. Bu da saniyede daha fazla talimatın yürütülmesine neden olur.
-  - Perde arkasında, CPU iki talimatı iki farklı (ve kullanılabilir) yürütme birimine dağıtıyor. Bu nedenle - çok küçük bir grup hariç - tüm komutların paralelleştirilmesi için farklı türlerde (yani branching, aritmetik, vb.) olması gerekir [@cpu-soft_doc]. Aksi takdirde, yalnızca sıralı olarak yürütülebilirler. Her ne olursa olsun, SH-4 aynı zamanda asla paralelleştirilemeyecek bir talimat alt kümesi de sergiler, çünkü bunu mümkün kılmak için çok fazla bağımlılık içerirler.
+- <strong x-id=“1”>2-way superscalar</strong> pipeline: CPU'nun pipeline'nın her aşamasında birden fazla komut (bu durumda iki) işleyebildiği yeni bir paralellik tekniği. Bu da saniyede daha fazla komutun yürütülmesine neden olur.
+  - Perde arkasında, CPU iki komut iki farklı (ve kullanılabilir) yürütme birimine dağıtıyor. Bu nedenle - çok küçük bir grup hariç - tüm komutların paralelleştirilmesi için farklı türlerde (yani branching, aritmetik, vb.) olması gerekir [@cpu-soft_doc]. Aksi takdirde, yalnızca sıralı olarak yürütülebilirler. Her ne olursa olsun, SH-4 aynı zamanda asla paralelleştirilemeyecek bir komut alt kümesi de sergiler, çünkü bunu mümkün kılmak için çok fazla bağımlılık içerirler.
 - **8 KB instruction cache** ve **16 KB data cache**: Konsollar veri önbelleğinden (data cache) daha fazla komut önbelleği (instruction cache) içerme eğiliminde olduğundan bu oran oldukça ilginçtir. Ancak SH-4, veri önbelleğinin iki bölüme ayrılmasına izin verir: **8 KB Scratchpad** (hızlı RAM) ve **8 KB veri önbelleği**.
 
 #### Özel bir çalışma
@@ -223,7 +223,7 @@ Bir şekilde, bu çip aynı zamanda BIOS'a **Real Time Clock (Gerçek Zaman Saat
 
 ## İşletim Sistemi
 
-Bir <strong x-id=“1”>BIOS</strong> depolayan <strong x-id=“1”>2 MB 'System ROM'</strong>u vardır. Bu, CPU'nun başlatılırken okuduğu ilk konumdur. ROM, CPU'ya oyunu başlatma ya da shell'i gösterme talimatı veren kodu içerir.
+Bir <strong x-id=“1”>BIOS</strong> depolayan <strong x-id=“1”>2 MB 'System ROM'</strong>u vardır. Bu, CPU'nun başlatılırken okuduğu ilk konumdur. ROM, CPU’ya oyunu başlatma ya da shell’i gösterme komutu veren kodu içerir.
 
 Dahası BIOS, GD-ROM sürücüsünden okuma gibi I/O işlevlerini [@games-redream] basitleştirmek için oyunların kullanabileceği rutinler de içerir.
 
