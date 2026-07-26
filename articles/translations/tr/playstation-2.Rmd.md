@@ -58,8 +58,8 @@ Yeni sayıların ardında yatan şeyi anlamak için o dönemi kuşatan bir tarih
 - **Speculative execution**: CPU, hesaplanmadan önce conditional branch sonucunu tahmin eder. Bu öngörüler, dâhilî 512 girdilik bir tabloda saklanan önceki işlemlerin sonuçlarına göre gerçekleştirilir. Koşul hesaplandığında, eğer öngörü doğru ise, İşlemci önemli zaman kazanmış olacak. Yok değilse, ekstra hesaplamalar yok edilir.
   - Bu sayede MIPS, sonunda sürekli tekrar eden bir sorunu ([control hazards](playstation#delay-galore)<!--Türkçesi için önce PS1 makalesi çevirilmeli-->) bir avantaja çevirdi.
   - Diğer işlemcilerde ise [dynamic branch prediction](gamecube#features) olarak anılan benzer bir işleyiş biçimi görebilirsiniz.
-- **4-çıkışlı süperskaler** pipeline: [Pipeline tasarımına](sega-saturn#cpu) ek olarak, CPU artık pipeline'ın başlangıcında dört adede kadar talimat getirecek ve bunları ayrı birimlere dağıtarak CPU'nun bu talimatları aynı anda yürütmesini sağlayacaktır. Bunu yapmak suretiyle, İşlemci, daha üst derecede bir paralelliğe erişir.
-- **Out-of-order execution**: Ayrıca İşlemci, birimlerini olabildiğince doldurmak için talimatların sırasını da yeniden düzenleyecek (hazard eklenmediği sürece).
+- **4-çıkışlı süperskaler** pipeline: [Pipeline tasarımına](sega-saturn#cpu) ek olarak, CPU artık pipeline'ın başlangıcında dört adede kadar komut getirecek ve bunları ayrı birimlere dağıtarak CPU'nun bu komutları aynı anda yürütmesini sağlayacaktır. Bunu yapmak suretiyle, İşlemci, daha üst derecede bir paralelliğe erişir.
+- **Out-of-order execution**: Ayrıca İşlemci, birimlerini olabildiğince doldurmak için komutların sırasını da yeniden düzenleyecek (hazard olmadığı sürece).
 - **128-bit'lik veri yoluna sahip L2 önbelleği**, aynı anda İşlemciye daha fazla veri çekmeyi mümkün kılar, bu da önceki geliştirmeler göz önüne alındığında bir gerekiliktir.
 
 Böylesi bir yenilik, karmaşık bir dizayna mâl olur ancak sonuçta ortaya çıkan ürün, her şekilde ucuz değildi. SGI, bunu sadece üst düzey ekipmanlarla bir bütün hâlinde satıyordu ve bunu bir ev konsoluna taşımaya çalışmak söz konusu bile olamazdı.
