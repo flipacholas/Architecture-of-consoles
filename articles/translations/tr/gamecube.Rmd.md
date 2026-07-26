@@ -53,7 +53,7 @@ IBM, [RISC CPU tasarımı](playstation#tab-1-1-a-bit-of-history)nı ana akım pa
 - **POWER** adı verilen tam 32-bitlik bir komut seti.
 - Bir **64-bit kayan nokta birimi**.
 - Bir **Harvard önbellek** mimarisi, bu, veri ve komut alanını ayırarak bant genişliğini artırır.
-- Talimatları üç ayrı birime (branch, fixed-point ve floating-point) dağıtarak aynı anda iki talimatı yürütebilme yeteneği. Bu nedenle, POWER1 **two-way superscalar** olarak tanınmaktadır.
+- Talimatları üç ayrı birime (branch, fixed-point ve floating-point) dağıtarak aynı anda iki komut yürütebilme yeteneği. Bu nedenle, POWER1 **two-way superscalar** olarak tanınmaktadır.
 - **Static branch prediction**, [control hazards](playstation#delay-galore)'ı yürütme hızını hızlandırma fırsatına dönüştüren bir tekniktir.
 - <strong x-id=“1”>Out-of-order execution</strong> aracılığıyla kayan nokta işlemleri, [register renaming](xbox-360#revisiting-old-paradigms) [@cpu-rs6000]. Sonuç olarak, bu, CPU'nun birim zamanda yürüttüğü instruction sayısını büyük ölçüde artırır (ve [data hazards'ı](playstation#delay-galore) ortadan kaldırır).
   - Temel tasarım, IBM'in ana bilgisayar döneminden kaynaklanmaktadır. Bu tasarım, <strong x-id=“1”>Tomasulo algoritması</strong> olarak yayınlanmış ve ardından IBM System/360 (1966) üzerinde uygulanmıştır. POWER1 ile IBM, bunun bir kısmını iş istasyonu ekipmanlarına taşımayı başardı.
@@ -136,8 +136,8 @@ Gekko'yu bu kadar özel yapan şeyin ne olduğunu bulalım ve bunu yapmak için 
 
 - **PowerPC ISA**: Fazla ayrıntıya girmeden, *başka* bir 32 bit RISC komut setidir. 750CXe v1.10 spesifikasyonunu uygular.
 - Harici **64-bit veri yolu**: ISA 32 bitlik bir veri yoluna sığabilse de, daha geniş veri parçalarını (bir sonraki bölümde açıklanmıştır) performans cezalarına çarpmadan taşımamız gerekir.
-- <strong x-id=“1”>Dual-issue superscalar</strong>: Gerekli birimler mevcutsa, CPU boru hattının aynı aşamasında en fazla iki talimatı işleyebilir. Sıranın bir branch talimatı içermesi durumunda, olası eşzamanlı talimatların sayısı üçe yükseltilir.
-- **Sıra dışı yürütme**: CPU, tüm birimlerinin çalışmasını sağlamak için talimat sırasını yeniden düzenleyebilir, böylece verimliliği ve performansı artırır.
+- <strong x-id=“1”>Dual-issue superscalar</strong>: Gerekli birimler mevcutsa, CPU boru hattının aynı aşamasında en fazla iki komut işleyebilir. Sıranın bir branch komutu içermesi durumunda, olası eşzamanlı komutların sayısı üçe yükseltilir.
+- **Sıra dışı yürütme**: CPU, tüm birimlerinin çalışmasını sağlamak için komut sırasını yeniden düzenleyebilir, böylece verimliliği ve performansı artırır.
 - **İki Tamsayı Birimi**: Superscalar ve out-of-order modeli ile birlikte, birim zamanda yapılan tamsayı işlemlerinin sayısını artırır.
 - 32-bit ve 64-bit kayıtlara sahip **entegre FPU**: Kayan ve çift sayılarla yapılan işlemleri hızlandırır.
 - **Dört aşamalı pipeline (bonus ile)**: [İşte](game-boy-advance#cpu) komut ardışık düzenine önceki bir giriş. 750CXe'de FPU işlemleri üç aşamaya daha bölünürken (toplamda 7 aşama), load-store işlemleri ikiye bölünmüştür (toplamda 5 aşama).
@@ -152,16 +152,16 @@ Ayrıca, CPU belirli hesaplamaları hızlandırmak için özel birimler de içer
 
 Ve elbette, bellek bant genişliğini hızlandırmak için bir miktar önbellek de dahil edilmiştir:
 
-- **64 KB L1 cache**: Talimatlar için 32 KB ve veriler için 32 KB'a bölünmüştür.
-- **256 KB L2 cache**: Bant genişliğini büyük ölçüde artıran talimatlar ve verilerle doldurulabilir.
+- **64 KB L1 cache**: Komutlar için 32 KB ve veriler için 32 KB'a bölünmüştür.
+- **256 KB L2 cache**: Bant genişliğini büyük ölçüde artıran komutlar ve verilerle doldurulabilir.
 
 ### IBM'in geliştirmeleri
 
 Önceki özelliklerin listesi (önceki nesillere göre) çok takdir edilse de, bu CPU hala oyun performansı açısından diğerlerinden geride kalır (unutmayalım ki bu hala bir genel amaçlı CPU'dur, elektronik tablolarda iyidir ancak *ortalama* fizikte). Bunu telafi etmek için IBM, Gekko'yu [@cpu-ibm] oluşturacak aşağıdaki ince ayarları ekledi:
 
-- **50 yeni SIMD komutu** ile geliştirilmiş komut seti: Bunlar iki 32 bit kayan noktalı sayıyı veya bir 64 bit kayan noktalı sayıyı yalnızca bir döngü kullanarak işler. Sonuç olarak, yeni SIMD talimatları vektör hesaplamalarını hızlandıracak ve özellikle geometri dönüşümleri sırasında faydalı olacaktır.
+- **50 yeni SIMD komutu** ile geliştirilmiş komut seti: Bunlar iki 32 bit kayan noktalı sayıyı veya bir 64 bit kayan noktalı sayıyı yalnızca bir döngü kullanarak işler. Sonuç olarak, yeni SIMD komutlarını vektör hesaplamalarını hızlandıracak ve özellikle geometri dönüşümleri sırasında faydalı olacaktır.
   - PowerPC 7400/G4 ile birlikte sunulan Motorola'nın SIMD uzantısı (AltiVec) ile karıştırılmamalıdır. Birbirleriyle uyumlu değiller. İlginç bir şekilde, IBM sonunda Altivec'i POWER4 CPU'suna ve dolayısıyla 970/G5 serisine, [Cell](playstation-3#cpu) ve [Xenon](xbox-360#cpu) serisiyle de dahil etti.
-- **32 floating-point kaydı**: Bunlar yeni SIMD talimatlarıyla birlikte gelir.
+- **32 floating-point kaydı**: Bunlar yeni SIMD komutlarıyla birlikte gelir.
 - **Write Gather pipe**: Kullanılabilen özel bir bellek yazma mekanizması. Etkinleştirilirse, *tek vuruşlu* aktarımlar gerçekleştirmek yerine, tüm bellek yazma isteklerini %25 dolana kadar 128 baytlık bir arabellekte tutar, ardından istenen yazmaları 32 baytlık veri bloklarını bir kerede taşıyabilen *burst transaction* adlı bir teknik kullanarak gerçekleştirir.
   - Tahmin edebileceğiniz gibi bu, mevcut veri yollarının tam olarak kullanılmasını sağlayarak çok fazla bant genişliği tasarrufu sağlar.
 - **Locked L1 cache**: Programlar 16 KB'lık L1 veri önbelleğini 'scratchpad' (inanılmaz hızlı bellek) olarak kullanmak üzere alabilirler.
@@ -175,7 +175,7 @@ Bu geliştirmeler, oyun mantığını (fizik, çarpışmalar, vb.) ele almanın 
 Gerçekten de Gekko 32-bit PowerPC spesifikasyonunu uygularken MIPS R4300i 32-bit ve 64-bit modları arasında geçiş yapabilmektedir. Bunun bir gelişme olup olmadığını yanıtlamak için kendinize sormanız gerekir: Neden '64-bitliğe' ihtiyacınız olsun ki?
 
 - 4 GB'den fazla belleği adreslemek için → GameCube'de bu miktarda bellek konumu yoktur, bu nedenle bu bir gereklilik değildir.
-- Daha az döngü ve bant genişliği kullanarak daha büyük veri parçalarını çalıştırmak → Bu, Gekko'nun yeni SIMD talimatları, 64 bit FPU ve veri yolu ve yazma-toplama borusu tarafından kapsanmaktadır.
+- Daha büyük veri yığınlarını daha az döngü ve bant genişliği kullanarak çalıştırmak → Bu, Gekko'nun yeni SIMD komutları, 64-bit FPU ve data bus'ı ile write-gather pipe'ı sayesinde sağlanmaktadır.
 - Daha fazla reklam terimi bulmak için → Evet... Bunun artık insanları ikna ettiğini sanmıyorum.
 
 Gördüğünüz gibi GameCube, '64-bit konsol' olarak adlandırılmadan 64-bit sistemlerin avantajlarından yararlanmaktadır. İşte bu yüzden siz ve ben iki karmaşık makineyi 'bit sayıları' ile özetleyemeyiz.
@@ -207,7 +207,7 @@ Genel olarak bu, ARAM'ın önemli miktarda RAM sağlarken, ses tamponu olarak ha
 
 Bu işi yapmak için, Gekko (ve diğer PowerPC mimarileri) sanal adresleri fiziksel adreslere aşağıdaki işlemle çevirir:
 
-1. **Block Address Translation** (BAT) gerçekleştirin: Her bir çiftin bir sanal adres aralığını sürekli bir fiziksel adres aralığına eşlediği sekiz çift programlanabilir kayıt vardır (dördü veri ve dördü talimatlar için). MMU, bu aralıklar içinde bulunursa fiziksel adresi bulmaya çalışır.
+1. **Block Address Translation** (BAT) gerçekleştirin: Her bir çiftin bir sanal adres aralığını sürekli bir fiziksel adres aralığına eşlediği sekiz çift programlanabilir kayıt vardır (dördü veri ve dördü komutlar için). MMU, bu aralıklar içinde bulunursa fiziksel adresi bulmaya çalışır.
 2. BAT işe yaramadıysa, **Page Table**'ı okur: MMU ayrıca sayfaların fiziksel konumunu (sanal adres blokları) kataloglayan bir tablo da saklar.
     - MMU'nun bir sayfa tablosunu okuması zaman alabilir, bu nedenle son okumaları önbelleğe almak için bir **Translation look-aside buffer** (TLB) eklenmiştir.
     - X86 veya MIPS gibi diğer mimariler de sayfalama sağlar, ancak hepsi bir TLB sunmayacaktır.
