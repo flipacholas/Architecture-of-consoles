@@ -139,7 +139,7 @@ Gekko'yu bu kadar özel yapan şeyin ne olduğunu bulalım ve bunu yapmak için 
 - <strong x-id=“1”>Dual-issue superscalar</strong>: Gerekli birimler mevcutsa, CPU boru hattının aynı aşamasında en fazla iki komut işleyebilir. Sıranın bir branch komutu içermesi durumunda, olası eşzamanlı komutların sayısı üçe yükseltilir.
 - **Sıra dışı yürütme**: CPU, tüm birimlerinin çalışmasını sağlamak için komut sırasını yeniden düzenleyebilir, böylece verimliliği ve performansı artırır.
 - **İki Tamsayı Birimi**: Superscalar ve out-of-order modeli ile birlikte, birim zamanda yapılan tamsayı işlemlerinin sayısını artırır.
-- 32-bit ve 64-bit kayıtlara sahip **entegre FPU**: Kayan ve çift sayılarla yapılan işlemleri hızlandırır.
+- 32-bit ve 64-bit yazmaçlara sahip **entegre FPU**: Kayan ve çift sayılarla yapılan işlemleri hızlandırır.
 - **Dört aşamalı pipeline (bonus ile)**: [İşte](game-boy-advance#cpu) komut ardışık düzenine önceki bir giriş. 750CXe'de FPU işlemleri üç aşamaya daha bölünürken (toplamda 7 aşama), load-store işlemleri ikiye bölünmüştür (toplamda 5 aşama).
   - Sonuç olarak bu, komut verimini [kontrolden çıkmadan artırır](xbox#tab-1-3-the-microarchitecture).
 
