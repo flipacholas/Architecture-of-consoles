@@ -83,11 +83,15 @@ Now, since only 29 bits are used to access memory, the remaining three bits are 
 
 Ultimately, programmers may decide whether to use these features. Games for this system certainly don't require memory protection, and the MMU must be manually enabled during boot.
 
-#### Large packages
+#### Large package deliveries
 
-Memory transfers are done in the form of **burst transactions**, meaning that exchanges always move large blocks of data, 32 bytes in the case of the Dreamcast [@cpu-sdram].
+When it comes to transferring large amounts of data to, let's say, feed the graphics chip with geometry, the SH-4's `mov.l` instruction can only operate up to 32-bit chunks (the size of the CPU's main registers) at a time. This means that wide blocks would require many individual `mov.l` calls. Consequently, the memory bus would be congested with unnecessary overhead.
 
-All in all, this design also means developers have new opportunities to optimise memory access based on the location and size of the data.
+Sega previously alleviated this with the [Saturn Control Unit](sega-saturn#the-third-processor-and-counting). Now, with the Dreamcast, the same CPU can additionally perform memory transfers using **burst transactions**: the SH-4 houses a **32-byte queue** that can be filled with data, and then commit as a single big transfer [@cpu-sdram]. Nevertheless, the programmer is in charge of filling the queue, assigning the destination, and triggering the exchange.
+
+Moreover, to avoid stalling the CPU while the queue is being transmitted, a second one is available to alternate.
+
+All in all, this is very similar to the traditional **Direct Memory Access** (DMA) model - which the Dreamcast also features. However, burst transactions are simpler to operate albeit less versatile (the queues can only write data from the CPU to the outside). This console's DMA controller, on the other hand, supports variable-length transfers, multiple data sizes, and provides four channels for parallel operations (with many restrictions) [@cpu-akiba].
 
 ### No UMA but...
 
@@ -425,7 +429,7 @@ In any case, the format didn't attract enough attention. That is, until piracy g
 
 Sega had been a trailblazer in dial-up services since the [Mega Drive/Genesis era](mega-drive-genesis#early-network-attempts), initially through separate modem accessories and games that could take advantage of online content; but as the hardware improved, new types of services could now be offered on the net. It's worth noting that the late 90s coincided with the end of the *walled-garden* era, as the once-isolated servers connected over the telephone line gradually opened up to an emerging web of interconnected networks known as the 'Internet'.
 
-![The Dreamarena portal, the entry point for (some) European users who wanted to join the online experience. All in all, it brought the internet into the living room.](internet/dreamarena.png){.border}
+![The Dreamarena portal, the entry point for (some) European users who wanted to join the online experience. All in all, Dreamarena was an attempt to bring the internet into the living room.](internet/dreamarena.png){.border}
 
 For the Dreamcast launch, Sega pre-equipped the console with a **33.6 kbit/s modem** module (or a **56 kbit/s** variant in America!), paving the way for users to subscribe to an **Internet Service Provider** (ISP) for enhanced gaming. In there, the Dreamcast could find:
 
@@ -454,6 +458,16 @@ To improve customer satisfaction, Sega later shipped a Dreamcast-branded keyboar
 ![Sega used holiday events to offer extra content for the game.](internet/events.png){.toright paperback_latex_width="80%"}
 
 *Sonic Adventure*'s Internet portal, restored by Dreampipe. Behind the scenes, it consists of HTML interacted with a built-in web browser.
+
+:::
+
+::: {.subfigures .side-by-side}
+
+![The home screen.](internet/planetweb_home.png){.toleft paperback_latex_width="80%"}
+
+![The web browser interface.](internet/planetweb_url.png){.toright paperback_latex_width="80%"}
+
+PlanetWeb, the internet suite for the US market. Unlike Dreamkey, it wasn't tied to any ISP.
 
 :::
 
