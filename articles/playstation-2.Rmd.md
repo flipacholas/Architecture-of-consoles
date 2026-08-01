@@ -636,7 +636,7 @@ Later years will also see new exploits uncovered:
 
 - **Fortuna** by krat0s [@anti_piracy-fortuna]: An alternative Homebrew launcher published in 2019 that relies on a completely different exploit. This time, it's a buffer overflow in the icon parser of the saves manager (part of `OSDSYS`) [@anti_piracy-opentuna]. Its main advantage is compatibility with late PS2 models that removed support for external `OSDSYS` updates (thus, incompatible with FreeMCBoot).
 - **OpenTuna** by alexparrado [@anti_piracy-opentuna]: An open-source alternative to Fortuna originated from reverse-engineering the latter.
-- **FreeDVDBoot** by cturt [@anti_piracy-freedvdboot]: A new vulnerability published in 2020. It consists of a new buffer overflow in the DVD player that can be exploited to perform arbitrary code execution. Users only need to burn a DVD with FreeDVDBoot to execute any binary they want, including the FreeMCBoot installer or even ESR (Sony was very lucky that this wasn't discovered many years earlier! [as others weren't](dreamcast#defeating-it)).
+- **FreeDVDBoot** by cturt [@anti_piracy-freedvdboot]: A new vulnerability published in 2020. It consists of a new buffer overflow in the DVD player that can be exploited to perform arbitrary code execution. Users only need to burn a DVD with FreeDVDBoot to execute any binary they want, including the FreeMCBoot installer or even ESR (Sony was very lucky that this wasn't discovered many years earlier! [as others weren't](dreamcast#the-painful-defeat)).
 
 ## That's all folks
 

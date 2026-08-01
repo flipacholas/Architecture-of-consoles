@@ -731,11 +731,11 @@ Contrarily to the PS3, Microsoft managed to fit all of this in a smaller **16 MB
 
 #### Memory Units and HDDs {.tab}
 
-![Memory Units, the least expensive storage medium. Although, they only work with Xbox 360 revisions before 2010.](amos/mem_units.png){.tabs-nested .active .tab-float title="Memory Unit"}
+![Memory Units [@photography-amos], the least expensive storage medium. Although, they only work with Xbox 360 revisions before 2010.](amos/mem_units.png){.tabs-nested .active .tab-float title="Memory Unit"}
 
-![External HDD. Sold as a separate accessory and bundled with 'premium' editions. Inside the case there is a conventional 2.5" hard disk connected to a data & power adapter.](amos/hdd.png){.tab-nested title="External HDD"}
+![External HDD [@photography-amos]. Sold as a separate accessory and bundled with 'premium' editions. Inside the case there is a conventional 2.5" hard disk connected to a data & power adapter.](amos/hdd.png){.tab-nested title="External HDD"}
 
-![Internal HDD, an alternative packaging for the Slim models (2010). The case is fitted into a hidden slot and doesn't require any type of adapter (its only purpose is to prevent wobbling).](amos/hdd_slim.png){.tabs-nested-last title="Internal HDD" width="60%"}
+![Internal HDD [@photography-amos], an alternative packaging for the Slim models (2010). The case is fitted into a hidden slot and doesn't require any type of adapter (its only purpose is to prevent wobbling).](amos/hdd_slim.png){.tabs-nested-last title="Internal HDD" width="60%"}
 
 If you place the console in a vertical position, on the front you'll see **two 'Memory Unit' slots**. On the top of it, you'll find a modified SATA socket for a **hard drive** (only fits those encased and sold by Microsoft). Both of these media are **optional** and used as **mass storage devices**.
 
@@ -984,7 +984,7 @@ In the final years of the Xbox 360 and the consolidation of other media platform
 
 #### The Blu-ray competitor {.tab}
 
-![The HD DVD player, released on November 2006.](amos/hd_dvd.png){.tab-float .no-borders}
+![The HD DVD player [@photography-amos], released on November 2006.](amos/hd_dvd.png){.tab-float .no-borders}
 
 Not so much related to games, but the film industry had an unusual influence on this console too (or maybe the other way around? _we'll soon see_). As Microsoft imposed the DVD for games, the company was also pushing a new format that could compete with the Blu-Ray for space on the movie shelves. I'm talking about the **HD-DVD** which, conveniently enough, uses Microsoft-owned API for interactive features (menus and such).
 

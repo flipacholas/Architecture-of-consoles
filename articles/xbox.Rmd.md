@@ -331,7 +331,7 @@ Controller S (2002) [@photography-amos].
 
 :::
 
-On closer inspection, both controllers did include something special: Two **Memory Unit** slots to plug in a proprietary memory card, enabling to share saves between consoles. Upon realising this, I instantly assumed this feature was inherited from a [previous competitor](dreamcast#interactive-memory-card). However, days after publishing this article, I sent it to Seamus Blackley, the co-creator of this console, who quickly replied with very interesting comments. Regarding the Dreamcast similarities, he told me:
+On closer inspection, both controllers did include something special: Two **Memory Unit** slots to plug in a proprietary memory card, enabling to share saves between consoles. Upon realising this, I instantly assumed this feature was inherited from a [previous competitor](dreamcast#the-interactive-memory-card). However, days after publishing this article, I sent it to Seamus Blackley, the co-creator of this console, who quickly replied with very interesting comments. Regarding the Dreamcast similarities, he told me:
 
 > The relationship to Dreamcast is just historical bias. That was accidental.
 >
@@ -447,7 +447,7 @@ Now, the console also includes an internal 8 GB HDD, games use it to store saves
 
 ### Network service
 
-Forget about [modems](dreamcast#online-platform) or [experimental services](playstation-2#network-service). The Xbox included everything that nowadays we take for granted to provide a decent online service: Ethernet connection and a centralised online infrastructure (called **Xbox Live**).
+Forget about [modems](dreamcast#the-ambitious-online-platform) or [experimental services](playstation-2#network-service). The Xbox included everything that nowadays we take for granted to provide a decent online service: Ethernet connection and a centralised online infrastructure (called **Xbox Live**).
 
 ![Xbox Live Logo.](shell/live.png){.open-float}
 
