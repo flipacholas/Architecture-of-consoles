@@ -192,19 +192,22 @@ Holly can now draw roughly ten times more polygons than [its predecessor](sega-s
 
 ### Video Modes
 
-The video system was designed to support multiple types of screens and formats. Thus, the video encoder outputs from a unified socket that carries the following signal types:
+The video system was designed to support multiple types of screens and formats. Games typically render **640 x 480-pixel** frame-buffers, or half the dimensions/colours if they need more performance. Both are NTSC-friendly resolutions, so European titles have the option of adding letterboxing to fit the PAL specification, or instead rendering 768 x 576-pixel frames [@graphics-video_modes] (although I'm not aware of any game taking advantage of this).
+
+On the other hand, the video encoder outputs from a unified socket that carries the following signal types:
 
 - **Composite**: Combines the three signals needed for video (chroma, luma, and sync) into a single line, requiring only a one-pin cable.
   - This format is used by old PAL and NTSC tellies with an RCA connection.
 - **S-Video**: Separates the chroma signal from the combined signal, resulting in two video lines.
 - **RGB**: Sends separate red, green, and blue signals, along with selectable sync types (composite sync, sync extracted from composite video, or sync extracted from S-Video).
   - The SCART cable uses this format.
-- **VGA**: Provides RGB with two dedicated sync signals (horizontal and vertical), resulting in five video lines in total. This enables the highest supported resolution, **720 x 480**, in progressive scan mode (commonly named '480p'). VGA used to be the standard interface for computer monitors, for a time.
+- **VGA**: Provides RGB with two dedicated sync signals (horizontal and vertical), resulting in five video lines in total. This enables to broadcast **progressive scan video** (i.e. 480p), reducing the amount of artefacts.
   - To use this output, Sega offered a VGA adapter as an optional accessory.
+  - VGA used to be the standard interface for computer monitors for many years.
 
 Now, the Dreamcast can't encode all of these formats at the same time, so both the GPU and the audio processor contain a register named **Image Mode**. This coordinates which video and audio buses are activated to generate the requested output signal. The CPU detects the type of cable inserted by checking which 'select bits' on the video connector are active, then writes the appropriate values to the GPU. Finally, these values are forwarded to the audio processor.
 
-Because VGA is strictly a progressive-scan format (as opposed to the traditional *interlaced* video), some compatibility issues arose with games designed exclusively for interlaced output. Such games explicitly indicate in their code that they can't display on VGA, so the CPU prevents them from running until the user swaps the VGA cable with another type.
+Because VGA is strictly a progressive-scan format (as opposed to the traditional *interlaced* video), some compatibility issues arose with games designed exclusively for interlaced timings. Such games explicitly indicate in their code that they can't display on VGA, so the CPU displays an error screen until the user swaps the VGA cable with another type.
 
 ## Audio
 
@@ -415,7 +418,7 @@ Not a lot is known about the GD-ROM as Sega kept the protocol for themselves. Wh
 - **Outer Zone** (984 MB): This is where the game data is stored. The larger capacity came from narrowing the distance between pits and lands.
 - **Security Ring**: Sitting between the inner and outer zone, its engraving is meant to prove the disc is genuine. There's not enough documentation publicly available to explain how it works, but what's known is that the drive always verifies this area before reading the outer zone.
 
-The speed of the reader is 12x, which is *not too shabby* compared to Saturn's 2x CD reader. Nevertheless, it's worth mentioning that the new reader operates at **Constant-Angular-Velocity** (CAV), as opposed to Constant Linear Velocity (CLV). This means that, with little effort, data access gets faster on the outer layer, which is coincidentally where the game data resides.
+The speed of the reader is 12x, which is *not too shabby* compared to Saturn's 2x CD reader. Nevertheless, it's worth mentioning that the new reader operates at **Constant-Angular-Velocity** (CAV), as opposed to Constant Linear Velocity (CLV). This means that, with little effort, data access gets faster on the outer edge, which is coincidentally where the game data resides.
 
 #### The bonus format
 
@@ -490,7 +493,7 @@ You may be interested to know that the present day paints a different attitude t
 Another innovative feature of the Dreamcast is the **Visual Memory Unit** (VMU), a small gadget that attaches to the controller and, aside from serving as a memory card, is a fully fledged system that houses [@games-vmu]:
 
 - A **Sanyo LC86K87**: An 8-bit low-power CPU.
-- A **48 x 32 monochrome LCD** with four additional icons: Commanded using 196 B of eXternal RAM (XRAM) as a frame buffer.
+- A **48 x 32 monochrome LCD** with four additional icons: Commanded using 196 B of eXternal RAM (XRAM) as a frame-buffer.
 - **Two serial connectors**: One for each direction (input and output).
 - **Six physical buttons**: Used to interact with the VMU when it's detached from the controller.
 - A **16 KB Mask-ROM**: Stores a dedicated BIOS-IPL.
