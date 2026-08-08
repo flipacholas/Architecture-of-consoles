@@ -230,7 +230,7 @@ other = 'Interactive model available in the <a href="{{ . }}">modern edition</a>
 other = 'Interactive player available in the <a href="{{ . }}">modern edition</a>'
 
 [goto_classic]
-other = 'If you use accessibility tools, <a href="{{ .classic }}">switch to the ‘classic’ edition</a>. If you use a legacy browser, <a href="{{ .blink }}">try the ‘blink’ edition</a>.'
+other = 'Using accessibility tools? <a href="{{ .classic }}">Switch to the ‘classic’ edition</a>.<br>Got a vintage computer? <a href="{{ .blink }}">Try the 90s-compatible ‘blink’ edition</a>!'
 
 [audio_samples]
 other = 'Audio samples'
