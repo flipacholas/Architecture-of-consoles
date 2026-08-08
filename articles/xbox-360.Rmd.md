@@ -473,7 +473,7 @@ Later on, in 2006, the follow-up motherboard revision called **Zephyr** ultimate
 
 {.close-float}
 
-As outdated as this may seem today, Microsoft still required developers to consider their games being played on CRT screens, which are prone to overscan. Thus, games couldn't place any important indicators within the [Danger Zone](nes#constructing-the-frame).
+As outdated as this may seem today, Microsoft still required developers to consider their games being played on CRT screens, which are prone to overscan. Thus, games couldn't place any important indicators within the [Danger Zone](nes#outputting-the-image).
 
 #### Short-lived features
 

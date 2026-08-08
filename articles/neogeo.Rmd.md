@@ -216,7 +216,7 @@ The CPU may update Palette RAM at any moment, but it should only do so during bl
 
 The Fixed plane is a layer **320 x 256 pixels** (40 x 32 tiles) wide [@graphics-fixed_layer], pretty much the entire screen. Its displayed tiles are completely static and only have access to 16 colour palettes. In practice, this is used to display 'always-on' information, similar to the [window layer](game-boy#tab-1-4-window) of the Game Boy.
 
-When broadcasted to a CRT screen, the displayed area will be smaller. Thus, its [safe area](nes#constructing-the-frame) is 38 x 28 tiles wide.
+When broadcasted to a CRT screen, the displayed area will be smaller. Thus, its [safe area](nes#outputting-the-image) is 38 x 28 tiles wide.
 
 Fixed tiles are declared in a region of VRAM called **Fix map**. It takes the form of a 40 x 32 table, and each entry corresponds to a position on the screen.
 
