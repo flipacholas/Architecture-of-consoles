@@ -113,9 +113,11 @@ For the Master System, VRAM houses everything the VDP requires for rendering (ex
 
 ### Constructing the frame
 
-The VDP renders frames with a resolution of **up to 256x192 pixels**. Later revisions added support for 256x224 px and 256x240 px. However, to maintain compatibility with all models, developers adhered to the standard resolution. This chip has the same *modus operandi* as Nintendo's [PPU](nes#constructing-the-frame); in other words, graphics are rendered on the spot.
+The VDP has the same *modus operandi* as Nintendo's [PPU](nes#constructing-the-frame); in other words, graphics are rendered on the spot and output as a [240p signal](nes#outputting-the-image). With the Master System, the VDP's frames have a resolution of **256 x 192 pixels**. When compared side-by-side with the NES, the frame is shorter than the PPU's, which explains the extra vertical margin (the unused scan-lines are filled with a backdrop colour).
 
-Furthermore, the VDP has four different modes of operation. These alter the characteristics of the frame (colour depth and resolution):
+To be fair, later revisions added support for the less-padded resolutions of 256 x 224 px and 256 x 240 px. However, to maintain compatibility with all models, developers adhered to the earlier resolution. It wouldn't be until the [Mega Drive/Genesis](mega-drive-genesis#graphics) arrived that 240 scan-lines became routinely used.
+
+Moving on, the VDP has four different modes of operation. These alter the characteristics of the frame (colour depth and resolution):
 
 - **Mode 0 to III**: Inherited from the TMS9918 found on the SG-1000. They are included for backwards compatibility, although any SMS game can use them.
 - **Mode IV**: The native mode of the Master System, which enables access to all the state-of-the-art features of the VDP. For this analysis, we will focus on this mode!

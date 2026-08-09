@@ -957,7 +957,7 @@ Virtual Console games behave as any other application installed into the console
 
 ![Virtual console catalogue for Super Nintendo games (only for New 3DS users).](store/store_vc_snes.png){.toleft}
 
-![Example of an SNES game running on the Nintendo 3DS (the display looks dim because the game is paused). Notice how the options menu allows you to switch between [4:3 and 8:7 aspect ratios](super-nintendo#display-modalities).](store/vc_mario.png){.toright}
+![Example of an SNES game running on the Nintendo 3DS (the display looks dim because the game is paused). Notice how the options menu allows you to switch between [4:3 and 8:7 aspect ratios](super-nintendo#new-display-modalities).](store/vc_mario.png){.toright}
 
 Once again, things were different for New 3DS users, as they could also access the [Super Nintendo](super-nintendo) catalogue. This particularly strikes me as odd, as I remember a time when (homebrew) SNES emulators were developed for the original Nintendo DS (with its mere ARM9-ARM7 and a couple of megs of RAM).
 

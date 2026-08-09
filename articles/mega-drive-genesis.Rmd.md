@@ -140,25 +140,25 @@ It's worth noting that this design can underperform if not managed properly, so 
 
 ## Graphics
 
-The answer is _Blast Processing!_ What else do you need to know?
+The answer is *Blast Processing!* What else do you need to know?
 
-Okay, if you want to know the _real_ answer: graphics data is processed by the 68000 and rendered on a proprietary chip called **Video Display Processor** (or 'VDP' for short), which then sends the resulting frame (in the form of scan lines) for display.
+Okay, if you want to know the *real* answer: graphics data is processed by the 68000 and rendered on a proprietary chip called **Video Display Processor** (or 'VDP' for short), which then sends the resulting frame (in the form of [scan-lines](nes#outputting-the-image)) for display.
 
-The VDP runs at **~13 MHz** and supports multiple resolution modes depending on the region: up to **320x224 pixels** in NTSC and up to **320x240 pixels** in PAL.
+The VDP runs at **~13 MHz** and supports multiple resolution modes depending on the region: up to **320 x 224 pixels** in NTSC and up to **320 x 240 pixels** in PAL. 
+
+Notice the vertical resolution now aligns with the 'safe area' of the [240p scanning model](nes#outputting-the-image), meaning games don't have to worry about 'danger zones' as much. Furthermore, the increased horizontal resolution means more detail can be inserted per scan-line, reducing the horizontal stretching of pixels as well.
 
 ### Behind the multiple display resolutions
 
-Technically speaking, the VDP can fit either 40 or 32 columns of [tiles](master-system#tab-1-1-tiles) per scan-line, and the number of tile rows depends on the region (28 in NTSC or 30 in PAL) [@graphics-keil]. Although, most PAL games do not bother with the extra tiles allowed in PAL systems (as they probably need to keep consistency between the two regions, and NTSC is the common denominator) so they instruct the VDP to render with 28 rows (as in NTSC systems). Thus, the VDP has no option but to fill the unused area with a backdrop colour (also used during overscan).
+From the programmer's perspective, the VDP can fit either 40 or 32 columns of [tiles](master-system#tab-1-1-tiles) per frame, while the number of tile rows depends on the region: 28 in NTSC or 30 in PAL [@graphics-keil]. Having said that, many PAL games do not bother with the extra tile rows available on PAL systems (as they probably need to keep consistency between the two regions, with NTSC being the common denominator), so they instruct the VDP to render 28 rows, as on NTSC systems. Thus, the VDP has no option but to fill the unused area with a backdrop colour (the same colour used during overscan).
 
-You can identify which PAL games render in NTSC mode by checking the `Mode Set Register #2` in an emulator with debugging capabilities (e.g., Exodus). If the fourth bit from the right is `0`, the VDP is running in NTSC mode [@graphics-resolution].
+You can identify PAL games that render in NTSC mode by checking `Mode Set Register #2` in an emulator with debugging capabilities (e.g., Exodus). If bit 3 is `0`, the VDP is running in NTSC mode [@graphics-resolution].
 
-![To provide a quick multiplayer mode in Sonic 2 (1992), the game activates 'interlaced mode' to render a single-player level using 8x16 pixel tiles instead (along with other changes).](twopsonic/sonic2.png){.side-by-side .toleft .border .pixel}
+![To provide a quick multiplayer mode in Sonic 2 (1992), the game activates 'interlaced mode' to render a single-player level using 8 x 16 pixel tiles instead (along with other changes).](twopsonic/sonic2.png){.side-by-side .toleft .border .pixel}
 
 ![By contrast, the more sophisticated multiplayer mode of Sonic 3 (1994) relies on dedicated 8x8 pixel tiles that are separate from single-player levels.](twopsonic/sonic3.png){.toright .border .pixel}
 
-Furthermore, there's an additional parameter that can be set on the VDP to stack two tiles to form **8x16 maps** and then treat them as a single tile. Hence, doubling the vertical resolution. However, this halves the refresh rate as frames are now rendered with interlacing (one frame renders even scan-lines, the next beams odd ones, and so forth) so it's more limited in terms of functionality. The multiplayer mode of Sonic 2 is a good representation of this mode [@graphics-sonicmultip].
-
-Finally, it's worth pointing out that the VDP automatically takes care of adding padding for the overscan area, so games don't have to worry about which areas are safe to draw graphics into (as it happened with the [NES' 'danger zones'](nes#outputting-the-image)).
+Furthermore, there's an additional parameter that allows the VDP to **double the internal vertical resolution**. When enabled, two tiles are stacked to form **8 x 16 maps**, which are then treated as a single tile. At the other end, the video encoder outputs **448 [interlaced scan-lines](nes#outputting-the-image)** (480i) instead. The result is an image with half the refresh rate, a bit more flicker, and greater vertical detail. The multiplayer mode of Sonic 2 is a good example of this [@graphics-sonicmultip].
 
 ### Organising the content
 

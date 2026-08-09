@@ -151,11 +151,13 @@ Each PPU package serves specific functionality [@cpu-manual]:
 
 This separation, from a programming perspective, is redundant, as both chips are effectively treated as a single unit.
 
-#### Display modalities
+#### New display modalities
 
-The NTSC system outputs a standard resolution of **256 x 224 pixels** at **~60 Hz** [@graphics-guide]. The European variant, adhering to the PAL specification, outputs **256 × 240 pixels** at **~50 Hz**. Be that as it may, most games do not utilise the additional pixels and instead display a *letterbox* (black lines).
+Just like its predecessor, the S-PPU generates a [240p signal](nes#outputting-the-image). The big difference now is that the S-PPU supports **multiple background modes**, these may widen the horizontal resolution, increase the vertical one (with interlacing), or both!
 
-Now, here's the tricky part: traditional TVs have an aspect ratio of 4:3. Yet, if you do the math, the Super Nintendo's output resolution has an **aspect ratio of 8:7**. Consequently, once the image is beamed on the TV, it looks **horizontally stretched**, resembling a **292 x 224 pixels** frame instead (in the case of the NTSC variant) [@graphics-aspect]. Put simply, pixels on the Super Nintendo have an aspect ratio of 8:7, rather than being 'perfectly square'.
+The NTSC system outputs a standard resolution of **256 x 224 pixels** at **~60 Hz** [@graphics-guide]. The European variant, adhering to the PAL specification, outputs **256 × 240 pixels** at **~50 Hz**. Be that as it may, most games do not utilise the additional European scan-lines and instead display a *letterbox* (black lines).
+
+Part of the NES legacy also includes stretched pixels. Put simply, rather than being 'perfectly square', pixels on the Super Nintendo have an **aspect ratio of 8:7**. Consequently, once the image is beamed on a 4:3 TV, it looks **horizontally stretched**, resembling a **292 x 224 pixels** frame instead (in the case of the NTSC variant) [@graphics-aspect]. Now, this is not news, but as graphics in the 4th generation gained more detail and CRTs became sharper, this effect became more noticeable.
 
 ::: {.subfigures .side-by-side .pixel}
 
@@ -167,7 +169,9 @@ Kirby's Dream Land 3 (1997).
 
 :::
 
-The reasoning behind Nintendo's deviation from the standard aspect ratio boils down to **cost**. You will soon see that the S-PPU is very rich in functionality, but not fast enough to render everything at the pace of the CRT beam [@graphics-sanglard]. Rather than adding more circuitry to the board, Nintendo opted to shorten the width of the visible image, allocating extra space for the horizontal blanking period instead.
+You may now wonder: if the [Mega Drive](mega-drive-genesis#graphics) and [Neo Geo](neogeo#graphics) boasted a larger horizontal resolution of 320 pixels, why couldn't the Super Nintendo do the same to reduce the distortion (and increase the amount of graphics it could display)?
+
+The reasoning behind Nintendo's significant deviation from a 1:1 aspect ratio boils down to **cost**. You will soon see that the S-PPU is very rich in functionality, but not fast enough to render enough samples at the pace of the CRT beam [@graphics-sanglard]. Thus, rather than adding more circuitry to the board and increasing the cost, Nintendo opted for a narrower visible image, allocating extra space for the horizontal blanking period instead.
 
 Nevertheless, some games like 'Chrono Trigger' account for this factor by intentionally using squashed shapes, which then look correct after being stretched by the TV. This, however, remains an exception, since the majority of games take no extra measures to compensate for this effect.
 
@@ -189,12 +193,12 @@ Let's now see how a frame is rendered on the console and subsequently displayed 
 
 #### Tiles {.tabs .active}
 
-![Some 16x16 Tiles found in VRAM.](sppu_mario/tiles.png){.tab-float .pixel .latex-framed}
+![Some 16 x 16 Tiles found in VRAM.](sppu_mario/tiles.png){.tab-float .pixel .latex-framed}
 
 Just like its predecessor, the S-PPU uses tiles to build sophisticated graphics. Although, there are significant improvements compared to the original PPU:
 
 - **Game cartridges are no longer wired to the PPU**, meaning tiles must first be copied to VRAM (similar to Sega's [Mega Drive](mega-drive-genesis#graphics)). This is where the DMA unit becomes very handy.
-- **Tiles are no longer restricted to their traditional dimension** (8x8 pixels) - they can now be up to **16x16 pixels** wide.
+- **Tiles are no longer restricted to their traditional dimension** (8 x 8 pixels) - they can now be up to **16 x 16 pixels** wide.
 - When tiles are stored in memory, these are **compressed based on colour depth** (in other words, the number of colours per pixel). The unit of measurement for this is **bpp** (bits per pixel). The minimum value is **2 bpp**, meaning each pixel occupies two bits and has only 4 colours available. The maximum is **8 bpp**, allowing for 256 colours per pixel (at the expense of consuming a full byte of memory).
 
 #### Background {.tab}
@@ -225,7 +229,7 @@ Rendered Background layers after selection and transparency are applied.
 
 :::
 
-The Super Nintendo can generate up to four different background planes. Using either 8x8 or 16x16 tiles, [blocks](nes#tab-1-2-background-layer) are made of 32x32 pixels (2x2 tiles). That being said, each background layer can extend up to 1024x1024 pixels in size (32x32 tiles). The region in VRAM where these layers are configured is called **Tilemap**, and is structured as a table (continuous values in memory).
+The Super Nintendo can generate up to four different background planes. Using either 8 x 8 or 16 x 16 tiles, [blocks](nes#tab-1-2-background-layer) are made of 32 x 32 pixels (2 x 2 tiles). That being said, each background layer can extend up to 1024 x 1024 pixels in size (32 x 32 tiles). The region in VRAM where these layers are configured is called **Tilemap**, and is structured as a table (continuous values in memory).
 
 Each Tilemap entry contains the following attributes:
 
@@ -251,9 +255,10 @@ The S-PPU provides many operations for backgrounds, but these cannot be chosen a
   - Colours can be defined using RGB values instead of referencing CGRAM.
 - **Mode 4**: Mode 2 and 3 combined (Column scroll + RGB colour mapping).
   - The first layer supports 256 colours, while the second is limited to just 4 colours.
-- **Mode 5**: 1 layer with 16 colours + 1 layer with 4 colours.
-  - The selected area features an outstanding resolution of **512 x 224 pixels**, which will be horizontally squashed to fit on the screen (the final output remains 256 x 224 pixels!). This comes at the cost of rendering 16 x 8 pixels tiles as 8 x 8 ones, and 16 x 16 pixels tiles as 8 x 16 ones.
-  - Furthermore, the vertical resolution can be extended by activating **interlacing**, reaching **512 x 448 pixels**, which now maintains correct proportions with the output frame. In exchange, interlacing applies the same squashing effect to tiles - this time vertically. This is useful when displaying larger amounts of information (e.g. multiplayer or split-screen).
+- **Mode 5**: Also called 'high-resolution mode', it provides 1 layer with 16 colours + 1 layer with 4 colours.
+  - In exchange for colour variety, the selected area features twice the horizontal resolution (**512 x 224 pixels**). It's still encoded as a 240p signal, but with twice as many samples per scan-line. Behind the scenes, the S-PPU renders 16 x 8 px and 16 x 16 px tiles.
+  - The vertical resolution can also be extended by activating [**interlacing**](nes#outputting-the-image), obtaining a resolution of **512 x 448 pixels** (restoring the original proportions). This produces a 480i signal, with half the refresh rate and added flicker.
+  - All in all, this is useful when displaying larger amounts of information (e.g. multiplayer or split-screen).
 - **Mode 6**: A combination of Mode 2 and 5 (high resolution + column scrolling), though it is restricted to a single layer with 32 colours.
 
 As you can see, programmers can now decide whether to prioritise colour depth, number of layers, special effects, or resolution.
@@ -264,7 +269,7 @@ As you can see, programmers can now decide whether to prioritise colour depth, n
 
 A dedicated memory region called **Object Attribute Memory** (OAM) stores a table with references of up to 128 sprites, each with the following properties [@graphics-guidelines]:
 
-- **Size**: The S-PPU can combine up to 16 tiles into a 4x4 tile quadrant to build a sprite.
+- **Size**: The S-PPU can combine up to 16 tiles into a 4 x 4 tile quadrant to build a sprite.
 - **Tile references**: Specifies the tiles used to draw the sprite.
 - **Screen position**: Only sprites within the visible area will be rendered.
 - **Priority**: Since multiple layers overlap, the graphic with the highest priority will be shown. Priority is also determined by the background mode in use.
