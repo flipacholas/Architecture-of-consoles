@@ -139,7 +139,7 @@ Example of Neo Geo games.
 
 That being said, the console outputs a [240p signal](nes#outputting-the-image). This embeds a frame with a dimension of **320 x 224 pixels** (for NTSC) or **320 x 256 pixels** (for PAL) [@graphics-frame_size].
 
-Furthermore, thanks to its sophisticated video circuitry, the Neo Geo's output pixels are, among consoles of its generation, the [closest](super-nintendo#new-display-modalities) to a perfect square.
+Furthermore, thanks to its sophisticated video circuitry, the Neo Geo's output pixels are, among consoles of its generation, the [closest](super-nintendo#new-display-modalities) to a perfect square [@graphics-ratio].
 
 #### The chipset
 
