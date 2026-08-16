@@ -321,6 +321,20 @@ In both examples, the game commands the VDP1 to draw foreground objects and back
 
 Nevertheless, the two games exhibit different behaviour. During gameplay, the background of *Daytona* pops out of nowhere (as half-transparency is disabled). In contrast, *Sonic R* achieves not only half-transparency but also a **fading effect**. Traveller's Tales devised a workaround by adjusting the 'mix ratio' registers of the VDP2 (used for defining the texture's alpha) and manually switching the lighting levels as the character gets closer [@graphics-burton].
 
+### Video output
+
+The Saturn follows similar video-output mechanics to the [Mega Drive / Genesis](mega-drive-genesis#graphics), except that developers can now render over the ['dangerous' scan-lines](nes#outputting-the-image) (e.g. all 240 NTSC lines, rather than just 224) if they wish.
+
+The system generates 240p or 480i signals, using either 320 or 352 pixels per line [@graphics-vdp2]. This matches the need for crisp 2D graphics or detailed-and-flickery 3D scenes. The video encoder then converts the output into consumer-friendly formats like RGB, composite, and S-Video.
+
+#### Cutting-edge modes
+
+Technically, the VDP2 also has a few tricks up its sleeve: **High-resolution mode**. This allows it to reach a horizontal resolution of 640 or 704 pixels [@graphics-vdp2]. However, this imposes restrictions on the graphics subsystem, such as rendering only two interleaved 2D planes.
+
+There's also a **31 kHz mode** capable of rendering 480 scan-lines progressively (i.e. 480p), coming close to the format used by VGA monitors. However, this is bottlenecked by the VDP1's framebuffer [@graphics-progressive] and, as far as I know, no commercial game ever used it.
+
+It's fair to say that expanding beyond the old NTSC/PAL formats and towards high-resolution, progressive, 1:1 pixel-aspect-ratio outputs will be a milestone fulfilled by the next generation.
+
 ## Audio
 
 The audio capabilities of this console were part of a broader digital revolution taking place during the same period. In essence, the combination of new storage formats and affordable (yet sophisticated) sample synthesisers ultimately unlocked the composers' ability to produce their music in-house, and then incorporate it directly into games in its original form.
