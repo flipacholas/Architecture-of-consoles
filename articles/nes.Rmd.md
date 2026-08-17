@@ -308,7 +308,7 @@ Demonstration of the PPU's 'safe areas' and 'danger zones' using a NES homebrew 
 Now, to combine this with the PPU's inner workings:
 
 - Take a look at the PPU's resolution again. It's not a coincidence that its vertical resolution is half the number of visible scan-lines in NTSC: the PPU outputs 240 scan-lines per frame without interlacing. In other words, **240p**. Nevertheless, its choice of horizontal resolution, when considered alongside the TV's 4:3 aspect ratio, makes the pixels appear stretched horizontally. Moreover, the lack of interlacing creates gaps between scan-lines (this is the origin of the famous 'scan-line effect').
-    - Broadcasting frames in one sweep is known as **progressive scanning**. This type is also favoured by LCD panels.
+    - Broadcasting frames in one sweep is known as **progressive scanning**. This type is also favoured by [LCD panels](game-boy#graphics).
 - Due to overscan, programmers had to assume that only ~224 pixel rows would be properly visible. This affected where elements would be placed in the game; the outer regions were considered 'danger zones'. 
 - PAL tellies, on the other hand, expect more scan-lines. The PPU still outputs 240p. As a result, this leaves unused vertical space, appearing as horizontal black bars (letterboxing).
 
