@@ -169,9 +169,11 @@ Since this module constantly updates the frame buffer, it interacts with main RA
 
 The resulting frame must be sent to the **Video Encoder** to be displayed on-screen. This is taken care of by **DMA** and the **Video Interface** component.
 
-The Video Interface (VI) acts as a bridge between the game's framebuffer and the television signal. It basically converts the rendered frame into a format the TV will understand, which tends to vary by region. For instance, the Video Interface can broadcast frames of 640x480 or 320x240 pixels to NTSC tellies; whereas PAL systems get 640x576 or 320x288 frames [@graphics-video_interface]. To help with the translation, the VI provides anti-aliasing (in conjunction with the RDP), scaling, and many colour correction modes.
+The Video Interface (VI) acts as a bridge between the game's framebuffer and the television signal. It basically converts the rendered frame into a [format the TV will understand](nes#outputting-the-image), which tends to vary by region. For instance, the Video Interface can broadcast frames of 640 x 480 (using 480i) or 320 x 240 pixels (using 240p) to NTSC tellies; whereas PAL systems get 640 x 576 or 320 x 288 frames [@graphics-video_interface]. To help with the translation, the VI provides anti-aliasing (in conjunction with the RDP), scaling, and many colour correction modes.
 
 Other capabilities include supporting up to **32 bits of colour depth** (16.8 million colours), but it's worth mentioning that using the maximum settings can be resource-hungry, so programmers often opt for lower specifications to free up enough resources for other services.
+
+Considering the bandwidth constraints, most games chose to render at **320 x 240**, which could be displayed as a progressive signal (**240p**), but I must say this led to the Nintendo 64 catalogue featuring the **lowest practical resolution** when compared to [its 3D companions](playstation#playing-with-vram). I mean, 320 horizontal pixels should've been the [norm for the Super Nintendo](super-nintendo#new-display-modalities) (already [behind the Mega Drive](mega-drive-genesis#graphics))... To be fair, the Video Interface's filters helped smooth the result, which explains why N64 games looked blurrier on average. Nevertheless, titles like *Star Wars Episode I Racer* made use of the Expansion Pak to up its resolution to 640 x 480 (albeit with the need to interlace).
 
 ### Quick demo
 
