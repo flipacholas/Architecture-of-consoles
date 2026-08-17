@@ -142,7 +142,7 @@ You don't need to memorise all of this to follow the rest of the article! Just k
 
 The **Motion Decoder**, also called 'MDEC' or 'Macroblock Decoder', is another processor living next to the CPU. This time, it decompresses 'macroblocks' into a format the GPU can understand. A macroblock is a data structure containing an image encoded similarly to JPEG.
 
-The MDEC decompresses bitmaps consisting of 8x8 pixels at 24 bpp (bits per pixel). Overall, the MDEC can compute 9,000 macroblocks per second [@cpu-walker], enabling to stream a 320x240 px **Full-Motion Video** (FMV) at 30 frames per second.
+The MDEC decompresses bitmaps consisting of 8 x 8 pixels at 24 bpp (bits per pixel). Overall, the MDEC can compute 9,000 macroblocks per second [@cpu-walker], enabling to stream a 320 x 240 px **Full-Motion Video** (FMV) at 30 frames per second.
 
 DMA is used to transfer compressed data through the CD-ROM, RAM, and MDEC. The same path is used in reverse, though the destination in this case is VRAM.
 
@@ -272,7 +272,7 @@ The rationale behind providing this choice comes down to performance: flat shadi
 
 Triangle surfaces may also be blended with textures (2D bitmaps) to produce the final result.
 
-The GPU performs **inverse texture mapping**, where it traverses each rasterised pixel and looks for its corresponding pixel in the texture map (called **texel**). Texels are calculated by linearly interpolating the texture map (found in VRAM) to match the shape of the polygon. The interpolation routine is called **Affine Texture Mapping**, which operates solely on 2D coordinates (X and Y values), discarding the third coordinate (Z or 'depth') that would otherwise account for perspective.
+The GPU performs **inverse texture mapping**, where it traverses each rasterised pixel and looks for its corresponding pixel in the texture map (called **texel**). Texels are calculated by linearly interpolating the texture map (found in VRAM) to match the shape of the polygon. The interpolation routine is called **Affine Texture Mapping**, which operates solely on 2D coordinates (X and Y values), discarding the third coordinate (Z or 'depth') that would otherwise account for perspective. The GPU also bundles **2 KB of Texture Cache** to accelerate retrievals [@graphics-spx].
 
 Because texture maps rarely match the exact dimensions of rasterised polygons, **aliasing** (incorrect rendering results) tend to appear. This manifests as unwanted distortions, such as missing or oversized texels. To remedy this, sophisticated GPUs employ **texture filtering** to smooth out (interpolate) abrupt colour changes. Now, the PS1's GPU does not implement any filter, so it resorts to an algorithm known as **nearest neighbour** to correct scales without smoothing out the results. This is very fast and cheap, but it also explains why textured models may look 'blocky'.
 
@@ -297,7 +297,7 @@ Let's take a break now from all this theory. Here are some examples of game char
 
 ### Optimising texture storage
 
-On the PS1, textures are stored inside **texture pages**. These are blocks of 256x256 pixels, and their storage size can range from 4 to 16 bits per pixel (bpp) in VRAM [@graphics-spx]. The more bits, the richer they look, but also the more space they occupy.
+On the PS1, textures are stored inside **texture pages**. These are blocks of 256 x 256 pixels, and their storage size can range from 4 to 16 bits per pixel (bpp) in VRAM [@graphics-spx]. The more bits, the richer they look, but also the more space they occupy.
 
 Be that as it may, 4bpp and 8bpp texture pages are not restricted to a predefined set of colours. Instead, they rely on a **Colour Lookup Table** (CLUT) - a customisable colour palette that can be placed anywhere in VRAM.
 
@@ -305,25 +305,25 @@ When the CPU commands the GPU to draw a textured triangle, the command also embe
 
 ### Playing with VRAM
 
-Given the available amount of VRAM (a *whole megabyte*), one could allocate a *massive* frame buffer of 1024×512 pixels with 16-bit colours, or a *realistic* one of 960×512 pixels with 24-bit colours - allowing to draw some of the finest frames ever seen in gaming... This sounds pretty impressive, right? Well, it does raise a few issues, for instance:
+Given the available amount of VRAM (a *whole megabyte*), one could allocate a *massive* frame buffer of 1024 x 512 pixels with 16-bit colours - allowing to draw some of the finest frames ever seen in gaming... This sounds pretty impressive, right? Well, it does raise a few issues, for instance:
 
-- These dimensions would need to be rescaled to comply with standardised formats (e.g. 480i NTSC or 576i PAL), so the video encoder can broadcast them on consumer TVs.
+- These dimensions would need to fit within a [standardised scan format](nes#outputting-the-image) (e.g. 240p or 480i for NTSC), so the video encoder can broadcast them on consumer TVs - which also varies between regions.
 - How is the GPU supposed to render anything decent if there isn't any space left for other assets (e.g. textures and colour tables)?
-- The PS1's GPU can only render frame buffers of up to 640×480 pixels and 16-bit colours.
+- The PS1's GPU can only display frames of up to **640 x 480 pixels**, 16-bit colours, with an interlaced output (480i for NTSC or 576i for PAL).
 
-All right, let's use a 640x480 buffer with 16-bit colour instead, which leaves 424 KB of VRAM for materials. So far, so good? Again, such resolution may look fine on CRT monitors, but it's not particularly noticeable on those 90s TVs everyone had in their homes. Then, is there any way to optimise VRAM space? Introducing **adjustable frame-buffers**.
+All right, let's use a 640 x 480 buffer, 16-bit colour, and a 480i output instead. This would leave 424 KB of VRAM for materials. So far, so good? Again, such choices may look acceptable on VGA monitors, but they are not necessarily pleasant on those 90s TVs everyone had in their homes. Then, is there any way to optimise performance, VRAM space, and picture quality? Introducing **adjustable frame buffers**.
 
-![VRAM visualisation in the NO$PSX debugger. You can spot the dual frame buffer, along with texture pages. The latter are translated using a colour lookup table, also stored there.](vram.jpg){.open-float}
+In essence, rather than hoarding VRAM with a large, fixed frame buffer, this console's GPU allows to configure the dimensions of the frame, effectively increasing the space available for other resources.
 
-In essence, rather than hoarding VRAM with the frame buffer, this console's GPU allows to decrease the dimensions of the frame buffer, effectively increasing the space available for other resources. In a demonstration from 'Gears Episode 2' [@graphics-halkun], Halkun shows a setup that divides the 640x480 frame buffer into two 320x480 ones, employing a technique called **page flipping** to render multiple scenes at the same time.
+![VRAM visualisation in the NO$PSX debugger during a game of *Spyro the Dragon*. You can spot the dual frame buffer, along with texture pages. The latter are translated using a colour lookup table, also stored there.](vram.jpg)
 
-Page flipping involves alternating the location of the frame for display between two buffers whenever required, allowing the game to render one scene while displaying another. Thus, hiding any flickering effect and improving loading times (something that the player will certainly appreciate!).
+For instance, *Spyro the Dragon* and many other games adopted a setup that allocates **two 512 x 240 frame buffers**, meaning:
 
-{.close-float}
+- In terms of VRAM space, half is reserved for frame buffers, while the other part is left for materials.
+- The vertical resolution enables the picture to be streamed as a 240p signal. Progressive scanning means no interlacing flicker and provides a high refresh rate. On the other hand, the low vertical resolution limits the amount of detail and distorts the aspect ratio, which developers must account for.
+- Regarding performance, the use of two buffers employs a technique called **page flipping**: the GPU can render one frame while another is being shown, then switch the displayed buffer when the new frame is ready. This hides intermediate effects like flickering or tearing.
 
-Overall, Halkun's layout consumes only 600 KB of VRAM. The remaining 424 KB can be used to store colour lookup tables and texture pages which, paired with **2 KB of texture cache available**, result in a very convenient and efficient setup.
-
-Finally, it is also worth mentioning that VRAM can be mapped using **multiple colour depths simultaneously**, meaning that programmers can allocate a 16 bpp frame buffer next to 24 bpp bitmaps (commonly used by FMV frames, for instance). This is another avenue for further optimisation of space.
+Finally, for more sophisticated use cases, VRAM can store data using **multiple colour depths simultaneously**, meaning that programmers can allocate a 16 bpp frame buffer next to 24 bpp bitmaps (commonly used for FMV playback, for instance).
 
 ### Secrets and Limitations
 
