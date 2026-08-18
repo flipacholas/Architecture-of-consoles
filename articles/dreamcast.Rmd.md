@@ -144,7 +144,7 @@ Let's take a look at the two main components of the Dreamcast's GPU [@graphics-m
 
 ![Architecture of the Tile Accelerator.](_diagrams/tile_accelerator.png){.tab-float}
 
-Before the rendering process begins, a component known as the **Tile Accelerator** (TA) performs pre-processing. It starts by allocating several 32x32 tile bins into which the geometry will be rendered.
+Before the rendering process begins, a component known as the **Tile Accelerator** (TA) performs pre-processing. It starts by allocating several 32 x 32 tile bins into which the geometry will be rendered.
 
 Then, the Tile Accelerator:
 
@@ -190,26 +190,39 @@ Holly can now draw roughly ten times more polygons than [its predecessor](sega-s
 
 ![Sonic Adventure (1999) for the Dreamcast.<br>1001 triangles.](sonic_adventure_dc){.toright model3d="true" paperback_latex_width="95%"}
 
-### Video Modes
+### Video Output
 
-The video system was designed to support multiple types of screens and formats. Games typically render **640 x 480-pixel** frame-buffers, or half the dimensions/colours if they need more performance. Both are NTSC-friendly resolutions, so European titles have the option of adding letterboxing to fit the PAL specification, or instead rendering 768 x 576-pixel frames [@graphics-video_modes] (although I'm not aware of any game taking advantage of this).
+There are two big milestones to unpack here. So, I've split this section into two parts.
 
-On the other hand, the video encoder outputs from a unified socket that carries the following signal types:
+#### The new standard {.tabs .active}
+
+![Representation of the different video output modes of Holly.](_diagrams/holly_scan.png){.tab-float}
+
+We've come a long way since consoles first began broadcasting [240p signals](nes#outputting-the-image), a clever compromise between bandwidth and picture quality. Then, when 240 lines couldn't show enough, [interlaced modes](mega-drive-genesis#behind-the-multiple-display-resolutions) were introduced to increase detail without departing from the standard. Yet, the added flicker and lack of a common aspect ratio made it increasingly clear that PAL & NTSC standards were bottlenecking the imagery developers were striving for. Entering the fifth generation, you might expect the new power to turn into better video output, but instead found [more inconsistency](sega-saturn#video-output) as 3D graphics battled for [limited resources](nintendo-64#remaining-steps).
+
+Well, for the first time in this series, Holly has managed to break through the PAL/NTSC barrier and deliver a modern format that games could actually use: **480 progressive scan-lines** (also referred to as **480p** or [31 kHz](sega-saturn#cutting-edge-modes), due to the horizontal scan timings) - the same one adopted by computer VGA monitors.
+
+For this reason, the Dreamcast's video system supports both TVs and computer monitors, with games typically rendering **640 x 480-pixel** frame-buffers (satisfying both appliances). Additionally, thanks to these dimensions, 1:1 pixel ratios finally became the norm.
+
+Now, for those games squeezing out extra performance, Holly also allowed to reduce the resolution. Other options included adding letterboxing to accommodate the European market (768 x 576-pixel frames are also supported [@graphics-video_modes], but I'm not aware of any game taking advantage of this).
+
+#### The accompanying socket {.tab}
+
+To provide both modern and traditional signals, Sega fitted a unified socket that carries the following signal types:
 
 - **Composite**: Combines the three signals needed for video (chroma, luma, and sync) into a single line, requiring only a one-pin cable.
   - This format is used by old PAL and NTSC tellies with an RCA connection.
 - **S-Video**: Separates the chroma signal from the combined signal, resulting in two video lines.
 - **RGB**: Sends separate red, green, and blue signals, along with selectable sync types (composite sync, sync extracted from composite video, or sync extracted from S-Video).
   - The SCART cable uses this format.
-- **VGA**: Provides RGB with two dedicated sync signals (horizontal and vertical), resulting in five video lines in total. This enables to broadcast **progressive scan video** (i.e. 480p), reducing the amount of artefacts.
+- **VGA**: Provides RGB with two dedicated sync signals (horizontal and vertical), resulting in five video lines in total. This is the only one that can output **480p**.
   - To use this output, Sega offered a VGA adapter as an optional accessory.
-  - VGA used to be the standard interface for computer monitors for many years.
 
 Now, the Dreamcast can't encode all of these formats at the same time, so both the GPU and the audio processor contain a register named **Image Mode**. This coordinates which video and audio buses are activated to generate the requested output signal. The CPU detects the type of cable inserted by checking which 'select bits' on the video connector are active, then writes the appropriate values to the GPU. Finally, these values are forwarded to the audio processor.
 
 Because VGA is strictly a progressive-scan format (as opposed to the traditional *interlaced* video), some compatibility issues arose with games designed exclusively for interlaced timings. Such games explicitly indicate in their code that they can't display on VGA, so the CPU displays an error screen until the user swaps the VGA cable with another type.
 
-## Audio
+## Audio {.tabs-close}
 
 The audio functionality is handled by a custom chip called **AICA**. It was designed by Sega's long-term partner and audio industry leader, **Yamaha**.
 
