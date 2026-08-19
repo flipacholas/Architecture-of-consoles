@@ -150,15 +150,22 @@ Notice the vertical resolution now aligns with the 'safe area' of the [240p scan
 
 ### Behind the multiple display resolutions
 
-From the programmer's perspective, the VDP can fit either 40 or 32 columns of [tiles](master-system#tab-1-1-tiles) per frame, while the number of tile rows depends on the region: 28 in NTSC or 30 in PAL [@graphics-keil]. Having said that, many PAL games do not bother with the extra tile rows available on PAL systems (as they probably need to keep consistency between the two regions, with NTSC being the common denominator), so they instruct the VDP to render 28 rows, as on NTSC systems. Thus, the VDP has no option but to fill the unused area with a backdrop colour (the same colour used during overscan).
+From the programmer's perspective, the VDP can fit either 40 or 32 columns of [tiles](master-system#tab-1-1-tiles) per frame; this is what affects the horizontal resolution.
+
+The vertical resolution is also programmable, but only for geographical reasons. The VDP renders 28 tile rows in NTSC mode or 30 in PAL [@graphics-keil]. Having said that, many European games do not bother with the extra rows available on PAL systems (as they probably need to keep consistency between the two regions, with NTSC being the common denominator), so they instruct the VDP to render 28 rows, as on NTSC systems. Thus, the VDP has no option but to fill the unused area with a backdrop colour (the same colour used during overscan).
 
 You can identify PAL games that render in NTSC mode by checking `Mode Set Register #2` in an emulator with debugging capabilities (e.g., Exodus). If bit 3 is `0`, the VDP is running in NTSC mode [@graphics-resolution].
 
-![To provide a quick multiplayer mode in Sonic 2 (1992), the game activates 'interlaced mode' to render a single-player level using 8 x 16 pixel tiles instead (along with other changes).](twopsonic/sonic2.png){.side-by-side .toleft .border .pixel}
+![To provide a quick multiplayer mode in *Sonic 2* (1992), the game activates 'interlaced mode' (480i) to render a single-player level using 8 x 16 pixel tiles instead (along with other changes).](twopsonic/sonic2.png){.side-by-side .toleft .border .pixel}
 
-![By contrast, the more sophisticated multiplayer mode of Sonic 3 (1994) relies on dedicated 8x8 pixel tiles that are separate from single-player levels.](twopsonic/sonic3.png){.toright .border .pixel}
+![By contrast, the more sophisticated multiplayer mode of *Sonic 3* (1994) relies on dedicated 8 x 8 pixel tiles that are separate from single-player levels. This allows to keep progressive mode (240p).](twopsonic/sonic3.png){.toright .border .pixel}
 
-Furthermore, there's an additional parameter that allows the VDP to **double the internal vertical resolution**. When enabled, two tiles are stacked to form **8 x 16 maps**, which are then treated as a single tile. At the other end, the video encoder outputs **448 [interlaced scan-lines](nes#outputting-the-image)** (480i) instead. The result is an image with half the refresh rate, a bit more flicker, and greater vertical detail. The multiplayer mode of Sonic 2 is a good example of this [@graphics-sonicmultip].
+Furthermore, there's an additional parameter that allows the VDP to **double the internal vertical resolution**. When enabled, two tiles are stacked to form **8 x 16 maps**. The VDP can't magically produce twice as much graphics, so it renders one horizontal half of the graphics at a time, and then alternates. To create the illusion of seeing both sets simultaneously, the VDP also uses **interlaced scanning** (i.e. **480i**). In essence, instead of broadcasting 240 scan-lines with the whole rendered frame (i.e. 240p), the system sends:
+
+1. A first pass with 240 scan-lines containing the top half of the graphics. The scan-lines are positioned on the **odd** rows of the CRT grid.
+2. A second pass with another 240 scan-lines containing the bottom half of the graphics. These are positioned on the **even** rows of the CRT grid.
+
+The result is an image made of 480 scan-lines, with half the refresh rate, a bit more flicker, but greater vertical detail. All in all, it's not as pleasant to stare at and the distorted aspect ratio makes pixels look squashed. Thus, games used it for exceptional needs; the multiplayer mode of *Sonic 2* is a good example of this [@graphics-sonicmultip].
 
 ### Organising the content
 

@@ -309,7 +309,7 @@ Given the available amount of VRAM (a *whole megabyte*), one could allocate a *m
 
 - These dimensions would need to fit within a [standardised scan format](nes#outputting-the-image) (e.g. 240p or 480i for NTSC), so the video encoder can broadcast them on consumer TVs - which also varies between regions.
 - How is the GPU supposed to render anything decent if there isn't any space left for other assets (e.g. textures and colour tables)?
-- The PS1's GPU can only display frames of up to **640 x 480 pixels**, 16-bit colours, with an interlaced output (480i for NTSC or 576i for PAL).
+- The PS1's GPU can only display frames of up to **640 x 480 pixels**, 16-bit colours, with an [interlaced output](mega-drive-genesis#behind-the-multiple-display-resolutions) (480i for NTSC or 576i for PAL).
 
 All right, let's use a 640 x 480 buffer, 16-bit colour, and a 480i output instead. This would leave 424 KB of VRAM for materials. So far, so good? Again, such choices may look acceptable on VGA monitors, but they are not necessarily pleasant on those 90s TVs everyone had in their homes. Then, is there any way to optimise performance, VRAM space, and picture quality? Introducing **adjustable frame buffers**.
 
