@@ -10,12 +10,15 @@ javascript: ['threejs']
 generation: 6
 top_tabs:
   Model:
+    latex_height: 90
     file: international
     caption: "The original PlayStation 2.<br>Released on 04/03/2000 in Japan, 26/10/2000 in America and 24/11/2000 in Europe"
   Motherboard:
+    latex_height: 95
     caption: "Showing revision 'GH-001' from model SCPH-10000 only released in Japan.<br>Thanks to the donations received, I was able to purchase this model and take a proper photo to allow me to identify most of the chips.<br>I presume the chip at the bottom right corner is the 4 MB BIOS ROM"
     bib_source: copetti
   Diagram:
+    latex_height: 95
     caption: "The original design (Implemented on revision 'SCPH-10000').<br>Each data bus is labelled with its width and speed.<br>This architecture went through many revisions, more details below"
 
 # Historical
@@ -34,7 +37,7 @@ This machine is nowhere near as simple as the [original PlayStation](playstation
 
 At the heart of this console, we find a powerful package called **Emotion Engine** or 'EE', a joint project by Toshiba and Sony [@cpu-cataldo] running at **~294.91 MHz** [@cpu-rockin].
 
-![The Emotion Engine, as seen on the first motherboard revision of this console.](ee_chip.jpg)
+![The Emotion Engine, as seen on the first motherboard revision of this console.](ee_chip.jpg){latex_width="90%"}
 
 This chipset contains numerous components, one of them being the main CPU. The rest are at the CPU's disposal to speed up certain tasks. For this analysis, we'll divide the EE into three sections:
 
@@ -65,24 +68,30 @@ Such innovation came at the cost of a complex design, however, and the final pro
 
 #### High-end for the masses {.tab}
 
-Already aware of the commercial limitations of the R10000, SGI/MIPS hired **Quantum Effect Devices** (QED) to develop an affordable version of the R10000 for the mid-to-low-end market. As a company founded by former MIPS employees, QED was in the business of designing variants of MIPS cores for the budget sector.
+Even before reaching the market, MIPS was already aware of the commercial limitations of the R10000. So, they hired **Quantum Effect Devices** (QED) to develop an affordable version of the R10000 for the mid-to-low-end market.
 
-In the end, QED came back with a new core called the **R5000**, this was an R10000 that underwent significant cutbacks [@cpu-halfhill]:
+As a company founded by former MIPS employees, QED was in the business of designing variants of MIPS cores for the budget sector. They had previously engineered the R4600 *Orion*, a cut-back version of the R4000 in similar fashion to the VR4300 (found in the [Nintendo 64](nintendo-64#cpu)), but this time tailored for Windows NT workstations [@cpu-r5000_mr].
 
-- Out-of-order execution is reverted to in-order.
-- Speculative execution is removed.
-- Superscalability is limited to two instructions (2-issue) and doesn't parallelise integer instructions anymore. However, floating point instructions can still be paired with others.
-- Due to the previous reductions, L2 is scaled down to a 64-bit bus instead.
+In the end, QED came back with a new core called the **R5000**. It was a continuation of Orion but marketed as a cheaper alternative to the R10000, with significant cutbacks [@cpu-halfhill]:
 
-Consequently, this became an ideal CPU to power economical equipment, such as SGI's low-end workstations. In any case, notice that the cut-down pipeline still performed concurrent floating-point operations, as if QED planned to keep it an attractive product for **vector/3D applications**. You'll soon see that another company quickly took note of that as well.
+- In-order execution.
+- No speculative execution.
+- Superscalability limited to two instructions (2-issue), with no parallel integer instructions. However, floating point instructions can still be paired with others.
+- Due to the previous choice, L2 cache uses a 64-bit bus instead.
+
+Consequently, this became an ideal CPU to power modest equipment, such as SGI's low-end workstations. In any case, notice that the cut-down pipeline still performed concurrent floating-point operations, as if QED planned to keep it an attractive product for **vector/3D applications**. You'll soon see that another company quickly took note of that as well.
 
 As a side note, it's curious to observe that on the other side of the pond, there were similar advancements but in the opposite direction: [ARM joined forces with DEC](nintendo-ds#arms-new-territories) in the pursuit of lifting ARM chips into the high-end market.
 
+Now that we've seen the state of the industry, let's turn to Sony's partners.
+
 #### A special order for Sony {.tabs-close}
 
-Toshiba had been a MIPS licensee for some time [@cpu-toshiba] and was no stranger to manufacturing MIPS variations and packages. At one point, Sony and Toshiba joined forces to produce a CPU exclusively tailored for Sony's upcoming console. This was a tremendous benefit for Toshiba: very often CPUs are required to fulfill a wide range of requirements coming from different stakeholders, and in doing so it constraints opportunities for specialisation. Now, there was only a single purpose: **3D gaming**. Thus, granting enough room for all kinds of **innovation**.
+Toshiba had been a MIPS and QED licensee for some time [@cpu-toshiba] [@cpu-edn] and was no stranger to commercialising MIPS packages. The company was also manufacturing their own MIPS-compatible cores called *TX39* and *TX49* [@cpu-ruby], derived from the [MIPS R3000](playstation#cpu) [@cpu-pg]. At one point, Sony and Toshiba joined forces to produce a CPU exclusively tailored for Sony's upcoming console. This was a tremendous benefit for Toshiba: very often CPUs are required to fulfil a wide range of requirements coming from different stakeholders, and in doing so it constraints opportunities for specialisation. Now, there was only a single purpose: **3D gaming**. Thus, granting enough room for all kinds of **innovation**.
 
-That being said, Toshiba ended up grabbing the affordable R5000 design and tweaked it to accelerate vector operations. The new core is called **R5900** and debuts the following '3D' enhancements [@cpu-stokes]:
+![CPU lineage leading to the R5900.](_diagrams/cpu_lineage.png){.no-borders}
+
+That being said, Toshiba ended up grabbing their TX49 design and combined it with ideas from the R5000 and vector accelerators. The new core is called **R5900** and debuts the following '3D' enhancements [@cpu-stokes]:
 
 - A variation of the **MIPS III ISA**. This includes the original 64-bit ISA previously seen on the [Nintendo 64](nintendo-64#cpu), but extended with interesting opcodes. Sony added some instructions from **MIPS IV** (prefetch and conditional move) along with their own SIMD extension called **multimedia instructions** to accelerate vector calculations (similar to the [SH-4](dreamcast#special-work), but integer only).
   - The multimedia instructions are still 32-bit wide but can operate up to three 128-bit vectors at a time. They offer operations such as vector arithmetic, min/max and many kinds of scalar combinations to form new vectors. 
