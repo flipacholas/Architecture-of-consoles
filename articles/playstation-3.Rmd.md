@@ -541,7 +541,7 @@ All I/O operations are delegated to another chunky chip called **Southbridge** [
 
 ![The same picture with important parts labelled.](southbridge_marked.png){.tabs-nested-last title="Marked"}
 
-Like the PS2's [IOP](playstation-2#io), the Southbridge is completely proprietary, though this time made by Toshiba (they called it the 'Super Companion Chip' [@io-supercompanion]). So, while it still remains an obscure piece of silicon, it does a superior job consolidating many interfaces and protocols, both external (i.e. USB, Ethernet, etc) and internal (i.e. SATA). For reference, in the past, the IOP's slow clock speed ended up [bottlenecking](playstation-2#available-interfaces) speedy interfaces like ATA and Ethernet, greatly reducing their full bandwidth.
+Like the PS2's [IOP](playstation-2#io), the Southbridge is completely proprietary, though this time made by Toshiba (they called it the 'Super Companion Chip' [@io-supercompanion]). So, while it still remains an obscure piece of silicon, it does a superior job consolidating many interfaces and protocols, both external (i.e. USB, Ethernet, etc) and internal (i.e. SATA). For reference, in the past, the IOP's slow clock speed ended up [bottlenecking](playstation-2#external-interfaces) speedy interfaces like ATA and Ethernet, greatly reducing their full bandwidth.
 
 Furthermore, the southbridge implements encryption algorithms to protect the communication between standard protocols in a seamless way, such as the Hard Drive data.
 

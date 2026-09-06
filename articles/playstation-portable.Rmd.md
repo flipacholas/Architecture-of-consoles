@@ -593,7 +593,7 @@ Given that this was Sony's first mainstream portable console, how did they manag
 
 CDs and DVDs are too large and easily copyable. Furthermore, conventional readers won't work in a shaky environment (anyone who has tried listening to an audio CD on a Walkman while *walking* knows what I'm talking about). So, Sony's solution was a new invention from the ground up: the **Universal Media Disc** (UMD), a proprietary medium.
 
-UMDs hold either **900 MB or 1.8 GB**, depending on whether they are single-layer or dual-layer, respectively. They differ from [DVDs](playstation-2#medium) and [MiniDVDs](gamecube#medium) not only in physical design but also in their internal data structure.
+UMDs hold either **900 MB or 1.8 GB**, depending on whether they are single-layer or dual-layer, respectively. They differ from [DVDs](playstation-2#the-new-medium) and [MiniDVDs](gamecube#medium) not only in physical design but also in their internal data structure.
 
 Apart from games, Sony published the 'UMD video' and 'UMD audio' specifications, allowing third-party distributors to ship their content to PSP users - remember, this was 2004, when the *iPod Photo* had a 2" display.
 

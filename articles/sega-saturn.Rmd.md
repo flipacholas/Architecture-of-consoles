@@ -437,7 +437,7 @@ Beneath the surface, however, things become more complex. NRZI looks manageable 
 
 Finally, with regards to reliability and robustness, the CD also employs **Cross-Interleaved Reed-Solomon Coding** (CIRC), which spreads data across the disc and adds redundancy so that damaged regions can be reconstructed.
 
-I have to say, the evolution of optical storage is an interesting topic in itself, and as the CD evolved into the [DVD](playstation-2#medium) and [beyond](playstation-3#tab-8-1-blu-ray-discs), advanced mechanisms for sensing, encoding, and error correction made its way into consumer hardware - culminating in standards that dominated game distribution across multiple generations.
+I have to say, the evolution of optical storage is an interesting topic in itself, and as the CD evolved into the [DVD](playstation-2#the-new-medium) and [beyond](playstation-3#tab-8-1-blu-ray-discs), advanced mechanisms for sensing, encoding, and error correction made its way into consumer hardware - culminating in standards that dominated game distribution across multiple generations.
 
 #### The Saturn's CD
 
