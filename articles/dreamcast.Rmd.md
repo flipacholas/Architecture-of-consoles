@@ -202,9 +202,11 @@ We've come a long way since consoles first began broadcasting [240p signals](nes
 
 Well, for the first time in this series, Holly has managed to break through the PAL/NTSC barrier and deliver a modern format that games could actually use: **480 progressive scan-lines** (also referred to as **480p** or [31 kHz](sega-saturn#cutting-edge-modes), due to the horizontal scan timings) - the same one adopted by computer VGA monitors.
 
-For this reason, the Dreamcast's video system supports both TVs and computer monitors, with games typically rendering **640 x 480-pixel** frame-buffers (satisfying both appliances). Additionally, thanks to these dimensions, 1:1 pixel ratios finally became the norm.
+For this reason, the Dreamcast's video system brings VGA qualities to TVs that may support it, with games typically rendering **640 x 480-pixel** frame-buffers. Additionally, thanks to these dimensions, 1:1 pixel ratios finally became the norm.
 
-Now, for those games squeezing out extra performance, Holly also allowed to reduce the resolution. Other options included adding letterboxing to accommodate the European market (768 x 576-pixel frames are also supported [@graphics-video_modes], but I'm not aware of any game taking advantage of this).
+Be that as it may, 480p does place additional strain on Holly, potentially reducing the frame rate and detail. To alleviate things, Holly offers to reduce the rendering resolution to 320 × 240 ([Nintendo 64 style](nintendo-64#remaining-steps)), and then upscale the output. However, it is prenominally useful for 2D arcade games.
+
+Other capabilities included **letterboxing** to accommodate European games that don't use 576-pixel rows (which, to my knowledge, includes all of them).
 
 #### The accompanying socket {.tab}
 
@@ -216,7 +218,8 @@ To provide both modern and traditional signals, Sega fitted a unified socket tha
 - **RGB**: Sends separate red, green, and blue signals, along with selectable sync types (composite sync, sync extracted from composite video, or sync extracted from S-Video).
   - The SCART cable uses this format.
 - **VGA**: Provides RGB with two dedicated sync signals (horizontal and vertical), resulting in five video lines in total. This is the only one that can output **480p**.
-  - To use this output, Sega offered a VGA adapter as an optional accessory.
+  - To use this output, Sega offered a VGA adaptor as an optional accessory.
+  - For some reason, the VGA output employs **Digital Television** (DTV) timings rather than **VESA** (as used by computer monitors) [@graphics-dtv]. This means that the Dreamcast sends a 720 × 480-pixel signal, of which only 640 pixel columns are utilised. If the display is not aware of this, it will interpret the signal as VESA, resulting in an undersampled, narrow, and blurred image.
 
 Now, the Dreamcast can't encode all of these formats at the same time, so both the GPU and the audio processor contain a register named **Image Mode**. This coordinates which video and audio buses are activated to generate the requested output signal. The CPU detects the type of cable inserted by checking which 'select bits' on the video connector are active, then writes the appropriate values to the GPU. Finally, these values are forwarded to the audio processor.
 
@@ -493,7 +496,7 @@ Whilst ambitious, the service reflected Sega's hopes of leading the fast-growing
 
 You may be interested to know that the present day paints a different attitude towards Sega's original venture. In recent years, an enthusiastic group has taken it upon itself to re-implement the defunct services, culminating in the following projects that have managed to restore most - if not all - of the original online experience:
 
-- **DreamPi**, by *Luke Benstead* (a.k.a. *Kazade*), is a Raspberry Pi SD-card image housing software that recreates the physical layer of the Dreamcast-to-ISP connection [@games-dreampi]. The console connects to the Raspberry Pi, which then acts as a bridge to the modern internet. This setup requires a USB modem adapter with extra circuitry to replicate the Plain Old Telephone Service (POTS) protocol - that is, to simulate the behaviour of the analogue voice telephone line.
+- **DreamPi**, by *Luke Benstead* (a.k.a. *Kazade*), is a Raspberry Pi SD-card image housing software that recreates the physical layer of the Dreamcast-to-ISP connection [@games-dreampi]. The console connects to the Raspberry Pi, which then acts as a bridge to the modern internet. This setup requires a USB modem adaptor with extra circuitry to replicate the Plain Old Telephone Service (POTS) protocol - that is, to simulate the behaviour of the analogue voice telephone line.
   - This suite also includes **Dreamcast Now**, allowing players to advertise their online presence on a website of the same name.
 - **Dreampipe** by *Dan* and *Jial*, hosts the original web portals used by games, including their downloadable content.
 - **DCNet**, by *flyinghead*, provides a centralised set of community servers that restores online multiplayer functions [@games-dcnet].
