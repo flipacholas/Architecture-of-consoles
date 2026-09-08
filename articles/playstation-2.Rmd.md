@@ -224,7 +224,7 @@ The second example, the **Serial** design, proposes a different approach, with t
 
 So far, these have been examples from a theoretical point of view, but to explain a more 'practical' implementation, I'm going to refer to a video Jon Burton published regarding the development of one of their PS2 games [@cpu-burton].
 
-![Crash Bandicoot: The Wrath of Cortex (2001). Particles make the candle flame and the light coming from the window glass.](Crash.jpg){.open-float}
+![Crash Bandicoot: The Wrath of Cortex (2001). Particles make up the candle flame and the light coming from the window glass.](Crash.jpg){.open-float}
 
 The former director of Traveller's Tales explained how his team achieved a particle system fully encapsulated within the VPU1. In a nutshell, the VPU1 focused on reading a pre-populated database from its VU memory. This enabled to calculate the coordinates of particles at any given time, without depending on any other component. Finally, the processed data was transformed into Display Lists and sent straight away.
 
@@ -238,11 +238,11 @@ There are many more examples out there, but to sum things up: it is now up to th
 
 Considering all the work done by the Emotion Engine, is there anything left? The last step, actually: Display!
 
-![Final Fantasy X (2001).](ffx.jpg)
-
-There's a simple but speedy chip specialised in this: the **Graphics Synthesizer** (GS) running at **~147.46 MHz**. It contains **4 MB of DRAM** embedded within it to do all processing in-house, thus removing the need to access the main memory. The embedded Dynamic RAM (eDRAM) is connected via separate buses based on the type of data needed.
-
 ![The Graphics Synthesizer chip on my motherboard.](chips/gs.webp){latex_width="80%"}
+
+There's a simple but speedy chip specialised in this: the **Graphics Synthesizer** (GS) running at **~147.46 MHz** [@graphics-gs]. It contains **4 MB of DRAM** embedded within it to do all processing in-house, thus removing the need to access the main memory. The embedded Dynamic RAM (eDRAM) is connected via separate buses based on the type of data needed.
+
+![Final Fantasy X (2001).](ffx.jpg)
 
 The GS has fewer features than other graphics systems [previously reviewed](gamecube#graphics) in this series. Nonetheless, it's very fast at what it does.
 
@@ -256,7 +256,7 @@ It looks pretty simple, right? Well, let's dive deeper to see what happens at ea
 
 #### Pre-Processing {.tabs .active}
 
-![Pre-processing stage.](_diagrams/gs_pipeline/preprocessing.png){.tab-float}
+![Pre-Processing stage.](_diagrams/gs_pipeline/preprocessing.png){.tab-float}
 
 The Emotion Engine kick-starts the Graphics Synthesizer by filling its embedded DRAM with the required materials (**Texture bitmaps** and **Colour Lookup Tables**, the latter also known as 'CLUTs'), assigning values to the GS's registers to configure it, and finally issuing drawing commands (Display Lists) that instruct the GS to draw primitives (points, lines, triangles, sprites, etc.) at specific locations on the screen.
 
@@ -266,7 +266,7 @@ Additionally, the GS preprocesses some values that will be needed for later calc
 
 ![Rasterising stage.](_diagrams/gs_pipeline/rasterizing.png){.tab-float}
 
-Using the values calculated previously, the rasteriser generates pixels from the primitives. This unit can concurrently generate 8 pixels with textures, or 16 pixels without. Each processed pixel carries the following values:
+Using the values calculated previously, the rasteriser generates pixels from the primitives [@graphics-themaister]. This unit can concurrently generate 8 pixels with textures, or 16 pixels without. Each processed pixel carries the following values:
 
 - **RGBA**: Corresponds to the gradient of Red, Green, Blue, and Alpha (transparency).
 - **Z-value**: Used for depth testing in later stages.
@@ -279,7 +279,7 @@ The resulting pack is then delivered to the 'Texture mapping' engine, but each p
 
 #### Texturing {.tab}
 
-![Texture mapping stage.](_diagrams/gs_pipeline/textures.png){.tab-float}
+![Texture Mapping stage.](_diagrams/gs_pipeline/textures.png){.tab-float}
 
 This stage is powered by a large Pixel Unit that can compute up to 16 pixels at a time. Here, textures are mapped onto the polygons (now pixels). Furthermore, fog and anti-aliasing effects can be applied as well.
 
@@ -301,7 +301,7 @@ Here, certain pixels are discarded if they don't meet several requirements, impl
 
 ![Post-Processing stage.](_diagrams/gs_pipeline/postprocessing.png){.tab-float}
 
-The last stage can apply some effects to our new pixels using the previous frame-buffer stored in local DRAM:
+The last stage can apply some effects to our new pixels using the previous frame-buffer stored in local DRAM [@gs-gskit]:
 
 - **Alpha Blending**: Merges the colours of the current buffer with those of the previous one in memory. 
 - **Dithering**: Large RGBA values need to be trimmed, so dithering can be applied to soften the resulting loss of precision.
@@ -312,7 +312,7 @@ Finally, the new frame-buffer, along with the updated Z-buffer, is written to me
 
 ### Even more post-processing {.tabs-close}
 
-There's a dedicated component inside the GS called **Programmable CRT Controller** or 'PCRTC', which sends the frame-buffer stored in memory to the video output, so you can see the frame on a TV. But that's not all: it also contains a special block called **Merge Circuit** that allows to alpha-blend two separate frame-buffers (useful if games want to reuse the previous frame to form the new one). The resulting frame can be output through the video signal and/or written back to memory.
+There's a dedicated component inside the GS called **Programmable CRT Controller** or 'PCRTC', which reads regions of the frame-buffer stored in memory and sends them through the video output [@cpu-rockin], so you can see the frame on a TV. But that's not all: it also contains a special block called **Merge Circuit** that allows to alpha-blend two separate frame-buffers (useful if games want to reuse the previous frame to form the new one). The resulting frame can be output through the video signal and/or written back to memory.
 
 Notice how this encoder has 'CRT' embedded within its name. Its inherent consequences are discussed at the end of this chapter.
 
@@ -322,13 +322,13 @@ With all that said, it's no surprise that game designers refreshed their charact
 
 ![Crash Bandicoot (1996) for the PS1.<br>732 triangles.](crash_ps1){.toleft model3d="true" hardcover_latex_width="76%" paperback_latex_width="68%" #fig-crash}
 
-![Crash Bandicoot: The Wrath of Cortex (2001).<br>2226 triangles.](crash_wrath_ps2){.toright model3d="true" hardcover_latex_width="76%" paperback_latex_width="68%"}
+![Crash Bandicoot: The Wrath of Cortex (2001).<br>2226 triangles.](crash_wrath_ps2){.toright model3d="true" hardcover_latex_width="76%" paperback_latex_width="65%"}
 
 Here are characters from new game series. These were modelled with high levels of detail from the ground up [@fig-sora].
 
 ![Kingdom Hearts (2002).<br>2744 triangles.](sora_kh1_ps2){.toleft model3d="true" #fig-sora}
 
-![Dragon Quest VIII (2004).<br>2700 triangles.](hero_ps2){.toright model3d="true" latex_width="80%"}
+![Dragon Quest VIII (2004).<br>2700 triangles.](hero_ps2){.toright model3d="true" latex_width="75%"}
 
 It's worth mentioning that games like *Dragon Quest* implemented a custom lighting model known as **Cel Shading** (a term I have mentioned [before](gamecube#creativity)). However, in my previous articles, I explained that the GPU was mainly responsible for this effect. In the PS2's case, the required colour calculations are presumably performed by the Emotion Engine, since the GS isn't as flexible as other GPUs.
 
@@ -458,7 +458,7 @@ In PowerPC-based models, `PS1DRV` runs on top of DECKARD.
 
 At first glance, the console inherited the [previous front ports](playstation#front-ports) from the original PlayStation, now accompanied by a couple of 'modern' interfaces that evolved throughout the years.
 
-![Front of the PS2, revision SCPH-3000x (2000), showing known sockets for controllers and Memory Cards. Plus, the new USBs and i.Link ports [@photography-amos].](photos/ps2_front.png){latex_width="80%"}
+![Front of the PS2, revision SCPH-3000x (2000), showing known sockets for controllers and Memory Cards. Plus, the new USB and i.Link ports [@photography-amos].](photos/ps2_front.png){latex_width="80%"}
 
 The most popular additions were the **two USB 1.1 ports**. Their theoretical speed is 12 Mbps, but that's highly dependent on the IOP's bandwidth (which tends to be considerably slower). Nevertheless, they remained unchanged across revisions, making them a favoured choice for third-party accessories.
 
@@ -475,13 +475,13 @@ On the rear of the console, we also find a slot for **PC cards**, demonstrating 
 
 In later revisions (`SCPH-3000X`, released the same year), the PCMCIA port was replaced by an **Expansion Bay**, into which the 3.5" HDD could now be fitted inside the console. Users first had to buy the revised Network Adaptor, which now included an ATA-66 connector on the opposite side.
 
-![Back of PS2 showing the Expansion Bay (with the cover removed) [@photography-amos].](photos/back_bay.png){latex_width="90%"}
+![Back of the PS2 showing the Expansion Bay (with the cover removed) [@photography-amos].](photos/back_bay.png){latex_width="90%"}
 
 Inside the HDD, data is structured using a file system called 'PFS' [@io-fs]. Strangely, the layout doesn't contain a partition table, but rather a primitive catalogue called 'Aligned Partition Allocation' (APA). This may be because Sony only shipped 40 GB drives. Hence, scalability wasn't on their list of priorities.
 
-![Network adaptor as seen from the front [@photography-amos]. This particular model provided modem and Ethernet ports.](photos/harddrive_adaptor_front.png){.toleft .no-borders latex_width="80%"}
+![Network Adaptor as seen from the front [@photography-amos]. This particular model provided modem and Ethernet ports.](photos/harddrive_adaptor_front.png){.toleft .no-borders latex_width="80%"}
 
-![Network adaptor as seen from the back [@photography-amos], with a hard drive fitted.](photos/harddrive_adaptor_back.png){.toright .no-borders latex_width="80%"}
+![Network Adaptor as seen from the back [@photography-amos], with a hard drive fitted.](photos/harddrive_adaptor_back.png){.toright .no-borders latex_width="80%"}
 
 The Ethernet transceiver bundled with the adaptor supports transfer rates of up to 100 Mbps (12.5 MB/s). However, the **observed rate is notoriously lower** (as low as 2 MB/s in some cases). The explanation is relatively simple: to achieve usable network communication, one is required to implement all the layers of the standard 'OSI Model' - and the transceiver is just one piece of the puzzle. The rest is often delegated to the IOP (and therefore handled in software), but due to the IOP's limited performance [@io-bottleneck], this results in a bottleneck.
 
@@ -545,15 +545,15 @@ The functionality of the PS2 shell is pretty much in step with other 6th-generat
 
 ::: {.subfigures .tabs-nested}
 
-![Initial menu. Appears when there's no disc inserted.](bios/menu.jpg){.active latex_width="90%" title="Menu"}
+![Initial menu, appearing when there's no disc inserted.](bios/menu.jpg){.active latex_width="88%" title="Menu"}
 
-![Memory Card browser.](bios/mem_list.jpg){title="Browser"}
+![Memory Card browser.](bios/mem_list.jpg){latex_width="88%" title="Browser"}
 
-![Saves browser. It shows up after selecting a memory card.](bios/save_list.jpg){latex_width="90%" title="Saves"}
+![Saves browser. It shows up after selecting a Memory Card.](bios/save_list.jpg){latex_width="88%" title="Saves"}
 
-![Save editor, displayed after selecting a save.](bios/save_editor.jpg){latex_width="90%" title="Editor"}
+![Save editor, displayed after selecting a save.](bios/save_editor.jpg){latex_width="88%" title="Editor"}
 
-![System Configuration.](bios/options.jpg){latex_width="90%" title="Options"}
+![System Configuration.](bios/options.jpg){latex_width="88%" title="Options"}
 
 The PS2 shell.
 
@@ -640,7 +640,7 @@ The disc drive is certainly one of the crown jewels of this console, while compe
 
 So, what's a DVD anyway? It's the major successor to the [Compact Disc](sega-saturn#the-compact-disc-cd), and a result of extensive arguing between major manufacturers until they finally compromised on a common standard.
 
-#### Inside the DVD
+#### Inside the DVD
 
 The DVD inherits the CD's form factor but incorporates key differences that make it exponentially more useful and reliable.
 
@@ -652,7 +652,7 @@ As a result, a typical DVD, called *DVD-5*, can hold up to **4.7 GB** of data. N
 
 In any case, the PS2 drive housed two laser diodes, supporting both CDs and DVDs. So, games had a choice of either format, with developers, over time, favouring the latter one.
 
-#### A long-term spec
+#### A long-term spec
 
 Unlike the original CD audio, which subsequently evolved into the CD-ROM, CD-ROM XA, and more variants as needs emerged, the DVD is a unified format designed to store data using a standardised file system, typically the **Universal Disk Format** (UDF) [@games-udf_ecma].
 
