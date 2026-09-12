@@ -115,7 +115,7 @@ Inside Holly, we can find VideoLogic's exclusive graphics circuit: the **PowerVR
 
 ### Organising the content
 
-**8 MB of Video RAM** (VRAM) are provided to store the materials that Holly needs to draw on the screen (e.g. textures, frame-buffers, commands, etc.) [@graphics-vram]. The block is installed as four SDRAM chips using a 64-bit bus.
+**8 MB of Video RAM** (VRAM) are provided to store the materials that Holly needs to draw on the screen (e.g. textures, framebuffers, commands, etc.) [@graphics-vram]. The block is installed as four SDRAM chips using a 64-bit bus.
 
 ![Architecture of Holly.](_diagrams/holly.png)
 
@@ -159,14 +159,14 @@ The resulting Display Lists are then interpreted by the 3D engine: **The PowerVR
 
 ![Architecture of the PowerVR2 Core.](_diagrams/powervr2.png){.tab-float}
 
-Here is where the graphics are brought to life. The Display Lists received from the TA tell the core to render the geometry of a single tile using an **internal frame-buffer**. The process is as follows:
+Here is where the graphics are brought to life. The Display Lists received from the TA tell the core to render the geometry of a single tile using an **internal framebuffer**. The process is as follows:
 
 1. The **Image Synthesis Processor** (ISP) fetches the primitives (either triangles or quads) and performs **Hidden-Surface Removal** to remove unseen polygons. Then, after calculating its Z-buffers and stencil buffers, the data goes through **Depth Testing** to avoid rendering polygons that would appear behind others, and **Stencil Tests** to cull geometry that won't be visible if it lies behind a 2D polygon (also called **Mask**).
     - Notice how these tests are effectively carried out at the start of the pipeline. In contrast, previous consoles [using late z-buffering](nintendo-64#modern-visible-surface-determination) discard the geometry at the end of the pipeline. The ISP approach prevents processing the geometry that will ultimately be discarded [@graphics-surface], thereby saving resources.
 2. The **Texture and Shading Processor** (TSP) applies colouring, shading, and multiple effects across the tile area.
     - Textures are not applied until the tile is exported, meaning that emerging overdraw (if any) will not reduce the fill rate.
 
-Once the operation is complete, the rendered tile is written to the main frame-buffer in VRAM. This process is repeated until all tiles have been rendered. When the full frame is ready, the resulting frame-buffer is picked up by Holly and passed on to the **Video encoder**, which sends it through the standard video signal.
+Once the operation is complete, the rendered tile is written to the main framebuffer in VRAM. This process is repeated until all tiles have been rendered. When the full frame is ready, the resulting framebuffer is picked up by Holly and passed on to the **Video encoder**, which sends it through the standard video signal.
 
 ### The big picture {.tabs-close}
 
@@ -194,19 +194,19 @@ Holly can now draw roughly ten times more polygons than [its predecessor](sega-s
 
 There are two big milestones to unpack here. So, I've split this section into two parts.
 
-#### The new standard {.tabs .active}
+#### Bridging the divide {.tabs .active}
 
 ![Representation of the different video output modes of Holly.](_diagrams/holly_scan.png){.tab-float}
 
-We've come a long way since consoles first began broadcasting [240p signals](nes#outputting-the-image), a clever compromise between bandwidth and picture quality. Then, when 240 lines couldn't show enough, [interlaced modes](mega-drive-genesis#behind-the-multiple-display-resolutions) were introduced to increase detail without departing from the standard. Yet, the added flicker and lack of a common aspect ratio made it increasingly clear that PAL & NTSC standards were bottlenecking the imagery developers were striving for. Entering the fifth generation, you might expect the new power to turn into better video output, but instead found [more inconsistency](sega-saturn#video-output) as 3D graphics battled for [limited resources](nintendo-64#remaining-steps).
+We've come a long way since consoles first began broadcasting [240p signals](nes#outputting-the-image), a clever compromise between bandwidth and picture quality. Then, when 240 lines could no longer display enough detail, [interlaced modes](mega-drive-genesis#behind-the-multiple-display-resolutions) were introduced to increase detail without departing from the standard. Yet, the added flicker and lack of a common aspect ratio made it increasingly clear that PAL and NTSC standards were bottlenecking the visual fidelity developers were striving for. Entering the fifth generation, you might expect the new power to translate into better video output, but instead found [further inconsistency](sega-saturn#video-output) as 3D graphics battled for [limited resources](nintendo-64#remaining-steps).
 
-Well, for the first time in this series, Holly has managed to break through the PAL/NTSC barrier and deliver a modern format that games could actually use: **480 progressive scan-lines** (also referred to as **480p** or [31 kHz](sega-saturn#cutting-edge-modes), due to the horizontal scan timings) - the same one adopted by computer VGA monitors.
+Well, for the first time in this series, Holly has managed to break through the PAL/NTSC barrier and deliver a modern format that games could actually use: **480 progressive scanlines** (also referred to as **480p** or [31 kHz](sega-saturn#cutting-edge-modes), due to the horizontal scan frequency) - the same format adopted by computer VGA monitors.
 
-For this reason, the Dreamcast's video system brings VGA qualities to TVs that may support it, with games typically rendering **640 x 480-pixel** frame-buffers. Additionally, thanks to these dimensions, 1:1 pixel ratios finally became the norm.
+For this reason, the Dreamcast's video system brings VGA-quality output to TVs that may support it, with games typically rendering **640 x 480-pixel** framebuffers. Additionally, thanks to these dimensions, 1:1 pixel ratios have finally become the norm.
 
-Be that as it may, 480p does place additional strain on Holly, potentially reducing the frame rate and detail. To alleviate things, Holly offers to reduce the rendering resolution to 320 × 240 ([Nintendo 64 style](nintendo-64#remaining-steps)), and then upscale the output. However, it is prenominally useful for 2D arcade games.
+Be that as it may, 480p does place additional strain on Holly, potentially reducing the frame rate and visual detail. To alleviate things, Holly offers to reduce the rendering resolution to 320 × 240 ([Nintendo 64 style](nintendo-64#remaining-steps)), and then upscale the output. However, this is predominantly useful for 2D arcade games.
 
-Other capabilities included **letterboxing** to accommodate European games that don't use 576-pixel rows (which, to my knowledge, includes all of them).
+It's important to note that 480p was mainly popularised in the NTSC market. Modern European sets, on the other hand, debuted **PAL60** - an interlaced PAL signal comprising 480 scanlines and a 60 Hz refresh rate (in other words, PAL with the perks of NTSC). This is why American games started asking, *'Enable progressive scan display?'* (which switched from NTSC to 480p), while European versions asked, *'Would you like to display in 60 Hz mode?'* (which switched from PAL to PAL60).
 
 #### The accompanying socket {.tab}
 
@@ -233,7 +233,7 @@ The audio functionality is handled by a custom chip called **AICA**. It was desi
 
 This is a continuation of the [SCSP found in the Saturn](sega-saturn#audio), in the sense that it's fundamentally the same architecture, but with modernised parts. That being said, AICA is composed of four components [@cpu-akiba]:
 
-- The **Sound Integrated Circuit** (IC): A set of modules (synthesiser, digital signal processor, and mixer) that generates the audio signal and applies effects to it. It supports up to **64 channels**, either Pulse-Code Modulation (PCM) with a resolution of **16 or 8 bits** and a sampling rate of **44.1 kHz**, or 4-bit Adaptive Differential PCM (ADPCM). Overall, this provides optimal quality for playing audio.
+- The **Sound Integrated Circuit** (IC): A set of modules (synthesiser, digital signal processor, and mixer) that generates the audio signal and applies effects to it. It supports up to **64 channels**, either Pulse-Code Modulation (PCM) with a resolution of **16 or 8 bits** and a sampling rate of **44.1 kHz**, or 4-bit Adaptive Differential Pulse-Code Modulation (ADPCM). Overall, this provides optimal quality for playing audio.
   - Notice how [Frequency Modulation (FM)](mega-drive-genesis#tab-2-1-yamaha-ym2612) is now a thing of the past. Originally adopted to overcome the constraints of 80s technology, FM has now been completely superseded by sample-based channels, granting free rein to music composers.
   - Curiously enough, it also provides **two MIDI pins** for connecting a MIDI instrument, although these are intended during development.
 - **2 MB of SDRAM**: Stores sound data and programs. It's filled by the main CPU using DMA.
@@ -273,7 +273,7 @@ If you look at the contents of the game disc, the music is encoded in **ADX**, a
 
 ### Staying alive
 
-For some reason, AICA is also responsible for providing the system with a **Real Time Clock** (RTC), and is connected to a clock battery to continue working without AC power.
+For some reason, AICA is also responsible for providing the system with a **Real-Time Clock** (RTC), and is connected to a clock battery to continue working without AC power.
 
 ## Operating System
 
@@ -434,7 +434,7 @@ Not a lot is known about the GD-ROM as Sega kept the protocol for themselves. Wh
 - **Outer Zone** (984 MB): This is where the game data is stored. The larger capacity came from narrowing the distance between pits and lands.
 - **Security Ring**: Sitting between the inner and outer zone, its engraving is meant to prove the disc is genuine. There's not enough documentation publicly available to explain how it works, but what's known is that the drive always verifies this area before reading the outer zone.
 
-The speed of the reader is 12x, which is *not too shabby* compared to Saturn's 2x CD reader. Nevertheless, it's worth mentioning that the new reader operates at **Constant-Angular-Velocity** (CAV), as opposed to Constant Linear Velocity (CLV). This means that, with little effort, data access gets faster on the outer edge, which is coincidentally where the game data resides.
+The speed of the reader is 12x, which is *not too shabby* compared to Saturn's 2x CD reader. Nevertheless, it's worth mentioning that the new reader operates at **Constant Angular Velocity** (CAV), as opposed to Constant Linear Velocity (CLV). This means that, with little effort, data access gets faster on the outer edge, which is coincidentally where the game data resides.
 
 #### The bonus format
 
@@ -509,7 +509,7 @@ You may be interested to know that the present day paints a different attitude t
 Another innovative feature of the Dreamcast is the **Visual Memory Unit** (VMU), a small gadget that attaches to the controller and, aside from serving as a memory card, is a fully fledged system that houses [@games-vmu]:
 
 - A **Sanyo LC86K87**: An 8-bit low-power CPU.
-- A **48 x 32 monochrome LCD** with four additional icons: Commanded using 196 B of eXternal RAM (XRAM) as a frame-buffer.
+- A **48 x 32 monochrome LCD** with four additional icons: Commanded using 196 B of eXternal RAM (XRAM) as a framebuffer.
 - **Two serial connectors**: One for each direction (input and output).
 - **Six physical buttons**: Used to interact with the VMU when it's detached from the controller.
 - A **16 KB Mask-ROM**: Stores a dedicated BIOS-IPL.
