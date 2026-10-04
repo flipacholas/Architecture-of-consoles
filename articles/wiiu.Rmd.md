@@ -77,7 +77,7 @@ The rest of the GamePad's motherboard is filled with I/O endpoints and unusual s
 
 #### Talking to the mothership
 
-The Wii U's motherboard includes a tiny chip called **DRH** which relies on the Wi-Fi protocol to communicate with the GamePad and the USB protocol to communicate with the rest of the motherboard. This includes the GPU, which streams frame-buffers directly to the DRH so they get displayed on the GamePad.
+The Wii U's motherboard includes a tiny chip called **DRH** which relies on the Wi-Fi protocol to communicate with the GamePad and the USB protocol to communicate with the rest of the motherboard. This includes the GPU, which streams framebuffers directly to the DRH so they get displayed on the GamePad.
 
 ![Overview of the GamePad-Wii U connection.](_diagrams/gamepad/connections.png){.no-borders}
 
@@ -357,7 +357,7 @@ I guess it's worth pointing out that the shader model (OpenGL GLSL 3.3) adds an 
 
 ![Overview of pixel operations available.](_diagrams/gpu/pipeline_post.png){.tab-float}
 
-Once the frame has been rendered, developers can apply more Z-testing (in case it wasn't activated at an earlier stage), colour blending and, finally, export the pixels to the frame-buffer for display. This is all performed by the **Render backends** (there's of two of them) which are found at the end of the Pixel shader stage.
+Once the frame has been rendered, developers can apply more Z-testing (in case it wasn't activated at an earlier stage), colour blending and, finally, export the pixels to the framebuffer for display. This is all performed by the **Render backends** (there's of two of them) which are found at the end of the Pixel shader stage.
 
 Finally, even though the Wii U doesn't feature the sophisticated circuitry that the Xbox 360 bundles within its EDRAM module, there are still many interesting capabilities provided by GPU7. This includes automatic Multisample Anti-aliasing of up to 16 passes (**MSAA 16x**) to soften edges, which surprisingly doesn't require [tiled rendering](xbox-360#tab-2-5-pixel-operations) since the larger 32 MB of EDRAM (MEM1) of the Wii U is more than enough for these operations (well, maybe MSAA 16x will eat up too much MEM1, however, MSAA 8x is still acceptable).
 
@@ -639,9 +639,9 @@ Most of the services that the Wii U offers (i.e. disc game launcher, settings, o
 
 The System Menu interface has been designed with **Touchscreen** in mind. It also supports screen pointing interaction (as the Wii did) although its main controller is the GamePad.
 
-![The settings app (as seen from the GamePad) provides the controls.](screenshots/settings_tv.png){.toleft}
+![The settings app (as seen from the television) provides the controls.](screenshots/settings_tv.png){.toleft}
 
-![The settings app (as seen from the television) serves as a visual guide.](screenshots/settings_drc.png){.toright}
+![The settings app (as seen from the GamePad) serves as a visual guide.](screenshots/settings_drc.png){.toright}
 
 On other news, Miis (Nintendo's [signature avatars](wii#personalised-titles)) have also been ported to the Wii U. Not many games seem to care about them, but there are many system applications that use the Miis (mainly for decoration purposes).
 
