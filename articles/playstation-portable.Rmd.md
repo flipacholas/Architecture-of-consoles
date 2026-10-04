@@ -254,7 +254,7 @@ Now that we've seen what components we've got and how they interact with each ot
 
 There are three memory locations from which the GE will end up pulling or filling:
 
-- **2 MB eDRAM**: the aforementioned eDRAM. It's used to store the frame-buffer, [z-buffer](nintendo-64#modern-visible-surface-determination) and texture buffer. Its contents are directly written by the GE. This memory space is also called 'local memory'.
+- **2 MB eDRAM**: the aforementioned eDRAM. It's used to store the framebuffer, [z-buffer](nintendo-64#modern-visible-surface-determination) and texture buffer. Its contents are directly written by the GE. This memory space is also called 'local memory'.
   - The CPU can access this memory if needed, although its speed is not ideal.
 - **32 MB DDR SDRAM**: this is the working area of the CPU for building display lists, vertex data, texture data and CLUTs (Colour lookup tables). In the context of graphics, this block is called 'host memory'.
 - **16 KB SRAM**: the scratchpad memory is also accessible by both CPU and GE.
@@ -357,13 +357,13 @@ Some pixels may correspond to geometry that is not required for the current fram
 
 Afterwards, pixels will also travel through these optional blocks for further effects:
 
-- **Alpha blending**: combines non-opaque pixels with the ones in the frame-buffer using different arithmetic operators.
+- **Alpha blending**: combines non-opaque pixels with the ones in the framebuffer using different arithmetic operators.
 - **Dithering**: softens colour changes.
-- **Colour clamping**: aligns RGB values to fit in the frame-buffer format.
-- **Logical operation**: decides how to merge the new frame with the existing frame-buffer using logical operators (`AND`, `OR` and many more).
-- **Masking**: as the name indicates, it masks the z-buffer or frame-buffer. 
+- **Colour clamping**: aligns RGB values to fit in the framebuffer format.
+- **Logical operation**: decides how to merge the new frame with the existing framebuffer using logical operators (`AND`, `OR` and many more).
+- **Masking**: as the name indicates, it masks the z-buffer or framebuffer. 
 
-Complex functions like **antialiasing** are the result of a strategic combination of the above. Finally, the outputted pixel is written to the frame-buffer, which in turn is sent for display.
+Complex functions like **antialiasing** are the result of a strategic combination of the above. Finally, the outputted pixel is written to the framebuffer, which in turn is sent for display.
 
 #### Observations {.tabs-close}
 
@@ -439,7 +439,7 @@ The PSP has plenty of connections and sensors to discuss. However, I'm taking th
 
 Most of the available I/O is linked through the **Peripheral Bus**. It's only 32 bits wide, which is enough to transfer simple information at a normal pace. This bus has access to the main RAM as well.
 
-The D-pad, joystick, and buttons are handled by a unique chip referred to as **System Control** or **'SysCon'**. This is a common codename across Sony hardware, and it deals with interfacing many internal components - although in the PSP's case, SysCon only handles the physical buttons.
+The D-pad, joystick, and buttons are handled by a unique chip referred to as **System Controller** or **'SysCon'** [@io-baryon]. This is a common codename across Sony hardware, and it generally deals with interfacing many internal components.
 
 ### External interfaces
 
