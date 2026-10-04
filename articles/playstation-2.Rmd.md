@@ -72,7 +72,7 @@ Even before it reached the market, MIPS was already aware of the commercial limi
 
 As a company founded by former MIPS employees, QED was in the business of designing variants of MIPS cores for the budget sector. They had previously engineered the R4600 *Orion*, a cut-back version of the R4000, in a similar fashion to the VR4300 (found in the [Nintendo 64](nintendo-64#cpu)). Orion was also tailored for Windows NT workstations [@cpu-r5000_mr].
 
-In the end, QED came back with a new core called the **R5000**. It was a continuation of Orion, but was marketed as a cheaper alternative to the R10000, with significant cutbacks [@cpu-halfhill]:
+In the end, QED came back with a new core called the **R5000**. It was a continuation of Orion, but marketed as a cheaper alternative to the R10000 with significant cutbacks [@cpu-halfhill]:
 
 - In-order execution.
 - No speculative execution.
@@ -344,7 +344,7 @@ A significant change, however, is that the video encoder can now reuse the RGB p
 
 Speaking of which, PCRTC supported many output formats, including the traditional [interlaced NTSC (480i) and PAL (576i)](mega-drive-genesis#behind-the-multiple-display-resolutions), along with the contemporary [progressive NTSC (480p)](dreamcast#tab-2-1-bridging-the-divide). It didn't support [PAL60 (480i)](dreamcast#tab-2-1-bridging-the-divide), however, so when European games offered the option to *go for 60 Hz*, they instead instructed PCRTC to switch to NTSC (480i).
 
-But that's not all: PCRTC also supports **VESA-compliant modes** (offering up to 1280 x 1024-pixel resolutions) for use with a VGA adaptor (included with the *Linux PS2* kit — I explain more in the 'Games' section). Be that as it may, the PS2's AV Multi Out didn't add any new pins for VESA; consequently, it outputs the sync signal through the green wire, meaning that some VGA monitors may not work.
+But that's not all: PCRTC also supports **VESA-compliant modes** (offering up to 1280 x 1024-pixel resolutions) for use with a **VGA adaptor** (part of the *Linux PS2* kit - I explain more in the 'Games' section). Be that as it may, the PS2's AV Multi Out didn't add any new pins for VESA. Consequently, it outputs the sync signal through the green wire, meaning that some VGA monitors may not work.
 
 #### Ambitious resolutions
 
@@ -523,7 +523,7 @@ Finally, the drive provided maximum read speeds of 48x for CDs (3.69 MB/s) and 4
 
 ## Operating System
 
-There's a **4 MB ROM** chip mounted on the motherboard; this stores code for an interactive shell menu and system calls to simplify I/O access [@cpu-rockin], which games rely upon.
+There's a **4 MB ROM** chip mounted on the motherboard. This stores code for an interactive shell menu and system calls to simplify I/O access [@cpu-rockin], which games rely upon.
 
 ![Splash animation after turning on the console.](bios/animated.jpg)
 
@@ -579,7 +579,7 @@ While the original user interface remained in use throughout the console's lifet
 
 The first one was **HDD-OSD**, also called *Browser 2.0*. It extended the original shell by adding the ability to browse the HDD's contents, allowing users to list and delete game data stored on the HDD using controls similar to those of the memory card manager. HDD-OSD came packaged on the *HDD Utility Disc*, which Sony bundled with the PS2 Hard Drive unit.
 
-The second update was more exclusive and extraordinary; it was called **PlayStation Broadband Navigator** (PSBBN) and reimagined the PS2 experience with a focus on multimedia and online functionality. It was installed as a replacement GUI, introducing new design paradigms based on depth, transparency, and lighting.
+The second update was more exclusive and extraordinary: **PlayStation Broadband Navigator** (PSBBN) reimagined the PS2 experience with a focus on multimedia and online functionality. It was installed as a replacement GUI, introducing new design paradigms based on depth, transparency, and lighting.
 
 ::: {.subfigures .side-by-side}
 
@@ -599,7 +599,7 @@ PSBBN was released in 2002, and its UI also featured the concept of **Channels**
 
 In addition to these, there was also a web browser based on [NetFront](dreamcast#the-ambitious-online-platform), and a dedicated PS1 emulator called **PlayStation One Portable Station** (POPS), which could run PS1 games downloaded from a game channel onto the HDD [@anti_piracy-cosmic].
 
-I suppose this is what Microsoft originally feared when Sony showed that 'the PS2 would own the living room' [@operating_system-renegades] — only Japanese living rooms for sure, since Sony only shipped PSBBN to Japanese users who purchased the 'PlayStation BB Unit' (a PS2 pre-equipped with the network/HDD kit and the PSBBN disc) [@operating_system-psbbd].
+I suppose this is what Microsoft originally feared when Sony showed that 'the PS2 would own the living room' [@operating_system-renegades] - only Japanese living rooms for sure, since Sony only shipped PSBBN to Japanese users who purchased the 'PlayStation BB Unit' (a PS2 pre-equipped with the network/HDD kit and the PSBBN disc) [@operating_system-psbbd].
 
 As luck would have it, development of PSBBN services ceased when Sony moved to their HDD-less 'Slim' design in 2004, but it's interesting to note that, while user bases outside Japan never experienced this, Sony did bring the concept to the masses with the new [XrossMediaBar interface](playstation-3#visual-shell) on the PlayStation 3, albeit with a reduced degree of expressionism.
 
@@ -611,7 +611,7 @@ The level of popularity this system achieved during the noughties is unprecedent
 
 What happened here is really impressive. The PS2 did not possess a 'programmer-friendly' architecture (as seen from the perspective of a PC programmer). Yet, given the vast number of games developed for it, I too wonder if other factors were involved, such as favourable licensing terms, low development and distribution costs, its compact form factor, and whatnot.
 
-Having said that, let's examine the PlayStation 2 as a development platform; maybe this will help us understand more.
+Having said that, let's examine the PlayStation 2 as a development platform, maybe this will help us understand more.
 
 {.close-float}
 
@@ -621,7 +621,7 @@ Sony provided both hardware and software to assist game development.
 
 On the software side, the **PlayStation 2 SDK** included [@games-sdkkit]:
 
-- **The Emotion Engine toolchain**: A set of **C** and **C++** compilers, assemblers, linkers, and debuggers used to control each element of the EE. The main CPU was mainly programmed using C/C++; however, performance-critical components like the vector units were instead programmed using **assembly** (for writing microcode and/or macrocode).
+- **The Emotion Engine toolchain**: A set of **C** and **C++** compilers, assemblers, linkers, and debuggers used to control each element of the EE. The main CPU was mainly programmed using C/C++. However, performance-critical components like the vector units were instead programmed using **assembly** (for writing microcode and/or macrocode).
   - The kit also included an 'Emotion Engine simulator' for preliminary code testing without deploying it on the real hardware, although the simulator wasn't as accurate as the physical EE chip.
   - All these tools worked on Linux, Solaris, and Windows. The latter variant ran within the Cygwin environment.
 - **Low-level libraries**: Intended for interfacing many system functions (using BIOS calls).
@@ -656,7 +656,7 @@ In any case, the PS2 drive housed two laser diodes, supporting both CDs and DVDs
 
 Unlike the original CD audio, which subsequently evolved into the CD-ROM, CD-ROM XA, and more variants as needs emerged, the DVD is a unified format designed to store data using a standardised file system, typically the **Universal Disk Format** (UDF) [@games-udf_ecma].
 
-Consequently, the medium supported games and movies from the get-go. That said, DVD movies adhere to a common structure called *DVD-Video*, which accommodates MPEG2 video, audio, interactive navigation, and copy protection. The PS2 was well-equipped for this task thanks to the IPU and SPU, but it still needed a 'DVD player' software to understand DVD-Video data. Sony, for some reason, didn't implement one in the initial PS2 revision; instead, a *Utility Disc* was supplied within the box, which installed a player onto the Memory Card [@games-dvd_player]. From revision `SCPH-18000` (2000) onwards, the DVD playback software always came pre-installed in the BIOS ROM.
+Consequently, the medium supported games and movies from the get-go. That said, DVD movies adhere to a common structure called *DVD-Video*, which accommodates MPEG2 video, audio, interactive navigation, and copy protection. The PS2 was well-equipped for this task thanks to the IPU and SPU, but it still needed a 'DVD player' software to understand DVD-Video data. Sony, for some reason, didn't implement one in the initial PS2 revision. Instead, a *Utility Disc* was supplied within the box, this installed a player onto the Memory Card [@games-dvd_player]. From revision `SCPH-18000` (2000) onwards, the DVD playback software always came pre-installed in the BIOS ROM.
 
 Speaking of DVD movies, you may be curious to know that the format also adopted a resolution of 720 × 480 (NTSC) or 720 × 576 (PAL), the same dimensions as **Digital Television** (DTV). These were selected to properly support anamorphic widescreen on contemporary televisions [@games-bt1117].
 
@@ -728,7 +728,7 @@ As time passed, more research about this console was gathered and shared. Conseq
 
 The PS2 stores a database file called `TITLE.DB` on the Memory Card, which contains information used to optimise the emulation of PS1 games [@anti_piracy-grand]. When a PS1 game is inserted, the OS fetches the database file and loads the whole file in memory at a fixed address (*strike one*). The information parser is implemented using **`strncpy()`**, a function in C that copies strings (sequences of characters) from one place to another.
 
-Those familiar with C have likely guessed where I'm going. The thing is that `strncpy()` doesn't know how long a string is; therefore, unless it's terminated (by placing `\0` at the end of the sequence), the copy goes on indefinitely (with unpredictable results!). Luckily, this function accepts an optional parameter that specifies the maximum number of bytes to be copied, protecting the copy from buffer overflows. As ludicrous as it may seem, **Sony didn't use this parameter**, even though each database entry has a fixed size of 256 bytes (*strike two*).
+Those familiar with C have likely guessed where I'm going. The thing is that `strncpy()` doesn't know how long a string is. Therefore, unless it's terminated (by placing `\0` at the end of the sequence), the copy goes on indefinitely (with unpredictable results!). Luckily, this function accepts an optional parameter that specifies the maximum number of bytes to be copied, protecting the copy from buffer overflows. As ludicrous as it may seem, **Sony didn't use this parameter**, even though each database entry has a fixed size of 256 bytes (*strike two*).
 
 Upon closer inspection in RAM, `TITLE.DB` happens to be copied **next to a saved register**, `$ra`, which states the address to return to after the currently executing function finishes (*strike three*), leading to **the independence exploit** [@anti_piracy-independence]: Craft a `TITLE.DB` with a large string, embed an executable within it, and structure the string so that `$ra` is overridden to point to the executable. If you manage to upload that file to your Memory Card (via another exploit or a PC USB adapter), you got yourself a simple **Homebrew launcher**.
 

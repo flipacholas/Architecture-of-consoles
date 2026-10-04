@@ -234,7 +234,7 @@ Certain VDP2 functions can be exploited to create more realistic scenery, such a
 
 Not much mystery here, the VDP2 handles the last step of passing the processed signal to the video encoder.
 
-The VDP2 operates in sync with the CRT beam, meaning that its ongoing computations correspond to the pixels due to appear on the upcoming scan line.
+The VDP2 operates in sync with the CRT beam, meaning that its ongoing computations correspond to the pixels due to appear on the upcoming scanline.
 
 ### As a *challenging* 3D console {.tabs-close}
 
@@ -323,7 +323,7 @@ Nevertheless, the two games exhibit different behaviour. During gameplay, the ba
 
 ### Video output
 
-The Saturn follows similar video-output mechanics to the [Mega Drive / Genesis](mega-drive-genesis#graphics), except that developers can now render over the ['dangerous' scan-lines](nes#outputting-the-image) (e.g. all 240 NTSC lines, rather than just 224) if they wish.
+The Saturn follows similar video-output mechanics to the [Mega Drive / Genesis](mega-drive-genesis#graphics), except that developers can now render over the ['dangerous' scanlines](nes#outputting-the-image) (e.g. all 240 NTSC lines, rather than just 224) if they wish.
 
 The system generates 240p or 480i signals, using either 320 or 352 pixels per line [@graphics-vdp2]. This matches the need for crisp 2D graphics or detailed-and-flickery 3D scenes. The video encoder then converts the output into consumer-friendly formats like RGB, composite, and S-Video.
 
@@ -331,7 +331,7 @@ The system generates 240p or 480i signals, using either 320 or 352 pixels per li
 
 Technically, the VDP2 also has a few tricks up its sleeve: **High-resolution mode**. This allows it to reach a horizontal resolution of 640 or 704 pixels [@graphics-vdp2]. However, this imposes restrictions on the graphics subsystem, such as rendering only two interleaved 2D planes.
 
-There's also a **31 kHz mode** capable of rendering 480 scan-lines progressively (i.e. 480p), coming close to the format used by VGA monitors. However, this is bottlenecked by the VDP1's framebuffer [@graphics-progressive] and, as far as I know, no commercial game ever used it.
+There's also a **31 kHz mode** capable of rendering 480 scanlines progressively (i.e. 480p), coming close to the format used by VGA monitors. However, this is bottlenecked by the VDP1's framebuffer [@graphics-progressive] and, as far as I know, no commercial game ever used it.
 
 It's fair to say that expanding beyond the old NTSC/PAL formats and towards high-resolution, progressive, 1:1 pixel-aspect-ratio outputs will be a milestone fulfilled by the next generation.
 
@@ -459,7 +459,7 @@ This console bundles a considerable number of external connectors and interfaces
 
 - Behind the drive, there is a **cartridge slot**, officially intended for **additional storage** (save data) or **extra RAM**. In Japan and the United States, a modem was also offered to provide [online connectivity](mega-drive-genesis#early-network-attempts).
 - At the rear of the console, there is a slot for a **Video CD Card**, which performs MPEG decompression for programs or games that support it.
-- Finally, there is a mysterious socket at the back of the console called **Communication Connector**. Although Sega did not publish any developer documentation, reverse-engineering efforts revealed that it connects to the SCSP's MIDI pins and the Serial Interface (SCI) of two SH-2's [@games-development]. In any case, Sega released a floppy drive that made use of this interface.
+- Finally, there is a mysterious socket at the back of the console called **Communication Connector**. Although Sega did not publish any developer documentation, reverse-engineering efforts revealed that it connects to the SCSP's MIDI pins and the Serial Interface (SCI) of the two SH-2s [@games-development]. In any case, Sega released a floppy drive that made use of this interface.
 
 ## Anti-Piracy & Homebrew
 
