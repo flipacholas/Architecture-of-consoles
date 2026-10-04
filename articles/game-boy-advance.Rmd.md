@@ -23,7 +23,7 @@ top_tabs:
       caption: "The Game Boy Micro.<br>Released on 13/09/2005 in Japan, 19/09/2005 in America, and 04/11/2005 in Europe."
       latex_height: 85
   Motherboard:
-    caption: "Showing the original model, revision '03'. 'AGB' is the codename of the Game Boy Advance. The audio amplifier is on the back."
+    caption: "Showing the original model, revision '10'. 'AGB' is the codename of the Game Boy Advance. The audio amplifier is on the back."
     extension: "jpg"
     bib_source: copetti
     latex_height: 95
@@ -253,7 +253,7 @@ Finally, only four charblocks can be used for backgrounds, while two may be used
 
 ![Background Layer 2 (BG2).](sonic/bg2.png){.pixel .border hardcover_latex_width="65%" paperback_latex_width="58%" title="Layer 2"}
 
-![Background Layer 3 (BG3). This particular layer will be shifted horizontally at certain scan-lines to simulate water effects.](sonic/bg3.png){.pixel .border hardcover_latex_width="65%" paperback_latex_width="58%" title="Layer 3"}
+![Background Layer 3 (BG3). This particular layer will be shifted horizontally at certain scanlines to simulate water effects.](sonic/bg3.png){.pixel .border hardcover_latex_width="65%" paperback_latex_width="58%" title="Layer 3"}
 
 Static background layers in use.
 
@@ -304,7 +304,7 @@ Similarly, to update the frame, there are multiple options available:
 
 ### Beyond Tiles {.tabs-close}
 
-Sometimes, game artists may design a background for which the tile engine can't draw all required graphics. Now, modern consoles addressed this by implementing a **frame-buffer** architecture, enabling programmers to arbitrarily alter each pixel individually. However, this is not possible when there's very little memory... Well, the GBA happens to house 96 KB of VRAM. This is enough to allocate a **bitmap** matching the dimensions of the LCD screen.
+Sometimes, game artists may design a background for which the tile engine can't draw all required graphics. Now, modern consoles addressed this by implementing a **framebuffer** architecture, enabling programmers to arbitrarily alter each pixel individually. However, this is not possible when there's very little memory... Well, the GBA happens to house 96 KB of VRAM. This is enough to allocate a **bitmap** matching the dimensions of the LCD screen.
 
 The good news is that the PPU actually implemented this functionality by including three extra modes, these are called **bitmap modes** [@graphics-bitmap]:
 
@@ -328,7 +328,7 @@ Examples of programs using bitmap modes.
 
 Overall, this sounds like a cutting-edge feature; however, most games held on to the tile engine. Why? Because in practice bitmaps **cost a lot of CPU resources**.
 
-You see, the tile engine enables the CPU to delegate most computations to the graphics chip. By contrast, the frame-buffer system provided by the PPU is limited to only displaying that segment of memory as a **single background layer**, which means no more individual affine transformations, layering, or effects unless the CPU computes them. Additionally, the frame-buffer occupies 80 KB of memory, leaving only 16 KB (half) available to store sprite tiles.
+You see, the tile engine enables the CPU to delegate most computations to the graphics chip. By contrast, the framebuffer system provided by the PPU is limited to only displaying that segment of memory as a **single background layer**, which means no more individual affine transformations, layering, or effects unless the CPU computes them. Additionally, the framebuffer occupies 80 KB of memory, leaving only 16 KB (half) available to store sprite tiles.
 
 {.close-float}
 
