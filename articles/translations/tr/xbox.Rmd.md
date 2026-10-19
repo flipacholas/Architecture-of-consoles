@@ -329,7 +329,7 @@ Controller S (2002) [@photography-amos].
 
 :::
 
-Daha yakından bakıldığında, her iki denetleyici de özel bir bellek kartını takmak için iki **Memory Unit** yuvası içeriyordu, bu da kayıtların konsollar arasında paylaşılmasını sağlıyordu. Bunu fark ettikten hemen sonra, bu özelliğin bir [önceki rakipten](dreamcast#interactive-memory-card) miras alındığını varsaydım. Bu makaleyi yayınladıktan günler sonra, bu konsolun ortak yaratıcısı olan Seamus Blackley'a gönderdim ve o da bana oldukça ilginç yorumlarla hızlı bir şekilde yanıt verdi. Dreamcast benzerlikleriyle ilgili olarak, bana şunları söyledi:
+Daha yakından bakıldığında, her iki denetleyici de özel bir bellek kartını takmak için iki **Memory Unit** yuvası içeriyordu, bu da kayıtların konsollar arasında paylaşılmasını sağlıyordu. Bunu fark ettikten hemen sonra, bu özelliğin bir [önceki rakipten](dreamcast#the-interactive-memory-card) miras alındığını varsaydım. Bu makaleyi yayınladıktan günler sonra, bu konsolun ortak yaratıcısı olan Seamus Blackley'a gönderdim ve o da bana oldukça ilginç yorumlarla hızlı bir şekilde yanıt verdi. Dreamcast benzerlikleriyle ilgili olarak, bana şunları söyledi:
 
 > Dreamcast ile ilişkisi sadece tarihsel bir önyargıdır. Bu kazara oldu.
 > 
@@ -445,7 +445,7 @@ Oyunlar çift katmanlı DVD diskler üzerine dağıtılır (8.5 GB'a kadar!), ve
 
 ### Ağ hizmeti
 
-[Modemlere](dreamcast#online-platform) veya [deneysel hizmetlere](playstation-2#network-service) takılmanıza gerek yok. Xbox, bir Ethernet bağlantısı ve merkezi bir çevrim içi altyapı (adı **Xbox Live**) sağlamak için şu anda genellikle kabul ettiğimiz her şeye sahipti.
+[Modemlere](dreamcast#the-ambitious-online-platform) veya [deneysel hizmetlere](playstation-2#network-service) takılmanıza gerek yok. Xbox, bir Ethernet bağlantısı ve merkezi bir çevrim içi altyapı (adı **Xbox Live**) sağlamak için şu anda genellikle kabul ettiğimiz her şeye sahipti.
 
 ![Xbox Live Logo.](shell/live.png) {.open-float}
 
