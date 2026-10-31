@@ -198,7 +198,7 @@ Don't worry about the new terminology; the meanings of these data structures are
 
 The PPU generates frames with a fixed dimension of **256 x 240 pixels** [@graphics-overscan]. It updates 60 times per second (**60 Hz**) on NTSC systems, and 50 times per second (**50 Hz**) on PAL systems.
 
-As with its contemporaries, this chip is designed for the behaviour of a CRT display. There is no frame-buffer as such: **the PPU will render in step with the CRT's beam**, producing rows of pixels as **scan-lines** on the fly. The succession of scan-lines forms the image seen on the screen.
+As with its contemporaries, this chip is designed for the behaviour of a CRT display. There is no framebuffer as such: **the PPU will render in step with the CRT's beam**, producing rows of pixels as **scanlines** on the fly. The succession of scanlines forms the image seen on the screen.
 
 This methodology is quite complicated to dissect, so for this part, we'll look at it from the perspective of the programmer.
 
@@ -222,7 +222,7 @@ The NES defines tiles as basic **8x8 pixel maps**, these are stored in **Charact
 
 Inside a tile, each of its pixels is encoded using a 2-bit value, which references one of four colours from a palette. Programmers can define up to eight palettes (four for the background and four for sprites). The colours referenced on each palette point to a 'master palette' consisting of 64 colours [@graphics-palettes], representing all the colours that this console can produce. Each palette is made of four colours, with one reserved for `transparent`.
 
-To start drawing something on the screen, games populate a set of tables with references to tiles stored in Character memory. Each table is responsible for one layer (sprite or background) of the frame. Then, the PPU reads from those tables and composes the scan-lines that will be beamed by the CRT gun.
+To start drawing something on the screen, games populate a set of tables with references to tiles stored in Character memory. Each table is responsible for one layer (sprite or background) of the frame. Then, the PPU reads from those tables and composes the scanlines that will be beamed by the CRT gun.
 
 I will now explain how each layer/table works and how they differ in terms of functionality.
 
@@ -258,7 +258,7 @@ The **Object Attribute Memory** (OAM) table specifies which tiles will be used a
 
 The CPU can populate the OAM table, but this process can be slow in practice and risks corrupting the frame if not timed correctly. As a result, the PPU contains a small component called **Direct Memory Access** or 'DMA' which can be programmed (by altering the PPU's registers) to fetch the table from WRAM. With DMA, the table is guaranteed to be uploaded when the next frame is drawn; however, the CPU will be halted during the transfer!
 
-The PPU is limited to **eight sprites per scan-line** and up to **64 sprites per frame**. Luckily, the scan-line limit can be partially circumvented thanks to a technique called 'OAM order rotation', in which the game manually alters the order of entries in OAM. This makes the PPU render a different sprite set at each frame, and the speed of the CRT beam will trick the user into seeing more sprites than allowed. However, they will also appear to flicker on-screen.
+The PPU is limited to **eight sprites per scanline** and up to **64 sprites per frame**. Luckily, the scanline limit can be partially circumvented thanks to a technique called 'OAM order rotation', in which the game manually alters the order of entries in OAM. This makes the PPU render a different sprite set at each frame, and the speed of the CRT beam will trick the user into seeing more sprites than allowed. However, they will also appear to flicker on-screen.
 
 #### Background Split {.tab}
 
@@ -268,7 +268,7 @@ Before we move on, there's an additional detail worth mentioning. If you play Su
 
 To accomplish this, games use a technique called **Sprite 0 Hit**. Super Mario Bros instructs the PPU to render a dummy sprite behind the coin, this happens to be the first sprite drawn within the frame. After the PPU beams it, it updates its status register with a flag to indicate that the first sprite (a.k.a 'sprite 0') has been drawn. Meanwhile, the game continuously checks mid-frame whether the sprite 0 status has been flagged (a.k.a 'hit'). When this occurs, the game updates the scrolling value of the background table to align it with Mario's position.
 
-Overall, 'Sprite 0 Hit' is a very delicate procedure, as it's easy to mess up the timings (sprite 0's flag is not cleared after polling it, which leads to 'duplicated' positives [@graphics-chibiakumas]). Furthermore, as this routine repeats indefinitely, it can be quite costly (in terms of CPU cycles) to execute. On the bright side, later mappers took over this function by employing automatic interrupts that are triggered whenever an arbitrary scan-line is hit [@graphics-nesdoug] (a much more efficient technique), which significantly improved the visual capabilities of Super Mario Bros 3, for instance.
+Overall, 'Sprite 0 Hit' is a very delicate procedure, as it's easy to mess up the timings (sprite 0's flag is not cleared after polling it, which leads to 'duplicated' positives [@graphics-chibiakumas]). Furthermore, as this routine repeats indefinitely, it can be quite costly (in terms of CPU cycles) to execute. On the bright side, later mappers took over this function by employing automatic interrupts that are triggered whenever an arbitrary scanline is hit [@graphics-nesdoug] (a much more efficient technique), which significantly improved the visual capabilities of Super Mario Bros 3, for instance.
 
 #### Result {.tab}
 
@@ -276,7 +276,7 @@ Overall, 'Sprite 0 Hit' is a very delicate procedure, as it's easy to mess up th
 
 Once the frame is finished, it's time to move on to the next one!
 
-However, the CPU can't modify any table currently in use by the PPU, otherwise, artefacts may show up on the screen. So, when all scan-lines are completed, the PPU triggers the **Vertical Blank** (V-Blank) interrupt on the CPU [@graphics-vblank]. This notifies the game that it can start updating the tables without tearing the picture currently displayed. At that moment, the CRT's beam is pointing below the visible area of the screen, into the overscan (or bottom border area).
+However, the CPU can't modify any table currently in use by the PPU, otherwise, artefacts may show up on the screen. So, when all scanlines are completed, the PPU triggers the **Vertical Blank** (V-Blank) interrupt on the CPU [@graphics-vblank]. This notifies the game that it can start updating the tables without tearing the picture currently displayed. At that moment, the CRT's beam is pointing below the visible area of the screen, into the overscan (or bottom border area).
 
 Only a handful of PPU registers can be updated outside the V-Blank window [@graphics-outside_vblank], which explains the ability to scroll the background layer mid-frame.
 
@@ -284,15 +284,15 @@ Only a handful of PPU registers can be updated outside the V-Blank window [@grap
 
 Now that we've seen how NES graphics are constructed, let's look at how they are sent for display.
 
-Just as programmers implement a game by programming the CPU, the PPU generates images by controlling the CRT's beam. The main difference, however, is that the beam cannot be directed arbitrarily. Its circuitry follows an analogue standard, such as PAL or NTSC, which sets the rules the PPU must follow to send its frames.
+Just as developers implement a game by commanding the CPU, the PPU generates images by controlling the CRT's beam. The main difference, however, is that the beam cannot be directed arbitrarily. Its circuitry follows an analogue standard, such as PAL or NTSC, which sets the rules the PPU must follow to send its frames.
 
 ![A quick illustration of how the PPU broadcasts a frame using a 240p signal. Depending on the region, the output follows either the PAL or NTSC standard. Not shown here are the colour differences and refresh rate between NTSC and PAL.](_diagrams/ppu_scan.png){.no-borders}
 
 Due to the lack of a unified standard, the same image varies in appearance depending on the region and the television on which it is displayed. To give a quick summary:
 
-- Unlike LCD panels, CRTs have no concept of a fixed pixel grid. A pixel row in the PPU is encoded as a scan-line containing evenly timed samples; these modulate the beam as it traverses the phosphor screen.
-- The NTSC standard dictates that a frame takes 525 scan-lines to compose [@graphics-bt470]. However, only 480 are visible (hence the name '480i'); the remainder are consumed by the vertical blanking period. In the case of PAL, there are 625 scan-lines, of which 576 are visible (hence '576i').
-- Both NTSC and PAL were designed for bandwidth-constrained systems: affordable equipment wasn't capable of transmitting all scan-lines in one sweep. So, frames are split into two passes: one draws odd scan-lines and the other draws even ones. The beam travels so fast that the human eye perceives a single image, albeit a bit shimmery. This methodology is called **interlaced video**.
+- Unlike LCD panels, CRTs have no concept of a fixed pixel grid. A pixel row in the PPU is encoded as a scanline containing evenly timed samples; these modulate the beam as it traverses the phosphor screen.
+- The NTSC standard dictates that a frame takes 525 scanlines to compose [@graphics-bt470]. However, only 480 are visible (hence the name '480i'); the remainder are consumed by the vertical blanking period. In the case of PAL, there are 625 scanlines, of which 576 are visible (hence '576i').
+- Both NTSC and PAL were designed for bandwidth-constrained systems: affordable equipment wasn't capable of transmitting all scanlines in one sweep. So, frames are split into two passes: one draws odd scanlines and the other draws even ones. The beam travels so fast that the human eye perceives a single image, albeit a bit shimmery. This methodology is called **interlaced video**.
 - Even with this in mind, consumer CRT TVs differed significantly in quality and precision. For this reason, broadcasters assumed that a portion of the picture around the edges (around 10%) would be hidden by the TV's bezel. The hidden area is called **overscan**.
 
 ::: {.subfigures .side-by-side max_subfigures=2 latex_subfigure_width="0.49"}
@@ -307,14 +307,14 @@ Demonstration of the PPU's 'safe areas' and 'danger zones' using a NES homebrew 
 
 Now, to combine this with the PPU's inner workings:
 
-- Take a look at the PPU's resolution again. It's not a coincidence that its vertical resolution is half the number of visible scan-lines in NTSC: the PPU outputs 240 scan-lines per frame without interlacing. In other words, **240p**. Nevertheless, its choice of horizontal resolution, when considered alongside the TV's 4:3 aspect ratio, makes the pixels appear stretched horizontally. Moreover, the lack of interlacing creates gaps between scan-lines (this is the origin of the famous 'scan-line effect').
+- Take a look at the PPU's resolution again. It's not a coincidence that its vertical resolution is half the number of visible scanlines in NTSC: the PPU outputs 240 scanlines per frame without interlacing. In other words, **240p**. Nevertheless, its choice of horizontal resolution, when considered alongside the TV's 4:3 aspect ratio, makes the pixels appear stretched horizontally. Moreover, the lack of interlacing creates gaps between scanlines (this is the origin of the famous 'scanline effect').
     - Broadcasting frames in one sweep is known as **progressive scanning**. This type is also favoured by [LCD panels](game-boy#graphics).
 - Due to overscan, programmers had to assume that only ~224 pixel rows would be properly visible. This affected where elements would be placed in the game; the outer regions were considered 'danger zones'. 
-- PAL tellies, on the other hand, expect more scan-lines. The PPU still outputs 240p. As a result, this leaves unused vertical space, appearing as horizontal black bars (letterboxing).
+- PAL tellies, on the other hand, expect more scanlines. The PPU still outputs 240p. As a result, this leaves unused vertical space, appearing as horizontal black bars (letterboxing).
 
 ### Secrets and limitations
 
-If you're thinking that a frame-buffer system without dependence on the CRT would have been preferable: extra RAM allocated to store the full frame would have been prohibitively expensive, and the console's goal was to remain affordable. Let me now show you why this design still proved to be both efficient and flexible.
+If you're thinking that a framebuffer system without dependence on the CRT would have been preferable: extra RAM allocated to store the full frame would have been prohibitively expensive, and the console's goal was to remain affordable. Let me now show you why this design still proved to be both efficient and flexible.
 
 #### Multi-Scrolling {.tabs .active}
 
@@ -336,13 +336,13 @@ As an interesting *fix*: the PPU allowed developers to apply a **vertical mask**
 
 ::: {.subfigures .tabs-nested .tab-float .pixel max_subfigures="3" latex_subfigure_width="0.49"}
 
-![Early scan lines.](secrets/multiplexing_1.png){.pixel .active .border title="Early"}
+![Early scanlines.](secrets/multiplexing_1.png){.pixel .active .border title="Early"}
 
-![Late scan lines.](secrets/multiplexing_2.png){.pixel .border title="Late"}
+![Late scanlines.](secrets/multiplexing_2.png){.pixel .border title="Late"}
 
 ![Actual frame displayed to the user.](secrets/multiplexing_complete.png){.pixel .border title="Displayed"}
 
-Hypothetical frames rendered using tiles available during specific scan lines.
+Hypothetical frames rendered using tiles available during specific scanlines.
 
 :::
 

@@ -72,7 +72,7 @@ Even before it reached the market, MIPS was already aware of the commercial limi
 
 As a company founded by former MIPS employees, QED was in the business of designing variants of MIPS cores for the budget sector. They had previously engineered the R4600 *Orion*, a cut-back version of the R4000, in a similar fashion to the VR4300 (found in the [Nintendo 64](nintendo-64#cpu)). Orion was also tailored for Windows NT workstations [@cpu-r5000_mr].
 
-In the end, QED came back with a new core called the **R5000**. It was a continuation of Orion, but marketed as a cheaper alternative to the R10000 with significant cutbacks [@cpu-halfhill]:
+In the end, QED came back with a new core called the **R5000**. It was a continuation of Orion, but marketed as a cheaper alternative to the R10000, with significant cutbacks [@cpu-halfhill]:
 
 - In-order execution.
 - No speculative execution.
@@ -678,7 +678,7 @@ Linux Kit included `Kernel 2.2.1`, compilers targeting the EE (`gcc 2.95.2` with
 
 With regards to the AV Multi Out to VGA adaptor, you may be interested to know that, while games diverged in aspect ratio, the Graphics Synthesizer supported **the VESA standard**, which [unlike the DTV-VGA mix of the Dreamcast](dreamcast#tab-2-2-the-accompanying-socket), used proper timings. Alas, the Multi Out's sync signal was supplied on the green channel... so I guess no one can be perfect. Anyway, VESA provided a resolution of up to 1280 x 1024 pixels, and I imagine Linux Kit was its main target.
 
-Finally, it's worth noting that the futuristic **PSBBN shell is based on PS2 Linux** [@games-linuxbb]. Its bootloader launches a customised PS2 Linux Kernel and then loads the PSBBN graphical interface. This makes sense, as its multimedia-rich capabilities would otherwise have had to be implemented from scratch, although I wonder whether not talking to the native OS contributed to the one-minute boot times.
+Finally, it's worth noting that the futuristic **PSBBN shell is based on PS2 Linux** [@games-linuxbb]. Its bootloader launches a customised PS2 Linux Kernel and then loads the PSBBN graphical interface. This makes sense, as its multimedia-rich capabilities would otherwise have had to be implemented from scratch. Although, I wonder whether not talking to the native OS, this contributed to PSBBN's one-minute boot times.
 
 ## Anti-Piracy and Homebrew
 

@@ -346,7 +346,7 @@ The audio capabilities of this console were part of a broader digital revolution
 Be that as it may, beneath the surface of attractive functionality lies a complex arrangement. In the case of the Sega Saturn, its sound subsystem is composed of several parts [@audio-scsp]:
 
 - The **Saturn Custom Sound Processor** (SCSP): Also referred to as the Yamaha YMF292, it's composed of two modules:
-  - A **multi-function sound generator**: Processes up to **32 channels** with **PCM samples** (up to 16-bit at 44.1 kHz - a.k.a. 'CD quality') or [**FM channels**](mega-drive-genesis#audio). In the case of the latter, a subset of channels is reserved for operators.
+  - A **multi-function sound generator**: Processes up to **32 channels** with **Pulse-Code Modulation** (PCM) samples (up to 16-bit at 44.1 kHz - a.k.a. 'CD quality') or [**FM channels**](mega-drive-genesis#audio). In the case of the latter, a subset of channels is reserved for operators.
     - This component provides pitch scaling, envelope generator, Low-Frequency Oscillator (LFO), and volume and stereo panning.
   - A **Digital Signal Processor** (DSP): Applies audio effects such as echo, reverb, and chorus. The documentation also mentions 'filters', but it's unclear whether this means envelope or frequency-based filters (e.g. low-pass).
 - A **Motorola 68EC000**: Controls the audio components and interfaces with the main CPUs. It executes a [sound driver](mega-drive-genesis#the-conductor) to operate the neighbouring modules.
