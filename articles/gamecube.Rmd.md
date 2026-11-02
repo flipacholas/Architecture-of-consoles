@@ -10,9 +10,11 @@ javascript: ['threejs', 'audioswitcher']
 cover: gamecube
 top_tabs:
   Model:
+    latex_height: 90
     file: international
     caption: "The one and only GameCube.<br>Released on 14/09/2001 in Japan, 18/11/2001 in America and 03/05/2002 in Europe."
   Motherboard:
+    latex_height: 95
     caption: "Taken from my 'DOL-CPU(P)-01' model, later revisions removed the Serial Port 2 and Digital Output. The encoder chip, expansion, controller, and power socket are found on the other side."
     bib_source: copetti
   Diagram:
@@ -36,7 +38,7 @@ After the loss of [Silicon Graphics' dominance](nintendo-64#cpu) in the graphics
 
 A promising candidate seems to be **IBM**: apart from their recognised work on mainframes, they recently joined forces with Motorola and Apple to create a CPU powerful enough to compete with Intel's ruling in the PC market. The resulting product is a series of processors carrying the name **PowerPC**, which were selected to *power* 99% of Apple's Macintoshes, IBM's workstations, and some embedded systems.
 
-![The PowerPC Gekko chip. This is what the GameCube houses.](components/cpu.webp)
+![The PowerPC Gekko chip. This is what the GameCube houses.](components/cpu.webp){latex_width="90%"}
 
 To understand what this means for the GameCube, let's first take a look at the chain of innovation that culminated in the PowerPC CPU.
 
@@ -204,6 +206,8 @@ Overall, this means that, while ARAM provides a considerable amount of RAM, its 
 
 So far, we've seen that, on paper, the memory capabilities are undoubtedly superior to those of its predecessor, but there's still room for improvement. For instance, Nintendo could've fitted a bit more circuitry to incorporate ARAM into the CPU's memory map.
 
+![The ARAM chip, underneath the 'Hi-Speed' port pins.](components/aram.webp){latex_width="80%"}
+
 On a related note, let's revisit the MMU used in Gekko. The CPU, with its 32-bit address bus, can access up to 4 GB of memory, but the system houses significantly less than that amount. Therefore, are those memory addresses wasted? No, because **the CPU delegates addressing to its MMU**, which in turn provides a **virtual address space** that abstracts physical addresses behind a safer, easily cacheable, and contiguous memory layout [@cpu-dolphin_final].
 
 To make this work, Gekko (and other PowerPC architectures) translates virtual addresses into physical ones using the following process:
@@ -222,7 +226,7 @@ In conclusion, through some clever tricks, these general-purpose capabilities en
 
 This is one of the most critical components of this console; it essentially makes the GameCube, a *GameCube*.
 
-![The Flipper chip on my motherboard,](components/gpu.webp)
+![The Flipper chip on my motherboard,](components/gpu.webp){latex_width="90%"}
 
 The history of this console's GPU has some interesting connections. Wei Yen, the architect behind the Nintendo 64's SoC ([the RCP](nintendo-64#graphics)), later founded ArtX and secured a contract with Nintendo to develop their next-generation chip: **Flipper** [@graphics-kanellos].
 
@@ -312,7 +316,7 @@ It's time to put all of this theory into perspective. Take a look at how program
 
 The famous *Super Smash Bros.* Mario model [@fig-mariossb], which had to be stripped of its polygons to fit in a more [constrained environment](nintendo-64#tab-3-2-texture-memory), was completely redesigned for the GameCube, evolving from plain faces to wrinkled sleeves.
 
-![Super Smash Bros (1999) for the Nintendo 64.<br>320 triangles.](mario_smash_64){.toleft .nested model3d="true" #fig-mariossb}
+![Super Smash Bros (1999) for the Nintendo 64.<br>320 triangles.](mario_smash_64){.toleft .nested model3d="true" latex_width="75%" #fig-mariossb}
 
 ![Super Smash Bros. Melee (2001) for the GameCube.<br>4,718 triangles.](mario_melee_gc){.toright model3d="true"}
 
@@ -360,11 +364,11 @@ Now that we've seen that most games were able to support 480p, the only question
 
 Overall, the console included not one, but two video output connectors. Their capabilities - and level of adoption - varied significantly depending on the region and revision.
 
-![A/V Connections on the back.](av_photo.jpg)
+![Rear of the console, showing the two A/V connections and the power socket.](back.webp){latex_width="90%"}
 
-The left socket, **Analog A/V**, is the successor to the good-old [Multi Out](super-nintendo#a-convenient-video-out), and the most popular choice. However and for some reason, the NTSC variant didn't provide RGB signals, meaning the console could only broadcast interlaced 480 (480i) through this socket. On the other hand, the PAL version incorporated RGB (enabling enough bandwidth to send 480p) at the cost of dropping S-Video (*who cares*). Still, PAL games only offered the option to enable PAL60 (480i), not 480p, leaving the latter exclusive to NTSC games!
+The right socket, **Analog AV**, is the successor to the good-old [Multi Out](super-nintendo#a-convenient-video-out), and the most popular choice. However and for some reason, the NTSC variant didn't provide RGB signals, meaning the console could only broadcast interlaced 480 (480i) through this socket. On the other hand, the PAL version incorporated RGB (enabling enough bandwidth to send 480p) at the cost of dropping S-Video (*who cares*). Still, PAL games only offered the option to enable PAL60 (480i), not 480p, leaving the latter exclusive to NTSC games!
 
-The second connector, **Digital A/V**, was a debuting proprietary format that sends audio and video in digital form, similarly to HDMI nowadays, but using a completely different protocol. Due to the need to convert the signal to analogue, Nintendo released a tailored **component cable** as an extra accessory that connected to this socket. The same cable incorporated a video Digital-to-Analogue Converter (DAC) and an encoder to translate the digital signal into YPbPr (providing optimal quality). This was the only way NTSC users could enjoy progressive scan, yet not many people were asking for it back in the early noughties. Consequently, the follow-up GameCube revision (`DOL-001`, released around 2004) removed this socket [@graphics-models]. The cable, on the other hand, is now considered some sort of a relic!
+The left connector, **Digital AV**, was a debuting proprietary format that sends audio and video in digital form, similarly to HDMI nowadays, but using a completely different protocol. Due to the need to convert the signal to analogue, Nintendo released a tailored **component cable** as an extra accessory that connected to this socket. The same cable incorporated a video Digital-to-Analogue Converter (DAC) and an encoder to translate the digital signal into YPbPr (providing optimal quality). This was the only way NTSC users could enjoy progressive scan, yet not many people were asking for it back in the early noughties. Consequently, the follow-up GameCube revision (`DOL-001`, released around 2004) removed this socket [@graphics-models]. The cable, on the other hand, is now considered some sort of a relic!
 
 ## Audio
 
@@ -461,9 +465,15 @@ Along with these, each interface exposes a set of registers that alter some of i
 
 The bottom of the GameCube's case hides three external sockets for connecting interesting widgets.
 
-![Bottom of the case, all accessory ports are covered by default.](accessories_covered.jpg){.tabs-nested .active .open-float .tab-float title="Covered"}
+::: {.subfigures .side-by-side}
 
-![Uncovered accessory slots.](accessories.jpg){.tabs-nested-last title="Uncovered"}
+![All accessory ports are covered by default.](accessories_covered.jpg){.toleft paperback_latex_width="80%"}
+
+![Uncovered accessory slots.](accessories.jpg){.toright paperback_latex_width="80%"}
+
+Bottom of the case.
+
+:::
 
 Interestingly, each socket, albeit similar, has a differently sized space allocated to it, restricting the type of accessories that can be connected. For instance, the two 'serial ports' are technically identical (i.e. both rely on a 32 MHz serial bus), yet, they come with physical differences:
 
@@ -471,8 +481,6 @@ Interestingly, each socket, albeit similar, has a differently sized space alloca
 - **Serial Port 2** is significantly restricted, and no official accessory ever utilised this port, but you may find some third-party accessories that provided debugging tools.
 
 Both serial ports are operated through the EXI stack.
-
-{.close-float}
 
 #### Unusual I/O
 
@@ -501,11 +509,19 @@ The remaining space is used to store fonts that games may use, although few titl
 
 Once the boot process finishes, the OS proceeds to display an interactive interface commonly referred to as the **Main Menu**.
 
-![The Main Menu, enabling the user to interact with different settings using a two-dimensional cube-based navigation system.](ipl/menu.png){.tabs-nested .active title="Menu"}
+::: {.subfigures .tabs-nested}
 
-![Clock settings page.](ipl/clock.png){.tab-nested title="Clock"}
+![The Main Menu, enabling the user to interact with different settings using a two-dimensional cube-based navigation system.](ipl/menu.png){.active latex_width="80%" title="Menu"}
 
-![Sound settings page.](ipl/sound.png){.tabs-nested-last title="Options"}
+![Saves page.](ipl/saves.webp){latex_width="80%" title="Saves"}
+
+![Clock settings page.](ipl/clock.png){latex_width="80%" title="Clock"}
+
+![Sound settings page.](ipl/sound.png){latex_width="80%" title="Options"}
+
+The GameCube's interactive shell.
+
+:::
 
 This program is responsible for displaying the familiar splash animation (the *wee* cube drawing the GameCube logo) and loading the game if one is inserted. In the absence of a *valid* disc, the menu provides a simple cube-shaped menu with various options to choose from:
 
@@ -536,9 +552,13 @@ Probably the most popular tool worth mentioning is the **Dolphin Development Har
 
 This is the moment Nintendo finally embraced optical media... albeit with a proprietary format. The GameCube's optical drive reads a modified variant of the **miniDVD**, called **GameCube Optical Disc** (GOD). The miniDVD itself is a miniaturised version of the [traditional DVD](playstation-2#inside-the-dvd), measuring half the diameter and holding around 1.4 GB of data [@games-minidvd].
 
+![My Spanish copy of *Super Smash Bros. Melee*.](game.webp)
+
 It's fair to say Nintendo didn't intend for this console to become some sort of media centre hub, unlike [its competition](playstation-2#afterthought-designs). And whilst this may have alienated certain consumers who preferred a system capable of playing DVD movies, it also allowed Matsushita to tailor the drive's performance and security to the console's needs. For instance, the reader operates in a **Constant Angular Velocity** (CAV) mode, meaning that data is read faster towards the outer edge of the disc (3.125 MB/s) and slower towards the centre area (2 MB/s). This differs from **Constant Linear Velocity** (CLV) systems (used by traditional readers), in which the disc's speed varies to maintain a constant data rate (critical during the early days of audio CD playback, for example).
 
 #### Persistent storage
+
+![Front of the console, with a Memory Card inserted into Slot A.](front.webp){paperback_latex_width="80%"}
 
 Game saves are stored on a proprietary external accessory known as **Memory Card**. Official cards were manufactured exclusively by Macronix and bundled flash ROM [@cpu-hitmen]. Nintendo used 'blocks' as the unit of storage, where 64 blocks equalled 4 Mbits (512 KB). The largest official memory card available had a capacity of 2048 blocks (16 MB).
 
@@ -548,7 +568,7 @@ Well, unlike the enthusiasm some competitors poured into the [emerging online se
 
 As a result, while online gaming was still a possibility on this console, it never gained much traction, with only a handful of games attempting to leverage this.
 
-## Anti-Piracy & Homebrew
+## Anti-Piracy and Homebrew
 
 Nintendo had been in the console business for quite some time, so it's no news that they upped their security measures to keep users away from running unauthorised software or games outside the designated region. The stakes were now higher thanks to the adoption of miniDVDs and the new range of I/O ports, which only made the attack surface more interesting.
 
@@ -567,7 +587,9 @@ In terms of the medium itself, after a GameCube Optical Disc is mastered at the 
 
 The drive then reads the BCA information and compares it with what it finds in the main disc area. If the marks are located, the disc is considered valid. Afterwards, the GameCube's operating system reads the game's metadata to enforce **region locking** [@anti_piracy-imports].
 
-Moreover, the disc's user data (containing the game) is scrambled using exclusive OR (XOR) operations; the drive reconstructs the data on the fly using the stored 'Disc ID' value [@anti_piracy-dvdformat]. This is merely an [obfuscation technique](dreamcast#anti-piracy-homebrew) designed to obstruct piracy efforts.
+![A close-up of the GameCube disc, notice the BCA area near the centre.](disc_bca.webp)
+
+Moreover, the disc's user data (containing the game) is scrambled using exclusive OR (XOR) operations; the drive reconstructs the data on the fly using the stored 'Disc ID' value [@anti_piracy-dvdformat]. This is merely an [obfuscation technique](dreamcast#anti-piracy-and-homebrew) designed to obstruct piracy efforts.
 
 #### Defeat
 
