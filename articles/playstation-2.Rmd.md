@@ -14,11 +14,11 @@ top_tabs:
     file: international
     caption: "The original PlayStation 2.<br>Released on 04/03/2000 in Japan, 26/10/2000 in America and 24/11/2000 in Europe"
   Motherboard:
-    latex_height: 95
+    latex_height: 88
     caption: "Showing revision 'GH-001' from model SCPH-10000 only released in Japan.<br>Thanks to the donations received, I was able to purchase this model and take a proper photo to allow me to identify most of the chips.<br>I presume the chip at the bottom right corner is the 4 MB BIOS ROM"
     bib_source: copetti
   Diagram:
-    latex_height: 95
+    latex_height: 92
     caption: "The original design (Implemented on revision 'SCPH-10000').<br>Each data bus is labelled with its width and speed.<br>This architecture went through many revisions, more details below"
 
 # Historical
@@ -322,13 +322,13 @@ With all that said, it's no surprise that game designers refreshed their charact
 
 ![Crash Bandicoot (1996) for the PS1.<br>732 triangles.](crash_ps1){.toleft model3d="true" hardcover_latex_width="76%" paperback_latex_width="68%" #fig-crash}
 
-![Crash Bandicoot: The Wrath of Cortex (2001).<br>2226 triangles.](crash_wrath_ps2){.toright model3d="true" hardcover_latex_width="76%" paperback_latex_width="65%"}
+![Crash Bandicoot: The Wrath of Cortex (2001).<br>2226 triangles.](crash_wrath_ps2){.toright model3d="true" hardcover_latex_width="76%" paperback_latex_width="62%"}
 
 Here are characters from new game series. These were modelled with high levels of detail from the ground up [@fig-sora].
 
 ![Kingdom Hearts (2002).<br>2744 triangles.](sora_kh1_ps2){.toleft model3d="true" #fig-sora}
 
-![Dragon Quest VIII (2004).<br>2700 triangles.](hero_ps2){.toright model3d="true" latex_width="75%"}
+![Dragon Quest VIII (2004).<br>2700 triangles.](hero_ps2){.toright model3d="true" latex_width="70%"}
 
 It's worth mentioning that games like *Dragon Quest* implemented a custom lighting model known as **Cel Shading** (a term I have mentioned [before](gamecube#creativity)). However, in my previous articles, I explained that the GPU was mainly responsible for this effect. In the PS2's case, the required colour calculations are presumably performed by the Emotion Engine, since the GS isn't as flexible as other GPUs.
 
@@ -383,7 +383,7 @@ This trade-off was deemed acceptable because the imperfections of CRT displays h
 
 The new audio chip is an incremental update of the original [**Sound Processing Unit**](playstation#audio) (SPU) called... **SPU2**! Improvements include **2 MB of internal memory** and **48 audio channels**, twice the number available on the original SPU.
 
-The SPU2 consists of two internal sound processors, referred to as **CORE0** and **CORE1**, and runs at ~36.86 MHz. Each processor handles **24 channels**.
+The SPU2 consists of two internal sound processors, referred to as **CORE0** and **CORE1**, and runs at ~36.86 MHz. Each processor handles **24 channels** [@cpu-rockin].
 
 Curiously enough, these are still two independent controllers, and configuring them requires altering their respective registers. However, Sony warned developers that both sets of registers must be updated at least 1/48000 seconds apart. If you hurry too much, the behaviour of the SPU2 becomes unpredictable.
 
@@ -395,12 +395,23 @@ Finally, the chip can mix all channels into **stereo output**. Now, here is the 
 
 ![Kingdom Hearts II (2005). With reverb.](goomy){.toright video="true" .interactive-only}
 
+### Beyond stereo
+
+For those rich kids who took pride in their parents' **home theatre** setup, typically consisting of six '5.1' speakers (left front, right front, left rear, right rear, centre, and subwoofer), the PS2's audio subsystem, together with the SDK, also supported the following proprietary surround-sound formats:
+
+- **Dolby Pro Logic II**: Encodes surround data into the same stereo channels, which a Pro Logic II-compatible receiver subsequently decodes to output the extra channels [@audio-pro_logic].
+- **Dolby Digital**: Also called 'AC3', it carries surround audio across six dedicated channels [@audio-dolby_digital], offering better fidelity than Pro Logic II.
+    - Sony's licensing agreement with Dolby Labs was limited, restricting the PS2's use of Dolby Digital to pre-recorded content, like Full-Motion Video (FMV) and DVD movies. Did I mention that decoding Dolby Digital audio was also a mandatory clause of the DVD specification?
+- **Digital Theater Systems (DTS) 5.1**: A competitor to Dolby Digital that traded higher compression for better quality. Thus, requiring more storage. However, developer were able to make full use of it thanks to DTS' favourable licensing terms [@audio-dts].
+
+It's important to clarify that the PS2's hardware **couldn't accelerate any encoding or decoding tasks**, meaning developers had to allocate  general-purpose resources (e.g. CPU, vector units, etc.). This, in combination with its relatively niche marketshare, made adoption rather limited, particularly when it came to real-time surround sound during gameplay.
+
 ### Audio out
 
-The audio signal is outputted through two interfaces:
+To satisfy both traditional and modern needs, the PlayStation 2 provided two audio output interfaces:
 
-- **Digital Audio**: Referred to as the Sony/Philips Digital Interface or 'S/PDIF', it's a digital signal that inherently carries less interference.
-- **Analogue Audio**: Passes through the digital-to-analogue converter before reaching the AV Multi Out port. Most TVs are compatible with it.
+- **Digital Audio**, also known as **Sony/Philips Digital Interface** or 'S/PDIF': It uses a digital signal that inherently carries less interference and more flexibility. It's mainly used to output surround audio.
+- **Analogue Audio**: The audio data passes through a Digital-to-Analogue Converter (DAC) before reaching the AV Multi Out port. Its biggest advantage is widespread compatibility with traditional TVs.
 
 ## I/O
 
@@ -458,7 +469,7 @@ In PowerPC-based models, `PS1DRV` runs on top of DECKARD.
 
 At first glance, the console inherited the [previous front ports](playstation#front-ports) from the original PlayStation, now accompanied by a couple of 'modern' interfaces that evolved throughout the years.
 
-![Front of the PS2, revision SCPH-3000x (2000), showing known sockets for controllers and Memory Cards. Plus, the new USB and i.Link ports [@photography-amos].](photos/ps2_front.png){latex_width="80%"}
+![Front of the PS2 [@photography-amos], revision SCPH-3000x (2000), showing known sockets for controllers and Memory Cards. Plus, the new USB and i.Link ports.](photos/ps2_front.png){latex_width="80%"}
 
 The most popular additions were the **two USB 1.1 ports**. Their theoretical speed is 12 Mbps, but that's highly dependent on the IOP's bandwidth (which tends to be considerably slower). Nevertheless, they remained unchanged across revisions, making them a favoured choice for third-party accessories.
 
@@ -545,15 +556,15 @@ The functionality of the PS2 shell is pretty much in step with other 6th-generat
 
 ::: {.subfigures .tabs-nested}
 
-![Initial menu, appearing when there's no disc inserted.](bios/menu.jpg){.active latex_width="88%" title="Menu"}
+![Initial menu, appearing when there's no disc inserted.](bios/menu.jpg){.active latex_width="86%" title="Menu"}
 
-![Memory Card browser.](bios/mem_list.jpg){latex_width="88%" title="Browser"}
+![Memory Card browser.](bios/mem_list.jpg){latex_width="86%" title="Browser"}
 
-![Saves browser. It shows up after selecting a Memory Card.](bios/save_list.jpg){latex_width="88%" title="Saves"}
+![Saves browser. It shows up after selecting a Memory Card.](bios/save_list.jpg){latex_width="86%" title="Saves"}
 
-![Save editor, displayed after selecting a save.](bios/save_editor.jpg){latex_width="88%" title="Editor"}
+![Save editor, displayed after selecting a save.](bios/save_editor.jpg){latex_width="86%" title="Editor"}
 
-![System Configuration.](bios/options.jpg){latex_width="88%" title="Options"}
+![System Configuration.](bios/options.jpg){latex_width="86%" title="Options"}
 
 The PS2 shell.
 
@@ -583,9 +594,9 @@ The second update was more exclusive and extraordinary: **PlayStation Broadband 
 
 ::: {.subfigures .side-by-side}
 
-![The Home screen.](bios/psbbn/home.webp){.toleft latex_width="75%"}
+![The Home screen.](bios/psbbn/home.webp){.toleft latex_width="72%"}
 
-![The Music channel.](bios/psbbn/audio.webp){.toright latex_width="75%"}
+![The Music channel.](bios/psbbn/audio.webp){.toright latex_width="72%"}
 
 The PlayStation Broadband Navigator interface, using an unofficial English patch [@operating_system-psbbd_vid].
 
