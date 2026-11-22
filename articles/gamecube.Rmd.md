@@ -14,10 +14,11 @@ top_tabs:
     file: international
     caption: "The one and only GameCube.<br>Released on 14/09/2001 in Japan, 18/11/2001 in America and 03/05/2002 in Europe."
   Motherboard:
-    latex_height: 95
+    latex_height: 92
     caption: "Taken from my 'DOL-CPU(P)-01' model, later revisions removed the Serial Port 2 and Digital Output. The encoder chip, expansion, controller, and power socket are found on the other side."
     bib_source: copetti
   Diagram:
+    latex_height: 95
     caption: "Each data bus is labelled with its width."
 
 # Historical
@@ -326,7 +327,7 @@ I have to say, it's really impressive how much detail has been gained in just tw
 
 In this instance, Sonic Team had already designed a Sonic model for [their own console](dreamcast), but after porting their game to the GameCube, they were able to increase the polygon count and amount of detail.
 
-![Sonic Adventure (1999) for the Dreamcast.<br>1,001 triangles.](sonic_adventure_dc){.toleft .nested model3d="true"}
+![Sonic Adventure (1999) for the Dreamcast.<br>1,001 triangles.](sonic_adventure_dc){.toleft .nested model3d="true" .interactive-only}
 
 ![Sonic DX (2003) for the GameCube.<br>1,993 triangles.](sonic_dx_gc){.toright model3d="true"}
 
@@ -465,7 +466,7 @@ Along with these, each interface exposes a set of registers that alter some of i
 
 The bottom of the GameCube's case hides three external sockets for connecting interesting widgets.
 
-::: {.subfigures .side-by-side}
+::: {.subfigures .side-by-side max_subfigures=1}
 
 ![All accessory ports are covered by default.](accessories_covered.jpg){.toleft paperback_latex_width="80%"}
 
@@ -511,13 +512,13 @@ Once the boot process finishes, the OS proceeds to display an interactive interf
 
 ::: {.subfigures .tabs-nested}
 
-![The Main Menu, enabling the user to interact with different settings using a two-dimensional cube-based navigation system.](ipl/menu.png){.active latex_width="80%" title="Menu"}
+![The Main Menu, enabling the user to interact with different settings using a two-dimensional cube-based navigation system.](ipl/menu.png){.active latex_width="75%" title="Menu"}
 
-![Saves page.](ipl/saves.webp){latex_width="80%" title="Saves"}
+![Saves page.](ipl/saves.webp){latex_width="75%" title="Saves"}
 
-![Clock settings page.](ipl/clock.png){latex_width="80%" title="Clock"}
+![Clock settings page.](ipl/clock.png){latex_width="75%" title="Clock"}
 
-![Sound settings page.](ipl/sound.png){latex_width="80%" title="Options"}
+![Sound settings page.](ipl/sound.png){latex_width="75%" title="Options"}
 
 The GameCube's interactive shell.
 

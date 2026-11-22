@@ -346,7 +346,7 @@ If I had to summarise it in one sentence, the PICA200 is a budget low-power 3D p
 
 You see, even though the pipeline is segregated and the pixel stage is fixed-function (à la [PlayStation 2](playstation-2#graphics)), DMP expanded the limited circuitry with a set of **Maestro functions** that provide capabilities beyond the expectations of the embedded market [@graphics-ocp]. This includes fragment lighting, multiple shadowing algorithms, polygon subdivision, bump mapping, procedural textures and many fog effects.
 
-Additionally and in contrast to the [Nintendo DS](nintendo-ds#tab-3-3-result), the PICA200 **only works with framebuffers**. That's it. The [sprite engine](nes#graphics), a popular workaround to tackle unaffordable memory requirements, is now a thing of the past. This also includes [scan-line tricks](nes#secrets-and-limitations), as contemporary GPUs work way faster than the refresh rate of a CRT.
+Additionally and in contrast to the [Nintendo DS](nintendo-ds#tab-3-3-result), the PICA200 **only works with framebuffers**. That's it. The [sprite engine](nes#graphics), a popular workaround to tackle unaffordable memory requirements, is now a thing of the past. This also includes [scanline tricks](nes#secrets-and-limitations), as contemporary GPUs work way faster than the refresh rate of a CRT.
 
 #### Organising the content
 
@@ -356,18 +356,18 @@ Nintendo only provided **6 MB of VRAM** exclusively for the GPU. Ideally, progra
 
 ![Example of how data is organised across the memory available.](_diagrams/gpu/content.png)
 
-During rendering, programmers allocate dedicated render buffers (i.e. frame, stencil, depth, etc.) for many operations. That's always been the case. With the 3DS, however, the LCD controllers don't understand the data that the PICA200 renders in the frame-buffer. Thus, programmers are also expected to reserve extra space for **LCD frame-buffers** [@graphics-gpu_reg]. Each is bound to a physical screen and encodes the frame in the required format for the LCD controller.
+During rendering, programmers allocate dedicated render buffers (i.e. frame, stencil, depth, etc.) for many operations. That's always been the case. With the 3DS, however, the LCD controllers don't understand the data that the PICA200 renders in the framebuffer. Thus, programmers are also expected to reserve extra space for **LCD framebuffers** [@graphics-gpu_reg]. Each is bound to a physical screen and encodes the frame in the required format for the LCD controller.
 
-This means that the 3DS is required to allocate at least **three LCD frame-buffers** (two for the stereoscopic upper screen and one for the bottom one). However, to avoid showing artefacts, a duplicate set may be allocated to perform [page flipping](game-boy-advance#beyond-tiles).
+This means that the 3DS is required to allocate at least **three LCD framebuffers** (two for the stereoscopic upper screen and one for the bottom one). However, to avoid showing artefacts, a duplicate set may be allocated to perform [page flipping](game-boy-advance#beyond-tiles).
 
 Based on this, the display process works as follows:
 
-1. The LCD continuously displays the content of the active LCD frame-buffer, as instructed by an index register.
-2. Meanwhile, the GPU finishes rendering new geometry in a separate frame-buffer.
-3. The frame-buffer is exported to the inactive LCD frame-buffer.
-4. The GPU swaps the index of the active LCD frame-buffer.
+1. The LCD continuously displays the content of the active LCD framebuffer, as instructed by an index register.
+2. Meanwhile, the GPU finishes rendering new geometry in a separate framebuffer.
+3. The framebuffer is exported to the inactive LCD framebuffer.
+4. The GPU swaps the index of the active LCD framebuffer.
     - For practical reasons, the index swap happens at the end of [Vertical Sync](nes#tab-1-5-result) to avoid tearing down the picture [@graphics-opengl_swap].
-5. The LCD will now be scanning the recently updated LCD frame-buffer from now on.
+5. The LCD will now be scanning the recently updated LCD framebuffer from now on.
 
 #### Adopting open standards
 
@@ -448,7 +448,7 @@ The PICA200 contains **four** texture units [@graphics-fragment], each houses **
 - Only one unit can perform shadow, cube and [projective texture](playstation-portable#tab-1-4-textures) mapping.
 - The last unit is more of a noise generator, meaning it only outputs **random textures**. It uses a combination of a random number generator and a colour lookup table. This is a slender yet efficient way of implementing [procedure generation](playstation-2#infinite-worlds) with textures, saving bandwidth along the way.
 
-Afterwards, it's the job of the shading unit to creatively fiddle with the textures coming in. However - and something unexpected considering we're talking about an 8th-generation console - is that the PICA200's unit is **not programmable with [pixel shaders](xbox#tab-2-3-pixel)** [@graphics-kazakov]. Instead, we find six **configurable colour combiners**, each combiner receives three RGB or Alpha values and performs a logical operation on them. The result is passed to the next combiner and so forth. Each colour combiner can get its input from the previous combiner (except the first), a texture unit or a constant value.
+Afterwards, it's the job of the shading unit to creatively fiddle with the textures coming in. However - and something unexpected considering we're talking about an 8th-generation console - is that the PICA200's unit is **not programmable with [pixel shaders](xbox#tab-2-3-fragment)** [@graphics-kazakov]. Instead, we find six **configurable colour combiners**, each combiner receives three RGB or Alpha values and performs a logical operation on them. The result is passed to the next combiner and so forth. Each colour combiner can get its input from the previous combiner (except the first), a texture unit or a constant value.
 
 All in all, a modern reflection of the [Flipper era](gamecube#tab-3-3-texture) (while abiding by the OpenGL specification [@graphics-glTexEnv]), but don't forget developers may also combine this with the aforementioned Maestro functions.
 
@@ -462,7 +462,7 @@ That being said, the frame goes through **alpha**, **stencil** and **depth** tes
 
 For additional smoothing of the edges, the PICA200 can render the framebuffer at twice the selected dimensions, and then average it with antialiasing 2x2. This is an [old technique](xbox#tab-2-4-post-processing) known as **supersampling**.
 
-Once the framebuffer is ready to be displayed, it must be copied into another block in memory called **LCD frame-buffer** (whose format is better aligned to the scan-line procedure of the LCD screen) and then transferred to the LCD in the form of scan-lines.
+Once the framebuffer is ready to be displayed, it must be copied into another block in memory called **LCD framebuffer** (whose format is better aligned to the scanline procedure of the LCD screen) and then transferred to the LCD in the form of scanlines.
 
 ### Interactive comparison {.tabs-close}
 

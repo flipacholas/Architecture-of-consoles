@@ -73,7 +73,7 @@ After enjoying the surprising success of the [original Xbox](xbox), it was time 
 
 To put things in context, back when the original Xbox project was still at an early stage, neither Intel nor Nvidia were willing to share their intellectual property with Microsoft. This decision limited Microsoft's capacity to mould Nvidia's or Intel's chips for the specific needs of the Xbox. 
 
-For instance, the security subsystem that protected the console against the execution of unauthorised code was implemented outside these two critical chips. This made it vulnerable to [snooping attacks](xbox#tab-5-2-bootstrap-search) that eventually paved way for the execution of Homebrew and piracy. Moreover, Microsoft did not control the manufacturing stage either, so the production of Xbox systems was at the mercy of Intel's and Nvidia's supply.
+For instance, the security subsystem that protected the console against the execution of unauthorised code was implemented outside these two critical chips. This made it vulnerable to [snooping attacks](xbox#tab-6-1-bootstrap-search) that eventually paved way for the execution of Homebrew and piracy. Moreover, Microsoft did not control the manufacturing stage either, so the production of Xbox systems was at the mercy of Intel's and Nvidia's supply.
 
 Well, now that Microsoft had gained more leverage in the console market, they weren't willing to give away those rights anymore.
 
@@ -1101,7 +1101,7 @@ Because there's only **64 KB of SRAM** to store the page table and hashes, all m
 
 Once the hypervisor is fully running with Level 1 privilege, it dips into the internal SRAM of Xenon to provide the following functions:
 
-- Act as a **Memory Management Unit** (MMU) by handling its private virtual memory page table, where it keeps track of the memory boundaries of every program and whether they are executable or not. This protects the hardware from [buggy software](xbox#tab-5-3-permanent-unlock) producing buffer overflows.
+- Act as a **Memory Management Unit** (MMU) by handling its private virtual memory page table, where it keeps track of the memory boundaries of every program and whether they are executable or not. This protects the hardware from [buggy software](xbox#a-user-friendly-permanent-unlock) producing buffer overflows.
 - In cooperation with the L2 block, it ensures all executable code is encrypted when stored with RAM.
 
 To execute any userland application, the Kernel copies the (unencrypted) code into memory and the hypervisor checks that it's been signed with Microsoft's private RSA key [@cpu-steil]. If the signature is valid, the Hypervisor proceeds to duplicate the executable code in memory, and in doing so the L2 block automatically encrypts it. Finally, the Hypervisor marks the respective memory pages as 'executable' and the rest is history.
@@ -1118,7 +1118,7 @@ Additionally, to avoid being read by conventional DVD readers and preclude exact
 
 - A **misleading table of contents** that deceives conventional DVD players into loading a static video, this asks the user to insert the disc into an Xbox 360 console. <!-- - Game data is embedded in the **meta-data area** of the DVD. TODO: Recover/Confirm the source for this. -->
 - Within the file system, there's a database stored that contains multiple checks called **challenges** or 'security sectors' the driver performs to confirm that the current disc is valid. When referring to the DVD drive, these challenges simply enumerate faulty sectors deliberately made during mastering that the drive needs to find. As conventional burners don't account for them, a duplicate would never pass the verification process.
-- The outer area of the disc exposes a [burst-cutting area](xbox#dvd-copy-protection), although it doesn't appear to include meaningful data for copy protection.
+- The outer area of the disc exposes a [burst-cutting area](xbox#tab-5-1-dvd-copy-protection), although it doesn't appear to include meaningful data for copy protection.
 
 Finally, add to the fact the hypervisor only launches executables signed with Microsoft's private keys.
 

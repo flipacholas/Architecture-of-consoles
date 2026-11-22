@@ -142,11 +142,11 @@ It's worth noting that this design can underperform if not managed properly, so 
 
 The answer is *Blast Processing!* What else do you need to know?
 
-Okay, if you want to know the *real* answer: graphics data is processed by the 68000 and rendered on a proprietary chip called **Video Display Processor** (or 'VDP' for short), which then sends the resulting frame (in the form of [scan-lines](nes#outputting-the-image)) for display.
+Okay, if you want to know the *real* answer: graphics data is processed by the 68000 and rendered on a proprietary chip called **Video Display Processor** (or 'VDP' for short), which then sends the resulting frame (in the form of [scanlines](nes#outputting-the-image)) for display.
 
 The VDP runs at **~13 MHz** and supports multiple resolution modes depending on the region: up to **320 x 224 pixels** in NTSC and up to **320 x 240 pixels** in PAL. 
 
-Notice the vertical resolution now aligns with the 'safe area' of the [240p scanning model](nes#outputting-the-image), meaning games don't have to worry about 'danger zones' as much. Furthermore, the increased horizontal resolution means more detail can be inserted per scan-line, reducing the horizontal stretching of pixels as well.
+Notice the vertical resolution now aligns with the 'safe area' of the [240p scanning model](nes#outputting-the-image), meaning games don't have to worry about 'danger zones' as much. Furthermore, the increased horizontal resolution means more detail can be inserted per scanline, reducing the horizontal stretching of pixels as well.
 
 ### Behind the multiple display resolutions
 
@@ -160,12 +160,12 @@ You can identify PAL games that render in NTSC mode by checking `Mode Set Regist
 
 ![By contrast, the more sophisticated multiplayer mode of *Sonic 3* (1994) relies on dedicated 8 x 8 pixel tiles that are separate from single-player levels. This allows to keep progressive mode (240p).](twopsonic/sonic3.png){.toright .border .pixel}
 
-Furthermore, there's an additional parameter that allows the VDP to **double the internal vertical resolution**. When enabled, two tiles are stacked to form **8 x 16 maps**. The VDP can't magically produce twice as much graphics, so it renders one horizontal half of the graphics at a time, and then alternates. To create the illusion of seeing both sets simultaneously, the VDP also uses **interlaced scanning** (i.e. **480i**). In essence, instead of broadcasting 240 scan-lines with the whole rendered frame (i.e. 240p), the system sends:
+Furthermore, there's an additional parameter that allows the VDP to **double the internal vertical resolution**. When enabled, two tiles are stacked to form **8 x 16 maps**. The VDP can't magically produce twice as much graphics, so it renders one horizontal half of the graphics at a time, and then alternates. To create the illusion of seeing both sets simultaneously, the VDP also uses **interlaced scanning** (i.e. **480i**). In essence, instead of broadcasting 240 scanlines with the whole rendered frame (i.e. 240p), the system sends:
 
-1. A first pass with 240 scan-lines containing the top half of the graphics. The scan-lines are positioned on the **odd** rows of the CRT grid.
-2. A second pass with another 240 scan-lines containing the bottom half of the graphics. These are positioned on the **even** rows of the CRT grid.
+1. A first pass with 240 scanlines containing the top half of the graphics. The scanlines are positioned on the **odd** rows of the CRT grid.
+2. A second pass with another 240 scanlines containing the bottom half of the graphics. These are positioned on the **even** rows of the CRT grid.
 
-The result is an image made of 480 scan-lines, with half the refresh rate, a bit more flicker, but greater vertical detail. All in all, it's not as pleasant to stare at and the distorted aspect ratio makes pixels look squashed. Thus, games used it for exceptional needs; the multiplayer mode of *Sonic 2* is a good example of this [@graphics-sonicmultip].
+The result is an image made of 480 scanlines, with half the refresh rate, a bit more flicker, but greater vertical detail. All in all, it's not as pleasant to stare at and the distorted aspect ratio makes pixels look squashed. Thus, games used it for exceptional needs; the multiplayer mode of *Sonic 2* is a good example of this [@graphics-sonicmultip].
 
 ### Organising the content
 
@@ -229,7 +229,7 @@ This plane supports six different dimensions: 256x256, 256x512, 256x1024, 512x25
 
 Each tile can be **flipped horizontally and/or vertically** and have a **priority** set.
 
-In the example shown [@fig-background_map], you will notice that the selected area for display is not a square... *It doesn't have to be!*. The VDP allows to set up horizontal scrolling values for the whole frame, each individual scan-line or every eight pixels. This means that developers can shape the selected area like a rhomboid and alter its angles as the player moves to simulate **perspective effects**. Tricks like this do not corrupt the plane; the VDP fetches each selected horizontal line and constructs a regular frame from it.
+In the example shown [@fig-background_map], you will notice that the selected area for display is not a square... *It doesn't have to be!*. The VDP allows to set up horizontal scrolling values for the whole frame, each individual scanline or every eight pixels. This means that developers can shape the selected area like a rhomboid and alter its angles as the player moves to simulate **perspective effects**. Tricks like this do not corrupt the plane; the VDP fetches each selected horizontal line and constructs a regular frame from it.
 
 #### Foreground {.tab}
 
@@ -259,7 +259,7 @@ In this plane, tiles are treated as **sprites**. They are positioned on a **512x
 
 Sprites are formed by combining up to 4x4 tiles (32x32 pixel map) and selecting up to 16 colours (including *transparent*). If a bigger sprite is needed, multiple sprites can be combined into one.
 
-There can only be a maximum of 20 sprites per scan-line and 80 per screen. Overflowing these limits will corrupt the entire layer.
+There can only be a maximum of 20 sprites per scanline and 80 per screen. Overflowing these limits will corrupt the entire layer.
 
 The region in VRAM where sprites are defined is called **Sprite Attribute Table** [@graphics-macdonald] and each entry contains the tile index, layer coordinates (x and y), `link` value (manages which sprites are drawn first), priority (the sprite with the highest priority is the one to be displayed during overlaps), colour palette index, and vertical and horizontal flip.
 
@@ -283,7 +283,7 @@ Conventionally, two types of interrupts are called: **H-Blank** (at every horizo
 
 H-Blank is called numerous times per frame, but is limited to executing short routines. V-Blank, on the other hand, allows for longer routines, with the drawback of only being called 50 or 60 times per second (depending on the console's region).
 
-Notice that the overscan area in the example exhibits some random coloured dots in the bottom-left corner [@fig-cram_dots]. This phenomenon, known as **CRAM dots**, occurs when the CPU updates the palettes in CRAM while the VDP is beaming the remaining scan-lines (in the example, this happens during overscan). This conflict causes the VDP to fetch whatever value the CPU is writing at that moment, rather than the required location in CRAM. So, the image gets corrupted. In this particular case, the game updates CRAM only during overscan, so this anomaly goes unnoticed on traditional CRTs. At another level in the game, however, the game changes the palette mid-frame to simulate water effects. Hence, programmers tried to mask it by drawing a flickering water ripple in-between [@audio-sonic_water]. As you can see, it's all about balancing the extra colours with the CRAM side-effect.
+Notice that the overscan area in the example exhibits some random coloured dots in the bottom-left corner [@fig-cram_dots]. This phenomenon, known as **CRAM dots**, occurs when the CPU updates the palettes in CRAM while the VDP is beaming the remaining scanlines (in the example, this happens during overscan). This conflict causes the VDP to fetch whatever value the CPU is writing at that moment, rather than the required location in CRAM. So, the image gets corrupted. In this particular case, the game updates CRAM only during overscan, so this anomaly goes unnoticed on traditional CRTs. At another level in the game, however, the game changes the palette mid-frame to simulate water effects. Hence, programmers tried to mask it by drawing a flickering water ripple in-between [@audio-sonic_water]. As you can see, it's all about balancing the extra colours with the CRAM side-effect.
 
 ### A dedicated transfer unit {.tabs-close}
 

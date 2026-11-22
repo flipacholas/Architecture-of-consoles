@@ -472,9 +472,9 @@ To improve customer satisfaction, Sega later shipped a Dreamcast-branded keyboar
 
 ::: {.subfigures .side-by-side}
 
-![The home page offered plenty of content to explore.](internet/home.png){.toleft paperback_latex_width="80%"}
+![The home page offered plenty of content to explore.](internet/home.png){.toleft paperback_latex_width="77%"}
 
-![Sega used holiday events to offer extra content for the game.](internet/events.png){.toright paperback_latex_width="80%"}
+![Sega used holiday events to offer extra content for the game.](internet/events.png){.toright paperback_latex_width="77%"}
 
 *Sonic Adventure*'s Internet portal, restored by Dreampipe. Behind the scenes, it consists of HTML interacted with a built-in web browser.
 
@@ -482,9 +482,9 @@ To improve customer satisfaction, Sega later shipped a Dreamcast-branded keyboar
 
 ::: {.subfigures .side-by-side}
 
-![The home screen.](internet/planetweb_home.png){.toleft paperback_latex_width="80%"}
+![The home screen.](internet/planetweb_home.png){.toleft paperback_latex_width="77%"}
 
-![The web browser interface.](internet/planetweb_url.png){.toright paperback_latex_width="80%"}
+![The web browser interface.](internet/planetweb_url.png){.toright paperback_latex_width="77%"}
 
 PlanetWeb, the internet suite for the US market. Unlike Dreamkey, it wasn't tied to any ISP.
 
@@ -525,7 +525,7 @@ The VMU has two modes of operation:
 - **Attached to the controller**: The official controller has two slots for connecting VMUs and other accessories of the same form factor. If the VMU is inserted on the first slot (visible from the front of the controller), it can display drawings during gameplay. Moreover, the Dreamcast can store saves and upload a program on the VMU.
 - **Detached from the controller**: The gadget becomes a Tamagotchi-like handheld with a clock and save manager, and can also run whatever program the Dreamcast previously transferred. If that wasn't enough, two VMUs can be connected to share content as well.
 
-## Anti-Piracy & Homebrew
+## Anti-Piracy and Homebrew
 
 At first glance, the adoption of the proprietary GD-ROM format was a strong deterrent to the production of unauthorised copies and their use on non-Dreamcast hardware. Games are also *region-locked*, meaning that the console refuses to run a game intended for a different geographical region.
 

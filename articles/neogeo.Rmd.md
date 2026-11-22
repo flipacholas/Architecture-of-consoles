@@ -115,7 +115,7 @@ Curiously enough, this system does not feature any form of **Direct Memory Acces
 
 ## Graphics
 
-The Neo Geo is the pinnacle of tile-based graphics, its richness of colours is comparable to [frame-buffer-based systems](sega-saturn#graphics) (which only became affordable four years later). Be that as it may, when it comes to effects, the [Super Nintendo](super-nintendo#graphics) has managed to do more with less.
+The Neo Geo is the pinnacle of tile-based graphics, its richness of colours is comparable to [framebuffer-based systems](sega-saturn#graphics) (which only became affordable four years later). Be that as it may, when it comes to effects, the [Super Nintendo](super-nintendo#graphics) has managed to do more with less.
 
 ### Design
 
@@ -158,7 +158,7 @@ In my motherboard revision, these two components make up the Video Display Proce
 For explanatory purposes, let us start by describing the most notable chips in the set:
 
 - The **Motorola 68000**. You already know it as the main CPU. Its main role is to fill the VRAM and Palette RAM; and set up the VDC (using a set of exposed registers).
-- The **Video Display Processor** (VDC): Based on the information stored in multiple memory chips, it generates scan lines and sends them to 'Palette RAM', which will, in turn, generate the required colour pixels.
+- The **Video Display Processor** (VDC): Based on the information stored in multiple memory chips, it generates scanlines and sends them to 'Palette RAM', which will, in turn, generate the required colour pixels.
   - The physical appearance of the VDC will vary depending on the motherboard model. For instance, the first revision housed three chips (the 'LSPC-A0', 'NEO-B0' and 'NEO-C0'), whereas later ones use a combination of the 'LSPC-A2' and the 'NEO-B1'.
 - The **Video DAC**: Converts the colour stream received from 'Palette RAM' into a video signal.
 
@@ -174,9 +174,9 @@ On the motherboard, we find:
 
 - **68 KB of VRAM**: Stores sprite attributes and tile references.
   - Physically, VRAM is divided into **4 KB of 'Fast' VRAM** and **64 KB of 'Slow' VRAM**. Each is connected via a dedicated bus and exhibits drastically different latency. This conditions the number of cycles the CPU must wait after updating its content.
-- **Four line buffers**: Store the scan lines rendered by the VDC. They only encode tile data that must be combined with other data in Palette RAM.
+- **Four line buffers**: Store the scanlines rendered by the VDC. They only encode tile data that must be combined with other data in Palette RAM.
 - **16 KB of Palette RAM**: Stores the palettes of colours used by the graphics. This block is also tasked with sending pixel colours to the Video DAC.
-- **64 KB of 'L0 ROM'**: It so happens the VDC can **shrink sprites**. To achieve this, the 'L0 ROM' stores lookup tables that tell the VDC which scan lines to render based on the zoom value requested. [@graphics-l0_rom].
+- **64 KB of 'L0 ROM'**: It so happens the VDC can **shrink sprites**. To achieve this, the 'L0 ROM' stores lookup tables that tell the VDC which scanlines to render based on the zoom value requested. [@graphics-l0_rom].
 
 The corresponding board in the game cartridge is referred to as **CHA Board** and fits the following:
 
@@ -228,7 +228,7 @@ The S ROM stores the exclusive tiles for the fixed plane in the cartridge. The V
 
 ![The Sprite layer, notice how it's used for all the areas of the scene (not just the two characters).](aof/sprites.png){.tab-float .border .pixel}
 
-As you may know, sprites are **freely moving tiles**. Yet, in the case of the Neo Geo, the tiles used for sprites are exceptionally **16 x 16 pixels** wide. With that in mind, the VDC can compose sprites ranging from **16 x 16 pixels** (1 x 1 tiles) to **16 x 512 pixels** (1 x 32 tiles). The reason for providing such tall compositions is that any sprite can also be **combined horizontally** by 'attaching' them to the previous one (though they still count as separate sprites). Overall, there is a limit of **96 sprites per scan line** and **381 per frame** [@graphics-sprites], a large number compared to its competitors.
+As you may know, sprites are **freely moving tiles**. Yet, in the case of the Neo Geo, the tiles used for sprites are exceptionally **16 x 16 pixels** wide. With that in mind, the VDC can compose sprites ranging from **16 x 16 pixels** (1 x 1 tiles) to **16 x 512 pixels** (1 x 32 tiles). The reason for providing such tall compositions is that any sprite can also be **combined horizontally** by 'attaching' them to the previous one (though they still count as separate sprites). Overall, there is a limit of **96 sprites per scanline** and **381 per frame** [@graphics-sprites], a large number compared to its competitors.
 
 In terms of effects, sprites can be **flipped** and/or **shrunk**. These attributes are stored in the 'fast' block of VRAM, allowing the CPU to update them without considerable latency.
 
@@ -247,13 +247,13 @@ As you can see, for practical reasons, the last three blocks are stored in fast 
 
 ![Resulting frame shown on the screen.](aof/result.png){.tab-float .border .pixel}
 
-While [competitors](nes#constructing-the-frame) are known for rendering at the pace of the CRT beam, the Neo Geo implements a **line buffer rendering** system. With this approach, the console stores the rendered scan lines in the aforementioned buffer, rather than beaming them directly to the screen. Since the VDC incorporates enough memory for two scan lines, this allows the VDC to render one scan line while displaying the other, thereby enabling games to update graphics during **active display** (aside from [H-Blank](game-boy#tab-1-5-result) and [V-Blank](nes#tab-1-5-result)).
+While [competitors](nes#constructing-the-frame) are known for rendering at the pace of the CRT beam, the Neo Geo implements a **line buffer rendering** system. With this approach, the console stores the rendered scanlines in the aforementioned buffer, rather than beaming them directly to the screen. Since the VDC incorporates enough memory for two scanlines, this allows the VDC to render one scanline while displaying the other, thereby enabling games to update graphics during **active display** (aside from [H-Blank](game-boy#tab-1-5-result) and [V-Blank](nes#tab-1-5-result)).
 
 Truth be told, the VDC will still be accessing VRAM at the same time, so the CPU must wait between 12 and 16 cycles [@graphics-vram] (depending on the operation) before accessing VRAM again; otherwise, the next operation will be ignored (hence the use of two VRAM variants).
 
 #### Broadcasting the frame {.tabs-close}
 
-To broadcast the rendered scan lines, the process varies depending on the console variant (AES or MVS).
+To broadcast the rendered scanlines, the process varies depending on the console variant (AES or MVS).
 
 The home model adds a video encoder to generate the composite and RGB signals. The A/V connector is somewhat similar to that of the [Master System](master-system#video-output) and [MegaDrive](mega-drive-genesis#video-output), but is not interchangeable.
 

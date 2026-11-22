@@ -202,7 +202,7 @@ At first glance, the VIP might appear to be just another tile engine, but it's m
 
 ![The VIP chip.](vpu_chip.webp){latex_width="80%"}
 
-Moreover, whereas classic tile engines rendered graphics per scan line, the VIP employs a **frame buffer architecture**, storing the final frame in memory (as a bitmap) and then sending it for display. This is closer to the modus operandi of modern [3D renderers](sega-saturn#graphics). In fact, the Virtual Boy went a step further by implementing a form of [**page flipping**](game-boy-advance#beyond-tiles), in which two frame buffers are allocated per display unit, allowing the scanner to read from one while the VIP writes to the other. All of this helps to prevent image tearing.
+Moreover, whereas classic tile engines rendered graphics per scanline, the VIP employs a **frame buffer architecture**, storing the final frame in memory (as a bitmap) and then sending it for display. This is closer to the modus operandi of modern [3D renderers](sega-saturn#graphics). In fact, the Virtual Boy went a step further by implementing a form of [**page flipping**](game-boy-advance#beyond-tiles), in which two frame buffers are allocated per display unit, allowing the scanner to read from one while the VIP writes to the other. All of this helps to prevent image tearing.
 
 ![Architecture of the VIP.](_diagrams/vip.png){.open-float}
 

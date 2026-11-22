@@ -226,7 +226,7 @@ These modes can't be chosen arbitrarily; instead, the console provides a set of 
 
 ::: {.subfigures .tabs-nested .tab-float max_subfigures=2}
 
-![Background Layer 0 (BG0). This particular layer is shifted horizontally at certain scan lines to simulate the clouds moving.](mario/bg1.png){.active .pixel .border hardcover_latex_width="85%" paperback_latex_width="76%" title="Layer 0"}
+![Background Layer 0 (BG0). This particular layer is shifted horizontally at certain scanlines to simulate the clouds moving.](mario/bg1.png){.active .pixel .border hardcover_latex_width="85%" paperback_latex_width="76%" title="Layer 0"}
 
 ![Background Layer 2 (BG2).](mario/bg2.png){.pixel .border hardcover_latex_width="85%" paperback_latex_width="76%" title="Layer 2"}
 
@@ -290,9 +290,9 @@ Anyway, this engine is commanded using a **Command FIFO** which is filled by the
 
 The Rendering Engine is in charge of converting vectors to pixels (i.e. rasterising), colouring them (i.e. texture mapping), and applying lighting and other effects [@graphics-3d_overview]. It relies on **perspective correction** and **Gouraud shading** for interpolating textures and light, respectively. Moreover, the unit provides modern features like **fog**, **alpha blending**, **depth buffering** (either [Z-buffering](nintendo-64#modern-visible-surface-determination) or a variant called W-buffering), **stencil tests** and **anti-aliasing**. However, the latter is very primitive (it just sets the outer edges of polygons as transparent) and it only works with opaque pixels.
 
-The rendering system is a mix of old and new: instead of outputting a frame buffer, it employs **line buffer rendering**, where it fills scan lines (similarly to the 2D engine) and stores the results in a smaller buffer. This is because the 3D engine must work at the same pace as the 2D drawer.
+The rendering system is a mix of old and new: instead of outputting a frame buffer, it employs **line buffer rendering**, where it fills scanlines (similarly to the 2D engine) and stores the results in a smaller buffer. This is because the 3D engine must work at the same pace as the 2D drawer.
 
-Without the traditional frame buffer, the rasteriser employs **scan line rendering**, traversing each scan line to process any polygon edges found within. Arisotura (the developer of the MelonDS emulator) reported that, for each quadrangle, the renderer can only fill **one span per scan line** [@graphics-arisotura]. This can be a bit troubling, since the result gets messy if the quad is concave or contains crossed edges, for instance.
+Without the traditional frame buffer, the rasteriser employs **scanline rendering**, traversing each scanline to process any polygon edges found within. Arisotura (the developer of the MelonDS emulator) reported that, for each quadrangle, the renderer can only fill **one span per scanline** [@graphics-arisotura]. This can be a bit troubling, since the result gets messy if the quad is concave or contains crossed edges, for instance.
 
 Regarding effects, the unit also provides **shadowing** and a distinct feature called **Toon Shading** (another name for [Cel Shading](gamecube#creativity)): Even though this unit is not [programmable](xbox#the-importance-of-programmability), the lighting parameters can be altered to achieve a cartoony effect [@graphics-3d_control].
 
@@ -300,7 +300,7 @@ Regarding effects, the unit also provides **shadowing** and a distinct feature c
 
 ![Ah, that's more like it.](mario/complete.png){.tab-float .border .pixel}
 
-Instead of writing the results back to a frame buffer for display, the rendering engine writes to a block called **Colour Buffer** which stores up to 48 scan lines [@graphics-3d_overview]. Each scan line is fetched by the 2D engine to fill the BG0 layer in a 'First In, First Out' (FIFO) manner.
+Instead of writing the results back to a frame buffer for display, the rendering engine writes to a block called **Colour Buffer** which stores up to 48 scanlines [@graphics-3d_overview]. Each scanline is fetched by the 2D engine to fill the BG0 layer in a 'First In, First Out' (FIFO) manner.
 
 3D rendering starts before the 2D one, enabling the latter to apply transformations on the new layer if required. Main also allows to capture the 2D, 3D or combined frame generated, blend it with another frame in VRAM, and write the result back to VRAM - which can be displayed afterwards.
 

@@ -113,9 +113,9 @@ For the Master System, VRAM houses everything the VDP requires for rendering (ex
 
 ### Constructing the frame
 
-The VDP has the same *modus operandi* as Nintendo's [PPU](nes#constructing-the-frame); in other words, graphics are rendered on the spot and output as a [240p signal](nes#outputting-the-image). With the Master System, the VDP's frames have a resolution of **256 x 192 pixels**. When compared side-by-side with the NES, the frame is shorter than the PPU's, which explains the extra vertical margin (the unused scan-lines are filled with a backdrop colour).
+The VDP has the same *modus operandi* as Nintendo's [PPU](nes#constructing-the-frame); in other words, graphics are rendered on the spot and output as a [240p signal](nes#outputting-the-image). With the Master System, the VDP's frames have a resolution of **256 x 192 pixels**. When compared side-by-side with the NES, the frame is shorter than the PPU's, which explains the extra vertical margin (the unused scanlines are filled with a backdrop colour).
 
-To be fair, later revisions added support for the less-padded resolutions of 256 x 224 px and 256 x 240 px. However, to maintain compatibility with all models, developers adhered to the earlier resolution. It wouldn't be until the [Mega Drive/Genesis](mega-drive-genesis#graphics) arrived that 240 scan-lines became routinely used.
+To be fair, later revisions added support for the less-padded resolutions of 256 x 224 px and 256 x 240 px. However, to maintain compatibility with all models, developers adhered to the earlier resolution. It wouldn't be until the [Mega Drive/Genesis](mega-drive-genesis#graphics) arrived that 240 scanlines became routinely used.
 
 Moving on, the VDP has four different modes of operation. These alter the characteristics of the frame (colour depth and resolution):
 
@@ -170,17 +170,17 @@ Sprites are essentially tiles that can move freely. The VDP can raster **up to 6
 
 The **Sprite Attribute Table** is a 256-byte area in VRAM that contains an array of all the defined sprites. Its entries are similar to those of the background layer, except that each sprite contains two additional values representing the X/Y coordinates.
 
-The VDP is limited to **a maximum of eight sprites per horizontal scan-line** [@graphics-macdonald]. Also, if multiple sprites overlap, the first one in the list is displayed.
+The VDP is limited to **a maximum of eight sprites per horizontal scanline** [@graphics-macdonald]. Also, if multiple sprites overlap, the first one in the list is displayed.
 
 #### Result {.tab}
 
 ![Tada!](sonic/result.png){.tab-float .pixel .latex-framed latex_width="80%" #fig-frame_result}
 
-The VDP automatically blends the two layers to form the final frame. The rendering process is performed scan-line by scan-line, so the VDP doesn't really know how the frame will look; that's only visible to the user once the picture is constructed on the TV.
+The VDP automatically blends the two layers to form the final frame. The rendering process is performed scanline by scanline, so the VDP doesn't really know how the frame will look; that's only visible to the user once the picture is constructed on the TV.
 
 If you examine the example image [@fig-frame_result], you may notice a vertical column at the left side of the frame. This occurs because the screen map is tall enough to provide vertical scrolling without producing artefacts, **but not wide enough for horizontal scrolling**. To address this, the VDP can **mask** the left-most side with an 8 px column to prevent intermediate tiles from being displayed.
 
-To update the graphics for the next frame without disrupting the image currently being displayed, the VDP sends two types of **interrupts** to the CPU. One notifies that the CRT TV has finished beaming a chosen number of scan-lines (called **horizontal interrupt**), while the other signals that the CRT has completed drawing the final scan-line (called **vertical interrupt**), indicating the frame is finished. During these events, the CRT's beam is repositioning to draw the next scan-line (**blanking interval**), so any alteration of the VDP's state won't tear the image. Horizontal blanking has a shorter time-frame than vertical blanking, yet it still allows to change, let's say, the colour palette. This still can produce certain effects.
+To update the graphics for the next frame without disrupting the image currently being displayed, the VDP sends two types of **interrupts** to the CPU. One notifies that the CRT TV has finished beaming a chosen number of scanlines (called **horizontal interrupt**), while the other signals that the CRT has completed drawing the final scanline (called **vertical interrupt**), indicating the frame is finished. During these events, the CRT's beam is repositioning to draw the next scanline (**blanking interval**), so any alteration of the VDP's state won't tear the image. Horizontal blanking has a shorter time-frame than vertical blanking, yet it still allows to change, let's say, the colour palette. This still can produce certain effects.
 
 ### Secrets and limitations {.tabs-close}
 
@@ -188,7 +188,7 @@ At first glance, the VDP may seem like another chip with minimal functionality t
 
 #### Collision detection {.tabs .active}
 
-First of all, the VDP could **tell if two sprites were colliding**. This was done by checking its `status` register [@graphics-collision]. While it could not identify which sprites in particular were colliding, developers could 'triangulate' the location by reading other registers as well, such as the `scan-line counter`.
+First of all, the VDP could **tell if two sprites were colliding**. This was done by checking its `status` register [@graphics-collision]. While it could not identify which sprites in particular were colliding, developers could 'triangulate' the location by reading other registers as well, such as the `scanline counter`.
 
 This feature was not new, actually, as the TMS9918 also included it. Thus, the SG-1000 also had collision detection.
 

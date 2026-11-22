@@ -344,7 +344,7 @@ Matsushita released further revisions of this drive obfuscating the debug interf
 
 It's worth mentioning that the main benefit of modchips was plain piracy, as the disc content is still encrypted, so more research and tools were needed to run custom code.
 
-GameCube homebrew, on the other hand, was already possible to execute by following [previous exploits](gamecube#tab-5-3-honourable-mention) discovered on the predecessor.
+GameCube homebrew, on the other hand, was already possible to execute by following [previous exploits](gamecube#the-main-system) discovered on the predecessor.
 
 ### System encryption
 

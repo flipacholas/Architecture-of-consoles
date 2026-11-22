@@ -471,7 +471,7 @@ The Geometry Processing block works like this:
 
 ![Simplified diagram of the rasterization stage. RSX embeds different units to calculate values used for interpolation of pixels and colours.](_diagrams/rsx/pipeline_rasterizer.png){.tab-float}
 
-Moving on, it's time to convert ([rasterize](playstation#tab-3-3-rasterisation)) vertices into pixels. The RSX's rasterizer is quite fast, it can rasterize up to 8x8 pixels (64) per cycle and works with frame-buffers of up to **4096x4096 pixels** (though developers may need less than that).
+Moving on, it's time to convert ([rasterize](playstation#tab-3-3-rasterisation)) vertices into pixels. The RSX's rasterizer is quite fast, it can rasterize up to 8x8 pixels (64) per cycle and works with framebuffers of up to **4096x4096 pixels** (though developers may need less than that).
 
 The rasterizer accepts points, lines (including strips and closed types), triangles (including strips and fans), quadrilaterals and regular polygons. Naturally, as with this console generation, the rasterizer works with **sub-pixel coordinates**, where the sampling points are half-coordinates (`0.5`) of pixels. This allows the unit to apply anti-aliasing methods such as **Multisampling** afterwards. Multisampling consists in rasterizing the same geometry multiple times but shifting a few sub-pixels apart at every batch (the RSX supports four different shifting modes) and then computes an average. This results in a smoothed image.
 
@@ -485,7 +485,7 @@ A separate unit is used for rasterizing 2D objects (sprites), although this one 
 
 Next in line we've got the **Fragment Shader & Texture** block, this is a programmable unit (through the use of 'fragment programs' or 'shader') that applies texture mapping and other effects.
 
-Being an advanced successor of GeForce3's [texture units](xbox#tab-2-3-pixel), the new block contains **six fragment units** (also called 'pipes'), each one processes 2x2 texels (named 'quads'). To organise multiple units working concurrently, another sub-block called **Shader Quad Distributor** (SQD) is placed to dispatch quads to each fragment unit. Afterwards, each fragment unit loads the fragment program.
+Being an advanced successor of GeForce3's [texture units](xbox#tab-2-3-fragment), the new block contains **six fragment units** (also called 'pipes'), each one processes 2x2 texels (named 'quads'). To organise multiple units working concurrently, another sub-block called **Shader Quad Distributor** (SQD) is placed to dispatch quads to each fragment unit. Afterwards, each fragment unit loads the fragment program.
 
 To compute operations, each pipe contains the _enormous_ amount of **1536 128-bit registers**. On top of all that, each pipe can process multiple quads in parallel (**multi-threading**), though the number of quads processed in parallel depends on the number of registers allocated to the fragment program (`no. threads = 1536 ÷ no. registers reserved by shader`). In global terms, up to 460 quads can be processed in parallel. Furthermore, up to three fragment pipes can process two instructions at the same time (**dual-issuing**, like the PPU) as long as the instructions don't depend on each other.
 
@@ -497,7 +497,7 @@ Finally, since the units will be constantly fetching texture pieces from video R
 
 ![Post-processing stage.](_diagrams/rsx/pipeline_post.png){.tab-float}
 
-Before writing the results into the frame-buffer (stored either in VRAM or Main RAM), a final block called **Raster Operation Block** (ROP) performs final tests on the resulting pixels.
+Before writing the results into the framebuffer (stored either in VRAM or Main RAM), a final block called **Raster Operation Block** (ROP) performs final tests on the resulting pixels.
 
 There are two sets of ROPs made of four blocks each (eight in total). Each group performs z-testing, alpha blending and the final write to memory. All in all, this circuitry can process up to 16 z-values and 8 pixel colours per clock. Curiously enough, the PC-variant Nvidia 7800 GTX features 16 ROPs instead of 8, maybe this cut was done to prioritise memory bandwidth consumed by the SPUs?
 
@@ -669,7 +669,7 @@ With all being said, where is all this data stored? From a general user's perspe
 
 #### Cell BootROM {.tabs .active}
 
-It turns out, within Cell there's a small ROM hidden somewhere that manufacturers may store a 'protected' boot-loader. IBM provides this space to spare any company (not just Sony) from having to manually implement [tailored obfuscation methods](xbox#system-protection) to protect their boot code, as off-the-shelf components are not always prepared for bespoken needs.
+It turns out, within Cell there's a small ROM hidden somewhere that manufacturers may store a 'protected' boot-loader. IBM provides this space to spare any company (not just Sony) from having to manually implement [tailored obfuscation methods](xbox#tab-5-2-system-protection) to protect their boot code, as off-the-shelf components are not always prepared for bespoken needs.
 
 Since this piece is already physically protected with obfuscation, it doesn't have to be encrypted. Thus, it's ideal for a first-stage boot-loader (which can't be encrypted) and the PlayStation 3 stores its early boot stage there.
 
@@ -785,7 +785,7 @@ When IBM described Cell from the software level, they mentioned that Cell is cap
 
 Thanks to OtherOS, experienced users had the opportunity to develop homebrew applications running on Cell without licensing restrictions, this was particularly interesting for research/scientific purposes [@games-cluster] [@operating_system-barcelona], as this console carried a more affordable price tag than a mainframe. For multimedia purposes, the Blu-ray drive and Multi-card reader were also accessible from OtherOS.
 
-On the other side, while OtherOS' privileges may surpass GameOS' (at the kernel level), **they don't overtake the hypervisor**, which still resides in memory. So, any hardware access from OtherOS still depends on the will of Sony's hypervisor, and it so happens that the latter **blocks access to RSX's command buffers** (preventing the use of the shader units, among other components used for accelerating graphics operations). Consequently, resulting Linux distributions resort to software rendering (all graphics are drawn by Cell) and then stream the frame-buffer to the RSX for display. While it's disappointing that OtherOS can't make use of the full capabilities of this console, this was probably done to reduce attack surfaces. Ironically, OtherOS' use of Cell is similar to how IBM/Toshiba/Sony may have originally envisioned the PS3!
+On the other side, while OtherOS' privileges may surpass GameOS' (at the kernel level), **they don't overtake the hypervisor**, which still resides in memory. So, any hardware access from OtherOS still depends on the will of Sony's hypervisor, and it so happens that the latter **blocks access to RSX's command buffers** (preventing the use of the shader units, among other components used for accelerating graphics operations). Consequently, resulting Linux distributions resort to software rendering (all graphics are drawn by Cell) and then stream the framebuffer to the RSX for display. While it's disappointing that OtherOS can't make use of the full capabilities of this console, this was probably done to reduce attack surfaces. Ironically, OtherOS' use of Cell is similar to how IBM/Toshiba/Sony may have originally envisioned the PS3!
 
 {.close-float}
 

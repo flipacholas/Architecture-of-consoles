@@ -194,7 +194,7 @@ The **Object Attribute Memory** (OAM) is a map stored within the PPU that specif
 
 In addition to the tile index, each OAM entry contains the following attributes: X-Y position, chosen palette, priority, and flip flags (allowing to mirror the tile vertically and horizontally).
 
-The PPU is limited to rendering **up to ten sprites per scan line** and **up to 40 per frame**; overflowing this will result in sprites not being drawn.
+The PPU is limited to rendering **up to ten sprites per scanline** and **up to 40 per frame**; overflowing this will result in sprites not being drawn.
 
 #### Window {.tab}
 
@@ -202,7 +202,7 @@ The PPU is limited to rendering **up to ten sprites per scan line** and **up to 
 
 ![Allocated Window map.](ppu_mario/window.png){.active .border hardcover_latex_width="70%" paperback_latex_width="64%" title="Full"}
 
-![Displayed Window map. This is because the game intentionally activates it during the final scan lines. Hence, only the first rows are rendered at the bottom of the screen.](ppu_mario/window_rendered.png){.border hardcover_latex_width="70%" paperback_latex_width="64%" title="Selected"}
+![Displayed Window map. This is because the game intentionally activates it during the final scanlines. Hence, only the first rows are rendered at the bottom of the screen.](ppu_mario/window_rendered.png){.border hardcover_latex_width="70%" paperback_latex_width="64%" title="Selected"}
 
 The window layer rendering process.
 
@@ -222,11 +222,11 @@ Consequently, games normally use the window layer to draw life counters, scores,
 
 Once the frame is finished, it's time to move on to the next one! However, the CPU cannot modify the tables while the PPU is reading from VRAM, so the system provides a set of interrupts triggered when the PPU is idle. You may recall this behaviour from the NES era.
 
-When a single scan line is complete, the **Horizontal Blank** period starts. This allows developers to fiddle with the part of the frame that has not yet been drawn.
+When a single scanline is complete, the **Horizontal Blank** period starts. This allows developers to fiddle with the part of the frame that has not yet been drawn.
 
-When all scan lines are complete, the **Vertical Blank** period begins, and a dedicated interrupt is called. The game can then update the graphics for the next frame.
+When all scanlines are complete, the **Vertical Blank** period begins, and a dedicated interrupt is called. The game can then update the graphics for the next frame.
 
-There's an extra state called **OAM search** that is initiated at the start of the scan line. At this point, the PPU is determining which sprites will be displayed on that scan line, so the game may update any region except OAM.
+There's an extra state called **OAM search** that is initiated at the start of the scanline. At this point, the PPU is determining which sprites will be displayed on that scanline, so the game may update any region except OAM.
 
 #### The Wobble effect {.tabs-close}
 

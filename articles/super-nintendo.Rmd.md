@@ -155,7 +155,7 @@ This separation, from a programming perspective, is redundant, as both chips are
 
 Just like its predecessor, the S-PPU generates a [240p signal](nes#outputting-the-image). The big difference now is that the S-PPU supports **multiple background modes**, these may widen the horizontal resolution, increase the vertical one (with [interlacing](mega-drive-genesis#behind-the-multiple-display-resolutions)), or both!
 
-The NTSC system outputs a standard resolution of **256 x 224 pixels** at **~60 Hz** [@graphics-guide]. The European variant, adhering to the PAL specification, outputs **256 × 240 pixels** at **~50 Hz**. Be that as it may, most games do not utilise the additional European scan-lines and instead display a *letterbox* (black lines).
+The NTSC system outputs a standard resolution of **256 x 224 pixels** at **~60 Hz** [@graphics-guide]. The European variant, adhering to the PAL specification, outputs **256 × 240 pixels** at **~50 Hz**. Be that as it may, most games do not utilise the additional European scanlines and instead display a *letterbox* (black lines).
 
 Part of the NES legacy also includes stretched pixels. Put simply, rather than being 'perfectly square', pixels on the Super Nintendo have an **aspect ratio of 8:7**. Consequently, once the image is beamed on a 4:3 TV, it looks **horizontally stretched**, resembling a **292 x 224 pixels** frame instead (in the case of the NTSC variant) [@graphics-aspect]. Now, this is not news, but as graphics in the 4th generation gained more detail and CRTs became sharper, this effect became more noticeable.
 
@@ -256,7 +256,7 @@ The S-PPU provides many operations for backgrounds, but these cannot be chosen a
 - **Mode 4**: Mode 2 and 3 combined (Column scroll + RGB colour mapping).
   - The first layer supports 256 colours, while the second is limited to just 4 colours.
 - **Mode 5**: Also called 'high-resolution mode', it provides 1 layer with 16 colours + 1 layer with 4 colours.
-  - In exchange for colour variety, the selected area features twice the horizontal resolution (**512 x 224 pixels**). It's still encoded as a 240p signal, but with twice as many samples per scan-line. Behind the scenes, the S-PPU renders 16 x 8 px and 16 x 16 px tiles.
+  - In exchange for colour variety, the selected area features twice the horizontal resolution (**512 x 224 pixels**). It's still encoded as a 240p signal, but with twice as many samples per scanline. Behind the scenes, the S-PPU renders 16 x 8 px and 16 x 16 px tiles.
   - The vertical resolution can also be extended by activating [**interlacing**](mega-drive-genesis#behind-the-multiple-display-resolutions), obtaining a resolution of **512 x 448 pixels** (restoring the original proportions). This produces a 480i signal, with half the refresh rate and added flicker.
   - All in all, this is useful when displaying larger amounts of information (e.g. multiplayer or split-screen).
 - **Mode 6**: A combination of Mode 2 and 5 (high resolution + column scrolling), though it is restricted to a single layer with 32 colours.
@@ -300,7 +300,7 @@ Truth be told, I still haven't mentioned the most important characteristic of th
 
 ![Allocated Background map.](mode7/map.png){.border title="Map"}
 
-![Rendered frame on the screen.<br>The first quarter of scan-lines uses another mode to simulate distance, Mode 7 starts at the second quarter (this is possible thanks to HDMA).](mode7/displayed.png){.border title="Displayed"}
+![Rendered frame on the screen.<br>The first quarter of scanlines uses another mode to simulate distance, Mode 7 starts at the second quarter (this is possible thanks to HDMA).](mode7/displayed.png){.border title="Displayed"}
 
 Deconstruction of F-Zero (1990).
 
