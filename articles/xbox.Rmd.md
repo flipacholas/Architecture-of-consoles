@@ -2,7 +2,7 @@
 short_title: Xbox Architecture
 long_title: Architecture of the Xbox
 name: Xbox
-subtitle: A feared competitor
+subtitle: A feared latecomer
 date: 2020-06-26
 release_date: 2001-11-15
 cover: "xbox"
@@ -10,10 +10,11 @@ generation: 6
 seo_image_pos: "Bottom"
 top_tabs:
   Model:
+    latex_height: 90
     file: international
     caption: "The original Xbox.<br>Released on 15/11/2001 in America, 22/02/2002 in Japan and 14/03/2002 in Europe."
   Motherboard:
-    caption: "Showing first revision.<br>Controllers are plugged using a separate daughterboard.<br>Missing SDRAM chips are on the back and there are four unpopulated SDRAM slots."
+    caption: "Showing first revision.<br>Controllers connect via a separate daughterboard.<br>Missing SDRAM chips are on the back and there are four unpopulated SDRAM slots."
   Diagram:
     caption: "Each controller is connected to a separate USB hub."
 
@@ -23,34 +24,36 @@ aliases: [/projects/consoles/xbox/]
 
 ## A quick introduction
 
-It seems that Microsoft has decided to pick up where Sega left off. Their offer? A system with familiarities appreciated by developers and online services welcomed by users.
+It seems that Microsoft has decided to pick up where Sega left off. Their offering? A system that combines familiar components appreciated by developers, with online services welcomed by users.
 
-Please note that to keep consistency with other sources, this article separates storage units between the metric prefix (i.e. megabytes or 'MB') and the standardised binary prefix (i.e. mebibytes or 'MiB'), thus:
+### More precise units
+
+To keep consistency with its sources, this article distinguishes storage units between the metric prefix (i.e. megabytes or 'MB') and the standardised binary prefix (i.e. mebibytes or 'MiB'), thus:
 
 - 1 MB = 1000 KB
 - 1 MiB = 1024 KiB
 
 ... and so forth.
 
-### Reading tips
+### Reading tips {.interactive-only}
 
-Some months after writing this, I've realised this is one of the densest write-ups I have done. There's just a lot of stuff happening inside the Xbox and I have tried to mention most of it.
+Some months after finishing this write-up, I've realised this is one of the densest write-ups I have done. There's just a lot of stuff happening inside the Xbox and I have tried to mention most of it.
 
-Now, if you're really interested in understanding this system but find this article difficult to follow, my advice to you is: **Take your time**, the article is not going anywhere. Focus on what you like, read at your own pace, check out the links on the 'Sources' section for support and finally, don't put pressure on yourself, there's no exam!
+Now, if you're really interested in understanding this system but find this article difficult to follow, my advice to you is: **take your time** - the article is not going anywhere. Focus on what you like, read at your own pace, check out the links on the 'Sources' section for support and, finally, don't put pressure on yourself - there's no exam!
 
 ## {.supporting-imagery}
 
 ## CPU
 
-The processor included in this console is a slightly customised version of the famous **Intel Pentium III** (an off-the-shelf CPU for computers) running at **733 MHz**. With this, one can assume this console is just a PC behind the scenes... I won't tell you the answer, but I promise that at the end of the article you will be able to reach your own conclusion.
+The processor included in this console is a slightly customised version of the famous **Intel Pentium III** (an off-the-shelf CPU for computers) running at **733 MHz**. With this, one can assume this console is just a PC behind the scenes... I don't want to spoil it, but I promise that by the end of the article you will be able to reach your own conclusion.
 
-![The Intel Pentium III package on the Xbox's motherboard.](cpu.jpg)
+![The Intel Pentium III package on the Xbox's motherboard.](cpu.jpg){latex_width="90%"}
 
-Anyhow, Pentiums, along with other lines of CPUs designed and manufactured by Intel, were incredibly popular in the computer market. Such was Intel's market share that they became the de-facto reference point for quality: As a typical user, if you wanted a good computer and had the budget, you only had to look for *something* carrying an Intel CPU. We all know by now that there are more factors involved, but that's what the marketing guys at Intel managed to project.
+Anyhow, Pentiums, along with other lines of CPUs designed and manufactured by Intel, were incredibly popular in the computer market. Such was Intel's market dominance that they became the de facto benchmark for quality: as an average user, if you wanted a good computer and had the budget, you only had to look for *something* carrying an Intel CPU. We all know by now that there are many other factors involved, but that was the image the marketing team at Intel managed to project.
 
-### Technical information
+### The technical aspect
 
-Now that we positioned Intel on the map, let's go back to the topic of this console. During my research, I was expecting to find documentation with the level of depth as other CPUs (MIPS, SuperH, ARM, etc), but instead, I stumbled across an excessive amount of marketing terms that only diverted my search. So, for this article, I came up with a structure to organise all the necessary information which will help to understand how this CPU works. Furthermore, I will try to introduce some terminology that Intel used to brand this CPU.
+Now that we positioned Intel on the map, let's go back to the console itself. During my research, I expected to find documentation with the same level of depth as other CPUs (e.g. MIPS, SuperH, ARM, etc). Instead, I stumbled across an excessive amount of marketing jargon that only diverted my search. So, for this article, I've put together a structure to organise all the necessary information to understand how this CPU works. Furthermore, I will also explain the terminology that Intel used to market this CPU.
 
 Having said that, let us take a look:
 
@@ -58,292 +61,397 @@ Having said that, let us take a look:
 
 ![How this study is organised.](_diagrams/cpu/branding.png){.tab-float}
 
-First things first, the Xbox's CPU is identified as a **Pentium III**. So what does this mean? Back then (early noughties), the Pentium series represented the next generation of CPUs. They were the 'new high-end' that grouped all the fancy technology that made computers super-fast, plus it helped buyers decide which CPU they had to buy if they wanted *the best of the best*.
+First things first, the Xbox's CPU is identified as a **Pentium III**, but what does that tell us? Back in the early noughties, the Pentium series represented the next generation of CPUs. They were the 'new high-end' that brought together all the fancy technology that made computers super fast. Plus, it helped buyers decide which CPU to look for if they wanted *the best of the best*.
 
-Pentium III replaced Pentium II, which in turn replaced the original Pentium. Moreover, when the first Pentium came out, it replaced the 80486, which in turn replaced the 80386... You get the idea. What matters is that 'Pentium' is mainly a brand name, it's not directly associated with its inner workings. Therefore, we must go deeper!
+The Pentium III replaced the Pentium II, which in turn succeeded the original Pentium. Before that, the first Pentium replaced the 80486, which in turn succeeded the 80386... You get the idea. What matters here is that 'Pentium' is mainly a brand name, rather than something directly associated with the CPU's inner workings. Therefore, we must dig deeper!
 
-To dive further and not get lost in the way, I have catalogued the information into three sections which combined, make up the chip. The first the **Instruction Set Architecture** or 'ISA' (the group of instructions used to command the CPU), **Microarchitecture** (how is the ISA implemented in silicon) and the **Core** (what set of components are used to package the microarchitecture to form the specific CPU model).
+To dive further and not get lost along the way, I have catalogued the information into three sections which, combined, make up the chip. These are: 
+
+- The **Instruction Set Architecture** (ISA): the group of instructions used to command the CPU.
+- The **Microarchitecture**: how the ISA is implemented in silicon.
+- The **Core**: the collection of components that package the microarchitecture to form a specific CPU model.
 
 #### The ISA {.tab}
 
-![An Intel 80386 (1985), or compatible, was the minimum requirement for mid-90s applications.](photos/i386.webp){.tab-float}
+![An Intel 80386 (1985) - or compatible - was the minimum requirement for mid-90s applications.](photos/i386.webp){.tab-float latex_width="90%"}
 
-Indeed, once I mention 'Intel' it's a matter of time before I introduce the famous **x86**, its instruction set.
+Indeed, once I mention 'Intel', it's only a matter of time before I introduce none other than **x86**, its instruction set.
 
-The first form of x86 debuted with the release of the **Intel 8086** in 1978, a 16-bit CPU. Afterwards, the ISA was constantly expanded with more instructions as more Intel CPUs were released (80186, 80286 and so on) [@cpu-thompson]. Consequently, x86 started to fragment as more ground-breaking features were added (i.e. 'protected mode' and 'long mode'). To tackle this, modern x86 applications commonly target the 80386 ISA (also called **IA-32** or **i386**) as a baseline, which among other things, operates in a 32-bit environment.
+The first form of x86 debuted with the release of the **Intel 8086** in 1978, the 16-bit successor of the [8080](nes#a-bit-of-context). Back then, its design was tackling the same needs and limitations as its competitors, namely the [Motorola 68000](mega-drive-genesis#powering-a-decade). What Intel engineers didn't anticipate, however, was that the 8086 family would carry on for so long!
 
-Subsequently, Intel enhanced the IA-32 with the use of **extensions**, meaning the new functions may or may not be included in an IA-32 CPU. Programs query the CPU to check if a specific enhancement is present. The Xbox's CPU includes two extensions:
+After the 8086, the PC/Windows market just kept expanding, prompting Intel to release incremental upgrades (the *80186*, *80286*, and so on) and subsequently expand the ISA with more instructions [@cpu-thompson]. Consequently, x86 compatibility started to fragment as more groundbreaking features were added (such as 'protected mode' and 'long mode'). To tackle this, x86 applications in the mid-90s commonly targeted the *80386* ISA (also called **IA-32** or **i386**) as a baseline. Among other things, this standardised the use of a **32-bit environment**.
 
-- **MMX** (Multimedia Extension): Adds 57 SIMD instructions and 8 64-bit registers (integers only) that can speed up vector operations.
-- **SSE** (Streaming SIMD extension): Another SIMD-type extension that addresses the criticism of MMX (lack of floating-point support and unable to use the floating-point unit in parallel). It adds 56 new instructions and eight 128-bit registers (called 'XMM') that hold four 32-bit `floats`.
+In the meantime, Intel kept enhancing IA-32 through the use of **extensions**. These added new but **optional functions**, meaning they may or may not be included in an IA-32 CPU. Thus, programs had to query the CPU to check whether a particular enhancement is present. The Xbox's CPU includes two extensions:
 
-The good news is that, since the console will always have the same CPU, programmers can optimise their code to exploit these extensions as they will always be present.
+- **MMX** (Multimedia Extension): Adds 57 [SIMD instructions](sega-saturn#revised-methodologies) and eight 64-bit registers for integer operations, enabling to speed up vector operations.
+- **SSE** (Streaming SIMD extension): Another SIMD extension, this time addressing the criticism of MMX (lack of floating-point number support and inability to operate the floating-point unit in parallel). It adds 56 instructions and eight 128-bit registers (called 'XMM'), each capable of holding four 32-bit `floats`.
+
+The good news is that, since the console will always have the same CPU, programmers can optimise their code to take full advantage of these extensions, knowing that they will always be present.
 
 #### The Microarchitecture {.tab}
 
-When it comes to building a circuit that can interpret x86 instructions, Intel has come up with so many different designs for their CPUs. Some designs were featured with the release of a new Pentium Series (i.e. Pentium 4) while others were featured when Intel released an 'enhanced' version of a Pentium (such as the 'Pentium Pro'). Nevertheless, since the release of the first Pentium, the CPU model and microarchitecture no longer carry the same name. For example, the 80486 uses the 80486 microarchitecture (and no other), however, the original Pentium has the 'P5' microarchitecture.
+When it comes to designing a circuit that can interpret x86 instructions, Intel has come up with many different microarchitectures for their CPUs. Some debuted alongside a new Pentium generation (e.g. *Pentium 4*), while others first appeared in an 'enhanced' version of a Pentium (such as the *Pentium Pro*). Nevertheless, since the introduction of the first Pentium, the CPU model and its underlying microarchitecture no longer share the same name. For example, the 80486 uses the 80486 microarchitecture (and no other), whereas the original Pentium is based on the 'P5' microarchitecture.
 
-Now, the Xbox CPU, along with the rest of Pentium III processors, use the **P6 Microarchitecture** (also known as 'i686'). This is the 6th generation (counting from the 8086) which features:
+Now, the Xbox CPU, like other Pentium III processors, uses the **P6 Microarchitecture** (also known as 'i686'). This represents the 6th generation (counting from the 8086) and features:
 
-- A *massive* **14-stage pipeline**: Meaning up to 14 instructions can be processed in parallel. On the other side, individual instructions may take a lot more cycles to complete. See [a previous explanation](game-boy-advance#tab-2-1-the-core).
-- **Out-of-order execution**: If possible, the CPU re-orders the sequence of instructions to increase efficiency and performance.
-- **Dynamic execution**: Since the P6 is an out-of-order and [superscalar](dreamcast#cpu) design. The traditional [branch predictor](gamecube#the-powerpc-gekko) is now combined with other techniques ('speculative execution' and 'data-flow analysis') to take advantage of the new capabilities. In doing so, it reduces pipeline stalling even further.
+- A *massive* **14-stage pipeline**: Meaning up to 14 instructions can be processed in parallel. On the other hand, individual instructions may take several cycles to complete, which explains why those 733 MHz don't make this CPU faster than others. See [my previous introduction to pipelining](game-boy-advance#tab-2-1-the-core) if you want to know more.
+- **Out-of-order execution**: When possible, the CPU reorders the sequence of instructions to improve efficiency and performance.
+- **Dynamic execution**: The P6 is both an out-of-order and [superscalar](dreamcast#the-offering) design. Thus, the traditional [branch predictor](gamecube#the-powerpc-gekko) has been combined with other techniques called 'speculative execution' and 'data-flow analysis' to help reduce pipeline stalls even further.
 
-Having said that, take a closer look at these features. It so happens they are very similar to [previous consoles](gamecube#the-powerpc-gekko), however, the other CPUs are very different in terms of design compared to Intel ones. Historically, one could argue that the design of the x86 would've never allowed Intel to produce, let's say, a pipelined CPU. Yet they managed to do so, so let us see why...
+Before moving on, take a closer look at these features. They look familiar, as similar techniques have shown up in [previous consoles](gamecube#the-powerpc-gekko). However, the underlying design of the other CPUs differs considerably from Intel's. Historically, one could argue that the limitations of x86 would've never allowed Intel to produce, let's say, a pipelined CPU. Yet they managed to do just that, so let us see why and how...
 
 #### CISC or RISC {.tab}
 
-![Intel's Pentium Pro (1995) debuted the P6 microarchitecture, bridging the gap between CISC and RISC advancements in the x86 world. This came as a surprise to many - particularly those who believed x86's days were numbered.](photos/pentiumpro.webp){.tab-float}
+![Intel's Pentium Pro (1995) debuted the P6 microarchitecture, bridging the gap between CISC and RISC advancements in the x86 world. This came as a surprise to many - particularly those who believed x86's days were numbered.](photos/pentiumpro.webp){.tab-float latex_width="90%"}
 
-The competition happens to feature CPUs designed around the [**RISC guidelines**](playstation#tab-1-1-a-bit-of-history), whereas Intel's x86 is not, thereby being placed in the **CISC** group. RISC CPUs are known for having an intentionally simplified design compared to CISC CPUs. This includes, for instance, implementing a **load–store architecture**, which only provides instructions that operate values from registers (as opposed to operating directly from memory).
+The competition happens to feature CPUs designed around the [**RISC guidelines**](playstation#tab-1-1-a-bit-of-history), whereas Intel's x86 line inherits the old teachings, thereby being placed in the **CISC** group. RISC CPUs are known for having an intentionally simplified design compared to CISC processors. This includes, for instance, implementing a **load–store architecture**, which only provides instructions that operate on values from registers (as opposed to operating directly from memory).
 
-One of the advantages of RISC processors is that their simplistic approach enables its CPUs to be designed with a modular sense, which in turn can be exploited to improve performance with parallelism techniques. This is why we have seen CPUs like MIPS and PowerPC debuting pipeline stages, superscalar designs, out-of-order execution, branch prediction, etc. On the other side, CISC processors predate RISC ones and the former aimed to solve different needs. Consequently, their designs are not as flexible as RISC CPUs.
+One advantage of RISC CPUs is that their simplistic approach lends itself to more **modular designs**. This, in turn, can be exploited to implement **parallelism techniques**, improving performance. This is why we have seen CPUs like [MIPS](playstation-2#a-special-order-for-sony) and [PowerPC](gamecube#the-powerpc-gekko) debuting pipeline stages, superscalar designs, out-of-order execution, branch prediction, etc. Now, to be fair, CISC processors predate the RISC wave, and they aimed at solving different needs. Consequently, their designs are not as flexible as RISC CPUs.
 
-Back to the original question, the P6 is an interesting design, because while this CPU only understands a CISC instruction set (x86), a subset of its opcodes is interpreted using **microcode**. Most importantly, the unit that executes microcode **is built around the load-store model** [@cpu-gwennap]. This is because the P6 architecture was authored by the former engineers of the **Intel i960** (a once-promising RISC CPU by Intel). All in all, this has enabled Intel to gain similar advantages to RISC processors without breaking compatibility with the historic x86 ISA. It's fair to say that as time passed by, terms like 'CISC' and 'RISC' have become too ambiguous to categorise any modern CPU.
+Back to the original question, the P6 is an interesting design, because while this CPU only understands a CISC instruction set (x86), a subset of its opcodes is interpreted using **microcode** (small instructions that tell the CPU how to execute complex ones). Most importantly, the unit that executes microcode **follows the load-store model** [@cpu-gwennap]. This is because the P6 architecture was authored by the former engineers of the **Intel i960** (a once-promising RISC CPU). All in all, this enabled Intel to incorporate advantages associated with RISC processors without sacrificing compatibility with the established x86 ISA. It's fair to say that as time went on, terms like 'CISC' and 'RISC' have become too ambiguous when used to categorise any modern CPU.
 
-As a side note, microcode is already embedded in the silicon but it can be patched, allowing Intel to fix its CPUs after production whenever a bug or a security vulnerability is discovered. If you have read previous articles (i.e. [N64](nintendo-64) or [PS2](playstation-2)), bear in mind that Intel's microcode is **not publicly accessible** (let alone documented) and Intel is its sole 'maintainer'.
+As a side note, microcode is already embedded in the silicon, but it can also be **patched**. This allows Intel to fix bugs or security vulnerabilities after their CPUs leave the production line. If you have read my previous articles (i.e. [N64](nintendo-64) or [PS2](playstation-2)), bear in mind that Intel's microcode is **not publicly accessible** (let alone documented) and Intel is its sole maintainer.
 
 #### The Core {.tab}
 
 ![The Coppermine design.](_diagrams/cpu/core.png){.tab-float}
 
-Intel shipped numerous chips that implemented the P6 microarchitecture. The Xbox includes one model called **Coppermine**. It was branded as the second revision of the Pentium III (replacing the 'Katmai' core) and features the following components:
+Intel shipped numerous chips that implemented the P6 microarchitecture. The Xbox's choice is **Coppermine**, a model that belongs to the second revision of the Pentium III (replacing the *Katmai* core) and features the following components:
 
-- **32 KiB L1** cache: Divided between 16 KiB for instructions and 16 KiB for data.
-- Integrated **128 KiB L2** cache: This is *odd* since the off-the-shelf Coppermine has 256 KiB of L2 [@cpu-anand]. In fact, the Coppermine128 (found in the Intel 'Celeron' brand, the low-end Pentium alternative) has the same amount of L2 [@cpu-shvets]. Hence, this was probably done to reduce manufacturing costs and keep this console at a competitive price.
-- 133 MHz **Front-side bus**: This is the bus that connects the L2 cache with the memory controller, we'll see more about it later on.
-  - Intel names it 'Front-side bus' to distinguish it from another bus that connects L2 (external cache) with L1 (internal cache). The latter bus is called 'Back-side bus'... and it's an unfortunate name to use in the UK.
+- **32 KiB L1** cache: Divided equally between 16 KiB for instructions and 16 KiB for data.
+- Integrated **128 KiB L2** cache: This is rather odd since the off-the-shelf Coppermine came with 256 KiB of L2 cache [@cpu-anand]. In fact, the *Coppermine-128* variant (sold under Intel's *Celeron* brand, the budget alternative) had the same amount of L2 cache [@cpu-shvets]. It seems Microsoft chose the latter to reduce manufacturing costs and keep this console at a competitive price.
+- **133 MHz Front-side bus**: Connects the L2 cache to the outside bus (called 'Northbridge' - we'll explore this more later).
+  - Intel uses the term 'Front-side bus' to distinguish it from another internal connection called 'Back-side bus', which connects the CPU core to the L2 cache.
 
-Coppermine also adds two 'enhancements' over their original implementation of L2 cache, these are the **Advanced Transfer Cache** and the **Advanced System Buffering**. To sum them up, L2 cache is on-chip and their buses are wider, which helps to reduce possible bottlenecks in the Front-side bus.
+Coppermine also introduced two 'enhancements' to its original L2 cache architecture: these are the **Advanced Transfer Cache** and the **Advanced System Buffering**. To sum them up, L2 cache is integrated inside the CPU chip and their buses are wider, helping reduce possible bottlenecks in the Front-side bus.
 
-Finally, the chip uses the 'Micro-PGA2' socket fit on the motherboard, but like any other console, the Xbox has it soldered with a Ball Grid Array or 'BGA'.
+Finally, the original chip relied on the 'Micro-PGA2' socket to fit into a PC motherboard. With the Xbox, the CPU is soldered directly using a Ball Grid Array (BGA) package.
 
 ### P6 and the end of Pentium numbers {.tabs-close}
 
-Here's a bit more history. After the years of the P6, Intel planned to succeed it with the 'NetBurst' microarchitecture (featured in the Pentium IV). However, the line of succession also ended there. Even though NetBurst implemented many contemporary techniques [@cpu-netburst], it also suffered from excessive power consumption, heat emission (an average of 85 W [@cpu-pentium4]) and scalability issues - all of which impeded the design from being continued any further.
+Here's a bit more history. After the years of the P6, Intel planned to succeed it with the *NetBurst* microarchitecture (featured in the *Pentium 4*). However, the line of succession also ended there. Even though NetBurst implemented many contemporary techniques [@cpu-netburst], it also suffered from excessive power consumption, heat emission (an average TDP of 85 W [@cpu-pentium4]) and scalability issues - all of which impeded the design from being continued any further.
 
-Consequently, this prompted an Intel team in Israel to revisit their low-powered P6 CPU - the 'Pentium M' - and develop a more powerful successor. The first result was the **Yonah** core, a slight improvement of the P6 design branded as **Core Solo** or **Core Duo**. With it, power dissipation dropped to reasonable numbers (between 27 W [@cpu-coresolo] and 31 W [@cpu-coreduo], depending on the variant). Months later, the follow-up **Core** microarchitecture became the flagship successor of P6 (and NetBurst) and, confusingly enough, reached the shelves in the form of the **Core 2** CPU line. Over the years, subsequent microarchitectures improved on many aspects, but they also managed to re-incorporate forgotten elements from NetBurst without repeating the same mistakes.
+Consequently, Intel turned its attention to a team in Haifa, Israel which had been developing a low-power P6 derivative - the **Pentium M** - and would now be tasked with delivering a new line of processors that prioritised performance per watt. The first result was the **Yonah** core, a slight improvement of the P6 design. Yonah was released in 2006, and reached the shelves as **Core Solo** or **Core Duo**. With it, power dissipation dropped to reasonable numbers (between 27 W [@cpu-coresolo] and 31 W [@cpu-coreduo], depending on the variant).
 
-On a curious note, I wonder if the naming of the Yonah core is meant as a metaphor for the Book of Jonah, particularly connecting the event where the prophet, in the end, managed to correct his path to save the city of Nineveh. Though it's also possible I'm overthinking this.
+Months later, Intel introduced the **Core microarchitecture**; it became the flagship successor of P6 (and NetBurst) and, confusingly enough, was marketed under the **Core 2** brand. Over the following years, subsequent microarchitectures improved on many aspects, but they also managed to re-incorporate forgotten elements from NetBurst without repeating the same mistakes.
+
+On a curious note, I wonder whether the naming of the Yonah core is meant as a metaphor for the *Book of Jonah*, particularly connecting the event where the prophet, in the end, managed to correct his path to save the city of Nineveh. Though it's also possible I'm overthinking this.
 
 ### Motherboard architecture
 
-At some point in the history of the PC, motherboards grew so much in complexity that new designs had to be developed from the ground up to efficiently tackle emerging needs.
+By the late 80s, PC motherboards had grown so much in complexity that new designs were developed to efficiently tackle growing needs.
 
-![Overview of Xbox Motherboard.](_diagrams/cpu/motherboard.png){.open-float}
-
-The new standard developed relied on two dedicated chips to handle most of the motherboard functions. These chips are:
+The final standard wasn't settled overnight, but gradually emerged as multiple manufacturers kept simplifying their designs and integrating multiple circuits. The outcome was a model that relied on **two dedicated chips** to handle most of the motherboard's functions:
 
 - The **Northbridge**: Serves as a memory controller and interfaces the GPU.
-- The **Southbridge**: Interfaces the rest of I/O (i.e. USB, ATA/SATA, PCI, etc)
+- The **Southbridge**: Interfaces the rest of I/O (e.g. USB, ATA/SATA, PCI, etc).
 
-The combination of these chips is called **chipset** and they are important enough to condition the capabilities and performance of a motherboard. The Xbox, being so close to a PC, includes two chips as well: The **NV2A**, a combination of Northbridge and GPU; and the **MCPX** which handles the rest of I/O.
+The combination of these chips is called **chipset**, and it plays an important role in determining the capabilities and performance of a motherboard.
 
-{.close-float}
+![Overview of Xbox Motherboard.](_diagrams/cpu/motherboard.png)
 
-Both chips are interconnected using a specialised bus called the **HyperTransport**. It's worth pointing out that some PC motherboards also included this technology, just with a different brand (*nForce MCP-D*).
+The Xbox, being so close to a PC, includes two chips as well:
+
+- The **NV2A**, a combination of Northbridge and GPU.
+- The **MCPX**, which handles the remaining I/O.
+
+Both chips were designed and manufactured by **Nvidia**, and are interconnected through a specialised bus called **HyperTransport**. It's worth pointing out that some PC motherboards also included this technology, just with a different name (*nForce MCP-D*).
 
 ### Memory layout
 
-The Xbox includes a total of **64 MiB of DDR SDRAM**, this type of RAM is very fast compared to what the competition offers. However, it's also shared across all components of this system. Hence, once more, we find ourselves in front of another **unified memory architecture** or 'UMA' layout.
+The Xbox includes a total of **64 MiB of Double Data Rate (DDR) SDRAM**, using four 16 MiB banks. This type of RAM is very fast (400 MHz) compared to what the competition offered, so it is no wonder why DDR emerged as the de facto leader of PC memory, spawning numerous generations and variants since then.
 
-![Representation of the switching network. GPU uses two banks while the CPU uses a different one, reducing contention in the process.](_diagrams/cpu/memory.png)
+Moreover, the Northbridge is optimised for this arrangement by adopting **burst transfers**, where data transfer is done in batches of 128 bits. This is possible because each RAM slot is connected to a 32-bit data bus.
 
-We have previously seen how [troublesome](playstation-2#preventing-past-mishaps) this design can be sometimes. Nonetheless, programs can address this issue by spreading their data between different banks of memory. NV2A implements a **switching network** that enables different units (CPU, GPU, etc) to concurrently access them [@cpu-huang] [@cpu-informit].
+Be that as it may, the Xbox's RAM is also shared across all components of this system. Hence, once more, we find ourselves in front of another [**Unified Memory Architecture**](nintendo-64#simplified-memory-access) or 'UMA' layout.
 
-Furthermore, the console features an internal hard disk, and it *so happens* to be set up with three partitions of 750 MiB each reserved for temporary storage. The CPU can offload some of its data from main RAM, then upload it back whenever it's needed. Bear in mind this is a manual process and does not involve virtual RAM.
+#### Unused space
+
+If you look closely at the Xbox's motherboard, you'll notice that it actually includes **eight bank slots**. The memory layout I described is still correct, with the addition that each bank pair shares the same buses. I presume this is a remnant of the original 128 MiB configuration that shipped with development kits. The consumer model populates the chips in a way that each bank keeps its own dedicated bus.
+
+![Memory chips around the NV2A GPU/Northbridge [@photography-amos]. This motherboard revision includes eight memory sockets (4 on the front, 4 on the back), but only half are populated.](memory.webp)
+
+As DDR SDRAM is relatively easy to source, the homebrew community has published modification guides to install the extra banks and restore 'dev kit' capacity. The only limitation is that retail games have been designed to expect 64 MiB and won't take advantage of the extra bits.
+
+One thing to note is that, because memory pairs share the same buses, the timings differ between the four and eight-bank configurations. So, the Xbox always operates on the slowest speed, a common denominator to avoid having two different variants of this console.
+
+#### Improving memory flow
+
+We have previously seen how [troublesome](playstation-2#preventing-past-mishaps) UMA can sometimes be. Nonetheless, Microsoft and Nvidia alleviated its issues by implementing burst transfers. Moreover, the NV2A also implements a **switching network** that arbitrates access to the memory banks among different units (CPU, GPU, etc), allowing them to access separate banks concurrently [@cpu-huang] [@cpu-informit].
+
+![Representation of the switching network. The GPU uses two banks while the CPU uses a different one, reducing contention in the process.](_diagrams/cpu/memory.png)
+
+Later in this article, you'll see that the console also features an **internal hard disk**, but for now it's worth pointing out that the HDD includes **three partitions of 750 MiB**, each reserved for **temporary storage**. The CPU can offload some of its data from main RAM to the HDD, and retrieve it whenever needed. Bear in mind this is a manual process and does not involve [virtual memory](gamecube#making-the-most-of-aram).
 
 ## Graphics
 
-As we've seen before, the graphics processor resides in the NV2A chip and, just like MCPX, it is manufactured by Nvidia.
+As we've seen before, the graphics processor resides in the NV2A chip and, just like the MCPX, it is manufactured by Nvidia.
 
-![The Nvidia NV2A package on the Xbox's motherboard.](gpu.jpg)
+![The Nvidia NV2A package on the Xbox's motherboard.](gpu.jpg){latex_width="90%"}
 
-This company has been in the graphics business for a long time, their *GeForce* series are one of the most popular GPU brands in the computer market, directly competing against the Radeon series from ArtX/ATI. Overall, this provides good leverage on the quality of graphics found in the Xbox, considering it's Microsoft's first attempt in the console market.
+This company has been in the graphics business for a long time. Their *GeForce* series remains one of the most popular GPU brands in the PC market, competing directly with the Radeon series (then associated with [ArtX/ATI](gamecube#graphics)). Overall, this gave Microsoft a good head start on the graphics capabilities of the Xbox, considering it was their first attempt at entering the console market.
 
-It all seems reasonable, but was it *really* a certain decision to make back then? It's easy to rely on present history to find out why Microsoft chose Nvidia over other popular brands from the time (3dfx, PowerVR, S3, etc), but if we read more about the competition back then, the panorama of options made it much more complex.
+### An uneasy bet
 
-![Halo (2001) running on the Xbox in 720p mode.](halo.png)
+In hindsight, it's easy to connect the dots in the present, but was it *really* such an obvious decision to make back then? Microsoft had too much at stake, and Nvidia was still a relatively minor player among the established brands (3dfx, PowerVR, S3, etc.). This panorama made the choice much more complex.
 
-For instance, 3dfx's popular 'Voodoo 2' series had ~70% of the market share in the PC market by the end of the 90s [@graphics-ign], while Nvidia was struggling to promote adoption of the new 'GeForce 256' (the first of the GeForce series). After this, Microsoft's choice now sounds more like a risk than a safe bet, but as we know by now, this risk eventually paid off.
+For instance, 3dfx's popular *Voodoo 2* series held around 70% of the PC market share by the end of the 90s [@graphics-ign], while Nvidia was struggling to promote adoption of their new *GeForce 256* (the first of the GeForce series). In that context, Microsoft's choice sounds more like a gamble than a safe bet, but as we know now, this risk eventually paid off.
 
 > Nvidia was NOT the #1 player they are now, in 1999. They were in trouble. The new GeForce architecture was still young and lots of people didn’t like it. Now it seems forgone. But you’d need to research that history to know that, and why I had to fight to use it. I was right but I didn’t know I was right; I was very worried.
 >
-> -- <cite>Seamus Blackley (Co-author of the original Xbox)</cite>
+> -- <cite>Seamus Blackley (co-author of the Xbox)</cite>
 
-In the following section, we'll examine the inner workings of this chip. Now, I'm afraid we find ourselves mixed in a lot of terminology and marketing terms just like the CPU section, but fear not! I'll start with the basics.
+In the following section, we'll examine the inner workings of this chip. I'm afraid we'll find ourselves mixed in a lot of terminology and marketing jargon, just like the CPU section. But fear not! I will start with the basics.
 
 ### Architecture and design
 
-The GPU core found on the NV2A is based on the popular 'GeForce3' series of GPUs [@graphics-mslusarz] [@graphics-g3arch], it's also referred to as **NV20** in Nvidia's technical documents.
+The GPU core found inside the NV2A is based on the popular *GeForce3* series of graphics processors [@graphics-mslusarz] [@graphics-g3arch]; it's also referred to as **NV20** in Nvidia's technical documents.
+
+![Halo (2001) running on the Xbox in 720p mode.](halo.png)
+
+Please note that, while the Xbox's GPU pipeline is based on the NV20 architecture, the NV2A has some modifications that make it incompatible with other NV20-based products. Most importantly, it has been adapted to work in a UMA environment.
 
 ![Pipeline design of the NV2A.](_diagrams/gpu/pipeline.png){.open-float}
 
-Please note that, while the pipeline of the Xbox's GPU is based on the NV20 architecture, the NV2A has some modifications that are not compatible with the rest of the NV20 series (most importantly, it has been adapted to work in a UMA environment).
-
-The units analysed contain a lot more features that go beyond the scope of this article, so I recommend checking out the sources/references if this section catches your attention. Also, since graphics-related terminology is constantly evolving (which can lead to some confusion), I've decided to rely on the terms used by Microsoft/Nvidia during the years of the Xbox, so remember this if you plan to read more graphics-related articles from other sources.
+The units analysed contain a lot more features that go beyond the scope of this article, so I recommend consulting the sources if this section catches your attention. Also, since graphics terminology has evolved considerably over time (which can lead to some confusion), I've decided to stick to the terminology used by Microsoft and Nvidia during the Xbox years. Remember this if you plan to explore other graphics-related articles from other sources.
 
 {.close-float}
 
-Having said that, let's take a look at how frames are drawn in the Xbox. Some explanations are very similar to GameCube's [Flipper](gamecube#graphics), so you may benefit from reading that article as well in case you struggle to follow this one.
+With that said, let's take a look at how frames are drawn on the Xbox. Some explanations are very similar to GameCube's [Flipper](gamecube#graphics), so you may benefit from reading that article as well, particularly if you struggle to follow this one.
 
 #### Commands {.tabs .active}
 
-![Commands stage.](_diagrams/gpu/commands.png){.tab-float}
+![Commands stage diagram.](_diagrams/gpu/commands.png){.tab-float}
 
-First and foremost is explaining how the GPU can receive commands from the CPU. For that, the GPU contains a command processor called **PFIFO** that effectively fetches and processes graphics commands (called **Pushbuffer**) in a FIFO manner, the unpacked commands are subsequently delivered to the **PGRAPH** (the block in charge of graphics processing) and other engines.
+First and foremost, let's explain how the GPU receives commands from the CPU. For this purpose, the GPU contains a command processor called **PFIFO** that effectively fetches and processes graphics commands located in an area known as **Pushbuffer**. These are processed in a First In, First Out (FIFO) manner, and subsequently delivered to **PGRAPH** (the block in charge of graphics processing) and other engines.
 
-Like Flipper, geometry doesn't have to be embedded in the command. PGRAPH provides many ways to submit graphics data. For instance, the CPU can allocate a buffer in RAM containing vertex data and then instruct the GPU to fetch them from that location. This approach can be efficient, as it prevents sending duplicated geometry.
+Like Flipper, NV2A doesn't require geometry to be embedded in the command itself. PGRAPH provides many ways of submitting graphics data. For instance, the CPU can allocate a buffer in RAM containing vertex data and then instruct the GPU to fetch data from that location. This approach can be more efficient, as it prevents sending duplicated geometry.
 
-The next explanations happen in PGRAPH.
+From now on, the following explanations focus on the operations handled by PGRAPH.
 
 #### Vertex {.tab}
 
-![Vertex stage.](_diagrams/gpu/vertex.png){.tab-float}
+![Vertex stage diagram.](_diagrams/gpu/vertex.png){.tab-float}
 
-This is an interesting section for this GPU in particular. At this stage, the GPU provides the ability to apply vertex transformations to our geometry. We've already seen this feature with Flipper, but unlike that GPU, this one uses a **programmable engine**. This means that developers may specify which vertex operations are performed and how, as opposed to relying on a predefined program. Although, the NV2A can also operate in 'fixed' mode, if required.
+This is a particularly interesting part of this GPU. At this stage, the GPU can apply **vertex transformations** to our geometry. We've already seen similar functionality in Flipper, but unlike that GPU, the NV2A uses a **programmable engine**. This means that developers may specify which vertex operations are performed and how, as opposed to relying on a predefined sequence. Although, the NV2A can also operate in 'fixed' mode when required.
 
-This stage is handled by a **Vertex Unit** and the NV2A features **two of them**. Each can load a program containing up to 136 instructions (also called **microcode**). This program is referred to as **vertex program** and it's loaded at runtime. A vertex program can perform the following operations [@graphics-koppelman]:
+This stage is handled by a **Vertex Unit** and the NV2A features **two of them**. Each can load a program containing up to **136 instructions** (also called **microcode**) [@graphics-vertex_shader]. This program is referred to as a **vertex program** and it's loaded at runtime. A vertex program can perform the following operations [@graphics-koppelman]:
 
-- **Arithmetic operations** (i.e. addition, multiplication, minimum, etc).
-  - This includes 'helper functions' to assist graphics-related tasks, such as dot product.
-- **Vertex Swizzling** (Rearrangement and/or duplication).
+- **Arithmetic operations** (e.g. addition, multiplication, minimum, etc). This includes various 'helper functions' to assist graphics-related tasks, such as dot products.
+- **Vertex swizzling** (rearranging and/or duplicating vector components).
 
-In a nutshell, the vertex unit processes vertices by manipulating them in its registers. In other words, once the program is loaded, 16 read-only registers (called 'input registers') are initialised with the attributes of a vertex (each vector contains four components). Afterwards, the unit performs the set of operations (instructed by the program) using the input registers. Furthermore, 12 writable registers and up to 196 constants are provided to assist the computation. Finally, the resulting vertex is stored in another block of 11 writable registers (each one limited to a specific purpose), which are passed on to the next stage. This process is repeated for every vertex received.
+In a nutshell, the Vertex Unit processes vertices by manipulating them in its registers:
 
-#### Pixel {.tab}
+1. Once a program is loaded, 16 read-only registers (called 'input registers') are populated with the attributes of the incoming vertex (each register holds a four-component vector).
+2. Afterwards, the unit performs the set of operations (specified by the program) using these input registers.
+    - To assist with the computations, 12 writeable temporary registers and up to 192 constant registers are provided.
 
-![Fragment/Pixel stage.](_diagrams/gpu/pixel.png){.tab-float}
+Finally, the resulting vertex is written to another block of 11 output registers, each one dedicated to a specific purpose. These are then passed on to the next stage, and the process is repeated for every vertex received.
 
-At this stage, vertices are transformed into pixels. The process starts with a rasteriser that generates pixels to draw each triangle. The NV2A's rasteriser can generate four pixels per cycle. <!-- Nvidia designed a memory system called 'Lightspeed Memory Architecture' which, among other things, compresses the Z-buffer to four times its original size which enables to increase bandwidth (since it has to be accessed from main memory, while [competitors embedded it]()). -->
+#### Fragment {.tab}
 
-Afterwards, **4 texture shaders** are used to fetch textures from memory [@graphics-domine], these also offer to automatically apply anisotropic filtering, mipmapping and **shadow buffering**. The latter one is used to test whether a pixel is visible or overshadowed by the lighting source, so the correct colour can be applied. At this point, the GPU also offers to perform clipping and an early [Z-test](nintendo-64#modern-visible-surface-determination) (the NV2A compresses the Z-buffer four times its original size to save bandwidth, contributing to a lot of performance improvements).
+![Fragment/Pixel stage diagram.](_diagrams/gpu/pixel.png){.tab-float}
 
-The resulting pixels are stored in a **set of shared registers** and then cycled through **8 register combiners**, where each one applies arithmetic operations on them. This process is **programmable** with the use of **pixel shaders** (another type of program executed by the GPU) [@graphics-wasson]. At each cycle, each combiner receives RGBA values (RGB + Alpha) from the register set [@graphics-spitzer]. Then, based on the operation set by the shader, it will operate the values and write back the result. Finally, a larger amount of values are sent to the **final combiner** which can exclusively blend specular colours and/or fog.
+At this stage, the GPU performs **rasterisation**, where vertices are transformed into pixels. The process starts with a rasteriser that generates pixels to draw each triangle. The NV2A's rasteriser can generate up to **four pixels per cycle**. <!-- Nvidia designed a memory system called 'Lightspeed Memory Architecture' which, among other things, compresses the Z-buffer to four times its original size which enables to increase bandwidth (since it has to be accessed from main memory, while [competitors embedded it]()). -->
 
-Register combiners are programmable in a similar nature to the [Texture Environment Unit](gamecube#tab-3-3-texture). That is, by altering its registers with a specific combination of settings. In the case of the Xbox, the PFIFO reads pushbuffers to set up PGRAPH, which includes the register combiners and texture shaders.
+Next, **four texture shaders** fetch textures from memory [@graphics-domine]. These also offer to automatically apply **anisotropic filtering**, **mipmapping** and **shadow buffering**. The latter is used to determine whether a pixel is visible or overshadowed by the lighting source, so the correct colour can be applied.
+
+At this point, the GPU also offers to perform **clipping** and an early [Z-test](nintendo-64#modern-visible-surface-determination). The NV2A compresses the Z-buffer to four times its original size to save bandwidth, contributing to a lot of performance improvements.
+
+The resulting pixels are stored in a **set of shared registers** and then cycled through **eight register combiners**, where each one applies arithmetic operations on them. This process is **programmable** with the use of **fragment shaders** (another type of program executed by the GPU) [@graphics-wasson]. At each cycle, each combiner receives RGBA values (Red, Green, Blue, and Alpha) from the register set [@graphics-spitzer]. Then, based on the operation set by the shader, it operates on these values and writes the result back to the register set. Finally, the results are passed to a separate **final combiner**, which produces the final colour but can also incorporate specular highlights (i.e. bright spots) and/or fog.
+
+Register combiners are programmable in a similar fashion to the [Texture Environment Unit](gamecube#tab-3-3-texture). That is, developers alter its registers with a specific combination of settings. In the case of the Xbox, PFIFO reads commands from pushbuffers to set up PGRAPH, which includes the register combiners and texture units.
 
 #### Post-processing {.tab}
 
-![Post-processing stage.](_diagrams/gpu/postprocessing.png){.tab-float}
+![Post-processing stage diagram.](_diagrams/gpu/postprocessing.png){.tab-float}
 
-Before the pixels are written to the frame-buffer, the NV2A contains four dedicated engines called **Raster Output Unit** or 'ROP' which perform necessary tests (alpha, depth and stencil) using allocated blocks in main memory. Finally, batches of pixels (four per cycle) are written back only if they pass these tests. 
+Before the pixels are written to the framebuffer, the NV2A uses four dedicated engines called **Raster Output Unit** or 'ROP' to perform necessary tests (alpha, depth, and stencil). These operations rely on allocated buffers in main memory. Finally, pixels that pass these tests are then written to the framebuffer, at a rate of four per cycle.
 
-Moreover, the frame-buffer can be anti-aliased using a technique called **multisampling** [@graphics-geforce3]. Essentially, this technique samples the edges of polygons multiple times with different offsets added in the process. Afterwards, all samples are averaged to form the anti-aliased image. This approach replaced the previous (and more resource-hungry) anti-aliasing function called 'supersampling', used by previous Nvidia GPUs.
+Moreover, the framebuffer can be anti-aliased using a technique called **MultiSample Anti-Aliasing (MSAA)** [@graphics-geforce3]. Essentially, MSAA samples the area of polygons multiple times at different offset positions. Afterwards, all samples are averaged to form a smoother image. This approach replaced the previous (and more resource-hungry) SuperSampling Anti-Aliasing (SSAA), used by previous Nvidia GPUs.
 
 ### The importance of programmability {.tabs-close}
 
-I find it pivotal to emphasise the significance of the new programmability model that Nvidia provided to developers. Years ago, most of the graphics pipeline was computed by the CPU, leaving the GPU to accelerate rasterising operations. With the introduction of 'shaders' (referring to both pixel shaders and vertex programs), programmers can take advantage of the resources of the GPU to accelerate many computations in the pipeline, offloading a great amount of work from the CPU.
+I find it pivotal to emphasise just how significant Nvidia's new programmability model was for developers. Years before, much of the work involved in preparing a 3D scene was handled by the CPU, leaving the GPU to accelerate rasterising operations. With the introduction of programmable 'shaders' (referring to both fragment shaders and vertex programs), programmers could take advantage of the resources of the GPU to accelerate many computations in the pipeline, offloading a great amount of work from the CPU.
 
-The concept of 'shaders' was introduced by **Pixar** in 1989 as a method to extend **Renderman** [@graphics-pixar], their pioneering software used for 3D rendering. This was back in the time when 3D graphics were mainly handled by industrial equipment. Later on, we saw how certain consoles incorporated [similar principles](nintendo-64#tab-1-1-reality-signal-processor), but it wasn't until Nvidia released their GeForce3 line, that shaders became a standard in the consumer market.
+::: {.subfigures .side-by-side}
 
-::: {.subfigures .open-float .tab-float .tabs-nested}
+![Complex animation achieved by vertex program.](vertex){.toleft video="true" latex_width="75%"}
 
-![Complex animation achieved by vertex program.](vertex){.active video="true" title="Vertex Program"}
+![Different texture effects computed by fragment shaders.](fragment){.toright video="true" latex_width="75%"}
 
-![Different texture effects achieved by pixel shaders.](fragment){video="true" title="Pixel Shader"}
-
-ChameleonMark (2002), a demo developed by Nvidia to showcase GeForce3's shaders.
+*ChameleonMark* (2002), a demo developed by Nvidia to showcase GeForce3's shaders.
 
 :::
 
-Thanks to vertex programs, the GPU can now accelerate model transformations, lighting calculations and texture coordinate generation. The latter is essential for composing [Higher Order surfaces](playstation-2#infinite-worlds). With this, the CPU can concentrate on providing better physics, AI and scene management.
+The concept of 'shaders' was introduced by **Pixar** in 1989 as a method to extend **Renderman** [@graphics-pixar], their pioneering software used for 3D rendering. This was back in the time when 3D graphics were mainly associated with expensive industrial equipment. Later on, we saw how certain consoles incorporated [similar principles](nintendo-64#tab-1-1-reality-signal-processor), but it wasn't until Nvidia released their GeForce3 line in 2001 that shaders became a standard in the consumer market.
 
-In the case of pixel shaders, programmers can manipulate and blend textures in multiple ways to achieve different effects such as multi-texturing, specular mapping, bump mapping, environment mapping and so on.
+#### What lies ahead
 
-A new programming concept that emerges thanks to this approach is the **General Purpose GPU** or 'GPGPU', which consists of assigning tasks to the GPU that would have been exclusively done by the CPU. So not only the GPU has taken over most of the graphics pipeline, but now can act as an efficient co-processor for specialised computations (i.e. physics calculations). This is a new area that will evolve as GPUs become more powerful and flexible. However, the NV2A was already able to achieve this thanks to a combination of hardware capabilities (vertex & pixel shaders) and specialised APIs developed (OpenGL's 'state programs').
+Thanks to vertex programs, the GPU can now accelerate model transformations, lighting calculations, and texture-coordinate generation. The latter is essential for composing [higher-order surfaces](playstation-2#infinite-worlds). With this, the CPU can concentrate on providing better physics, AI, and scene management.
 
-{.close-float}
+In the case of fragment shaders, developers can manipulate and blend textures in multiple ways to achieve different effects, such as multi-texturing, specular mapping, bump mapping, environment mapping, and so on.
 
-I have a feeling that shaders will be regularly revisited in future articles. Please remember that in this article, however, they may be considered a bit 'primitive' and some people may argue that the pixel shaders are not even 'shaders' (compared to what GPUs offer nowadays).
+A new programming concept that emerges thanks to this approach is the **General-Purpose computing on GPU** or 'GPGPU', which consists of assigning tasks to the GPU that would otherwise be handled by the CPU. So not only has the GPU taken over most of the graphics pipeline, but it can now also act as an efficient co-processor for specialised computations (e.g. physics calculations). This is a new area that will evolve as GPUs become more powerful and flexible. However, the NV2A was already able to achieve this thanks to a combination of hardware capabilities (vertex & fragment shaders) and new APIs developed (OpenGL's 'state programs').
 
-### The Xbox's frame
+I have a feeling that shaders will feature regularly in future articles. Please remember that in this article, however, they may be considered a bit 'primitive' and some people may argue that fragment shaders are not even 'shaders' (compared to what GPUs offer nowadays).
 
-The standard resolution of games is **640x480**, this is pretty much the standard in the sixth generation. Although, this constraint is just a number: The GPU can draw frame-buffers with up to 4096x4096, yet it doesn't mean the hardware would provide acceptable performance. On the other side, the console allows configuring its screen setting globally, which may help to promote pioneering features (i.e. widescreen and 'high resolution') instead of waiting for developers to discover them (as it happened with the [Gamecube/Wii](wii#tab-1-1-standardised-widescreen)).
+### Outputting the video
 
-The video encoder, on the other hand, will try to broadcast whatever there is on the frame-buffer in a format your TV will understand. That means that widescreen images will become [anamorphic](wii#tab-1-1-standardised-widescreen) unless the game outputs in HD (i.e. 720p or 1080i, which only a few games do).
+Arriving last in its generation and featuring PC-based graphics hardware, the Xbox offered the best of both worlds when it came to video output quality.
 
-That being said, what kind of signals does this console broadcast? Quite a lot. Apart from the typical PAL/NTSC composite, the Xbox offers **YPbPr** (requiring an extra accessory to get the 'component' connectors) and RGB (both SCART and VGA compliant). All in all, very convenient without requiring expensive adapters and whatnot.
+#### The Xbox's frame
+
+Nvidia's chip was internally able to handle 4096 x 4096-pixel framebuffers, not necessarily with acceptable performance, but at a time when the target resolution of games was around 640 x 480 pixels, Xbox titles were in a comfortable position to support the following modernities, which could be toggled system-wide:
+
+- **Progressive scan (480p)**: I've already [discussed this feature in detail](dreamcast#tab-2-1-bridging-the-divide), but it's fair to say that with the Xbox, the majority of games took advantage of it [@graphics-alternates] without suffering any [sudden drop in support](gamecube#the-external-connections) afterwards.
+- **'High-definition' output (720p and 1080i)**: These were more experimental and only enjoyed small adoption due to limited TV compatibility and performance implications.
+- **Widescreen (16:9 ratio)**: Plenty of games also supported this extended aspect ratio, although its implementation differed depending on the output mode:
+    - Standard definition (PAL, NTSC or 480p) was limited to [anamorphic widescreen](wii#tab-1-1-standardised-widescreen).
+    - High-definition modes (720p and 1080i), albeit less common, supported widescreen natively.
+
+In charge of this was the Video Encoder, initially made from off-the-shelf parts that changed across motherboard revisions (first by Conexant, later by Focus Enhancements). Late revisions contained in-house circuitry (called *Xcalibur*) [@graphics-encoder].
+
+In any case, the video output supports [Digital Television (DTV)](dreamcast#tab-2-2-the-accompanying-socket) timings, meaning it conforms to modern TV standards.
+
+#### The output socket
+
+Being the first console of Microsoft meant they didn't need to preserve any legacy video connectors. So, what was Microsoft's debut? A **multi-purpose socket** that provides [@graphics-pinout]:
+
+- Stereo audio, in both **analogue** and **SP-DIF** (digital) form.
+- **Composite**, **S-Video**, **YPbPr**, and **RGB** video signals.
+
+To use any of these, Microsoft shipped 'AV Packs' containing different adaptors, such as RCA, SCART, and component video [@graphics-av_cables].
+
+![An AV Pack featuring digital audio and component video [@photography-amos].](console/av_adapter.webp){.no-borders latex_width="80%"}
+
+At one point, however, Microsoft experimented with VGA support, but this never made it beyond development kits. Retail units lack the HSync and VSync signals required for VGA output [@graphics-vga].
 
 ## Audio
 
-The audio subsystem of this console was heavily influenced by the technology of professional audio equipment and ATX motherboards, although it does contain some peculiar parts. The MCPX includes two audio components, the **Audio Processing Unit** and the **Audio Controller Interface'**.
+The audio subsystem of this console was heavily influenced by an interesting mix of established and cutting-edge technologies:
 
-The Audio Processing Unit or 'APU' is the dedicated audio processor and is composed of three sub-components:
+- Advanced Technology Extended (ATX) motherboards and their affinity for *AC'97* (Intel's audio standard).
+- Microsoft's internal developments, particularly *DirectSound*.
+- Professional audio equipment, and its offerings beyond the consumer market.
+- The [mistakes](nintendo-64#audio) and [successes](playstation#audio) of competitors, including their [latest ventures](playstation-2#beyond-stereo).
 
-- The **Voice Processor** or 'VP': A specialised circuit that can synthesise 256 voices at a sampling rate of 48 kHz. It also includes two DAHDSR envelope controls and various filters. Furthermore, 64 voices can be 3D (as opposed to Stereo or Mono). At the end, the processor mixes and outputs the voices through 32 channels, where groups of 8 channels have their own volume control.
-- The **Global Processor** or 'GP': A programmable DSP used to process the audio data from the VP and apply various effects on it.
-  - Not all the channels coming from the VP have to be fed here, instead, specific groups can be sent to apply specific effects (i.e reverb) exclusively on them.
-- The **Encode Processor** or 'EP': As the name indicates, it generates the final stereo signal coming from the GP and stores it in main RAM.
-  - Notice the operations of the EP can also be carried out by the GP, but having a separate component for encoding enables the console to strive for better audio encoding techniques, such as Dolby Digital.
+This resulted in two very powerful audio components: the **Audio Processing Unit** and the **Audio Controller Interface**, both integrated into the MCPX package.
 
-The APU only processes audio data but can't output it. The latter is the job of the ACI, which reads the audio data in RAM, decodes it and sends the resulting PCM stereo sample (16-bit resolution with a sampling rate of 48 kHz) through the audio output.
+### The processor
+
+The Audio Processing Unit (APU) is, as its name indicates, the dedicated audio processor. Microsoft packed a lot of technology into it, which groups into three sub-components [@audio-apu]:
+
+- The **Voice Processor** or 'VP': A specialised circuit that can synthesise 256 voices at a sampling rate of 48 kHz. It also includes two DAHDSR envelope controls and various filters. The processor ultimately mixes these voices and outputs them through 32 channels, with each group of eight channels having its own volume control.
+- The **Global Processor** or 'GP': A programmable Digital Signal Processor (DSP) that can apply effects to the audio data coming from the VP.
+  - Its use is optional. In fact, it also allows to route a subset of the VP's channels to apply specific effects (such as reverb) exclusively to those.
+- The **Encode Processor** or 'EP': Another programmable DSP. It generates the final audio output and stores it in main RAM.
+  - Isn't it curious that Microsoft had to build a dedicated DSP for such a seemingly simple task? The answer lies at the end of this section.
+
+### The interface
+
+The APU is responsible for processing audio data, but can't output sound directly. The latter is the job of the Audio Controller Interface (ACI), which reads audio data from RAM, decodes it, and sends the resulting PCM stereo sample (16-bit resolution with a sampling rate of 48 kHz) to the audio output.
+
+### Betting big on surround sound
+
+While competitors offered some degree of surround-sound support through software libraries, Microsoft went a step further by licensing technology from **Sensaura** to accelerate this task using dedicated hardware [@audio-sensaura]. This allowed 64 of the available voices from the Voice Processor to be positioned in a [3D space](playstation-2#beyond-stereo) using **Sensaura 3D Positional Audio** (S-3DPA). It also provided the following effects:
+
+- **EnvironmentFX**: A reverb engine that simulates environmental acoustics, including echoes. Its implementation is compliant with a standard called 'Interactive 3D Audio Rendering Guidelines Level 2.0' (I3DL2).
+- **ZoomFX**: To simulate large-scale objects emitting sound, like waterfalls and crowds.
+- **MacroFX**: To simulate sounds within a one-meter radius.
+
+The Encode Processor, meanwhile, can encode the resulting audio into a surround-sound signal that follows [Dolby Digital's codecs](playstation-2#beyond-stereo).
+
+#### A battle of egos
+
+Achieving this level of licensing and dedication wasn't without its hurdles. While engineers were busy researching and implementing attractive surround capabilities, the other side of Microsoft wouldn't give in on royalties without a battle. After all, both Microsoft and Dolby believed they had the upper hand in the negotiation.
+
+> Let’s just say that getting two companies, each used to being in a ....very strong.... negotiating position to come to an agreement was challenging. (...) It all came down to one evening. We got a call from a production Manager, who was at the factory in Guadalajara, Mexico. That next morning, they were scheduled to start pre-production of the first prototype Xboxes. They essentially said: “we’ve got two molds for the Xbox outer casing ready to go. One has the Dolby logo on it, one doesn’t. We need to know which one we should use...by tomorrow morning.” [@audio-schmidt]
+>
+> -- <cite>Brian Schmidt, Xbox's audio architect. </cite>
+
+I think this anecdote paints a good picture of how fragile Microsoft's commitment was to proving itself to developers and consumers.
 
 ## I/O
 
-As I mentioned before, we have a 'Southbridge' subsystem which concentrates all I/O access. This Southbridge is implemented by the MCPX chip.
+As I mentioned earlier, we have a 'Southbridge' subsystem which concentrates all I/O access. This is implemented by the MCPX chip.
 
-![Main diagram of the console's architecture. Notice how the MCPX controls most of the I/O.](_diagrams/main.png)
-
-Incidentally, the MCPX derives from its PC counterpart called **nVidia nForce Multimedia and Communications Processor** or 'MCP'. This is found on motherboards using the nForce 220/415/420 chipset [@io-reactos].
+Incidentally, the MCPX is derived from its PC counterpart, called **Nvidia nForce Multimedia and Communications Processor**, or simply 'MCP'. This component was found on motherboards featuring the nForce 220/415/420 chipsets [@io-reactos].
 
 ### External interfaces
 
-The console includes the following external connectors:
+![Front of the console [@photography-amos], showing the controller ports.](console/front.webp){.toleft .no-borders}
 
-- **4 USB 1.1 ports**: Used to connect the controllers, however, the external shape of the port is modified to only allow Xbox controllers.
-  - These ports also contain an extra pin called 'Video Sync' to connect peripherals that interact with the screen.
-- **10/100BASE-TX Ethernet port**: Used for online services (more details later). The actual Ethernet function is performed by a separate transceiver found in the motherboard.
+![Back of the console [@photography-amos], showing the power socket, proprietary AV output, and Ethernet port.](console/back.webp){.toright .no-borders}
+
+The console provides the following external connectors:
+
+- **Four USB 1.1 ports**: Used to connect the controllers. Be that as it may, the external shape of the port has been modified to only allow Xbox controllers.
+  - These ports also contain an extra pin called 'Video Sync', which allows peripherals to synchronise with the screen's refresh (needed for light guns).
+- **10/100BASE-TX Ethernet port**: Used for online services (I explain more details later). The actual Ethernet functionality is handled by a separate transceiver located on the motherboard.
 
 ### Internal interfaces
 
-The MCPX also provides the following interfaces and protocols used to interconnect different subsystems:
+The MCPX also provides plenty of interfaces and protocols to interconnect different subsystems:
 
-- **SMBus**: Also referred to as I²C, it's a serial interface that connects these components:
-  - **System Management Controller** or 'SMC': Manages multiple services, such as power, temperature and fan control. It's actually a PIC16LC microcontroller.
-  - **System Temperature Monitor** or 'STM': A digital thermometer (ADM1032) used by the SMC to detect overheating.
-  - A **256 B EEPROM**: A re-writable ROM that stores unique identifiers (serial number, region, Ethernet MAC address, etc).
-  - **Video Encoder**: The encoder is primarily connected to the GPU but controlled through the SMBus.
-- **IDE Controller**: This is a standard protocol widely used on PCs to communicate with Hard drives, optical readers and so forth. A single wide ribbon cable is used to connect the motherboard with the DVD drive and the HDD.
-- **Low Pin Count** or 'LPC' bus: This is another interface borrowed from the PC, but instead of connecting the *good old* PC BIOS, it communicates with a **Flash ROM**, which in turn stores the equivalent of a BIOS. The Flash is **1 MiB** large.
+- **System Management Bus (SMBus)**: It's a serial interface based on I²C, connecting these components:
+  - **System Management Controller** or 'SMC': Manages multiple system services, such as power, temperature, and fan control. Behind the scenes, it's actually a *PIC16LC* microcontroller.
+  - **System Temperature Monitor** or 'STM': A digital thermometer (*ADM1032*) used by the SMC to detect overheating.
+  - A **256-byte EEPROM**: A re-writable ROM that stores unique identifiers (e.g. serial number, region, Ethernet MAC address, etc.).
+  - **Video Encoder**: Although primarily connected to the GPU, it is also controlled through the SMBus.
+- **IDE Controller**: This is a standard protocol widely used on PCs to communicate with hard drives, optical readers, and so forth. A single wide ribbon cable connects the motherboard to both the DVD drive and the 8 GB HDD.
+- **Low Pin Count (LPC)** bus: Another interface borrowed from the PC architecture, but instead of connecting the *good old* PC BIOS, it communicates with a **Flash ROM**, which in turn stores the equivalent of a BIOS.
+    - The Flash is **1 MiB** large (later reduced to 258 KiB in subsequent revisions) and technically **writable**, but the latter only happens during manufacturing [@anti_piracy-steil]. Just before the console leaves the factory, the Flash ROM is placed in a write-protected configuration.
 
 ### The controller
 
-The Xbox came with a bulky controller called **The Duke**, its set of inputs isn't any different from what the other competitors had... except for the usage of analogue circuitry (8-bit wide) on the face buttons, allowing games to detect 'half-presses' from most of the button set. On the other side, the Duke was so widely criticised that Microsoft replaced it with a new revision called **Controller S** months after the release of the console.
+The Xbox shipped with a bulky controller called **The Duke**. Its set of inputs wasn't particularly different from what the competition offered... except for the usage of 8-bit analogue circuitry on the face buttons, allowing games to detect 'half-presses' on most of the button set.
 
-::: {.subfigures .toleft .tabs-nested}
+::: {.subfigures .side-by-side}
 
-![](controller/duke_front.png){.active title="Front"}
+![](controller/duke_front.png){.toleft .no-borders}
 
-![](controller/duke_back.png){title="Back"}
+![](controller/duke_back.png){.toright .no-borders}
 
 The Duke (2001) [@photography-amos].
 
 :::
 
-::: {.subfigures .toright .tabs-nested}
+In any case, the Duke attracted so much criticism that Microsoft replaced it with a smaller revision called **Controller S**, just months after the console's launch.
 
-![](controller/s_front.png){.active title="Front"}
+::: {.subfigures .side-by-side}
 
-![](controller/s_back.png){title="Back"}
+![](controller/s_front.png){.toleft .no-borders}
+
+![](controller/s_back.png){.toright .no-borders}
 
 Controller S (2002) [@photography-amos].
 
 :::
 
-On closer inspection, both controllers did include something special: Two **Memory Unit** slots to plug in a proprietary memory card, enabling to share saves between consoles. Upon realising this, I instantly assumed this feature was inherited from a [previous competitor](dreamcast#the-interactive-memory-card). However, days after publishing this article, I sent it to Seamus Blackley, the co-creator of this console, who quickly replied with very interesting comments. Regarding the Dreamcast similarities, he told me:
+On closer inspection, both controllers reveal something interesting: two **Memory Unit** slots for proprietary memory cards, allowing players to share saves between consoles. Upon noticing this, I instantly assumed this feature had been inherited from a [previous competitor](dreamcast#the-interactive-memory-card), now retired from the console market. However, a few days after publishing this article, I reached out to Seamus Blackley (the co-author of Xbox), who quickly replied with very interesting comments. Regarding the similarities with the Dreamcast, he told me:
 
 > The relationship to Dreamcast is just historical bias. That was accidental.
 >
 > -- <cite>Seamus Blackley</cite>
 
-### A required adapter
+#### A required adapter
 
-Another interesting fact to mention about these controllers is that they can only be plugged in using a shape adapter referred to as **breakaway dongle**, this was designed in an effort to prevent accidents when someone tripped over.
+Another interesting fact about these controllers is that their cable comes with a **breakaway dongle**. This was intended to prevent accidents if someone happened to trip over the cable.
 
 > I think they also planned for where an Xbox was on a high shelf and yanking the controller would pull the whole heavy console down on some kid’s head.
 > 
 > -- <cite>Xbox user</cite>
+
+#### The other controller
+
+Looking beyond the gaming industry, Dolby also had a stake in the DVD market, thanks to a licensing model that charged royalties for DVD players sold. This wasn't easy to avoid, as Dolby Digital support was part of the DVD video specification.
+
+![The Xbox DVD Movie Playback Kit [@photography-amos].](console/remote.webp){.no-borders latex_width="80%"}
+
+As an adopter of the DVD (and potentially DVD movies), Microsoft formulated an interesting approach to avoid adding this expense to their consoles: rather than including DVD playback software inside the box, they released an optional 'Xbox DVD Movie Playback Kit' that consisted of a standard remote control and an Infrared receiver [@io-remote].
+
+Inside the receiver was a ROM storing the DVD playback software. This was loaded at runtime without any possibility of being installed into the HDD, part of a strategy to provide support for DVD movies without paying royalties per console sold.
 
 ## Operating System
 
@@ -351,21 +459,21 @@ All right, let's start by addressing the elephant in the room.
 
 > Does it run **Windows**?
 
-I'm afraid this is a *yes and no* answer: There is a 'Windows' present in this console, but not in the form conventional PC users would expect.
+I'm afraid this is a *yes and no* answer. There is a 'Windows' present in this console, but not in the form that conventional PC users might expect.
 
-First things first, the Xbox's operating system is composed of a **Kernel** and **userland applications** (i.e. the Dashboard). These are stored in the 1 MiB Flash ROM and the HDD, respectively.
+First things first, the Xbox's operating system is composed of a **Kernel** and **userland applications** (such as the *Dashboard*). These are stored separately: the kernel resides in the 1 MiB Flash ROM, while the Dashboard is stored on the HDD.
 
-The Kernel borrows a significant codebase from **Windows 2000's kernel** [@operating_system-os] (which, in turn, is based on the modern **Windows NT** architecture). The result is a stripped-down Windows 2000 kernel that only embeds the necessary components for the Xbox hardware. These are finally compressed and packaged in a single executable [@operating_system-kernel] for optimal memory efficiency. All in all, you can think of it as a highly-optimised Windows machine exclusively designed for gaming.
+The kernel borrows a significant portion of its codebase from **Windows 2000** [@operating_system-os], which itself belongs to the broader **Windows NT** architecture. The result is a stripped-down Windows 2000 kernel that only embeds the necessary components for the Xbox hardware. These are compressed and packaged into a single executable [@operating_system-kernel] for optimal memory efficiency. All in all, you can think of it as a highly optimised Windows machine designed exclusively for gaming.
 
-It's worth pointing out that the Xbox project was headed by the **DirectX team** [@operating_system-renegades]. Thus, its origin is unrelated to the Windows CE team [that brought its APIs to the Dreamcast](dreamcast#windows-ce).
+It's worth pointing out that the Xbox project was headed by the **DirectX team** [@operating_system-renegades]. Thus, its origins are unrelated to the Windows CE team [that brought its APIs to the Dreamcast](dreamcast#windows-ce).
 
 ### Boot Process
 
-As with Pentium machines, upon booting up the system, the CPU will start executing instructions found at the **reset vector** (address `0xFFFF.FFF0`). For the Xbox, this address points to a hidden ROM found in the MCPX (more details are explained in the 'Anti-Piracy and Homebrew' section). The MCPX contains routines to set up the security system and continue booting from the Flash ROM instead. Inside the Flash ROM, the Xbox will initialise its hardware, boot the Kernel and show the splash animation.
+As with Pentium machines, upon booting up the system, the CPU starts executing instructions found at the **reset vector** (address `0xFFFF.FFF0`) [@anti_piracy-boot]. On the Xbox, this address points to a hidden ROM inside the MCPX (more details are covered in the 'Anti-Piracy and Homebrew' section). The MCPX contains routines that set up the security system and continue the boot process from the Flash ROM. The latter then takes care of initialising the remaining hardware, loading the kernel, and showing the splash animation.
 
-During security initialisation, the CPU turns into **protected mode**. This is critical since x86 CPUs always start up in **real mode** to maintain compatibility with the first processor (the Intel 8086), however, if programmers need to access the modern features of the CPU (such as being able to access more than 1 MiB of memory), they have to manually enable them by switching to protected mode. 
+During security initialisation, the CPU switches to **protected mode**. This is critical because x86 CPUs always start in **real mode** to maintain compatibility with the original Intel 8086. However, if programmers need to access modern features (such as being able to access more than 1 MiB of memory), the processor must be switched to protected mode. 
 
-When the Kernel loads, it injects microcode into the CPU (not to program it, but rather to *update it*). Finally, the Kernel looks for the presence of a valid DVD disc. If there is one, it runs it. Otherwise, it will load a user-interactive shell stored in the Hard Drive.
+When the kernel loads, it injects microcode into the CPU (not to program it, but rather to **update it**). Finally, the kernel looks for the presence of a valid DVD disc. If one is found, the console launches it. Otherwise, it loads a user-interactive shell stored on the hard drive.
 
 ### The green screen
 
@@ -375,97 +483,107 @@ Let's take a look now at the program that the Xbox loads when there isn't a game
 
 ::: {.subfigures .tabs-nested .tab-float}
 
-![Home screen.](shell/home.png){.active title="Home"}
+![Home screen.](shell/home.png){.active latex_width="80%" title="Home"}
 
-![Settings screen.](shell/settings.png){title="Settings"}
+![Settings screen.](shell/settings.png){latex_width="80%" title="Settings"}
 
-The Dashboard offers multiple services.
+The Dashboard offers access to multiple services.
 
 :::
 
-The dashboard is not very different in terms of functionality compared to the [PlayStation menu](playstation-2#interactive-shell), or the [GameCube's IPL](gamecube#splash-and-shell). It essentially includes all the functions typical users would expect, like being able to tweak some settings, moving saves around, playing DVD movies or CD audio; and so forth.
+In terms of functionality, the Dashboard is not very different from the [PlayStation menu](playstation-2#interactive-shell), or the [GameCube's IPL](gamecube#interactive-shell). It essentially includes all the functions typical users would expect, like tweaking settings, managing saves, playing DVD movies or audio CDs, and so forth.
 
-One thing worth mentioning is that the Dashboard also allows to rip music from an audio CD and store it in the HDD. This music can be subsequently fetched from any game to 'personalise' its soundtrack. *Far out!*
+One thing worth mentioning is the Dashboard's ability to rip music from audio CDs and store it on the HDD. Games can subsequently access this music to let the player personalise their soundtracks. *Far out!*
 
 #### Updatability {.tab}
 
-Well yes, this is the first console of its generation to be *officially* updatable, but only the contents of the HDD are writable. The Kernel part (in the Flash ROM) can't be re-written, but the system can patch it after it's loaded in memory. Kernel patches are therefore stored in the HDD.
+Well yes, the software in this console can be updated, but only the contents of the HDD are writable. The kernel part (stored in Flash ROM) can't be re-written. However, the system can patch it after it's loaded in memory. Thus, update packages may include Dashboard revisions and kernel patches.
 
-Updates are distributed through retail games and/or downloaded by the system after connecting to the Xbox Live network service (more about it later on).
+Even so, some updates managed to introduce new functionality. For instance, the first Xbox units didn't include *Xbox Live* (more about this in the next section), so games bundled the required files in the form of an update to install the service. Other updates focused on fixing security vulnerabilities.
 
-Some updates enhanced the functionality of the system. For instance, the first Xbox units didn't include Xbox Live, so games embedded the required files in the form of an update to install that service. Other updates focused on fixing security vulnerabilities.
+Throughout the Xbox's lifetime, updates were distributed through retail games and could also be downloaded by the system after connecting to the *Xbox Live* network service.
 
 ## Games {.tabs-close}
 
-This part may be a bit confusing, mainly due to the lack of low-level documentation compared to other consoles. It seemed that Microsoft/Nvidia really wanted developers to use their libraries and forget about everything else. It's an interesting strategy nonetheless.
+If you've been reading this article series from the beginning, this part may look a bit superficial at first, mainly due to the lack of low-level documentation compared to other consoles. It seemed that Microsoft and Nvidia really wanted developers to use their libraries and leave everything else to them. It's an interesting strategy nonetheless.
 
-In any case, I tried to document it as informative as possible, without going into too much depth.
+In any case, I've tried to make this section as informative as possible, just with a different perspective.
 
 ### Development ecosystem
 
-Game development in this console is very complex in terms of libraries, terminology and so forth. So I have separated it by frameworks.
+Game development on this console involves a rather complex ecosystem of libraries and terminology. So I organised the information into separate frameworks.
 
 #### Hardware Abstraction {.tabs .active}
 
-![Representation of HAL.](_diagrams/hal/general.png){.tab-float}
+![Representation of the Hardware Abstraction Layer (HAL) model.](_diagrams/hal/general.png){.tab-float}
 
-We have seen how elements like a 'programmable coprocessor with microcode' tend to come with a lot of fanfare at first, but slowly dissipates once developers discover the real complexity of the new hardware.
+We have seen how elements like a 'programmable coprocessor with microcode' tend to come with a lot of fanfare at first, only for it to gradually dissipate as developers discover the actual complexity of the new hardware.
 
-From the developer perspective, I think one of the selling points of this console was the inclusion of popular high-level libraries that could efficiently manage low-level functionality. Microsoft and Nvidia's strategy consisted in, instead of documenting every low-level aspect of their hardware, they just provided a fully-functional hardware abstraction library that could perform the operations developers would expect to find without requiring complete knowledge of the inner workings of the hardware.
+From the developer's perspective, I believe one of the selling points of this console was the inclusion of popular high-level libraries that could manage low-level functionality efficiently. Microsoft and Nvidia's strategy was to provide a fully-fledged Hardware Abstraction Layer (HAL) rather than requiring developers to understand every low-level aspect of the hardware themselves.
 
-There are multiple SDKs available to develop for this console, some 'official' and restrictive, while others 'not-so-official' but flexible. We'll take a look at the most popular ones.
+There are multiple Software Development Kits (SDKs) available for developing on this console, some 'official' and restrictive, while others 'not-so-official' but flexible. We'll take a look at the most popular ones.
 
 #### Microsoft XDK {.tab}
 
-![XDK structure](_diagrams/hal/xdk.png){.tab-float}
+![Structure of the Xbox Development Kit (XDK).](_diagrams/hal/xdk.png){.tab-float}
 
-Microsoft's Xbox Development Kit or 'XDK' is the official SDK used for Xbox development. It's a package that contains many tools, libraries and compilers. Most notably, it's used alongside Visual Studio .NET (2002 version) which was *quite an IDE* from that time, for better or worse.
+Microsoft's **Xbox Development Kit**, or 'XDK', is the official SDK for Xbox development. It's a package that contains many tools, libraries, and compilers. Most notably, it was designed to work alongside **Visual Studio .NET 2002**, which was *quite an IDE* from that time, for better or worse!
 
-The graphics library is a customised implementation of **Direct3D 8.0**, which was extended to include Xbox-specific features. Direct3D was a very powerful API used to develop code compatible with many GPUs. With this, PC developers have the opportunity to port their PC games without too many changes (in theory!). Although, the syntax used for vertex programs and pixel shaders resembles downright assembly.
+The graphics library is a customised implementation of **Direct3D 8.0**, extended with Xbox-specific features. Direct3D was a very powerful graphics API used to support a wide range of GPUs. With this, PC developers had the opportunity to port their PC games to Xbox without implementing too many changes (at least in theory!). Although, the syntax used to write vertex programs and pixel shaders resembles downright assembly.
 
-Apart from that, audio functionality is provided by **DirectSound** which takes care of the APU without the need to worry about moving audio data around. There are some network libraries as well, which are very convenient for achieving online functionality (i.e. multiplayer). The network API relies on **Windows Sockets**, which was Microsoft's attempt to simplify network communications using a Windows-only protocol (albeit having a design based on its standardised counterpart, BSD sockets).
+Apart from that, audio functionality is provided by **DirectSound**, which takes care of the APU without the need to worry about manually moving audio data.
 
-To try all of this out, Microsoft distributed their own development kit hardware which is just a retail unit tinted in green with double the RAM installed (128 MiB in total) and, sometimes, a different MCPX chip (called MCPX-2, which directly boots from the Flash ROM). It contains an enhanced version of the dashboard which launches executables signed by the XDK. On the other end, the **Xbox Neighbourhood** (a Windows application) was used to link the dev kit with Visual Studio, enabling easy deployment and debugging. To experiment with Xbox Live, Microsoft provided sandboxed servers as well.
+There are some network libraries as well, making it relatively straightforward to implement online functionality (i.e. multiplayer). The networking API relies on **Windows Sockets** (Winsock), which was Microsoft's attempt to simplify network communications using a Windows-only protocol (albeit having a design based on its standardised counterpart, *BSD sockets*).
+
+To try all of this out, Microsoft distributed their own development kit hardware. These were just retail units tinted in green and equipped with twice as much main RAM (128 MiB in total). Some revisions also featured a different MCPX chip, called MCPX-2, which directly boots from the Flash ROM. The units also ran an enhanced version of the dashboard which launched executables signed by the XDK. On the workstation's side, the **Xbox Neighbourhood** (a Windows application) was used to link the dev kit with Visual Studio, enabling easy deployment and debugging. To experiment with Xbox Live, Microsoft provided sandboxed servers as well.
 
 #### NXDK {.tab}
 
-![NXDK structure. Notice that even though some low-level libraries are wrapped with high-level ones, they are still accessible to the developer](_diagrams/hal/nxdk.png){.tab-float}
+![Structure of the 'New XDK' (NXDK). Notice that even though some low-level libraries are wrapped by high-level ones, developer can still access them directly.](_diagrams/hal/nxdk.png){.tab-float}
 
-To avoid Copyright litigation to Homebrew developers using the official SDK, a group of developers unaffiliated with Microsoft created a replacement of the official SDK called **Open XDK**. After some years, its development stopped, so another group picked it up from there and named the new fork **New XDK** or 'nxdk'.
+To avoid potential copyright litigation against homebrew developers using Microsoft's SDK, a group of developers unaffiliated with the company created an open-source replacement called **Open XDK**. Some years later, its development stalled, so another group picked it up and continued development under a new name: **New XDK** or 'nxdk'.
 
-The ongoing project reverse-engineered the low-level hardware components (microcode, push-buffers, etc) and designed a new API in C/C++ which provides high-level calls to each portion of the system.
+The ongoing project reverse-engineered many low-level hardware components (microcode, pushbuffers, etc.) and designed a new API in C/C++ that provides higher-level calls for each portion of the system.
 
-To simplify the graphics layer without relying on Direct3D, nxdk uses the **CG compiler** [@games-nxdk]. CG is a language created by Nvidia for developing shaders. CG is chained with other compilers to generate Xbox-compatible code. During compilation, CG code is converted into NV20-compatible assembly, then, this is translated again using a custom compiler to generate NV2A-compatible microcode and pushbuffer. For those who don't want to use CG, nxdk also exposes the rest of the compilers to write low-level shaders.
+To simplify the graphics layer without relying on Direct3D, nxdk uses the **Cg compiler** [@games-nxdk]. Cg is a programming language created by Nvidia for developing shaders. It is chained with other compilers to generate Xbox-compatible code. During compilation, Cg code is translated into NV20-compatible assembly, which is then parsed by a custom compiler to generate NV2A-compatible microcode and pushbuffer. For those who don't want to use Cg, nxdk also exposes the underlying tools to write low-level shaders.
 
-The rest of the APIs available handle other services (audio, networking, etc). All in all, this library gives more control of the hardware (as opposed to the official SDK) at the exchange of not using Microsoft's APIs (the de-facto standard, albeit completely proprietary). However, nxdk remains the most adequate option for developing legal Homebrew programs.
+The remaining APIs handle other services such as audio, networking, and so forth. All in all, nxdk gives greater control of the hardware at the cost of foregoing Microsoft's development amenities. However, nxdk remains the most adequate option for developing legal homebrew programs.
 
 ### Medium {.tabs-close}
 
-Games are distributed on dual-layer DVD discs (with up to 8.5 GB!), and they are subsequently read by a customised DVD drive that includes anti-piracy protections (despite using a standard interface, ATA). It's worth mentioning that the XDK included some tools to customise the layout of data in the disc, enabling programmers to improve read speeds!
+Following the trend, games are distributed on [dual-layer DVD discs](playstation-2#inside-the-dvd), which can hold up to **8.5 GB**. These are read by a customised DVD drive that includes anti-piracy protections (despite relying on a standard interface, ATA). It's worth mentioning that the XDK included some tools to customise the layout of data on the disc, allowing programmers to improve read performance.
 
-Now, the console also includes an internal 8 GB HDD, games use it to store saves or cache temporary content. The system, on the other hand, stores the dashboard, Xbox Live settings and network settings.
+Now, the console also includes an internal **8 GB HDD**. Games use it to store save data and cache temporary content. The system, on the other hand, uses it to store the dashboard, Xbox Live settings, and network configuration.
 
 ### Network service
 
-Forget about [modems](dreamcast#the-ambitious-online-platform) or [experimental services](playstation-2#network-service). The Xbox included everything that nowadays we take for granted to provide a decent online service: Ethernet connection and a centralised online infrastructure (called **Xbox Live**).
+Forget about [telephone connections](dreamcast#the-ambitious-online-platform) or [half-baked services](playstation-2#network-service). The Xbox included everything that we nowadays take for granted to deliver a decent online service: Ethernet connectivity and a centralised online infrastructure, called **Xbox Live**.
 
-![Xbox Live Logo.](shell/live.png){.open-float}
+![Xbox Live Logo.](shell/live.png)
 
-Furthermore, not only Xbox Live enabled online multiplayer but it also included other features like audio streaming for real-time voice chat.
+But what exactly was Xbox Live? Launched in 2002, it was a collection of interconnected online services that Microsoft deployed for game studios to build their online experiences [@games-multerer]. For instance, one of these services provided user profiles, so games could use it as an authentication method when accessing online multiplayer. In the official SDK, Microsoft included APIs to talk with the Xbox Live servers.
 
-But what exactly is Xbox Live? Well, it's just a collection of interconnected online services that companies can use to build their online platform. For instance, one of the services provides user profiles, so studios can use it as an authentication method when accessing the online functionalities of a game. In the official SDK, Microsoft includes some APIs to talk with the Xbox Live servers.
+All in all, Xbox Live offered game companies the following infrastructure [@games-unveil]:
 
-{.close-float}
+- Online profiles, known as *Gametags*, and friends lists.
+- Matchmaking, either randomly (*Quickmatch*) or based on player skills (*OptiMatch*).
+- Downloadable content.
 
-It's important to point out that Microsoft controls whom to grant Xbox Live access to, so developers will have to register with Microsoft to obtain the authentication keys that will be used by their games.
+Players paid Microsoft a subscription fee to access Xbox Live. Promotional bundles, like the *Xbox Live Starter Kit*, included a disc with demos, a headset called *Xbox Communicator*, and 12 months of Xbox Live.
 
-The real online experience happens in the **Title Server**, which is the type of server that answers to clients (Xbox consoles) around the world and handles real-time communication. Microsoft included in their SDK some samples to show how to build these servers, although they relied on Windows systems and were meant to be deployed in data centres running Windows Server.
+The service retired in 2010, allowing Microsoft to focus on their [next-generation offerings](xbox-360#network-service).
+
+### The job of the game developer
+
+It's important to point out that Microsoft controlled whom to grant Xbox Live access to, so developers had to register with Microsoft to obtain the necessary authentication keys.
+
+The actual online experience happened on the **Title Server**: a type of server that answered to clients (Xbox consoles) around the world and handled real-time communication. Microsoft included in their SDK some samples to show how to build these servers, although they relied on Windows-based systems and were intended to be deployed in data centres running Windows Server, the .NET platform, and their C# runtime.
 
 ### The start of a new trend
 
-After analysing Microsoft's implementation of Xbox Live and looking at the impact it had on the industry. It now sounds pretty obvious, right? As if the recipe for 'proper online gaming' (a.k.a Ethernet + Infrastructure) was always there, but not every company wanted to invest in it.
+After studying Microsoft's implementation of Xbox Live and the impact it had on the industry, it now sounds pretty obvious, right? It's almost as if the recipe for 'successful online gaming' (a.k.a. Ethernet + Infrastructure) had always been there, but not every company was willing to invest in it.
 
-It turns out it's not that simple: Microsoft also had to convince users they 'needed' this functionality, that online multiplayer wasn't just an optional addition, but a fundamental part of some games. Otherwise, Microsoft's efforts would just account for another 'online attempt'. 
+As it turns out, things weren't that simple. Microsoft also had to convince users they 'needed' this functionality, that online multiplayer wasn't merely an optional addition, but a fundamental part of the gaming experience. Otherwise, Microsoft's efforts might have amounted to another 'online attempt'. 
 
 > Try imagining a world where no console gamer wanted online games, and where nobody believed a PC architecture could be a console. That was really how it was. Now it seems obvious BUT IT WASN'T.
 >
@@ -473,65 +591,96 @@ It turns out it's not that simple: Microsoft also had to convince users they 'ne
 
 ## Anti-Piracy and Homebrew
 
-Independently whether this console contains off-the-shelf components or not, there's a fair amount of security measures implemented.
+Independently of whether this console contains off-the-shelf components or not, there's a fair amount of security measures implemented. Let's take a look.
 
-Please note that RSA encryption is a recurring topic here, I previously introduced it in the [Wii article](wii#tab-2-2-chain-of-trust), so if you are not familiar with RSA or any other symmetric/asymmetric encryption systems please take a look at that article first.
+### DVD copy protection {.tabs .active}
 
-That being said, let's take a look.
+Xbox Game Discs are protected both logically and physically to prevent unauthorised duplication, which shouldn't come as a surprise.
 
-### DVD copy protection
+On the logical side, game discs included a couple of 'traps' to trick conventional DVD readers and prevent them from finding the actual game content. For instance, the first area of the disc is formatted like a conventional DVD movie, and inside that section there's a warning message that plays when inserted into a non-Xbox system. In reality, game data resides in a second partition, but the metadata required to locate that partition is not encoded in a format conventional DVD readers recognise, meaning that only a specialised reader (such as the Xbox's) can find the game.
 
-Game discs are protected both logically and physically to prevent unauthorised duplication (this shouldn't be a surprise by now).
+On the physical side, I'm afraid that at this time, it's not publicly known what data the driver and the disc exchange to perform validation. The disc contains an inaccessible inner ring (to conventional readers) that stores unique identifiers, although how this information is used is still unknown.
 
-On the logical side, game discs include a couple of 'traps' to trick conventional DVD readers so they can't find the actual game content. For instance, the first area of the disc is formatted like a conventional DVD, and inside that section, there's a warning message that plays if it's inserted in a non-Xbox system. In reality, game data is found on a second partition, but the metadata required to find that partition is not encoded in a format conventional DVD readers expect, so only a specialised reader (hence the Xbox's) will find the game.
+### System protection {.tab}
 
-On the physical side, I'm afraid that at this time, it's not publicly known yet what data the driver and the disc exchange to perform validation. The disc contains an inaccessible inner ring (by conventional readers) that stores unique identifiers, but it's not known how this data is used.
+The versatility of its I/O and the rich amount of services meant this console could do much more than just read DVDs, making the attack surface significantly larger. Now, this section is interesting but also very extensive, so for a complete study, I recommend reading *Hacking the Xbox* by Andrew Huang and *17 Mistakes Microsoft Made in the Xbox Security System* by Michael Steil. Having said that, let's describe the two main fronts: the bootloader and HDD.
 
-### System protection
+The Flash ROM was specifically chosen to store the bootloader and kernel, while the EEPROM holds the sensitive data unique to the console. Both contents are encrypted using a **Rivest Cipher 4 (RC4) key** [@anti_piracy-boot]. The kernel is hashed with SHA-1 to confirm it hasn't been tampered with [@anti_piracy-paul], and after the kernel boots, it will only execute binaries signed by Microsoft using **RSA**, an asymmetric cryptographic system in which only Microsoft possesses the private key.
 
-Let us go over the rest of the security measures that this system originally implemented.
+Microsoft also protected its most exposed component, the 8 GB ATA hard drive, by implementing the following security methods in the kernel:
 
-#### Introduction {.tabs .active}
+- **Password locking**: The ATA specification allows drives to be password-locked and will refuse to answer to commands until the correct password is entered. So, the Xbox's HDD comes 'locked' with a password derived from a unique key in EEPROM and the HDD's model and serial number [@anti_piracy-hdd_lock]. The kernel always unlocks the HDD at boot and refuses to continue if the process wasn't successful. This prevented users from examining the HDD's contents and/or swapping the drive.
+- **Hardcoded partition locations**, to deter users from installing a larger drive [@anti_piracy-bios].
+- **FATX**: Microsoft implemented this proprietary and undocumented filesystem as another layer of obfuscation.
 
-The Flash ROM and EEPROM containing the 'BIOS' and sensible data, respectively, are encrypted using a **RC-4 key**. After the Kernel is booted from the BIOS, it will only launch executables signed by Microsoft using **RSA encryption**. 
+### Defeat {.tabs-close}
 
-The HDD, on the other side, is formatted with a completely proprietary and undocumented filesystem called **FATX**.
+This was a brief introduction to the chain of trust that Microsoft implemented. Seems pretty simple, right? Well, **something's odd**: execution is controlled by the CPU, but Microsoft relied on an off-the-shelf processor. So, how does it understand data encrypted with RC4?
 
-This was a brief introduction to the chain of trust that Microsoft implemented. Seems pretty simple right? Well, **something's odd**: The execution is controlled by the CPU, but this is an off-the-shelf chip, so how does it understand data encrypted with RC-4? The answer is that **it doesn't**, so somewhere in this console is an unencrypted piece of code that sets up the first stage of encryption. This code, in particular, was the target for most hackers who strived to crack this console after it launched.
+The answer is that **it doesn't**. So, somewhere in this console is an unencrypted piece of code that sets up the encryption system. This code, in particular, was the prime target for hackers who strived to crack this console after its release.
 
-#### Bootstrap search {.tab}
+#### Bootstrap search {.tabs .active}
 
-Since it's officially documented by Intel that their processors will start execution at address `0xFFFF.FFF0`, hackers focused on searching for that code in the Flash ROM (which in turn will lead to the RC-4 key). This is what a popular hacker and researcher named **Andrew 'bunnie' Huang** attempted during his academic research. The findings were quite interesting: The upper 512 bytes of the Flash ROM contains security routines including the key, but it doesn't work for the retail system [@cpu-huang]. I speculate that Microsoft may have left that code from prototype/debug units (possibly accidental, since this block exposes the algorithms that Microsoft applied). In conclusion, this was considered *garbage code* so bunnie realised the real `0xFFFF.FFF0` wasn't in the Flash ROM.
+It's officially documented by Intel that their processors start execution at address `0xFFFF.FFF0`. With that in mind, one might inspect that location in the Flash ROM in the hope it would reveal the bootstrap code. This is precisely what a popular hacker and researcher **Andrew 'bunnie' Huang** attempted as part of his academic research.
 
-To make a long story short, `0xFFFF.FFF0` was **hidden in the MCPX chip**: It contained a hidden 512 B ROM that would be executed once and hidden afterwards. This ROM was not easy to extract, so bunnie resorted to tapping the HyperTransport bus to catch the RC-4 key once it was transmitted.
+His initial findings were quite interesting: the upper 512 bytes of the Flash ROM **expose security routines**, including a strange 'RC5' key that wasn't even used by retail systems (as they rely on RC4) [@cpu-huang]. It is widely speculated that Microsoft accidentally left that code from prototype/debug units. Nevertheless, despite being exceptionally revealing, bunnie realised that the real `0xFFFF.FFF0` wasn't in the Flash ROM.
 
-And so it happened, bunnie published the key as part of his research and Microsoft was not happy about this. Thus, the hacking community found a way to gain control of the first security layer of this console, which included the Kernel.
+To make a long story short, after some experiments, `0xFFFF.FFF0` turned out to be **hidden in the MCPX chip**: it contained a **hidden 512-byte ROM** that executed once and hid afterwards. This ROM was not easy to extract, so bunnie resorted to tapping the HyperTransport bus to capture the RC4 key as it was transmitted. Since RC4 is a symmetrical encryption algorithm, once you have the key, the protection falls apart.
 
-#### Permanent unlock {.tab}
+And so it happened: bunnie published the key as part of his research, and Microsoft was not happy. The hacking community soon chimed in by making new discoveries regarding the MCPX boot code, Flash ROM content, and the kernel.
 
-Cracking the RSA layer was never meant to be easy, but since hackers gained access to the Kernel, it would now be possible to reverse engineer it and develop patches that could nullify RSA altogether. Lo and behold, this eventually happened and opened the door to the Homebrew community. Anyone could now develop programs that could be executed on a modified Xbox without the approval of Microsoft. Some groups developed replacements for the original Dashboard which could do more functions, such as executing Linux!
+#### The second wave {.tab}
 
-This, however, required users to modify their BIOS using specialised hardware, which not everyone could do. In later years, new exploits were discovered that could easily bootstrap the main hack, one of them consisted of inserting a forged save-game of '007: Agent Under Fire' or 'Splinter Cell' that would generate a buffer overflow to kickstart a homebrew tool that could install a permanent exploit in the hard disk. The 'permanent exploit' was possible because the original Dashboard was subject to yet another buffer overflow using a forged font file [@anti_piracy-pheonix] (note that fonts didn't need to be signed).
+What followed was an uncontrollable sequence of events that ultimately opened the door to both homebrew software (including booting Linux) and game piracy.
 
-#### Modchips {.tab}
+It so happens 512 bytes can only do so much when it comes to initialising the encryption system and handing over control to the Flash ROM. Thus, Microsoft split the first stage of the bootloader into two parts: the Flash ROM stores custom commands for the bootloader, and the MCPX code acts as an interpreter to execute those commands. These commands were called **X-Codes**, and the location in Flash where they reside was called **jam table**. Most importantly, since at that stage the encryption system is not initialised yet, jam tables could only be stored in **unencrypted form**.
 
-From the piracy side of things, **Modchips** also appeared: Instead of tampering with the DVD drive, modchips overlapped the Flash ROM by exploiting the fact that the MCPX ROM could boot a secondary BIOS if it was found on an unused LPC port.
+This prompted *Michael Steil* and *Visor* to find crucial vulnerabilities in X-Codes execution, which eventually allowed to take control of the CPU without involving RC4. Visor discovered that, in the case of a verification failure during boot, Microsoft programmed it so the CPU would jump to address `0xFFFF.FFFA` in the Flash ROM. From there, it would execute fault-handling routines until reaching `0xFFFF.FFFF`, where the CPU was supposed to halt. However, Intel CPUs roll over to `0x0000.0000`, where main RAM resides (making the CPU halt for other reasons...). This was another prototype leftover, suggesting that Microsoft initially employed **AMD CPUs** (they behave differently). Anyway, this meant replacing the contents of the jam table with X-Codes that overrode the contents of `0x0000.0000` would automatically grant arbitrary code execution.
 
-The substitute BIOS contained patched routines that could enable reading any type of game disc (especially the conventional ones).
+Steil, on the other hand, developed a different solution that instead redirected execution to the 'stub' bootloader included in Flash, allowing hackers to inject their own code directly into the Flash. This discovery was called 'MIST' [@anti_piracy-exploits].
 
-#### The response {.tab}
+#### Modchips {.tabs-close}
 
-Microsoft released many hardware revisions reducing the amount of exposure in their electronics and saving up costs. Meanwhile, software updates were released that updated both the Kernel and the Dashboard in an effort to reduce the number of vulnerabilities. However, some game exploits still managed to persist and what remained was another 'cat-and-mouse' game.
+Commercial solutions in the form of **modchips** eventually emerged. These mainly fiddled with the boot process (involving the Flash ROM boot stage) to allow execution of custom code.
 
-Another point to mention is that Xbox Live was itself an effective prevention mechanism against piracy. Microsoft was able to block Xbox Live to those consoles with unauthorised modifications, which was a trade-off that typical users had to consider before hacking their consoles with the only goal of playing pirated copies.
+Earlier revisions were connected in parallel with the Flash ROM [@anti_piracy-steil], tampering with specific routines. Later revisions took advantage of the unused LPC port to trick the boot process into continuing execution from their custom ROM.
 
-## That's all folks {.tabs-close}
+Their payload often consisted of patched routines or complete bootloader and kernel replacements. One particular unexpected application included bypassing the disc authentication mechanism.
 
-After a couple of months with deadlines and exams in the middle, the next article has finally been finished. I admit this one continues the trend of adding *too much* information and trivia, but while this research started with small (and frustrating) steps, I'm glad I found a lot of support from one special community, XboxDev, that helped me gather lots of information.
+Eventually, homebrew programs were developed to allow to overwrite the contents of the stock Flash ROM, although this required hardware modifications to disable the write protection.
+
+#### A user-friendly permanent unlock 
+
+The kernel routinely checks whether executables were signed using Microsoft's RSA-2048 key, and cracking this key is computationally unfeasible. However, once hackers gained access to the kernel in Flash ROM, it became easier to reverse engineer it and develop patches that could nullify RSA altogether.
+
+Once these patches were published, they opened a wide door to the Homebrew community. In other words, anyone could now develop programs that would execute on a modified Xbox without the approval of Microsoft. Some groups even developed replacements for the original Dashboard which could do more functions, such as booting Linux!
+
+Initially, however, this still required users to modify their motherboard using the aforementioned hardware, which not everyone could do. In later years, game exploits were discovered that could easily bootstrap the main payload; one of them consisted of running a forged save file of *007: Agent Under Fire* or *Splinter Cell*. These files would generate a buffer overflow to kickstart a homebrew tool, and it was possible due to another fundamental weakness in the system: **games always ran in kernel mode** [@anti_piracy-steil].
+
+An even more user-friendly, game-independent exploit finally materialised when hackers discovered yet-another buffer overflow in the original Dashboard. This relied on a forged font file [@anti_piracy-pheonix] which the system never verified.
+
+#### The response
+
+Microsoft rushed to release several hardware revisions throughout its lifespan, from motherboard `1.1` to `1.6`. These attempted to fortify security by [@anti_piracy-boot]:
+
+- Introducing a new boot stage called **Flash Boot Loader** (FBL). This runs after MCPX's boot code and before the Flash ROM's. The FBL code is stored in Flash ROM.
+    - Its program verifies sensitive parts of Flash ROM using SHA-1. The reference hashes are signed with RSA.
+    - FBL is itself hashed using **Tiny Encryption Algorithm** (TEA)... even though it's advised against due to easy collisions.
+- Reducing the amount of exposure in their electronics. This also lowered manufacturing costs.
+
+... but it didn't matter, as the new weaknesses led to hacking developments in a matter of days.
+
+Meanwhile, software updates were released that updated both the Kernel and the Dashboard in an effort to reduce the attack surface. However, certain applications couldn't be easily updated or blocked, and what remained was another 'cat-and-mouse' game.
+
+Another interesting method to mention was Microsoft's **indirect deterrents** against modifications: Microsoft was able to block Xbox Live to consoles carrying unauthorised modifications. This presented a trade-off that users had to consider before hacking their consoles, particularly if their only goal was to play pirated copies.
+
+## That's all folks
+
+After a couple of months with deadlines and exams in the middle, the next article is finally finished. I admit this one continues the trend of adding *too much* information and trivia, but while this research started with small (and frustrating) steps, I'm glad I found a lot of support from one special community, XboxDev, that helped me gather lots of information.
 
 For anyone who would like to know more about this console, XboxDev is actively working on nxdk (along with different emulators) which strives to do things that were previously considered impossible in Xbox homebrew, so I suggest visiting their community for more information.
 
-From my side, I'm going to take a few days to think carefully about the *next article* (and potentially go back a couple of generations to analyse a console I forgot about).
+As for me, I'm going to take a few days to think carefully about the *next article* (and potentially go back a couple of generations to analyse a console I forgot about).
 
 Until next time!  
 Rodrigo
